@@ -37,43 +37,43 @@
 	
 	
 	<!--파일 다운로드 용 View by 이재현  -->
-	<beans:bean id="downloadviewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<!-- <beans:bean id="downloadviewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order">
 			<beans:value>0</beans:value>
 		</beans:property>	
-	</beans:bean>
+	</beans:bean> -->
 	
 	<!-- 파일 다운로드 bean 등록 by 이재현 -->
-	<beans:bean id="download" class="com.crm.cp.utils.ExcelDownLoad" />
+	<!-- <beans:bean id="download" class="com.crm.cp.utils.ExcelDownLoad" /> -->
 	<!--  엑셀 다운 by 이재현  -->
 <!-- 	<beans:bean id="exceldown" class="com.crm.cp.utils.ExcelDownView" /> -->
 	
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
+		<!-- <beans:property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" /> -->
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order" value="2" />
-		<beans:property name="contentType" value="text/html; charset=UTF-8"/>
+		<!-- <beans:property name="order" value="2" />
+		<beans:property name="contentType" value="text/html; charset=UTF-8"/> -->
 	</beans:bean>
 
 	<!-- tilesView -->
-	<beans:bean id="viewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<beans:property name="viewClass"
+	<!-- <beans:bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
+		<!-- <beans:property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles2.TilesView"></beans:property>
-		<beans:property name="order" value="1" />
-	</beans:bean>
+		<beans:property name="order" value="1" /> -->
+	<!-- </beans:bean> -->
 
-	<beans:bean id="tileConfigurer"
+	<!-- <beans:bean id="tileConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
-	</beans:bean>
+	</beans:bean> -->
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
