@@ -26,7 +26,7 @@ public class OrgController {
 	@Resource
 	MenuService menuService;
 	
-	@RequestMapping(value="/org", method=RequestMethod.GET)
+	@RequestMapping(value="/orgll", method=RequestMethod.GET)
 	public ModelAndView Treelist(HttpSession session){
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");

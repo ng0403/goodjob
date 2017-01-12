@@ -2,7 +2,7 @@ package com.crm.cp.test.org.vo;
 
 import java.util.Date;
 
-public class OrgVO {
+public class OrganVO {
 	
 	private String org_id;
 	private String org_nm;
