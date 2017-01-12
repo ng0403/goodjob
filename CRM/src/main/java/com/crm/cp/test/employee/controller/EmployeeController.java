@@ -18,8 +18,7 @@ import com.crm.cp.test.employee.service.EmployeeService;
 public class EmployeeController { 
 	
 	@Autowired
-	EmployeeService employeeService;
-	
+	EmployeeService employeeService; 
 	
 	@RequestMapping(value="/employeelist", method=RequestMethod.GET)
 	public ModelAndView noticeListPage(HttpSession session, Locale locale,
