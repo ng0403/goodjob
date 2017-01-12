@@ -172,8 +172,7 @@ select {
 					<tr>
 						<th>
 							<input id="allCheck" type="checkbox" onclick="allChk(this);" />
-						</th>
-						
+						</th>						
 						<td style="width: 10%;">조직유형ID</td>
 						<td style="width: 10%;">조직유형명</td>
 						<td style="width: 10%;">상위조직유형ID</td>
@@ -182,12 +181,13 @@ select {
 						<td style="width: 10%;">작성시간</td>
 					</tr>
 				</thead>
+				
 				<tbody id="usertbody">
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.iuser_id}"></th>
-							<td style="width: 10%;" id="user_id_a">
-								<a href='#'>${list.id_nm}</a>
+							<td style="width: 10%;" id="org_type_id">
+								<a href='#'>${list.org_type_id}</a>
 							</td>
 							<td style="width: 10%;" class="user_name_tag">${list.iuser_nm}</td>
 							<td style="width: 10%;" class="org_name_tag">${list.org_nm}</td>
