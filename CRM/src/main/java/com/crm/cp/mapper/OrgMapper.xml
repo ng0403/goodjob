@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="organization">
+
+<select id="orgList" resultType="com.crm.cp.standard.org.vo.OrgVO">
+	SELECT 
+		ORG_ID ,
+	    ORG_NAME ,
+	    ZIP_NO ,
+	    ADDR_DETAIL ,
+	    PHONE_NO ,
+	    FAX_NO ,
+	    ORG_LEVEL_CD ,
+	    MAIN_GROUND ,
+	    P_ORG_ID ,
+	    REP_EMP_ID ,
+	    ORG_TYPE_ID ,
+	    ACTIVE_FLG ,
+	    C_USER_ID ,
+	    CDATE ,
+	    U_USER_ID ,
+	    UDATE 
+	FROM ORGANIZATION
+</select>
+
+</mapper>
