@@ -62,7 +62,7 @@ public class HomeController {
 		
 		return "redirect:/notice";
 	}
-
+	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public ModelAndView homePage(HttpSession session){
 		if(session.getAttribute("user")==null){
