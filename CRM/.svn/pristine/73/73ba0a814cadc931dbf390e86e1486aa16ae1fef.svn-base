@@ -1,0 +1,4 @@
+jdbc.driverClass=oracle.jdbc.driver.OracleDriver
+jdbc.url=jdbc:oracle:thin:@192.168.0.80:1521:orcl
+jdbc.username=coreplus
+jdbc.password=core3$!
