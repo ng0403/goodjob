@@ -58,6 +58,7 @@
 		<beans:property name="contentType" value="text/html; charset=UTF-8"/> -->
 	</beans:bean>
 
+
 	<!-- tilesView -->
 	<!-- <beans:bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
