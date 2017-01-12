@@ -1,5 +1,6 @@
 package com.crm.cp.test.employee.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,7 @@ public class EmployeeController {
 	EmployeeService employeeService; 
 	
 	@RequestMapping(value="/employeelist", method=RequestMethod.GET)
-	public ModelAndView noticeListPage(HttpSession session, Locale locale,
+	public ModelAndView employeeLisgPage(HttpSession session, Locale locale,
 			@RequestParam(value = "currentPageNum", defaultValue="1") int currentPageNum,
 			@RequestParam(value = "searchnotice", defaultValue="") String searchnotice,
 			@RequestParam(value = "code", defaultValue="empty") String selectcode)
@@ -34,10 +35,13 @@ public class EmployeeController {
 //			//return mov;
 //		}
 		
-		employeeService.searchListEmployee();
-		
+		List<Object> employeeList = employeeService.searchListEmployee();
+		System.out.println("gg" + employeeList);
+		System.out.println("gg1" + employeeList.toString());
+
 		ModelAndView mov = new ModelAndView("/test/employee/employee");
-		
+		mov.addObject("employeeList", employeeList);
+
 		return mov;
 		
 	}

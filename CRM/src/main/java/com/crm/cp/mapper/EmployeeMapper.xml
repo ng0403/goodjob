@@ -3,8 +3,8 @@
 <mapper namespace="employee">
 
 <select id="searchListEmployee" parameterType="string" resultType="map"> 
-		SELECT *
-		FROM EMPLOYEE
+			SELECT *
+			FROM EMPLOYEE
 
 	</select>
 
