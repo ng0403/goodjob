@@ -27,6 +27,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDao.insertEmployee(employeeVO);
 		
 	}
+
+	@Override
+	public void updateEmployee(EmployeeVO employeeVO) {
+		
+		employeeDao.updateEmployee(employeeVO);
+	}
+
+	@Override
+	public List<Object> employeeCheck(EmployeeVO employeeVO) {
+ 		
+		List<Object> obj = employeeDao.employeeCheck(employeeVO);
+
+		return obj;
+	}
+
+	@Override
+	public void deleteEmployee(String dc) {
+		
+ 		  employeeDao.deleteEmployee(dc);
+	}
 	
 
 }

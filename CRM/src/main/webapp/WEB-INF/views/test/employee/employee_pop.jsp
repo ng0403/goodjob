@@ -32,6 +32,7 @@
 				<table class="table">
 					<tbody id="tbody1">
 						<tr>
+						 
 							<th>사용자ID</th>
 							<td>
  							<input type="text" name="USER_ID" id="USER_ID" class="iuser_txt" style=" width:90%" ></input></td>
@@ -41,14 +42,11 @@
 							<th>부서번호</th>
 							<td><input type="text" name="POSITION_CD" id="POSITION_CD"
 								class="iuser_txt" style="width:90%"></input></td>
-							<th>구분</th>
-							<td><input type="text" name="EMP_STATUS_CD" id="EMP_STATUS_CD" class="iuser_txt" style="width:90%"> 
- 							</td>
+							 
 						</tr>	
 						<tr>
 							<th>전화번호</th>
-							<td><input type="text" name="WORK_PHONE_NO" id="WORK_PHONE_NO" class="iuser_txt" maxlength="12" style="width:90%" /> 
-							    
+							<td><input type="text"  name="WORK_PHONE_NO" id="WORK_PHONE_NO" class="iuser_txt" maxlength="12" style="width:90%" />   
 							</td>
 							 
 							<th>입사일</th>
@@ -59,9 +57,9 @@
  							</td>
  							<th>작성자</th>
 							<td><input type="text" name="C_USER_ID" id="C_USER_ID" class="iuser_txt" style="width:90%" /> 
- 							</td>
- 							 
+ 							</td> 
 						</tr>
+					 
 						<tr> 
 						 
 						</tr>
@@ -114,15 +112,20 @@
 			opener.parent.location.href = "employeelist";
 			</script>
 		 </c:if>
+		 
 	
 	<script>
 		$(document).ready(function() {
 
 			$("#submitbtn").on("click", function() {
 			 
-				$('form').attr("action", "${ctx}/employee/employee_write").submit();
-				
-				
+				$('form').attr("action", "${ctx}/employee/employee_write").submit(); 
+			});
+			
+			$("#modifybtn").on("click", function() {
+				 
+				$('form').attr("action", "${ctx}/employee/employee_update").submit(); 
+				alert("업데이트하이");
 			});
 			
  

@@ -171,7 +171,7 @@ $("#naviuser").css("font-weight", "bold"); */
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
-	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
+	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/employee/employee_delete" >	
 		<table id="mastertable" border = "1">
 			<thead>
 				<tr>
@@ -187,13 +187,13 @@ $("#naviuser").css("font-weight", "bold"); */
 				</tr>
 			</thead>
 			<tbody id="usertbody" >
-				<c:forEach var="employeeList" items="${employeeList}">
+				<c:forEach var="employeeList" items="${employeeList}" >
 				<tr>
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.USER_ID}"></th>
 					<%-- <td style="width:10%;" id="user_id_a">
 						<a href='#'>${employeeList.id_nm}</a>
-					</td> --%>
-					<td style="width:10%;" class="user_name_tag">${employeeList.USER_ID}</td>
+					</td> --%> 
+					<td style="width:10%;" class="user_name_tag" onclick="openPop();">${employeeList.USER_ID}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_NO}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.POSITION_CD}</td>
 					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
@@ -218,24 +218,36 @@ $("#naviuser").css("font-weight", "bold"); */
 
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist">
-		<input type="button" id="iuserListAddBtn" class="iuser_bt" value="등록"/>
-		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
-		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
+		<input type="button" id="iuserListAddBtn" class="iuser_bt" value="수정"/>
+ 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
 	</div>
 	
 	
 	<script type="text/javascript">
  
 	$("#iuserListAddBtn").on("click", function(){  
-		 
-	var popUrl = "employee_pop";	//팝업창에 출력될 페이지 URL
-	var popOption = "width=692, height=258, resizable=no, scrollbars=no, status=no, location=no;";    //팝업창 옵션(optoin)
-			window.open(popUrl,"",popOption);
+	openPop();
 	})
+	
+		
+	$("#iuserDelBtn").on("click", function(){  
+		alert("하잉");
+		$('form').attr("action", "${ctx}/employee/employee_delete").submit(); 
+		})
+	
+	function openPop(){
+		 
+		var popUrl = "employee_pop";	//팝업창에 출력될 페이지 URL
+		var popOption = "width=692, height=258, resizable=no, scrollbars=no, status=no, location=no;";    //팝업창 옵션(optoin)
+				window.open(popUrl,"",popOption);
+		
+	}
+
+		 
+	
  
 </script>
-	
-	
+ 
 	
 	
 	

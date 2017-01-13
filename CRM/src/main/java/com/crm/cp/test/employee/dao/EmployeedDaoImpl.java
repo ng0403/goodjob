@@ -32,6 +32,24 @@ public class EmployeedDaoImpl implements EmployeeDao {
 		sqlSession.insert("insertEmployee", employeeVO);
 		
 	}
+
+	@Override
+	public void updateEmployee(EmployeeVO employeeVO) {
+		
+		sqlSession.update("updateEmployee", employeeVO);
+	}
+
+	@Override
+	public List<Object> employeeCheck(EmployeeVO employeeVO) {
+		
+		return sqlSession.selectList("employeeCheck", employeeVO);
+	}
+
+	@Override
+	public void deleteEmployee(String dc) {
+
+		sqlSession.delete("deleteEmployee", dc);
+	}
 	
 	
 

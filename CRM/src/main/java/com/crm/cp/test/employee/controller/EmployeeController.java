@@ -3,6 +3,7 @@ package com.crm.cp.test.employee.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +48,13 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value="/employee_pop", method=RequestMethod.GET)
-	public ModelAndView employeePop(HttpSession session, Locale locale) {
- 		ModelAndView mov = new ModelAndView("/test/employee/employee_pop");
-		
-		return mov; 
+	public ModelAndView employeePop(HttpSession session, Locale locale, EmployeeVO employeeVO,  HttpServletRequest req) {
+ 	 
+		//List<Object> employeeCheck = employeeService.employeeCheck(employeeVO);
+
+		ModelAndView mov = new ModelAndView("/test/employee/employee_pop");
+ 		//mov.addObject("employeeCheck",employeeCheck);
+ 		return mov; 
 	}
 	
 	
@@ -63,8 +67,34 @@ public class EmployeeController {
 	   
 	    mov.addObject("result", "success");
  	    return mov; 
+	} 
+	
+	@RequestMapping(value="/employee_update", method=RequestMethod.POST)
+	public ModelAndView employeeUpdatePage(EmployeeVO employeeVO){
+		System.out.println("업데이트 까꿍" + employeeVO.toString());
+		employeeService.updateEmployee(employeeVO);
+		ModelAndView mov = new ModelAndView("/test/employee/employee_pop");
+		
+		mov.addObject("result", "success");
+		
+		return mov;
 	}
 	
+	@RequestMapping(value="employee_delete", method=RequestMethod.POST)
+	public String employeedeletePage(String del_code) { 
+		
+	String[] delcode = del_code.split(",");
 	
+	for(int i = 0; i < delcode.length; i++)
+	{
+		String dc = delcode[i];
+		System.out.println("dc? "+ dc);
+		employeeService.deleteEmployee(dc);
+	}
 	
+	return "redirect:/employee/employeelist";
+		 
+		 
+		  
+	}
 }
