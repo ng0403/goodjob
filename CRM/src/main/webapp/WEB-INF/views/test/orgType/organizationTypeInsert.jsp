@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
-<!-- <link rel="stylesheet" href="oOrgList.css" type="text/css" /> -->
 
 <style type="text/css">
 @CHARSET "UTF-8";
@@ -140,7 +140,7 @@ select {
 }
 </style>
 
-<title>OrgType List</title>
+<title>OrgType Insert</title>
 
 <script type="text/javascript">
 	$("#navisub11").show();
@@ -149,73 +149,47 @@ select {
 
 </head>
 <body id="aorgList">
-	<script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 
 	<div id="title">
 		<br>
-		<div class="caption">■ 조직유형</div>
+		<div class="caption">■ 조직유형 Insert</div>
 		<div class="bt_position">
 			<form class="searchForm" name="searchForm" method="post" action="">
-				<select name="searchKey" class="selectField">
-					<option value="iuser_nm">작성자명</option>
-					<option value="position">조직유형ID</option>
-				</select> <input type="text" name="searchValue" class="boxTF" id="title_text" />
-				&nbsp;
-				<button type="submit" id="search_btn" class="org_search_bt">검
-					색</button>
+				<table>
+					<tr>
+						<td>
+							조직유형ID
+						</td>
+						<td>
+							<input type="text" id="org_type_id" name="org_type_id">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							조직유형명
+						</td>
+						<td>
+							<input type="text" id="org_type_name">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							상위조직ID
+						</td>
+						<td>
+							<input type="text" id="p_org_type_id" name="p_org_type_id">
+						</td>
+					</tr>
+				</table>
 			</form>
 		</div>
-	</div>
-	<div class="bs-example" data-example-id="simple-table">
-		<!-- <form name="userForm" id="userForm" method="post" > -->
-		<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete">
-			<table id="mastertable">
-				<thead>
-					<tr>
-						<th>
-							<input id="allCheck" type="checkbox" onclick="allChk(this);" />
-						</th>						
-						<td style="width:50%;">조직유형ID</td>
-						<td style="width:10%;">조직유형명</td>
-						<td style="width:20%;">상위조직유형ID</td>
-						<td style="width:20%;">활성화여부</td>
-					</tr>
-				</thead>
-				
-				<tbody id="usertbody">
-					<c:forEach var="list" items="${list}">
-						<tr>
-							<th scope="row">
-								<input type="checkbox" class="ab" name="del_code" value="${list.iuser_id}">
-							</th>
-							<td style="width: 50%;" id="org_type_id">${list.ORG_TYPE_ID}</td>
-							<td style="width: 10%;" class="user_name_tag">${list.ORG_TYPE_NAME}</td>
-							<td style="width: 20%;" class="org_name_tag">${list.P_ORG_TYPE_ID}</td>
-							<td style="width: 20%;" class="org_name_tag">${list.ACTIVE_FLG}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</form>
 	</div>
 
 	<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist">
-		<input type="button" id="orgTypeListAddBtn" class="iuser_bt" value="등록"/>
+		<input type="button" id="iuserListAddBtn" class="iuser_bt" value="등록" />
 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정" />
 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제" />
 	</div>
 	
-	
-	<script type="text/javascript">
-		$("#orgTypeListAddBtn").on("click", function(){  
-			var popUrl = "orgtypeInsertPop";	//팝업창에 출력될 페이지 URL
-			var popOption = "width=1380, height=320, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-		
-			window.open(popUrl,"",popOption);
-		}) 
-	</script>
-	
-	
 </body>
-</html>

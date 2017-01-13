@@ -6,7 +6,18 @@
 	<select id="selectOrgType" resultType="map" parameterType="String">
 		SELECT *
 		FROM ORGANIZATION_TYPE
-	
 	</select>
+	
+	<insert id="insertOrgType">
+	
+	</insert>
+	
+	<update id="updateOrgType" parameterType="String">
+		
+	</update>
+	
+	<update id="deleteOrgType">
+	
+	</update>
 
 </mapper>
