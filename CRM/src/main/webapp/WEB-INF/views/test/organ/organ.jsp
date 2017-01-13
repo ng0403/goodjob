@@ -1,10 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:set var="ctx" value="${pageContext.request.contextPath }" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>조직</title>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/org/oOrgList.css" type="text/css" />
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/org/oOrgList.js"></script>
+	
 <style type="text/css">
 html{
 	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
@@ -157,7 +163,7 @@ select{
 </div>
 
 <div class="bt_position">		
-	<form class="searchForm" name="searchForm" method="post" action="${ctx}/oOrgList">
+	<form class="searchForm" name="searchForm" method="post" action="${ctx}/test/organ">
 		<select name="searchKey" class="selectField">
 			<option value="iuser_nm">사용자명</option>
 			<option value="position">직책</option>
@@ -173,27 +179,49 @@ select{
 				        <thead>				
 							<tr>
 								<th><input id="allCheck" type="checkbox"/></th>
-								<td style="width: 35%;">아이디</td>
-								<td style="width: 35%;">사용자명</td>
-								<td style="width: 30%;">직책</td>
+								<td style="width: 10%;">조직ID</td>
+								<td style="width: 20%;">조직명</td>
+								<td style="width: 20%;">상위조직명</td>
+								<td style="width: 10%;">조직유형</td>
+								<td style="width: 10%;">조직레벨</td>
+								<td style="width: 10%;">전화번호</td>
+								<td style="width: 10%;">팩스번호</td>
+								<td style="width: 10%;">상태</td>
 							</tr>
 								</thead>
 								<tbody class="otbody">
-									<c:forEach var="orgUser" items="${orgOlist}">
+									<c:forEach var="organList" items="${List}">
 									<tr onMouseOver="style.backgroundColor='#ebe7e7'" onMouseOut="style.backgroundColor=''">
-										<th scope="row"><input type="checkbox" class="ab" id="checkCode" name="checkCode" value="${orgUser.iuser_id}"></th>										
-										<td style="width: 35%;">${orgUser.id_nm}</td>
-										<td style="width: 35%;">${orgUser.iuser_nm}</td>
-										<td style="width: 30%;">${orgUser.cd_nm}</td>
+										<th scope="row"><input type="checkbox" class="ab" id="checkCode" name="checkCode"></th>			
+										<td style="width: 10%;">${organList.ORG_ID}</td>
+										<td style="width: 20%;">${organList.ORG_NAME}</td>
+										<td style="width: 20%;">${organList.MAIN_GROUND}</td>
+										<td style="width: 10%;">${organList.ORG_TYPE_ID}</td>
+										<td style="width: 10%;">${organList.ORG_LEVEL_CD}</td>
+										<td style="width: 10%;">${organList.PHONE_NO}</td>
+										<td style="width: 10%;">${organList.FAX_NO}</td>
+										<td style="width: 10%;">${organList.ACTIVE_FLG}</td>
 									</tr>											
 									</c:forEach>
 								</tbody>			
 							</table>      
-                 <div class="bt_position">
-					<input type="button" class="org_ceo_bt" value="선택" id="oorgChoice"/>
-					<input type="button" class="org_ceo_bt" value="취소" onclick="allChk(obj);"/>
-				</div>      
+           
+				<!-- 기본 버튼 -->
+				<div class="bt_positionuserlist">
+					<input type="button" id="iuserListAddBtn" class="iuser_bt" value="등록" onclick="organ_pop()" />
+					<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
+					<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
+				</div>  
                 <div style="clear:both"></div>
             </div>		
+            <script type="text/javascript">
+			$("#iuserListAddBtn").on("click", function(){  
+				 
+				var popUrl = "organ_pop";	//팝업창에 출력될 페이지 URL
+				var popOption = "width=1380, height=450, resize=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+						window.open(popUrl,"",popOption);
+				})
+			
+			</script>
 </body>
 </html>

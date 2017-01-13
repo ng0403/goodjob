@@ -3,6 +3,7 @@ package com.crm.cp.test.orgtype.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.test.orgtype.service.OrgTypeService;
+import com.crm.cp.test.orgtype.vo.OrgTypeVO;
 
 @Controller("orgtype.OrgTypeController")
 @RequestMapping(value="/orgtype")
@@ -23,17 +25,13 @@ public class OrgTypeController {
 	@Autowired
 	OrgTypeService orgtypeService;
 
-	@RequestMapping(value="/orgtypeList", method=RequestMethod.GET)
+	@RequestMapping(value="/orgtypeInqr", method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView orgTypeListPage(HttpSession session, Locale locale, @RequestParam(value = "currentPageNum", defaultValue="1") int currentPageNum,
 			@RequestParam(value = "searchnotice", defaultValue="") String searchnotice, @RequestParam(value = "code", defaultValue="empty") String selectcode)
 	{
-		System.out.println("orgType 진입");
+		List<Object> list =  orgtypeService.searchListOrgType();
 		
-		List<Object> list =  orgtypeService.searchListNotice();
-		
-		System.out.println("리스트" + list.toString());
-		
-		ModelAndView mov = new ModelAndView("test/orgType/organizationTypeList");
+		ModelAndView mov = new ModelAndView("test/orgType/orgtype_list");
 		
 		mov.addObject("list", list);
 		
@@ -41,21 +39,63 @@ public class OrgTypeController {
 		
 	}
 	
-	@RequestMapping(value="/orgtypeInsertPop", method=RequestMethod.GET)
-	public ModelAndView orgTypeInsertPopup(HttpSession session, Locale locale, @RequestParam(value = "currentPageNum", defaultValue="1") int currentPageNum,
-			@RequestParam(value = "searchnotice", defaultValue="") String searchnotice, @RequestParam(value = "code", defaultValue="empty") String selectcode)
+	@RequestMapping(value="/orgtypeAddPop", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView orgTypeInsertPopup(HttpSession session, Locale locale)
+	{		
+		ModelAndView mov = new ModelAndView("test/orgType/orgtype_pop");
+		
+		return mov;	
+	}
+	
+	@RequestMapping(value="/orgtypeAdd", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView orgTypeInsert(OrgTypeVO orgtypeVo)
 	{
-		System.out.println("orgTypeInsert Popup 진입");
+		System.out.println("VO : " + orgtypeVo.toString());
 		
-		List<Object> list =  orgtypeService.searchListNotice();
+		orgtypeService.insertOrgType(orgtypeVo);
+
+		ModelAndView mov = new ModelAndView("test/orgType/orgtype_pop");
 		
-		System.out.println("리스트" + list.toString());
+		mov.addObject("result", "success");
 		
-		ModelAndView mov = new ModelAndView("test/orgType/organizationTypeInsert");
+		return mov;
 		
-		mov.addObject("list", list);
+	}
+	
+	@RequestMapping(value="/orgtypeMdfyPop", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView orgTypeModifyPopup(HttpSession session, Locale locale, HttpServletRequest req, OrgTypeVO orgtypeVo)
+	{
+		String org_type_id = req.getParameter("org_type_id");
+		
+		orgtypeVo.setOrg_type_id(org_type_id);		
+		System.out.println(orgtypeVo.getOrg_type_id());
+		
+		List<Object> select = orgtypeService.searchListOrgTypeOne(org_type_id);
+		
+		System.out.println("리스트 : " + select);
+		ModelAndView mov = new ModelAndView("test/orgType/orgtype_mdfy_pop");
+		
+		mov.addObject("select", select);
+		
+		return mov;
+	}
+	
+	//orgtypeMdfy
+	@RequestMapping(value="/orgtypeMdfy", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView orgTypeModify(OrgTypeVO orgtypeVo, HttpServletRequest req)
+	{
+		String org_type_id = req.getParameter("org_type_id");
+		
+		orgtypeVo.setOrg_type_id(org_type_id);		
+		System.out.println(orgtypeVo.getOrg_type_name());
+		orgtypeService.modifyOrgType(orgtypeVo);
+		
+		ModelAndView mov = new ModelAndView("test/orgType/orgtype_mdfy_pop");
+		
+		mov.addObject("result", "success");
 		
 		return mov;
 		
 	}
 }
+		

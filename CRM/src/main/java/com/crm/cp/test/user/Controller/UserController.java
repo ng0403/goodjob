@@ -1,18 +1,23 @@
 package com.crm.cp.test.user.Controller;
 
+import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.test.user.Service.UserService;
+import com.crm.cp.test.user.vo.userVO;
 
 @Controller
 @RequestMapping(value="/usertest")
@@ -44,11 +49,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/userTab", method=RequestMethod.GET)
-	public ModelAndView userTabListPage(HttpSession session, Locale locale,
-			@RequestParam(value = "currentPageNum", defaultValue="1") int currentPageNum,
-			@RequestParam(value = "searchnotice", defaultValue="") String searchnotice,
-			@RequestParam(value = "code", defaultValue="empty") String selectcode)
+	public ModelAndView userTabListPage(HttpSession session, Locale locale)
 	{
+
 		System.out.println("user Controller");
 		
 		List<Object> list = userService.searchListUser();
@@ -62,6 +65,28 @@ public class UserController {
 		ModelAndView mov = new ModelAndView("/test/user/userTab", "list", list);
 		
 		return mov;
-		
+	}
+	
+	@RequestMapping(value="/userInsert", method=RequestMethod.POST)
+	public ModelAndView userInsert(userVO vo, HttpSession session) {
+		System.out.println("userInsert Controller" + vo.toString());
+		userService.insertUser(vo);
+		System.out.println("insert success");
+		ModelAndView mov = new ModelAndView("/test/user/userTab");
+		int result = 1;
+		mov.addObject("result", result);
+		System.out.println(mov);
+		return mov;
+	}
+	
+	@RequestMapping(value="userDel", method=RequestMethod.GET)
+	public String userDel(String user_id) throws Exception { 
+		System.out.println("del controller enter");
+		String[] arrIdx = user_id.split(",");
+		for (int i=0; i<arrIdx.length; i++) {
+			System.out.println(arrIdx[i]);
+			userService.userDel(arrIdx[i]);
+		}
+		return "redirect:/usertest/userlist";
 	}
 }

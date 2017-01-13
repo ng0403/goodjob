@@ -104,7 +104,7 @@ function userDetailClick(ctx) {
 }
 
 function iuserListAdd(){
-	$('#iuserListAddBtn').click(function(){
+	$('#	').click(function(){
 		$('#iuser_id').val("");
 		$('#id_nm').val("");
 		$('#iuser_nm').val("");

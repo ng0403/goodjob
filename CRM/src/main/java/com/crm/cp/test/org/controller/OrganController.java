@@ -1,5 +1,6 @@
 package com.crm.cp.test.org.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.test.org.servise.OrganService;
+import com.crm.cp.test.org.vo.OrganVO;
 
 @Controller
 @RequestMapping(value="/organ")
 public class OrganController {
 	
 	@Autowired
-	OrganService orgService;
+	OrganService organService;
 	
 	@RequestMapping(value="/organList", method=RequestMethod.GET)
 	public ModelAndView noticeListPage(HttpSession session, Locale locale,
@@ -34,14 +36,39 @@ public class OrganController {
 //			//return mov;
 //		}
 		
-		orgService.searchOrganList();
+		//리스트 출력
+		List<Object> organList = organService.searchOrganList();
+		System.out.println(organList);
 		
 		ModelAndView mov = new ModelAndView("/test/organ/organ");
+		mov.addObject("List", organList);
 		
-		return mov;
+ 		return mov;
 		
 	}
-
+	
+	@RequestMapping(value="/organ_pop", method=RequestMethod.GET)
+	public ModelAndView organPop(HttpSession session, Locale locale) {
+ 		ModelAndView mov = new ModelAndView("/test/organ/organ_pop");
 		
+		return mov; 
+	}
+	
+	
+	@RequestMapping(value="/organ_write", method=RequestMethod.POST)
+	public ModelAndView organInsertPage(OrganVO organVO){
+		System.out.println("write입성" + organVO.toString());
+		organService.insertOrgan(organVO);
+	    
+	    ModelAndView mov = new ModelAndView("/test/organ/organ_pop");
+	    mov.addObject("result", "success");
+	    
+ 	    return mov; 
+	}
+	
+	
+	
+
+	
 	
 }

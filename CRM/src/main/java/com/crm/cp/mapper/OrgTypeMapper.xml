@@ -4,19 +4,45 @@
 <mapper namespace="orgtype">
 
 	<select id="selectOrgType" resultType="map" parameterType="String">
-		SELECT *
-		FROM ORGANIZATION_TYPE
+		SELECT 
+			*
+		FROM 
+			ORGANIZATION_TYPE
 	</select>
 	
-	<insert id="insertOrgType">
+	<select id="selectOrgTypeOne" resultType="map" parameterType="com.crm.cp.test.orgtype.vo.OrgTypeVO">
+		SELECT 
+			*
+		FROM 
+			ORGANIZATION_TYPE
+		WHERE
+			ORG_TYPE_ID = #{org_type_id}
+	</select>
 	
+	<insert id="insertOrgType" parameterType="com.crm.cp.test.orgtype.vo.OrgTypeVO">
+		INSERT INTO ORGANIZATION_TYPE 
+			(ORG_TYPE_ID, ORG_TYPE_NAME, P_ORG_TYPE_ID)
+		VALUES
+			(#{org_type_id}, #{org_type_name}, #{p_org_type_id})
 	</insert>
 	
-	<update id="updateOrgType" parameterType="String">
-		
+	<update id="modifyOrgType" parameterType="String">
+		UPDATE 
+			ORGANIZATION_TYPE
+		SET
+			ORG_TYPE_NAME = #{org_type_name}, 
+			P_ORG_TYPE_ID = #{p_org_type_id},
+			ACTIVE_FLG    = #{active_flg}
+		WHERE
+			ORG_TYPE_ID   = #{org_type_id}
 	</update>
 	
 	<update id="deleteOrgType">
+		DELETE
+		FROM
+			ORGANIZATION_TYPE
+		WHERE
+			ORG_TYPE_ID   = #{org_type_id}
 	
 	</update>
 

@@ -169,8 +169,8 @@ $("#naviuser").css("font-weight", "bold");
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
-	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
-		<table id="mastertable">
+	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/employee/employee_delete" >	
+		<table id="mastertable" border = "1">
 			<thead>
 				<tr>
 					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
@@ -179,14 +179,20 @@ $("#naviuser").css("font-weight", "bold");
 					<td style="width:10%;">부서명</td>
 					<td style="width:20%;">이메일</td>
 					<td style="width:20%;">연락처</td>
-					<td style="width:10%;">권한</td>
-					<td style="width:10%;">사용자구분</td>
+					<td style="width:10%;">입사일</td>
+					<td style="width:10%;">퇴사일</td>
 					<td style="width:10%;">상태</td>
 				</tr>
 			</thead>
+<<<<<<< HEAD
 			<tbody id="usertbody">
 				<c:forEach var="list" items="${list}">
+=======
+			<tbody id="usertbody" >
+				<c:forEach var="employeeList" items="${employeeList}" >
+>>>>>>> branch 'master' of https://github.com/ng0403/goodjob.git
 				<tr>
+<<<<<<< HEAD
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.iuser_id}"></th>
 					<td style="width:10%;" id="user_id_a">
 						<a href='#'>${list.id_nm}</a>
@@ -197,17 +203,28 @@ $("#naviuser").css("font-weight", "bold");
 					<td style="width:20%;" class="cell_phone_tag">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td>
 					<td style="width:10%;" class="auth_name_tag">
 					<c:if test="${empty list.auth_nm}">
+=======
+					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.USER_ID}"></th>
+					<%-- <td style="width:10%;" id="user_id_a">
+						<a href='#'>${employeeList.id_nm}</a>
+					</td> --%> 
+					<td style="width:10%;" class="user_name_tag" onclick="openPop();">${employeeList.USER_ID}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_NO}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.POSITION_CD}</td>
+					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
+					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.JOIN_DAY}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.RETIRE_DAY}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_STATUS_CD}</td> 
+ 					<%-- <c:if test="${empty employeeList.AUTH_NM}">
+>>>>>>> branch 'master' of https://github.com/ng0403/goodjob.git
 						권한없음
 					</c:if>
 					<c:if test="${not empty list.auth_nm}">
 						${list.auth_nm}
-					</c:if>
+					</c:if> --%>
 					</td>
-					<td style="width:10%;" class="code_name_tag">${list.cd_nm}</td>
-					<td style="width:10%;" class="active_flag_tag">
-					<c:if test="${list.act_yn=='Y'}">활성화</c:if>
-					<c:if test="${list.act_yn=='N'}">비활성화</c:if>
-					</td>
+  					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -217,9 +234,41 @@ $("#naviuser").css("font-weight", "bold");
 
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist">
-		<input type="button" id="iuserListAddBtn" class="iuser_bt" value="등록"/>
-		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
-		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
+		<input type="button" id="iuserListAddBtn" class="iuser_bt" value="수정"/>
+ 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
 	</div>
+<<<<<<< HEAD
+=======
+	
+	
+	<script type="text/javascript">
+ 
+	$("#iuserListAddBtn").on("click", function(){  
+	openPop();
+	})
+	
+		
+	$("#iuserDelBtn").on("click", function(){  
+		alert("하잉");
+		$('form').attr("action", "${ctx}/employee/employee_delete").submit(); 
+		})
+	
+	function openPop(){
+		 
+		var popUrl = "employee_pop";	//팝업창에 출력될 페이지 URL
+		var popOption = "width=692, height=258, resizable=no, scrollbars=no, status=no, location=no;";    //팝업창 옵션(optoin)
+				window.open(popUrl,"",popOption);
+		
+	}
+
+		 
+	
+ 
+</script>
+ 
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/ng0403/goodjob.git
 </body>
 </html>

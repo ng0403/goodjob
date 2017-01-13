@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.test.org.vo.OrganVO;
+
 @Repository
 public class OrganDaoImpl implements OrganDao {
 	
@@ -16,11 +18,17 @@ public class OrganDaoImpl implements OrganDao {
 	}
 	
 	@Override
-	public void searchOrganList() {
+	public List<Object> searchOrganList() {
 		
-		sqlSession.selectList("searchOrganList");
+		List<Object> obj = sqlSession.selectList("searchOrganList");
+		return obj;
+	}
+	
+	@Override
+	public void insertOrgan(OrganVO organVO) {
+		System.out.println("다오임플 등장");
+		sqlSession.insert("insertOrgan", organVO);
 		
-		return;
 	}
 	
 

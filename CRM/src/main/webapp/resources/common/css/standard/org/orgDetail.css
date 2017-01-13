@@ -384,7 +384,7 @@ select{
     display:inline-block;
     padding:5px;
     text-align:center;
-    width:90px;
+    width:150px;
     line-height:1.8em;
     font-weight:700;
     border-radius:8px 8px 0 0; 
@@ -394,6 +394,10 @@ select{
     border:1px solid #ccc;
     border-width:1px 1px 0;
     margin-bottom:-1px;
+}
+#userAuthTab{
+	width:150px;
+	
 }
 #css_tabs > label:hover {
     cursor:pointer; /*마우스 올렸을 때 손 모양*/

@@ -1,128 +1,139 @@
 package com.crm.cp.test.org.vo;
 
-import java.util.Date;
-
 public class OrganVO {
 	
-	private String org_id;
-	private String org_nm;
-	private String zip_no;
-	private String addr_detail;
-	private String org_addr_dtl;
-	private String phone_no;
-	private String fax_no;
-	private String org_lev_cd;
-	private String main_ground;
-	private String p_org_id;
-	private String rep_emp_id;
-	private String org_type_id;
-	private String active_flg;
-	private String c_user_id;
-	private String cdate;
-	private String u_user_id;
-	private String udate;
+	private String ORG_ID;
+	private String ORG_NAME;
+	private String ZIP_NO;
+	private String ADDR_DETAIL;
+	private String ORG_ADDR_DTL;
+	private String PHONE_NO;
+	private String FAX_NO;
+	private String ORG_LEVEL_CD;
+	private String MAIN_GROUND;
+	private String P_ORG_ID;
+	private String REP_EMP_ID;
+	private String ORG_TYPE_ID;
+	private String ACTIVE_FLG;
+	private String C_USER_ID;
+	private String CDATE;
+	private String U_USER_ID;
+	private String UDATE;
+		
+	public String getORG_ID() {
+		return ORG_ID;
+	}
+	public void setORG_ID(String oRG_ID) {
+		ORG_ID = oRG_ID;
+	}
+	public String getORG_NAME() {
+		return ORG_NAME;
+	}
+	public void setORG_NAME(String oRG_NAME) {
+		ORG_NAME = oRG_NAME;
+	}
+	public String getZIP_NO() {
+		return ZIP_NO;
+	}
+	public void setZIP_NO(String zIP_NO) {
+		ZIP_NO = zIP_NO;
+	}
+	public String getADDR_DETAIL() {
+		return ADDR_DETAIL;
+	}
+	public void setADDR_DETAIL(String aDDR_DETAIL) {
+		ADDR_DETAIL = aDDR_DETAIL;
+	}
+	public String getORG_ADDR_DTL() {
+		return ORG_ADDR_DTL;
+	}
+	public void setORG_ADDR_DTL(String oRG_ADDR_DTL) {
+		ORG_ADDR_DTL = oRG_ADDR_DTL;
+	}
+	public String getPHONE_NO() {
+		return PHONE_NO;
+	}
+	public void setPHONE_NO(String pHONE_NO) {
+		PHONE_NO = pHONE_NO;
+	}
+	public String getFAX_NO() {
+		return FAX_NO;
+	}
+	public void setFAX_NO(String fAX_NO) {
+		FAX_NO = fAX_NO;
+	}
+	public String getORG_LEVEL_CD() {
+		return ORG_LEVEL_CD;
+	}
+	public void setORG_LEVEL_CD(String oRG_LEVEL_CD) {
+		ORG_LEVEL_CD = oRG_LEVEL_CD;
+	}
+	public String getMAIN_GROUND() {
+		return MAIN_GROUND;
+	}
+	public void setMAIN_GROUND(String mAIN_GROUND) {
+		MAIN_GROUND = mAIN_GROUND;
+	}
+	public String getP_ORG_ID() {
+		return P_ORG_ID;
+	}
+	public void setP_ORG_ID(String p_ORG_ID) {
+		P_ORG_ID = p_ORG_ID;
+	}
+	public String getREP_EMP_ID() {
+		return REP_EMP_ID;
+	}
+	public void setREP_EMP_ID(String rEP_EMP_ID) {
+		REP_EMP_ID = rEP_EMP_ID;
+	}
+	public String getORG_TYPE_ID() {
+		return ORG_TYPE_ID;
+	}
+	public void setORG_TYPE_ID(String oRG_TYPE_ID) {
+		ORG_TYPE_ID = oRG_TYPE_ID;
+	}
+	public String getACTIVE_FLG() {
+		return ACTIVE_FLG;
+	}
+	public void setACTIVE_FLG(String aCTIVE_FLG) {
+		ACTIVE_FLG = aCTIVE_FLG;
+	}
+	public String getC_USER_ID() {
+		return C_USER_ID;
+	}
+	public void setC_USER_ID(String c_USER_ID) {
+		C_USER_ID = c_USER_ID;
+	}
+	public String getCDATE() {
+		return CDATE;
+	}
+	public void setCDATE(String cDATE) {
+		CDATE = cDATE;
+	}
+	public String getU_USER_ID() {
+		return U_USER_ID;
+	}
+	public void setU_USER_ID(String u_USER_ID) {
+		U_USER_ID = u_USER_ID;
+	}
+	public String getUDATE() {
+		return UDATE;
+	}
+	public void setUDATE(String uDATE) {
+		UDATE = uDATE;
+	}
+	@Override
+	public String toString() {
+		return "OrganVO [ORG_ID=" + ORG_ID + ", ORG_NAME=" + ORG_NAME + ", ZIP_NO=" + ZIP_NO + ", ADDR_DETAIL="
+				+ ADDR_DETAIL + ", ORG_ADDR_DTL=" + ORG_ADDR_DTL + ", PHONE_NO=" + PHONE_NO + ", FAX_NO=" + FAX_NO
+				+ ", ORG_LEVEL_CD=" + ORG_LEVEL_CD + ", MAIN_GROUND=" + MAIN_GROUND + ", P_ORG_ID=" + P_ORG_ID
+				+ ", REP_EMP_ID=" + REP_EMP_ID + ", ORG_TYPE_ID=" + ORG_TYPE_ID + ", ACTIVE_FLG=" + ACTIVE_FLG
+				+ ", C_USER_ID=" + C_USER_ID + ", CDATE=" + CDATE + ", U_USER_ID=" + U_USER_ID + ", UDATE=" + UDATE
+				+ "]";
+	}
 	
-	public String getOrg_id() {
-		return org_id;
-	}
-	public void setOrg_id(String org_id) {
-		this.org_id = org_id;
-	}
-	public String getOrg_nm() {
-		return org_nm;
-	}
-	public void setOrg_nm(String org_nm) {
-		this.org_nm = org_nm;
-	}
-	public String getZip_no() {
-		return zip_no;
-	}
-	public void setZip_no(String zip_no) {
-		this.zip_no = zip_no;
-	}
-	public String getAddr_detail() {
-		return addr_detail;
-	}
-	public void setAddr_detail(String addr_detail) {
-		this.addr_detail = addr_detail;
-	}
-	public String getOrg_addr_dtl() {
-		return org_addr_dtl;
-	}
-	public void setOrg_addr_dtl(String org_addr_dtl) {
-		this.org_addr_dtl = org_addr_dtl;
-	}
-	public String getPhone_no() {
-		return phone_no;
-	}
-	public void setPhone_no(String phone_no) {
-		this.phone_no = phone_no;
-	}
-	public String getFax_no() {
-		return fax_no;
-	}
-	public void setFax_no(String fax_no) {
-		this.fax_no = fax_no;
-	}
-	public String getOrg_lev_cd() {
-		return org_lev_cd;
-	}
-	public void setOrg_lev_cd(String org_lev_cd) {
-		this.org_lev_cd = org_lev_cd;
-	}
-	public String getMain_ground() {
-		return main_ground;
-	}
-	public void setMain_ground(String main_ground) {
-		this.main_ground = main_ground;
-	}
-	public String getP_org_id() {
-		return p_org_id;
-	}
-	public void setP_org_id(String p_org_id) {
-		this.p_org_id = p_org_id;
-	}
-	public String getRep_emp_id() {
-		return rep_emp_id;
-	}
-	public void setRep_emp_id(String rep_emp_id) {
-		this.rep_emp_id = rep_emp_id;
-	}
-	public String getOrg_type_id() {
-		return org_type_id;
-	}
-	public void setOrg_type_id(String org_type_id) {
-		this.org_type_id = org_type_id;
-	}
-	public String getActive_flg() {
-		return active_flg;
-	}
-	public void setActive_flg(String active_flg) {
-		this.active_flg = active_flg;
-	}
-	public String getC_user_id() {
-		return c_user_id;
-	}
-	public void setC_user_id(String c_user_id) {
-		this.c_user_id = c_user_id;
-	}
-	public String getCdate() {
-		return cdate;
-	}
-	public void setCdate(String cdate) {
-		this.cdate = cdate;
-	}
-	public String getU_user_id() {
-		return u_user_id;
-	}
-	public void setU_user_id(String u_user_id) {
-		this.u_user_id = u_user_id;
-	}
-	public String getUdate() {
-		return udate;
-	}
-	public void setUdate(String udate) {
-		this.udate = udate;
-	}
+	
+	
+	
 
 }

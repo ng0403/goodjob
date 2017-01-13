@@ -5,7 +5,35 @@
 <select id="searchListEmployee" parameterType="string" resultType="map"> 
 			SELECT *
 			FROM EMPLOYEE
-
+			WHERE EMP_STATUS_CD = 'Y'
 	</select>
+	
+<select id="employeeCheck" parameterType="com.crm.cp.test.employee.vo.EmployeeVO" resultType="map">
+select *
+from employee
+where user_id = #{USER_ID}
+</select>	
+	
+	<update id = "insertEmployee" parameterType = "com.crm.cp.test.employee.vo.EmployeeVO"> 
+	insert into employee
+	(user_id, emp_no, position_cd, work_phone_no, join_day, retire_day, c_user_id)
+	values
+	(#{USER_ID}, #{EMP_NO}, #{POSITION_CD}, #{WORK_PHONE_NO},  #{JOIN_DAY}, #{RETIRE_DAY}, #{C_USER_ID})
+	
+	</update>
+	
+	<update id = "updateEmployee" parameterType = "com.crm.cp.test.employee.vo.EmployeeVO"> 
+	update employee set user_id = #{USER_ID}, work_phone_no =  #{WORK_PHONE_NO},  join_day =  #{JOIN_DAY}, retire_day =  #{RETIRE_DAY}, c_user_id =  #{C_USER_ID}
+	where emp_no = #{EMP_NO}	
+	
+	</update>
+	
+	
+	<update id = "deleteEmployee" parameterType="String">
+	update employee set emp_status_cd = 'N'
+	where user_id = #{USER_ID}
+	</update>
+	
+	
 
 </mapper>

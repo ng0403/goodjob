@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="organization">
-<select id="searchOrganList" resultType="com.crm.cp.test.org.vo.OrganVO">
+<select id="searchOrganList" parameterType="string" resultType="map">
 	SELECT 
 		ORG_ID ,
 	    ORG_NAME ,
@@ -21,5 +21,37 @@
 	    UDATE 
 	FROM ORGANIZATION
 </select>
+
+<update id = "insertOrgan" parameterType = "com.crm.cp.test.org.vo.OrganVO">
+INSERT INTO ORGANIZATION
+(
+    ORG_ID,
+    ORG_NAME ,
+    MAIN_GROUND ,
+    ZIP_NO ,
+    ADDR_DETAIL ,
+    PHONE_NO ,
+    FAX_NO ,
+    ORG_LEVEL_CD ,
+    P_ORG_ID ,
+    REP_EMP_ID ,
+    ORG_TYPE_ID ,
+    ACTIVE_FLG 
+)
+VALUES (
+	#{ORG_ID , jdbcType=VARCHAR},
+    #{ORG_NAME , jdbcType=VARCHAR} ,
+    #{MAIN_GROUND , jdbcType=VARCHAR} ,
+    #{ZIP_NO , jdbcType=VARCHAR} ,
+    #{ADDR_DETAIL , jdbcType=VARCHAR} ,
+    #{PHONE_NO , jdbcType=VARCHAR} ,
+    #{FAX_NO , jdbcType=VARCHAR} ,
+    #{ORG_LEVEL_CD , jdbcType=VARCHAR} ,
+    #{P_ORG_ID , jdbcType=VARCHAR} ,
+    #{REP_EMP_ID , jdbcType=VARCHAR} ,
+    #{ORG_TYPE_ID , jdbcType=VARCHAR} ,
+    #{ACTIVE_FLG , jdbcType=VARCHAR}
+)
+</update>
 
 </mapper>
