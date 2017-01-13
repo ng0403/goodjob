@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
+<script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/iuser/iuserList.css" type="text/css" />
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/iuser/iuserList.js"></script> --%>	
 <title>리스트</title>
@@ -19,6 +20,44 @@ function userTabOpen(){
 	window.open(popUrl, "", popOption);
 }
 </script>
+
+<script type="text/javascript">
+// 1.모두 체크
+/* 체크박스 전체선택, 전체해제 */
+function allChk(){
+      if( $("#th_checkAll").is(':checked') ){
+        $("input[name=del_code]").prop("checked", true);
+      }else{
+        $("input[name=del_code]").prop("checked", false);
+      }
+}
+
+
+/* 삭제(체크박스된 것 전부) */
+function deleteAction(){
+  var del_code = "";
+  $( "input[name='del_code']:checked" ).each (function (){
+	  del_code = del_code + $(this).val()+"," ;
+  });
+  del_code = del_code.substring(0,del_code.lastIndexOf( ",")); //맨끝 콤마 지우기
+ 
+  if(del_code == ''){
+    alert("삭제할 대상을 선택하세요.");
+    return false;
+  }
+  console.log("### del_code => {}"+del_code);
+ 
+  if(confirm("정보를 삭제 하시겠습니까?")){
+      
+      //삭제처리 후 다시 불러올 리스트 url      
+
+      location.href="${ctx}/usertest/userDel?user_id="+del_code;      
+  }
+}
+
+
+
+</script> 
 
 </head>
 <body>
@@ -38,11 +77,11 @@ function userTabOpen(){
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
-	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
+	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/userDel" >	
 		<table id="mastertable">
 			<thead>
 				<tr>
-					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
+					<th><input id="th_checkAll" name="checkAll" type="checkbox" onclick="allChk();"/></th>
 					<td style="width:10%;">사용자ID</td>
 					<td style="width:10%;">사용자명</td>
 					<td style="width:10%;">조직명</td>
@@ -57,7 +96,7 @@ function userTabOpen(){
 				<c:forEach var="list" items="${list}">
 				<tr>
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.USER_ID}"></th>
-					<td style="width:10%;" id="user_id_a"><a href='#'>${list.USER_ID}</a></td>
+					<td style="width:10%;" name="user_id" id="user_id_a"><a href='#'>${list.USER_ID}</a></td>
 					<td style="width:10%;" class="user_name_tag">${list.USER_NAME}</td>
 					<td style="width:10%;" class="org_name_tag">${list.ORG_ID}</td>
 					<td style="width:20%;" class="email_tag">${list.EMAIL}</td>
@@ -83,7 +122,7 @@ function userTabOpen(){
 	<div class="bt_positionuserlist">
 		<input type="button" id="iuserListAddBtn" onclick="userTabOpen()"class="iuser_bt" value="등록" />
 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
-		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
+		<input type="button" id="iuserDelBtn" onclick="deleteAction()" class="iuser_bt" value="삭제"/>
 	</div>
 </body>
 </html>

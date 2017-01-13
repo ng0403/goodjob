@@ -10,4 +10,6 @@ public interface UserDao {
 	public Object selectOnes(String root, Object obj);
 
 	public void insert(userVO vo);
+
+	public void userDel(String dc);
 }

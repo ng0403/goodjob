@@ -44,5 +44,12 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("insert success DaoImpl");
 		
 	}
+
+	@Override
+	public void userDel(String dc) {
+		sqlSession.update("user.userDel", dc);
+		System.out.println("user del dao impl enter");
+		
+	}
 }
 
