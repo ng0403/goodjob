@@ -1,5 +1,6 @@
 package com.crm.cp.test.user.Controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -21,23 +22,46 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(value="/userlist", method=RequestMethod.GET)
-	public ModelAndView noticeListPage(HttpSession session, Locale locale,
+	public ModelAndView userListPage(HttpSession session, Locale locale,
 			@RequestParam(value = "currentPageNum", defaultValue="1") int currentPageNum,
 			@RequestParam(value = "searchnotice", defaultValue="") String searchnotice,
 			@RequestParam(value = "code", defaultValue="empty") String selectcode)
 	{
 		System.out.println("user Controller");
+		
+		List<Object> list = userService.searchListUser();
 //		if(session.getAttribute("user") == null){
 //			 //ModelAndView mov = new ModelAndView("redirect:/");
 //			employeeService.searchListEmployee();   
 //			//return mov;
 //		}
-		userService.searchListUser();
-		
-		ModelAndView mov = new ModelAndView("/test/user/user");
+		//userService.searchListUser();
+		System.out.println(list);
+		ModelAndView mov = new ModelAndView("/test/user/user", "list", list);
 		
 		return mov;
 		
 	}
 
+	@RequestMapping(value="/userTab", method=RequestMethod.GET)
+	public ModelAndView userTabListPage(HttpSession session, Locale locale,
+			@RequestParam(value = "currentPageNum", defaultValue="1") int currentPageNum,
+			@RequestParam(value = "searchnotice", defaultValue="") String searchnotice,
+			@RequestParam(value = "code", defaultValue="empty") String selectcode)
+	{
+		System.out.println("user Controller");
+		
+		List<Object> list = userService.searchListUser();
+//		if(session.getAttribute("user") == null){
+//			 //ModelAndView mov = new ModelAndView("redirect:/");
+//			employeeService.searchListEmployee();   
+//			//return mov;
+//		}
+		//userService.searchListUser();
+		System.out.println(list);
+		ModelAndView mov = new ModelAndView("/test/user/userTab", "list", list);
+		
+		return mov;
+		
+	}
 }
