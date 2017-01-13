@@ -7,5 +7,15 @@
 			FROM EMPLOYEE
 
 	</select>
+	
+	<update id = "insertEmployee" parameterType = "com.crm.cp.test.employee.vo.EmployeeVO"> 
+	insert into employee
+	(user_id, emp_no, position_cd, emp_status_cd,  work_phone_no, join_day, retire_day, c_user_id)
+	values
+	(#{USER_ID}, #{EMP_NO}, #{POSITION_CD}, #{EMP_STATUS_CD}, #{WORK_PHONE_NO},  #{JOIN_DAY}, #{RETIRE_DAY}, #{C_USER_ID})
+	
+	</update>
+	
+	
 
 </mapper>

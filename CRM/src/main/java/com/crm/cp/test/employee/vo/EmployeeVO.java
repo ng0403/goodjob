@@ -2,89 +2,71 @@ package com.crm.cp.test.employee.vo;
 
 public class EmployeeVO {
 	
-	private String user_id;
-	private String emp_no;
-	private String position_cd;
-	private String work_phone_no;
-	private String join_day;
-	private String retire_day;
-	private String emp_status_cd;
-	private String c_user_id;
-	private String cdate;
-	private String u_user_id;
-	private String udate;
-	public String getUser_id() {
-		return user_id;
+	private String USER_ID;
+	private String EMP_NO;
+	private String POSITION_CD;
+	private String WORK_PHONE_NO;
+	private String JOIN_DAY;
+	private String RETIRE_DAY;
+	private String EMP_STATUS_CD;
+	private String C_USER_ID;
+ 
+	public String getUSER_ID() {
+		return USER_ID;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUSER_ID(String uSER_ID) {
+		USER_ID = uSER_ID;
 	}
-	public String getEmp_no() {
-		return emp_no;
+	public String getEMP_NO() {
+		return EMP_NO;
 	}
-	public void setEmp_no(String emp_no) {
-		this.emp_no = emp_no;
+	public void setEMP_NO(String eMP_NO) {
+		EMP_NO = eMP_NO;
 	}
-	public String getPosition_cd() {
-		return position_cd;
+	public String getPOSITION_CD() {
+		return POSITION_CD;
 	}
-	public void setPosition_cd(String position_cd) {
-		this.position_cd = position_cd;
+	public void setPOSITION_CD(String pOSITION_CD) {
+		POSITION_CD = pOSITION_CD;
 	}
-	public String getWork_phone_no() {
-		return work_phone_no;
+	public String getWORK_PHONE_NO() {
+		return WORK_PHONE_NO;
 	}
-	public void setWork_phone_no(String work_phone_no) {
-		this.work_phone_no = work_phone_no;
+	public void setWORK_PHONE_NO(String wORK_PHONE_NO) {
+		WORK_PHONE_NO = wORK_PHONE_NO;
 	}
-	public String getJoin_day() {
-		return join_day;
+	public String getJOIN_DAY() {
+		return JOIN_DAY;
 	}
-	public void setJoin_day(String join_day) {
-		this.join_day = join_day;
+	public void setJOIN_DAY(String jOIN_DAY) {
+		JOIN_DAY = jOIN_DAY;
 	}
-	public String getRetire_day() {
-		return retire_day;
+	public String getRETIRE_DAY() {
+		return RETIRE_DAY;
 	}
-	public void setRetire_day(String retire_day) {
-		this.retire_day = retire_day;
+	public void setRETIRE_DAY(String rETIRE_DAY) {
+		RETIRE_DAY = rETIRE_DAY;
 	}
-	public String getEmp_status_cd() {
-		return emp_status_cd;
+	public String getEMP_STATUS_CD() {
+		return EMP_STATUS_CD;
 	}
-	public void setEmp_status_cd(String emp_status_cd) {
-		this.emp_status_cd = emp_status_cd;
+	public void setEMP_STATUS_CD(String eMP_STATUS_CD) {
+		EMP_STATUS_CD = eMP_STATUS_CD;
 	}
-	public String getC_user_id() {
-		return c_user_id;
+	public String getC_USER_ID() {
+		return C_USER_ID;
 	}
-	public void setC_user_id(String c_user_id) {
-		this.c_user_id = c_user_id;
-	}
-	public String getCdate() {
-		return cdate;
-	}
-	public void setCdate(String cdate) {
-		this.cdate = cdate;
-	}
-	public String getU_user_id() {
-		return u_user_id;
-	}
-	public void setU_user_id(String u_user_id) {
-		this.u_user_id = u_user_id;
-	}
-	public String getUdate() {
-		return udate;
-	}
-	public void setUdate(String udate) {
-		this.udate = udate;
+	public void setC_USER_ID(String c_USER_ID) {
+		C_USER_ID = c_USER_ID;
 	}
 	
-	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "EmployeeVO [USER_ID=" + USER_ID + ", EMP_NO=" + EMP_NO + ", POSITION_CD=" + POSITION_CD
+				+ ", WORK_PHONE_NO=" + WORK_PHONE_NO + ", JOIN_DAY=" + JOIN_DAY + ", RETIRE_DAY=" + RETIRE_DAY
+				+ ", EMP_STATUS_CD=" + EMP_STATUS_CD + ", C_USER_ID=" + C_USER_ID + "]";
+	}
+ 
 	
 
 }

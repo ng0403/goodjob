@@ -172,7 +172,7 @@ $("#naviuser").css("font-weight", "bold"); */
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
 	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
-		<table id="mastertable">
+		<table id="mastertable" border = "1">
 			<thead>
 				<tr>
 					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
@@ -181,35 +181,34 @@ $("#naviuser").css("font-weight", "bold"); */
 					<td style="width:10%;">부서명</td>
 					<td style="width:20%;">부서코드</td>
 					<td style="width:20%;">연락처</td>
-					<td style="width:10%;">권한</td>
-					<td style="width:10%;">사용자구분</td>
+					<td style="width:10%;">입사일</td>
+					<td style="width:10%;">퇴사일</td>
 					<td style="width:10%;">상태</td>
 				</tr>
 			</thead>
-			<tbody id="usertbody">
+			<tbody id="usertbody" >
 				<c:forEach var="employeeList" items="${employeeList}">
 				<tr>
-					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.iuser_id}"></th>
-					<td style="width:10%;" id="user_id_a">
+					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.USER_ID}"></th>
+					<%-- <td style="width:10%;" id="user_id_a">
 						<a href='#'>${employeeList.id_nm}</a>
-					</td>
+					</td> --%>
 					<td style="width:10%;" class="user_name_tag">${employeeList.USER_ID}</td>
-					<td style="width:10%;" class="org_name_tag">${employeeList.EMP_NO}</td>
-					<td style="width:20%;" class="email_tag">${employeeList.POSITION_CD}</td>
-					<td style="width:20%;" class="cell_phone_tag">${employeeList.WORK_PHONE_NO}</td>
-					<td style="width:10%;" class="auth_name_tag">
-					<c:if test="${empty employeeList.AUTH_NM}">
+					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_NO}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.POSITION_CD}</td>
+					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
+					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.JOIN_DAY}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.RETIRE_DAY}</td>
+					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_STATUS_CD}</td> 
+ 					<%-- <c:if test="${empty employeeList.AUTH_NM}">
 						권한없음
 					</c:if>
 					<c:if test="${not empty employeeList.auth_nm}">
 						${list.auth_nm}
-					</c:if>
+					</c:if> --%>
 					</td>
-					<td style="width:10%;" class="code_name_tag">${list.cd_nm}</td>
-					<td style="width:10%;" class="active_flag_tag">
-					<c:if test="${list.act_yn=='Y'}">활성화</c:if>
-					<c:if test="${list.act_yn=='N'}">비활성화</c:if>
-					</td>
+  					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -229,9 +228,9 @@ $("#naviuser").css("font-weight", "bold"); */
  
 	$("#iuserListAddBtn").on("click", function(){  
 		 
-	var popUrl = "test.html";	//팝업창에 출력될 페이지 URL
-	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-		window.open(popUrl,"",popOption);
+	var popUrl = "employee_pop";	//팝업창에 출력될 페이지 URL
+	var popOption = "width=692, height=258, resizable=no, scrollbars=no, status=no, location=no;";    //팝업창 옵션(optoin)
+			window.open(popUrl,"",popOption);
 	})
  
 </script>
