@@ -54,7 +54,7 @@ public class UserController {
 		List<Object> list = userService.searchListUser();
 //		if(session.getAttribute("user") == null){
 //			 //ModelAndView mov = new ModelAndView("redirect:/");
-//			employeeService.searchListEmployee();   
+//			employeeService.searchListEmployee();
 //			//return mov;
 //		}
 		//userService.searchListUser();

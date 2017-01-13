@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -149,12 +148,11 @@ select{
  
  <title>리스트</title>
 <script type="text/javascript">
-/* $("#navisub11").show();
-$("#naviuser").css("font-weight", "bold"); */
+$("#navisub11").show();
+$("#naviuser").css("font-weight", "bold");
 </script>
 </head>
 <body>
-<script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 
 	<div id="title">
 		<div class="caption">■ 직원관리</div>
@@ -179,7 +177,7 @@ $("#naviuser").css("font-weight", "bold"); */
 					<td style="width:10%;">직원ID</td>
 					<td style="width:10%;">직원명</td>
 					<td style="width:10%;">부서명</td>
-					<td style="width:20%;">부서코드</td>
+					<td style="width:20%;">이메일</td>
 					<td style="width:20%;">연락처</td>
 					<td style="width:10%;">권한</td>
 					<td style="width:10%;">사용자구분</td>
@@ -187,21 +185,21 @@ $("#naviuser").css("font-weight", "bold"); */
 				</tr>
 			</thead>
 			<tbody id="usertbody">
-				<c:forEach var="employeeList" items="${employeeList}">
+				<c:forEach var="list" items="${list}">
 				<tr>
-					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.iuser_id}"></th>
+					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.iuser_id}"></th>
 					<td style="width:10%;" id="user_id_a">
-						<a href='#'>${employeeList.id_nm}</a>
+						<a href='#'>${list.id_nm}</a>
 					</td>
-					<td style="width:10%;" class="user_name_tag">${employeeList.USER_ID}</td>
-					<td style="width:10%;" class="org_name_tag">${employeeList.EMP_NO}</td>
-					<td style="width:20%;" class="email_tag">${employeeList.POSITION_CD}</td>
-					<td style="width:20%;" class="cell_phone_tag">${employeeList.WORK_PHONE_NO}</td>
+					<td style="width:10%;" class="user_name_tag">${list.iuser_nm}</td>
+					<td style="width:10%;" class="org_name_tag">${list.org_nm}</td>
+					<td style="width:20%;" class="email_tag">${list.email1}@${list.email2}</td>
+					<td style="width:20%;" class="cell_phone_tag">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td>
 					<td style="width:10%;" class="auth_name_tag">
-					<c:if test="${empty employeeList.AUTH_NM}">
+					<c:if test="${empty list.auth_nm}">
 						권한없음
 					</c:if>
-					<c:if test="${not empty employeeList.auth_nm}">
+					<c:if test="${not empty list.auth_nm}">
 						${list.auth_nm}
 					</c:if>
 					</td>
@@ -223,22 +221,5 @@ $("#naviuser").css("font-weight", "bold"); */
 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
 	</div>
-	
-	
-	<script type="text/javascript">
- 
-	$("#iuserListAddBtn").on("click", function(){  
-		 
-	var popUrl = "test.html";	//팝업창에 출력될 페이지 URL
-	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
-		window.open(popUrl,"",popOption);
-	})
- 
-</script>
-	
-	
-	
-	
-	
 </body>
 </html>

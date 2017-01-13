@@ -90,7 +90,7 @@ function userTabOpen(){
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist">
 		<input type="button" id="iuserListAddBtn" onclick="userTabOpen()"class="iuser_bt" value="등록" />
-		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
+		<!-- <input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/> -->
 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
 	</div>
 </body>
