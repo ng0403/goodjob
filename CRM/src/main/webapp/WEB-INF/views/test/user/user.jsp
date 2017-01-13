@@ -15,13 +15,10 @@ $("#naviuser").css("font-weight", "bold");
 
 function userTabOpen(){
 	var popUrl = "userTab";
-	var popOption = "width=1380, height=320, resize=no, scrollbars=no, status=no;";
+	var popOption = "width=950, height=320, resize=no, scrollbars=no, status=no, location=no, directories=no;";
 	window.open(popUrl, "", popOption);
 }
 </script>
-
-
-
 
 </head>
 <body>
@@ -60,9 +57,7 @@ function userTabOpen(){
 				<c:forEach var="list" items="${list}">
 				<tr>
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.USER_ID}"></th>
-					<td style="width:10%;" id="user_id_a">
-						<a href='#'>${list.id_nm}</a>
-					</td>
+					<td style="width:10%;" id="user_id_a"><a href='#'>${list.USER_ID}</a></td>
 					<td style="width:10%;" class="user_name_tag">${list.USER_NAME}</td>
 					<td style="width:10%;" class="org_name_tag">${list.ORG_ID}</td>
 					<td style="width:20%;" class="email_tag">${list.EMAIL}</td>
@@ -75,11 +70,8 @@ function userTabOpen(){
 						${list.auth_name}
 					</c:if>
 					</td>
-					<td style="width:10%;" class="code_name_tag">${list.C_USER_ID}</td>
-					<td style="width:10%;" class="active_flag_tag">
-					<c:if test="${list.ACTIVE_FLG=='Y'}">활성화</c:if>
-					<c:if test="${list.ACTIVE_FLG=='N'}">비활성화</c:if>
-					</td>
+					<td style="width:20%;" class="user_type_cd">${list.USER_TYPE_CD}</td>
+					<td style="width:20%;" class="active_flg">${list.ACTIVE_FLG}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
