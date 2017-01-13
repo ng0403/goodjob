@@ -15,7 +15,7 @@ $("#naviuser").css("font-weight", "bold");
 
 function userTabOpen(){
 	var popUrl = "userTab";
-	var popOption = "width=370, height=360, resize=no, scrollbars=no, status=no;";
+	var popOption = "width=1380, height=320, resize=no, scrollbars=no, status=no;";
 	window.open(popUrl, "", popOption);
 }
 </script>
