@@ -97,5 +97,23 @@ public class OrgTypeController {
 		return mov;
 		
 	}
+	
+	@RequestMapping(value="/orgtypedel", method={RequestMethod.GET, RequestMethod.POST})
+	public String orgTypedel(OrgTypeVO orgtypeVo, HttpServletRequest req, String del_code)
+	{
+		String[] delcode = del_code.split(",");
+		
+		for(int i = 0; i < delcode.length; i++)
+		{
+			String dc = delcode[i];
+			System.out.println("dc? "+ dc);
+			
+			orgtypeService.deleteOrgType(dc);
+		}
+		
+		return "redirect:/orgtype/orgtypeInqr";
+		
+	}
+	
 }
 		

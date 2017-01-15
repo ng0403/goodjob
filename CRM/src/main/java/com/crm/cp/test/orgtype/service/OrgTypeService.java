@@ -10,5 +10,5 @@ public interface OrgTypeService {
 	public List<Object> searchListOrgTypeOne(String org_type_id);
 	public void insertOrgType(OrgTypeVO orgtypeVo);
 	public void modifyOrgType(OrgTypeVO orgtypeVo);
-	public void deleteOrgType(OrgTypeVO orgtypeVo);
+	public void deleteOrgType(String org_type_id);
 }
