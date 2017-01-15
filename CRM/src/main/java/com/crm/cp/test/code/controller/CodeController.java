@@ -1,6 +1,8 @@
 package com.crm.cp.test.code.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +51,33 @@ public class CodeController {
 		int result1 = codeService.codeinsert(cvo);
 		
 		mav.setViewName("test/code/code_insertform_pop");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/updatePop", method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView insertPop(@RequestParam(value="code") String code){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
+		
+		List<CodeVo> list = codeService.codeUpdatePage(map);
+		
+		ModelAndView mav = new ModelAndView("test/code/code_updateform_pop");
+		
+		mav.addObject("codeInfo", list);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public ModelAndView codeupdate(@ModelAttribute("CodeVo")CodeVo cvo, BindingResult result){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		int result1 = codeService.codeupdate(cvo);
+		
+		mav.setViewName("test/code/code_updateform_pop");
 		
 		return mav;
 	}

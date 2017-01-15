@@ -1,6 +1,7 @@
 package com.crm.cp.test.code.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,21 @@ public class CodeServiceImpl implements CodeService{
 		int result = 0;
 		result = codeDao.codeinsert(cvo);
 		
+		return result;
+	}
+
+	@Override
+	public List<CodeVo> codeUpdatePage(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		List<CodeVo> list = codeDao.codeUpdatePage(map);
+		return list;
+	}
+
+	@Override
+	public int codeupdate(CodeVo cvo) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		result = codeDao.codeupdate(cvo);
 		return result;
 	}
 

@@ -61,7 +61,7 @@ $(function(){
 				<tr>
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${codeList.code}"></th>
 					<td>${codeList.code}</td>
-					<td style="text-align: left;"><input type="hidden" value='${codeList.code}'>
+					<td style="text-align: left;"><input type="hidden" id="code" name="code" value='${codeList.code}'>
 						<a href="#" onclick="window.open('${ctx}/codedetail?codeId=${codeList.code}','newwindow','width=580, height=460');" class="a_notice">${codeList.code_name}</a>
 					</td>
 					<td>${codeList.display_seq}</td>

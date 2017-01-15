@@ -8,10 +8,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/iuser/iuserTab.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/iuser/iuserTab.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/iuser/iuserTab.js"></script> --%>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 <title>Insert title here</title>
-</head>
 <style type="text/css">
 #css_tabs .tab1_content{
     border:1px solid #ddd;
@@ -31,6 +30,7 @@ $(function(){
 	})
 })	
 </script>
+</head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<div class="userpadding">
