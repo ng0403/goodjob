@@ -19,6 +19,18 @@ function userTabOpen(){
 	var popOption = "width=950, height=320, resize=no, scrollbars=no, status=no, location=no, directories=no;";
 	window.open(popUrl, "", popOption);
 }
+
+//수정
+	function onPopup(id)
+	{
+		var tmp = id;//$("#user_id_h").val();
+		alert(tmp);
+		
+		var popUrl = "userMdfyPop?user_id="+tmp;	//팝업창에 출력될 페이지 URL
+		var popOption = "width=950, height=320, resize=no, scrollbars=no, status=no, location=no, directories=no;";    //팝업창 옵션(optoin)
+
+		window.open(popUrl, "", popOption);
+	};
 </script>
 
 <script type="text/javascript">
@@ -95,8 +107,9 @@ function deleteAction(){
 			<tbody id="usertbody">
 				<c:forEach var="list" items="${list}">
 				<tr>
-					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.USER_ID}"></th>
-					<td style="width:10%;" name="user_id" id="user_id_a"><a href='#'>${list.USER_ID}</a></td>
+				
+					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.USER_ID}"><input type="hidden" id="user_id_h" value="${list.USER_ID}"/></th>
+					<a href="#"><td style="width:10%;" name="user_id" id="${list.USER_ID}" onclick="onPopup(this.id);" >${list.USER_ID}</td></a>
 					<td style="width:10%;" class="user_name_tag">${list.USER_NAME}</td>
 					<td style="width:10%;" class="org_name_tag">${list.ORG_ID}</td>
 					<td style="width:20%;" class="email_tag">${list.EMAIL}</td>
@@ -122,8 +135,6 @@ function deleteAction(){
 	<div class="bt_positionuserlist">
 		<input type="button" id="iuserListAddBtn" onclick="userTabOpen()"class="iuser_bt" value="등록" />
 		<!-- <input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/> -->
-		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
-		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
 		<input type="button" id="iuserDelBtn" onclick="deleteAction()" class="iuser_bt" value="삭제"/>
 	</div>
 </body>

@@ -1,23 +1,18 @@
 package com.crm.cp.test.user.Controller;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.crm.cp.test.orgtype.vo.OrgTypeVO;
 import com.crm.cp.test.user.Service.UserService;
 import com.crm.cp.test.user.vo.userVO;
 
@@ -53,8 +48,10 @@ public class UserController {
 	@RequestMapping(value="/userTab", method=RequestMethod.GET)
 	public ModelAndView userTabListPage(HttpSession session, Locale locale)
 	{
+		int entry_flg = 1;
 		System.out.println("userTab Controller");
 		ModelAndView mov = new ModelAndView("/test/user/userTab");
+		mov.addObject("entry_flg", entry_flg);
 		
 		return mov;
 	}
@@ -68,6 +65,7 @@ public class UserController {
 		int result = 1;
 		mov.addObject("result", result);
 		System.out.println(mov);
+		
 		return mov;
 	}
 	
@@ -87,10 +85,11 @@ public class UserController {
 	public ModelAndView userMdfyPop(HttpSession session, Locale locale, HttpServletRequest req)
 	{
 		String user_id = req.getParameter("user_id");
-		//System.out.println("GET USER_ID" + getUSER_ID());
+		int entry_flg = 2;
+		System.out.println("GET USER_ID : " + user_id);
 		 
 		userVO vo= userService.searchListUserOne(user_id);
-		
+		System.out.println("After Service : " + vo);
 		System.out.println("리스트 : " + vo);
 		ModelAndView mov = new ModelAndView("test/user/userTab");
 		
@@ -100,16 +99,25 @@ public class UserController {
 		String CELL_PHONE = vo.getCELL_PHONE();
 		String COMPANY_PHONE = vo.getCOMPANY_PHONE();
 		String P_CHANNEL_CD = vo.getP_CHANNEL_CD();
-		String USER_TYPE = vo.getUSER_TYPE_CD();
+		String USER_TYPE_CD = vo.getUSER_TYPE_CD();
+		String EMAIL = vo.getEMAIL();
+		String HOME_PHONE = vo.getHOME_PHONE();
+		String ORG_ID = vo.getORG_ID();
+		String ACTIVE_FLG = vo.getACTIVE_FLG();
 		
 		
 		mov.addObject("USER_ID",USER_ID);
 		mov.addObject("USER_NAME",USER_NAME);
 		mov.addObject("PWD",PWD);
+		mov.addObject("EMAIL",EMAIL);
+		mov.addObject("HOME_PHONE",HOME_PHONE);
 		mov.addObject("CELL_PHONE",CELL_PHONE);
 		mov.addObject("COMPANY_PHONE",COMPANY_PHONE);
 		mov.addObject("P_CHANNEL_CD",P_CHANNEL_CD);
-		mov.addObject("USER_TYPE",USER_TYPE);
+		mov.addObject("USER_TYPE_CD",USER_TYPE_CD);
+		mov.addObject("ORG_ID",ORG_ID);
+		mov.addObject("ACTIVE_FLG",ACTIVE_FLG);
+		mov.addObject("entry_flg", entry_flg);
 		
 		return mov;
 	}
@@ -118,17 +126,18 @@ public class UserController {
 	@RequestMapping(value="/userMdfy", method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView userMdfy(userVO vo, HttpServletRequest req)
 	{
-		String user_id = req.getParameter("user_id");
+		String user_id = vo.getUSER_ID();
 		
 		vo.setUSER_ID(user_id);
-		System.out.println(vo.getUSER_ID());
+		System.out.println("정보수정 controller " + vo.getUSER_ID());
 		userService.userMdfy(vo);
-		
-		ModelAndView mov = new ModelAndView("test/user/userTab");
-		
-		mov.addObject("result", "success");
-		
+		System.out.println("insert success");
+		ModelAndView mov = new ModelAndView("/test/user/userTab");
+		int result = 1;
+		mov.addObject("result", result);
+		System.out.println(mov);
 		return mov;
+		
 		
 	}
 }
