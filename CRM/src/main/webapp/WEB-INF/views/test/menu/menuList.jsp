@@ -396,7 +396,6 @@
 	});	
 
 $(document).ready(function(){	
-    
 	var menu_id5 = '${menu_id5}';
 	//alert(menu_id5);
 	$('#menu_id3').val(menu_id5);
@@ -582,7 +581,6 @@ $(document).ready(function(){
 							</td>
 						</tr>
 						<tr height="50px"></tr>
-
 					</table>
 				</div>
 				</form>
@@ -667,6 +665,7 @@ $(document).ready(function(){
 	    
 	    if(selected.length ==0){
 	        alert("삭제할 데이터를 선택하세요.");
+	        return;
 	    }else{
 	        $('form#frm_menu')[0].submit();
 	    }

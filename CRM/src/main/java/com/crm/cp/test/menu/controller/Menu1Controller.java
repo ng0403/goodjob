@@ -45,7 +45,6 @@ public class Menu1Controller {
 		ModelAndView mav = new ModelAndView("/test/menu/menuList");
 		MenuVO mv = menu1Service.getMenuId(map);
 		String menu_id5 = mv.getMenu_id();
-		//System.out.println(menu_id5);
 		map.put("pageNum", pageNum);
 		
 		//페이징 처리
@@ -83,9 +82,8 @@ public class Menu1Controller {
      @RequestMapping(value = "/menuSearchList")
 	 public @ResponseBody Map<String, Object> menuSearchList(ModelMap model,
 				HttpServletRequest request,@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
-		    String menu_id=request.getParameter("menu_id");                      
-		    String menu_name=request.getParameter("menu_name");                      
-		    //String userNo=request.getParameter("userNo");
+		    String menu_id=request.getParameter("menu_id").trim();                      
+		    String menu_name=request.getParameter("menu_name").trim();                      
 		    
 		    if(menu_id == null){
 		    	menu_id ="";
@@ -133,7 +131,6 @@ public class Menu1Controller {
      @RequestMapping(value = "/openMenuDetail")
      public @ResponseBody Map<String, Object> openMenuDetail(HttpServletRequest request,
     		 Locale locale, ModelMap model) {
-  	    Map<String,Object> map = new HashMap<String,Object>();
   	    String menu_id = request.getParameter("menu_id"); 
   	    //promotion 상세정보 호출
   	    MenuVO mv = menu1Service.openMenuDetail(menu_id);
@@ -192,8 +189,6 @@ public class Menu1Controller {
          String default_flg = request.getParameter("default_flg3");			
          String active_flg = request.getParameter("active_flg3");			
        
-         //Map<String,Object> map = new HashMap<String,Object>();
-        
          MenuVO mv = new MenuVO();
                
          mv.setMenu_id(menu_id);
