@@ -140,8 +140,11 @@ select{
      margin-right: 5px;
      cursor: pointer;
      vertical-align: middle;
-} 
+}
+
+
 </style>
+ 
  
  <title>리스트</title>
 <script type="text/javascript">
@@ -150,7 +153,6 @@ $("#naviuser").css("font-weight", "bold");
 </script>
 </head>
 <body>
- 
 
 	<div id="title">
 		<div class="caption">■ 직원관리</div>
@@ -171,11 +173,11 @@ $("#naviuser").css("font-weight", "bold");
 		<table id="mastertable" border = "1">
 			<thead>
 				<tr>
-					<th><input id="checkall" type="checkbox"/></th>
+					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
 					<td style="width:10%;">직원ID</td>
 					<td style="width:10%;">직원명</td>
 					<td style="width:10%;">부서명</td>
-					<td style="width:20%;">부서코드</td>
+					<td style="width:20%;">이메일</td>
 					<td style="width:20%;">연락처</td>
 					<td style="width:10%;">입사일</td>
 					<td style="width:10%;">퇴사일</td>
@@ -205,9 +207,8 @@ $("#naviuser").css("font-weight", "bold");
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.USER_ID}"></th>
 					<%-- <td style="width:10%;" id="user_id_a">
 						<a href='#'>${employeeList.id_nm}</a>
-					</td> --%>  
-					<td style="width:10%;" class="user_name_tag" id = "${employeeList.USER_ID}" onclick="openupdatePop(this.id);">${employeeList.USER_ID}
- 					</td>
+					</td> --%> 
+					<td style="width:10%;" class="user_name_tag" onclick="openPop();">${employeeList.USER_ID}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_NO}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.POSITION_CD}</td>
 					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
@@ -247,12 +248,9 @@ $("#naviuser").css("font-weight", "bold");
 	openPop();
 	})
 	
-		$("#iuserListEditBtn").on("click", function(){  
-		openupdatePop();
-		})
-	
 		
 	$("#iuserDelBtn").on("click", function(){  
+		alert("하잉");
 		$('form').attr("action", "${ctx}/employee/employee_delete").submit(); 
 		})
 	
@@ -260,27 +258,9 @@ $("#naviuser").css("font-weight", "bold");
 		 
 		var popUrl = "employee_pop";	//팝업창에 출력될 페이지 URL
 		var popOption = "width=692, height=258, resizable=no, scrollbars=no, status=no, location=no;";    //팝업창 옵션(optoin)
-				window.open(popUrl,"",popOption); 
+				window.open(popUrl,"",popOption);
+		
 	}
-	
-	function openupdatePop(id){
-		var check = id;  
-		var popUrl = "employee_update_pop?USER_ID="+check;	//팝업창에 출력될 페이지 URL
-		var popOption = "width=692, height=258, resizable=no, scrollbars=no, status=no, location=no;";    //팝업창 옵션(optoin)
-				window.open(popUrl,"",popOption); 
- 	}
-	
-	
-	$("#checkall").on("click", function() {
-
-		if ($("#checkall").prop("checked")) {
-
-			$("input[name=USER_ID]").prop("checked", true);
-		} else {
-			$("input[name=USER_ID]").prop("checked", false);
-		}
-
-	})
 
 		 
 	
@@ -290,5 +270,6 @@ $("#naviuser").css("font-weight", "bold");
 	
 	
 	
+>>>>>>> branch 'master' of https://github.com/ng0403/goodjob.git
 </body>
 </html>
