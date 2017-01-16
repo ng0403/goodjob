@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu1">
+
+<!-- menu 검색 결과 list -->
+	<select id="menuSearchList" parameterType="java.util.Map"	resultType="com.crm.cp.test.menu.vo.MenuVO">	
+        SELECT *
+        FROM(SELECT ROWNUM AS RNUM, A.*
+		FROM (SELECT
+		    DISTINCT A.MENU_ID, A.MENU_NAME,A.MENU_URL,A.MENU_LEVEL,A.P_MENU_ID,A.DEFAULT_FLG,A.ACTIVE_FLG,
+		    TO_CHAR(A.CDATE,'YYYY-MM-DD HH24:MI:SS') AS cdate,TO_CHAR(A.UDATE,'YYYY-MM-DD HH24:MI:SS') AS udate,
+		    A.C_USER_ID,A.U_USER_ID
+		    
+		FROM MENU A
+		WHERE 1=1
+		    AND A.ACTIVE_FLG = 'Y'
+		    
+		    <if test="menu_id !=null and menu_id != '' ">
+		        AND UPPER(A.MENU_ID) LIKE '%' || UPPER(#{menu_id}) || '%'
+		    </if>
+		    <if test="menu_name !=null and menu_name !='' ">
+              AND UPPER(A.MENU_NAME) LIKE '%' || UPPER(#{menu_name}) || '%'
+            </if>
+			ORDER BY A.MENU_ID DESC) A )
+		<![CDATA[
+		WHERE RNUM >= #{startRow} AND RNUM <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 검색 결과 list의 수 -->
+	<select id="menuCount" parameterType="java.util.Map" resultType="int">
+		SELECT
+		    COUNT(*)
+		FROM MENU A
+		WHERE 1=1
+		    AND A.ACTIVE_FLG = 'Y'
+		    <if test="menu_id !=null and menu_id != '' ">
+		        AND UPPER(A.MENU_ID) LIKE '%' || UPPER(#{menu_id}) || '%'
+		    </if>
+		    <if test="menu_name !=null and menu_name !='' ">
+              AND UPPER(A.MENU_NAME) LIKE '%' || UPPER(#{menu_name}) || '%'
+            </if>
+			ORDER BY A.MENU_ID DESC
+	</select>
+	
+	<!-- menu view - general -->
+	<select id="menuDetail" parameterType="java.util.Map" resultType="com.crm.cp.test.menu.vo.MenuVO">
+	    SELECT
+		    DISTINCT A.MENU_ID, A.MENU_NAME,A.P_MENU_ID,A.MENU_LEVEL,A.MENU_URL,A.DEFAULT_FLG,A.ACTIVE_FLG,
+		    TO_CHAR(A.CDATE,'YYYY-MM-DD HH24:MI:SS') AS cdate,TO_CHAR(A.UDATE,'YYYY-MM-DD HH24:MI:SS') AS udate,
+		    A.C_USER_ID,A.U_USER_ID
+		FROM MENU A
+		WHERE 1=1
+		    AND A.MENU_ID = #{menu_id}
+	</select>
+	
+	<!-- 새 promotion 등록 -->
+	<insert id="createMenu" parameterType="com.crm.cp.test.menu.vo.MenuVO">
+		INSERT INTO MENU
+		(
+		MENU_ID,MENU_NAME,P_MENU_ID,MENU_LEVEL,MENU_URL,DEFAULT_FLG,ACTIVE_FLG,C_USER_ID,CDATE
+		)
+		VALUES
+		(
+		#{menu_id},#{menu_name},#{p_menu_id},#{menu_level},#{menu_url},#{default_flg},
+		#{active_flg},'ADMIN',SYSDATE
+		)
+	</insert>
+	
+	<update id="updateMenu" parameterType="com.crm.cp.test.menu.vo.MenuVO">
+		UPDATE MENU
+		SET MENU_NAME = #{menu_name},
+		    P_MENU_ID = #{p_menu_id},
+		    MENU_LEVEL = #{menu_level},
+		    MENU_URL = #{menu_url},
+		    DEFAULT_FLG = #{default_flg},
+		    ACTIVE_FLG = #{active_flg},
+		    U_USER_ID = 'ADMIN',
+		    UDATE = SYSDATE
+		WHERE
+		MENU_ID=#{menu_id}
+	</update>
+	
+	<update id="deleteMenu" parameterType="com.crm.cp.test.menu.vo.MenuVO">
+		UPDATE MENU
+		SET ACTIVE_FLG = 'N',
+		    U_USER_ID = 'ADMIN',
+		    UDATE = SYSDATE
+		WHERE
+		MENU_ID=#{menu_id}
+	</update>
+	
+    <select id="getMenuId" parameterType="java.util.Map" resultType ="com.crm.cp.test.menu.vo.MenuVO">
+	    SELECT /*+INDEX_DESC(MENU MENU_ID)*/
+            DECODE(MAX(MENU_ID),NULL,'MN101',SUBSTR(MAX(MENU_ID),1,2)||(SUBSTR(MAX(MENU_ID),3,3)+1))MENU_ID
+        FROM MENU
+	    
+	</select> 
+
+</mapper>
