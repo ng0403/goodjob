@@ -48,10 +48,8 @@
 					
 					<div class="bt_position_authuser">
 						<input type="button" id="orgtype_add_fbtn" class="iuser_tab_bt" value="추가"/>
-						<input type="button" id="modifybtn" class="iuser_tab_bt" value="편집"/>
 						<input type="reset" id="orgtypeadd_rest_nfbtn" class="iuser_tab_bt" value="리셋"/>
 						<input type="button" id="orgtypeadd_cancel_nfbtn" class="iuser_tab_bt" value="취소"/>
-						<input type="button" id="modifysavebtn" class="iuser_tab_bt" style="display:none;" value="저장"/>
 					</div>
 				</form>
 			</div>
@@ -65,8 +63,26 @@
 	</c:if>
 		 
 	<script type="text/javascript">
-		$("#orgtype_add_fbtn").on("click", function(){ 
-			$("#joinform").submit();
+		$("#orgtype_add_fbtn").on("click", function(){
+			
+			if($("#org_type_id").val() == "" || $("#org_type_id").val() == null){
+				alert("조직유형ID를 입력해주세요");
+				return false;
+			}
+			else if($("#org_type_name").val() == "" || $("#org_type_name").val() == null){
+				alert("조직유형명을 입력해주세요");
+				return false;
+			}
+			else if($("#p_org_type_id").val() == "" || $("#p_org_type_id").val() == null)
+			{
+				alert("상위조직ID를 입력해주세요");
+				return false;
+			}
+			else
+			{
+				alert("등록 되었습니다.");
+				$("#joinform").submit();
+			}
 		});
 	
 		$("#orgtypeadd_cancel_nfbtn").on("click", function(){  

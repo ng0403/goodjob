@@ -186,7 +186,7 @@ select {
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<th scope="row">
-								<input type="checkbox" class="ab" name="del_code" value="${list.ORG_TYPE_ID}">
+								<input type="checkbox" class="ab" name="del_code" id="del_code" value="${list.ORG_TYPE_ID}">
 							</th>
 							<td id="${list.ORG_TYPE_ID}" style="width: 50%;" onclick="onPopup(this.id);">
   								${list.ORG_TYPE_ID}
@@ -210,17 +210,48 @@ select {
 
 	<script type="text/javascript">
 		// 삽입
-		$("#orgtype_save_fbtn").on("click", function(){  
+		$("#orgtype_save_fbtn").on("click", function(){
+			
 			var popUrl = "orgtypeAddPop";	//팝업창에 출력될 페이지 URL
 			var popOption = "width=1380, height=320, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 	
 			window.open(popUrl, "", popOption);
 		});
 		
-		$("#orgtype_del_fbtn").on("click", function(){  
+		// 삭제
+		$("#orgtype_del_fbtn").on("click", function(){ 
 			
-			$("#delAllForm").submit();
+			//var test = $("#del_code").prop("checked");
+			var check = document.getElementsByName("del_code");
+			var check_len = check.length;
+			var checked = 0;
+						
+			for(i=0; i<check_len; i++)
+			{
+				if(check[i].checked == true)
+				{
+					$("#delAllForm").submit();
+					checked++;
+				}
+			}
+			
+			if(checked == 0)
+			{
+				alert("체크박스를 선택해주세요.");
+			}
 	
+		});
+		
+		$("#allCheck").on("click", function() {
+			
+			if($("#allCheck").prop("checked"))
+			{
+				$("input[name=del_code]").prop("checked", true);
+			}
+			else
+			{
+				$("input[name=del_code]").prop("checked", false);
+			}
 		});
 		
 		// 수정
