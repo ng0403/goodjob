@@ -188,7 +188,7 @@ select {
 							<th scope="row">
 								<input type="checkbox" class="ab" name="del_code" value="${list.ORG_TYPE_ID}">
 							</th>
-							<td style="width: 50%;" onclick="onPopup();">
+							<td id="${list.ORG_TYPE_ID}" style="width: 50%;" onclick="onPopup(this.id);">
   								${list.ORG_TYPE_ID}
  								<input type="hidden" value="${list.ORG_TYPE_ID}" id="org_type_id" name="org_type_id">
 							</td>
@@ -224,12 +224,10 @@ select {
 		});
 		
 		// 수정
- 		function onPopup()
+ 		function onPopup(org_type_id)
  		{
- 			var tmp = $("#org_type_id").val();
- 			
- 			alert(tmp);
- 			
+ 			var tmp = org_type_id;
+ 			 			
  			var popUrl = "orgtypeMdfyPop?org_type_id="+tmp;	//팝업창에 출력될 페이지 URL
  			var popOption = "width=1380, height=320, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 	
