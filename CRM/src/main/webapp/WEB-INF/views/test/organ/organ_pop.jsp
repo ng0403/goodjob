@@ -131,8 +131,15 @@
 	$(document).ready(function() {
 		
 		$("#submitbtn").on("click", function() {
-		 
-			$('form').attr("action", "${ctx}/organ/organ_write").submit();
+			
+			if(ORG_ID.value== "" && ORG_NAME.value == "" && MAIN_GROUND.value == "" && ORG_TYPE_ID.value == "" && ORG_LEVEL_CD.value == "" && PHONE_NO.value == "" && FAX_NO.value == "")
+			{
+				alert("값을 입력해 주세요");	
+				
+			} else{
+				
+				$('form').attr("action", "${ctx}/organ/organ_write").submit();		
+			} 
 			
 			alert("추가 완료");
 			

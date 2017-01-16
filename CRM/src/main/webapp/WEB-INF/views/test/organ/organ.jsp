@@ -89,7 +89,7 @@
 		
 		$("#iuserListEditBtn").on("click", function(){  
 			
-		openUpdatePop();
+			openUpdatePop();
 		
 		})
 		
