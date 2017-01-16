@@ -489,7 +489,6 @@ $(document).ready(function(){
 				<a href="#" onclick="fn_menuSearchList('${pageNum+1}');" id="pNum"> ▶ </a>
 			</c:otherwise>
 		</c:choose>
-		
 	    </div> 
 	    </form>
 	    <!--  //메뉴 리스트,조회화면 -->

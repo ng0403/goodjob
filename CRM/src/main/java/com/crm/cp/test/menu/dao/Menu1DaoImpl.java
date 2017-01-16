@@ -53,7 +53,7 @@ public class Menu1DaoImpl implements Menu1Dao {
 		return mv;
 	}
     
-    /*새 프로모션 생성*/
+    //새 메뉴 등록
     @Override
 	public int createMenu(MenuVO menuVO) {
 		int result=0;
@@ -65,6 +65,7 @@ public class Menu1DaoImpl implements Menu1Dao {
 		return result;
 	}
     
+    //메뉴 수정
     @Override
 	public int updateMenu(MenuVO menuVO) {
 		int result=0;
@@ -76,6 +77,7 @@ public class Menu1DaoImpl implements Menu1Dao {
 		return result;
 	}
     
+    //메뉴 삭제
     @Override
     public int deleteMenu(MenuVO menuVO) {
     	int result=0;
@@ -87,7 +89,7 @@ public class Menu1DaoImpl implements Menu1Dao {
     	return result;
     }
     
-    /*채번 확인*/
+    //메뉴ID 확인
 	@Override
 	public MenuVO getMenuId(Map<String, Object> map){
 		MenuVO mv = new MenuVO();

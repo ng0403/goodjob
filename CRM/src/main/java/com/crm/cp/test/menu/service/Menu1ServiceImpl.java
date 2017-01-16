@@ -17,12 +17,14 @@ public class Menu1ServiceImpl implements Menu1Service {
 	@Resource
 	Menu1Dao menu1Dao;
 	
+	//메뉴 리스트 조회
 	@Override
 	public List<MenuVO> menuSearchList(Map<String,Object> map){
 		List<MenuVO> list = menu1Dao.menuSearchList(map);
 		return list;
 	}
 	
+	//메뉴 행 수
 	@Override
 	public PagerVO getMenuCount(Map<String, Object> map) {
 		int PageNum = (Integer) map.get("pageNum");
@@ -33,12 +35,14 @@ public class Menu1ServiceImpl implements Menu1Service {
 		return page;
 	}
 	
+	//메뉴 상세정보 확인
 	@Override
 	public MenuVO openMenuDetail(String menu_id){
 		MenuVO menuVO = menu1Dao.openMenuDetail(menu_id);
 		return menuVO;
 	}
 	
+	//메뉴 등록
 	@Override
 	public int createMenu(MenuVO menuVO){
 		int result=0;
@@ -46,6 +50,7 @@ public class Menu1ServiceImpl implements Menu1Service {
 		return result;
 	}
 	
+	//메뉴 수정
 	@Override
 	public int updateMenu(MenuVO menuVO) {		
 		int result = 0;
@@ -53,6 +58,7 @@ public class Menu1ServiceImpl implements Menu1Service {
 		return result;
 	}
 	
+	//메뉴 삭제
 	@Override
 	public int deleteMenu(MenuVO menuVO) {		
 		int result = 0;
@@ -60,6 +66,7 @@ public class Menu1ServiceImpl implements Menu1Service {
 		return result;
 	}
 	
+	//메뉴ID 확인
 	@Override
 	public MenuVO getMenuId(Map<String, Object> map){
 		MenuVO menuVO = menu1Dao.getMenuId(map);
