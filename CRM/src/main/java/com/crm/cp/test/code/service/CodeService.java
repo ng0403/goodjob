@@ -11,8 +11,10 @@ public interface CodeService {
 
 	public int codeinsert(CodeVo cvo);
 
-	public List<CodeVo> codeUpdatePage(Map<String, Object> map);
+	public List<CodeVo> codeUpdatePage(String code);
 
 	public int codeupdate(CodeVo cvo);
+
+	public int codedelete(String del_code);
 
 }

@@ -1,8 +1,6 @@
 package com.crm.cp.test.code.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +27,7 @@ public class CodeController {
 		List<CodeVo> list = codeService.codeListPage();
 		
 		ModelAndView mav = new ModelAndView("test/code/code_list");
-		
+
 		mav.addObject("codeList", list);
 		
 		return mav;
@@ -56,17 +54,14 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value="/updatePop", method={RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView insertPop(@RequestParam(value="code") String code){
+	public ModelAndView updatePop(@RequestParam(value="code") String code){
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("code", code);
-		
-		List<CodeVo> list = codeService.codeUpdatePage(map);
+		List<CodeVo> list = codeService.codeUpdatePage(code);
 		
 		ModelAndView mav = new ModelAndView("test/code/code_updateform_pop");
 		
 		mav.addObject("codeInfo", list);
-		
+		System.out.println("mav??" + mav);
 		return mav;
 	}
 	
@@ -78,6 +73,25 @@ public class CodeController {
 		int result1 = codeService.codeupdate(cvo);
 		
 		mav.setViewName("test/code/code_updateform_pop");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public ModelAndView codedelete(@RequestParam(value="del_code") String del_code){
+		
+		String[] delcode = del_code.split(",");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		for(int i = 0; i < delcode.length; i++)
+		{
+			String dc = delcode[i];
+			
+			int result1 = codeService.codedelete(del_code);
+		}
+		
+		mav.setViewName("redirect:/code/list");
 		
 		return mav;
 	}

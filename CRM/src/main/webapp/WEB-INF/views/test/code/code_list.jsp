@@ -22,6 +22,12 @@ $(function(){
 		var popOption = "width=370, height=500, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 			window.open(popUrl,"",popOption);
 	})
+	
+	$("#code_del_fbtn").on("click", function(){  
+	 
+		$("#delAllForm").submit();
+	})
+
 })	
 </script>
 
@@ -42,31 +48,40 @@ $(function(){
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
-	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
+	<form name="delAllForm" id="delAllForm" method="post" action="delete" >	
 		<table id="mastertable">
+			<%-- <colgroup>
+				<col width="5%">
+				<col width="10%">
+				<col width="10%">
+				<col width="15%">
+				<col width="50%">
+				<col width="10%">
+			</colgroup> --%>
 			<thead>
 				<tr>
-					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
+					<th style="width:5%;"><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
 					<td style="width:10%;">코드</td>
 					<td style="width:10%;">코드 이름</td>
 					<!-- <td style="width:10%;">시작일자</td> -->
 					<!-- <td style="width:10%;">종료일자</td> -->
 					<td style="width:15%;">전시순서</td>
-					<td style="width:55%;">코드설명</td>
+					<td style="width:50%;">코드설명</td>
 					<td style="width:10%;">활성화여부</td>
 				</tr>
 			</thead>
 			<tbody id="usertbody">
 				<c:forEach var="codeList" items="${codeList}">
 				<tr>
-					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${codeList.code}"></th>
-					<td>${codeList.code}</td>
-					<td style="text-align: left;"><input type="hidden" id="code" name="code" value='${codeList.code}'>
-						<a href="#" onclick="window.open('${ctx}/codedetail?codeId=${codeList.code}','newwindow','width=580, height=460');" class="a_notice">${codeList.code_name}</a>
+					<th scope="row" style="width:5%;"><input type="checkbox" class="ab" name="del_code" value="${codeList.code}"></th>
+					<td style="text-align: left; width:10%;">
+						<input type="hidden" id="code" name="code" value='${codeList.code}'>
+						<a href="#" onclick="window.open('updatePop?code=${codeList.code}','newwindow','width=370, height=500');" class="a_notice">${codeList.code}</a>
 					</td>
-					<td>${codeList.display_seq}</td>
-					<td>${codeList.code_desc}</td>
-					<td>${codeList.active_flg}</td>
+					<td style="width:10%;">${codeList.code_name}</td>
+					<td style="width:15%;">${codeList.display_seq}</td>
+					<td style="width:50%;">${codeList.code_desc}</td>
+					<td style="width:10%;">${codeList.active_flg}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
