@@ -401,6 +401,7 @@ $(document).ready(function(){
     <div style="margin-left:1%;"><h3>메 뉴</h3></div>
     
 	<div id="container" style="margin-top:1%;">
+	    <!--  메뉴 리스트,조회화면 -->
 	    <form name="frm_menu" action="/cp/menu/deleteMenu"	enctype="multipart/form-data"  method="post">
 		<div id="inputDiv" style="font-size:11.8px;width:100%;font-family:Helvetica, sans-serif;">
 				<label for="menu_id">메뉴 ID :</label>
@@ -491,19 +492,22 @@ $(document).ready(function(){
 		
 	    </div> 
 	    </form>
-	<!-- 프로모션 상세정보 창 띄우기 -->
+	    <!--  //메뉴 리스트,조회화면 -->
+	    
+	<!-- 메뉴 상세정보 창 띄우기(취소 - 부트스트랩을 mask모달로 변경) -->
 	<div id="menuDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menuDetail-tab" aria-hidden="true" data-backdrop="static" data-keyboard="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             </div>
         </div>
     </div>
+    <!-- //메뉴 상세정보 창 띄우기 -->
 	<br />
 	<div id="viewLoadingImg" style="display: none;">
          <img src="${ctx}/resources/image/viewLoading.gif">
     </div> 
     
-    <!--  프로모션 상세정보 입력 창띄우기 -->
+    <!--  메뉴 등록 창띄우기 -->
     <div class="modal fade" id="menuWriteLayer" style="display: none;">
 		<div class="modal-dialog modal-lg">   <!-- modal-lg -->
 			<div class="modal-content">
@@ -575,15 +579,17 @@ $(document).ready(function(){
 			
         </div>
 	</div>
+    <!-- //메뉴 등록 창띄우기 -->
 </div>
     
-<!-- material search 팝업 -->
+    <!-- menu detail 팝업 -->
 	<div style="font-size:11.5px;">
 	    <jsp:include page="../menu/menuPopup.jsp"></jsp:include>
 	</div>
+	<!-- //menu detail 팝업 -->
 
 	<script type="text/javascript">
-	/* 제목, 내용 null 처리 및 게시글 저장 */
+	/* 메뉴 등록 시 필수 값 입력 확인 */
 	function fn_checkRequired(){
 		var menu_id1=$('#menu_id3').val();
 		var menu_name1=$('#menu_name3').val();
@@ -602,7 +608,9 @@ $(document).ready(function(){
 		    $('form#frm_promo1')[0].submit();
 		}
 	}
+	/* //메뉴 등록 시 필수 값 입력 확인 */
 	
+	/* 메뉴 수정 시 필수 값 입력 확인 */
 	function fn_checkRequired1(){
 	    var menu_id1=$('#menu_id1').val();
 		var menu_name1=$('#menu_name1').val();
@@ -621,7 +629,9 @@ $(document).ready(function(){
 		    $('form#frm_promo')[0].submit();
 		}
 	}
+	/* //메뉴 수정 시 필수 값 입력 확인 */
 	
+	/* 체크박스 전체선택 */
 	$(document).ready(function(){
 	    //최상단 체크박스 클릭
 	    $("#checkAll").click(function(){
@@ -636,6 +646,7 @@ $(document).ready(function(){
 	        }
 	    });
 	});
+	/* //체크박스 전체선택 */
 		
 	</script>
 </body>
