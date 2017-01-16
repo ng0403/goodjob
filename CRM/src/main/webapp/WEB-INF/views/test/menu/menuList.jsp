@@ -46,7 +46,7 @@
 				background-color: white; overflow: auto;}	
 .menuOpen{display: none;}	
 	
-.block_div{display:block; height: 5px; clear: both;}
+.block_div{display:block; height: 10px; clear: both;}
 
 .modal.fade {
   -webkit-transition: opacity .3s linear, top .3s ease-out;
@@ -100,8 +100,8 @@
 	    				var default_flg=list_menu[i].default_flg;
 	    				var active_flg=list_menu[i].active_flg;
 	    				
-	    				contents += "<tr><td><input type='checkbox' id='chk' name='chk' value='"+menu_id2+"'/></td>"+"<td class='promo_type_nm' style='text-align:left;'>"+"<input type='hidden' id='menu_id2' value='"+menu_id2+"'>"
-	    				+"<a href='javascript:void(0)' onclick='menuPop1(\""+menu_id2+"\")'>&nbsp;&nbsp;&nbsp;"+menu_id2+"</a></td>"+"<td style='text-align:left;'>&nbsp;&nbsp;"+menu_name+
+	    				contents += "<tr><td><input type='checkbox' id='chk' name='chk' value='"+menu_id2+"'/></td>"+"<td class='promo_type_nm' style='text-align:center;'>"+"<input type='hidden' id='menu_id2' value='"+menu_id2+"'>"
+	    				+"<a href='javascript:void(0)' onclick='menuPop1(\""+menu_id2+"\")'>"+menu_id2+"</a></td>"+"<td style='text-align:left;'>&nbsp;&nbsp;"+menu_name+
 	    				"</td>"+"<td style='text-align:left;'>"+"&nbsp;&nbsp;"+menu_url+"</td>"
 						+"<td style='text-align:left;'>&nbsp;&nbsp;"+p_menu_id+"</td>"
 						+"<td style='text-align:center;'>"+default_flg+"</td>"
@@ -228,7 +228,7 @@
 							        "<option value='N'>"+"N"+"</option>"+
 							    "</select>"+
 							"</td>"+
-							"<th style='width: 12%; text-align: right;'><span style='color:red;'>*</span>상태&nbsp;</th>"+
+							"<th style='width: 12%; text-align: right;'><span style='color:red;'>*</span>상태&nbsp;&nbsp;</th>"+
 							"<td style='width: 38%; text-align: left;'>"+
 								"<select id='active_flg1' name='active_flg1' style='width: 30%;'>"+
 							        "<option value='"+active_flg+"'>"+active_flg+"</option>"+
@@ -384,6 +384,7 @@
 	});	
 
 $(document).ready(function(){	
+    
 	var menu_id5 = '${menu_id5}';
 	//alert(menu_id5);
 	$('#menu_id3').val(menu_id5);
@@ -406,7 +407,10 @@ $(document).ready(function(){
 					<input type="text" id="menu_id" name="menu_id" style="width: 80px" />&nbsp;
 				<label for="menu_name">메뉴명 :</label>
 					<input type="text" id="menu_name" name="menu_name" style="width: 100px" />&nbsp;
-					<input type="submit" class="button-default" value="삭제" style="font-size:11px; background-color:#81BEF7;float:right;" />
+					
+					<c:if test="${fn:length(list) != 0 }">
+					    <input type="submit" id="deleteMenu" class="button-default" value="삭제" style="font-size:11px; background-color:#81BEF7;float:right;" />
+					</c:if>
 					<input type="button" class="button-default" value="메뉴 등록" data-target="#menuWriteLayer" data-toggle="modal" 
 						id="menuWritePop" style="font-size:11px; background-color:#81BEF7;font-color:white;float:right;margin-right:1%"/> 
 					<input type="button" class="button-default" onclick="fn_menuSearchList(1);" value="조회" style="font-size:11px;float:right;margin-right:1%;
@@ -417,7 +421,7 @@ $(document).ready(function(){
 			<table class="commonTable" id="menuListTable"	style="width: 100%;word-break:break-all; white-space:nowrap;">
 				<thead>
 					<tr>
-					    <th style="width: 8%; text-align:center;"><input type="checkbox" id="checkAll"/></th>
+					    <th style="width: 5%; text-align:center;"><input type="checkbox" id="checkAll"/></th>
 						<th style="width: 10%; text-align: center;">메뉴ID</th>
 						<th style="width: 12%; text-align: center;">메뉴명</th>
 						<th style="width: *; text-align: center;">메뉴URL</th>
@@ -431,7 +435,7 @@ $(document).ready(function(){
 						<c:forEach items="${list}" var="list">
 							<tr>
 							    <td><input type="checkbox" id="chk" name="chk" value="${list.menu_id}"/></td>
-								<td class="promo_type_nm" style="text-align:left;">&nbsp;&nbsp;
+								<td class="promo_type_nm" style="text-align:center;">
 									<input type="hidden" id="menu_id2" name="menu_id2"	value="${list.menu_id}">
 								    <a href='javascript:void(0)' onclick="menuPop1('${list.menu_id}')">${list.menu_id}</a>
 								</td>
@@ -531,7 +535,7 @@ $(document).ready(function(){
 							<td style="width: 38%; text-align: left;">
 								<input class="text" type="text" id="p_menu_id3" name="p_menu_id3" style="width: 80%;"	/>
 							</td>
-							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>메뉴레벨&nbsp;</th>
+							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>메뉴레벨&nbsp;&nbsp;</th>
 							<td style="width: 38%; text-align: left;">
 								<input class="text" type="text" id="menu_level3" name="menu_level3" style="width: 80%;"	/>
 							</td>
@@ -553,7 +557,7 @@ $(document).ready(function(){
 								    <option value="N">N</option>
 								</select>
 							</td>
-							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>상태&nbsp;</th>
+							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>상태&nbsp;&nbsp;</th>
 							<td style="width: 38%; text-align: left;">
 								<select id="active_flg3" name="active_flg3" style="width: 30%;font-size:10.5px;">
 								    <option value="">선택</option>
