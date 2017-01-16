@@ -79,12 +79,12 @@ $(function(){
 			</colgroup> --%>
 			<thead>
 				<tr>
-					<th style="width:5%;"><input id="allCheck" type="checkbox"/></th>
+					<th><input id="allCheck" type="checkbox"/></th>
 					<td style="width:10%;">코드</td>
-					<td style="width:10%;">코드 이름</td>
+					<td style="width:20%;">코드 이름</td>
 					<!-- <td style="width:10%;">시작일자</td> -->
 					<!-- <td style="width:10%;">종료일자</td> -->
-					<td style="width:15%;">전시순서</td>
+					<td style="width:10%;">전시순서</td>
 					<td style="width:50%;">코드설명</td>
 					<td style="width:10%;">활성화여부</td>
 				</tr>
@@ -92,13 +92,13 @@ $(function(){
 			<tbody id="usertbody">
 				<c:forEach var="codeList" items="${codeList}">
 				<tr>
-					<th scope="row" style="width:5%;"><input type="checkbox" class="ab" name="del_code" value="${codeList.code}"></th>
+					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${codeList.code}"></th>
 					<td style="text-align: left; width:10%;">
 						<input type="hidden" id="code" name="code" value='${codeList.code}'>
 						<a href="#" onclick="window.open('updatePop?code=${codeList.code}','newwindow','width=370, height=500');" class="a_notice">${codeList.code}</a>
 					</td>
-					<td style="width:10%;">${codeList.code_name}</td>
-					<td style="width:15%;">${codeList.display_seq}</td>
+					<td style="width:20%;">${codeList.code_name}</td>
+					<td style="width:10%;">${codeList.display_seq}</td>
 					<td style="width:50%;">${codeList.code_desc}</td>
 					<td style="width:10%;">${codeList.active_flg}</td>
 				</tr>
