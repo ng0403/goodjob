@@ -187,7 +187,7 @@ $("#naviuser").css("font-weight", "bold"); */
 			<tbody id="usertbody" >
 				<c:forEach var="employeeList" items="${employeeList}" >
 				<tr>
-					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${employeeList.USER_ID}"></th>
+					<th scope="row"><input type="checkbox" name="USER_ID" value="${employeeList.USER_ID}"></th>
 					<%-- <td style="width:10%;" id="user_id_a">
 						<a href='#'>${employeeList.id_nm}</a>
 					</td> --%>  
