@@ -7,7 +7,6 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/iuser/iuserTab.css" type="text/css" />
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/iuser/iuserTab.js"></script>
 

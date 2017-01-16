@@ -20,7 +20,15 @@
 	    U_USER_ID ,
 	    UDATE 
 	FROM ORGANIZATION
+	WHERE ACTIVE_FLG = 'Y'
 </select>
+
+<select id="organCheck" parameterType="String" resultType="map">
+SELECT 
+	*
+FROM ORGANIZATION
+WHERE ORG_ID = #{ORG_ID}
+</select>	
 
 <update id = "insertOrgan" parameterType = "com.crm.cp.test.org.vo.OrganVO">
 INSERT INTO ORGANIZATION
@@ -52,6 +60,45 @@ VALUES (
     #{ORG_TYPE_ID , jdbcType=VARCHAR} ,
     #{ACTIVE_FLG , jdbcType=VARCHAR}
 )
+</update>
+
+<update id = "modifyOrgan" parameterType = "com.crm.cp.test.org.vo.OrganVO">
+	UPDATE ORGANIZATION
+	SET ORG_NAME = #{ORG_NAME},
+	    ZIP_NO = #{ZIP_NO},
+	    ADDR_DETAIL = #{ADDR_DETAIL},
+	    PHONE_NO = #{PHONE_NO},
+	    FAX_NO = #{FAX_NO},
+	    ORG_LEVEL_CD = #{ORG_LEVEL_CD},
+	    MAIN_GROUND = #{MAIN_GROUND}
+	WHERE ORG_ID = #{ORG_ID}
+</update>
+
+<update id = "updateOrgan" parameterType = "com.crm.cp.test.org.vo.OrganVO">
+	UPDATE ORGANIZATION
+	SET ORG_NAME = #{ORG_NAME},
+	    ZIP_NO = #{ZIP_NO},
+	    ADDR_DETAIL = #{ADDR_DETAIL},
+	    PHONE_NO = #{PHONE_NO},
+	    FAX_NO = #{FAX_NO},
+	    ORG_LEVEL_CD = #{ORG_LEVEL_CD},
+	    MAIN_GROUND = #{MAIN_GROUND}
+	WHERE ORG_ID = #{ORG_ID}
+</update>
+
+<select id="selectOrganOne" resultType="map" parameterType="com.crm.cp.test.org.vo.OrganVO">
+	SELECT 
+		*
+	FROM 
+		ORGANIZATION
+	WHERE
+		ORG_ID = #{ORG_ID}
+</select>
+
+<update id = "deleteOrgan" parameterType="String">
+	UPDATE ORGANIZATION
+	SET ACTIVE_FLG = 'N'
+	WHERE ORG_ID = #{ORG_ID}
 </update>
 
 </mapper>
