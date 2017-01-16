@@ -98,7 +98,7 @@ public class EmployeeController {
 	for(int i = 0; i < delcode.length; i++)
 	{
 		String dc = delcode[i];
-		
+		System.out.println("delete..." + dc);
 		employeeService.deleteEmployee(dc);
 	}
 	

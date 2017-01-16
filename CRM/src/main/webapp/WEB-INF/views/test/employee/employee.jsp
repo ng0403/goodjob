@@ -218,8 +218,7 @@ $("#naviuser").css("font-weight", "bold"); */
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist">	
 		<input type="button" id="iuserListAddBtn" class="iuser_bt" value="등록"/>
-		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
- 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
+  		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
 	</div>
 	
 	
@@ -231,7 +230,7 @@ $("#naviuser").css("font-weight", "bold"); */
 	})
 	
 		$("#iuserListEditBtn").on("click", function(){  
-		openupdatePop();
+ 		openupdatePop();
 		})
 	
 		
@@ -251,12 +250,10 @@ $("#naviuser").css("font-weight", "bold"); */
 		}else{
  		$('form').attr("action", "${ctx}/employee/employee_delete").submit(); 
 		}
-		
-	
-		
 	})
+  
  
-	
+		
 	function openPop(){
 		 
 		var popUrl = "employee_pop";	//팝업창에 출력될 페이지 URL
@@ -281,11 +278,8 @@ $("#naviuser").css("font-weight", "bold"); */
 			$("input[name=del_code]").prop("checked", false);
 		}
 
-	})
-
-		 
+	}) 
 	
- 
 </script>
  
 	
