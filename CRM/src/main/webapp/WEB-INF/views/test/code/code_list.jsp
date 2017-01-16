@@ -23,8 +23,19 @@ $(function(){
 			window.open(popUrl,"",popOption);
 	})
 	
-	$("#code_del_fbtn").on("click", function(){  
-		$("#delAllForm").submit();
+	$("#code_del_fbtn").on("click", function(){
+		var del_code = "";
+		  $( "input[name='del_code']:checked" ).each (function (){
+			  del_code = del_code + $(this).val()+"," ;
+		  });
+		  /* del_code = del_code.substring(0,del_code.lastIndexOf( ",")); //맨끝 콤마 지우기 */
+		  del_code = del_code.split(","); //맨끝 콤마 지우기
+		if(del_code == ""){
+			alert("삭제할 대상을 선택해 주세요");
+			return false;
+		}else{
+			$("#delAllForm").submit();
+		}
 	})
 	
 	// 1.모두 체크
