@@ -51,5 +51,17 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("user del dao impl enter");
 		
 	}
+
+	@Override
+	public userVO searchListUserOne(String user_id) {
+		userVO vo= sqlSession.selectOne("userDetail", user_id);
+		return vo;
+	}
+
+	@Override
+	public void userMdfy(userVO vo) {
+		sqlSession.update("userEdit", vo);
+		
+	}
 }
 

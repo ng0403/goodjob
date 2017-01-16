@@ -35,7 +35,7 @@
 						<tr> 
 							<th>사용자ID</th>
 							<td>
- 							<input type="text" value="${employeeCheck.USER_ID}" name="USER_ID" id="USER_ID" class="iuser_txt" style=" width:90%" ></input></td>
+ 							<input type="text" value="${employeeCheck.USER_ID}" name="USER_ID" id="USER_ID" class="iuser_txt" readonly = 'true' style=" width:90%;" ></input></td>
 							<th>사원번호</th>
 							<td><input type="text" value="${employeeCheck.EMP_NO}" name="EMP_NO" id="EMP_NO"
 								class="iuser_txt" style="width:90%"></input></td>

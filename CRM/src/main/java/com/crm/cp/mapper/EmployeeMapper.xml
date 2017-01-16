@@ -24,7 +24,7 @@ where user_id = #{USER_ID}
 	
 	<update id = "updateEmployee" parameterType = "com.crm.cp.test.employee.vo.EmployeeVO"> 
 	update employee set user_id = #{USER_ID}, work_phone_no =  #{WORK_PHONE_NO},  join_day =  #{JOIN_DAY}, retire_day =  #{RETIRE_DAY}, c_user_id =  #{C_USER_ID}
-	where emp_no = #{EMP_NO}	
+	where emp_no = #{USER_ID}	
 	
 	</update>
 	

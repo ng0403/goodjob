@@ -60,7 +60,6 @@ public class EmployeeController {
 		
 		System.out.println("check" + check);
 
-		
 		List<Object> employeeCheck = employeeService.employeeCheck(check);
 		System.out.println("후히후히"+employeeCheck);
 		ModelAndView mov = new ModelAndView("/test/employee/employee_update_pop");

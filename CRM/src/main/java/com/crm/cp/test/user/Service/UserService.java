@@ -14,5 +14,9 @@ public interface UserService {
 
 	public void userDel(String dc);
 
+	public userVO searchListUserOne(String user_id);
+
+	public void userMdfy(userVO vo);
+
 
 }
