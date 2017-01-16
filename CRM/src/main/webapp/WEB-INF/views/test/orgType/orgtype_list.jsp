@@ -168,7 +168,7 @@ select {
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 		<!-- <form name="userForm" id="userForm" method="post" > -->
-		<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete">
+		<form name="delAllForm" id="delAllForm" method="post" action="orgtypedel">
 			<table id="mastertable">
 				<thead>
 					<tr>
@@ -186,11 +186,11 @@ select {
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<th scope="row">
-								<input type="checkbox" class="ab" name="del_code" value="${list.iuser_id}">
+								<input type="checkbox" class="ab" name="del_code" value="${list.ORG_TYPE_ID}">
 							</th>
 							<td style="width: 50%;" onclick="onPopup();">
-								${list.ORG_TYPE_ID}
- 								<input type="hidden" value="${list.ORG_TYPE_ID}" id="org_type_id" name="org_type_id">	
+  								${list.ORG_TYPE_ID}
+ 								<input type="hidden" value="${list.ORG_TYPE_ID}" id="org_type_id" name="org_type_id">
 							</td>
 							<td style="width: 10%;" class="user_name_tag">${list.ORG_TYPE_NAME}</td>
 							<td style="width: 20%;" class="org_name_tag">${list.P_ORG_TYPE_ID}</td>
@@ -217,16 +217,25 @@ select {
 			window.open(popUrl, "", popOption);
 		});
 		
+		$("#orgtype_del_fbtn").on("click", function(){  
+			
+			$("#delAllForm").submit();
+	
+		});
+		
 		// 수정
  		function onPopup()
  		{
  			var tmp = $("#org_type_id").val();
+ 			
+ 			alert(tmp);
  			
  			var popUrl = "orgtypeMdfyPop?org_type_id="+tmp;	//팝업창에 출력될 페이지 URL
  			var popOption = "width=1380, height=320, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 	
  			window.open(popUrl, "", popOption);
  		};
+
 
 	</script>
 </body>

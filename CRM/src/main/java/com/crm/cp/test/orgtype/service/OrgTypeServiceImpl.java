@@ -43,9 +43,9 @@ public class OrgTypeServiceImpl implements OrgTypeService {
 	}
 
 	@Override
-	public void deleteOrgType(OrgTypeVO orgtypeVo) {
+	public void deleteOrgType(String org_type_id) {
 		// TODO Auto-generated method stub
-		orgtypeDao.deleteOrgType(orgtypeVo);
+		orgtypeDao.deleteOrgType(org_type_id);
 	}
 
 	

@@ -1,7 +1,9 @@
 package com.crm.cp.test.user.Controller;
 
+import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -49,8 +51,18 @@ public class UserController {
 	@RequestMapping(value="/userTab", method=RequestMethod.GET)
 	public ModelAndView userTabListPage(HttpSession session, Locale locale)
 	{
-		System.out.println("userTab Controller");
-		ModelAndView mov = new ModelAndView("/test/user/userTab");
+
+		System.out.println("user Controller");
+		
+		List<Object> list = userService.searchListUser();
+//		if(session.getAttribute("user") == null){
+//			 //ModelAndView mov = new ModelAndView("redirect:/");
+//			employeeService.searchListEmployee();
+//			//return mov;
+//		}
+		//userService.searchListUser();
+		System.out.println(list);
+		ModelAndView mov = new ModelAndView("/test/user/userTab", "list", list);
 		
 		return mov;
 	}
@@ -65,5 +77,16 @@ public class UserController {
 		mov.addObject("result", result);
 		System.out.println(mov);
 		return mov;
+	}
+	
+	@RequestMapping(value="userDel", method=RequestMethod.GET)
+	public String userDel(String user_id) throws Exception { 
+		System.out.println("del controller enter");
+		String[] arrIdx = user_id.split(",");
+		for (int i=0; i<arrIdx.length; i++) {
+			System.out.println(arrIdx[i]);
+			userService.userDel(arrIdx[i]);
+		}
+		return "redirect:/usertest/userlist";
 	}
 }

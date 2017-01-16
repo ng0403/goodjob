@@ -47,9 +47,9 @@ public class OrgTypeDaoImpl implements OrgTypeDao {
 	}
 
 	@Override
-	public void deleteOrgType(OrgTypeVO orgtypeVo) {
+	public void deleteOrgType(String org_type_id) {
 		// TODO Auto-generated method stub
-		sqlSession.update("deleteOrgType", orgtypeVo);
+		sqlSession.update("deleteOrgType", org_type_id);
 	}
 
 }

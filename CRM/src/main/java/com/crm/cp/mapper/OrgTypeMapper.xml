@@ -38,9 +38,10 @@
 	</update>
 	
 	<update id="deleteOrgType">
-		DELETE
-		FROM
+		UPDATE
 			ORGANIZATION_TYPE
+		SET
+			ACTIVE_FLG    = 'Y'
 		WHERE
 			ORG_TYPE_ID   = #{org_type_id}
 	

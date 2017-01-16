@@ -58,9 +58,7 @@
 							<th>조직ID</th>
 							<td><input type="text" name="ORG_ID" id="ORG_ID" class="iuser_txt" maxlength="12" style="width:90%" /> 
 							</td>
-							<th>활성화여부</th>
-							<td><input type="text" name="ACTIVE_FLG" id="ACTIVE_FLG" class="iuser_txt" maxlength="12" style="width:90%" /> 
-							</td>
+							
 							
 						</tr>
 						<tr> 

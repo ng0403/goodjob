@@ -12,5 +12,7 @@ public interface UserService {
 
 	public Object userOneSelectByIdNM(Object user_id);
 
+	public void userDel(String dc);
+
 
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="code">
+
+<select id="selectCodeList" resultType="map">
+		SELECT 
+			code
+			,code_name
+			,display_seq
+			,code_desc
+			,active_flg
+		FROM CODE
+</select>
+
+<insert id="insertCode" parameterType="com.crm.cp.test.code.vo.CodeVo">
+		INSERT INTO CODE(
+			code
+			,code_name
+			,display_seq
+			,code_desc
+			,active_flg
+		)
+		VALUES(
+			#{code}
+			,#{code_name}
+			,#{display_seq}
+			,#{code_desc}
+			,#{active_flg}
+		)
+</insert>
+
+<select id="selectCode" resultType="map">
+		SELECT 
+			code
+			,code_name
+			,display_seq
+			,code_desc
+			,active_flg
+		FROM CODE
+		WHERE code = #{code}
+</select>
+
+<update id="updateCode" parameterType="com.crm.cp.test.code.vo.CodeVo">
+		UPDATE CODE
+		SET
+			code = #{code}
+			,code_name = #{code_name}
+			,display_seq = #{display_seq}
+			,code_desc = #{code_desc}
+			,active_flg = #{active_flg}
+		WHERE code = #{code}
+</update>
+
+</mapper>

@@ -33,4 +33,11 @@ public class UserServiceImpl implements UserService {
 		System.out.println("insert success ServiceImpl");
 		
 	}
+
+	@Override
+	public void userDel(String dc) {
+		userDao.userDel(dc);
+		System.out.println("del serviceImpl enter");
+		
+	}
 }
