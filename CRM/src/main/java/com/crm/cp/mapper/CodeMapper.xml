@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="code">
 
-<select id="selectCodeList" resultType="map">
+<select id="selectCodeList" resultType="com.crm.cp.test.code.vo.CodeVo">
 		SELECT 
 			code
 			,code_name
@@ -29,7 +29,7 @@
 		)
 </insert>
 
-<select id="selectCode" resultType="map">
+<select id="selectCode" parameterType="java.lang.String" resultType="com.crm.cp.test.code.vo.CodeVo">
 		SELECT 
 			code
 			,code_name
@@ -48,6 +48,13 @@
 			,display_seq = #{display_seq}
 			,code_desc = #{code_desc}
 			,active_flg = #{active_flg}
+		WHERE code = #{code}
+</update>
+
+<update id="deleteCode" parameterType="map">
+		UPDATE CODE
+		SET
+			active_flg = 'N'
 		WHERE code = #{code}
 </update>
 

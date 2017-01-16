@@ -40,4 +40,16 @@ public class UserServiceImpl implements UserService {
 		System.out.println("del serviceImpl enter");
 		
 	}
+
+	@Override
+	public userVO searchListUserOne(String user_id) {
+		userVO vo = userDao.searchListUserOne(user_id);
+		return vo;
+	}
+
+	@Override
+	public void userMdfy(userVO vo) {
+		userDao.userMdfy(vo);
+		
+	}
 }

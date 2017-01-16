@@ -60,7 +60,6 @@ public class EmployeeController {
 		
 		System.out.println("check" + check);
 
-		
 		List<Object> employeeCheck = employeeService.employeeCheck(check);
 		System.out.println("후히후히"+employeeCheck);
 		ModelAndView mov = new ModelAndView("/test/employee/employee_update_pop");
@@ -99,7 +98,7 @@ public class EmployeeController {
 	for(int i = 0; i < delcode.length; i++)
 	{
 		String dc = delcode[i];
-		System.out.println("dc? "+ dc);
+		
 		employeeService.deleteEmployee(dc);
 	}
 	

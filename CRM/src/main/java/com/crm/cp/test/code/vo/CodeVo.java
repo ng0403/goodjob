@@ -49,4 +49,12 @@ public class CodeVo {
 		this.active_flg = active_flg;
 	}
 
+	@Override
+	public String toString() {
+		return "CodeVo [code=" + code + ", code_name=" + code_name + ", display_seq=" + display_seq + ", code_desc="
+				+ code_desc + ", active_flg=" + active_flg + "]";
+	}
+	
+	
+
 }

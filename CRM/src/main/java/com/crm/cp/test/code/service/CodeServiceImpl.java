@@ -32,9 +32,9 @@ public class CodeServiceImpl implements CodeService{
 	}
 
 	@Override
-	public List<CodeVo> codeUpdatePage(Map<String, Object> map) {
+	public List<CodeVo> codeUpdatePage(String code) {
 		// TODO Auto-generated method stub
-		List<CodeVo> list = codeDao.codeUpdatePage(map);
+		List<CodeVo> list = codeDao.codeUpdatePage(code);
 		return list;
 	}
 
@@ -43,6 +43,14 @@ public class CodeServiceImpl implements CodeService{
 		// TODO Auto-generated method stub
 		int result = 0;
 		result = codeDao.codeupdate(cvo);
+		return result;
+	}
+
+	@Override
+	public int codedelete(String del_code) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		result = codeDao.codedelete(del_code);
 		return result;
 	}
 

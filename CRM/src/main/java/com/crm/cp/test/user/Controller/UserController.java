@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.test.orgtype.vo.OrgTypeVO;
 import com.crm.cp.test.user.Service.UserService;
 import com.crm.cp.test.user.vo.userVO;
 
@@ -51,18 +53,8 @@ public class UserController {
 	@RequestMapping(value="/userTab", method=RequestMethod.GET)
 	public ModelAndView userTabListPage(HttpSession session, Locale locale)
 	{
-
-		System.out.println("user Controller");
-		
-		List<Object> list = userService.searchListUser();
-//		if(session.getAttribute("user") == null){
-//			 //ModelAndView mov = new ModelAndView("redirect:/");
-//			employeeService.searchListEmployee();
-//			//return mov;
-//		}
-		//userService.searchListUser();
-		System.out.println(list);
-		ModelAndView mov = new ModelAndView("/test/user/userTab", "list", list);
+		System.out.println("userTab Controller");
+		ModelAndView mov = new ModelAndView("/test/user/userTab");
 		
 		return mov;
 	}
@@ -88,5 +80,55 @@ public class UserController {
 			userService.userDel(arrIdx[i]);
 		}
 		return "redirect:/usertest/userlist";
+	}
+	
+	//userMdfyPop
+	@RequestMapping(value="/userMdfyPop", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView userMdfyPop(HttpSession session, Locale locale, HttpServletRequest req)
+	{
+		String user_id = req.getParameter("user_id");
+		//System.out.println("GET USER_ID" + getUSER_ID());
+		 
+		userVO vo= userService.searchListUserOne(user_id);
+		
+		System.out.println("리스트 : " + vo);
+		ModelAndView mov = new ModelAndView("test/user/userTab");
+		
+		String USER_ID = vo.getUSER_ID();
+		String USER_NAME = vo.getUSER_NAME();
+		String PWD = vo.getPWD();
+		String CELL_PHONE = vo.getCELL_PHONE();
+		String COMPANY_PHONE = vo.getCOMPANY_PHONE();
+		String P_CHANNEL_CD = vo.getP_CHANNEL_CD();
+		String USER_TYPE = vo.getUSER_TYPE_CD();
+		
+		
+		mov.addObject("USER_ID",USER_ID);
+		mov.addObject("USER_NAME",USER_NAME);
+		mov.addObject("PWD",PWD);
+		mov.addObject("CELL_PHONE",CELL_PHONE);
+		mov.addObject("COMPANY_PHONE",COMPANY_PHONE);
+		mov.addObject("P_CHANNEL_CD",P_CHANNEL_CD);
+		mov.addObject("USER_TYPE",USER_TYPE);
+		
+		return mov;
+	}
+	
+	//userMdfy
+	@RequestMapping(value="/userMdfy", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView userMdfy(userVO vo, HttpServletRequest req)
+	{
+		String user_id = req.getParameter("user_id");
+		
+		vo.setUSER_ID(user_id);
+		System.out.println(vo.getUSER_ID());
+		userService.userMdfy(vo);
+		
+		ModelAndView mov = new ModelAndView("test/user/userTab");
+		
+		mov.addObject("result", "success");
+		
+		return mov;
+		
 	}
 }

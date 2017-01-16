@@ -39,7 +39,7 @@ $(function(){
 		
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
-			<form action="insert"  method="post" id="insertform" >
+			<form action="insert" method="post" id="insertform" >
 				<table class="table">
 					<tbody id="tbody1">
 						<tr>
@@ -55,7 +55,7 @@ $(function(){
 						</tr>
 						<tr>	
 							<th>전시순서</th>
-							<td><input type="text" name="dispaly_seq" id="display_seq"
+							<td><input type="text" name="display_seq" id="display_seq"
 								class="iuser_txt"></input></td>
 						</tr>
 						<tr>	

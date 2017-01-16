@@ -12,4 +12,8 @@ public interface UserDao {
 	public void insert(userVO vo);
 
 	public void userDel(String dc);
+
+	public userVO searchListUserOne(String user_id);
+
+	public void userMdfy(userVO vo);
 }
