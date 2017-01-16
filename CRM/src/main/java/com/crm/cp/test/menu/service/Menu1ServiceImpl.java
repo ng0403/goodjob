@@ -73,5 +73,4 @@ public class Menu1ServiceImpl implements Menu1Service {
 		menu1Dao.getMenuId(map);
 		return menuVO;
 	}
-
 }

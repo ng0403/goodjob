@@ -89,7 +89,6 @@
     function fn_menuSearchList(pageNum){
 	    	var menu_id=$("#menu_id").val();
 	    	var menu_name=$("#menu_name").val();
-	    	//var create_by="";
 	    	
 	    	var tbody = $('#menuListTbody');
 	    	var contents="";
@@ -102,7 +101,6 @@
 	    		success : function(data){
 	    			tbody.empty();
 	    			var list_menu=data.list;
-	    			//var userNo=data.userNo;
 	    			if(list_menu.length!=0){
 	    			for(var i=0;i<list_menu.length;i++){
 	    				var menu_id2=list_menu[i].menu_id;
@@ -280,9 +278,7 @@
 						"<tr height='5px'></tr>";
 						
 						tbody_general.append(contents);
-	    			
 	    		},
-	    		
 	    		beforeSend: function(){
 	        	viewLoadingShow();			
 	        },
@@ -406,7 +402,6 @@ $(document).ready(function(){
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="userNo" value="${userNo}">
-	<%-- <input type="hidden" id="menu_id5" value="${menu_id5}"> --%>
 	<input type="hidden" id="popMenuId1">
 	<div class="block_div"></div>
     <div style="margin-left:1%;"><h3>메 뉴</h3></div>

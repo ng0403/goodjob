@@ -100,6 +100,4 @@ public class Menu1DaoImpl implements Menu1Dao {
 		}
 		return mv;
 	}
-	
-	
 }

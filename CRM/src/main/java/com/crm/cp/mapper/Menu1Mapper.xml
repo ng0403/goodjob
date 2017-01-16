@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="menu1">
 
-<!-- menu 검색 결과 list -->
+    <!-- menu 검색 결과 list -->
 	<select id="menuSearchList" parameterType="java.util.Map"	resultType="com.crm.cp.test.menu.vo.MenuVO">	
         SELECT *
         FROM(SELECT ROWNUM AS RNUM, A.*
@@ -10,7 +10,6 @@
 		    DISTINCT A.MENU_ID, A.MENU_NAME,A.MENU_URL,A.MENU_LEVEL,A.P_MENU_ID,A.DEFAULT_FLG,A.ACTIVE_FLG,
 		    TO_CHAR(A.CDATE,'YYYY-MM-DD HH24:MI:SS') AS cdate,TO_CHAR(A.UDATE,'YYYY-MM-DD HH24:MI:SS') AS udate,
 		    A.C_USER_ID,A.U_USER_ID
-		    
 		FROM MENU A
 		WHERE 1=1
 		    AND A.ACTIVE_FLG = 'Y'
@@ -94,7 +93,6 @@
 	    SELECT /*+INDEX_DESC(MENU MENU_ID)*/
             DECODE(MAX(MENU_ID),NULL,'MN101',SUBSTR(MAX(MENU_ID),1,2)||(SUBSTR(MAX(MENU_ID),3,3)+1))MENU_ID
         FROM MENU
-	    
 	</select> 
 
 </mapper>
