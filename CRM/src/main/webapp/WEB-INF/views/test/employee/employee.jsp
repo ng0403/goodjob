@@ -187,7 +187,7 @@ $("#naviuser").css("font-weight", "bold"); */
 			<tbody id="usertbody" >
 				<c:forEach var="employeeList" items="${employeeList}" >
 				<tr>
-					<th scope="row"><input type="checkbox" name="USER_ID" value="${employeeList.USER_ID}"></th>
+					<th scope="row"><input type="checkbox" name="del_code" value="${employeeList.USER_ID}"></th>
 					<%-- <td style="width:10%;" id="user_id_a">
 						<a href='#'>${employeeList.id_nm}</a>
 					</td> --%>  
@@ -224,6 +224,7 @@ $("#naviuser").css("font-weight", "bold"); */
 	
 	
 	<script type="text/javascript">
+	
  
 	$("#iuserListAddBtn").on("click", function(){  
 	openPop();
@@ -235,8 +236,26 @@ $("#naviuser").css("font-weight", "bold"); */
 	
 		
 	$("#iuserDelBtn").on("click", function(){  
-		$('form').attr("action", "${ctx}/employee/employee_delete").submit(); 
-		})
+		var del_code = delAllForm.del_code;
+		var cnt = 0;
+		
+		for( i = 0 ; i<del_code.length; i++)
+		{
+			if(del_code[i].checked == true){
+  			cnt++; 
+			}
+		}
+		
+		if(cnt == 0){
+			alert("삭제할 대상이 없습니다.");
+		}else{
+ 		$('form').attr("action", "${ctx}/employee/employee_delete").submit(); 
+		}
+		
+	
+		
+	})
+ 
 	
 	function openPop(){
 		 
@@ -257,9 +276,9 @@ $("#naviuser").css("font-weight", "bold"); */
 
 		if ($("#checkall").prop("checked")) {
 
-			$("input[name=USER_ID]").prop("checked", true);
+			$("input[name=del_code]").prop("checked", true);
 		} else {
-			$("input[name=USER_ID]").prop("checked", false);
+			$("input[name=del_code]").prop("checked", false);
 		}
 
 	})

@@ -116,12 +116,25 @@
  
 	<script>
 		$(document).ready(function() {
+			
+
+			$("#USER_ID").on("click", function(){
+			 
+					alert("수정 불가능합니다.");
+				 
+			})
  
 			$("#addsavebtn").on("click", function() {
 				 
 				$('form').attr("action", "${ctx}/employee/employee_update").submit(); 
 				alert("업데이트하이");
 			});
+			
+			$("#cancelbtn").on("click", function() {
+				
+				window.close();
+				
+			})
 			
  
 		});
