@@ -24,10 +24,18 @@ $(function(){
 	})
 	
 	$("#code_del_fbtn").on("click", function(){  
-	 
 		$("#delAllForm").submit();
 	})
-
+	
+	// 1.모두 체크
+	/* 체크박스 전체선택, 전체해제 */
+	$("#allCheck").on("click", function(){
+	      if( $("#allCheck").is(':checked') ){
+	        $("input[name=del_code]").prop("checked", true);
+	      }else{
+	        $("input[name=del_code]").prop("checked", false);
+	      }
+	})
 })	
 </script>
 
@@ -60,7 +68,7 @@ $(function(){
 			</colgroup> --%>
 			<thead>
 				<tr>
-					<th style="width:5%;"><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
+					<th style="width:5%;"><input id="allCheck" type="checkbox"/></th>
 					<td style="width:10%;">코드</td>
 					<td style="width:10%;">코드 이름</td>
 					<!-- <td style="width:10%;">시작일자</td> -->

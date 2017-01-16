@@ -88,7 +88,7 @@ public class CodeController {
 		{
 			String dc = delcode[i];
 			
-			int result1 = codeService.codedelete(del_code);
+			int result1 = codeService.codedelete(dc);
 		}
 		
 		mav.setViewName("redirect:/code/list");
