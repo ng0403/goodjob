@@ -25,8 +25,19 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common.css" type="text/css" />
 <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet"/>
 
+<%--
+    Class Name : menuPopup.jsp
+    Description : 메뉴상세정보 팝업을 담당
+    Modification Information
+      수정일           수정자            수정내용
+    ---------- ---------- -------------------------------
+    2017.01.12 공재원           최초 생성
+    2017.01.16 공재원           주석 추가 , 삭제 버튼 조건 부여
+    author : 공재원
+    since : 2017.01.12
+--%>
+
 <script type="text/javascript">
- 
 </script>
 </head>
 <body>

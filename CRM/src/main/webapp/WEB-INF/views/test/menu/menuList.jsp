@@ -3,6 +3,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
+<%--
+    Class Name : menuList.jsp
+    Description : 메뉴리스트,등록화면을 담당
+    Modification Information
+      수정일           수정자            수정내용
+    ---------- ---------- -------------------------------
+    2017.01.12 공재원           최초 생성
+    2017.01.16 공재원           주석 추가 , 삭제 버튼 조건 부여
+    author : 공재원
+    since : 2017.01.12
+--%>
+
 <!DOCTYPE html>
 <html>
 <head>

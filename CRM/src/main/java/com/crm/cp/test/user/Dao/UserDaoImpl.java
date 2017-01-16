@@ -54,13 +54,18 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public userVO searchListUserOne(String user_id) {
+		System.out.println("After userDaoImpl : " + user_id);
 		userVO vo= sqlSession.selectOne("userDetail", user_id);
+		System.out.println("Before userDaoImpl : " + vo);
+		
 		return vo;
 	}
 
 	@Override
 	public void userMdfy(userVO vo) {
+		System.out.println("After userMdfyDaoImpl : " + vo);
 		sqlSession.update("userEdit", vo);
+		System.out.println("Before userMdfyDaoImpl : " + vo);
 		
 	}
 }
