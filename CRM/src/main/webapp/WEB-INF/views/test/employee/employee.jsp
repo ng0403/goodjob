@@ -175,10 +175,10 @@ $("#naviuser").css("font-weight", "bold"); */
 				<tr>
 					<th><input id="checkall" type="checkbox"/></th>
 					<td style="width:10%;">직원ID</td>
-					<td style="width:10%;">직원명</td>
+					<td style="width:10%;">직원코드</td>
 					<td style="width:10%;">부서명</td>
-					<td style="width:20%;">부서코드</td>
 					<td style="width:20%;">연락처</td>
+					<td style="width:20%;">작성자</td>
 					<td style="width:10%;">입사일</td>
 					<td style="width:10%;">퇴사일</td>
 					<td style="width:10%;">상태</td>
@@ -196,7 +196,7 @@ $("#naviuser").css("font-weight", "bold"); */
 					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_NO}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.POSITION_CD}</td>
 					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
-					<td style="width:20%;" class="user_name_tag">${employeeList.WORK_PHONE_NO}</td>
+					<td style="width:20%;" class="user_name_tag">${employeeList.C_USER_ID}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.JOIN_DAY}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.RETIRE_DAY}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_STATUS_CD}</td> 
