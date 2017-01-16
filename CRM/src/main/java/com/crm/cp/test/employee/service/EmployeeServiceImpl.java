@@ -35,9 +35,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Object> employeeCheck(EmployeeVO employeeVO) {
+	public List<Object> employeeCheck(String check) {
  		
-		List<Object> obj = employeeDao.employeeCheck(employeeVO);
+		List<Object> obj = employeeDao.employeeCheck(check);
 
 		return obj;
 	}

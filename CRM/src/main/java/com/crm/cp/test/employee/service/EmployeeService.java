@@ -7,7 +7,7 @@ import com.crm.cp.test.employee.vo.EmployeeVO;
 public interface EmployeeService {
 	
 	public List<Object> searchListEmployee();
-	public List<Object> employeeCheck(EmployeeVO employeeVO);
+	public List<Object> employeeCheck(String check);
 	
 	public void insertEmployee(EmployeeVO employeeVO);
 	public void updateEmployee(EmployeeVO employeeVO);

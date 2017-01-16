@@ -49,11 +49,22 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/employee_pop", method=RequestMethod.GET)
 	public ModelAndView employeePop(HttpSession session, Locale locale, EmployeeVO employeeVO,  HttpServletRequest req) {
- 	 
-		//List<Object> employeeCheck = employeeService.employeeCheck(employeeVO);
-
+ 	  
 		ModelAndView mov = new ModelAndView("/test/employee/employee_pop");
- 		//mov.addObject("employeeCheck",employeeCheck);
+  		return mov; 
+	}
+	
+	@RequestMapping(value="/employee_update_pop", method=RequestMethod.GET)
+	public ModelAndView employeeUpdatePop(HttpSession session, Locale locale, EmployeeVO employeeVO, HttpServletRequest req) {
+		String check = req.getParameter("USER_ID");
+		
+		System.out.println("check" + check);
+
+		
+		List<Object> employeeCheck = employeeService.employeeCheck(check);
+		System.out.println("후히후히"+employeeCheck);
+		ModelAndView mov = new ModelAndView("/test/employee/employee_update_pop");
+ 		mov.addObject("employeeCheck",employeeCheck);
  		return mov; 
 	}
 	

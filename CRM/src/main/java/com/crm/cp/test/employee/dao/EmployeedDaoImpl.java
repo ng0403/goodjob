@@ -40,9 +40,9 @@ public class EmployeedDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public List<Object> employeeCheck(EmployeeVO employeeVO) {
+	public List<Object> employeeCheck(String check) {
 		
-		return sqlSession.selectList("employeeCheck", employeeVO);
+		return sqlSession.selectList("employeeCheck", check);
 	}
 
 	@Override
