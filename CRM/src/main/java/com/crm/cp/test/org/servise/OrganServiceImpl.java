@@ -31,5 +31,25 @@ public class OrganServiceImpl implements OrganService {
 		 System.out.println("서비스 임플 등장");
 		 organDao.insertOrgan(organVO);
 	}
+
+	@Override
+	public void updateOrgan(OrganVO organVO) {
+
+		 organDao.updateOrgan(organVO);
+	}
+
+	@Override
+	public void deleteOrgan(String dc) {
+		
+		organDao.deleteOrgan(dc);
+	}
+
+	@Override
+	public List<Object> organCheck(String check) {
+		
+		List<Object> obj = organDao.organCheck(check);
+
+		return obj;
+	}
 	
 }

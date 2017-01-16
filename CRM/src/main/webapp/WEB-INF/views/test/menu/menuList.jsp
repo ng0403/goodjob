@@ -3,6 +3,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
+<%--
+    Class Name : menuList.jsp
+    Description : 메뉴리스트,등록화면을 담당
+    Modification Information
+      수정일           수정자            수정내용
+    ---------- ---------- -------------------------------
+    2017.01.12 공재원           최초 생성
+    2017.01.16 공재원           주석 추가 , 삭제 버튼 조건 부여
+    author : 공재원
+    since : 2017.01.12
+--%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +58,7 @@
 				background-color: white; overflow: auto;}	
 .menuOpen{display: none;}	
 	
-.block_div{display:block; height: 5px; clear: both;}
+.block_div{display:block; height: 10px; clear: both;}
 
 .modal.fade {
   -webkit-transition: opacity .3s linear, top .3s ease-out;
@@ -100,8 +112,8 @@
 	    				var default_flg=list_menu[i].default_flg;
 	    				var active_flg=list_menu[i].active_flg;
 	    				
-	    				contents += "<tr><td><input type='checkbox' id='chk' name='chk' value='"+menu_id2+"'/></td>"+"<td class='promo_type_nm' style='text-align:left;'>"+"<input type='hidden' id='menu_id2' value='"+menu_id2+"'>"
-	    				+"<a href='javascript:void(0)' onclick='menuPop1(\""+menu_id2+"\")'>&nbsp;&nbsp;&nbsp;"+menu_id2+"</a></td>"+"<td style='text-align:left;'>&nbsp;&nbsp;"+menu_name+
+	    				contents += "<tr><td><input type='checkbox' id='chk' name='chk' value='"+menu_id2+"'/></td>"+"<td class='promo_type_nm' style='text-align:center;'>"+"<input type='hidden' id='menu_id2' value='"+menu_id2+"'>"
+	    				+"<a href='javascript:void(0)' onclick='menuPop1(\""+menu_id2+"\")'>"+menu_id2+"</a></td>"+"<td style='text-align:left;'>&nbsp;&nbsp;"+menu_name+
 	    				"</td>"+"<td style='text-align:left;'>"+"&nbsp;&nbsp;"+menu_url+"</td>"
 						+"<td style='text-align:left;'>&nbsp;&nbsp;"+p_menu_id+"</td>"
 						+"<td style='text-align:center;'>"+default_flg+"</td>"
@@ -228,7 +240,7 @@
 							        "<option value='N'>"+"N"+"</option>"+
 							    "</select>"+
 							"</td>"+
-							"<th style='width: 12%; text-align: right;'><span style='color:red;'>*</span>상태&nbsp;</th>"+
+							"<th style='width: 12%; text-align: right;'><span style='color:red;'>*</span>상태&nbsp;&nbsp;</th>"+
 							"<td style='width: 38%; text-align: left;'>"+
 								"<select id='active_flg1' name='active_flg1' style='width: 30%;'>"+
 							        "<option value='"+active_flg+"'>"+active_flg+"</option>"+
@@ -384,6 +396,7 @@
 	});	
 
 $(document).ready(function(){	
+    
 	var menu_id5 = '${menu_id5}';
 	//alert(menu_id5);
 	$('#menu_id3').val(menu_id5);
@@ -400,13 +413,17 @@ $(document).ready(function(){
     <div style="margin-left:1%;"><h3>메 뉴</h3></div>
     
 	<div id="container" style="margin-top:1%;">
+	    <!--  메뉴 리스트,조회화면 -->
 	    <form name="frm_menu" action="/cp/menu/deleteMenu"	enctype="multipart/form-data"  method="post">
 		<div id="inputDiv" style="font-size:11.8px;width:100%;font-family:Helvetica, sans-serif;">
 				<label for="menu_id">메뉴 ID :</label>
 					<input type="text" id="menu_id" name="menu_id" style="width: 80px" />&nbsp;
 				<label for="menu_name">메뉴명 :</label>
 					<input type="text" id="menu_name" name="menu_name" style="width: 100px" />&nbsp;
-					<input type="submit" class="button-default" value="삭제" style="font-size:11px; background-color:#81BEF7;float:right;" />
+					
+					<c:if test="${fn:length(list) != 0 }">
+					    <input type="submit" id="deleteMenu" class="button-default" value="삭제" style="font-size:11px; background-color:#81BEF7;float:right;" />
+					</c:if>
 					<input type="button" class="button-default" value="메뉴 등록" data-target="#menuWriteLayer" data-toggle="modal" 
 						id="menuWritePop" style="font-size:11px; background-color:#81BEF7;font-color:white;float:right;margin-right:1%"/> 
 					<input type="button" class="button-default" onclick="fn_menuSearchList(1);" value="조회" style="font-size:11px;float:right;margin-right:1%;
@@ -417,7 +434,7 @@ $(document).ready(function(){
 			<table class="commonTable" id="menuListTable"	style="width: 100%;word-break:break-all; white-space:nowrap;">
 				<thead>
 					<tr>
-					    <th style="width: 8%; text-align:center;"><input type="checkbox" id="checkAll"/></th>
+					    <th style="width: 5%; text-align:center;"><input type="checkbox" id="checkAll"/></th>
 						<th style="width: 10%; text-align: center;">메뉴ID</th>
 						<th style="width: 12%; text-align: center;">메뉴명</th>
 						<th style="width: *; text-align: center;">메뉴URL</th>
@@ -431,7 +448,7 @@ $(document).ready(function(){
 						<c:forEach items="${list}" var="list">
 							<tr>
 							    <td><input type="checkbox" id="chk" name="chk" value="${list.menu_id}"/></td>
-								<td class="promo_type_nm" style="text-align:left;">&nbsp;&nbsp;
+								<td class="promo_type_nm" style="text-align:center;">
 									<input type="hidden" id="menu_id2" name="menu_id2"	value="${list.menu_id}">
 								    <a href='javascript:void(0)' onclick="menuPop1('${list.menu_id}')">${list.menu_id}</a>
 								</td>
@@ -484,22 +501,24 @@ $(document).ready(function(){
 				<a href="#" onclick="fn_menuSearchList('${pageNum+1}');" id="pNum"> ▶ </a>
 			</c:otherwise>
 		</c:choose>
-		
 	    </div> 
 	    </form>
-	<!-- 프로모션 상세정보 창 띄우기 -->
+	    <!--  //메뉴 리스트,조회화면 -->
+	    
+	<!-- 메뉴 상세정보 창 띄우기(취소 - 부트스트랩을 mask모달로 변경) -->
 	<div id="menuDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menuDetail-tab" aria-hidden="true" data-backdrop="static" data-keyboard="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             </div>
         </div>
     </div>
+    <!-- //메뉴 상세정보 창 띄우기 -->
 	<br />
 	<div id="viewLoadingImg" style="display: none;">
          <img src="${ctx}/resources/image/viewLoading.gif">
     </div> 
     
-    <!--  프로모션 상세정보 입력 창띄우기 -->
+    <!--  메뉴 등록 창띄우기 -->
     <div class="modal fade" id="menuWriteLayer" style="display: none;">
 		<div class="modal-dialog modal-lg">   <!-- modal-lg -->
 			<div class="modal-content">
@@ -531,7 +550,7 @@ $(document).ready(function(){
 							<td style="width: 38%; text-align: left;">
 								<input class="text" type="text" id="p_menu_id3" name="p_menu_id3" style="width: 80%;"	/>
 							</td>
-							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>메뉴레벨&nbsp;</th>
+							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>메뉴레벨&nbsp;&nbsp;</th>
 							<td style="width: 38%; text-align: left;">
 								<input class="text" type="text" id="menu_level3" name="menu_level3" style="width: 80%;"	/>
 							</td>
@@ -553,7 +572,7 @@ $(document).ready(function(){
 								    <option value="N">N</option>
 								</select>
 							</td>
-							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>상태&nbsp;</th>
+							<th style="width: 12%; text-align: right;"><span style="color:red;">*</span>상태&nbsp;&nbsp;</th>
 							<td style="width: 38%; text-align: left;">
 								<select id="active_flg3" name="active_flg3" style="width: 30%;font-size:10.5px;">
 								    <option value="">선택</option>
@@ -571,15 +590,17 @@ $(document).ready(function(){
 			
         </div>
 	</div>
+    <!-- //메뉴 등록 창띄우기 -->
 </div>
     
-<!-- material search 팝업 -->
+    <!-- menu detail 팝업 -->
 	<div style="font-size:11.5px;">
 	    <jsp:include page="../menu/menuPopup.jsp"></jsp:include>
 	</div>
+	<!-- //menu detail 팝업 -->
 
 	<script type="text/javascript">
-	/* 제목, 내용 null 처리 및 게시글 저장 */
+	/* 메뉴 등록 시 필수 값 입력 확인 */
 	function fn_checkRequired(){
 		var menu_id1=$('#menu_id3').val();
 		var menu_name1=$('#menu_name3').val();
@@ -598,7 +619,9 @@ $(document).ready(function(){
 		    $('form#frm_promo1')[0].submit();
 		}
 	}
+	/* //메뉴 등록 시 필수 값 입력 확인 */
 	
+	/* 메뉴 수정 시 필수 값 입력 확인 */
 	function fn_checkRequired1(){
 	    var menu_id1=$('#menu_id1').val();
 		var menu_name1=$('#menu_name1').val();
@@ -617,7 +640,9 @@ $(document).ready(function(){
 		    $('form#frm_promo')[0].submit();
 		}
 	}
+	/* //메뉴 수정 시 필수 값 입력 확인 */
 	
+	/* 체크박스 전체선택 */
 	$(document).ready(function(){
 	    //최상단 체크박스 클릭
 	    $("#checkAll").click(function(){
@@ -632,6 +657,7 @@ $(document).ready(function(){
 	        }
 	    });
 	});
+	/* //체크박스 전체선택 */
 		
 	</script>
 </body>

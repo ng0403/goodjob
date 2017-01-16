@@ -56,7 +56,7 @@ $(function(){
 						</tr>
 						<tr>	
 							<th>전시순서</th>
-							<td><input type="text" name="dispaly_seq" id="display_seq"
+							<td><input type="text" name="display_seq" id="display_seq"
 								class="iuser_txt" value="${code.display_seq }"></input></td>
 						</tr>
 						<tr>	

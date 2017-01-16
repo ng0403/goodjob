@@ -28,16 +28,16 @@ public class Menu1Controller {
 	
 	@Autowired Menu1Service menu1Service;
 	@Autowired Menu1Dao menu1Dao;
-	//@Autowired CommonDao commonDao;
-	//@Autowired CommonService commonService;
 
-	/** 
-	 * @category  Menu - 화면 호출
-	 * @author	   공재원
-	 * @since	  2017. 1. 12
-	 * @version
-	 *
-	 */
+	/* -----------------------------
+	 * 업 무 명 : menu 리스트 화면
+	    작 성 자 : 공재원 (jwjy0223@naver.com)
+	    작 성 일 : 2017/01/12
+	    수 정 자 : 공재원 (jwjy0223@naver.com)
+	    수 정 일 : 2017/01/16
+	    내 용 : menu list 화면을 보여준다.
+	   *참고사항 :
+	  -------------------------------*/ 
 	@RequestMapping(value = "/view", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView menuList(HttpServletRequest request,@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) throws Exception {
 		
@@ -71,13 +71,15 @@ public class Menu1Controller {
 		return mav;
 	}
 	
-	/** 
-	 * @category  Menu - 검색 list
-	 * @author	   공재원
-	 * @since	  2017. 1. 12
-	 * @version
-	 *
-	 */
+	/* -----------------------------
+	 * 업 무 명 : menu 조회 화면
+	    작 성 자 : 공재원 (jwjy0223@naver.com)
+	    작 성 일 : 2017/01/12
+	    수 정 자 : 공재원 (jwjy0223@naver.com)
+	    수 정 일 : 2017/01/16
+	    내 용 : menu list의 조회한 결과 화면을 보여준다.
+	   *참고사항 :
+	  -------------------------------*/ 
      @RequestMapping(value = "/menuSearchList")
 	 public @ResponseBody Map<String, Object> menuSearchList(ModelMap model,
 				HttpServletRequest request,@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
@@ -119,6 +121,15 @@ public class Menu1Controller {
 			return model;
 	 }
      
+     /* -----------------------------
+ 	 * 업 무 명 : menu 상세 화면
+ 	    작 성 자 : 공재원 (jwjy0223@naver.com)
+ 	    작 성 일 : 2017/01/12
+ 	    수 정 자 : 공재원 (jwjy0223@naver.com)
+ 	    수 정 일 : 2017/01/16
+ 	    내 용 : 선택한 menu 상세화면을 보여준다.
+ 	   *참고사항 :
+ 	   -------------------------------*/ 
      @RequestMapping(value = "/openMenuDetail")
      public @ResponseBody Map<String, Object> openMenuDetail(HttpServletRequest request,
     		 Locale locale, ModelMap model) {
@@ -162,7 +173,15 @@ public class Menu1Controller {
         return model;
      }
      
-     /*메뉴 등록*/
+     /* -----------------------------
+ 	 * 업 무 명 : menu 등록
+ 	    작 성 자 : 공재원 (jwjy0223@naver.com)
+ 	    작 성 일 : 2017/01/12
+ 	    수 정 자 : 공재원 (jwjy0223@naver.com)
+ 	    수 정 일 : 2017/01/16
+ 	    내 용 : menu를 등록, 저장한다.
+ 	   *참고사항 :
+ 	 -------------------------------*/ 
      @RequestMapping(value = "/createMenu", method = RequestMethod.POST)
      public String createMenu(Locale locale, Model model, HttpServletRequest request) {
          String menu_id = request.getParameter("menu_id3");                  	
@@ -189,6 +208,15 @@ public class Menu1Controller {
         return "redirect:"+"/menu/view";
      }
      
+     /* -----------------------------
+ 	 * 업 무 명 : menu 수정
+ 	    작 성 자 : 공재원 (jwjy0223@naver.com)
+ 	    작 성 일 : 2017/01/12
+ 	    수 정 자 : 공재원 (jwjy0223@naver.com)
+ 	    수 정 일 : 2017/01/16
+ 	    내 용 : 선택한 menu를 수정하고 저장한다.
+ 	   *참고사항 :
+ 	-------------------------------*/ 
      @RequestMapping(value = "/updateMenu", method = RequestMethod.POST)
      public String updateMenu(Locale locale, Model model, 
            HttpServletRequest request) {
@@ -212,7 +240,15 @@ public class Menu1Controller {
         return "redirect:" + "/menu/view";
      }
      
-     // menu list 중 삭제
+     /* -----------------------------
+ 	 * 업 무 명 : menu 삭제
+ 	    작 성 자 : 공재원 (jwjy0223@naver.com)
+ 	    작 성 일 : 2017/01/12
+ 	    수 정 자 : 공재원 (jwjy0223@naver.com)
+ 	    수 정 일 : 2017/01/16
+ 	    내 용 : 선택한 menu를 삭제한다.
+ 	   *참고사항 :
+ 	-------------------------------*/ 
  	 @RequestMapping(value = "/deleteMenu", method = RequestMethod.POST)
  	 public String deleteMenu(Locale locale, Model model, 
  			 HttpServletRequest request) {

@@ -9,7 +9,11 @@ import com.crm.cp.test.org.vo.OrganVO;
 public interface OrganDao {
 
 	public List<Object> searchOrganList();
+	public List<Object> organCheck(String check);
+	
 	public void insertOrgan(OrganVO organVO);
+	public void updateOrgan(OrganVO organVO);
+	public void deleteOrgan(String dc);
 
 
 }

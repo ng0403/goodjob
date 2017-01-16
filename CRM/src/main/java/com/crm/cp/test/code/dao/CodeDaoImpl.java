@@ -28,15 +28,21 @@ public class CodeDaoImpl implements CodeDao{
 	}
 
 	@Override
-	public List<CodeVo> codeUpdatePage(Map<String, Object> map) {
+	public List<CodeVo> codeUpdatePage(String code) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("selectCode", map);
+		return sqlSession.selectList("selectCode", code);
 	}
 
 	@Override
 	public int codeupdate(CodeVo cvo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("updateCode", cvo);
+	}
+
+	@Override
+	public int codedelete(String del_code) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("deleteCode", del_code);
 	}
 
 }
