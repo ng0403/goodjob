@@ -414,7 +414,7 @@ $(document).ready(function(){
     
 	<div id="container" style="margin-top:1%;">
 	    <!--  메뉴 리스트,조회화면 -->
-	    <form name="frm_menu" action="/cp/menu/deleteMenu"	enctype="multipart/form-data"  method="post">
+	    <form name="frm_menu" id="frm_menu" action="/cp/menu/deleteMenu"	enctype="multipart/form-data"  method="post">
 		<div id="inputDiv" style="font-size:11.8px;width:100%;font-family:Helvetica, sans-serif;">
 				<label for="menu_id">메뉴 ID :</label>
 					<input type="text" id="menu_id" name="menu_id" style="width: 80px" />&nbsp;
@@ -422,7 +422,7 @@ $(document).ready(function(){
 					<input type="text" id="menu_name" name="menu_name" style="width: 100px" />&nbsp;
 					
 					<c:if test="${fn:length(list) != 0 }">
-					    <input type="submit" id="deleteMenu" class="button-default" value="삭제" style="font-size:11px; background-color:#81BEF7;float:right;" />
+					    <input type="button" id="deleteMenu" class="button-default" value="삭제" onclick="fn_delete();" style="font-size:11px; background-color:#81BEF7;float:right;" />
 					</c:if>
 					<input type="button" class="button-default" value="메뉴 등록" data-target="#menuWriteLayer" data-toggle="modal" 
 						id="menuWritePop" style="font-size:11px; background-color:#81BEF7;font-color:white;float:right;margin-right:1%"/> 
@@ -587,7 +587,6 @@ $(document).ready(function(){
 				</div>
 				</form>
 			</div>
-			
         </div>
 	</div>
     <!-- //메뉴 등록 창띄우기 -->
@@ -658,7 +657,22 @@ $(document).ready(function(){
 	    });
 	});
 	/* //체크박스 전체선택 */
-		
+	
+	var selected = new Array();
+	/* 메뉴 삭제 */
+	function fn_delete(){
+	    $("input:checkbox[name=chk]:checked").each(function() {
+            selected.push($(this).val());
+        });
+	    
+	    if(selected.length ==0){
+	        alert("삭제할 데이터를 선택하세요.");
+	    }else{
+	        $('form#frm_menu')[0].submit();
+	    }
+	}
+	/* //메뉴 삭제 */
+	
 	</script>
 </body>
 </html>

@@ -253,14 +253,16 @@ public class Menu1Controller {
  	 public String deleteMenu(Locale locale, Model model, 
  			 HttpServletRequest request) {
  		 String[] checks = request.getParameterValues("chk");
- 		 for(int i=0;i<checks.length;i++){
- 			 MenuVO mv = menu1Service.openMenuDetail(checks[i]);
+ 		 if(checks.length == 0){
+ 			System.out.println("삭제할 데이터가 없습니다.");
+ 		 }else{
+ 		     for(int i=0;i<checks.length;i++){
+ 			     MenuVO mv = menu1Service.openMenuDetail(checks[i]);
  			
- 			 menu1Service.deleteMenu(mv);
+ 			     menu1Service.deleteMenu(mv);
+ 		     }
+ 		     System.out.println("삭제가 완료되었습니다.");
  		 }
- 		 
- 		 System.out.println("삭제가 완료되었습니다.");
-
  		 return "redirect:" + "/menu/view";
  	 }
 }
