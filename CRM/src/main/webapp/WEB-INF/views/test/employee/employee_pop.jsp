@@ -67,10 +67,8 @@
 				</table>
 				<div class="bt_position_authuser">
 					<input type="button" id="submitbtn" class="iuser_tab_bt" value="추가"/>
-					<input type="button" id="modifybtn" class="iuser_tab_bt" value="편집"/>
 					<input type="reset" id="cancelbtn" class="iuser_tab_bt" value="취소"/>
-					<input type="button" id="addsavebtn" class="iuser_tab_bt" value="저장"/>
-					<input type="button" id="modifysavebtn" class="iuser_tab_bt" style="display:none;" value="저장"/>
+ 					<input type="button" id="modifysavebtn" class="iuser_tab_bt" style="display:none;" value="저장"/>
 				</div>
 			</form>
 		</div>
@@ -118,16 +116,20 @@
 		$(document).ready(function() {
 
 			$("#submitbtn").on("click", function() {
-			 
-				$('form').attr("action", "${ctx}/employee/employee_write").submit(); 
+				alert(USER_ID.value);
+				if(USER_ID.value== "" && EMP_NO.value == "" && POSITION_CD.value == "" && WORK_PHONE_NO.value == "" && JOIN_DAY.value == "" && RETIRE_DAY.value == "" && C_USER_ID.value == "")
+					{
+					alert("값을 입력해 주세요");	
+					}else{
+						$('form').attr("action", "${ctx}/employee/employee_write").submit(); 		
+					} 
 			});
 			
-			$("#modifybtn").on("click", function() {
-				 
-				$('form').attr("action", "${ctx}/employee/employee_update").submit(); 
-				alert("업데이트하이");
-			});
-			
+			$("#cancelbtn").on("click", function(){
+				window.close();
+				
+			})
+		 
  
 		});
 	</script>
