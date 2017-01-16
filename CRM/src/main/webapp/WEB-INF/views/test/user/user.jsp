@@ -121,13 +121,10 @@ function deleteAction(){
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist">
 		<input type="button" id="iuserListAddBtn" onclick="userTabOpen()"class="iuser_bt" value="등록" />
-<<<<<<< HEAD
 		<!-- <input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/> -->
 		<input type="button" id="iuserDelBtn" class="iuser_bt" value="삭제"/>
-=======
 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/>
 		<input type="button" id="iuserDelBtn" onclick="deleteAction()" class="iuser_bt" value="삭제"/>
->>>>>>> branch 'master' of https://github.com/ng0403/goodjob.git
 	</div>
 </body>
 </html>
