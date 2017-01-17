@@ -112,12 +112,11 @@
 		 </c:if>
 		 
 	
-	<script>
+	<script tupe="text/javascript">
 		$(document).ready(function() {
-
+		 
 			$("#submitbtn").on("click", function() {
-				alert(USER_ID.value);
-				if(USER_ID.value== "" && EMP_NO.value == "" && POSITION_CD.value == "" && WORK_PHONE_NO.value == "" && JOIN_DAY.value == "" && RETIRE_DAY.value == "" && C_USER_ID.value == "")
+  				if(USER_ID.value.trim() == ""  && EMP_NO.value.trim() == "" && POSITION_CD.value.trim() == "" && WORK_PHONE_NO.value.trim() == "" && JOIN_DAY.value.trim() == "" && RETIRE_DAY.value.trim() == "" && C_USER_ID.value.trim() == "" )
 					{
 					alert("값을 입력해 주세요");	
 					}else{

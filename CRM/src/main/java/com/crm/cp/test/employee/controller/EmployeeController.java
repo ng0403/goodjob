@@ -64,6 +64,7 @@ public class EmployeeController {
 		System.out.println("후히후히"+employeeCheck);
 		ModelAndView mov = new ModelAndView("/test/employee/employee_update_pop");
  		mov.addObject("employeeCheck",employeeCheck);
+ 		System.out.println("업데이트 후히후히 " + mov);
  		return mov; 
 	}
 	
@@ -84,9 +85,9 @@ public class EmployeeController {
 		System.out.println("업데이트 까꿍" + employeeVO.toString());
 		employeeService.updateEmployee(employeeVO);
 		ModelAndView mov = new ModelAndView("/test/employee/employee_pop");
-		
 		mov.addObject("result", "success");
-		
+		System.out.println("업데이트 시작" + mov);
+
 		return mov;
 	}
 	

@@ -141,6 +141,7 @@ select{
      margin-right: 5px;
      cursor: pointer;
      vertical-align: middle;
+     
 } 
 </style>
  
@@ -186,12 +187,12 @@ $("#naviuser").css("font-weight", "bold"); */
 			</thead>
 			<tbody id="usertbody" >
 				<c:forEach var="employeeList" items="${employeeList}" >
-				<tr>
+				<tr onmouseover="this.style.background='#c0c4cb'" onmouseout="this.style.background='white'">
 					<th scope="row"><input type="checkbox" name="del_code" value="${employeeList.USER_ID}"></th>
 					<%-- <td style="width:10%;" id="user_id_a">
 						<a href='#'>${employeeList.id_nm}</a>
 					</td> --%>  
-					<td style="width:10%;" class="user_name_tag" id = "${employeeList.USER_ID}" onclick="openupdatePop(this.id);">${employeeList.USER_ID}
+					<td  style="width:10%; cursor: pointer;" class="user_name_tag" id = "${employeeList.USER_ID}" onclick="openupdatePop(this.id);">${employeeList.USER_ID}
  					</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.EMP_NO}</td>
 					<td style="width:10%;" class="user_name_tag">${employeeList.POSITION_CD}</td>
