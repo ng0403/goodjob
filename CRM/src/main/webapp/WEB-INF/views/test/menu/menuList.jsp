@@ -403,7 +403,7 @@ $(document).ready(function(){
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="userNo" value="${userNo}">
 	<input type="hidden" id="popMenuId1">
-	<div class="block_div"></div>
+	<!-- <div class="block_div"></div> -->
     <div style="margin-left:1%;"><h3>메 뉴</h3></div>
     
 	<div id="container" style="margin-top:1%;">
