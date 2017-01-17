@@ -18,56 +18,80 @@
  </c:if>
  
 <script>
+
 	$(document).ready(function() {
 		var entry_flg = ${entry_flg}
 		var tmp = $('#USER_ID').val();
-		if(tmp != 'NULL'){
-			$("#submitbtn").on("click", function() {
-				$('form').attr("action", "${ctx}/usertest/userInsert").submit();
-			});
-		}else{
-			alert("사용자 아이디가 없습니다.");
-		}
-		var tmp = $('#USER_ID').val();
-		$("#modifysavebtn").on("click", function() {
-			$('form').attr("action", "${ctx}/usertest/userMdfy?user_id = "+tmp).submit();
-		});
-		
 		if(entry_flg == 1)
 		{
-			alert("ENTRY_FLG 신규추가 : " + entry_flg);
-			$('#modifybtn').button({disabled: true});
-			$('#addsavebtn').button({disabled: true});
+			alert("ENTRY_FLG 확인 신규추가 가능 : " + entry_flg);
+			//$('#addsave_btn').CSS('display', "hidden");
 			$('#joinform').find('input[type="text"]').attr('disabled',false).attr('readonly', false);
+			//$('#modifysave_btn').css("visibility","hidden");
+
+		}else{
+			 alert("ENTRY_FLG 확인 편집 가능: " + entry_flg);
+			$('#USER_ID').attr("readonly", true);
+			$('#joinform').find('input[type="text"]').attr('disabled',true);
+		    $('#joinform').find('input[type="password"]').attr('disabled',true);
+	        $('#joinform').find('input[type="email"]').attr('disabled',true);
+			//$('#addsave_btn').css('visibility',"hidden");
+			
+		} 
+			
 		
-		}else if(entry_flg == 2){
-			alert("ENTRY_FLG 편집: " + entry_flg);
-			
-		//	$('#joinform').find('input[type="text"]').attr('disabled',true);
-		//	$('#joinform').find('input[type="password"]').attr('disabled',true);
-		//	$('#joinform').find('input[type="email"]').attr('disabled',true);
-			$('#modifybtn').button({disabled: false});
-			$('#addsavebtn').button({disabled: true});
-			$('#cancelbtn').button({disabled: true});
-			$('#submitbtn').attr('disabled',false);
-			
-    }
-			$("#modifybtn").click(function(){
-				alert("편집버튼 클릭");
-				if (entry_flg == 2){
-					$('.tab1_content input').attr('disabled', false);
+		//추가 버튼
+			$("#submit_btn").on("click", function() {
+				var entry_flg = ${entry_flg}
+				var tmp = $('#USER_ID').val();
+				var tmplength = tmp.length;
+				
+				if(entry_flg != 1){
+					alert("이미 존재하는 계정입니다.");
+				}else{
+					if(tmplength > 0){
+						$('form').attr("action", "${ctx}/usertest/userInsert").submit();
+						}else{
+							alert("사용자 아이디가 없습니다.");
+						}
+				}
+			});
+		//편집 버튼 
+			$("#modify_btn").on("click", function() {
+				var entry_flg = ${entry_flg}
+				var tmp = $('#USER_ID').val();
+				
+				var tmplength = tmp.length;
+				if(entry_flg != 1){
+					$('#joinform').find('input[type="text"]').attr('disabled',false);
+					$('#joinform').find('input[type="password"]').attr('disabled',false);
+			        $('#joinform').find('input[type="email"]').attr('disabled',false);
 					$('#USER_ID').attr("readonly", true);
-					$('#addsavebtn').button({disabled: false});
-					$('#modifybtn').attr("disabled", true);
-					$('#submitbtn').button({disabled: true});
-			    }
+					$('#addsave_btn').css("visibility","hidden");
+					$('#modify_btn').attr("disabled", true);
+					$('#submit_btn').attr("disabled", true);
+				}else{
+					alert("신규 데잍를 입력하세요.");
+				}
+			});
+		//편집 저장 버튼
+			$("#modifysave_btn").on("click", function() {
+				var entry_flg = ${entry_flg}
+				var tmp = $('#USER_ID').val();
+				
+				var tmplength = tmp.length;
+				if(entry_flg != 1){
+					$('form').attr("action", "${ctx}/usertest/userMdfy?user_id = "+tmp).submit();
+				}else{
+					alert("신규 데잍를 입력하세요.");
+				}
 			});
 		
-	var user_id = $('#user_id_h').val();
+		var tmp = $('#USER_ID').val();
+		
+	/* var user_id = $('#user_id_h').val(); */
+});
 	
-		
-		
-	});
 
  </script>
 </head>
@@ -129,11 +153,11 @@
 					</tbody>
 				</table>
 				<div class="bt_position_authuser">
-					<input type="button" id="submitbtn" class="iuser_tab_bt" value="추가"/>
-					<input type="button" id="modifybtn" class="iuser_tab_bt" value="편집" />
-					<input type="reset" id="cancelbtn" class="iuser_tab_bt" value="취소"/>
-					<input type="button" id="addsavebtn" class="iuser_tab_bt" value="저장"/>
-					<input type="button" id="modifysavebtn" class="iuser_tab_bt" style="display:none;" value="저장"/>
+					<input type="button" id="submit_btn" class="iuser_tab_bt" value="추가"/>
+					<input type="button" id="modify_btn" class="iuser_tab_bt" value="편집" />
+					<input type="reset" id="cancel_btn" class="iuser_tab_bt" value="취소"/>
+					<!-- <input type="button" id="addsave_btn" class="iuser_tab_bt" value="저장"/> -->
+					<input type="button" id="modifysave_btn" class="iuser_tab_bt"  value="저장"/>
 				</div>
 			</form>
 		</div>
