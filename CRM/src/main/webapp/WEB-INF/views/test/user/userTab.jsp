@@ -24,13 +24,11 @@
 		var tmp = $('#USER_ID').val();
 		if(entry_flg == 1)
 		{
-			alert("ENTRY_FLG 확인 신규추가 가능 : " + entry_flg);
 			//$('#addsave_btn').CSS('display', "hidden");
 			$('#joinform').find('input[type="text"]').attr('disabled',false).attr('readonly', false);
 			//$('#modifysave_btn').css("visibility","hidden");
 
 		}else{
-			 alert("ENTRY_FLG 확인 편집 가능: " + entry_flg);
 			$('#USER_ID').attr("readonly", true);
 			$('#joinform').find('input[type="text"]').attr('disabled',true);
 		    $('#joinform').find('input[type="password"]').attr('disabled',true);
