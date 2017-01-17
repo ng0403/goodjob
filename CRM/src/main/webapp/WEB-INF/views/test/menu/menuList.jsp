@@ -54,7 +54,7 @@
 #noticeListTbody > td{height: 23px;}
 
 #menuMask {position:absolute; z-index:9000; background-color:#000; display:none; left:0; top:0;} 
-.menuWindow{display: none; position:absolute; width:70%; height:55%; left:15%; top:15%; z-index:10000; 
+.menuWindow{display: none; position:absolute; width:60%; height:55%; left:20%; top:15%; z-index:10000; 
 				background-color: white; overflow: auto;}	
 .menuOpen{display: none;}	
 	
@@ -285,13 +285,13 @@
 	        complete:function(){
 	        	viewLoadingHide();
 	    	},	
-	    		error : function(request,status,error) {
-	    	          alert("사용자페이징code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    	      }
-	    	}); 
-	    }
+	    	error : function(request,status,error) {
+	    	    alert("사용자페이징code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    	}
+	    }); 
+	}
     
-  //검색 엔터키
+    //검색 엔터키
     function enterSearch(event) {		
     	var keycode = (event.keyCode ? event.keyCode : event.which);
     	if (keycode == '13') {
