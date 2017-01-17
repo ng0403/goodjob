@@ -53,7 +53,7 @@
 		    AND A.MENU_ID = #{menu_id}
 	</select>
 	
-	<!-- 새 promotion 등록 -->
+	<!-- 새 메뉴 등록 -->
 	<insert id="createMenu" parameterType="com.crm.cp.test.menu.vo.MenuVO">
 		INSERT INTO MENU
 		(
@@ -66,6 +66,7 @@
 		)
 	</insert>
 	
+	<!-- 메뉴 수정 -->
 	<update id="updateMenu" parameterType="com.crm.cp.test.menu.vo.MenuVO">
 		UPDATE MENU
 		SET MENU_NAME = #{menu_name},
@@ -80,6 +81,7 @@
 		MENU_ID=#{menu_id}
 	</update>
 	
+	<!-- 메뉴 삭제 -->
 	<update id="deleteMenu" parameterType="com.crm.cp.test.menu.vo.MenuVO">
 		UPDATE MENU
 		SET ACTIVE_FLG = 'N',
@@ -89,6 +91,7 @@
 		MENU_ID=#{menu_id}
 	</update>
 	
+	<!-- 메뉴 ID 확인 -->
     <select id="getMenuId" parameterType="java.util.Map" resultType ="com.crm.cp.test.menu.vo.MenuVO">
 	    SELECT /*+INDEX_DESC(MENU MENU_ID)*/
             DECODE(MAX(MENU_ID),NULL,'MN101',SUBSTR(MAX(MENU_ID),1,2)||(SUBSTR(MAX(MENU_ID),3,3)+1))MENU_ID

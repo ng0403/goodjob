@@ -131,8 +131,8 @@ public class Menu1Controller {
      @RequestMapping(value = "/openMenuDetail")
      public @ResponseBody Map<String, Object> openMenuDetail(HttpServletRequest request,
     		 Locale locale, ModelMap model) {
-  	    String menu_id = request.getParameter("menu_id"); 
-  	    //promotion 상세정보 호출
+  	    String menu_id = request.getParameter("menu_id").trim(); 
+  	    //메뉴 상세정보 호출
   	    MenuVO mv = menu1Service.openMenuDetail(menu_id);
   	    
         String menu_name = mv.getMenu_name();							
@@ -181,13 +181,13 @@ public class Menu1Controller {
  	 -------------------------------*/ 
      @RequestMapping(value = "/createMenu", method = RequestMethod.POST)
      public String createMenu(Locale locale, Model model, HttpServletRequest request) {
-         String menu_id = request.getParameter("menu_id3");                  	
-         String menu_name = request.getParameter("menu_name3");				
-         String p_menu_id = request.getParameter("p_menu_id3");					
-         String menu_level = request.getParameter("menu_level3");					
-         String menu_url=request.getParameter("menu_url3");				
-         String default_flg = request.getParameter("default_flg3");			
-         String active_flg = request.getParameter("active_flg3");			
+         String menu_id = request.getParameter("menu_id3").trim();                  	
+         String menu_name = request.getParameter("menu_name3").trim();				
+         String p_menu_id = request.getParameter("p_menu_id3").trim();					
+         String menu_level = request.getParameter("menu_level3").trim();					
+         String menu_url=request.getParameter("menu_url3").trim();				
+         String default_flg = request.getParameter("default_flg3").trim();			
+         String active_flg = request.getParameter("active_flg3").trim();			
        
          MenuVO mv = new MenuVO();
                
@@ -200,7 +200,7 @@ public class Menu1Controller {
          mv.setActive_flg(active_flg);
 
          menu1Service.createMenu(mv);
-        return "redirect:"+"/menu/view";
+         return "redirect:"+"/menu/view";
      }
      
      /* -----------------------------
@@ -215,13 +215,13 @@ public class Menu1Controller {
      @RequestMapping(value = "/updateMenu", method = RequestMethod.POST)
      public String updateMenu(Locale locale, Model model, 
            HttpServletRequest request) {
-    	String menu_id = request.getParameter("menu_id1");
-        String menu_name=request.getParameter("menu_name1");			
-        String p_menu_id=request.getParameter("p_menu_id1");			
-        String menu_level=request.getParameter("menu_level1");			
-        String menu_url=request.getParameter("menu_url1");			
-        String default_flg=request.getParameter("default_flg1");			
-        String active_flg=request.getParameter("active_flg1");			
+    	String menu_id = request.getParameter("menu_id1").trim();
+        String menu_name=request.getParameter("menu_name1").trim();			
+        String p_menu_id=request.getParameter("p_menu_id1").trim();			
+        String menu_level=request.getParameter("menu_level1").trim();			
+        String menu_url=request.getParameter("menu_url1").trim();			
+        String default_flg=request.getParameter("default_flg1").trim();			
+        String active_flg=request.getParameter("active_flg1").trim();			
         MenuVO mv = menu1Service.openMenuDetail(menu_id);
         
         mv.setMenu_id(menu_id);

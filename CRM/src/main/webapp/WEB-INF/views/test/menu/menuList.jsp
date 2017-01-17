@@ -54,7 +54,7 @@
 #noticeListTbody > td{height: 23px;}
 
 #menuMask {position:absolute; z-index:9000; background-color:#000; display:none; left:0; top:0;} 
-.menuWindow{display: none; position:absolute; width:70%; height:50%; left:15%; top:15%; z-index:10000; 
+.menuWindow{display: none; position:absolute; width:70%; height:55%; left:15%; top:15%; z-index:10000; 
 				background-color: white; overflow: auto;}	
 .menuOpen{display: none;}	
 	
@@ -85,7 +85,7 @@
 
 <script type="text/javascript">
 
-    //검색된 공지사항 리스트
+    //검색된 메뉴 리스트
     function fn_menuSearchList(pageNum){
 	    	var menu_id=$("#menu_id").val();
 	    	var menu_name=$("#menu_name").val();
@@ -112,7 +112,7 @@
 	    				
 	    				contents += "<tr><td><input type='checkbox' id='chk' name='chk' value='"+menu_id2+"'/></td>"+"<td class='promo_type_nm' style='text-align:center;'>"+"<input type='hidden' id='menu_id2' value='"+menu_id2+"'>"
 	    				+"<a href='javascript:void(0)' onclick='menuPop1(\""+menu_id2+"\")'>"+menu_id2+"</a></td>"+"<td style='text-align:left;'>&nbsp;&nbsp;"+menu_name+
-	    				"</td>"+"<td style='text-align:left;'>"+"&nbsp;&nbsp;"+menu_url+"</td>"
+	    				"</td>"+"<td style='text-align:left;'>"+"&nbsp;&nbsp;"+"<a href='"+menu_url+"'>"+menu_url+"</a></td>"
 						+"<td style='text-align:left;'>&nbsp;&nbsp;"+p_menu_id+"</td>"
 						+"<td style='text-align:center;'>"+default_flg+"</td>"
 						+"<td style='text-align:center;'>"+active_flg+"</td></tr>";
@@ -170,7 +170,7 @@
 	    	}); 
 	    }
 	    
-    //검색된 공지사항 리스트
+    //메뉴 상세 팝업
     function fn_menuPop(){
 	    	var menu_id = $("#popMenuId1").val();
 	    	
@@ -338,7 +338,7 @@
 	   $('#viewLoadingImg').fadeOut();   
 	}
 	
-	//프로모션 팝업 호출
+	//메뉴 팝업 호출
 	function menuPop1(menu_id2){		
 		
 		$("#popMenuId1").val(menu_id2);
@@ -448,7 +448,9 @@ $(document).ready(function(){
 								</td>
 								<td style="text-align:left;">&nbsp;&nbsp;${list.menu_name}</td>
 								
-								<td style="text-align:left;">&nbsp;&nbsp;${list.menu_url}</td>
+								<td style="text-align:left;"><%-- &nbsp;&nbsp;${list.menu_url} --%>
+								    <a href='${list.menu_url}'>&nbsp;&nbsp;${list.menu_url}</a>
+								</td>
 								<td style="text-align:left;">&nbsp;&nbsp;${list.p_menu_id}</td>
 								
 								<td style="text-align:center;">${list.default_flg }</td>
