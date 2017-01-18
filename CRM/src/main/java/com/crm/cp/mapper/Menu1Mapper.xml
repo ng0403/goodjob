@@ -18,7 +18,7 @@
 		        AND UPPER(A.MENU_ID) LIKE '%' || UPPER(#{menu_id}) || '%'
 		    </if>
 		    <if test="menu_name !=null and menu_name !='' ">
-              AND UPPER(A.MENU_NAME) LIKE '%' || UPPER(#{menu_name}) || '%'
+                AND UPPER(A.MENU_NAME) LIKE '%' || UPPER(#{menu_name}) || '%'
             </if>
 			ORDER BY A.MENU_ID DESC) A )
 		<![CDATA[
