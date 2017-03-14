@@ -68,11 +68,11 @@ public class NoticeController {
 		System.out.println("노티스 진입");
 		
 		if(session.getAttribute("user") == null){
+			System.out.println("user is null");
 			ModelAndView mov = new ModelAndView("redirect:/");
 			return mov;
 		}
-//		임시 주석
-//		noticeService.searchListNotice(); 
+		noticeService.searchListNotice(); 
 		
 		ModelAndView mov = new ModelAndView("notice");
 		
