@@ -3,7 +3,6 @@
 <mapper namespace="user">
 
 <select id="searchListUser" parameterType="string" resultType="map">
-
 		SELECT *
 		FROM USERS
 		where ACTIVE_FLG='Y'

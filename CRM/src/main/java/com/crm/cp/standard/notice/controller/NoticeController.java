@@ -36,15 +36,15 @@ public class NoticeController {
 	@RequestMapping(value="/noticelistpop", method=RequestMethod.GET)
 	public ModelAndView noticeListPopPage(HttpSession session, Locale locale){
 		
-//		if(session.getAttribute("user") == null){
-//			ModelAndView mov = new ModelAndView("redirect:/");
-//			return mov;
-//		}
-//		
-//		String userId = session.getAttribute("user").toString();
-//		
+		if(session.getAttribute("user") == null){
+			ModelAndView mov = new ModelAndView("redirect:/");
+			return mov;
+		}
+		
+		String userId = session.getAttribute("user").toString();
+		
 //		List<Object> noticelist= noticeService.searchListNotice(userId);
-//		
+		
 //		for(int i =0; i<noticelist.size();i++){
 //			Map<String, Object> notice= (Map<String, Object>) noticelist.get(i);
 //			String nTitle = notice.get("TITLE").toString();
@@ -52,7 +52,7 @@ public class NoticeController {
 //				notice.replace("TITLE", nTitle.toString().substring(0, 24)+"....");
 //			}
 //		}
-//		
+		
 		ModelAndView mov = new ModelAndView("/standard/notice/noticePopup");
 //		mov.addObject("notice", noticelist);
 		return mov;
@@ -71,8 +71,8 @@ public class NoticeController {
 			ModelAndView mov = new ModelAndView("redirect:/");
 			return mov;
 		}
-		
-		noticeService.searchListNotice();
+//		임시 주석
+//		noticeService.searchListNotice(); 
 		
 		ModelAndView mov = new ModelAndView("notice");
 		
