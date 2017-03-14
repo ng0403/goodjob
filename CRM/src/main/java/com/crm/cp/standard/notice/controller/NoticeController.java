@@ -72,10 +72,12 @@ public class NoticeController {
 			ModelAndView mov = new ModelAndView("redirect:/");
 			return mov;
 		}
-		noticeService.searchListNotice(); 
+		System.out.println("1");
+		noticeService.searchListNotice();
+		System.out.println("2");
 		
 		ModelAndView mov = new ModelAndView("notice");
-		
+		System.out.println("3");
 		return mov;
 		
 	}
