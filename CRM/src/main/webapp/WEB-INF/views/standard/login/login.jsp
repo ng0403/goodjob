@@ -11,25 +11,26 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_dev.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/header_dev.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/login/login01.css" type="text/css" />
+
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/login/login.js"></script>
 
-<style type="text/css">
-
-#loginalign{
-margin-left: 20%;
-}
-
-</style>
 
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>
-<div id="wrap">
+<div id="wrap" style=" border-radius: 50px;">
+<!-- 	<div class="img"> -->
+<%-- 		<img id="mainImg" src="${ctx}/resources/image/main01.png" alt="CorePlus" /> --%>
+<!-- 	</div>  -->
     <div class="loginWrap">
-        <h1 class="h1Logo"><img src="${ctx}/resources/image/coreplus.jpg" alt="CorePlus" /></h1>
+    	
+        <h1 class="h1Logo"><img id="logo" src="${ctx}/resources/image/coreplus.png" alt="CorePlus" /></h1>
+        <p id="mainLogo">Business Support System</p>
         <p class="h1Ttx" id="mainContK" style="display:block">CorePlus는 마케팅/영업/서비스/성과관리의 통합 관리를 통한<br />고객 Single View 제공 및 고객 대응력과 서비스 만족도 향상에 기여하는<br />고객을 위한, 고객중심의 4C(Consumer, Cost, Convenience, Communication)지향 시스템입니다.</p>
        <c:if test="${not empty sessionScope.user}"> 
+       
         <div id="loginalign">
        		로그인 중입니다.<br><br>
        	<a href="${ctx}/home" class="loging">메인</a>
@@ -65,7 +66,6 @@ margin-left: 20%;
         </form>
         
         </c:if>
-            
         
     </div><!--//loginWrap  -->
     <hr />
@@ -77,7 +77,13 @@ margin-left: 20%;
              <p>(c) <font color="blue">CorePlus</font> COMPANY. ALL RIGHT RESERVED.</p>
              </div>
     </div>
-    </div>
+    
+    
+</div>
+    
+    
+    
+    
  <!--//wrap  -->
 </body>
 </html>

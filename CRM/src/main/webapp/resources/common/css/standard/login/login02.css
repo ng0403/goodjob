@@ -1,0 +1,35 @@
+/* 흰 바탕의 로그인화면  */
+#loginalign{
+	margin-left: 20%;
+}
+#img {
+	position:relative;
+}
+#wrap {
+ 	background-color: #fff;  
+/* 	opacity: 0.5; */
+/*  background-color: rgba( 255, 255, 255, 0.7 ); */
+}
+#loginWrap {
+	position: relative;	
+}
+#logo {
+	margin-top: 20px;
+	margin-left: 170px;
+	width: 180px;
+	height: 60px;	
+}
+#mainLogo {
+	margin-top: -30px;
+	margin-bottom: 40px;
+	font-size: 36pt;
+	font-family: Georgia;
+/* 	font-weight: bold; */
+}
+
+#mainImg {
+	width: 1054px;
+	height: 500px;
+	margin-top: 90px;
+	opacity : 0.1;
+}
