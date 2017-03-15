@@ -51,6 +51,7 @@ public class HomeController {
 	public String noticeMain(@ModelAttribute IuserVO user, HttpSession session) 
 	{
 		session.setAttribute("user", user.getId_nm());
+		System.out.println("POST /Home : ");
 		
 		return "redirect:/notice";
 	}
@@ -69,11 +70,9 @@ public class HomeController {
 			return new ModelAndView("redirect:/");
 		}
 		String userId = session.getAttribute("user").toString();
-		
-		
+		System.out.println("GET /Home : ");
 		
 		ModelAndView mov = new ModelAndView("home");
-
 		
 		return mov;
 		

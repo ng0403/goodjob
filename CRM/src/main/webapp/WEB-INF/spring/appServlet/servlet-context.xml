@@ -60,21 +60,19 @@
 
 
 	<!-- tilesView -->
-	<!-- <beans:bean id="viewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
-		<!-- <beans:property name="viewClass"
-			value="org.springframework.web.servlet.view.tiles2.TilesView"></beans:property>
-		<beans:property name="order" value="1" /> -->
-	<!-- </beans:bean> -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"></beans:property>
+ 		<beans:property name="order" value="1" /> 
+	</beans:bean>
 
-	<!-- <beans:bean id="tileConfigurer"
+	<beans:bean id="tileConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
-	</beans:bean> -->
+ 	</beans:bean> 
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
