@@ -28,8 +28,10 @@ function actButton(ctx){
 	$('#activeButton').click(function(){
 		var flg = $('#flg').val();
 		if(flg=='add'){
+			alert("flag : " + flg);
 			activeAdd(ctx);
 		}else if(flg=='detail'){
+			alert("flag : " + flg);
 			activeUpdate(ctx);
 		}
 	});

@@ -122,7 +122,7 @@
 		WHERE PROD_ID=#{prod_id}	
 	</update>
 	
-	<insert id="prodInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+	<update id="prodInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
 		insert into PRODUCT(
 			PROD_ID,
 			CATE_ID,
@@ -152,7 +152,7 @@
 			#{fst_reg_id_nm},
 			#{fst_reg_id_nm}
 			)	
-	</insert>
+	</update>
 	
 	
 	<select id="prodRead" parameterType="String" resultType="com.crm.cp.standard.prod.vo.ProdVO">

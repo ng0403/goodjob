@@ -377,8 +377,7 @@ public class OpptController {
 	public ModelAndView opptActiveDetailPopup(HttpSession session,
 			String actvyId) {
 
-		ModelAndView mov = new ModelAndView(
-				"/sales/oppt/opptPop/opptActivePopup");
+		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/opptActivePopup");
 		// 영업활동 유형코드 가져오기
 		List<ActVO> actTypeCd = service.actTypeCdList();
 		// 영업활동 상태코드 가져오기

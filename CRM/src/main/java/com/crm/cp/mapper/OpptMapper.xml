@@ -4,8 +4,7 @@
 <mapper namespace="oppt">
 
 	<!-- 영업기회 리스트 -->
-	<select id="list" resultType="com.crm.cp.sales.oppt.vo.OpptVO"
-		parameterType="java.util.Map">
+	<select id="list" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="java.util.Map">
 		select d.*,r
 		from
 		(
@@ -137,8 +136,7 @@
 	</select>
 
 	<!-- 영업활동 리스트 조회 -->
-	<select id="actList" parameterType="java.util.Map"
-		resultType="com.crm.cp.sales.act.vo.ActVO">
+	<select id="actList" parameterType="java.util.Map" resultType="com.crm.cp.sales.act.vo.ActVO">
 		SELECT SAL.* FROM
 		(SELECT P.*, ROWNUM RNUM FROM (SELECT SA.SALES_ACTVY_NM
 		, SO.SALES_OPPT_ID
@@ -178,7 +176,8 @@
 	</update>
 
 	<!-- 영업기회 추가 -->
-	<insert id="add" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+	<update id="add" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+
 		insert into SALES_OPPORTUNITY
 		( SALES_OPPT_ID
 		,LEAD_ID
@@ -197,7 +196,10 @@
 		,ACT_YN)
 		values
 		(
-		'SO'
+		(SELECT /*+INDEX_DESC(SALES_OPPORTUNITY PK_SALES_OPPORTUNITY)*/
+			    DECODE(MAX(SALES_OPPT_ID),NULL,'SO',SUBSTR(MAX(SALES_OPPT_ID),1,2)||(SUBSTR(MAX(SALES_OPPT_ID),3,5)+1))SALES_OPPT_ID
+			FROM SALES_OPPORTUNITY
+			WHERE ROWNUM=1)
 		, #{lead_id}
 		, #{cust_id}
 		, #{sales_oppt_nm}
@@ -213,7 +215,7 @@
 		, sysdate
 		,'Y'
 		)
-	</insert>
+	</update>
 
 	<!-- 고객사 리스트 검색 -->
 	<sql id="where-custcomp_list">
@@ -275,14 +277,19 @@
 	</select>
 
 	<!-- 영업활동 추가 -->
-	<insert id="actInsert" parameterType="com.crm.cp.sales.act.vo.ActVO">
+	<update id="actInsert" parameterType="com.crm.cp.sales.act.vo.ActVO">
 		INSERT INTO SALES_ACTIVITY(
-		SALES_ACTVY_NM, SALES_ACTVY_DIV_CD, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
+		SALES_ACTVY_ID,SALES_ACTVY_NM, SALES_ACTVY_DIV_CD, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
 		,SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, MEMO,
 		FST_REG_ID_NM,FIN_MDFY_ID_NM)
-		VALUES(#{sales_actvy_nm},#{sales_actvy_div_cd},#{sales_actvy_type_cd},#{sales_oppt_id},
+		VALUES(
+		(SELECT /*+INDEX_DESC(SALES_ACTIVITY PK_SALES_ACTIVITY)*/
+			    DECODE(MAX(SALES_ACTVY_ID),NULL,'SA',SUBSTR(MAX(SALES_ACTVY_ID),1,2)||(SUBSTR(MAX(SALES_ACTVY_ID),3,5)+1))SALES_ACTVY_ID
+			FROM SALES_ACTIVITY
+			WHERE ROWNUM=1)
+		,#{sales_actvy_nm},#{sales_actvy_div_cd},#{sales_actvy_type_cd},#{sales_oppt_id},
 		#{cust_id},#{sales_actvy_stat_cd},TO_DATE(#{strt_d},'yyyy-MM-dd'),#{strt_t},TO_DATE(#{end_d},'yyyy-MM-dd'),#{end_t},#{memo},#{fst_reg_id_nm},#{fin_mdfy_id_nm})
-	</insert>
+	</update>
 
 
 	<!-- 영업활동유형코드 리스트 -->
@@ -405,7 +412,7 @@
 	</update>
 	
 	
-	<insert id="estimateAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
+	<update id="estimateAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		insert into ESTIMATE(
 			estim_id,
 			cust_id,
@@ -434,8 +441,8 @@
 			select estim_seq.currval from dual
 		</selectKey>
 		
-	</insert>
-	<insert id="estimateListAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
+	</update>
+	<update id="estimateListAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		insert into ESTIMATE_LIST(
 			estim_id,
 			prod_id,
@@ -454,9 +461,9 @@
 		  #{sup_price},
 		  #{discount_unit_cd}
 		)
-	</insert>
+	</update>
 	
-	<insert id="estimateListMdfyAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
+	<update id="estimateListMdfyAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		insert into ESTIMATE_LIST(
 			estim_id,
 			prod_id,
@@ -475,9 +482,9 @@
 		  #{sup_price},
 		  #{discount_unit_cd}
 		)
-	</insert>
+	</update>
 	
-	<insert id="soeAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
+	<update id="soeAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		insert into SALES_OPPORTUNITY_ESTIMATE(
 			estim_id,
 			sales_oppt_id,
@@ -494,7 +501,7 @@
 		  'admin',
 		  sysdate
 		)
-	</insert>
+	</update>
 	
 	
 	<update id="estimateDelete" parameterType="String">
