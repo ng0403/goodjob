@@ -16,7 +16,12 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/login/login.js"></script>
 
+<style type="text/css">
 
+#111{
+	background-color: 
+}
+</style>
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>
@@ -33,7 +38,7 @@
        
         <div id="loginalign">
        		로그인 중입니다.<br><br>
-       	<a href="${ctx}/home" class="loging">메인</a>
+       	<a href="${ctx}/home" class="loging" style="background-color: #f9fafb;">메인</a>
        	</div>
        </c:if>  
        <c:if test="${empty sessionScope.user}">
