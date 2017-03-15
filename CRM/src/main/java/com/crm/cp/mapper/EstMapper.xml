@@ -270,7 +270,7 @@
 			fin_mdfy_dt
 		)
 		values(
-			'es',
+			estim_seq.nextval,
 			#{cust_id},
 			#{estim_nm},
 			#{estim_lev_cd},
