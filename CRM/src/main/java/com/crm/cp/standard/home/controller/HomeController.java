@@ -53,7 +53,7 @@ public class HomeController {
 		session.setAttribute("user", user.getId_nm());
 		System.out.println("POST /Home : ");
 		
-		return "redirect:/notice";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/orgtype", method = RequestMethod.POST)
@@ -73,6 +73,8 @@ public class HomeController {
 		System.out.println("GET /Home : ");
 		
 		ModelAndView mov = new ModelAndView("home");
+		List<MenuVO> menuList = menuService.selectAll(session);
+		mov.addObject("menuList", menuList);
 		
 		return mov;
 		
