@@ -17,9 +17,10 @@ $("#navistaffgoal").css("font-weight", "bold");
 
 if('${staffGoalList.size()}' == 0){
 	alert('로그인된 ID의 담당자별 목표가 존재하지 않습니다.');
-	location.href='${ctx}/staffgoalsch';
-}
-</script>
+  	location.href='${ctx}/teamgoal';
+  	/* /staffgoalsch */
+ }
+</script>	
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}" />
