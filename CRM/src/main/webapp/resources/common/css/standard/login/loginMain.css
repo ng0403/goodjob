@@ -1,12 +1,14 @@
 @charset "utf-8";
 
 /* reset */
-html,body,form,div,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,fieldset,th,td,button{margin:0;padding:0;border:0;font-size:100%; font:inherit; font-weight:normal;}
+html,body,form,div,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,fieldset,th,td,button {
+	margin:0;padding:0;border:0;font-size:100%; font:inherit; font-weight:normal;
+}
 
 html, body {
 	height: 100%;
 	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
-	}
+}
 body{-webkit-text-size-adjust: none;}
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {display: block;}
@@ -58,23 +60,28 @@ body, input, textarea, button, select, table {font:12px '돋움',Dotum,sans-seri
 .hide {position: absolute; left: -9999em; text-indent:-9999em;font-size:0;line-height:0;z-index:-1;}
 
 /*로그인*/
-body {background:#29334b;}
-#wrap {position:absolute;left:50%;top:50%;width:1054px;height:644px;margin:-322px 0 0 -527px;background:#fff; }
-/* .loginWrap {padding:0 0 70px 280px;} */
+body {background:#fffbcc;}
+#wrap {
+		position:absolute;
+		left:50%;top:50%;
+		width:1054px;height:644px;
+		margin:-322px 0 0 -527px;
+		background:#000000;
+		border: 1px solid gray; 
+}
 
-/* 로그인02 : 흰 바탕의 로그인화면 */
-.loginWrap {padding:0 0 100px 255px; margin-top: -590px; position: relative; z-index: 2;}
+.loginWrap {padding:0 0 100px 255px; margin-top: -590px; position: relative; z-index: 5;}
 .img { position: relative; z-index: 1; }
-
+.bar { position: relative; z-index: 2; }
 .h1Logo {padding:30px 0 32px 11px;}
-.h1Ttx {padding:0 0 0 12px;height:128px;color:#8fa8cc;line-height:19px;}
+.h1Ttx {padding:0 0 0 12px;height:128px;color:#4a0808;line-height:19px; }
 
 .loginWrap input[type="text"], .loginWrap input[type="password"] {
 	width:262px;
 	height:37px;
 	background:white;
 	line-height:37px;
-	border:1px solid #C0C4CB;
+	border:1px solid #6d7177;
 	border-radius:5px 5px 5px 5px;
 	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
 	}
@@ -85,12 +92,7 @@ body {background:#29334b;}
 .loginWrap fieldset p {position:relative;padding:0 12px 6px 0;}
 .loginWrap fieldset label {display:block;position:absolute;left:16px;top:9px;width:107px;height:22px;}
 .loginWrap fieldset label.on {left:-9999px;}
-/*
-.loginWrap .user {background:url("../images/txt_user.gif") no-repeat;}
-.loginWrap .pass {background:url("../images/txt_pw.gif") no-repeat;}
-.loginWrap fieldset button {float:left;display:block;width:92px;height:81px;background:url("../images/btn_login.gif") no-repeat;}
-.loginWrap label {display:inline-block;width:39px;height:10px;margin:0px 5px 0 5px;padding:0px 0px 2px 0px;background:url("../images/txt_save.gif") no-repeat;}
-*/
+
 .loginChk {padding:16px 0 2px 2px;}
 .loginChk * {vertical-align:middle;}
 .loginChk label {display:inline-block;width:39px;height:10px;margin:0 5px 0 5px;background:url("../images/txt_save.gif") no-repeat;}

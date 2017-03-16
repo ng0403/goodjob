@@ -9,26 +9,33 @@
 
 <title>CorePlus</title>
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_dev.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/header_dev.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/login/login01.css" type="text/css" />
+<!-- 기존 CSS -->
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_dev.css" type="text/css" /> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/header_dev.css" type="text/css" /> --%>
+
+<!-- 수정 버전 CSS -->
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/login/login01.css" type="text/css" /> --%>
+
+<!-- 새 버전 CSS -->
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/login/loginMain.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/login/login02.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/login/login.js"></script>
 
-<style type="text/css">
-
-#111{
-	background-color: 
-}
-</style>
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>
+<div id="backgroundImg">
+<%-- 	<img id="backImg" src="${ctx}/resources/image/backgroundImg04.jpg" alt="CorePlus" /> --%>
+	
+</div>
 <div id="wrap" style=" border-radius: 50px;">
-<!-- 	<div class="img"> -->
-<%-- 		<img id="mainImg" src="${ctx}/resources/image/main01.png" alt="CorePlus" /> --%>
-<!-- 	</div>  -->
+	
+<!-- 	<div class="bar"></div> -->
+	<div class="img">
+		<img id="mainImg" src="${ctx}/resources/image/main01.png" alt="CorePlus" />
+	</div> 
     <div class="loginWrap">
     	
         <h1 class="h1Logo"><img id="logo" src="${ctx}/resources/image/coreplus.png" alt="CorePlus" /></h1>
