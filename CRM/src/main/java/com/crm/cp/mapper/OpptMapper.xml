@@ -51,6 +51,39 @@
 		#{endRow}
 
 	</select>
+	<!-- 홈화면 영업기회 리스트 -->
+	<select id="list_for_home" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="java.util.Map">
+		select d.*,r
+		from
+		(
+		select
+		rownum r
+		, a.sales_oppt_id
+		, a.lead_id
+		, a.cust_id
+		, c.cust_nm
+		, a.sales_oppt_nm
+		, (select cd_nm from code where cd_grp_id='OTL' and
+		code=a.sales_lev_cd) sales_lev_cd_nm
+		, a.sales_lev_cd
+		, a.sales_oppt_stat_cd
+		, a.expt_sales_amt
+		, to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d
+		, a.psblty_rate
+		, (select cd_nm from code where cd_grp_id='OSC' and
+		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
+		, a.memo
+		, a.fst_reg_id_nm
+		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
+		, a.fin_mdfy_id_nm
+		, a.fin_mdfy_dt
+		, a.act_yn
+		from sales_opportunity a, lead b, customer c
+		where a.lead_id=b.lead_id and b.cust_id=c.cust_id and a.act_yn='Y'
+		
+		order by a.sales_oppt_id desc
+		)d
+	</select>
 
 	<!-- 영업기회 상세정보 -->
 	<select id="detail" resultType="com.crm.cp.sales.oppt.vo.OpptVO"

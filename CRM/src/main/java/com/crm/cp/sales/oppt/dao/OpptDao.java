@@ -14,6 +14,8 @@ public interface OpptDao {
 	
 	//영업기회 리스트 조회
 	List<OpptVO> opptList(Map<String,String> map);
+	//홈화면 영업기회 리스트 조회
+	List<OpptVO> opptList();
 	
 	//영업기회 상세정보 조회
 	OpptVO opptDetail(String opptId);

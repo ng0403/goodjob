@@ -1,8 +1,6 @@
 package com.crm.cp.standard.home.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -15,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.cont.service.contrService;
-import com.crm.cp.sales.cont.vo.contrResultVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
-import com.crm.cp.sales.oppt.vo.pipeLineVO;
 import com.crm.cp.standard.data_board.service.Data_boardService;
 import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.menu.service.MenuService;
@@ -70,11 +66,14 @@ public class HomeController {
 			return new ModelAndView("redirect:/");
 		}
 		String userId = session.getAttribute("user").toString();
+		List<OpptVO> opptList = opptService.opptList();
+		System.out.println("opptList" + opptList);
 		System.out.println("GET /Home : ");
 		
 		ModelAndView mov = new ModelAndView("home");
 		List<MenuVO> menuList = menuService.selectAll(session);
 		mov.addObject("menuList", menuList);
+		mov.addObject("opptList", opptList);
 		
 		return mov;
 		

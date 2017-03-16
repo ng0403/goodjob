@@ -96,13 +96,15 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${opptList}" var="opptList" begin="0" end="4">
 					<tr>
-						<td>${oppt.sales_oppt_nm}</td>
-						<td>${oppt.sales_lev_cd_nm}</td>
-						<td>${oppt.expt_fin_d}</td>
-						<td>${oppt.org_nm}</td>
-						<td>${oppt.cust_id}</td>
+						<td>${opptList.sales_oppt_nm}</td>
+						<td>${opptList.sales_lev_cd_nm}</td>
+						<td>${opptList.expt_fin_d}</td>
+						<td>${opptList.org_nm}</td>
+						<td>${opptList.cust_id}</td>
 					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

@@ -20,10 +20,17 @@ public class OpptDaoImpl implements OpptDao {
 	@Autowired
 	SqlSession sqlsession;
 
+	//영업기회 메인화면 리스트 출력
 	@Override
 	public List<OpptVO> opptList(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("oppt.list", map);
+	}
+	//홈화면 리스트 출력
+	@Override
+	public List<OpptVO> opptList() {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("oppt.list_for_home");
 	}
 
 	@Override
