@@ -21,6 +21,13 @@ function HomeDetailPop(ctx){
 		window.open(ctx+"/noticelistpop",'newwindow','width=600, height=350, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		*//*window.open(ctx+'/authmenuSearchList','searchNewPopup','width=400, height=400, left='+(event.screenX+200)+', top='+(event.screenY-90)+', toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');*/
 	});
+	//홈화면 영업기회 페이지 이동 상세보기 버튼
+	$('#oppt_detail').click(function(event){
+		location.href = ctx + '/oppt';
+		/*event.preventDefault();
+		window.open(ctx+"/noticelistpop",'newwindow','width=600, height=350, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		 *//*window.open(ctx+'/authmenuSearchList','searchNewPopup','width=400, height=400, left='+(event.screenX+200)+', top='+(event.screenY-90)+', toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');*/
+	});
 	
 	$('#dboard_detail').click(function(event){
 		location.href = ctx + '/dboard';

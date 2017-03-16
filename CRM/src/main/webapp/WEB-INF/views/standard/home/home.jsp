@@ -85,7 +85,7 @@
 	  <div id="left_home">
 	   <div id="contract_title">
 	   ■ 영업기회
-	   <input type="button" class="detailPopbtn" value="상세보기">
+	   <input type="button" class="detailPopbtn" id="oppt_detail" value="상세보기">
 	   </div>
 	   
 	   <div id="tableline">
