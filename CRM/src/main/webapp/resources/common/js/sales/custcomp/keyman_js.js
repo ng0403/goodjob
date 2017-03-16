@@ -24,6 +24,7 @@ function keymanAdd() {
 				if(data.addResult == 'standard/home/session_expire'){
 					alert("세션이 만료되었습니다.");
 					alert("로그인 페이지로 이동합니다.");
+					alert("keyman.js_ keymanAdd");
 					location.href = ctx + '/';
 				} else {
 					alert(data.addResult);
@@ -55,6 +56,7 @@ function keymanMdfy() {
 				if(data.mdfyResult == 'standard/home/session_expire'){
 					alert("세션이 만료되었습니다.");
 					alert("로그인 페이지로 이동합니다.");
+					alert("keyman.js_ keymanMdfy");
 					location.href = ctx + '/';
 				} else {
 					alert(data.mdfyResult);

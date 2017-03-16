@@ -6,7 +6,9 @@
 <script type="text/javascript">
 alert("세션이 만료되었습니다.");
 alert("로그인 페이지로 이동합니다.");
-location.href = '${pageContext.request.contextPath}';
+alert("session_expire.jsp");
+location.href = '/';
+// location.href = '${pageContext.request.contextPath}';
 </script>
 </head>
 </html>
