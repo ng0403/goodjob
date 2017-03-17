@@ -139,15 +139,17 @@ function opptDelete(){
 //현재 checked된 탭에 맞는 함수 실행
 function divide(opptId){
 	$("#salesId").val(opptId);
-	readDetail();
-	if($("#tab1").attr("checked")){
+	alert(opptId);
+//	readDetail();
+//	if($("#tab1").attr("checked")){
 		viewDetail(opptId);
-	}
-	else if($("#tab2").attr("checked")){
-		viewSalesActive(opptId);
-	}else if($("#tab3").attr("checked")){
-		estimList(opptId);
-	}
+//	}
+//	else 
+//		if($("#tab2").attr("checked")){
+//		viewSalesActive(opptId);
+//	}else if($("#tab3").attr("checked")){
+//		estimList(opptId);
+//	}
 }
 
 //영업활동 리스트 조회
@@ -220,45 +222,48 @@ function viewSalesActive(opptId){
 //영업기회 상세정보 출력
 function viewDetail(opptId){
 	var ctx = $("#ctx").val();
-	$.ajax({
-		type: 'post',
-		url : ctx +'/opptDetail',
-		data : {opptId : opptId},
-		dataType: 'json',
-		success:function(result){
-			$('#modifybtn').attr('disabled',false);
-			$("#baseBtnDiv").css("display", "block");
-			$("#addBtnDiv").css("display", "none");
-			$("#mdfBtnDiv").css("display", "none");
-			
-			$("#salesId").val(result.sales_oppt_id);
-			$("#cust_id").val(result.cust_id);
-			$("#lead_id").val(result.lead_id);
-			$("#hcust_id").val(result.cust_id); 
-			$("#hlead_id").val(result.lead_id);
-			
-			$("#sales_oppt_nm").val(result.sales_oppt_nm);
-			$("#cust_nm").val(result.cust_nm); 
-			$("#hsales_oppt_nm").val(result.sales_oppt_nm);
-			$("#hcust_nm").val(result.cust_nm); 
-		
-			$("#sales_oppt_stat_cd").children().eq(result.sales_oppt_stat_cd).attr("selected","selected");
-			$("#expt_sales_amt").val(result.expt_sales_amt);
-			$("#expt_fin_d").val(result.expt_fin_d);
-			$("#psblty_rate").children().eq(result.psblty_rate/10).attr("selected","selected");
-			$("#sales_lev_cd").children().eq(result.sales_lev_cd).attr("selected","selected");
-			$("#memo").val(result.memo);
-			$("#hsales_oppt_stat_cd").val(result.sales_oppt_stat_cd);
-			$("#hexpt_sales_amt").val(result.expt_sales_amt);
-			$("#hexpt_fin_d").val(result.expt_fin_d);
-			$("#hpsblty_rate").val(result.psblty_rate);
-			$("#hsales_lev_cd").val(result.sales_lev_cd);
-			$("#hmemo").val(result.memo);
-			
-		}, error:function(request,status,error){
-		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
+	alert(opptId);
+	location.href = ctx+'/opptDetail?opptId='+opptId;
+	
+//	$.ajax({
+//		type: 'post',
+//		url : ctx +'/opptDetail',
+//		data : {opptId : opptId},
+//		dataType: 'json',
+//		success:function(result){
+//			$('#modifybtn').attr('disabled',false);
+//			$("#baseBtnDiv").css("display", "block");
+//			$("#addBtnDiv").css("display", "none");
+//			$("#mdfBtnDiv").css("display", "none");
+//			
+//			$("#salesId").val(result.sales_oppt_id);
+//			$("#cust_id").val(result.cust_id);
+//			$("#lead_id").val(result.lead_id);
+//			$("#hcust_id").val(result.cust_id); 
+//			$("#hlead_id").val(result.lead_id);
+//			
+//			$("#sales_oppt_nm").val(result.sales_oppt_nm);
+//			$("#cust_nm").val(result.cust_nm); 
+//			$("#hsales_oppt_nm").val(result.sales_oppt_nm);
+//			$("#hcust_nm").val(result.cust_nm); 
+//		
+//			$("#sales_oppt_stat_cd").children().eq(result.sales_oppt_stat_cd).attr("selected","selected");
+//			$("#expt_sales_amt").val(result.expt_sales_amt);
+//			$("#expt_fin_d").val(result.expt_fin_d);
+//			$("#psblty_rate").children().eq(result.psblty_rate/10).attr("selected","selected");
+//			$("#sales_lev_cd").children().eq(result.sales_lev_cd).attr("selected","selected");
+//			$("#memo").val(result.memo);
+//			$("#hsales_oppt_stat_cd").val(result.sales_oppt_stat_cd);
+//			$("#hexpt_sales_amt").val(result.expt_sales_amt);
+//			$("#hexpt_fin_d").val(result.expt_fin_d);
+//			$("#hpsblty_rate").val(result.psblty_rate);
+//			$("#hsales_lev_cd").val(result.sales_lev_cd);
+//			$("#hmemo").val(result.memo);
+//			
+//		}, error:function(request,status,error){
+//		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//		}
+//	});
 }
 
 //검색 버튼 클릭 시 
