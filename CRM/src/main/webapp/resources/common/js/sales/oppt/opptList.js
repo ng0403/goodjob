@@ -269,13 +269,13 @@ function searchBtn(page){
 	var ssales_lev_cd_select =  $("#ssales_lev_cd_select").val();
 	var spsblty_rate_select = $("#spsblty_rate_select").val();
 	
-	if(ssales_oppt_nm == '' && scust_id == '' && ssales_lev_cd_select == '' && spsblty_rate_select ==''){
-		alert("검색어를 입력하세요");
-		$("#ssales_oppt_nm").focust();
-		return;
-	}else{
+//	if(ssales_oppt_nm == '' && scust_id == '' && ssales_lev_cd_select == '' && spsblty_rate_select ==''){
+//		alert("검색어를 입력하세요");
+//		$("#ssales_oppt_nm").focust();
+//		return;
+//	}else{
 		opportunityList(page);
-	}
+//	}
 }
 
 //영업기회 리스트 출력
