@@ -38,7 +38,6 @@ $(function(){
 //견적 리스트 조회
 function estimList(opptId){
 	$('#estimList').children().remove();
-	alert("opptDetail.JS 영업 견적 탭 진입");
 	$.ajax({
 		type : 'get',
 		url : 'estimList',
@@ -82,7 +81,6 @@ function estimList(opptId){
 //영업활동 리스트 조회
 function viewSalesActive(opptId){
 	$("#activeList").children().remove();	
-	alert("opptDetail.JS 영업활동 탭 진입");
 	$.ajax({  
 		type : 'GET',
 		url : 'opptSalesActiveList',
@@ -457,15 +455,15 @@ function estimAllCheck(){
 function addOperatingA(ctx){
 	$('#act_opp_nm').click(function(){
 		var salesId = $('#salesId').val();
-		alert("saelsId : " + salesId);
 		if(salesId == "" || salesId == null ){
 			alert("영업기회를 선택해주세요.");
 		}else{
 		var list_sales_oppt_id = $('#salesId').val();
-		alert("list_sales_oppt_id : " + list_sales_oppt_id);
-		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
+//		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
+		var list_cust_id = list_sales_oppt_id;
 		alert("list_cust_id : " + list_cust_id);
-		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
+		var list_cust_nm = $('#hcust_nm').text();
+//		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
 		alert("list_cust_nm : " + list_cust_nm);
 		
 		window.open(ctx+'/opptActivePopup?list_sales_oppt_id='+list_sales_oppt_id+

@@ -38,7 +38,7 @@ function tabClick(){
 	  	if(opptId != ""){
 	  		//상세정보 출력
 	  		viewDetail(opptId);
-	  		readDetail();
+//	  		readDetail();
 	  	}
       });
 	 //영업활동 탭 클릭
@@ -50,7 +50,7 @@ function tabClick(){
 		  	if(opptId !=""){
 		  		//영업기회 리스트 출력
 		  		viewSalesActive(opptId);	
-		  		readDetail();
+//		  		readDetail();
 		  	}
       });
 	  //견적 탭 클릭
@@ -63,7 +63,7 @@ function tabClick(){
 		  	if(opptId !=""){
 		  		//견적 리스트 출력
 		  		estimList(opptId);
-		  		readDetail();
+//		  		readDetail();
 		  	}
     });
 }
@@ -147,8 +147,7 @@ function opptDelete(){
 //현재 checked된 탭에 맞는 함수 실행
 function divide(opptId){
 	$("#salesId").val(opptId);
-	alert("리스트 클릭 후 넘어온 영업기회 아이디 : " + opptId);
-	readDetail();
+//	readDetail();
 //	if($("#tab1").attr("checked")){
 		viewDetail(opptId);
 		viewSalesActive(opptId);
@@ -166,7 +165,6 @@ function divide(opptId){
 //영업기회 상세정보 출력
 function viewDetail(opptId){
 	var ctx = $("#ctx").val();
-	alert(opptId);
 	location.href = ctx+'/opptDetail?opptId='+opptId;
 }
 
@@ -192,10 +190,19 @@ function searchBtn(page){
 		opportunityList(page);
 //	}
 }
-
+//컴마 입력 함수
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+//컴마 해제 함수
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+}
 //영업기회 리스트 출력
 function opportunityList(page){
-	readDetail();
+//	readDetail();
 	var ctx = $("#ctx").val();
 	$.ajax({
 		type : 'post',
@@ -268,7 +275,6 @@ function opportunityList(page){
 //영업활동 리스트 조회
 function viewSalesActive(opptId){
 	$("#activeList").children().remove();	
-	alert("영업활동 탭 진입");
 	$.ajax({  
 		type : 'GET',
 		url : 'opptSalesActiveList',
@@ -335,7 +341,6 @@ function viewSalesActive(opptId){
 //견적 리스트 조회
 function estimList(opptId){
 	$('#estimList').children().remove();
-	alert("영업 견적 탭 진입");
 	$.ajax({
 		type : 'get',
 		url : 'estimList',

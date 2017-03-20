@@ -19,7 +19,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var opptId =$('#hsales_oppt_id').val();
-	alert("선택된 사용자 ID : " + opptId);
+// 	alert("선택된 사용자 ID : " + opptId);
 	viewSalesActive(opptId);
 	estimList(opptId);
 });
