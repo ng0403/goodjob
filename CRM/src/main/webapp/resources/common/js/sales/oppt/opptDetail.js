@@ -21,8 +21,6 @@
  * comma(str)									:	컴마 입력 함수
  * uncomma(str)									:	컴마 해제 함수
  */
-
-
 $(function(){
 	var buttonStatus = "";
 	var ctx = $("#ctx").val();
@@ -75,9 +73,9 @@ function opptAddBtn() {
 	// 버튼 활성화
 	$("#customer").attr("disabled",false);
 	$("#memo").attr("style","resize: none; background-color:white;");
-	$("#sales_oppt_stat_cd").children().eq(0).attr("selected", "selected");
-	$("#sales_lev_cd").children().eq(0).attr("selected", "selected");
-	$("#psblty_rate").children().eq(0).attr("selected", "selected");
+	$("#sales_oppt_stat_cd").children().eq(0).attr("selected", "selected").css("height", "24pt");
+	$("#sales_lev_cd").children().eq(0).attr("selected", "selected").css("height", "24pt");
+	$("#psblty_rate").children().eq(0).attr("selected", "selected").css("height", "24pt");
 
 	$("#baseBtnDiv").css("display", "none");
 	$("#addBtnDiv").css("display", "block");
@@ -133,9 +131,9 @@ function opptCancelBtn() {
 		$("#cust_nm").val($("#hcust_nm").val());
 		$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
 		$("#expt_fin_d").val($("#hexpt_fin_d").val());
-		$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected");
-		$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected");
-		$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected");
+		$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected").css("height", "24pt");
+		$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected").css("height", "24pt");
+		$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected").css("height", "24pt");
 		$("#memo").val($("#hmemo").val());
 	}
 }
@@ -281,11 +279,11 @@ function opptModify(){
 			$("#hsales_oppt_nm").val(result.opptVO.sales_oppt_nm);
 			$("#hcust_nm").val(result.opptVO.cust_nm); 
 		
-			$("select[name=sales_oppt_stat_cd]").children().eq(result.opptVO.sales_oppt_stat_cd).attr("selected","selected");
+			$("select[name=sales_oppt_stat_cd]").children().eq(result.opptVO.sales_oppt_stat_cd).attr("selected","selected").css("height", "24pt");
 			$("input[name=expt_sales_amt]").val(result.opptVO.expt_sales_amt);
 			$("input[name=expt_fin_d]").val(result.opptVO.expt_fin_d);
-			$("select[name=psblty_rate]").children().eq(result.opptVO.psblty_rate/10).attr("selected","selected");
-			$("select[name=sales_lev_cd]").children().eq(result.opptVO.sales_lev_cd).attr("selected","selected");
+			$("select[name=psblty_rate]").children().eq(result.opptVO.psblty_rate/10).attr("selected","selected").css("height", "24pt");
+			$("select[name=sales_lev_cd]").children().eq(result.opptVO.sales_lev_cd).attr("selected","selected").css("height", "24pt");
 			$("textarea[name=memo]").val(result.opptVO.memo);
 			$("#hsales_oppt_stat_cd").val(result.opptVO.sales_oppt_stat_cd);
 			$("#hexpt_sales_amt").val(result.opptVO.expt_sales_amt);

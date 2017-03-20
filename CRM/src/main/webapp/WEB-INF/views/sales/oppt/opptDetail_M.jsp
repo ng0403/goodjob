@@ -23,7 +23,8 @@
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">
-	
+	<c:if test="">
+	</c:if>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv" class="bt_position_authuser">
@@ -40,11 +41,11 @@
 			</div>
 			
 			<div id="ccustomerdiv">
-				<table id="ccustomertable">
+				<table id="ccustomertable_M">
 					<tbody id="opptDetail">
 						<tr>
 							<th>영업기회명</th>
-							<td colspan="3">
+							<td> <!-- colspan="3" -->
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
 								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; background-color: ">
@@ -60,27 +61,31 @@
 																
 								<input type="button" class="btn-success-tel" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
+						</tr>
+						<tr>
 							<th>상태</th>
 							<td>
 								<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled">
+								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
 										<option value="${list.code}" >${list.cd_nm}</option>
 									</c:forEach>
 								</select>
 							</td>
-						<tr>
+						
 							<th>영업단계</th>
 							<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
-								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled">
+								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${otllist}" var="list">
 										<option value="${list.code}" >${list.cd_nm}</option>
 										</c:forEach>
 								</select>
 							</td>
+						<tr>
+						<tr>
 							<th>예상매출액</th>
 							<td>
 								<input type="hidden" id="hexpt_sales_amt">
@@ -91,10 +96,12 @@
 								<input type="hidden" id="hexpt_fin_d">
 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
 							</td>
+						</tr>	
+						<tr>
 							<th>가능성</th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
-								<select id="psblty_rate" name="psblty_rate">
+								<select id="psblty_rate" name="psblty_rate" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<option>10</option>
 									<option>20</option>

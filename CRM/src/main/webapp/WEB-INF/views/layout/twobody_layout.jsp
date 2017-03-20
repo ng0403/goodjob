@@ -25,7 +25,7 @@ html,body{
 			<div class="navi" style="width:100%; height: 60%; /* solid black; */float:left;">
 				<tiles:insertAttribute name="navi"></tiles:insertAttribute></div>
 		</div>
-		<div class="bodyFrame" style="width:100%; height:80%; overflow: hidden;">
+		<div class="bodyFrame" style="width:100%; height:80%; overflow: auto;">
 			<div class="body1" style="width: 98%;height: 100%;float: left; padding-left: 20px;  padding-right: 10px;">
 				<div class="master" style="width:100%;height: 50%;">
 					<tiles:insertAttribute name="master"></tiles:insertAttribute></div>

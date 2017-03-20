@@ -26,7 +26,7 @@
 	<input type="hidden" id="salesId" value="" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	
-	<div id="css_tabs">
+	<div id="css_tabs" style="padding-top: 5%;">
 		<!-- 라디오 버튼 -->
 <!-- 		<input id="tab1" type="radio" name="tab" />  -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> 
