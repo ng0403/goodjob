@@ -20,6 +20,14 @@ Not required for template or sticky footer method.
   font-family: 'Nanum Gothic', Dotum, Gulim, Verdana, Arial, "Trebuchet MS";
   
 }
-.container .credit {
 
-} 
+.footertest {
+	display: table;
+}
+
+.container {
+	display: table-cell; 
+	vertical-align: middle;
+}
+
+

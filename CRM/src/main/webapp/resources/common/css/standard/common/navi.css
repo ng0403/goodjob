@@ -1,6 +1,6 @@
 
 .headerT{
-	background-color: #29334b;
+	background-color: #fffbcc;
 }
 
 .hbtn{
@@ -10,7 +10,7 @@
 }
 
 .naviT{
-	background-color: #29334b;
+	background-color: #fffbcc;
 	
 }
 .navibar{
@@ -43,7 +43,8 @@ ul.hide1 li{
   margin: 0;
   padding: 0;
   list-style: none;
-  background:  #29334b;
+/*   background:  #29334b; */
+   background: #fffbcc
 }
 
 li.navi ul.hide1 {  
@@ -52,17 +53,18 @@ li.navi ul.hide1 {
 
 ul li.navi {
   display: inline;
-  background:  #29334b;
+  background:  #fffbcc;
 }
 
 .navibtn {
-	-moz-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-	box-shadow: inset 0px 1px 0px 0px #ffffff;
+	-moz-box-shadow: inset 0px 1px 0px 0px #bfbfbf;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #bfbfbf;
+	box-shadow: inset 0px 1px 0px 0px #3e2b06;
 	
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8e356',
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bfbfbf',
 		endColorstr='#a5cc52');
-	background-color: #258bc2;
+/* 	background-color: #258bc2; */
+	background-color: #424242;
 	-webkit-border-top-left-radius: 15px;
 	-moz-border-radius-topleft: 15px;
 	border-top-left-radius: 5px;
@@ -78,6 +80,8 @@ ul li.navi {
 	text-indent: 0;
 	display: inline-block;
 	color: #ffffff;
+/* 	color : #3e2b06; */
+/* 	border: 1px solid #3e2b06; */
 	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
 	font-size: 13px;
 	font-weight: bold;
@@ -87,14 +91,15 @@ ul li.navi {
 	width: 96px;
 	text-decoration: none;
 	text-align: center;
-
+	
 }
 
  .navibtn:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5cc52',
 		endColorstr='#b8e356');
-	background-color: #ffffff;
-	color: #9b9b9b;
+	background-color: #bfbfbf;
+/* 	color: #9b9b9b; */
+	color: white;
 }
 
 .navibtn:FOCUS {

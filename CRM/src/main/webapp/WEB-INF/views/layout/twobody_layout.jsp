@@ -17,20 +17,24 @@ html,body{
 }
 </style>
 </head>
-<body>
+<body id="body" style="text-align:center; ">
 
-		<div class="headFrame" style="width:100%; height: 15%; /* solid black; */float:left;overflow: hidden;">
-		<div class="header" style="width:100%; height: 40%; /* solid black; */float:left; background:#29334b;">
-				<tiles:insertAttribute name="header"></tiles:insertAttribute></div>
-			<div class="navi" style="width:100%; height: 60%; /* solid black; */float:left;">
-				<tiles:insertAttribute name="navi"></tiles:insertAttribute></div>
+		<div class="headFrame" style="width:100%; height: 15%; /* solid black; */float:left;overflow: hidden;  text-align: center;">
+		<div class="header" style="width:100%; height: 40%; /* solid black; */float:left; background:#fffbcc;">
+			<tiles:insertAttribute name="header"></tiles:insertAttribute>
+			</div>
+				<div class="navi" style="width:100%; height: 60%; /* solid black; */ margin: 0 auto;">
+					<tiles:insertAttribute name="navi"></tiles:insertAttribute>
+			</div>
 		</div>
-		<div class="bodyFrame" style="width:100%; height:80%; overflow: auto;">
-			<div class="body1" style="width: 98%;height: 100%;float: left; padding-left: 20px;  padding-right: 10px;">
+		
+		<div class="bodyFrame" style="width:90%; height:80%; overflow: auto;  margin: 0 auto;">
+			<div class="body1" style="width: 90%;height: 100%; padding-left: 20px;  padding-right: 20px;  margin: 0 auto;">
 				<div class="master" style="width:100%;height: 50%;">
-					<tiles:insertAttribute name="master"></tiles:insertAttribute></div>
+					<tiles:insertAttribute name="master"></tiles:insertAttribute>
+				</div>
 					
-				<div class="detail" style="width:100%; height: 50%; float: left;">
+				<div class="detail" style="width:100%; height: 50%; ">
 					<tiles:insertAttribute name="detail"></tiles:insertAttribute></div>
 			</div>
 		</div>

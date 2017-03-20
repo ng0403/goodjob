@@ -20,7 +20,7 @@ html,body{
 <body>
 
 	<div class="headFrame" style="width:100%; height: 15%; /* solid black; */float:left;">
-		<div class="header" style="width:100%;height: 40%; /* solid black; */float:left; background:#29334b;">
+		<div class="header" style="width:100%;height: 40%; /* solid black; */float:left; background:#fffbcc;">
 				<tiles:insertAttribute name="header"></tiles:insertAttribute></div>
 		<div class="navi" style="width:100%;height: 60%; /* solid black; */float:left;">
 				<tiles:insertAttribute name="navi"></tiles:insertAttribute></div>
