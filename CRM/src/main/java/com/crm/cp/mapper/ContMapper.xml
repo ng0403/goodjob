@@ -103,8 +103,9 @@
 			  AND e.ACT_YN = so.ACT_YN
 			  AND so.ACT_YN = c.ACT_YN
 			  AND soe.ESTIM_ID=c.ESTIM_ID
+			  AND c.ESTIM_ID = e.ESTIM_ID
 			  AND soe.SALES_OPPT_ID = so.SALES_OPPT_ID
-			  AND e.CUST_ID = so.CUST_ID
+			 <!--  AND e.CUST_ID = so.CUST_ID    -->
 			<if test="sch_cont_nm != null and sch_cont_nm != ''"> and UPPER (c.contr_nm) like '%' || #{sch_cont_nm} || '%'</if>
 			<if test="sch_cont_num != null and sch_cont_num != ''"> and UPPER (c.contr_num) like '%' || #{sch_cont_num} || '%'</if>
 			<if test="sch_contr_d != null and sch_contr_d != ''"> and c.contr_d = #{sch_contr_d}</if>

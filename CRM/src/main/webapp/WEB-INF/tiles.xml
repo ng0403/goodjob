@@ -17,6 +17,14 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/standard/home/home.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="cont" extends="onebodyLayout">
+			<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont.jsp" /> 
+	</definition> 
+	
+	<definition name="cont_detail" extends="onebodyLayout">
+	<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont_detail.jsp" />	
+	</definition>
 
 	<definition name="teamgoal" extends="onebodyLayout">
 		<put-attribute name="body"
@@ -114,12 +122,7 @@
     <put-attribute name="master" value="/WEB-INF/views/sales/lead/leadList.jsp"/>
     <put-attribute name="detail" value="/WEB-INF/views/sales/lead/leadListTab.jsp" />
    </definition>
-   
-   <!-- 계약 -->
-   <definition name="cont" extends="twobodyLayout">
-		<put-attribute name="master" value="/WEB-INF/views/sales/cont/cont.jsp" />
-		<put-attribute name="detail" value="/WEB-INF/views/sales/cont/contDetail.jsp" />
-	</definition>
+  
 	
    <!-- 상품 -->
 	<definition name="prod" extends="twobodyLayout">

@@ -73,7 +73,7 @@
 					<tr>
 						<th><input type="checkbox" id="chk_cont_id" value="${ccontrlist.contr_id}" onclick="contChkCancel();"></th>
 						<td style="text-align: left; padding-left: 8px"> <!--클릭시 comp_id를 넘겨준다  --> 
- 							<a href="#" onclick="contNameSend('${ccontrlist.contr_id}');" style="color: blue;" class="cntClick">${ccontrlist.contr_nm}</a><!--#써놓으면 클릭시 jsp제일 상단으로 이동한다.  --> 
+ 							<a href="#" onclick="contDetail('${ccontrlist.contr_id}');"  style="color: blue;" class="cntClick">${ccontrlist.contr_nm}</a><!--#써놓으면 클릭시 jsp제일 상단으로 이동한다.  --> 
 						</td>
 						<td>${ccontrlist.contr_num}</td>
 						<td style="text-align: right; padding-right: 8px;">${ccontrlist.contr_qty }</td>

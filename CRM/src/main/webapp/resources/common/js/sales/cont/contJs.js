@@ -55,6 +55,15 @@ function startCalendar(ctx){
 	 $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
 }
 
+
+function contDetail(a) {
+	alert("enter");
+		    var contr_id = a;
+		    alert(contr_id);
+		    location.href="/cont_Detail?contr_id=" + contr_id; 	
+}
+
+
 function contNameSend(contr_id) {
 	$(document).ready(function() {
 		 $("#contMdfyBtn").attr("disabled", false);

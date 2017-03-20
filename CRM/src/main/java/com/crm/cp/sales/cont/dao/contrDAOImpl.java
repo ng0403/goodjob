@@ -57,14 +57,17 @@ public class contrDAOImpl implements contrDAO {
 		int contInsert = sqlSession.update("contInsert", contVO);
 		if( contInsert == 1 )
 		{
+			System.out.println("contrinsert entering");
 			Date d = new Date();
 	        
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			contVO.setContr_num(sdf.format(d)+'-'+contVO.getContr_id());
 			contVO.setContr_id(contVO.getContr_id());
+			System.out.println("contr_num???" + contVO.getContr_num());
 			sqlSession.update("contNumInsert", contVO);
 		}
 		contInsert += sqlSession.update("contOpptComplete", contVO.getSales_oppt_id());
+		System.out.println("contInsert" + contInsert);
 		return contInsert;
 	}
 

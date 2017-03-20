@@ -44,6 +44,7 @@ public class contrController {
 
 		List<contrVO> contrSearchMap = contrService.getcContrMap(map);
 		ModelAndView mov = new ModelAndView("cont");
+		System.out.println("contrSearchMap" + contrSearchMap.toString());
 		List<MenuVO> menuList = menuService.selectAll(session);
 
 		mov.addObject("menuList", menuList);
@@ -72,19 +73,34 @@ public class contrController {
 		map.put("endRow", page.getEndRow() + "");
 		
 		List<contrVO> contList = contrService.getcContrMap(map);
+		System.out.println("contList??" + contList);
 		map.put("contList", contList);
 		
 		return map;
 	}
 
+	
+	@RequestMapping(value="/cont_Detail")
+	public ModelAndView ContDetailPage(@RequestParam("contr_id") String contr_id ){
+		
+		System.out.println("detail Entering");
+		
+		contrVO getcContrInfo = contrService.getcContrInfo(contr_id);
+		System.out.println("getcContrinfo ????" + getcContrInfo.toString());
+		
+		ModelAndView mov = new ModelAndView("cont_detail");
+		mov.addObject("contDetail", getcContrInfo);
+		return mov;
+	} 
+	
 	// 계약 상세정보 출력
 	// ajax를 사용하여 데이터 받는 경우 써줘야한다.
-	@RequestMapping(value = "/contDetail")
+	/*@RequestMapping(value = "/contDetail")
 	public @ResponseBody contrVO ContDetailPage(String contr_id) {
 		contrVO getcContrInfo = contrService.getcContrInfo(contr_id);
 
 		return getcContrInfo;
-	}
+	}*/
 
 	// 계약 수정
 	@RequestMapping(value = "/contUpdate")
