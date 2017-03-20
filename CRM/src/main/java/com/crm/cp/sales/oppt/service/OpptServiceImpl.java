@@ -68,6 +68,7 @@ public class OpptServiceImpl implements OpptService {
 	@Override
 	public List<ActVO> actList(Map<String, String> map) {
 		// TODO Auto-generated method stub
+		System.out.println("actList Map :  "+ map );
 		return dao.actList(map);
 	}
 

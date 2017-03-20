@@ -60,6 +60,7 @@ public class OpptDaoImpl implements OpptDao {
 	@Override
 	public List<ActVO> actList(Map<String, String> map) {
 		// TODO Auto-generated method stub
+		System.out.println("actList Dao Impl Map :  "+ map );
 		return sqlsession.selectList("oppt.actList", map);
 	}
 

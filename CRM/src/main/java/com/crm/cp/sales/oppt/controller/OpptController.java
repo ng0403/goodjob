@@ -129,6 +129,7 @@ public class OpptController {
 			// 영업단계 코드 가져오기
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
+			
 
 			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 			map.put("scust_nm", map.get("scust_nm"));
@@ -138,6 +139,7 @@ public class OpptController {
 			mov.addObject("osclist", osclist);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
+			mov.addObject("actList", actList);
 			mov.addObject("addFlag", addFlag);
 			System.out.println("Add Flag  " + addFlag);
 			// 검색어, 페이지번호 전달
@@ -258,6 +260,7 @@ public class OpptController {
 			HttpSession session,
 			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+		System.out.println("검색 창에서의 고객 검색 버튼 클릭");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);

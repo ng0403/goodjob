@@ -13,8 +13,8 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 </head>
-
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
@@ -84,7 +84,7 @@
 										</c:forEach>
 								</select>
 							</td>
-						<tr>
+						</tr>
 						<tr>
 							<th>예상매출액</th>
 							<td>

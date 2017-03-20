@@ -16,7 +16,15 @@
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <%-- <script src="${ctx}/resources/common/js/sales/oppt/opptlist.js"></script> --%>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	var opptId =$('#hsales_oppt_id').val();
+	alert("선택된 사용자 ID : " + opptId);
+	viewSalesActive(opptId);
+	estimList(opptId);
+});
 
+</script>
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
