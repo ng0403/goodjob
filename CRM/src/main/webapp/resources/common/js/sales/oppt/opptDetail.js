@@ -87,12 +87,12 @@ function opptAddBtn() {
 // 편집 버튼 기능
 function opptMdfyBtn() {
 	//focus, css, readonly, disabled false 상태로 변경
-	$("#opptDetail #sales_oppt_nm").focus();
-	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
+	$("#opptDetail_M #sales_oppt_nm").focus();
+	$("#opptDetail_M input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
 		style:'background-color:white'
 	});
-	$("#opptDetail select").attr({
+	$("#opptDetail_M select").attr({
 		disabled:false,
 		style:'background-color:white'
 	});
@@ -343,12 +343,16 @@ function estimAllCheck(){
 function addOperatingA(ctx){
 	$('#act_opp_nm').click(function(){
 		var salesId = $('#salesId').val();
+		alert("saelsId : " + salesId);
 		if(salesId == "" || salesId == null ){
 			alert("영업기회를 선택해주세요.");
 		}else{
 		var list_sales_oppt_id = $('#salesId').val();
-		var list_cust_id = $('#'+list_sales_oppt_id+' #list_cust_id').val();
-		var list_cust_nm = $('#'+list_sales_oppt_id+' #list_cust_nm').text();
+		alert("list_sales_oppt_id : " + list_sales_oppt_id);
+		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
+		alert("list_cust_id : " + list_cust_id);
+		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
+		alert("list_cust_nm : " + list_cust_nm);
 		
 		window.open(ctx+'/opptActivePopup?list_sales_oppt_id='+list_sales_oppt_id+
 				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
@@ -359,18 +363,26 @@ function addOperatingA(ctx){
 function estimateAdd(ctx){
 	$('#estimateAdd').click(function(){
 		var hsales_lev_cd = $("#hsales_lev_cd").val();
+		alert("hsales_lev_cd : " + hsales_lev_cd);
 		var salesId = $('#salesId').val();
+		alert("salesId : " + salesId);
 		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
+		alert("sales_lev_cd : " + sales_lev_cd);
 		if(salesId == "" || salesId == null ){
 			alert("영업기회를 선택해주세요.");
 		}else if(sales_lev_cd == "0001" || sales_lev_cd == "0004"){
 			alert("영업단계가 \"제안\", \"견적\"일 때 견적 추가가 가능합니다.");
 		}else{
 		var list_sales_oppt_id = $('#salesId').val();
+		alert("list_sales_oppt_id : " + list_sales_oppt_id);
 		var list_cust_id = $('#'+list_sales_oppt_id+' #list_cust_id').val();
+		alert("list_cust_id : " + list_cust_id);
 		var list_cust_nm = $('#'+list_sales_oppt_id+' #list_cust_nm').text();
+		alert("list_cust_nm : " + list_cust_nm);
 		var list_sales_oppt_nm = $('#'+list_sales_oppt_id+' #list_sales_oppt_nm').text();
+		alert("list_sales_oppt_nm : " + list_sales_oppt_nm);
 		var pageNum=$('#pageNum').val();
+		alert("pageNum : " + pageNum);
 		window.open(ctx+'/opptEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 			}
 		});

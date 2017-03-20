@@ -14,6 +14,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
+<%-- <script src="${ctx}/resources/common/js/sales/oppt/opptlist.js"></script> --%>
 </head>
 
 <style type="text/css">

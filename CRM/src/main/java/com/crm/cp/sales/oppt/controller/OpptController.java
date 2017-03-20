@@ -49,8 +49,10 @@ public class OpptController {
 
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = service.opptOtlList();
+		
+		// 메뉴리스트 가져오기
 		List<MenuVO> menuList = menuService.selectAll(session);
-		// 한글 검색 인코더 변환
+		
 		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 		map.put("scust_nm", map.get("scust_nm"));
 
@@ -66,7 +68,6 @@ public class OpptController {
 		mov.addObject("otllist", otllist);
 		mov.addObject("page", page);
 		mov.addObject("menuList", menuList);
-		// 검색어, 페이지번호 전달
 		mov.addObject("searchInfo", map);
 		return mov;
 	}
@@ -78,30 +79,71 @@ public class OpptController {
 			, String opptId) 
 	{
 		System.out.println("opptId : " + opptId);
+		
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
-		ModelAndView mov = new ModelAndView("opptDetail");
 		
-		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = service.opptOscList();
+		int addFlag = 0;
 		
-		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = service.opptOtlList();
-		List<MenuVO> menuList = menuService.selectAll(session);
-		// 한글 검색 인코더 변환
-		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
-		map.put("scust_nm", map.get("scust_nm"));
-		
-		OpptVO detail = service.opptDetail(opptId);
-		System.out.println("detail : " + detail);
-		mov.addObject("opDetail", detail);
-		mov.addObject("osclist", osclist);
-		mov.addObject("otllist", otllist);
-		mov.addObject("menuList", menuList);
-		// 검색어, 페이지번호 전달
-		mov.addObject("searchInfo", map);
-		return mov;
+		if(opptId == null){
+			addFlag = 0;
+			ModelAndView mov = new ModelAndView("openAdd");
+			
+			// 영업기회 상태 코드 가져오기
+			List<OpptVO> osclist = service.opptOscList();
+			
+			// 영업단계 코드 가져오기
+			List<OpptVO> otllist = service.opptOtlList();
+			List<MenuVO> menuList = menuService.selectAll(session);
+
+			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+			map.put("scust_nm", map.get("scust_nm"));
+			
+			//상세정보 출력
+			
+			mov.addObject("osclist", osclist);
+			mov.addObject("otllist", otllist);
+			mov.addObject("menuList", menuList);
+			mov.addObject("addFlag", addFlag);
+			System.out.println("Add Flag  " + addFlag);
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			return mov;
+			
+		}else {
+			ModelAndView mov = new ModelAndView("opptDetail");
+			addFlag = 1;
+			
+			map.put("opptId", opptId);
+			OpptVO detail = service.opptDetail(opptId);
+			System.out.println("detail : " + detail);
+			mov.addObject("opDetail", detail);
+			List<ActVO> actList = service.actList(map);
+			System.out.println("actList : " + actList);
+			mov.addObject("actList", actList);
+			
+			// 영업기회 상태 코드 가져오기
+			List<OpptVO> osclist = service.opptOscList();
+			
+			// 영업단계 코드 가져오기
+			List<OpptVO> otllist = service.opptOtlList();
+			List<MenuVO> menuList = menuService.selectAll(session);
+
+			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+			map.put("scust_nm", map.get("scust_nm"));
+			
+			//상세정보 출력
+			
+			mov.addObject("osclist", osclist);
+			mov.addObject("otllist", otllist);
+			mov.addObject("menuList", menuList);
+			mov.addObject("addFlag", addFlag);
+			System.out.println("Add Flag  " + addFlag);
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			return mov;
+		}
 	}
 
 	// 영업기회 리스트 ajax

@@ -55,12 +55,13 @@ public class OpptServiceImpl implements OpptService {
 		return dao.opptOtlList();
 	}
 
+	//페이지 표시 갯수
 	@Override
 	public PagerVO opptPageCount(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		
 		int totalRowCount = dao.opptPageCount(map);		
-		PagerVO page = new PagerVO(Integer.parseInt(map.get("pageNum")), totalRowCount, 5, 5);
+		PagerVO page = new PagerVO(Integer.parseInt(map.get("pageNum")), totalRowCount, 10, 10);
 		return page;
 	}
 

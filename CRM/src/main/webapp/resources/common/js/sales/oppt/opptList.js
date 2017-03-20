@@ -13,7 +13,15 @@
  * opportunityList(page)			:	영업기회 리스트 조회
  * estimList(opptId)				:	견적 리스트 조회
  * dateFormat(timestamp)			:	날짜 포맷 변환 함수
+ * searchCustcompListPopup(ctx)		:	영업기회 고객 검색 팝업 open. 
  */
+
+//영업기회 검색창 고객 리스트 팝업
+function searchCustcompListPopup(ctx){
+	$('#searchCustomer').click(function(){
+		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+	});  
+}
 
 $(function(){
 	tabClick(); // tab 클릭시 checked 설정 및 tab에 맞는 함수 실행
@@ -224,46 +232,12 @@ function viewDetail(opptId){
 	var ctx = $("#ctx").val();
 	alert(opptId);
 	location.href = ctx+'/opptDetail?opptId='+opptId;
-	
-//	$.ajax({
-//		type: 'post',
-//		url : ctx +'/opptDetail',
-//		data : {opptId : opptId},
-//		dataType: 'json',
-//		success:function(result){
-//			$('#modifybtn').attr('disabled',false);
-//			$("#baseBtnDiv").css("display", "block");
-//			$("#addBtnDiv").css("display", "none");
-//			$("#mdfBtnDiv").css("display", "none");
-//			
-//			$("#salesId").val(result.sales_oppt_id);
-//			$("#cust_id").val(result.cust_id);
-//			$("#lead_id").val(result.lead_id);
-//			$("#hcust_id").val(result.cust_id); 
-//			$("#hlead_id").val(result.lead_id);
-//			
-//			$("#sales_oppt_nm").val(result.sales_oppt_nm);
-//			$("#cust_nm").val(result.cust_nm); 
-//			$("#hsales_oppt_nm").val(result.sales_oppt_nm);
-//			$("#hcust_nm").val(result.cust_nm); 
-//		
-//			$("#sales_oppt_stat_cd").children().eq(result.sales_oppt_stat_cd).attr("selected","selected");
-//			$("#expt_sales_amt").val(result.expt_sales_amt);
-//			$("#expt_fin_d").val(result.expt_fin_d);
-//			$("#psblty_rate").children().eq(result.psblty_rate/10).attr("selected","selected");
-//			$("#sales_lev_cd").children().eq(result.sales_lev_cd).attr("selected","selected");
-//			$("#memo").val(result.memo);
-//			$("#hsales_oppt_stat_cd").val(result.sales_oppt_stat_cd);
-//			$("#hexpt_sales_amt").val(result.expt_sales_amt);
-//			$("#hexpt_fin_d").val(result.expt_fin_d);
-//			$("#hpsblty_rate").val(result.psblty_rate);
-//			$("#hsales_lev_cd").val(result.sales_lev_cd);
-//			$("#hmemo").val(result.memo);
-//			
-//		}, error:function(request,status,error){
-//		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-//		}
-//	});
+}
+
+//추가 페이지 이동
+function AddCustomerOpen(){
+	var ctx = $("#ctx").val();
+	location.href = ctx+'/opptDetail';
 }
 
 //검색 버튼 클릭 시 
@@ -293,6 +267,7 @@ function opportunityList(page){
 		data : {pageNum : page, ssales_oppt_nm : $("#ssales_oppt_nm").val(), scust_id : $("#scust_id").val(), ssales_lev_cd : $("#ssales_lev_cd_select").val(), spsblty_rate : $("#spsblty_rate_select").val()},
 		datatype : 'json',
 		success:function(result){
+			//리스트 출력 시 버튼 상태 설정
 			$("#baseBtnDiv").css("display", "block");
 			$("#addBtnDiv").css("display", "none");
 			$("#mdfBtnDiv").css("display", "none");
@@ -317,8 +292,8 @@ function opportunityList(page){
 						"</tr>"
 				);
 			});
-			if(result.oplist.length < 5){
-				for(var j = 0; j < 5-result.oplist.length; j++){
+			if(result.oplist.length < 10){
+				for(var j = 0; j < 10-result.oplist.length; j++){
 					$("#listTable").append("<tr style='height:30px;'>"
 							+"<th></th>"
 							+"<td></td><td></td><td></td><td></td>"

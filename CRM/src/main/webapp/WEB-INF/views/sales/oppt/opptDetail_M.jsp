@@ -21,7 +21,7 @@
    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
 </style>
 <body>
-	<input type="hidden" id="salesId" value="" >
+	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
@@ -45,17 +45,18 @@
 						<tr>
 							<th>영업기회명</th>
 							<td colspan="3">
-								<input type="hidden" id="hsales_oppt_nm">
-								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; background-color: ">
+								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
+								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
+								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; background-color: ">
 							</td>
 							<th>고객사</th>
 							<td>
-								<input type="hidden" id="hcust_nm">
-								<input type="hidden" id="hcust_id">
-								<input type="hidden" id="hlead_id">
-								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int">
-								<input type="hidden" name="cust_id" id="cust_id" />
-								<input type="hidden" name="lead_id" id="lead_id" />
+								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
+								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
+								<input type="hidden" id="hlead_id" value="${opDetail.lead_id}">
+								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
+								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
+								<input type="hidden" name="lead_id" id="lead_id" value="${opDetail.lead_id}"/>
 																
 								<input type="button" class="btn-success-tel" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
@@ -69,7 +70,7 @@
 									</c:forEach>
 								</select>
 							</td>
-						<tr><!-- opDetail -->
+						<tr>
 							<th>영업단계</th>
 							<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
@@ -83,12 +84,12 @@
 							<th>예상매출액</th>
 							<td>
 								<input type="hidden" id="hexpt_sales_amt">
-								<input type="text" name="expt_sales_amt" id="expt_sales_amt" class="int"  readonly="readonly"/>
+								<input type="text" name="expt_sales_amt" id="expt_sales_amt" value="${opDetail.expt_sales_amt}" class="int"  readonly="readonly"/>
 							</td>
 							<th>예상마감일자</th>
 							<td>
 								<input type="hidden" id="hexpt_fin_d">
-								<input type="text" name="expt_fin_d" id="expt_fin_d" readonly="readonly" class="int">
+								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
 							</td>
 							<th>가능성</th>
 							<td>
@@ -112,7 +113,7 @@
 							<th>메모</th>
 							<td colspan="8" rowspan="2">
 								<input type="hidden" id="hmemo">
-								<textarea name="memo" class="memo" id="memo" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
+								<textarea name="memo" class="memo" id="memo" value="${opDetail.memo}" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
 							</td>
 						</tr>
 					</tbody>

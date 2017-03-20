@@ -52,7 +52,11 @@
 			      </select>
 			    <input type="button"  class="btn-success-tel" id="searchlist" 
 			    		onclick="javascript:searchBtn('${pageNum}');" value="조회">
-		    </div>		 
+		    </div>		
+		    <div id="contact_button_position">
+		    	<input type="button" class="btn-success-tel" value="추가" onclick="AddCustomerOpen();">
+				<input type="button" class="btn-success-tel" value="삭제" onclick="opptDelete();" >
+			</div>
 		    
 			<div id="tableline">	 
 				<table id="goaltable" class="tabtable">
@@ -71,7 +75,7 @@
 					</tr>
 				</thead>
 				<tbody id="listTable" >
-				<c:forEach items="${oplist}" var="list" begin="0" end="4">
+				<c:forEach items="${oplist}" var="list" begin="0" end="9">
 					<tr id="${list.sales_oppt_id}">
 						<th>
 							<input type="checkbox" id="list_sales_oppt_id" name="list_sales_oppt_id" value="${list.sales_oppt_id}" onclick="chkCancel();">
@@ -123,9 +127,9 @@
 			</c:choose>
 		</div>
 				
-		<div id="contact_button_position">
-			<input type="button" class="btn-success-tel" value="삭제" onclick="opptDelete();" >
-		</div>
+<!-- 		<div id="contact_button_position"> -->
+<!-- 			<input type="button" class="btn-success-tel" value="삭제" onclick="opptDelete();" > -->
+<!-- 		</div> -->
 	</form>	
 </body>
 </html>
