@@ -5,7 +5,8 @@
 <html>
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/navi.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/navi.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sample02.css" type="text/css" />
 	<script type="text/javascript">
 	var Const = Const || {};
 	Const.CTX = "${ctx}";
@@ -42,7 +43,8 @@
 					</c:if>
 					<ul class="hide1" id="navisub${nms.count}">
 						<c:forEach var="sub" items="${menu.menuVO}">
-							<li class="subbtn">
+							<li 
+>
 								<a href="${ctx}/${sub.menu_url}" id="navi${sub.menu_url}">${sub.menu_nm} </a>
 							</li>
 						</c:forEach>

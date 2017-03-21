@@ -17,13 +17,28 @@ function logout(){
 	}
 }
 </script>
+<style type="text/css">
+
+#guideline {
+	width: 85%;	
+}
+
+#logout {
+	margin: 0 auto;
+	margin-top: 40px;
+	float: right;
+}
+
+</style>
 </head>
 <body>
 <div class="headerT">
-
-<div class="hbtn">
-<input type="button" onclick="logout();" id="logout" value="로그아웃"/>
-</div></div>
+	<div class="hbtn">
+		<div id="guideline">
+			<input type="button" onclick="logout();" id="logout" value="로그아웃"/>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>

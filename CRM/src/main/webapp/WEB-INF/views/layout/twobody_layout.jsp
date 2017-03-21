@@ -16,31 +16,83 @@ html,body{
 	min-height: 720px;
 	text-align: left;
 }
+
+.headFrame {
+	width:100%; 
+	height: 14%; 
+	/* solid black; */
+	float:left;
+	overflow: hidden;  
+	text-align: center; 
+	background:#fffbcc;
+}
+
+.header {
+	width:100%; 
+	height: 40%;  
+	/* solid black; */
+	float:left; 
+	background-color: #fffbcc;
+}
+.navi{
+	width:10%;   
+ 	height: 60%;  
+	/* solid black; */ 
+	float:left;
+}
+
+
+.bodyFrame {
+	width:85%; 
+	height:81%; 
+	overflow: hidden;  
+	margin: 0 auto;
+}
+.body1{
+	width: 85%;
+	height: 100%; 
+	padding-left: 20px;  
+	padding-right: 20px;  
+	margin: 0 auto;
+}
+.master {
+	width:100%;
+	height: 45%;
+}
+.detail {
+	width:100%; 
+	height: 45%; 
+	margin-top: 5px;
+}
+.footer {
+	width:100%; 
+	height: 5%; 
+	float: left;
+}
 </style>
 </head>
 <body id="body">
-
-		<div class="headFrame" style="width:100%; height: 15%; /* solid black; */float:left;overflow: hidden;  text-align: center;">
-		<div class="header" style="width:100%; height: 40%; /* solid black; */float:left; background:#fffbcc;">
-			<tiles:insertAttribute name="header"></tiles:insertAttribute>
+		<div class="headFrame" >
+			<div class="header" >
+				<tiles:insertAttribute name="header"></tiles:insertAttribute>
 			</div>
-				<div class="navi" style="width:100%; height: 60%; /* solid black; */ margin: 0 auto;">
+			<div class="navi" style="">
 					<tiles:insertAttribute name="navi"></tiles:insertAttribute>
 			</div>
 		</div>
 		
-		<div class="bodyFrame" style="width:85%; height:80%; overflow: auto;  margin: 0 auto;">
-			<div class="body1" style="width: 85%;height: 100%; padding-left: 20px;  padding-right: 20px;  margin: 0 auto;">
-				<div class="master" style="width:100%;height: 50%;">
+		<div class="bodyFrame" >
+			<div class="body1">
+				<div class="master">
 					<tiles:insertAttribute name="master"></tiles:insertAttribute>
 				</div>
 					
-				<div class="detail" style="width:100%; height: 50%; ">
+				<div class="detail" >
 					<tiles:insertAttribute name="detail"></tiles:insertAttribute></div>
 			</div>
 		</div>
 		
-		<div class="footer" style="width:100%; height: 5%; float: left;">
+		<div class="footer" >
 			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 		</div>
 
