@@ -316,9 +316,11 @@
 		FST_REG_ID_NM,FIN_MDFY_ID_NM)
 		VALUES(
 		(SELECT /*+INDEX_DESC(SALES_ACTIVITY PK_SALES_ACTIVITY)*/
-			    DECODE(MAX(SALES_ACTVY_ID),NULL,'SA',SUBSTR(MAX(SALES_ACTVY_ID),1,2)||(SUBSTR(MAX(SALES_ACTVY_ID),3,5)+1))SALES_ACTVY_ID
-			FROM SALES_ACTIVITY
-			WHERE ROWNUM=1)
+                   DECODE(MAX(SALES_ACTVY_ID), NULL, 'SAT0000001', 'SAT' || lpad( (SUBSTR( MAX( SALES_ACTVY_ID ), 4, 7 ) + 1), 7, 0)) SALES_ACTVY_ID
+                FROM 
+                   SALES_ACTIVITY
+              WHERE 
+                  ROWNUM=1)
 		,#{sales_actvy_nm},#{sales_actvy_div_cd},#{sales_actvy_type_cd},#{sales_oppt_id},
 		#{cust_id},#{sales_actvy_stat_cd},TO_DATE(#{strt_d},'yyyy-MM-dd'),#{strt_t},TO_DATE(#{end_d},'yyyy-MM-dd'),#{end_t},#{memo},#{fst_reg_id_nm},#{fin_mdfy_id_nm})
 	</update>

@@ -356,12 +356,13 @@ function addOperatingA(ctx){
 //		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
 		var list_cust_id = list_sales_oppt_id;
 		alert("list_cust_id : " + list_cust_id);
-		var list_cust_nm = $('#hcust_nm').text();
+		var list_cust_nm = $('#hcust_nm').val();
 //		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
 		alert("list_cust_nm : " + list_cust_nm);
 		
 		window.open(ctx+'/opptActivePopup?list_sales_oppt_id='+list_sales_oppt_id+
 				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		alert("윈도우 오픈");
 		}
 	});
 }
