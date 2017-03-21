@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +44,15 @@ public class MenuController {
 		List<MenuVO> menuList = menuService.selectAll(session);
 		mov.addObject("menuList", menuList);
 		return mov;
+	}
+	
+	//메뉴
+	@RequestMapping(value="/navi", method={RequestMethod.GET,RequestMethod.POST})
+	public @ResponseBody Map<String, Object> menuNavi(ModelMap model, HttpSession session){
+			
+		List<MenuVO> menuList = menuService.selectAll(session);
+		model.addAttribute("menuList", menuList);
+		return model;
 	}
 	
 	//권한 찾는 팝업창
