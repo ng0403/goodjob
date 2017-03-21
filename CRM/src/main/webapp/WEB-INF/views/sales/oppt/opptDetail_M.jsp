@@ -34,7 +34,7 @@
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv" class="bt_position_authuser">
-				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
+<!-- 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" /> -->
 				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" /><!-- disabled="disabled" -->
 			</div>
 <!-- 			<div id="NewAddBtnDiv" class="bt_position_authuser"> -->

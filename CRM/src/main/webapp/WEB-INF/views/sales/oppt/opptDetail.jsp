@@ -19,7 +19,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var opptId =$('#hsales_oppt_id').val();
-	URLEncoder.encode(opptId , "UTF-8");
+// 	URLEncoder.encode(opptId , "UTF-8");
 	$('#salesId').val(opptId);
 // 	alert("선택된 사용자 ID : " + opptId);
 	viewSalesActive(opptId);

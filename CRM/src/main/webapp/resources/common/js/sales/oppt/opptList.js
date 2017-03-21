@@ -16,11 +16,12 @@
  */
 
 $(function(){
-	tabClick(); // tab 클릭시 checked 설정 및 tab에 맞는 함수 실행
+//	tabClick(); // tab 클릭시 checked 설정 및 tab에 맞는 함수 실행
 	opptAllCheck(); //영업기회 all check 함수
 });
 
 function tabClick(){
+	
 	 //영업활동 탭 클릭
 	$("#tab1").click( function() {
 	  	var opptId = $("#salesId").val();
