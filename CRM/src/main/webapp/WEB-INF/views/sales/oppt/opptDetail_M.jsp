@@ -23,14 +23,23 @@
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">
-	<c:if test="">
-	</c:if>
+	<div id="title">
+		<c:if test="${addFlag == 0 }">
+			<div class="caption">■ 영업기회추가</div>
+		</c:if>
+		<c:if test="${addFlag == 1 }">
+			<div class="caption">■ 영업기회 상세정보</div>
+		</c:if>
+	</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv" class="bt_position_authuser">
 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
-				<input type="button" id="modifybtn" class="btn-success-tel" disabled="disabled" onclick="opptMdfyBtn();" value="편집" />
+				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" /><!-- disabled="disabled" -->
 			</div>
+<!-- 			<div id="NewAddBtnDiv" class="bt_position_authuser"> -->
+<!-- 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" /> -->
+<!-- 			</div> -->
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="addsavebtn" class="btn-success-tel" onclick="opptAdd();" value="저장" />
 				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
@@ -69,7 +78,10 @@
 								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
-										<option value="${list.code}" >${list.cd_nm}</option>
+										<option value="<c:out value="${list.code}" />"
+											 <c:if test="${detail.sales_oppt_stat_cd == list.code }">selected="selected"</c:if>>
+											 ${list.cd_nm}
+										 </option>
 									</c:forEach>
 								</select>
 							</td>
@@ -80,7 +92,10 @@
 								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${otllist}" var="list">
-										<option value="${list.code}" >${list.cd_nm}</option>
+										<option value="<c:out value="${list.code}" />"
+											 <c:if test="${detail.sales_lev_cd == list.code }">selected="selected"</c:if>>
+											 ${list.cd_nm}
+										 </option>
 										</c:forEach>
 								</select>
 							</td>
@@ -103,16 +118,16 @@
 								<input type="hidden" id="hpsblty_rate">
 								<select id="psblty_rate" name="psblty_rate" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
-									<option>10</option>
-									<option>20</option>
-									<option>30</option>
-									<option>40</option>
-									<option>50</option>
-									<option>60</option>
-									<option>70</option>
-									<option>80</option>
-									<option>90</option>
-									<option>100</option>
+									<option <c:if test="${detail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
+									<option <c:if test="${detail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>
+									<option <c:if test="${detail.psblty_rate == 30 }">selected="selected"</c:if>>30</option>
+									<option <c:if test="${detail.psblty_rate == 40 }">selected="selected"</c:if>>40</option>
+									<option <c:if test="${detail.psblty_rate == 50 }">selected="selected"</c:if>>50</option>
+									<option <c:if test="${detail.psblty_rate == 60 }">selected="selected"</c:if>>60</option>
+									<option <c:if test="${detail.psblty_rate == 70 }">selected="selected"</c:if>>70</option>
+									<option <c:if test="${detail.psblty_rate == 80 }">selected="selected"</c:if>>80</option>
+									<option <c:if test="${detail.psblty_rate == 90 }">selected="selected"</c:if>>90</option>
+									<option <c:if test="${detail.psblty_rate == 100 }">selected="selected"</c:if>>100</option>
 								</select>	
 							</td>
 						</tr>
@@ -120,7 +135,7 @@
 							<th>메모</th>
 							<td colspan="8" rowspan="2">
 								<input type="hidden" id="hmemo">
-								<textarea name="memo" class="memo" id="memo" value="${opDetail.memo}" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
+								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
 							</td>
 						</tr>
 					</tbody>

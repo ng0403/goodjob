@@ -35,117 +35,6 @@ $(function(){
 	startCalendar(ctx);
 });
 
-//견적 리스트 조회
-function estimList(opptId){
-	$('#estimList').children().remove();
-	$.ajax({
-		type : 'get',
-		url : 'estimList',
-		data : { sales_oppt_id : opptId },
-		dataType : 'json',
-		success:function(result){
-			var content ="";
-			if(result.length==0){
-				content = "<tr style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
-			}else{
-			$.each(result,function(i,data){
-				content += '<tr>'+	
-						'<th><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
-						'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
-						'<td>'+data.estim_lev_cd+'</td>'+
-						'<td>'+data.estim_qty+'</td>'+
-						'<td style="text-align: right; padding-right: 5px;">'+comma(data.sales_price)+'</td>'+
-						'<td>'+data.estim_valid_d+'</td>'+
-						'<td>'+data.fst_reg_id_nm+'</td>'+
-						'<td>'+data.fst_reg_dt+'</td>'+
-						'</tr>';
-			});
-			if(result.length < 5){
-				for(var j = 0; j < 5-result.length; j++){
-					content += "<tr>"
-						+ "<th></th>"
-						+ "<td></td><td></td><td></td>"
-						+ "<td></td><td></td><td></td><td></td></tr>";
-				}
-			}	
-			}	
-			$('#estimList').append(content);
-		},
-		error:function(request){
-			alert('error :' + request.status);
-		}
-	});
-}
-
-
-//영업활동 리스트 조회
-function viewSalesActive(opptId){
-	$("#activeList").children().remove();	
-	$.ajax({  
-		type : 'GET',
-		url : 'opptSalesActiveList',
-		data : {opptId : opptId},
-		dataType : 'json', 
-		success:function(result){
-			var content = "";
-			if(result.actList.length==0){
-				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
-			}
-			else{
-			$.each(result.actList,function(i,data){
-				start_d = data.strt_d;
-				end_d = data.end_d;
-				reg_dt = data.fst_reg_dt;
-				//영업활동 리스트 추가
-				content +="<tr>"+
-				"<th rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
-				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
-				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
-				"<td rowspan='2'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
-				"<td>"+start_d+"</td>"+
-				"<td>"+data.strt_t+"</td>"+
-				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2'>"+data.fst_reg_id_nm+"</td>"+
-				"<td rowspan='2'>"+reg_dt+"</td>"+
-				"</tr>"+
-				"<tr>"+
-				"<td>"+end_d+"</td>"+
-				"<td>"+data.end_t+"</td>"+
-				"</tr>";	
-			});
-			
-			if(result.actList.length < 5){
-				for(var j = 0; j < 5-result.actList.length; j++){
-					content += "<th rowspan='2'></th>"+ 
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"</tr>"+
-					"<tr>"+
-					"<td></td>"+
-					"<td></td>"+
-					"</tr>";
-					
-					}
-				}
-			}	
-			$("#activeList").append(content);
-		},
-		error:function(request){
-			alert("error : " + request.status);
-		}
-	});
-}
-
-
 //영업기회 검색창 고객 리스트 팝업
 function searchCustcompListPopup(ctx){
 	$('#searchCustomer').click(function(){
@@ -193,18 +82,19 @@ function opptAddBtn() {
 	$("#baseBtnDiv").css("display", "none");
 	$("#addBtnDiv").css("display", "block");
 	$("#mdfBtnDiv").css("display", "none");
+	$("#NewAddBtnDiv").css("display", "none");
 }
 
 // 편집 버튼 기능
 function opptMdfyBtn() {
 	alert("편집 버튼 클릭");
 	//focus, css, readonly, disabled false 상태로 변경
-	$("#opptDetail_M #sales_oppt_nm").focus();
-	$("#opptDetail_M input[type='text'], textarea, input[type='date']").attr({
+	$("#opptDetail #sales_oppt_nm").focus();
+	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
 		style:'background-color:white'
 	});
-	$("#opptDetail_M select").attr({
+	$("#opptDetail select").attr({
 		disabled:false,
 		style:'background-color:white'
 	});
@@ -215,6 +105,7 @@ function opptMdfyBtn() {
 	
 	$("#baseBtnDiv").css("display", "none");
 	$("#addBtnDiv").css("display", "none");
+	$("#NewAddBtnDiv").css("display", "none");
 	$("#mdfBtnDiv").css("display", "block");	
 
 }
@@ -226,6 +117,7 @@ function opptCancelBtn() {
 		// 버튼 활성화
 		$("#baseBtnDiv").css("display", "block");
 		$("#addBtnDiv").css("display", "none");
+		$("#NewAddBtnDiv").css("display", "none");
 		$("#mdfBtnDiv").css("display", "none");
 		//css, readonly, disabled true 상태로 변경
 		$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
@@ -330,7 +222,7 @@ function opptModify(){
 	var lead_id = $("#lead_id").val();
 	var cust_nm = $("#cust_nm").val();
 	var memo = $("#memo").val();
-	var pageNum = $("#pageNum").val();
+	var pageNum = 1;/*$("#pageNum").val();*/
 	
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
@@ -375,6 +267,8 @@ function opptModify(){
 		success:function(result){
 			alert("수정되었습니다.");
 			
+			location.href= ctx + "/oppt";
+			
 			// 버튼 활성화
 			$("#baseBtnDiv").css("display", "block");
 			$("#addBtnDiv").css("display", "none");
@@ -406,7 +300,7 @@ function opptModify(){
 			$("#hsales_lev_cd").val(result.opptVO.sales_lev_cd);
 			$("#hmemo").val(result.opptVO.memo);
 			
-			readDetail();
+//			readDetail();
 		},
 		error:function(request){
 			alert("error : " + request.status);
@@ -415,7 +309,7 @@ function opptModify(){
 }
 //입력창 비활성화 함수
 function readDetail(){
-	$("#opptDetail_M input[type='text'],textarea,input[type='date']").attr({
+	$("#opptDetail input[type='text'],textarea,input[type='date']").attr({
 		readonly:true,
 		style:'background-color: #eaeaea'  
 	});
@@ -594,13 +488,123 @@ function startCalendar(ctx){
 	/*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
 
 }
+
 //컴마 입력 함수
 function comma(str) {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 //컴마 해제 함수
 function uncomma(str) {
-    str = String(str);
-    return str.replace(/[^\d]+/g, '');
+  str = String(str);
+  return str.replace(/[^\d]+/g, '');
+}
+//견적 리스트 조회
+function estimList(opptId){
+	$('#estimList').children().remove();
+	$.ajax({
+		type : 'get',
+		url : 'estimList',
+		data : { sales_oppt_id : opptId },
+		dataType : 'json',
+		success:function(result){
+			var content ="";
+			if(result.length==0){
+				content = "<tr style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
+			}else{
+			$.each(result,function(i,data){
+				content += '<tr>'+	
+						'<th><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
+						'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
+						'<td>'+data.estim_lev_cd+'</td>'+
+						'<td>'+data.estim_qty+'</td>'+
+						'<td style="text-align: right; padding-right: 5px;">'+comma(data.sales_price)+'</td>'+
+						'<td>'+data.estim_valid_d+'</td>'+
+						'<td>'+data.fst_reg_id_nm+'</td>'+
+						'<td>'+data.fst_reg_dt+'</td>'+
+						'</tr>';
+			});
+			if(result.length < 5){
+				for(var j = 0; j < 5-result.length; j++){
+					content += "<tr>"
+						+ "<th></th>"
+						+ "<td></td><td></td><td></td>"
+						+ "<td></td><td></td><td></td><td></td></tr>";
+				}
+			}	
+			}	
+			$('#estimList').append(content);
+		},
+		error:function(request){
+			alert('error :' + request.status);
+		}
+	});
+}
+
+
+//영업활동 리스트 조회
+function viewSalesActive(opptId){
+	$("#activeList").children().remove();	
+	$.ajax({  
+		type : 'GET',
+		url : 'opptSalesActiveList',
+		data : {opptId : opptId},
+		dataType : 'json', 
+		success:function(result){
+			var content = "";
+			if(result.actList.length==0){
+				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
+			}
+			else{
+			$.each(result.actList,function(i,data){
+				start_d = data.strt_d;
+				end_d = data.end_d;
+				reg_dt = data.fst_reg_dt;
+				//영업활동 리스트 추가
+				content +="<tr>"+
+				"<th rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
+				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
+				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
+				"<td rowspan='2'>"+data.sales_actvy_div_nm+"</td>"+
+				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data.sales_oppt_nm+"</td>"+
+				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td>"+start_d+"</td>"+
+				"<td>"+data.strt_t+"</td>"+
+				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
+				"<td rowspan='2'>"+data.fst_reg_id_nm+"</td>"+
+				"<td rowspan='2'>"+reg_dt+"</td>"+
+				"</tr>"+
+				"<tr>"+
+				"<td>"+end_d+"</td>"+
+				"<td>"+data.end_t+"</td>"+
+				"</tr>";	
+			});
+			
+			if(result.actList.length < 5){
+				for(var j = 0; j < 5-result.actList.length; j++){
+					content += "<th rowspan='2'></th>"+ 
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"</tr>"+
+					"<tr>"+
+					"<td></td>"+
+					"<td></td>"+
+					"</tr>";
+					
+					}
+				}
+			}	
+			$("#activeList").append(content);
+		},
+		error:function(request){
+			alert("error : " + request.status);
+		}
+	});
 }

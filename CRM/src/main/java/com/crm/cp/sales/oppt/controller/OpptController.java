@@ -137,6 +137,7 @@ public class OpptController {
 			//상세정보 출력
 			
 			mov.addObject("osclist", osclist);
+			mov.addObject("detail", detail);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
 			mov.addObject("actList", actList);
@@ -212,14 +213,19 @@ public class OpptController {
 
 	// 영업기회 수정 ajax
 	@RequestMapping(value = "/opptModify", method = RequestMethod.POST)
-	@ResponseBody Map<String, Object> opptModify(HttpSession session, OpptVO detail, int pageNum) {
+	@ResponseBody ModelAndView opptModify(HttpSession session, OpptVO detail, int pageNum) {
+		System.out.println("Detail Edit Controller");
 		detail.setFin_mdfy_id_nm(session.getAttribute("user").toString());
 		int result = service.opptModify(detail);
+		System.out.println("Detail Edit Result : " + result);
+		ModelAndView mov = new ModelAndView("oppt");
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
 		Map<String, Object> opptMap = new HashMap<String, Object>();
 		opptMap.put("opptVO", opptVO);
 		opptMap.put("pageNum", pageNum);
-		return opptMap;
+		mov.addObject("opptVO", opptVO);
+		mov.addObject("pageNum", pageNum);
+		return mov;
 	}
 
 	// 영업기회 추가 ajax

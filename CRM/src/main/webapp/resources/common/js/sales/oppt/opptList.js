@@ -15,33 +15,25 @@
  * searchCustcompListPopup(ctx)		:	영업기회 고객 검색 팝업 open. 
  */
 
-//영업기회 검색창 고객 리스트 팝업
-function searchCustcompListPopup(ctx){
-	$('#searchCustomer').click(function(){
-		alert("고객 검색 버튼 클릭");
-		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
-	});  
-}
-
 $(function(){
 	tabClick(); // tab 클릭시 checked 설정 및 tab에 맞는 함수 실행
 	opptAllCheck(); //영업기회 all check 함수
 });
 
 function tabClick(){
-	//상세정보 탭 클릭
+	 //영업활동 탭 클릭
 	$("#tab1").click( function() {
 	  	var opptId = $("#salesId").val();
 	  	$("#tab1").attr("checked",true);
 	  	$("#tab2").attr("checked",false);
-	  	$("#tab3").attr("checked",false);
+//	  	$("#tab3").attr("checked",false);
 	  	if(opptId != ""){
 	  		//상세정보 출력
 	  		viewDetail(opptId);
 //	  		readDetail();
 	  	}
       });
-	 //영업활동 탭 클릭
+	  //견적 탭 클릭
 	  $("#tab2").click( function() {
 		  	var opptId = $("#salesId").val();
 		  	$("#tab1").attr("checked",false);
@@ -53,19 +45,19 @@ function tabClick(){
 //		  		readDetail();
 		  	}
       });
-	  //견적 탭 클릭
-	  $("#tab3").click( function() {
-		  	var opptId = $("#salesId").val();
-		  	$("#tab1").attr("checked",false);
-		  	$("#tab2").attr("checked",false);
-		  	$("#tab3").attr("checked",true);
-		  	
-		  	if(opptId !=""){
-		  		//견적 리스트 출력
-		  		estimList(opptId);
-//		  		readDetail();
-		  	}
-    });
+//	  //견적 탭 클릭
+//	  $("#tab3").click( function() {
+//		  	var opptId = $("#salesId").val();
+//		  	$("#tab1").attr("checked",false);
+//		  	$("#tab2").attr("checked",false);
+//		  	$("#tab3").attr("checked",true);
+//		  	
+//		  	if(opptId !=""){
+//		  		//견적 리스트 출력
+//		  		estimList(opptId);
+////		  		readDetail();
+//		  	}
+//    });
 }
 
 
@@ -379,7 +371,13 @@ function estimList(opptId){
 		}
 	});
 }
-
+//영업기회 검색창 고객 리스트 팝업
+function searchCustcompListPopup(ctx){
+	$('#searchCustomer').click(function(){
+		alert("고객 검색 버튼 클릭");
+		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+	});  
+}
 
 //영업활동 날짜 포맷 변환에 사용되는 함수
 //function dateFormat(timestamp) {
