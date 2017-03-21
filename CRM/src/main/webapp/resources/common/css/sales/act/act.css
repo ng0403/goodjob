@@ -46,6 +46,8 @@ select{
   	font-weight:bold;
   	border-bottom: 1px solid #dddddd;
   	padding-bottom: 10px;
+  	text-align: left;
+  	padding-bottom: 10px;
   }
   
  /*영업활동 검색부분*/

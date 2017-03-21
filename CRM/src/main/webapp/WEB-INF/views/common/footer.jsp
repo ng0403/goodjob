@@ -14,7 +14,7 @@
  <body>
    <div id="footertest" style="display: table;">
       <div class="container" style="display: table-cell; vertical-align: middle;">
-        <span class="credit"> &copy; (c) <font color="blue"><a href="http://www.coreplus.co.kr" target="_blank" style="text-decoration: none; color: blue;">CorePlus</a></font> 서울특별시 관악구 조원동 1668-12 코어빌딩 2F COMPANY. ALL RIGHT RESERVED.</span>
+        <span class="credit"> &copy; (c) <a href="http://www.coreplus.co.kr" target="_blank" style="text-decoration: none; color: #7777ec;">CorePlus</a></font> 서울특별시 관악구 조원동 1668-12 코어빌딩 2F COMPANY. ALL RIGHT RESERVED.</span>
       </div>
     </div>
  </body>

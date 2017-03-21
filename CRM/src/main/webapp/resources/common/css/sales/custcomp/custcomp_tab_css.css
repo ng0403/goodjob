@@ -197,6 +197,7 @@
     border:1px solid #ccc;
     border-width:1px 1px 0;
     margin-bottom:-1px;
+    
 }
 #css_tabs > label:hover {
     cursor:pointer; /*마우스 올렸을 때 손 모양*/

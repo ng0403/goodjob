@@ -9,7 +9,9 @@ html{
   	border-bottom: 1px solid #dddddd;
   	margin-bottom: 20px;
   	padding-bottom: 10px;
-  }
+  	text-align: left;
+  	padding-bottom: 10px;
+}
 
 #left_home{
 	width:47%;

@@ -56,12 +56,12 @@ input[type=text]{
 	.btn-success-tel.active, .open .dropdown-toggle.btn-success-tel {
 	color: #ffffff;
 	background-color: #6B6B6B;
-	border-color: #BDBDBD;
 }
 #title .caption{
   	color:#484848;
   	font-weight:bold;
   	border-bottom: 1px solid #dddddd;
+  	text-align: left;
   	padding-bottom: 10px;
   }
   

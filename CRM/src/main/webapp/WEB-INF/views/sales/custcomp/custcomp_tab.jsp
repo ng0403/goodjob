@@ -12,13 +12,17 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
+<style type="text/css">
+
+</style>
 </head>
-<body>
+<body  >
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="nowCust_id"/>
 	<input type="hidden" id="nowCust_nm"/>
 
 	<div id="css_tabs">
+		
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked"/>
 		<input id="tab2" type="radio" name="tab" />
@@ -34,7 +38,7 @@
 		<label for="tab4">영업활동</label> 
 		<label for="tab5">견적</label>
 		<label for="tab6">계약</label>
-
+		
 		<!-- 탭 내용 : 기업고객 상세정보 -->
 		<div id="tabDiv1" class="tab1_content">
 		

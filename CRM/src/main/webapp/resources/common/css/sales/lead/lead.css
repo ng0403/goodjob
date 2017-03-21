@@ -36,7 +36,9 @@ html{
   	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
   	/* padding:5px; */
   	border-bottom: 1px solid #dddddd;
-  }
+  	text-align: left;
+  	padding-bottom: 10px;
+}
     
 .bt_positionuserlist{
 	float:right;

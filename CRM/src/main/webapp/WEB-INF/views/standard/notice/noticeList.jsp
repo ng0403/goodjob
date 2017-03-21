@@ -11,6 +11,16 @@
 <script type="text/javascript">
 	
 </script>
+<style type="text/css">
+#title .caption{
+  	color:#484848;
+  	font-weight:bold;
+  	border-bottom: 1px solid #dddddd;
+  	padding-bottom: 10px;
+  	text-align: left;
+  	padding-bottom: 10px;
+  }
+</style>
 </head>
 <body>
 

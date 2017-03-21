@@ -16,18 +16,31 @@
 #icon {
 	width: 25px;
 	height: 25px;
+	
 }
-</style>
 
+</style>
 
 <title>Home</title>
 </head>
 
 <body>
 
-<div class="naviT">
-	<nav id="topMenu" > 		
+	<div class="naviT">
 		<ul id="test">
+			
+<!-- 			<div id="css_tabs"> -->
+<!-- 				라디오 버튼 -->
+<!-- 				<input id="tab1" type="radio" name="tab" checked="checked"/>  -->
+<!-- 				<input id="tab2" type="radio" name="tab" />  -->
+<!-- 				<input id="tab3" type="radio" name="tab" />  -->
+		
+<!-- 				라벨 : 화면에 표시되는 탭 제목 -->
+<!-- 				<label for="tab1">상세정보</label>  -->
+<!-- 				<label for="tab2">영업활동 </label>  -->
+<!-- 				<label for="tab3">견적</label>  -->
+<!-- 			</div> -->
+			
 			<c:forEach var="menu" items="${menuList}" varStatus="nms">
 				<li class="navi">
 					<c:if test="${empty menu.menuVO}">
@@ -36,6 +49,8 @@
 							${menu.menu_nm} 
 						</a>
 					</c:if> 
+					
+					
 					
 					<c:if test="${!empty menu.menuVO}">
 						<a href="#" class="navibtn">${menu.menu_nm}</a>
@@ -50,7 +65,6 @@
 				</li>
 			</c:forEach>
 		</ul>
-	</nav>
-</div>
+	</div>
 </body>
 </html>

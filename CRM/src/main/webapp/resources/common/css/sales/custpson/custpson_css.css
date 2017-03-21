@@ -87,6 +87,8 @@ input[type=text]{
   	font-weight:bold;
   	border-bottom: 1px solid #dddddd;
   	padding-bottom: 10px;
+  	text-align: left;
+  	padding-bottom: 10px;
   }
   
 #contact_button_position{

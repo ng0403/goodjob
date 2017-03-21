@@ -55,6 +55,8 @@ select{
   	font-weight:bold;
   	border-bottom: 1px solid #dddddd;
   	padding-bottom: 10px;
+  	text-align: left;
+  	padding-bottom: 10px;
   }
   
 #bt_position_authuser{

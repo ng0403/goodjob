@@ -14,10 +14,11 @@ html,body{
 	margin: 0 auto;
 	min-width: 800px;
 	min-height: 720px;
+	text-align: left;
 }
 </style>
 </head>
-<body id="body" style="text-align:center; ">
+<body id="body">
 
 		<div class="headFrame" style="width:100%; height: 15%; /* solid black; */float:left;overflow: hidden;  text-align: center;">
 		<div class="header" style="width:100%; height: 40%; /* solid black; */float:left; background:#fffbcc;">
@@ -28,8 +29,8 @@ html,body{
 			</div>
 		</div>
 		
-		<div class="bodyFrame" style="width:90%; height:80%; overflow: auto;  margin: 0 auto;">
-			<div class="body1" style="width: 90%;height: 100%; padding-left: 20px;  padding-right: 20px;  margin: 0 auto;">
+		<div class="bodyFrame" style="width:85%; height:80%; overflow: auto;  margin: 0 auto;">
+			<div class="body1" style="width: 85%;height: 100%; padding-left: 20px;  padding-right: 20px;  margin: 0 auto;">
 				<div class="master" style="width:100%;height: 50%;">
 					<tiles:insertAttribute name="master"></tiles:insertAttribute>
 				</div>

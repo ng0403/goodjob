@@ -11,7 +11,10 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" />
 <title>기업 고객</title>
+<style type="text/css">
 
+
+</style>
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
