@@ -41,8 +41,8 @@ public class MenuController {
 		}
 		List<MenuVO> menuTree = menuService.selectMenuTree();
 		ModelAndView mov = new ModelAndView ("menu", "menuTree", menuTree);
-		List<MenuVO> menuList = menuService.selectAll(session);
-		mov.addObject("menuList", menuList);
+		//List<MenuVO> menuList = menuService.selectAll(session);
+		//mov.addObject("menuList", menuList);
 		return mov;
 	}
 	
