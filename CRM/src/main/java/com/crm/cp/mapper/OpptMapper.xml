@@ -460,8 +460,11 @@
 			fin_mdfy_dt
 		)
 		values(
-			'es',
-			#{cust_id},
+						(SELECT /*+INDEX_DESC(ESTIMATE PK_ESTIMATE)*/
+			    DECODE(MAX(ESTIM_ID),NULL,'EST0000001',SUBSTR(MAX(ESTIM_ID),1,3)||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
+			FROM ESTIMATE
+			WHERE ROWNUM=1)
+			,#{cust_id},
 			#{estim_nm},
 			#{estim_lev_cd},
 			 TO_DATE(#{estim_valid_d},'yyyy-MM-dd'),

@@ -24,6 +24,7 @@
 <input type="hidden" id="ctx" value="${ctx}">
 <input type="hidden" id="custType" value="${custType}"/>
 <input type="hidden" id="sales_oppt_id" value="${sales_oppt_id}">
+<input type="hidden" id="sales_oppt_nm" value="${sales_oppt_nm}">
 <input type="hidden" id="flg" value="${flg}">
 <input type="hidden" id="sales_actvy_id" value="${sales_actvy_id}">
 

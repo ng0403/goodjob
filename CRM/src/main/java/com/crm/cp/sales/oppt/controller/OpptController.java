@@ -319,6 +319,8 @@ public class OpptController {
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("actDivCd", actDivCd);
 
+		System.out.println("list_cust_nm : " +list_cust_nm );
+		System.out.println("list_cust_nm : " +list_cust_nm );
 		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
 
 		mov.addObject("cust_id", list_cust_id);
@@ -460,8 +462,11 @@ public class OpptController {
 	// 영업활동 상세정보 팝업창
 	@RequestMapping(value = "/opptActiveDetailPopup", method = RequestMethod.GET)
 	public ModelAndView opptActiveDetailPopup(HttpSession session,
-			String actvyId) {
+			String actvyId
+			, String sales_oppt_nm) {
 
+		System.out.println("영업활동 상세정보 팝업 actvyId" + actvyId);
+		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
 		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/opptActivePopup");
 		// 영업활동 유형코드 가져오기
 		List<ActVO> actTypeCd = service.actTypeCdList();
@@ -469,11 +474,15 @@ public class OpptController {
 		List<ActVO> actStatCd = service.actStatCdList();
 		// 영업활동 구분코드 가져오기
 		List<ActVO> actDivCd = service.actDivCdList();
-
+		ActVO detail = service.actDetail(actvyId);
+		System.out.println("detail : " + detail);
+	
 		mov.addObject("actTypeCd", actTypeCd);
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("actDivCd", actDivCd);
+		mov.addObject("cust_nm", detail.getCust_nm());
 		mov.addObject("sales_actvy_id", actvyId);
+		mov.addObject("sales_oppt_nm", sales_oppt_nm);
 		return mov;
 	}
 

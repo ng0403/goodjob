@@ -353,7 +353,7 @@ function addOperatingA(ctx){
 		}else{
 		var list_sales_oppt_id = $('#salesId').val();
 //		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
-		var list_cust_id = list_sales_oppt_id;
+		var list_cust_id = $('#hcust_id').val();
 		var list_cust_nm = $('#hcust_nm').val();
 //		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
 		
@@ -387,7 +387,8 @@ function estimateAdd(ctx){
 //영업활동 상세정보 팝업
 function opptActiveDetailPopup(actvyId){
 	var popup;
-	popup=window.open('opptActiveDetailPopup?actvyId='+actvyId
+	var sales_oppt_nm = $('#hsales_oppt_nm').val();
+	popup=window.open('opptActiveDetailPopup?actvyId='+actvyId +'&sales_oppt_nm='+sales_oppt_nm
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 

@@ -37,9 +37,9 @@
 <!-- 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" /> -->
 				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" /><!-- disabled="disabled" -->
 			</div>
-<!-- 			<div id="NewAddBtnDiv" class="bt_position_authuser"> -->
-<!-- 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" /> -->
-<!-- 			</div> -->
+			<div id="NewAddBtnDiv" class="bt_position_authuser">
+				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
+			</div>
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="addsavebtn" class="btn-success-tel" onclick="opptAdd();" value="저장" />
 				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />

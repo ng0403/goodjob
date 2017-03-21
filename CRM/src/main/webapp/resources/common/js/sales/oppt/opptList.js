@@ -204,7 +204,8 @@ function opportunityList(page){
 		datatype : 'json',
 		success:function(result){
 			//리스트 출력 시 버튼 상태 설정
-			$("#baseBtnDiv").css("display", "block");
+			$("#baseBtnDiv").css("display", "none");
+			$("#NewAddBtnDiv").css("display", "block");
 			$("#addBtnDiv").css("display", "none");
 			$("#mdfBtnDiv").css("display", "none");
 			
