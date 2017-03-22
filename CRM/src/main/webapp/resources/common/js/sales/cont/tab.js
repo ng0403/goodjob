@@ -17,7 +17,32 @@ function contAdd(){
 	$("#contMdfBtnDiv").css("display", "none");
 }
 
+ 
+function contSave() {
+		alert("인서트");
+		
+	    var formObj = $("form[role='form']");
+
+		 formObj.attr("action", "/cont_add");
+		 formObj.attr("method", "post");
+		 formObj.submit();  
+	 
+	} 
+function updateCont() {
+	
+	alert("modify");
+	
+	  var formObj = $("form[role='form']");
+
+		 formObj.attr("action", "/contUpdate");
+		 formObj.attr("method", "post");
+		 formObj.submit();   
+	
+}
+
+
 function contMdfy(){
+	 
 	$("#contTable input[type=text]").css("background-color", "white");
 	$("#contTable textarea").css("background-color", "white");
 	$('#contr_nm').attr('readonly', false);
@@ -37,7 +62,9 @@ function contMdfy(){
 
 function contCancel(){
 	var ynChk = confirm("정말 취소하시겠습니까?");
-	if(ynChk){
+	
+	location.href = "/cont";
+	/*if(ynChk){
 		$("#contTable input[type=text]").css("background-color", "#EAEAEA");
 		$("#contTable textarea").css("background-color", "#EAEAEA");
 		$('#contr_nm').val($('#hcontr_nm').val()).attr('readonly',true);
@@ -55,6 +82,6 @@ function contCancel(){
 		
 		$("#contBaseBtnDiv").css("display", "block");
 		$("#contAddBtnDiv").css("display", "none");
-		$("#contMdfyBtnDiv").css("display", "none");
-	}
+		$("#contMdfyBtnDiv").css("display", "none");*/
+/*	}*/
 }

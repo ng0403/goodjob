@@ -80,7 +80,7 @@ public class contrController {
 	}
 
 	
-	@RequestMapping(value="/cont_Detail")
+ 	@RequestMapping(value="/cont_Detail")
 	public ModelAndView ContDetailPage(@RequestParam("contr_id") String contr_id ){
 		
 		System.out.println("detail Entering");
@@ -91,19 +91,19 @@ public class contrController {
 		ModelAndView mov = new ModelAndView("cont_detail");
 		mov.addObject("contDetail", getcContrInfo);
 		return mov;
-	} 
+	}  
 	
 	// 계약 상세정보 출력
 	// ajax를 사용하여 데이터 받는 경우 써줘야한다.
-	/*@RequestMapping(value = "/contDetail")
+/*	@RequestMapping(value = "/cont_detail")
 	public @ResponseBody contrVO ContDetailPage(String contr_id) {
 		contrVO getcContrInfo = contrService.getcContrInfo(contr_id);
 
 		return getcContrInfo;
-	}*/
-
+	}
+*/
 	// 계약 수정
-	@RequestMapping(value = "/contUpdate")
+	/*@RequestMapping(value = "/contUpdate")
 	public @ResponseBody Map<String, String> ContUpdate(HttpSession session, contrVO contVO) {
 		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
 		System.out.println(contVO);
@@ -111,10 +111,28 @@ public class contrController {
 		Map<String, String> rstStr = new HashMap<String, String>();
 		rstStr.put("updateResult", updateCheck);
 		return rstStr;
+	}*/
+	
+	@RequestMapping(value="/contUpdate", method={RequestMethod.GET,RequestMethod.POST})
+	public String ContUpdate(HttpSession session, contrVO contVO){
+		System.out.println("cont update entering");
+		System.out.println("cont update vo? " + contVO.toString());
+		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
+		System.out.println(contVO);
+		
+		contrService.contUpdate(contVO);
+		
+		return "redirect:/cont";
 	}
+	
+	
+	
+	
+	
+	
 
 	// 계약 추가
-	@RequestMapping(value = "/contInsert")
+	 @RequestMapping(value = "/contInsert")
 	public @ResponseBody Map<String, String> ContInsert(HttpSession session, contrVO contVO) {
 		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());// session에서 로그인한 아이디를 가져오는 코드
 		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
@@ -122,7 +140,40 @@ public class contrController {
 		Map<String, String> rstStr = new HashMap<String, String>();
 		rstStr.put("insertResult", insertCheck);
 		return rstStr;
+	} 
+	
+/*	@RequestMapping(value="/contInsert", method={RequestMethod.GET,RequestMethod.POST})
+	public String ContInsert(HttpSession session, contrVO contVO){
+		System.out.println("insert continsert");
+		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		System.out.println("insert contrVO?" + contVO.toString());
+		contrService.contInsert(contVO);
+		
+		return "redirect:/cont";
+	}*/
+	
+	@RequestMapping(value="/cont_add", method=RequestMethod.GET)
+	public void cont_add(HttpSession session, contrVO contVO){
+		System.out.println("add continsert");
+		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		System.out.println("insert contrVO?" + contVO.toString());
+		 
 	}
+	
+	@RequestMapping(value="/cont_add", method=RequestMethod.POST)
+	public String cont_addP(HttpSession session, contrVO contVO){
+		System.out.println("add continsert");
+		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		System.out.println("insert contrVO?" + contVO.toString());
+		contrService.contInsert(contVO);
+		
+		return "redirect:/cont";
+	}
+	
+	
 
 	// 계약내역 삭제
 	@RequestMapping(value = "contListDelete", method = RequestMethod.POST)
@@ -139,6 +190,7 @@ public class contrController {
 	public ModelAndView ActOpptList(HttpSession session, String cust_id) {
 		List<Object> actOpptList = contrService.contActOpptList(cust_id);
 		ModelAndView mov = new ModelAndView("/sales/cont/cont_act_oppt_list_pop");
+		System.out.println("actOppTlist" + actOpptList.toString());
 		mov.addObject("actOpptList", actOpptList);
 
 		return mov;

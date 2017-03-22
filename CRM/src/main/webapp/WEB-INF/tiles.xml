@@ -25,6 +25,11 @@
 	<definition name="cont_detail" extends="onebodyLayout">
 	<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont_detail.jsp" />	
 	</definition>
+	
+	<definition name="cont_add" extends="onebodyLayout">
+	<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont_add.jsp" />	
+	</definition>
+	
 
 	<definition name="teamgoal" extends="onebodyLayout">
 		<put-attribute name="body"

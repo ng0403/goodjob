@@ -20,15 +20,19 @@ function actOpptListPopup(ctx){
 }
 
 function inputOpptNm(sales_oppt_id,sales_oppt_nm,estim_id, sales_price){
-	$('#sales_oppt_id').val(sales_oppt_id);
+	alert(estim_id);
+ 	$('#sales_oppt_id').val(sales_oppt_id);
+ 	alert("sales_oppt_id : "+sales_oppt_id);
 	$('#sales_oppt_nm').val(sales_oppt_nm);
 	$('#estim_id').val(estim_id);
+	alert("estim_id : "+estim_id);
 	$('#contr_amt').val(sales_price);
 	$('#act_oppt_nm').attr('disabled',false);
+  
 }
 
 //영업기회리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업
-function actOpptNmSelect(sales_oppt_id,sales_oppt_nm,estim_id, sales_price){
+function actOpptNmSelect(sales_oppt_id,sales_oppt_nm,estim_id, sales_price){ 
 	window.opener.inputOpptNm(sales_oppt_id,sales_oppt_nm,estim_id, sales_price);
 	self.close();
 }

@@ -55,16 +55,7 @@ function startCalendar(ctx){
 	 $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
 }
 
-
-function contDetail(a) {
-	alert("enter");
-		    var contr_id = a;
-		    alert(contr_id);
-		    location.href="/cont_Detail?contr_id=" + contr_id; 	
-}
-
-
-function contNameSend(contr_id) {
+/*function contNameSend(contr_id) {
 	$(document).ready(function() {
 		 $("#contMdfyBtn").attr("disabled", false);
 		 $("#contBaseBtnDiv").css("display", "block");
@@ -73,11 +64,13 @@ function contNameSend(contr_id) {
 		var ctx = $("#ctx").val();
 		
 		$.ajax({
-			url : ctx + '/contDetail', // 보낼URL= 컨트롤러에 있는 주소(내가 쓰고싶은 기능)
+			url : ctx + '/cont_detail', // 보낼URL= 컨트롤러에 있는 주소(내가 쓰고싶은 기능)
 			dataType : 'json', // 응답 받을 데이터 형식
 			type : 'POST', // 서버 요청 방식
 			data : "contr_id=" + contr_id,// href 할때 주소 뒤에 ? 쓰는것과 같은 효과
 			success : function(data) {
+				alert("success");
+				location.href="/contDetail";
 				$("#contr_nm").val(data.contr_nm);
 				$("#cust_id").val(data.cust_id);
 				$("#contr_id").val(data.contr_id);
@@ -109,7 +102,19 @@ function contNameSend(contr_id) {
 			}
 		});
 	});
+}*/
+
+function contDetail(a){
+	var contr_id = a;
+ 	location.href="/cont_Detail?contr_id="+contr_id;
+	
 }
+
+function contAddp(){
+	
+	location.href="/cont_add";
+}
+ 
 
 //계약 삭제
 function contListDel(ctx){
@@ -166,7 +171,7 @@ function insertCont(ctx){
 }
 
 //계약정보 수정
-function updateCont(ctx){
+/*function updateCont(ctx){
 	$(document).ready(function() {
 		$.ajax({
 			url : ctx + '/contUpdate', // 보낼 URL=컨트롤러에 있는 주소(내가 쓰고싶은 기능)
@@ -182,7 +187,9 @@ function updateCont(ctx){
 			}
 		});
 	});
-}
+}*/
+
+ 
 
 function comma(str) {
     str = String(str);

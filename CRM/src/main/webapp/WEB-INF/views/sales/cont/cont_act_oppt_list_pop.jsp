@@ -29,7 +29,7 @@ if('${actOpptList.size()}' == 0){
 				<thead>
 					<tr style="text-align: center;">
 						<td style="width:16%;">영업기회명</td>
-						<td style="width:15%;">영업단계</td>
+ 						<td style="width:15%;">영업단계</td>
 						<td style="width:14.3%;">견적명</td>
 						<td style="width:15%;">견적금액</td>
 						<td style="width:15%;">예상마감일자</td>
@@ -42,7 +42,7 @@ if('${actOpptList.size()}' == 0){
 					<c:forEach var="actOpptList" items="${actOpptList}">
 						<tr onclick="actOpptNmSelect('${actOpptList.sales_oppt_id}','${actOpptList.sales_oppt_nm}','${actOpptList.estim_id}', '${actOpptList.sales_price}')">
 							<td style="width:16%;">${actOpptList.sales_oppt_nm}</td>
-							<td style="width:15%;">${actOpptList.sales_lev_cd}</td>
+ 							<td style="width:15%;">${actOpptList.sales_lev_cd}</td>
 							<td style="width:14.3%;">${actOpptList.estim_nm}</td>
 							<td style="width:15%;">${actOpptList.sales_price}</td>
 							<td style="width:15%;">${actOpptList.expt_fin_d}</td>
