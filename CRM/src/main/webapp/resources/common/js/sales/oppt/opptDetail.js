@@ -271,6 +271,7 @@ function opptModify(){
 			// 버튼 활성화
 			$("#baseBtnDiv").css("display", "block");
 			$("#addBtnDiv").css("display", "none");
+			$("#NewAddBtnDiv").css("display", "none");
 			$("#mdfBtnDiv").css("display", "none");
 			
 			opportunityList(result.pageNum);

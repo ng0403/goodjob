@@ -27,14 +27,14 @@ function tabClick(){
 	  	var opptId = $("#salesId").val();
 	  	$("#tab1").attr("checked",true);
 	  	$("#tab2").attr("checked",false);
-//	  	$("#tab3").attr("checked",false);
+	  	$("#tab3").attr("checked",false);
 	  	if(opptId != ""){
 	  		//상세정보 출력
 	  		viewDetail(opptId);
 //	  		readDetail();
 	  	}
       });
-	  //견적 탭 클릭
+	  //영업기회별 상품
 	  $("#tab2").click( function() {
 		  	var opptId = $("#salesId").val();
 		  	$("#tab1").attr("checked",false);
@@ -46,19 +46,19 @@ function tabClick(){
 //		  		readDetail();
 		  	}
       });
-//	  //견적 탭 클릭
-//	  $("#tab3").click( function() {
-//		  	var opptId = $("#salesId").val();
-//		  	$("#tab1").attr("checked",false);
-//		  	$("#tab2").attr("checked",false);
-//		  	$("#tab3").attr("checked",true);
-//		  	
-//		  	if(opptId !=""){
-//		  		//견적 리스트 출력
-//		  		estimList(opptId);
-////		  		readDetail();
-//		  	}
-//    });
+	  //견적 탭 클릭
+	  $("#tab3").click( function() {
+		  	var opptId = $("#salesId").val();
+		  	$("#tab1").attr("checked",false);
+		  	$("#tab2").attr("checked",false);
+		  	$("#tab3").attr("checked",true);
+		  	
+		  	if(opptId !=""){
+		  		//견적 리스트 출력
+		  		estimList(opptId);
+//		  		readDetail();
+		  	}
+    });
 }
 
 
@@ -143,8 +143,8 @@ function divide(opptId){
 //	readDetail();
 //	if($("#tab1").attr("checked")){
 		viewDetail(opptId);
-		viewSalesActive(opptId);
-		estimList(opptId);
+//		viewSalesActive(opptId);
+//		estimList(opptId);
 //	}
 //	else 
 //		if($("#tab2").attr("checked")){
@@ -152,6 +152,22 @@ function divide(opptId){
 //	}else if($("#tab3").attr("checked")){
 //		estimList(opptId);
 //	}
+}
+//현재 checked된 탭에 맞는 함수 실행
+function divideDetail(opptId){
+	$("#salesId").val(opptId);
+//	readDetail();
+	if($("#tab1").attr("checked")){
+	viewDetail(opptId);
+	viewSalesActive(opptId);
+	estimList(opptId);
+	}
+	else 
+		if($("#tab2").attr("checked")){
+		viewSalesActive(opptId);
+	}else if($("#tab3").attr("checked")){
+		estimList(opptId);
+	}
 }
 
 

@@ -43,11 +43,13 @@ $(document).ready(function() {
 <!-- 		<input id="tab1" type="radio" name="tab" />  -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> 
 		<input id="tab2" type="radio" name="tab" /> 
+		<input id="tab3" type="radio" name="tab" /> 
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 <!-- 		<label for="tab1">상세정보</label>  -->
 		<label for="tab1">영업활동 </label> 
-		<label for="tab2">견적</label> 
+		<label for="tab2" style="width: 110px;">영업기회별 상품</label> 
+		<label for="tab3">견적</label> 
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
@@ -83,7 +85,33 @@ $(document).ready(function() {
 			</div>
 		</div>
 	
-		<div id="tabDiv2" class="tab5_content">
+		<div id="tabDiv2" class="tab2_content">
+		<div class="bt_position_authuser">
+			<button id="opptPdtAdd" class="btn btn-default">영업기회별 상품 추가</button>
+			<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptPdtDelete();">삭제</button>
+		</div>
+		
+		<div id="tableline">
+			<table id="goaltable" class="tabtable">
+				<thead>						
+					<tr>
+						<th style="width: 3%;"><input type="checkbox"  id='pdtAllSelect'/></th>
+						<td style="width: 30%;">영업기회명</td>
+						<td style="width: 11%;">고객사</td>
+<!-- 						<td style="width: 10%;">견적수량</td> -->
+						<td style="width: 15%;">예상매출액</td>
+						<td style="width: 10%;">유효일자</td>
+						<td style="width: 9%;">등록자</td>
+						<td style="width: 10%;">등록일시</td>
+					</tr>
+				</thead>
+				<tbody id="pdtList" >
+				<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
+				</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="tabDiv3" class="tab3_content">
 		<div class="bt_position_authuser">
 			<button id="estimateAdd" class="btn btn-default">견적 추가</button>
 			<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptEstimDelete();">삭제</button>

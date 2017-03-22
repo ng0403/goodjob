@@ -34,11 +34,12 @@
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv" class="bt_position_authuser">
-<!-- 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" /> -->
 				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" /><!-- disabled="disabled" -->
+				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
 			</div>
 			<div id="NewAddBtnDiv" class="bt_position_authuser">
 				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
+				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
 			</div>
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="addsavebtn" class="btn-success-tel" onclick="opptAdd();" value="저장" />
