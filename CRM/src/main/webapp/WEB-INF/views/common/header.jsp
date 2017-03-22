@@ -25,17 +25,29 @@ function logout(){
 
 #logout {
 	margin: 0 auto;
-	margin-top: 40px;
+	margin-top: 45px;
+	margin-right: -42px;
 	float: right;
+	
 }
 
+#logoutImg {
+	width: 25px;
+	margin: 0 auto;
+	margin-top: 15px;
+	float: right;
+}
+#logoutImg:HOVER {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 <div class="headerT">
 	<div class="hbtn">
 		<div id="guideline">
-			<input type="button" onclick="logout();" id="logout" value="로그아웃"/>
+			<img id="logoutImg" alt="logout" src="${ctx}/resources/image/icon/logout.png" onclick="logout();">
+			<input type="button" id="logout" value="로그아웃" onclick="logout();" />
 		</div>
 	</div>
 </div>

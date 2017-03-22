@@ -7,65 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CorePlus</title>
-<style type="text/css">
-html,body{
-	height: 100%;
-	width: 100%;
-	margin: 0 auto;
-	min-width: 800px;
-	min-height: 720px;
-	text-align: left;
-}
- 
-.headFrame {
-	width:100%; 
-	height: 14%; 
-	/* solid black; */
-	float:left;
-	overflow: hidden;  
-	text-align: center;
-	background:#fffbcc;
-}
-.header {
-	width:100%; 
-	height: 40%; 
-	/* solid black; */
-	float:left; 
-	background:#fffbcc;
-}
-.navi{
- 	width:10%;   
-	height: 60%; 
-	/* solid black; */
-	float:left;
-}
-
-.bodyFrame {
-	width:85%; 
-	height:81%; 
-	overflow: hidden; 
-	margin: 0 auto;
-}
-
-.body {
-	width:85%; 
-	height: 100%; 
-	padding-left: 20px;  
-	padding-right: 20px; 
-	margin: 0 auto;
-}
-
-.footer {
-	width:100%; 
-	height: 5%; 
-	float: left;
-}
-</style>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/layout.css" type="text/css" />
 </head>
 <body id="body" >
 
 		<div class="headFrame" >
 		<div class="header" >
+				<div id="mainTitleDiv">
+					<label id="mainTitle">SFA CRM</label>
+				</div>
+				
 				<tiles:insertAttribute name="header"></tiles:insertAttribute></div>
 			<div class="navi" >
 				<tiles:insertAttribute name="navi"></tiles:insertAttribute></div>

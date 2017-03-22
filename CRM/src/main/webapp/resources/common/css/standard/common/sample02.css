@@ -81,6 +81,8 @@ nav ul {
 			border-top: 1px solid #6b727c;
 			border-bottom: 1px solid #575f6a; 
 			position: relative;
+			vertical-align: middle;
+			margin-bottom: 6px;
 		}
 			nav ul ul li a {
 				width: 116px;
