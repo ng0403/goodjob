@@ -3,6 +3,7 @@ package com.crm.cp.standard.home.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,26 @@ public class HomeController {
 	contrService contrService;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
-	public String noticeMain(@ModelAttribute IuserVO user, HttpSession session) 
+	public String noticeMain(@ModelAttribute IuserVO user
+			, HttpSession session
+			, HttpServletRequest request) 
 	{
+		
+		String ip = request.getHeader("X-FORWARDED-FOR");
+		
+		if(ip == null || ip.length() == 0){
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if(ip == null || ip.length() == 0){
+			ip = request.getHeader("WL-Proxy-Client-IP");//웹로직
+			
+		}
+		if(ip == null || ip.length() == 0){
+			ip = request.getRemoteAddr();
+			
+		}
+		
+		System.out.println("접속자의 ip 주소 : " + ip);
 		session.setAttribute("user", user.getId_nm());
 		System.out.println("POST /Home : ");
 		
@@ -61,10 +80,26 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public ModelAndView homePage(HttpSession session){
+	public ModelAndView homePage(HttpSession session
+			, HttpServletRequest request){
 		if(session.getAttribute("user")==null){
 			return new ModelAndView("redirect:/");
 		}
+		String ip = request.getHeader("X-FORWARDED-FOR");
+		
+		if(ip == null || ip.length() == 0){
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if(ip == null || ip.length() == 0){
+			ip = request.getHeader("WL-Proxy-Client-IP");//웹로직
+			
+		}
+		if(ip == null || ip.length() == 0){
+			ip = request.getRemoteAddr();
+			
+		}
+		
+		System.out.println("접속자의 ip 주소 : " + ip);
 		String userId = session.getAttribute("user").toString();
 		List<OpptVO> opptList = opptService.opptList();
 		System.out.println("opptList" + opptList);
