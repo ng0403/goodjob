@@ -84,8 +84,8 @@
 		 <put-attribute name="body" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp"/>
 	</definition>
 	
-	<definition name="est/*" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/est/{1}.jsp"/>
+	<definition name="estList" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/est/estList.jsp"/>
 	</definition>
 	
 	<!--위·아래 바디 + 어사이드 구조 -->
