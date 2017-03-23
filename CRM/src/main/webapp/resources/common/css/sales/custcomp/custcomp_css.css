@@ -82,9 +82,7 @@ input[type=text] {
 	color: #484848;
 	font-weight: bold;
 	border-bottom: 1px solid #dddddd;
-	padding-bottom: 10px;
   	text-align: left;
-  	padding-bottom: 10px;
 }
 
 #contact_button_position {
@@ -94,6 +92,7 @@ input[type=text] {
 
 #ccListTable {
 	border-collapse: collapse;
+	height: 20%;
 }
 
 #ccPageInput {
