@@ -12,19 +12,23 @@
 <body id="body" >
 
 		<div class="headFrame" >
-		<div class="header" >
-				<div id="mainTitleDiv">
-					<label id="mainTitle">SFA CRM</label>
-				</div>
-				
-				<tiles:insertAttribute name="header"></tiles:insertAttribute></div>
+			<div class="header" >
+					<div id="mainTitleDiv">
+						<label id="mainTitle">SFA CRM</label>
+					</div>
+					<tiles:insertAttribute name="header"></tiles:insertAttribute>
+			</div>
 			<div class="navi" >
-				<tiles:insertAttribute name="navi"></tiles:insertAttribute></div>
+				<tiles:insertAttribute name="navi"></tiles:insertAttribute>
+			</div>
 		</div>
+		
 		<div class="bodyFrame">
 			<div class="body" >
-			<tiles:insertAttribute name="body"></tiles:insertAttribute></div>
+				<tiles:insertAttribute name="body"></tiles:insertAttribute>
+			</div>
 		</div>
+		
 		<div class="footer" >
 			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 		</div>

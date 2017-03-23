@@ -26,8 +26,9 @@ function logout(){
 #logout {
 	margin: 0 auto;
 	margin-top: 45px;
-	margin-right: -42px;
+	margin-right: -39px;
 	float: right;
+	font-weight: bold;
 	
 }
 
@@ -47,7 +48,8 @@ function logout(){
 	<div class="hbtn">
 		<div id="guideline">
 			<img id="logoutImg" alt="logout" src="${ctx}/resources/image/icon/logout.png" onclick="logout();">
-			<input type="button" id="logout" value="로그아웃" onclick="logout();" />
+<!-- 			<input type="button" id="logout" value="로그아웃" onclick="logout();" /> -->
+			<label id="logout">Logout</label>
 		</div>
 	</div>
 </div>

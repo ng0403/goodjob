@@ -109,8 +109,7 @@
 .tabtable thead th, .tabtable tbody td{
 	border: 1px solid #DDD;
 	text-align: center;
-	height: 25px;
-	padding: 3px;
+	height: 20px;
 }
 
 .tabtable tr, .tabtable tr td {
@@ -128,7 +127,7 @@
 
 #custcompdiv {
 	padding-left: 30px;
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 }
 
 #custcomptable {

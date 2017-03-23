@@ -487,7 +487,8 @@ html{
 }
 #leadList tbody th, #leadList tbody td {
 	height: 30px;
-	padding: 5px;
+/* 	padding: 5px; */
+	padding-left: 5px;
 }
 
 #lead_button_position{
