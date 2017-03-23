@@ -20,10 +20,32 @@
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	var addFlag = ${addFlag};
+	if(addFlag == 1)//상세정보를 눌렀을 경우
+	{
+		$('#baseBtnDiv').css('display', 'block');
+		$('#NewAddBtnDiv').css('display', 'none');
+	}else if(addFlag == 0)//신규추가를 눌렀을 경우
+		{
+		$("#baseBtnDiv").css("display", "none");
+		$("#addBtnDiv").css("display", "block");
+		$("#mdfBtnDiv").css("display", "none");
+		$("#NewAddBtnDiv").css("display", "none");
+			//$('#NewAddBtnDiv').css('display', 'block');
+			opptAddBtn();
+		}
+	
+});
+	
+
+</script>
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<div id="title">
+	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${addFlag == 0 }">
 			<div class="caption">■ 영업기회추가</div>
 		</c:if>
@@ -33,21 +55,21 @@
 	</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
-			<div id="baseBtnDiv" class="bt_position_authuser">
+			<div id="baseBtnDiv"  class="bt_position_authuser">
 				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" /><!-- disabled="disabled" -->
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
+				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
-			<div id="NewAddBtnDiv" class="bt_position_authuser">
-				<input type="button" id="submitbtn" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
+			<div id="NewAddBtnDiv" style="display: none;" class="bt_position_authuser">
+				<input type="button" id="submitbtn" style="display: none;" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
+				<input type="button" id="cancelbtn" style="display: none;" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="addsavebtn" class="btn-success-tel" onclick="opptAdd();" value="저장" />
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
+				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="modifysavebtn" class="btn-success-tel" value="저장" onclick="opptModify();"/>
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn();" value="취소" />
+				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
 			<div id="ccustomerdiv">

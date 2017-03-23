@@ -110,36 +110,70 @@ function opptMdfyBtn() {
 }
 
 // 취소 버튼 기능
-function opptCancelBtn() {
+function opptCancelBtn(addFlag) {
+	var addFlag = addFlag;
+	alert(addFlag);
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화
-		$("#baseBtnDiv").css("display", "block");
-		$("#addBtnDiv").css("display", "none");
-		$("#NewAddBtnDiv").css("display", "none");
-		$("#mdfBtnDiv").css("display", "none");
-		//css, readonly, disabled true 상태로 변경
-		$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
-			readonly:true,
-			style:'background-color:#EAEAEA'
-		});
-		$("#opptDetail select").attr({
-			disabled:true,
-		});
+		if(addFlag == 0){
+			$("#baseBtnDiv").css("display", "none");
+			$("#addBtnDiv").css("display", "none");
+			$("#NewAddBtnDiv").css("display", "block");
+			$("#mdfBtnDiv").css("display", "none");
+			$("#submitbtn").css("display", "block");
+//			$("#NewAddBtnDiv cancelbtn").css("display", "block");
+			//css, readonly, disabled true 상태로 변경
+			$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
+				readonly:true,
+				style:'background-color:#EAEAEA'
+			});
+			$("#opptDetail select").attr({
+				disabled:true,
+			});
+			
+			$("#customer").attr("disabled",true);
+			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
+			// 상세정보에 이전 값 넣기
+			$("#cust_id").val($("#hcust_id").val());
+			$("#lead_id").val($("#hlead_id").val());
+			$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
+			$("#cust_nm").val($("#hcust_nm").val());
+			$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
+			$("#expt_fin_d").val($("#hexpt_fin_d").val());
+			$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected").css("height", "24pt");
+			$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected").css("height", "24pt");
+			$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected").css("height", "24pt");
+			$("#memo").val($("#hmemo").val());
+		}else if(addFlag == 1){
+			$("#baseBtnDiv").css("display", "block");
+			$("#addBtnDiv").css("display", "none");
+			$("#NewAddBtnDiv").css("display", "none");
+			$("#mdfBtnDiv").css("display", "none");
+			//css, readonly, disabled true 상태로 변경
+			$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
+				readonly:true,
+				style:'background-color:#EAEAEA'
+			});
+			$("#opptDetail select").attr({
+				disabled:true,
+			});
+			
+			$("#customer").attr("disabled",true);
+			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
+			// 상세정보에 이전 값 넣기
+			$("#cust_id").val($("#hcust_id").val());
+			$("#lead_id").val($("#hlead_id").val());
+			$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
+			$("#cust_nm").val($("#hcust_nm").val());
+			$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
+			$("#expt_fin_d").val($("#hexpt_fin_d").val());
+			$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected").css("height", "24pt");
+			$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected").css("height", "24pt");
+			$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected").css("height", "24pt");
+			$("#memo").val($("#hmemo").val());	
+		}
 		
-		$("#customer").attr("disabled",true);
-		$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
-		// 상세정보에 이전 값 넣기
-		$("#cust_id").val($("#hcust_id").val());
-		$("#lead_id").val($("#hlead_id").val());
-		$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
-		$("#cust_nm").val($("#hcust_nm").val());
-		$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
-		$("#expt_fin_d").val($("#hexpt_fin_d").val());
-		$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected").css("height", "24pt");
-		$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected").css("height", "24pt");
-		$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected").css("height", "24pt");
-		$("#memo").val($("#hmemo").val());
 	}
 }
 //영업기회 추가 함수
@@ -269,9 +303,9 @@ function opptModify(){
 			location.href= ctx + "/oppt";
 			
 			// 버튼 활성화
-			$("#baseBtnDiv").css("display", "block");
+			$("#baseBtnDiv").css("display", "none");
 			$("#addBtnDiv").css("display", "none");
-			$("#NewAddBtnDiv").css("display", "none");
+			$("#NewAddBtnDiv").css("display", "block");
 			$("#mdfBtnDiv").css("display", "none");
 			
 			opportunityList(result.pageNum);
