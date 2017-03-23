@@ -84,6 +84,10 @@
 		 <put-attribute name="body" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp"/>
 	</definition>
 	
+	<definition name="/est/*" extends="twobodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/est/{1}.jsp"/>
+	</definition>
+	
 	<!--위·아래 바디 + 어사이드 구조 -->
 	<definition name="twobodyLayout" template="/WEB-INF/views/layout/twobody_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
@@ -183,11 +187,6 @@
 	<definition name="opptDetail" extends="twobodyLayout">
 	 <put-attribute name="master" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp" />
 	 <put-attribute name="detail" value="/WEB-INF/views/sales/oppt/opptDetail.jsp" />
-	</definition>
-	
-	<definition name="estimate" extends="twobodyLayout">
-	 <put-attribute name="master" value="/WEB-INF/views/sales/est/estList.jsp"/>
-	 <put-attribute name="detail" value="/WEB-INF/views/sales/est/estDetail.jsp" />
 	</definition>
 		
 </tiles-definitions>
