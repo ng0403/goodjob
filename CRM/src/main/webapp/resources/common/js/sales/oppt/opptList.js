@@ -12,12 +12,14 @@
  * opportunityList(page)			:	영업기회 리스트 조회
  * estimList(opptId)				:	견적 리스트 조회
  * dateFormat(timestamp)			:	날짜 포맷 변환 함수
- * searchCustcompListPopup(ctx)		:	영업기회 고객 검색 팝업 open. 
+ * searchCustcompListPopup(ctx)		:	영업기회 고객 검색 팝업 open.
+ * inputCustNm(custNm,leadId,custId,custType)	: 고객 팝업 선택시 값 채워주는 부분. 
  */
 
 $(function(){
 //	tabClick(); // tab 클릭시 checked 설정 및 tab에 맞는 함수 실행
 	opptAllCheck(); //영업기회 all check 함수
+	searchCustcompListPopup();
 });
 
 function tabClick(){
@@ -391,12 +393,23 @@ function estimList(opptId){
 }
 //영업기회 검색창 고객 리스트 팝업
 function searchCustcompListPopup(ctx){
+	var ctx = $("#ctx").val();
 	$('#searchCustomer').click(function(){
-		alert("고객 검색 버튼 클릭");
 		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 }
 
+//고객 이름 입력 함수
+function inputCustNm(custNm,leadId,custId,custType){	
+	if(custType == 'search'){
+		$('#scust_nm').val(custNm);
+		$('#scust_id').val(custId);
+	}else if(custType == 'normal'){
+		$('#cust_nm').val(custNm);
+		$('#cust_id').val(custId);
+		$('#lead_id').val(leadId);
+	}
+}
 //영업활동 날짜 포맷 변환에 사용되는 함수
 //function dateFormat(timestamp) {
 //	var date = new Date(timestamp);

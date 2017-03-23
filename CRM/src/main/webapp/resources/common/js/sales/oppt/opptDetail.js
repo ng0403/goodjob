@@ -35,12 +35,13 @@ $(function(){
 	startCalendar(ctx);
 });
 
-//영업기회 검색창 고객 리스트 팝업
-function searchCustcompListPopup(ctx){
-	$('#searchCustomer').click(function(){
-		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
-	});  
-}
+////영업기회 검색창 고객 리스트 팝업
+//function searchCustcompListPopup(ctx){
+//	alert("고객검색 클릭");
+//	$('#searchCustomer').click(function(){
+//		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+//	});  
+//}
 //영업기회 상세정보 고객 리스트 팝업
 function custcompListPopup(ctx){
 	$('#customer').click(function(){

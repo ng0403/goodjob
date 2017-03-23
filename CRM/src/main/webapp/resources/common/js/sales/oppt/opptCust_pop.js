@@ -17,7 +17,7 @@ function custNmSelect(ctx){
 		var custNm=$(this).find('#cust_nm').text();
 		var custId=$(this).find('#cust_id').text();
 		var leadId=$(this).find('#lead_id').val();
-
+		
 		window.opener.inputCustNm(custNm,leadId,custId,custType);
 		self.close();
 		
