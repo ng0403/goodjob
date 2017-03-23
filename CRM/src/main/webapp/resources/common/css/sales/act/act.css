@@ -1,10 +1,4 @@
 @CHARSET "UTF-8";
-/*기본값*/
-html{
-	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
-	border-collapse: collapse;
-	font-size:13px;
-}
 
 #act_tab_tbody input{
 	background-color: #EAEAEA;
@@ -38,18 +32,6 @@ select{
 	text-decoration: none;
 }
 
-/*영업활동 리스트*/
-/*영업활동 타이틀*/
-#title .caption{
-  	/* margin-left: 0px; */
-  	color:#484848;
-  	font-weight:bold;
-  	border-bottom: 1px solid #dddddd;
-  	padding-bottom: 10px;
-  	text-align: left;
-  	padding-bottom: 10px;
-  }
-  
  /*영업활동 검색부분*/
 .search_div{
      margin-top: 7px;

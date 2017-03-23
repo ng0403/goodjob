@@ -30,7 +30,7 @@
 	<nav id="topMenu" > 		
 		<ul id="test">
 			<c:forEach var="menu" items="${menuList}" varStatus="nms">
-				<li class="navi">
+				<li class="menuNavi">
 					<c:if test="${empty menu.menuVO}">
 						<a href="${ctx}/${menu.menu_url}" class="navibtn"> 
 <%-- 							<img id="icon" alt="home" src="${ctx}/resources/image/icon/home.png">  --%>

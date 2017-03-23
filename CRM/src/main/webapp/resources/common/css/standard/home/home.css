@@ -1,8 +1,5 @@
 @CHARSET "UTF-8";
-html{
-	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
-	font-size: 13px;
-}
+
 #title .caption{
   	color:#484848;
   	font-weight:bold;
@@ -15,26 +12,28 @@ html{
 
 #left_home{
 	width:47%;
-	heiht:30%;
+	height: 25%;
 	border-radius: 5px 5px 5px 5px;
 	border:1px solid #bebebe;
 	float: left;
 	padding-bottom: 15px;
 	padding-left: 10px;
 	padding-right: 10px;
-	margin-bottom: 40px;
+	margin-bottom: 12px;
+	overflow: auto;
 } 
 
 #right_home{
 	width:47%;
-	heiht:30%;
+	height: 25%;
 	border-radius: 5px 5px 5px 5px;
 	border:1px solid #bebebe;
 	float: right;
 	padding-bottom: 15px;
 	padding-left: 10px;
 	padding-right: 10px;
-	margin-bottom: 40px;
+	margin-bottom: 12px;
+	overflow: auto;
 }
 
 #contract_title{
