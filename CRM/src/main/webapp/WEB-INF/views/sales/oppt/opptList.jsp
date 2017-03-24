@@ -9,8 +9,8 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="${ctx}/resources/common/css/sales/oppt/opptList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <title>개인 고객</title>
 </head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
