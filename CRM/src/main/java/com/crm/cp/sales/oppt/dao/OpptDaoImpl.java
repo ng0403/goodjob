@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
+import com.crm.cp.sales.oppt.vo.OpptChartVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.sales.oppt.vo.pipeLineVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -296,5 +297,11 @@ public class OpptDaoImpl implements OpptDao {
 	public pipeLineVO pipeLineSum(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("oppt.pipeLineSum",map);
+	}
+	@Override
+	public List<OpptChartVO> C_oppt_status() {
+		List<OpptChartVO> result = sqlsession.selectList("chart.C_oppt_status");
+		System.out.println("영업기회상태 차트 정보 DAO : " + result);
+		return result;
 	}
 }

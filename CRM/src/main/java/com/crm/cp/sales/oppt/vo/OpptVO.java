@@ -31,6 +31,37 @@ public class OpptVO {
 	private String cd_nm; // 코드명
 	private String estim_qty;
 	private String sales_price;
+	
+	//차트 영업기회상태
+	private String ing;
+	private String cplt;
+	private String fail;
+	
+	
+
+	public String getIng() {
+		return ing;
+	}
+
+	public void setIng(String ing) {
+		this.ing = ing;
+	}
+
+	public String getCplt() {
+		return cplt;
+	}
+
+	public void setCplt(String cplt) {
+		this.cplt = cplt;
+	}
+
+	public String getFail() {
+		return fail;
+	}
+
+	public void setFail(String fail) {
+		this.fail = fail;
+	}
 
 	public String getSales_price() {
 		return sales_price;
@@ -232,20 +263,7 @@ public class OpptVO {
 		this.estim_id = estim_id;
 	}
 
-	@Override
-	public String toString() {
-		return "OpptVO [sales_oppt_id=" + sales_oppt_id + ", sales_oppt_nm="
-				+ sales_oppt_nm + ", lead_id=" + lead_id + ", cust_id="
-				+ cust_id + ", sales_lev_cd=" + sales_lev_cd
-				+ ", sales_lev_cd_nm=" + sales_lev_cd_nm + ", expt_sales_amt="
-				+ expt_sales_amt + ", expt_fin_d=" + expt_fin_d
-				+ ", psblty_rate=" + psblty_rate + ", sales_oppt_stat_cd="
-				+ sales_oppt_stat_cd + ", sales_oppt_stat_cd_nm="
-				+ sales_oppt_stat_cd_nm + ", cust_nm=" + cust_nm + ", memo="
-				+ memo + ", fst_reg_id_nm=" + fst_reg_id_nm + ", fst_reg_dt="
-				+ fst_reg_dt + ", fin_mdfy_id_nm=" + fin_mdfy_id_nm
-				+ ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn=" + act_yn + "]";
-	}
+
 
 	public int getIdx() {
 		return idx;
@@ -261,6 +279,24 @@ public class OpptVO {
 
 	public void setOrg_nm(String org_nm) {
 		this.org_nm = org_nm;
+	}
+
+	@Override
+	public String toString() {
+		return "OpptVO [sales_oppt_id=" + sales_oppt_id + ", sales_oppt_nm=" + sales_oppt_nm + ", lead_id=" + lead_id
+				+ ", cust_id=" + cust_id + ", sales_lev_cd=" + sales_lev_cd + ", sales_lev_cd_nm=" + sales_lev_cd_nm
+				+ ", expt_sales_amt=" + expt_sales_amt + ", expt_fin_d=" + expt_fin_d + ", psblty_rate=" + psblty_rate
+				+ ", sales_oppt_stat_cd=" + sales_oppt_stat_cd + ", sales_oppt_stat_cd_nm=" + sales_oppt_stat_cd_nm
+				+ ", cust_nm=" + cust_nm + ", memo=" + memo + ", fst_reg_id_nm=" + fst_reg_id_nm + ", fst_reg_dt="
+				+ fst_reg_dt + ", fin_mdfy_id_nm=" + fin_mdfy_id_nm + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
+				+ act_yn + ", estim_id=" + estim_id + ", estim_nm=" + estim_nm + ", org_nm=" + org_nm + ", idx=" + idx
+				+ ", cd_grp_id=" + cd_grp_id + ", code=" + code + ", cd_nm=" + cd_nm + ", estim_qty=" + estim_qty
+				+ ", sales_price=" + sales_price + ", ing=" + ing + ", cplt=" + cplt + ", fail=" + fail + "]";
+	}
+	
+	
+	public String toStringOpptStatus(){
+		return "OpptVO-Sales_oppt_status [ing=" + ing + ", cplt=" + cplt + ", fail=" + fail + "]";
 	}
 
 }

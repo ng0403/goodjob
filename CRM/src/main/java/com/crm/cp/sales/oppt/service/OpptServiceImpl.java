@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.dao.OpptDao;
+import com.crm.cp.sales.oppt.vo.OpptChartVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.sales.oppt.vo.pipeLineVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -229,6 +230,12 @@ public class OpptServiceImpl implements OpptService {
 	public pipeLineVO pipeLineSum(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return dao.pipeLineSum(map);
+	}
+	@Override
+	public List<OpptChartVO> C_oppt_status() {
+		List<OpptChartVO> result = dao.C_oppt_status();
+		System.out.println("영업기회상태 차트정보 Service :  " +result);
+		return result;
 	}
 
 }

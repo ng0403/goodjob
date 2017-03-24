@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
+import com.crm.cp.sales.oppt.vo.OpptChartVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.sales.oppt.vo.pipeLineVO;
 import com.crm.cp.standard.menu.service.MenuService;
@@ -52,6 +55,9 @@ public class OpptController {
 		
 		// 메뉴리스트 가져오기
 		List<MenuVO> menuList = menuService.selectAll(session);
+		// 영업기회 상태 정보 가져오기(차트)
+//		List<OpptChartVO> C_oppt_status = service.C_oppt_status();
+//		System.out.println("C_oppt_status : " + C_oppt_status);
 		
 		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 		map.put("scust_nm", map.get("scust_nm"));
@@ -66,11 +72,24 @@ public class OpptController {
 		mov.addObject("oplist", list);
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
+//		mov.addObject("C_oppt_status", C_oppt_status);
 		mov.addObject("page", page);
 		mov.addObject("menuList", menuList);
 		mov.addObject("searchInfo", map);
 		return mov;
 	}
+	
+	// 영업기회상태 차트 리스트
+	@RequestMapping(value="/opptChartStatus", method={RequestMethod.GET,RequestMethod.POST})
+	   public @ResponseBody Map<String, Object> opptChartStatus( ModelMap model, HttpServletRequest request) {
+	      
+	      List<OpptChartVO> C_oppt_status = service.C_oppt_status();
+			System.out.println("C_oppt_status 차트 : " + C_oppt_status);
+		
+			model.addAttribute("C_oppt_status", C_oppt_status);
+	
+	      return model;
+	   }
 	
 	// 영업기회 상세정보페이지
 	@RequestMapping(value = "/opptDetail", method = RequestMethod.GET)
@@ -170,11 +189,14 @@ public class OpptController {
 		map.put("endRow", page.getEndRow() + "");
 
 		List<OpptVO> list = service.opptList(map);
+//		List<OpptChartVO> C_oppt_status = service.C_oppt_status();
+//		System.out.println("C_oppt_status Ajax: " + C_oppt_status);
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("oplist", list);
 		result.put("osclist", osclist);
 		result.put("otllist", otllist);
+//		result.put("C_oppt_status", C_oppt_status);
 		result.put("page", page);
 		result.put("searchInfo", map);
 
