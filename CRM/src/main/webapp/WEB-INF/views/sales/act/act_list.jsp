@@ -24,7 +24,7 @@
 	<div id="title">
 		<div class="caption">■ 영업활동</div>
 	</div>
-
+    
 	<div id="dboardbody">
 		<div class="search_div">
 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);">
