@@ -1,3 +1,5 @@
+@CHARSET "UTF-8";
+
 html,body{
 	height: 100%;
 	width: 100%;
@@ -20,17 +22,14 @@ html,body{
 .header {
 	width:100%; 
 	height: 40%;  
-	/* solid black; */
 	float:left; 
 	background-color: #fffbcc;
 }
 .menuNavi{
 	width:10%;   
  	height: 60%;  
-	/* solid black; */ 
 	float:left;
 }
-
 
 .bodyFrame {
 	width:85%; 
@@ -46,20 +45,24 @@ html,body{
 	margin: 0 auto;
 }
 .body1{
+/* 	border: 2px solid blue; */
 	width: 85%;
 	height: 100%; 
 	padding-left: 20px;  
 	padding-right: 20px;  
 	margin: 0 auto;
+	overflow: auto;
 }
 .master {
+/* 	border: 2px solid black; */
 	width:100%;
-/* 	height: 45%; */
+	height: 50%;
 }
 .detail {
+/* 	border: 1px solid yellow; */
 	width:100%; 
-/* 	height: 45%;  */
-	margin-top: 5px;
+	height: 50%; 
+	margin-top: 15px;
 }
 .footer {
 	width:100%; 

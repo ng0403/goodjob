@@ -10,7 +10,7 @@ html{
 
 #css_tabs {
     font-family:'nanumgothic', '나눔고딕', 'malgun gothic', '맑은 고딕', 'dotum', '돋움', sans-serif;
-    margin-top:25px;
+    clear: both;
 }
 
 /* 탭 선택 시 표시할 요소(div) 정의(1번 탭 선택 시 첫 번째 div 요소 표시) */

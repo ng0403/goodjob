@@ -9,7 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
@@ -24,7 +26,7 @@
 	</div>
 
 	<div id="dboardbody">
-		<div>
+		<div class="search_div">
 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);">
 				<option value="0" style="text-align: center;">전체</option>
 					<c:forEach var="actStatCd" items="${actStatCd}">

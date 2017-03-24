@@ -29,7 +29,8 @@
 				</div>
 					
 				<div class="detail" >
-					<tiles:insertAttribute name="detail"></tiles:insertAttribute></div>
+					<tiles:insertAttribute name="detail"></tiles:insertAttribute>
+				</div>
 			</div>
 		</div>
 		
