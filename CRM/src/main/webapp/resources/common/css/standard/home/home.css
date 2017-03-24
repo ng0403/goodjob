@@ -1,13 +1,8 @@
 @CHARSET "UTF-8";
 
 #title .caption{
-  	color:#484848;
-  	font-weight:bold;
-  	border-bottom: 1px solid #dddddd;
   	margin-bottom: 20px;
-  	padding-bottom: 10px;
-  	text-align: left;
-  	padding-bottom: 10px;
+
 }
 
 #left_home{

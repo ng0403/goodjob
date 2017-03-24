@@ -12,16 +12,14 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <title>기업 고객</title>
-<style type="text/css">
 
-
-</style>
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
-	
 	<div id="title">
-		<div class="caption">■ 고객 > <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기업고객</a></div>
+		<div class="caption">■ 고객 > 
+			<a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기업고객</a>
+		</div>
 	</div>
 	
 	<div class="search_div">
