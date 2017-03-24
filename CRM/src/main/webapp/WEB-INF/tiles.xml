@@ -88,7 +88,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/sales/est/estList.jsp"/>
 	</definition>
 	
-	<definition name="estadd" extends="onebodyLayout">
+	<definition name="estAdd" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/est/estWrite.jsp"/>
 	</definition>
 	
