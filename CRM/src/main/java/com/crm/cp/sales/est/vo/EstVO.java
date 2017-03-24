@@ -34,7 +34,7 @@ public class EstVO {
 	
 	private String code;
 	private String cd_nm;
-	private int estim_seq;
+	private String estim_seq;
 	
 	private String cust_nm;
 	private String sales_lev_cd_nm;
@@ -51,7 +51,7 @@ public class EstVO {
 			String estim_qty, String sales_price_1, String sales_price_2,
 			String sales_price, String discount, String sup_price,
 			String el_act_yn, String cd_grp_id, String sales_oppt_id,
-			String sales_oppt_nm, String code, String cd_nm, int estim_seq,
+			String sales_oppt_nm, String code, String cd_nm, String estim_seq,
 			String cust_nm, String sales_lev_cd_nm, String total_estim_qty,
 			String total_sales_price, String total_discount,
 			String total_sup_price) {
@@ -242,10 +242,10 @@ public class EstVO {
 	public void setCd_nm(String cd_nm) {
 		this.cd_nm = cd_nm;
 	}
-	public int getEstim_seq() {
+	public String getEstim_seq() {
 		return estim_seq;
 	}
-	public void setEstim_seq(int estim_seq) {
+	public void setEstim_seq(String estim_seq) {
 		this.estim_seq = estim_seq;
 	}
 	public String getCust_nm() {

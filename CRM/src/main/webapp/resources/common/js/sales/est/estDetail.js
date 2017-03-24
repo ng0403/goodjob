@@ -35,6 +35,7 @@ $(function(){
 	prodallCheck();
 	prodDelete();
 	prodChacgeRealTime();
+	startCalendar(ctx);
 });
 
 var buttonStatus;				//편집인지 추가인지 버튼의 상태 저장
@@ -70,32 +71,22 @@ function inputOpptNm(opptNm,opptId){
 	$('#sales_oppt_nm').val(opptNm);
 	$('#sales_oppt_id').val(opptId);
 }
-//견적 추가 버튼 클릭 시
-function estAddBtn(){
-	$('#inputCust').val('false');
-	buttonStatus = "add";
-	clearDetail();
-	activeDetail();
-	$("#estim_nm").focus();
-	$("#baseBtnDiv").css("display", "none");
-	$("#addBtnDiv").css("display", "block");
-	$("#mdfBtnDiv").css("display", "none");
-}
+
 //견적 편집 버튼 클릭 시
 function estMdfyBtn(){
 	buttonStatus = "modify";
 	activeDetail();
 	$("#estim_nm").focus();
 	$("#baseBtnDiv").css("display", "none");
-	$("#addBtnDiv").css("display", "none");
+	//$("#addBtnDiv").css("display", "none");
 	$("#mdfBtnDiv").css("display", "block");
 }
 //저장 버튼을 누른경우 이전에 누른 버튼 상태에 맞는 함수 실행
-function save_Click(ctx){
-	if(buttonStatus == "add"){
-		estAdd(ctx);	
-	}else if(buttonStatus == "modify"){
-		estUpdate(ctx);
+function save_Click(){	
+	if(buttonStatus == "modify"){
+		estUpdate();
+	}else{
+		estAdd();
 	}
 }
 //취소버튼 클릭시 입력창 비활성화 및 상세정보 값 clear
@@ -117,8 +108,7 @@ function cancel_Click(){
 		clearDetail();
 		readDetail();
 	}else{
-		$("#mdfBtn").attr("disabled", false);
-		estDetail(estim_id);		
+		$("#mdfBtn").attr("disabled", false);		
 	}
 }
 //상품 목록 리스트 팝업
@@ -420,9 +410,72 @@ function estAdd(ctx){
 		alert("상품을 추가해 주세요");
 		return false;
 	}
+	$("#estAdd").attr({
+		"action":"estAdd",
+		"method":"post"
+	})
+//	console.log(estim_valid_d);
+//	console.log(cust_id);
+//	console.log(estim_nm);
+//	console.log(memo);
+//	console.log(est_list);
+//	console.log(sales_oppt_id);
+//	console.log(estim_lev_cd);
+//	$("input [name='estim_valid_d']").val(estim_valid_d);
+//	$("input [name='cust_id']").val(cust_id);
+//	$("input [name='estim_nm']").val(estim_nm);
+//	$("input [name='memo']").val(memo);
+//	$("input [name='est_list']").val(est_list);
+//	$("input [name='sales_oppt_id']").val(sales_oppt_id);
+//	$("input [name='estim_lev_cd']").val(estim_lev_cd);
+//	console.log($("input [name='estim_valid_d']").val());
+//	console.log($("input [name='cust_id']").val());
+//	console.log($("input [name='estim_nm']").val());
+//	console.log($("input [name='memo']").val());
+//	console.log($("input [name='est_list']").val());
+//	console.log($("input [name='sales_oppt_id']").val());
+//	console.log($("input [name='estim_lev_cd']").val());
+//	var $estim_lev_cd = $("<input>");
+//	$estim_lev_cd.attr({
+//		"type":"hidden",
+//		"name":"estim_lev_cd",
+//		"value":estim_lev_cd
+//	})
+//	var $cust_id = $("<input>");
+//	$estim_valid_d.attr({
+//		"type":"hidden",
+//		"name":"cust_id",
+//		"value":cust_id
+//	})
+//	var $estim_nm = $("<input>");
+//	$estim_valid_d.attr({
+//		"type":"hidden",
+//		"name":"estim_nm",
+//		"value":estim_nm
+//	})
+//	var $sales_oppt_id = $("<input>");
+//	$sales_oppt_id.attr({
+//		"type":"hidden",
+//		"name":"sales_oppt_id",
+//		"value":sales_oppt_id
+//	})
+//	var $memo = $("<input>");
+//	$sales_oppt_id.attr({
+//		"type":"hidden",
+//		"name":"memo",
+//		"value":memo
+//	})
+//	var $est_list = $("<input>");
+//	$sales_oppt_id.attr({
+//		"type":"hidden",
+//		"name":"est_list",
+//		"value":est_list
+//	})
+//	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
+	//$("#estAdd").submit();
 	$.ajax({
 		type : 'post',
-		url : ctx+'/estAdd',
+		url : 'estAdd',
 		dataType : 'json',
 		data : {
 			estim_valid_d : estim_valid_d,
@@ -435,7 +488,7 @@ function estAdd(ctx){
 		},
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
-			list(1);
+			//list(1);
 		},
 		error:function(request){
 			alert("error : " + request.status)
@@ -634,4 +687,32 @@ function clearDetail(){
 	$("#discountSum").text("0");
 	$("#supplyPriceSum").text("0");
 	$('#estimatetbody').children().remove();
+}
+//달력띄우기
+function startCalendar(ctx){
+	 $("#sestim_valid_d").datepicker({
+	        changeMonth: true, //콤보 박스에 월 보이기
+	        changeYear: true, // 콤보 박스에 년도 보이기
+	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	        buttonImageOnly: true //달력에 icon 사용하기
+	    }); 
+	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	   //날짜 형식을 0000-00-00으로 지정하기
+	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
+	    
+	    $("#estim_valid_d_detail").datepicker({
+	        changeMonth: true, //콤보 박스에 월 보이기
+	        changeYear: true, // 콤보 박스에 년도 보이기
+	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	        buttonImageOnly: true //달력에 icon 사용하기
+	    }); 
+	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	   //날짜 형식을 0000-00-00으로 지정하기
+	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
 }

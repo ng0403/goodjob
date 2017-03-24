@@ -29,7 +29,7 @@ import com.crm.cp.utils.Encoder;
 import com.crm.cp.utils.PageUtil;
 import com.crm.cp.utils.PagerVO;
 
-@RequestMapping("/est")
+//@RequestMapping("/est")
 @Controller
 public class EstController {
 
@@ -40,7 +40,7 @@ public class EstController {
 	MenuService menuService;
 	
 	//전체 리스트가져오기
-	@RequestMapping(value = "/estList", method = RequestMethod.GET)
+	@RequestMapping(value = "/estInqr", method = RequestMethod.GET)
 	public ModelAndView EstimeteList(HttpSession session,
 		@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
 		@RequestParam Map<String, String> map,
@@ -90,7 +90,7 @@ public class EstController {
 			eduCode.add(est.getCd_nm());
 		}
 		
-		ModelAndView mov = new ModelAndView("est/estList"/*<-타일즈에list&detail=>공통명칭*/);
+		ModelAndView mov = new ModelAndView("estList"/*<-타일즈에list&detail=>공통명칭*/);
 		
 		mov.addObject("list", list);
 		
@@ -204,9 +204,17 @@ public class EstController {
 	@RequestMapping(value="/estDetail", method=RequestMethod.GET)
 	public ModelAndView detail(HttpSession session, @ModelAttribute EstVO evo){
 		String estim_id = evo.getEstim_id();
-		
+		System.out.println(estim_id);
 		List<EstVO> prod = estInter.estDetail(estim_id);
+		List<EstVO> elclist = estInter.elcList();
+		
+		//List<MenuVO> menuList = menuService.selectAll(session);
 		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
 	
 		EstVO detail = prod.get(prod.size()-1);
 		prod.remove(prod.size()-1);
@@ -216,7 +224,8 @@ public class EstController {
 		mov.addObject("detail", detail);
 		mov.addObject("prodList", prod);
 		mov.addObject("eduList", eduList);
-		
+		mov.addObject("elclist", elclist);
+		mov.addObject("eduCode", eduCode);
 		return mov;
 	}
 //		@ResponseBody
@@ -290,34 +299,54 @@ public class EstController {
 			
 	}
 
-		@RequestMapping(value="/estAdd", method=RequestMethod.POST)
-		@ResponseBody
-		public int opptEstimAdd(HttpSession session,
-				@RequestParam(value="est_list[]",required=false) List<String> est_list,
-				EstVO est){
-				String id = session.getAttribute("user").toString();
-				est.setFin_mdfy_id_nm(id);
-				est.setFst_reg_id_nm(id);
-				System.out.println("est : "+est.toString());
-				System.out.println("size : " + est_list.size());
-				List<EstVO> estList = new ArrayList<EstVO>(0);
-				estList.add(est);
-				System.out.println("est_list : " + est_list.get(0));
-				for(int i=0 ; i< est_list.size(); i++){
-				EstVO vo = new EstVO();
-				vo.setProd_id(est_list.get(i));
-				vo.setProd_nm(est_list.get(++i));
-				vo.setEstim_qty(est_list.get(++i));
-				vo.setSales_price(est_list.get(++i));
-				vo.setDiscount(est_list.get(++i));
-				vo.setSup_price(est_list.get(++i));
-				vo.setDiscount_unit_cd(est_list.get(++i));
-				estList.add(vo);
-			}
-					
-			int result = estInter.estAdd(estList);
-			return result;
+	@RequestMapping(value="/estAddForm", method=RequestMethod.GET)
+	public ModelAndView opptEstimWrite(HttpSession session){
+		String id = session.getAttribute("user").toString();
+		ModelAndView mov = new ModelAndView();
+		List<EstVO> elclist = estInter.elcList();
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
 		}
+		mov.setViewName("estAdd");
+		mov.addObject("elclist", elclist);
+		mov.addObject("eduCode", eduCode);
+		return mov;
+	}
+	
+	@RequestMapping(value="/estAdd", method=RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView opptEstimAdd(HttpSession session,
+			@RequestParam(value="est_list[]",required=false) List<String> est_list,
+			EstVO est){
+		String id = session.getAttribute("user").toString();
+		est.setFin_mdfy_id_nm(id);
+		est.setFst_reg_id_nm(id);
+		System.out.println("est : "+est.toString());
+		System.out.println("size : " + est_list.size());
+		List<EstVO> estList = new ArrayList<EstVO>(0);
+		estList.add(est);
+		System.out.println("est_list : " + est_list.get(0));
+		for(int i=0 ; i< est_list.size(); i++){
+			EstVO vo = new EstVO();
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			estList.add(vo);
+		}
+		ModelAndView mov = new ModelAndView();
+		int result = estInter.estAdd(estList);
+		if(result > 1){
+			mov.setViewName("redirect:/estInqr");
+		}
+		return mov;
+	}
 		//상세정보에서의 영업기회 리스트 
 		@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
 		public ModelAndView estActOpptList(HttpSession session,

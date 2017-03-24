@@ -17,7 +17,10 @@ $(function(){
 	estimDeleteBtn(ctx);
 	startCalendar(ctx);	
 });
-
+//견적 추가 버튼 클릭 시
+function estAddBtn(){
+	location.href="/estAddForm"
+}
 //견적 전체 선택
 function estimAllselect(){
 	$("#estimAllSelect").click( function(){
@@ -262,37 +265,9 @@ function estimDeleteBtn(ctx){
 function estDetail(estim_id){
 	$("#estim_id").val(estim_id);
 	$("#estim_detail").attr({
-		"action":"/est/estDetail",
+		"action":"estDetail",
 		"method":"get"
 	})
 	$("#estim_detail").submit();
 }
 
-//달력띄우기
-function startCalendar(ctx){
-	 $("#sestim_valid_d").datepicker({
-	        changeMonth: true, //콤보 박스에 월 보이기
-	        changeYear: true, // 콤보 박스에 년도 보이기
-	        showOn: 'button', // 우측에 달력 icon 을 보인다.
-	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	        buttonImageOnly: true //달력에 icon 사용하기
-	    }); 
-	     //마우스를 손가락 손가락 모양으로 하고 여백주기
-	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-	   //날짜 형식을 0000-00-00으로 지정하기
-	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
-	    
-	    $("#estim_valid_d_detail").datepicker({
-	        changeMonth: true, //콤보 박스에 월 보이기
-	        changeYear: true, // 콤보 박스에 년도 보이기
-	        showOn: 'button', // 우측에 달력 icon 을 보인다.
-	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	        buttonImageOnly: true //달력에 icon 사용하기
-	    }); 
-	     //마우스를 손가락 손가락 모양으로 하고 여백주기
-	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-	   //날짜 형식을 0000-00-00으로 지정하기
-	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
-}
