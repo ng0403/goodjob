@@ -64,7 +64,7 @@ public class contrServiceImpl implements contrService {
 	public PagerVO contPageCount(Map<String, Object> map) {
 		int totalRowCount = dao.contPageCount(map);
 	    int pageNum = Integer.parseInt(map.get("pageNum").toString());
-	    PagerVO page = new PagerVO(pageNum, totalRowCount, 5, 5);
+	    PagerVO page = new PagerVO(pageNum, totalRowCount, 10, 10);
 	    return page;
 	}
 

@@ -53,9 +53,13 @@
 		<input type="text" name="sch_contr_d" id="contr_d_list" class="tel_date_search" readonly="readonly">
 		<input type="button" id="cont_search" class="cont_btn" value="조회" onclick="schContPaging(1);" />
 	</div>
+	<div id="btn" class="cont_list_bt_div"> 
+			<input type="button" id="contrAddBtn" value="추가"  onclick="contAddp();" class="cont_btn" style="margin-top:-10px"/>
+	 		<input type="button" id="del"  value="삭제" onclick="contListDel('${ctx}');" class="cont_btn" style="margin-top:-10px"/> 
+	 	</div> 
 
-	<div id="tableline">
-		<table id="goaltable">
+	<div id="tableline" >
+		<table id="goaltable" >
 			<thead>
 				<tr id="tabletoptr">
 					<th style="width: 2%"><input type="checkbox" id="contListCheck"></th>
@@ -69,7 +73,8 @@
 				</tr>
 			</thead>
 			<tbody id="contListTbody">
-				<c:forEach var="ccontrlist" items="${contrList}">
+				<c:forEach var="ccontrlist" items="${contrList}" begin="0" end="9">
+			 
 					<tr>
 						<th><input type="checkbox" id="chk_cont_id" value="${ccontrlist.contr_id}" onclick="contChkCancel();"></th>
 						<td style="text-align: left; padding-left: 8px"> <!--클릭시 comp_id를 넘겨준다  --> 
@@ -83,8 +88,8 @@
 						<td>${ccontrlist.fst_reg_dt}</td>
 					</tr>
 				</c:forEach>
-					<c:if test="${contrList.size() < 5}">
-						<c:forEach begin="0" end="${5-contrList.size()}">
+					<c:if test="${contrList.size() < 10}">
+						<c:forEach begin="0" end="${10-contrList.size()}">
 							<tr>
 								<th><input type="checkbox"></th>
 								<td></td>
@@ -100,8 +105,8 @@
 
 			</tbody>
 		</table>
-		<div id="pagingDiv">
-		   <input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+		<div id="pagingDiv" >
+		   <input type="hidden" id="endPageNum" value="${page.endPageNum}" style="text-align:center;"/>
 			   <c:choose>
 			   		<c:when test="${page.startPageNum == 1 && page.endPageNum == 1}">
 			   			<input type='hidden' id='endPageNum' value="${page.endPageNum}"/>
@@ -129,10 +134,7 @@
 				   </c:otherwise>
 			   </c:choose>
 		</div>
-	 	<div id="btn" class="cont_list_bt_div"> 
-			<input type="button" id="contrAddBtn" value="추가"  onclick="contAddp();" class="cont_btn"/>
-	 		<input type="button" id="del"  value="삭제" onclick="contListDel('${ctx}');" class="cont_btn"/> 
-	 	</div> 
+	 	
 	</div>
 </body>
 

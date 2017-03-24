@@ -214,8 +214,9 @@ function contPaging(pageNum) {
 			dataType : "json",
 			success : function(data) {
 				tbody.children().remove();
-				
-				for (var i = 0; i < data.contList.length; i++) {
+				var a = data.contList.length;
+ 				
+ 				for (var i = 0; i < data.contList.length; i++) {
 					var contr_amt = comma(data.contList[i].contr_amt);
 					tbodyContent = "<tr id='tabletoptr'>"
 						+"<th><input type='checkbox' id='chk_cont_id' value='"+data.contList[i].contr_id+"' onclick='chkCancel();'></th>"
@@ -231,8 +232,8 @@ function contPaging(pageNum) {
 					$("#ccListCheck").prop("checked", false);
 				}
 				
-				if(data.contList.length < 5){
-					for(var j = 0; j < 5-data.contList.length; j++){
+				if(data.contList.length < 10){
+					for(var j = 0; j < 10-data.contList.length; j++){
 						tbodyContent ="<tr style='height:23px;'>"
 							+"<th></th>"
 							+"<td></td><td></td><td></td><td></td>"
@@ -309,7 +310,7 @@ function schContPaging(pageNum) {
 						$("#sch_cont_num").val(data.sch_cont_num);
 						$("#sch_cont_amt").val(data.sch_cont_amt);
 						$("#sch_contr_d").val(data.sch_contr_d);
-						
+						 
 						for (var i = 0; i < data.contList.length; i++) {
 							var contr_amt = comma(data.contList[i].contr_amt);
 							tbodyContent = "<tr id='tabletoptr'>"
@@ -326,8 +327,8 @@ function schContPaging(pageNum) {
 							$("#ccListCheck").prop("checked", false);
 						}
 						
-						if(data.contList.length < 5){
-							for(var j = 0; j < 5-data.contList.length; j++){
+						if(data.contList.length < 10){
+							for(var j = 0; j < 10-data.contList.length; j++){
 								tbodyContent ="<tr style='height:23px;'>"
 									+"<th></th>"
 									+"<td></td><td></td><td></td><td></td>"

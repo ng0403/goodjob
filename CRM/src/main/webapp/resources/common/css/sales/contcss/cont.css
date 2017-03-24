@@ -61,7 +61,7 @@ select {
 
 /*계약 리스트 테이블*/
 #tableline {
-	padding-top: 10px;
+	padding-top: 40px;
 	width: 100%;
 }
 
@@ -105,7 +105,7 @@ select {
 /*영업활동 페이징 부분*/
 #pagingDiv {
 	color: #232323;
-	float: left;
+	text-align:center;
 	margin-top: 10px;
 	font-weight: bold;
 }

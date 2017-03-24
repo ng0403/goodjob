@@ -28,9 +28,8 @@ function contSave() {
 	 
 	} 
 function updateCont() {
-	
-	alert("modify");
-	
+ 
+	alert("수정 되었습니다.");
 	  var formObj = $("form[role='form']");
 
 		 formObj.attr("action", "/contUpdate");
@@ -56,8 +55,7 @@ function actOpptListPopup(ctx){
 
 
 function contMdfy(){
-	 alert("mi");
-	$("#contTable input[type=text]").css("background-color", "white");
+ 	$("#contTable input[type=text]").css("background-color", "white");
 	$("#contTable textarea").css("background-color", "white");
 	$('#contr_nm').attr('readonly', false);
 	$('#cust_nm').attr('readonly', false);
