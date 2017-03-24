@@ -27,16 +27,48 @@
     
 	<div id="dboardbody">
 		<div class="search_div">
-			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);">
-				<option value="0" style="text-align: center;">전체</option>
+            <label for="act_nm" class="act_label_search">영업활동명</label>
+             	<input type="text" class=act_txt_search name="ssales_actvy_nm" id="ssales_actvy_nm" autofocus="autofocus" onkeydown="actSearchEnter(event);">
+             
+            <label for="act_div" class="act_label_search">활동구분</label>
+                <select name="ssales_actvy_div_cd" id="ssales_actvy_div_cd" class="act_tab_select" onkeydown="actSearchEnter(event);" onclick="searchActDiv();">
+					<option value="0" style="text-align: center;">=활동구분=</option>
+					<c:forEach var="actDivCd" items="${actDivCd}">
+                    	<option value="${actDivCd.sales_actvy_div_cd}">${actDivCd.sales_actvy_div_nm}</option>
+                  	</c:forEach>
+                </select>
+             
+            <label for="act_oppt_nm" class="act_label_search">영업기회명</label>
+				<input type="text" class="act_txt_search" name="sact_oppt_nm" id="sact_oppt_nm" onkeydown="actSearchEnter(event);">
+             
+            <label for="start_day" class="act_label_search">시작일자</label>
+               	<input type="text" class="act_date_search" name="sstart_day" id="sstart_day" onkeydown="actSearchEnter(event);">
+             
+            <label for="status" class="act_stat_search">상태</label>
+                <select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);">
+					<option value="0" style="text-align: center;">==상태==</option>
 					<c:forEach var="actStatCd" items="${actStatCd}">
-						 <option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-				    </c:forEach>
-			</select>
-			<input type="text" id="seachActSaleInput" name="seachActSaleInput" placeholder="검색어를 입력해주세요">
-			<input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/>
+						<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+                  	</c:forEach>
+                </select>
+             <input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/>
+		</div>
+	
+<!-- 		<div class="search_div"> -->
+<!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);"> -->
+<!-- 				<option value="0" style="text-align: center;">전체</option> -->
+<%-- 					<c:forEach var="actStatCd" items="${actStatCd}"> --%>
+<%-- 						 <option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option> --%>
+<%-- 				    </c:forEach> --%>
+<!-- 			</select> -->
+<!-- 			<input type="text" id="seachActSaleInput" name="seachActSaleInput" placeholder="검색어를 입력해주세요"> -->
+<!-- 			<input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/> -->
 			
-			<input type="button" value="저장" onclick="actInsertForm();" class="act_bt" />
+			
+<!-- 	    </div> -->
+	    <div>
+	    	<input type="button" value="추가" onclick="actInsertForm();" class="act_bt" />
+	    	<button type="button" class="act_bt" id="actDelBtn" onclick="actDelete()">삭제</button>
 	    </div>
 
 		<form name="delForm" id="delForm" method="post" action="${ctx}/actDelete">
@@ -86,10 +118,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-
-			<div id="act_list_bt_div">
-				<button type="button" class="act_bt" id="actDelBtn" onclick="actDelete()">삭제</button>
 			</div>
 		</form>
 		<!-- 페이징 처리 -->

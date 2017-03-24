@@ -314,6 +314,9 @@ function pageInputAct(event) {
 	event.stopPropagation();
 }
 
+/**
+ * 페이징 수정.
+ * */
 //영업활동 페이징
 function actPaging(actPageNum) {
 	var ctx = $("#ctx").val();
@@ -377,8 +380,8 @@ function actPaging(actPageNum) {
 			   tbody.append(tbodyContent);
 			}
 			
-			if(data.actList.length < 3){
-				for(var j = 0; j < 3-data.actList.length; j++){
+			if(data.actList.length < 10){
+				for(var j = 0; j < 10-data.actList.length; j++){
 					tbodyContent ="<tr style='height:36px;'>"
 						+"<th></th>"
 						+"<td></td><td></td><td></td><td></td>"

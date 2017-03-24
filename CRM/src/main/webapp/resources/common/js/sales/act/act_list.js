@@ -1,7 +1,7 @@
 $(function(){
 	var ctx = $('#ctx').val();
 	sstartCalendar(ctx);
-	actDelete(ctx);
+	//actDelete(ctx);
 });
 
 //영업활동 리스트 검색부분 시작일자
@@ -58,7 +58,7 @@ function actInsertForm() {
 	
 	location.href = ctx + '/actDetail';
 }
-	
+
 function actDelete()
 {
 	var form = $('#delForm');
@@ -78,4 +78,10 @@ function actDelete()
 	
 		form.submit();
 	}	
-}	
+}
+
+//$(function(){
+//	$("actDelBtn").on("click", function(){
+//		alert("Delete");
+//	});
+//});
