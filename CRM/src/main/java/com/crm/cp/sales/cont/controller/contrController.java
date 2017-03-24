@@ -74,7 +74,7 @@ public class contrController {
 		
 		List<contrVO> contList = contrService.getcContrMap(map);
 		System.out.println("contList??" + contList);
-		map.put("contList", contList);
+		map.put("contList", contList);	
 		
 		return map;
 	}

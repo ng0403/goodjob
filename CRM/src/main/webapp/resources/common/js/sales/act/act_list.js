@@ -2,7 +2,6 @@ $(function(){
 	var ctx = $('#ctx').val();
 	sstartCalendar(ctx);
 	actDelete(ctx);
-	
 });
 
 //영업활동 리스트 검색부분 시작일자
@@ -42,31 +41,41 @@ function actChkCancel() {
 
 //체크박스 개수 검색함수
 function checkCount(){
-	   var count=0;
-	   var checkList = $('.act_chek');
-	   for(var i=0; i<checkList.size(); i++){
-	      if($(checkList[i]).is(':checked')){
-	         count++;
-	      }
-	   }
-	   return count;
-	};
-	
-function actDelete(ctx){
-	$('#actDelBtn').click(function(){
+   var count=0;
+   var checkList = $('.act_chek');
 
-		var form = $('#delForm');
-		if (checkCount() == 0) {
-			alert("삭제할 항목을 선택해주세요.");
-		} else {
-			var delYN = confirm("정말 삭제하시겠습니까??");
-			
-			if(!delYN){
-				return false;
-			}
+   for(var i=0; i<checkList.size(); i++){
+      if($(checkList[i]).is(':checked')){
+         count++;
+      }
+   }
+   return count;
+};
+
+// Insert
+function actInsertForm() {
+	var ctx = $("#ctx").val();
+	
+	location.href = ctx + '/actDetail';
+}
+	
+function actDelete()
+{
+	var form = $('#delForm');
 		
-			form.submit();
-			/*actPaging();*/
-		}	
-	});
+	if (checkCount() == 0) 
+	{
+		alert("삭제할 항목을 선택해주세요.");
+	} 
+	else 
+	{
+		var delYN = confirm("정말 삭제하시겠습니까??");
+			
+		if(!delYN)
+		{
+			return false;
+		}
+	
+		form.submit();
+	}	
 }	

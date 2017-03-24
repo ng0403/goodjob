@@ -16,8 +16,7 @@ function contAdd(){
 	$("#contAddBtnDiv").css("display", "block");
 	$("#contMdfBtnDiv").css("display", "none");
 }
-
- 
+  
 function contSave() {
 		alert("인서트");
 		
@@ -40,16 +39,32 @@ function updateCont() {
 	
 }
 
+//고객사리스트 팝업창 띄우기
+function custcompListPopup(ctx){
+	$('#customer').click(function(){
+		window.open(ctx+'/contCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes');
+	});
+}
+
+//영업기회 팝업창 띄우기
+function actOpptListPopup(ctx){
+	$('#act_oppt_nm').click(function(){ 
+		window.open(ctx+'/contActOpptList?cust_id='+$('#cust_id').val(),'newwindow','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
+}
+
+
 
 function contMdfy(){
-	 
+	 alert("mi");
 	$("#contTable input[type=text]").css("background-color", "white");
 	$("#contTable textarea").css("background-color", "white");
 	$('#contr_nm').attr('readonly', false);
 	$('#cust_nm').attr('readonly', false);
 	$('#customer').attr('disabled', false);
-	$('#sales_oppt_nm').attr('readonly', false);
-	//$('#act_oppt_nm').attr('disabled',false);
+	$('#sales_oppt_nm').attr('readonly', false); 
+	$('#act_oppt_nm').attr('disabled',false);
+	$('#act_oppt_nm').attr('readonly',false);
 	$('#contr_qty').attr('readonly', false);
 	$('#contr_amt').attr('readonly', false);
 	$('#contr_d_detail').attr('readonly', false);

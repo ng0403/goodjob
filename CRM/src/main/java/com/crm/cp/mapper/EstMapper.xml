@@ -96,7 +96,7 @@
 		prod_id,
 		prod_nm,
 		prod_sales_amt
-		from product  
+		from product
 		<where>
 		<if test="keyfield=='pt_id'">
 			AND prod_id LIKE '%' || #{keyword} || '%'

@@ -73,7 +73,7 @@
 	}
 	
 	function naviOutput(){
-		$.post("navi", function(data){
+		$.post("/navi", function(data){
 			$("#test").html("");
 			var count = 1;
 			//console.log(data.menuList.menu.VO.menu_nm);

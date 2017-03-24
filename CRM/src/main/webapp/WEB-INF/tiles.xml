@@ -84,8 +84,16 @@
 		 <put-attribute name="body" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp"/>
 	</definition>
 	
-	<definition name="est/*" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/est/{1}.jsp"/>
+	<definition name="estList" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/est/estList.jsp"/>
+	</definition>
+	
+	<definition name="estAdd" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/est/estWrite.jsp"/>
+	</definition>
+	
+	<definition name="estDetail" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/est/estDetail.jsp"/>
 	</definition>
 	
 	<!--위·아래 바디 + 어사이드 구조 -->
@@ -119,11 +127,12 @@
 	</definition>
 
 	<!-- 영업활동 -->
-	<definition name="act" extends="twobodyLayout">
-		<put-attribute name="master"
-			value="/WEB-INF/views/sales/act/act_list.jsp" />
-		<put-attribute name="detail"
-			value="/WEB-INF/views/sales/act/act_tab.jsp" />
+	<definition name="actSaleList" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_list.jsp" />
+	</definition>
+	
+	<definition name="actSaleDetail" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_tab.jsp" />
 	</definition>
 
 	<!-- 가망고객 -->

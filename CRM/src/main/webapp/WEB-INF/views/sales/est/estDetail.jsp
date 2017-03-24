@@ -54,6 +54,17 @@ $(function() {
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<label for="tab1">상세정보</label>
+		<div id="baseBtnDiv" class="bt_position_authuser">
+			<input type="button" id="mdfBtn" value="편집" class="custcomp_btn" disabled="disabled" onclick="estMdfyBtn();"/>
+		</div>
+<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
+<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
+<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
+<!-- 		</div> -->
+		<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
+			<input type="button" id="mdfSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/>
+			<input type="button" id="mdfCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
+		</div>
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">			

@@ -31,10 +31,6 @@ select {
 
 /*연락처 검색부분*/
 .search_div {
-	margin-top: 10px;
-	margin-right: 10px;
-	color: #484848;
-	font-weight: bold;
 	margin-bottom: 10px;
 }
 

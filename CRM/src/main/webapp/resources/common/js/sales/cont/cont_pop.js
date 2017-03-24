@@ -14,7 +14,7 @@ $(function(){
 
 //영업기회 팝업창 띄우기
 function actOpptListPopup(ctx){
-	$('#act_oppt_nm').click(function(){
+	$('#act_oppt_nm').click(function(){ 
 		window.open(ctx+'/contActOpptList?cust_id='+$('#cust_id').val(),'newwindow','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }

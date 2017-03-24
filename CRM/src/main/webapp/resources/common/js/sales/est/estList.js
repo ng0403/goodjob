@@ -191,72 +191,83 @@ function estimDeleteBtn(ctx){
 		}
 	});
 }
+//견적 상세정보 출력(ajax)
+//function estDetail(estim_id){
+//		readDetail();
+//		$("#mdfBtn").attr("disabled", false);
+//		$("#baseBtnDiv").css("display", "block");
+//		$("#addBtnDiv").css("display", "none");
+//		$("#mdfBtnDiv").css("display", "none");
+//		$('#estimatetbody').children().remove();
+//		$.ajax({
+//			type: 'GET',
+//			url : 'estDetail',
+//			data : {estim_id : estim_id},
+//			dataType: 'json',
+//			success:function(result){
+//				$('#inputCust').val('true');
+//				$("#estim_id").val(result.detail.estim_id);
+//				$("#cust_id").val(result.detail.cust_id);
+//				$("input[name=estim_nm_detail]").val(result.detail.estim_nm);
+//				$("input[name=cust_nm]").val(result.detail.cust_nm); 
+//				$("select[name=estim_lev_cd_detail]").children().eq(result.detail.estim_lev_cd).attr("selected","selected");
+//				$("input[name=sales_oppt_nm]").val(result.detail.sales_oppt_nm);
+//				$("input[name=estim_valid_d_detail]").val(result.detail.estim_valid_d);
+//				$("input[name=memo]").val(result.detail.memo);
+//				
+//				var content = "";				
+//				$.each(result.prodList,function(i,list){	
+//				   content ='<tr id="priceline" class='+list.prod_id+'>'+
+//							'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+list.prod_id+' onclick="prodChkCancel();">'+
+//							'<input type="hidden" id="prod_sales_amt"  value='+list.prod_sales_amt+'></th>'+
+//							'<td style="width: 32%;" id="prod_nm">'+list.prod_nm+'</td>'+
+//							'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value='+list.estim_qty+' onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
+//							'<td style="width: 27%;" >'+list.sales_price+'</td>'+
+//							'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value='+list.discount+' onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+//							'<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">'+
+//							'<option value="0">선택</option>';
+//				   $.each(result.eduList,function(i,eduList){
+//					   if(eduList.code == list.discount_unit_cd){
+//						   content += '<option value='+eduList.code+' class="seloption">'+eduList.cd_nm+'</option>';						   
+//					   }else{
+//						   content += '<option value='+eduList.code+' >'+eduList.cd_nm+'</option>';
+//					   }
+//					});
+//					content += '</select></td>'+
+//							   '<td style="width: 15%;" id="sup_price" >'+list.sup_price+'</td></tr>';
+//					$('#estimatetbody').append(content);
+//				});
+//				$(".seloption").attr("selected",true);	
+//				for(var i=$("#estimatetbody tr").length; i <= 4; i++){
+//					$('#estimatetbody').append(
+//							'<tr id="priceline" class="empty">'+
+//							'<th style="width: 3%;"></th>'+
+//							'<td style="width: 32%;"></td>'+
+//							'<td style="width: 8%;"></td>'+
+//							'<td style="width: 27%;"></td>'+
+//							'<td style="width: 15%;"></td>'+
+//							'<td style="width: 15%;"></td>'+
+//							'</tr>'
+//							);
+//				}
+//				prodChange();
+//			},
+//		    error:function(request,status,error){
+//			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//			       }
+//		});
+//}
+
 //견적 상세정보 출력
 function estDetail(estim_id){
-		readDetail();
-		$("#mdfBtn").attr("disabled", false);
-		$("#baseBtnDiv").css("display", "block");
-		$("#addBtnDiv").css("display", "none");
-		$("#mdfBtnDiv").css("display", "none");
-		$('#estimatetbody').children().remove();
-		$.ajax({
-			type: 'GET',
-			url : 'estDetail',
-			data : {estim_id : estim_id},
-			dataType: 'json',
-			success:function(result){
-				$('#inputCust').val('true');
-				$("#estim_id").val(result.detail.estim_id);
-				$("#cust_id").val(result.detail.cust_id);
-				$("input[name=estim_nm_detail]").val(result.detail.estim_nm);
-				$("input[name=cust_nm]").val(result.detail.cust_nm); 
-				$("select[name=estim_lev_cd_detail]").children().eq(result.detail.estim_lev_cd).attr("selected","selected");
-				$("input[name=sales_oppt_nm]").val(result.detail.sales_oppt_nm);
-				$("input[name=estim_valid_d_detail]").val(result.detail.estim_valid_d);
-				$("input[name=memo]").val(result.detail.memo);
-				
-				var content = "";				
-				$.each(result.prodList,function(i,list){	
-				   content ='<tr id="priceline" class='+list.prod_id+'>'+
-							'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+list.prod_id+' onclick="prodChkCancel();">'+
-							'<input type="hidden" id="prod_sales_amt"  value='+list.prod_sales_amt+'></th>'+
-							'<td style="width: 32%;" id="prod_nm">'+list.prod_nm+'</td>'+
-							'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value='+list.estim_qty+' onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
-							'<td style="width: 27%;" >'+list.sales_price+'</td>'+
-							'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value='+list.discount+' onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
-							'<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">'+
-							'<option value="0">선택</option>';
-				   $.each(result.eduList,function(i,eduList){
-					   if(eduList.code == list.discount_unit_cd){
-						   content += '<option value='+eduList.code+' class="seloption">'+eduList.cd_nm+'</option>';						   
-					   }else{
-						   content += '<option value='+eduList.code+' >'+eduList.cd_nm+'</option>';
-					   }
-					});
-					content += '</select></td>'+
-							   '<td style="width: 15%;" id="sup_price" >'+list.sup_price+'</td></tr>';
-					$('#estimatetbody').append(content);
-				});
-				$(".seloption").attr("selected",true);	
-				for(var i=$("#estimatetbody tr").length; i <= 4; i++){
-					$('#estimatetbody').append(
-							'<tr id="priceline" class="empty">'+
-							'<th style="width: 3%;"></th>'+
-							'<td style="width: 32%;"></td>'+
-							'<td style="width: 8%;"></td>'+
-							'<td style="width: 27%;"></td>'+
-							'<td style="width: 15%;"></td>'+
-							'<td style="width: 15%;"></td>'+
-							'</tr>'
-							);
-				}
-				prodChange();
-			},
-		    error:function(request,status,error){
-			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			       }
-		});
+	$("#estim_id").val(estim_id);
+	$("#estim_detail").attr({
+		"action":"/est/estDetail",
+		"method":"get"
+	})
+	$("#estim_detail").submit();
 }
+
 //달력띄우기
 function startCalendar(ctx){
 	 $("#sestim_valid_d").datepicker({

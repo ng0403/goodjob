@@ -2,13 +2,16 @@ body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldse
 	margin: 0; padding: 0; border: 0;
 }
 
+#test {
+	margin-left: 9%;
+}
 nav {
 	width: 100%;
 	text-align: center;
 	position: absolute;
 	z-index: 2;
 	margin: 0 auto;
-	margin-top: 27px;
+	margin-top: 67px;
 	margin-bottom: 10px;
 	background-color: #5a5a5a;
 	
@@ -20,6 +23,9 @@ nav ul ul {
 
 	nav ul li:hover > ul {
 		display: block;
+		width: 10%;
+		padding: 0;
+		margin: 0;
 	}
 
 
@@ -31,11 +37,12 @@ nav ul {
 /* 	box-shadow: 0px 0px 9px rgba(0,0,0,0.15); */
 	
 	background-color: #5a5a5a;
-	padding: 0 0px;
+	margin: 0 auto;
 	border-radius: 10px;  
 	list-style: none;
 	position: relative;
 	display: inline-table;
+	width: 100%;
 }
 	nav ul:after {
 		content: ""; 
@@ -45,6 +52,8 @@ nav ul {
 
 	nav ul li {
 		float: left;
+		width: 10%;
+		margin: 0 auto;
 	}
 		nav ul li:hover {
 			background-color: #5a5a5a;
@@ -59,9 +68,11 @@ nav ul {
 		
 		nav ul li a {
 			display: block; 
-			padding: 0px 0px;
+			margin: 0 auto;
+			margin-left: 10px;
+			margin-right: 10px;
 			padding-bottom: 6px;
-			width: 125px;
+/* 			width: 125px; */
 /* 			color: #757575;  */
 			color: white;
 			text-decoration: none;
@@ -83,9 +94,9 @@ nav ul {
 			position: relative;
 			vertical-align: middle;
 			margin-bottom: 6px;
+			width: 100%:
 		}
 			nav ul ul li a {
-				width: 116px;
 				padding: 5px;
 				color: #fff;
 			}	
@@ -98,7 +109,11 @@ nav ul {
 		left: 100%; 
 		top:0;
 	}
+
+.subbtn {
 	
+	width: 100%;
+}
 	
 a {
 	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";

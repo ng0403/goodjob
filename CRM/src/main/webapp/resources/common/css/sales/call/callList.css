@@ -1,17 +1,6 @@
 @CHARSET "UTF-8";
-/*기본값*/
-html{
-	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
-	font-size:13px;
-}
 
 select{
-	 margin-left: 10px;
-  	 background-color:#ffffff;
- 	 color:#5F5F5F;
- 	 border:1px solid #C0C4CB;
- 	 padding:5px 5px;
- 	 border-radius:5px 5px 5px 5px;
  	 width: auto;
  	 margin-left: 0px;
 }
@@ -32,24 +21,10 @@ select{
 	text-decoration: none;
 }
 
-/*연락처 리스트*/
-/*연락처 타이틀*/
-#title .caption{
-  	color:#484848;
-  	font-weight:bold;
-  	border-bottom: 1px solid #dddddd;
-  	padding-bottom: 10px;
-  	text-align: left;
-  	padding-bottom: 10px;
-  }
-  
+ 
  /*연락처 검색부분*/
 .search_div{
-     margin-top: 10px;
-     margin-right:10px;
-     color:#484848;
-     font-weight: bold;
-     margin-bottom: 10px;
+     margin-bottom: 5px;
 }  
 
 .tel_label_list{
@@ -86,7 +61,7 @@ select{
 
 #initialtable tr td{
 	 width: 5%;
-	 padding:4px;
+	 height: 30px;
 }
 
 #initialtable tr td a{
@@ -159,12 +134,6 @@ select{
 	border-radius: 5px 5px 5px 5px;
 	text-align: center;
 /* 	font-size:.9em; */
-}
-
-/*영업활동 리스트 버튼*/
-#contact_button_position{
-	float: right;
-	margin-top: 10px;
 }
 
 .call_bt{

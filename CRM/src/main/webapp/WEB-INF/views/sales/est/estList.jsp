@@ -28,6 +28,9 @@
 <body>
 <input type="hidden" id="ctx" value="${ctx}">
 <%-- <form action="${ctx}/est" method="get" id="listForm"> --%>
+	<form id="estim_detail">
+		<input type="hidden" id="estim_id" name="estim_id">
+	</form>
 	<div id="title">
 		<div class="caption">■ 견적</div></div>
 		   <div class="search_div" >
@@ -117,15 +120,6 @@
 	<!-- 페이징 처리 -->
 				<div id="baseBtnDiv" class="bt_position_authuser">
 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="estAddBtn();"/>
-					<input type="button" id="mdfBtn" value="편집" class="custcomp_btn" disabled="disabled" onclick="estMdfyBtn();"/>
-				</div>
-				<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/>
-					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
-				</div>
-				<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="mdfSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/>
-					<input type="button" id="mdfCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
 				</div>	
 				<div class="bt_position_authuser">
 					<input type="button" id="estimDeleteBtn" class="custcomp_btn" value="삭제">	

@@ -13,11 +13,11 @@
 		<div class="headFrame" >
 			<div class="header" >
 				<div id="mainTitleDiv">
-					<label id="mainTitle">SFA CRM</label>
+					<label id="mainTitle">SFA</label>
 				</div>
 				<tiles:insertAttribute name="header"></tiles:insertAttribute>
 			</div>
-			<div class="navi" style="">
+			<div class="navi" >
 					<tiles:insertAttribute name="navi"></tiles:insertAttribute>
 			</div>
 		</div>
