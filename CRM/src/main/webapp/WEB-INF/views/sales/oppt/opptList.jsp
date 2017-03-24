@@ -20,13 +20,6 @@
 <script type="text/javascript">
 </script>
 <body>
-	<!-- 영업기회 상태 차트  -->
-	<div id="chart_oppt_status">
-	<h1>영업기회 상태 현황</h1>
-		<svg id="myGraph">
-		</svg>
-			<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
-	</div> 
 <form action="" method="get" id="listForm" >
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
@@ -136,5 +129,12 @@
 			</c:choose>
 		</div>
 	</form>	
+		<!-- 영업기회 상태 차트  -->
+	<div id="chart_oppt_status">
+	<h1>영업기회 상태 현황</h1>
+		<svg id="myGraph">
+		</svg>
+			<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
+	</div> 
 </body>
 </html>
