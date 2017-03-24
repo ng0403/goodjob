@@ -130,7 +130,7 @@
 			   </c:choose>
 		</div>
 	 	<div id="btn" class="cont_list_bt_div"> 
-			<input type="button" id="contrAddBtn" value="추가" class="cont_bt" onclick="contAddp();"/>
+			<input type="button" id="contrAddBtn" value="추가"  onclick="contAddp();" class="cont_btn"/>
 	 		<input type="button" id="del"  value="삭제" onclick="contListDel('${ctx}');" class="cont_btn"/> 
 	 	</div> 
 	</div>

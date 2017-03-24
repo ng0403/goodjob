@@ -26,30 +26,23 @@
 	<input type="hidden" id="nowCont_id">
 
 
-	<!-- <div id="css_tabs"> -->
+	<div id="css_tabs">
 		<!-- 라디오 버튼 -->
-	<!-- 	<input id="tab1" type="radio" name="tab" checked="checked" /> -->
+		<input id="tab1" type="radio" name="tab" checked="checked" />
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<div class="caption">■ 상세정보</div>
-		<!-- <label for="tab1">상세정보</label> -->
-		
-		
+		<label for="tab1">상세정보</label>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 
 		<div id="tabDiv1" class="tab1_content">
-			<form id="contForm" method="post" role="form" >
+			<form id="contForm" method="post" >
 				<div id="contBaseBtnDiv" class="cont_tab_bt_div">
- 					<input type="button" id="contMdfyBtn" value="편집" class="cont_bt" onclick="contMdfy();" />
- 					<input type="button" id="contAddCancelBtn" value="취소" class="cont_bt" onclick="contCancel();"/>
- 					
-				</div>
-				<%-- <div id="contAddBtnDiv" style="display: none;"  class="cont_tab_bt_div">
-					<input type="button" id="contAddSaveBtn" value="저장" onclick="insertCont('${ctx}');" class="cont_bt"/>
-					<input type="button" id="contAddCancelBtn" value="취소" class="cont_bt" onclick="contCancel();"/>
-				</div> --%>
+					<input type="button" id="contMdfyBtn" value="편집" class="cont_bt" onclick="contMdfy();"/>
+				    <input type="button" id="contAddCancelBtn" value="취소" class="cont_bt" onclick="contCancel();"/>
+					
+				</div> 
 				<div id="contMdfyBtnDiv" style="display: none;"  class="cont_tab_bt_div">
-					<input type="button" id="contUpdateBtn" value="저장" onclick="updateCont();" class="cont_bt"/>
+					<input type="button" id="contUpdateBtn" value="저장" onclick="updateCont('${ctx}');" class="cont_bt"/>
 					<input type="button" id="contAddCancelBtn" value="취소" class="cont_bt" onclick="contCancel();"/>
 				</div>
  				
@@ -59,23 +52,23 @@
 							<tr>
 								<th>계약명</th>
 								<td>
-									<input type="hidden" name="contr_id" id="contr_id" value="${contDetail.contr_id}" />
+									<input type="hidden" name="contr_id" id="contr_id" />
 									<input type="hidden" id="hcontr_nm"/>
-									<input type="text" name="contr_nm" id="contr_nm" class="int" value="${contDetail.contr_nm }" readonly = 'readonly'/>
+									<input type="text" name="contr_nm" id="contr_nm" class="int" style="ms-ime-mode: disabled;" readonly="readonly"/>
 								</td>
 								<th>고객사</th>
 								<td>
 									<input type="hidden" id="hcust_nm"/>
-									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${contDetail.cust_nm }" readonly = 'readonly' />
+									<input type="text" name="cust_nm" id="cust_nm" class="int" readonly="readonly"/>
 									<input type="hidden" id="hcust_id"/>
-									<input type="hidden" name="cust_id" id="cust_id" value="${contDetail.cust_id }" readonly = 'readonly' />
+									<input type="hidden" name="cust_id" id="cust_id" />
 									<input type="hidden" name="estim_lev_cd" id="estim_lev_cd" value="0002"/>
-									<input type="button" value="고객" id="customer" disabled='disabled' class="cont_bt" onclick="javascript:custcompListPopup('${ctx}');">
-								</td>	
+									<input type="button" value="고객" id="customer" disabled="disabled" class="cont_bt">
+								</td>
 								<th rowspan="3">메모</th>
 								<td rowspan="3">
 									<input type="hidden" id="hmemo"/>
-									<textarea name="memo" id="memo" rows="9.5" cols="40" style="resize: none; overflow: auto;" class="cont_txtarea" readonly = 'readonly'> ${contDetail.memo }  </textarea>
+									<textarea name="memo" id="memo" rows="9.5" cols="40" readonly="readonly" style="resize: none; overflow: auto;" class="cont_txtarea"></textarea>
 								</td>
 							<tr>
 								<th>영업기회명</th>
@@ -83,28 +76,27 @@
 									<input type="hidden" id="hsales_oppt_nm"/>
 									<input type="hidden" id="hsales_oppt_id"/>
 									<input type="hidden" id="hestim_id"/>
-									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" value="${contDetail.sales_oppt_nm}" readonly = 'readonly'/>
-									<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${contDetail.sales_oppt_id}" readonly = 'readonly'/>
-									<input type="hidden" name="estim_id" id="estim_id" value="${contDetail.estim_id}" readonly = 'readonly'/>
-									<input type="button" value="영업기회" id="act_oppt_nm" disabled='disabled' class="cont_bt" readonly = 'readonly' onclick="javascript:actOpptListPopup('${ctx}');">
- 								
+									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" readonly="readonly"/>
+									<input type="hidden" name="sales_oppt_id" id="sales_oppt_id"/>
+									<input type="hidden" name="estim_id" id="estim_id"/>
+									<input type="button" value="영업기회" id="act_oppt_nm" disabled="disabled" class="cont_bt">
 								</td>
 								<th>계약수량</th>
 								<td>
 									<input type="hidden" id="hcontr_qty"/>
-									<input type="text" name="contr_qty" id="contr_qty" class="int" value="${contDetail.contr_qty}" readonly = 'readonly'/>
+									<input type="text" name="contr_qty" id="contr_qty" class="int" readonly="readonly"/>
 								</td>
 							</tr>
 							<tr>
 								<th>계약금액</th>
 								<td>
 									<input type="hidden" id="hcontr_amt"/>
-									<input type="text" name="contr_amt" id="contr_amt" class="int"  value="${contDetail.contr_amt}" readonly = 'readonly' style="text-align: right; padding-right: 5px;"/>
+									<input type="text" name="contr_amt" id="contr_amt" class="int"  readonly="readonly" style="text-align: right; padding-right: 5px;"/>
 								</td>
 								<th>계약일자</th>
 								<td>
 									<input type="hidden" id="hcontr_d_detail"/>
-							 		<input type="text" name="contr_d" id="contr_d_detail" class="int"  value="${contDetail.contr_d }" readonly = 'readonly'/>
+							 		<input type="text" name="contr_d" id="contr_d_detail" class="int"  readonly="readonly"/>
 							 	</td>
 							</tr>
 						</tbody>
@@ -112,6 +104,6 @@
 				</div>
 			</form>
 		</div>
-	<!-- </div> -->
+	</div>
 </body>
 </html>
