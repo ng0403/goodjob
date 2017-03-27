@@ -157,7 +157,7 @@ public class EstServiceImpl implements EstService {
 */
 		int totalRowCount = estDaoi.getCCListCount(ccPageNum);
 
-		PageUtil page = new PageUtil(Integer.parseInt(ccPageNum.get("pageNum")), totalRowCount, 5, 5);
+		PageUtil page = new PageUtil(Integer.parseInt(ccPageNum.get("pageNum")), totalRowCount, 10, 10);
 
 		return page;
 	}

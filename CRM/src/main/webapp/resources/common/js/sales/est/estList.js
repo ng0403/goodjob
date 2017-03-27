@@ -15,7 +15,7 @@ $(function(){
 	var ctx = $('#ctx').val();
 	estimAllselect();
 	estimDeleteBtn(ctx);
-	//startCalendar(ctx);	
+	startCalendar(ctx);	
 });
 //견적 추가 버튼 클릭 시
 function estAddBtn(){
@@ -46,7 +46,7 @@ function list(page){
 	var estim_valid_d = $("#sestim_valid_d").val();
 	$.ajax({
 		type : 'GET',
-		url : 'estListAjax',
+		url : '/estListAjax',
 		data : {
 			ccPageNum : page, 
 			estim_nm : estim_nm, 
@@ -65,6 +65,7 @@ function list(page){
 			
 			$("#estList").children().remove();
 			$.each(result.list,function(i,data){
+				console.log(data);
 				$("#estList").append("" +	
 				 "<tr>"+
 					"<th><input type='checkbox' value="+data.estim_id+"></th>"+
@@ -80,8 +81,8 @@ function list(page){
 				"</tr>"
 				);
 			});
-			if(result.list.length < 5){
-				for(var i=0 ;  i < 5-result.list.length ; i++){
+			if(result.list.length < 10){
+				for(var i=0 ;  i < 10-result.list.length ; i++){
 					$("#estList").append("" +
 							 "<tr>"+
 								"<th></th>"+
@@ -270,4 +271,35 @@ function estDetail(estim_id){
 	})
 	$("#estim_detail").submit();
 }
-
+function startCalendar(ctx){
+	 $("#sestim_valid_d").datepicker({
+	        changeMonth: true, //콤보 박스에 월 보이기
+	        changeYear: true, // 콤보 박스에 년도 보이기
+	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	        buttonImageOnly: true //달력에 icon 사용하기
+	    }); 
+	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	   //날짜 형식을 0000-00-00으로 지정하기
+	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
+	    
+	    $("#estim_valid_d_detail").datepicker({
+	        changeMonth: true, //콤보 박스에 월 보이기
+	        changeYear: true, // 콤보 박스에 년도 보이기
+	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	        buttonImageOnly: true //달력에 icon 사용하기
+	    }); 
+	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	   //날짜 형식을 0000-00-00으로 지정하기
+	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
+}
+//컴마 입력 함수
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}

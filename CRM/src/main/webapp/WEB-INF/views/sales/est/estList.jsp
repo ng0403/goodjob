@@ -7,6 +7,8 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet"
 	href="${ctx}/resources/common/css/sales/est/estList.css"
 	type="text/css" />
@@ -14,6 +16,10 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estList.css" type="text/css" />
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
+<script type="text/javascript"
+	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script type="text/javascript"
+	src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/est/estList.js"></script>
 
 
@@ -57,6 +63,12 @@
 			    <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button> 
 		    </div>
 <!-- </form> -->
+	<div id="baseBtnDiv" class="bt_position_authuser">
+		<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="estAddBtn();"/>
+	</div>	
+	<div class="bt_position_authuser">
+		<input type="button" id="estimDeleteBtn" class="custcomp_btn" value="삭제">	
+	</div>
 		    
 		    <div id="tableline">
 <table id="goaltable" class="tabtable">
@@ -118,11 +130,5 @@
 	</c:choose>
 </div>
 	<!-- 페이징 처리 -->
-				<div id="baseBtnDiv" class="bt_position_authuser">
-					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="estAddBtn();"/>
-				</div>	
-				<div class="bt_position_authuser">
-					<input type="button" id="estimDeleteBtn" class="custcomp_btn" value="삭제">	
-				</div>
 </body>
 </html>
