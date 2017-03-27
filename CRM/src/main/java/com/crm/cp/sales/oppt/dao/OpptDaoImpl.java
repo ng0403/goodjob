@@ -160,11 +160,9 @@ public class OpptDaoImpl implements OpptDao {
 		if (result == 1) {
 
 			for (int i = 1; i < estList.size(); i++) {
-				System.out
-						.println("opptEstimdd : " + estList.get(i).toString());
+				System.out.println("opptEstimdd : " + estList.get(i).toString());
 				estList.get(i).setEstim_seq(estList.get(0).getEstim_seq());
-				result += sqlsession.insert("oppt.estimateListAdd",
-						estList.get(i));
+				result += sqlsession.insert("oppt.estimateListAdd",	estList.get(i));
 				System.out.println("result 2: " + result);
 
 			}

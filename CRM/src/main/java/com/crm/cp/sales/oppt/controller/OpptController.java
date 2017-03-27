@@ -389,6 +389,7 @@ public class OpptController {
 		return estimList;
 	}
 
+	//견적추가 팝업 open Controller
 	@RequestMapping(value = "/opptEstimatepopup", method = RequestMethod.GET)
 	public ModelAndView estimatePopup(HttpSession session, String list_cust_id,
 			String list_cust_nm, String list_sales_oppt_nm,
@@ -415,6 +416,7 @@ public class OpptController {
 		return mov;
 	}
 
+	//견적-상품추가 팝업 open controller
 	@RequestMapping(value = "/opptProdList", method = RequestMethod.GET)
 	public ModelAndView prodList(
 			HttpSession session,

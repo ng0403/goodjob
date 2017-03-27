@@ -3,7 +3,7 @@
  * opptEstimAdd(ctx)							:	견적 추가
  * opptEstimUpdate(ctx)							:	견적 편집
  * prodList(ctx)								:	상품 리스트 팝업
- * inputProd(prod_id,prod_nm,prod_sales_amt)	:	상품 입력 함수
+ * opptInputProd(prod_id,prod_nm,prod_sales_amt)	:	상품 입력 함수
  * prodChange()									:	상품 목록 금액 변경		
  * prodChacgeRealTime()							:	상품 input 변경시 상품 금액 변경 함수 호출
  * onlyNumber(event)							:	숫자만 입력
@@ -204,8 +204,8 @@ function prodList(ctx){
 		window.open(ctx+'/opptProdList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
-//상품 입력 함수
-function inputProd(prod_id,prod_nm,prod_sales_amt){
+//상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
+function opptInputProd(prod_id,prod_nm,prod_sales_amt){
 		var unit="";
 		var flg = $('#flg').val();
 		var data = $('#eduCode').val();

@@ -460,23 +460,20 @@
 			fin_mdfy_dt
 		)
 		values(
-						(SELECT /*+INDEX_DESC(ESTIMATE PK_ESTIMATE)*/
-			    DECODE(MAX(ESTIM_ID),NULL,'EST0000001',SUBSTR(MAX(ESTIM_ID),1,3)||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
+			(SELECT /*+INDEX_DESC(ESTIMATE PK_ESTIMATE)*/
+			 DECODE(MAX(ESTIM_ID),NULL,'EST0000001','EST'||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
 			FROM ESTIMATE
 			WHERE ROWNUM=1)
-			,#{cust_id},
-			#{estim_nm},
-			#{estim_lev_cd},
-			 TO_DATE(#{estim_valid_d},'yyyy-MM-dd'),
-			#{memo},
-			'admin',
-			sysdate,
-			'admin',
-			sysdate
+			,#{cust_id}
+			,#{estim_nm}
+			,#{estim_lev_cd}
+			,TO_DATE(#{estim_valid_d},'yyyy-MM-dd')
+			,#{memo}
+			,'admin'
+			,sysdate
+			,'admin'
+			,sysdate
 		)
-		<selectKey keyProperty="estim_seq" resultType="Integer" order="AFTER">
-			select estim_seq.currval from dual
-		</selectKey>
 		
 	</update>
 	<update id="estimateListAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
@@ -490,7 +487,10 @@
 			discount_unit_cd
 		)
 		values(
-		  concat('ES',lpad(to_char(#{estim_seq}),5,'0')),
+		(SELECT /*+INDEX_DESC(ESTIMATE_LIST PK_ESTIMATE_LIST)*/
+			 DECODE(MAX(ESTIM_ID),NULL,'EST0000001','EST'||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
+			FROM ESTIMATE_LIST
+			WHERE ROWNUM=1),
 		  #{prod_id},
 		  #{estim_qty},
 		  #{sales_price},
@@ -531,7 +531,10 @@
 			fin_mdfy_dt
 		)
 		values(
-		  concat('ES',lpad(to_char(#{estim_seq}),5,'0')),
+		  (SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE PK_SALES_OPPORTUNITY_ESTIMATE)*/
+			 DECODE(MAX(ESTIM_ID),NULL,'EST0000001','EST'||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
+			FROM SALES_OPPORTUNITY_ESTIMATE
+			WHERE ROWNUM=1),
 		  #{sales_oppt_id},
 		  'admin',
 		  sysdate,
