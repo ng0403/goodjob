@@ -21,7 +21,7 @@
 	<input type="hidden" id="nowCust_id"/>
 	<input type="hidden" id="nowCust_nm"/>
 
-	<div id="css_tabs">
+	<div id="css_tabs" style="float: left;">
 		
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked"/>
@@ -40,7 +40,7 @@
 		<label for="tab6">계약</label>
 		
 		<!-- 탭 내용 : 기업고객 상세정보 -->
-		<div id="tabDiv1" class="tab1_content">
+		<div id="tabDiv1" class="tab1_content" style="width: 103%;">
 		
 			<form id="custCompForm" method="post">
 			

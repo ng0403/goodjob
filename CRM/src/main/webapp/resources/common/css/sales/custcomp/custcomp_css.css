@@ -1,5 +1,47 @@
 @CHARSET "UTF-8";
 
+.tab_select {
+	width: 9%;
+	height: 30px;
+	padding: 3px;
+}
+
+#seachInput {
+	position:relative;
+	width:30%;
+	height:24px;
+	border:1px solid #bebebe;
+	color:#232323;
+	border-radius: 5px 5px 5px 5px;
+	padding: 2px;
+	padding-left: 8px;
+	margin-left: 5px;
+	margin-right: 40px;
+}
+
+.custcomp_bt{
+  	 background-color:#eaeaea;
+ 	 color:#353535;
+ 	 border:1px solid #C0C4CB;
+ 	 padding:5px 5px;
+ 	 border-radius:5px 5px 5px 5px;
+ 	 width: auto;
+ 	 margin-right: 5px;
+ 	 cursor: pointer;
+ 	 vertical-align: middle;
+}
+
+.custcomp_bt:hover{
+  	 background-color:#ABABAB;
+ 	 color:white;
+ 	 border:1px solid #C0C4CB;
+ 	 padding:5px 5px;
+ 	 border-radius:5px 5px 5px 5px;
+ 	 width: auto;
+ 	 cursor: pointer;
+ 	 vertical-align: middle;
+}
+
 .cnClick:link {
 	text-decoration: none;
 }
