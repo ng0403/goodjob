@@ -47,15 +47,15 @@ $(function() {
 </script>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
-	<form id="estAdd">
-		<input type="hidden" name="estim_valid_d">
-		<input type="hidden" name="estim_lev_cd">
-		<input type="hidden" name="cust_id">
-		<input type="hidden" name="estim_nm">
-		<input type="hidden" name="sales_oppt_id">
-		<input type="hidden" name="memo">
-		<input type="hidden" name="est_list">
-	</form>
+<!-- 	<form id="estAdd"> -->
+<!-- 		<input type="hidden" name="estim_valid_d"> -->
+<!-- 		<input type="hidden" name="estim_lev_cd"> -->
+<!-- 		<input type="hidden" name="cust_id"> -->
+<!-- 		<input type="hidden" name="estim_nm"> -->
+<!-- 		<input type="hidden" name="sales_oppt_id"> -->
+<!-- 		<input type="hidden" name="memo"> -->
+<!-- 		<input type="hidden" name="est_list"> -->
+<!-- 	</form> -->
 	<div id="css_tabs">
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> <input
@@ -84,7 +84,7 @@ $(function() {
 							<input type="hidden" id="estim_id" value=""></td>
 						<th>고객사</th>
 						<td><input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" ></input> 
-							<input type="hidden" id="cust_id" value="" /> 
+							<input type="hidden" name="cust_id_w" id="cust_id" value="" /> 
 							<input type="hidden" name="lead_id" id="lead_id" value="" /> 
 							<input type="button" class="btn-success-tel" id="customer" value="고객"
 							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled"></td>
@@ -98,7 +98,7 @@ $(function() {
 						</select></td>
 					<tr>
 						<th>영업기회명</th>
-						<td><input type="hidden" id="sales_oppt_id"> 
+						<td><input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id"> 
 							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" >
 							<input type="button" name="act_opp" value="영업기회"
 							class="btn-success-tel" id="opptSelect"  disabled="disabled">
@@ -110,7 +110,7 @@ $(function() {
 					</tr>
  					<tr>
 						<th>Remark</th> 
-						<td colspan="3"><input type="text" id="memo" style="width: 90%;" readonly=readonly
+						<td colspan="3"><input type="text" name="memo_w" id="memo" style="width: 90%;" readonly=readonly
  							class="int_detail_ad">
  						</td>
  						<td colspan="3">

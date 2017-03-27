@@ -226,6 +226,7 @@ public class EstController {
 		mov.addObject("eduList", eduList);
 		mov.addObject("elclist", elclist);
 		mov.addObject("eduCode", eduCode);
+		System.out.println(detail);
 		return mov;
 	}
 //		@ResponseBody
@@ -263,13 +264,12 @@ public class EstController {
 		
 	
 	@RequestMapping(value="/estUpdate", method=RequestMethod.POST)
-	@ResponseBody
-	public int opptEstimUpdate(HttpSession session,
-		@RequestParam(value="est_list[]",required=false) List<String> est_list,
-		@RequestParam(value="prodAddId[]",required=false) List<String> prodAddId,
-		@RequestParam(value="prodDeleteProdId[]",required=false) List<String> prodDeleteProdId,
-		@RequestParam(value="prodDeleteEstimId[]",required=false) List<String> prodDeleteEstimId,
-		EstVO est){
+	public ModelAndView opptEstimUpdate(HttpSession session,
+		@RequestParam(value="est_list",required=false) List<String> est_list,
+		@RequestParam(value="prodAddId",required=false) List<String> prodAddId,
+		@RequestParam(value="prodDeleteProdId",required=false) List<String> prodDeleteProdId,
+		@RequestParam(value="prodDeleteEstimId",required=false) List<String> prodDeleteEstimId,
+		@ModelAttribute EstVO est){
 		
 		System.out.println(est.toString());
 		List<EstVO> estList = new ArrayList<EstVO>(0);
@@ -295,7 +295,11 @@ public class EstController {
 		map.put("prodDeleteProdId", prodDeleteProdId);
 		map.put("prodDeleteEstimId", prodDeleteEstimId);
 		int result = estInter.estUpdate(map);
-		return result;
+		ModelAndView mov = new ModelAndView();
+		if(result > 1){
+			mov.setViewName("redirect:/estInqr");
+		}
+		return mov;
 			
 	}
 
@@ -316,15 +320,16 @@ public class EstController {
 		return mov;
 	}
 	
-	@RequestMapping(value="/estAdd", method=RequestMethod.POST)
-	@ResponseBody
+	@RequestMapping(value="/estAdd", method={RequestMethod.GET,RequestMethod.POST})
+//	@ResponseBody
 	public ModelAndView opptEstimAdd(HttpSession session,
-			@RequestParam(value="est_list[]",required=false) List<String> est_list,
-			EstVO est){
+			@RequestParam(value="est_list",required=false) List<String> est_list,
+			@ModelAttribute EstVO est){
 		String id = session.getAttribute("user").toString();
 		est.setFin_mdfy_id_nm(id);
 		est.setFst_reg_id_nm(id);
 		System.out.println("est : "+est.toString());
+		System.out.println("size : " + est_list);
 		System.out.println("size : " + est_list.size());
 		List<EstVO> estList = new ArrayList<EstVO>(0);
 		estList.add(est);
@@ -341,6 +346,8 @@ public class EstController {
 			estList.add(vo);
 		}
 		ModelAndView mov = new ModelAndView();
+		System.out.println(estList);
+		
 		int result = estInter.estAdd(estList);
 		if(result > 1){
 			mov.setViewName("redirect:/estInqr");

@@ -15,7 +15,7 @@ $(function(){
 	var ctx = $('#ctx').val();
 	estimAllselect();
 	estimDeleteBtn(ctx);
-	startCalendar(ctx);	
+	//startCalendar(ctx);	
 });
 //견적 추가 버튼 클릭 시
 function estAddBtn(){

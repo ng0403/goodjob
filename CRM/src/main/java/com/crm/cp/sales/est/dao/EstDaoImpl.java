@@ -90,7 +90,7 @@ public class EstDaoImpl implements EstDao{
 		// TODO Auto-generated method stub
 		
 	int result = 0 ;
-
+		System.out.println(estList.get(0));
 		result += sqlSession.insert("estimate.estimateAdd", estList.get(0));
 		System.out.println("result 1: " + result);
 		

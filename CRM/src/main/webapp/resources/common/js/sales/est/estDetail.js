@@ -110,6 +110,7 @@ function cancel_Click(){
 	}else{
 		$("#mdfBtn").attr("disabled", false);		
 	}
+	location.href="/estInqr"
 }
 //상품 목록 리스트 팝업
 function prodList(ctx){
@@ -410,90 +411,85 @@ function estAdd(ctx){
 		alert("상품을 추가해 주세요");
 		return false;
 	}
-	$("#estAdd").attr({
-		"action":"estAdd",
-		"method":"post"
+	
+	var $form = $("<form>");
+	$form.attr({
+		"action":"/estAdd",
+		"method":"post",
+		"id":"estAdd"
 	})
-//	console.log(estim_valid_d);
-//	console.log(cust_id);
-//	console.log(estim_nm);
-//	console.log(memo);
-//	console.log(est_list);
-//	console.log(sales_oppt_id);
-//	console.log(estim_lev_cd);
-//	$("input [name='estim_valid_d']").val(estim_valid_d);
-//	$("input [name='cust_id']").val(cust_id);
-//	$("input [name='estim_nm']").val(estim_nm);
-//	$("input [name='memo']").val(memo);
-//	$("input [name='est_list']").val(est_list);
-//	$("input [name='sales_oppt_id']").val(sales_oppt_id);
-//	$("input [name='estim_lev_cd']").val(estim_lev_cd);
-//	console.log($("input [name='estim_valid_d']").val());
-//	console.log($("input [name='cust_id']").val());
-//	console.log($("input [name='estim_nm']").val());
-//	console.log($("input [name='memo']").val());
-//	console.log($("input [name='est_list']").val());
-//	console.log($("input [name='sales_oppt_id']").val());
-//	console.log($("input [name='estim_lev_cd']").val());
-//	var $estim_lev_cd = $("<input>");
-//	$estim_lev_cd.attr({
-//		"type":"hidden",
-//		"name":"estim_lev_cd",
-//		"value":estim_lev_cd
-//	})
-//	var $cust_id = $("<input>");
-//	$estim_valid_d.attr({
-//		"type":"hidden",
-//		"name":"cust_id",
-//		"value":cust_id
-//	})
-//	var $estim_nm = $("<input>");
-//	$estim_valid_d.attr({
-//		"type":"hidden",
-//		"name":"estim_nm",
-//		"value":estim_nm
-//	})
-//	var $sales_oppt_id = $("<input>");
-//	$sales_oppt_id.attr({
-//		"type":"hidden",
-//		"name":"sales_oppt_id",
-//		"value":sales_oppt_id
-//	})
-//	var $memo = $("<input>");
-//	$sales_oppt_id.attr({
-//		"type":"hidden",
-//		"name":"memo",
-//		"value":memo
-//	})
-//	var $est_list = $("<input>");
-//	$sales_oppt_id.attr({
-//		"type":"hidden",
-//		"name":"est_list",
-//		"value":est_list
-//	})
-//	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
+	
+	var $estim_valid_d = $("<input>");
+	$estim_valid_d.attr({
+		"type":"hidden",
+		"name":"estim_valid_d",
+		"value":estim_valid_d
+	})
+	
+	var $estim_lev_cd = $("<input>");
+	$estim_lev_cd.attr({
+		"type":"hidden",
+		"name":"estim_lev_cd",
+		"value":estim_lev_cd
+	})
+	var $cust_id = $("<input>");
+	$cust_id.attr({
+		"type":"hidden",
+		"name":"cust_id",
+		"value":cust_id
+	})
+	var $estim_nm = $("<input>");
+	$estim_nm.attr({
+		"type":"hidden",
+		"name":"estim_nm",
+		"value":estim_nm
+	})
+	var $sales_oppt_id = $("<input>");
+	$sales_oppt_id.attr({
+		"type":"hidden",
+		"name":"sales_oppt_id",
+		"value":sales_oppt_id
+	})
+	var $memo = $("<input>");
+	$memo.attr({
+		"type":"hidden",
+		"name":"memo",
+		"value":memo
+	})
+	var $est_list = $("<input>");
+	$est_list.attr({
+		"type":"hidden",
+		"name":"est_list",
+		"id":"est_list",
+		"value":est_list
+	})
+	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
+
+	$("body").append($form);
+	$form.submit();
 	//$("#estAdd").submit();
-	$.ajax({
-		type : 'post',
-		url : 'estAdd',
-		dataType : 'json',
-		data : {
-			estim_valid_d : estim_valid_d,
-			estim_lev_cd : estim_lev_cd,
-			cust_id : cust_id,
-			estim_nm : estim_nm,
-			sales_oppt_id : sales_oppt_id,
-			memo : memo,
-			est_list : est_list
-		},
-		success:function(){
-			alert("정상적으로 등록되었습니다.");
-			//list(1);
-		},
-		error:function(request){
-			alert("error : " + request.status)
-		}
-	});
+//	$.ajax({
+//		type : 'post',
+//		url : 'estAdd',
+//		dataType : 'json',
+//		data : {
+//			estim_valid_d : estim_valid_d,
+//			estim_lev_cd : estim_lev_cd,
+//			cust_id : cust_id,
+//			estim_nm : estim_nm,
+//			sales_oppt_id : sales_oppt_id,
+//			memo : memo,
+//			est_list : est_list
+//		},
+//		success:function(){
+//			alert("정상적으로 등록되었습니다.");
+//			//list(1);
+//			//$('body').html(response);
+//		},
+//		error:function(request){
+//			alert("error : " + request.status)
+//		}
+//	});
 }
 //견적 편집
 function estUpdate(ctx){
@@ -579,35 +575,114 @@ function estUpdate(ctx){
 		alert("상품을 추가해 주세요");
 		return false;
 	}
-	$.ajax({
-		url : ctx+'/estUpdate',
-		dataType : 'json',
-		type : 'post',
-		data : {
-			estim_id : estim_id,
-			estim_valid_d : estim_valid_d,
-			estim_lev_cd : estim_lev_cd,
-			cust_id : cust_id,
-			estim_nm : estim_nm,
-			sales_oppt_id : sales_oppt_id,
-			prodAddId : prodAddId,
-			prodDeleteProdId : prodDeleteProdId,
-			prodDeleteEstimId : prodDeleteEstimId,
-			memo : memo,
-			est_list : est_list
-		},
-		success:function(){
-			alert("정상적으로 수정 되었습니다.");
-			readDetail();
-			$("#baseBtnDiv").css("display", "block");
-			$("#addBtnDiv").css("display", "none");
-			$("#mdfBtnDiv").css("display", "none");
-			list(page);
-		},
-		error:function(request){
-			alert("error : " + request.status)
-		}
-	});
+	var $form = $("<form>");
+	$form.attr({
+		"action":"/estUpdate",
+		"method":"post",
+		"id":"estUpdate"
+	})
+	
+	var $estim_valid_d = $("<input>");
+	$estim_valid_d.attr({
+		"type":"hidden",
+		"name":"estim_valid_d",
+		"value":estim_valid_d
+	})
+	
+	var $estim_lev_cd = $("<input>");
+	$estim_lev_cd.attr({
+		"type":"hidden",
+		"name":"estim_lev_cd",
+		"value":estim_lev_cd
+	})
+	var $cust_id = $("<input>");
+	$cust_id.attr({
+		"type":"hidden",
+		"name":"cust_id",
+		"value":cust_id
+	})
+	var $estim_nm = $("<input>");
+	$estim_nm.attr({
+		"type":"hidden",
+		"name":"estim_nm",
+		"value":estim_nm
+	})
+	var $sales_oppt_id = $("<input>");
+	$sales_oppt_id.attr({
+		"type":"hidden",
+		"name":"sales_oppt_id",
+		"value":sales_oppt_id
+	})
+	var $memo = $("<input>");
+	$memo.attr({
+		"type":"hidden",
+		"name":"memo",
+		"value":memo
+	})
+	var $est_list = $("<input>");
+	$est_list.attr({
+		"type":"hidden",
+		"name":"est_list",
+		"value":est_list
+	})
+	var $estim_id = $("<input>");
+	$estim_id.attr({
+		"type":"hidden",
+		"name":"estim_id",
+		"value":estim_id
+	})
+	var $prodAddId = $("<input>");
+	$prodAddId.attr({
+		"type":"hidden",
+		"name":"prodAddId",
+		"value":prodAddId
+	})
+	var $prodDeleteProdId = $("<input>");
+	$prodDeleteProdId.attr({
+		"type":"hidden",
+		"name":"prodDeleteProdId",
+		"value":prodDeleteProdId
+	})
+	var $prodDeleteEstimId = $("<input>");
+	$prodDeleteEstimId.attr({
+		"type":"hidden",
+		"name":"prodDeleteEstimId",
+		"value":prodDeleteEstimId
+	})
+	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId);
+
+	$("body").append($form);
+	$form.submit();
+	
+//	$.ajax({
+//		url : ctx+'/estUpdate',
+//		dataType : 'json',
+//		type : 'post',
+//		data : {
+//			estim_id : estim_id,
+//			estim_valid_d : estim_valid_d,
+//			estim_lev_cd : estim_lev_cd,
+//			cust_id : cust_id,
+//			estim_nm : estim_nm,
+//			sales_oppt_id : sales_oppt_id,
+//			prodAddId : prodAddId,
+//			prodDeleteProdId : prodDeleteProdId,
+//			prodDeleteEstimId : prodDeleteEstimId,
+//			memo : memo,
+//			est_list : est_list
+//		},
+//		success:function(){
+//			alert("정상적으로 수정 되었습니다.");
+//			readDetail();
+//			$("#baseBtnDiv").css("display", "block");
+//			$("#addBtnDiv").css("display", "none");
+//			$("#mdfBtnDiv").css("display", "none");
+//			list(page);
+//		},
+//		error:function(request){
+//			alert("error : " + request.status)
+//		}
+//	});
 }
 //입력창 비활성화 함수
 function readDetail(){
