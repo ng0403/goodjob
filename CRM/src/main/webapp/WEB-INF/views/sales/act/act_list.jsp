@@ -67,8 +67,9 @@
 			
 <!-- 	    </div> -->
 	    <div>
-	    	<input type="button" value="추가" onclick="actInsertForm();" class="act_bt" />
-	    	<button type="button" class="act_bt" id="actDelBtn" onclick="actDelete()">삭제</button>
+	    	<input type="button" class="act_bt" style="float: right;" value="삭제" onclick="actDelete()" />
+	    	<input type="button" class="act_bt" value="추가" style="float: right;" onclick="actInsertForm();" />
+<!-- 	    	<button type="button" class="act_bt" style="float: right;" id="actDelBtn" onclick="actDelete()">삭제</button> -->
 	    </div>
 
 		<form name="delForm" id="delForm" method="post" action="${ctx}/actDelete">
@@ -95,7 +96,9 @@
 					<tbody id="act_list_tbody" class="act_list_tbody">
 						<c:forEach items="${actList}" var="actList">
 							<tr>
-								<th rowspan="2"><input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();"></th>
+								<th rowspan="2">
+									<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
+								</th>
 								<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}')">
 									<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
 									<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a>
@@ -120,7 +123,9 @@
 				</table>
 			</div>
 		</form>
-		<!-- 페이징 처리 -->
+		
+	</div>
+	<!-- 페이징 처리 -->
 		<div id="directbtndiv">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}" /> 
 			<input type="hidden" id="actPageNum" value="${actPageNum}" />
@@ -150,6 +155,5 @@
 			</c:choose>
 			<!-- 페이징 처리 -->
 		</div>
-	</div>
 </body>
 </html>
