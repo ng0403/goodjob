@@ -37,6 +37,19 @@ select{
 	border-bottom: 1px solid #90C3FF;
 }
 
+.act_txt_search {
+	position:relative;
+	width:30%;
+	height:24px;
+	border:1px solid #bebebe;
+	color:#232323;
+	border-radius: 5px 5px 5px 5px;
+	padding: 2px;
+	padding-left: 8px;
+	margin-left: 5px;
+	margin-right: 40px;
+}
+
 .act_tab_select {
 	width: 9%;
 	height: 30px;
@@ -93,13 +106,15 @@ select{
 	font-weight: bold;
 }
 #dboardtable td{
-	height:25px;
+	height:15px;
+	border: 1px solid #DDDDDD;
+	text-align: center;
 }
 
 #dboardtable tbody td{
 	color: black;
-	border-bottom: 1px solid #DDDDDD;
-	padding:1.5px;
+	border: 1px solid #DDDDDD;
+	padding:0.5px;
 }
 
 #dboardtable tbody td a{

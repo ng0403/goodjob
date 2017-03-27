@@ -27,10 +27,10 @@ public class CustCompServiceImpl implements CustCompService {
 	public PagerVO getCCListCount(Map<String, Object> pMap) {
 		int ccPageNum = (Integer) pMap.get("ccPageNum");
 		// 현재 페이지 얻어오기
-		PagerVO page = new PagerVO(ccPageNum, 0, 5, 5);
+		PagerVO page = new PagerVO(ccPageNum, 0, 10, 10);
 		// 전체 글의 갯수 구하기
 		int totalRowCount = ccDao.getCCListCount(pMap);
-		page = new PagerVO(ccPageNum, totalRowCount, 5, 5);
+		page = new PagerVO(ccPageNum, totalRowCount, 10, 10);
 
 		return page;
 	}
