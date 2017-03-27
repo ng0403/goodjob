@@ -50,13 +50,17 @@ public class ActController {
 		List<ActVO> actList = actService.actAllList(actMap);
 		List<MenuVO> menuList = menuService.selectAll(session);
 		List<ActVO> actDivCd = actService.actDivCdList();
+		List<ActVO> actStatCd = actService.actStatCdList();
 
+		System.out.println("actDivCd : " + actDivCd);
+		
 		ModelAndView mov = new ModelAndView("actSaleList");
 		mov.addObject("menuList", menuList);
 		mov.addObject("actPageNum", actPageNum);
 		mov.addObject("page", page);
 		mov.addObject("actList", actList);
 		mov.addObject("actDivCd", actDivCd);
+		mov.addObject("actStatCd", actStatCd);
 		return mov;
 	}
 	

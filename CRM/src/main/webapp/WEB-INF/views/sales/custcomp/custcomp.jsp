@@ -17,21 +17,43 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
-		<div class="caption">■ 고객 > 
-			<a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기업고객</a>
+		<div class="caption">■ 고객 > 기존고객
+<%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
 		</div>
 	</div>
 	
 	<div class="search_div">
-		<label for="sch_cust_nm" class="tel_label_list">고객사명</label>
-		<input type="text" class="tel_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/> 
-		<label for="sch_comp_num" class="tel_label_list">사업자번호</label> 
-		<input type="text" class="tel_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/> 
-		<label for="sch_corp_num" class="tel_label_list">법인번호</label> 
-		<input type="text" class="tel_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/> 
-		<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label> 
-		<input type="text" class="tel_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/>
-		<input type="button" id="custcomp_search" class="custcomp_btn" value="조회" onclick="schPaging(1);" />
+<!-- 		<label for="sch_cust_nm" class="tel_label_list">고객사명</label> -->
+<!-- 		<input type="text" class="tel_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/>  -->
+<!-- 		<label for="sch_comp_num" class="tel_label_list">사업자번호</label>  -->
+<!-- 		<input type="text" class="tel_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
+<!-- 		<label for="sch_corp_num" class="tel_label_list">법인번호</label>  -->
+<!-- 		<input type="text" class="tel_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
+<!-- 		<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label>  -->
+<!-- 		<input type="text" class="tel_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/> -->
+<!-- 		<input type="button" id="custcomp_search" class="custcomp_btn" value="조회" onclick="schPaging(1);" /> -->
+			
+			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);">
+				<option value="0" style="text-align: center;">전체</option>
+				<option value="0" style="text-align: center;">고객사명</option>
+				<option value="0" style="text-align: center;">사업자번호</option>
+				<option value="0" style="text-align: center;">법인번호</option>
+				<option value="0" style="text-align: center;">영업담당자</option>
+			</select>
+			
+			<input type="text" id="seachInput" name="seachActSaleInput" placeholder="검색어를 입력해주세요">
+			<input type="button" id="search_btn" value="조회" class="custcomp_bt" onclick="schCustcompPaging(1);"/>
+			
+	</div>
+	
+	<div id="functionBtn">	
+		<input type="button" value="추가" onclick="" class="custcomp_bt" />
+		<input type="button" value="편집" onclick="" class="custcomp_bt" />
+		<input type="button" value="삭제" onclick="" class="custcomp_bt" />
+		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" />
+		<input type="button" value="엑셀저장" onclick="" class="custcomp_bt" />
+		
+		
 	</div>
 
 	<div id="tableline">

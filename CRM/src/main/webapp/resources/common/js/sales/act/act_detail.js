@@ -345,8 +345,8 @@ function actPaging(actPageNum) {
 				reg_dt = dateFormat(Number(data.actList[i].fst_reg_dt));*/
 				
 				tbodyContent = "<tr>"
-									+"<th rowspan='2' style='width:2%;'><input type='checkbox'></th>"
-									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actTabFunc('"+data.actList[i].sales_actvy_id+"')>"
+									+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
+									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
 									+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
 									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>"
 									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>"; 
@@ -380,8 +380,8 @@ function actPaging(actPageNum) {
 			   tbody.append(tbodyContent);
 			}
 			
-			if(data.actList.length < 10){
-				for(var j = 0; j < 10-data.actList.length; j++){
+			if(data.actList.length < 5){
+				for(var j = 0; j < 5-data.actList.length; j++){
 					tbodyContent ="<tr style='height:36px;'>"
 						+"<th></th>"
 						+"<td></td><td></td><td></td><td></td>"
@@ -393,30 +393,37 @@ function actPaging(actPageNum) {
 				}
 			}
 			
-			
+			// directbtndiv
 			var pageContent = "";
 			// 페이징 다시그리기
-			$("#act_page_div").children().remove();
+			$("#directbtndiv").children().remove();
 
-			if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
+			if(data.page.startPageNum == 1 && data.page.endPageNum == 1)
+			{
 				pageContent = "<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>" 
 				+"<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
 				+"<a> ◀ </a><input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>" 
 				+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-			} else if(data.actPageNum == data.page.startPageNum){
+			}
+			else if(data.actPageNum == data.page.startPageNum)
+			{
 				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
 				                +"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
 								+"<a> ◀ </a> <input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>" 
 								+"<a href='#' onclick=actPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
 								+"<a href='#' onclick=actPaging("+(data.actPageNum+1)+") id='pNum' style='text-decoration: none; color: blue;'> ▶ </a>";
-			} else if(data.actPageNum == data.page.endPageNum){
+			} 
+			else if(data.actPageNum == data.page.endPageNum)
+			{
 				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
 				                +"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
 				                +"<a href='#' onclick=actPaging("+(data.actPageNum-1)+") id='pNum' style='text-decoration: none; color: blue;'> ◀ </a>"
 								+"<input type='text' id='actPageInput' class='act_page_txt' value='"+data.page.endPageNum+"' onkeypress=\"pageInputAct(event);\"/>"
 								+"<a href='#' onclick=actPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
 								+"<a> ▶ </a>";
-			} else {
+			} 
+			else 
+			{
 				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
 				                +"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
 								+"<a href='#' onclick=actPaging("+(data.actPageNum-1)+") id='pNum' style='text-decoration: none; color: blue;'> ◀ </a>"
@@ -424,12 +431,12 @@ function actPaging(actPageNum) {
 								+"<a href='#' onclick=actPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
 								+"<a href='#' onclick=actPaging("+(data.actPageNum+1)+") id='pNum' style='text-decoration: none; color: blue;'> ▶ </a>";
 			}
-			$("#act_page_div").append(pageContent);
+			$("#directbtndiv").append(pageContent);
 		  }
 		},
 		error : function(request,status,error) {
 	          alert("페이징code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	      }
+	    }
 	});
 }
 
@@ -521,8 +528,8 @@ function schActPaging(actPageNum) {
 					tbody.append(tbodyContent);
 				}
 				
-				if(data.actList.length < 3){
-					for(var j = 0; j < 3-data.actList.length; j++){
+				if(data.actList.length < 5){
+					for(var j = 0; j < 5-data.actList.length; j++){
 						tbodyContent ="<tr style='height:32px;'>"
 							+"<th></th>"
 							+"<td></td><td></td><td></td><td></td>"
