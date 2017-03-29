@@ -32,7 +32,7 @@ function chart(){
   var offsetX = 30;
   var offsetY = 20;
   var barElements;
-  var dataMax = 100;
+  var dataMax = 300;
   var barWidth = 20;
   var barMargin = 5;
   
@@ -91,7 +91,7 @@ function chart(){
   				 d3.select("#myGraph")
   				   .append("g")
   				   .attr("class", "axis")
-  				   .attr("transform", "translate("+offsetX+", "+((svgHeight-100)-offsetY)+")")
+  				   .attr("transform", "translate("+offsetX+", "+((svgHeight-300)-offsetY)+")")
   				   .call(d3.axisLeft()
   						   .scale(yScale)
   						   )
@@ -107,7 +107,7 @@ function chart(){
 			  	  .append("text")
 			  	  .attr("class", "barName")
 			  	  .attr("x", function(d, i){
-			  		  return 1*25+10+offsetX;
+			  		  return i*25+10+offsetX;
 			  	  })
 			  	  .attr("y", svgHeight-offsetY+10)
 			  	  .text(function(d, i){
@@ -206,7 +206,7 @@ function CircleChart(){
 	  				 d3.select("#myGraph")
 	  				   .append("g")
 	  				   .attr("class", "axis")
-	  				   .attr("transform", "translate("+offsetX+", "+((svgHeight-100)-offsetY)+")")
+	  				   .attr("transform", "translate("+offsetX+", "+((svgHeight-50)-offsetY)+")")
 	  				   .call(d3.axisLeft()
 	  						   .scale(yScale)
 	  						   )
@@ -222,7 +222,7 @@ function CircleChart(){
 				  	  .append("text")
 				  	  .attr("class", "barName")
 				  	  .attr("x", function(d, i){
-				  		  return 1*25+10+offsetX;
+				  		  return i*(barWidth + barMargin)+10+offsetX;
 				  	  })
 				  	  .attr("y", svgHeight-offsetY+10)
 				  	  .text(function(d, i){
