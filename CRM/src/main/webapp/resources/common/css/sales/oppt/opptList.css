@@ -1,7 +1,7 @@
 /* svg Css */
 svg {
-	width: 320px;
-	height: 350px;
+	width: 355px;
+	height: 225px;
 	border: 1px solid black;
 }
 .bar {
@@ -29,6 +29,10 @@ svg {
 .barName{
 	font-size: 9pt;
 	text-anchor : middle;
+}
+.pie{
+	fill : orange;
+	stroke : black;
 }
 
 

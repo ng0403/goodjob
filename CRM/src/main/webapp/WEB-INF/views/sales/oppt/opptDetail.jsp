@@ -105,8 +105,8 @@ $(document).ready(function() {
 						<td style="width: 10%;">등록일시</td>
 					</tr>
 				</thead>
-				<tbody id="pdtList" >
-				<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
+				<tbody id="opptpdtList" >
+				<tr style='height: 150px;'><td colspan='8'>서비스 준비중입니다.</td></tr>		
 				</tbody>
 				</table>
 			</div>
