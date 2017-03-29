@@ -106,6 +106,16 @@
 	 <put-attribute name="body" value="/WEB-INF/views/standard/prod/prod_tab.jsp" />
 	</definition>
 	
+	<!-- 기업고객  -->
+	<definition name="custcomp" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/custcomp/custcomp.jsp" />
+	</definition>
+	
+	<!-- 기업고객  -->
+	<definition name="custcompDetail" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" />
+	</definition>
+	
 	<!--위·아래 바디 + 어사이드 구조 -->
 	<definition name="twobodyLayout" template="/WEB-INF/views/layout/twobody_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
@@ -121,12 +131,12 @@
 	</definition>
 
 	<!-- 기업 고객 -->
-	<definition name="custcomp" extends="twobodyLayout">
-		<put-attribute name="master"
-			value="/WEB-INF/views/sales/custcomp/custcomp.jsp" />
-		<put-attribute name="detail"
-			value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" />
-	</definition>
+<!-- 	<definition name="custcomp" extends="twobodyLayout"> -->
+<!-- 		<put-attribute name="master" -->
+<!-- 			value="/WEB-INF/views/sales/custcomp/custcomp.jsp" /> -->
+<!-- 		<put-attribute name="detail" -->
+<!-- 			value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" /> -->
+<!-- 	</definition> -->
 
 	<!-- 개인고객 -->
 	<definition name="custpson" extends="twobodyLayout">
