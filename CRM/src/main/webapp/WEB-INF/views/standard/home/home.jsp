@@ -55,32 +55,32 @@
 		 </div>
 	  </div>
 	  
-	  <div id="right_home">
-	   <div id="contract_title">
-	   ■ 영업 pipeline(3개월)
-	   <input type="button" class="detailPopbtn" value="상세보기" id="pipeLineBtn">
-	   </div>
+<!-- 	  <div id="right_home"> -->
+<!-- 	   <div id="contract_title"> -->
+<!-- 	   ■ 영업 pipeline(3개월) -->
+<!-- 	   <input type="button" class="detailPopbtn" value="상세보기" id="pipeLineBtn"> -->
+<!-- 	   </div> -->
 	   
-	   <div id="tableline">
-			<table id="goaltable">
-				<thead>
-					<tr>
-						<td>부서</td><td>담당자</td><td>M+1</td><td>M+2</td><td>M+3</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${loginOrgNm}</td>
-						<td>${loginIuserNm}</td>
-						<td style="text-align: right;"><fmt:formatNumber>${pipeLineSum.oneMonth}</fmt:formatNumber></td>
-						<td style="text-align: right;"><fmt:formatNumber>${pipeLineSum.twoMonth}</fmt:formatNumber></td>
-						<td style="text-align: right;"><fmt:formatNumber>${pipeLineSum.threeMonth}</fmt:formatNumber></td>
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td>부서</td><td>담당자</td><td>M+1</td><td>M+2</td><td>M+3</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<%-- 						<td>${loginOrgNm}</td> --%>
+<%-- 						<td>${loginIuserNm}</td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${pipeLineSum.oneMonth}</fmt:formatNumber></td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${pipeLineSum.twoMonth}</fmt:formatNumber></td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${pipeLineSum.threeMonth}</fmt:formatNumber></td> --%>
 						
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	  </div>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	  </div> -->
 	  
 	  <div id="left_home">
 	   <div id="contract_title">
@@ -110,85 +110,85 @@
 		</div>
 	  </div>
 	  
-	  <div id="right_home">
-	   <div id="contract_title">
-	   ■ 일정/약속
-	   <input type="button" class="detailPopbtn" id="schedule_detail" value="상세보기">
-	   </div>
-	   <div id="tableline">
-			<table id="goaltable" class="scheduletable">
-				<thead>
-					<tr>
-						<td>약속유형</td><td>약속내용</td><td>일자</td><td>담당부서</td><td>담당자</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${schedule.CD_NM}</td>
-						<td>${schedule.SCHEDULE_CONT}</td>
-						<td><fmt:formatDate value="${schedule.SCHEDULE_DT}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td>${schedule.ORG_NM}</td>
-						<td id="scheduleId">${schedule.FST_REG_ID_NM}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	  </div>
-	  <div id="left_home">
-	   <div id="contract_title">
-	   ■ 공지사항
-	   <input type="button" class="detailPopbtn" id="notice_detail" value="상세보기">
-	   </div>
+<!-- 	  <div id="right_home"> -->
+<!-- 	   <div id="contract_title"> -->
+<!-- 	   ■ 일정/약속 -->
+<!-- 	   <input type="button" class="detailPopbtn" id="schedule_detail" value="상세보기"> -->
+<!-- 	   </div> -->
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable" class="scheduletable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td>약속유형</td><td>약속내용</td><td>일자</td><td>담당부서</td><td>담당자</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<%-- 						<td>${schedule.CD_NM}</td> --%>
+<%-- 						<td>${schedule.SCHEDULE_CONT}</td> --%>
+<%-- 						<td><fmt:formatDate value="${schedule.SCHEDULE_DT}" pattern="yyyy-MM-dd HH:mm"/></td> --%>
+<%-- 						<td>${schedule.ORG_NM}</td> --%>
+<%-- 						<td id="scheduleId">${schedule.FST_REG_ID_NM}</td> --%>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	  </div> -->
+<!-- 	  <div id="left_home"> -->
+<!-- 	   <div id="contract_title"> -->
+<!-- 	   ■ 공지사항 -->
+<!-- 	   <input type="button" class="detailPopbtn" id="notice_detail" value="상세보기"> -->
+<!-- 	   </div> -->
 	   
-	   <div id="tableline">
-			<table id="goaltable" class="noticetable">
-				<thead>
-					<tr>
-						<td>제목</td><td>시작일자</td><td>조회수</td><td>종료일자</td><td>참고</td><td>게시자</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<a href="${ctx}/noticedetail?noticeId=${notice.NOTICE_ID}" class="noticebtn" style="text-decoration: none;">${notice.TITLE}</a>
-						</td>
-						<td><fmt:formatDate value="${notice.STRD_D}" pattern="yyyy-MM-dd"/></td>
-						<td>${notice.CHK_NUM}</td>
-						<td><fmt:formatDate value="${notice.END_D}" pattern="yyyy-MM-dd"/></td>
-						<td>${notice.ORG_NM}</td>
-						<td>${notice.FST_REG_ID_NM}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	  </div>
-	  <div id="right_home">
-	   <div id="contract_title">
-	   ■ 자료실
-	   <input type="button" class="detailPopbtn" id="dboard_detail" value="상세보기">
-	   </div>
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable" class="noticetable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td>제목</td><td>시작일자</td><td>조회수</td><td>종료일자</td><td>참고</td><td>게시자</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+<%-- 							<a href="${ctx}/noticedetail?noticeId=${notice.NOTICE_ID}" class="noticebtn" style="text-decoration: none;">${notice.TITLE}</a> --%>
+<!-- 						</td> -->
+<%-- 						<td><fmt:formatDate value="${notice.STRD_D}" pattern="yyyy-MM-dd"/></td> --%>
+<%-- 						<td>${notice.CHK_NUM}</td> --%>
+<%-- 						<td><fmt:formatDate value="${notice.END_D}" pattern="yyyy-MM-dd"/></td> --%>
+<%-- 						<td>${notice.ORG_NM}</td> --%>
+<%-- 						<td>${notice.FST_REG_ID_NM}</td> --%>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	  </div> -->
+<!-- 	  <div id="right_home"> -->
+<!-- 	   <div id="contract_title"> -->
+<!-- 	   ■ 자료실 -->
+<!-- 	   <input type="button" class="detailPopbtn" id="dboard_detail" value="상세보기"> -->
+<!-- 	   </div> -->
 	   
-	   <div id="tableline">
-			<table id="goaltable" class="dboardtable">
-				<thead>
-					<tr>
-						<td>자료분류</td><td>제목</td><td>조회수</td><td>게시일자</td><td>담당부서</td><td>게시자</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${data_board.CD_NM}</td>
-						<td>
-							<a href="${ctx}//dboarddetail?dboardId=${data_board.DATA_BOARD_ID}" class="dboardbtn" style="text-decoration: none;">${data_board.TITLE}</a>
-						</td>
-						<td>${data_board.CHK_NUM}</td>
-						<td><fmt:formatDate value="${data_board.FST_REG_DT}" pattern="yyyy-MM-dd"/></td>
-						<td>${data_board.ORG_NM}</td>
-						<td>${data_board.FST_REG_ID_NM}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	  </div>
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable" class="dboardtable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td>자료분류</td><td>제목</td><td>조회수</td><td>게시일자</td><td>담당부서</td><td>게시자</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<%-- 						<td>${data_board.CD_NM}</td> --%>
+<!-- 						<td> -->
+<%-- 							<a href="${ctx}//dboarddetail?dboardId=${data_board.DATA_BOARD_ID}" class="dboardbtn" style="text-decoration: none;">${data_board.TITLE}</a> --%>
+<!-- 						</td> -->
+<%-- 						<td>${data_board.CHK_NUM}</td> --%>
+<%-- 						<td><fmt:formatDate value="${data_board.FST_REG_DT}" pattern="yyyy-MM-dd"/></td> --%>
+<%-- 						<td>${data_board.ORG_NM}</td> --%>
+<%-- 						<td>${data_board.FST_REG_ID_NM}</td> --%>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	  </div> -->
 </body>
 </html>
