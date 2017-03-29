@@ -33,38 +33,31 @@
 </style>
 <script type="text/javascript">
 $(function() {
-	 $("#estimatediv").mCustomScrollbar({  
-        theme:"rounded-dark",
-        autoHideScrollbar: false,
-        scrollbarPosition: "outside",
-        scrollButtons:{
-          enable:true
-        },
-        axis:"y"
-      });
+// 	 $("#estimatediv").mCustomScrollbar({  
+//         theme:"rounded-dark",
+//         autoHideScrollbar: false,
+//         scrollbarPosition: "outside",
+//         scrollButtons:{
+//           enable:true
+//         },
+//         axis:"y"
+//       });
 });  
 </script>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 
-	<div id="css_tabs">
+	<!-- <div id="css_tabs"> -->
+	<div id="write_est">
 		<!-- 라디오 버튼 -->
 <!-- 		<input id="tab1" type="radio" name="tab" checked="checked" /> <input -->
 <!-- 			id="tab2" type="radio" name="tab" /> -->
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label>상세정보</label>
-		<div id="baseBtnDiv" class="bt_position_authuser">
-			<input type="button" id="mdfBtn" value="편집" class="custcomp_btn" onclick="estMdfyBtn();"/>
+		<div id="title">
+			<div class="caption">■ 견적상세정보</div>
 		</div>
-<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
-<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
-<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
-<!-- 		</div> -->
-		<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-			<input type="button" id="mdfSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/>
-			<input type="button" id="mdfCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
-		</div>
+		<!-- <label>상세정보</label> -->
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">			
@@ -73,7 +66,21 @@ $(function() {
 			
 			<table id="contactable">
 				<tbody id="estDetail">
-				
+					<tr>
+						<td colspan="4">
+							<div id="baseBtnDiv" class="bt_position_authuser">
+								<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/>
+							</div>
+					<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
+					<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
+					<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
+					<!-- 		</div> -->
+							<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
+								<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/>
+								<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
+							</div>
+						</td>
+					</tr>
 					<tr>
 						<th>견적명</th>
 						<td>
@@ -86,10 +93,24 @@ $(function() {
 							name="cust_id" id="cust_id" value="${detail.cust_id }" /> 
 							<input type="hidden" name="lead_id" id="lead_id" value="" /> 
 							<input type="button" class="btn-success-tel" id="customer" value="고객"
-							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled"></td>
+							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
+						</td>
+					<tr>
+						<th>영업기회명</th>
+						<td><input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id }"> 
+							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" value="${detail.sales_oppt_nm }">
+							<input type="button" name="act_opp" value="영업기회"
+							class="btn-success-tel" id="opptSelect"  disabled="disabled">
+						<th>견적유효일자</th>
+						<td><label for="start_day" class="oppt_txt_nm"></label>
+							<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
+							class="int" readonly="readonly" value="${detail.estim_valid_d }">
+						</td>
+					</tr>
+					<tr>
 						<th>견적단계</th>
-						<td colspan="3"><select name="estim_lev_cd_detail"
-							id="estim_lev_cd_detail" disabled="disabled">
+						<td colspan="3">
+							<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled">
 								<option value="" style="text-align: center;" >선택</option>
 								<c:forEach items="${elclist}" var="elclist">
 									<c:choose>
@@ -101,27 +122,17 @@ $(function() {
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
-						</select></td>
-					<tr>
-						<th>영업기회명</th>
-						<td><input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id }"> 
-							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" value="${detail.sales_oppt_nm }">
-							<input type="button" name="act_opp" value="영업기회"
-							class="btn-success-tel" id="opptSelect"  disabled="disabled">
-						<th>견적유효일자</th>
-						<td><label for="start_day" class="oppt_txt_nm"></label>
-							<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
-							class="int" readonly="readonly" value="${detail.estim_valid_d }"></td>
-
+							</select>
+						</td>
 					</tr>
  					<tr>
-						<th>Remark</th> 
-						<td colspan="3"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
+						<th>참고사항</th> 
+						<td colspan="2"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
  							class="int_detail_ad" value="${detail.memo}">
  						</td>
- 						<td colspan="3">
- 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="est_tab_bt" value="상품삭제" id="prodDelete"/>
-							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="est_tab_bt" value="상품추가" id="prodListBtn"/>
+ 						<td>
+ 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
+							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/>
  						</td> 
 					</tr>
 					
@@ -179,11 +190,6 @@ $(function() {
 										</tr>
 									</c:forEach>
 								</c:when>
-								<c:otherwise>
-									<tr>
-										<td colspan="6">등록된 상품 정보가 없습니다.</td>
-									</tr>
-								</c:otherwise>
 							</c:choose>
 						</tbody>
 					</table>

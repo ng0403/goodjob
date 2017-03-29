@@ -29,6 +29,7 @@
 $(function(){	
 	var buttonStatus = "";
 	var ctx = $("#ctx").val();
+	makeBlock();
 	custcompListPopup(ctx);
 	actOpptListPopup(ctx);
 	prodList(ctx);
@@ -182,6 +183,10 @@ function inputProd(prod_id,prod_nm,prod_sales_amt){
 			);
 		}
 	}
+	makeBlock();
+	prodChange();	
+}
+function makeBlock(){
 	for(var i=$("#estimatetbody tr").length; i <= 4; i++){
 		$('#estimatetbody').append(
 				'<tr id="priceline" class="empty">'+
@@ -194,7 +199,6 @@ function inputProd(prod_id,prod_nm,prod_sales_amt){
 				'</tr>'
 				);
 	}
-	prodChange();	
 }
 //상품 전체 선택
 function prodallCheck(){

@@ -33,15 +33,15 @@
 </style>
 <script type="text/javascript">
 $(function() {
-	 $("#estimatediv").mCustomScrollbar({  
-        theme:"rounded-dark",
-        autoHideScrollbar: false,
-        scrollbarPosition: "outside",
-        scrollButtons:{
-          enable:true
-        },
-        axis:"y"
-      });
+// 	 $("#estimatediv").mCustomScrollbar({  
+//         theme:"rounded-dark",
+//         autoHideScrollbar: false,
+//         scrollbarPosition: "outside",
+//         scrollButtons:{
+//           enable:true
+//         },
+//         axis:"y"
+//       });
 	 activeDetail();
 });  
 </script>
@@ -56,102 +56,112 @@ $(function() {
 <!-- 		<input type="hidden" name="memo"> -->
 <!-- 		<input type="hidden" name="est_list"> -->
 <!-- 	</form> -->
-	<div id="css_tabs">
+	<div id="write_est">
+	<!-- <div id="css_tabs"> -->
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" /> <input
-			id="tab2" type="radio" name="tab" />
+		<!-- <input id="tab1" type="radio" name="tab" checked="checked" /> <input
+			id="tab2" type="radio" name="tab" /> -->
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label for="tab1">견적등록</label>
-
+		<!-- <label for="tab1">견적등록</label> -->
+		<div id="title">
+			<div class="caption">■ 견적등록</div>
+		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">	
-			<div id="addBtnDiv" class="bt_position_authuser">
-				<input type="button" id="addSaveBtn" value="저장" onclick="save_Click();" class="custcomp_btn"/>
-				<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
-			</div>		
+					
 			<div id="ccustomerdiv">
 			<input type="hidden" id="inputCust" value="false"/>
 			
 			<table id="contactable">
 				<tbody id="estDetail">
-				
 					<tr>
-						<th>견적명</th>
+						<td colspan="4">
+							<div id="addBtnDiv" class="bt_position_authuser">
+								<input type="button" id="addSaveBtn" value="저장" class="btn-success-tel" onclick="save_Click();" class="custcomp_btn"/>
+								<input type="button" id="addCancelBtn" value="취소" class="btn-success-tel" onclick="cancel_Click();"/>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th class="txtr">견적명</th>
 						<td>
 							<input type="text" name="estim_nm_detail" id="estim_nm"
 								readonly="readonly" class="int2"></input>	
 							<input type="hidden" id="estim_id" value=""></td>
-						<th>고객사</th>
+						<th class="txtr">고객사</th>
 						<td><input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" ></input> 
 							<input type="hidden" name="cust_id_w" id="cust_id" value="" /> 
 							<input type="hidden" name="lead_id" id="lead_id" value="" /> 
 							<input type="button" class="btn-success-tel" id="customer" value="고객"
-							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled"></td>
-						<th>견적단계</th>
-						<td colspan="3"><select name="estim_lev_cd_detail"
-							id="estim_lev_cd_detail" disabled="disabled">
-								<option value="" style="text-align: center;" >선택</option>
-								<c:forEach items="${elclist}" var="elclist">
-									<option value="${elclist.code}">${elclist.cd_nm}</option>
-								</c:forEach>
-						</select></td>
+							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
+						</td>
 					<tr>
-						<th>영업기회명</th>
+						<th class="txtr">영업기회명</th>
 						<td><input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id"> 
 							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" >
 							<input type="button" name="act_opp" value="영업기회"
 							class="btn-success-tel" id="opptSelect"  disabled="disabled">
-						<th>견적유효일자</th>
+						<th class="txtr">견적유효일자</th>
 						<td><label for="start_day" class="oppt_txt_nm"></label>
 							<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
-							class="int" readonly="readonly" <%-- value="${estim_valid_d}" --%>></input></td>
-
+							class="int" readonly="readonly" <%-- value="${estim_valid_d}" --%>></input>
+						</td>
+					</tr>
+					<tr>
+						<th class="txtr">견적단계</th>
+						<td colspan="3">
+							<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled">
+								<option value="" style="text-align: center;" >선택</option>
+								<c:forEach items="${elclist}" var="elclist">
+									<option value="${elclist.code}">${elclist.cd_nm}</option>
+								</c:forEach>
+							</select>
+						</td>
 					</tr>
  					<tr>
-						<th>Remark</th> 
-						<td colspan="3"><input type="text" name="memo_w" id="memo" style="width: 90%;" readonly=readonly
+						<th class="txtr">참고사항</th> 
+						<td colspan="2"><input type="text" name="memo_w" id="memo" style="width: 90%;" readonly=readonly
  							class="int_detail_ad">
  						</td>
- 						<td colspan="3">
- 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="est_tab_bt" value="상품삭제" id="prodDelete"/>
-							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="est_tab_bt" value="상품추가" id="prodListBtn"/>
+ 						<td>
+ 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
+							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/>
  						</td> 
 					</tr>
-					
-					</table>
-							<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
-								<tr>
-									<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
-									<td style="width: 32%;">품목명</td>
-									<td style="width: 8%;">수량</td>
-									<td style="width: 27%;">판매가</td>
-									<td style="width: 15%;">할인</td>
-									<td style="width: 15%;">공급가</td>
-								</tr>
-								<tr id="totalprice">
-									<th></th>
-									<td>계:</td>
-									<td id="countSum">0</td>
-									<td id="salesPriceSum" >0</td>
-									<td id="discountSum">0</td>
-									<td id="supplyPriceSum">0</td>
-								</tr>
-						</table>
-	   <div id="estimatediv" style="margin-left: 22px;">
-	   <input type="hidden" id="eduCode" value="${eduCode}">
+				</table>
+				<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
+					<tr>
+						<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+						<td style="width: 32%;">품목명</td>
+						<td style="width: 8%;">수량</td>
+						<td style="width: 27%;">판매가</td>
+						<td style="width: 15%;">할인</td>
+						<td style="width: 15%;">공급가</td>
+					</tr>
+					<tr id="totalprice">
+						<th></th>
+						<td>계:</td>
+						<td id="countSum">0</td>
+						<td id="salesPriceSum" >0</td>
+						<td id="discountSum">0</td>
+						<td id="supplyPriceSum">0</td>
+					</tr>
+				</table>
+				<div id="estimatediv" style="margin-left: 22px;">
+					<input type="hidden" id="eduCode" value="${eduCode}">
 					<table id="estimatetable" class="tabtable" style="text-align: center;">
 						<tbody id="estimatetbody">
-		
+
 						</tbody>
 					</table>
+				</div>
+				<div class="estimate_bt_position"> 
+								
+				</div>
 			</div>
-			<div class="estimate_bt_position"> 
-						
-					</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>
 

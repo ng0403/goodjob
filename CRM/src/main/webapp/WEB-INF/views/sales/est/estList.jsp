@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
@@ -61,11 +62,9 @@
 		    <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button> 
 		</div>
 <!-- </form> -->
-		<div id="baseBtnDiv" class="bt_position_authuser">
-			<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="estAddBtn();"/>
-		</div>	
-		<div class="bt_position_authuser">
-			<input type="button" id="estimDeleteBtn" class="custcomp_btn" value="삭제">	
+		<div id="contact_button_position">
+			<input type="button" id="addBtn" value="추가" class="btn-success-tel" onclick="estAddBtn();"/>
+			<input type="button" id="estimDeleteBtn" class="btn-success-tel" value="삭제">	
 		</div>
 	    
 	    <div id="tableline">
