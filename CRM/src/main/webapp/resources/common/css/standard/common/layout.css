@@ -36,6 +36,7 @@ html,body{
 	height:81%; 
 	overflow: hidden;  
 	margin: 0 auto;
+	overflow: auto;
 }
 .body{
 	width: 85%;
