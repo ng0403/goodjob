@@ -284,7 +284,7 @@
 			#{fin_mdfy_id_nm},
 			sysdate
 		)
-		<selectKey keyProperty="estim_seq" resultType="Integer" order="AFTER">
+		<selectKey keyProperty="estim_seq" resultType="String" order="AFTER">
 			SELECT /*+INDEX_DESC(ESTIMATE PK_ESTIMATE)*/
 			    ESTIM_ID
 			FROM ESTIMATE
