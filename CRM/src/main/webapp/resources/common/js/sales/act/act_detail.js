@@ -322,16 +322,22 @@ function actPaging(actPageNum) {
 	var ctx = $("#ctx").val();
 	var tbody = $('#act_list_tbody');
 	var tbodyContent = "";
-	var actData = { "actPageNum": actPageNum };
+	var act_search_div_id = $("#act_search_div_id").val();
+	var act_search_txt  = $("#act_search_txt").val();
+	
+	var actData = { "actPageNum": actPageNum, 
+					"act_search_div_id": act_search_div_id, 
+					"act_search_txt" : act_search_txt
+				  };
 	
 	$.ajax({
 		url : ctx+'/actPaging',
 		type : 'POST',
 		data : actData,
 		success : function(data) {
-			var start_d  = null;
-			var end_d = null;
-			var reg_dt = null;
+//			var start_d  = null;
+//			var end_d = null;
+//			var reg_dt = null;
 
 			if(data.actListSize == 0){
 				alert("검색결과가 없습니다.");
@@ -442,13 +448,12 @@ function actPaging(actPageNum) {
 
 //영업활동 조회 페이징
 function schActPaging(actPageNum) {
-	var ctx = $("#ctx").val();
+	var ctx   = $("#ctx").val();
 	var tbody = $('#act_list_tbody');
+	var act_search_div_id = $("#act_search_div_id").val();
+	var act_search_txt    = $("#act_search_txt").val();
 	var tbodyContent = "";
 	
-	var act_search_div_id = $("#act_search_div_id").val();
-	var act_search_txt  = $("#act_search_txt").val();
-
 	var actData = { "actPageNum": actPageNum, 
 			"act_search_div_id": act_search_div_id, 
 			"act_search_txt" : act_search_txt
@@ -581,9 +586,9 @@ function schActPaging(actPageNum) {
 function actSearchEnter(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if (keycode == '13') {
-		if ($("#ssales_actvy_nm").val() == '' && $("#ssales_actvy_div_cd").val() == '0' && $("#sact_oppt_nm").val() == '' && $("#sstart_day").val() == '' && $("#ssales_actvy_stat_cd").val() == '0') {
+		if ($("#act_search_txt").val() == '') {
 			alert("검색어를 입력하세요.")
-			$("#ssales_actvy_nm").focus();
+			$("#act_search_txt").focus();
 		} else {
 			schActPaging(1);
 		}

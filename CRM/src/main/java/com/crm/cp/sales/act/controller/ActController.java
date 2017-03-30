@@ -38,7 +38,7 @@ public class ActController {
 	ActService actService;
 	
 	//전체리스트 출력
-	@RequestMapping(value="/act" , method=RequestMethod.GET)
+	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum){
 
 		Map<String,Object> actMap = new HashMap<String,Object>();
@@ -160,27 +160,27 @@ public class ActController {
 		/*SimpleDateFormat simpledate = new SimpleDateFormat();
 		simpledate.applyLocalizedPattern("yyyy-MM-dd");
 		java.util.Date date = simpledate.parse(sstart_day);*/
-/*		
-		actMap.put("ssales_actvy_nm",ssales_actvy_nm);
-		actMap.put("ssales_actvy_div_cd",ssales_actvy_div_cd);
-		actMap.put("sact_oppt_nm", sact_oppt_nm);
-		actMap.put("sstart_day", sstart_day);
-		actMap.put("ssales_actvy_stat_cd", ssales_actvy_stat_cd);
-		actMap.put("actPageNum", actPageNum);
-*/		
+	
 		Map<String,Object> actMap = new HashMap<String,Object>();
 		
-		if(act_search_div_id.equals("ssales_actvy_nm"))
+		if(act_search_div_id.equals("") || act_search_div_id.equals(null))
 		{
-			actMap.put("ssales_actvy_nm", act_search_txt);
+			System.out.println(act_search_div_id);
 		}
-		if(act_search_div_id.equals("sact_oppt_nm"))
+		else
 		{
-			actMap.put("sact_oppt_nm", act_search_txt);
-		}
-		if(act_search_div_id.equals("sstart_day"))
-		{
-			actMap.put("sstart_day", act_search_txt);
+			if(act_search_div_id.equals("ssales_actvy_nm"))
+			{
+				actMap.put("ssales_actvy_nm", act_search_txt);
+			}
+			if(act_search_div_id.equals("sact_oppt_nm"))
+			{
+				actMap.put("sact_oppt_nm", act_search_txt);
+			}
+			if(act_search_div_id.equals("sstart_day"))
+			{
+				actMap.put("sstart_day", act_search_txt);
+			}
 		}
 		
 		actMap.put("actPageNum", actPageNum);
