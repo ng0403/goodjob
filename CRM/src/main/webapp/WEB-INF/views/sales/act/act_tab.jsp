@@ -199,33 +199,41 @@
 								<input type="hidden" id="hstrt_d">
 								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="start_text" readonly="readonly">
 								<input type="hidden" id="hstrt_t_h">
+								
 								<select name="strt_t" id="strt_t_h" class="start_hour" disabled="disabled">
 									<option value="0" style="text-align: center;">==선택==</option>
-										<option value="01">1</option>
-										<option value="02">2</option>
-										<option value="03">3</option>
-										<option value="04">4</option>
-										<option value="05">5</option>
-										<option value="06">6</option>
-										<option value="07">7</option>
-										<option value="08">8</option>
-										<option value="09">9</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-										<option value="21">21</option>
-										<option value="22">22</option>
-										<option value="23">23</option>
-										<option value="24">24</option>									
+								
+								<c:forEach begin="1" end="20" step="1" var="i">
+										<option value="i">${i}</option>
+								</c:forEach>
 								</select>
+<!-- 								<select name="strt_t" id="strt_t_h" class="start_hour" disabled="disabled"> -->
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<!-- 										<option value="01">1</option> -->
+<!-- 										<option value="02">2</option> -->
+<!-- 										<option value="03">3</option> -->
+<!-- 										<option value="04">4</option> -->
+<!-- 										<option value="05">5</option> -->
+<!-- 										<option value="06">6</option> -->
+<!-- 										<option value="07">7</option> -->
+<!-- 										<option value="08">8</option> -->
+<!-- 										<option value="09">9</option> -->
+<!-- 										<option value="10">10</option> -->
+<!-- 										<option value="11">11</option> -->
+<!-- 										<option value="12">12</option> -->
+<!-- 										<option value="13">13</option> -->
+<!-- 										<option value="14">14</option> -->
+<!-- 										<option value="15">15</option> -->
+<!-- 										<option value="16">16</option> -->
+<!-- 										<option value="17">17</option> -->
+<!-- 										<option value="18">18</option> -->
+<!-- 										<option value="19">19</option> -->
+<!-- 										<option value="20">20</option> -->
+<!-- 										<option value="21">21</option> -->
+<!-- 										<option value="22">22</option> -->
+<!-- 										<option value="23">23</option> -->
+<!-- 										<option value="24">24</option> -->
+<!-- 								</select> -->
 								시
 								<input type="hidden" id="hstrt_t_m">
 								<select name="strt_t" id="strt_t_m" class="start_minute" disabled="disabled">
@@ -329,7 +337,7 @@
 											<option value="21">21</option>
 											<option value="22">22</option>
 											<option value="23">23</option>
-											<option value="24">24</option>									
+											<option value="24">24</option>
 									</select>
 									시
 									<input type="hidden" id="hend_t_m">

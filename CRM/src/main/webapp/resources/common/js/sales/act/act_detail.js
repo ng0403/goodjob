@@ -445,17 +445,13 @@ function schActPaging(actPageNum) {
 	var ctx = $("#ctx").val();
 	var tbody = $('#act_list_tbody');
 	var tbodyContent = "";
-	var ssales_actvy_nm = $("#ssales_actvy_nm").val();
-	var ssales_actvy_div_cd = $("#ssales_actvy_div_cd").val();
-	var sact_oppt_nm = $("#sact_oppt_nm").val();
-	var sstart_day = $("#sstart_day").val();
-	var ssales_actvy_stat_cd = $("#ssales_actvy_stat_cd").val();
+	
+	var act_search_div_id = $("#act_search_div_id").val();
+	var act_search_txt  = $("#act_search_txt").val();
+
 	var actData = { "actPageNum": actPageNum, 
-			"ssales_actvy_nm": ssales_actvy_nm, 
-			"ssales_actvy_div_cd":ssales_actvy_div_cd, 
-			"sact_oppt_nm":sact_oppt_nm,
-			"sstart_day":sstart_day,
-			"ssales_actvy_stat_cd":ssales_actvy_stat_cd
+			"act_search_div_id": act_search_div_id, 
+			"act_search_txt" : act_search_txt
 	};
 	
 	$.ajax({

@@ -28,31 +28,16 @@
     
 	<div id="dboardbody">
 		<div class="search_div">
-            <label for="act_nm" class="act_label_search">영업활동명</label>
-             	<input type="text" class=act_txt_search name="ssales_actvy_nm" id="ssales_actvy_nm" autofocus="autofocus" onkeydown="actSearchEnter(event);">
-             
-            <label for="act_div" class="act_label_search">활동구분</label>
-                <select name="ssales_actvy_div_cd" id="ssales_actvy_div_cd" class="act_tab_select" onkeydown="actSearchEnter(event);" onclick="searchActDiv();">
-					<option value="0" style="text-align: center;">=활동구분=</option>
-					<c:forEach var="actDivCd" items="${actDivCd}">
-                    	<option value="${actDivCd.sales_actvy_div_cd}">${actDivCd.sales_actvy_div_nm}</option>
-                  	</c:forEach>
-                </select>
-             
-            <label for="act_oppt_nm" class="act_label_search">영업기회명</label>
-				<input type="text" class="act_txt_search" name="sact_oppt_nm" id="sact_oppt_nm" onkeydown="actSearchEnter(event);">
-             
-            <label for="start_day" class="act_label_search">시작일자</label>
-               	<input type="text" class="act_date_search" name="sstart_day" id="sstart_day" onkeydown="actSearchEnter(event);">
-             
-            <label for="status" class="act_stat_search">상태</label>
-                <select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);">
-					<option value="0" style="text-align: center;">==상태==</option>
-					<c:forEach var="actStatCd" items="${actStatCd}">
-						<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-                  	</c:forEach>
-                </select>
-             <input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/>
+			<select class="act_tab_select" name="act_search_div_id" id="act_search_div_id" >
+				<option value="0" style="text-align: center;">==선택==</option>
+				<option value="ssales_actvy_nm">영업활동명</option>
+				<option value="sact_oppt_nm">영업기회명</option>
+				<option value="sstart_day">시작일자</option>
+			</select>
+			<input type="text" class="act_txt_search" name="act_search_txt" id="act_search_txt" autofocus="autofocus" onkeydown="actSearchEnter(event);">
+            
+            
+            <input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/>
 		</div>
 	
 <!-- 		<div class="search_div"> -->
@@ -114,9 +99,9 @@
 								<td style="text-align: center;" rowspan="2" class="act_dt_tag">${actList.fst_reg_dt}</td>
 							</tr>
 							<tr>
-								<td class="act_endh_tag">${actList.end_d}</td>
+								<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>
 								<%-- <fmt:formatDate value="${actList.end_d}" pattern="yyyy-MM-dd"/> --%>
-								<td class="act_endm_tag">${actList.end_t}</td>
+								<td style="text-align: center;" class="act_endm_tag">${actList.end_t}</td>
 							</tr>
 
 						</c:forEach>

@@ -118,7 +118,8 @@ public class ActController {
 	public String actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
 	{
 		actvo.setFst_reg_id_nm(session.getAttribute("user").toString());
-		
+		//sales_actvy_div_cd=0001 할 일 일경우
+		//sales_actvy_div_cd=0002 영업활동일 결우
 		System.out.println(actvo.toString());
 		actService.actInsert(actvo);
 
@@ -154,17 +155,34 @@ public class ActController {
 	//전체리스트 출력 페이징/검색 
 	@RequestMapping(value="/actPaging" , method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> ActListSearch(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum,
-			String ssales_actvy_nm, String ssales_actvy_div_cd, String sact_oppt_nm, String sstart_day, String ssales_actvy_stat_cd) throws ParseException{
+			String act_search_div_id, String act_search_txt) throws ParseException{
 		
 		/*SimpleDateFormat simpledate = new SimpleDateFormat();
 		simpledate.applyLocalizedPattern("yyyy-MM-dd");
 		java.util.Date date = simpledate.parse(sstart_day);*/
-		Map<String,Object> actMap = new HashMap<String,Object>();
+/*		
 		actMap.put("ssales_actvy_nm",ssales_actvy_nm);
 		actMap.put("ssales_actvy_div_cd",ssales_actvy_div_cd);
 		actMap.put("sact_oppt_nm", sact_oppt_nm);
 		actMap.put("sstart_day", sstart_day);
 		actMap.put("ssales_actvy_stat_cd", ssales_actvy_stat_cd);
+		actMap.put("actPageNum", actPageNum);
+*/		
+		Map<String,Object> actMap = new HashMap<String,Object>();
+		
+		if(act_search_div_id.equals("ssales_actvy_nm"))
+		{
+			actMap.put("ssales_actvy_nm", act_search_txt);
+		}
+		if(act_search_div_id.equals("sact_oppt_nm"))
+		{
+			actMap.put("sact_oppt_nm", act_search_txt);
+		}
+		if(act_search_div_id.equals("sstart_day"))
+		{
+			actMap.put("sstart_day", act_search_txt);
+		}
+		
 		actMap.put("actPageNum", actPageNum);
 		
 		System.out.println("MAP : " + actMap);
@@ -173,6 +191,9 @@ public class ActController {
 		actMap.put("page", page);
 		
 		List<ActVO> actList = actService.actAllList(actMap);
+		
+		System.out.println("List : " + actList);
+		
 		actMap.put("actList", actList);
 		actMap.put("actListSize", actList.size());
 		
