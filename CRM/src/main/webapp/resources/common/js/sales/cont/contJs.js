@@ -221,7 +221,7 @@ function contPaging(pageNum) {
 					tbodyContent = "<tr id='tabletoptr'>"
 						+"<th><input type='checkbox' id='chk_cont_id' value='"+data.contList[i].contr_id+"' onclick='chkCancel();'></th>"
 						+"<td style='text-align: left; padding-left: 8px'>"
-						+"<a href='#' onclick=\"contNameSend('"+data.contList[i].contr_id+"');\" style='color: blue;' class='cntClick'>"+data.contList[i].contr_nm+"</a></td>"
+						+"<a href='#' onclick=\"contDetail('"+data.contList[i].contr_id+"');\" style='color: blue;' class='cntClick'>"+data.contList[i].contr_nm+"</a></td>"
 						+"<td>"+data.contList[i].contr_num+"</td>" 
 						+"<td style='text-align: right; padding-right: 8px'>"+data.contList[i].contr_qty+"</td>"
 						+"<td style='text-align: right; padding-right: 8px'>"+contr_amt+"</td>"

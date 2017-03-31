@@ -61,7 +61,7 @@
 <!-- 									<input type="hidden" id="estim_id"/>
  -->									<input type="hidden" name="cust_id" id="cust_id" />
 									<input type="hidden" name="estim_lev_cd" id="estim_lev_cd" value="0002"/>
-									<input type="button" value="고객" id="customer" >
+									<input type="button" value="고객" id="customer" class="cont_bt">
 								</td>
 								<th rowspan="3">메모</th>
 								<td rowspan="3">

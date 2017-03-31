@@ -38,7 +38,9 @@ public class contrServiceImpl implements contrService {
 
 	@Override
 	public String contInsert(contrVO contVO) {
-		int contInsert = dao.contInsert(contVO);// 여기서 가져온 값을 판별하여 
+		int contInsert = dao.contInsert(contVO);// 여기서 가져온 값을 판별하여
+		System.out.println("contr insert service" + contInsert);
+
 		String contResult = null;
 		if(contInsert == 2) {
 			contResult = "새로운 계약을 등록했습니다.";

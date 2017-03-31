@@ -16,8 +16,8 @@
 		    MEMO,    
 		    FST_REG_DT,    
 		    FIN_MDFY_DT,
-		    FST_REG_ID_NM,    
-		    FIN_MDFY_ID_NM  )
+		    FST_REG_ID,    
+		    FIN_MDFY_ID  )
 	  VALUES  
 		  (   
 		   CONTR_SEQ.NEXTVAL,   
@@ -31,8 +31,8 @@
 		   #{memo},
 		   sysdate,   
 		   sysdate,   
-		   #{fst_reg_id_nm},   
-		   #{fin_mdfy_id_nm}  )
+		   #{fst_reg_id},   
+		   #{fin_mdfy_id}  )
 	    <selectKey keyProperty="contr_id" resultType="String" order="AFTER">
          	select concat('CO',lpad(to_char(contr_seq.currval),5,'0')) from dual
       	</selectKey>
@@ -66,7 +66,7 @@
 	           CONTR_D = TO_DATE(#{contr_d},'yyyy-MM-dd'),
 	           MEMO =  #{memo},
 	           FIN_MDFY_DT = sysdate,
-	           FIN_MDFY_ID_NM = #{fin_mdfy_id_nm}
+	           FIN_MDFY_ID = #{fin_mdfy_id}
 		WHERE CONTR_ID=#{contr_id}
 	</update>
 
@@ -80,7 +80,7 @@
 			  so.SALES_OPPT_NM,
 			  e.CUST_ID,
  			  soe.ESTIM_ID,
-			  e.FST_REG_ID_NM,
+			  e.FST_REG_ID,
 			  TO_CHAR(soe.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT,
 			  e.ESTIM_NM,
 			  e.ESTIM_LEV_CD,
@@ -125,7 +125,7 @@
 	
 	<!-- 카운트 세는것 -->
 	<select id="cContrCount" resultType="int" parameterType="java.util.Map">
-		select nvl(count(d.contr_id),0)
+		select nvl(count(distinct d.contr_id),0)
 		from
 		(
 		 <!-- 조건문에 없는 컬럼은 삭제해도 무관하다. -->
@@ -170,7 +170,7 @@
 				co.CONTR_AMT, 
 				TO_CHAR(co.CONTR_D, 'YYYY-MM-DD') CONTR_D, 
 				co.MEMO, 
-				co.FST_REG_ID_NM, 
+				co.FST_REG_ID, 
 				co.FST_REG_DT 
 			FROM 
 				SALES_OPPORTUNITY so,  
@@ -212,7 +212,7 @@
 				, TO_CHAR(SO.EXPT_FIN_D, 'YYYY-MM-DD') EXPT_FIN_D
 				, SO.PSBLTY_RATE
 				, (SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD
-				, SO.FST_REG_ID_NM
+				, SO.FST_REG_ID
 				, SO.FST_REG_DT
 				, SOE.ESTIM_ID
 				, E.ESTIM_NM
@@ -278,7 +278,7 @@
         AND SO.ACT_YN = 'Y'
 			  AND so.SALES_OPPT_ID=c.SALES_OPPT_ID
         AND c.ACT_YN = 'Y'
-        AND c.FST_REG_ID_NM=I.ID_NM
+        AND c.FST_REG_ID=I.ID_NM
          AND i.org_id = o.org_id
         <if test="empcd=='0016' or empcd=='0017'">
         and o.org_id 
@@ -349,7 +349,7 @@
         AND SO.ACT_YN = 'Y'
 			  AND so.SALES_OPPT_ID=c.SALES_OPPT_ID
         AND c.ACT_YN = 'Y'
-        AND c.FST_REG_ID_NM=I.ID_NM
+        AND c.FST_REG_ID=I.ID_NM
          AND i.org_id = o.org_id
         <if test="empcd=='0016' or empcd=='0017'">
         and o.org_id 

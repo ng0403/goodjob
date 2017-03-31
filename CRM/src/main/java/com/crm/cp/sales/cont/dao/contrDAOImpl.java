@@ -55,6 +55,8 @@ public class contrDAOImpl implements contrDAO {
 	@Override
 	public int contInsert(contrVO contVO) {
 		int contInsert = sqlSession.update("contInsert", contVO);
+		System.out.println("contr insert Dao" + contInsert);
+
 		if( contInsert == 1 )
 		{
 			System.out.println("contrinsert entering");
@@ -64,10 +66,11 @@ public class contrDAOImpl implements contrDAO {
 			contVO.setContr_num(sdf.format(d)+'-'+contVO.getContr_id());
 			contVO.setContr_id(contVO.getContr_id());
 			System.out.println("contr_num???" + contVO.getContr_num());
+			System.out.println("contr_vo" + contVO.toString());
 			sqlSession.update("contNumInsert", contVO);
 		}
 		contInsert += sqlSession.update("contOpptComplete", contVO.getSales_oppt_id());
-		System.out.println("contInsert" + contInsert);
+		System.out.println("contInsert");
 		return contInsert;
 	}
 

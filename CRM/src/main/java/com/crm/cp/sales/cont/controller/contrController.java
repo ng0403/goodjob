@@ -53,6 +53,9 @@ public class contrController {
 		mov.addObject("pageNum", pageNum);
 		mov.addObject("search", map);
 		mov.addObject("endPageNum", map.get("endPageNum"));
+		
+		System.out.println("page 테스트 " + page.toString());
+		System.out.println("mov 테스트 " + mov.toString());
 		return mov;
 	}
 	
@@ -117,7 +120,7 @@ public class contrController {
 	public String ContUpdate(HttpSession session, contrVO contVO){
 		System.out.println("cont update entering");
 		System.out.println("cont update vo? " + contVO.toString());
-		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
+		contVO.setFin_mdfy_id(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
 		System.out.println(contVO);
 		
 		contrService.contUpdate(contVO);
@@ -134,8 +137,8 @@ public class contrController {
 	// 계약 추가
 	 @RequestMapping(value = "/contInsert")
 	public @ResponseBody Map<String, String> ContInsert(HttpSession session, contrVO contVO) {
-		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());// session에서 로그인한 아이디를 가져오는 코드
-		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
+		contVO.setFst_reg_id(session.getAttribute("user").toString());// session에서 로그인한 아이디를 가져오는 코드
+		contVO.setFin_mdfy_id(session.getAttribute("user").toString());// getParameter를 이름지정하듯 세션도 이름지정해서 설정된것을 가져오는 코드
 		String insertCheck = contrService.contInsert(contVO);
 		Map<String, String> rstStr = new HashMap<String, String>();
 		rstStr.put("insertResult", insertCheck);
@@ -156,21 +159,23 @@ public class contrController {
 	@RequestMapping(value="/cont_add", method=RequestMethod.GET)
 	public void cont_add(HttpSession session, contrVO contVO){
 		System.out.println("add continsert");
-		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		contVO.setFst_reg_id(session.getAttribute("user").toString());
+		contVO.setFin_mdfy_id(session.getAttribute("user").toString());
 		System.out.println("insert contrVO?" + contVO.toString());
-		 
+	
 	}
 	
 	@RequestMapping(value="/cont_add", method=RequestMethod.POST)
 	public String cont_addP(HttpSession session, contrVO contVO){
 		System.out.println("add continsert");
-		contVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-		contVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		contVO.setFst_reg_id(session.getAttribute("user").toString());
+		contVO.setFin_mdfy_id(session.getAttribute("user").toString());
 		System.out.println("insert contrVO?" + contVO.toString());
 		contrService.contInsert(contVO);
 		
 		return "redirect:/cont";
+	 
+		 
 	}
 	
 	

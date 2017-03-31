@@ -14,9 +14,9 @@ public class contrVO {
 	String contr_amt; // 계약 금액
 	String contr_d; // 계약 일자
 	String memo; // 메모
-	String fst_reg_id_nm; // 최초등록자
+	String fst_reg_id; // 최초등록자
 	String fst_reg_dt; // 최초등록일
-	String fin_mdfy_id_nm; // 최종변경자
+	String fin_mdfy_id; // 최종변경자
 	String fin_mdfy_dt; //최종변경일
 	String act_yn; // 활성화여부
 	String sales_lev_cd; // 영업단계
@@ -105,12 +105,12 @@ public class contrVO {
 		this.memo = memo;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public String getFst_reg_dt() {
@@ -146,12 +146,12 @@ public class contrVO {
 		this.cust_nm = cust_nm;
 	}
 
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
 	public String getFin_mdfy_dt() {
@@ -211,9 +211,9 @@ public class contrVO {
 				+ ", estim_id=" + estim_id + ", contr_nm=" + contr_nm
 				+ ", contr_num=" + contr_num + ", contr_qty=" + contr_qty
 				+ ", contr_amt=" + contr_amt + ", contr_d=" + contr_d
-				+ ", memo=" + memo + ", fst_reg_id_nm=" + fst_reg_id_nm
-				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id_nm="
-				+ fin_mdfy_id_nm + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
+				+ ", memo=" + memo + ", fst_reg_id=" + fst_reg_id
+				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
+				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
 				+ act_yn + ", sales_lev_cd=" + sales_lev_cd + ", estim_nm="
 				+ estim_nm + ", estim_lev_cd=" + estim_lev_cd + ", lead_id="
 				+ lead_id + ", sales_oppt_stat_cd=" + sales_oppt_stat_cd
