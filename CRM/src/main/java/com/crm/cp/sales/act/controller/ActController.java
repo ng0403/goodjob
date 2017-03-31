@@ -124,7 +124,7 @@ public class ActController {
 	@RequestMapping(value = "/actInsert", method = RequestMethod.POST)
 	public String actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
 	{
-		actvo.setFst_reg_id_nm(session.getAttribute("user").toString());
+		actvo.setFst_reg_id(session.getAttribute("user").toString());
 		//sales_actvy_div_cd=0001 할 일 일경우
 		//sales_actvy_div_cd=0002 영업활동일 결우
 		System.out.println(actvo.toString());
@@ -138,7 +138,7 @@ public class ActController {
 	@RequestMapping(value="/actEdit", method= RequestMethod.POST)
 	public String actEdit(@ModelAttribute ActVO actvo, HttpSession session)
 	{
-		actvo.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		actvo.setFin_mdfy_id(session.getAttribute("user").toString());
 		actvo.setSales_actvy_div_cd(actvo.getSales_actvy_div_nm());
 		actvo.setSales_actvy_type_cd(actvo.getSales_actvy_type_nm());
 		actvo.setSales_actvy_stat_cd(actvo.getSales_actvy_stat_nm());
@@ -275,7 +275,7 @@ public class ActController {
 		/*		actvo.setStrt_d(new java.sql.Date(actvo.getStrt_d().getTime()));
 		actvo.setEnd_d(new java.sql.Date(actvo.getEnd_d().getTime()));*/
 			
-		actvo.setFst_reg_id_nm(session.getAttribute("user").toString());
+		actvo.setFst_reg_id(session.getAttribute("user").toString());
 		System.out.println(actvo.toString());
 		actService.actInsert(actvo);
 

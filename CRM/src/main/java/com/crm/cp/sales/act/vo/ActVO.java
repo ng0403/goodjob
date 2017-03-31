@@ -197,11 +197,11 @@ public class ActVO {
 		this.memo = memo;
 	}
 
-	public String getFst_reg_id_nm() {
+	public String getFst_reg_id() {
 		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id) {
+	public void setFst_reg_id(String fst_reg_id) {
 		this.fst_reg_id = fst_reg_id;
 	}
 
@@ -213,11 +213,11 @@ public class ActVO {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
-	public String getFin_mdfy_id_nm() {
+	public String getFin_mdfy_id() {
 		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id) {
+	public void setFin_mdfy_id(String fin_mdfy_id) {
 		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
