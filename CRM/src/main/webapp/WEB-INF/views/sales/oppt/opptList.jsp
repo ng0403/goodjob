@@ -95,7 +95,7 @@
 						<td>${list.expt_fin_d}</td>
 						<td>${list.psblty_rate}</td>
 						<td>${list.sales_oppt_stat_cd_nm}</td>
-						<td>${list.fst_reg_id_nm}</td>
+						<td>${list.fst_reg_id}</td>
 						<td>${list.fst_reg_dt}</td>
 					</tr>
 				</c:forEach>

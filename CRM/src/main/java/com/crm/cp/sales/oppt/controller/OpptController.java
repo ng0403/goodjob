@@ -237,7 +237,7 @@ public class OpptController {
 	@RequestMapping(value = "/opptModify", method = RequestMethod.POST)
 	@ResponseBody ModelAndView opptModify(HttpSession session, OpptVO detail, int pageNum) {
 		System.out.println("Detail Edit Controller");
-		detail.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		detail.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = service.opptModify(detail);
 		System.out.println("Detail Edit Result : " + result);
 		ModelAndView mov = new ModelAndView("oppt");
@@ -254,8 +254,8 @@ public class OpptController {
 	@RequestMapping(value = "/opptAdd", method = RequestMethod.POST)
 	@ResponseBody
 	int opptAdd(HttpSession session, OpptVO add) {
-		add.setFst_reg_id_nm(session.getAttribute("user").toString());
-		add.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		add.setFst_reg_id(session.getAttribute("user").toString());
+		add.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = service.opptAdd(add);
 		return result;
 	}
@@ -358,8 +358,8 @@ public class OpptController {
 	@RequestMapping(value = "/opptActiveAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public int opptActiveAdd(HttpSession session, ActVO act) {
-		act.setFst_reg_id_nm(session.getAttribute("user").toString());
-		act.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		act.setFst_reg_id(session.getAttribute("user").toString());
+		act.setFin_mdfy_id(session.getAttribute("user").toString());
 		// 영업활동 추가
 		int result = service.opptActiveAdd(act);
 		// return 1;

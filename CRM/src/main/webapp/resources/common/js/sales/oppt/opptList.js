@@ -242,7 +242,7 @@ function opportunityList(page){
 						"<td>"+list.expt_fin_d+"</td>"+
 						"<td>"+list.psblty_rate+"</td>"+
 						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
-						"<td>"+list.fst_reg_id_nm+"</td>"+
+						"<td>"+list.fst_reg_id+"</td>"+
 						"<td>"+list.fst_reg_dt+"</td>+"+
 						"</tr>"
 				);
@@ -313,7 +313,7 @@ function viewSalesActive(opptId){
 				"<td>"+start_d+"</td>"+
 				"<td>"+data.strt_t+"</td>"+
 				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2'>"+data.fst_reg_id_nm+"</td>"+
+				"<td rowspan='2'>"+data.fst_reg_id+"</td>"+
 				"<td rowspan='2'>"+reg_dt+"</td>"+
 				"</tr>"+
 				"<tr>"+
@@ -371,7 +371,7 @@ function estimList(opptId){
 						'<td>'+data.estim_qty+'</td>'+
 						'<td style="text-align: right; padding-right: 5px;">'+comma(data.sales_price)+'</td>'+
 						'<td>'+data.estim_valid_d+'</td>'+
-						'<td>'+data.fst_reg_id_nm+'</td>'+
+						'<td>'+data.fst_reg_id+'</td>'+
 						'<td>'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});

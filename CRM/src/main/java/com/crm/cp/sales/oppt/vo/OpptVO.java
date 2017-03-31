@@ -15,9 +15,9 @@ public class OpptVO {
 	private String sales_oppt_stat_cd_nm; // 영업기회상태코드명
 	private String cust_nm; // 고객명
 	private String memo; // 메모
-	private String fst_reg_id_nm; // 최초등록자ID명
+	private String fst_reg_id; // 최초등록자ID명
 	private String fst_reg_dt; // 최초등록일시
-	private String fin_mdfy_id_nm; // 최종변경자ID명
+	private String fin_mdfy_id; // 최종변경자ID명
 	private String fin_mdfy_dt; // 최종변경일시
 	private String act_yn; // 활성화여부
 	private String estim_id; // 견적ID
@@ -207,12 +207,12 @@ public class OpptVO {
 		this.memo = memo;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public String getFst_reg_dt() {
@@ -223,12 +223,12 @@ public class OpptVO {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
 	public String getFin_mdfy_dt() {
@@ -287,8 +287,8 @@ public class OpptVO {
 				+ ", cust_id=" + cust_id + ", sales_lev_cd=" + sales_lev_cd + ", sales_lev_cd_nm=" + sales_lev_cd_nm
 				+ ", expt_sales_amt=" + expt_sales_amt + ", expt_fin_d=" + expt_fin_d + ", psblty_rate=" + psblty_rate
 				+ ", sales_oppt_stat_cd=" + sales_oppt_stat_cd + ", sales_oppt_stat_cd_nm=" + sales_oppt_stat_cd_nm
-				+ ", cust_nm=" + cust_nm + ", memo=" + memo + ", fst_reg_id_nm=" + fst_reg_id_nm + ", fst_reg_dt="
-				+ fst_reg_dt + ", fin_mdfy_id_nm=" + fin_mdfy_id_nm + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
+				+ ", cust_nm=" + cust_nm + ", memo=" + memo + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
+				+ fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
 				+ act_yn + ", estim_id=" + estim_id + ", estim_nm=" + estim_nm + ", org_nm=" + org_nm + ", idx=" + idx
 				+ ", cd_grp_id=" + cd_grp_id + ", code=" + code + ", cd_nm=" + cd_nm + ", estim_qty=" + estim_qty
 				+ ", sales_price=" + sales_price + ", ing=" + ing + ", cplt=" + cplt + ", fail=" + fail + "]";
