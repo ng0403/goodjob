@@ -92,7 +92,7 @@
 							<td><c:out value="${result.estim_qty}" /></td>
 							<td style='text-align: right; padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
 							<td><c:out value="${result.estim_valid_d}" /></td>
-							<td><c:out value="${result.fst_reg_id_nm}" /></td>
+							<td><c:out value="${result.fst_reg_id}" /></td>
 							<td><c:out value="${result.fst_reg_dt}" /></td>
 						</tr>
 					</c:forEach>
@@ -103,13 +103,25 @@
 		<div id="pageSpace">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" strp="1">
+			<%-- <c:if test="${param.currentPageNo ne param.firstPageNo}">
+        		<a href="javascript:goPage('${servletPath}', ${param.prevPageNo}, ${param.recordsPerPage})" class="prev">이전</a>
+    		</c:if> --%>
+
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 				<c:choose>
 					<c:when test="${i eq ccPageNum }">
-					</c:when>s
+						<b>
+							<a  href="javascript:list('${ccPageNum}');" id="pNum" >${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:list('${i}');" id="pNum">${i}</a>
+					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			
+			<%-- <c:if test="${param.currentPageNo ne param.finalPageNo}">
+       			<a href="javascript:goPage('${servletPath}', ${param.nextPageNo}, ${param.recordsPerPage})" class="next">다음</a>
+    		</c:if> --%>
 			
 			<c:choose>
 				<c:when test="${ccPageNum == page.startPageNum && ccPageNum != page.endPageNum}">
