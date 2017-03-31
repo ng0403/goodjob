@@ -92,6 +92,11 @@ public class ActController {
 		else
 		{
 			flg = 1;
+			String[] htime = {"01", "02", "03", "04", "05", "06",
+							 "07", "08", "09", "10", "11", "12",
+							 "13", "14", "15", "16", "17", "18",
+							 "19", "20", "21", "22", "23", "24"};
+			String[] mtime = {"00", "10", "20", "30", "40", "50"};
 			
 			ActVO actVO = actService.actDetail(sales_actvy_id);
 			
@@ -107,6 +112,8 @@ public class ActController {
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("htime", htime);
+			mov.addObject("mtime", mtime);
 			mov.addObject("flg", flg);
 				
 			return mov;
