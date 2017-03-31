@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.crm.cp.standard.prod.vo.ProdVO;
-import com.crm.cp.utils.PagerVO;
+import com.crm.cp.utils.PageUtil;
 
 public interface ProdDao {
 

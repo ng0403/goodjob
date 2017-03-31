@@ -9,9 +9,9 @@ public class EstVO {
 	private String estim_lev_cd;
 	private String estim_lev_cd_nm;
 	private String estim_valid_d;
-	private String fst_reg_id_nm;
+	private String fst_reg_id;
 	private String fst_reg_dt;
-	private String fin_mdfy_id_nm;
+	private String fin_mdfy_id;
 	private String fin_mdfy_dt;
 	private String act_yn;
 	
@@ -46,7 +46,7 @@ public class EstVO {
 	
 	public EstVO(String estim_id, String cust_id, String estim_nm,
 			String estim_lev_cd, String estim_lev_cd_nm, String estim_valid_d,
-			String fst_reg_id_nm, String fst_reg_dt, String fin_mdfy_id_nm,
+			String fst_reg_id, String fst_reg_dt, String fin_mdfy_id,
 			String fin_mdfy_dt, String act_yn, String prod_id, String prod_nm,
 			String estim_qty, String sales_price_1, String sales_price_2,
 			String sales_price, String discount, String sup_price,
@@ -62,9 +62,9 @@ public class EstVO {
 		this.estim_lev_cd = estim_lev_cd;
 		this.estim_lev_cd_nm = estim_lev_cd_nm;
 		this.estim_valid_d = estim_valid_d;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.prod_id = prod_id;
@@ -128,11 +128,11 @@ public class EstVO {
 	public void setEstim_valid_d(String estim_valid_d) {
 		this.estim_valid_d = estim_valid_d;
 	}
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 	public String getFst_reg_dt() {
 		return fst_reg_dt;
@@ -140,11 +140,11 @@ public class EstVO {
 	public void setFst_reg_dt(String fst_reg_dt) {
 		this.fst_reg_dt = fst_reg_dt;
 	}
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 	public String getFin_mdfy_dt() {
 		return fin_mdfy_dt;
@@ -314,9 +314,9 @@ public class EstVO {
 		return "EstVO [estim_id=" + estim_id + ", cust_id=" + cust_id
 				+ ", estim_nm=" + estim_nm + ", estim_lev_cd=" + estim_lev_cd
 				+ ", estim_lev_cd_nm=" + estim_lev_cd_nm + ", estim_valid_d="
-				+ estim_valid_d + ", fst_reg_id_nm=" + fst_reg_id_nm
-				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id_nm="
-				+ fin_mdfy_id_nm + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
+				+ estim_valid_d + ", fst_reg_id=" + fst_reg_id
+				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
+				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
 				+ act_yn + ", memo=" + memo + ", discount_unit_cd="
 				+ discount_unit_cd + ", discount_unit_cd_nm="
 				+ discount_unit_cd_nm + ", prod_id=" + prod_id + ", prod_nm="

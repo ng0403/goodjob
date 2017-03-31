@@ -1,12 +1,13 @@
 $(function(){
 	var ctx = $('#ctx').val();
+	prodMakeBlock();
 	prodAddBtn(ctx);
 	prodCancelBtn(ctx);
 	prodUpdateBtn(ctx);
 	prodSaveBtn(ctx);
 	prodChange(ctx);
 	prodModifyBtn(ctx);
-	prodIdClick(ctx);
+	//prodIdClick(ctx);
 });
 /* 샘플 
 function actAddBtn(ctx){
@@ -115,7 +116,7 @@ function prodSearch(prodPageNum) {
 					
 					var pageContent = "";
 					// 페이징 다시그리기
-					$("#prod_page_div").children().remove();
+					$("#pageSpace").children().remove();
 					
 					if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
 						pageContent = "<input type='hidden' id='endPageNum' value='"+(data.page.endPageNum-1)+"'/>"
@@ -139,7 +140,7 @@ function prodSearch(prodPageNum) {
 						+"<a href='#' onclick=prodSearch("+(data.page.endPageNum-1)+") id='pNum'> / "+(data.page.endPageNum-1)+"</a>"
 						+"<a href='#' onclick=prodSearch("+(data.prodPageNum+1)+") id='pNum'> ▶ </a>";
 					}
-					$("#prod_page_div").append(pageContent);					
+					$("#pageSpace").append(pageContent);					
 				}		
 			},
 			error : function() {
@@ -184,20 +185,11 @@ function prodPaging(prodPageNum) {
 					$('#prodListCheck').prop("checked",false);						
 				}
 				
-
-				if(data.prodList.length < 5){
-					for(var j = 0; j < 5-data.prodList.length; j++){
-						tbodyContent ="<tr style='height:25px;'>"
-							+"<th></th>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td><td></td><td></td></tr>";
-						tbody.append(tbodyContent);
-					}
-				}
+				prodMakeBlock();
 				
 				var pageContent = "";
 				// 페이징 다시그리기
-				$("#prod_page_div").children().remove();
+				$("#pageSpace").children().remove();
 				
 				if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
 					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
@@ -221,91 +213,108 @@ function prodPaging(prodPageNum) {
 					+"<a href='#' onclick=prodPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
 					+"<a href='#' onclick=prodPaging("+(data.prodPageNum+1)+") id='pNum'> ▶ </a>";
 				}
-					$("#prod_page_div").append(pageContent);							
+					$("#pageSpace").append(pageContent);							
 				},error: function(data){
 					alert("전송중 오류가 발생했습니다.");                                                                                                                                                                                                                                                                                                                                                                              
 				}
 		});
 	});
 }
+function prodMakeBlock(){
+	var blank = $("#prod_list tr").length;
+	if( blank < 10){
+		for(var j = 0; j < 10-blank; j++){
+			var block ="<tr style='height:43px;'>"
+				+"<th></th>"
+				+"<td></td><td></td><td></td><td></td>"
+				+"<td></td><td></td></tr>";
+			$("#prod_list").append(block);
+		}
+	}
+}
 
 
 
-
-function prodIdClick(ctx) {
-	$("#prod_list").delegate(".list_prod_id","click", function() {		
+function prodIdClick(prod_id) {
+	$("#prod_id").val(prod_id);
+	$("#prod_detail").attr({
+		"action":"prodRead",
+		"method":"get"
+	})
+	$("#prod_detail").submit();
+//		$("#prod_list").delegate(".list_prod_id","click", function() {		
 		/*$(this).*/
-		$(".list_prod_idh").prop("hidden",false);
-		var prod_id = $(this).find('.list_prod_idh').val();
-		$(".list_prod_idh").prop("hidden",true);		
-		var data = new FormData();
-		data.append("prod_id",prod_id);
-		
-		$.ajax({
-			url: ctx+'/prodRead',
-			data:data,
-			dataType : "json",
-			type:'POST',
-			mimeType:"multipart/form-data",
-			processData:false,
-			contentType:false,
-			success: function(data){
-				var prod_id = data.prod_id;
-				$("#prod_id").val(data.prod_id);
-				$("#prod_nm").val(data.prod_nm);
-				$("#prod_div_cd_view").val(data.cd_nm);
-				$("#prod_div_cd").val(data.prod_div_cd);
-				$("#cate_id").val(data.cate_id);
-				$("#cate_nm").val(data.cate_nm);
-				$("#prod_sales_amt").val(data.prod_sales_amt);
-				$("#prod_dtl_cont").val(data.prod_dtl_cont);
-				$("#prod_url").val(data.prod_url);
-				$("#prod_nm").prop("disabled",true);
-				$("#prod_div_cd").prop("disabled",false);
-				$("#prod_div_cd").css("visibility",'hidden');
-				$("#cate_id").prop("disabled",true);
-				$("#cate_nm").prop("disabled",true);
-				$("#prod_cate").prop("disabled",true);
-				$("#prod_sales_amt").prop("disabled",true);
-				$("#prod_dtl_cont").prop("disabled",true);				
-				$("#prod_url").prop("disabled",true);				
-				$("#prod_img").prop("disabled",true);
-				$("#prod_catal").prop("disabled",true);
-				$("#prod_div_cd_view").prop("hidden",false);
-				
-				$('.prod_file').css("display","none");
-				$('.filedown').remove();				
-				
-				$("#image_change").css('display','none');
-				$("#catal_change").css('display','none');
-				
-				if(data.prod_img_nm != null){
-				$('#image').prepend('<a class="filedown" href="'+ctx+'/prodDownload?prod_id='+data.prod_id+'&mode=img">'+data.prod_img_nm+'<img src="'+ctx+'/resources/image/disk.gif"></a>');
-				}
-				
-				if(data.prod_catal_nm != null){
-				$('#catal').prepend('<a class="filedown" href="'+ctx+'/prodDownload?prod_id='+data.prod_id+'&mode=catal">'+data.prod_catal_nm +'<img src="'+ctx+'/resources/image/disk.gif"></a>');
-				}
-			} 
-			
-			,error: function(request,status,error) {
-				alert("오류");
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			} 
-	 	}); 		
-		
-		
-
-		$("#prod_div_cd").css("display",'inline');
-		$("#prod_img").prop("hidden",true);
-		$("#prod_catal").prop("hidden",true);
-	});
+//		$(".list_prod_idh").prop("hidden",false);
+//		var prod_id = $(this).find('.list_prod_idh').val();
+//		$(".list_prod_idh").prop("hidden",true);		
+//		var data = new FormData();
+//		data.append("prod_id",prod_id);
+//
+//		$.ajax({
+//			url: ctx+'/prodRead',
+//			data:data,
+//			dataType : "json",
+//			type:'POST',
+//			mimeType:"multipart/form-data",
+//			processData:false,
+//			contentType:false,
+//			success: function(data){
+//				var prod_id = data.prod_id;
+//				$("#prod_id").val(data.prod_id);
+//				$("#prod_nm").val(data.prod_nm);
+//				$("#prod_div_cd_view").val(data.cd_nm);
+//				$("#prod_div_cd").val(data.prod_div_cd);
+//				$("#cate_id").val(data.cate_id);
+//				$("#cate_nm").val(data.cate_nm);
+//				$("#prod_sales_amt").val(data.prod_sales_amt);
+//				$("#prod_dtl_cont").val(data.prod_dtl_cont);
+//				$("#prod_url").val(data.prod_url);
+//				$("#prod_nm").prop("disabled",true);
+//				$("#prod_div_cd").prop("disabled",false);
+//				$("#prod_div_cd").css("visibility",'hidden');
+//				$("#cate_id").prop("disabled",true);
+//				$("#cate_nm").prop("disabled",true);
+//				$("#prod_cate").prop("disabled",true);
+//				$("#prod_sales_amt").prop("disabled",true);
+//				$("#prod_dtl_cont").prop("disabled",true);				
+//				$("#prod_url").prop("disabled",true);				
+//				$("#prod_img").prop("disabled",true);
+//				$("#prod_catal").prop("disabled",true);
+//				$("#prod_div_cd_view").prop("hidden",false);
+//				
+//				$('.prod_file').css("display","none");
+//				$('.filedown').remove();				
+//				
+//				$("#image_change").css('display','none');
+//				$("#catal_change").css('display','none');
+//				
+//				if(data.prod_img_nm != null){
+//				$('#image').prepend('<a class="filedown" href="'+ctx+'/prodDownload?prod_id='+data.prod_id+'&mode=img">'+data.prod_img_nm+'<img src="'+ctx+'/resources/image/disk.gif"></a>');
+//				}
+//				
+//				if(data.prod_catal_nm != null){
+//				$('#catal').prepend('<a class="filedown" href="'+ctx+'/prodDownload?prod_id='+data.prod_id+'&mode=catal">'+data.prod_catal_nm +'<img src="'+ctx+'/resources/image/disk.gif"></a>');
+//				}
+//			} 
+//			
+//			,error: function(request,status,error) {
+//				alert("오류");
+//				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//			} 
+//	 	}); 		
+//		
+//		
+//
+//		$("#prod_div_cd").css("display",'inline');
+//		$("#prod_img").prop("hidden",true);
+//		$("#prod_catal").prop("hidden",true);
+//	});
 }
 
 
 
 function prodModifyBtn(ctx){
-		$('#prodModifyBtn').click(function() {
+	$('#prodModifyBtn').click(function() {
 		if($("#prod_nm").val( )!= ''){
 			$("#prod_nm").prop("disabled",false);
 			$("#prod_div_cd").prop("disabled",false);
@@ -349,34 +358,31 @@ function inputProdNm(cateNm,cateId){
 }
 function prodAddBtn(ctx){
 	$("#prodAddBtn").click(function(){
-		$("#prod_nm").prop("disabled",false);
-		$("#prod_div_cd").prop("disabled",false);
-		$("#prod_div_cd").css("display",'inline');
-		$("#prod_div_cd").css('visibility','');
-		$("#cate_id").prop("disabled",false);
-		$("#cate_nm").prop("disabled",false);
-		$("#prod_cate").prop("disabled",false);
-		$("#prod_sales_amt").prop("disabled",false);
-		$("#prod_dtl_cont").prop("disabled",false);
-		$("#prod_url").prop("disabled",false);
-		$("#prod_div_cd_view").prop("hidden",true);
-
+		location.href="/prodAddForm"
+//		$("#prod_nm").prop("disabled",false);
+//		$("#prod_div_cd").prop("disabled",false);
+//		$("#prod_div_cd").css("display",'inline');
+//		$("#prod_div_cd").css('visibility','');
+//		$("#cate_id").prop("disabled",false);
+//		$("#cate_nm").prop("disabled",false);
+//		$("#prod_cate").prop("disabled",false);
+//		$("#prod_sales_amt").prop("disabled",false);
+//		$("#prod_dtl_cont").prop("disabled",false);
+//		$("#prod_url").prop("disabled",false);
+//		$("#prod_div_cd_view").prop("hidden",true);
+//
+//		$('.prod_file').remove();
+//		$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
+//		$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
+//
+//		
+//		$("#prod_img").prop("disabled",false);
+//		$("#prod_catal").prop("disabled",false);
+//		$('#prodUpdateBtn').remove();
+//		$('#prodSaveBtn').remove();
+//		$('.act_tab_bt_div').append('<input type="button" id="prodSaveBtn" class="act_bt" value="저장"/>');
 		
-		
-		$('.prod_file').remove();
-		$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
-		$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
-
-		
-		$("#prod_img").prop("disabled",false);
-		$("#prod_catal").prop("disabled",false);
-		$('#prodUpdateBtn').remove();
-		$('#prodSaveBtn').remove();
-		$('.act_tab_bt_div').append('<input type="button" id="prodSaveBtn" class="act_bt" value="저장"/>');
-		
-		
-		
-		prodFormClr();	
+		//prodFormClr();	
 	});
 }
 function prodChange(ctx) {

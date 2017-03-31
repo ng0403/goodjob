@@ -274,7 +274,7 @@ public class EstController {
 		System.out.println(est.toString());
 		List<EstVO> estList = new ArrayList<EstVO>(0);
 		String id = session.getAttribute("user").toString();
-		est.setFin_mdfy_id_nm(id);
+		est.setFin_mdfy_id(id);
 		estList.add(est);
 		
 		for(int i=0 ; i< est_list.size(); i++){
@@ -326,8 +326,8 @@ public class EstController {
 			@RequestParam(value="est_list",required=false) List<String> est_list,
 			@ModelAttribute EstVO est){
 		String id = session.getAttribute("user").toString();
-		est.setFin_mdfy_id_nm(id);
-		est.setFst_reg_id_nm(id);
+		est.setFin_mdfy_id(id);
+		est.setFst_reg_id(id);
 		System.out.println("est : "+est.toString());
 		System.out.println("size : " + est_list);
 		System.out.println("size : " + est_list.size());

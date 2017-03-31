@@ -21,9 +21,9 @@ public class ProdVO {
 	String prod_catal_nm;
 	String prod_catal_save_loc;
 	String prod_dtl_cont;
-	String fst_reg_id_nm;       //등록자명
+	String fst_reg_id;       //등록자명
 	Date fst_reg_dt;            //등록일자 
-	String fin_mdfy_id_nm;      //수정자명
+	String fin_mdfy_id;      //수정자명
 	Date fin_mdfy_dt;           //수정일자
 	String act_yn;              //활성화여부
 	
@@ -108,11 +108,11 @@ public class ProdVO {
 	public void setProd_dtl_cont(String prod_dtl_cont) {
 		this.prod_dtl_cont = prod_dtl_cont;
 	}
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 	public Date getFst_reg_dt() {
 		return fst_reg_dt;
@@ -120,11 +120,11 @@ public class ProdVO {
 	public void setFst_reg_dt(Date fst_reg_dt) {
 		this.fst_reg_dt = fst_reg_dt;
 	}
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 	public Date getFin_mdfy_dt() {
 		return fin_mdfy_dt;
@@ -195,9 +195,9 @@ public class ProdVO {
 				+ ", prod_img_save_loc=" + prod_img_save_loc + ", prod_catal="
 				+ prod_catal + ", prod_catal_nm=" + prod_catal_nm
 				+ ", prod_catal_save_loc=" + prod_catal_save_loc
-				+ ", prod_dtl_cont=" + prod_dtl_cont + ", fst_reg_id_nm="
-				+ fst_reg_id_nm + ", fst_reg_dt=" + fst_reg_dt
-				+ ", fin_mdfy_id_nm=" + fin_mdfy_id_nm + ", fin_mdfy_dt="
+				+ ", prod_dtl_cont=" + prod_dtl_cont + ", fst_reg_id="
+				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt
+				+ ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
 				+ fin_mdfy_dt + ", act_yn=" + act_yn + ", cate_nm=" + cate_nm
 				+ ", cate_id=" + cate_id + ", cate=" + cate
 				+ ", cate_dtl_cont=" + cate_dtl_cont + ", cd_nm=" + cd_nm

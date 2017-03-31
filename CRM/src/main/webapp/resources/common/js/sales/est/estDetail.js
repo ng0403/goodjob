@@ -37,6 +37,7 @@ $(function(){
 	prodDelete();
 	prodChacgeRealTime();
 	startCalendar(ctx);
+	prodChange();
 });
 
 var buttonStatus;				//편집인지 추가인지 버튼의 상태 저장

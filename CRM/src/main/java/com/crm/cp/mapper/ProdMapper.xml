@@ -22,7 +22,7 @@
 		        ,cd.code
 		        ,p.prod_sales_amt
 		        ,c1.CATE_ID || '>' || c2.UP_CATE_ID as cate
-		        ,p.fst_reg_id_nm
+		        ,p.fst_reg_id
 		        ,p.fst_reg_dt
 		      FROM PRODUCT p, code cd,category c1,category c2 
 		      WHERE c1.cate_id = c2.cate_id
@@ -116,7 +116,7 @@
      		<if test="prod_catal_nm!=null and prod_catal_nm!=''">
      	    	<include refid="catal_file"/>
      		</if>			
-			FIN_MDFY_ID_NM = #{fst_reg_id_nm},
+			fin_mdfy_id = #{fst_reg_id},
 			FIN_MDFY_DT = sysdate
 			
 		WHERE PROD_ID=#{prod_id}	
@@ -135,8 +135,8 @@
 			PROD_IMG_SAVE_LOC,
 			PROD_CATAL_NM,
 			PROD_CATAL_SAVE_LOC,
-			FST_REG_ID_NM,
-			FIN_MDFY_ID_NM
+			fst_reg_id,
+			fin_mdfy_id
 			)VALUES(
 			PROD_SEQ.NEXTVAL,
 			#{cate_id},
@@ -149,8 +149,8 @@
 			#{prod_img_save_loc, jdbcType=VARCHAR},
 			#{prod_catal_nm, jdbcType=VARCHAR},
 			#{prod_catal_save_loc, jdbcType=VARCHAR},
-			#{fst_reg_id_nm},
-			#{fst_reg_id_nm}
+			#{fst_reg_id},
+			#{fst_reg_id}
 			)	
 	</update>
 	
@@ -174,17 +174,16 @@
 		FROM PRODUCT p,CATEGORY ca,CODE c
 		WHERE PROD_ID = #{prod_id}	
     	AND p.cate_id = ca.cate_id
-		AND cd_grp_id='PRD' 
+		AND c.cd_grp_id='PRD'
 		AND p.prod_div_cd = c.code
 	</select>
-
 	
 	<update id="prodDelete">
 		UPDATE PRODUCT
 		SET
 			ACT_YN='N'
 		WHERE
-			PROD_ID=#{prod_id}		
+			PROD_ID=#{prod_id}
 	</update>
 
 	

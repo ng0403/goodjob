@@ -103,6 +103,14 @@
 		<div id="pageSpace">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" strp="1">
+				<c:choose>
+					<c:when test="${i eq ccPageNum }">
+					</c:when>s
+				</c:choose>
+			</c:forEach>
+			
+			
 			<c:choose>
 				<c:when test="${ccPageNum == page.startPageNum && ccPageNum != page.endPageNum}">
 			<%-- 	<c:when test="${ccPageNum == page.startPageNum}"> --%>

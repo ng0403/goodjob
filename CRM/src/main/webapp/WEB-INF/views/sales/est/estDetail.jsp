@@ -70,6 +70,7 @@ $(function() {
 						<td colspan="4">
 							<div id="baseBtnDiv" class="bt_position_authuser">
 								<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/>
+								<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
 							</div>
 					<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
 					<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>

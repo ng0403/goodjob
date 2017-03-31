@@ -9,10 +9,11 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_pop.js"></script>	
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_detail.js"></script> --%>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>	
 <title>Insert title here</title>
 <style type="text/css">
@@ -44,10 +45,10 @@ function prodInserts(){
 		
 		<form method="post" name="prodForm" id="prodForm" onsubmit="prodInsert()" enctype="multipart/form-data">
 		<div class="act_tab_bt_div">
-					<input type="button" id="prodCancelBtn" class="act_bt" value="취소"/>
-					<input type="button" id="prodModifyBtn" class="act_bt" value="편집"/>
-					<input type="button" id="prodAddBtn" class="act_bt" value="추가"/>
-					<input type="button" id="prodSaveBtn" class="act_bt" value="저장"/>
+					<input type="button" id="prodCancelBtn" class="btn-success-tel" value="취소"/>
+					<input type="button" id="prodModifyBtn" class="btn-success-tel" value="편집"/>
+					<!-- <input type="button" id="prodAddBtn" class="btn-success-tel" value="추가"/> -->
+					<input type="button" id="prodSaveBtn" class="btn-success-tel" value="저장"/>
 		</div>
 				<table id="act_tab_table">
 					<tbody id="act_tab_tbody">

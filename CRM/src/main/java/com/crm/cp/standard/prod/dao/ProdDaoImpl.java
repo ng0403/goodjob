@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.crm.cp.standard.prod.vo.ProdVO;
-import com.crm.cp.utils.PagerVO;
 
 @Repository
 public class ProdDaoImpl implements ProdDao{

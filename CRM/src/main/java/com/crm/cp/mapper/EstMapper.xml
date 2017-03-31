@@ -34,7 +34,7 @@
       	and c.estim_id = aa.estim_id
       group by aa.estim_id),0) estim_qty   
 		, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
-		, aa.FST_REG_ID_NM
+		, aa.fst_reg_id
 		, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT 
 	from 
 	ESTIMATE aa, 
@@ -241,9 +241,9 @@
 		, (select cd_nm from code where cd_grp_id='OSC' and
 		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
-		, a.fst_reg_id_nm
+		, a.fst_reg_id
 		, a.fst_reg_dt
-		, a.fin_mdfy_id_nm
+		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
 		from sales_opportunity a, lead b, customer c
@@ -264,9 +264,9 @@
 			estim_lev_cd,
 			estim_valid_d,
 			memo,
-			fst_reg_id_nm,
+			fst_reg_id,
 			fst_reg_dt,
-			fin_mdfy_id_nm,
+			fin_mdfy_id,
 			fin_mdfy_dt
 		)
 		values(
@@ -279,9 +279,9 @@
 			#{estim_lev_cd},
 			TO_DATE(#{estim_valid_d},'yyyy-MM-dd'),
 			#{memo},
-			#{fst_reg_id_nm},
+			#{fst_reg_id},
 			sysdate,
-			#{fin_mdfy_id_nm},
+			#{fin_mdfy_id},
 			sysdate
 		)
 		<selectKey keyProperty="estim_seq" resultType="String" order="AFTER">
@@ -338,17 +338,17 @@
 		insert into SALES_OPPORTUNITY_ESTIMATE(
 			estim_id,
 			sales_oppt_id,
-			fst_reg_id_nm,
+			fst_reg_id,
 			fst_reg_dt,
-			fin_mdfy_id_nm,
+			fin_mdfy_id,
 			fin_mdfy_dt
 		)
 		values(
 		  #{estim_seq},
 		  #{sales_oppt_id},
-		  #{fst_reg_id_nm},
+		  #{fst_reg_id},
 		  sysdate,
-		  #{fin_mdfy_id_nm},
+		  #{fin_mdfy_id},
 		  sysdate
 		)
 	</insert>

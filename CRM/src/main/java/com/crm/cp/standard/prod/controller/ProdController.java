@@ -27,6 +27,7 @@ import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
 import com.crm.cp.standard.prod.service.ProdService;
 import com.crm.cp.standard.prod.vo.ProdVO;
+import com.crm.cp.utils.PageUtil;
 import com.crm.cp.utils.PagerVO;
 import com.crm.cp.utils.ProdFileManager;
 
@@ -83,8 +84,8 @@ public class ProdController {
 				dto.setProd_catal_save_loc(newFilename);
 			}
 		}		
-		dto.setFin_mdfy_id_nm(loginid);
-		dto.setFst_reg_id_nm(loginid);
+		dto.setFin_mdfy_id(loginid);
+		dto.setFst_reg_id(loginid);
 		
 		
 		
@@ -144,8 +145,8 @@ public class ProdController {
 			}
 		}
 		// 등록자 수정자 입력
-		dto.setFin_mdfy_id_nm(loginid);
-		dto.setFst_reg_id_nm(loginid);
+		dto.setFin_mdfy_id(loginid);
+		dto.setFst_reg_id(loginid);
 		
 		prodService.prodInsert(dto);
 		
@@ -223,7 +224,7 @@ public class ProdController {
 		}
 		
 		// 업데이트 한 아이디
-		dto.setFst_reg_id_nm(loginid);
+		dto.setFst_reg_id(loginid);
 		prodService.prodUpdate(dto);
 
 		
@@ -301,28 +302,17 @@ public class ProdController {
 				@RequestParam(value = "prodPageNum", defaultValue = "1") int prodPageNum
 			)throws Exception{
 		
-		
-		Map<String,Object> prodMap = new HashMap<String, Object>();
-		prodMap.put("prodPageNum", prodPageNum);
-		
 		ProdVO dto = prodService.prodRead(prod_id);
 		System.out.println(dto.toString());
 		
-		PagerVO page = prodService.getProdListCount(prodMap);
-		prodMap.put("page", page);
-		
-		List<ProdVO> prodList = prodService.prodAllList(prodMap);
 		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
-		List<MenuVO> menuList = menuService.selectAll(session);
+		//List<MenuVO> menuList = menuService.selectAll(session);
 		
 		
-		ModelAndView mov = new ModelAndView("prod");
+		ModelAndView mov = new ModelAndView("prodDetail");
 		mov.addObject("prodDto",dto);
 		mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
-		mov.addObject("menuList", menuList);
-		mov.addObject("prodPageNum", prodPageNum);
-		mov.addObject("page", page);
-		mov.addObject("prodList", prodList);
+		//mov.addObject("menuList", menuList);
 		return mov;
 	}
 	
@@ -340,7 +330,7 @@ public class ProdController {
 		prodMap.put("prod_nm",prod_nm);
 		prodMap.put("code", code);
 		
-		PagerVO page = prodService.getProdListCount(prodMap);
+		PageUtil page = prodService.getProdListCount(prodMap);
 		prodMap.put("page", page);
 		prodMap.put("startRow", page.getStartRow() + "");
 		prodMap.put("endRow", page.getEndRow() + "");
@@ -363,21 +353,21 @@ public class ProdController {
 			) throws Exception{
 		prodMap.put("prodPageNum",prodPageNum);
 		
-		PagerVO page = prodService.getProdListCount(prodMap);
+		PageUtil page = prodService.getProdListCount(prodMap);
 		prodMap.put("startRow", page.getStartRow());
 		prodMap.put("endRow", page.getEndRow());
 		prodMap.put("page", page);
 
 		
 		List<ProdVO> prodList = prodService.prodAllList(prodMap);
-		ModelAndView mov = new ModelAndView("prod");
+		ModelAndView mov = new ModelAndView("prodList");
 		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
-		List<MenuVO> menuList = menuService.selectAll(session);
+		//List<MenuVO> menuList = menuService.selectAll(session);
 		
 		System.out.println(page +" : "+ prodPageNum);
 
 		mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
-		mov.addObject("menuList", menuList);
+		//mov.addObject("menuList", menuList);
 		mov.addObject("prodPageNum", prodPageNum);
 		mov.addObject("page", page);
 		mov.addObject("prodList", prodList);
