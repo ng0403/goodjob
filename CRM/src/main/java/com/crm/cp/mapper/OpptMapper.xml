@@ -29,8 +29,10 @@
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
-		from sales_opportunity a, lead b, customer c
-		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='Y'
 		<if test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
 			and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
 		</if>
@@ -76,8 +78,10 @@
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
-		from sales_opportunity a, lead b, customer c
-		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='Y'
 		 order by a.sales_oppt_id desc
 		)d
 	</select>
@@ -105,8 +109,10 @@
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
-		from sales_opportunity a, lead b, customer c
-		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='Y'
 		and a.sales_oppt_id=#{opptId}
 	</select>
 
@@ -145,8 +151,10 @@
 		, a.act_yn
 		, (select cd_nm from code where cd_grp_id='OSC' and
 		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
-		from sales_opportunity a, lead b, customer c
-		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='Y'
 		<if test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
 			and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
 		</if>
@@ -235,7 +243,7 @@
 		, #{memo}
 		, #{fst_reg_id}
 		, sysdate
-		,#{fin_mdfy_id}
+		, #{fin_mdfy_id}
 		, sysdate
 		,'Y'
 		)

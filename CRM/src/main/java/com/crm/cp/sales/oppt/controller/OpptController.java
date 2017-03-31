@@ -381,7 +381,7 @@ public class OpptController {
 		}
 		return result;
 	}
-
+	//////////////////////////////////////////////////////////////////////
 	//영업기회 견적탭 리스트 출력 
 	@RequestMapping(value = "/estimList", method = RequestMethod.GET)
 	@ResponseBody
@@ -436,6 +436,7 @@ public class OpptController {
 		return mov;
 	}
 
+	//영업기회별 견적 추가 
 	@RequestMapping(value = "/opptEstimAdd", method = RequestMethod.GET)
 	@ResponseBody
 	public int opptEstimAdd(
@@ -460,7 +461,7 @@ public class OpptController {
 		return result;
 	}
 
-	// 견적 삭제
+	// 영업기회별 견적 삭제
 	@RequestMapping(value = "/opptEstimDelete", method = RequestMethod.GET)
 	public @ResponseBody int opptEstimDelete(HttpSession session,
 			@RequestParam(value = "estim_id[]") List<String> estim_id) {
@@ -471,6 +472,99 @@ public class OpptController {
 		}
 		return result;
 	}
+	//////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////
+	//영업기회별 상품탭 리스트 출력 
+	@RequestMapping(value = "/opptprdtList", method = RequestMethod.GET)
+	@ResponseBody
+	public List<EstVO> opptprdtList(String sales_oppt_id) {
+		List<EstVO> opptprdtList = service.estimList(sales_oppt_id);
+		System.out.println("opptprdtList : " + opptprdtList);
+		return opptprdtList;
+	}
+	
+	//영업기회별 상품 추가 팝업 open Controller
+	@RequestMapping(value = "/opptPrdtpopup", method = RequestMethod.GET)
+	public ModelAndView prdtPopup(HttpSession session, String list_cust_id,
+			String list_cust_nm, String list_sales_oppt_nm,
+			String list_sales_oppt_id,String pageNum,String flag) {
+		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/custcomp_est_pop");
+		
+		List<EstVO> elcList = service.elcList();
+		List<EstVO> eduList = service.eduList();
+		List<String> eduCode = new ArrayList<String>();
+		for (EstVO est : eduList) {
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+		mov.addObject("elcList", elcList);
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("sales_oppt_nm", list_sales_oppt_nm);
+		mov.addObject("sales_oppt_id", list_sales_oppt_id);
+		mov.addObject("flg", "add");
+		mov.addObject("flag", flag);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+		mov.addObject("pageNum",pageNum);
+		return mov;
+	}
+	
+	//영업기회별 상품-상품추가 팝업 open controller
+	@RequestMapping(value = "/opptprdtopen", method = RequestMethod.GET)
+	public ModelAndView opptprdtopen(
+			HttpSession session,
+			@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+		ModelAndView mov = new ModelAndView(
+				"/sales/oppt/opptPop/product_list_pop");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		List<ProdVO> prodList = service.prodList(map);
+		mov.addObject("prodList", prodList);
+		
+		return mov;
+	}
+	
+	//영업기회별 상품 추가 
+	@RequestMapping(value = "/opptPrdtAdd", method = RequestMethod.GET)
+	@ResponseBody
+	public int opptPrdtAdd(
+			HttpSession session,
+			@RequestParam(value = "est_list[]", required = false) List<String> est_list,
+			EstVO est) {
+		
+		List<EstVO> estList = new ArrayList<EstVO>(0);
+		estList.add(est);
+		for (int i = 0; i < est_list.size(); i++) {
+			EstVO vo = new EstVO();
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			estList.add(vo);
+		}
+		int result = service.opptEstimAdd(estList);
+		return result;
+	}
+	
+	// 영업기회별 견적 삭제
+	@RequestMapping(value = "/opptPrdtDelete", method = RequestMethod.GET)
+	public @ResponseBody int opptPrdtDelete(HttpSession session,
+			@RequestParam(value = "estim_id[]") List<String> estim_id) {
+		int result = 0;
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < estim_id.size(); i++) {
+			result += service.opptEstimDelete(estim_id.get(i));
+		}
+		return result;
+	}
+	//////////////////////////////////////////////////////////////////////
 
 	@RequestMapping(value = "/opptDelete", method = RequestMethod.GET)
 	@ResponseBody
