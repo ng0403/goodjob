@@ -534,7 +534,7 @@ public class OpptController {
 	@RequestMapping(value = "/opptActiveUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public int opptActiveUpdate(HttpSession session, ActVO act) {
-		act.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		act.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = service.opptActiveUpdate(act);
 
 		return result;
