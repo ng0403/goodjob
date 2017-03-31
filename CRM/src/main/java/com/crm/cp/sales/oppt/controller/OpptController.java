@@ -382,10 +382,12 @@ public class OpptController {
 		return result;
 	}
 
+	//영업기회 견적탭 리스트 출력 
 	@RequestMapping(value = "/estimList", method = RequestMethod.GET)
 	@ResponseBody
 	public List<EstVO> estimList(String sales_oppt_id) {
 		List<EstVO> estimList = service.estimList(sales_oppt_id);
+		System.out.println("estimList : " + estimList);
 		return estimList;
 	}
 

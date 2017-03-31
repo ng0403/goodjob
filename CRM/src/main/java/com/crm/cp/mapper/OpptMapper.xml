@@ -11,7 +11,6 @@
 		select
 		rownum r
 		, a.sales_oppt_id
-		, a.lead_id
 		, a.cust_id
 		, c.cust_nm
 		, a.sales_oppt_nm
@@ -25,13 +24,13 @@
 		, (select cd_nm from code where cd_grp_id='OSC' and
 		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
-		, a.fst_reg_id_nm
+		, a.fst_reg_id
 		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
-		, a.fin_mdfy_id_nm
+		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
 		from sales_opportunity a, lead b, customer c
-		where a.lead_id=b.lead_id and b.cust_id=c.cust_id and a.act_yn='Y'
+		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
 		<if test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
 			and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
 		</if>
@@ -59,7 +58,6 @@
 		select
 		rownum r
 		, a.sales_oppt_id
-		, a.lead_id
 		, a.cust_id
 		, c.cust_nm
 		, a.sales_oppt_nm
@@ -73,15 +71,14 @@
 		, (select cd_nm from code where cd_grp_id='OSC' and
 		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
-		, a.fst_reg_id_nm
+		, a.fst_reg_id
 		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
-		, a.fin_mdfy_id_nm
+		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
 		from sales_opportunity a, lead b, customer c
-		where a.lead_id=b.lead_id and b.cust_id=c.cust_id and a.act_yn='Y'
-		
-		order by a.sales_oppt_id desc
+		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
+		 order by a.sales_oppt_id desc
 		)d
 	</select>
 
@@ -90,7 +87,6 @@
 		parameterType="String">
 		select
 		a.sales_oppt_id
-		, a.lead_id
 		, a.cust_id
 		, c.cust_nm
 		, a.sales_oppt_nm
@@ -104,13 +100,13 @@
 		, (select cd_nm from code where cd_grp_id='OSC' and
 		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
-		, a.fst_reg_id_nm
+		, a.fst_reg_id
 		, a.fst_reg_dt
-		, a.fin_mdfy_id_nm
+		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
 		from sales_opportunity a, lead b, customer c
-		where a.lead_id=b.lead_id and b.cust_id=c.cust_id and a.act_yn='Y'
+		where 1=1 and b.cust_id=c.cust_id(+) and a.act_yn='Y'
 		and a.sales_oppt_id=#{opptId}
 	</select>
 
@@ -363,8 +359,7 @@
 	</update>
 
 <!-- 	견적 리스트 조회 -->
-	<select id="estimList" parameterType="String"
-		resultType="com.crm.cp.sales.est.vo.EstVO">
+	<select id="estimList" parameterType="String" resultType="com.crm.cp.sales.est.vo.EstVO">
 		select aa.estim_nm
      	, aa.estim_id
 		,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd

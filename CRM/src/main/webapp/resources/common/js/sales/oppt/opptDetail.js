@@ -432,9 +432,9 @@ function opptActiveDetailPopup(actvyId){
 function opptEstimDetail(estimId){
 	var ctx = $('#ctx').val();
 	var list_sales_oppt_id = $('#salesId').val();
-	var list_cust_id = $('#'+list_sales_oppt_id+' #list_cust_id').val();
-	var list_cust_nm = $('#'+list_sales_oppt_id+' #list_cust_nm').text();
-	var list_sales_oppt_nm = $('#'+list_sales_oppt_id+' #list_sales_oppt_nm').text();
+	var list_cust_id = list_sales_oppt_id;
+	var list_cust_nm = $('#hcust_nm').val();
+	var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
 	window.open(ctx+'/opptEstimDetail?list_sales_oppt_id='+list_sales_oppt_id+'&estimId='+estimId+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 

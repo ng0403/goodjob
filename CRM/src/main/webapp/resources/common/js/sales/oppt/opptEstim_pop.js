@@ -40,6 +40,7 @@ function opptEstimAdd(ctx){
 	var sales_oppt_id = $('#sales_oppt_id').val();
 	var estim_qty = [];
 	var prod_sales_amt = $('#prod_sales_amt').text();
+	alert("판매가 : " + prod_sales_amt);
 	var sales_price = [];
 	var discount= [];
 	var sup_price = [];
@@ -80,6 +81,11 @@ function opptEstimAdd(ctx){
 		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop()); 
+		alert("판매가 : " + prod_sales_amt);
+		alert("sales_price : " + sales_price);
+		alert("discount : " + discount);
+		alert("sup_price" + sup_price);
+		alert("est_list : " + est_list);
 	});
 	if(unit_check > 0 ){
 		alert("할인 단위를 선택해 주세요.");

@@ -139,6 +139,7 @@ public class OpptServiceImpl implements OpptService {
 	@Override
 	public List<EstVO> estimList(String sales_oppt_id) {
 		// TODO Auto-generated method stub
+		System.out.println("영업기회 견적 탭 Service sales_oppt_id : " + sales_oppt_id);
 		return dao.estimList(sales_oppt_id);
 	}
 
