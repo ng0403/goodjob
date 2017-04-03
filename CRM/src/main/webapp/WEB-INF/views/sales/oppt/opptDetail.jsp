@@ -25,6 +25,7 @@ $(document).ready(function() {
 	
 // 	alert("선택된 사용자 ID : " + opptId);
 	viewSalesActive(opptId);
+	opptprdtList(opptId);
 	estimList(opptId);
 });
 
@@ -84,7 +85,7 @@ $(document).ready(function() {
 					</table>
 			</div>
 		</div>
-	
+		<!-- 영업기회별 상품 탭 -->
 		<div id="tabDiv2" class="tab2_content">
 		<div class="bt_position_authuser">
 			<button id="opptPdtAdd" class="btn btn-default">영업기회별 상품 추가</button>
@@ -96,21 +97,21 @@ $(document).ready(function() {
 				<thead>						
 					<tr>
 						<th style="width: 3%;"><input type="checkbox"  id='pdtAllSelect'/></th>
-						<td style="width: 30%;">영업기회명</td>
-						<td style="width: 11%;">고객사</td>
-<!-- 						<td style="width: 10%;">견적수량</td> -->
+						<td style="width: 30%;">상품명</td>
+						<td style="width: 11%;">영업단계</td>
 						<td style="width: 15%;">예상매출액</td>
-						<td style="width: 10%;">유효일자</td>
-						<td style="width: 9%;">등록자</td>
+<!-- 						<td style="width: 10%;">유효일자</td> -->
+<!-- 						<td style="width: 9%;">등록자</td> -->
 						<td style="width: 10%;">등록일시</td>
 					</tr>
 				</thead>
-				<tbody id="opptpdtList" >
+				<tbody id="opptprdtList" >
 				<tr style='height: 150px;'><td colspan='8'>서비스 준비중입니다.</td></tr>		
 				</tbody>
 				</table>
 			</div>
 		</div>
+		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv3" class="tab3_content">
 		<div class="bt_position_authuser">
 			<button id="estimateAdd" class="btn btn-default">견적 추가</button>

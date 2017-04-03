@@ -44,7 +44,8 @@ function tabClick(){
 		  	$("#tab3").attr("checked",false);
 		  	if(opptId !=""){
 		  		//영업기회 리스트 출력
-		  		viewSalesActive(opptId);	
+//		  		viewSalesActive(opptId);
+		  		opptprdtList(opptId)
 //		  		readDetail();
 		  	}
       });
@@ -142,9 +143,9 @@ function opptDelete(){
 //현재 checked된 탭에 맞는 함수 실행
 function divide(opptId){
 	$("#salesId").val(opptId);
+	viewDetail(opptId);
 //	readDetail();
 //	if($("#tab1").attr("checked")){
-		viewDetail(opptId);
 //		viewSalesActive(opptId);
 //		estimList(opptId);
 //	}
@@ -162,11 +163,13 @@ function divideDetail(opptId){
 	if($("#tab1").attr("checked")){
 	viewDetail(opptId);
 	viewSalesActive(opptId);
+	opptprdtList(opptId);
 	estimList(opptId);
 	}
 	else 
 		if($("#tab2").attr("checked")){
 		viewSalesActive(opptId);
+		opptprdtList(opptId);
 	}else if($("#tab3").attr("checked")){
 		estimList(opptId);
 	}
