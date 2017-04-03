@@ -424,7 +424,7 @@
 		select 
 		prod_id,
 		prod_nm,
-		prod_sales_amt
+		prod_price
 		from product
 		<where>
 		<if test="keyfield=='pt_id'">
@@ -637,7 +637,7 @@
 	discount,
 	sup_price,
 	a.discount_unit_cd,
-	b.prod_sales_amt
+	b.prod_price
 	from ESTIMATE_LIST a,PRODUCT b
 	where
 	a.PROD_ID=b.PROD_ID
