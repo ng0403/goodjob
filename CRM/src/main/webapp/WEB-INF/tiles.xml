@@ -160,7 +160,7 @@
 	</definition>
 	
 	<definition name="actSaleAdd" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_tab.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
 	</definition>
 	
 	<!-- 가망고객 -->
