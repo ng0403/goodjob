@@ -36,6 +36,8 @@ public class contrController {
 	public ModelAndView ContSearchPage(HttpSession session,
 			@RequestParam HashMap<String, Object> map,
 			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+		System.out.println("cont list entering");
+		
 		map.put("pageNum", pageNum + "");
 		
 		PagerVO page = contrService.contPageCount(map);

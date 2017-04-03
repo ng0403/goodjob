@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="contact">
+ 
+<!-- 전체리스트  -->
+	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.call.vo.CallVO">
+		 select cont_id, cont_nm, company_nm, ph1, ph2, ph3, cell_ph1, cell_ph2, cell_ph3, email1, email2, itrt_cd, fst_reg_id, fst_reg_dt, fin_mdfy_id, fin_mdfy_dt, act_yn
+		from contact;
+			      <if test="cont_nm !=null and cont_nm !=''">
+					AND (case when cont_nm end) like '%'||#{contact_name}||'%'
+				  </if>
+				  <if test="cont_email !=null and cont_email !=''">
+					AND (case when email1 end) || '@' || (case when email2 end) like '%'||#{contact_email}||'%' 
+				  </if>
+				  <if test="contact_tel !=null and contact_tel !=''">
+					AND (case when CELL_PH1 end) || '-' || (case when CELL_PH2 end) || '-' || (case when CELL_PH3 end) like '%'||#{contact_tel}||'%'
+				  </if>
+				  <if test="company_nm !=null and company_nm !=''">
+					AND (case when company_nm else '' end) like '%'||#{company_nm}||'%'
+				  </if>
+				  <if test="keyword!=null and keyword!=''">
+				        <include refid="where-list1"/>
+				  </if>
+			ORDER BY fst_reg_dt desc 
+		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
+	</select>
+	
+	<!-- 리스트 개수 -->
+	<select id="selectTotalCount" parameterType="java.util.Map" resultType="integer">
+		SELECT COUNT(*)
+		FROM contact
+		where act_yn ='Y' 
+		<if test="contact_name !=null and contact_name !=''">
+			AND (case when cont_nm end) like '%'||#{contact_name}||'%'
+		</if>
+		<if test="contact_email !=null and contact_email !=''">
+			AND (case when email1 end) || '@' || (case when email2 end) like '%'||#{contact_email}||'%' 
+		</if>
+		<if test="contact_tel !=null and contact_tel !=''">
+			AND (case when CELL_PH1 end) || '-' || (case when CELL_PH2 end) || '-' || (case when CELL_PH3 end) like '%'||#{contact_tel}||'%'
+		</if>
+		<if test="comapny_nm !=null and company_nm !=''">
+			AND company_nm like '%'||#{company_nm}||'%'
+		</if>
+		<if test="keyword!=null and keyword!=''">
+			 <include refid="where-list1"/>
+		</if>
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

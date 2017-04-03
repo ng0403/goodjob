@@ -84,7 +84,7 @@
 						<td style="text-align: right; padding-right: 8px;">${ccontrlist.contr_qty }</td>
 						<td style="text-align: right; padding-right: 8px;"><fmt:formatNumber value="${ccontrlist.contr_amt}" groupingUsed="true" /></td>
 						<td>${ccontrlist.contr_d}</td>
-						<td>${ccontrlist.fst_reg_id_nm }</td>
+						<td>${ccontrlist.fst_reg_id}</td>
 						<td>${ccontrlist.fst_reg_dt}</td>
 					</tr>
 				</c:forEach>

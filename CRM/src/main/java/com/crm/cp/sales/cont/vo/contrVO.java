@@ -22,8 +22,7 @@ public class contrVO {
 	String sales_lev_cd; // 영업단계
 	String estim_nm; // 견적명
 	String estim_lev_cd; // 견적단계
-	String lead_id; // 리드ID
-	String sales_oppt_stat_cd; // 영업기회상태
+ 	String sales_oppt_stat_cd; // 영업기회상태
 
 	public String getContr_id() {
 		return contr_id;
@@ -186,14 +185,7 @@ public class contrVO {
 		this.estim_lev_cd = estim_lev_cd;
 	}
 
-	public String getLead_id() {
-		return lead_id;
-	}
-
-	public void setLead_id(String lead_id) {
-		this.lead_id = lead_id;
-	}
-
+ 
 	public String getSales_oppt_stat_cd() {
 		return sales_oppt_stat_cd;
 	}
@@ -215,8 +207,8 @@ public class contrVO {
 				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
 				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
 				+ act_yn + ", sales_lev_cd=" + sales_lev_cd + ", estim_nm="
-				+ estim_nm + ", estim_lev_cd=" + estim_lev_cd + ", lead_id="
-				+ lead_id + ", sales_oppt_stat_cd=" + sales_oppt_stat_cd
+				+ estim_nm + ", estim_lev_cd=" + estim_lev_cd  
+				+ ", sales_oppt_stat_cd=" + sales_oppt_stat_cd
 				+ "]";
 	}
 
