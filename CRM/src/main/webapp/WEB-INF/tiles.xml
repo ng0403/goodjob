@@ -159,7 +159,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/week.jsp" />
 	</definition>
 	
-	<definition name="actSaleDetail" extends="onebodyLayout">
+	<definition name="actSaleAdd" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_tab.jsp" />
 	</definition>
 	
