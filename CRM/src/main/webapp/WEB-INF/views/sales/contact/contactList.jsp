@@ -71,19 +71,19 @@
 		</tr>
 		</thead>
 		<tbody id="call_list_tbody">
-		<c:forEach var="callList" items="${callList}">
-		<tr>
-			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${callList.call_id}" onclick="callChkCancel();"></th>
-			<td style="width:10%; text-align: left; padding-left:5px;" onclick="callTabFunc('${callList.call_id}','${callList.cust_div_nm}')"><input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}">
-			<a style="color: blue; cursor: pointer;" class="callClick">${callList.call_nm}</a></td>
-			<td style="width:10%; text-align: left; padding-left:5px;">${callList.cust_div_nm}</td>
-			<td style="width:10%; text-align: center;">${callList.pos_nm}</td>
-			<td style="width:10%; text-align: left; padding-left:5px;">${callList.comp_nm}</td>
-			<td style="width:15%; text-align: left; padding-left:5px;">${callList.email1}@${callList.email2}</td>
-			<td style="width:10%; text-align: center;">${callList.ph1}-${callList.ph2}-${callList.ph3}</td>
-			<td style="width:10%; text-align: center;">${callList.cell_phone1}-${callList.cell_phone2}-${callList.cell_phone3}</td>
-			<td style="width:10%; text-align: center;">${callList.iuser_id_nm}</td>
-			<td style="width:15%; text-align:center;"><fmt:formatDate value="${callList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
+		<c:forEach var="List" items="${contactList}">
+ 		<tr>
+			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${List.cont_id}" onclick="callChkCancel();"></th>
+			<td style="width:10%; text-align: left; padding-left:5px;" onclick="callTabFunc('${contactList.cont_id}','${List.company_nm}')"><%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
+			<a style="color: blue; cursor: pointer;" class="callClick">${List.cont_nm}</a></td>
+			<td style="width:10%; text-align: left; padding-left:5px;">${List.company_nm}</td>
+			<td style="width:10%; text-align: center;"> </td>
+			<td style="width:10%; text-align: left; padding-left:5px;">${List.company_nm}</td>
+			<td style="width:15%; text-align: left; padding-left:5px;">${List.email1}@${List.email2}</td>
+			<td style="width:10%; text-align: center;">${List.ph1}-${List.ph2}-${List.ph3}</td>
+			<td style="width:10%; text-align: center;">${List.cell_phone1}-${List.cell_phone2}-${List.cell_phone3}</td>
+			<td style="width:10%; text-align: center;"> </td>
+			<td style="width:15%; text-align:center;"><fmt:formatDate value="${List.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
 		</tr>
 		</c:forEach>
 		</tbody>
@@ -92,25 +92,25 @@
 	
 	<div id="pager" class="call_page_div">
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-		<input type="hidden" id="callPageNum" value="${callPageNum}"/>
+		<input type="hidden" id="callPageNum" value="${contactPageNum}"/>
 		<c:choose>
-		<c:when test="${callPageNum == page.startPageNum}">
+		<c:when test="${contactPageNum == page.startPageNum}">
 			<a style="text-decoration: none;">◀</a>
 			<input type="text" id="callPageInput" class="call_page_txt" value="${page.startPageNum}" onkeypress="pageInputCall(event);"/>  
 			<a href="#" onclick="callPaging('${page.endPageNum}')" style='text-decoration: none;'>/ ${page.endPageNum}</a>
 			<a href="#" onclick="callPaging('${callPageNum+1}')" style='text-decoration: none;'>▶</a>
 		</c:when>
-		<c:when test="${callPageNum == page.endPageNum}">
+		<c:when test="${contactPageNum == page.endPageNum}">
 			<a href="#" onclick="callPaging('${callPageNum-1}')" style="text-decoration: none;">◀</a>
 			<input type="text" id="callPageInput" class="call_page_txt" value="${page.endPageNum}" onkeypress="pageInputCall(event);"/> 
 			<a  href="#" onclick="callPaging('${page.endPageNum}')" style='text-decoration: none;'>/ ${page.endPageNum}</a>
 			<a style="text-decoration: none;">▶</a>
 		</c:when>
 		<c:otherwise>
-			<a href="#" onclick="callPaging('${callPageNum-1}')" style="text-decoration: none;">◀</a>
-			<input type="text" id="callPageInput" class="call_page_txt" value="${callPageNum}" onkeypress="pageInputCall(event);"/>
+			<a href="#" onclick="callPaging('${contactPageNum-1}')" style="text-decoration: none;">◀</a>
+			<input type="text" id="callPageInput" class="call_page_txt" value="${contactPageNum}" onkeypress="pageInputCall(event);"/>
 			<a href="#" onclick="callPaging('${page.endPageNum}')" style='text-decoration: none;'>/ ${page.endPageNum}</a>
-			<a href="#" onclick="callPaging('${callPageNum+1}')" style="text-decoration: none;">▶</a>
+			<a href="#" onclick="callPaging('${contactPageNum+1}')" style="text-decoration: none;">▶</a>
 		</c:otherwise>
 		</c:choose>
 	</div>		

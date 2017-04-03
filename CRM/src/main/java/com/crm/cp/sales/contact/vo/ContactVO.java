@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class ContactVO {
 	
-	private String cont_id;
-	private String cont_nm;
-	private String company_nm;
-	private String ph1;
-	private String ph2;
-	private String ph3;
-	private String cell_ph1;
-	private String cell_ph2;
-	private String cell_ph3;
-	private String email1;
-	private String email2;
-	private String itrt_cd;
-	private String fst_reg_id;
-	private Date fst_reg_dt;
-	private String fin_mdfy_id;
-	private Date fin_mdfy_dt;
-	private String act_yn;
+	public String cont_id;
+	public String cont_nm;
+	public String company_nm;
+	public String ph1;
+	public String ph2;
+	public String ph3;
+	public String cell_ph1;
+	public String cell_ph2;
+	public String cell_ph3;
+	public String email1;
+	public String email2;
+	public String itrt_cd;
+	public String fst_reg_id;
+	public Date fst_reg_dt;
+	public String fin_mdfy_id;
+	public Date fin_mdfy_dt;
+	public String act_yn;
 	
 	
 	@Override

@@ -33,25 +33,30 @@ public class ContactController {
 	public ModelAndView contactList(HttpSession session, @RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum){
 		
 		System.out.println("contact entering");
+		System.out.println("contactPageNum" + contactPageNum);
 		
 		ModelAndView mov = null;
 		if (session.getAttribute("user") == null) {
 			mov = new ModelAndView("standard/home/session_expire");
 		}
+		System.out.println("step1");
 		
 		Map<String,Object> contactMap = new HashMap<String,Object>();
 		contactMap.put("contactPageNum", contactPageNum);
 		
 		PagerVO page  = contactService.ContactListCount(contactMap);
+		System.out.println("page " + page.toString());
 		contactMap.put("page", page);
 		
 		List<ContactVO> contactList = contactService.contactAllList(contactMap);
-		List<MenuVO> menuList = menuService.selectAll(session);
-		
-		mov = new ModelAndView("contact","menuList",menuList);
+		System.out.println("contactList" + contactList.toString());
+ 		
+		mov = new ModelAndView("contact");
 		mov.addObject("contactList", contactList);
-		mov.addObject("callPageNum", contactPageNum);
+		mov.addObject("contactPageNum", contactPageNum);
 		mov.addObject("page",page);
+		
+		System.out.println("mov?????? " + mov.toString());
  		
 		return mov; 
 	}

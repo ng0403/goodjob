@@ -3,11 +3,12 @@
 <mapper namespace="contact">
  
 <!-- 전체리스트  -->
-	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.call.vo.CallVO">
+	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
 		 select cont_id, cont_nm, company_nm, ph1, ph2, ph3, cell_ph1, cell_ph2, cell_ph3, email1, email2, itrt_cd, fst_reg_id, fst_reg_dt, fin_mdfy_id, fin_mdfy_dt, act_yn
-		from contact;
+		from contact 
+	<!-- 		where
 			      <if test="cont_nm !=null and cont_nm !=''">
-					AND (case when cont_nm end) like '%'||#{contact_name}||'%'
+					 (case when cont_nm end) like '%'||#{contact_name}||'%'
 				  </if>
 				  <if test="cont_email !=null and cont_email !=''">
 					AND (case when email1 end) || '@' || (case when email2 end) like '%'||#{contact_email}||'%' 
@@ -19,14 +20,15 @@
 					AND (case when company_nm else '' end) like '%'||#{company_nm}||'%'
 				  </if>
 				  <if test="keyword!=null and keyword!=''">
-				       <!--  <include refid="where-list1"/> -->
+				        <include refid="where-list1"/>
 				  </if>
 			ORDER BY fst_reg_dt desc 
-		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
+		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]> -->
+	
 	</select>
 	
 	 <!-- 리스트 개수 -->
-	<!-- <select id="selectTotalCount" parameterType="java.util.Map" resultType="integer">
+	 <select id="selectTotalCount" parameterType="java.util.Map" resultType="integer">
 		SELECT COUNT(*)
 		FROM contact
 		where act_yn ='Y' 
@@ -43,9 +45,9 @@
 			AND company_nm like '%'||#{company_nm}||'%'
 		</if>
 		<if test="keyword!=null and keyword!=''">
-			 <include refid="where-list1"/>
+			<!--  <include refid="where-list1"/> -->
 		</if> 
-	</select> -->
+	</select>
 	
 	
 	

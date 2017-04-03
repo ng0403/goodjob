@@ -27,12 +27,12 @@ public class ContactServiceImpl implements ContactService {
 	 
 	//전체리스트 개수 
 		@Override
-		public PagerVO ContactListCount(Map<String, Object> callMap) {
-			int actPageNum = (Integer) callMap.get("callPageNum");
+		public PagerVO ContactListCount(Map<String, Object> contactMap) {
+			int actPageNum = (Integer) contactMap.get("contactPageNum");
 			// 현재 페이지 얻어오기
 			PagerVO page = new PagerVO(actPageNum, 0, 4, 10);
 			// 전체 글의 갯수 구하기
-			int totalRowCount = contactDao.contactListCount(callMap);
+			int totalRowCount = contactDao.contactListCount(contactMap);
 					
 			page = new PagerVO(actPageNum, totalRowCount, 4, 10);
 		
