@@ -66,7 +66,7 @@ $("#naviprod").css("font-weight", "bold");
 							</a>
 						</td>
 						<td>${prodList.cd_nm}</td>
-						<td>${prodList.prod_sales_amt}</td>
+						<td>${prodList.prod_price}</td>
 						<td>${prodList.cate}</td>
 						<td>${prodList.fst_reg_id_nm}</td>
 						<td>

@@ -110,12 +110,12 @@
 			prod_price = #{prod_price},
 			PROD_URL = #{prod_url},
 			PROD_DTL_CONT = #{prod_dtl_cont},			
-	   		<if test="prod_img_nm!=null and prod_img_nm!=''">
+	   		<!-- <if test="prod_img_nm!=null and prod_img_nm!=''">
      	    	<include refid="img_file"/>
      		</if>		
      		<if test="prod_catal_nm!=null and prod_catal_nm!=''">
      	    	<include refid="catal_file"/>
-     		</if>			
+     		</if> -->			
 			fin_mdfy_id = #{fst_reg_id},
 			FIN_MDFY_DT = sysdate
 			
@@ -131,10 +131,10 @@
 			prod_price,
 			PROD_URL,
 			PROD_DTL_CONT,
-			PROD_IMG_NM,
+			<!-- PROD_IMG_NM,
 			PROD_IMG_SAVE_LOC,
 			PROD_CATAL_NM,
-			PROD_CATAL_SAVE_LOC,
+			PROD_CATAL_SAVE_LOC, -->
 			fst_reg_id,
 			fin_mdfy_id
 			)VALUES(
@@ -145,10 +145,10 @@
 			#{prod_price},
 			#{prod_url},
 			#{prod_dtl_cont},
-			#{prod_img_nm, jdbcType=VARCHAR},
+			<!-- #{prod_img_nm, jdbcType=VARCHAR},
 			#{prod_img_save_loc, jdbcType=VARCHAR},
 			#{prod_catal_nm, jdbcType=VARCHAR},
-			#{prod_catal_save_loc, jdbcType=VARCHAR},
+			#{prod_catal_save_loc, jdbcType=VARCHAR}, -->
 			#{fst_reg_id},
 			#{fst_reg_id}
 			)	
@@ -167,10 +167,10 @@
 			p.prod_price,
 			p.prod_div_cd,
 			p.prod_dtl_cont,
-			p.prod_img_nm,
+			<!-- p.prod_img_nm,
 			p.prod_img_save_loc,
 			p.prod_catal_nm,
-			p.prod_catal_save_loc
+			p.prod_catal_save_loc -->
 		FROM PRODUCT p,CATEGORY ca,CODE c
 		WHERE PROD_ID = #{prod_id}	
     	AND p.cate_id = ca.cate_id

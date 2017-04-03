@@ -95,7 +95,7 @@ function prodSearch(prodPageNum) {
 							+"<input type='hidden' class='list_prod_idh' name='"+data.prodList[i].prod_id+"' value='"+data.prodList[i].prod_id+"'/></a>"
 							+"</td>"
 							+"<td>"+data.prodList[i].cd_nm+"</td>"
-							+"<td>"+data.prodList[i].prod_sales_amt+"</td>"
+							+"<td>"+data.prodList[i].prod_price+"</td>"
 							+"<td>"+data.prodList[i].cate+"</td>"
 							+"<td>"+data.prodList[i].fst_reg_id_nm+"</td>"
 							+"<td>"+fst_reg_dt+"</td></tr>";
@@ -177,7 +177,7 @@ function prodPaging(prodPageNum) {
 						+"<input type='hidden' class='list_prod_idh' name='"+data.prodList[i].prod_id+"' value='"+data.prodList[i].prod_id+"'/></a>"
 						+"</td>"
 						+"<td>"+data.prodList[i].cd_nm+"</td>"
-						+"<td>"+data.prodList[i].prod_sales_amt+"</td>"
+						+"<td>"+data.prodList[i].prod_price+"</td>"
 						+"<td>"+data.prodList[i].cate+"</td>"
 						+"<td>"+data.prodList[i].fst_reg_id_nm+"</td>"
 						+"<td>"+fst_reg_dt+"</td></tr>";
@@ -323,7 +323,7 @@ function prodModifyBtn(ctx){
 			$("#cate_id").prop("disabled",false);
 			$("#cate_nm").prop("disabled",false);
 			$("#prod_cate").prop("disabled",false);
-			$("#prod_sales_amt").prop("disabled",false);
+			$("#prod_price").prop("disabled",false);
 			$("#prod_dtl_cont").prop("disabled",false);
 			$("#prod_url").prop("disabled",false);
 			$("#prod_div_cd_view").prop("hidden",true);
@@ -408,7 +408,7 @@ function prodUpdateBtn(ctx){
 		data.append("cate_id",$("#cate_id").val());
 		data.append("prod_nm",$("#prod_nm").val());
 		data.append("prod_div_cd",$("#prod_div_cd").val());
-		data.append("prod_sales_amt",$("#prod_sales_amt").val());
+		data.append("prod_price",$("#prod_price").val());
 		data.append("prod_url",$("#prod_url").val());
 		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
 		data.append("prod_img",$("#prod_img").get(0).files[0]);
@@ -444,7 +444,7 @@ function prodSaveBtn(ctx){
 		data.append("cate_id",$("#cate_id").val());
 		data.append("prod_nm",$("#prod_nm").val());
 		data.append("prod_div_cd",$("#prod_div_cd").val());
-		data.append("prod_sales_amt",$("#prod_sales_amt").val());
+		data.append("prod_price",$("#prod_price").val());
 		data.append("prod_url",$("#prod_url").val());
 		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
 		data.append("prod_img",$("#prod_img").get(0).files[0]);
@@ -492,7 +492,7 @@ function prodFormblock(){
 	$("#cate_id").prop("disabled",true);
 	$("#cate_nm").prop("disabled",true);
 	$("#prod_cate").prop("disabled",true);
-	$("#prod_sales_amt").prop("disabled",true);
+	$("#prod_price").prop("disabled",true);
 	$("#prod_dtl_cont").prop("disabled",true);
 	$("#prod_url").prop("disabled",true);
 	$("#prod_img").prop("disabled",true);
@@ -512,7 +512,7 @@ function prodFormClr() {
 /*	$("#prod_div_cd").val('');*/
 	$("#cate_id").val('');
 	$("#cate_nm").val('');
-	$("#prod_sales_amt").val('');
+	$("#prod_price").val('');
 	$("#prod_dtl_cont").val('');
 	$("#prod_url").val('');
 	$("#prod_img").val('');
