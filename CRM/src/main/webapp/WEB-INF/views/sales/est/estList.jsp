@@ -147,27 +147,27 @@
 	       			<a href="javascript:list(${page.nextStepPage})" class="next">▶▶</a>
 	    		</c:when>
 			</c:choose>
-			<c:choose>
-				<c:when test="${ccPageNum == page.startPageNum && ccPageNum != page.endPageNum}">
-			<%-- 	<c:when test="${ccPageNum == page.startPageNum}"> --%>
-					<a id="pNum"> ◀ </a>
-					<input type="text" id="ccPageInput" value="${page.startPageNum}" onkeypress="estPageInput(event);" /><a> / </a> 
-					<a  href="javascript:list('${page.endPageNum}');" id="pNum" >${page.endPageNum}</a>
-					<a href="javascript:list('${ccPageNum+1}');" id="pNum"> ▶ </a>
-				</c:when>
-				<c:when test="${ccPageNum == page.endPageNum}">
-					<a href="javascript:list('${ccPageNum-1}');" id="pNum"> ◀ </a>
-					<input type="text" id="ccPageInput" value="${page.endPageNum}" onkeypress="estPageInput(event);"/><a> / </a> 
-					<a href="javascript:list('${page.endPageNum}');" id="pNum">${page.endPageNum}</a>
-					<a id="pNum"> ▶ </a>
-				</c:when>
-				<c:otherwise>
-					<a href="javascript:list('${ccPageNum-1}');" id="pNum" > ◀ </a>
-					<input type="text" id="ccPageInput" value="${ccPageNum}" onkeypress="estPageInput(event);"/><a> / </a> 
-					<a href="javascript:list('${page.endPageNum}');" id="pNum">${page.endPageNum}</a>
-					<a href="javascript:list('${ccPageNum+1}');" id="pNum"> ▶ </a>
-				</c:otherwise>
-			</c:choose>
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${ccPageNum == page.startPageNum && ccPageNum != page.endPageNum}"> --%>
+<%-- 			<%-- 	<c:when test="${ccPageNum == page.startPageNum}"> --%> --%>
+<!-- 					<a id="pNum"> ◀ </a> -->
+<%-- 					<input type="text" id="ccPageInput" value="${page.startPageNum}" onkeypress="estPageInput(event);" /><a> / </a>  --%>
+<%-- 					<a  href="javascript:list('${page.endPageNum}');" id="pNum" >${page.endPageNum}</a> --%>
+<%-- 					<a href="javascript:list('${ccPageNum+1}');" id="pNum"> ▶ </a> --%>
+<%-- 				</c:when> --%>
+<%-- 				<c:when test="${ccPageNum == page.endPageNum}"> --%>
+<%-- 					<a href="javascript:list('${ccPageNum-1}');" id="pNum"> ◀ </a> --%>
+<%-- 					<input type="text" id="ccPageInput" value="${page.endPageNum}" onkeypress="estPageInput(event);"/><a> / </a>  --%>
+<%-- 					<a href="javascript:list('${page.endPageNum}');" id="pNum">${page.endPageNum}</a> --%>
+<!-- 					<a id="pNum"> ▶ </a> -->
+<%-- 				</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<%-- 					<a href="javascript:list('${ccPageNum-1}');" id="pNum" > ◀ </a> --%>
+<%-- 					<input type="text" id="ccPageInput" value="${ccPageNum}" onkeypress="estPageInput(event);"/><a> / </a>  --%>
+<%-- 					<a href="javascript:list('${page.endPageNum}');" id="pNum">${page.endPageNum}</a> --%>
+<%-- 					<a href="javascript:list('${ccPageNum+1}');" id="pNum"> ▶ </a> --%>
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
 		</div>
 	<!-- 페이징 처리 -->
 </body>

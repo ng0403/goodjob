@@ -108,26 +108,26 @@ function list(page){
 			var prevStepPage = result.page.prevStepPage;
 			var nextStepPage = result.page.nextStepPage;
 			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-			var page = '';
-			page = "<input type='hidden' id='endPageNum' value="+result.page.endPageNum+">"+
-				   "<input type='hidden' id='ccPageNum' value="+result.ccPageNum+">";
-			if (result.ccPageNum == result.page.startPageNum  && result.ccPageNum != result.page.endPageNum) {
-				page += "<a id='pNum'> ◀ </a>" +
-				"<input type='text' id='ccPageInput' size='1px' value="+result.page.startPageNum+" onkeypress=\"estPageInput(event);\"> "+ "<a> / </a> " +
-				"<a href=javascript:list("+result.page.endPageNum+"); id='pNum' >"+result.page.endPageNum+"</a>"+ 
-				"<a href=javascript:list("+(parseInt(result.ccPageNum)+parseInt(1))+"); id='pNum'> ▶ </a>";
-			}else if (result.ccPageNum == result.page.endPageNum) {
-				page += "<a href=javascript:list("+(result.ccPageNum-1)+"); id='pNum' > ◀ </a>"+
-				"<input type='text' id='ccPageInput' size='1px' value="+result.page.endPageNum+" onkeypress=\"estPageInput(event);\">"+ "<a> / </a> " +
-				"<a  href=javascript:list("+result.page.endPageNum+"); id='pNum'>"+result.page.endPageNum+"</a>"+ 
-				"<a id='pNum'> ▶ </a>";
-			}else {
-				page += "<a href=javascript:list("+(result.ccPageNum-1)+"); id='pNum' > ◀ </a>"+
-				"<input type='text' id='ccPageInput' size='1px' value="+result.ccPageNum+" onkeypress=\"estPageInput(event);\"> "+ "<a> / </a> " +
-				"<a href=javascript:list("+result.page.endPageNum+"); id='pNum'>"+result.page.endPageNum+"</a>"+ 
-				"<a href=javascript:list("+(parseInt(result.ccPageNum)+parseInt(1))+"); id='pNum'> ▶ </a>";
-			}
-			$("#pageSpace").append(page);
+//			var page = '';
+//			page = "<input type='hidden' id='endPageNum' value="+result.page.endPageNum+">"+
+//				   "<input type='hidden' id='ccPageNum' value="+result.ccPageNum+">";
+//			if (result.ccPageNum == result.page.startPageNum  && result.ccPageNum != result.page.endPageNum) {
+//				page += "<a id='pNum'> ◀ </a>" +
+//				"<input type='text' id='ccPageInput' size='1px' value="+result.page.startPageNum+" onkeypress=\"estPageInput(event);\"> "+ "<a> / </a> " +
+//				"<a href=javascript:list("+result.page.endPageNum+"); id='pNum' >"+result.page.endPageNum+"</a>"+ 
+//				"<a href=javascript:list("+(parseInt(result.ccPageNum)+parseInt(1))+"); id='pNum'> ▶ </a>";
+//			}else if (result.ccPageNum == result.page.endPageNum) {
+//				page += "<a href=javascript:list("+(result.ccPageNum-1)+"); id='pNum' > ◀ </a>"+
+//				"<input type='text' id='ccPageInput' size='1px' value="+result.page.endPageNum+" onkeypress=\"estPageInput(event);\">"+ "<a> / </a> " +
+//				"<a  href=javascript:list("+result.page.endPageNum+"); id='pNum'>"+result.page.endPageNum+"</a>"+ 
+//				"<a id='pNum'> ▶ </a>";
+//			}else {
+//				page += "<a href=javascript:list("+(result.ccPageNum-1)+"); id='pNum' > ◀ </a>"+
+//				"<input type='text' id='ccPageInput' size='1px' value="+result.ccPageNum+" onkeypress=\"estPageInput(event);\"> "+ "<a> / </a> " +
+//				"<a href=javascript:list("+result.page.endPageNum+"); id='pNum'>"+result.page.endPageNum+"</a>"+ 
+//				"<a href=javascript:list("+(parseInt(result.ccPageNum)+parseInt(1))+"); id='pNum'> ▶ </a>";
+//			}
+//			$("#pageSpace").append(page);
 		},
 		error:function(request){
 			alert("error : " + request);
