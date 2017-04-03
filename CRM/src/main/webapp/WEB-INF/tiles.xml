@@ -151,10 +151,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/week.jsp" />
 	</definition>
 	
-	<definition name="actSaleDetail" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_tab.jsp" />
-	</definition>
-
 	<!-- 가망고객 -->
    <definition name="lead" extends="twobodyLayout">
     <put-attribute name="master" value="/WEB-INF/views/sales/lead/leadList.jsp"/>
@@ -209,6 +205,11 @@
 	<definition name="opptDetail" extends="twobodyLayout">
 	 <put-attribute name="master" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp" />
 	 <put-attribute name="detail" value="/WEB-INF/views/sales/oppt/opptDetail.jsp" />
+	</definition>
+	
+	<definition name="actSaleDetail" extends="onebodyLayout">
+		<put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" />
+		<put-attribute name="detail" value="/WEB-INF/views/sales/act/act_tab.jsp" />
 	</definition>
 		
 </tiles-definitions>

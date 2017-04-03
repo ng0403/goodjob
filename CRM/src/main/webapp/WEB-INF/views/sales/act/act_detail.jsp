@@ -29,23 +29,19 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="nowSales_actvy_id"/>
-	<div id="css_tabs">
-		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" /> 
-		<input id="tab2" type="radio" name="tab" />
-
-		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<c:choose>
-			<c:when test="${flg == 0}">
-				<label for="tab1">영업활동 등록</label>
-			</c:when>
-			<c:when test="${flg == 1}">
-				<label for="tab1">상세정보</label>
-			</c:when>
-		</c:choose>
-		
-		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
-		<div id="tabDiv1" class="tab1_content">
+	
+	<div id="title">
+	<!-- 신규추가를 눌렀을 경우 -->
+		<c:if test="${flg == 0 }">
+			<div class="caption">■ 영업활동 등록/</div>
+		</c:if>
+		<c:if test="${flg == 1 }">
+			<div class="caption">■ 영업활동 상세정보</div>
+		</c:if>
+	</div>
+	
+	<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
+	<div id="tabDiv1" class="tab1_content">
 		<form id="actTabForm" method="post">
 			<c:if test="${flg == 0}">
 				<div id="actAddBtnDiv" class="act_tab_bt_div">
@@ -371,7 +367,7 @@
 				</table>
 			</form>	
 	</div>
-</div>
+
 </body>
 </html>
 
