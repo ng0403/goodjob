@@ -148,7 +148,7 @@
 
 	<!-- 영업활동 -->
 	<definition name="actSaleList" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_list.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/week.jsp" />
 	</definition>
 	
 	<definition name="actSaleDetail" extends="onebodyLayout">
