@@ -54,7 +54,7 @@
 					<td style="width:15%;">${actOpptList.expt_fin_d}</td>
 					<td style="width:10%;">${actOpptList.psblty_rate}</td>
 					<td style="width:10%;">${actOpptList.sales_oppt_stat_cd_nm}</td>
-					<td style="width:10%;">${actOpptList.fst_reg_id_nm}</td>
+					<td style="width:10%;">${actOpptList.fst_reg_id}</td>
 					<%-- <td style="width:10%;"><fmt:formatDate value="${actOpptList.fst_reg_dt}" pattern="yyyy-MM-dd"/></td> --%>
 				</tr>
 			</c:forEach>

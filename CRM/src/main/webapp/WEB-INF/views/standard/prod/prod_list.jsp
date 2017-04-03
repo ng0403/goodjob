@@ -68,7 +68,7 @@ $("#naviprod").css("font-weight", "bold");
 						<td>${prodList.cd_nm}</td>
 						<td>${prodList.prod_price}</td>
 						<td>${prodList.cate}</td>
-						<td>${prodList.fst_reg_id_nm}</td>
+						<td>${prodList.fst_reg_id}</td>
 						<td>
 							<fmt:formatDate value="${prodList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 							<%-- <td >${prodList.fst_reg_dt}</td> --%>
