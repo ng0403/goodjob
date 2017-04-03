@@ -3,7 +3,7 @@
  * opptEstimAdd(ctx)							:	견적 추가
  * opptEstimUpdate(ctx)							:	견적 편집
  * prodList(ctx)								:	상품 리스트 팝업
- * opptInputProd(prod_id,prod_nm,prod_sales_amt)	:	상품 입력 함수
+ * opptInputProd(prod_id,prod_nm,prod_price)	:	상품 입력 함수
  * prodChange()									:	상품 목록 금액 변경		
  * prodChacgeRealTime()							:	상품 input 변경시 상품 금액 변경 함수 호출
  * onlyNumber(event)							:	숫자만 입력
@@ -39,8 +39,8 @@ function opptEstimAdd(ctx){
 	var prod_nm = [];
 	var sales_oppt_id = $('#sales_oppt_id').val();
 	var estim_qty = [];
-	var prod_sales_amt = $('#prod_sales_amt').text();
-	alert("판매가 : " + prod_sales_amt);
+	var prod_price = $('#prod_price').text();
+	alert("판매가 : " + prod_price);
 	var sales_price = [];
 	var discount= [];
 	var sup_price = [];
@@ -81,7 +81,7 @@ function opptEstimAdd(ctx){
 		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop()); 
-		alert("판매가 : " + prod_sales_amt);
+		alert("판매가 : " + prod_price);
 		alert("sales_price : " + sales_price);
 		alert("discount : " + discount);
 		alert("sup_price" + sup_price);
@@ -126,7 +126,7 @@ function opptEstimUpdate(ctx){
 	var prod_nm = [];
 	var sales_oppt_id = $('#sales_oppt_id').val();
 	var estim_qty = [];
-	var prod_sales_amt = $('#prod_sales_amt').text();
+	var prod_price = $('#prod_price').text();
 	var sales_price = [];
 	var discount= [];
 	var sup_price = [];
@@ -211,7 +211,7 @@ function prodList(ctx){
 	});
 }
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
-function opptInputProd(prod_id,prod_nm,prod_sales_amt){
+function opptInputProd(prod_id,prod_nm,prod_price){
 		var unit="";
 		var flg = $('#flg').val();
 		var data = $('#eduCode').val();
@@ -222,7 +222,7 @@ function opptInputProd(prod_id,prod_nm,prod_sales_amt){
 		for(var i=0; i<arr.length ; i=i+2){
 			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
 		}
-	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_sales_amt));
+	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
 	alert(flg);
 	var like = 0;
@@ -234,10 +234,10 @@ function opptInputProd(prod_id,prod_nm,prod_sales_amt){
 		$('#estimatetbody').append(
 				'<tr id="priceline" class='+prod_id+'>'+
 				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
-				'<input type="hidden" id="prod_sales_amt" value='+prod_sales_amt+'>'+'</th>'+
+				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
-				'<td style="width: 27%;"  name="prod_sales_amt">'+prod_sales_amt+'</td>'+
+				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
 				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
 				 '<select id="unit" style="width: 30%;">'+
 				 unit+
@@ -263,10 +263,10 @@ function opptInputProd(prod_id,prod_nm,prod_sales_amt){
 					
 					'<tr id="priceline" class='+prod_id+'>'+
 					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
-					'<input type="hidden" id="prod_sales_amt" value='+prod_sales_amt+'>'+'</th>'+
+					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
-					'<td style="width: 27%;"  name="prod_sales_amt">'+prod_sales_amt+'</td>'+
+					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
 					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
 					 '<select id="unit" style="width: 30%;">'+
 					 unit+

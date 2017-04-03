@@ -147,7 +147,7 @@ $(function() {
 					 		<c:forEach items="${prod}" var="list">
 							<tr id="priceline" class="${list.prod_id}">
 								<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}"> 
-								<input type="hidden" id="prod_sales_amt"  value="${list.prod_sales_amt}" ></th>
+								<input type="hidden" id="prod_price"  value="${list.prod_price}" ></th>
 								<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
 								<td style="width: 8%;"><input type="number" name="estim_qty" id="estim_qty" class="estim_qty" min="1" max="100" value="${list.estim_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></td>
 								<td style="width: 18%;" >${list.sales_price}</td>

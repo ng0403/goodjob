@@ -1,7 +1,5 @@
 package com.crm.cp.sales.oppt.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,7 +10,7 @@ public class OpptPrdtVO {
 	String prod_id;
 	String prod_nm;
 	String prod_div_cd;
-	String prod_sales_amt;
+//	String prod_sales_amt;
 	String sales_lev_cd;
 	String prod_price;
 	String fst_reg_dt;
@@ -82,19 +80,19 @@ public class OpptPrdtVO {
 	public void setProd_div_cd(String prod_div_cd) {
 		this.prod_div_cd = prod_div_cd;
 	}
-	public String getProd_sales_amt() {
-		return prod_sales_amt;
-	}
-	public void setProd_sales_amt(String prod_sales_amt) {
-		this.prod_sales_amt = prod_sales_amt;
-	}
+//	public String getProd_sales_amt() {
+//		return prod_sales_amt;
+//	}
+//	public void setProd_sales_amt(String prod_sales_amt) {
+//		this.prod_sales_amt = prod_sales_amt;
+//	}
 	@Override
 	public String toString() {
 		return "OpptPrdtVO [sales_oppt_id=" + sales_oppt_id 
 				+ ", prod_id=" + prod_id 
 				+ ", prod_nm=" + prod_nm
 				+ ", prod_div_cd=" + prod_div_cd 
-				+ ", prod_sales_amt=" + prod_sales_amt 
+//				+ ", prod_sales_amt=" + prod_sales_amt 
 				+ ", sales_lev_cd="	+ sales_lev_cd 
 				+ ", prod_price=" + prod_price 
 				+ ", fst_reg_dt=" + fst_reg_dt 

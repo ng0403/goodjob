@@ -45,7 +45,7 @@
 				<tr>
 					<td style="width:30%;" id="prod_id">${list.prod_id}</td>
 					<td style="width:30%;" id="prod_nm">${list.prod_nm}</td>
-					<td style="width:30%;" id="prod_sales_amt">${list.prod_sales_amt}</td>
+					<td style="width:30%;" id="prod_price">${list.prod_price}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
