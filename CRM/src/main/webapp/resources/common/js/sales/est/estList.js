@@ -98,6 +98,16 @@ function list(page){
 			   }
 			}
 			$("#pageSpace").children().remove();
+			var ccPageNum = result.ccPageNum;
+			var startPageNum = result.page.startPageNum;
+			var endPageNum = result.page.endPageNum;
+			var firstPageCount = result.page.firstPageCount;
+			var totalPageCount = result.page.totalPageCount;
+			var prevPageNum = result.page.prevPageNum;
+			var nextPageNum = result.page.nextPageNum;
+			var prevStepPage = result.page.prevStepPage;
+			var nextStepPage = result.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
 			var page = '';
 			page = "<input type='hidden' id='endPageNum' value="+result.page.endPageNum+">"+
 				   "<input type='hidden' id='ccPageNum' value="+result.ccPageNum+">";
@@ -124,7 +134,48 @@ function list(page){
 		}
 	});
 }
-
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var stepPrev = $("<a>");
+	stepPrev.addClass("prev");
+	stepPrev.html("◀◀");
+	if(prevStepPage != firstPageCount){
+		stepPrev.attr("href","javascript:list("+prevStepPage+")");
+	}
+	var prevPage = $("<a>");
+	prevPage.addClass("prev");
+	prevPage.html("◀");
+	if(prevPageNum != firstPageCount){
+		prevPage.attr("href","javascript:list("+prevPageNum+")");
+	}
+	var ccPage;
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage_a = $("<a>");
+		ccPage_a.attr("href","javascript:list("+i+")");
+		ccPage_a.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage_a.addClass("choice");
+			ccPage_a.attr("id","pNum");
+			b.append(ccPage_a);
+			ccPage.append(b);
+		}else{
+			ccPage.append(ccPage_a);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("prev");
+	nextPage.html("▶");
+	if(nextPageNum != firstPageCount){
+		nextPage.attr("href","javascript:list("+nextPageNum+")");
+	}
+	var stepNext = $("<a>");
+	stepNext.addClass("prev");
+	stepNext.html("◀◀");
+	if(nextStepPage != firstPageCount){
+		stepNext.attr("href","javascript:list("+nextStepPage+")");
+	}
+	$("#pageSpace").append(stepPrev).append(prevPage).append(ccPage).append(nextPage).append(stepNext);
+}
 //페이지 input Enter 입력 처리
 function estPageInput(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);

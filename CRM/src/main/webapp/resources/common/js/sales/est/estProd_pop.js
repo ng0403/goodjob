@@ -14,9 +14,9 @@ function prodNmSelect(ctx){
 	$('#product_list_table tbody tr').click(function(){
 		var prod_id=$(this).find('#prod_id').text();
 		var prod_nm=$(this).find('#prod_nm').text();
-		var prod_sales_amt=$(this).find('#prod_sales_amt').text();
-		alert("opptProd_pop.js : " + prod_id+', ' + prod_nm+', ' + prod_sales_amt);
-		window.opener.inputProd(prod_id,prod_nm,prod_sales_amt);
+		var prod_price=$(this).find('#prod_price').text();
+		alert("opptProd_pop.js : " + prod_id+', ' + prod_nm+', ' + prod_price);
+		window.opener.inputProd(prod_id,prod_nm,prod_price);
 		self.close();
 	});
 }
