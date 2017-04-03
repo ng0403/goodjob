@@ -79,7 +79,7 @@ function prodInserts(){
 							    <input type="button" name="prod_cate" value="카테고리" class="prod_cate" id="prod_cate" disabled>
 							</td>
 							<th>판매가</th>
-							<td><input type="text" name="prod_sales_amt" id="prod_sales_amt" class="customer_txt" value="${prodDto.prod_sales_amt}" disabled> 
+							<td><input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled> 
 							</td>							
 						</tr>				
 						<tr>

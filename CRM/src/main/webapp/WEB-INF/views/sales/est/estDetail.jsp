@@ -166,7 +166,7 @@ $(function() {
 										<tr id="priceline" class="${list.prod_id}">
 											<th style="width: 3%;">
 												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
-												<input type="hidden" id="prod_sales_amt"  value="${list.prod_sales_amt}"></th>
+												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
 											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
 											<td style="width: 8%;">
 												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		

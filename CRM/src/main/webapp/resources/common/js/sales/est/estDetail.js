@@ -9,7 +9,7 @@
  * save_Click(ctx)								:	견적 저장 버튼 클릭 시 ( 추가 or 편집 실행)
  * cancel_Click()								:	견적 취소 버튼 클릭 시 ( css, readonly, disabled -> true )
  * prodList(ctx)								:	상품 목록 리스트 팝업
- * inputProd(prod_id,prod_nm,prod_sales_amt)	:	상품 입력 함수	
+ * inputProd(prod_id,prod_nm,prod_price)	:	상품 입력 함수	
  * prodallCheck()								:	상품 전체 선택
  * prodChkCancel()								:	상품 전체 선택 박스 해제
  * prodDelete()									:	상품 삭제
