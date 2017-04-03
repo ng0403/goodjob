@@ -7,17 +7,20 @@
 	<select id="C_oppt_status" resultType="com.crm.cp.sales.oppt.vo.OpptChartVO" parameterType="java.util.Map">
 		select ing.ing, compl.cplt, fail.fail
 			from (select count(*) as ing
-			        from sales_opportunity
-			        where 1=1
-			        and sales_oppt_stat_cd = '0001') ing, 
+			        from sales_opportunity a, customer c
+					where 1=1 
+					and a.cust_id=c.cust_id 
+			        and a.sales_oppt_stat_cd = '0001') ing, 
 			        (select count(*) as cplt
-			        from sales_opportunity
-			        where 1=1
-			        and sales_oppt_stat_cd = '0002') compl,
+			        from sales_opportunity a, customer c
+					where 1=1 
+					and a.cust_id=c.cust_id 
+			        and a.sales_oppt_stat_cd = '0002') compl,
 			        (select count(*) fail
-			        from sales_opportunity
-			        where 1=1
-			        and sales_oppt_stat_cd = '0003') fail 
+			        from sales_opportunity a, customer c
+					where 1=1 
+					and a.cust_id=c.cust_id 
+			        and a.sales_oppt_stat_cd = '0003') fail 
 
 	</select>
 	

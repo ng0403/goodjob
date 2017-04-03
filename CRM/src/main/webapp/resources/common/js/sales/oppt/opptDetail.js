@@ -13,6 +13,7 @@
  * estimAllCheck()								:	견적 모두 선택
  * addOperatingA(ctx)							:	영업활동 추가 팝업
  * estimateAdd(ctx)								:	견적 추가 팝업
+ * opptPdtAdd(ctx)								:	영업기회별 상품 추가 팝업
  * opptActiveDetailPopup(actvyId)				: 	영업활동 상세정보 팝업
  * opptEstimDetail(estimId)						:	견적 상세정보 팝업
  * opptActiveDelete()							:	영업활동 삭제								
@@ -21,7 +22,8 @@
  * comma(str)									:	컴마 입력 함수
  * uncomma(str)									:	컴마 해제 함수
  * viewSalesActive(opptId)						:	영업활동 리스트 조회
- * estimList(opptId)							:	견적 리스트 조회
+ * estimList(opptId)							:	영업기회별 견적 리스트 조회
+ * opptprdtList(opptId)							:	영업기회별 상품 리스트 조회
  */
 $(function(){
 	var buttonStatus = "";
@@ -32,6 +34,7 @@ $(function(){
 	searchCustcompListPopup(ctx);
 	custcompListPopup(ctx);
 	estimateAdd(ctx);
+	opptPdtAdd(ctx);
 	startCalendar(ctx);
 });
 
@@ -379,6 +382,17 @@ function estimAllCheck(){
 		}
 	});
 }
+//견적 모두 선택
+function opptprdtAllCheck(){
+	$("#opptprdtAllSelect").click( function(){
+		var chk = $(this).is(":checked");
+		if(chk){
+			$("#opptprdtList input[type=checkbox]").prop("checked",true);			
+		}else{
+			$("#opptprdtList input[type=checkbox]").prop("checked",false);
+		}
+	});
+}
 
 //영업활동 추가 팝업
 function addOperatingA(ctx){
@@ -417,6 +431,24 @@ function estimateAdd(ctx){
 		window.open(ctx+'/opptEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 			}
 		});
+}
+//영업기회별 상품 추가 팝업
+function opptPdtAdd(ctx){
+	$('#opptPdtAdd').click(function(){
+		var hsales_lev_cd = $("#hsales_lev_cd").val();
+		var salesId = $('#salesId').val();
+		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
+		if(salesId == "" || salesId == null ){
+			alert("영업기회를 선택해주세요.");
+		}else{
+			var list_sales_oppt_id = $('#salesId').val();
+			var list_cust_id = list_sales_oppt_id;
+			var list_cust_nm = $('#hcust_nm').val();
+			var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
+			var pageNum=$('#pageNum').val();
+			window.open(ctx+'/opptPrdtpopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		}
+	});
 }
 
 
@@ -560,6 +592,47 @@ function estimList(opptId){
 			}	
 			}	
 			$('#estimList').append(content);
+		},
+		error:function(request){
+			alert('error :' + request.status);
+		}
+	});
+}
+//영업기회별 상품 리스트 조회
+function opptprdtList(opptId){
+	$('#opptprdtList').children().remove();
+	$.ajax({
+		type : 'get',
+		url : 'opptprdtList',
+		data : { sales_oppt_id : opptId },
+		dataType : 'json',
+		success:function(result){
+			var content ="";
+			if(result.length==0){
+				content = "<tr style='height: 150px;'><td colspan='8'>등록된 영업기회별 상품이 없습니다.</td></tr>";
+			}else{
+				$.each(result,function(i,data){
+					content += '<tr>'+	
+					'<th><input type=checkbox name=estim_id value='+data.prod_id+'></th>'+
+					'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.prod_id+'");>'+data.prod_nm+'</a></td>'+
+					'<td>'+data.sales_lev_cd+'</td>'+
+//					'<td>'+data.prdt_qty+'</td>'+
+					'<td style="text-align: right; padding-right: 5px;">'+comma(data.prod_price)+'</td>'+
+//					'<td>'+data.estim_valid_d+'</td>'+
+//					'<td>'+data.fst_reg_id+'</td>'+
+					'<td>'+data.fin_mdfy_dt+'</td>'+
+					'</tr>';
+				});
+				if(result.length < 5){
+					for(var j = 0; j < 5-result.length; j++){
+						content += "<tr>"
+							+ "<th></th>"
+							+ "<td></td><td></td><td></td>"
+							+ "<td></td></tr>";/*<td></td><td></td><td></td>*/
+					}
+				}	
+			}	
+			$('#opptprdtList').append(content);
 		},
 		error:function(request){
 			alert('error :' + request.status);
