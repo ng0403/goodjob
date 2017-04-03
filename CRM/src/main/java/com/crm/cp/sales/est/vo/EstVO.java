@@ -21,7 +21,7 @@ public class EstVO {
 	private String prod_id;
 	private String prod_nm;
 	private String estim_qty;
-	private String prod_sales_amt;
+	private String prod_price;
 	private String sales_price_1;
 	private String sales_price_2;
 	private String sales_price;
@@ -303,11 +303,11 @@ public class EstVO {
 		this.discount_unit_cd_nm = discount_unit_cd_nm;
 	}
 	
-	public String getProd_sales_amt() {
-		return prod_sales_amt;
+	public String getProd_price() {
+		return prod_price;
 	}
-	public void setProd_sales_amt(String prod_sales_amt) {
-		this.prod_sales_amt = prod_sales_amt;
+	public void setProd_price(String prod_price) {
+		this.prod_price = prod_price;
 	}
 	@Override
 	public String toString() {
@@ -320,8 +320,8 @@ public class EstVO {
 				+ act_yn + ", memo=" + memo + ", discount_unit_cd="
 				+ discount_unit_cd + ", discount_unit_cd_nm="
 				+ discount_unit_cd_nm + ", prod_id=" + prod_id + ", prod_nm="
-				+ prod_nm + ", estim_qty=" + estim_qty + ", prod_sales_amt="
-				+ prod_sales_amt + ", sales_price_1=" + sales_price_1
+				+ prod_nm + ", estim_qty=" + estim_qty + ", prod_price="
+				+ prod_price + ", sales_price_1=" + sales_price_1
 				+ ", sales_price_2=" + sales_price_2 + ", sales_price="
 				+ sales_price + ", discount=" + discount + ", sup_price="
 				+ sup_price + ", el_act_yn=" + el_act_yn + ", cd_grp_id="

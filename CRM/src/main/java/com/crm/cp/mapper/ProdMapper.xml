@@ -20,7 +20,7 @@
 		         p.prod_nm
 		        ,cd.cd_nm
 		        ,cd.code
-		        ,p.prod_sales_amt
+		        ,p.prod_price
 		        ,c1.CATE_ID || '>' || c2.UP_CATE_ID as cate
 		        ,p.fst_reg_id
 		        ,p.fst_reg_dt
@@ -107,7 +107,7 @@
 			CATE_ID = #{cate_id},
 			PROD_NM = #{prod_nm},
 			PROD_DIV_CD = #{prod_div_cd},
-			PROD_SALES_AMT = #{prod_sales_amt},
+			prod_price = #{prod_price},
 			PROD_URL = #{prod_url},
 			PROD_DTL_CONT = #{prod_dtl_cont},			
 	   		<if test="prod_img_nm!=null and prod_img_nm!=''">
@@ -128,7 +128,7 @@
 			CATE_ID,
 			PROD_NM,
 			PROD_DIV_CD,
-			PROD_SALES_AMT,
+			prod_price,
 			PROD_URL,
 			PROD_DTL_CONT,
 			PROD_IMG_NM,
@@ -142,7 +142,7 @@
 			#{cate_id},
 			#{prod_nm},
 			#{prod_div_cd},
-			#{prod_sales_amt},
+			#{prod_price},
 			#{prod_url},
 			#{prod_dtl_cont},
 			#{prod_img_nm, jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
      		c.code,
 			c.cd_nm,
 			p.prod_url,
-			p.prod_sales_amt,
+			p.prod_price,
 			p.prod_div_cd,
 			p.prod_dtl_cont,
 			p.prod_img_nm,

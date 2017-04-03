@@ -12,7 +12,7 @@ public class ProdVO {
 	String prod_id;
 	String prod_nm;
 	String prod_div_cd;
-	String prod_sales_amt;
+	String prod_price;
 	String prod_url;
 	MultipartFile prod_img;
 	String prod_img_nm;
@@ -78,11 +78,11 @@ public class ProdVO {
 	public void setProd_div_cd(String prod_div_cd) {
 		this.prod_div_cd = prod_div_cd;
 	}
-	public String getProd_sales_amt() {
-		return prod_sales_amt;
+	public String getProd_price() {
+		return prod_price;
 	}
-	public void setProd_sales_amt(String prod_sales_amt) {
-		this.prod_sales_amt = prod_sales_amt;
+	public void setProd_price(String prod_price) {
+		this.prod_price = prod_price;
 	}
 	public String getProd_url() {
 		return prod_url;
@@ -189,8 +189,8 @@ public class ProdVO {
 	@Override
 	public String toString() {
 		return "ProdVO [prod_id=" + prod_id + ", prod_nm=" + prod_nm
-				+ ", prod_div_cd=" + prod_div_cd + ", prod_sales_amt="
-				+ prod_sales_amt + ", prod_url=" + prod_url + ", prod_img="
+				+ ", prod_div_cd=" + prod_div_cd + ", prod_price="
+				+ prod_price + ", prod_url=" + prod_url + ", prod_img="
 				+ prod_img + ", prod_img_nm=" + prod_img_nm
 				+ ", prod_img_save_loc=" + prod_img_save_loc + ", prod_catal="
 				+ prod_catal + ", prod_catal_nm=" + prod_catal_nm
