@@ -207,7 +207,7 @@
 	 <put-attribute name="detail" value="/WEB-INF/views/sales/oppt/opptDetail.jsp" />
 	</definition>
 	
-	<definition name="actSaleDetail" extends="onebodyLayout">
+	<definition name="actSaleDetail" extends="twobodyLayout">
 		<put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" />
 		<put-attribute name="detail" value="/WEB-INF/views/sales/act/act_tab.jsp" />
 	</definition>
