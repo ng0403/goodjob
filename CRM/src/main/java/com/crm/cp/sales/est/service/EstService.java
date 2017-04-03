@@ -7,7 +7,6 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
-import com.crm.cp.utils.PageUtil;
 import com.crm.cp.utils.PagerVO;
 
 
@@ -50,7 +49,7 @@ public interface EstService {
 	
 	
 	// 페이지 정보 얻어오기
-	PageUtil getCCListCount(Map<String, String> ccPageNum);
+	PagerVO getCCListCount(Map<String, String> ccPageNum);
 
 	List<EstVO> eduList();
 

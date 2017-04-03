@@ -26,7 +26,6 @@ import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.Encoder;
-import com.crm.cp.utils.PageUtil;
 import com.crm.cp.utils.PagerVO;
 
 //@RequestMapping("/est")
@@ -61,7 +60,7 @@ public class EstController {
 		//한글 검색 인코더 변환
 		map.put("estim_nm", Encoder.isoToUtf(map.get("estim_nm")));
 		map.put("pageNum", ccPageNum+"");
-		PageUtil page = estInter.getCCListCount(map);
+		PagerVO page = estInter.getCCListCount(map);
 		map.put("startRow", page.getStartRow()+"");
 		map.put("endRow", page.getEndRow()+"");
 		if( (sales_price_1 != ""  && sales_price_2 !="") && (sales_price_1 != null  && sales_price_2 != null)){
@@ -118,7 +117,7 @@ public class EstController {
 			
 		Map<String,Object> result = new HashMap<String,Object>(0);
 		map.put("pageNum", ccPageNum+"");
-		
+		System.out.println(ccPageNum);
 	
 		
 		System.out.println("sales_price_1 : " + sales_price_1);
@@ -134,7 +133,7 @@ public class EstController {
 		map.put("estim_nm", estim_nm + "");				
 		map.put("estim_lev_cd", estim_lev_cd + "");
 		map.put("estim_valid_d", estim_valid_d  + "");
-		PageUtil page = estInter.getCCListCount(map);
+		PagerVO page = estInter.getCCListCount(map);
 		map.put("startRow", page.getStartRow()+"");
 		map.put("endRow", page.getEndRow()+"");
 		List<EstVO> list = estInter.getList(map);

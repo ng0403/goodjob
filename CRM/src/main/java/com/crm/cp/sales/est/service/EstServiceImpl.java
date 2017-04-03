@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.crm.cp.sales.est.dao.EstDao;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
-import com.crm.cp.utils.PageUtil;
+import com.crm.cp.utils.PagerVO;
 
 
 @Service
@@ -151,13 +151,13 @@ public class EstServiceImpl implements EstService {
 
 	// 페이지 정보 가져오기
 	@Override
-	public PageUtil getCCListCount(Map<String, String> ccPageNum) {
+	public PagerVO getCCListCount(Map<String, String> ccPageNum) {
 		// 현재 페이지 얻어오기
 /*		PageUtil page = new PageUtil(ccPageNum, 0, 5, 5);
 */
 		int totalRowCount = estDaoi.getCCListCount(ccPageNum);
 
-		PageUtil page = new PageUtil(Integer.parseInt(ccPageNum.get("pageNum")), totalRowCount, 10, 10);
+		PagerVO page = new PagerVO(Integer.parseInt(ccPageNum.get("pageNum")), totalRowCount, 10, 10);
 
 		return page;
 	}
