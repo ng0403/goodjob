@@ -48,7 +48,7 @@ public class contrController {
 		ModelAndView mov = new ModelAndView("cont");
 		System.out.println("contrSearchMap" + contrSearchMap.toString());
 		List<MenuVO> menuList = menuService.selectAll(session);
-
+		System.out.println("menuList " + menuList.toString());
 		mov.addObject("menuList", menuList);
 		mov.addObject("contrList", contrSearchMap);
 		mov.addObject("page", page);

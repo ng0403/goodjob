@@ -52,6 +52,18 @@
 	
 	
 	
+	<!-- 연락처 상세정보 -->
+	<select id="contactOneDetail" parameterType="String" resultType="com.crm.cp.sales.contact.vo.ContactVO">
+	     SELECT
+	     cont_id, cont_nm, company_nm, ph1, ph2, ph3, cell_ph1, cell_ph2, cell_ph3, email1, email2, fst_reg_id, fst_reg_dt, fin_mdfy_id, fin_mdfy_dt, act_yn
+	    from contact
+	    where cont_id =#{cont_id}  
+              
+	</select>
+	
+	
+	
+	
 	
 	
 </mapper>

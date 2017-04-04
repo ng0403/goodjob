@@ -7,10 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
+<link rel="stylesheet" href="$	{ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>	
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 
+
+ 
 <title>연락처</title>
 </head>
 <body>
@@ -60,30 +66,24 @@
 		<tr>
 			<th><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
 			<td style="width:10%;">이름</td>
-			<td style="width:10%;">구분</td>
-			<td style="width:10%;">직급</td>
-			<td style="width:10%;">회사명</td>
+  			<td style="width:10%;">회사명</td>
 			<td style="width:15%;">이메일</td>
 			<td style="width:10%;">전화번호</td>
 			<td style="width:10%;">이동전화번호</td>
-			<td style="width:10%;">담당자</td>
-			<td style="width:15%;">등록일시</td>
+ 			<td style="width:15%;">등록일시</td>
 		</tr>
 		</thead>
 		<tbody id="call_list_tbody">
-		<c:forEach var="List" items="${contactList}">
+		<c:forEach var="contactList" items="${contactList}">
  		<tr>
-			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${List.cont_id}" onclick="callChkCancel();"></th>
-			<td style="width:10%; text-align: left; padding-left:5px;" onclick="callTabFunc('${contactList.cont_id}','${List.company_nm}')"><%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
-			<a style="color: blue; cursor: pointer;" class="callClick">${List.cont_nm}</a></td>
-			<td style="width:10%; text-align: left; padding-left:5px;">${List.company_nm}</td>
-			<td style="width:10%; text-align: center;"> </td>
-			<td style="width:10%; text-align: left; padding-left:5px;">${List.company_nm}</td>
-			<td style="width:15%; text-align: left; padding-left:5px;">${List.email1}@${List.email2}</td>
-			<td style="width:10%; text-align: center;">${List.ph1}-${List.ph2}-${List.ph3}</td>
-			<td style="width:10%; text-align: center;">${List.cell_phone1}-${List.cell_phone2}-${List.cell_phone3}</td>
-			<td style="width:10%; text-align: center;"> </td>
-			<td style="width:15%; text-align:center;"><fmt:formatDate value="${List.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
+			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></th>
+			<td style="width:10%; text-align: left; padding-left:5px;" >          <%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
+			<a href="#" onclick="contactDetail('${contactList.cont_id}')" style="color: blue; cursor: pointer;" class="callClick">${contactList.cont_nm}</a></td>
+  			<td style="width:10%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
+			<td style="width:15%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
+			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
+			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>
+ 			<td style="width:15%; text-align:center;"><fmt:formatDate value="${contactList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
 		</tr>
 		</c:forEach>
 		</tbody>

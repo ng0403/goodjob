@@ -38,5 +38,13 @@ public class ContactDaoImpl implements ContactDao {
 			List<ContactVO> obj = sqlSession.selectList("contact.selectAll", contactMap);
 			return obj;
 		}
+		
+		//연락처 상세정보
+		@Override
+		public ContactVO contactDetail(String cont_id) {
+			ContactVO contactVO=null;
+			contactVO =sqlSession.selectOne("contact.contactOneDetail", cont_id);
+			return contactVO;
+		}
 	
 }

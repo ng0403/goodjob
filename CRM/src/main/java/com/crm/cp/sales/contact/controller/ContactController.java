@@ -11,8 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.sales.call.vo.CallVO;
+import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.contact.service.ContactService;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.menu.service.MenuService;
@@ -60,4 +63,32 @@ public class ContactController {
  		
 		return mov; 
 	}
+	
+	
+	// 연락처 상세정보
+	/*@RequestMapping(value = "contactDetail", method = RequestMethod.POST)
+	public @ResponseBody ContactVO companyCutomerDetail(String cont_id) {
+		System.out.println("ajax detail contact ");
+		ContactVO contactVO = contactService.contactDetail(cont_id);		
+		return contactVO;
+	}*/
+	
+	
+	@RequestMapping(value="contact_detail", method=RequestMethod.GET)
+	public ModelAndView companyCutomerDetail(@RequestParam("cont_id") String cont_id){
+		
+		System.out.println("detail Entering");
+		
+		ContactVO contactVO = contactService.contactDetail(cont_id);
+		System.out.println("contactDetail ????" + contactVO.toString());
+		
+		ModelAndView mov = new ModelAndView("contactDetail");
+		mov.addObject("contDetail", contactVO);
+		return mov;
+	}  
+	 
+	
+	
+	
+	
 }

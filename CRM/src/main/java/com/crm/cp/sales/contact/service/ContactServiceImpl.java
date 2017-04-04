@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.crm.cp.sales.call.vo.CallVO;
 import com.crm.cp.sales.contact.dao.ContactDao;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.utils.PagerVO;
@@ -37,6 +38,12 @@ public class ContactServiceImpl implements ContactService {
 			page = new PagerVO(actPageNum, totalRowCount, 4, 10);
 		
 			return page;
+		}
+		
+		//상세정보
+		@Override
+		public ContactVO contactDetail(String cont_id) {
+			return contactDao.contactDetail(cont_id);
 		}
  
 

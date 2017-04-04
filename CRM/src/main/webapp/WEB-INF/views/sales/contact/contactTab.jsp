@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callTab.css" type="text/css" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/call/call_pop.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/call/callList.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/call/callTab.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/addr/zipcode_js.js"></script>
 <title>Insert title here</title>
@@ -28,11 +28,10 @@
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 
-        <!-- 개인고객/ 키맨 추가 버튼  -->
+        <!-- 개인고객 -->
 		<div id="callCustKeyBtnDiv" class="call_tab_bt_div"> 
-		    <input type="button" id="custpsonBtn" value="개인고객추가" class="call_tab_bt" onclick="callCustBtn();"/>
-			<input type="button" id="keymanBtn" value="키맨추가" class="call_tab_bt" onclick="callKeyAddBtn();"/>
-		</div>
+		    <input type="button" id="custpsonBtn" value="추가" class="call_tab_bt" onclick="callCustBtn();"/>
+ 		</div>
 		
 		<!-- 개인고객 추가 편집 버튼  -->
 		<div id="callCustBtnDiv" class="call_tab_bt_div" style="display: none;"> 
@@ -82,10 +81,7 @@
 						<td>
 						   <input type="text" name="cust_div_nm" id="cust_div_nm" class="int"/>
 						</td> -->
-						<th>직급</th>
-						<td>
-						   <input type="hidden" id="hpos_nm"/>
-						   <input type="text" name="pos_nm" id="pos_nm" class="int" readonly="readonly"/></td>
+						 
 						<th>회사명</th>
 						<td>
 						    <input type="hidden" id="hcomp_nm"/>
@@ -120,14 +116,14 @@
 						    <input type="text" name="rep_ph2" maxlength="4" id="ph_phone2" class="int_tel" style='ime-mode:disabled;' onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' readonly="readonly"/> - 
 						    <input type="text" name="rep_ph3" maxlength="4" id="ph_phone3" class="int_tel" style='ime-mode:disabled;' onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' readonly="readonly"/>
 						</td>
-						<th>동의여부</th>
+					<!-- 	<th>동의여부</th>
 						<td>
 						    <input type="hidden" id="hcust_info_yn"/>
 							<input type="hidden" id="hmkt_app_yn"/>
 						    <input type="checkbox" name="cust_info_yn" id="cust_info_yn" disabled="disabled"/>개인정보수집 
 							<input type="checkbox" name="mkt_app_yn" id="mkt_app_yn" disabled="disabled"/>마케팅활용
-						</td>
-						<th>영업담당자</th>
+						</td> -->
+						<!-- <th>영업담당자</th>
 						<td>
 						    <input type="hidden" name="hiuser_id_nm" id="hiuser_id_nm"/>
 						    <input type="hidden" name="iuser_id_nm" id="iuser_id_nm"/>
@@ -135,7 +131,7 @@
 						    <input type="hidden" name="hiuser_nm" id="hiuser_nm"/>
 						    <input type="text" name="iuser_nm" id="iuser_nm" class="int" readonly="readonly"> 
 						    <input type="button" name="iuser_search" value="직원" class="call_tab_bt" id="iuser_search" disabled="disabled">
-						</td>
+						</td> -->
 					</tr>
 					<tr>
 						<th>주소지</th>
