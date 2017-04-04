@@ -92,10 +92,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/sales/est/estWrite.jsp"/>
 	</definition>
 	
-	<definition name="estDetail" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/est/estDetail.jsp"/>
-	</definition>
-	
 	<!-- 상품 -->
 	<definition name="prodList" extends="onebodyLayout">
 	 <put-attribute name="body" value="/WEB-INF/views/standard/prod/prod_list.jsp"/>
@@ -122,7 +118,12 @@
 		<put-attribute name="navi" value="/WEB-INF/views/common/navi.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
-
+	<!-- 견적 상세정보 화면 -->
+	<definition name="estDetail" extends="twobodyLayout">
+		<put-attribute name="master" value="/WEB-INF/views/sales/est/estDetail.jsp"/>
+		<put-attribute name="detail" value="/WEB-INF/views/sales/est/est_prod_list_tab.jsp" />
+	</definition>
+	
 	<definition name="user" extends="twobodyLayout">
 		<put-attribute name="master"
 			value="/WEB-INF/views/standard/iuser/iuserList.jsp" />
