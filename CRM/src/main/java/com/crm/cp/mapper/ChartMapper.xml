@@ -5,7 +5,7 @@
 
 	<!-- 영업기회 리스트 -->
 	<select id="C_oppt_status" resultType="com.crm.cp.sales.oppt.vo.OpptChartVO" parameterType="java.util.Map">
-		select ing.ing, compl.cplt, fail.fail
+		select ing.ing as "진행중", compl.cplt as "계약완료", fail.fail as "계약실패" 
 			from (select count(*) as ing
 			        from sales_opportunity a, customer c
 					where 1=1 

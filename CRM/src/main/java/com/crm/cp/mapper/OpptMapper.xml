@@ -548,7 +548,8 @@
 			fst_reg_id,
 			fst_reg_dt,
 			fin_mdfy_id,
-			fin_mdfy_dt
+			fin_mdfy_dt,
+			serial_num
 		)
 		values(
 		  (SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE PK_SALES_OPPORTUNITY_ESTIMATE)*/
@@ -559,7 +560,11 @@
 		  'admin',
 		  sysdate,
 		  'admin',
-		  sysdate
+		  sysdate,
+		  (SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE PK_SALES_OPPORTUNITY_ESTIMATE)*/
+			 DECODE(MAX(SERIAL_NUM),NULL,'OES0000001','OES'||lpad((SUBSTR(MAX(SERIAL_NUM),4,7)+1),7,0))SERIAL_NUM
+			FROM SALES_OPPORTUNITY_ESTIMATE
+			WHERE ROWNUM=1)
 		)
 	</update>
 	

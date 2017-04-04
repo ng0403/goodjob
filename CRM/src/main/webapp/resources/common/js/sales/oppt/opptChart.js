@@ -4,8 +4,8 @@
  */
 
 $(function(){
-//	chart();
-	CircleChart();
+	chart();
+//	CircleChart();
 });
 //데이터 불러오기 > 축과 척도 설정 > 틀 그리기 > 축 그리기 
 //> 요소에 데이터 엮기 > 요소 속성 설정
@@ -33,8 +33,8 @@ function chart(){
   var offsetY = 20;
   var barElements;
   var dataMax = 300;
-  var barWidth = 20;
-  var barMargin = 5;
+  var barWidth = 25;
+  var barMargin = 40;
   
   //그래프 그리기
   barElements = d3.select("#myGraph")
@@ -107,7 +107,7 @@ function chart(){
 			  	  .append("text")
 			  	  .attr("class", "barName")
 			  	  .attr("x", function(d, i){
-			  		  return i*25+10+offsetX;
+			  		  return i*65+10+offsetX;
 			  	  })
 			  	  .attr("y", svgHeight-offsetY+10)
 			  	  .text(function(d, i){
