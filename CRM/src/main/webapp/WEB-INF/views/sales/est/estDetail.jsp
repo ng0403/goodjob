@@ -128,76 +128,76 @@ $(function() {
 					</tr>
  					<tr>
 						<th>참고사항</th> 
-						<td colspan="2"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
+						<td colspan="3"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
  							class="int_detail_ad" value="${detail.memo}">
  						</td>
- 						<td>
- 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
-							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/>
- 						</td> 
+<!--  						<td> -->
+<!--  							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/> -->
+<!-- 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/> -->
+<!--  						</td>  -->
 					</tr>
-					
-					</table>
-							<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
-								<tr>
-									<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
-									<td style="width: 32%;">품목명</td>
-									<td style="width: 8%;">수량</td>
-									<td style="width: 27%;">판매가</td>
-									<td style="width: 15%;">할인</td>
-									<td style="width: 15%;">공급가</td>
-								</tr>
-								<tr id="totalprice">
-									<th></th>
-									<td>계:</td>
-									<td id="countSum">0</td>
-									<td id="salesPriceSum" >0</td>
-									<td id="discountSum">0</td>
-									<td id="supplyPriceSum">0</td>
-								</tr>
-						</table>
-	   <div id="estimatediv" style="margin-left: 22px;">
-	   <input type="hidden" id="eduCode" value="${eduCode}">
-					<table id="estimatetable" class="tabtable" style="text-align: center;">
-						<tbody id="estimatetbody">
-							<c:choose>
-								<c:when test="${not empty prodList}">
-									<c:forEach items="${prodList}" var="list">
-										<tr id="priceline" class="${list.prod_id}">
-											<th style="width: 3%;">
-												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
-												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
-											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
-											<td style="width: 8%;">
-												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
-											<td style="width: 27%;" >${list.sales_price}</td>
-											<td style="width: 15%;" >
-												<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
-												<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">
-													<option value="0">선택</option>
-													<c:forEach items="${eduList }" var="eduList">
-														<c:choose>
-															<c:when test="${list.discount_unit_cd eq eduList.code }">
-																<option value="${eduList.code}" selected="selected">${eduList.cd_nm}</option>
-															</c:when>
-															<c:otherwise>
-																<option value="${eduList.code}">${eduList.cd_nm}</option>
-															</c:otherwise>
-														</c:choose>
-													</c:forEach>
-												</select>
-											</td>
-											<td style="width: 15%;" id="sup_price" >${list.sup_price}</td>
-										</tr>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-						</tbody>
-					</table>
-			</div>
+				</tbody>
+			</table>
+<!-- 			<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" > -->
+<!-- 				<tr> -->
+<!-- 					<th style="width: 3%;"><input type="checkbox" id="allSelect"></th> -->
+<!-- 					<td style="width: 32%;">품목명</td> -->
+<!-- 					<td style="width: 8%;">수량</td> -->
+<!-- 					<td style="width: 27%;">판매가</td> -->
+<!-- 					<td style="width: 15%;">할인</td> -->
+<!-- 					<td style="width: 15%;">공급가</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr id="totalprice"> -->
+<!-- 					<th></th> -->
+<!-- 					<td>계:</td> -->
+<!-- 					<td id="countSum">0</td> -->
+<!-- 					<td id="salesPriceSum" >0</td> -->
+<!-- 					<td id="discountSum">0</td> -->
+<!-- 					<td id="supplyPriceSum">0</td> -->
+<!-- 				</tr> -->
+<!-- 			</table> -->
+<!-- 			<div id="estimatediv" style="margin-left: 22px;"> -->
+<%-- 			<input type="hidden" id="eduCode" value="${eduCode}"> --%>
+<!-- 				<table id="estimatetable" class="tabtable" style="text-align: center;"> -->
+<!-- 					<tbody id="estimatetbody"> -->
+<%-- 						<c:choose> --%>
+<%-- 							<c:when test="${not empty prodList}"> --%>
+<%-- 								<c:forEach items="${prodList}" var="list"> --%>
+<%-- 									<tr id="priceline" class="${list.prod_id}"> --%>
+<!-- 										<th style="width: 3%;"> -->
+<%-- 											<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();"> --%>
+<%-- 											<input type="hidden" id="prod_price"  value="${list.prod_price}"></th> --%>
+<%-- 										<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td> --%>
+<!-- 										<td style="width: 8%;"> -->
+<%-- 											<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		 --%>
+<%-- 										<td style="width: 27%;" >${list.sales_price}</td> --%>
+<!-- 										<td style="width: 15%;" > -->
+<%-- 											<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"> --%>
+<!-- 											<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled"> -->
+<!-- 												<option value="0">선택</option> -->
+<%-- 												<c:forEach items="${eduList }" var="eduList"> --%>
+<%-- 													<c:choose> --%>
+<%-- 														<c:when test="${list.discount_unit_cd eq eduList.code }"> --%>
+<%-- 															<option value="${eduList.code}" selected="selected">${eduList.cd_nm}</option> --%>
+<%-- 														</c:when> --%>
+<%-- 														<c:otherwise> --%>
+<%-- 															<option value="${eduList.code}">${eduList.cd_nm}</option> --%>
+<%-- 														</c:otherwise> --%>
+<%-- 													</c:choose> --%>
+<%-- 												</c:forEach> --%>
+<!-- 											</select> -->
+<!-- 										</td> -->
+<%-- 										<td style="width: 15%;" id="sup_price" >${list.sup_price}</td> --%>
+<!-- 									</tr> -->
+<%-- 								</c:forEach> --%>
+<%-- 							</c:when> --%>
+<%-- 						</c:choose> --%>
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
 			<div class="estimate_bt_position"> 
 						
-					</div>
+			</div>
 		</div>
 	</div>
 </div>

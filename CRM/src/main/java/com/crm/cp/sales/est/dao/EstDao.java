@@ -3,6 +3,7 @@ package com.crm.cp.sales.est.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -43,5 +44,9 @@ public interface EstDao {
 		int estUpdate(Map<String, Object> map);
 
 		int estDelete(String estim_id);
+
+		int actCount(String estim_id);
+
+		List<ActVO> actList(Map<String, String> map);
 
 }

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.dao.EstDao;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -184,6 +185,20 @@ public class EstServiceImpl implements EstService {
 	public int estDelete(String estim_id) {
 		// TODO Auto-generated method stub
 		return estDaoi.estDelete(estim_id);
+	}
+
+	@Override
+	public PagerVO actCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		int totalRowCount = estDaoi.actCount(map.get("estim_id"));
+		PagerVO page = new PagerVO(Integer.parseInt(map.get("actPageNum")),totalRowCount,5,5);	
+		return page;
+	}
+
+	@Override
+	public List<ActVO> actList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return estDaoi.actList(map);
 	}
 
 
