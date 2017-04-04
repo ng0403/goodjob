@@ -121,7 +121,7 @@
 	<!-- 견적 상세정보 화면 -->
 	<definition name="estDetail" extends="twobodyLayout">
 		<put-attribute name="master" value="/WEB-INF/views/sales/est/estDetail.jsp"/>
-		<put-attribute name="detail" value="/WEB-INF/views/sales/est/est_prod_list_tab.jsp" />
+		<put-attribute name="detail" value="/WEB-INF/views/sales/est/estDetail_tab.jsp" />
 	</definition>
 	
 	<definition name="user" extends="twobodyLayout">
