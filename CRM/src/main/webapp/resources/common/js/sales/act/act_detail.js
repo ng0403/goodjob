@@ -812,9 +812,13 @@ function searchActDiv(){
 // 영업기회탬에서 추가버튼 눌렀을 때.
 function opptInsertPop()
 {
-	$('#actAddSaveBtn').click(function() {
-		window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-	});
+	window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+//영업기회 상세정보 고객 리스트 팝업
+function opptCustPopup(ctx)
+{
+	window.open(ctx+'/opptCustPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기

@@ -13,6 +13,7 @@
 
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/opptInsertPop.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,6 +33,7 @@
 	</c:if>
 		<div class="bt_position_popup">
 			<div class="bs-example" data-example-id="simple-table">
+				<form action="opptPopForm" method="post">
 				<table id="operatingapopuptable">
 					<tbody id="tbody1">
 						<c:if test="${popFlg eq 'add'}">
@@ -53,7 +55,7 @@
 									<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 									<input type="hidden" name="lead_id" id="lead_id" value="${opDetail.lead_id}"/>
 																	
-									<input type="button" class="btn-success-tel" id="customer" value="고객" onclick="opptCustPopup('${ctx}');">
+									<input type="button" class="btn-success-tel" id="customerPop" value="고객" onclick="opptCustPopup('${ctx}');">
 								</td>
 							</tr>
 							<tr>
@@ -217,14 +219,15 @@
 						
 					</tbody>
 				</table>
+				</form>
 			</div>
-			<c:if test="">
+			<c:if test="${popFlg eq 'add'}">
 				<div class="act_bt_position">
 					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" /> 
 					<input type="button" class="cust_oppt_btn" value="취소" id="opptAdd_cancel" />
 				</div>
 			</c:if>
-			<c:if test="">
+			<c:if test="${popFlg eq 'popDetail'}">
 				<div class="act_bt_position">
 					<input type="button" class="cust_oppt_btn" value="저장" id="opptModfyButton" /> 
 					<input type="button" class="cust_oppt_btn" value="취소" id="opptModfy_cancel" />
