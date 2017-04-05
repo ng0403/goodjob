@@ -38,6 +38,7 @@ $(function(){
 	prodChacgeRealTime();
 	startCalendar(ctx);
 	prodChange();
+	addOperating();
 });
 
 var buttonStatus;				//편집인지 추가인지 버튼의 상태 저장
@@ -692,7 +693,7 @@ function estUpdate(ctx){
 
 //영업활동 리스트 조회
 function viewSalesActive(estim_id){
-	$("#activeList").children().remove();	
+	$("#activeList").children().remove();
 	$.ajax({  
 		type : 'GET',
 		url : 'estimSalesActiveList',
@@ -753,6 +754,25 @@ function viewSalesActive(estim_id){
 		},
 		error:function(request){
 			alert("error : " + request.status);
+		}
+	});
+}
+
+//영업활동 추가 팝업
+function addOperating(){
+	$('#act_opp_nm').click(function(){
+		var salesId = $('#sales_oppt_id').val();
+		if(salesId == "" || salesId == null ){
+			alert("영업기회를 선택해주세요.");
+		}else{
+		var list_sales_oppt_id = $('#sales_oppt_id').val();
+//		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
+		var list_cust_id = $('#cust_id').val();
+		var list_cust_nm = $('#cust_nm').val();
+//		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
+		
+		window.open('/opptActiveEstPopup?list_sales_oppt_id='+list_sales_oppt_id+
+				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 }

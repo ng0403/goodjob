@@ -135,6 +135,12 @@ function list(page){
 	});
 }
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
 	var stepPrev = $("<a>");
 	stepPrev.addClass("prev");
 	stepPrev.html("◀◀");

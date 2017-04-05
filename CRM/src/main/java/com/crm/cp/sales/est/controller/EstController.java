@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
+import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
@@ -34,6 +35,9 @@ public class EstController {
 
 	@Resource
 	EstService estInter;
+	
+	@Resource
+	OpptService opptService;
 	
 	@Resource
 	MenuService menuService;
@@ -374,7 +378,36 @@ public class EstController {
 
 		return map2;
 	}
+	
+	// 영업활동 추가 팝업창
+	@RequestMapping(value = "/opptActiveEstPopup", method = RequestMethod.GET)
+	public ModelAndView opptActivePopup(HttpSession session,
+			String list_cust_id, String list_cust_nm, String list_sales_oppt_id) {
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
+		// 영업활동 유형코드 가져오기
+		List<ActVO> actTypeCd = opptService.actTypeCdList();
+		// 영업활동 상태코드 가져오기
+		List<ActVO> actStatCd = opptService.actStatCdList();
+		// 영업활동 구분코드 가져오기
+		List<ActVO> actDivCd = opptService.actDivCdList();
 
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("actDivCd", actDivCd);
+
+		System.out.println("list_cust_nm : " +list_cust_nm );
+		System.out.println("list_cust_nm : " +list_cust_nm );
+		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("sales_oppt_id", list_sales_oppt_id);
+		mov.addObject("flg", "add");
+
+		return mov;
+
+		}
+	
 	//상세정보에서의 영업기회 리스트 
 	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
 	public ModelAndView estActOpptList(HttpSession session,

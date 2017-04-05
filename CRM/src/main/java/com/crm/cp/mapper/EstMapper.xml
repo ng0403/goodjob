@@ -180,7 +180,7 @@
 
 <!-- 	견적 상세정보 -->
 	<select id="estDetail" resultType="com.crm.cp.sales.est.vo.EstVO" parameterType="String">
-		select a.estim_id,a.ESTIM_NM,c.CUST_ID,d.CUST_NM,a.ESTIM_LEV_CD,c.SALES_OPPT_NM,to_char(a.ESTIM_VALID_D,'YYYY-MM-DD') ESTIM_VALID_D, a.memo
+		select a.estim_id,a.ESTIM_NM,c.CUST_ID,d.CUST_NM,a.ESTIM_LEV_CD,c.SALES_OPPT_ID,c.SALES_OPPT_NM,to_char(a.ESTIM_VALID_D,'YYYY-MM-DD') ESTIM_VALID_D, a.memo
 		from ESTIMATE a,SALES_OPPORTUNITY_ESTIMATE b, SALES_OPPORTUNITY c, CUSTOMER d
 		where a.ESTIM_ID=b.ESTIM_ID
 		and b.SALES_OPPT_ID=c.SALES_OPPT_ID
@@ -449,7 +449,7 @@
 				AND SA.ACT_YN = 'Y'
 				AND SO.SALES_OPPT_ID=OE.SALES_OPPT_ID
 				AND OE.ESTIM_ID=#{estim_id}) P
-			)SAL;
+			)SAL
 	</select>
 	
 	<!-- 영업활동 리스트 row 개수 가져오기 -->
@@ -459,6 +459,6 @@
 		WHERE 
 			ACT_YN = 'Y'
    			AND a.SALES_OPPT_ID = o.SALES_OPPT_ID
-			AND o.estim_id = #{estim_id};
+			AND o.estim_id = #{estim_id}
 	</select>
 </mapper>

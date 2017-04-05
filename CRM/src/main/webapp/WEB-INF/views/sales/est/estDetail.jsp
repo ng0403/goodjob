@@ -46,7 +46,7 @@ $(function() {
 </script>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
-
+	<%-- <input type="hidden" id="listPageNum" value="${ctx}"> --%>
 	<!-- <div id="css_tabs"> -->
 	<div id="write_est">
 		<!-- 라디오 버튼 -->
