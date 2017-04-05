@@ -101,13 +101,13 @@ public class CallController {
 		return callMap;
 	}
 		
-	// 연락처 리스트 초성검색 / 그냥검색 페이징		
+	/*// 연락처 리스트 초성검색 / 그냥검색 페이징		
 	@RequestMapping(value="/searchKeyword" , method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> searchKeyword(HttpSession session, int callPageNum,
 			String keyword, String call_name, String call_email, String call_tel, String call_iuser_nm){
 
 		Map<String,Object> kwMap = new HashMap<String, Object>();
-		/*if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			kwMap.put("result", "standard/home/session_expire");
 		} else {
 		kwMap.put("call_name",call_name);
@@ -123,7 +123,7 @@ public class CallController {
 		List<CallVO> callList = callService.callSearchAll(kwMap);
 		kwMap.put("callList", callList);
 		kwMap.put("callListSize", callList.size());
-		}*/
+		}
 		
 		kwMap.put("call_name",call_name);
 		kwMap.put("call_email",call_email);
@@ -140,7 +140,7 @@ public class CallController {
 		kwMap.put("callListSize", callList.size());
 		
 		return kwMap;
-	}
+	}*/
 	
 	//회사명리스트 팝업창 
 	@RequestMapping(value="/compList" , method=RequestMethod.GET)

@@ -1,4 +1,6 @@
-
+ $(function(){
+	var ctx = $('#ctx').val();
+ });
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
 
@@ -19,6 +21,7 @@ function dateFormat(timestamp) {
 //모두체크
 function callAllChk(){
 	$(document).ready(function() {  
+		alert("a");
 		var checkbox=$('#goaltable tbody').find('input[type=checkbox]');
 		
 		if($('#callCheck').is(":checked")){
@@ -53,20 +56,19 @@ function checkCount(){
 function pageInputCall(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 		if (keycode == '13') {
-			var callPageNum = $("#callPageInput").val();
+			var contactPageNum = $("#contactPageInput").val();
 			var endPageNum = $("#endPageNum").val();
-			var call_name = $("#call_name").val();
-			var call_email = $("#call_email").val();
-			var call_tel = $("#call_tel").val();
-			var call_iuser_nm = $("#call_iuser_nm").val();
-			if (parseInt(callPageNum) > parseInt(endPageNum) || parseInt(callPageNum) < 1) {
+			var cont_nm = $("#cont_nm").val();
+			var email = $("#email").val();
+			var ph = $("#ph").val();
+ 			if (parseInt(callPageNum) > parseInt(endPageNum) || parseInt(callPageNum) < 1) {
 				alert("페이지 정보를 다시 입력하세요.")
 				$("#callPageInput").val("1");
 			} else {
-				if(call_name == '' && call_email == '' && call_tel == '' && call_iuser_nm == ''){
-					callPaging(callPageNum);
+				if(cont_nm == '' && email == '' && call_tel == ''){
+					contactPaging(contactPageNum);
 				} else {
-					callPaging(callPageNum);
+					contactPaging(contactPageNum);
 				}
 			}
 		}
@@ -76,20 +78,18 @@ function pageInputCall(event) {
 // 초성 검색 페이징
 function searchAcnkEvent(callPageNum, keyword){
 		var ctx = $("#ctx").val();
-		var call_name = $("#call_name").val();
-		var call_email = $("#call_email").val();
-		var call_tel = $("#call_tel").val();
-		var call_iuser_nm = $("#call_iuser_nm").val();
-		var callData = { "callPageNum": callPageNum, 
+		var cont_nm = $("#cont_nm").val();
+		var email = $("#email").val();
+		var ph = $("#ph").val();
+ 		var callData = { "contactPageNum": contactPageNum, 
 				"keyword": keyword,
-		        "call_name": call_name, 
-		        "call_email":call_email, 
-		        "call_tel":call_tel,
-		        "call_iuser_nm":call_iuser_nm
-		        };
+		        "cont_nm": cont_nm, 
+		        "email":email, 
+		        "ph":ph,
+ 		        };
 		
 		if(keyword == '전체'){
-			location.href = ctx + '/call';
+			location.href = ctx + '/contact';
 			return;
 		}else{
 			var tbody = $('#call_list_tbody');
@@ -107,11 +107,10 @@ function searchAcnkEvent(callPageNum, keyword){
 					} else {
 						tbody.children().remove();
 						
-						$("#call_name").val(data.call_name);
-						$("#call_email").val(data.call_email);
-						$("#call_tel").val(data.call_tel);
-						$("#call_iuser_nm").val(data.call_iuser_nm);
-						for(var i=0; i<data.callList.length; i++){
+						$("#cont_nm").val(data.cont_nm);
+						$("#email").val(data.email);
+						$("#ph").val(data.ph);
+ 						for(var i=0; i<data.callList.length; i++){
 							tbodyContent='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.callList[i].call_id+'"></th>'
 								+'<td style="width:10%; text-align: left; padding-left:5px;"><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
 								+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cust_div_nm+'</td>';
@@ -200,76 +199,68 @@ function callSearchEnter(event) {
 }
 
 // 연락처 리스트 그냥 페이징
-function callPaging(callPageNum) {
+function contactPaging(contactPageNum) {
+	alert("들어왔다.");
 	var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
-	var call_name = $("#call_name").val();
-	var call_email = $("#call_email").val();
-	var call_tel = $("#call_tel").val();
-	var call_iuser_nm = $("#call_iuser_nm").val();
-	var callData = { "callPageNum": callPageNum, 
-			        "call_name": call_name, 
-			        "call_email":call_email, 
-			        "call_tel":call_tel,
-			        "call_iuser_nm":call_iuser_nm
-			        };
+	var cont_nm = $("#cont_nm").val();
+	var email = $("#email").val();
+	var ph = $("#ph").val();
+ 	var contactData = { "contactPageNum": contactPageNum, 
+			        "cont_nm": cont_nm, 
+			        "email":email, 
+			        "ph":ph,
+ 			        };
 	
 	$.ajax({
-		url : ctx+'/callPaging',
+		url : ctx+'/contactPaging',
 		type : 'POST',
-		data : callData,
+		data : contactData,
 		success : function(data) {
 
-			if(data.callListSize == 0){
+			if(data.contactListSize == 0){
 				alert("검색결과가 없습니다.");
-				location.href = ctx+'/call';
+				location.href = ctx+'/contact';
 			}else{
 				tbody.children().remove();
 			
-				$("#call_name").val(data.call_name);
-				$("#call_email").val(data.call_email);
-				$("#call_tel").val(data.call_tel);
-				$("#call_iuser_nm").val(data.call_iuser_nm);
-				
+				$("#cont_nm").val(data.cont_nm);
+				$("#email").val(data.email);
+				$("#ph").val(data.ph);
+ 				
 				tbody.children().remove();
 			
-			for (var i = 0; i < data.callList.length; i++) {
+			for (var i = 0; i < data.contactList.length; i++) {
 				
-				tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.callList[i].call_id+'"></th>'
-        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.callList[i].call_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
-        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cust_div_nm+'</td>'
-        			if(data.callList[i].pos_nm == 'null' || data.callList[i].pos_nm == null || data.callList[i].pos_nm == ""){
-        				tbodyContent += '<td style="width:10%; text-align: center;"></td>';
-					}else{
-						tbodyContent +='<td style="width:10%; text-align: center;">'+data.callList[i].pos_nm+'</td>';
-					}
-        			if(data.callList[i].comp_nm == 'null' || data.callList[i].comp_nm == null || data.callList[i].comp_nm == ""){
+				tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
+/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
+*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
+*/        			+'<td> <a href="#" onclick="contactDetail('+ data.contactList[i].cont_id +')" style="color: blue; cursor: pointer;" class="callClick">' + data.contactList[i].cont_nm +'</a></td>'
+					+'<td style="width:10%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>';
+
+        		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
         				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
 					}else{
-						tbodyContent +='<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].comp_nm+'</td>';
-					}
-        			tbodyContent+='<td style="width:15%; text-align: left; padding-left:5px;">'+data.callList[i].email1+'@'+data.callList[i].email2+'</td>'
-        			+'<td style="width:10%; text-align: center;">'+data.callList[i].ph1+'-'+data.callList[i].ph2+'-'+data.callList[i].ph3+'</td>'
-        			+'<td style="width:10%; text-align: center;">'+data.callList[i].cell_phone1+'-'+data.callList[i].cell_phone2+'-'+data.callList[i].cell_phone3+'</td>'
-        			+'<td style="width:10%; text-align: center;">'+data.callList[i].iuser_id_nm+'</td>'
-        			+'<td style="width:15%; text-align: center;">'+dateFormat(data.callList[i].fst_reg_dt)+'</td></tr>';
+						tbodyContent +='
+					}*/
+        			tbodyContent+='<td style="width:15%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
+         			+'<td style="width:15%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
         		}
 				                   
 			   tbody.append(tbodyContent);
 			}
 			
-			if(data.callList.length < 4){
-				for(var i=0; i<4-data.callListSize; i++){
+			if(data.contactList.length < 4){
+				for(var i=0; i<4-data.contactListSize; i++){
 					tbodyContent='<tr style="height: 35.5px;"><th></th>'
 						+'<td style="width:10%;"></td>'
 						+'<td style="width:10%;"></td>'
 						+'<td style="width:10%;"></td>'
 						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:15%;"></td>'
-						+'<td style="width:10%;"></td>'
+						+'<td style="width:10%;"></td>' 
 						+'<td style="width:15%;"></td></tr>';
 					tbody.append(tbodyContent);
 				}		
@@ -279,28 +270,28 @@ function callPaging(callPageNum) {
 			// 페이징 다시그리기
 			$("#pager").children().remove();
 
-			if(data.callPageNum == data.page.startPageNum){
+			if(data.contactPageNum == data.page.startPageNum){
 				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='callPageNum' value='"+data.callPageNum+"'/>"
-								+"<a style='text-decoration: none;'> ◀ </a> <input type='text' id='callPageInput' class='call_page_txt' value='"+data.callPageNum+"' onkeypress=\"pageInputCall(event);\"/>" 
-								+"<a href='#' onclick=callPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=callPaging("+(data.callPageNum+1)+") id='pNum' style='text-decoration: none;'> ▶ </a>";
-			} else if(data.callPageNum == data.page.endPageNum){
+				                +"<input type='hidden' id='callPageNum' value='"+data.contactPageNum+"'/>"
+								+"<a style='text-decoration: none;'> ◀ </a> <input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"' onkeypress=\"pageInputCall(event);\"/>" 
+								+"<a href='#' onclick=contactPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
+								+"<a href='#' onclick=contactPaging("+(data.contactPageNum+1)+") id='pNum' style='text-decoration: none;'> ▶ </a>";
+			} else if(data.contactPageNum == data.page.endPageNum){
 
 				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='callPageNum' value='"+data.callPageNum+"'/>"
-				                +"<a href='#' onclick=callPaging("+(data.callPageNum-1)+") id='pNum' style='text-decoration: none;'> ◀ </a>"
-								+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.page.endPageNum+"' onkeypress=\"pageInputCall(event);\"/>"
-								+"<a href='#' onclick=callPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
+				                +"<input type='hidden' id='contactPageNum' value='"+data.contactPageNum+"'/>"
+				                +"<a href='#' onclick=contactPaging("+(data.contactPageNum-1)+") id='pNum' style='text-decoration: none;'> ◀ </a>"
+								+"<input type='text' id='contactPageInput' class='call_page_txt' value='"+data.page.endPageNum+"' onkeypress=\"pageInputCall(event);\"/>"
+								+"<a href='#' onclick=contactPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
 								+"<a style='text-decoration: none;'> ▶ </a>";
 			} else {
 
 				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='callPageNum' value='"+data.callPageNum+"'/>"
-				                +"<a href='#' onclick=callPaging("+(data.callPageNum-1)+") id='pNum' style='text-decoration: none;'> ◀ </a>"
-								+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.callPageNum+"' onkeypress=\"pageInputCall(event);\"/>"
-								+"<a href='#' onclick=callPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=callPaging("+(data.callPageNum+1)+") id='pNum' style='text-decoration: none;'> ▶ </a>";
+				                +"<input type='hidden' id='contactPageNum' value='"+data.contactPageNum+"'/>"
+				                +"<a href='#' onclick=contactPaging("+(data.contactPageNum-1)+") id='pNum' style='text-decoration: none;'> ◀ </a>"
+								+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"' onkeypress=\"pageInputCall(event);\"/>"
+								+"<a href='#' onclick=contactPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
+								+"<a href='#' onclick=contactPaging("+(data.contactPageNum+1)+") id='pNum' style='text-decoration: none;'> ▶ </a>";
 			}
 			$("#pager").append(pageContent);
 		},

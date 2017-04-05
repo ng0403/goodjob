@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.crm.cp.sales.call.vo.CallVO;
 import com.crm.cp.sales.contact.vo.ContactVO;
 
 @Repository
@@ -45,6 +44,47 @@ public class ContactDaoImpl implements ContactDao {
 			ContactVO contactVO=null;
 			contactVO =sqlSession.selectOne("contact.contactOneDetail", cont_id);
 			return contactVO;
+		}
+		
+		
+		//연락처 수정
+		@Override
+		public int contactUpdate(ContactVO contactVO) {
+			int contactUpdate = 0;
+			try {
+				contactUpdate = sqlSession.update("contactUpdate", contactVO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return contactUpdate;
+		}
+		
+		
+		// 연락처 추가
+		@Override
+		public int contactInsert(ContactVO contactVO) {
+ 			System.out.println("contactInsertInsert Dao" + contactVO.toString());
+ 			int contactInsert = 0;
+ 			
+ 					try {
+ 			contactInsert = sqlSession.insert("contact.contactInsert", contactVO);
+ 					}
+ 			catch(Exception e){ 
+				e.printStackTrace();
+
+ 			}
+ 			System.out.println("int" + contactInsert);
+ 			
+ 			return contactInsert;
+			 
+		}
+		
+		
+		//초성검색
+		@Override
+		public List<ContactVO> contactSearchAll(Map<String, Object> contactMap) {
+			List<ContactVO> obj = sqlSession.selectList("contact.selectAll", contactMap);
+			return obj;
 		}
 	
 }

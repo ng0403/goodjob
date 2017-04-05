@@ -270,7 +270,8 @@ function callTabFunc(cont_id) {
 }
 
 function contactDetail(cont_id)  {
- 	 	location.href="/contact_detail?cont_id="+cont_id;
+	 
+	 	location.href="/contact_detail?cont_id="+cont_id;
 	 
 
 }

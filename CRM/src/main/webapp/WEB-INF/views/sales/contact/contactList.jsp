@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link rel="stylesheet" href="$	{ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
@@ -24,17 +24,21 @@
 	<div id="title">
 		<div class="caption">■ 연락처</div>
 	</div>
+ 
 	
 	<div class="search_div">
 	    <label for="inputEmail1" class="tel_label_list">이름</label>
-	    <input type="text" name="call_name" id="call_name" class="tel_search" autofocus="autofocus" onkeydown="callSearchEnter(event);">
+	    <input type="text" name="cont_nm" id="call_name" class="tel_search" autofocus="autofocus" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이메일</label>
-	    <input type="email" name="call_email" id="call_email"  class="tel_search" onkeydown="callSearchEnter(event);">
+	    <input type="email" name="email" id="email"  class="tel_search" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이동전화번호</label>
-	    <input type="text" name="call_tel" id="call_tel" class="tel_search" placeholder="" onkeydown="callSearchEnter(event);">
-	    <label for="inputPassword1" class="tel_label_list">영업담당자</label>
-	    <input type="text" name="call_iuser_nm" id="call_iuser_nm" class="tel_search" onkeydown="callSearchEnter(event);">
-	    <button id="search_btn" type="submit" class="call_bt" onclick="searchAcnkEvent(1,'');">조회</button> 
+	    <input type="text" name="ph" id="ph" class="tel_search" placeholder="" onkeydown="callSearchEnter(event);">
+ 	    <button id="search_btn" type="submit" class="call_bt" onclick="searchAcnkEvent(1,'');">조회</button> 
+	</div>
+			
+	<div id="contact_button_position">
+			<input type="button" class="call_bt" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+			<input type="button" class="call_bt" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
 	</div>
 	<div class="initialSerach">
 		<input type="hidden" id="acnk">
@@ -88,35 +92,33 @@
 		</c:forEach>
 		</tbody>
 		</table>
-	</div>
-	
-	<div id="pager" class="call_page_div">
+		<div id="pager" class="call_page_div">
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 		<input type="hidden" id="callPageNum" value="${contactPageNum}"/>
 		<c:choose>
 		<c:when test="${contactPageNum == page.startPageNum}">
 			<a style="text-decoration: none;">◀</a>
-			<input type="text" id="callPageInput" class="call_page_txt" value="${page.startPageNum}" onkeypress="pageInputCall(event);"/>  
-			<a href="#" onclick="callPaging('${page.endPageNum}')" style='text-decoration: none;'>/ ${page.endPageNum}</a>
-			<a href="#" onclick="callPaging('${callPageNum+1}')" style='text-decoration: none;'>▶</a>
+			<input type="text" id="contactPageInput" class="call_page_txt" value="${page.startPageNum}" onkeypress="pageInputCall(event);"/>  
+			<a href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
+			<a href="#" onclick="contactPaging(${contactPageNum+1})" style='text-decoration: none;'>▶</a>
 		</c:when>
 		<c:when test="${contactPageNum == page.endPageNum}">
-			<a href="#" onclick="callPaging('${callPageNum-1}')" style="text-decoration: none;">◀</a>
+			<a href="#" onclick="contactPaging(${contactPageNum-1})" style="text-decoration: none;">◀</a>
 			<input type="text" id="callPageInput" class="call_page_txt" value="${page.endPageNum}" onkeypress="pageInputCall(event);"/> 
-			<a  href="#" onclick="callPaging('${page.endPageNum}')" style='text-decoration: none;'>/ ${page.endPageNum}</a>
+			<a  href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
 			<a style="text-decoration: none;">▶</a>
 		</c:when>
 		<c:otherwise>
-			<a href="#" onclick="callPaging('${contactPageNum-1}')" style="text-decoration: none;">◀</a>
+			<a href="#" onclick="contactPaging(${contactPageNum-1})" style="text-decoration: none;">◀</a>
 			<input type="text" id="callPageInput" class="call_page_txt" value="${contactPageNum}" onkeypress="pageInputCall(event);"/>
-			<a href="#" onclick="callPaging('${page.endPageNum}')" style='text-decoration: none;'>/ ${page.endPageNum}</a>
-			<a href="#" onclick="callPaging('${contactPageNum+1}')" style="text-decoration: none;">▶</a>
+			<a href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
+			<a href="#" onclick="contactPaging(${contactPageNum+1})" style="text-decoration: none;">▶</a>
 		</c:otherwise>
 		</c:choose>
 	</div>		
-		
-	<div id="contact_button_position">
-			<input type="button" class="call_bt" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
 	</div>
+	
+	
+ 
 </body>
 </html>

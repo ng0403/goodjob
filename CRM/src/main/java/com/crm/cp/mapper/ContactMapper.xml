@@ -2,11 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="contact">
  
+	<insert id="contactInsert" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
+		insert into contact
+		(
+		cont_id,
+		cont_nm,
+		company_nm,
+		ph1, ph2, ph3,
+		cell_ph1,
+		cell_ph2,
+		cell_ph3,
+		email1,
+		email2,
+		fst_reg_id,
+		fst_reg_dt,
+		fin_mdfy_id,
+		fin_mdfy_dt
+		) 
+ 		values
+ 		(
+ 		(SELECT /*+INDEX_DESC(CONTACT PK_CONTACT)*/ 
+  		DECODE(MAX(CONT_ID), NULL, 'CON0000001', SUBSTR(MAX(CONT_ID), 1, 3) || lpad( (SUBSTR(MAX(CONT_ID), 4, 7) + 1), 7, 0))
+		from CONTACT),
+		 #{cont_nm},
+		 #{company_nm},
+		 #{ph1},
+		 #{ph2},
+		 #{ph3},
+		 #{cell_ph1},
+		 #{cell_ph2},
+		 #{cell_ph3},
+		 #{email1},
+		 #{email2},
+		 'admin',
+		 sysdate,
+		 'admin',
+		 sysdate
+		 )
+	</insert>
+ 
+
+ 
 <!-- 전체리스트  -->
-	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
+<!-- 	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
 		 select cont_id, cont_nm, company_nm, ph1, ph2, ph3, cell_ph1, cell_ph2, cell_ph3, email1, email2, itrt_cd, fst_reg_id, fst_reg_dt, fin_mdfy_id, fin_mdfy_dt, act_yn
 		from contact 
-	<!-- 		where
+		where act_yn = 'Y'
+			where
 			      <if test="cont_nm !=null and cont_nm !=''">
 					 (case when cont_nm end) like '%'||#{contact_name}||'%'
 				  </if>
@@ -23,10 +65,10 @@
 				        <include refid="where-list1"/>
 				  </if>
 			ORDER BY fst_reg_dt desc 
-		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]> -->
+		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
 	
 	</select>
-	
+	 -->
 	 <!-- 리스트 개수 -->
 	 <select id="selectTotalCount" parameterType="java.util.Map" resultType="integer">
 		SELECT COUNT(*)
@@ -62,7 +104,65 @@
 	</select>
 	
 	
-	
+	<!-- 연락처 수정 -->
+	<update id="contactUpdate" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
+		UPDATE CONTACT SET
+	       	   cont_id =  #{cont_id},
+	           cont_nm = #{cont_nm},   
+	           company_nm = #{company_nm},
+	           ph1 =  #{ph1},
+	    	   ph2 = #{ph2},
+	           ph3 = #{ph3},
+	           cell_ph1 =  #{cell_ph1},
+	           cell_ph2 =  #{cell_ph2},
+	           cell_ph3 = #{cell_ph3},
+	           email1 = #{email1},
+	           email2  = #{email2},
+	           fin_mdfy_id = #{fin_mdfy_id},
+	           fin_mdfy_dt = sysdate
+		WHERE cont_id= #{cont_id}
+			</update>
+			
+					
+<!-- 전체리스트  -->
+	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
+			SELECT b.*
+		FROM (
+		 SELECT ROWNUM seq, a.*
+			  from(
+		SELECT	  
+		   cont_id, cont_nm, 
+		   company_nm,
+		   ph1, ph2, ph3,
+		   cell_ph1, cell_ph2, cell_ph3,
+		   email1, email2,
+		   fst_reg_id, 
+		   fst_reg_dt,
+		   fin_mdfy_id,
+		   fin_mdfy_dt,
+		   act_yn 
+		   from contact
+		   where act_yn='Y'
+			      <if test="cont_nm !=null and cont_nm !=''">
+					AND cont_nm like '%'||#{cont_nm}||'%'
+				  </if>
+				  <if test="email !=null and email !=''">
+					AND email1 || '@' || email2 like '%'||#{email}||'%' 
+				  </if>
+				  <if test="ph !=null and ph !=''">
+					AND ph1 || '-' || ph2 || '-' || ph3 like '%'||#{ph}||'%'
+				  </if> 
+				  <!-- <if test="keyword!=null and keyword!=''">
+				        <include refid="where-list1"/>
+				  </if> -->
+			ORDER BY fst_reg_dt desc 
+			 ) a
+		 ) b
+		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
+	</select>			
+			
+			
+	 
 	
 	
 	

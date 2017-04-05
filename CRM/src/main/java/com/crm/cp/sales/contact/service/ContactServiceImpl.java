@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.crm.cp.sales.call.vo.CallVO;
 import com.crm.cp.sales.contact.dao.ContactDao;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.utils.PagerVO;
@@ -46,5 +45,32 @@ public class ContactServiceImpl implements ContactService {
 			return contactDao.contactDetail(cont_id);
 		}
  
+		
+		@Override
+		public String contactUpdate(ContactVO contactVO) {
+			int contactUpdate = contactDao.contactUpdate(contactVO);// 여기서 가져온 값을 판별하여 
+			String contResult = null;
+			if(contactUpdate == 1) {
+				contResult = "계약 수정에 성공했습니다.";
+			} else {
+				contResult = "계약 수정에 실패했습니다.";
+			}
+			return contResult;//요기서 반환한 값을 컨트롤이 받는다.
+		}
+		
+		@Override
+		public int contactInsert(ContactVO contactVO) {
+			System.out.println("cont insert entering service " + contactVO.toString());
+			int contactInsert = contactDao.contactInsert(contactVO);// 여기서 가져온 값을 판별하여
+  			
+			 return contactInsert;
+		}
+		
+		
+		//초성검색
+		@Override
+		public List<ContactVO> contactSearchAll(Map<String,Object> contactMap){
+			return contactDao.contactSearchAll(contactMap);
+		}
 
 }

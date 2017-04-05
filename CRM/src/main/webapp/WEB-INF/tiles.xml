@@ -30,6 +30,9 @@
 	<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont_add.jsp" />	
 	</definition>
 	
+	<definition name="contactInsert" extends="onebodyLayout">
+	<put-attribute name="body" value="/WEB-INF/views/sales/contact/contactInsert.jsp" />	
+	</definition> 
 
 	<definition name="teamgoal" extends="onebodyLayout">
 		<put-attribute name="body"

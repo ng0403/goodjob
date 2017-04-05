@@ -121,7 +121,7 @@ select{
 /*영업활동 페이징 부분*/
 .call_page_div{
 	color:#232323;
-	float:left;
+	text-align: center;
 	margin-top:45px;
 	font-weight: bold;
 }
@@ -161,7 +161,4 @@ select{
  	 cursor: pointer;
  	 vertical-align: middle;
 }
-
-#call_delete {
-	margin-top: 42px;
-}
+ 
