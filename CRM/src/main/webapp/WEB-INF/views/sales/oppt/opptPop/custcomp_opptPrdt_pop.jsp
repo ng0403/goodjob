@@ -57,16 +57,23 @@ $(function() {
 	<div class="opptprdt_pop_list_div">
 			<table id="keymanpopuptable" style="border-collapse: collapse;">
 					<tbody id="tbody1">
+<!-- 						<tr> -->
+<!-- 							<th>상품명</th> -->
+<!-- 							<td> -->
+<%-- 								<input type="text" name="prod_nm" id="prod_nm" class="est_txt" value="${prod_nm}" autofocus="autofocus"> --%>
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr>
-							<th>상품명</th>
+							<th>영업기회명</th>
 							<td>
-								<input type="text" name="prod_nm" id="prod_nm" class="est_txt" value="${prod_nm}" autofocus="autofocus">
-								<input type="hidden" name="prod_id" id="prod_id" value="${prod_id}">
+							<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
+							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
 							</td>
 						</tr>
 						<tr>
 							<th>고객명</th>
 							<td>
+								<input type="hidden" name="prod_id" id="prod_id" value="${prod_id}">
 								<input type="text" name="cust_nm" id="cust_nm" class="est_txt" readonly="readonly" value="${cust_nm}">
 								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
 							</td>
@@ -76,17 +83,12 @@ $(function() {
 							<td>
 								<select id="sales_lev_cd" class="sales_lev_cd" name="sales_lev_cd">
 									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach items="${otllist}" var="list">
-										<option value="${list.code}">${list.cd_nm}</option>							
+									<c:forEach items="${otllist}" var="list" varStatus="status2">
+										<option value="<c:out value="${list.code}"/>"
+											<c:if test="${list.code == sales_lev_cd}">selected="selected"</c:if>>
+											${list.cd_nm}							
 									</c:forEach>
 								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>영업기회명</th>
-							<td>
-							<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
-							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
 							</td>
 						</tr>
 						<tr>

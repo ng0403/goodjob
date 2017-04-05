@@ -646,6 +646,8 @@ public class OpptController {
 		
 		List<EstVO> elcList = service.elcList();
 		List<EstVO> eduList = service.eduList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = service.opptOtlList();
 		List<String> eduCode = new ArrayList<String>();
 		for (EstVO est : eduList) {
 			eduCode.add(est.getCode());
@@ -659,6 +661,7 @@ public class OpptController {
 		mov.addObject("prod_id", detail.getProd_id());
 		mov.addObject("cust_id", list_cust_id);
 		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("otllist", otllist);
 		mov.addObject("sales_oppt_nm", list_sales_oppt_nm);
 		mov.addObject("sales_oppt_id", list_sales_oppt_id);
 		mov.addObject("detail", detail);
