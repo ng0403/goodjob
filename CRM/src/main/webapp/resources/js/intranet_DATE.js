@@ -1000,5 +1000,5 @@ function getPayDay(){
 	while(isHoliday(new Date(y,m,d))){
 		d = d-1;
 	}
-	$('#schcalendar').fullCalendar( 'renderEvent',{title  : '월급날',start  : new Date(y,m,d),color:'red'} );
+	$('#schcalendar').fullCalendar( 'renderEvent', {title:'월급날', start:new Date(y,m,d), color:'red'} );
 }

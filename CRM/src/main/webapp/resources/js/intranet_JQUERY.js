@@ -12,196 +12,20 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
-	
-	getJSON(vo,{seq:1});
-	
-	$('#eText').keydown(function(e){
-		if(e.keyCode == 13){
-			$('#employeeSearch').click();
-		}
-	});
-	
-	$('#addEmployee').click(function(){
-		userModal.show();
-	});
-	
-	$('#addUserBtn').click(function(){
-		$.ajax({
-			url : getContextPath()+"/addEmployee",
-			type : 'post',
-			data : {email : $('#user-email').val(),name : $('#user-name').val(),phone : $('#user-phone').val()},
-			success : function(response){
-				alert(JSON.parse(response).msg);
-				$('#user-email').val('');
-				$('#user-name').val('');
-				$('#user-phone').val('');
-				userModal.hide();
-			}
-		});
-	});
-	
-	$('#employeeSearch').click(function(){
-		var eText = $('#eText').val();
-		var sType = searchCombo.getValue();
-		if(trim(eText) != ''){
-			$('.user-work').hide();
-			$('.Employee-container>div').each(function(){
-				$(this).css('width','97%');
-				$(this).attr('clicked','false');
-				if(sType == 3){
-					if($(this).attr('name').indexOf(eText) != -1){
-						$(this).show();
-					}else{
-						$(this).hide();
-					}
-				}else if(sType == 4){
-					if($(this).attr('phone').indexOf(eText) != -1){
-						$(this).show();
-					}else{
-						$(this).hide();
-					}
-				}else if(sType == 5){
-					if($(this).attr('email').indexOf(eText) != -1){
-						$(this).show();
-					}else{
-						$(this).hide();
-					}
-				}
-			}); 
-		}else{
-			$('.user-work').hide();
-			$('.Employee-container>div').each(function(){
-				$(this).css('width','97%');
-				$(this).attr('clicked','false');
-				$(this).removeClass('clicked');
-				$(this).removeClass('notify-red');
-				$(this).show();
-			});
-		}
-	});
-	
-	$('#etc-chart').click(function(){
-		$.getJSON(getContextPath()+"/home/getChart.do",{},function(response){
-			var result = response;
-			var array = new Array();
-			for(var i = 0 ; i < result.length ; i ++){
-				var color1 = '#';
-				for(var j = 0 ; j < 6 ; j ++){
-					color1 += parseInt(Math.random()*(15)).toString(16);
-				}
-				var chart = {
-						val : result[i].cnt,
-						label : result[i].name,
-						stColor : color1,
-						edColor : 'white',
-						textColor : 'black',
-						textSize : 12
-				};
-				array.push(chart);
-			}
-			var myChart = new nieeChart();
-
-			myChart.setChart({
-				array : array,
-				id : 'canvas',
-				width : 600,
-				height: 500,
-				isLine : true,
-				title : 'niee@urielsoft.co.kr',
-				titleSize : 10,
-				lineCount : 5,
-				isTooltip : false,
-				toolStyle : "border:1px solid #000;width:100px;height:50px;background:#FF6600"
-			});			
-		});
-
-		chartModal.show();
-	});
+	var sales_actvy_id = $("#nowSales_actvy_id").val();
 	
 	$('#changePasswd').click(function(){
 		passwdModal.show();
 	});
- 
-	$('#lib-fileadd').click(function(){
-		fileModal.show();
-	});
 	
-	
-	
-	$('#etc-refresh').click(function(){
-		getEtc();
-	});
-	
-	$('#lib-refresh').click(function(){
-		getFiles();
-	});
-	
-	$('#writeBtn').click(function(){
-		oEditors.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
-		var title = $('#title').val();
-		var contents = $('#contents').val();
-		var starttime = $('#starttime').val();
-		var endtime = $('#endtime').val();
-		
-		if(trim(title) == ''){
-			alert('제목을 입력하세요');
-			$('#title').val('');
-			$('#title').focus();
-		}
-		else if(trim(contents) == '<p>&nbsp;</p>' || trim(contents) == ''){
-			alert('내용을 입력하세요');
-			$('#contents').val('');
-			$('#contents').focus();
-		}else{
-			var realnames = '';
-			var subnames = '';
-			$('#schedulefileName').find('span').each(function(){
-				if($(this).attr('realname')!='' && $(this).attr('realname')!=null && $(this).attr('realname')!='undefined' ){
-					realnames += $(this).attr('realname');
-					realnames +=',';
-				}
-				if($(this).attr('subname')!='' && $(this).attr('subname')!=null && $(this).attr('subname')!='undefined'){
-					subnames += $(this).attr('subname');
-					subnames +=',';
-				}
-			});
-			scheduleParam.title=title;
-			scheduleParam.contents=contents;
-			scheduleParam.starttime = starttime;
-			scheduleParam.endtime = endtime;
-			var url = getContextPath()+'/scheduleWrite';
-			if(scheduleParam.seq > 0){
-				url = getContextPath()+'/scheduleUpdate'; 
-			}
-			scheduleParam.etcYn = ($('#etcYn').is(':checked')?'N':'Y');
-			scheduleParam.realnames = realnames;
-			scheduleParam.subnames = subnames;
-			$.ajax({
-				url : url,
-				data : scheduleParam,
-				type : 'post',
-				success : function(response){
-					writeModal.hide();
-					$('iframe[id!=scheduleFrame]').remove();
-					$('#title').val('');
-					$('#contents').val('');
-					$('#schcalendar').fullCalendar('refetchEvents');
-					$('#schedulefileName').html('');
-					var date = new Date();
-		    		spicker.select(date.getFullYear(),date.getMonth()+1,date.getDate());
-		    		epicker.select(date.getFullYear(),date.getMonth()+1,date.getDate());
-					 
-
-				}
-			});
-		}
-	});
-	
+	/**
+	 * #schcalendar : 달력 생성하는 곳(큰 틀)
+	 * */
 	$('#schcalendar').fullCalendar({
 		header: {
 			left: ' ',
 			center: 'prev title next',
-			right: 'today,month,basicWeek,basicDay'
+			right: 'today, month, basicWeek, basicDay'
 		},
 		titleFormat: {
 			month: 'yyyy년 MMMM',
@@ -219,7 +43,7 @@ $(function(){
 		editable: false,
 		events: function(start, end, callback) {
 	        $.ajax({
-	            url: getContextPath()+"/scheduleArticle",
+	            url: ctx + "/act",
 	            dataType: 'json',
 	            data: {
 	            	syear:start.getFullYear(),
@@ -234,8 +58,9 @@ $(function(){
 	                	var color;
 	                	var textColor;
 	                	var borderColor;
-		                	console.log(response[i].STARTTIME);
-	                	events.push({
+		                	console.log(response[i].strt_d);
+		                	
+		                	events.push({
 	                        title: response[i].title,
 	                        start: new Date(response[i].STARTTIME),
 	                        end : new Date(response[i].ENDTIME),
@@ -251,81 +76,11 @@ $(function(){
 	          
 	        });
 	    },
-	    eventClick: function(calEvent, jsEvent, view) {
-	    	if(calEvent.seq != null){
-	    		
-	    		$.getJSON(getContextPath()+"/scheduleFiles",{seq:calEvent.seq},function(response){
-	    			var files;
-	    			files = response;
-	    		
-			    	$.getJSON(getContextPath()+"/getSchedule",{seq:calEvent.seq},function(response){
-			    		var article = response;
-				    	var sdate = new Date(article.STARTTIME);
-						var stime = sdate.getFullYear() + "년 " + (sdate.getMonth()+1) + "월 " + sdate.getDate() + "일";
-						var edate = new Date(article.ENDTIME);
-						var etime = edate.getFullYear() + "년 " + (edate.getMonth()+1) + "월 " + edate.getDate() + "일";
-						var fileHtml = '<div class="notify" style="margin-top:5px;">';
-						for(var i = 0 ; i < files.length ; i ++){
-							fileHtml += '&nbsp;&nbsp;<a href="javascript:scheduleFileDown('+files[i].seq+')">' + files[i].realname +'</a>&nbsp;&nbsp;';
-						}
-						fileHtml += '</div>';
-						$("#modal-contents").html('<div class="label label-red" style="min-width:300px;">' + stime + ' ~ ' + etime + '</div><br><div class="notify contents-view" style="margin-top:5px;">' + article.contents +'</div>'+fileHtml);
-						if(article.isWriter == null){
-							scheduleParam = {seq : article.SEQ,title : article.TITLE, contents : article.CONTENTS, starttime : article.STARTTIME, endtime : article.ENDTIME, files:files};
-							console.log("seq??" + article.SEQ);
-							var updateBtn = $('<a/>', {
-											    href: '#',
-											    name: 'updateBtn',
-											    id: 'updateBtn',
-											    html: '수정',
-											    addClass : 'btn btn-gray btn-small',
-											    onclick: 'javascript:contentsUpdate();'
-											});
-							var deleteBtn = $('<a/>', {
-											    href: '#',
-											    name: 'deleteBtn',
-											    id: 'deleteBtn',
-											    html: '삭제',
-											    addClass : 'btn btn-gray btn-small',
-											    onclick: 'javascript:contentsDelete('+article.SEQ+');'
-											});
-							var closeBtn = $('<a/>', {
-											    href: '#',
-											    name: 'closeBtn',
-											    id: 'closeBtn',
-											    html: 'Close',
-											    addClass : 'btn btn-gray btn-small',
-											    onclick: 'javascript:modal.hide();'
-											});
-							
-							$('#contentsBtn').html( updateBtn[0].outerHTML +  deleteBtn[0].outerHTML +  closeBtn[0].outerHTML);
-						}else{
-							
-							var closeBtn = $('<a/>', {
-							    href: '#',
-							    name: 'closeBtn',
-							    id: 'closeBtn',
-							    html: 'Close',
-							    addClass : 'btn btn-gray btn-small',
-							    onclick: 'javascript:modal.hide();'
-							});
-			
-							$('#contentsBtn').html( closeBtn[0].outerHTML);
-						}
-						$("#modal-title").html(article.title + '<span style="float:right;">'+'GUEST'+'</span>');
-						modal.show();
-			    	}).fail(function(jqxhr, textStatus, error){
-						 var err = textStatus + ", " + error;
-						 console.log( "Request Failed: " + err );
-						 location.href=getContextPath()+'/common/error.do?code='+textStatus;
-					});
-	    		});
-	    	}
-	    },
 	    /**
 	     * 페이지 이동으로 변경.
 	     * */
 	    dayClick: function(date) {
+	    	alert("date : " + date + " sales_actvy_id : " + sales_actvy_id);
 	    	location.href = ctx + '/actDetail';
 /*	    	
 			scheduleParam = {seq : 0, title : '', contents : '', starttime : date.getTime(), endtime : date.getTime(), writer:''};
@@ -338,56 +93,79 @@ $(function(){
 			editorInit('contents');
 */			
 	    }
+//	    eventClick: function(calEvent, jsEvent, view) {
+//	    	if(calEvent.seq != null){
+//	    		
+//	    		$.getJSON(getContextPath()+"/scheduleFiles",{seq:calEvent.seq},function(response){
+//	    			var files;
+//	    			files = response;
+//	    		
+//			    	$.getJSON(getContextPath()+"/getSchedule",{seq:calEvent.seq},function(response){
+//			    		var article = response;
+//				    	var sdate = new Date(article.STARTTIME);
+//						var stime = sdate.getFullYear() + "년 " + (sdate.getMonth()+1) + "월 " + sdate.getDate() + "일";
+//						var edate = new Date(article.ENDTIME);
+//						var etime = edate.getFullYear() + "년 " + (edate.getMonth()+1) + "월 " + edate.getDate() + "일";
+//						var fileHtml = '<div class="notify" style="margin-top:5px;">';
+//						for(var i = 0 ; i < files.length ; i ++){
+//							fileHtml += '&nbsp;&nbsp;<a href="javascript:scheduleFileDown('+files[i].seq+')">' + files[i].realname +'</a>&nbsp;&nbsp;';
+//						}
+//						fileHtml += '</div>';
+//						$("#modal-contents").html('<div class="label label-red" style="min-width:300px;">' + stime + ' ~ ' + etime + '</div><br><div class="notify contents-view" style="margin-top:5px;">' + article.contents +'</div>'+fileHtml);
+//						if(article.isWriter == null){
+//							scheduleParam = {seq : article.SEQ,title : article.TITLE, contents : article.CONTENTS, starttime : article.STARTTIME, endtime : article.ENDTIME, files:files};
+//							console.log("seq??" + article.SEQ);
+//							var updateBtn = $('<a/>', {
+//											    href: '#',
+//											    name: 'updateBtn',
+//											    id: 'updateBtn',
+//											    html: '수정',
+//											    addClass : 'btn btn-gray btn-small',
+//											    onclick: 'javascript:contentsUpdate();'
+//											});
+//							var deleteBtn = $('<a/>', {
+//											    href: '#',
+//											    name: 'deleteBtn',
+//											    id: 'deleteBtn',
+//											    html: '삭제',
+//											    addClass : 'btn btn-gray btn-small',
+//											    onclick: 'javascript:contentsDelete('+article.SEQ+');'
+//											});
+//							var closeBtn = $('<a/>', {
+//											    href: '#',
+//											    name: 'closeBtn',
+//											    id: 'closeBtn',
+//											    html: 'Close',
+//											    addClass : 'btn btn-gray btn-small',
+//											    onclick: 'javascript:modal.hide();'
+//											});
+//							
+//							$('#contentsBtn').html( updateBtn[0].outerHTML +  deleteBtn[0].outerHTML +  closeBtn[0].outerHTML);
+//						}else{
+//							
+//							var closeBtn = $('<a/>', {
+//							    href: '#',
+//							    name: 'closeBtn',
+//							    id: 'closeBtn',
+//							    html: 'Close',
+//							    addClass : 'btn btn-gray btn-small',
+//							    onclick: 'javascript:modal.hide();'
+//							});
+//			
+//							$('#contentsBtn').html( closeBtn[0].outerHTML);
+//						}
+//						$("#modal-title").html(article.title + '<span style="float:right;">'+'GUEST'+'</span>');
+//						modal.show();
+//			    	}).fail(function(jqxhr, textStatus, error){
+//						 var err = textStatus + ", " + error;
+//						 console.log( "Request Failed: " + err );
+//						 location.href=getContextPath()+'/common/error.do?code='+textStatus;
+//					});
+//	    		});
+//	    	}
+//	    },
 	});
 	
-	$('#mailBtn').click(function(){
-		oEditors.getById["mail-contents"].exec("UPDATE_CONTENTS_FIELD", []);
-		var title = $('#mail-title').val();
-		var contents = $('#mail-contents').val();
-		var isSend = $('#mail-yn').is(':checked');
-		if(trim(title) == ''){
-			alert('제목을 입력하세요');
-			$('#mail-title').val('');
-			$('#mail-title').focus();
-		}
-		else if(trim(contents) == '<p>&nbsp;</p>' || trim(contents) == ''){
-			alert('내용을 입력하세요');
-			$('#mail-contents').val('');
-			$('#mail-contents').focus();
-		}else{
-			var realnames = '';
-			var subnames = '';
-			var ccs = '';
-			$('#fileName').find('span').each(function(){
-				if($(this).attr('realname')!='' && $(this).attr('realname')!=null && $(this).attr('realname')!='undefined' ){
-					realnames += $(this).attr('realname');
-					realnames +=',';
-				}
-				if($(this).attr('subname')!='' && $(this).attr('subname')!=null && $(this).attr('subname')!='undefined'){
-					subnames += $(this).attr('subname');
-					subnames +=',';
-				}
-			});
-			$('span[id=cc]').each(function(){
-				ccs += $(this).attr('email');
-				ccs +=',';
-			});
-			$.ajax({
-				url : getContextPath()+'/home/sendUserMail.do',
-				data : {title:title,contents:contents,isSend:isSend,email:$('#selectUser').val(),realnames:realnames,subnames:subnames,ccs:ccs},
-				type : 'post',
-				success : function(response){
-					alert(JSON.parse(response).msg);
-					refrashRow(userArticle, {param:{page : 1, email : $('#selectUser').val()}, url: getContextPath()+'/userArticle'});
-					mailModal.hide();
-					$('iframe[id!=scheduleFrame]').remove();
-					$('#mail-title').val('');
-					$('#mail-contents').val('');
-					$('#mail-yn').attr('checked',false);
-				}
-			});
-		}
-	});
 	
 	$('#work-refresh').click(function(){
 		refrashRow(userArticle, {param:{page : 1, email : $('#selectUser').val()}, url: getContextPath()+'/userArticle'});
@@ -395,17 +173,6 @@ $(function(){
 
 	$('#sview-refresh').click(function(){
 		$('#schcalendar').fullCalendar('refetchEvents');
-	});
-	
-	$('#writeClose').click(function(){
-		$('#schedulefileName').html('');
-		writeModal.hide();
-		$('iframe[id!=scheduleFrame]').remove();
-	});
-
-	$('#mailClose').click(function(){
-		mailModal.hide();
-		$('iframe[id!=scheduleFrame]').remove();
 	});
 	
 	$('#contentsUpdate').click(function(){
@@ -429,8 +196,6 @@ $(function(){
 			}
 		});
 	});
-	getEtc();
-	getFiles();
 	setInterval(function(){
 		var date = new Date();
 		$('#head-year').text(date.getFullYear());
@@ -515,37 +280,5 @@ $(function(){
 		
 		return false;
 	});
-	
-}).on('click','#file-download',function(){
-	if(confirm($(this).attr('name') + " 을 다운 받으시겠습니까?")){
-		var url = getContextPath()+'/home/filedownload.do';
-		var inputs = '<input type="hidden" name="seq" value="'+$(this).attr('seq')+'"/>';
-		$('<form action="'+ url +'" method="post">'+inputs+'</form>').appendTo('body').submit().remove();
-	}
-}).on('click','#file-delete',function(){
-	if(confirm($(this).attr('name') + " 을 삭제하시겠습니까?")){
-		var seq = $(this).attr('seq');
-		$.ajax({
-			url : getContextPath()+'/home/filedelete.do',
-			type : 'post',
-			data:{seq : seq},
-			success:function(response){
-				var result = JSON.parse(response);
-				alert(result.msg);
-				$('#lib-refresh').click();
-			}
-		});
-	}
-}).on('click','#write-mail',function(){
-	$('#mail-contents').val('');
-	$('#mail-title').val('');
-	$('#mail-yn').attr('checked',false);
-	$('#fileName').html('');
-	$('#mailfile').val('');
-	$('#cclist').html('');
-	if($('.root.open').length != 0){
-		$('.root>i').click();
-	}
-	mailModal.show();
-	editorInit('mail-contents');
 });
+	

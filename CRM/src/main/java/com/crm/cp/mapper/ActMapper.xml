@@ -105,34 +105,39 @@
 	<!-- 영업기회 리스트 검색 -->
 	<sql id="where-act_oppt_list">
 	  <if test="keyfield=='oppt_id'">
-	      AND SO.SALES_OPPT_ID LIKE '%' || #{keyword} || '%'
+	      AND S.SALES_OPPT_ID LIKE '%' || #{keyword} || '%'
 	  </if>
 	  <if test="keyfield=='oppt_nm'">
-	      AND SO.SALES_OPPT_NM LIKE '%' || #{keyword} || '%'
+	      AND S.SALES_OPPT_NM LIKE '%' || #{keyword} || '%'
 	  </if>
 	</sql>
 	
 	<!-- 영업기회팝업 리스트 -->
 	<select id="actOpptList" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
-	    SELECT 
-	              SO.SALES_OPPT_ID
-				, CT.CUST_ID
-				, SO.SALES_OPPT_NM
-				, (SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OTL' AND C.CODE = SO.SALES_LEV_CD) SALES_LEV_CD
-				, SO.EXPT_SALES_AMT
-				, SO.EXPT_FIN_D
-				, SO.PSBLTY_RATE
-				, (SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD
-				, SO.FST_REG_ID
-				, SO.FST_REG_DT
-		FROM SALES_OPPORTUNITY SO, SALES_OPPORTUNITY_ESTIMATE SOE, LEAD L, CUSTOMER CT
-		WHERE SO.LEAD_ID=L.LEAD_ID 
-		AND L.CUST_ID=CT.CUST_ID
-		AND SO.SALES_OPPT_ID = SOE.SALES_OPPT_ID(+)
-		AND SO.ACT_YN='Y'
+		SELECT 
+			S.SALES_OPPT_ID, S.SALES_OPPT_NM, 
+  			(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = S.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD,
+  			S.EXPT_SALES_AMT, S.EXPT_FIN_D, S.PSBLTY_RATE, S.FST_REG_ID, S.FST_REG_DT
+		FROM 
+			SALES_OPPORTUNITY S, CUSTOMER C
+		WHERE 
+			S.CUST_ID = C.CUST_ID AND S.ACT_YN = 'Y'
 		<if test="keyword!=null and keyword!='' ">
 	        <include refid="where-act_oppt_list"/>
 	    </if> 
+	</select>
+	
+	<!-- 고객팝업 리스트 -->
+	<select id="customerList" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+	      SELECT DISTINCT
+				 CT.CUST_ID
+				,CT.CUST_NM
+		  FROM CUSTOMER CT
+		  WHERE CT.ACT_YN='Y'
+		  <if test="keyword!=null and keyword!='' ">
+	        <include refid="where-custcomp_list"/>
+	      </if>
+	      ORDER BY CT.CUST_ID
 	</select>
 	
 	<!-- 고객사 리스트 검색 -->
@@ -144,21 +149,6 @@
 	      AND CT.CUST_NM LIKE '%' || #{keyword} || '%'
 	  </if>
 	</sql>
-	
-	<!-- 고객팝업 리스트 -->
-	<select id="customerList" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-	      SELECT DISTINCT
-				 CT.CUST_ID
-				,CT.CUST_NM
-				,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = CT.CUST_DIV_CD) CUST_DIV_CD
-				,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CCS' AND C.CODE = CT.STAT_CD) STAT_CD
-		  FROM CUSTOMER CT, CODE C
-		  WHERE CT.ACT_YN='Y' 
-		  <if test="keyword!=null and keyword!='' ">
-	        <include refid="where-custcomp_list"/>
-	      </if>
-	      ORDER BY CT.CUST_ID
-	</select>
 	
 	<!-- 상세보기 -->
 	<select id="actDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
@@ -186,20 +176,6 @@
 		  WHERE SA.SALES_ACTVY_ID = #{sales_actvy_id}
 	      AND SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
 	      AND SA.CUST_ID = C.CUST_ID(+)
-		  AND SA.ACT_YN = 'Y'
-	</select>
-	
-	<select id="actOneSelectId" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
-	      SELECT SA.SALES_ACTVY_NM ,SA.SALES_ACTVY_ID 
-			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ADC' AND C.code = SA.SALES_ACTVY_DIV_CD) SALES_ACTVY_DIV_CD
-			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) SALES_ACTVY_TYPE_CD
-			    ,SA.STRT_D ,SA.STRT_T, SA.END_D, SA.END_T
-			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD) SALES_ACTVY_STAT_CD
-			    ,SA.FST_REG_ID ,SA.FIN_MDFY_ID, SA.FST_REG_DT
-			    ,SO.SALES_OPPT_NM
-	      FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO
-		  WHERE SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
-          AND SA.SALES_ACTVY_ID = #{sales_actvy_id}
 		  AND SA.ACT_YN = 'Y'
 	</select>
 	
@@ -232,9 +208,53 @@
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
 	
+	<!-- 영업활동 삭제 -->
 	<update id="actDelete" parameterType="String">
 	      UPDATE SALES_ACTIVITY
 	      SET ACT_YN = 'N'
 	      WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
+	
+	<!-- 상세보기 영업기회리스트 출력  -->
+	<select id="detailOpptList" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
+		select d.*, r
+		from
+		(
+      		select 
+        		rownum r, a.sales_oppt_id, a.cust_id, c.cust_nm, a.sales_oppt_nm, 
+        		(select cd_nm from code where cd_grp_id='OTL' and code = a.sales_lev_cd) sales_lev_cd_nm, 
+   		 	    a.sales_lev_cd, a.sales_oppt_stat_cd, a.expt_sales_amt, 
+ 		 	    to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d, 
+				a.psblty_rate, 
+		        (select cd_nm from code where cd_grp_id='OSC' and code = a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm, 
+		        a.memo,
+         		a.fst_reg_id, 
+				to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt , 
+		        a.fin_mdfy_id, 
+				a.fin_mdfy_dt, a.act_yn
+			from 
+				sales_opportunity a, customer c
+			where 
+				1=1 and a.cust_id = c.cust_id and a.act_yn='Y'
+      		order by a.sales_oppt_id desc
+		)d
+		where d.cust_id = #{cust_id} and d.sales_oppt_stat_cd = '0001'
+	</select>
+
+	
+	
+	
+	<select id="actOneSelectId" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
+	      SELECT SA.SALES_ACTVY_NM ,SA.SALES_ACTVY_ID 
+			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ADC' AND C.code = SA.SALES_ACTVY_DIV_CD) SALES_ACTVY_DIV_CD
+			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) SALES_ACTVY_TYPE_CD
+			    ,SA.STRT_D ,SA.STRT_T, SA.END_D, SA.END_T
+			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD) SALES_ACTVY_STAT_CD
+			    ,SA.FST_REG_ID ,SA.FIN_MDFY_ID, SA.FST_REG_DT
+			    ,SO.SALES_OPPT_NM
+	      FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO
+		  WHERE SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
+          AND SA.SALES_ACTVY_ID = #{sales_actvy_id}
+		  AND SA.ACT_YN = 'Y'
+	</select>
 </mapper>

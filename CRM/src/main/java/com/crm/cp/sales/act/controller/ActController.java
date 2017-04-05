@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.service.ActService;
 import com.crm.cp.sales.act.vo.ActVO;
+import com.crm.cp.sales.oppt.service.OpptService;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
 import com.crm.cp.utils.Encoder;
@@ -36,6 +39,9 @@ public class ActController {
 	
 	@Autowired
 	ActService actService;
+	
+	@Autowired
+	OpptService service;
 	
 	//전체리스트 출력
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
@@ -52,7 +58,7 @@ public class ActController {
 		List<ActVO> actDivCd = actService.actDivCdList();
 		List<ActVO> actStatCd = actService.actStatCdList();
 
-		System.out.println("actDivCd : " + actDivCd);
+		System.out.println("actList : " + actList);
 		
 		ModelAndView mov = new ModelAndView("actSaleList");
 		mov.addObject("menuList", menuList);
@@ -69,55 +75,90 @@ public class ActController {
 	public ModelAndView companyCutomerDetail(String sales_actvy_id) 
 	{
 		int flg;
-		
+		sales_actvy_id = "SAT0000092";
 		System.out.println("sales_actvy_id : " + sales_actvy_id);
 		
-		if(sales_actvy_id == null)
-		{
-			flg = 0;
+		flg = 1;
+		String[] htime = {"01", "02", "03", "04", "05", "06",
+						 "07", "08", "09", "10", "11", "12",
+						 "13", "14", "15", "16", "17", "18",
+						 "19", "20", "21", "22", "23", "24"};
+		String[] mtime = {"00", "10", "20", "30", "40", "50"};
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		ActVO actVO = actService.actDetail(sales_actvy_id);
+		
+		String cust_id = actVO.getCust_id();
+		
+		List<ActVO> actTypeCd = actService.actTypeCdList();
+		List<ActVO> actStatCd = actService.actStatCdList();
+		List<OpptVO> opptList = actService.opptList(cust_id);
+		
+		ModelAndView mov = new ModelAndView("actSaleDetail");
+		
+		System.out.println("flg : " + flg);
+		System.out.println(actVO.toString());
+		System.out.println(actStatCd.toString());
+		System.out.println("OPPT_LIST : " + opptList.toString());
+		System.out.println("OPPT_LIST : " + opptList);
+		
+		mov.addObject("actDetail", actVO);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("opptList", opptList);
+		mov.addObject("htime", htime);
+		mov.addObject("mtime", mtime);
+		mov.addObject("flg", flg);
 			
-			List<ActVO> actTypeCd = actService.actTypeCdList();
-			List<ActVO> actStatCd = actService.actStatCdList();
-			
-			ModelAndView mov = new ModelAndView("actSaleDetail");
-			
-			System.out.println("flg : " + flg);
-			
-			mov.addObject("actStatCd", actStatCd);
-			mov.addObject("actTypeCd", actTypeCd);
-			mov.addObject("flg", flg);
-			
-			return mov;
-		}
-		else
+		return mov;
+/*
+		if(sales_actvy_id != null)
 		{
 			flg = 1;
 			String[] htime = {"01", "02", "03", "04", "05", "06",
-							 "07", "08", "09", "10", "11", "12",
-							 "13", "14", "15", "16", "17", "18",
-							 "19", "20", "21", "22", "23", "24"};
+						 	"07", "08", "09", "10", "11", "12",
+						 	"13", "14", "15", "16", "17", "18",
+						 	"19", "20", "21", "22", "23", "24"};
 			String[] mtime = {"00", "10", "20", "30", "40", "50"};
-			
+		
 			ActVO actVO = actService.actDetail(sales_actvy_id);
-			
+		
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
-			
+		
 			ModelAndView mov = new ModelAndView("actSaleDetail");
-			
+		
 			System.out.println("flg : " + flg);
 			System.out.println(actVO.toString());
 			System.out.println(actStatCd.toString());
-			
+		
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
 			mov.addObject("flg", flg);
-				
+			
 			return mov;
 		}
+		else
+		{
+			flg = 0;
+			
+			List<ActVO> actTypeCd = actService.actTypeCdList();
+			List<ActVO> actStatCd = actService.actStatCdList();
+			
+			ModelAndView mov = new ModelAndView("actSaleAdd");
+			
+			System.out.println("flg : " + flg);
+			
+			mov.addObject("actStatCd", actStatCd);
+			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("flg", flg);
+			
+			return mov;
+		}
+*/		
 	}
 	
 	//영업활동등록
@@ -267,6 +308,44 @@ public class ActController {
 		return mov;
 	}
 	
+	// 영업기회 추가 팝업창
+	@RequestMapping(value = "/opptInsertPopup", method = RequestMethod.GET)
+	public ModelAndView opptActivePopup(HttpSession session, String list_cust_id, String list_cust_nm, String list_sales_oppt_id) 
+	{
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = service.opptOscList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = service.opptOtlList();
+		
+		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
+		
+		mov.addObject("popFlg", "add");
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		
+		return mov;
+	}
+	
+	// 상세정보에서의 고객 리스트
+	@RequestMapping(value = "/opptCustPopup", method = RequestMethod.GET)
+	public ModelAndView opptCustcompList(HttpSession session, 
+			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield, @RequestParam(value = "keyword", defaultValue = "") String keyword) 
+	{
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("keyfield", keyfield);
+			map.put("keyword", keyword);
+			
+			List<Object> custcompList = service.opptCustComp(map);
+			
+			ModelAndView mov = new ModelAndView("/sales/act/actPop/custcomp_list_pop");
+
+			mov.addObject("custcompList", custcompList);
+
+			// javascript에서 상세정보에서의 고객 리스트인지 구분하기 위한 값 전달
+			mov.addObject("custType", "normal");
+
+			return mov;
+		}
 	
 	//영업활동등록
 	@RequestMapping(value = "/actInsertT", method = RequestMethod.POST)

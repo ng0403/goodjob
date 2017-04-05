@@ -601,8 +601,11 @@ function Calendar(element, options, eventSources) {
 	 * -----------------------------------------------------------------------------
 	 */
 	
-
+	/**
+	 * alert : 날짜를 선택했을 때 들어오는 함수인지 확인하기 위해 찍음.
+	 * */
 	function select(start, end, allDay) {
+		alert(start);	// 안들어옴... 
 		currentView.select(start, end, allDay===undefined ? true : allDay);
 	}
 	
@@ -616,7 +619,7 @@ function Calendar(element, options, eventSources) {
 	
 	
 	/*
-	 * Date
+	 * Date : 날짜 계산하는 부분인듯.
 	 * -----------------------------------------------------------------------------
 	 */
 	
@@ -6223,6 +6226,8 @@ function compareDaySegments(a, b) {
 function SelectionManager() {
 	var t = this;
 	
+	alert("fullcalender - SelectionManager (function)");
+	
 	
 	// exports
 	t.select = select;
@@ -6261,6 +6266,7 @@ function SelectionManager() {
 	
 
 	function select(startDate, endDate, allDay) {
+		alert("fullcalender - select (function)");
 		unselect();
 		if (!endDate) {
 			endDate = defaultSelectionEnd(startDate, allDay);
@@ -6287,6 +6293,7 @@ function SelectionManager() {
 	
 	function daySelectionMousedown(ev) { // not really a generic manager
 											// method, oh well
+		alert("fullcalender - daySelectionMousedown (function)");
 		var cellToDate = t.cellToDate;
 		var getIsCellAllDay = t.getIsCellAllDay;
 		var hoverListener = t.getHoverListener();

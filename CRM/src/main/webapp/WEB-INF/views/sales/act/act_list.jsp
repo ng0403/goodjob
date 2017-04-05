@@ -118,13 +118,9 @@
 			<c:choose>
 				<c:when test="${actPageNum == page.startPageNum}">
 					<a>◀ </a>
-					<input type="text" id="actPageInput" class="act_page_txt"
-						value="${page.startPageNum}" onkeypress="pageInputAct(event);" />
-					<a href="#" onclick="actPaging('${page.endPageNum}')"
-						style='text-decoration: none; color: blue;'>/
-						${page.endPageNum}</a>
-					<a href="#" onclick="actPaging('${actPageNum+1}')"
-						style='text-decoration: none; color: blue;'>▶</a>
+					<input type="text" id="actPageInput" class="act_page_txt" value="${page.startPageNum}" onkeypress="pageInputAct(event);" />
+					<a href="#" onclick="actPaging('${page.endPageNum}')" style='text-decoration: none; color: blue;'>/${page.endPageNum}</a>
+					<a href="#" onclick="actPaging('${actPageNum+1}')" style='text-decoration: none; color: blue;'>▶</a>
 				</c:when>
 				<c:when test="${actPageNum == page.endPageNum}">
 					<a href="#" onclick="actPaging('${actPageNum-1}')" style="text-decoration: none; color: blue;">◀ </a>

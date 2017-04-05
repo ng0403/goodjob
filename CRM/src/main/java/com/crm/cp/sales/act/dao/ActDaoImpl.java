@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.crm.cp.sales.act.vo.ActVO;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
 
 @Repository
@@ -46,6 +47,19 @@ public class ActDaoImpl implements ActDao{
 	@Override
 	public List<ActVO> actDivCdList() {
 		return sqlSession.selectList("act.actDivCdList");
+	}
+	
+	/**
+	 * 상세보기 화면
+	 * 영업기회 리스트 출력
+	 * */
+	@Override
+	public List<OpptVO> opptList(String cust_id) {
+		// TODO Auto-generated method stub
+		System.out.println(cust_id);
+		List<OpptVO> test = sqlSession.selectList("act.detailOpptList", cust_id);
+		
+		return test;
 	}
 
 	@Override
@@ -90,6 +104,13 @@ public class ActDaoImpl implements ActDao{
 	public void actEdit(ActVO actvo) {
 		sqlSession.update("act.actEdit", actvo);
 	}
+	
+	@Override
+	public void actDelete(String sales_actvy_id) {
+		sqlSession.update("act.actDelete", sales_actvy_id);
+		
+	}
+
 
 /*	@Override
 	public List<ActVO> actList(Map<String, Object> actMap) {
@@ -107,11 +128,5 @@ public class ActDaoImpl implements ActDao{
 		
 		return totalCount;
 	}*/
-
-	@Override
-	public void actDelete(String sales_actvy_id) {
-		sqlSession.update("act.actDelete", sales_actvy_id);
-		
-	}
 
 }

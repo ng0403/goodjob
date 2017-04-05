@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.crm.cp.sales.act.dao.ActDao;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
 
 @Service("ActService")
@@ -49,6 +50,16 @@ public class ActServiceImpl implements ActService{
 	@Override
 	public List<ActVO> actDivCdList() {
 		return actDao.actDivCdList();
+	}
+	
+	/**
+	 * 상세보기 화면
+	 * 영업기회 리스트 출력
+	 * */
+	@Override
+	public List<OpptVO> opptList(String cust_id) {
+		// TODO Auto-generated method stub
+		return actDao.opptList(cust_id);
 	}
 
 	@Override
@@ -91,7 +102,11 @@ public class ActServiceImpl implements ActService{
 	@Override
 	public void actEdit(ActVO actvo) {
 		actDao.actEdit(actvo);
-		
+	}
+	
+	@Override
+	public void actDelete(String sales_actvy_id) {
+		actDao.actDelete(sales_actvy_id);
 	}
 
 /*	@Override
@@ -114,9 +129,4 @@ public class ActServiceImpl implements ActService{
 		return actDao.actList(actMap);
 	}*/
 
-	@Override
-	public void actDelete(String sales_actvy_id) {
-		actDao.actDelete(sales_actvy_id);
-		
-	}
 }
