@@ -111,9 +111,9 @@
 	</definition>
 	
 	<!-- 기업고객  -->
-	<definition name="custcompDetail" extends="onebodyLayout">
-		<put-attribute name="body" value="/WEB-INF/views/sales/custcomp/custcomp_detail.jsp" />
-	</definition>
+<!-- 	<definition name="custcompDetail" extends="onebodyLayout"> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/views/sales/custcomp/custcomp_detail.jsp" /> -->
+<!-- 	</definition> -->
 	
 	<!--위·아래 바디 + 어사이드 구조 -->
 	<definition name="twobodyLayout" template="/WEB-INF/views/layout/twobody_layout.jsp">
@@ -225,9 +225,9 @@
 	</definition>
 	
 	<!-- 기존고객 -->
-<!-- 	<definition name="custcompDetail" extends="twobodyLayout"> -->
-<!-- 		<put-attribute name="master" value="/WEB-INF/views/sales/custcomp/custcomp_detail.jsp" /> -->
-<!-- 		<put-attribute name="detail" value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" /> -->
-<!-- 	</definition> -->
+	<definition name="custcompDetail" extends="twobodyLayout">
+		<put-attribute name="master" value="/WEB-INF/views/sales/custcomp/custcomp_detail.jsp" />
+		<put-attribute name="detail" value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" />
+	</definition>
 		
 </tiles-definitions>

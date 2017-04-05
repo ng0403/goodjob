@@ -162,25 +162,35 @@ function custCompDel(ctx){
 
 //탭 이동
 function ccTabFunc(cust_id, cust_nm) {
-	$(document).ready(function() {
-		$("#nowCust_id").val(cust_id); // 현재 cust_id 저장
-		$("#nowCust_nm").val(cust_nm); // 현재 cust_id 저장
-			
-		if($("#tab1").is(":checked")){ // 상세정보 불러오기
-			if(cust_id != '')	ccDetail(cust_id);
-		} else if($("#tab2").is(":checked")){ // 키맨 불러오기
-			if(cust_id != '')	keymanList(cust_id);
-		} else if($("#tab3").is(":checked")){
-			if(cust_id != '')	opptList(cust_id); // 영업기회 불러오기
-		} else if($("#tab4").is(":checked")){
-			if(cust_id != '')	actList(cust_id); // 영업활동 불러오기
-		} else if($("#tab5").is(":checked")){
-			if(cust_id != '')	estList(cust_id); // 견적 불러오기
-		} else if($("#tab6").is(":checked")){
-			if(cust_id != '')	contList(cust_id); // 계약 불러오기
-		}
-	});
+	$("#nowCust_id").val(cust_id);
+	viewDetail(cust_id);
+	
+//	$(document).ready(function() {
+//		$("#nowCust_id").val(cust_id); // 현재 cust_id 저장
+//		$("#nowCust_nm").val(cust_nm); // 현재 cust_nm 저장
+//			
+//		if($("#tab1").is(":checked")){ // 상세정보 불러오기
+//			if(cust_id != '')	ccDetail(cust_id);
+//		} else if($("#tab2").is(":checked")){ // 키맨 불러오기
+//			if(cust_id != '')	keymanList(cust_id);
+//		} else if($("#tab3").is(":checked")){
+//			if(cust_id != '')	opptList(cust_id); // 영업기회 불러오기
+//		} else if($("#tab4").is(":checked")){
+//			if(cust_id != '')	actList(cust_id); // 영업활동 불러오기
+//		} else if($("#tab5").is(":checked")){
+//			if(cust_id != '')	estList(cust_id); // 견적 불러오기
+//		} else if($("#tab6").is(":checked")){
+//			if(cust_id != '')	contList(cust_id); // 계약 불러오기
+//		}
+//	});
 }
+
+function viewDetail(cust_id){
+	var ctx = $("#ctx").val();
+	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
+}
+
+
 
 //페이지 입력 이동
 function pageInput(event) {
@@ -762,3 +772,65 @@ function contList(cust_id) {
 		});
 	});
 }
+
+//모두체크
+function actAllChk(){
+	  
+	var checkbox=$('#act_list_table tbody').find('input[type=checkbox]');
+	
+	if($('#actCheck').is(":checked")){
+		$(checkbox).prop("checked", true);
+	}else{
+		$(checkbox).prop("checked", false);
+	}
+}
+
+//전체 체크 해제
+function actChkCancel() {
+	$(document).ready(function() {
+		$("#actCheck").prop("checked", false);
+	});
+}
+
+//체크박스 개수 검색함수
+function checkCount(){
+   var count=0;
+   var checkList = $('.act_chek');
+
+   for(var i=0; i<checkList.size(); i++){
+      if($(checkList[i]).is(':checked')){
+         count++;
+      }
+   }
+   return count;
+};
+
+//Insert
+function custcompInsertForm() {
+	var ctx = $("#ctx").val();
+	
+	location.href = ctx + '/custcompDetail';
+}
+
+//delete
+function custcompDelete()
+{
+	var form = $('#delForm');
+		
+	if (checkCount() == 0) 
+	{
+		alert("삭제할 항목을 선택해주세요.");
+	} 
+	else 
+	{
+		var delYN = confirm("정말 삭제하시겠습니까??");
+			
+		if(!delYN)
+		{
+			return false;
+		}
+	
+		form.submit();
+	}	
+}
+

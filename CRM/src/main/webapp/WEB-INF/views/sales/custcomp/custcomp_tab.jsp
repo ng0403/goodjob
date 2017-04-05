@@ -6,26 +6,20 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/addr/zipcode_js.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/employee_js.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
 
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
-<style type="text/css">
-
-</style>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 </head>
 <body  >
-	<input type="hidden" id="ctx" value="${ctx}"/>
-	<input type="hidden" id="nowCust_id"/>
-	<input type="hidden" id="nowCust_nm"/>
-
 	<div id="css_tabs" style="float: left;">
-		
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked"/>
-		<input id="tab2" type="radio" name="tab" />
+		<input id="tab1" type="radio" name="tab" />
+		<input id="tab2" type="radio" name="tab" checked="checked"/>
 		<input id="tab3" type="radio" name="tab" />
 		<input id="tab4" type="radio" name="tab" />
 		<input id="tab5" type="radio" name="tab" />
@@ -40,130 +34,12 @@
 		<label for="tab6">계약</label>
 		
 		<!-- 탭 내용 : 기업고객 상세정보 -->
-		<div id="tabDiv1" class="tab1_content" style="width: 103%;">
+		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 		
-			<form id="custCompForm" method="post">
-			
-				<div id="baseBtnDiv" class="bt_position_authuser">
-					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/>
-					<input type="button" id="mdfBtn" value="편집" class="custcomp_btn" disabled="disabled" onclick="custCompMdfyBtn();"/>
-				</div>
-				<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="addSaveBtn" value="저장" onclick="addCustComp('${ctx}');" class="custcomp_btn"/>
-					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
-				</div>
-				<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="mdfSaveBtn" value="저장" onclick="mdfyCustComp('${ctx}');" class="custcomp_btn"/>
-					<input type="button" id="mdfCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
-				</div>
-				
-				<div id="custcompdiv">
-					<table id="custcomptable">
-						<tbody id="custcomptbody" class="custcomptbody">
-							<tr>
-								<th>기업명</th>
-								<td>
-									<input type="hidden" id="cust_id" name="cust_id"/>
-									<input type="hidden" id="hcust_nm"/>
-									<input type="text" name="cust_nm" id="cust_nm" class="int" style="ms-ime-mode: disabled;" readonly="readonly"/>
-								</td>
-								<th>사업자번호</th>
-								<td>
-									<input type="hidden" id="hcomp_num"/>
-									<input type="text" name="comp_num" id="comp_num" class="int" maxlength="9" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
-								</td>
-								<th>법인번호</th>
-								<td>
-									<input type="hidden" id="hcorp_num" />
-									<input type="text" name="corp_num" id="corp_num" class="int" maxlength="9" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
-								</td>
-								<th>매출규모</th>
-								<td>
-									<input type="hidden" id="hsales_scale_cd"/>
-									<select id="sales_scale_cd" name="sales_scale_cd">
-										<option value="0" style="text-align: center;">==매출규모==</option>
-										<c:forEach var="SSC" items="${SSCCodeList}">
-											<option value="${SSC.sales_scale_cd}">${SSC.sales_scale}</option>
-										</c:forEach>
-									</select>
-								</td>
-							<tr>
-								<th>직원수</th>
-								<td>
-									<input type="hidden" id="hemp_qty"/>
-									<input type="text" name="emp_qty" id="emp_qty" class="int"maxlength="6" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
-								</td>
-								<th>산업군</th>
-								<td>
-									<input type="hidden" id="hindst_cd"/>
-									<select id="indst_cd" name="indst_cd">
-										<option value="0" style="text-align: center;">==산업군==</option>
-										<c:forEach var="IDC" items="${IDCCodeList}">
-											<option value="${IDC.indst_cd}">${IDC.indst}</option>
-										</c:forEach>
-									</select>
-								</td>
-								<th>홈페이지</th>
-								<td>
-									<input type="hidden" id="hhomepage_url" />
-									<a id="aHpUrl" target="_blank" title="클릭하면 해당 URL로 이동합니다."><input type="text" name="homepage_url" id="homepage_url" class="int" maxlength="30"readonly="readonly" style="cursor: pointer; width: 170px;"/></a>
-								</td>
-								<th>대표전화번호</th>
-								<td>
-									<input type="hidden" id="hrep_ph1" />
-									<input type="hidden" id="hrep_ph2" />
-									<input type="hidden" id="hrep_ph3" />
-									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/> - 
-									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" maxlength="4" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/> - 
-									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" maxlength="4" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
-								</td>
-							</tr>
-							<tr>
-								<th>주소지</th>
-								<td colspan="8">
-									<input type="hidden" id="hcust_zip_cd"/>
-									<input type="hidden" id="hcust_zip_addr"/>
-									<input type="hidden" id="hcust_addr"/>
-									
-									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num"/>
-									<input type="text" name="cust_zip_cd1" id="cust_zip_cd1" class="int_common" readonly="readonly"/>
-									<input type="text" name="cust_zip_cd2" id="cust_zip_cd2" class="int_common" readonly="readonly"/>
-									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr"disabled="disabled"/>
-									&nbsp;
-									<input type="text" name="cust_zip_addr" id="cust_zip_addr" class="int_ad" readonly="readonly"/>
-									<input type="text" name="cust_addr" id="cust_addr" class="int_ad"readonly="readonly"/>
-								</td>
-							</tr>
-							<tr>
-								<th>영업담당자</th>
-								<td>
-									<input type="hidden" name="hiuser_id_nm" id="hiuser_id_nm"/>
-									<input type="hidden" name="iuser_id_nm" id="iuser_id_nm"/>
-									<input type="hidden" name="hiuser_nm" id="hiuser_nm"/>
-									<input type="text" name="iuser_nm" id="iuser_nm" class="int_ad" readonly="readonly"/>
-									<input type="button" name="iuser_search" id="iuser_search" value="직원" class="custcomp_btn" disabled="disabled"/>
-								</td>
-								<th>기업상태</th>
-								<td>
-									<input type="hidden" id="hstat_cd"/>
-									<select name="stat_cd" id="stat_cd">
-										<option value="0" style="text-align: center;">==기업상태==</option>
-										<c:forEach var="CCS" items="${CCSCodeList}">
-											<option value="${CCS.stat_cd}">${CCS.stat}</option>
-										</c:forEach>
-									</select>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			
-			</form>
-			
 		</div>
 
 		<!-- 탭 내용 : 키맨 리스트 -->
-		<div id="tabDiv2" class="tab2_content">
+		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="keyman_pop_btn" class="custcomp_btn" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete();"/>
@@ -192,7 +68,7 @@
 		</div>
 			
 			<!-- 영업기회 리스트 -->
-		<div id="tabDiv3" class="tab3_content">
+		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" />
 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/>
@@ -221,7 +97,7 @@
 		</div>
 			
 			<!-- 영업활동 리스트 -->
-		<div id="tabDiv4" class="tab4_content">
+		<div id="tabDiv4" class="tab4_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_pop_btn" class="custcomp_btn" value="영업활동 추가"/>
 				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="ccActDel('${ctx}');"/>
@@ -255,7 +131,7 @@
 		</div>
 	
 			<!-- 견적 리스트 -->
-		<div id="tabDiv5" class="tab5_content">
+		<div id="tabDiv5" class="tab5_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
 				<input type="button" id="est_pop_btn" class="custcomp_btn" value="견적 추가">
 				<input type="button" id="estDel" class="custcomp_btn" value="삭제" onclick="ccEstDel('${ctx}')"/>
@@ -283,7 +159,7 @@
 			</div>
 	
 			<!-- 계약 리스트 -->
-			<div id="tabDiv6" class="tab6_content">
+			<div id="tabDiv6" class="tab6_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="cont_pop_btn" class="custcomp_btn" value="계약 추가">
 				<input type="button" id="contDel" class="custcomp_btn" value="삭제" onclick="ccContDel('${ctx}');"/>

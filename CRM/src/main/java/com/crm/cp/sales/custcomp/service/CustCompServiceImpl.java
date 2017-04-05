@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
@@ -299,6 +302,18 @@ public class CustCompServiceImpl implements CustCompService {
 	public List<OpptVO> ccOpptPopList(String cust_id) {
 		List<OpptVO> opptList = ccDao.ccOpptPopList(cust_id);
 		return opptList;
+	}
+
+	@Override
+	public CustCompVO custcompDetail(String nowCust_id) {
+		CustCompVO ccVO = ccDao.custcompDetail(nowCust_id);
+		return ccVO;
+	}
+
+	@Override
+	public void custcompInsert(CustCompVO ccVO) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

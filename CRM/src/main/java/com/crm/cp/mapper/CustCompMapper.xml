@@ -6,68 +6,64 @@
    
    <!-- 전체 리스트 가져오기 - [페이징] -->
 	<select id="custcompList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-    select r.*
-		from (select b.*
-               , rownum rnum
+   select r.*
+		from (select b.* , rownum rnum
 	          from (select c.cust_id cust_id
-          				    , c.cust_nm cust_nm
-          					, cc.comp_num comp_num
-          					, cc.corp_num corp_num
-          					, (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = cc.sales_scale_cd) sales_scale
-          					, cc.emp_qty emp_qty
-          					, (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = cc.indst_cd) indst
-          					, c.cust_zip_cd cust_zip_cd
-          					, c.cust_addr cust_addr
-          					, cc.homepage_url homepage_url
-          					, cc.rep_ph1 rep_ph1
-          					, cc.rep_ph2 rep_ph2
-          					, cc.rep_ph3 rep_ph3
-          					, TO_CHAR(cc.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
-          					, i.iuser_nm iuser_nm
-                    		, i.id_nm iuser_id_nm
-                from customer c
-                	 , customer_company cc
-                	 , iuser i
-                where c.cust_id = cc.cust_id
-                  and c.cust_div_cd = '0002'
-<!--                   and c.iuser_id = i.id_nm -->
-                  and c.act_yn = 'Y'
+          			   , c.cust_nm cust_nm
+                       , c.cust_zip_cd cust_zip_cd
+                       , c.cust_addr cust_addr
+                       , c.cust_dtl_addr cust_dtl_addr 
+                       , c.cust_div_cd cust_div_cd
+          					   , c.comp_num comp_num
+                       , c.corp_num corp_num
+          				  	 , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code =c.sales_scale_cd ) sales_scale_cd
+                       , c.homepage_url homepage_url
+          					   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code =c.indst_cd ) indst_cd
+                       , c.biz_status biz_status 
+                       , c.main_prod main_prod 
+          					   , c.emp_qty emp_qty
+                       , c.rep_ph1 rep_ph1
+          					   , c.rep_ph2 rep_ph2
+          					   , c.rep_ph3 rep_ph3
+          					   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+          			from customer c		   
+          					   
+                    where 1=1
+                  
+                    and c.act_yn = 'Y'   
 				<if test="sch_cust_nm != null and sch_cust_nm !=''">
 			     	and c.cust_nm like '%'||#{sch_cust_nm}||'%'
 			    </if>
 			    <if test="sch_comp_num != null and sch_comp_num !=''">
-			     	and cc.comp_num like '%'||#{sch_comp_num}||'%'
+			     	and c.comp_num like '%'||#{sch_comp_num}||'%'
 			    </if> 
 			    <if test="sch_corp_num != null and sch_corp_num !=''">
-			     	and cc.corp_num like '%'||#{sch_corp_num}||'%'
+			     	and c.corp_num like '%'||#{sch_corp_num}||'%'
 			    </if>
-			    <if test="sch_iuser_nm != null and sch_iuser_nm !=''">
-			     	and i.iuser_nm like '%'||#{sch_iuser_nm}||'%'
-			    </if>
+			    
 	                order by c.cust_id desc
 	                ) b
-           		) r <![CDATA[where r.rnum>=#{page.startRow} and r.rnum<=#{page.endRow}]]>
+           		) r 
+       <![CDATA[where r.rnum>=#{page.startRow} and r.rnum<=#{page.endRow}]]>
+
+<!-- 	select * from CUSTOMER -->
 	</select>
 
 	<!-- 리스트 개수 -->
 	<select id="ccListTotalCount" parameterType="java.util.Map" resultType="int">
 	select nvl(count(c.cust_id), 0) 
-		from customer c, customer_company cc, iuser i
-    		where c.cust_id = cc.cust_id
-                  and c.cust_div_cd = '0002'
-<!--                   and c.iuser_id_nm = i.id_nm -->
+		from customer c
+    		where 1=1
+                  and c.cust_div_cd = '0001'
                   and c.act_yn = 'Y'
 				<if test="sch_cust_nm != null and sch_cust_nm !=''">
 			     	and c.cust_nm like '%'||#{sch_cust_nm}||'%'
 			    </if>
 			    <if test="sch_comp_num != null and sch_comp_num !=''">
-			     	and cc.comp_num like '%'||#{sch_comp_num}||'%'
+			     	and c.comp_num like '%'||#{sch_comp_num}||'%'
 			    </if> 
 			    <if test="sch_corp_num != null and sch_corp_num !=''">
-			     	and cc.corp_num like '%'||#{sch_corp_num}||'%'
-			    </if>
-			    <if test="sch_iuser_nm != null and sch_iuser_nm !=''">
-			     	and i.iuser_nm like '%'||#{sch_iuser_nm}||'%'
+			     	and c.corp_num like '%'||#{sch_corp_num}||'%'
 			    </if>
 	</select>
 	
@@ -75,65 +71,92 @@
 	<select id="custCompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select c.cust_id cust_id
 		      , c.cust_nm cust_nm
-		      , cc.comp_num comp_num
- 		      , cc.corp_num corp_num
-		      , cc.sales_scale_cd sales_scale_cd
-		      , cc.emp_qty emp_qty
-		      , cc.indst_cd indst_cd
-		      , cc.homepage_url homepage_url
-		      , cc.rep_ph1 rep_ph1
-		      , cc.rep_ph2 rep_ph2
-		      , cc.rep_ph3 rep_ph3
+		      , c.comp_num comp_num
+ 		      , c.corp_num corp_num
+		      , c.sales_scale_cd sales_scale_cd
+		      , c.emp_qty emp_qty
+		      , c.indst_cd indst_cd
+		      , c.homepage_url homepage_url
+		      , c.rep_ph1 rep_ph1
+		      , c.rep_ph2 rep_ph2
+		      , c.rep_ph3 rep_ph3
 		      , c.cust_zip_cd cust_zip_cd
 <!-- 		      , c.cust_zip_num zip_cd_sri_num -->
 <!-- 		      , (select pa.addr_dtl_cont from parcel_address pa where c.cust_zip_cd = pa.zip_cd and c.cust_zip_num = pa.zip_cd_sri_num) cust_zip_addr -->
 		      , c.cust_addr cust_addr
 		      , i.iuser_nm iuser_nm
-              , i.id_nm iuser_id_nm
+              , i.id_nm iuser_id
 <!-- 		      , c.stat_cd stat_cd -->
 		 from customer c
-		 	  , customer_company cc
 		 	  , iuser i
        where c.cust_id = #{cust_id}
 		  and cc.cust_id = #{cust_id}
 		  and c.cust_div_cd = '0002'
-<!-- 		  and c.iuser_id_nm = i.id_nm -->
+<!-- 		  and c.iuser_id = i.id_nm -->
 		  and c.act_yn = 'Y'
 	</select>
-	
+
 	<!-- 기업고객 상세정보 -->
 	<select id="custcompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select c.cust_id cust_id
 		      , c.cust_nm cust_nm
-		      , cc.comp_num comp_num
- 		      , cc.corp_num corp_num
-		      , cc.sales_scale_cd sales_scale_cd
-		      , cc.emp_qty emp_qty
-		      , cc.indst_cd indst_cd
-		      , cc.homepage_url homepage_url
-		      , cc.rep_ph1 rep_ph1
-		      , cc.rep_ph2 rep_ph2
-		      , cc.rep_ph3 rep_ph3
+		      , c.cust_div_cd cust_div_cd
+		      , c.comp_num comp_num
+ 		      , c.corp_num corp_num
+ 		      , c.rep_ph1 rep_ph1
+		      , c.rep_ph2 rep_ph2
+		      , c.rep_ph3 rep_ph3
+		      , c.homepage_url homepage_url
 		      , c.cust_zip_cd cust_zip_cd
 		      , c.cust_addr cust_addr
-		      , i.iuser_nm iuser_nm
-              , i.id_nm iuser_id_nm
+		      , c.cust_dtl_addr cust_dtl_addr
+		      , c.sales_scale_cd sales_scale_cd
+		      , c.emp_qty emp_qty
+		      , c.indst_cd indst_cd
+		      , c.biz_status biz_status
+		      , c.main_prod main_prod
 		 from customer c
-		 	  , customer_company cc
-		 	  , iuser i
        where c.cust_id = #{cust_id}
-		  and cc.cust_id = #{cust_id}
-		  and c.cust_div_cd = '0002'
+		  and c.cust_div_cd = '0001'
 		  and c.act_yn = 'Y'
 	</select>
 	
 	<!-- 기업고객 추가 -->
-	<insert id="custInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-		 INSERT INTO CUSTOMER (CUST_ID, CUST_NM, CUST_ZIP_CD,  CUST_ADDR, IUSER_ID, CUST_DIV_CD,  FST_REG_ID_NM, FST_REG_DT, FIN_MDFY_ID_NM, FIN_MDFY_DT, ACT_YN) 
-	     VALUES(CUST_SEQ.nextVal, #{cust_nm}, #{cust_zip_cd}, #{cust_addr}, #{iuser_id}, '0002', #{fst_reg_id_nm}, sysdate, #{fin_mdfy_id_nm}, sysdate, 'Y')
-	     <selectKey keyProperty="custcomp_idx" resultType="Integer" order="AFTER">
-         	select cust_seq.currval from dual
-      	</selectKey>
+<!-- 	<insert id="custInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO"> -->
+<!-- 		 INSERT INTO CUSTOMER (CUST_ID, CUST_NM, CUST_ZIP_CD,  CUST_ADDR, IUSER_ID, CUST_DIV_CD,  FST_REG_ID_NM, FST_REG_DT, FIN_MDFY_ID_NM, FIN_MDFY_DT, ACT_YN)  -->
+<!-- 	     VALUES(CUST_SEQ.nextVal, #{cust_nm}, #{cust_zip_cd}, #{cust_addr}, #{iuser_id}, '0002', #{fst_reg_id_nm}, sysdate, #{fin_mdfy_id_nm}, sysdate, 'Y') -->
+<!-- 	     <selectKey keyProperty="custcomp_idx" resultType="Integer" order="AFTER"> -->
+<!--          	select cust_seq.currval from dual -->
+<!--       	</selectKey> -->
+<!-- 	</insert> -->
+	<insert  id="custInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		INSERT INTO CUSTOMER (
+  			CUST_ID, CUST_NM, CUST_DIV_CD,  COMP_NUM,  CORP_NUM,  REP_PH1,  REP_PH2,  REP_PH3,  HOMEPAGE_URL,  CUST_ZIP_CD,   CUST_ADDR,   CUST_DTL_ADDR,
+  			SALES_SCALE_CD,  EMP_QTY,  INDST_CD,  BIZ_STATUS,  MAIN_PROD,  FST_REG_ID,   FST_REG_DT,  FIN_MDFY_ID,   FIN_MDFY_DT,   ACT_YN ) 
+		VALUES (
+  			concat('CU',lpad(to_char(#{custcomp_idx}),5,'0')),  
+  			'코어플러스', 
+  			'CD001',
+  			'4028202520',
+ 			'2543116359872',
+ 			'02',
+  			'761',
+ 			'2223',
+  			'http://www.coreplus.co.kr',
+  			'09812',
+  			'서울시 관악구 조원동 1668-12',
+  			'코어빌딩 2F',
+  			'0005',
+  			'100',
+  			'',
+ 			'',
+  			'0027',
+  			'admin',
+  			sysdate,
+  			'',
+ 			sysdate, 
+  			'Y'
+		);
 	</insert>
 	<insert id="custCompInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		 INSERT INTO CUSTOMER_COMPANY (CUST_ID, COMP_NUM, CORP_NUM, SALES_SCALE_CD, HOMEPAGE_URL, INDST_CD, EMP_QTY, REP_PH1, REP_PH2, REP_PH3, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT)
@@ -351,7 +374,7 @@
 		select r.*
 		from (select b.*
                , rownum rnum
-	          from (SELECT i.id_nm iuser_id_nm
+	          from (SELECT i.id_nm iuser_id
 						      , i.iuser_nm iuser_nm
 						      , (SELECT c.cd_nm FROM CODE c WHERE c.CD_GRP_ID = 'EMP' AND c.CODE = e.EMP_CD) emp_cd_nm
 						      , (SELECT c.cd_nm FROM CODE c WHERE c.CD_GRP_ID = 'WRK' AND c.CODE = e.WORK_STAT_CD) work_stat_cd_nm

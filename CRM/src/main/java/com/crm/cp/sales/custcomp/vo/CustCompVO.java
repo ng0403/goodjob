@@ -3,8 +3,7 @@ package com.crm.cp.sales.custcomp.vo;
 public class CustCompVO {
 
 	private String cust_id // 기업아이디
-			,
-			cust_nm // 기업명
+			, cust_nm // 기업명
 			, comp_num // 사업자번호
 			, corp_num // 법인번호
 			, sales_scale // 매출규모
@@ -19,7 +18,8 @@ public class CustCompVO {
 			, cust_zip_cd2 // 우편번호
 			, zip_cd_sri_num // 우편번호 일련번호
 			, cust_zip_addr // 우편 주소지
-			, cust_addr // 상세 주소지
+			, cust_addr // 주소지
+			, cust_dtl_addr //상세주소지
 			, iuser_id_nm // 영업담당자 아이디
 			, iuser_nm // 영업담당자
 			, stat_cd // 기업상태코드
@@ -28,15 +28,51 @@ public class CustCompVO {
 			, rep_ph1 // 전화번호1
 			, rep_ph2 // 전화번호2
 			, rep_ph3 // 전화번호3
-			, fst_reg_id_nm // 최초등록자
+			, fst_reg_id // 최초등록자
 			, fst_reg_dt // 등록일시
-			, fin_mdfy_id_nm // 최종변경자
+			, fin_mdfy_id // 최종변경자
 			, emp_cd_nm // 직원검색팝업(직급)
-			, work_stat_cd_nm // 직원검색팝업(근무상태)
+			, work_stat_cd1_nm// 직원검색팝업(근무상태)
+			, work_stat_cd_nm
 			, comp_ph1 // 회사 전화번호
 			, comp_ph2
 			, comp_ph3
-			, org_nm;
+			, org_nm
+			
+			, biz_status
+			, main_prod;
+
+	public String getCust_dtl_addr() {
+		return cust_dtl_addr;
+	}
+
+	public void setCust_dtl_addr(String cust_dtl_addr) {
+		this.cust_dtl_addr = cust_dtl_addr;
+	}
+
+	public String getFst_reg_id() {
+		return fst_reg_id;
+	}
+
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
+	}
+
+	public String getBiz_status() {
+		return biz_status;
+	}
+
+	public void setBiz_status(String biz_status) {
+		this.biz_status = biz_status;
+	}
+
+	public String getMain_prod() {
+		return main_prod;
+	}
+
+	public void setMain_prod(String main_prod) {
+		this.main_prod = main_prod;
+	}
 
 	int custcomp_idx; // idx 세팅
 
@@ -281,19 +317,19 @@ public class CustCompVO {
 	}
 
 	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id_nm(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id_nm(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
 	public String getComp_ph1() {
@@ -335,9 +371,9 @@ public class CustCompVO {
 				+ iuser_id_nm + ", iuser_nm=" + iuser_nm + ", stat_cd="
 				+ stat_cd + ", stat=" + stat + ", homepage_url=" + homepage_url
 				+ ", rep_ph1=" + rep_ph1 + ", rep_ph2=" + rep_ph2
-				+ ", rep_ph3=" + rep_ph3 + ", fst_reg_id_nm=" + fst_reg_id_nm
-				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id_nm="
-				+ fin_mdfy_id_nm + ", emp_cd_nm=" + emp_cd_nm
+				+ ", rep_ph3=" + rep_ph3 + ", fst_reg_id=" + fst_reg_id
+				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
+				+ fin_mdfy_id + ", emp_cd_nm=" + emp_cd_nm
 				+ ", work_stat_cd_nm=" + work_stat_cd_nm + ", custcomp_idx="
 				+ custcomp_idx + "]";
 	}

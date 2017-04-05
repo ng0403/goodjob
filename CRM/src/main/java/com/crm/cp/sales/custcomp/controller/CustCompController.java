@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,8 +46,7 @@ public class CustCompController {
 
 	// 기업고객 리스트(MaV)
 	@RequestMapping(value = "/custcomp", method = RequestMethod.GET)
-	public ModelAndView custCompList(HttpSession session,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
+	public ModelAndView custCompList(HttpSession session, @RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
 		ModelAndView mov = null;
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			mov = new ModelAndView("standard/home/session_expire");
@@ -53,7 +54,6 @@ public class CustCompController {
 			mov = new ModelAndView("custcomp");
 			Map<String, Object> pMap = new HashMap<String, Object>();
 			pMap.put("ccPageNum", ccPageNum);
-			
 			// 기업고객 리스트 전체 개수 조회(페이징에 사용)
 			PagerVO page = ccService.getCCListCount(pMap);
 			pMap.put("page", page);
@@ -62,7 +62,6 @@ public class CustCompController {
 			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
 			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
 			List<MenuVO> menuList = menuService.selectAll(session);
-			
 			mov.addObject("ccPageNum", ccPageNum);
 			mov.addObject("menuList", menuList);
 			mov.addObject("ccVOList", ccVOList);
@@ -71,7 +70,6 @@ public class CustCompController {
 			mov.addObject("CCSCodeList", CCSCodeList);
 			mov.addObject("page", page);
 		}
-
 		return mov;
 	}
 
@@ -103,27 +101,101 @@ public class CustCompController {
 	}
 
 	// 기업고객 상세정보
-	@RequestMapping(value = "custCompDetail.do", method = RequestMethod.POST)
-	public @ResponseBody CustCompVO companyCutomerDetail(String cust_id) {
-		CustCompVO ccVO = ccService.getCCDetail(cust_id);
+//	@RequestMapping(value = "custCompDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public @ResponseBody CustCompVO companyCutomerDetail(String cust_id) {
+//		CustCompVO ccVO = ccService.getCCDetail(cust_id);
+//
+//		return ccVO;
+//	}
+	
+	//기존고객 상세정보
+	@RequestMapping(value="/custcompDetail", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView cutomerDetail(HttpSession session
+						, @RequestParam Map<String, String> map
+						, String cust_id) {
+		
+		System.out.println("cust_id : " + cust_id);
+		
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
+		
+		int flg;
+		
+		if(cust_id == null) {
+			flg = 0;
+			
+			ModelAndView mov = new ModelAndView("custcompDetail");
 
-		return ccVO;
+			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
+			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
+			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			
+			System.out.println("flg : " + flg);
+			
+			mov.addObject("SSCCodeList", SSCCodeList);
+			mov.addObject("IDCCodeList", IDCCodeList);
+			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("flg", flg);
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			
+			return mov;
+		} else {
+			ModelAndView mov = new ModelAndView("custcompDetail");
+			flg = 1;
+			
+			map.put("cust_id", cust_id);
+			CustCompVO ccVO = ccService.custcompDetail(cust_id);
+
+			mov.addObject("custcompDetail", ccVO);
+			
+			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
+			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
+			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			
+			System.out.println("flg : " + flg);
+			System.out.println(ccVO.toString());
+			
+			mov.addObject("SSCCodeList", SSCCodeList);
+			mov.addObject("IDCCodeList", IDCCodeList);
+			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("flg", flg);
+				
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			return mov;
+		}
 	}
 	
+	
 	// 기업고객 추가
-	@RequestMapping(value = "custCompInsert.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> companyCutomerInput(HttpSession session, CustCompVO ccVO) {
-		Map<String, String> rstMap = new HashMap<String, String>();
-		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-			rstMap.put("inputResult", "standard/home/session_expire");
-		} else {
-			ccVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-			ccVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
-			String inputResult = ccService.insertCustComp(ccVO);
-			rstMap.put("inputResult", inputResult);
-		}
-		return rstMap;
+//	@RequestMapping(value = "custCompInsert.do", method = RequestMethod.POST)
+//	public @ResponseBody Map<String, String> companyCutomerInput(HttpSession session, CustCompVO ccVO) {
+//		Map<String, String> rstMap = new HashMap<String, String>();
+//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+//			rstMap.put("inputResult", "standard/home/session_expire");
+//		} else {
+//			ccVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+//			ccVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+//			String inputResult = ccService.insertCustComp(ccVO);
+//			rstMap.put("inputResult", inputResult);
+//		}
+//		return rstMap;
+//	}
+	
+	//기존고객 추가
+	@RequestMapping(value = "/custcompInsert", method = RequestMethod.POST)
+	public String custcompInsert(@ModelAttribute CustCompVO ccVO, HttpSession session, HttpServletRequest request)
+	{
+		ccVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+		System.out.println(ccVO.toString());
+		ccService.custcompInsert(ccVO);
+
+		return "redirect:/custcomp";
+				
 	}
+	
 	
 	// 기업고객 수정
 	@RequestMapping(value = "custCompUpdate.do", method = RequestMethod.POST)

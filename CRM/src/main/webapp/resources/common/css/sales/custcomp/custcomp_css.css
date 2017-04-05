@@ -19,6 +19,10 @@
 	margin-right: 40px;
 }
 
+#functionBtn {
+	width: 100%;
+}
+
 .custcomp_bt{
   	 background-color:#eaeaea;
  	 color:#353535;
@@ -31,7 +35,30 @@
  	 vertical-align: middle;
 }
 
+.custcomp_functionBtn {
+	 background-color:#eaeaea;
+ 	 color:#353535;
+ 	 border:1px solid #C0C4CB;
+ 	 padding:5px 5px;
+ 	 border-radius:5px 5px 5px 5px;
+ 	 width: auto;
+ 	 margin-right: 5px;
+ 	 cursor: pointer;
+ 	 vertical-align: middle;
+ 	 float: right;
+}
 .custcomp_bt:hover{
+  	 background-color:#ABABAB;
+ 	 color:white;
+ 	 border:1px solid #C0C4CB;
+ 	 padding:5px 5px;
+ 	 border-radius:5px 5px 5px 5px;
+ 	 width: auto;
+ 	 cursor: pointer;
+ 	 vertical-align: middle;
+}
+
+.custcomp_functionBtn:hover{
   	 background-color:#ABABAB;
  	 color:white;
  	 border:1px solid #C0C4CB;
@@ -63,7 +90,7 @@
 }
 
 .search_div {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .tel_search {
@@ -77,14 +104,61 @@
 	padding-left: 5px;
 }
 
+#ccListTable th, td {
+	margin: 0 auto;
+	border-bottom: 1px solid #DDDDDD;
+}
 
 #ccListTable {
+/* 	height: 20%; */
+	height: 455px;
+	width: 100%;
+	border-top: 2px solid #C0C4CB;
+	border-bottom: 2px solid #C0C4CB;
 	border-collapse: collapse;
-	height: 20%;
 }
 
-#pagingDiv {
-	float: left;
-	margin-top: 10px;
-	padding-right: 10px;
+thead {
+	display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
 }
+
+#ccListTable thead tr {
+    border-bottom: 2px solid #C0C4CB;
+    background-color: #F2F2F2;
+    font-weight: bold;
+}
+
+
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: center;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#ccListTable tr th {
+	text-align: center;
+	height: 25px;
+}
+
+#ccListTbody tr {
+	height: 15px;
+}
+
+
+#pagingDiv {
+	margin: 0 auto;
+	margin-top: 5px;
+}
+

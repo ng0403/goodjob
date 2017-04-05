@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,108 +35,104 @@
 <!-- 		<input type="button" id="custcomp_search" class="custcomp_btn" value="조회" onclick="schPaging(1);" /> -->
 			
 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);">
-				<option value="0" style="text-align: center;">전체</option>
-				<option value="0" style="text-align: center;">고객사명</option>
-				<option value="0" style="text-align: center;">사업자번호</option>
-				<option value="0" style="text-align: center;">법인번호</option>
-				<option value="0" style="text-align: center;">영업담당자</option>
+				<option value="all" style="text-align: center;">전체</option>
+				<option value="cust_nm" style="text-align: center;">고객사명</option>
+				<option value="comp_num" style="text-align: center;">사업자번호</option>
+				<option value="corp_num" style="text-align: center;">법인번호</option>
+				<option value="iuser_nm" style="text-align: center;">영업담당자</option>
 			</select>
 			
-			<input type="text" id="seachInput" name="seachActSaleInput" placeholder="검색어를 입력해주세요">
+			<input type="text" id="seachInput" name="seachCustcompSaleInput" placeholder="검색어를 입력해주세요">
 			<input type="button" id="search_btn" value="조회" class="custcomp_bt" onclick="schCustcompPaging(1);"/>
 			
 	</div>
 	
 	<div id="functionBtn">	
-		<input type="button" value="추가" onclick="" class="custcomp_bt" />
-		<input type="button" value="편집" onclick="" class="custcomp_bt" />
-		<input type="button" value="삭제" onclick="" class="custcomp_bt" />
-		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" />
-		<input type="button" value="엑셀저장" onclick="" class="custcomp_bt" />
-		
-		
+		<input type="button" value="엑셀저장" onclick="" class="custcomp_functionBtn" />
+		<input type="button" value="삭제" class="custcomp_functionBtn" onclick="custcompDelete()" />
+		<input type="button" value="추가" class="custcomp_functionBtn" onclick="custcompInsertForm();" />
+<!-- 		<input type="button" value="편집" onclick="" class="custcomp_bt" /> -->
+<!-- 		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" /> -->
 	</div>
-
-	<div id="tableline">
-		<table id="ccListTable" class="tabtable">
-			<thead>
-				<tr>
-					<th style="width: 3%"><input type="checkbox"  id='ccListCheck'/></th>
-					<th style="width: 16%">기업명</th>
-					<th style="width: 8%">사업자번호</th>
-					<th style="width: 8%">법인번호</th>
-					<th style="width: 10%">대표전화번호</th>
-					<th style="width: 10%">매출규모</th>
-					<th style="width: 8%">직원수</th>
-					<th style="width: 14%">산업군</th>
-					<th style="width: 8%">영업 담당자</th>
-					<th style="width: 15%">등록일시</th>
-				</tr>
-			</thead>
-			<tbody id="ccListTbody">
-				<c:forEach var="cc" items="${ccVOList}">
+	
+	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
+		<div id="tableline">
+			<table id="ccListTable" class="tabtable">
+				<thead>
 					<tr>
-						<th><input type="checkbox" id="chk_cust_id" value="${cc.cust_id}" onclick="chkCancel();"></th>
-						<td id="ccListTableNmTd" style="text-align: left; padding-left: 8px;">
-							<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');" style="color: blue;" class="cnClick">${cc.cust_nm}</a>
-						</td>
-						<td>${cc.comp_num}</td><!-- 사업자번호 -->
-						<td>${cc.corp_num}</td><!-- 법인번호 -->
-						<td>${cc.rep_ph1}-${cc.rep_ph2}-${cc.rep_ph3}</td><!-- 대표전화번호 -->
-						<td>${cc.sales_scale}</td><!-- 매출규모 -->
-						<td style="text-align: right; padding-right: 8px;">${cc.emp_qty}</td><!-- 직원수 -->
-						<td>${cc.indst}</td><!-- 산업군 -->
-						<td>${cc.iuser_nm}</td><!-- 영업담당자 -->
-						<td>${cc.fst_reg_dt}</td><!-- 등록일시 -->
+						<th style="width: 3%"><input type="checkbox"  id='ccListCheck'/></th>
+						<th style="width: 16%">기업명</th>
+						<th style="width: 8%">사업자번호</th>
+						<th style="width: 8%">법인번호</th>
+						<th style="width: 10%">대표전화번호</th>
+						<th style="width: 10%">매출규모</th>
+						<th style="width: 8%">직원수</th>
+						<th style="width: 14%">산업군</th>
+						<th style="width: 8%">영업 담당자</th>
+						<th style="width: 15%">등록일시</th>
 					</tr>
-				</c:forEach>
-				<c:if test="${ccVOList.size() < 5}">
-					<c:forEach begin="0" end="${5-ccVOList.size()}">
+				</thead>
+				<tbody id="ccListTbody">
+					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
-							<th></th>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<th><input type="checkbox" id="chk_cust_id" value="${cc.cust_id}" onclick="chkCancel();"></th>
+							<td id="ccListTableNmTd" style="text-align: left; padding-left: 8px;">
+								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');" style="color: blue;" class="cnClick">${cc.cust_nm}</a>
+							</td>
+							<td style="text-align: center;">${cc.comp_num}</td><!-- 사업자번호 -->
+							<td style="text-align: center;">${cc.corp_num}</td><!-- 법인번호 -->
+							<td style="text-align: center;">${cc.rep_ph1}-${cc.rep_ph2}-${cc.rep_ph3}</td><!-- 대표전화번호 -->
+							<td style="text-align: center;">${cc.sales_scale}</td><!-- 매출규모 -->
+							<td style="text-align: right; padding-right: 8px;">${cc.emp_qty}</td><!-- 직원수 -->
+							<td style="text-align: center;">${cc.indst}</td><!-- 산업군 -->
+							<td style="text-align: center;">${cc.iuser_nm}</td><!-- 영업담당자 -->
+							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>
-				</c:if>
-			</tbody>
-		</table>
-	</div>
+					<c:if test="${ccVOList.size() < 5}">
+						<c:forEach begin="0" end="${5-ccVOList.size()}">
+							<tr>
+								<th></th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</tbody>
+			</table>
+		</div>
+	</form>
 	<!-- 페이징 처리 -->
 	<div id="pagingDiv">
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 		<input type="hidden" id="startPageNum" value="${page.startPageNum}"/>
-		<input type="hidden" id="ccPageNum" value="${ccPageNum}"/>
+		<input type="hidden" id="custcompPageNum" value="${custcompPageNum}"/>
 		<c:choose>
-		<c:when test="${ccPageNum == page.startPageNum}">
-			<a> ◀ </a><input type="text" id="ccPageInput" value="${page.startPageNum}" onkeypress="pageInput(event);"/>  
-			<a href="#" onclick="paging('${page.endPageNum}')" id="pNum" > / ${page.endPageNum}</a>
-			<a href="#" onclick="paging('${ccPageNum+1}')" id="pNum"> ▶ </a>
-		</c:when>
-		<c:when test="${ccPageNum == page.endPageNum}">
-			<a href="#" onclick="paging('${ccPageNum-1}')" id="pNum"> ◀ </a>
-			<input type="text" id="ccPageInput" value="${page.endPageNum}" onkeypress="pageInput(event);"/> 
-			<a href="#" onclick="paging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
-			<a> ▶ </a>
-		</c:when>
-		<c:otherwise>
-			<a href="#" onclick="paging('${ccPageNum-1}')" id="pNum" > ◀ </a>
-			<input type="text" id="ccPageInput" value="${ccPageNum}" onkeypress="pageInput(event);"/>  
-			<a href="#" onclick="paging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
-			<a href="#" onclick="paging('${ccPageNum+1}')" id="pNum"> ▶ </a>
-		</c:otherwise>
+			<c:when test="${custcompPageNum == page.startPageNum}">
+				<a> ◀ </a><input type="text" id="ccPageInput" value="${page.startPageNum}" onkeypress="pageInput(event);"/>  
+				<a href="#" onclick="paging('${page.endPageNum}')" id="pNum" > / ${page.endPageNum}</a>
+				<a href="#" onclick="paging('${ccPageNum+1}')" id="pNum"> ▶ </a>
+			</c:when>
+			<c:when test="${custcompPageNum == page.endPageNum}">
+				<a href="#" onclick="paging('${custcompPageNum-1}')" id="pNum"> ◀ </a>
+				<input type="text" id="ccPageInput" value="${page.endPageNum}" onkeypress="pageInput(event);"/> 
+				<a href="#" onclick="paging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
+				<a> ▶ </a>
+			</c:when>
+			<c:otherwise>
+				<a href="#" onclick="paging('${custcompPageNum-1}')" id="pNum" > ◀ </a>
+				<input type="text" id="ccPageInput" value="${custcompPageNum}" onkeypress="pageInput(event);"/>  
+				<a href="#" onclick="paging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
+				<a href="#" onclick="paging('${custcompPageNum+1}')" id="pNum"> ▶ </a>
+			</c:otherwise>
 		</c:choose>
 	</div>
-
-	<div id="contact_button_position">
-		<input type="button" class="custcomp_btn" value="삭제" onclick="custCompDel('${ctx}');"/> 
-	</div> 
 </body>
 </html>

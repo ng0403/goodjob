@@ -390,4 +390,11 @@ public class CustCompDaoImpl implements CustCompDao {
 		return opptList;
 	}
 
+	@Override
+	public CustCompVO custcompDetail(String nowCust_id) {
+		CustCompVO ccVO = null;
+		ccVO = sqlSession.selectOne("custcomp.custcompDetail", nowCust_id);
+		return ccVO;
+	}
+
 }

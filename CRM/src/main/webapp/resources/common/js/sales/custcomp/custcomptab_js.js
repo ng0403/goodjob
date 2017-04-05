@@ -163,6 +163,11 @@ function contChkCancel() {
 	});
 }
 
+//뒤로 버튼 기능
+function custCompBackBtn() {
+	history.back(-1);
+}
+
 // 추가 버튼 기능
 function custCompAddBtn() {
 	$("#custcomptbody input[type='text']").css("background-color", "white");
