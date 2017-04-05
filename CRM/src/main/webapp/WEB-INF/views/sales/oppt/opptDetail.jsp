@@ -96,7 +96,7 @@ $(document).ready(function() {
 			<table id="goaltable" class="tabtable">
 				<thead>						
 					<tr>
-						<th style="width: 3%;"><input type="checkbox"  id='pdtAllSelect'/></th>
+						<th style="width: 3%;"><input type="checkbox"  id='opptprdtAllSelect'/></th>
 						<td style="width: 30%;">상품명</td>
 						<td style="width: 11%;">영업단계</td>
 						<td style="width: 15%;">예상매출액</td>

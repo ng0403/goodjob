@@ -106,5 +106,7 @@ public interface OpptDao {
 	
 	//영업기회별 상품 리스트 출력
 	List<OpptPrdtVO> opptprdtList(String sales_oppt_id);
+	//영업기회별 상품 상세정보 출력
+	List<OpptPrdtVO> opptPrdtDetail(String prdtId);
 
 }

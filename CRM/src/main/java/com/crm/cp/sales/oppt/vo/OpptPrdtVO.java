@@ -7,19 +7,54 @@ public class OpptPrdtVO {
 	
 	// 상품 카테고리 //
 	String sales_oppt_id;
+	String sales_oppt_nm;
 	String prod_id;
 	String prod_nm;
 	String prod_div_cd;
 //	String prod_sales_amt;
 	String sales_lev_cd;
+	String discount_unit_cd;
 	String prod_price;
+	String prod_qty;
 	String fst_reg_dt;
 	String fst_reg_id;
 	String fin_mdfy_dt;
 	String fin_mdfy_id;
+    String cust_id;
+    String cust_nm;
 	
 	
 	
+	public String getSales_oppt_nm() {
+		return sales_oppt_nm;
+	}
+	public void setSales_oppt_nm(String sales_oppt_nm) {
+		this.sales_oppt_nm = sales_oppt_nm;
+	}
+	public String getProd_qty() {
+		return prod_qty;
+	}
+	public void setProd_qty(String prod_qty) {
+		this.prod_qty = prod_qty;
+	}
+	public String getCust_id() {
+		return cust_id;
+	}
+	public void setCust_id(String cust_id) {
+		this.cust_id = cust_id;
+	}
+	public String getCust_nm() {
+		return cust_nm;
+	}
+	public void setCust_nm(String cust_nm) {
+		this.cust_nm = cust_nm;
+	}
+	public String getDiscount_unit_cd() {
+		return discount_unit_cd;
+	}
+	public void setDiscount_unit_cd(String discount_unit_cd) {
+		this.discount_unit_cd = discount_unit_cd;
+	}
 	public String getFin_mdfy_dt() {
 		return fin_mdfy_dt;
 	}
@@ -89,17 +124,23 @@ public class OpptPrdtVO {
 	@Override
 	public String toString() {
 		return "OpptPrdtVO [sales_oppt_id=" + sales_oppt_id 
+				+ ", sales_oppt_nm=" + sales_oppt_nm 
 				+ ", prod_id=" + prod_id 
-				+ ", prod_nm=" + prod_nm
+				+ ", prod_nm=" + prod_nm 
 				+ ", prod_div_cd=" + prod_div_cd 
-//				+ ", prod_sales_amt=" + prod_sales_amt 
-				+ ", sales_lev_cd="	+ sales_lev_cd 
+				+ ", sales_lev_cd=" + sales_lev_cd
+				+ ", discount_unit_cd=" + discount_unit_cd 
 				+ ", prod_price=" + prod_price 
+				+ ", prod_qty=" + prod_qty
 				+ ", fst_reg_dt=" + fst_reg_dt 
-				+ ", fst_reg_id="+ fst_reg_id 
-				+ ", fin_mdfy_dt=" + fin_mdfy_dt 
-				+ ", fin_mdfy_id=" + fin_mdfy_id + "]";
+				+ ", fst_reg_id=" + fst_reg_id 
+				+ ", fin_mdfy_dt=" + fin_mdfy_dt
+				+ ", fin_mdfy_id=" + fin_mdfy_id 
+				+ ", cust_id=" + cust_id 
+				+ ", cust_nm=" + cust_nm 
+				+ "]";
 	}
+
 	
 	
 	

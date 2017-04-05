@@ -555,7 +555,7 @@ public class OpptController {
 		return result;
 	}
 	
-	// 영업기회별 견적 삭제
+	// 영업기회별 상품 삭제
 	@RequestMapping(value = "/opptPrdtDelete", method = RequestMethod.GET)
 	public @ResponseBody int opptPrdtDelete(HttpSession session,
 			@RequestParam(value = "estim_id[]") List<String> estim_id) {
@@ -637,6 +637,43 @@ public class OpptController {
 
 	}
 
+	//영업기회별 상품 상세
+	@RequestMapping(value = "/opptPrdtDetail", method = RequestMethod.GET)
+	public ModelAndView opptPrdtDetail(HttpSession session,
+			String list_cust_id, String list_cust_nm,
+			String list_sales_oppt_nm, String list_sales_oppt_id, String prdtId,String flag) {
+		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/custcomp_opptPrdt_pop");
+		
+		List<EstVO> elcList = service.elcList();
+		List<EstVO> eduList = service.eduList();
+		List<String> eduCode = new ArrayList<String>();
+		for (EstVO est : eduList) {
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+		
+		List<OpptPrdtVO> prod = service.opptPrdtDetail(prdtId);
+		OpptPrdtVO detail = prod.get(prod.size() - 1);
+		prod.remove(prod.size() - 1);
+		mov.addObject("elcList", elcList);
+		mov.addObject("prod_id", detail.getProd_id());
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("sales_oppt_nm", list_sales_oppt_nm);
+		mov.addObject("sales_oppt_id", list_sales_oppt_id);
+		mov.addObject("detail", detail);
+		mov.addObject("prod", prod);
+		mov.addObject("sales_lev_cd", detail.getSales_lev_cd());
+		mov.addObject("prod_nm", detail.getProd_nm());
+//		mov.addObject("estim_valid_d", detail.getEstim_valid_d());
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+//		mov.addObject("memo", detail.getMemo());
+		mov.addObject("discount_unit_cd", detail.getDiscount_unit_cd());
+		mov.addObject("flg", "detail");
+		mov.addObject("flag", flag);
+		return mov;
+	}
 	//영업기회별 견적 상세
 	@RequestMapping(value = "/opptEstimDetail", method = RequestMethod.GET)
 	public ModelAndView opptEstimDetail(HttpSession session,

@@ -45,7 +45,7 @@ function tabClick(){
 		  	if(opptId !=""){
 		  		//영업기회 리스트 출력
 //		  		viewSalesActive(opptId);
-		  		opptprdtList(opptId)
+		  		opptprdtList(opptId);
 //		  		readDetail();
 		  	}
       });

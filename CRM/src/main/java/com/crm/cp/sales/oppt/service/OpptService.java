@@ -90,6 +90,7 @@ public interface OpptService {
 
 	int opptActiveUpdate(ActVO act);
 
+	//영입기회별 견적 상세정보
 	List<EstVO> opptEstimDetail(String estimId);
 
 	int opptEstimUpdate(Map<String,Object> map);
@@ -108,5 +109,7 @@ public interface OpptService {
 	List<OpptChartVO> C_oppt_status();
 	//영업기회별 상품 리스트 
 	List<OpptPrdtVO> opptprdtList(String sales_oppt_id);
+	//영업기회별 상품 상세정보
+	List<OpptPrdtVO> opptPrdtDetail(String prdtId);
 	
 }

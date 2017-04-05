@@ -124,18 +124,16 @@ $(document).ready(function(){
 							</td>
 						</tr>
 						<tr>
-							<th>예상매출액</th>
-							<td>
-								<input type="hidden" id="hexpt_sales_amt">
-								<input type="text" name="expt_sales_amt" id="expt_sales_amt" value="${opDetail.expt_sales_amt}" class="int"  readonly="readonly"/>
-							</td>
+<!-- 							<th>예상매출액</th> -->
+<!-- 							<td> -->
+<!-- 								<input type="hidden" id="hexpt_sales_amt"> -->
+<%-- 								<input type="text" name="expt_sales_amt" id="expt_sales_amt" value="${opDetail.expt_sales_amt}" class="int"  readonly="readonly"/> --%>
+<!-- 							</td> -->
 							<th>예상마감일자</th>
 							<td>
 								<input type="hidden" id="hexpt_fin_d">
 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
 							</td>
-						</tr>	
-						<tr>
 							<th>가능성</th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
@@ -153,7 +151,8 @@ $(document).ready(function(){
 									<option <c:if test="${detail.psblty_rate == 100 }">selected="selected"</c:if>>100</option>
 								</select>	
 							</td>
-						</tr>
+						</tr>	
+						
 						<tr>
 							<th>메모</th>
 							<td colspan="8" rowspan="2">

@@ -15,7 +15,8 @@
  * estimateAdd(ctx)								:	견적 추가 팝업
  * opptPdtAdd(ctx)								:	영업기회별 상품 추가 팝업
  * opptActiveDetailPopup(actvyId)				: 	영업활동 상세정보 팝업
- * opptEstimDetail(estimId)						:	견적 상세정보 팝업
+ * opptEstimDetail(estimId)						:	영업기회별 견적 상세정보 팝업
+ * opptPrdtDetail(prdtId)						:	영업기회별 상품 상세정보 팝업
  * opptActiveDelete()							:	영업활동 삭제								
  * opptEstimDelete()							:	견적 삭제
  * startCalendar(ctx)							:	달력 띄우기
@@ -31,6 +32,7 @@ $(function(){
 	addOperatingA(ctx);
 	actAllCheck();
 	estimAllCheck();
+	opptprdtAllCheck
 	searchCustcompListPopup(ctx);
 	custcompListPopup(ctx);
 	estimateAdd(ctx);
@@ -338,7 +340,7 @@ function opptModify(){
 			$("#hsales_lev_cd").val(result.opptVO.sales_lev_cd);
 			$("#hmemo").val(result.opptVO.memo);
 			
-//			readDetail();
+			readDetail();
 		},
 		error:function(request){
 			alert("error : " + request.status);
@@ -347,11 +349,19 @@ function opptModify(){
 }
 //입력창 비활성화 함수
 function readDetail(){
-	$("#opptDetail input[type='text'],textarea,input[type='date']").attr({
+	$("#opptDetail_M input[type='text'],textarea,input[type='date']").attr({
 		readonly:true,
 		style:'background-color: #eaeaea'  
 	});
 
+	$("#opptDetail_M select").attr({
+		disabled:true,
+	});	
+	$("#opptDetail input[type='text'],textarea,input[type='date']").attr({
+		readonly:true,
+		style:'background-color: #eaeaea'  
+	});
+	
 	$("#opptDetail select").attr({
 		disabled:true,
 	});	
@@ -371,7 +381,7 @@ function actAllCheck(){
 	});
 }
 
-//견적 모두 선택
+//영업기회별 견적 모두 선택
 function estimAllCheck(){
 	$("#estimAllSelect").click( function(){
 		var chk = $(this).is(":checked");
@@ -382,7 +392,7 @@ function estimAllCheck(){
 		}
 	});
 }
-//견적 모두 선택
+//영업기회별 상품 모두 선택
 function opptprdtAllCheck(){
 	$("#opptprdtAllSelect").click( function(){
 		var chk = $(this).is(":checked");
@@ -460,7 +470,7 @@ function opptActiveDetailPopup(actvyId){
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
-//견적 상세정보 팝업
+//영업기회별 견적 상세정보 팝업
 function opptEstimDetail(estimId){
 	var ctx = $('#ctx').val();
 	var list_sales_oppt_id = $('#salesId').val();
@@ -468,6 +478,15 @@ function opptEstimDetail(estimId){
 	var list_cust_nm = $('#hcust_nm').val();
 	var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
 	window.open(ctx+'/opptEstimDetail?list_sales_oppt_id='+list_sales_oppt_id+'&estimId='+estimId+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+//영업기회별 상품 상세정보 팝업
+function opptPrdtDetail(prdtId){
+	var ctx = $('#ctx').val();
+	var list_sales_oppt_id = $('#salesId').val();
+	var list_cust_id = list_sales_oppt_id;
+	var list_cust_nm = $('#hcust_nm').val();
+	var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
+	window.open(ctx+'/opptPrdtDetail?list_sales_oppt_id='+list_sales_oppt_id+'&prdtId='+prdtId+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 
@@ -501,7 +520,35 @@ function opptActiveDelete(){
 	}
 }
 
-//견적 삭제
+//영업기회별 상품 삭제
+function opptPrdtDelete(){
+	var salesId = $('#salesId').val();
+	if(salesId == "" || salesId == null ){
+		alert("영업기회를 선택해주세요.");
+	}else{
+		if(confirm("삭제 하시겠습니까? ")){
+			var opptId = $('#salesId').val();
+			var estim_id = [];
+			$('input[name=prod_id]:checked').each(function(){
+				estim_id.push($(this).val());
+			});
+			$.ajax({
+				type : 'get',
+				data :  { prod_id : prod_id },
+				datatype : 'json',
+				url : 'opptPrdtDelete',
+				success:function(result){
+					alert("견적이 삭제되었습니다.");
+					opptprdtList(opptId);
+				},
+				error:function(request){
+					alert("error : " + request.status);
+				}
+			});
+		}
+	}
+}
+//영업기회별 견적 삭제
 function opptEstimDelete(){
 	var salesId = $('#salesId').val();
 	if(salesId == "" || salesId == null ){
@@ -613,8 +660,8 @@ function opptprdtList(opptId){
 			}else{
 				$.each(result,function(i,data){
 					content += '<tr>'+	
-					'<th><input type=checkbox name=estim_id value='+data.prod_id+'></th>'+
-					'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.prod_id+'");>'+data.prod_nm+'</a></td>'+
+					'<th><input type=checkbox name=prod_id value='+data.prod_id+'></th>'+
+					'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptPrdtDetail("'+data.prod_id+'");>'+data.prod_nm+'</a></td>'+
 					'<td>'+data.sales_lev_cd+'</td>'+
 //					'<td>'+data.prdt_qty+'</td>'+
 					'<td style="text-align: right; padding-right: 5px;">'+comma(data.prod_price)+'</td>'+

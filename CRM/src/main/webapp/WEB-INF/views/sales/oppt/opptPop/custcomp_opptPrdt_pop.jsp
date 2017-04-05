@@ -60,8 +60,8 @@ $(function() {
 						<tr>
 							<th>상품명</th>
 							<td>
-								<input type="text" name="estim_nm" id="estim_nm" class="est_txt" value="${estim_nm}" autofocus="autofocus">
-								<input type="hidden" name="estim_id" id="estim_id" value="${estim_id}">
+								<input type="text" name="prod_nm" id="prod_nm" class="est_txt" value="${prod_nm}" autofocus="autofocus">
+								<input type="hidden" name="prod_id" id="prod_id" value="${prod_id}">
 							</td>
 						</tr>
 						<tr>

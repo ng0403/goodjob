@@ -633,6 +633,18 @@
 	</select>
 	
 	
+	<select id="opptPrdtDetail" resultType="com.crm.cp.sales.oppt.vo.OpptPrdtVO" parameterType="String">
+		select a.SALES_OPPT_ID, b.SALES_OPPT_NM, a.PROD_ID, c.PROD_NM, a.PROD_PRICE, a.PROD_QTY
+		      , b.CUST_ID, d.CUST_NM , b.SALES_LEV_CD
+		from PROD_OF_SALES_OPPT a, SALES_OPPORTUNITY b, PRODUCT c, CUSTOMER d
+		where 1=1 
+		and a.SALES_OPPT_ID=b.SALES_OPPT_ID(+)
+		and a.PROD_ID=c.PROD_ID
+		and b.CUST_ID=d.CUST_ID
+		and a.PROD_ID=#{prod_id}
+	</select>
+	
+	
 	<select id="opptEstimProdList" resultType="com.crm.cp.sales.est.vo.EstVO" parameterType="String">
 	select 
 	a.prod_id,

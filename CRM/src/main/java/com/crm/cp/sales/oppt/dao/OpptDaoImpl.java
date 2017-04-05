@@ -312,4 +312,17 @@ public class OpptDaoImpl implements OpptDao {
 				System.out.println("영업기회 상품 탭 Dao sales_oppt_id : " + sales_oppt_id);
 				return sqlsession.selectList("oppt.opptprdtList", sales_oppt_id);
 	}
+	
+	//영업기회별 상품 상세정보 출력
+	@Override
+	public List<OpptPrdtVO> opptPrdtDetail(String prdtId) {
+		String prod_id = prdtId;
+		System.out.println("prod_id :" + prod_id);
+		List<OpptPrdtVO> result = sqlsession.selectList("oppt.opptPrdtDetail", prod_id);
+		System.out.println("영업기회별 상품 상세정보 DAOImpl : " + result);
+//		List<OpptPrdtVO> prod = sqlsession.selectList("oppt.opptPrdtProdList",
+//				prod_id);
+//		prod.add(detail);
+		return result;
+	}
 }

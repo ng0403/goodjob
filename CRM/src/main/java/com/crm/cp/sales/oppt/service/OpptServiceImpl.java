@@ -245,5 +245,11 @@ public class OpptServiceImpl implements OpptService {
 				System.out.println("영업기회 상품 탭 Service sales_oppt_id : " + sales_oppt_id);
 				return dao.opptprdtList(sales_oppt_id);
 	}
+	//영업기회별 상품 상세정보
+	@Override
+	public List<OpptPrdtVO> opptPrdtDetail(String prdtId) {
+		System.out.println("영업기회별 상품 상세정보 prdtId : " + prdtId);
+		return dao.opptPrdtDetail(prdtId);
+	}
 
 }
