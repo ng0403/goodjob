@@ -215,5 +215,17 @@ public class EstDaoImpl implements EstDao{
 	
 	}
 
+	@Override
+	public int actCount(String estim_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("estimate.actCount", estim_id);
+	}
+
+	@Override
+	public List<ActVO> actList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("estimate.actList", map);
+	}
+
 	
 }

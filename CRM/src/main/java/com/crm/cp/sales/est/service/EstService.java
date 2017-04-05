@@ -59,4 +59,8 @@ public interface EstService {
 
 	int estDelete(String estim_id);
 
+	PagerVO actCount(Map<String, String> map);
+
+	List<ActVO> actList(Map<String, String> map);
+
 }

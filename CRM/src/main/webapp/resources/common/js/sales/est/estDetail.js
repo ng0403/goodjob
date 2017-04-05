@@ -689,6 +689,74 @@ function estUpdate(ctx){
 //		}
 //	});
 }
+
+//영업활동 리스트 조회
+function viewSalesActive(estim_id){
+	$("#activeList").children().remove();	
+	$.ajax({  
+		type : 'GET',
+		url : 'estimSalesActiveList',
+		data : {estim_id : estim_id},
+		dataType : 'json', 
+		success:function(result){
+			var content = "";
+			if(result.actList.length==0){
+				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
+			}
+			else{
+			$.each(result.actList,function(i,data){
+				start_d = data.strt_d;
+				end_d = data.end_d;
+				reg_dt = data.fst_reg_dt;
+				//영업활동 리스트 추가
+				content +="<tr>"+
+				"<th rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
+				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
+				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
+				"<td rowspan='2'>"+data.sales_actvy_div_nm+"</td>"+
+				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data.sales_oppt_nm+"</td>"+
+				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td>"+start_d+"</td>"+
+				"<td>"+data.strt_t+"</td>"+
+				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
+				"<td rowspan='2'>"+data.fst_reg_id+"</td>"+
+				"<td rowspan='2'>"+reg_dt+"</td>"+
+				"</tr>"+
+				"<tr>"+
+				"<td>"+end_d+"</td>"+
+				"<td>"+data.end_t+"</td>"+
+				"</tr>";	
+			});
+			
+			if(result.actList.length < 5){
+				for(var j = 0; j < 5-result.actList.length; j++){
+					content += "<th rowspan='2'></th>"+ 
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"<td rowspan='2'></td>"+
+					"</tr>"+
+					"<tr>"+
+					"<td></td>"+
+					"<td></td>"+
+					"</tr>";
+					
+					}
+				}
+			}	
+			$("#activeList").append(content);
+		},
+		error:function(request){
+			alert("error : " + request.status);
+		}
+	});
+}
+
 //입력창 비활성화 함수
 function readDetail(){
 	$("#estDetail input[type='text'],textarea,input[type='date']").attr({

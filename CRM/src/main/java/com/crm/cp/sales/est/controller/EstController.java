@@ -184,7 +184,7 @@ public class EstController {
 
 		/*List<EstVO> list = estInter.getList(map);*/
 		/*List<EstVO> elclist = estInter.elcList();*/
-		List<MenuVO> menuList = menuService.selectAll(session);
+		//List<MenuVO> menuList = menuService.selectAll(session);
 
 		List<EstVO> prodlist = estInter.getProdList(map);
 
@@ -193,13 +193,13 @@ public class EstController {
 		mov.addObject("prodlist", prodlist);
 		/*mov.addObject("page", page);*/
 		/*mov.addObject("ccPageNum", ccPageNum);*/
-		mov.addObject("menuList", menuList);
+		//mov.addObject("menuList", menuList);
 		/*mov.addObject("elclist", elclist);*/
 		 
 		return mov;
 	}
 
-	//영업기회 상세정보 ajax
+	//견적 상세정보 ajax
 	@RequestMapping(value="/estDetail", method=RequestMethod.GET)
 	public ModelAndView detail(HttpSession session, @ModelAttribute EstVO evo){
 		String estim_id = evo.getEstim_id();
@@ -353,25 +353,46 @@ public class EstController {
 		}
 		return mov;
 	}
-		//상세정보에서의 영업기회 리스트 
-		@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
-		public ModelAndView estActOpptList(HttpSession session,
-				@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
-				@RequestParam(value="keyword", defaultValue="") String keyword,
-				String cust_id){
-				System.out.println("cust_id : "+cust_id);
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("keyfield", keyfield);
-				map.put("cust_id", cust_id);
-				map.put("keyword", keyword);
-				List<Object> estActOpptList = estInter.estActOpptList(map);
-				ModelAndView mov = new ModelAndView("/sales/est/estPop/act_oppt_list_pop");
-			
-				mov.addObject("actOpptList", estActOpptList);
-				
+	
+	// 영업활동 tab list ajax
+	@RequestMapping(value = "/estimSalesActiveList", method = RequestMethod.GET)
+	@ResponseBody
+	Map<String, Object> actList(
+			@RequestParam Map<String, String> map,
+			@RequestParam(value = "actPageNum", defaultValue = "1") String actPageNum) {
+
+		map.put("actPageNum", actPageNum);
+		PagerVO page = estInter.actCount(map);
+		map.put("startRow", page.getStartRow() + "");
+		map.put("endRow", page.getEndRow() + "");
+		List<ActVO> actList = estInter.actList(map);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+
+		map2.put("page", page);
+		map2.put("actPageNum", actPageNum);
+		map2.put("actList", actList);
+
+		return map2;
+	}
+
+	//상세정보에서의 영업기회 리스트 
+	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
+	public ModelAndView estActOpptList(HttpSession session,
+			@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
+			@RequestParam(value="keyword", defaultValue="") String keyword,
+			String cust_id){
+		System.out.println("cust_id : "+cust_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("cust_id", cust_id);
+		map.put("keyword", keyword);
+		List<Object> estActOpptList = estInter.estActOpptList(map);
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/act_oppt_list_pop");
 		
-			return mov;
-		}
+		mov.addObject("actOpptList", estActOpptList);
+		
+		return mov;
+	}
 
 		//상세정보에서의 고객 리스트 
 		@RequestMapping(value="/estCustcompList" , method=RequestMethod.GET)

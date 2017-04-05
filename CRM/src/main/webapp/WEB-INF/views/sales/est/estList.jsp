@@ -149,7 +149,7 @@
 			</c:choose>
 <%-- 			<c:choose> --%>
 <%-- 				<c:when test="${ccPageNum == page.startPageNum && ccPageNum != page.endPageNum}"> --%>
-<%-- 			<%-- 	<c:when test="${ccPageNum == page.startPageNum}"> --%> --%>
+<%-- 			<%-- 	<c:when test="${ccPageNum == page.startPageNum}"> --%>
 <!-- 					<a id="pNum"> ◀ </a> -->
 <%-- 					<input type="text" id="ccPageInput" value="${page.startPageNum}" onkeypress="estPageInput(event);" /><a> / </a>  --%>
 <%-- 					<a  href="javascript:list('${page.endPageNum}');" id="pNum" >${page.endPageNum}</a> --%>
