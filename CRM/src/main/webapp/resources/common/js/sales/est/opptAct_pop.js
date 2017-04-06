@@ -108,11 +108,12 @@ function activeUpdate(ctx){
 			sales_oppt_nm : sales_oppt_nm
 		},
 		datatype : 'json',
-		url : ctx+'/opptActiveUpdate',
+		url : '/opptActiveUpdate',
 		success:function(result){
 			alert("정상적으로 수정 되었습니다.");
-			
-			window.opener.viewSalesActive(sales_oppt_id);
+			var estim_id=$("#estim_id",opener.document).val();
+			//console.log(estim_id);
+			window.opener.viewSalesActive(estim_id);
 			self.close();
 			
 			
@@ -125,50 +126,57 @@ function activeUpdate(ctx){
 }
 //영업활동명 클릭 시 detail값 가져오는 함수
 function opptActiveDetail(){
-	var actvyId = $('#sales_actvy_id').val();
-	$.ajax({
-		type : 'get',
-		datatype : 'json',
-		url : 'opptActiveDetail',
-		data : {actvyId : actvyId},
-		success:function(result){
-				$('#flg').val(result.flg);
-				if(result.flg=='detail'){
-					$('#activeButton').val('수정');
-				}
-				var sales_actvy_div_cd = result.detail.sales_actvy_div_cd;
-				var sales_actvy_type_cd = result.detail.sales_actvy_type_cd;
-				var sales_actvy_stat_cd = result.detail.sales_actvy_stat_cd;
-				var strt_t = result.detail.strt_t;
-				var end_t = result.detail.end_t;
-				var strt_d = result.detail.strt_d;
-				var end_d = result.detail.end_d;
-				$('#strt_d').val(strt_d);
-				$('#end_d').val(end_d);
-				$('#memo').val(result.detail.memo);
-				
-				$('input[name=sales_actvy_div_cd]').each(function(){
-					var v =$(this).val();
-					if(v==sales_actvy_div_cd){
-						$(this).attr("checked",true);
-					}
-				});
-				$('#cust_id').val(result.cust_id);
-				$('#cust_nm').val(result.cust_nm);
-				$('#sales_oppt_id').val(result.sales_oppt_id);
-				$('#sales_actvy_nm').val(result.detail.sales_actvy_nm);
-				
-				$('#sales_actvy_type_cd').children().eq(sales_actvy_type_cd).attr("selected",true);
-				$('#sales_actvy_stat_cd').children().eq(sales_actvy_stat_cd).attr("selected",true);
-				$('#strt_t_h').children().eq(strt_t.substring(0,2)).attr("selected",true);
-				$('#strt_t_m').children().eq(parseInt(strt_t.substring(3,4))+parseInt(1)).attr("selected",true);
-				$('#end_t_h').children().eq(end_t.substring(0,2)).attr("selected",true);
-				$('#end_t_m').children().eq(parseInt(end_t.substring(3,4))+parseInt(1)).attr("selected",true);
-		},
-		error:function(request){
-			alert("error : " + request);
-		}
-	});
+	$('#activeButton').val('수정');
+	var strt_t = $("#strt_t").val();
+	var end_t = $("#end_t").val();
+	$('#strt_t_h').children().eq(strt_t.substring(0,1)).prod("selected",true);
+	$('#strt_t_m').children().eq(parseInt(strt_t.substring(3,4))+parseInt(1)).attr("selected",true);
+	$('#end_t_h').children().eq(end_t.substring(0,1)).prod("selected",true);
+	$('#end_t_m').children().eq(parseInt(end_t.substring(3,4))+parseInt(1)).attr("selected",true);
+//	var actvyId = $('#sales_actvy_id').val();
+//	$.ajax({
+//		type : 'get',
+//		datatype : 'json',
+//		url : 'opptActiveDetail',
+//		data : {actvyId : actvyId},
+//		success:function(result){
+//				$('#flg').val(result.flg);
+//				if(result.flg=='detail'){
+//					$('#activeButton').val('수정');
+//				}
+//				var sales_actvy_div_cd = result.detail.sales_actvy_div_cd;
+//				var sales_actvy_type_cd = result.detail.sales_actvy_type_cd;
+//				var sales_actvy_stat_cd = result.detail.sales_actvy_stat_cd;
+//				var strt_t = result.detail.strt_t;
+//				var end_t = result.detail.end_t;
+//				var strt_d = result.detail.strt_d;
+//				var end_d = result.detail.end_d;
+//				$('#strt_d').val(strt_d);
+//				$('#end_d').val(end_d);
+//				$('#memo').val(result.detail.memo);
+//				
+//				$('input[name=sales_actvy_div_cd]').each(function(){
+//					var v =$(this).val();
+//					if(v==sales_actvy_div_cd){
+//						$(this).attr("checked",true);
+//					}
+//				});
+//				$('#cust_id').val(result.cust_id);
+//				$('#cust_nm').val(result.cust_nm);
+//				$('#sales_oppt_id').val(result.sales_oppt_id);
+//				$('#sales_actvy_nm').val(result.detail.sales_actvy_nm);
+//				
+//				$('#sales_actvy_type_cd').children().eq(sales_actvy_type_cd).attr("selected",true);
+//				$('#sales_actvy_stat_cd').children().eq(sales_actvy_stat_cd).attr("selected",true);
+//				$('#strt_t_h').children().eq(strt_t.substring(0,2)).attr("selected",true);
+//				$('#strt_t_m').children().eq(parseInt(strt_t.substring(3,4))+parseInt(1)).attr("selected",true);
+//				$('#end_t_h').children().eq(end_t.substring(0,2)).attr("selected",true);
+//				$('#end_t_m').children().eq(parseInt(end_t.substring(3,4))+parseInt(1)).attr("selected",true);
+//		},
+//		error:function(request){
+//			alert("error : " + request);
+//		}
+//	});
 }
 //영업활동 pop에서 사용되는 datePicker
 function startDatePicker(ctx){
@@ -283,7 +291,7 @@ function activeAdd(){
 			success:function(result){
 				alert("정상적으로 등록되었습니다.");
 				var estim_id=$("#estim_id",opener.document).val();
-				console.log(estim_id);
+				//console.log(estim_id);
 				window.opener.viewSalesActive(estim_id);
 				self.close();
 			},

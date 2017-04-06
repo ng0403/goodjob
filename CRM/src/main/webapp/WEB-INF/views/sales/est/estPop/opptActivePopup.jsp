@@ -18,15 +18,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영업활동 등록</title>
 </head>
-<body onload='javscript:if(${flg eq detail}) opptActiveDetail();'>
+<body onload='javscript:if(${flg eq "detail"}) opptActiveDetail();'>
 
 <div class="keymanview">
 	<input type="hidden" id="ctx" value="${ctx}">
-	<%-- <input type="hidden" id="custType" value="${custType}"/> --%>
+	<input type="hidden" id="custType" value="${custType}"/>
 	<input type="hidden" id="sales_oppt_id" value="${sales_oppt_id}">
-	<%-- <input type="hidden" id="sales_oppt_nm" value="${sales_oppt_nm}"> --%>
+	<input type="hidden" id="sales_oppt_nm" value="${sales_oppt_nm}">
 	<input type="hidden" id="flg" value="${flg}">
-	<%-- <input type="hidden" id="sales_actvy_id" value="${sales_actvy_id}"> --%>
+	<input type="hidden" id="sales_actvy_id" value="${sales_actvy_id}">
 	
 	<div id="title">
 		<div class="caption">● 영업활동 등록</div>
@@ -38,14 +38,14 @@
 					<tr>
 						<th>영업활동명</th>																	
 						<td>
-							<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" value="" >
+							<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" value="${detail.sales_actvy_nm }" >
 						</td>
 					</tr>
 					<tr>  
 						<th>고객사</th>
 						<td>
-							<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
-							<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+							<input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">
+							<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
 	<!-- 								<input type="button" id="customer" value="고객"> -->
 						</td>
 					</tr>
@@ -53,6 +53,9 @@
 						<th>영업활동구분</th>
 						<td>
 							<c:forEach items="${actDivCd}" var="list">
+								<c:if test="${detail.sales_actvy_div_cd eq list.sales_actvy_div_cd}">
+									<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}" checked="checked"/>${list.sales_actvy_div_nm}&nbsp;
+								</c:if>
 								<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}"/>${list.sales_actvy_div_nm}&nbsp; 
 							</c:forEach> 
 	<!-- 								<input type="radio" id = "" name="" class="sales_actvy_div_cd" value="" />영업기회 -->
@@ -61,15 +64,26 @@
 					<tr>
 						<th>시작일자</th>
 						<td>
-							<input type="text" id="strt_d" name="dstrt_d" class="int_act" value="" readonly="readonly">
+							<input type="text" id="strt_d" name="dstrt_d" class="int_act" value="${detail.strt_d}" readonly="readonly">
 						</td>
 					</tr>
 					 <tr>
 					 	<th>시작시간</th>
 					 	<td>
+					 		<input type="hidden" id="strt_t" value="${detail.strt_t }">
 							<select name="strt_t" id="strt_t_h" class="start_hour">
 								<option value="0" style="text-align: center;">==선택==</option>
-								<option value="01">1</option>
+								<c:forEach var="i" begin="01" end="24" step="1">
+									<c:choose>
+										<c:when test="${i < 10 }">
+											<option value="0${i }">${i }</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<!-- <option value="01">1</option>
 								<option value="02">2</option>
 								<option value="03">3</option>
 								<option value="04">4</option>
@@ -92,7 +106,7 @@
 								<option value="21">21</option>
 								<option value="22">22</option>
 								<option value="23">23</option>
-								<option value="24">24</option>									
+								<option value="24">24</option>	 -->								
 							</select>
 								시
 							<input type="hidden" id="hstrt_t_m">
@@ -117,6 +131,7 @@
 					<tr>
 						<th>종료시간</th>
 						<td>
+							<input type="hidden" id="end_t" value="${detail.end_t }">
 							<select name="ent_t" id="end_t_h" class="end_hour">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<option value="01">1</option>

@@ -777,6 +777,14 @@ function addOperating(){
 	});
 }
 
+//영업활동 상세정보 팝업
+function opptActiveDetailPopup(actvyId){
+	var popup;
+	var sales_oppt_nm = $('#sales_oppt_nm').val();
+	popup=window.open('opptActiveDetailEstPopup?actvyId='+actvyId +'&sales_oppt_nm='+sales_oppt_nm
+			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
 //입력창 비활성화 함수
 function readDetail(){
 	$("#estDetail input[type='text'],textarea,input[type='date']").attr({

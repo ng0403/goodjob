@@ -406,7 +406,35 @@ public class EstController {
 
 		return mov;
 
-		}
+	}
+	
+	// 영업활동 상세정보 팝업창
+	@RequestMapping(value = "/opptActiveDetailEstPopup", method = RequestMethod.GET)
+	public ModelAndView opptActiveDetailPopup(HttpSession session,
+			String actvyId
+			, String sales_oppt_nm) {
+
+		System.out.println("영업활동 상세정보 팝업 actvyId" + actvyId);
+		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
+		// 영업활동 유형코드 가져오기
+		List<ActVO> actTypeCd = opptService.actTypeCdList();
+		// 영업활동 상태코드 가져오기
+		List<ActVO> actStatCd = opptService.actStatCdList();
+		// 영업활동 구분코드 가져오기
+		List<ActVO> actDivCd = opptService.actDivCdList();
+		ActVO detail = opptService.actDetail(actvyId);
+		System.out.println("detail : " + detail);
+	
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("actDivCd", actDivCd);
+		mov.addObject("detail", detail);
+		mov.addObject("sales_actvy_id", actvyId);
+		mov.addObject("sales_oppt_nm", sales_oppt_nm);
+		mov.addObject("flg", "detail");
+		return mov;
+	}
 	
 	//상세정보에서의 영업기회 리스트 
 	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
