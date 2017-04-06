@@ -555,9 +555,10 @@ public class OpptController {
 		opptPrdtList.add(opptprdtVO);
 		for (int i = 0; i < opptPrdt_list.size(); i++) {
 			OpptPrdtVO vo = new OpptPrdtVO();
+			System.out.println("opptPrdt_list.get(++i) : "+ opptPrdt_list.get(++i));
 			vo.setProd_id(opptPrdt_list.get(i));
-			vo.setProd_nm(opptPrdt_list.get(++i));
-//			vo.setEstim_qty(opptPrdt_list.get(++i));
+//			vo.setProd_nm(opptPrdt_list.get(++i));S
+			vo.setProd_qty(opptPrdt_list.get(++i));
 			vo.setProd_price(opptPrdt_list.get(++i));
 			vo.setDiscount(opptPrdt_list.get(++i));
 			vo.setSup_price(opptPrdt_list.get(++i));
@@ -565,6 +566,7 @@ public class OpptController {
 			opptPrdtList.add(vo);
 		}
 		int result = service.opptPrdtAdd(opptPrdtList);
+		System.out.println("영업기회별 상품 추가 result : " + result);
 		return result;
 	}
 	

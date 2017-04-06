@@ -361,19 +361,34 @@
 	
 	<!-- 영업기회별 상품 추가 -->
 	<update id="opptprdtInsert" parameterType="com.crm.cp.sales.oppt.vo.OpptPrdtVO">
-		INSERT INTO SALES_ACTIVITY(
-		SALES_ACTVY_ID,SALES_ACTVY_NM, SALES_ACTVY_DIV_CD, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
-		,SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, MEMO,
-		FST_REG_ID,FIN_MDFY_ID)
-		VALUES(
-		(SELECT /*+INDEX_DESC(SALES_ACTIVITY PK_SALES_ACTIVITY)*/
-                   DECODE(MAX(SALES_ACTVY_ID), NULL, 'SAT0000001', 'SAT' || lpad( (SUBSTR( MAX( SALES_ACTVY_ID ), 4, 7 ) + 1), 7, 0)) SALES_ACTVY_ID
-                FROM 
-                   SALES_ACTIVITY
-              WHERE 
-                  ROWNUM=1)
-		,#{sales_actvy_nm},#{sales_actvy_div_cd},#{sales_actvy_type_cd},#{sales_oppt_id},
-		#{cust_id},#{sales_actvy_stat_cd},TO_DATE(#{strt_d},'yyyy-MM-dd'),#{strt_t},TO_DATE(#{end_d},'yyyy-MM-dd'),#{end_t},#{memo},#{fst_reg_id},#{fin_mdfy_id})
+		INSERT INTO PROD_OF_SALES_OPPT
+		  (
+		    SALES_OPPT_ID,
+		    PROD_ID,
+		    PROD_QTY,
+		    PROD_PRICE,
+		    SUP_PRICE,
+		    DISCOUNT,
+		    DISCOUNT_UNIT_CD,
+		    FST_REG_ID,
+		    FST_REG_DT,
+		    FIN_MDFY_ID,
+		    FIN_MDFY_DT
+		  )
+		  VALUES
+		  (
+		    #{sales_oppt_id},
+		    #{prod_id},
+		    #{prod_qty},
+		    #{prod_price},
+		    #{sup_price},
+		    #{discount},
+		    #{discount_unit_cd},
+		    'admin',
+		    sysdate,
+		    'admin',
+		    sysdate,
+		  );
 	</update>
 
 

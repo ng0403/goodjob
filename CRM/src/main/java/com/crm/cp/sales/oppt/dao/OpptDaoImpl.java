@@ -340,14 +340,14 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +opptPrdtList );
 		int result = 0;
 
-		result += sqlsession.insert("oppt.estimateAdd", opptPrdtList.get(0));
+		result += sqlsession.insert("oppt.opptprdtInsert", opptPrdtList.get(0));
 		System.out.println("result 1: " + result);
 		if (result == 1) {
 
 			for (int i = 1; i < opptPrdtList.size(); i++) {
 				System.out.println("opptEstimdd : " + opptPrdtList.get(i).toString());
 				opptPrdtList.get(i).setOpptprdt_seq(opptPrdtList.get(0).getOpptprdt_seq());
-				result += sqlsession.insert("oppt.estimateListAdd",	opptPrdtList.get(i));
+//				result += sqlsession.insert("oppt.estimateListAdd",	opptPrdtList.get(i));
 				System.out.println("result 2: " + result);
 
 			}

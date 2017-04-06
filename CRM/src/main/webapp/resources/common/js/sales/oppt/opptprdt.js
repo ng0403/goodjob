@@ -52,13 +52,13 @@ $(document).ready(function() {
 	});
 	
 	// 날짜 아이콘
-	$("#estim_valid_d").datepicker({
-	       changeMonth: true, //콤보 박스에 월 보이기
-	       changeYear: true, // 콤보 박스에 년도 보이기
-	       showOn: 'button', // 우측에 달력 icon 을 보인다.
-	       buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	       buttonImageOnly: true //달력에 icon 사용하기
-	}); 
+//	$("#estim_valid_d").datepicker({
+//	       changeMonth: true, //콤보 박스에 월 보이기
+//	       changeYear: true, // 콤보 박스에 년도 보이기
+//	       showOn: 'button', // 우측에 달력 icon 을 보인다.
+//	       buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+//	       buttonImageOnly: true //달력에 icon 사용하기
+//	}); 
 	//마우스를 손가락 손가락 모양으로 하고 여백주기
 	$('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
 	//날짜 형식을 0000-00-00으로 지정하기
@@ -282,7 +282,7 @@ function opptPrdtAdd(ctx){
 	var prod_id = [];
 	var prod_nm = [];
 	var sales_oppt_id = $('#sales_oppt_id').val();
-	var estim_qty = [];
+	var prod_qty = [];
 	var prod_price = $('#prod_price').text();
 	var sales_price = [];
 	var discount= [];
@@ -290,7 +290,7 @@ function opptPrdtAdd(ctx){
 //	var estim_valid_d = $('#estim_valid_d').val();
 	var sales_lev_cd = $('#sales_lev_cd').val();
 	var cust_id = $('#cust_id').val();
-	var estim_nm = $('#estim_nm').val();
+//	var estim_nm = $('#estim_nm').val();
 	var opptPrdt_list = [];
 	var memo = $('#memo').val();
 	var discount_unit_cd = [];
@@ -314,14 +314,14 @@ function opptPrdtAdd(ctx){
 		discount_unit_cd.push(cd);
 		prod_id.push($(this).children().children().val());
 		prod_nm.push($(this).children().eq(1).text());
-		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
+		prod_qty.push(uncomma($(this).children().eq(2).children().val()));
 		sales_price.push(uncomma($(this).children().eq(3).text()));
 		discount.push(uncomma($(this).children().eq(4).children().val()));
 		sup_price.push(uncomma($(this).children().eq(5).text()));
 		
 		opptPrdt_list.push(prod_id.pop());
 		opptPrdt_list.push(prod_nm.pop());
-		opptPrdt_list.push(estim_qty.pop());
+		opptPrdt_list.push(prod_qty.pop());
 		opptPrdt_list.push(sales_price.pop());
 		opptPrdt_list.push(discount.pop());
 		opptPrdt_list.push(sup_price.pop());
@@ -339,10 +339,11 @@ function opptPrdtAdd(ctx){
 		url : ctx+'/opptPrdtAdd',
 		dataType : 'json',
 		data : {
-			estim_valid_d : estim_valid_d,
-			estim_lev_cd : estim_lev_cd,
+//			estim_valid_d : estim_valid_d,
+//			estim_lev_cd : estim_lev_cd,
+			prod_id : prod_id, 
 			cust_id : cust_id,
-			estim_nm : estim_nm,
+//			estim_nm : estim_nm,
 			sales_oppt_id : sales_oppt_id,
 			memo : memo,
 			opptPrdt_list : opptPrdt_list
@@ -365,7 +366,7 @@ function opptPrdtUpdate(ctx){
 	var prod_id = [];
 	var prod_nm = [];
 	var sales_oppt_id = $('#sales_oppt_id').val();
-	var estim_qty = [];
+	var prod_qty = [];
 	var prod_price = $('#prod_price').text();
 	var sales_price = [];
 	var discount= [];
@@ -373,7 +374,7 @@ function opptPrdtUpdate(ctx){
 //	var estim_valid_d = $('#estim_valid_d').val();
 	var estim_lev_cd = $('#estim_lev_cd').val();
 	var cust_id = $('#cust_id').val();
-	var estim_nm = $('#estim_nm').val();
+//	var estim_nm = $('#estim_nm').val();
 	var opptPrdt_list = [];
 	var discount_unit_cd = [];
 	var memo = $('#memo').val();
@@ -397,8 +398,8 @@ function opptPrdtUpdate(ctx){
 		}
 		discount_unit_cd.push(cd);
 		prod_id.push($(this).children().children().val());
-		prod_nm.push($(this).children().eq(1).text());
-		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
+//		estim_nm.push($(this).children().eq(1).text());
+		prod_qty.push(uncomma($(this).children().eq(2).children().val()));
 		sales_price.push(uncomma($(this).children().eq(3).text()));
 		discount.push(uncomma($(this).children().eq(4).children().val()));
 		sup_price.push(uncomma($(this).children().eq(5).text()));
@@ -436,7 +437,7 @@ function opptPrdtUpdate(ctx){
 		},
 		success:function(){
 			alert("정상적으로 수정 되었습니다.");
-			window.opener.estimList(sales_oppt_id);
+			window.opener.opptprdtList(sales_oppt_id);
 			self.close();
 		},
 		error:function(request){
