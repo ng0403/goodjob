@@ -335,5 +335,33 @@ public class OpptDaoImpl implements OpptDao {
 //		prod.add(detail);
 		return result;
 	}
+	@Override
+	public int opptPrdtAdd(List<OpptPrdtVO> opptPrdtList) {
+		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +opptPrdtList );
+		int result = 0;
+
+		result += sqlsession.insert("oppt.estimateAdd", opptPrdtList.get(0));
+		System.out.println("result 1: " + result);
+		if (result == 1) {
+
+			for (int i = 1; i < opptPrdtList.size(); i++) {
+				System.out.println("opptEstimdd : " + opptPrdtList.get(i).toString());
+				opptPrdtList.get(i).setOpptprdt_seq(opptPrdtList.get(0).getOpptprdt_seq());
+				result += sqlsession.insert("oppt.estimateListAdd",	opptPrdtList.get(i));
+				System.out.println("result 2: " + result);
+
+			}
+		}
+		if (result > 1) {
+			result += sqlsession.insert("oppt.soeAdd", opptPrdtList.get(0));
+			System.out.println("result 3: " + result);
+			String sales_oppt_id = opptPrdtList.get(0).getSales_oppt_id();
+			sqlsession.update("estimate.opptLevMdfy",sales_oppt_id);
+		}
+		
+
+		System.out.println("result sum: " + result);
+		return result;
+	}
 
 }

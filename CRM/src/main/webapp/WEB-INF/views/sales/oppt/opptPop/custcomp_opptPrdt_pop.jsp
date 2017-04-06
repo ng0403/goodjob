@@ -78,19 +78,19 @@ $(function() {
 								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
 							</td>
 						</tr>
-						<tr>
-							<th>영업단계</th>
-							<td>
-								<select id="sales_lev_cd" class="sales_lev_cd" name="sales_lev_cd">
-									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach items="${otllist}" var="list" varStatus="status2">
-										<option value="<c:out value="${list.code}"/>"
-											<c:if test="${list.code == sales_lev_cd}">selected="selected"</c:if>>
-											${list.cd_nm}							
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<th>영업단계</th> -->
+<!-- 							<td> -->
+<!-- 								<select id="sales_lev_cd" class="sales_lev_cd" name="sales_lev_cd"> -->
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<%-- 									<c:forEach items="${otllist}" var="list" varStatus="status2"> --%>
+<%-- 										<option value="<c:out value="${list.code}"/>" --%>
+<%-- 											<c:if test="${list.code == sales_lev_cd}">selected="selected"</c:if>> --%>
+<%-- 											${list.cd_nm}							 --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</select> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr>
 							<th>메모</th>
 							<td><textarea class="int_memo" id="memo" cols="23" rows="5">${memo}</textarea></td>
@@ -100,13 +100,13 @@ $(function() {
 			
 			
 			<c:if test="${flag == 0}">
-			<div class="estimate_bt_position2">
+			<div class="estimate_bt_position2" style="margin-top: 7%;">
 				<input type="button" class="est_list_bt" value="저장" id="opptprdt_add" onclick="opptPrdtAdd('${ctx}');"/>
 				<input type="button" class="est_list_bt" value="취소" id="opptprdt_cancel"/>
 			</div>
 		</c:if>
 		<c:if test="${flag == 1}">
-			<div class="estimate_bt_position2">
+			<div class="estimate_bt_position2" style="margin-top: 7%;">
 				<input type="button" class="est_list_bt" value="저장" id="opptprdt_mdfy" onclick="opptPrdtUpdate('${ctx}');"/>
 				<input type="button" class="est_list_bt" value="취소" id="opptprdt_cancel"/>
 			</div>

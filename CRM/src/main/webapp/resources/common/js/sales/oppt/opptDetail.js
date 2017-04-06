@@ -447,7 +447,8 @@ function opptPdtAdd(ctx){
 	$('#opptPdtAdd').click(function(){
 		var hsales_lev_cd = $("#hsales_lev_cd").val();
 		var salesId = $('#salesId').val();
-		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
+		var sales_lev_cd = $('#sales_lev_cd').val();
+//		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
 		if(salesId == "" || salesId == null ){
 			alert("영업기회를 선택해주세요.");
 		}else{
@@ -456,7 +457,7 @@ function opptPdtAdd(ctx){
 			var list_cust_nm = $('#hcust_nm').val();
 			var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
 			var pageNum=$('#pageNum').val();
-			window.open(ctx+'/opptPrdtpopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/opptPrdtpopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&sales_lev_cd='+sales_lev_cd+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 }

@@ -495,22 +495,28 @@ public class OpptController {
 	//영업기회별 상품 추가 팝업 open Controller
 	@RequestMapping(value = "/opptPrdtpopup", method = RequestMethod.GET)
 	public ModelAndView prdtPopup(HttpSession session, String list_cust_id,
-			String list_cust_nm, String list_sales_oppt_nm,
-			String list_sales_oppt_id,String pageNum,String flag) {
+			String list_cust_nm
+			, String list_sales_oppt_nm
+			, String list_sales_oppt_id
+			, String pageNum
+			, String flag
+//			, String sales_lev_cd
+			) {
 		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/custcomp_opptPrdt_pop");
 		
-		List<OpptVO> otllist = service.opptOtlList();//견적 콤보박스
+//		List<OpptVO> otllist = service.opptOtlList();//견적 콤보박스
 		List<EstVO> eduList = service.eduList();
 		List<String> eduCode = new ArrayList<String>();
 		for (EstVO est : eduList) {
 			eduCode.add(est.getCode());
 			eduCode.add(est.getCd_nm());
 		}
-		mov.addObject("otllist", otllist);
+//		mov.addObject("otllist", otllist);
 		mov.addObject("cust_id", list_cust_id);
 		mov.addObject("cust_nm", list_cust_nm);
 		mov.addObject("sales_oppt_nm", list_sales_oppt_nm);
 		mov.addObject("sales_oppt_id", list_sales_oppt_id);
+//		mov.addObject("sales_lev_cd", sales_lev_cd);
 		mov.addObject("flg", "add");
 		mov.addObject("flag", flag);
 		mov.addObject("eduList", eduList);
@@ -542,23 +548,23 @@ public class OpptController {
 	@ResponseBody
 	public int opptPrdtAdd(
 			HttpSession session,
-			@RequestParam(value = "est_list[]", required = false) List<String> est_list,
-			EstVO est) {
+			@RequestParam(value = "opptPrdt_list[]", required = false) List<String> opptPrdt_list,
+			OpptPrdtVO opptprdtVO) {
 		
-		List<EstVO> estList = new ArrayList<EstVO>(0);
-		estList.add(est);
-		for (int i = 0; i < est_list.size(); i++) {
-			EstVO vo = new EstVO();
-			vo.setProd_id(est_list.get(i));
-			vo.setProd_nm(est_list.get(++i));
-			vo.setEstim_qty(est_list.get(++i));
-			vo.setSales_price(est_list.get(++i));
-			vo.setDiscount(est_list.get(++i));
-			vo.setSup_price(est_list.get(++i));
-			vo.setDiscount_unit_cd(est_list.get(++i));
-			estList.add(vo);
+		List<OpptPrdtVO> opptPrdtList = new ArrayList<OpptPrdtVO>(0);
+		opptPrdtList.add(opptprdtVO);
+		for (int i = 0; i < opptPrdt_list.size(); i++) {
+			OpptPrdtVO vo = new OpptPrdtVO();
+			vo.setProd_id(opptPrdt_list.get(i));
+			vo.setProd_nm(opptPrdt_list.get(++i));
+//			vo.setEstim_qty(opptPrdt_list.get(++i));
+			vo.setProd_price(opptPrdt_list.get(++i));
+			vo.setDiscount(opptPrdt_list.get(++i));
+			vo.setSup_price(opptPrdt_list.get(++i));
+			vo.setDiscount_unit_cd(opptPrdt_list.get(++i));
+			opptPrdtList.add(vo);
 		}
-		int result = service.opptEstimAdd(estList);
+		int result = service.opptPrdtAdd(opptPrdtList);
 		return result;
 	}
 	

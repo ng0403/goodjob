@@ -259,6 +259,11 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회별 상품 상세정보 prdtId : " + prdtId);
 		return dao.opptPrdtDetail(prdtId);
 	}
+	@Override
+	public int opptPrdtAdd(List<OpptPrdtVO> opptPrdtList) {
+		System.out.println("영업기회별상품 추가 Service opptPrdtList : " +opptPrdtList );
+		return dao.opptPrdtAdd(opptPrdtList);
+	}
 
 
 }
