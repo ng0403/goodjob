@@ -84,5 +84,6 @@ html,body{
 }
 
 #pageSpace {
+	width: 100%;
 	text-align: center;
 }
