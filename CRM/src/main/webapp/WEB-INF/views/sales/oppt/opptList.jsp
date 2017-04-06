@@ -106,27 +106,74 @@
 		<!-- 페이징 처리 -->
 		<div id="pageSpace">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="pageNum" value="${pageNum}">
+			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 			<c:choose>
-			<c:when test="${pageNum == page.startPageNum && pageNum != page.endPageNum}">
-				<a id="pNum" style="text-decoration: none;"> ◀ </a>
-				<input type="text" id="ccPageInput" size="1px" value="${page.startPageNum}" onkeypress="opptPageInput(event);"/><a style="text-decoration: none;"> / </a> 
-				<a href="#" onclick="opportunityList('${page.endPageNum}');" id="pNum" >${page.endPageNum}</a>
-				<a href="#" onclick="opportunityList('${pageNum+1}');" id="pNum" style="text-decoration: none;"> ▶ </a>
-			</c:when>
-			<c:when test="${pageNum == page.endPageNum}">
-				<a href="#" onclick="opportunityList('${pageNum-1}');" id="pNum" style="text-decoration: none;"> ◀ </a>
-				<input type="text" id="ccPageInput" size="1px" value="${page.endPageNum}" onkeypress="opptPageInput(event);"/> <a style="text-decoration: none;"> / </a> 
-				<a href="#" onclick="opportunityList('${page.endPageNum}');" id="pNum" style="text-decoration: none;">${page.endPageNum}</a>
-				<a id="pNum" style="text-align: none;"> ▶ </a>
-			</c:when>
-			<c:otherwise>
-				<a href="#" onclick="opportunityList('${pageNum-1}');" id="pNum" style="text-decoration: none;"> ◀ </a>
-				<input type="text" id="ccPageInput" size="1px" value="${pageNum}" onkeypress="opptPageInput(event);"/><a style="text-decoration: none;"> / </a> 
-				<a href="#" onclick="opportunityList('${page.endPageNum}');" id="pNum" style="text-decoration: none;">${page.endPageNum}</a>
-				<a href="#" onclick="opportunityList('${pageNum+1}');" id="pNum" style="text-decoration: none;"> ▶ </a>
-			</c:otherwise>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀◀</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:opportunityList(${page.prevStepPage})" class="prev">◀◀</a>
+	    		</c:when>
 			</c:choose>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:opportunityList(${page.prevPageNum})" class="prev">◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+				<c:choose>
+					<c:when test="${i eq ccPageNum }">
+						<b>
+							<a  href="javascript:opportunityList('${i}');" id="pNum" class="choice">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:opportunityList('${i}');">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+	       			<a class="next">▶</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:opportunityList(${page.nextPageNum})" class="next">▶</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+	       			<a class="next">▶▶</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:opportunityList(${page.nextStepPage})" class="next">▶▶</a>
+	    		</c:when>
+			</c:choose>
+<!-- 			<div id="pageSpace"> -->
+<%-- 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/> --%>
+<%-- 			<input type="hidden" id="pageNum" value="${pageNum}"> --%>
+<%-- 			<c:choose> --%>
+<%-- 			<c:when test="${pageNum == page.startPageNum && pageNum != page.endPageNum}"> --%>
+<!-- 				<a id="pNum" style="text-decoration: none;"> ◀ </a> -->
+<%-- 				<input type="text" id="ccPageInput" size="1px" value="${page.startPageNum}" onkeypress="opptPageInput(event);"/><a style="text-decoration: none;"> / </a>  --%>
+<%-- 				<a href="#" onclick="opportunityList('${page.endPageNum}');" id="pNum" >${page.endPageNum}</a> --%>
+<%-- 				<a href="#" onclick="opportunityList('${pageNum+1}');" id="pNum" style="text-decoration: none;"> ▶ </a> --%>
+<%-- 			</c:when> --%>
+<%-- 			<c:when test="${pageNum == page.endPageNum}"> --%>
+<%-- 				<a href="#" onclick="opportunityList('${pageNum-1}');" id="pNum" style="text-decoration: none;"> ◀ </a> --%>
+<%-- 				<input type="text" id="ccPageInput" size="1px" value="${page.endPageNum}" onkeypress="opptPageInput(event);"/> <a style="text-decoration: none;"> / </a>  --%>
+<%-- 				<a href="#" onclick="opportunityList('${page.endPageNum}');" id="pNum" style="text-decoration: none;">${page.endPageNum}</a> --%>
+<!-- 				<a id="pNum" style="text-align: none;"> ▶ </a> -->
+<%-- 			</c:when> --%>
+<%-- 			<c:otherwise> --%>
+<%-- 				<a href="#" onclick="opportunityList('${pageNum-1}');" id="pNum" style="text-decoration: none;"> ◀ </a> --%>
+<%-- 				<input type="text" id="ccPageInput" size="1px" value="${pageNum}" onkeypress="opptPageInput(event);"/><a style="text-decoration: none;"> / </a>  --%>
+<%-- 				<a href="#" onclick="opportunityList('${page.endPageNum}');" id="pNum" style="text-decoration: none;">${page.endPageNum}</a> --%>
+<%-- 				<a href="#" onclick="opportunityList('${pageNum+1}');" id="pNum" style="text-decoration: none;"> ▶ </a> --%>
+<%-- 			</c:otherwise> --%>
+<%-- 			</c:choose> --%>
 		</div>
 	</form>	
 	

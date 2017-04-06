@@ -261,31 +261,95 @@ function opportunityList(page){
 				}
 			}
 			$("#pageSpace").children().remove();	
-			var page = '';
-			page = "<input type='hidden' id='endPageNum' value="+result.page.endPageNum+">"+
-				   "<input type='hidden' id='pageNum' value="+result.searchInfo.pageNum+">";
-			if (result.searchInfo.pageNum == result.page.startPageNum  && result.searchInfo.pageNum != result.page.endPageNum) {
-				page += "<a id='pNum'>◀</a><a>&nbsp;</a>" +												
-				"<input type='text' id='ccPageInput' size='1px' value="+result.page.startPageNum+" onkeypress=\"opptPageInput(event);\"> "+ "<a>/</a> " +
-				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+");\" id='pNum' >"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
-				"<a href='#' onclick=\"opportunityList("+(parseInt(result.searchInfo.pageNum)+parseInt(1))+");\" id='pNum'>▶</a>";
-			}else if (result.searchInfo.pageNum == result.page.endPageNum) {
-				page += "<a href='#' onclick=\"opportunityList("+(result.searchInfo.pageNum-1)+");\" id='pNum'>◀</a><a>&nbsp;</a>"+
-				"<input type='text' id='ccPageInput' size='1px' value="+result.page.endPageNum+" onkeypress=\"opptPageInput(event);\" >"+ "<a>/</a> " +
-				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+")\" id='pNum'>"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
-				"<a id='pNum'>▶</a>";
-			}else {
-				page += "<a href='#' onclick=\"opportunityList("+(result.searchInfo.pageNum-1)+");\" id='pNum' >◀</a><a>&nbsp;</a>"+
-				"<input type='text' id='ccPageInput' size='1px' value="+result.searchInfo.pageNum+" onkeypress=\"opptPageInput(event);\"> "+ "<a>/</a> " +
-				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+");\" id='pNum'>"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
-				"<a href='#' onclick=\"opportunityList("+(parseInt(result.searchInfo.pageNum)+parseInt(1))+");\" id='pNum'>▶</a>";
-			}
-			$("#pageSpace").append(page);
+			$("#pageSpace").children().remove();
+			var ccPageNum = result.ccPageNum;
+			var startPageNum = result.page.startPageNum;
+			var endPageNum = result.page.endPageNum;
+			var firstPageCount = result.page.firstPageCount;
+			var totalPageCount = result.page.totalPageCount;
+			var prevPageNum = result.page.prevPageNum;
+			var nextPageNum = result.page.nextPageNum;
+			var prevStepPage = result.page.prevStepPage;
+			var nextStepPage = result.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+//			var page = '';
+//			page = "<input type='hidden' id='endPageNum' value="+result.page.endPageNum+">"+
+//				   "<input type='hidden' id='pageNum' value="+result.searchInfo.pageNum+">";
+//			if (result.searchInfo.pageNum == result.page.startPageNum  && result.searchInfo.pageNum != result.page.endPageNum) {
+//				page += "<a id='pNum'>◀</a><a>&nbsp;</a>" +												
+//				"<input type='text' id='ccPageInput' size='1px' value="+result.page.startPageNum+" onkeypress=\"opptPageInput(event);\"> "+ "<a>/</a> " +
+//				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+");\" id='pNum' >"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
+//				"<a href='#' onclick=\"opportunityList("+(parseInt(result.searchInfo.pageNum)+parseInt(1))+");\" id='pNum'>▶</a>";
+//			}else if (result.searchInfo.pageNum == result.page.endPageNum) {
+//				page += "<a href='#' onclick=\"opportunityList("+(result.searchInfo.pageNum-1)+");\" id='pNum'>◀</a><a>&nbsp;</a>"+
+//				"<input type='text' id='ccPageInput' size='1px' value="+result.page.endPageNum+" onkeypress=\"opptPageInput(event);\" >"+ "<a>/</a> " +
+//				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+")\" id='pNum'>"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
+//				"<a id='pNum'>▶</a>";
+//			}else {
+//				page += "<a href='#' onclick=\"opportunityList("+(result.searchInfo.pageNum-1)+");\" id='pNum' >◀</a><a>&nbsp;</a>"+
+//				"<input type='text' id='ccPageInput' size='1px' value="+result.searchInfo.pageNum+" onkeypress=\"opptPageInput(event);\"> "+ "<a>/</a> " +
+//				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+");\" id='pNum'>"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
+//				"<a href='#' onclick=\"opportunityList("+(parseInt(result.searchInfo.pageNum)+parseInt(1))+");\" id='pNum'>▶</a>";
+//			}
+//			$("#pageSpace").append(page);
 		},
 		error:function(request){
 			alert("error : " + request);
 		}
 	});
+}
+
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var stepPrev = $("<a>");
+	stepPrev.addClass("prev");
+	stepPrev.html("◀◀");
+	if(ccPageNum != firstPageCount){
+		stepPrev.attr("href","javascript:opportunityList("+prevStepPage+")");
+	}
+	$("#pageSpace").append(stepPrev);
+	var prevPage = $("<a>");
+	prevPage.addClass("prev");
+	prevPage.html("◀");
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:opportunityList("+prevPageNum+")");
+	}
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.attr("href","javascript:opportunityList("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.addClass("choice");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("next");
+	nextPage.html("▶");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:opportunityList("+nextPageNum+")");
+	}
+	$("#pageSpace").append(nextPage);
+	var stepNext = $("<a>");
+	stepNext.addClass("next");
+	stepNext.html("▶▶");
+	if(ccPageNum != totalPageCount){
+		stepNext.attr("href","javascript:opportunityList("+nextStepPage+")");
+	}
+	$("#pageSpace").append(stepNext);
 }
 //영업활동 리스트 조회
 function viewSalesActive(opptId){
