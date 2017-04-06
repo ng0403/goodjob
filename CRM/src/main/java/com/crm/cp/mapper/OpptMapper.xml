@@ -82,7 +82,7 @@
 		where 1=1 
 		and a.cust_id=c.cust_id 
 		and a.act_yn='Y'
-		 order by a.sales_oppt_id desc
+		 order by a.fin_mdfy_dt desc
 		)d
 	</select>
 
@@ -201,7 +201,7 @@
 		cust_id = #{cust_id},
 		sales_oppt_nm = #{sales_oppt_nm},
 		sales_lev_cd = #{sales_lev_cd},
-		expt_sales_amt = #{expt_sales_amt},
+<!-- 		expt_sales_amt = #{expt_sales_amt}, -->
 		psblty_rate= #{psblty_rate},
 		sales_oppt_stat_cd= #{sales_oppt_stat_cd},
 		memo= #{memo},
@@ -218,7 +218,7 @@
 		,CUST_ID
 		,SALES_OPPT_NM
 		,SALES_LEV_CD
-		,EXPT_SALES_AMT
+<!-- 		,EXPT_SALES_AMT -->
 		,EXPT_FIN_D
 		,PSBLTY_RATE
 		,SALES_OPPT_STAT_CD
@@ -236,7 +236,7 @@
 		, #{cust_id}
 		, #{sales_oppt_nm}
 		, #{sales_lev_cd}
-		, #{expt_sales_amt}
+<!-- 		, #{expt_sales_amt} -->
 		, TO_DATE(#{expt_fin_d},'yyyy-MM-dd')
 		, #{psblty_rate}
 		, #{sales_oppt_stat_cd}
@@ -247,6 +247,41 @@
 		, sysdate
 		,'Y'
 		)
+	</update>
+	<!-- 영업기회단계리스트  추가 -->
+	<update id="addOpptStep" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+
+		INSERT INTO SALES_OPPT_STEP
+		  (
+		    SALES_OPPT_ID,
+		    SALES_LEV_CD,
+		    FIN_MDFY_DT,
+		    SALES_OPPOR_NM,
+<!-- 		    EXPT_SALES_AMT, -->
+		    EXPT_FIN_D,
+		    PSBLTY_RATE,
+		    SALES_OPPT_STAT_CD,
+		    REG_ID_NM,
+		    REG_DT
+		  )
+		  VALUES
+		  (
+		 <if test="sales_oppt_id !=null and sales_oppt_id !=''">
+			#{sales_oppt_id}
+		</if>
+		 <if test="sales_oppt_id == ''">
+			 (select sales_oppt_id from sales_opportunity where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPORTUNITY where 1=1))
+		</if>
+			, #{sales_lev_cd}
+			, sysdate
+			, #{sales_oppt_nm}
+<!-- 			, #{expt_sales_amt} -->
+			, TO_DATE(#{expt_fin_d},'yyyy-MM-dd')
+			, #{psblty_rate}
+			, #{sales_oppt_stat_cd}
+			, #{fin_mdfy_id}
+			, sysdate
+		  )
 	</update>
 
 	<!-- 고객사 리스트 검색 -->
@@ -309,6 +344,23 @@
 
 	<!-- 영업활동 추가 -->
 	<update id="actInsert" parameterType="com.crm.cp.sales.act.vo.ActVO">
+		INSERT INTO SALES_ACTIVITY(
+		SALES_ACTVY_ID,SALES_ACTVY_NM, SALES_ACTVY_DIV_CD, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
+		,SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, MEMO,
+		FST_REG_ID,FIN_MDFY_ID)
+		VALUES(
+		(SELECT /*+INDEX_DESC(SALES_ACTIVITY PK_SALES_ACTIVITY)*/
+                   DECODE(MAX(SALES_ACTVY_ID), NULL, 'SAT0000001', 'SAT' || lpad( (SUBSTR( MAX( SALES_ACTVY_ID ), 4, 7 ) + 1), 7, 0)) SALES_ACTVY_ID
+                FROM 
+                   SALES_ACTIVITY
+              WHERE 
+                  ROWNUM=1)
+		,#{sales_actvy_nm},#{sales_actvy_div_cd},#{sales_actvy_type_cd},#{sales_oppt_id},
+		#{cust_id},#{sales_actvy_stat_cd},TO_DATE(#{strt_d},'yyyy-MM-dd'),#{strt_t},TO_DATE(#{end_d},'yyyy-MM-dd'),#{end_t},#{memo},#{fst_reg_id},#{fin_mdfy_id})
+	</update>
+	
+	<!-- 영업기회별 상품 추가 -->
+	<update id="opptprdtInsert" parameterType="com.crm.cp.sales.oppt.vo.OpptPrdtVO">
 		INSERT INTO SALES_ACTIVITY(
 		SALES_ACTVY_ID,SALES_ACTVY_NM, SALES_ACTVY_DIV_CD, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
 		,SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, MEMO,
@@ -412,7 +464,7 @@
 		    , product b
 		    , sales_opportunity c
 		where 1=1
-		  and a.SALES_OPPT_ID=c.SALES_OPPT_ID
+		  and a.SALES_OPPT_ID(+)=c.SALES_OPPT_ID
 		  and a.PROD_ID=b.PROD_ID
 		  and a.SALES_OPPT_ID=#{sales_oppt_id}
 		    
@@ -421,9 +473,9 @@
 <!-- 	상품 목록 조회 -->
 	<select id="prodList"  resultType="com.crm.cp.standard.prod.vo.ProdVO" >
 		select 
-		prod_id,
-		prod_nm,
-		prod_price
+			prod_id,
+			prod_nm,
+			prod_price
 		from product
 		<where>
 		<if test="keyfield=='pt_id'">

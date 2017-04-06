@@ -72,13 +72,21 @@ public class OpptDaoImpl implements OpptDao {
 		return sqlsession.update("oppt.modify", detail);
 	}
 
+	//영업기회 추가
 	@Override
 	public int opptAdd(OpptVO add) {
 		// TODO Auto-generated method stub
 		int seq = sqlsession.insert("oppt.add", add);
 		return seq;
 	}
-
+	//영업기회단계 추가
+	@Override
+	public int addOpptStep(OpptVO add) {
+		System.out.println("add : " + add);
+		int seq = sqlsession.insert("oppt.addOpptStep", add);
+		System.out.println("seq : " + seq);
+		return seq;
+	}
 	@Override
 	public List<Object> opptCustComp(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -310,7 +318,9 @@ public class OpptDaoImpl implements OpptDao {
 	public List<OpptPrdtVO> opptprdtList(String sales_oppt_id) {
 		// TODO Auto-generated method stub
 				System.out.println("영업기회 상품 탭 Dao sales_oppt_id : " + sales_oppt_id);
-				return sqlsession.selectList("oppt.opptprdtList", sales_oppt_id);
+				List<OpptPrdtVO> result = sqlsession.selectList("oppt.opptprdtList", sales_oppt_id);
+				System.out.println("영업기회 상품 탭 Dao result : " + result);
+				return result;
 	}
 	
 	//영업기회별 상품 상세정보 출력
@@ -325,4 +335,5 @@ public class OpptDaoImpl implements OpptDao {
 //		prod.add(detail);
 		return result;
 	}
+
 }

@@ -79,11 +79,17 @@ public class OpptServiceImpl implements OpptService {
 		// TODO Auto-generated method stub
 		return dao.opptModify(detail);
 	}
-
+//영업기회 추가
 	@Override
 	public int opptAdd(OpptVO add) {
 		// TODO Auto-generated method stub
 		return dao.opptAdd(add);
+	}
+	//영업기회단계 추가
+	@Override
+	public int addOpptStep(OpptVO add) {
+		System.out.println("add : " + add);
+		return dao.addOpptStep(add);
 	}
 
 	@Override
@@ -242,8 +248,10 @@ public class OpptServiceImpl implements OpptService {
 	@Override
 	public List<OpptPrdtVO> opptprdtList(String sales_oppt_id) {
 		// TODO Auto-generated method stub
-				System.out.println("영업기회 상품 탭 Service sales_oppt_id : " + sales_oppt_id);
-				return dao.opptprdtList(sales_oppt_id);
+		System.out.println("영업기회 상품 탭 Service sales_oppt_id : " + sales_oppt_id);
+		List<OpptPrdtVO> result =dao.opptprdtList(sales_oppt_id);
+		System.out.println("영업기회 상품 탭 Service result : " + result);
+		return result;
 	}
 	//영업기회별 상품 상세정보
 	@Override
@@ -251,5 +259,6 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회별 상품 상세정보 prdtId : " + prdtId);
 		return dao.opptPrdtDetail(prdtId);
 	}
+
 
 }

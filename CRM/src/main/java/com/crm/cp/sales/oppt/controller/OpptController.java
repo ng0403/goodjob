@@ -239,10 +239,13 @@ public class OpptController {
 	@ResponseBody ModelAndView opptModify(HttpSession session, OpptVO detail, int pageNum) {
 		System.out.println("Detail Edit Controller");
 		detail.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println("detail : " + detail);
 		int result = service.opptModify(detail);
 		System.out.println("Detail Edit Result : " + result);
 		ModelAndView mov = new ModelAndView("oppt");
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
+		int result2 = service.addOpptStep(detail);//영업기회단계리스트추가
+		System.out.println("result2 : " + result2);
 		Map<String, Object> opptMap = new HashMap<String, Object>();
 		opptMap.put("opptVO", opptVO);
 		opptMap.put("pageNum", pageNum);
@@ -258,6 +261,10 @@ public class OpptController {
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = service.opptAdd(add);
+		int result2 = service.addOpptStep(add);//영업기회단계리스트추가
+		System.out.println("result1 : " + result);
+		System.out.println("result2 : " + result2);
+		
 		return result;
 	}
 

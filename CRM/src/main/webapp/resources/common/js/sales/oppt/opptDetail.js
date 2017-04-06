@@ -211,9 +211,9 @@ function opptAdd(){
 	}else if(sales_lev_cd=="0" || sales_lev_cd==null){
 		alert("영업단계를 선택해 주세요.");
 		return false;
-	}else if(expt_sales_amt=="" || expt_sales_amt==null){
-		alert("예상 매출액을 입력해 주세요");
-		return false;
+//	}else if(expt_sales_amt=="" || expt_sales_amt==null){
+//		alert("예상 매출액을 입력해 주세요");
+//		return false;
 	}else if(sales_lev_cd=="" || sales_lev_cd==null){
 		alert("예상마감일자를 선택해 주세요.");
 		return false;
@@ -228,7 +228,7 @@ function opptAdd(){
 			sales_oppt_id : sales_oppt_id,
 			sales_oppt_nm : sales_oppt_nm,
 			sales_lev_cd : sales_lev_cd,
-			expt_sales_amt : expt_sales_amt,
+//			expt_sales_amt : expt_sales_amt,
 			expt_fin_d : expt_fin_d,
 			psblty_rate : psblty_rate,
 			sales_oppt_stat_cd : sales_oppt_stat_cd,
@@ -275,9 +275,9 @@ function opptModify(){
 	}else if(sales_lev_cd=="0" || sales_lev_cd==null){
 		alert("영업단계를 선택해 주세요.");
 		return false;
-	}else if(expt_sales_amt=="" || expt_sales_amt==null){
-		alert("예상 매출액을 입력해 주세요");
-		return false;
+//	}else if(expt_sales_amt=="" || expt_sales_amt==null){
+//		alert("예상 매출액을 입력해 주세요");
+//		return false;
 	}else if(sales_lev_cd=="" || sales_lev_cd==null){
 		alert("예상마감일자를 선택해 주세요.");
 		return false;
@@ -418,7 +418,7 @@ function addOperatingA(ctx){
 //		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
 		
 		window.open(ctx+'/opptActivePopup?list_sales_oppt_id='+list_sales_oppt_id+
-				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 }

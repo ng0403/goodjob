@@ -39,6 +39,8 @@ public interface OpptDao {
 
 	//영업기회 추가
 	int opptAdd(OpptVO add);
+	//영업기회단계 추가
+	int addOpptStep(OpptVO add);
 
 	//영업기회 상세정보 고객 리스트
 	List<Object> opptCustComp(Map<String, Object> map);
