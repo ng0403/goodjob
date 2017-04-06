@@ -44,7 +44,7 @@ function activeUpdate(ctx){
 	var sales_actvy_nm = $('#sales_actvy_nm').val();
 	var sales_actvy_div_cd = $('input[name=sales_actvy_div_cd]:checked').val();
 	var sales_actvy_type_cd  = $('#sales_actvy_type_cd').val();
-	var sales_oppt_id = $('#sales_oppt_id').val();
+	var sales_oppt_id = $('#sales_oppt_id',opener.document).val();
 	var cust_id = $('#cust_id').val();
 	var sales_actvy_stat_cd = $('#sales_actvy_stat_cd').val();
 	var strt_d = $('#strt_d').val();
@@ -129,10 +129,10 @@ function opptActiveDetail(){
 	$('#activeButton').val('수정');
 	var strt_t = $("#strt_t").val();
 	var end_t = $("#end_t").val();
-	$('#strt_t_h').children().eq(strt_t.substring(0,1)).prod("selected",true);
-	$('#strt_t_m').children().eq(parseInt(strt_t.substring(3,4))+parseInt(1)).attr("selected",true);
-	$('#end_t_h').children().eq(end_t.substring(0,1)).prod("selected",true);
-	$('#end_t_m').children().eq(parseInt(end_t.substring(3,4))+parseInt(1)).attr("selected",true);
+	$('#strt_t_h').val(strt_t.substring(0,2)).prop("selected",true);
+	$('#strt_t_m').val(strt_t.substring(3,5)).prop("selected",true);
+	$('#end_t_h').val(end_t.substring(0,2)).prop("selected",true);
+	$('#end_t_m').val(end_t.substring(3,5)).prop("selected",true);
 //	var actvyId = $('#sales_actvy_id').val();
 //	$.ajax({
 //		type : 'get',

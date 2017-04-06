@@ -53,10 +53,14 @@
 						<th>영업활동구분</th>
 						<td>
 							<c:forEach items="${actDivCd}" var="list">
-								<c:if test="${detail.sales_actvy_div_cd eq list.sales_actvy_div_cd}">
-									<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}" checked="checked"/>${list.sales_actvy_div_nm}&nbsp;
-								</c:if>
-								<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}"/>${list.sales_actvy_div_nm}&nbsp; 
+								<c:choose>
+									<c:when test="${detail.sales_actvy_div_cd eq list.sales_actvy_div_cd}">
+										<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}" checked="checked"/>${list.sales_actvy_div_nm}&nbsp;
+									</c:when>
+									<c:otherwise>
+										<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}"/>${list.sales_actvy_div_nm}&nbsp; 
+									</c:otherwise>
+								</c:choose>
 							</c:forEach> 
 	<!-- 								<input type="radio" id = "" name="" class="sales_actvy_div_cd" value="" />영업기회 -->
 						</td>
@@ -73,7 +77,7 @@
 					 		<input type="hidden" id="strt_t" value="${detail.strt_t }">
 							<select name="strt_t" id="strt_t_h" class="start_hour">
 								<option value="0" style="text-align: center;">==선택==</option>
-								<c:forEach var="i" begin="01" end="24" step="1">
+								<c:forEach var="i" begin="1" end="24" step="1">
 									<c:choose>
 										<c:when test="${i < 10 }">
 											<option value="0${i }">${i }</option>
@@ -82,42 +86,22 @@
 											<option value="${i }">${i }</option>
 										</c:otherwise>
 									</c:choose>
-								</c:forEach>
-								<!-- <option value="01">1</option>
-								<option value="02">2</option>
-								<option value="03">3</option>
-								<option value="04">4</option>
-								<option value="05">5</option>
-								<option value="06">6</option>
-								<option value="07">7</option>
-								<option value="08">8</option>
-								<option value="09">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>	 -->								
+								</c:forEach>								
 							</select>
 								시
 							<input type="hidden" id="hstrt_t_m">
 							<select name="strt_t" id="strt_t_m" class="start_minute">
 								<option value="0" style="text-align: center;">==선택==</option>
-								<option value="00">00</option>
-								<option value="10">10</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
-								<option value="40">40</option>
-								<option value="50">50</option>						
+								<c:forEach var="i" begin="0" end="50" step="10">
+									<c:choose>
+										<c:when test="${i < 10 }">
+											<option value="0${i }">${i }</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>						
 							</select>
 								분
 						</td>
@@ -125,7 +109,7 @@
 					<tr>
 						<th>종료일자</th>
 						<td>
-							<input type="text" id="end_d" name="dend_d" class="int_act"  value="" readonly="readonly">
+							<input type="text" id="end_d" name="dend_d" class="int_act"  value="${detail.end_d }" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
@@ -134,41 +118,31 @@
 							<input type="hidden" id="end_t" value="${detail.end_t }">
 							<select name="ent_t" id="end_t_h" class="end_hour">
 								<option value="0" style="text-align: center;">==선택==</option>
-								<option value="01">1</option>
-								<option value="02">2</option>
-								<option value="03">3</option>
-								<option value="04">4</option>
-								<option value="05">5</option>
-								<option value="06">6</option>
-								<option value="07">7</option>
-								<option value="08">8</option>
-								<option value="09">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>									
+								<c:forEach var="i" begin="1" end="24" step="1">
+									<c:choose>
+										<c:when test="${i < 10 }">
+											<option value="0${i }">${i }</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>									
 							</select>
 								시
 							<input type="hidden" id="hend_t_m">
 							<select name="end_t" id="end_t_m" class="end_minute">
 								<option value="0" style="text-align: center;">==선택==</option>
-								<option value="00">00</option>
-								<option value="10">10</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
-								<option value="40">40</option>
-								<option value="50">50</option>	
+								<c:forEach var="i" begin="0" end="50" step="10">
+									<c:choose>
+										<c:when test="${i < 10 }">
+											<option value="0${i }">${i }</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${i }">${i }</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>	
 							</select>
 								분
 						</td>
@@ -179,7 +153,14 @@
 							<select name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="time">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach items="${actTypeCd}" var="list">
-									<option value="${list.sales_actvy_type_cd}">${list.sales_actvy_type_nm}</option>							
+									<c:choose>
+										<c:when test="${detail.sales_actvy_type_cd eq list.sales_actvy_type_cd }">
+											<option value="${list.sales_actvy_type_cd}" selected="selected">${list.sales_actvy_type_nm}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${list.sales_actvy_type_cd}">${list.sales_actvy_type_nm}</option>							
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
 							</select>
 						</td>
@@ -197,7 +178,14 @@
 							<select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="time">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach items="${actStatCd}" var="list">
-									<option value="${list.sales_actvy_stat_cd}">${list.sales_actvy_stat_nm}</option>
+									<c:choose>
+										<c:when test="${detail.sales_actvy_stat_cd eq list.sales_actvy_stat_cd }">
+											<option value="${list.sales_actvy_stat_cd}" selected="selected">${list.sales_actvy_stat_nm}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${list.sales_actvy_stat_cd}">${list.sales_actvy_stat_nm}</option>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
 							</select>
 						</td>

@@ -39,6 +39,7 @@ $(function(){
 	startCalendar(ctx);
 	prodChange();
 	addOperating();
+	actAllCheck();
 });
 
 var buttonStatus;				//편집인지 추가인지 버튼의 상태 저장
@@ -758,6 +759,31 @@ function viewSalesActive(estim_id){
 	});
 }
 
+//영업활동 삭제
+function opptActiveDelete(){
+	if(confirm("삭제 하시겠습니까? ")){
+		var estim_id = $('#estim_id').val();
+		var sales_actvy_id = [];
+		
+		$('input[name=sales_actvy_id]:checked').each(function(){
+			sales_actvy_id.push($(this).val());
+		});
+		$.ajax({
+			type : 'get',
+			data :  { sales_actvy_id : sales_actvy_id },
+			datatype : 'json',
+			url : 'opptActiveDelete',
+			success:function(result){
+				alert("삭제되었습니다.");
+				viewSalesActive(estim_id);
+			},
+			error:function(request){
+				alert("error : " + request.status);
+			}
+		});
+	}
+}
+
 //영업활동 추가 팝업
 function addOperating(){
 	$('#act_opp_nm').click(function(){
@@ -783,6 +809,18 @@ function opptActiveDetailPopup(actvyId){
 	var sales_oppt_nm = $('#sales_oppt_nm').val();
 	popup=window.open('opptActiveDetailEstPopup?actvyId='+actvyId +'&sales_oppt_nm='+sales_oppt_nm
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+//영업활동 모두 선택
+function actAllCheck(){
+	$("#actAllSelect").click( function(){
+		var chk = $(this).is(":checked");
+		if(chk){
+			$("#activeList input[type=checkbox]").prop("checked",true);			
+		}else{
+			$("#activeList input[type=checkbox]").prop("checked",false);
+		}
+	});
 }
 
 //입력창 비활성화 함수
