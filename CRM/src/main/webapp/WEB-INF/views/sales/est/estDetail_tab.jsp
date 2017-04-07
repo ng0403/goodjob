@@ -146,7 +146,7 @@ $(function() {
 		</div>
 		<div id="tabDiv2" class="tab2_content">			
 			<div class="bt_position_authuser" style="float: right;">
-				<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="opptInsertPop('${ctx}')"/>
+				<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/>
 				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actAddCancelBt();"/>
 			</div>
 			
@@ -166,26 +166,6 @@ $(function() {
 						</tr>
 					</thead>
 					<tbody id="activeOpptList">
-						<c:forEach items="${opptList}" var="opptList">
-							<c:if test="${not empty opptList}">
-								<tr id="${opptList.sales_oppt_id}">
-									<th><input type="checkbox"  id='actAllSelect' value="${opptList.sales_oppt_id}"/></th>
-									<td>
-										<a onclick="opptTabDetail('${ctx}','${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
-									</td>
-									<td>${opptList.cust_nm}</td>
-									<td>${opptList.sales_lev_cd_nm}</td>
-									<td style="text-align: right; padding-right:5px;">${opptList.expt_sales_amt}</td>
-									<td>${opptList.psblty_rate}</td>
-									<td>${opptList.sales_oppt_stat_cd_nm}</td>
-									<td>${opptList.fst_reg_id}</td>
-									<td>${opptList.fst_reg_dt}</td>
-								</tr>
-							</c:if>
-							<c:if test="${empty opptList}">
-								<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
-							</c:if>
-						</c:forEach>
 						
 					</tbody>
 					</table>

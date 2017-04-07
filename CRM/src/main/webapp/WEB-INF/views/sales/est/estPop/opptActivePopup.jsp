@@ -29,7 +29,16 @@
 	<input type="hidden" id="sales_actvy_id" value="${sales_actvy_id}">
 	
 	<div id="title">
-		<div class="caption">● 영업활동 등록</div>
+		<div class="caption">
+			<c:choose>
+				<c:when test="${flg eq 'add'}">
+					● 영업활동 등록
+				</c:when>
+				<c:when test="${flg eq 'detail'}">
+					● 영업활동 상세/수정
+				</c:when>
+			</c:choose>
+		</div>
 	</div>
 	<div class="bt_position_popup">
 		<div class="bs-example" data-example-id="simple-table">
@@ -44,8 +53,16 @@
 					<tr>  
 						<th>고객사</th>
 						<td>
-							<input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">
-							<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
+							<c:choose>
+								<c:when test="${flg eq 'add'}">
+									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
+									<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+								</c:when>
+								<c:when test="${flg eq 'detail'}">
+									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">
+									<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
+								</c:when>
+							</c:choose>
 	<!-- 								<input type="button" id="customer" value="고객"> -->
 						</td>
 					</tr>

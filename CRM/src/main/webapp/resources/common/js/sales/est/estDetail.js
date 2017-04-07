@@ -810,7 +810,6 @@ function viewSalesOppt(estim_id){
 				"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
 				"<td>"+list.expt_fin_d+"</td>"+
 				"<td>"+list.psblty_rate+"</td>"+
-				"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 				"<td>"+list.fst_reg_id+"</td>"+
 				"<td>"+list.fst_reg_dt+"</td>+"+
 				"</tr>"	
@@ -818,9 +817,7 @@ function viewSalesOppt(estim_id){
 			
 			if(result.opptList.length < 5){
 				for(var j = 0; j < 5-result.opptList.length; j++){
-					content += "<th rowspan='2'></th>"+ 
-					"<td></td>"+
-					"<td></td>"+
+					content += "<th></th>"+ 
 					"<td></td>"+
 					"<td></td>"+
 					"<td></td>"+
@@ -843,9 +840,12 @@ function viewSalesOppt(estim_id){
 }
 
 //영업기회탬에서 추가버튼 눌렀을 때.
-function addOppt()
-{
-	window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+function addOppt(){
+	var list_estim_id = $('#estim_id').val();
+	var list_cust_id = $('#cust_id').val();
+	var list_cust_nm = $('#cust_nm').val();
+	window.open('/opptAddEstPopup?list_estim_id='+list_estim_id+
+			'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동 추가 팝업

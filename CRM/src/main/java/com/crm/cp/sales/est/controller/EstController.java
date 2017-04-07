@@ -401,6 +401,29 @@ public class EstController {
 		return map2;
 	}
 	
+	// 영업기회 탭에서 insert POPUP
+	@RequestMapping(value = "/opptAddEstPopup", method = RequestMethod.GET)
+	public ModelAndView opptAddPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_estim_id) 
+		{
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = opptService.opptOscList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = opptService.opptOtlList();
+		
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
+		
+		//mov.addObject("popFlg", "add");
+		mov.addObject("flg", "add");
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("estim_id", list_estim_id);
+		
+		return mov;
+	}
+	
 	// 영업활동 추가 팝업창
 	@RequestMapping(value = "/opptActiveEstPopup", method = RequestMethod.GET)
 	public ModelAndView opptActivePopup(HttpSession session,
@@ -416,10 +439,6 @@ public class EstController {
 		mov.addObject("actTypeCd", actTypeCd);
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("actDivCd", actDivCd);
-
-		System.out.println("list_cust_nm : " +list_cust_nm );
-		System.out.println("list_cust_nm : " +list_cust_nm );
-		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
 
 		mov.addObject("cust_id", list_cust_id);
 		mov.addObject("cust_nm", list_cust_nm);
