@@ -47,6 +47,7 @@ function opptEstimAdd(ctx){
 	var estim_valid_d = $('#estim_valid_d').val();
 	var estim_lev_cd = $('#estim_lev_cd').val();
 	var cust_id = $('#cust_id').val();
+	alert("고객아이디 확인 : " + cust_id);
 	var estim_nm = $('#estim_nm').val();
 	var est_list = [];
 	var memo = $('#memo').val();

@@ -165,6 +165,7 @@ public class OpptDaoImpl implements OpptDao {
 		// TODO Auto-generated method stub
 		int result = 0;
 
+		System.out.println("영업기회별 견적 추가할 때 고객 아이디 확인해라 : " + estList);
 		result += sqlsession.insert("oppt.estimateAdd", estList.get(0));
 		System.out.println("result 1: " + result);
 		if (result == 1) {

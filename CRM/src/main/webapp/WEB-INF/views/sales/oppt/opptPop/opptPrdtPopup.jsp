@@ -17,7 +17,7 @@
 <script type="text/javascript">
 $(function() {
 
-	 $("#opptprdtdiv").mCustomScrollbar({
+	 $("#opptPrdtdiv").mCustomScrollbar({
         theme:"rounded-dark",
         autoHideScrollbar: false,
         scrollbarPosition: "outside",
@@ -26,8 +26,8 @@ $(function() {
         },
         axis:"y"
       });
-	 var sales_lev_cd = '${sales_lev_cd}';
-	 $('#sales_lev_cd').children().eq(sales_lev_cd).attr('selected',true);
+// 	 var sales_lev_cd = '${sales_lev_cd}';
+// 	 $('#sales_lev_cd').children().eq(sales_lev_cd).attr('selected',true);
 	 var flg = $('#flg').val();
 	 if(flg=='detail'){
 		 $('#opptPrdtButton').val("수정");
@@ -46,12 +46,12 @@ $(function() {
 <input type="hidden" id="flg" value="${flg}">
 <input type="hidden" id="prodList" value="${prod}">
 <input type="hidden" id="eduList" value="${eduList}">
-<input type="hidden" id="eduCode" value="${eduCode}">
+<input type="hidden" id="opptPrdtCode" value="${opptPrdtCode}">
 <body>
 	<div class="opptPrdtview">
 		<input type="hidden" id="ctx" value="${ctx}">
  		<div id="title">
-			<div class="caption">● 견적 등록</div>
+			<div class="caption">● 영업기회별 상품 등록</div>
 		</div>
 
 		<div class="bt_position_popup">
@@ -60,9 +60,9 @@ $(function() {
 					<tbody id="tbody1">
 						<tr>
 							<th>상품명</th>
-							<td><input type="text" name="estim_nm" id="estim_nm"
-								 class="int" value="${estim_nm}">
-								<input type="hidden" name="estim_id" id="estim_id" value="${estim_id}"></td>
+							<td><input type="text" name="prod_nm" id="prod_nm"
+								 class="int" value="${prod_nm}">
+								<input type="hidden" name="prod_id" id="prod_id" value="${prod_id}"></td>
 						</tr>
 						<tr>
 							<th>고객명</th>
@@ -72,12 +72,14 @@ $(function() {
 <!-- 								<button id="estim_custom_list">고객</button></td> -->
 						</tr>
 						<tr>
-							<th>영업단계</th>
+						<th>영업단계</th> 
 							<td>
-								<select id="sales_lev_cd" name="sales_lev_cd">
+								<select id="sales_lev_cd" class="sales_lev_cd" name="sales_lev_cd">
 									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach items="${otllist}" var="list">
-											<option value="${list.code}">${list.cd_nm}</option>							
+									<c:forEach items="${otllist}" var="list" varStatus="status2">
+										<option value="<c:out value="${list.code}"/>"
+											<c:if test="${list.code == sales_lev_cd}">selected="selected"</c:if>>
+											${list.cd_nm}							
 									</c:forEach>
 								</select>
 							</td>
@@ -116,16 +118,16 @@ $(function() {
 							</tr>
 			</table>
 			</div> 
-			<div id= "opptprdtdiv">
+			<div id= "opptPrdtdiv">
 					<table id="opptprdttable">
-						<tbody id="estimatetbody">
+						<tbody id="opptPrdttbody">
 					 <c:forEach items="${prod}" var="list">
 						<tr id="priceline" class="${list.prod_id}">
 						<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}"> 
 						<input type="hidden" id="prod_price"  value="${list.prod_price}" ></th>
 						<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
-						<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></td>
-						<td style="width: 27%;" >${list.sales_price}</td>
+						<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="opptPrdt_qty" id="opptPrdt_qty" min="1" max="100" value="${list.opptPrdt_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></td>
+						<td style="width: 27%;" >${list.prod_price}</td>
 						<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value="${list.discount}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>
 						
 						<select id="unit" name="discount_unit_cd" style="width: 30%;">
@@ -157,7 +159,7 @@ $(function() {
 		</div>
 		<div class="estimate_bt_position2">
 		<input type="button" class="btn btn-success" value="저장" id="opptPrdtButton"/>
-		<input type="button" class="btn btn-default" value="취소" id="estimate_cancel"/>
+		<input type="button" class="btn btn-default" value="취소" id="opptPrdt_cancel"/>
 		</div>
 	</div>
 

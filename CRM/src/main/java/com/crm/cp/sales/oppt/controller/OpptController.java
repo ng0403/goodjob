@@ -506,10 +506,11 @@ public class OpptController {
 		
 //		List<OpptVO> otllist = service.opptOtlList();//견적 콤보박스
 		List<EstVO> eduList = service.eduList();
-		List<String> eduCode = new ArrayList<String>();
+		System.out.println("eduList : " + eduList);
+		List<String> opptPrdtCode = new ArrayList<String>();
 		for (EstVO est : eduList) {
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
+			opptPrdtCode.add(est.getCode());
+			opptPrdtCode.add(est.getCd_nm());
 		}
 //		mov.addObject("otllist", otllist);
 		mov.addObject("cust_id", list_cust_id);
@@ -520,7 +521,7 @@ public class OpptController {
 		mov.addObject("flg", "add");
 		mov.addObject("flag", flag);
 		mov.addObject("eduList", eduList);
-		mov.addObject("eduCode", eduCode);
+		mov.addObject("opptPrdtCode", opptPrdtCode);
 		mov.addObject("pageNum",pageNum);
 		return mov;
 	}
@@ -531,6 +532,7 @@ public class OpptController {
 			HttpSession session,
 			@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+		System.out.println("영업기회별 상품 추가 상품선택 팝업 컨트롤러 진입");
 		ModelAndView mov = new ModelAndView(
 				"/sales/oppt/opptPop/product_list_pop");
 		
@@ -663,10 +665,10 @@ public class OpptController {
 		List<EstVO> eduList = service.eduList();
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = service.opptOtlList();
-		List<String> eduCode = new ArrayList<String>();
+		List<String> opptPrdtCode = new ArrayList<String>();
 		for (EstVO est : eduList) {
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
+			opptPrdtCode.add(est.getCode());
+			opptPrdtCode.add(est.getCd_nm());
 		}
 		
 		List<OpptPrdtVO> prod = service.opptPrdtDetail(prdtId);
@@ -685,7 +687,7 @@ public class OpptController {
 		mov.addObject("prod_nm", detail.getProd_nm());
 //		mov.addObject("estim_valid_d", detail.getEstim_valid_d());
 		mov.addObject("eduList", eduList);
-		mov.addObject("eduCode", eduCode);
+		mov.addObject("opptPrdtCode", opptPrdtCode);
 //		mov.addObject("memo", detail.getMemo());
 		mov.addObject("discount_unit_cd", detail.getDiscount_unit_cd());
 		mov.addObject("flg", "detail");

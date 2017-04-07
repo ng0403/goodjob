@@ -560,7 +560,12 @@
 			,'admin'
 			,sysdate
 		)
-		
+		<selectKey keyProperty="estim_seq" resultType="String" order="AFTER">
+			SELECT /*+INDEX_DESC(ESTIMATE PK_ESTIMATE)*/
+			    ESTIM_ID
+			FROM ESTIMATE
+			WHERE ROWNUM=1
+		</selectKey>
 	</update>
 	<update id="estimateListAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		insert into ESTIMATE_LIST(
@@ -573,10 +578,7 @@
 			discount_unit_cd
 		)
 		values(
-		(SELECT /*+INDEX_DESC(ESTIMATE_LIST PK_ESTIMATE_LIST)*/
-			 DECODE(MAX(ESTIM_ID),NULL,'EST0000001','EST'||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
-			FROM ESTIMATE_LIST
-			WHERE ROWNUM=1),
+		  #{estim_seq},
 		  #{prod_id},
 		  #{estim_qty},
 		  #{sales_price},
@@ -597,7 +599,7 @@
 			discount_unit_cd
 		)
 		values(
-		  #{estim_id},
+		  #{estim_seq},
 		  #{prod_id},
 		  #{estim_qty},
 		  #{sales_price},
@@ -618,10 +620,7 @@
 			serial_num
 		)
 		values(
-		  (SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE PK_SALES_OPPORTUNITY_ESTIMATE)*/
-			 DECODE(MAX(ESTIM_ID),NULL,'EST0000001','EST'||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
-			FROM SALES_OPPORTUNITY_ESTIMATE
-			WHERE ROWNUM=1),
+		  #{estim_seq},
 		  #{sales_oppt_id},
 		  'admin',
 		  sysdate,

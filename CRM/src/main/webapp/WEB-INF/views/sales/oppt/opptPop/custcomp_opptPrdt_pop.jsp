@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptprdt.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -25,8 +26,8 @@ $(function() {
      	axis:"y"
      });
 	 
-	 var sales_lev_cd = '${sales_lev_cd}';
-	 $('#sales_lev_cd').children().eq(sales_lev_cd).attr('selected',true);
+// 	 var sales_lev_cd = '${sales_lev_cd}';
+// 	 $('#sales_lev_cd').children().eq(sales_lev_cd).attr('selected',true);
 	
 	 var flg = $('#flg').val();
 	 
@@ -39,14 +40,14 @@ $(function() {
 }); 
 </script>
 
-<title>견적 등록</title>
+<title>영업기회별 상품 등록</title>
 </head>
 
 <body onload="setWindowResize();">
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="prodList" value="${prod}">
 	<input type="hidden" id="eduList" value="${eduList}">
-	<input type="hidden" id="eduCode" value="${eduCode}">
+	<input type="hidden" id="opptPrdtCode" value="${opptPrdtCode}">
 	<input type="hidden" id="ctx" value="${ctx}">
  	
  	<br>
@@ -126,7 +127,7 @@ $(function() {
 								<td style="width: 15%;">공급가</td>
 							</tr>
 						</thead>
-						<tbody id="opptprdtbody" class="opptprdtbody">
+						<tbody id="opptPrdttbody" class="opptPrdttbody">
 					 		<c:forEach items="${prod}" var="list">
 							<tr id="priceline" class="${list.prod_id}">
 								<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}"> 
@@ -169,7 +170,7 @@ $(function() {
 				
 		
 		<div class="estimate_bt_position"> 
-			<input type="button" class="est_list_bt"  value="상품추가" onclick="prodList('${ctx}');"/>
+			<input type="button" class="est_list_bt"  value="상품추가" onclick="opptProdList('${ctx}');"/>
 			<input type="button" class="est_list_bt" value="상품삭제" onclick="prodDelete();"/>
 		</div>
 	</div>
