@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.crm.cp.sales.contact.dao.ContactDao;
 import com.crm.cp.sales.contact.vo.ContactVO;
+import com.crm.cp.sales.custcomp.vo.KeymanVO;
 import com.crm.cp.utils.PagerVO;
 
 
@@ -70,7 +71,95 @@ public class ContactServiceImpl implements ContactService {
 		//초성검색
 		@Override
 		public List<ContactVO> contactSearchAll(Map<String,Object> contactMap){
+			System.out.println("초성 service");
 			return contactDao.contactSearchAll(contactMap);
 		}
+		
+		
+	
+		
+		//연락처  삭제
+		@Override
+		public String deleteContact(List<String> contact_idList) {
+			System.out.println("contact_idList : " + contact_idList.get(0));
+			
+			int deleteResult=0;
+			System.out.println("contact_idsize" + contact_idList.size());
+			
+			for(int i=0; i<contact_idList.size(); i++){
+				String cont_id = contact_idList.get(i).substring(0,2);
+				System.out.println("cont_id service?" + cont_id.toString());
+				if(cont_id.equalsIgnoreCase("CO")){
+					deleteResult += contactDao.contactDelete(contact_idList.get(i)); 
+			}
+			}
+			String resultStr = null;
+			if(deleteResult == contact_idList.size()){
+				resultStr = "연락처 삭제가 완료 되었습니다.";
+			} else {
+				resultStr = "연락처 삭제가 실패 했습니다.";
+			}
+			return resultStr;
+		}
+	  
+		// 회사명리스트
+		@Override
+		public List<Object> compList() {
+			return contactDao.compList();
+		}
+		
+		// 키맨 추가
+		@Override
+		public String insertKeyman(KeymanVO kVO) {
+			int kmRst = contactDao.insertKeyman(kVO);
+			
+			String kmRstStr = null;
+			if(kmRst == 1){
+				kmRstStr = "새로운 키맨 등록이 완료되었습니다.";
+			}else {
+				kmRstStr = "키맨 등록에 실패했습니다.";
+			}
+			return kmRstStr;
+		}
+		
+		// 키맨 리스트
+		@Override
+		public List<KeymanVO> getKeymanList(String cont_id) {
+			List<KeymanVO> kmVOList = contactDao.getKeymanList(cont_id);
+			return kmVOList;
+		}
+		
+		// 키맨 상세정보
+		@Override
+		public KeymanVO keymanDetail(String cust_id) {
+			KeymanVO kmVO = contactDao.keymanDetail(cust_id);
+			return kmVO;
+		}
+		// 키맨 수정
+		@Override
+		public String mdfyKeyman(KeymanVO kVO) {
+			int mdfyResult = contactDao.deleteKeyman(kVO);
+			String resultStr = null;
+			if(mdfyResult == 1){
+				resultStr = "키맨 수정이 완료 되었습니다.";
+			} else {
+				resultStr = "키맨 수정에 실패 했습니다.";
+			}
+			return resultStr;
+		}
+		
+		// 키맨 삭제
+		@Override
+		public String deleteKeyman(List<String> keyman_idList) {
+			int deleteResult = contactDao.deleteKeyman(keyman_idList);
+			String resultStr = null;
+			if(deleteResult == keyman_idList.size()){
+				resultStr = "키맨 삭제가 완료 되었습니다.";
+			} else {
+				resultStr = "키맨 삭제에 실패 했습니다.";
+			}
+			return resultStr;
+		}
 
+	
 }

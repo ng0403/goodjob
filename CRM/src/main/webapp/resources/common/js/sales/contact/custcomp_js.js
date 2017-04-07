@@ -7,7 +7,7 @@ $("#navicustcomp").css("font-weight", "bold");
 
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
-	
+	keymanList();
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
 		// 만약 전체 선택 체크박스가 체크된 상태일 경우
@@ -22,30 +22,32 @@ $(document).ready(function() {
 	});
 	
 	// 상세정보 가져오기
-	$("#tab1").click(function() {
+	/*$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id != ''){
 			ccDetail(cust_id);
 		}
-	});
+	});*/
 	
+	
+	 
 	// 키맨 리스트 가져오기
 	$("#tab2").click(function() {
-		var cust_id = $("#nowCust_id").val();
-		if(cust_id == ''){
+ 		var cont_id = $("#cont_id").val();
+ 		if(cont_id == ''){
 			var tbody = $('#keymanTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
 			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-			keymanList(cust_id);
+			keymanList(cont_id);
 		}
 	});
 	
 	// 영업기회 리스트 가져오기
 	$("#tab3").click(function() {
-		var cust_id = $("#nowCust_id").val();
+ 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
@@ -53,7 +55,7 @@ $(document).ready(function() {
 			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-				opptList(cust_id);
+			opptList(cust_id);
 		}
 	});
 	
@@ -473,15 +475,16 @@ function comma(str) {
 }
 
 // 키맨 List ajax 통신
-function keymanList(cust_id) {
+function keymanList() {
+	var cont_id = $("#cont_id").val();
 	$(document).ready(function() {
-		var ctx = $("#ctx").val();
+ 		var ctx = $("#ctx").val();
 		var tbody = $('#keymanTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/keymanList.do',
+			url : ctx+'/keymanList',
 			type : 'POST',
-			data : "cust_id="+cust_id,
+			data : "cont_id="+cont_id,
 			dataType : "json",
 			success : function(data) {
 				tbody.children().remove();
@@ -492,14 +495,11 @@ function keymanList(cust_id) {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].kmn_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].kmn_id+"');\" style='color:blue;' class='cnClick'>"+data[i].kmn_nm+"</td>" +
-						"<td style='width:7%;'>"+data[i].pos_nm+"</td>" +
-						"<td style='width:10%;'>"+data[i].ph1+"-"+data[i].ph2+"-"+data[i].ph3+"</td>" +
-						"<td style='width:10%;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
-						"<td style='width:15%; text-align: right; padding-right: 8px;'>"+data[i].email1+"@"+data[i].email2+"</td>" +
-						"<td style='width:20%;'>"+data[i].memo+"</td>" +
-						"<td style='width:10%;'>"+data[i].fst_reg_id_nm+"</td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"');\" style='color:blue;' class='cnClick'>"+data[i].key_part+"</td>" +
+						"<td style='width:7%;'>"+data[i].key_pos+"</td>" +
+ 						"<td style='width:20%;'>"+data[i].memo+"</td>" +
+						"<td style='width:10%;'>"+data[i].fst_reg_id+"</td>" +
 						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
@@ -507,8 +507,8 @@ function keymanList(cust_id) {
 					if(data.length < 5){
 						for(var j = 0; j < 5-data.length; j++){
 							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
-							"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td><td style='width:20%;'></td>" +
-							"<td style='width:10%;'></td><td style='width:15%;'></td></tr>";
+							"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td> " +
+							"</tr>";
 							tbody.append(tbodyContent);
 						}
 					}

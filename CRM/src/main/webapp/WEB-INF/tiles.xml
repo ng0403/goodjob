@@ -134,15 +134,6 @@
 			value="/WEB-INF/views/standard/iuser/iuserTab.jsp" />
 	</definition>
 
-	<!-- 연락처 -->
-	
-	<definition name="contact" extends="onebodyLayout">
-	<put-attribute name="body" value="/WEB-INF/views/sales/contact/contactList.jsp"/>
- 	</definition>
-	
-	<definition name="contactDetail" extends="onebodyLayout">
- 	<put-attribute name="body" value="/WEB-INF/views/sales/contact/contactTab.jsp"/>
-	</definition>
 	
 	
 
@@ -218,6 +209,18 @@
 	 <put-attribute name="master" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp" />
 	 <put-attribute name="detail" value="/WEB-INF/views/sales/oppt/opptDetail.jsp" />
 	</definition>
+	
+	<!-- 연락처 --> 
+	<definition name="contact" extends="onebodyLayout">
+	<put-attribute name="body" value="/WEB-INF/views/sales/contact/contactList.jsp"/>
+ 	</definition>
+ 	
+ 	 
+	<definition name="contactDetail" extends="twobodyLayout">
+ 	<put-attribute name="master" value="/WEB-INF/views/sales/contact/contactTab.jsp"/>
+    <put-attribute name="detail" value="/WEB-INF/views/sales/contact/contact_tab.jsp" /> 
+  
+ 	</definition>
 	
 	<definition name="actSaleDetail" extends="twobodyLayout">
 		<put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" />

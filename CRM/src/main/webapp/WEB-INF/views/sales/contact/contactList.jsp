@@ -69,12 +69,12 @@
 		<thead>
 		<tr>
 			<th><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
-			<td style="width:10%;">이름</td>
-  			<td style="width:10%;">회사명</td>
-			<td style="width:15%;">이메일</td>
+			<td style="width:20%;">이름</td>
+  			<td style="width:20%;">회사명</td>
+			<td style="width:20%;">이메일</td>
 			<td style="width:10%;">전화번호</td>
 			<td style="width:10%;">이동전화번호</td>
- 			<td style="width:15%;">등록일시</td>
+ 			<td style="width:10%;">등록일시</td>
 		</tr>
 		</thead>
 		<tbody id="call_list_tbody">

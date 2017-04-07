@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.crm.cp.sales.contact.vo.ContactVO;
+import com.crm.cp.sales.custcomp.vo.KeymanVO;
 
 @Repository
 public class ContactDaoImpl implements ContactDao {
@@ -84,7 +85,97 @@ public class ContactDaoImpl implements ContactDao {
 		@Override
 		public List<ContactVO> contactSearchAll(Map<String, Object> contactMap) {
 			List<ContactVO> obj = sqlSession.selectList("contact.selectAll", contactMap);
+			System.out.println("초성 obj? " + obj.toString());
 			return obj;
 		}
-	
+		
+		
+		//연락처 삭제
+		@Override
+		public int contactDelete(String ke) {
+			int delResult = 0;
+			System.out.println( "ke??" + ke);
+			try {
+				delResult = sqlSession.update("contact.contactDelete", ke);
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return delResult;
+		}
+		
+		// 회사명리스트
+		@Override
+		public List<Object> compList() {
+			List<Object> obj = sqlSession.selectList("contact.custcompPopList");
+			return obj;
+		}
+		
+		
+		// 키맨 추가
+		@Override
+		public int insertKeyman(KeymanVO kVO) {
+			System.out.println("keyman add dao " + kVO.toString());
+			int rstKm = 0;
+			try {
+				rstKm = sqlSession.insert("addKeymancontact", kVO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rstKm;
+		}
+		
+		
+		// 키맨 리스트 가져오기
+		@Override
+		public List<KeymanVO> getKeymanList(String cont_id) {
+			List<KeymanVO> kmVOList = null;
+			try {
+				kmVOList = sqlSession.selectList("keymanListcontact", cont_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return kmVOList;
+		}
+		
+		// 키맨 상세정보
+		@Override
+		public KeymanVO keymanDetail(String cust_id) {
+			KeymanVO kmVO = null;
+			try {
+				kmVO = sqlSession.selectOne("kmDetailcontact", cust_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return kmVO;
+		}
+		
+		// 키맨 수정
+		@Override
+		public int deleteKeyman(KeymanVO kVO) {
+			int rstKm = 0;
+			try {
+				rstKm = sqlSession.update("contact.mdfyKeymancontact", kVO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rstKm;
+		}
+
+		
+		// 키맨 삭제
+		@Override
+		public int deleteKeyman(List<String> keyman_idList) {
+			int	deleteResultTemp = 0;
+			int deleteResult = 0;
+			try {
+				for (int i = 0; i < keyman_idList.size(); i++) {
+					deleteResultTemp = sqlSession.delete("keymanDeletecontact", keyman_idList.get(i));
+					deleteResult += deleteResultTemp;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return deleteResult;
+		}
 }

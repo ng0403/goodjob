@@ -143,7 +143,7 @@ public class CallController {
 	}*/
 	
 	//회사명리스트 팝업창 
-	@RequestMapping(value="/compList" , method=RequestMethod.GET)
+	/*@RequestMapping(value="/compList" , method=RequestMethod.GET)
 	public ModelAndView ActOpptList(HttpSession session){
 
 		List<Object> compList = callService.compList();
@@ -152,7 +152,7 @@ public class CallController {
 		mov.addObject("compList", compList);
 		
 		return mov;
-	}
+	}*/
 		
 	// 연락처 상세정보
 	@RequestMapping(value = "callDetail", method = RequestMethod.POST)
@@ -169,8 +169,8 @@ public class CallController {
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			callKeyMap.put("callKey", "standard/home/session_expire");
 		} else {
-		kVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-		kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		kVO.setFst_reg_id(session.getAttribute("user").toString());
+		kVO.setFin_mdfy_id(session.getAttribute("user").toString());
 	
 		String callKey = callService.callAddKeyman(kVO);
 		
@@ -188,7 +188,7 @@ public class CallController {
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			callRstMap.put("callKmMdfyRst", "standard/home/session_expire");
 		} else {
-		kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());	
+		kVO.setFin_mdfy_id(session.getAttribute("user").toString());	
 		
 		String callKmMdfyRst = callService.CallKeymanMdfy(kVO);
 		

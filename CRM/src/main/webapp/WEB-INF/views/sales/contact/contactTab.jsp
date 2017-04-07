@@ -12,6 +12,8 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/addr/zipcode_js.js"></script>
 <title>Insert title here</title>
 </head>
@@ -20,15 +22,10 @@
 	<input type="hidden" id="nowCall_id"/>
 	<input type="hidden" id="hCust_div_nm"/>
 	<div id="css_tabs">
-		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" />
-		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label for="tab1">상세정보</label>
-		
+ 		
 		<form id="contactForm" method="post" role="form" >
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
-		<div id="tabDiv1" class="tab1_content">
-
+ 
         <!-- 개인고객 -->
 		<div id="callCustKeyBtnDiv" class="call_tab_bt_div"> 
 		    <input type="button" id="custpsonBtn" value="편집" class="call_tab_bt" onclick="callCustBtn();"/>
@@ -75,7 +72,7 @@
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" value="${contactDetail.company_nm }" readonly="readonly"/> 
-						    <input type="button" name="compSearch" value="회사" class="call_tab_bt" id="comp_list_bt" disabled="disabled"/>
+						    <input type="button" name="compSearch" value="회사" class="call_tab_bt" id="comp_list_bt" disabled="disabled" />
 						</td>
 						<th>이메일</th>
 						<td>
@@ -154,6 +151,5 @@
 			</div>
 		  </div>
 		</form>
-	</div>
-</body>
+ </body>
 </html>

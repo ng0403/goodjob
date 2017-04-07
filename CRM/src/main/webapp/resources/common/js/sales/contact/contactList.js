@@ -21,7 +21,6 @@ function dateFormat(timestamp) {
 //모두체크
 function callAllChk(){
 	$(document).ready(function() {  
-		alert("a");
 		var checkbox=$('#goaltable tbody').find('input[type=checkbox]');
 		
 		if($('#callCheck').is(":checked")){
@@ -76,7 +75,7 @@ function pageInputCall(event) {
 }
 	
 // 초성 검색 페이징
-function searchAcnkEvent(callPageNum, keyword){
+function searchAcnkEvent(contactPageNum, keyword){
 		var ctx = $("#ctx").val();
 		var cont_nm = $("#cont_nm").val();
 		var email = $("#email").val();
@@ -103,35 +102,33 @@ function searchAcnkEvent(callPageNum, keyword){
 				success: function(data){
 					if(data.callListSize == 0){
 						alert("조회된 결과가 없습니다.");
-						location.href = ctx+'/call';
+						location.href = ctx+'/contact';
 					} else {
 						tbody.children().remove();
 						
 						$("#cont_nm").val(data.cont_nm);
 						$("#email").val(data.email);
 						$("#ph").val(data.ph);
- 						for(var i=0; i<data.callList.length; i++){
-							tbodyContent='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.callList[i].call_id+'"></th>'
-								+'<td style="width:10%; text-align: left; padding-left:5px;"><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
-								+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cust_div_nm+'</td>';
-							if(data.callList[i].pos_nm == 'null' || data.callList[i].pos_nm == null || data.callList[i].pos_nm == ""){
-								tbodyContent += '<td style="width:10%; text-align: center;"></td>';
-							}else{
-								tbodyContent +='<td style="width:10%; text-align: center;">'+data.callList[i].pos_nm+'</td>';
-							}
-							if(data.callList[i].comp_nm == 'null' || data.callList[i].comp_nm == null || data.callList[i].comp_nm == ""){
-								tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
-							}else{
-								tbodyContent +='<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].comp_nm+'</td>';
-							}
-							
-							tbodyContent +='<td style="width:15%; text-align: left; padding-left:5px;">'+data.callList[i].email1+'@'+data.callList[i].email2+'</td>'
-							+'<td style="width:10%; text-align: center;">'+data.callList[i].ph1+'-'+data.callList[i].ph2+'-'+data.callList[i].ph3+'</td>'
-							+'<td style="width:10%; text-align: center;">'+data.callList[i].cell_phone1+'-'+data.callList[i].cell_phone2+'-'+data.callList[i].cell_phone3+'</td>'
-							+'<td style="width:10%; text-align: center;">'+data.callList[i].iuser_id_nm+'</td>'
-							+'<td style="width:15%; text-align: center;">'+dateFormat(data.callList[i].fst_reg_dt)+'</td></tr>';
+ 						for(var i=0; i<data.contactList.length; i++){
+ 							tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
+ 							/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
+ 							*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
+ 							*/        			+"<td><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: blue; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
+ 												+'<td style="width:10%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>';
+ 							 
+ 							        		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
+ 							        				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
+ 												}else{
+ 													tbodyContent +='
+ 												}*/
+ 							        			tbodyContent+='<td style="width:15%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
+ 							        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
+ 							        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
+ 							         			+'<td style="width:15%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
+
 							tbody.append(tbodyContent);
 						}
+ 						
 						if(data.callListSize < 4){
 							for(var i=0; i<4-data.callListSize; i++){
 								tbodyContent='<tr style="height: 35.5px;"><th></th>'
@@ -155,23 +152,23 @@ function searchAcnkEvent(callPageNum, keyword){
 							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
 							+"<a> ◀ </a><input type='text' id='callPageInput' class='call_page_txt' readonly='readonly' value='"+data.page.startPageNum+"'/>" 
 							+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-						} else if(data.callPageNum == data.page.startPageNum){
+						} else if(data.contactPageNum == data.page.startPageNum){
 							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a style='text-decoration: none;'> ◀ </a> <input type='text' id='callPageInput' class='call_page_txt' value='"+data.callPageNum+"'/>" 
+							+"<a style='text-decoration: none;'> ◀ </a> <input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"'/>" 
 							+"<a href='#' onclick=\"searchAcnkEvent("+data.page.endPageNum+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.callPageNum+1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ▶ </a>";
-						} else if(data.callPageNum == data.page.endPageNum){
+							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum+1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ▶ </a>";
+						} else if(data.contactPageNum == data.page.endPageNum){
 							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.callPageNum-1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ◀ </a>"
+							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum-1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ◀ </a>"
 							+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.page.endPageNum+"'/>"
 							+"<a href='#' onclick=\"searchAcnkEvent("+data.page.endPageNum+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
 							+"<a style='text-decoration: none;'> ▶ </a>";
 						} else {
 							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.callPageNum-1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ◀ </a>"
-							+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.callPageNum+"'/>"
+							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum-1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ◀ </a>"
+							+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"'/>"
 							+"<a href='#' onclick=\"searchAcnkEvent("+data.page.endPageNum+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.callPageNum+1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ▶ </a>";
+							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum+1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ▶ </a>";
 						}
 						$("#pager").append(pageContent);
 					}
@@ -200,8 +197,7 @@ function callSearchEnter(event) {
 
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
-	alert("들어왔다.");
-	var ctx = $("#ctx").val();
+ 	var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
 	var cont_nm = $("#cont_nm").val();
@@ -236,9 +232,9 @@ function contactPaging(contactPageNum) {
 				tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
 /*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
 *//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
-*/        			+'<td> <a href="#" onclick="contactDetail('+ data.contactList[i].cont_id +')" style="color: blue; cursor: pointer;" class="callClick">' + data.contactList[i].cont_nm +'</a></td>'
+*/        			+"<td><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: blue; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
 					+'<td style="width:10%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>';
-
+ 
         		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
         				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
 					}else{
@@ -312,7 +308,7 @@ function callCustKeyDelete() {
 		var ctx = $("#ctx").val();
 
 		$.ajax({
-			url : ctx+'/callDelete',
+			url : ctx+'/contactDelete',
 			type : 'POST',
 			data :  JSON.stringify(chked_val),
 			dataType : 'json',
@@ -320,7 +316,7 @@ function callCustKeyDelete() {
 			success : function(data){
 				alert(data.deleteResult);
 				
-				location.href=ctx+'/call';
+				location.href=ctx+'/contact';
 			},
 			error : function(data){
 				alert(data.deleteResult);

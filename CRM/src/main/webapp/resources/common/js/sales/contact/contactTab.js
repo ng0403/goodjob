@@ -113,12 +113,12 @@ function callCustBtn(){
 	
 		$("#contactbody input[type='text']").css("background-color", "white");
 		
- 		$('#company_nm').attr("disabled",false);
- 		$("#company_nm").css("background-color", "#EAEAEA");
+/* 		$('#company_nm').attr("disabled",false);
+*/ 		$("#company_nm").css("background-color", "#EAEAEA");
   		
-		$('#comp_list_bt').attr("disabled",true);
+		$('#comp_list_bt').attr("disabled",false);
 		
-		$('#company_nm').attr("readonly", false);
+/*		$('#company_nm').attr("readonly", false);*/
 		$('#cont_nm').attr("readonly", false);
 		$('#email1').attr("readonly", false);
 		$('#email2').attr("readonly", false);
@@ -133,12 +133,12 @@ function callCustBtn(){
 		$('#call_nm').attr("disabled",false);
 		$('#email1').attr("disabled",false);
 		$('#email2').attr("disabled",false);
-		$('#cell_phone1').attr("disabled",false);
-		$('#cell_phone2').attr("disabled",false);
-		$('#cell_phone3').attr("disabled",false);
-		$('#ph_phone1').attr("disabled",false);
-		$('#ph_phone2').attr("disabled",false);
-		$('#ph_phone3').attr("disabled",false);
+		$('#cell_ph1').attr("disabled",false);
+		$('#cell_ph2').attr("disabled",false);
+		$('#cell_ph3').attr("disabled",false);
+		$('#ph1').attr("disabled",false);
+		$('#ph2').attr("disabled",false);
+		$('#ph3').attr("disabled",false);
 		$('#stat_cd').attr("disabled",false);
 		$('#cust_info_yn').attr("disabled",false);
 		$('#mkt_app_yn').attr("disabled",false);
@@ -249,14 +249,15 @@ function callKeyAddBtn(){
 		$("#keymanAddBtnDiv").css("display", "block");
 }
 
-//개인,키맨 취소 눌렀을 때
+//취소버튼
 function callAddCancelBtn(){
-	$(document).ready(function() {
+ 	$(document).ready(function() {
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	location.href = "/contact";
 	
 	});
 }
+
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기
 function callTabFunc(cont_id) {
 
@@ -271,8 +272,7 @@ function callTabFunc(cont_id) {
 
 function contactDetail(cont_id)  {
  	 	location.href="/contact_detail?cont_id="+cont_id;
-	 
-
+	  
 }
 
 
@@ -496,7 +496,6 @@ function callAddCust(ctx){
 //키맨,개인고객 편집 눌렀을 때
 function callCustKeyMdiBtn(){
 	$("#custpsonMdiBtn").click(function() {
-		alert('hi');
 		$("#contactbody input[type='text']").css("background-color", "white");
 		$("#contactbody input[type='text']").attr("readonly", false);
 		
@@ -552,11 +551,11 @@ function callCustKeyMdiBtn(){
 		$('#ph_phone3').attr("disabled",false);
 		$('#pos_nm').attr("disabled",false);
 		$('#comp_nm').attr("disabled",false);
-		$('#comp_list_bt').attr("disabled",false);
-		
+/*		$('#comp_list_bt').attr("disabled",false);
+*/		
 		$('#comp_nm').attr("disabled",true);
-		$('#comp_list_bt').attr("disabled",true);
-		
+/*		$('#comp_list_bt').attr("disabled",true);
+*/		
 		// 버튼 활성화
 		$("#callCustBtnDiv").css("display", "none");
 		$("#callKeyBtnDiv").css("display", "none");

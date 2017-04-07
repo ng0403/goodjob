@@ -307,8 +307,8 @@ public class CustCompController {
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			rstMap.put("addResult", "standard/home/session_expire");
 		} else {
-			kVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-			kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+			kVO.setFst_reg_id(session.getAttribute("user").toString());
+			kVO.setFin_mdfy_id(session.getAttribute("user").toString());
 			String kmAddRst = ccService.insertKeyman(kVO);
 			rstMap.put("addResult", kmAddRst);
 		}
@@ -334,7 +334,7 @@ public class CustCompController {
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			rstMap.put("mdfyResult", "standard/home/session_expire");
 		} else {
-			kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+			kVO.setFin_mdfy_id(session.getAttribute("user").toString());
 			String kmMdfyRst = ccService.mdfyKeyman(kVO);
 			rstMap.put("mdfyResult", kmMdfyRst);
 		}

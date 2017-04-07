@@ -38,7 +38,7 @@ function keyReset(){
 function callCancelBtn() {
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	
-	if(ynChk){
+	/*if(ynChk){
 		// 버튼 활성화
 		$("#contactbody input[type='text']").css("background-color", "#EAEAEA");
 		
@@ -105,7 +105,7 @@ function callCancelBtn() {
 		$("#iuser_id_nm").val($("#iuser_id_nm").val()).attr("readonly", true); // 영업담당자
 		$("#stat_cd").children().eq($("#hstat_cd").val()).attr("selected", "selected"); // 기업 상태 코드 선택
 
-	}
+	}*/
 }
 
 //개인추가 버튼 눌렀을 때
@@ -249,11 +249,13 @@ function callKeyAddBtn(){
 		$("#keymanAddBtnDiv").css("display", "block");
 }
 
-//개인,키맨 취소 눌렀을 때
+//취소버튼
 function callAddCancelBtn(){
-	$(document).ready(function() {
+ 	$(document).ready(function() {
 	var ynChk = confirm("정말 취소하시겠습니까?");
-	location.href = "/contact";
+	if(ynChk){
+		location.href = "/contact";
+	}
 	
 	});
 }
@@ -582,7 +584,7 @@ function contactAddp(){
 }
 
 function contactInsert() {
-	alert("인서트");
+	alert("인서트1111");
 	
     var formObj = $("form[role='form']");
 

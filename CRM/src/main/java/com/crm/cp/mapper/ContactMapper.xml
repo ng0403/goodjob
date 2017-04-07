@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="contact">
+
+
+<!-- 초성검색조건 -->
+	<sql id="where-list1">
+		<if test='keyword.equals("ㄱ")'>
+	  		<![CDATA[
+	  		 AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '가'
+    	     AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '나'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㄴ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '나'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '다'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㄷ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '다'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '라'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㄹ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '라'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '마'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅁ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '마'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '바'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅂ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '바'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '사'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅅ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end)>= '사'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '아'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅇ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '아'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '자'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅈ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '자'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '차'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅊ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '차'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '카'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅋ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '카'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '타'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅌ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '타'
+    	   AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end)< '파'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅍ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end)d >= '파'
+    	    AND  substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end < '하'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅎ")'>
+	  		<![CDATA[
+	  		AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) >= '하'
+    	    AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) < '힣'
+	    	]]>
+	  	</if> 
+	  	<if test='keyword.equals("미분류")'>
+			<![CDATA[
+			AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) NOT BETWEEN '가' AND '힣'
+	    	]]>
+		</if>
+	</sql>
  
 	<insert id="contactInsert" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
 		insert into contact
@@ -152,9 +259,9 @@
 				  <if test="ph !=null and ph !=''">
 					AND ph1 || '-' || ph2 || '-' || ph3 like '%'||#{ph}||'%'
 				  </if> 
-				  <!-- <if test="keyword!=null and keyword!=''">
+				  <if test="keyword!=null and keyword!=''">
 				        <include refid="where-list1"/>
-				  </if> -->
+				  </if>
 			ORDER BY fst_reg_dt desc 
 			 ) a
 		 ) b
@@ -162,7 +269,95 @@
 	</select>			
 			
 			
-	 
+	<update id="contactDelete" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
+		update CONTACT
+		set act_yn = 'N'
+		where cont_id = #{cont_id_list}
+	</update> 
+	
+	
+	
+	<!-- 회사팝업리스트 -->
+	<select id="custcompPopList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		SELECT c.cust_id cust_id
+          	 , c.cust_nm cust_nm
+          	 , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = cc.sales_scale_cd) sales_scale
+          	 , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = cc.indst_cd) indst
+          	 , cc.fst_reg_dt fst_reg_dt
+         FROM customer c
+             , customer_company cc
+         WHERE c.cust_id = cc.cust_id
+        AND c.cust_div_cd = '0001'
+        AND c.act_yn = 'Y'
+        ORDER BY c.cust_id desc
+	</select>
+	
+	
+	<!-- 키맨 추가 -->
+	<insert id="addKeymancontact" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		 INSERT INTO KEYMAN (CUST_ID, CONT_ID, KEY_PART, KEY_POS, MEMO, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT) 
+	     VALUES((SELECT /*+INDEX_DESC(KEYMAN PK_KEYMAN)*/ 
+  		DECODE(MAX(CUST_ID), NULL, 'KE00000001', SUBSTR(MAX(CUST_ID), 1, 3) || lpad( (SUBSTR(MAX(CUST_ID), 4, 7) + 1), 7, 0))
+		from KEYMAN) , #{cont_id}, #{key_part}, #{key_pos},  #{memo}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate)
+	</insert>
+	
+	
+	<!-- 키맨 리스트 -->
+	<select id="keymanListcontact" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+<!-- 		  select KMN_ID, CUST_ID,KMN_NM,POS_NM,PH1,PH2,PH3, CELL_PH1,CELL_PH2, CELL_PH3,EMAIL1,EMAIL2,MEMO, FST_REG_ID_NM,TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT,ACT_YN  -->
+<!-- 		  from keyman  -->
+<!-- 		  where cust_id = #{cust_id} and act_yn = 'Y' order by kmn_id desc -->
+
+		SELECT 
+			CUST_ID, 
+			CONT_ID,
+			KEY_PART,
+			KEY_POS,
+			MEMO,
+			FST_REG_ID,
+			TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+		from keyman 
+		where cont_id = #{cont_id} 
+		order by CUST_ID desc
+	</select>
+	
+	
+	<!-- 키맨 상세정보 -->
+	<select id="kmDetailcontact" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		SELECT CUST_ID,
+				  CONT_ID,
+				  KEY_PART,
+				  KEY_POS, 
+				  MEMO,
+				  FST_REG_ID,
+				  FST_REG_DT,
+				  FIN_MDFY_ID,
+				  FIN_MDFY_DT
+		 FROM KEYMAN 
+	   WHERE CUST_ID = #{cust_id} 
+	</select>
+	
+	<!-- 키맨 삭제 -->
+	<delete id="keymanDeletecontact" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		<!-- update KEYMAN 
+		set ACT_YN = 'N'
+		where KMN_ID = #{keyman_idList} -->
+		
+		delete
+		from keyman
+		where cust_id = #{keyman_idList}
+	</delete>
+	
+	<!-- 키맨 수정 -->
+	<update id="mdfyKeymancontact" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		update KEYMAN 
+		set KEY_PART = #{key_part},
+			 KEY_POS = #{key_pos}, 
+			 MEMO = #{memo},
+			 FIN_MDFY_ID = #{fin_mdfy_id},
+			 FIN_MDFY_DT = sysdate
+		where CUST_ID = #{cust_id}
+	</update>
 	
 	
 	

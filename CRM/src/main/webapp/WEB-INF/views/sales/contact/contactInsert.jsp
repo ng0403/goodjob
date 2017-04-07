@@ -30,11 +30,11 @@
 		<div id="tabDiv1" class="tab1_content"> 
 	    
 	    <!-- 개인고객 편집 저장/취소 버튼  -->
-		<div id="callCustMdfBtnDiv" style="display: none;" class="call_tab_bt_div">
+		<div id="callCustMdfBtnDiv" class="call_tab_bt_div">
+			 <input type="button" id="callAddBtn" value="저장" onclick="contactInsert()" class="call_tab_bt"/>
+		     <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="call_tab_bt"/>
+	  
 		</div>
-	 		 <input type="button" id="callAddCancelBtn" value="저장" onclick="contactInsert()" class="call_tab_bt"/>
-			<input type="button" id="callCustMdfCancelBtn" value="취소" onclick="callCancelBtn()" class="call_tab_bt"/>
-	 
 				
 		<div class="call_tab_div">
 			<table id="contactable">
