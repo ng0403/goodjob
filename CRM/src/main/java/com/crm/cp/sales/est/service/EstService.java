@@ -63,4 +63,8 @@ public interface EstService {
 
 	List<ActVO> actList(Map<String, String> map);
 
+	PagerVO opptCount(Map<String, String> map);
+
+	List<OpptVO> opptList(Map<String, String> map);
+
 }

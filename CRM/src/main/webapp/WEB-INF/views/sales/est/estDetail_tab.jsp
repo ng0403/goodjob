@@ -47,7 +47,7 @@ $(function() {
 		
 //	 	alert("선택된 사용자 ID : " + opptId);
 		viewSalesActive(estim_id);
-		//opptprdtList(opptId);
+		viewSalesOppt(estim_id);
 		//estimList(opptId);
 	});
 });  
@@ -75,8 +75,8 @@ $(function() {
 			<div id="ccustomerdiv">
 				<input type="hidden" id="inputCust" value="false"/>
 				
-				<table id="contactable">
-					<tbody id="estDetail">
+				<table>
+					<tbody id="estProd">
 						<tr>
 	 						<td>
 	 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
@@ -145,8 +145,50 @@ $(function() {
 			</div>
 		</div>
 		<div id="tabDiv2" class="tab2_content">			
-			<div id="ccustomerdiv">
-				
+			<div class="bt_position_authuser" style="float: right;">
+				<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="opptInsertPop('${ctx}')"/>
+				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actAddCancelBt();"/>
+			</div>
+			
+			<div id="tableline">
+				<table id="goaltable" class="tabtable">
+					<thead>
+						<tr>
+							<th style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
+							<td style="width: 20%;">영업기회명</td>
+							<td style="width: 8%;">고객사</td>
+							<td style="width: 6%;">상태</td>
+							<td style="width: 8%;">영업단계</td>
+							<td style="width: 20%;">예상매출액</td>
+							<td style="width: 10%;">가능성</td>
+							<td style="width: 10%;">등록자</td>
+							<td style="width: 10%;">등록일시</td>
+						</tr>
+					</thead>
+					<tbody id="activeOpptList">
+						<c:forEach items="${opptList}" var="opptList">
+							<c:if test="${not empty opptList}">
+								<tr id="${opptList.sales_oppt_id}">
+									<th><input type="checkbox"  id='actAllSelect' value="${opptList.sales_oppt_id}"/></th>
+									<td>
+										<a onclick="opptTabDetail('${ctx}','${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
+									</td>
+									<td>${opptList.cust_nm}</td>
+									<td>${opptList.sales_lev_cd_nm}</td>
+									<td style="text-align: right; padding-right:5px;">${opptList.expt_sales_amt}</td>
+									<td>${opptList.psblty_rate}</td>
+									<td>${opptList.sales_oppt_stat_cd_nm}</td>
+									<td>${opptList.fst_reg_id}</td>
+									<td>${opptList.fst_reg_dt}</td>
+								</tr>
+							</c:if>
+							<c:if test="${empty opptList}">
+								<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
+							</c:if>
+						</c:forEach>
+						
+					</tbody>
+					</table>
 			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->

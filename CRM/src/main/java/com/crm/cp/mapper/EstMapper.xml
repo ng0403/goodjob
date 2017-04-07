@@ -227,7 +227,6 @@
 	<select id="estActOpptList" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="java.util.Map">
 		    select
 		  a.sales_oppt_id
-		, a.lead_id
 		, a.cust_id
 		, c.cust_nm
 		, a.sales_oppt_nm
@@ -247,7 +246,7 @@
 		, a.fin_mdfy_dt
 		, a.act_yn
 		from sales_opportunity a, lead b, customer c
-		where a.lead_id=b.lead_id and b.cust_id=c.cust_id and a.act_yn='Y'
+		where b.cust_id=c.cust_id and a.act_yn='Y'
    	    and a.sales_lev_cd in('0002','0003')
    	    and b.cust_id=#{cust_id}
    	 	<if test="keyword!=null and keyword!='' ">
@@ -363,12 +362,10 @@
 		distinct c.cust_id, 
 		c.cust_nm, 
 		(SELECT e.CD_NM FROM CODE e WHERE e.CD_GRP_ID='CDC' AND e.CODE = c.CUST_DIV_CD) CUST_DIV_CD
-		,(SELECT e.CD_NM FROM CODE e WHERE e.CD_GRP_ID='CCS' AND e.CODE = c.STAT_CD) STAT_CD
+		,(SELECT e.CD_NM FROM CODE e WHERE e.CD_GRP_ID='CCS' AND e.CODE = c.BIZ_STATUS) BIZ_STATUS
 		from 
-		lead b, customer c,SALES_OPPORTUNITY d
-		where d.LEAD_ID = b.lead_id
-		and c.cust_id = b.cust_id
-		and d.sales_lev_cd in('0002','0003')
+			customer c,SALES_OPPORTUNITY d
+		where d.sales_lev_cd in('0002','0003')
 		<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
@@ -460,5 +457,57 @@
 			ACT_YN = 'Y'
    			AND a.SALES_OPPT_ID = o.SALES_OPPT_ID
 			AND o.estim_id = #{estim_id}
+	</select>
+	
+	<!-- 영업기회 리스트 조회 -->
+	<select id="opptList" parameterType="java.util.Map" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
+		SELECT D.*, RNUM
+		FROM
+		(
+      		SELECT 
+        		ROWNUM RNUM, 
+        		SO.SALES_OPPT_ID
+        		,SO.CUST_ID
+        		, C.CUST_NM
+        		,SO.SALES_OPPT_NM
+        		,(SELECT CD_NM 
+        		FROM CODE 
+        		WHERE CD_GRP_ID='OTL' 
+        			AND CODE = SO.SALES_LEV_CD) SALES_LEV_CD_NM
+        		,SO.SALES_LEV_CD
+        		,SO.SALES_OPPT_STAT_CD
+        		,SO.EXPT_SALES_AMT
+        		, TO_CHAR(SO.EXPT_FIN_D,'YYYY-MM-DD') EXPT_FIN_D
+ 		 	    ,SO.PSBLTY_RATE
+ 		 	    ,(SELECT CD_NM 
+ 		 	    FROM CODE 
+ 		 	    WHERE CD_GRP_ID='OSC' 
+ 		 	    	AND CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD_NM
+ 		 	    ,SO.MEMO
+ 		 	    ,SO.FST_REG_ID
+ 		 	    ,TO_CHAR(SO.FST_REG_DT ,'YYYY-MM-DD HH:MM') FST_REG_DT 
+ 		 	    ,SO.FIN_MDFY_ID
+ 		 	    ,SO.FIN_MDFY_DT
+ 		 	    ,SO.ACT_YN
+			FROM 
+				SALES_OPPORTUNITY SO, CUSTOMER C, SALES_OPPORTUNITY_ESTIMATE OE
+			WHERE 
+				1=1 
+				AND SO.CUST_ID = C.CUST_ID
+				AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
+				AND SO.ACT_YN='Y'
+				AND OE.ESTIM_ID = #{estim_id}
+      		ORDER BY SO.SALES_OPPT_ID DESC
+		)D
+	</select>
+	
+	<!-- 영업기회 리스트 row 개수 가져오기 -->
+	<select id="opptCount" resultType="int" parameterType="String">
+		SELECT NVL(COUNT(SO.SALES_OPPT_ID), 0)
+		FROM SALES_OPPORTUNITY SO,  SALES_OPPORTUNITY_ESTIMATE OE
+		WHERE 
+			ACT_YN = 'Y'
+   			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
+			AND OE.ESTIM_ID = #{estim_id}
 	</select>
 </mapper>

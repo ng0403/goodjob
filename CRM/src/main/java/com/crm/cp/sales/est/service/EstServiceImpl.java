@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.dao.EstDao;
 import com.crm.cp.sales.est.vo.EstVO;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -199,6 +200,20 @@ public class EstServiceImpl implements EstService {
 	public List<ActVO> actList(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return estDaoi.actList(map);
+	}
+
+	@Override
+	public PagerVO opptCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		int totalRowCount = estDaoi.opptCount(map.get("estim_id"));
+		PagerVO page = new PagerVO(Integer.parseInt(map.get("opptPageNum")),totalRowCount,5,5);	
+		return page;
+	}
+
+	@Override
+	public List<OpptVO> opptList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return estDaoi.opptList(map);
 	}
 
 

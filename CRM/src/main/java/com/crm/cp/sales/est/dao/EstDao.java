@@ -49,4 +49,8 @@ public interface EstDao {
 
 		List<ActVO> actList(Map<String, String> map);
 
+		int opptCount(String estim_id);
+
+		List<OpptVO> opptList(Map<String, String> map);
+
 }

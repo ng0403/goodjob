@@ -784,6 +784,70 @@ function opptActiveDelete(){
 	}
 }
 
+//영업기회 리스트 조회
+function viewSalesOppt(estim_id){
+	$("#activeList").children().remove();
+	$.ajax({  
+		type : 'GET',
+		url : '/estimSalesOpptList',
+		data : {estim_id : estim_id},
+		dataType : 'json', 
+		success:function(result){
+			var content = "";
+			if(result.opptList.length==0){
+				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업기회가 없습니다.</td></tr>";	
+			}
+			else{
+			$.each(result.opptList, function(i, list){
+				//영업활동 리스트 추가
+				content +="<tr id='"+list.sales_oppt_id+"'>"+
+				"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+				"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
+				"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
+				"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+				"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
+				"<td>"+list.sales_lev_cd_nm+"</td>"+
+				"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
+				"<td>"+list.expt_fin_d+"</td>"+
+				"<td>"+list.psblty_rate+"</td>"+
+				"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
+				"<td>"+list.fst_reg_id+"</td>"+
+				"<td>"+list.fst_reg_dt+"</td>+"+
+				"</tr>"	
+			});
+			
+			if(result.opptList.length < 5){
+				for(var j = 0; j < 5-result.opptList.length; j++){
+					content += "<th rowspan='2'></th>"+ 
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"<td></td>"+
+					"</tr>";
+					
+					}
+				}
+			}	
+			$("#activeOpptList").append(content);
+		},
+		error:function(request){
+			alert("error : " + request.status);
+		}
+	});
+}
+
+//영업기회탬에서 추가버튼 눌렀을 때.
+function addOppt()
+{
+	window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
 //영업활동 추가 팝업
 function addOperating(){
 	$('#act_opp_nm').click(function(){

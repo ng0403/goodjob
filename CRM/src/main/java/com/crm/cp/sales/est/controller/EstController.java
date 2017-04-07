@@ -358,6 +358,28 @@ public class EstController {
 		return mov;
 	}
 	
+	// 영업기회 tab list ajax
+	@RequestMapping(value = "/estimSalesOpptList", method = RequestMethod.GET)
+	@ResponseBody
+	Map<String, Object> opptList(
+			@RequestParam Map<String, String> map,
+			@RequestParam(value = "opptPageNum", defaultValue = "1") String opptPageNum) {
+
+		map.put("opptPageNum", opptPageNum);
+		PagerVO page = estInter.opptCount(map);
+		map.put("startRow", page.getStartRow() + "");
+		map.put("endRow", page.getEndRow() + "");
+		List<OpptVO> opptList = estInter.opptList(map);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+
+		map2.put("page", page);
+		map2.put("opptPageNum", opptPageNum);
+		map2.put("opptList", opptList);
+
+		System.out.println(map2);
+		return map2;
+	}
+	
 	// 영업활동 tab list ajax
 	@RequestMapping(value = "/estimSalesActiveList", method = RequestMethod.GET)
 	@ResponseBody
