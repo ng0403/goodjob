@@ -150,7 +150,7 @@ function actMdfyCancelBt(){
 		
 		if(ynChk)
 		{
-			location.href = ctx + '/act';
+			location.href = '/act';
 //			$("#act_tab_tbody input[type='text']").css("background-color", "#EAEAEA");
 //			$("#memo").css("background-color", "#EAEAEA");
 //
@@ -355,7 +355,7 @@ function actPaging(actPageNum) {
 									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
 									+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
 									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>"
-									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>"; 
+									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
 									
 								    if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == ""){
 								    	tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
@@ -655,6 +655,10 @@ function actInsert(ctx) {
 		        memo : $('#memo').val()
 		}
 		
+		$('#actTabForm') 
+		.attr('action','actInsert')
+		.submit();
+		
 //		if(obj.sales_actvy_nm==""||obj.sales_actvy_nm==null){
 //			alert("영업활동명을 입력해 주세요");
 //			return false;
@@ -690,9 +694,6 @@ function actInsert(ctx) {
 //			return false;
 //		}
 		
-		$('#actTabForm') 
-		.attr('action','actInsert')
-		.submit();
 		
 /*		
 	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
@@ -815,6 +816,52 @@ function opptInsertPop()
 	window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
+//컴마 입력 함수
+function comma(str) {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+// Deatil 화면 Tab부분 Ajax로 그려주는 부분.
+function opptTabList(cust_id)
+{
+	$.ajax({
+		type : 'post',
+		url : '/opptTabajax',
+		data : {
+			cust_id : cust_id
+		},
+		datatype : 'json',
+		success:function(result){
+			alert("저장완료 Test");
+			//리스트 출력 시 버튼 상태 설정
+			$("#activeOpptList").children().remove();
+			
+			
+			$.each(result.opptList, function(i, list){
+				console.log(result);
+				console.log(result.opptList);
+				$("#activeOpptList").append("" +
+						"<tr id='"+list.sales_oppt_id+"'>"+
+						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
+						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
+						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
+						"<td>"+list.sales_lev_cd_nm+"</td>"+
+						"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
+						"<td>"+list.expt_fin_d+"</td>"+
+						"<td>"+list.psblty_rate+"</td>"+
+						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
+						"<td>"+list.fst_reg_id+"</td>"+
+						"<td>"+list.fst_reg_dt+"</td>+"+
+						"</tr>"
+				);
+			});
+		}
+	});
+}
+
 //영업기회 상세정보 고객 리스트 팝업
 function opptCustPopup(ctx)
 {
@@ -832,3 +879,16 @@ function actTabFunc(sales_actvy_id) {
 		} 
 	});
 }
+
+function opptTabDetail(ctx, sales_oppt_id)
+{
+	alert("ctx : " + ctx + "sales_oppt_id : " + sales_oppt_id);
+	window.open(ctx+'/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+
+
+
+
+
+

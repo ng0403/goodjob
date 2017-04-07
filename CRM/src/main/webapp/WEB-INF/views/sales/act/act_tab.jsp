@@ -30,12 +30,8 @@
 	$(document).ready(function() {
 		var sales_actvy_id = $("#nowSales_actvy_id").val();
 		
-		
 		$('#salesId').val(sales_actvy_id);
-	
-		//alert(sales_actvy_id);
-		//viewSalesActive(opptId);
-		//estimList(opptId);
+
 	});
 </script>
 
@@ -43,6 +39,7 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="nowSales_actvy_id" value=""/>
+	<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 	<div id="css_tabs">
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> 
@@ -73,19 +70,21 @@
 							<td style="width: 10%;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="activeList">
+					<tbody id="activeOpptList">
 						<c:forEach items="${opptList}" var="opptList">
 							<c:if test="${not empty opptList}">
-								<tr>
-									<th style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
-										<td style="width: 20%;">${opptList.sales_oppt_nm}</td>
-										<td style="width: 8%;">${opptList.cust_nm}</td>
-										<td style="width: 6%;">${opptList.sales_lev_cd_nm}</td>
-										<td style="width: 8%;">${opptList.expt_sales_amt}</td>
-										<td style="width: 20%;">${opptList.psblty_rate}</td>
-										<td style="width: 10%;">${opptList.sales_oppt_stat_cd_nm}</td>
-										<td style="width: 10%;">${opptList.fst_reg_id}</td>
-										<td style="width: 10%;">${opptList.fst_reg_dt}</td>
+								<tr id="${opptList.sales_oppt_id}">
+									<th><input type="checkbox"  id='actAllSelect' value="${opptList.sales_oppt_id}"/></th>
+										<td>
+											<a onclick="opptTabDetail('${ctx}','${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
+										</td>
+										<td>${opptList.cust_nm}</td>
+										<td>${opptList.sales_lev_cd_nm}</td>
+										<td style="text-align: right; padding-right:5px;">${opptList.expt_sales_amt}</td>
+										<td>${opptList.psblty_rate}</td>
+										<td>${opptList.sales_oppt_stat_cd_nm}</td>
+										<td>${opptList.fst_reg_id}</td>
+										<td>${opptList.fst_reg_dt}</td>
 								</tr>
 							</c:if>
 							<c:if test="${empty opptList}">

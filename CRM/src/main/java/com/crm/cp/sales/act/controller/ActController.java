@@ -307,10 +307,11 @@ public class ActController {
 	
 		return mov;
 	}
-	
-	// 영업기회 추가 팝업창
+
+	//opptInsert
+	// 영업기회 탭에서 insert POPUP
 	@RequestMapping(value = "/opptInsertPopup", method = RequestMethod.GET)
-	public ModelAndView opptActivePopup(HttpSession session, String list_cust_id, String list_cust_nm, String list_sales_oppt_id) 
+	public ModelAndView opptInsertPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_sales_oppt_id) 
 	{
 		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = service.opptOscList();
@@ -319,11 +320,91 @@ public class ActController {
 		
 		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
 		
-		mov.addObject("popFlg", "add");
+		//mov.addObject("popFlg", "add");
+		mov.addObject("popFlg", "popDetail");
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
 		
 		return mov;
+	}
+	
+	//opptInsert
+	// 영업기회 탭에서 insert POPUP
+	@RequestMapping(value = "/opptDetailPop", method = RequestMethod.GET)
+	public ModelAndView opptDetailPop(HttpSession session, String sales_oppt_id) 
+	{
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = service.opptOscList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = service.opptOtlList();
+		
+		// opptDetail -> sales_oppt_id
+		OpptVO opDetail = service.opptDetail(sales_oppt_id);
+		
+		System.out.println("osclist : " + osclist);
+		System.out.println("otllist : " + otllist);
+		System.out.println("opDetail : " + opDetail);
+		
+		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
+		//mov.addObject("popFlg", "add");
+		mov.addObject("popFlg", "popDetail");
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		mov.addObject("opDetail", opDetail);
+		
+		return mov;
+	}	
+	
+	// 영업기회 리스트 ajax
+	@RequestMapping(value = "/opptTabajax", method = RequestMethod.POST)
+	@ResponseBody Map<String, Object> listajax(OpptVO opptVo,
+				@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) 
+	{
+		System.out.println("opptTabajax cust_id : " + opptVo.getCust_id());
+		
+		List<OpptVO> opptList = actService.opptList(opptVo.getCust_id());
+		
+		System.out.println("opptTabajax opptList : " + opptList);
+		
+		// 한글 검색 인코더 변환
+		//map.put("pageNum", pageNum + "");
+		
+		//PagerVO page = service.opptPageCount(map);
+		//map.put("startRow", page.getStartRow() + "");
+		//map.put("endRow", page.getEndRow() + "");
+
+
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("opptList", opptList);
+		//result.put("oplist", list);
+		//result.put("page", page);
+		//result.put("searchInfo", map);
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
+	@ResponseBody int opptInsert(HttpSession session, OpptVO opptVo) 
+	{
+		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		// 영업활동 추가
+		int result = service.opptAdd(opptVo);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/opptModfy", method = RequestMethod.POST)
+	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo) 
+	{
+		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		System.out.println(opptVo.getSales_oppt_id());
+		// 영업활동 편집
+		int result = service.opptModify(opptVo);
+		
+		return result;
 	}
 	
 	// 상세정보에서의 고객 리스트
