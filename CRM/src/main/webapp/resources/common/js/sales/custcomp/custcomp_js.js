@@ -773,6 +773,59 @@ function contList(cust_id) {
 	});
 }
 
+//페이징
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var stepPrev = $("<a>");
+	stepPrev.addClass("prev");
+	stepPrev.html("◀◀");
+	if(ccPageNum != firstPageCount){
+		stepPrev.attr("href","javascript:opportunityList("+prevStepPage+")");
+	}
+	$("#pageSpace").append(stepPrev);
+	var prevPage = $("<a>");
+	prevPage.addClass("prev");
+	prevPage.html("◀");
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:opportunityList("+prevPageNum+")");
+	}
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.attr("href","javascript:opportunityList("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.addClass("choice");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("next");
+	nextPage.html("▶");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:opportunityList("+nextPageNum+")");
+	}
+	$("#pageSpace").append(nextPage);
+	var stepNext = $("<a>");
+	stepNext.addClass("next");
+	stepNext.html("▶▶");
+	if(ccPageNum != totalPageCount){
+		stepNext.attr("href","javascript:opportunityList("+nextStepPage+")");
+	}
+	$("#pageSpace").append(stepNext);
+}
 
 //모두체크
 //function custcompAllChk(){

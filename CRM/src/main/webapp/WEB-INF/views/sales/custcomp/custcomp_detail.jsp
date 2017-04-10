@@ -25,7 +25,6 @@ $(document).ready(function(){
 	} else if(flg == 0)//신규추가를 눌렀을 경우
 		{
 		
-		
 		$("#baseBtnDiv").css("display", "none");
 		$("#addBtnDiv").css("display", "block");
 		$("#mdfBtnDiv").css("display", "none");
@@ -38,7 +37,15 @@ $(document).ready(function(){
 <input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="nowCust_id" value="${custcompDetail.cust_id}"/>
 	<input type="hidden" id="nowCust_nm"/>
-	
+	<div id="title">
+	<!-- 신규추가를 눌렀을 경우 -->
+		<c:if test="${flg == 0 }">
+			<div class="caption">■ 고객사 추가</div>
+		</c:if>
+		<c:if test="${flg == 1 }">
+			<div class="caption">■ 고객사 상세정보</div>
+		</c:if>
+	</div>
 	<div id="custcomp_tab_detail">
 				
 			<form id="custCompForm" method="post">

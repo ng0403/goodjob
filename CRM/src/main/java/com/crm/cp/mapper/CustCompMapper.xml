@@ -45,6 +45,9 @@
 	                ) b
            		) r 
        <![CDATA[where r.rnum>=#{page.startRow} and r.rnum<=#{page.endRow}]]>
+<!--        	where r <![CDATA[ >= ]]> -->
+<!-- 		#{startRow} and r <![CDATA[ <= ]]> -->
+<!-- 		#{endRow} -->
 
 <!-- 	select * from CUSTOMER -->
 	</select>
