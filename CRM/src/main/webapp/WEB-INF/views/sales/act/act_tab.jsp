@@ -55,6 +55,7 @@
 				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
+			<!-- form -->
 			<div id="tableline">
 				<table id="goaltable" class="tabtable">
 					<thead>
@@ -97,6 +98,7 @@
 					</tbody>
 					</table>
 			</div>
+			<!-- /form -->
 		</div>
 		
 </div>

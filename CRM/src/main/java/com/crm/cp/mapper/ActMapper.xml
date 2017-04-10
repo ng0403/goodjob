@@ -124,7 +124,8 @@
 			S.CUST_ID = C.CUST_ID AND S.ACT_YN = 'Y'
 		<if test="keyword!=null and keyword!='' ">
 	        <include refid="where-act_oppt_list"/>
-	    </if> 
+	    </if>
+	    ORDER BY SALES_OPPT_ID
 	</select>
 	
 	<!-- 고객팝업 리스트 -->
