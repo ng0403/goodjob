@@ -121,7 +121,7 @@
 	        		<a class="prev">◀◀</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:opportunityList(${page.prevStepPage})" class="prev">◀◀</a>
+	        		<a href="javascript:custCompList(${page.prevStepPage})" class="prev">◀◀</a>
 	    		</c:when>
 			</c:choose>
 			<c:choose>
@@ -129,18 +129,18 @@
 	        		<a class="prev">◀</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:opportunityList(${page.prevPageNum})" class="prev">◀</a>
+	        		<a href="javascript:custCompList(${page.prevPageNum})" class="prev">◀</a>
 	    		</c:when>
 			</c:choose>
 			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 				<c:choose>
 					<c:when test="${i eq ccPageNum }">
 						<b>
-							<a  href="javascript:opportunityList('${i}');" id="pNum" class="choice">${i}</a>
+							<a  href="javascript:custCompList('${i}');" id="pNum" class="choice">${i}</a>
 						</b>
 					</c:when>
 					<c:otherwise>
-						<a  href="javascript:opportunityList('${i}');">${i}</a>
+						<a  href="javascript:custCompList('${i}');">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -149,7 +149,7 @@
 	       			<a class="next">▶</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:opportunityList(${page.nextPageNum})" class="next">▶</a>
+	       			<a href="javascript:custCompList(${page.nextPageNum})" class="next">▶</a>
 	    		</c:when>
 			</c:choose>
 			<c:choose>
@@ -157,7 +157,7 @@
 	       			<a class="next">▶▶</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:opportunityList(${page.nextStepPage})" class="next">▶▶</a>
+	       			<a href="javascript:custCompList(${page.nextStepPage})" class="next">▶▶</a>
 	    		</c:when>
 			</c:choose>
 		</div>

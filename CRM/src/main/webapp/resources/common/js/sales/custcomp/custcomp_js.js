@@ -218,86 +218,86 @@ function pageInput(event) {
 }
 
 // 페이징
-function paging(ccPageNum) {
-	$(document).ready(function() {
-		var ctx = $("#ctx").val();
-		var allData = {"ccPageNum": ccPageNum};
-		var tbody = $('#ccListTbody');
-		var tbodyContent = "";
-		
-		$.ajax({
-			url : ctx+'/custcompPaging.do',
-			type : 'POST',
-			data : allData,
-			dataType : "json",
-			success : function(data) {
-				if(data.result == 'standard/home/session_expire'){
-					location.href = ctx + '/sessionExpire';
-				}else{
-					tbody.children().remove();
-					
-					for (var i = 0; i < data.ccVOList.length; i++) {
-						tbodyContent = "<tr>"
-							+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
-							+"<td style='text-align: left; padding-left: 8px;'>"
-							+"<a href='#' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\" style='color: blue;' class='cnClick'>"+data.ccVOList[i].cust_nm+"</a></td>"
-							+"	<td>"+data.ccVOList[i].comp_num+"</td>" 
-							+"<td>"+data.ccVOList[i].corp_num+"</td>"
-							+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
-							+"<td>"+data.ccVOList[i].sales_scale+"</td>"
-							+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
-							+"<td>"+data.ccVOList[i].indst+"</td>"
-							+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
-							+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
-						tbody.append(tbodyContent);
-						$("#ccListCheck").prop("checked", false);
-					}
-					
-					if(data.ccVOList.length < 5){
-						for(var j = 0; j < 5-data.ccVOList.length; j++){
-							tbodyContent ="<tr style='height:30px;'>"
-								+"<th></th>"
-								+"<td></td><td></td><td></td><td></td>"
-								+"<td></td><td></td><td></td><td></td>"
-								+"<td></td></tr>";
-							tbody.append(tbodyContent);
-						}
-					}
-					var pageContent = "";
-					// 페이징 다시그리기
-					$("#pagingDiv").children().remove();
-					
-					if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-						+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-						+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-					} else if(data.ccPageNum == data.page.startPageNum){
-						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-						+"<a> ◀ </a><input type='text' id='ccPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
-					} else if(data.ccPageNum == data.page.endPageNum){
-						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
-						+"<input type='text' id='ccPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
-						+"<a> / "+data.page.endPageNum+"</a>"
-						+"<a> ▶ </a>";
-					} else {
-						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
-						+"<input type='text' id='ccPageInput' value='"+data.ccPageNum+"' onkeypress=\"pageInput(event);\"/>"
-						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
-					}
-					$("#pagingDiv").append(pageContent);
-				}
-			},
-			error : function() {
-				alert("전송중 오류가 발생했습니다.");
-			}
-		});
-	});
-}
+//function paging(ccPageNum) {
+//	$(document).ready(function() {
+//		var ctx = $("#ctx").val();
+//		var allData = {"ccPageNum": ccPageNum};
+//		var tbody = $('#ccListTbody');
+//		var tbodyContent = "";
+//		
+//		$.ajax({
+//			url : ctx+'/custcompPaging.do',
+//			type : 'POST',
+//			data : allData,
+//			dataType : "json",
+//			success : function(data) {
+//				if(data.result == 'standard/home/session_expire'){
+//					location.href = ctx + '/sessionExpire';
+//				}else{
+//					tbody.children().remove();
+//					
+//					for (var i = 0; i < data.ccVOList.length; i++) {
+//						tbodyContent = "<tr>"
+//							+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
+//							+"<td style='text-align: left; padding-left: 8px;'>"
+//							+"<a href='#' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\" style='color: blue;' class='cnClick'>"+data.ccVOList[i].cust_nm+"</a></td>"
+//							+"	<td>"+data.ccVOList[i].comp_num+"</td>" 
+//							+"<td>"+data.ccVOList[i].corp_num+"</td>"
+//							+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
+//							+"<td>"+data.ccVOList[i].sales_scale+"</td>"
+//							+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
+//							+"<td>"+data.ccVOList[i].indst+"</td>"
+//							+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
+//							+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
+//						tbody.append(tbodyContent);
+//						$("#ccListCheck").prop("checked", false);
+//					}
+//					
+//					if(data.ccVOList.length < 5){
+//						for(var j = 0; j < 5-data.ccVOList.length; j++){
+//							tbodyContent ="<tr style='height:30px;'>"
+//								+"<th></th>"
+//								+"<td></td><td></td><td></td><td></td>"
+//								+"<td></td><td></td><td></td><td></td>"
+//								+"<td></td></tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
+//					var pageContent = "";
+//					// 페이징 다시그리기
+//					$("#pagingDiv").children().remove();
+//					
+//					if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
+//						+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
+//					} else if(data.ccPageNum == data.page.startPageNum){
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a> ◀ </a><input type='text' id='ccPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
+//						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
+//					} else if(data.ccPageNum == data.page.endPageNum){
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
+//						+"<input type='text' id='ccPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
+//						+"<a> / "+data.page.endPageNum+"</a>"
+//						+"<a> ▶ </a>";
+//					} else {
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
+//						+"<input type='text' id='ccPageInput' value='"+data.ccPageNum+"' onkeypress=\"pageInput(event);\"/>"
+//						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
+//					}
+//					$("#pagingDiv").append(pageContent);
+//				}
+//			},
+//			error : function() {
+//				alert("전송중 오류가 발생했습니다.");
+//			}
+//		});
+//	});
+//}
 
 // 조회 페이징
 function schPaging(ccPageNum) {
@@ -773,6 +773,72 @@ function contList(cust_id) {
 	});
 }
 
+//고객사 리스트 출력
+function custCompList(page){
+//	readDetail();
+	var ctx = $("#ctx").val();
+	$.ajax({
+		type : 'post',
+		url : ctx + '/custCompAjax',
+		data : {pageNum : page, sch_cust_nm : $("#sch_cust_nm").val(), sch_comp_num : $("#sch_comp_num").val(), sch_corp_num : $("#sch_corp_num").val(), sch_iuser_nm : $("#sch_iuser_nm").val()},
+		datatype : 'json',
+		success:function(result){
+			//리스트 출력 시 버튼 상태 설정
+			$("#functionBtn").css("display", "block");
+//			$("#baseBtnDiv").css("display", "none");
+//			$("#NewAddBtnDiv").css("display", "block");
+//			$("#addBtnDiv").css("display", "none");
+//			$("#mdfBtnDiv").css("display", "none");
+			
+			$("#ccListTbody").children().remove();
+			$.each(result.ccVOList, function(i, cc){
+			
+				$("#ccListTbody").append("" +
+						"<tr id='"+cc.sales_oppt_id+"'>"+
+						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+cc.sales_oppt_id+">" +
+						"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+						"<input type=hidden id=list_sales_lev_cd value="+cc.sales_lev_cd+"></th>"+
+						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+cc.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+cc.sales_oppt_nm+"</a></td>"+
+						"<td id=list_cust_nm>"+cc.cust_nm+"</td>"+
+						"<td>"+cc.sales_lev_cd_nm+"</td>"+
+						"<td style='text-align: right; padding-right:5px;'>"+comma(cc.expt_sales_amt)+"</td>"+
+						"<td>"+cc.expt_fin_d+"</td>"+
+						"<td>"+cc.psblty_rate+"</td>"+
+						"<td>"+cc.sales_oppt_stat_cd_nm+"</td>"+
+						"<td>"+cc.fst_reg_id+"</td>"+
+						"<td>"+cc.fst_reg_dt+"</td>+"+
+						"</tr>"
+				);
+			});
+			//페이지 리스트 갯수
+			if(result.oplist.length < 10){
+				for(var j = 0; j < 10-result.oplist.length; j++){
+					$("#ccListTbody").append("<tr style='height:30px;'>"
+							+"<th></th>"
+							+"<td></td><td></td><td></td><td></td>"
+							+"<td></td><td></td><td></td><td></td>"
+							+"<td></td></tr>");
+				}
+			}
+			$("#pageSpace").children().remove();	
+			$("#pageSpace").children().remove();
+			var ccPageNum = result.ccPageNum;
+			var startPageNum = result.page.startPageNum;
+			var endPageNum = result.page.endPageNum;
+			var firstPageCount = result.page.firstPageCount;
+			var totalPageCount = result.page.totalPageCount;
+			var prevPageNum = result.page.prevPageNum;
+			var nextPageNum = result.page.nextPageNum;
+			var prevStepPage = result.page.prevStepPage;
+			var nextStepPage = result.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+		},
+		error:function(request){
+			alert("error : " + request);
+		}
+	});
+}
+
 //페이징
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
 	var endPageNo = $("<input>");
@@ -785,7 +851,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	stepPrev.addClass("prev");
 	stepPrev.html("◀◀");
 	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:opportunityList("+prevStepPage+")");
+		stepPrev.attr("href","javascript:custCompList("+prevStepPage+")");
 	}
 	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
@@ -794,12 +860,12 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:opportunityList("+prevPageNum+")");
+		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
 	}
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:opportunityList("+i+")");
+		ccPage.attr("href","javascript:custCompList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -815,14 +881,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	nextPage.addClass("next");
 	nextPage.html("▶");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:opportunityList("+nextPageNum+")");
+		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
 	}
 	$("#pageSpace").append(nextPage);
 	var stepNext = $("<a>");
 	stepNext.addClass("next");
 	stepNext.html("▶▶");
 	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:opportunityList("+nextStepPage+")");
+		stepNext.attr("href","javascript:custCompList("+nextStepPage+")");
 	}
 	$("#pageSpace").append(stepNext);
 }

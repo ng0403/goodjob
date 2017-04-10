@@ -78,11 +78,13 @@ public class CustCompController {
 	}
 
 	// 기업고객 리스트(ajax)
-	@RequestMapping(value = "custcompPaging.do", method = RequestMethod.POST)
+	@RequestMapping(value = "custCompAjax", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> custCompPList(HttpSession session,
 			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
 			String sch_cust_nm, String sch_comp_num, String sch_corp_num, String sch_iuser_nm) {
+		
 		Map<String, Object> pMap = new HashMap<String, Object>();
+		
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			pMap.put("result", "standard/home/session_expire");
 		} else {
