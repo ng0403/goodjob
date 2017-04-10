@@ -15,6 +15,24 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>기존고객 상세정보</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	var flg = ${flg};
+	if(flg == 1)//상세정보를 눌렀을 경우
+	{
+		$('#baseBtnDiv').css('display', 'block');
+		$('#mdfBtnDiv').css('display', 'none');
+	} else if(flg == 0)//신규추가를 눌렀을 경우
+		{
+		
+		
+		$("#baseBtnDiv").css("display", "none");
+		$("#addBtnDiv").css("display", "block");
+		$("#mdfBtnDiv").css("display", "none");
+		custCompAddBtn();
+	}
+});
+</script>
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>
@@ -27,15 +45,16 @@
 			
 				<div id="baseBtnDiv" class="bt_position_authuser">
 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/>
-					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/>
-					<input type="button" id="mdfBtn" value="편집" class="custcomp_btn" disabled="disabled" onclick="custCompMdfyBtn();"/>
+<!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
+					<input type="button" id="mdfBtn" 	   value="편집" class="custcomp_btn" onclick="custCompMdfyBtn();"/>
+					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
 				</div>
 				<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="addSaveBtn" value="저장" onclick="addCustComp('${ctx}');" class="custcomp_btn"/>
+					<input type="button" id="addSaveBtn"   value="저장" class="custcomp_btn" onclick="addCustComp('${ctx}');"/>
 					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
 				</div>
 				<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="mdfSaveBtn" value="저장" onclick="mdfyCustComp('${ctx}');" class="custcomp_btn"/>
+					<input type="button" id="mdfSaveBtn"   value="저장" class="custcomp_btn" onclick="mdfyCustComp('${ctx}');" />
 					<input type="button" id="mdfCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
 				</div>
 				
@@ -51,8 +70,23 @@
 								</td>
 								<th >고객사구분</th>
 								<td>
-									<input type="hidden" id="cust_div_cd" name="cust_div_cd" value="${custcompDetail.cust_div_cd}"/>
-									<input type="text" name="cust_div_cd" id="cust_div_cd" class="int" value="${custcompDetail.cust_div_cd}" style="ms-ime-mode: disabled;" readonly="readonly"/>
+									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" /> 
+									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled">
+											<option value="0" style="text-align: center;">==구분==</option>
+											<c:forEach var="CDC" items="${CDCCodeList}">
+												<option value="<c:out value="${CDC.cust_div_cd}" />"
+													 <c:if test="${custcompDetail.cust_div_cd == CDC.cust_div_cd }">selected="selected"</c:if>>
+													 ${CDC.cust_div_nm}
+												</option>
+											</c:forEach>
+										</select>
+										
+<!-- 									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled"> -->
+<!-- 										<option value="0" style="text-align: center;">==선택==</option> -->
+<%-- 										<option <c:if test="${custcompDetail.cust_div_cd == '0001' }">selected="selected"</c:if>>가망</option> --%>
+<%-- 										<option <c:if test="${custcompDetail.cust_div_cd == '0002' }">selected="selected"</c:if>>기존</option> --%>
+<!-- 									</select> -->
+<%-- 									<input type="text" name="cust_div_cd" id="cust_div_cd" class="int" value="${custcompDetail.cust_div_cd}" style="ms-ime-mode: disabled;" readonly="readonly"/> --%>
 								</td>
 								
 							</tr>	
@@ -92,7 +126,7 @@
 									<input type="hidden" id="hcust_addr" value="${custcompDetail.cust_addr}" />
 									
 									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num"  value="${custcompDetail.zip_cd_sri_num}"/>
-									<input type="text" name="cust_addr" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" readonly="readonly"/>
+									<input type="text" name="cust_addr" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" maxlength="5" readonly="readonly"/>
 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/>
 									&nbsp;
 									<input type="text" name="cust_zip_addr" id="cust_addr" class="int_ad" value="${custcompDetail.cust_addr}"  readonly="readonly"/>
@@ -103,10 +137,13 @@
 								<th>매출규모</th>
 								<td>
 									<input type="hidden" id="hsales_scale_cd"/>
-									<select id="sales_scale_cd" name="sales_scale_cd">
+									<select id="sales_scale_cd" name="sales_scale_cd" disabled="disabled">
 										<option value="0" style="text-align: center;">==매출규모==</option>
 										<c:forEach var="SSC" items="${SSCCodeList}">
-											<option value="${SSC.sales_scale_cd}">${SSC.sales_scale}</option>
+											<option value="<c:out value="${SSC.sales_scale_cd}" />"
+											<c:if test="${custcompDetail.sales_scale_cd == SSC.sales_scale_cd }">selected="selected"</c:if>>
+											${SSC.sales_scale}
+											</option>
 										</c:forEach>
 									</select>
 								</td>
@@ -119,23 +156,26 @@
 							<tr>
 								<th>기업업종</th>
 								<td>
-									<input type="hidden" id="indst_cd"/>
-									<input type="text" name="indst_cd" id="indst_cd" class="int" value="${custcompDetail.indst_cd}" maxlength="50"readonly="readonly" />
+									<input type="hidden" id="hindst_cd"/>
+										<input type="text" name="indst_cd1" id="indst_cd1" class="int" value="${custcompDetail.indst}" maxlength="50"readonly="readonly" />
 								</td>
 								<th>기업업태</th>
 								<td>
-									<input type="hidden" id="biz_status"/>
-									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50"readonly="readonly" />
+									<input type="hidden" id="hbiz_status"/>
+									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" />
 								</td>
 							</tr>
 							<tr>
 								<th>산업군</th>
 									<td>
-										<input type="hidden" id="hindst_cd"/>
-										<select id="indst_cd" name="indst_cd">
+										<input type="hidden" id="hindst_cd" />
+										<select id="indst_cd" name="indst_cd" disabled="disabled">
 											<option value="0" style="text-align: center;">==산업군==</option>
 											<c:forEach var="IDC" items="${IDCCodeList}">
-												<option value="${IDC.indst_cd}">${IDC.indst}</option>
+												<option value="<c:out value="${IDC.indst_cd}" />"
+													 <c:if test="${custcompDetail.indst_cd == IDC.indst_cd }">selected="selected"</c:if>>
+													 ${IDC.indst}
+												</option>
 											</c:forEach>
 										</select>
 									</td>

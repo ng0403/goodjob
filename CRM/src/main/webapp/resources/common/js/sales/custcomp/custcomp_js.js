@@ -53,7 +53,7 @@ $(document).ready(function() {
 			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-				opptList(cust_id);
+			opptList(cust_id);
 		}
 	});
 	
@@ -118,7 +118,7 @@ function schCustComp(event) {
 // 전체 체크 해제
 function chkCancel() {
 	$(document).ready(function() {
-		$("#ccListCheck").prop("checked", false);
+		$("#custcompCheck").prop("checked", false);
 	});
 }
 
@@ -773,29 +773,46 @@ function contList(cust_id) {
 	});
 }
 
+
 //모두체크
-function actAllChk(){
-	  
-	var checkbox=$('#act_list_table tbody').find('input[type=checkbox]');
-	
-	if($('#actCheck').is(":checked")){
-		$(checkbox).prop("checked", true);
-	}else{
-		$(checkbox).prop("checked", false);
-	}
+//function custcompAllChk(){
+//	  
+//	var checkbox=$('#ccListTbody tbody').find('input[type=checkbox]');
+//	
+//	if($('#custcompCheck').is(":checked")){
+//		$(checkbox).prop("checked", true);
+//	}else{
+//		$(checkbox).prop("checked", false);
+//	}
+//}
+
+function custcompAllCheck(){
+	$("#custcompSelect").click( function(){
+		var chk = $(this).is(":checked"); //checked 된 경우 true, 아닌 경우 false
+		if(chk){
+			$("#ccListTbody input[type=checkbox]").prop("checked",true);			
+		}else{
+			$("#ccListTbody input[type=checkbox]").prop("checked",false);
+		}
+	});
+}
+
+//all 체크일때 하나라도 체크해지가 된 경우 all checkbox 체크 해제
+function chkCancel(){
+	$("#custcompSelect").prop("checked", false);
 }
 
 //전체 체크 해제
-function actChkCancel() {
+function custcompChkCancel() {
 	$(document).ready(function() {
-		$("#actCheck").prop("checked", false);
+		$("#custcompCheck").prop("checked", false);
 	});
 }
 
 //체크박스 개수 검색함수
 function checkCount(){
    var count=0;
-   var checkList = $('.act_chek');
+   var checkList = $('.cust_check');
 
    for(var i=0; i<checkList.size(); i++){
       if($(checkList[i]).is(':checked')){
@@ -816,20 +833,19 @@ function custcompInsertForm() {
 function custcompDelete()
 {
 	var form = $('#delForm');
+	
+	if (checkCount() == 0)  {
 		
-	if (checkCount() == 0) 
-	{
 		alert("삭제할 항목을 선택해주세요.");
-	} 
-	else 
-	{
+		
+	} else  {
+		
 		var delYN = confirm("정말 삭제하시겠습니까??");
+		
 			
-		if(!delYN)
-		{
+		if(!delYN){
 			return false;
 		}
-	
 		form.submit();
 	}	
 }

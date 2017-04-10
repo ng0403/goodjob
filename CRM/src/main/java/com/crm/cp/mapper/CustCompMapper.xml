@@ -6,26 +6,26 @@
    
    <!-- 전체 리스트 가져오기 - [페이징] -->
 	<select id="custcompList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-   select r.*
+    select r.*
 		from (select b.* , rownum rnum
 	          from (select c.cust_id cust_id
           			   , c.cust_nm cust_nm
                        , c.cust_zip_cd cust_zip_cd
                        , c.cust_addr cust_addr
                        , c.cust_dtl_addr cust_dtl_addr 
-                       , c.cust_div_cd cust_div_cd
-          					   , c.comp_num comp_num
+                       , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
+          			   , c.comp_num comp_num
                        , c.corp_num corp_num
-          				  	 , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code =c.sales_scale_cd ) sales_scale_cd
+          			   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale
                        , c.homepage_url homepage_url
-          					   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code =c.indst_cd ) indst_cd
+          			   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst
                        , c.biz_status biz_status 
                        , c.main_prod main_prod 
-          					   , c.emp_qty emp_qty
+          			   , c.emp_qty emp_qty
                        , c.rep_ph1 rep_ph1
-          					   , c.rep_ph2 rep_ph2
-          					   , c.rep_ph3 rep_ph3
-          					   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+          			   , c.rep_ph2 rep_ph2
+          			   , c.rep_ph3 rep_ph3
+          			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
           			from customer c		   
           					   
                     where 1=1
@@ -54,7 +54,7 @@
 	select nvl(count(c.cust_id), 0) 
 		from customer c
     		where 1=1
-                  and c.cust_div_cd = '0001'
+<!--                   and c.cust_div_cd = '0001' -->
                   and c.act_yn = 'Y'
 				<if test="sch_cust_nm != null and sch_cust_nm !=''">
 			     	and c.cust_nm like '%'||#{sch_cust_nm}||'%'
@@ -69,31 +69,28 @@
 	
 	<!-- 기업고객 상세정보 -->
 	<select id="custCompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-		select c.cust_id cust_id
-		      , c.cust_nm cust_nm
-		      , c.comp_num comp_num
- 		      , c.corp_num corp_num
-		      , c.sales_scale_cd sales_scale_cd
-		      , c.emp_qty emp_qty
-		      , c.indst_cd indst_cd
-		      , c.homepage_url homepage_url
-		      , c.rep_ph1 rep_ph1
-		      , c.rep_ph2 rep_ph2
-		      , c.rep_ph3 rep_ph3
-		      , c.cust_zip_cd cust_zip_cd
-<!-- 		      , c.cust_zip_num zip_cd_sri_num -->
-<!-- 		      , (select pa.addr_dtl_cont from parcel_address pa where c.cust_zip_cd = pa.zip_cd and c.cust_zip_num = pa.zip_cd_sri_num) cust_zip_addr -->
-		      , c.cust_addr cust_addr
-		      , i.iuser_nm iuser_nm
-              , i.id_nm iuser_id
-<!-- 		      , c.stat_cd stat_cd -->
-		 from customer c
-		 	  , iuser i
+		select 
+			c.cust_id cust_id
+          	, c.cust_nm cust_nm
+            , c.cust_zip_cd cust_zip_cd
+            , c.cust_addr cust_addr
+            , c.cust_dtl_addr cust_dtl_addr 
+            , c.cust_div_cd cust_div_cd
+          	, c.comp_num comp_num
+            , c.corp_num corp_num
+          	, (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale_cd
+            , c.homepage_url homepage_url
+          	, (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst_cd
+            , c.biz_status biz_status 
+            , c.main_prod main_prod 
+          	, c.emp_qty emp_qty
+            , c.rep_ph1 rep_ph1
+          	, c.rep_ph2 rep_ph2
+          	, c.rep_ph3 rep_ph3
+	   from customer c
        where c.cust_id = #{cust_id}
-		  and cc.cust_id = #{cust_id}
-		  and c.cust_div_cd = '0002'
-<!-- 		  and c.iuser_id = i.id_nm -->
-		  and c.act_yn = 'Y'
+		    and c.cust_div_cd = '0001'
+		    and c.act_yn = 'Y'
 	</select>
 
 	<!-- 기업고객 상세정보 -->
@@ -129,60 +126,78 @@
 <!--          	select cust_seq.currval from dual -->
 <!--       	</selectKey> -->
 <!-- 	</insert> -->
-	<insert  id="custInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+	<update  id="custcompInsert" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		INSERT INTO CUSTOMER (
   			CUST_ID, CUST_NM, CUST_DIV_CD,  COMP_NUM,  CORP_NUM,  REP_PH1,  REP_PH2,  REP_PH3,  HOMEPAGE_URL,  CUST_ZIP_CD,   CUST_ADDR,   CUST_DTL_ADDR,
   			SALES_SCALE_CD,  EMP_QTY,  INDST_CD,  BIZ_STATUS,  MAIN_PROD,  FST_REG_ID,   FST_REG_DT,  FIN_MDFY_ID,   FIN_MDFY_DT,   ACT_YN ) 
 		VALUES (
-  			concat('CU',lpad(to_char(#{custcomp_idx}),5,'0')),  
-  			'코어플러스', 
-  			'CD001',
-  			'4028202520',
- 			'2543116359872',
- 			'02',
-  			'761',
- 			'2223',
-  			'http://www.coreplus.co.kr',
-  			'09812',
-  			'서울시 관악구 조원동 1668-12',
-  			'코어빌딩 2F',
-  			'0005',
-  			'100',
-  			'',
- 			'',
-  			'0027',
+  			(SELECT 
+		     	DECODE(MAX(cust_id), NULL, 'CUS0000001', 'CUS' || lpad( (SUBSTR(MAX(cust_id), 4, 7) + 1), 7, 0))
+		     from CUSTOMER
+		     WHERE ROWNUM=1),
+  			#{cust_nm, jdbcType=VARCHAR}, 
+  			#{cust_div_cd, jdbcType=VARCHAR},
+  			#{comp_num, jdbcType=VARCHAR},
+ 			#{corp_num, jdbcType=VARCHAR},
+ 			#{rep_ph1, jdbcType=VARCHAR},
+  			#{rep_ph2, jdbcType=VARCHAR},
+ 			#{rep_ph3, jdbcType=VARCHAR},
+  			#{homepage_url, jdbcType=VARCHAR},
+  			#{cust_zip_cd, jdbcType=VARCHAR},
+  			#{cust_addr, jdbcType=VARCHAR},
+  			#{cust_dtl_addr, jdbcType=VARCHAR},
+  			#{sales_scale_cd, jdbcType=VARCHAR},
+  			#{emp_qty, jdbcType=VARCHAR},
+  			#{indst_cd, jdbcType=VARCHAR},
+  			#{biz_status, jdbcType=VARCHAR},
+  			#{main_prod, jdbcType=VARCHAR},
   			'admin',
   			sysdate,
   			'',
  			sysdate, 
   			'Y'
-		);
-	</insert>
-	<insert id="custCompInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-		 INSERT INTO CUSTOMER_COMPANY (CUST_ID, COMP_NUM, CORP_NUM, SALES_SCALE_CD, HOMEPAGE_URL, INDST_CD, EMP_QTY, REP_PH1, REP_PH2, REP_PH3, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT)
-	     VALUES (concat('CU',lpad(to_char(#{custcomp_idx}),5,'0')), #{comp_num}, #{corp_num}, #{sales_scale_cd}, #{homepage_url}, #{indst_cd}, #{emp_qty}, #{rep_ph1}, #{rep_ph2}, #{rep_ph3}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate)
-	</insert>
+		)
+	</update>
+<!-- 	<insert id="custCompInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO"> -->
+<!-- 		 INSERT INTO CUSTOMER_COMPANY (CUST_ID, COMP_NUM, CORP_NUM, SALES_SCALE_CD, HOMEPAGE_URL, INDST_CD, EMP_QTY, REP_PH1, REP_PH2, REP_PH3, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT) -->
+<!-- 	     VALUES (concat('CU',lpad(to_char(#{custcomp_idx}),5,'0')), #{comp_num}, #{corp_num}, #{sales_scale_cd}, #{homepage_url}, #{indst_cd}, #{emp_qty}, #{rep_ph1}, #{rep_ph2}, #{rep_ph3}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate) -->
+<!-- 	</insert> -->
 	
 	<!-- 기업고객 수정 -->
-	<update id="custUpdate" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+	<update id="custcompEdit" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		update CUSTOMER 
-		set CUST_NM = #{cust_nm}, CUST_ZIP_CD = #{cust_zip_cd}, CUST_ADDR = #{cust_addr}, 
-			FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
-		where cust_id = #{cust_id}
+		set 
+			cust_nm = #{cust_nm, jdbcType=VARCHAR}
+		  , cust_div_cd = #{cust_div_cd, jdbcType=VARCHAR}
+		  , comp_num = #{comp_num, jdbcType=VARCHAR}
+ 		  , corp_num = #{corp_num, jdbcType=VARCHAR}
+ 		  , rep_ph1 = #{rep_ph1, jdbcType=VARCHAR}
+		  , rep_ph2 = #{rep_ph2, jdbcType=VARCHAR}
+		  , rep_ph3 = #{rep_ph3, jdbcType=VARCHAR}
+		  , homepage_url = #{homepage_url, jdbcType=VARCHAR}
+		  , cust_zip_cd = #{cust_zip_cd, jdbcType=VARCHAR}
+		  , cust_addr  = #{cust_addr, jdbcType=VARCHAR}
+		  , cust_dtl_addr = #{cust_dtl_addr, jdbcType=VARCHAR}
+		  , sales_scale_cd = #{sales_scale_cd, jdbcType=VARCHAR}
+		  , emp_qty = #{emp_qty, jdbcType=VARCHAR}
+		  , indst_cd = #{indst_cd, jdbcType=VARCHAR}
+		  , biz_status = #{biz_status, jdbcType=VARCHAR}
+		  
+	   where cust_id = #{cust_id}
 	</update>
 	
-	<update id="custCompUpdate" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-		update CUSTOMER_COMPANY 
-		set COMP_NUM = #{comp_num}, CORP_NUM = #{corp_num}, SALES_SCALE_CD = #{sales_scale_cd}, HOMEPAGE_URL = #{homepage_url}, 
-			INDST_CD = #{indst_cd}, EMP_QTY = #{emp_qty}, REP_PH1 = #{rep_ph1}, REP_PH2 = #{rep_ph2}, REP_PH3 = #{rep_ph3}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
-		where cust_id = #{cust_id}
-	</update>
+<!-- 	<update id="custCompUpdate" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO"> -->
+<!-- 		update CUSTOMER_COMPANY  -->
+<!-- 		set COMP_NUM = #{comp_num}, CORP_NUM = #{corp_num}, SALES_SCALE_CD = #{sales_scale_cd}, HOMEPAGE_URL = #{homepage_url},  -->
+<!-- 			INDST_CD = #{indst_cd}, EMP_QTY = #{emp_qty}, REP_PH1 = #{rep_ph1}, REP_PH2 = #{rep_ph2}, REP_PH3 = #{rep_ph3}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate -->
+<!-- 		where cust_id = #{cust_id} -->
+<!-- 	</update> -->
 	
 	<!-- 기업고객 삭제 -->
-	<update id="custDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+	<update id="custcompDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		update CUSTOMER 
 		set act_yn = 'N'
-		where cust_id = #{cust_idList}
+		where cust_id = #{cust_id}
 	</update>
 	
 	<!-- 산업군 코드 리스트 -->
@@ -198,6 +213,16 @@
 	<!-- 기업상태 코드 리스트 -->
 	<select id="getCCS" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select code stat_cd, cd_nm stat from code where cd_grp_id = 'CCS'
+	</select>
+	
+	<!-- 고객사구분 코드 리스트 -->
+	<select id="getCDC" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		select 
+			cd_grp_id cust_div_id 
+			, code cust_div_cd
+			, cd_nm cust_div_nm
+		from code 
+		where cd_grp_id = 'CDC'
 	</select>
 	
 	<!-- 키맨 리스트 -->
