@@ -229,7 +229,7 @@
 		        (select cd_nm from code where cd_grp_id='OSC' and code = a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm, 
 		        a.memo,
          		a.fst_reg_id, 
-				to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt , 
+				to_char(a.fst_reg_dt ,'yyyy-mm-dd') fst_reg_dt , 
 		        a.fin_mdfy_id, 
 				a.fin_mdfy_dt, a.act_yn
 			from 
@@ -241,8 +241,11 @@
 		where d.cust_id = #{cust_id} and d.sales_oppt_stat_cd = '0001'
 	</select>
 
-	
-	
+
+
+
+
+
 	
 	<select id="actOneSelectId" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 	      SELECT SA.SALES_ACTVY_NM ,SA.SALES_ACTVY_ID 

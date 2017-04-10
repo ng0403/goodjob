@@ -127,7 +127,7 @@
 								<td> <!-- colspan="3" -->
 									<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 									<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
-									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" class="int2" vss style="ms-ime-mode: disabled; background-color: ">
+									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
 								</td>
 								<th>고객사</th>
 								<td>

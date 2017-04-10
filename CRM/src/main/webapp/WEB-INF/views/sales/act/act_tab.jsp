@@ -52,7 +52,7 @@
 		<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_authuser" style="float: right;">
 				<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="opptInsertPop('${ctx}')"/>
-				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actAddCancelBt();"/>
+				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
 			<div id="tableline">
@@ -62,10 +62,10 @@
 							<th style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
 							<td style="width: 20%;">영업기회명</td>
 							<td style="width: 8%;">고객사</td>
-							<td style="width: 6%;">상태</td>
+<!-- 							<td style="width: 6%;">상태</td> -->
 							<td style="width: 8%;">영업단계</td>
 							<td style="width: 20%;">예상매출액</td>
-							<td style="width: 10%;">가능성</td>
+							<td style="width: 8%;">가능성</td>
 							<td style="width: 10%;">등록자</td>
 							<td style="width: 10%;">등록일시</td>
 						</tr>
@@ -74,15 +74,17 @@
 						<c:forEach items="${opptList}" var="opptList">
 							<c:if test="${not empty opptList}">
 								<tr id="${opptList.sales_oppt_id}">
-									<th><input type="checkbox"  id='actAllSelect' value="${opptList.sales_oppt_id}"/></th>
+									<th>
+										<input type="checkbox"  id="actAllSelect" name="sales_oppt_id" value="${opptList.sales_oppt_id}"/>
+									</th>
 										<td>
 											<a onclick="opptTabDetail('${ctx}','${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
 										</td>
 										<td>${opptList.cust_nm}</td>
 										<td>${opptList.sales_lev_cd_nm}</td>
-										<td style="text-align: right; padding-right:5px;">${opptList.expt_sales_amt}</td>
+<%-- 										<td style="text-align: right; padding-right:5px;">${opptList.}</td> --%>
+										<td>${opptList.expt_sales_amt}</td>
 										<td>${opptList.psblty_rate}</td>
-										<td>${opptList.sales_oppt_stat_cd_nm}</td>
 										<td>${opptList.fst_reg_id}</td>
 										<td>${opptList.fst_reg_dt}</td>
 								</tr>
