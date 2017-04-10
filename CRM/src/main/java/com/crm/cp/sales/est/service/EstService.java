@@ -67,4 +67,6 @@ public interface EstService {
 
 	List<OpptVO> opptList(Map<String, String> map);
 
+	int opptAdd(OpptVO opptVo);
+
 }

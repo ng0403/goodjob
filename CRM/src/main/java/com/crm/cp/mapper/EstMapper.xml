@@ -346,9 +346,9 @@
 		values(
 			#{estim_seq},
 			#{sales_oppt_id},
-			(SELECT /*+INDEX_DESC(ESTIMATE_LIST PK_ESTIMATE_LIST)*/
-				DECODE(MAX(ESTIM_ID),NULL,'EST0000001','EST'||lpad((SUBSTR(MAX(ESTIM_ID),4,7)+1),7,0))ESTIM_ID
-			FROM ESTIMATE_LIST
+			(SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE SERIAL_NUM)*/
+			 DECODE(MAX(SERIAL_NUM),NULL,'OES0000001','OES'||lpad((SUBSTR(MAX(SERIAL_NUM),4,7)+1),7,0))SERIAL_NUM
+			FROM SALES_OPPORTUNITY_ESTIMATE
 			WHERE ROWNUM=1),
 			#{fst_reg_id},
 			sysdate,
@@ -515,4 +515,28 @@
    			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
 			AND OE.ESTIM_ID = #{estim_id}
 	</select>
+	<!-- 영업기회탭 영업기회 추가시  영업기회멸 견적 추가 -->
+	<insert id="opptSoeAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
+		insert into SALES_OPPORTUNITY_ESTIMATE(
+			estim_id,
+			sales_oppt_id,
+			serial_num,
+			fst_reg_id,
+			fst_reg_dt,
+			fin_mdfy_id,
+			fin_mdfy_dt
+		)
+		values(
+			#{estim_id},
+			#{sales_oppt_id},
+			(SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE SERIAL_NUM)*/
+			 DECODE(MAX(SERIAL_NUM),NULL,'OES0000001','OES'||lpad((SUBSTR(MAX(SERIAL_NUM),4,7)+1),7,0))SERIAL_NUM
+			FROM SALES_OPPORTUNITY_ESTIMATE
+			WHERE ROWNUM=1),
+			#{fst_reg_id},
+			sysdate,
+			#{fin_mdfy_id},
+			sysdate
+		)
+	</insert>
 </mapper>

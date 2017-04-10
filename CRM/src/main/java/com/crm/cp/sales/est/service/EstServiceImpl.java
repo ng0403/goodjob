@@ -216,6 +216,12 @@ public class EstServiceImpl implements EstService {
 		return estDaoi.opptList(map);
 	}
 
+	@Override
+	public int opptAdd(OpptVO opptVo) {
+		// TODO Auto-generated method stub
+		return estDaoi.opptAdd(opptVo);
+	}
+
 
 
 }

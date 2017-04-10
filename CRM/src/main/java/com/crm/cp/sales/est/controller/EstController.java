@@ -424,6 +424,33 @@ public class EstController {
 		return mov;
 	}
 	
+	//  영업기회 탭에서 상세 POPUP
+	@RequestMapping(value = "/opptDetailEstPopup", method = RequestMethod.GET)
+	public ModelAndView opptDetailPopup(HttpSession session,
+			String salesOppt_id
+			, String sales_oppt_nm) {
+
+		System.out.println("영업활동 상세정보 팝업 actvyId" + salesOppt_id);
+		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = opptService.opptOscList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = opptService.opptOtlList();
+
+		OpptVO detail = opptService.opptDetail(salesOppt_id);
+		System.out.println("detail : " + detail);
+	
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		mov.addObject("opDetail", detail);
+		mov.addObject("sales_oppt_id", salesOppt_id);
+		mov.addObject("sales_oppt_nm", sales_oppt_nm);
+		mov.addObject("flg", "detail");
+
+		return mov;
+	}
+	
 	// 영업활동 추가 팝업창
 	@RequestMapping(value = "/opptActiveEstPopup", method = RequestMethod.GET)
 	public ModelAndView opptActivePopup(HttpSession session,
@@ -477,6 +504,33 @@ public class EstController {
 		return mov;
 	}
 	
+	//영업기회 tab 영업기회  추가
+	@RequestMapping(value = "/estimOpptAdd", method = RequestMethod.POST)
+	@ResponseBody int opptInsert(HttpSession session, OpptVO opptVo) 
+	{
+		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		// 영업활동 추가
+		int result = opptService.opptAdd(opptVo);
+		if(result == 1){
+			result += estInter.opptAdd(opptVo);
+		}
+		return result;
+	}
+	
+	//영업기회 tab 영업기회  수정
+	@RequestMapping(value = "/estimOpptModfy", method = RequestMethod.POST)
+	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo) 
+	{
+		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		System.out.println(opptVo.getSales_oppt_id());
+		// 영업활동 편집
+		int result = opptService.opptModify(opptVo);
+
+		return result;
+	}
 	//상세정보에서의 영업기회 리스트 
 	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
 	public ModelAndView estActOpptList(HttpSession session,

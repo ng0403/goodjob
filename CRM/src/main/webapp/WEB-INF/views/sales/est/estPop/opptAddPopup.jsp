@@ -18,7 +18,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영업기회 등록</title>
 </head>
-<body onload='javscript:if(${flg eq "detail"}) opptDetail();'>
+<body <%-- onload='javscript:if(${flg eq "detail"}) opptDetail();' --%>>
 	<div class="keymanview">
 	<c:if test="${flg eq 'add'}">
 		<div id="title">
@@ -39,8 +39,8 @@
 						<tr>
 							<th>영업기회명</th>
 							<td> <!-- colspan="3" -->
-								<input type="hidden" id="sales_oppt_id" value="${opDetail.sales_oppt_id}">
-								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
+								<input type="hidden" id="sales_oppt_id" value="${sales_oppt_id}">
+								<input type="text" name="sales_oppt_nm" value="${sales_oppt_nm}" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
 							</td>
 							<th>고객사</th>
 							<td>
