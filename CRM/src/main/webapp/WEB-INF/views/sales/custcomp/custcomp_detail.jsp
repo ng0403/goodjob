@@ -122,14 +122,14 @@ $(document).ready(function(){
 								<th>주소지</th>
 								<td colspan="8">
 									<input type="hidden" id="hcust_zip_cd" value="${custcompDetail.cust_zip_cd}" />
-									<input type="hidden" id="hcust_zip_addr" value="${custcompDetail.cust_zip_addr}" />
 									<input type="hidden" id="hcust_addr" value="${custcompDetail.cust_addr}" />
+									<input type="hidden" id="hcust_dtl_addr" value="${custcompDetail.cust_dtl_addr}" />
 									
 									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num"  value="${custcompDetail.zip_cd_sri_num}"/>
-									<input type="text" name="cust_addr" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" maxlength="5" readonly="readonly"/>
+									<input type="text" name="cust_zip_cd" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" maxlength="5" readonly="readonly"/>
 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/>
 									&nbsp;
-									<input type="text" name="cust_zip_addr" id="cust_addr" class="int_ad" value="${custcompDetail.cust_addr}"  readonly="readonly"/>
+									<input type="text" name="cust_addr" id="cust_addr" class="int_ad" value="${custcompDetail.cust_addr}"  readonly="readonly"/>
 									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr" class="int_ad" value="${custcompDetail.cust_dtl_addr}"  readonly="readonly"/>
 								</td>
 							</tr>
@@ -154,18 +154,6 @@ $(document).ready(function(){
 								</td>
 							</tr>	
 							<tr>
-								<th>기업업종</th>
-								<td>
-									<input type="hidden" id="hindst_cd"/>
-										<input type="text" name="indst_cd1" id="indst_cd1" class="int" value="${custcompDetail.indst}" maxlength="50"readonly="readonly" />
-								</td>
-								<th>기업업태</th>
-								<td>
-									<input type="hidden" id="hbiz_status"/>
-									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" />
-								</td>
-							</tr>
-							<tr>
 								<th>산업군</th>
 									<td>
 										<input type="hidden" id="hindst_cd" />
@@ -179,6 +167,32 @@ $(document).ready(function(){
 											</c:forEach>
 										</select>
 									</td>
+								
+<!-- 								<th>기업업종</th> -->
+<!-- 								<td> -->
+<!-- 									<input type="hidden" id="hindst_cd"/> -->
+<%-- 										<input type="text" name="indst_cd1" id="indst_cd1" class="int" value="${custcompDetail.indst}" maxlength="50"readonly="readonly" /> --%>
+<!-- 								</td> -->
+								<th>기업업태</th>
+								<td>
+									<input type="hidden" id="hbiz_status"/>
+									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" />
+								</td>
+							</tr>
+							<tr>
+<!-- 								<th>산업군</th> -->
+<!-- 									<td> -->
+<!-- 										<input type="hidden" id="hindst_cd" /> -->
+<!-- 										<select id="indst_cd" name="indst_cd" disabled="disabled"> -->
+<!-- 											<option value="0" style="text-align: center;">==산업군==</option> -->
+<%-- 											<c:forEach var="IDC" items="${IDCCodeList}"> --%>
+<%-- 												<option value="<c:out value="${IDC.indst_cd}" />" --%>
+<%-- 													 <c:if test="${custcompDetail.indst_cd == IDC.indst_cd }">selected="selected"</c:if>> --%>
+<%-- 													 ${IDC.indst} --%>
+<!-- 												</option> -->
+<%-- 											</c:forEach> --%>
+<!-- 										</select> -->
+<!-- 									</td> -->
 <!-- 								<th>주요제품</th> -->
 <!-- 								<td> -->
 <!-- 									<input type="hidden" id="main_prod"/> -->

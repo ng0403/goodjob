@@ -216,8 +216,9 @@ function custCompMdfyBtn() {
 //	$("#cust_dtl_addr").attr("readonly", true);
 	
 	//$("#sales_scale_cd").children().eq($("#hsales_scale_cd").val()).attr("selected", "selected"); // 매출규모 코드 선택
-	$("#indst_cd").children().eq($("#hindst_cd").val()).attr("selected", "selected"); // 산업군 코드 선택
+	//$("#indst_cd").children().eq($("#hindst_cd").val()).attr("selected", "selected"); // 산업군 코드 선택
 	$("#stat_cd").children().eq($("#hstat_cd").val()).attr("selected", "selected"); // 기업 상태 코드 선택
+	
 	$("#addr").attr("disabled", false);
 	$("#iuser_nm").attr("readonly", true);
 	$("#iuser_search").attr("disabled", false);
@@ -461,7 +462,7 @@ function mdfyCustComp(ctx){
 		var cust_dtl_addr = $("#cust_dtl_addr").val();
 		var sales_scale_cd = $("#sales_scale_cd option:selected").text();
 		var emp_qty = $("#emp_qty").val();
-		var indst_cd1 = $("#indst_cd1").val();
+		//var indst_cd1 = $("#indst_cd1").val();
 		var biz_status = $("#biz_status").val();
 		var indst_cd = $("#indst_cd option:selected").text();
 		

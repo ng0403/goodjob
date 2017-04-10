@@ -75,7 +75,7 @@
 				<tbody id="ccListTbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
-							<th><input type="checkbox" id="chk_cust_id" value="${cc.cust_id}" onclick="chkCancel();"></th>
+							<th><input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}" onclick="chkCancel();"></th>
 							<td id="ccListTableNmTd" style="text-align: left; padding-left: 8px;">
 								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');" style="color: blue;" class="cnClick">${cc.cust_nm}</a>
 							</td>
@@ -89,22 +89,22 @@
 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>
-					<c:if test="${ccVOList.size() < 5}">
-						<c:forEach begin="0" end="${5-ccVOList.size()}">
-							<tr>
-								<th></th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
-					</c:if>
+<%-- 					<c:if test="${ccVOList.size() < 5}"> --%>
+<%-- 						<c:forEach begin="0" end="${5-ccVOList.size()}"> --%>
+<!-- 							<tr> -->
+<!-- 								<th></th> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<%-- 						</c:forEach> --%>
+<%-- 					</c:if> --%>
 				</tbody>
 			</table>
 		</div>
