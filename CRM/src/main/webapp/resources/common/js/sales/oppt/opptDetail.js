@@ -66,7 +66,7 @@ function custcompListPopup(ctx){
 	});
 }
 //고객 이름 입력 함수
-function inputCustNm(custNm,leadId,custId,custType){	
+function inputCustNm(custNm,custId,custType){	
 	if(custType == 'search'){
 		$('#scust_nm').val(custNm);
 		$('#scust_id').val(custId);
