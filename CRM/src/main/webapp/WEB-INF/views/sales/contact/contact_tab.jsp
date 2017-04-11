@@ -64,7 +64,7 @@
 		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" />
-				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/>
+				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel()"/>
 			</div>
 			
 			<div id="tableline2">
@@ -93,7 +93,7 @@
 		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_pop_btn" class="custcomp_btn" value="영업활동 추가"/>
-				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="ccActDel('${ctx}');"/>
+				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="opptActiveDeletecontact();"/>
 			</div>
 			
 			<div id="tableline2">

@@ -7,8 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 
 @Repository
 public class ContactDaoImpl implements ContactDao {
@@ -178,4 +180,97 @@ public class ContactDaoImpl implements ContactDao {
 			}
 			return deleteResult;
 		}
+		
+		// 영업기회 리스트 가져오기
+		@Override
+		public List<OpptVO> getOpptList(String cont_id) {
+			List<OpptVO> opptVOList = null;
+			try {
+				opptVOList = sqlSession.selectList("ccOpptListcontact", cont_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return opptVOList;
+		}
+		
+		//영업기회 상태코드 가져오기
+		@Override
+		public List<OpptVO> opptOscList() {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("contact.osclist");
+		}
+		
+		 //영업기회단계 코드 가져오기
+		@Override
+		public List<OpptVO> opptOtlList() {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("contact.otllist");
+		} 
+		
+		// 영업기회 고객정보 가져오기
+		@Override
+		public OpptVO ccOpptCustDetail(String cust_id) {
+			OpptVO opptVO = null;
+			try {
+				opptVO = sqlSession.selectOne("contact.ccOpptCustDetail", cust_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return opptVO;
+		}
+		
+		//영업기회 키맨 정보 가져오기
+		@Override
+		public List<KeymanVO> selectKeyman(String cont_id) {
+			System.out.println("keyman hi dao " + cont_id);
+			List<KeymanVO> kmVOList = null;
+			try {
+				kmVOList = sqlSession.selectList("selectKeyman", cont_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return kmVOList;
+		}
+		
+		//영업기회 추가
+		@Override
+		public int opptAddcontact(OpptVO add) {
+			// TODO Auto-generated method stub
+			System.out.println("영업기회 add " + add.toString());
+			int seq = sqlSession.insert("contact.opptAddcontact", add);
+			return seq;
+		}
+		//영업기회단계 추가
+		@Override
+		public int addOpptStepcontact(OpptVO add) {
+			System.out.println("add123 : " + add.toString());
+			int seq = sqlSession.insert("contact.addOpptStepcontact", add);
+			System.out.println("seq : " + seq);
+			return seq;
+		}
+		
+		//영업활동 리스트
+		@Override
+		public List<ActVO> actListcontact(String cont_id) {
+			// TODO Auto-generated method stub
+			System.out.println("enter actListcontact daoo");
+			return sqlSession.selectList("contact.actListcontact", cont_id);
+		}
+
+		// 영업활동 삭제
+				@Override
+				public int deleteopptActivecontact(List<String> chked_val) {
+					int	deleteResultTemp = 0;
+					int deleteResult = 0;
+					try {
+						for (int i = 0; i < chked_val.size(); i++) {
+							deleteResultTemp = sqlSession.update("deleteopptActivecontact", chked_val.get(i));
+							deleteResult += deleteResultTemp;
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return deleteResult;
+				}
+
 }

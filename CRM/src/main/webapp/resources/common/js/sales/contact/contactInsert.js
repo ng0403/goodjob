@@ -499,7 +499,6 @@ function callAddCust(ctx){
 //키맨,개인고객 편집 눌렀을 때
 function callCustKeyMdiBtn(){
 	$("#custpsonMdiBtn").click(function() {
-		alert('hi');
 		$("#contactbody input[type='text']").css("background-color", "white");
 		$("#contactbody input[type='text']").attr("readonly", false);
 		
@@ -584,7 +583,6 @@ function contactAddp(){
 }
 
 function contactInsert() {
-	alert("인서트1111");
 	
     var formObj = $("form[role='form']");
 

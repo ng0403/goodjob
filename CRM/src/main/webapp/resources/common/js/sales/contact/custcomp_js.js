@@ -8,6 +8,8 @@ $("#navicustcomp").css("font-weight", "bold");
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	keymanList();
+	opptList();
+	actListcontact();
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
 		// 만약 전체 선택 체크박스가 체크된 상태일 경우
@@ -32,8 +34,8 @@ $(document).ready(function() {
 	
 	 
 	// 키맨 리스트 가져오기
-	$("#tab2").click(function() {
- 		var cont_id = $("#cont_id").val();
+	$("#tab1").click(function() {
+  		var cont_id = $("#cont_id").val();
  		if(cont_id == ''){
 			var tbody = $('#keymanTableTbody');
 			tbody.children().remove();
@@ -46,7 +48,7 @@ $(document).ready(function() {
 	});
 	
 	// 영업기회 리스트 가져오기
-	$("#tab3").click(function() {
+	$("#tab2").click(function() {
  		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
@@ -60,8 +62,8 @@ $(document).ready(function() {
 	});
 	
 	// 영업활동 리스트 가져오기
-	$("#tab4").click(function() {
-		var cust_id = $("#nowCust_id").val();
+	$("#tab3").click(function() {
+ 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#actTableTbody');
 			tbody.children().remove();
@@ -69,7 +71,7 @@ $(document).ready(function() {
 			tbodyContent = "<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-			actList(cust_id);
+			actListcontact();
 		}
 	});
 	
@@ -522,18 +524,19 @@ function keymanList() {
 }
 
 // 영업기회 List ajax 통신
-function opptList(cust_id) {
-	$(document).ready(function() {
-		var ctx = $("#ctx").val();
+function opptList() {
+ 	$(document).ready(function() {
+ 		var cont_id = $("#cont_id").val();
+ 		var ctx = $("#ctx").val();
 		var tbody = $('#opptTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccOpptList.do',
+			url : ctx+'/ccOpptListcontact',
 			type : 'POST',
-			data : "cust_id="+cust_id,
+			data : "cont_id="+cont_id,	
 			dataType : "json",
 			success : function(data) {
-				tbody.children().remove();
+ 				tbody.children().remove();
 				if(data.length == 0){
 					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 영업기회가 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
@@ -605,37 +608,39 @@ function dateFormatTime(timestamp){
 }
 
 // 영업활동 List ajax 통신
-function actList(cust_id) {
+function actListcontact() {
 	$(document).ready(function() {
-		var ctx = $("#ctx").val();
+		var cont_id = $("#cont_id").val();
+ 		var ctx = $("#ctx").val();
 		var tbody = $('#actTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccActList.do',
+			url : ctx+'/ccActListcontact',
 			type : 'POST',
-			data : "cust_id="+cust_id,
+			data : "cont_id="+cont_id,
 			dataType : "json",
 			success : function(data) {
-				tbody.children().remove();
-				if(data.length == 0){
+ 				tbody.children().remove();
+ 				var a = data.length;
+  				if(data.length == 0){
 					tbodyContent = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					// 영업활동 리스트 그리기
-					for (var i = 0; i < data.length; i++) {
-					/*	var strt_d = dateFormat(Number(data[i].strt_d));
+ 					for (var i = 0; i < data.length; i++) {
+						/*	var strt_d = dateFormat(Number(data[i].strt_d));
 						var end_d = dateFormat(Number(data[i].end_d));
 						var fst_reg_dt = dateFormatTime(Number(data[i].fst_reg_dt));*/
 						var strt_t = data[i].strt_t;
 						var end_t = data[i].end_t;
 						
-						if(strt_t == null){
+						/*if(strt_t == null){
 							strt_t = '';
 						}
 						if(end_t == null){
 							end_t = '';
-						}
-						tbodyContent = "<tr>"
+						}*/
+ 						tbodyContent = "<tr>"
 							+ "<td rowspan='2'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_div_nm+"</td>"
@@ -650,6 +655,7 @@ function actList(cust_id) {
 							+ "<td style='height:12px; padding:5px;'>"+data[i].end_d+"</td>"
 							+ "<td style='height:12px; padding:5px;'>"+end_t+"</td></tr>";
 						tbody.append(tbodyContent);
+ 
 					}
 					if(data.length < 5){
 						for(var j = 0; j < 5-data.length; j++){
@@ -662,6 +668,7 @@ function actList(cust_id) {
 								+ "<td rowspan='2'></td><td rowspan='2'></td>"
 								+ "</tr><tr style='height: 25px;'><td></td><td></td></tr>";
 							tbody.append(tbodyContent);
+
 						}
 					}
 				}

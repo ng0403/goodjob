@@ -8,7 +8,11 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_js.js"></script>
-
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>  
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomptab_js.js"></script>
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
+ 
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_opptpop_css.css" type="text/css" />
 <style type="text/css">
@@ -17,11 +21,7 @@
    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
 </style>
 <script type="text/javascript">
-function ccOpptDetailSelect() {
-	$("#sales_lev_cd").children().eq(${opptVO.sales_lev_cd}).attr("selected", "selected");
-	$("#psblty_rate").children().eq(${opptVO.psblty_rate/10}).attr("selected", "selected");
-	$("#sales_oppt_stat_cd").children().eq(${opptVO.sales_oppt_stat_cd}).attr("selected", "selected");
-}
+ 
 </script>
 <c:if test="${flag == 0}">
 	<title>영업기회 등록</title>
@@ -45,7 +45,7 @@ function ccOpptDetailSelect() {
 		<br>
 		<div class="bt_position_popup">
 		   <div class="bs-example" data-example-id="simple-table">
-		   		<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}"/>
+		   		<input type="text" id="cust_id" name="cust_id"/>
 		   		<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${opptVO.sales_oppt_id}"/>
 				<table id="opptPoptbl">  			
 					<tbody id="tbody">
@@ -59,7 +59,9 @@ function ccOpptDetailSelect() {
 							<th>고객사</th>
 							<td>
 								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly"	class="int_oppt" value="${opptVO.cust_nm}">
-								<input type="hidden" name="lead_id" id="lead_id" value="${opptVO.lead_id}" />
+								<input type="text" name="cust_id" id="cust_id" value="${opptVO.cust_id}" />
+								<input type="button" value="키맨" id="customer" class="cont_bt" onclick="javascript:keymanListPopup();">
+								
 							</td>
 						</tr>
 						<tr>
@@ -125,7 +127,7 @@ function ccOpptDetailSelect() {
 			</div>
 			<c:if test="${flag == 0}">
 				<div class="oppt_bt_position">
-					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_add" onclick="ccOpptAdd();"/>
+					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_add" onclick="ccOpptAddcontact();"/>
 					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel"/>
 				</div>
 			</c:if>

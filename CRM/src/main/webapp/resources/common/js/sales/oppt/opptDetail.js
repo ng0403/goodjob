@@ -54,15 +54,14 @@ function custcompListPopup(ctx){
 	});
 }
 //고객 이름 입력 함수
-function inputCustNm(custNm,leadId,custId,custType){	
+function inputCustNm(custNm,custId,custType){	
 	if(custType == 'search'){
 		$('#scust_nm').val(custNm);
 		$('#scust_id').val(custId);
 	}else if(custType == 'normal'){
 		$('#cust_nm').val(custNm);
 		$('#cust_id').val(custId);
-		$('#lead_id').val(leadId);
-	}
+ 	}
 }
 
 //추가 버튼 기능

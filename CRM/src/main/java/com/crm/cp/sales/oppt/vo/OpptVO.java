@@ -24,6 +24,8 @@ public class OpptVO {
 	private String estim_nm; // 견적명
 	private String org_nm; // 부서명
 	private int idx; // index값
+	private String cont_id; // 연락처 id
+
 
 	// 코드 정보
 	private String cd_grp_id; // 코드그룹ID
@@ -38,6 +40,14 @@ public class OpptVO {
 	private String fail;
 	
 	
+	public String getCont_id() {
+		return cont_id;
+	}
+
+	public void setCont_id(String cont_id) {
+		this.cont_id = cont_id;
+	}
+
 
 	public String getIng() {
 		return ing;
@@ -288,10 +298,11 @@ public class OpptVO {
 				+ ", expt_sales_amt=" + expt_sales_amt + ", expt_fin_d=" + expt_fin_d + ", psblty_rate=" + psblty_rate
 				+ ", sales_oppt_stat_cd=" + sales_oppt_stat_cd + ", sales_oppt_stat_cd_nm=" + sales_oppt_stat_cd_nm
 				+ ", cust_nm=" + cust_nm + ", memo=" + memo + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
-				+ fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
-				+ act_yn + ", estim_id=" + estim_id + ", estim_nm=" + estim_nm + ", org_nm=" + org_nm + ", idx=" + idx
-				+ ", cd_grp_id=" + cd_grp_id + ", code=" + code + ", cd_nm=" + cd_nm + ", estim_qty=" + estim_qty
-				+ ", sales_price=" + sales_price + ", ing=" + ing + ", cplt=" + cplt + ", fail=" + fail + "]";
+				+ fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn=" + act_yn
+				+ ", estim_id=" + estim_id + ", estim_nm=" + estim_nm + ", org_nm=" + org_nm + ", idx=" + idx
+				+ ", cont_id=" + cont_id + ", cd_grp_id=" + cd_grp_id + ", code=" + code + ", cd_nm=" + cd_nm
+				+ ", estim_qty=" + estim_qty + ", sales_price=" + sales_price + ", ing=" + ing + ", cplt=" + cplt
+				+ ", fail=" + fail + "]";
 	}
 	
 	

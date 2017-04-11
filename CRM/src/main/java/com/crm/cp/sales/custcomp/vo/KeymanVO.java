@@ -1,14 +1,23 @@
 package com.crm.cp.sales.custcomp.vo;
 
 public class KeymanVO {
-	private String cust_id // 키맨 아이디
-					 , cont_id // 고객 아이디
+	private String cust_id // 고객 아이디
+					 , cont_id // 연락처 아이디
 					 , key_part// 키맨명
 					 , key_pos // 직급
+					 , key_job // 직무
 					 , memo // 메모
 					 , fst_reg_id // 등록자
 					 , fst_reg_dt // 등록일시
 					 , fin_mdfy_id; // 최종변경자
+
+	public String getKey_job() {
+		return key_job;
+	}
+
+	public void setKey_job(String key_job) {
+		this.key_job = key_job;
+	}
 
 	public String getCust_id() {
 		return cust_id;
@@ -76,8 +85,8 @@ public class KeymanVO {
 	@Override
 	public String toString() {
 		return "KeymanVO [cust_id=" + cust_id + ", cont_id=" + cont_id + ", key_part=" + key_part + ", key_pos="
-				+ key_pos + ", memo=" + memo + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt=" + fst_reg_dt
-				+ ", fin_mdfy_id=" + fin_mdfy_id + "]";
+				+ key_pos + ", key_job=" + key_job + ", memo=" + memo + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
+				+ fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + "]";
 	}
 
 	
