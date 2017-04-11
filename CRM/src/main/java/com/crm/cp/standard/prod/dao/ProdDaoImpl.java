@@ -43,8 +43,8 @@ public class ProdDaoImpl implements ProdDao{
 	}
 	
 	@Override
-	public void prodInsert(ProdVO dto) {
-		sqlSession.selectList("prod.prodInsert", dto);
+	public int prodInsert(ProdVO dto) {
+		return sqlSession.insert("prod.prodInsert", dto);
 	}
 	
 	@Override
@@ -90,6 +90,18 @@ public class ProdDaoImpl implements ProdDao{
 	@Override
 	public List<Object> custcompList(Map<String, Object> map) {
 		return sqlSession.selectList("prod.customerList",map);
+	}
+
+	@Override
+	public int fileInsert(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("prod.fileInsert", dto);
+	}
+
+	@Override
+	public int prodFileInsert(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("prod.prodFileInsert", dto);
 	}
 
 }

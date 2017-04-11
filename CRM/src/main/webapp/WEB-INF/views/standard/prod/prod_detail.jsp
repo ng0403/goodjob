@@ -30,7 +30,7 @@ function prodInserts(){
 }
 </script> -->
 </head>
-<body>
+<body onload='javscript:if(${flg eq "add"}) prodAddFormLoad();'>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	<div id="write_est">
@@ -53,7 +53,7 @@ function prodInserts(){
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 		
-		<form method="post" name="prodForm" id="prodForm" onsubmit="prodInsert()" enctype="multipart/form-data">
+		<form method="post" name="prodForm" id="prodForm" enctype="multipart/form-data">
 		<div class="act_tab_bt_div">
 					<input type="button" id="prodCancelBtn" class="btn-success-tel" value="취소"/>
 					<input type="button" id="prodModifyBtn" class="btn-success-tel" value="편집"/>
@@ -96,7 +96,7 @@ function prodInserts(){
 							    <input type="button" name="prod_cate" value="카테고리" class="prod_cate" id="prod_cate" disabled>
 							</td>
 							<th>판매가</th>
-							<td><input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled> 
+							<td><input type="text" name="prod_sales_amt" id="prod_sales_amt" class="customer_txt" value="${prodDto.prod_price}" disabled> 
 							</td>							
 						</tr>				
 						<tr>							

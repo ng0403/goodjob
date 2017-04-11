@@ -20,7 +20,7 @@
 		         p.prod_nm
 		        ,cd.cd_nm
 		        ,cd.code
-		        ,p.prod_price
+		        ,p.prod_sales_amt
 		        ,c1.CATE_ID || '>' || c2.UP_CATE_ID as cate
 		        ,p.fst_reg_id
 		        ,p.fst_reg_dt
@@ -107,7 +107,7 @@
 			CATE_ID = #{cate_id},
 			PROD_NM = #{prod_nm},
 			PROD_DIV_CD = #{prod_div_cd},
-			prod_price = #{prod_price},
+			prod_sales_amt = #{prod_sales_amt},
 			PROD_URL = #{prod_url},
 			PROD_DTL_CONT = #{prod_dtl_cont},			
 	   		<!-- <if test="prod_img_nm!=null and prod_img_nm!=''">
@@ -128,7 +128,7 @@
 			CATE_ID,
 			PROD_NM,
 			PROD_DIV_CD,
-			prod_price,
+			prod_sales_amt,
 			PROD_URL,
 			PROD_DTL_CONT,
 			<!-- PROD_IMG_NM,
@@ -142,7 +142,7 @@
 			#{cate_id},
 			#{prod_nm},
 			#{prod_div_cd},
-			#{prod_price},
+			#{prod_sales_amt},
 			#{prod_url},
 			#{prod_dtl_cont},
 			<!-- #{prod_img_nm, jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
      		c.code,
 			c.cd_nm,
 			p.prod_url,
-			p.prod_price,
+			p.prod_sales_amt,
 			p.prod_div_cd,
 			p.prod_dtl_cont,
 			<!-- p.prod_img_nm,
@@ -185,7 +185,21 @@
 		WHERE
 			PROD_ID=#{prod_id}
 	</update>
-
+	
+	<update id="fileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		insert into ATTACH(
+			ATTACH_ID,
+			FILE_ROOT,
+			FILE_NM,
+			DATE
+			)VALUES(
+			PROD_SEQ.NEXTVAL,
+			#{prod_img_nm, jdbcType=VARCHAR},
+			#{prod_img_save_loc, jdbcType=VARCHAR},
+			#{prod_catal_nm, jdbcType=VARCHAR},
+			#{prod_catal_save_loc, jdbcType=VARCHAR},
+			)	
+	</update>
 	
 	
 	

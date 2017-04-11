@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -97,9 +98,10 @@ public class ProdController {
 		return "redirect:/prod";
 	}
 	@RequestMapping(value="/prodFileUpload",method=RequestMethod.POST)
-	public @ResponseBody String prodFileUpload(
+	public String prodFileUpload(
 			HttpSession session,
-			MultipartHttpServletRequest data			
+			@ModelAttribute ProdVO dto
+			//MultipartHttpServletRequest data			
 			)throws Exception{
 		
 		// 현재 로그인 사용자 아이디 가져오기
@@ -108,18 +110,19 @@ public class ProdController {
 				return "redirect:/";
 			}	
 			
-		ProdVO dto = new ProdVO();		
-		Map<String, MultipartFile> files = data.getFileMap();
-		MultipartFile prod_img = (MultipartFile) files.get("prod_img");
-		MultipartFile prod_catal = (MultipartFile) files.get("prod_catal");
-
+		//ProdVO dto = new ProdVO();		
+		//Map<String, MultipartFile> files = data.getFileMap();
+//		MultipartFile prod_img = (MultipartFile) files.get("prod_img");
+//		MultipartFile prod_catal = (MultipartFile) files.get("prod_catal");
+		MultipartFile prod_img = (MultipartFile) dto.getProd_img();
+		MultipartFile prod_catal = (MultipartFile)dto.getProd_catal();
 		// 삼풍 및 파일 입력
-		dto.setProd_nm(data.getParameter("prod_nm"));
-		dto.setProd_dtl_cont(data.getParameter("prod_dtl_cont"));
-		dto.setProd_div_cd(data.getParameter("prod_div_cd"));
-		dto.setProd_price(data.getParameter("prod_price"));
-		dto.setProd_url(data.getParameter("prod_url"));
-		dto.setCate_id(data.getParameter("cate_id"));
+//		dto.setProd_nm(data.getParameter("prod_nm"));
+//		dto.setProd_dtl_cont(data.getParameter("prod_dtl_cont"));
+//		dto.setProd_div_cd(data.getParameter("prod_div_cd"));
+//		dto.setProd_sales_amt(data.getParameter("prod_price"));
+//		dto.setProd_url(data.getParameter("prod_url"));
+//		dto.setCate_id(data.getParameter("cate_id"));
 		
 		String root = session.getServletContext().getRealPath("/");
 		// 이미지 업로드 path
@@ -150,29 +153,32 @@ public class ProdController {
 		
 		prodService.prodInsert(dto);
 		
-		return "Insert success";
+//		return "Insert success";
+		return "redirect:/prod";
 	}
 	@RequestMapping(value="/prodUpdate",method=RequestMethod.POST)
-	@ResponseBody
+//	@ResponseBody
 	public String prodUpdate(
 			HttpSession session,
-			MultipartHttpServletRequest data
+			@ModelAttribute ProdVO dto
+//			MultipartHttpServletRequest data
 			) throws Exception {
 		
 		
-		ProdVO dto = new ProdVO();		
-		Map<String, MultipartFile> files = data.getFileMap();
-		MultipartFile prod_img = (MultipartFile) files.get("prod_img");
-		MultipartFile prod_catal = (MultipartFile) files.get("prod_catal");
-	
+//		ProdVO dto = new ProdVO();		
+//		Map<String, MultipartFile> files = data.getFileMap();
+//		MultipartFile prod_img = (MultipartFile) files.get("prod_img");
+//		MultipartFile prod_catal = (MultipartFile) files.get("prod_catal");
+		MultipartFile prod_img = (MultipartFile) dto.getProd_img();
+		MultipartFile prod_catal = (MultipartFile)dto.getProd_catal();
 		// 삼풍 및 파일 입력
-		dto.setCate_id(data.getParameter("cate_id"));
-		dto.setProd_id(data.getParameter("prod_id"));
-		dto.setProd_nm(data.getParameter("prod_nm"));
-		dto.setProd_div_cd(data.getParameter("prod_div_cd"));
-		dto.setProd_price(data.getParameter("prod_price"));
-		dto.setProd_dtl_cont(data.getParameter("prod_dtl_cont"));
-		dto.setProd_url(data.getParameter("prod_url"));				
+//		dto.setCate_id(data.getParameter("cate_id"));
+//		dto.setProd_id(data.getParameter("prod_id"));
+//		dto.setProd_nm(data.getParameter("prod_nm"));
+//		dto.setProd_div_cd(data.getParameter("prod_div_cd"));
+//		dto.setProd_sales_amt(data.getParameter("prod_price"));
+//		dto.setProd_dtl_cont(data.getParameter("prod_dtl_cont"));
+//		dto.setProd_url(data.getParameter("prod_url"));				
 		
 		System.out.println("업데이트에 도착!"+dto.toString()+"\n prod_img : ");	
 		
@@ -229,7 +235,7 @@ public class ProdController {
 
 		
 		
-		return "업데이트 성공";
+		return "redirect:/prod";
 	}
 	
 	@RequestMapping(value="/prodDownload",method=RequestMethod.GET)
@@ -294,7 +300,7 @@ public class ProdController {
 				
 		return dto;
 	}	
-	
+	//상품 수정 폼 출력
 	@RequestMapping(value="/prodRead",method=RequestMethod.GET)
 	public ModelAndView prodRead(
 				HttpSession session,
@@ -302,17 +308,16 @@ public class ProdController {
 				@RequestParam(value = "prodPageNum", defaultValue = "1") int prodPageNum
 			)throws Exception{
 		
+		ModelAndView mov = new ModelAndView("prodDetail");
+		
 		ProdVO dto = prodService.prodRead(prod_id);
-		System.out.println(dto.toString());
 		
 		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
-		//List<MenuVO> menuList = menuService.selectAll(session);
-		
-		
-		ModelAndView mov = new ModelAndView("prodDetail");
+
+		mov.addObject("prodServicecCodeList",prodServicecCodeList);
 		mov.addObject("prodDto",dto);
-		mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
-		//mov.addObject("menuList", menuList);
+		mov.addObject("flg","Detail");
+		
 		return mov;
 	}
 	
@@ -330,7 +335,7 @@ public class ProdController {
 		prodMap.put("prod_nm",prod_nm);
 		prodMap.put("code", code);
 		
-		PageUtil page = prodService.getProdListCount(prodMap);
+		PagerVO page = prodService.getProdListCount(prodMap);
 		prodMap.put("page", page);
 		prodMap.put("startRow", page.getStartRow() + "");
 		prodMap.put("endRow", page.getEndRow() + "");
@@ -353,7 +358,7 @@ public class ProdController {
 			) throws Exception{
 		prodMap.put("prodPageNum",prodPageNum);
 		
-		PageUtil page = prodService.getProdListCount(prodMap);
+		PagerVO page = prodService.getProdListCount(prodMap);
 		prodMap.put("startRow", page.getStartRow());
 		prodMap.put("endRow", page.getEndRow());
 		prodMap.put("page", page);
@@ -361,12 +366,12 @@ public class ProdController {
 		
 		List<ProdVO> prodList = prodService.prodAllList(prodMap);
 		ModelAndView mov = new ModelAndView("prodList");
-		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
+		//List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
 		//List<MenuVO> menuList = menuService.selectAll(session);
 		
 		System.out.println(page +" : "+ prodPageNum);
 
-		mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
+		//mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
 		//mov.addObject("menuList", menuList);
 		mov.addObject("prodPageNum", prodPageNum);
 		mov.addObject("page", page);
@@ -374,6 +379,43 @@ public class ProdController {
 		
 		return mov;
 	}
+	//상품 입력 폼 출력
+	@RequestMapping(value="/prodAddForm")
+	public ModelAndView ProdAddForm(
+			HttpSession session,
+			@RequestParam HashMap<String, Object> prodMap
+			) throws Exception{
+		
+		ModelAndView mov = new ModelAndView("prodDetail");
+		
+		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
+
+		mov.addObject("prodServicecCodeList",prodServicecCodeList);
+		mov.addObject("flg","add");
+		
+		return mov;
+	}
+	
+	//상품 수정
+	@RequestMapping(value="/prodMdfyForm")
+	public ModelAndView ProdMdfyForm(
+			HttpSession session,
+			@RequestParam(value="prod_id") String prod_id,
+			@RequestParam HashMap<String, Object> prodMap
+			) throws Exception{
+		
+		ModelAndView mov = new ModelAndView("prodDetail");
+		
+		ProdVO dto = prodService.prodRead(prod_id);
+		
+		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
+
+		mov.addObject("prodServicecCodeList",prodServicecCodeList);
+		mov.addObject("prodDto",dto);
+		mov.addObject("flg","Detail");
+		
+		return mov;
+	}	
 	
 	//상품카테고리리스트 팝업창 
 	@RequestMapping(value="/prodCateList" , method=RequestMethod.GET)

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.crm.cp.standard.prod.dao.ProdDao;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PageUtil;
+import com.crm.cp.utils.PagerVO;
 
 @Service("ProdService")
 public class ProdServiceImpl implements ProdService{
@@ -29,15 +30,15 @@ public class ProdServiceImpl implements ProdService{
 	}
 
 	@Override
-	public PageUtil getProdListCount(Map<String, Object> prodMap) {
+	public PagerVO getProdListCount(Map<String, Object> prodMap) {
 		int prodPageNum = (Integer) prodMap.get("prodPageNum");
 				
 		// 현재 페이지 얻어오기
-		PageUtil page = new PageUtil(prodPageNum, 0, 3, 10);
+//		PagerVO page = new PagerVO(prodPageNum, 0, 3, 10);
 		// 전체 글의 갯수 구하기
 		int totalRowCount = prodDao.getProdListCount();
 				
-		page = new PageUtil(prodPageNum, totalRowCount, 10, 10);
+		PagerVO page = new PagerVO(prodPageNum, totalRowCount, 10, 10);
 	
 		return page;
 	}
@@ -49,7 +50,14 @@ public class ProdServiceImpl implements ProdService{
 	
 	@Override
 	public void prodInsert(ProdVO dto){	
-		prodDao.prodInsert(dto);
+		int result = prodDao.prodInsert(dto);
+		if(result == 1){
+			result += prodDao.fileInsert(dto);
+		}
+		if(result >= 2){
+			result += prodDao.prodFileInsert(dto);
+			result = 0;
+		}
 	}
 	
 	@Override

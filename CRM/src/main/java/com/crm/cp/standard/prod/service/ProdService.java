@@ -5,12 +5,13 @@ import java.util.Map;
 
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PageUtil;
+import com.crm.cp.utils.PagerVO;
   
 public interface ProdService {
 
 	List<ProdVO> prodAllList(Map<String, Object> prodMap);
 
-	PageUtil getProdListCount(Map<String, Object> prodMap);
+	PagerVO getProdListCount(Map<String, Object> prodMap);
 
 	void prodInsert(ProdVO dto);
 	

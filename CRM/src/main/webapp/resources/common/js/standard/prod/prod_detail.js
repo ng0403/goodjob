@@ -26,28 +26,28 @@ function prodCancelBtn(ctx){
 	});	
 }
 
-//페이지 입력 이동
-function pageInput(event) {
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
-			var prodPageNum = $("#prodPageInput").val();
-			var endPageNum = $("#endPageNum").val();
-			var prod_nm = $("#sprod_nm").val();
-			var code = $("#scode").val();
-			if (parseInt(prodPageNum) > parseInt(endPageNum) || parseInt(prodPageNum) < 1) {
-				alert("페이지 정보를 다시 입력하세요.")
-				$("#prodPageInput").val("1");
-			} else {
-				if(prod_nm == '' && code == '0'){
-					prodPaging(prodPageNum);
-				} else {
-					prodPaging(prodPageNum);
-				}
-				
-			}
-		}
-	event.stopPropagation();
-}
+////페이지 입력 이동
+//function pageInput(event) {
+//	var keycode = (event.keyCode ? event.keyCode : event.which);
+//		if (keycode == '13') {
+//			var prodPageNum = $("#prodPageInput").val();
+//			var endPageNum = $("#endPageNum").val();
+//			var prod_nm = $("#sprod_nm").val();
+//			var code = $("#scode").val();
+//			if (parseInt(prodPageNum) > parseInt(endPageNum) || parseInt(prodPageNum) < 1) {
+//				alert("페이지 정보를 다시 입력하세요.")
+//				$("#prodPageInput").val("1");
+//			} else {
+//				if(prod_nm == '' && code == '0'){
+//					prodPaging(prodPageNum);
+//				} else {
+//					prodPaging(prodPageNum);
+//				}
+//				
+//			}
+//		}
+//	event.stopPropagation();
+//}
 
 
 
@@ -358,32 +358,35 @@ function inputProdNm(cateNm,cateId){
 }
 function prodAddBtn(ctx){
 	$("#prodAddBtn").click(function(){
-		location.href="/prodAddForm"
-//		$("#prod_nm").prop("disabled",false);
-//		$("#prod_div_cd").prop("disabled",false);
-//		$("#prod_div_cd").css("display",'inline');
-//		$("#prod_div_cd").css('visibility','');
-//		$("#cate_id").prop("disabled",false);
-//		$("#cate_nm").prop("disabled",false);
-//		$("#prod_cate").prop("disabled",false);
-//		$("#prod_sales_amt").prop("disabled",false);
-//		$("#prod_dtl_cont").prop("disabled",false);
-//		$("#prod_url").prop("disabled",false);
-//		$("#prod_div_cd_view").prop("hidden",true);
-//
-//		$('.prod_file').remove();
-//		$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
-//		$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
-//
-//		
-//		$("#prod_img").prop("disabled",false);
-//		$("#prod_catal").prop("disabled",false);
-//		$('#prodUpdateBtn').remove();
-//		$('#prodSaveBtn').remove();
-//		$('.act_tab_bt_div').append('<input type="button" id="prodSaveBtn" class="act_bt" value="저장"/>');
-		
-		//prodFormClr();	
+		location.href="/prodAddForm"	
 	});
+}
+function prodAddFormLoad(){
+	$("#prodModifyBtn").hide();
+	$("#prod_nm").prop("disabled",false);
+	$("#prod_div_cd").prop("disabled",false);
+	$("#prod_div_cd").css("display",'inline');
+	$("#prod_div_cd").css('visibility','');
+	$("#cate_id").prop("disabled",false);
+	$("#cate_nm").prop("disabled",false);
+	$("#prod_cate").prop("disabled",false);
+	$("#prod_sales_amt").prop("disabled",false);
+	$("#prod_dtl_cont").prop("disabled",false);
+	$("#prod_url").prop("disabled",false);
+	$("#prod_div_cd_view").prop("hidden",true);
+
+	$('.prod_file').remove();
+	$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
+	$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
+
+	
+	$("#prod_img").prop("disabled",false);
+	$("#prod_catal").prop("disabled",false);
+//	$('#prodUpdateBtn').remove();
+//	$('#prodSaveBtn').remove();
+//	$('.act_tab_bt_div').append('<input type="button" id="prodSaveBtn" class="act_bt" value="저장"/>');
+	
+	prodFormClr();
 }
 function prodChange(ctx) {
 	$("#image_change").click(function() {
@@ -437,36 +440,46 @@ function prodUpdateBtn(ctx){
 		
 	});
 }
-function prodSaveBtn(ctx){
-	$(".act_tab_bt_div").delegate('#prodSaveBtn','click', function() {
-		var data = new FormData();
-
-		data.append("cate_id",$("#cate_id").val());
-		data.append("prod_nm",$("#prod_nm").val());
-		data.append("prod_div_cd",$("#prod_div_cd").val());
-		data.append("prod_price",$("#prod_price").val());
-		data.append("prod_url",$("#prod_url").val());
-		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
-		data.append("prod_img",$("#prod_img").get(0).files[0]);
-		data.append("prod_catal",$("#prod_catal").get(0).files[0]);
+function prodSaveBtn(){
+	var flg = $("#flg").val();
+	
+	$(".act_tab_bt_div").on('#prodSaveBtn','click', function() {
+		if(flg == "add"){
+			$("#prodForm").attr("action", "prodFileUpload");
+			$("#prodForm").submit();
+		}else if(flg == "detail"){
+			$("#prodForm").attr("action", "prodUpdate");
+			$("#prodForm").submit();
+		}
 		
-		$.ajax({
-			url: ctx+'/prodFileUpload',
-			data:data,
-			type:'POST',
-			mimeType:"multipart/form-data",
-			processData:false,
-			contentType:false,
-			success: function(data) {
-				prodPaging(1);				
-			}			
-			,error: function(request,status,error) {
-				alert("오류");
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			} 
-	 	}); 		
-		prodFormblock();
-		prodFormClr();
+//		var data = new FormData();
+//
+//		data.append("cate_id",$("#cate_id").val());
+//		data.append("prod_nm",$("#prod_nm").val());
+//		data.append("prod_div_cd",$("#prod_div_cd").val());
+//		data.append("prod_sales_amt",$("#prod_sales_amt").val());
+//		data.append("prod_url",$("#prod_url").val());
+//		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
+//		data.append("prod_img",$("#prod_img").get(0).files[0]);
+//		data.append("prod_catal",$("#prod_catal").get(0).files[0]);
+//		
+//		$.ajax({
+//			url: '/prodFileUpload',
+//			data:data,
+//			type:'POST',
+//			mimeType:"multipart/form-data",
+//			processData:false,
+//			contentType:false,
+//			success: function(data) {
+//				prodPaging(1);				
+//			}			
+//			,error: function(request,status,error) {
+//				alert("오류");
+//				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//			} 
+//	 	}); 		
+//		prodFormblock();
+//		prodFormClr();
 	});	
 }
 function dateFormat(timestamp) {

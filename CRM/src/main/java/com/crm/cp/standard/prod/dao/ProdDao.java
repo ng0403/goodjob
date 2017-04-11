@@ -12,7 +12,7 @@ public interface ProdDao {
 
 	int getProdListCount();	
 
-	void prodInsert(ProdVO dto);
+	int prodInsert(ProdVO dto);
 	
 	void prodUpdateData(ProdVO dto);
 	
@@ -35,5 +35,9 @@ public interface ProdDao {
 	List<Object> custcompList();
 
 	List<Object> custcompList(Map<String, Object> map);
+
+	int fileInsert(ProdVO dto);
+
+	int prodFileInsert(ProdVO dto);
 
 }
