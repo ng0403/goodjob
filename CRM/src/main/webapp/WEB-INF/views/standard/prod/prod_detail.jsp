@@ -21,24 +21,34 @@
 .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
 .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
 </style>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function prodInserts(){
 	var f = document.prodForm;
 	f.method = 'post';
 	f.action = "${ctx}/prodInsert";
 	f.submit;
 }
-</script>
+</script> -->
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
-	<div id="css_tabs">
+	<input type="hidden" id="flg" value="${flg}">
+	<div id="write_est">
+<!-- 	<div id="css_tabs"> -->
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" /> <input
-			id="tab2" type="radio" name="tab" />
+<!-- 		<input id="tab1" type="radio" name="tab" checked="checked" /> <input -->
+<!-- 			id="tab2" type="radio" name="tab" /> -->
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label for="tab1">상세정보</label>
+<!-- 		<label for="tab1">상세정보</label> -->
+		<div id="title">
+			<c:if test="${flg eq 'add'}">
+				<div class="caption">상품/서비스 등록</div>
+			</c:if>
+			<c:if test="${flg eq 'detail'}">
+				<div class="caption">상품/서비스 상세/수정</div>
+			</c:if>
+		</div>
 		
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
@@ -67,7 +77,14 @@ function prodInserts(){
 								
 								<select name="prod_div_cd" id="prod_div_cd" class="code" style="display:none">
 									<c:forEach var="pscl" items="${prodServicecCodeList}">
-										<option value="${pscl.code}">${pscl.cd_nm}</option>
+										<c:choose>
+											<c:when test="${prodDto.prdo_div_cd eq pscl.code }">
+												<option value="${pscl.code}" selected="selected">${pscl.cd_nm}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${pscl.code}">${pscl.cd_nm}</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select>								
 							</td>							

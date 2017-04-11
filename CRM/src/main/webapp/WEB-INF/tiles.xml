@@ -102,7 +102,7 @@
 	
 	<!-- 상품 -->
 	<definition name="prodDetail" extends="onebodyLayout">
-	 <put-attribute name="body" value="/WEB-INF/views/standard/prod/prod_tab.jsp" />
+	 <put-attribute name="body" value="/WEB-INF/views/standard/prod/prod_detail.jsp" />
 	</definition>
 	
 	<!-- 기업고객  -->
