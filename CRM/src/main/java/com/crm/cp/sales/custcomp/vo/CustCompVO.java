@@ -42,6 +42,14 @@ public class CustCompVO {
 			, biz_status
 			, main_prod;
 
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
+	}
+
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
+	}
+
 	public String getCust_dtl_addr() {
 		return cust_dtl_addr;
 	}

@@ -60,7 +60,7 @@ public class CustCompServiceImpl implements CustCompService {
 	// 기업고객 추가
 	@Override
 	public String insertCustComp(CustCompVO ccVO) {
-		ccVO.setCust_zip_cd(ccVO.getCust_zip_cd1()+ccVO.getCust_zip_cd2());
+		//ccVO.setCust_zip_cd(ccVO.getCust_zip_cd1()+ccVO.getCust_zip_cd2());
 		int inputResult = ccDao.insertCustComp(ccVO);
 		
 		String resultStr = null;
@@ -120,6 +120,13 @@ public class CustCompServiceImpl implements CustCompService {
 	public List<CustCompVO> selectCCS() {
 		List<CustCompVO> CCSCodeList = ccDao.selectCCS();
 		return CCSCodeList;
+	}
+	
+	// 고객사구분 코드
+	@Override
+	public List<CustCompVO> selectCDC() {
+		List<CustCompVO> CDCCodeList = ccDao.selectCDC();
+		return CDCCodeList;
 	}
 
 	// 키맨 리스트
@@ -310,10 +317,34 @@ public class CustCompServiceImpl implements CustCompService {
 		return ccVO;
 	}
 
+	
+	//기존고객 추가
+	@Override
+	public int custcompAdd(CustCompVO ccVO) {
+		return ccDao.custcompAdd(ccVO);
+	}
+
+	@Override
+	public int custcompModify(CustCompVO ccVO) {
+		return ccDao.custcompModify(ccVO);
+	}
+
 	@Override
 	public void custcompInsert(CustCompVO ccVO) {
-		// TODO Auto-generated method stub
+		ccDao.custcompInsert(ccVO);
 		
 	}
+
+	@Override
+	public void custcompEdit(CustCompVO ccVO) {
+		ccDao.custcompEdit(ccVO);
+		
+	}
+
+	@Override
+	public void custcompDelete(String cust_id) {
+		ccDao.custcompDelete(cust_id);
+	}
+
 
 }

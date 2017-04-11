@@ -822,6 +822,7 @@ function comma(str) {
   return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
+// 영업기회
 // Deatil 화면 Tab부분 Ajax로 그려주는 부분.
 function opptTabList(cust_id)
 {
@@ -833,10 +834,8 @@ function opptTabList(cust_id)
 		},
 		datatype : 'json',
 		success:function(result){
-			alert("저장완료 Test");
 			//리스트 출력 시 버튼 상태 설정
 			$("#activeOpptList").children().remove();
-			
 			
 			$.each(result.opptList, function(i, list){
 				console.log(result);
@@ -886,6 +885,46 @@ function opptTabDetail(ctx, sales_oppt_id)
 	window.open(ctx+'/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
+
+function actOpptDelBt()
+{
+	var salesId = $('#salesId').val();
+	
+	if($("input[name=sales_oppt_id]:checked").length==0)
+	{
+		alert("삭제할 영업기회를 선택해 주세요.");
+		return false;
+	}
+	else
+	{
+		if(confirm("삭제 하시겠습니까? "))
+		{
+			var opptidList = [];
+			var opptId = $('#salesId').val();
+			var sales_actvy_id = [];
+		
+			$("input[name=list_sales_oppt_id]:checked").each(function(){
+				opptidList.push($(this).val());
+			});
+			
+			$.ajax({
+				type : 'get',
+				url : 'opptDelete',
+				data : {
+						 opptidList : opptidList
+					},
+				dataType : 'json',
+				success : function(result){
+					alert("영업기회가 삭제되었습니다.");
+					opptTabList();
+				},
+				error : function(request){
+					alert("error : " + request);
+				}
+			});
+		}
+	}
+}
 
 
 

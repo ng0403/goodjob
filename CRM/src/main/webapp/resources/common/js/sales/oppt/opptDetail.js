@@ -73,7 +73,6 @@ function inputCustNm(custNm,custId,custType){
 	}else if(custType == 'normal'){
 		$('#cust_nm').val(custNm);
 		$('#cust_id').val(custId);
-	}
 }
 
 //추가 버튼 기능
@@ -875,6 +874,8 @@ function viewSalesActive(opptId){
 			}
 		});
 	}
+}
+}
 //	//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업
 //	function opptProdNmSelect(ctx){
 //		$('#oppt_product_list_table tbody tr').click(function(){
@@ -886,4 +887,3 @@ function viewSalesActive(opptId){
 //			self.close();
 //		});
 //	}
-}

@@ -64,18 +64,20 @@ public class CustCompDaoImpl implements CustCompDao {
 	// 기업고객 추가
 	@Override
 	public int insertCustComp(CustCompVO ccVO) {
-		int inputResultTemp = 0;
-		int inputResult = 0;
-		try {
-			inputResultTemp = sqlSession.insert("custInput", ccVO);
-			inputResult += inputResultTemp;
-			inputResultTemp = 0;
-			inputResultTemp = sqlSession.insert("custCompInput", ccVO);
-			inputResult += inputResultTemp;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return inputResult;
+//		int inputResultTemp = 0;
+//		int inputResult = 0;
+//		try {
+//			inputResultTemp = sqlSession.insert("custInput", ccVO);
+//			inputResult += inputResultTemp;
+//			//inputResultTemp = 0;
+//			//inputResultTemp = sqlSession.insert("custCompInput", ccVO);
+//			//inputResult += inputResultTemp;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return inputResult;
+		int seq = sqlSession.insert("custInput", ccVO);
+		return seq;
 	}
 	
 	// 기업고개 수정
@@ -86,9 +88,9 @@ public class CustCompDaoImpl implements CustCompDao {
 		try {
 			updateResultTemp = sqlSession.update("custUpdate", ccVO);
 			updateResult += updateResultTemp;
-			updateResultTemp = 0;
-			updateResultTemp = sqlSession.update("custCompUpdate", ccVO);
-			updateResult += updateResultTemp;
+			//updateResultTemp = 0;
+			//updateResultTemp = sqlSession.update("custCompUpdate", ccVO);
+			//updateResult += updateResultTemp;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -141,6 +143,18 @@ public class CustCompDaoImpl implements CustCompDao {
 		List<CustCompVO> ccCodeList = null;
 		try {
 			ccCodeList = sqlSession.selectList("getCCS");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ccCodeList;
+	}
+	
+	// 고객사구분 코드
+	@Override
+	public List<CustCompVO> selectCDC() {
+		List<CustCompVO> ccCodeList = null;
+		try {
+			ccCodeList = sqlSession.selectList("getCDC");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -396,5 +410,34 @@ public class CustCompDaoImpl implements CustCompDao {
 		ccVO = sqlSession.selectOne("custcomp.custcompDetail", nowCust_id);
 		return ccVO;
 	}
+
+	@Override
+	public int custcompAdd(CustCompVO ccVO) {
+		int seq = sqlSession.insert("custcomp.custcompAdd", ccVO);
+		return seq;
+	}
+
+	@Override
+	public int custcompModify(CustCompVO ccVO) {
+		return sqlSession.update("custcomp.custUpdate", ccVO);
+	}
+
+	@Override
+	public void custcompInsert(CustCompVO ccVO) {
+		sqlSession.insert("custcomp.custcompInsert", ccVO);
+		
+	}
+
+	@Override
+	public void custcompEdit(CustCompVO ccVO) {
+		sqlSession.update("custcomp.custcompEdit", ccVO);
+	}
+
+	@Override
+	public void custcompDelete(String cust_id) {
+		sqlSession.update("custcomp.custcompDelete", cust_id);
+		
+	}
+
 
 }

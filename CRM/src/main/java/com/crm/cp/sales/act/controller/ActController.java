@@ -74,11 +74,14 @@ public class ActController {
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView companyCutomerDetail(String sales_actvy_id) 
 	{
+
 		int flg;
 		sales_actvy_id = "SAT0000092";
 		System.out.println("sales_actvy_id : " + sales_actvy_id);
-		
+/*		
 		flg = 1;
+		
+		
 		String[] htime = {"01", "02", "03", "04", "05", "06",
 						 "07", "08", "09", "10", "11", "12",
 						 "13", "14", "15", "16", "17", "18",
@@ -111,30 +114,37 @@ public class ActController {
 		mov.addObject("flg", flg);
 			
 		return mov;
-/*
+*/
 		if(sales_actvy_id != null)
 		{
 			flg = 1;
 			String[] htime = {"01", "02", "03", "04", "05", "06",
-						 	"07", "08", "09", "10", "11", "12",
-						 	"13", "14", "15", "16", "17", "18",
-						 	"19", "20", "21", "22", "23", "24"};
+					 "07", "08", "09", "10", "11", "12",
+					 "13", "14", "15", "16", "17", "18",
+					 "19", "20", "21", "22", "23", "24"};
 			String[] mtime = {"00", "10", "20", "30", "40", "50"};
-		
+	
+			Map<String, Object> map = new HashMap<String, Object>();
 			ActVO actVO = actService.actDetail(sales_actvy_id);
-		
+	
+			String cust_id = actVO.getCust_id();
+	
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
-		
+			List<OpptVO> opptList = actService.opptList(cust_id);
+	
 			ModelAndView mov = new ModelAndView("actSaleDetail");
-		
+	
 			System.out.println("flg : " + flg);
 			System.out.println(actVO.toString());
 			System.out.println(actStatCd.toString());
-		
+			System.out.println("OPPT_LIST : " + opptList.toString());
+			System.out.println("OPPT_LIST : " + opptList);
+	
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("opptList", opptList);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
 			mov.addObject("flg", flg);
@@ -158,7 +168,7 @@ public class ActController {
 			
 			return mov;
 		}
-*/		
+/**/		
 	}
 	
 	//영업활동등록
@@ -250,8 +260,9 @@ public class ActController {
 
 	//영업기회리스트 팝업창 
 	@RequestMapping(value="/actOpptList" , method=RequestMethod.GET)
-	public ModelAndView ActOpptList(HttpSession session){
-			List<Object> actOpptList = actService.actOpptList();
+	public ModelAndView ActOpptList(HttpSession session)
+	{
+		List<Object> actOpptList = actService.actOpptList();
 		ModelAndView mov = new ModelAndView("/sales/act/actPop/act_oppt_list_pop");
 		
 		mov.addObject("actOpptList", actOpptList);
@@ -320,8 +331,8 @@ public class ActController {
 		
 		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
 		
-		//mov.addObject("popFlg", "add");
-		mov.addObject("popFlg", "popDetail");
+		mov.addObject("popFlg", "add");
+		//mov.addObject("popFlg", "popDetail");
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
 		

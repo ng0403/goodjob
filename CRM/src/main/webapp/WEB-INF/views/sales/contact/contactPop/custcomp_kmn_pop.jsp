@@ -38,12 +38,23 @@
  --%>			 <table id="keymanpopuptable">  			
 					<tbody id="tbody">
 						<tr>
-							<th>키맨명</th>
-							<td><input type="text" name="key_part" id="key_part" class="int" autofocus="autofocus" value="${kmVO.key_part}"/></td>
+							<th>고객사</th>
+							<td><input type="text" name="cust_nm" id="cust_nm" class="int" autofocus="autofocus"/></td>
+							 <input type="hidden" id="cust_id" name="cust_id" class="int" />  
+							<td><input type="button" value="고객" id="customer" class="cont_bt" onclick="javascript:custcompListPopup('${ctx}');"></td>
+							
+						</tr>
+ 						<tr>
+							<th>역할</th>
+							<td><input type="text" name="key_part" id="key_part" class="int" value="${kmVO.key_part}"/></td>
 						</tr>
 						<tr>
 							<th>직급</th>
 							<td><input type="text" name="key_pos" id="key_pos" class="int" value="${kmVO.key_pos}"/></td>
+						</tr>
+						<tr>
+							<th>직무</th>
+							<td><input type="text" name="key_job" id="key_job" class="int" value="${kmVO.key_job}"/></td>
 						</tr>
 						  
 						<tr>

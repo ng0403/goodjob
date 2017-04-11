@@ -12,38 +12,40 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<title>기존고객</title>
+<title>고객사</title>
 
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
-		<div class="caption">■ 고객 > 기존고객
+		<div class="caption">■ 고객사
 <%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
 		</div>
 	</div>
 	
 	<div class="search_div">
-<!-- 		<label for="sch_cust_nm" class="tel_label_list">고객사명</label> -->
-<!-- 		<input type="text" class="tel_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/>  -->
-<!-- 		<label for="sch_comp_num" class="tel_label_list">사업자번호</label>  -->
-<!-- 		<input type="text" class="tel_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
-<!-- 		<label for="sch_corp_num" class="tel_label_list">법인번호</label>  -->
-<!-- 		<input type="text" class="tel_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
-<!-- 		<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label>  -->
-<!-- 		<input type="text" class="tel_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/> -->
-<!-- 		<input type="button" id="custcomp_search" class="custcomp_btn" value="조회" onclick="schPaging(1);" /> -->
+		<label for="sch_cust_nm" class="tel_label_list">고객사명</label>
+		<input type="text" class="tel_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/> 
+		<label for="sch_comp_num" class="tel_label_list">사업자번호</label> 
+		<input type="text" class="tel_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/> 
+		<label for="sch_corp_num" class="tel_label_list">법인번호</label> 
+		<input type="text" class="tel_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/> 
+		<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label> 
+		<input type="text" class="tel_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/>
+		<input type="button" id="custcomp_search" class="custcomp_btn" value="조회" onclick="schPaging(1);" />
 			
-			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);">
-				<option value="all" style="text-align: center;">전체</option>
-				<option value="cust_nm" style="text-align: center;">고객사명</option>
-				<option value="comp_num" style="text-align: center;">사업자번호</option>
-				<option value="corp_num" style="text-align: center;">법인번호</option>
-				<option value="iuser_nm" style="text-align: center;">영업담당자</option>
-			</select>
 			
-			<input type="text" id="seachInput" name="seachCustcompSaleInput" placeholder="검색어를 입력해주세요">
-			<input type="button" id="search_btn" value="조회" class="custcomp_bt" onclick="schCustcompPaging(1);"/>
+			
+<!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
+<!-- 				<option value="all" style="text-align: center;">전체</option> -->
+<!-- 				<option value="cust_nm" style="text-align: center;">고객사명</option> -->
+<!-- 				<option value="comp_num" style="text-align: center;">사업자번호</option> -->
+<!-- 				<option value="corp_num" style="text-align: center;">법인번호</option> -->
+<!-- 				<option value="iuser_nm" style="text-align: center;">영업담당자</option> -->
+<!-- 			</select> -->
+			
+<!-- 			<input type="text" id="seachInput" name="seachCustcompSaleInput" placeholder="검색어를 입력해주세요"> -->
+<!-- 			<input type="button" id="search_btn" value="조회" class="custcomp_bt" onclick="schCustcompPaging(1);"/> -->
 			
 	</div>
 	
@@ -75,7 +77,7 @@
 				<tbody id="ccListTbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
-							<th><input type="checkbox" id="chk_cust_id" value="${cc.cust_id}" onclick="chkCancel();"></th>
+							<th><input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}" onclick="chkCancel();"></th>
 							<td id="ccListTableNmTd" style="text-align: left; padding-left: 8px;">
 								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');" style="color: blue;" class="cnClick">${cc.cust_nm}</a>
 							</td>
@@ -89,50 +91,78 @@
 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>
-					<c:if test="${ccVOList.size() < 5}">
-						<c:forEach begin="0" end="${5-ccVOList.size()}">
-							<tr>
-								<th></th>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
-					</c:if>
+<%-- 					<c:if test="${ccVOList.size() < 5}"> --%>
+<%-- 						<c:forEach begin="0" end="${5-ccVOList.size()}"> --%>
+<!-- 							<tr> -->
+<!-- 								<th></th> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 								<td></td> -->
+<!-- 							</tr> -->
+<%-- 						</c:forEach> --%>
+<%-- 					</c:if> --%>
 				</tbody>
 			</table>
 		</div>
+		
+		<!-- 페이징 처리 -->
+		<div id="pageSpace">
+						
+			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+			<c:choose>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀◀</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:custCompList(${page.prevStepPage})" class="prev">◀◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:custCompList(${page.prevPageNum})" class="prev">◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+				<c:choose>
+					<c:when test="${i eq ccPageNum }">
+						<b>
+							<a  href="javascript:custCompList('${i}');" id="pNum" class="choice">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:custCompList('${i}');">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+	       			<a class="next">▶</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:custCompList(${page.nextPageNum})" class="next">▶</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+	       			<a class="next">▶▶</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:custCompList(${page.nextStepPage})" class="next">▶▶</a>
+	    		</c:when>
+			</c:choose>
+		</div>
+		
 	</form>
-	<!-- 페이징 처리 -->
-	<div id="pagingDiv">
-		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-		<input type="hidden" id="startPageNum" value="${page.startPageNum}"/>
-		<input type="hidden" id="custcompPageNum" value="${custcompPageNum}"/>
-		<c:choose>
-			<c:when test="${custcompPageNum == page.startPageNum}">
-				<a> ◀ </a><input type="text" id="ccPageInput" value="${page.startPageNum}" onkeypress="pageInput(event);"/>  
-				<a href="#" onclick="paging('${page.endPageNum}')" id="pNum" > / ${page.endPageNum}</a>
-				<a href="#" onclick="paging('${ccPageNum+1}')" id="pNum"> ▶ </a>
-			</c:when>
-			<c:when test="${custcompPageNum == page.endPageNum}">
-				<a href="#" onclick="paging('${custcompPageNum-1}')" id="pNum"> ◀ </a>
-				<input type="text" id="ccPageInput" value="${page.endPageNum}" onkeypress="pageInput(event);"/> 
-				<a href="#" onclick="paging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
-				<a> ▶ </a>
-			</c:when>
-			<c:otherwise>
-				<a href="#" onclick="paging('${custcompPageNum-1}')" id="pNum" > ◀ </a>
-				<input type="text" id="ccPageInput" value="${custcompPageNum}" onkeypress="pageInput(event);"/>  
-				<a href="#" onclick="paging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
-				<a href="#" onclick="paging('${custcompPageNum+1}')" id="pNum"> ▶ </a>
-			</c:otherwise>
-		</c:choose>
-	</div>
+
 </body>
 </html>

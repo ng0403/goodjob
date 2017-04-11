@@ -804,13 +804,13 @@ function viewSalesOppt(estim_id){
 				"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
 				"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
 				"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
-				"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+				"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"opptDetailPopup('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
 				"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
+				"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 				"<td>"+list.sales_lev_cd_nm+"</td>"+
 				"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
 				"<td>"+list.expt_fin_d+"</td>"+
 				"<td>"+list.psblty_rate+"</td>"+
-				"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 				"<td>"+list.fst_reg_id+"</td>"+
 				"<td>"+list.fst_reg_dt+"</td>+"+
 				"</tr>"	
@@ -818,8 +818,7 @@ function viewSalesOppt(estim_id){
 			
 			if(result.opptList.length < 5){
 				for(var j = 0; j < 5-result.opptList.length; j++){
-					content += "<th rowspan='2'></th>"+ 
-					"<td></td>"+
+					content += "<th></th>"+ 
 					"<td></td>"+
 					"<td></td>"+
 					"<td></td>"+
@@ -843,9 +842,12 @@ function viewSalesOppt(estim_id){
 }
 
 //영업기회탬에서 추가버튼 눌렀을 때.
-function addOppt()
-{
-	window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+function addOppt(){
+	var list_estim_id = $('#estim_id').val();
+	var list_cust_id = $('#cust_id').val();
+	var list_cust_nm = $('#cust_nm').val();
+	window.open('/opptAddEstPopup?list_estim_id='+list_estim_id+
+			'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동 추가 팝업
@@ -875,6 +877,14 @@ function opptActiveDetailPopup(actvyId){
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
+//영업기회 상세정보 팝업
+function opptDetailPopup(salesOppt_id){
+	var popup;
+	var sales_oppt_nm = $('#sales_oppt_nm').val();
+	popup=window.open('opptDetailEstPopup?actvyId='+salesOppt_id +'&sales_oppt_nm='+sales_oppt_nm
+			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
 //영업활동 모두 선택
 function actAllCheck(){
 	$("#actAllSelect").click( function(){
@@ -886,6 +896,19 @@ function actAllCheck(){
 		}
 	});
 }
+
+//영업기회 모두 선택
+function actAllCheck(){
+	$("#opptAllSelect").click( function(){
+		var chk = $(this).is(":checked");
+		if(chk){
+			$("#activeOpptList input[type=checkbox]").prop("checked",true);			
+		}else{
+			$("#activeOpptList input[type=checkbox]").prop("checked",false);
+		}
+	});
+}
+
 
 //입력창 비활성화 함수
 function readDetail(){

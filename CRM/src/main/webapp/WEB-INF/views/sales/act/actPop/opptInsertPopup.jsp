@@ -45,7 +45,6 @@
 								<th>고객사</th>
 								<td>
 									<input type="text" name="cust_nm" id="cust_nm" class="int" readonly="readonly">
-																	
 									<input type="button" class="btn-success-tel" id="customerPop" value="고객" disabled="disabled" onclick="opptCustPopup('${ctx}');">
 								</td>
 							</tr>
@@ -127,7 +126,7 @@
 								<td> <!-- colspan="3" -->
 									<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 									<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
-									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" class="int2" vss style="ms-ime-mode: disabled; background-color: ">
+									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
 								</td>
 								<th>고객사</th>
 								<td>
@@ -138,8 +137,6 @@
 									<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" class="int" readonly="readonly" />
 									<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 									<input type="hidden" name="lead_id" id="lead_id" value="${opDetail.lead_id}"/>
-																	
-									<input type="button" class="btn-success-tel" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 							</tr>
 							<tr>

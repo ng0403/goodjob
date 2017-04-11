@@ -580,8 +580,6 @@ function contactAddp(){
 }
 
 function contactInsert() {
-	alert("인서트");
-	
     var formObj = $("form[role='form']");
 
 	 formObj.attr("action", "/contactInsert");

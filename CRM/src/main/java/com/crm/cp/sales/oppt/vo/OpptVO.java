@@ -24,6 +24,8 @@ public class OpptVO {
 	private String estim_nm; // 견적명
 	private String org_nm; // 부서명
 	private int idx; // index값
+	private String cont_id; // 연락처 id
+
 
 	// 코드 정보
 	private String cd_grp_id; // 코드그룹ID
@@ -204,6 +206,14 @@ public class OpptVO {
 	public void setTotal_sup_price(String total_sup_price) {
 		this.total_sup_price = total_sup_price;
 	}
+	public String getCont_id() {
+		return cont_id;
+	}
+
+	public void setCont_id(String cont_id) {
+		this.cont_id = cont_id;
+	}
+
 
 	public String getIng() {
 		return ing;

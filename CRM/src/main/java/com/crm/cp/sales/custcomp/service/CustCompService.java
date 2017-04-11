@@ -23,6 +23,7 @@ public interface CustCompService {
 	List<CustCompVO> selectSSC(); 												// 매출규모 코드 리스트
 	List<CustCompVO> selectIDC(); 												// 산업군 코드 리스트
 	List<CustCompVO> selectCCS(); 												// 기업상태 코드 리스트
+	List<CustCompVO> selectCDC();												// 고객사구분 코드 리스트	
 	List<KeymanVO> getKeymanList(String cust_id);								// 키맨 리스트
 	List<OpptVO> getOpptList(String cust_id);									// 영업기회 리스트
 	List<ActVO> getActList(String cust_id);										// 영업활동 리스트
@@ -45,6 +46,10 @@ public interface CustCompService {
 	
 	
 	CustCompVO custcompDetail(String nowCust_id);
+	int custcompAdd(CustCompVO ccVO);
+	int custcompModify(CustCompVO ccVO);
 	void custcompInsert(CustCompVO ccVO);
+	void custcompEdit(CustCompVO ccVO);
+	void custcompDelete(String cust_id);
 
 }

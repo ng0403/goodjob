@@ -1,5 +1,6 @@
 package com.crm.cp.sales.custcomp.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,6 +62,8 @@ public class CustCompController {
 			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
 			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
 			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사 구분 코드 가져오기
+			
 			List<MenuVO> menuList = menuService.selectAll(session);
 			mov.addObject("ccPageNum", ccPageNum);
 			mov.addObject("menuList", menuList);
@@ -68,17 +71,20 @@ public class CustCompController {
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);
 			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("page", page);
 		}
 		return mov;
 	}
 
 	// 기업고객 리스트(ajax)
-	@RequestMapping(value = "custcompPaging.do", method = RequestMethod.POST)
+	@RequestMapping(value = "custCompAjax", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> custCompPList(HttpSession session,
 			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
 			String sch_cust_nm, String sch_comp_num, String sch_corp_num, String sch_iuser_nm) {
+		
 		Map<String, Object> pMap = new HashMap<String, Object>();
+		
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
 			pMap.put("result", "standard/home/session_expire");
 		} else {
@@ -130,12 +136,14 @@ public class CustCompController {
 			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
 			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
 			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사구분 코드 가져오기
 			
 			System.out.println("flg : " + flg);
 			
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);
 			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("flg", flg);
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);
@@ -153,6 +161,7 @@ public class CustCompController {
 			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
 			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
 			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사구분 코드 가져오기
 			
 			System.out.println("flg : " + flg);
 			System.out.println(ccVO.toString());
@@ -160,6 +169,7 @@ public class CustCompController {
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);
 			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("flg", flg);
 				
 			// 검색어, 페이지번호 전달
@@ -169,7 +179,7 @@ public class CustCompController {
 	}
 	
 	
-	// 기업고객 추가
+//	// 기업고객 추가
 //	@RequestMapping(value = "custCompInsert.do", method = RequestMethod.POST)
 //	public @ResponseBody Map<String, String> companyCutomerInput(HttpSession session, CustCompVO ccVO) {
 //		Map<String, String> rstMap = new HashMap<String, String>();
@@ -185,46 +195,69 @@ public class CustCompController {
 //	}
 	
 	//기존고객 추가
-	@RequestMapping(value = "/custcompInsert", method = RequestMethod.POST)
-	public String custcompInsert(@ModelAttribute CustCompVO ccVO, HttpSession session, HttpServletRequest request)
-	{
-		ccVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+	@RequestMapping(value = "/custcompAdd",  method = RequestMethod.POST)
+	public String custcompAdd(@ModelAttribute CustCompVO ccVO, HttpSession session, HttpServletRequest request) {
+		
+		ccVO.setFst_reg_id(session.getAttribute("user").toString());
+		
+//		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		//int result = ccService.custcompAdd(ccVO);
+		//System.out.println("result : " + result);
+		
 		System.out.println(ccVO.toString());
 		ccService.custcompInsert(ccVO);
-
+		
 		return "redirect:/custcomp";
-				
 	}
-	
 	
 	// 기업고객 수정
-	@RequestMapping(value = "custCompUpdate.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> companyCutomerUpdate(HttpSession session, CustCompVO ccVO, String ccPageNum) {
-		Map<String, Object> rstMap = new HashMap<String, Object>();
-		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-			rstMap.put("updateResult", "standard/home/session_expire");
-		} else {
-			ccVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
-			String updateResult = ccService.updateCustComp(ccVO);
-			ccVO = ccService.getCCDetail(ccVO.getCust_id());
-			rstMap.put("updateResult", updateResult);
-			rstMap.put("ccVO", ccVO);
-			rstMap.put("ccPageNum", ccPageNum);
-		}
-		return rstMap;
+//	@RequestMapping(value = "custCompUpdate.do", method = RequestMethod.POST)
+//	public @ResponseBody Map<String, Object> companyCutomerUpdate(HttpSession session, CustCompVO ccVO, String ccPageNum) {
+//		Map<String, Object> rstMap = new HashMap<String, Object>();
+//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+//			rstMap.put("updateResult", "standard/home/session_expire");
+//		} else {
+//			ccVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+//			String updateResult = ccService.updateCustComp(ccVO);
+//			ccVO = ccService.getCCDetail(ccVO.getCust_id());
+//			rstMap.put("updateResult", updateResult);
+//			rstMap.put("ccVO", ccVO);
+//			rstMap.put("ccPageNum", ccPageNum);
+//		}
+//		return rstMap;
+//	}
+	
+	//기존고객 수정 ajax
+	@RequestMapping(value = "/custcompModify", method = RequestMethod.POST)
+	public String  custcompModify(@ModelAttribute CustCompVO ccVO, HttpSession session) {
+		System.out.println("Detail Edit Controller");
+//		int result = ccService.custcompModify(ccVO);
+//		System.out.println("Detail Edit Result : " + result);
+//		ModelAndView mov = new ModelAndView("custcomp");
+//		CustCompVO cVO = ccService.custcompDetail(ccVO.getCust_id());
+//		Map<String, Object> ccMap = new HashMap<String, Object>();
+//		ccMap.put("cVO", cVO);
+//		ccMap.put("pageNum", pageNum);
+//		mov.addObject("cVO", cVO);
+//		mov.addObject("pageNum", pageNum);
+		
+		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		System.out.println(ccVO);
+		ccService.custcompEdit(ccVO);
+		
+        return "redirect:/custcomp";
 	}
-
-	// 기업고객 삭제
-	@RequestMapping(value = "custCompDelete.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> companyCutomerDelete(HttpSession session, @RequestBody List<String> cust_idList) {
-		Map<String, Object> rstMap = new HashMap<String, Object>();
-		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-			rstMap.put("deleteResult", "standard/home/session_expire");
-		} else {
-			String deleteResult = ccService.deleteCustComp(cust_idList);
-			rstMap.put("deleteResult", deleteResult);
+	
+	
+	// 기존고객 삭제
+	@RequestMapping(value = "/custcompDelete", method = RequestMethod.POST)
+	public String custcompDelete(String[] custcomp_del) throws IOException {
+		
+		for (String cust_id : custcomp_del) {
+			ccService.custcompDelete(cust_id);
 		}
-		return rstMap;
+		return "redirect:/custcomp";
 	}
 	
 	// 키맨 리스트
@@ -301,19 +334,19 @@ public class CustCompController {
 	}
 	
 	// 키맨 추가
-	@RequestMapping(value = "/addKeyman.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> addKeyman(HttpSession session, KeymanVO kVO) {
-		Map<String, Object> rstMap = new HashMap<String, Object>();
-		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-			rstMap.put("addResult", "standard/home/session_expire");
-		} else {
-			kVO.setFst_reg_id(session.getAttribute("user").toString());
-			kVO.setFin_mdfy_id(session.getAttribute("user").toString());
-			String kmAddRst = ccService.insertKeyman(kVO);
-			rstMap.put("addResult", kmAddRst);
-		}
-		return rstMap;
-	}
+//	@RequestMapping(value = "/addKeyman.do", method = RequestMethod.POST)
+//	public @ResponseBody Map<String, Object> addKeyman(HttpSession session, KeymanVO kVO) {
+//		Map<String, Object> rstMap = new HashMap<String, Object>();
+//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+//			rstMap.put("addResult", "standard/home/session_expire");
+//		} else {
+//			kVO.setFst_reg_id_nm(session.getAttribute("user").toString());
+//			kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+//			String kmAddRst = ccService.insertKeyman(kVO);
+//			rstMap.put("addResult", kmAddRst);
+//		}
+//		return rstMap;
+//	}
 	
 	// 키맨 상세정보
 	@RequestMapping(value = "/keymanDetailPopup", method = RequestMethod.GET)
@@ -328,18 +361,18 @@ public class CustCompController {
 	}
 	
 	// 키맨 수정
-	@RequestMapping(value = "/mdfyKeyman.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> mdfyKeyman(HttpSession session, KeymanVO kVO) {
-		Map<String, Object> rstMap = new HashMap<String, Object>();
-		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-			rstMap.put("mdfyResult", "standard/home/session_expire");
-		} else {
-			kVO.setFin_mdfy_id(session.getAttribute("user").toString());
-			String kmMdfyRst = ccService.mdfyKeyman(kVO);
-			rstMap.put("mdfyResult", kmMdfyRst);
-		}
-		return rstMap;
-	}
+//	@RequestMapping(value = "/mdfyKeyman.do", method = RequestMethod.POST)
+//	public @ResponseBody Map<String, Object> mdfyKeyman(HttpSession session, KeymanVO kVO) {
+//		Map<String, Object> rstMap = new HashMap<String, Object>();
+//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+//			rstMap.put("mdfyResult", "standard/home/session_expire");
+//		} else {
+//			kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+//			String kmMdfyRst = ccService.mdfyKeyman(kVO);
+//			rstMap.put("mdfyResult", kmMdfyRst);
+//		}
+//		return rstMap;
+//	}
 	
 	// 키맨 삭제
 	@RequestMapping(value = "delKeyman.do", method = RequestMethod.POST)

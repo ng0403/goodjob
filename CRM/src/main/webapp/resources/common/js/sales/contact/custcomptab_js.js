@@ -26,11 +26,12 @@ $(document).ready(function() {
 	// 영업기회 추가 팝업
 	$('#oppt_pop_btn').click(function(){
 		var cust_id = $("#nowCust_id").val();
+		var cont_id = $("#cont_id").val();
 		if(cust_id == ''){
 			alert('고객을 선택해주세요.');
 			return;
 		}else {
-			window.open(ctx+'/opptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/contactopptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 	
@@ -500,13 +501,12 @@ function mdfyCustComp(ctx){
 		});
 	});
 }
-
-
+ 
 
 //키맨 삭제
 function keymanDelete() {
 	var chked_val = [];
-	$(":checkbox[id='kmChkbox']:checked").each(function(index, item){
+ 	$(":checkbox[id='kmChkbox']:checked").each(function(index, item){
 		chked_val[index] = item.value;
 	});
 	var delChk = confirm("정말 삭제 하시겠습니까?");

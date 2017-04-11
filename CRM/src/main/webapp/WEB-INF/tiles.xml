@@ -102,7 +102,7 @@
 	
 	<!-- 상품 -->
 	<definition name="prodDetail" extends="onebodyLayout">
-	 <put-attribute name="body" value="/WEB-INF/views/standard/prod/prod_tab.jsp" />
+	 <put-attribute name="body" value="/WEB-INF/views/standard/prod/prod_detail.jsp" />
 	</definition>
 	
 	<!-- 기업고객  -->
@@ -149,6 +149,10 @@
 	<definition name="actSaleList" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/week.jsp" />
 	</definition>
+	
+	<definition name="actSaleDetail" extends="onebodyLayout">
+ 		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
+ 	</definition>
 	
 	<definition name="actSaleAdd" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
@@ -222,10 +226,10 @@
   
  	</definition>
 	
-	<definition name="actSaleDetail" extends="twobodyLayout">
-		<put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" />
-		<put-attribute name="detail" value="/WEB-INF/views/sales/act/act_tab.jsp" />
-	</definition>
+<!-- 	<definition name="actSaleDetail" extends="twobodyLayout"> -->
+<!-- 		<put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" /> -->
+<!-- 		<put-attribute name="detail" value="/WEB-INF/views/sales/act/act_tab.jsp" /> -->
+<!-- 	</definition> -->
 	
 	<!-- 기존고객 -->
 	<definition name="custcompDetail" extends="twobodyLayout">

@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.dao.ContactDao;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
 
 
@@ -160,6 +162,73 @@ public class ContactServiceImpl implements ContactService {
 			}
 			return resultStr;
 		}
+		
+		// 영업기회 리스트
+		@Override
+		public List<OpptVO> getOpptList(String cont_id) {
+			List<OpptVO> opptVOList = contactDao.getOpptList(cont_id);
+			return opptVOList;
+		}
+		
+		
+		//영업기회 상태코드 가져오기 
+		@Override
+		public List<OpptVO> opptOscList() {
+			// TODO Auto-generated method stub
+			return contactDao.opptOscList();
+		}
+		
+		 //영업기회단계 코드 가져오기 
+		@Override
+		public List<OpptVO> opptOtlList() {
+			// TODO Auto-generated method stub
+			return contactDao.opptOtlList();
+		}
 
-	
+		// 영업기회 팝업 고객정보 가져오기
+		@Override
+		public OpptVO ccOpptCustDetail(String cust_id) {
+			OpptVO opptVO = contactDao.ccOpptCustDetail(cust_id);
+			return opptVO;
+		}
+
+		@Override
+		public List<KeymanVO> selectKeyman(String cont_id) {
+			List<KeymanVO> kmVOList = contactDao.selectKeyman(cont_id);
+			
+			return kmVOList;
+		}
+		
+		//영업기회 추가
+		@Override
+		public int opptAddcontact(OpptVO add) {
+			// TODO Auto-generated method stub
+			return contactDao.opptAddcontact(add);
+		}
+		//영업기회단계 추가
+		@Override
+		public int addOpptStepcontact(OpptVO add) {
+			System.out.println("add : " + add);
+			return contactDao.addOpptStepcontact(add);
+		}
+		
+		//영업활동 리스트
+		@Override
+		public List<ActVO> actListcontact(String cont_id) {
+			// TODO Auto-generated method stub
+			return contactDao.actListcontact(cont_id);
+		}
+		
+		@Override
+		public String deleteopptActivecontact(List<String> chked_val) {
+			int deleteResult = contactDao.deleteopptActivecontact(chked_val);
+			String resultStr = null;
+			if(deleteResult == chked_val.size()){
+				resultStr = "키맨 삭제가 완료 되었습니다.";
+			} else {
+				resultStr = "키맨 삭제에 실패 했습니다.";
+			}
+			return resultStr;
+		}
+
 }
