@@ -336,27 +336,28 @@ public class OpptDaoImpl implements OpptDao {
 //		prod.add(detail);
 		return result;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
-	public int opptPrdtAdd(List<OpptPrdtVO> opptPrdtList) {
-		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +opptPrdtList );
+	public int opptPrdtAdd(OpptVO add) {
+		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +add );
 		int result = 0;
 
-		result += sqlsession.insert("oppt.opptprdtInsert", opptPrdtList.get(0));
+		result += sqlsession.insert("oppt.opptprdtInsert", ((List<OpptVO>) add).get(0));
 		System.out.println("result 1: " + result);
 		if (result == 1) {
 
-			for (int i = 1; i < opptPrdtList.size(); i++) {
-				System.out.println("opptEstimdd : " + opptPrdtList.get(i).toString());
-				opptPrdtList.get(i).setOpptprdt_seq(opptPrdtList.get(0).getOpptprdt_seq());
+			for (int i = 1; i < ((List<OpptVO>) add).size(); i++) {
+				System.out.println("opptEstimdd : " + ((List<OpptVO>) add).get(i).toString());
+				((List<OpptVO>) add).get(i).setEstim_seq(((List<OpptVO>) add).get(0).getEstim_seq());
 //				result += sqlsession.insert("oppt.estimateListAdd",	opptPrdtList.get(i));
 				System.out.println("result 2: " + result);
 
 			}
 		}
 		if (result > 1) {
-			result += sqlsession.insert("oppt.soeAdd", opptPrdtList.get(0));
+			result += sqlsession.insert("oppt.soeAdd", ((List<OpptVO>) add).get(0));
 			System.out.println("result 3: " + result);
-			String sales_oppt_id = opptPrdtList.get(0).getSales_oppt_id();
+			String sales_oppt_id = ((List<OpptVO>) add).get(0).getSales_oppt_id();
 			sqlsession.update("estimate.opptLevMdfy",sales_oppt_id);
 		}
 		

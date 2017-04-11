@@ -104,6 +104,7 @@ public class OpptController {
 			return new ModelAndView("redirect:/");
 		}
 		
+		
 		int addFlag = 0;
 		
 		if(opptId == null){
@@ -116,16 +117,22 @@ public class OpptController {
 			// 영업단계 코드 가져오기
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
+			List<EstVO> eduList = service.eduList();
+			List<String> eduCode = new ArrayList<String>();
+
 
 			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 			map.put("scust_nm", map.get("scust_nm"));
 			
 			//상세정보 출력
 			
+			mov.addObject("eduList", eduList);
+			mov.addObject("eduCode", eduCode);
 			mov.addObject("osclist", osclist);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
 			mov.addObject("addFlag", addFlag);
+			mov.addObject("flg", "add");
 			System.out.println("Add Flag  " + addFlag);
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);
@@ -150,13 +157,17 @@ public class OpptController {
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
 			
-
+			List<EstVO> eduList = service.eduList();
+			List<String> eduCode = new ArrayList<String>();
+			
 			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 			map.put("scust_nm", map.get("scust_nm"));
 			
 			//상세정보 출력
-			
+			mov.addObject("flg", "detail");
 			mov.addObject("osclist", osclist);
+			mov.addObject("eduList", eduList);
+			mov.addObject("eduCode", eduCode);
 			mov.addObject("detail", detail);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
@@ -168,7 +179,23 @@ public class OpptController {
 			return mov;
 		}
 	}
-
+	//영업기회상품추가 팝업 open controller
+		@RequestMapping(value = "/opptPrdtOpen", method = RequestMethod.GET)
+		public ModelAndView opptPrdtOpen(
+				HttpSession session,
+				@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
+				@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+			ModelAndView mov = new ModelAndView(
+					"/sales/oppt/opptPop/opptProduct_list_pop");
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("keyfield", keyfield);
+			map.put("keyword", keyword);
+			List<ProdVO> prodList = service.prodList(map);
+			mov.addObject("prodList", prodList);
+			
+			return mov;
+		}
 	// 영업기회 리스트 ajax
 	@RequestMapping(value = "/opptajax", method = RequestMethod.POST)
 	@ResponseBody
@@ -261,6 +288,7 @@ public class OpptController {
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = service.opptAdd(add);
+		int result1 = service.opptPrdtAdd(add);//영업기회별 상품 리스트 추가
 		int result2 = service.addOpptStep(add);//영업기회단계리스트추가
 		System.out.println("result1 : " + result);
 		System.out.println("result2 : " + result2);
@@ -443,7 +471,6 @@ public class OpptController {
 
 		return mov;
 	}
-
 	//영업기회별 견적 추가 
 	@RequestMapping(value = "/opptEstimAdd", method = RequestMethod.GET)
 	@ResponseBody
@@ -481,109 +508,7 @@ public class OpptController {
 		return result;
 	}
 	//////////////////////////////////////////////////////////////////////
-	///////////////////////////영업기회별 상품///////////////////////////////////////////
-	//영업기회별 상품탭 리스트 출력 
-	@RequestMapping(value = "/opptprdtList", method = RequestMethod.GET)
-	@ResponseBody
-	public List<OpptPrdtVO> opptprdtList(String sales_oppt_id) {
-		System.out.println("영업기회별 상품 탭 리스트 컨트롤러");
-		List<OpptPrdtVO> opptprdtList = service.opptprdtList(sales_oppt_id);
-		System.out.println("영업기회별 상품 탭 리스트 opptprdtList: " +opptprdtList );
-		return opptprdtList;
-	}
-	
-	//영업기회별 상품 추가 팝업 open Controller
-	@RequestMapping(value = "/opptPrdtpopup", method = RequestMethod.GET)
-	public ModelAndView prdtPopup(HttpSession session, String list_cust_id,
-			String list_cust_nm
-			, String list_sales_oppt_nm
-			, String list_sales_oppt_id
-			, String pageNum
-			, String flag
-//			, String sales_lev_cd
-			) {
-		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/custcomp_opptPrdt_pop");
-		
-//		List<OpptVO> otllist = service.opptOtlList();//견적 콤보박스
-		List<EstVO> eduList = service.eduList();
-		System.out.println("eduList : " + eduList);
-		List<String> opptPrdtCode = new ArrayList<String>();
-		for (EstVO est : eduList) {
-			opptPrdtCode.add(est.getCode());
-			opptPrdtCode.add(est.getCd_nm());
-		}
-//		mov.addObject("otllist", otllist);
-		mov.addObject("cust_id", list_cust_id);
-		mov.addObject("cust_nm", list_cust_nm);
-		mov.addObject("sales_oppt_nm", list_sales_oppt_nm);
-		mov.addObject("sales_oppt_id", list_sales_oppt_id);
-//		mov.addObject("sales_lev_cd", sales_lev_cd);
-		mov.addObject("flg", "add");
-		mov.addObject("flag", flag);
-		mov.addObject("eduList", eduList);
-		mov.addObject("opptPrdtCode", opptPrdtCode);
-		mov.addObject("pageNum",pageNum);
-		return mov;
-	}
-	
-	//영업기회별 상품-상품추가 팝업 open controller
-	@RequestMapping(value = "/opptprdtopen", method = RequestMethod.GET)
-	public ModelAndView opptprdtopen(
-			HttpSession session,
-			@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
-			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
-		System.out.println("영업기회별 상품 추가 상품선택 팝업 컨트롤러 진입");
-		ModelAndView mov = new ModelAndView(
-				"/sales/oppt/opptPop/product_list_pop");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-		List<ProdVO> prodList = service.prodList(map);
-		mov.addObject("prodList", prodList);
-		
-		return mov;
-	}
-	
-	//영업기회별 상품 추가 
-	@RequestMapping(value = "/opptPrdtAdd", method = RequestMethod.GET)
-	@ResponseBody
-	public int opptPrdtAdd(
-			HttpSession session,
-			@RequestParam(value = "opptPrdt_list[]", required = false) List<String> opptPrdt_list,
-			OpptPrdtVO opptprdtVO) {
-		
-		List<OpptPrdtVO> opptPrdtList = new ArrayList<OpptPrdtVO>(0);
-		opptPrdtList.add(opptprdtVO);
-		for (int i = 0; i < opptPrdt_list.size(); i++) {
-			OpptPrdtVO vo = new OpptPrdtVO();
-			System.out.println("opptPrdt_list.get(++i) : "+ opptPrdt_list.get(++i));
-			vo.setProd_id(opptPrdt_list.get(i));
-//			vo.setProd_nm(opptPrdt_list.get(++i));S
-			vo.setProd_qty(opptPrdt_list.get(++i));
-			vo.setProd_price(opptPrdt_list.get(++i));
-			vo.setDiscount(opptPrdt_list.get(++i));
-			vo.setSup_price(opptPrdt_list.get(++i));
-			vo.setDiscount_unit_cd(opptPrdt_list.get(++i));
-			opptPrdtList.add(vo);
-		}
-		int result = service.opptPrdtAdd(opptPrdtList);
-		System.out.println("영업기회별 상품 추가 result : " + result);
-		return result;
-	}
-	
-	// 영업기회별 상품 삭제
-	@RequestMapping(value = "/opptPrdtDelete", method = RequestMethod.GET)
-	public @ResponseBody int opptPrdtDelete(HttpSession session,
-			@RequestParam(value = "estim_id[]") List<String> estim_id) {
-		int result = 0;
-		// 모든 checked된 견적에 대해 삭제
-		for (int i = 0; i < estim_id.size(); i++) {
-			result += service.opptEstimDelete(estim_id.get(i));
-		}
-		return result;
-	}
-	//////////////////////////////////////////////////////////////////////
+
 
 	@RequestMapping(value = "/opptDelete", method = RequestMethod.GET)
 	@ResponseBody
@@ -711,6 +636,7 @@ public class OpptController {
 
 		List<EstVO> prod = service.opptEstimDetail(estimId);
 		EstVO detail = prod.get(prod.size() - 1);
+		System.out.println("detail.getDiscount_unit_cd() : " + detail.getDiscount_unit_cd());
 		prod.remove(prod.size() - 1);
 		mov.addObject("elcList", elcList);
 		mov.addObject("estim_id", detail.getEstim_id());

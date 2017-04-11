@@ -29,32 +29,32 @@ function tabClick(){
 	  	var opptId = $("#salesId").val();
 	  	$("#tab1").attr("checked",true);
 	  	$("#tab2").attr("checked",false);
-	  	$("#tab3").attr("checked",false);
+//	  	$("#tab3").attr("checked",false);
 	  	if(opptId != ""){
 	  		//상세정보 출력
 	  		viewDetail(opptId);
 //	  		readDetail();
 	  	}
       });
-	  //영업기회별 상품
+//	  //영업기회별 상품
+//	  $("#tab2").click( function() {
+//		  	var opptId = $("#salesId").val();
+//		  	$("#tab1").attr("checked",false);
+//		  	$("#tab2").attr("checked",true);
+//		  	$("#tab3").attr("checked",false);
+//		  	if(opptId !=""){
+//		  		//영업기회 리스트 출력
+////		  		viewSalesActive(opptId);
+//		  		opptprdtList(opptId);
+////		  		readDetail();
+//		  	}
+//      });
+	  //견적 탭 클릭
 	  $("#tab2").click( function() {
 		  	var opptId = $("#salesId").val();
 		  	$("#tab1").attr("checked",false);
-		  	$("#tab2").attr("checked",true);
-		  	$("#tab3").attr("checked",false);
-		  	if(opptId !=""){
-		  		//영업기회 리스트 출력
-//		  		viewSalesActive(opptId);
-		  		opptprdtList(opptId);
-//		  		readDetail();
-		  	}
-      });
-	  //견적 탭 클릭
-	  $("#tab3").click( function() {
-		  	var opptId = $("#salesId").val();
-		  	$("#tab1").attr("checked",false);
 		  	$("#tab2").attr("checked",false);
-		  	$("#tab3").attr("checked",true);
+//		  	$("#tab3").attr("checked",true);
 		  	
 		  	if(opptId !=""){
 		  		//견적 리스트 출력
@@ -163,14 +163,15 @@ function divideDetail(opptId){
 	if($("#tab1").attr("checked")){
 	viewDetail(opptId);
 	viewSalesActive(opptId);
-	opptprdtList(opptId);
+//	opptprdtList(opptId);
 	estimList(opptId);
 	}
-	else 
-		if($("#tab2").attr("checked")){
-		viewSalesActive(opptId);
-		opptprdtList(opptId);
-	}else if($("#tab3").attr("checked")){
+//	else 
+//		if($("#tab2").attr("checked")){
+//		viewSalesActive(opptId);
+//		opptprdtList(opptId);
+//	}
+		else if($("#tab2").attr("checked")){
 		estimList(opptId);
 	}
 }

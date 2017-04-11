@@ -22,6 +22,7 @@
 <body>
 <form action="" method="get" id="listForm" >
 	<input type="hidden" id="ctx" value="${ctx}"/>
+	<input type="hidden" id="flg" value="${flg}">
 	<div id="title">
 		<div class="caption">■ 영업기회</div></div>
 		   <div class="search_div" >

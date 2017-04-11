@@ -706,7 +706,7 @@
 		and a.SALES_OPPT_ID=b.SALES_OPPT_ID(+)
 		and a.PROD_ID=c.PROD_ID
 		and b.CUST_ID=d.CUST_ID
-		and a.PROD_ID=#{prod_id}
+		and a.SALES_OPPT_ID=#{prod_id}
 	</select>
 	
 	

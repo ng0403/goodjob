@@ -8,11 +8,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 </head>
 <style type="text/css">
@@ -44,6 +46,7 @@ $(document).ready(function(){
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="flg" value="${flg}">
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${addFlag == 0 }">
@@ -124,11 +127,6 @@ $(document).ready(function(){
 							</td>
 						</tr>
 						<tr>
-<!-- 							<th>예상매출액</th> -->
-<!-- 							<td> -->
-<!-- 								<input type="hidden" id="hexpt_sales_amt"> -->
-<%-- 								<input type="text" name="expt_sales_amt" id="expt_sales_amt" value="${opDetail.expt_sales_amt}" class="int"  readonly="readonly"/> --%>
-<!-- 							</td> -->
 							<th>예상마감일자</th>
 							<td>
 								<input type="hidden" id="hexpt_fin_d">
@@ -151,6 +149,11 @@ $(document).ready(function(){
 									<option <c:if test="${detail.psblty_rate == 100 }">selected="selected"</c:if>>100</option>
 								</select>	
 							</td>
+						</tr>
+						<tr>
+							<th></th>
+							<td>
+							</td>
 						</tr>	
 						
 						<tr>
@@ -162,6 +165,77 @@ $(document).ready(function(){
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div id="salesOpptPrdtdiv">
+				<input type="hidden" id="inputCust" value="false"/>
+				
+				<table>
+					<tbody id="opptProd">
+						<tr>
+	 						<td>
+	 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품삭제" id="opptProdDelete"/>
+								<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="opptProdListBtn"/>
+	 						</td> 
+						</tr>
+					</tbody>
+				</table>
+				<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
+					<tr>
+						<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+						<td style="width: 32%;">품목명</td>
+						<td style="width: 8%;">수량</td>
+						<td style="width: 27%;">판매가</td>
+						<td style="width: 15%;">할인</td>
+						<td style="width: 15%;">공급가</td>
+					</tr>
+					<tr id="totalprice">
+						<th></th>
+						<td>계:</td>
+						<td id="countSum">0</td>
+						<td id="salesPriceSum" >0</td>
+						<td id="discountSum">0</td>
+						<td id="supplyPriceSum">0</td>
+					</tr>
+				</table>
+				<div id="estimatediv" style="margin-left: 22px;">
+					<input type="hidden" id="eduCode" value="${eduCode}">
+					<table id="opptPrdttable" class="tabtable" style="text-align: center;">
+						<tbody id="opptPrdtbody">
+							<c:choose>
+								<c:when test="${not empty prodList}">
+									<c:forEach items="${prodList}" var="list">
+										<tr id="priceline" class="${list.prod_id}">
+											<th style="width: 3%;">
+												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
+												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
+											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
+											<td style="width: 8%;">
+												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
+											<td style="width: 27%;" >${list.sales_price}</td>
+											<td style="width: 15%;" >
+												<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
+												<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">
+													<option value="0">선택</option>
+													<c:forEach items="${eduList }" var="eduList">
+														<c:choose>
+															<c:when test="${list.discount_unit_cd eq eduList.code }">
+																<option value="${eduList.code}" selected="selected">${eduList.cd_nm}</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${eduList.code}">${eduList.cd_nm}</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</td>
+											<td style="width: 15%;" id="sup_price" >${list.sup_price}</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+							</c:choose>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 
