@@ -45,7 +45,7 @@
 		<br>
 		<div class="bt_position_popup">
 		   <div class="bs-example" data-example-id="simple-table">
-		   		<input type="text" id="cust_id" name="cust_id"/>
+<!-- 		   		<input type="text" id="cust_id" name="cust_id"/> -->
 		   		<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${opptVO.sales_oppt_id}"/>
 				<table id="opptPoptbl">  			
 					<tbody id="tbody">
@@ -59,7 +59,7 @@
 							<th>고객사</th>
 							<td>
 								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly"	class="int_oppt" value="${opptVO.cust_nm}">
-								<input type="text" name="cust_id" id="cust_id" value="${opptVO.cust_id}" />
+								<input type="hidden" name="cust_id" id="cust_id" value="${opptVO.cust_id}" />
 								<input type="button" value="키맨" id="customer" class="cont_bt" onclick="javascript:keymanListPopup();">
 								
 							</td>
@@ -128,13 +128,13 @@
 			<c:if test="${flag == 0}">
 				<div class="oppt_bt_position">
 					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_add" onclick="ccOpptAddcontact();"/>
-					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel"/>
+					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel" onclick ="opptcancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="oppt_bt_position">
-					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_mdfy" onclick="ccOpptMdfy();"/>
-					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel"/>
+					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_mdfy" onclick="contactopptModify();"/>
+					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel" onclick ="opptcancle();"/>
 				</div>
 			</c:if>
 		</div>

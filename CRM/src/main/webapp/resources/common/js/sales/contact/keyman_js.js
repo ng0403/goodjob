@@ -5,6 +5,12 @@ function keymanListRefresh() {
  	window.opener.keymanList();
 	self.close();
 }
+
+function opptListRefresh(){
+ 	window.opener.opptList();
+	self.close();
+}
+
 function keymancancle(){
 	var a = confirm("취소하시겠습니까?");
 	if(a){

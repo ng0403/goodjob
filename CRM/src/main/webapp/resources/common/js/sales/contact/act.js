@@ -44,7 +44,7 @@ function actOpptNmSelect(sales_oppt_id,sales_oppt_nm){
 }
 
 function actListRefresh(cust_id) {
-	window.opener.actList(cust_id);
+ 	window.opener.actListcontact(cust_id);
 	self.close();
 }
 
@@ -122,7 +122,7 @@ function ccActAdd() {
 //영업활동 수정
 function ccActMdfy(){
 	$(document).ready(function() {
-		var ctx = $("#ctx").val();
+ 		var ctx = $("#ctx").val();
  		var obj = {
 				sales_actvy_id : $("#sales_actvy_id").val(),
 				sales_actvy_nm : $('#sales_actvy_nm').val(),
@@ -138,18 +138,19 @@ function ccActMdfy(){
 				end_t : $('#end_t_h').val()+":"+$('#end_t_m').val(),    			
 		        memo : $('#memo').val()
 			}
-	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
-	    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
+ 	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
+ 	    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
 	    var cust_nm = $("#cust_nm").val();
 		$.ajax({
 			type : 'POST',
-			url : ctx+'/actEdit',
+			url : ctx+'/actEditcontact',
 			data : jsonData,
 			contentType : 'application/json; charset=UTF-8',
 			dataType : "json",
 			success : function(data) {
-				alert(cust_nm +"에 대한 영업 활동이 수정 되었습니다.");
+ 				alert(cust_nm +"에 대한 영업 활동이 수정 되었습니다.");
 				actListRefresh(obj.cust_id);
+ 
 			},
 			error : function(request,status,error) {
 		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

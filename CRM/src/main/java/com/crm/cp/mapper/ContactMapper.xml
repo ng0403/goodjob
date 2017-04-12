@@ -322,17 +322,32 @@
 	
 	<!-- 키맨 상세정보 -->
 	<select id="kmDetailcontact" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		SELECT CUST_ID,
+		<!-- SELECT CUST_ID,
 				  CONT_ID,
 				  KEY_PART,
 				  KEY_POS, 
+				  KEY_JOB,
 				  MEMO,
 				  FST_REG_ID,
 				  FST_REG_DT,
 				  FIN_MDFY_ID,
 				  FIN_MDFY_DT
 		 FROM KEYMAN 
-	   WHERE CUST_ID = #{cust_id} 
+	   WHERE CUST_ID = #{cust_id}  -->
+	    SELECT 
+                  c.CUST_NM,
+                  k.CUST_ID,
+				  k.CONT_ID,
+				  k.KEY_PART,
+				  k.KEY_POS, 
+				  k.KEY_JOB,
+				  k.MEMO,
+				  k.FST_REG_ID,
+				  k.FST_REG_DT,
+				  k.FIN_MDFY_ID,
+				  k.FIN_MDFY_DT
+		 FROM KEYMAN k, customer c
+	   WHERE k.cust_ID = 'CU00012' and k.cust_id = c.cust_id
 	</select>
 	
 	<!-- 키맨 삭제 -->
@@ -372,6 +387,30 @@
 	  where cont_id = #{cont_id}  and so.cust_id = k.cust_id
 	     and act_yn = 'Y'
 	   ORDER BY so.sales_oppt_id DESC
+	</select>
+	
+	<!-- 영업기회 상세정보 가져오기 -->
+	<select id="ccOpptDetailcontact" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
+		select  a.sales_oppt_id
+ 				, a.cust_id
+				, c.cust_nm
+				, a.sales_oppt_nm
+				, (select cd_nm from code where cd_grp_id='OTL' and code=a.sales_lev_cd) sales_lev_cd_nm
+				, a.sales_lev_cd
+				, a.sales_oppt_stat_cd
+				, a.expt_sales_amt
+				, TO_CHAR(a.expt_fin_d, 'YYYY-MM-DD') expt_fin_d
+				, a.psblty_rate
+				, (select cd_nm from code where cd_grp_id='OSC' and code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
+				, a.memo
+				, a.fst_reg_id
+				, a.fst_reg_dt
+				, a.fin_mdfy_id
+				, a.fin_mdfy_dt
+				, a.act_yn
+		from sales_opportunity a, keyman b, customer c
+		where  b.cust_id=c.cust_id and a.cust_id = b.cust_id and a.act_yn='Y'
+		and a.sales_oppt_id=#{sales_oppt_id}
 	</select>
 	
 	
@@ -444,6 +483,33 @@
 		,'Y'
 		)
 	</update>
+	
+	<!-- 영업기회 수정 -->
+	<update id="modifycontact" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		update
+		sales_opportunity
+		set
+		cust_id = #{cust_id},
+		sales_oppt_nm = #{sales_oppt_nm},
+		sales_lev_cd = #{sales_lev_cd},
+<!-- 		expt_sales_amt = #{expt_sales_amt}, -->
+		psblty_rate= #{psblty_rate},
+		sales_oppt_stat_cd= #{sales_oppt_stat_cd},
+		memo= #{memo},
+		expt_fin_d = TO_DATE(#{expt_fin_d},'yyyy-MM-dd'),
+		fin_mdfy_id = #{fin_mdfy_id}
+		where sales_oppt_id = #{sales_oppt_id}
+	</update>
+	
+		<!-- 영업기회 삭제 -->
+	<update id="ccOpptDeletecontact" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		update sales_opportunity 
+		set ACT_YN = 'N'
+		where sales_oppt_id = #{oppt_idList}
+	</update>
+	
+	
+	
 	<!-- 영업기회단계리스트  추가 -->
 	<update id="addOpptStepcontact" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
 
@@ -511,6 +577,15 @@
 			)SAL
 	</select>
 	
+	<!-- 영업활동 수정 -->
+	<update id="actEditcontact" parameterType="com.crm.cp.sales.act.vo.ActVO">
+	      UPDATE SALES_ACTIVITY 
+		  SET SALES_ACTVY_NM = #{sales_actvy_nm}, SALES_ACTVY_DIV_CD = #{sales_actvy_div_cd}, SALES_ACTVY_TYPE_CD = #{sales_actvy_type_cd}, 
+		  	  SALES_OPPT_ID = #{sales_oppt_id}, CUST_ID = #{cust_id}, SALES_ACTVY_STAT_CD = #{sales_actvy_stat_cd}, 
+		  	  STRT_D = TO_DATE(#{strt_d}, 'yyyy-MM-dd'), STRT_T = #{strt_t}, END_D = TO_DATE(#{end_d}, 'yyyy-MM-dd'), END_T = #{end_t}, 
+		  	  MEMO = #{memo}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
+		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
+	</update>
 	
 		<!-- 영업활동 삭제 -->
 	<update id="deleteopptActivecontact" parameterType="com.crm.cp.sales.act.vo.ActVO">

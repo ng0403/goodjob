@@ -170,6 +170,12 @@ public class ContactServiceImpl implements ContactService {
 			return opptVOList;
 		}
 		
+		// 영업기회 상세정보
+		@Override
+		public OpptVO ccOpptDetail(String sales_oppt_id) {
+			OpptVO opptVO = contactDao.ccOpptDetail(sales_oppt_id);
+			return opptVO;
+		}
 		
 		//영업기회 상태코드 가져오기 
 		@Override
@@ -211,12 +217,45 @@ public class ContactServiceImpl implements ContactService {
 			System.out.println("add : " + add);
 			return contactDao.addOpptStepcontact(add);
 		}
+		//영업기회 수정
+		@Override
+		public int opptModifycontact(OpptVO detail) {
+			// TODO Auto-generated method stub
+			return contactDao.opptModifycontact(detail);
+		}
+		
+		// 영업기회 삭제
+		@Override
+		public String deleteOpptcontact(List<String> oppt_idList) {
+			int deleteResult = contactDao.deleteOpptcontact(oppt_idList);
+			String resultStr = null;
+			if(deleteResult == oppt_idList.size()){
+				resultStr = "영업기회 삭제가 완료 되었습니다.";
+			} else {
+				resultStr = "영업기회 삭제에 실패 했습니다.";
+			}
+			return resultStr;
+		}
+		
 		
 		//영업활동 리스트
 		@Override
 		public List<ActVO> actListcontact(String cont_id) {
 			// TODO Auto-generated method stub
 			return contactDao.actListcontact(cont_id);
+		}
+		
+		//영업활동 수정
+		@Override
+		public String actEditcontact(ActVO actvo) {
+			int mdfyResult = contactDao.actEditcontact(actvo); 
+			String resultStr = null;
+			if(mdfyResult == 1){
+				resultStr = "키맨 수정이 완료 되었습니다.";
+			} else {
+				resultStr = "키맨 수정에 실패 했습니다.";
+			}
+			return resultStr;
 		}
 		
 		@Override

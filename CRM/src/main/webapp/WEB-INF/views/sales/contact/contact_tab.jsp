@@ -11,6 +11,8 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>  
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomptab_js.js"></script>
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
+ 
  <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
@@ -46,7 +48,7 @@
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
-							<th style='width:10%;'>키맨명</th>
+							<th style='width:10%;'>고객사명</th>
 							<th style='width:7%;'>직급</th>
  							<th style='width:20%;'>메모</th>
 							<th style='width:10%;'>등록자</th>
@@ -54,7 +56,7 @@
 						</tr>
 					</thead>
 					<tbody id="keymanTableTbody">
-							
+								
 					</tbody>
 				</table>
 			</div>
