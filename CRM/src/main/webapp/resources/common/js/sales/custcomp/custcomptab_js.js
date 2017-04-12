@@ -1,15 +1,14 @@
-
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
-		window.open(ctx+'/ccAddrListPop.do','newwindow','width=500, height=620, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/ccAddrListPop','newwindow','width=500, height=620, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 	
 	// 직원검색 팝업
 	$('#iuser_search').click(function(){
-		window.open(ctx+'/iuserSearchPop.do','newwindow','width=500, height=620, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/iuserSearchPop','newwindow','width=500, height=620, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 	
 	// 키맨 추가 팝업
@@ -25,7 +24,7 @@ $(document).ready(function() {
 	
 	// 영업기회 추가 팝업
 	$('#oppt_pop_btn').click(function(){
-		var cust_id = $("#nowCust_id").val();
+		var cust_id = $("#nowCust_id").val();3
 		if(cust_id == ''){
 			alert('고객을 선택해주세요.');
 			return;
@@ -737,7 +736,7 @@ function mdfyCustComp(ctx){
 //입력창 비활성화 함수
 function readDetail(){
 	$("#custcompDetail input[type='text'],textarea,input[type='date']").attr({
-		readonly:true,
+		renly:true,
 		style:'background-color: #eaeaea'  
 	});
 
@@ -768,7 +767,7 @@ function keymanDelete() {
 		var ctx = $("#ctx").val();
 		var cust_id = $("#nowCust_id").val();
 		$.ajax({
-			url : ctx+'/delKeyman.do',
+			url : ctx+'/delKeyman',
 			type : 'POST',
 			data :  JSON.stringify(chked_val),
 			dataType : 'json',
@@ -805,7 +804,7 @@ function ccOpptDel(ctx){
 			if(delChk){
 				var cust_id = $("#nowCust_id").val();
 				$.ajax({
-					url : ctx+'/ccOpptDelete.do',
+					url : ctx+'/ccOpptDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',
@@ -845,7 +844,7 @@ function ccActDel(ctx){
 			if(delChk){
 				var cust_id = $("#nowCust_id").val();
 				$.ajax({
-					url : ctx+'/ccActDelete.do',
+					url : ctx+'/ccActDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',
@@ -883,9 +882,9 @@ function ccEstDel(ctx){
 		}else{
 			var delChk = confirm("정말 삭제 하시겠습니까?");
 			if(delChk){
-				var cust_id = $("#nowCust_id").val();
+				var cust_id = $("#cust_id").val();
 				$.ajax({
-					url : ctx+'/ccEstDelete.do',
+					url : ctx+'/ccEstDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',

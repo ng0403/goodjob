@@ -1,8 +1,6 @@
 package com.crm.cp.sales.custcomp.controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +27,8 @@ import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.service.CustCompService;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.custcomp.vo.RocVO;
+import com.crm.cp.sales.custcomp.vo.RosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
@@ -249,7 +249,6 @@ public class CustCompController {
         return "redirect:/custcomp";
 	}
 	
-	
 	// 기존고객 삭제
 	@RequestMapping(value = "/custcompDelete", method = RequestMethod.POST)
 	public String custcompDelete(String[] custcomp_del) throws IOException {
@@ -258,6 +257,22 @@ public class CustCompController {
 			ccService.custcompDelete(cust_id);
 		}
 		return "redirect:/custcomp";
+	}
+	
+	//고객사 당담자 리스트
+	@RequestMapping(value = " rocList.do", method = RequestMethod.POST)
+	public @ResponseBody List<RocVO> rocListList(String cust_id) {
+		List<RocVO> rocVOList = ccService.getRocList(cust_id);
+		
+		return rocVOList;
+	}
+	
+	//영업 담당자 리스트
+	@RequestMapping(value = " rosList.do", method = RequestMethod.POST)
+	public @ResponseBody List<RosVO> rosListList(String cust_id) {
+		List<RosVO> rosVOList = ccService.getRosList(cust_id);
+		
+		return rosVOList;
 	}
 	
 	// 키맨 리스트
@@ -269,7 +284,7 @@ public class CustCompController {
 	}
 
 	// 영업기회 리스트
-	@RequestMapping(value = "ccOpptList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "ccOpptList",  method = RequestMethod.POST)
 	public @ResponseBody List<OpptVO> opptList(String cust_id) {
 		List<OpptVO> opptVOList = ccService.getOpptList(cust_id);
 		return opptVOList;
@@ -283,10 +298,16 @@ public class CustCompController {
 	}
 
 	// 견적 리스트
-	@RequestMapping(value = "ccEstList.do", method = RequestMethod.POST)
-	public @ResponseBody List<EstVO> estList(String cust_id) {
-		List<EstVO> estVOList = ccService.getEstList(cust_id);
-
+//	@RequestMapping(value = "ccEstList", method = RequestMethod.POST)
+//	public @ResponseBody List<EstVO> estList(String cust_id) {
+//		List<EstVO> estVOList = ccService.getEstList(cust_id);
+//
+//		return estVOList;
+//	}
+	@RequestMapping(value = "estimList.do", method = RequestMethod.POST)
+	public @ResponseBody List<EstVO> EstimListList(String cust_id) {
+		List<EstVO> estVOList = ccService.getEstimList(cust_id);
+		
 		return estVOList;
 	}
 

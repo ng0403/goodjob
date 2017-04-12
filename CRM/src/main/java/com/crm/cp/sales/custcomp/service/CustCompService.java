@@ -7,6 +7,8 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.custcomp.vo.RocVO;
+import com.crm.cp.sales.custcomp.vo.RosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
@@ -27,7 +29,7 @@ public interface CustCompService {
 	List<KeymanVO> getKeymanList(String cust_id);								// 키맨 리스트
 	List<OpptVO> getOpptList(String cust_id);									// 영업기회 리스트
 	List<ActVO> getActList(String cust_id);										// 영업활동 리스트
-	List<EstVO> getEstList(String cust_id);										// 견적 리스트
+	//List<EstVO> getEstList(String cust_id);										// 견적 리스트
 	List<contrVO> getContList(String cust_id);									// 계약 리스트
 	PagerVO getEmpListNum(int iuserPageNum, String iuser_nm); 					// 직원검색 리스트 개수
 	List<CustCompVO> getEmpList(Map<String, Object> iuserMap, PagerVO page); 	// 직원 리스트
@@ -51,5 +53,8 @@ public interface CustCompService {
 	void custcompInsert(CustCompVO ccVO);
 	void custcompEdit(CustCompVO ccVO);
 	void custcompDelete(String cust_id);
+	List<EstVO> getEstimList(String cust_id);
+	List<RocVO> getRocList(String cust_id);										//고객사 담당자 리스트
+	List<RosVO> getRosList(String cust_id);										//영업 담당자 리스트
 
 }

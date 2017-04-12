@@ -18,28 +18,80 @@
 <body  >
 	<div id="css_tabs" style="float: left;">
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" />
-		<input id="tab2" type="radio" name="tab" checked="checked"/>
+		<input id="tab1" type="radio" name="tab" checked="checked"/>
+		<input id="tab2" type="radio" name="tab" />
 		<input id="tab3" type="radio" name="tab" />
 		<input id="tab4" type="radio" name="tab" />
 		<input id="tab5" type="radio" name="tab" />
 		<input id="tab6" type="radio" name="tab" />
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label for="tab1">상세정보</label> 
-		<label for="tab2">키맨 </label> 
-		<label for="tab3">영업기회</label> 
-		<label for="tab4">영업활동</label> 
-		<label for="tab5">견적</label>
-		<label for="tab6">계약</label>
+		<label for="tab1">고객사 담당자</label> 
+		<label for="tab2">영업 담당자</label> 
+		<label for="tab3">키맨 </label> 
+		<label for="tab4">영업기회</label> 
+		<label for="tab5">영업활동</label> 
+		<label for="tab6">견적</label>
 		
-		<!-- 탭 내용 : 기업고객 상세정보 -->
+		<!-- 탭 내용 : 고객사 담당 사원 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
-		
+			<div class="bt_position_authuser">
+				<input type="button" id="iuser_pop_btn" class="custcomp_btn" value="담당자 추가" />
+				<input type="button" id="deleteiuserbtn" class="custcomp_btn" value="삭제" onclick="iuserDelete();"/>
+			</div>
+			
+			<div id="tableline2">
+				<table class="tabtable" style="border-collapse: collapse;"> 
+					<thead>
+						<tr>
+							<th style='width:3%;'><input type="checkbox"  id='iuserListCheck'/></th>
+							<th style='width:20%;'>고객사명</th>
+							<th style='width:20%;'>사원명</th>
+							<th style='width:20%;'>역할명</th>
+							<th style='width:15%;'>등록자</th>
+							<th style='width:15%;'>등록일시</th>
+						</tr>
+					</thead>
+					<tbody id= rocTableTbody">
+						<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
+					</tbody>
+				</table>
+			</div>
+			
 		</div>
-
+		
+		
+		<!-- 탭 내용 : 영업 담당 사원 -->
+		<div id="tabDiv2" class="tab1_content" style="width: 100%;">
+			<div class="bt_position_authuser">
+				<input type="button" id="pos_pop_btn" class="custcomp_btn" value="담당자 추가" />
+				<input type="button" id="deleteposbtn" class="custcomp_btn" value="삭제" onclick="posDelete();"/>
+			</div>
+			
+			<div id="tableline2">
+				<table class="tabtable" style="border-collapse: collapse;"> 
+					<thead>
+						<tr>
+							<th style='width:3%;'><input type="checkbox"  id='iuserListCheck'/></th>
+							<th style='width:17%;'>영업활동ID</th>
+							<th style='width:15%;'>사원ID</th>
+							<th style='width:15%;'>고객사ID</th>
+							<th style='width:20%;'>역할명</th>
+							<th style='width:15%;'>등록자</th>
+							<th style='width:15%;'>등록일시</th>
+						</tr>
+					</thead>
+					<tbody id="posTableTbody">
+						<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+		
+		
 		<!-- 탭 내용 : 키맨 리스트 -->
-		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
+		<div id="tabDiv3" class="tab2_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="keyman_pop_btn" class="custcomp_btn" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete();"/>
@@ -50,25 +102,25 @@
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
+<!-- 							<th style='width:10%;'>고객사</th> -->
 							<th style='width:10%;'>키맨명</th>
-							<th style='width:7%;'>직급</th>
-							<th style='width:10%;'>전화번호</th>
-							<th style='width:10%;'>이동전화번호</th>
-							<th style='width:15%;'>이메일</th>
-							<th style='width:20%;'>메모</th>
-							<th style='width:10%;'>등록자</th>
-							<th style='width:15%;'>등록일시</th>
+							<th style='width:15%;'>역할명</th>
+							<th style='width:15%;'>직급</th>
+							<th style='width:10%;'>직무</th>
+							<th style='width:12%;'>메모</th>
+							<th style='width:8%;'>등록자</th>
+							<th style='width:17%;'>등록일시</th>
 						</tr>
 					</thead>
 					<tbody id="keymanTableTbody">
-							
+							<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 			
 			<!-- 영업기회 리스트 -->
-		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
+		<div id="tabDiv4" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" />
 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/>
@@ -90,14 +142,14 @@
 						</tr>
 					</thead>
 					<tbody id="opptTableTbody">
-							
+							<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 			
 			<!-- 영업활동 리스트 -->
-		<div id="tabDiv4" class="tab4_content" style="width: 100%;">
+		<div id="tabDiv5" class="tab4_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_pop_btn" class="custcomp_btn" value="영업활동 추가"/>
 				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="ccActDel('${ctx}');"/>
@@ -124,67 +176,66 @@
 						</tr>
 					</thead>
 					<tbody id="actTableTbody">
-						
+						<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	
 			<!-- 견적 리스트 -->
-		<div id="tabDiv5" class="tab5_content" style="width: 100%;"> 
+		<div id="tabDiv6" class="tab5_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
-				<input type="button" id="est_pop_btn" class="custcomp_btn" value="견적 추가">
-				<input type="button" id="estDel" class="custcomp_btn" value="삭제" onclick="ccEstDel('${ctx}')"/>
+				<button id="est_pop_btn" class="custcomp_btn">견적 추가</button>
+				<button id="addkeymancancel" class="custcomp_btn" onclick="ccEstDel('${ctx}');">삭제</button>
 			</div>
 			
-			<div id="tableline2">
-					<table id="estTable" class="tabtable">
-						<thead>
-							<tr style="text-align: center;">
-								<th style='width:3%;'><input type="checkbox"  id='ccEstListCheck'/></th>
-								<td style='width:34%;'>견적명</td>
-								<td style='width:8%;'>견적단계</td>
-								<td style='width:8%;'>견적수량</td>
-								<td style='width:15%;'>견적금액</td>
-								<td style='width:10%;'>견적유효일자</td>
-								<td style='width:7%;'>등록자</td>
-								<td style='width:15%;'>등록일시</td>
-							</tr>
-						</thead>
-						<tbody id="estTableTbody">
-							
-						</tbody>
-					</table>
-				</div>
+			<div id="tableline">
+				<table id="goaltable" class="tabtable">
+					<thead>						
+						<tr>
+							<th style="width: 3%;"><input type="checkbox"  id='estimAllSelect'/></th>
+							<td style="width: 30%;">견적명</td>
+							<td style="width: 10%;">견적단계</td>
+							<td style="width: 10%;">메모</td>
+							<td style="width: 17%;">견적유효일자</td>
+							<td style="width: 10%;">등록자</td>
+							<td style="width: 10%;">등록일시</td>
+						</tr>
+					</thead>
+					<tbody id="estTableTbody" >
+						<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
+					</tbody>
+				</table>
 			</div>
+		</div>
 	
 			<!-- 계약 리스트 -->
-			<div id="tabDiv6" class="tab6_content" style="width: 100%;">
-			<div class="bt_position_authuser">
-				<input type="button" id="cont_pop_btn" class="custcomp_btn" value="계약 추가">
-				<input type="button" id="contDel" class="custcomp_btn" value="삭제" onclick="ccContDel('${ctx}');"/>
-			</div>
+<!-- 			<div id="tabDiv6" class="tab6_content" style="width: 100%;"> -->
+<!-- 			<div class="bt_position_authuser"> -->
+<!-- 				<input type="button" id="cont_pop_btn" class="custcomp_btn" value="계약 추가"> -->
+<%-- 				<input type="button" id="contDel" class="custcomp_btn" value="삭제" onclick="ccContDel('${ctx}');"/> --%>
+<!-- 			</div> -->
 			
-			<div id="tableline2">
-					<table id="contTable" class="tabtable">
-						<thead>
-							<tr style="text-align: center;">
-								<th style='width:3%;'><input type="checkbox"  id='ccContListCheck'/></th>
-								<td style='width:25%;'>계약명</td>
-								<td style='width:15%;'>계약번호</td>
-								<td style='width:10%;'>계약수량</td>
-								<td style='width:10%;'>계약금액</td>
-								<td style='width:15%;'>계약일자</td>
-								<td style='width:7%;'>등록자</td>
-								<td style='width:15%;'>등록일시</td>
-							</tr>
-						</thead>
-						<tbody id="contTableTbody">
+<!-- 			<div id="tableline2"> -->
+<!-- 					<table id="contTable" class="tabtable"> -->
+<!-- 						<thead> -->
+<!-- 							<tr style="text-align: center;"> -->
+<!-- 								<th style='width:3%;'><input type="checkbox"  id='ccContListCheck'/></th> -->
+<!-- 								<td style='width:25%;'>계약명</td> -->
+<!-- 								<td style='width:15%;'>계약번호</td> -->
+<!-- 								<td style='width:10%;'>계약수량</td> -->
+<!-- 								<td style='width:10%;'>계약금액</td> -->
+<!-- 								<td style='width:15%;'>계약일자</td> -->
+<!-- 								<td style='width:7%;'>등록자</td> -->
+<!-- 								<td style='width:15%;'>등록일시</td> -->
+<!-- 							</tr> -->
+<!-- 						</thead> -->
+<!-- 						<tbody id="contTableTbody"> -->
 							
-						</tbody>
-					</table>
-				</div>
-			</div>
+<!-- 						</tbody> -->
+<!-- 					</table> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 		</div>
 </body>
 </html>
