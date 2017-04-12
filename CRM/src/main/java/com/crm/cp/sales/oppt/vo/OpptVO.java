@@ -30,6 +30,7 @@ public class OpptVO {
 	private String code; // 코드
 	private String cd_nm; // 코드명
 	private String estim_qty;
+	private String prod_qty;
 	private String sales_price;
 	
 	//차트 영업기회상태
@@ -58,8 +59,27 @@ public class OpptVO {
 	private String total_sales_price;
 	private String total_discount;
 	private String total_sup_price;
+	private String oppt_seq;
 	
 	
+	
+	
+
+	public String getProd_qty() {
+		return prod_qty;
+	}
+
+	public void setProd_qty(String prod_qty) {
+		this.prod_qty = prod_qty;
+	}
+
+	public String getOppt_seq() {
+		return oppt_seq;
+	}
+
+	public void setOppt_seq(String oppt_seq) {
+		this.oppt_seq = oppt_seq;
+	}
 
 	public String getEstim_lev_cd() {
 		return estim_lev_cd;

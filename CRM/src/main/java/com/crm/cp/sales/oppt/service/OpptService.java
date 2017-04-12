@@ -114,6 +114,6 @@ public interface OpptService {
 	//영업기회별 상품 상세정보
 	List<OpptPrdtVO> opptPrdtDetail(String prdtId);
 	//영업기회별 상품 추가
-	int opptPrdtAdd(OpptVO add);
+	int opptPrdtAdd(List<OpptVO> estList);
 	
 }

@@ -34,7 +34,7 @@ var opptProdDeleteEstimId = []; //삭제된 상품에 견적Id List
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInputProd(prod_id,prod_nm,prod_price){
-	alert("opptProd_pop");
+
 		var unit="";
 		var flg = $('#flg').val();
 		var data = $('#eduCode').val();
@@ -47,11 +47,11 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 		}
 	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
-	alert("flg : " + flg);
+	
 	var like = 0;
 	if($("#opptPrdtbody tr").length == 0){
 			if($('#flg').val()=='add'){
-				alert("prod_id : " + prod_id);
+				
 				opptProdAddId.push(prod_id);
 			}
 		$('#opptPrdtbody').append(
@@ -63,8 +63,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
 				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
 				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
-				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
-				'</tr>'
+				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
 		);
 		like = 1;
 	}else{
@@ -279,7 +278,7 @@ function opptProdNmSelect(ctx){
 		var prod_id=$(this).find('#prod_id').text();
 		var prod_nm=$(this).find('#prod_nm').text();
 		var prod_price=$(this).find('#prod_price').text();
-		alert("opptProd_pop.js : " + prod_id+', ' + prod_nm+', ' + prod_price);
+		
 		window.opener.opptInputProd(prod_id,prod_nm,prod_price);
 		self.close();
 	});

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -157,7 +158,6 @@ public class OpptController {
 			map.put("opptId", opptId);
 			OpptVO detail = service.opptDetail(opptId);
 			System.out.println("detail : " + detail);
-			mov.addObject("opDetail", detail);
 			List<ActVO> actList = service.actList(map);
 			System.out.println("actList : " + actList);
 			mov.addObject("actList", actList);
@@ -184,11 +184,11 @@ public class OpptController {
 			
 			//상세정보 출력
 			mov.addObject("flg", "detail");
+			mov.addObject("opDetail", detail);
 			mov.addObject("osclist", osclist);
 			mov.addObject("eduList", eduList);
 			mov.addObject("elclist", elclist);
 			mov.addObject("eduCode", eduCode);
-			mov.addObject("detail", detail);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
 			mov.addObject("actList", actList);
@@ -292,7 +292,7 @@ public class OpptController {
 		ModelAndView mov = new ModelAndView("oppt");
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
 		int result2 = service.addOpptStep(detail);//영업기회단계리스트추가
-		System.out.println("result2 : " + result2);
+		System.out.println("영업기회단계리스트수정추가 result2 : " + result2);
 		Map<String, Object> opptMap = new HashMap<String, Object>();
 		opptMap.put("opptVO", opptVO);
 		opptMap.put("pageNum", pageNum);
@@ -304,29 +304,93 @@ public class OpptController {
 	// 영업기회 추가 ajax
 	@RequestMapping(value = "/opptAdd", method = RequestMethod.POST)
 	@ResponseBody
-	int opptAdd(HttpSession session, OpptVO add) {
+	int opptAdd(HttpSession session, OpptVO add
+			, @RequestParam(value="est_list[]",required=false) List<String> est_list) {
+		System.out.println("est_list : " + est_list);
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
-		int result = service.opptAdd(add);
 		
+		int result = service.opptAdd(add);
 		int result2 = service.addOpptStep(add);//영업기회단계리스트추가
+		for(int i=0 ; i< est_list.size(); i++){
+			OpptVO vo = new OpptVO();
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			vo.setOppt_seq(add.getOppt_seq());
+			estList.add(vo);
+		}
+		
+		int result1 = service.opptPrdtAdd(estList);
 		System.out.println("영업기회 추가 result : " + result);
 		System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		System.out.println("영업기회 상품 추가 result : " + result1);
 		
 		return result;
 	}
-	// 영업기회상품 추가 ajax
-	@RequestMapping(value = "/opptPrdtAdd", method = RequestMethod.POST)
-	@ResponseBody
-	int opptPrdtAdd(HttpSession session, OpptVO add) {
-		add.setFst_reg_id(session.getAttribute("user").toString());
-		add.setFin_mdfy_id(session.getAttribute("user").toString());
-		System.out.println(add);
-		int result = service.opptPrdtAdd(add);//영업기회별 상품 리스트 추가
-		System.out.println("영업기회상품추가 result : " + result);
+	
+	@RequestMapping(value="/opptPrdtAdd", method={RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView opptPrdtAdd(HttpSession session,
+			@RequestParam(value="est_list",required=false) List<String> est_list,
+			@ModelAttribute OpptVO est){
+		System.out.println("영업기회상품추가 컨트롤러");
+		String id = session.getAttribute("user").toString();
+		est.setFin_mdfy_id(id);
+		est.setFst_reg_id(id);
+		System.out.println("est : "+est.toString());
+		System.out.println("size : " + est_list);
+		System.out.println("size : " + est_list.size());
+		System.out.println("sequence : " + est.getOppt_seq());
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		estList.add(est);
+		System.out.println("est_list : " + est_list.get(0));
+		System.out.println("est_list : " + est_list.get(1));
+		System.out.println("est_list : " + est_list.get(2));
+		System.out.println("est_list : " + est_list.get(3));
+		System.out.println("est_list : " + est_list.get(4));
+		System.out.println("est_list : " + est_list.get(5));
+		System.out.println("est_list : " + est_list.get(6));
+		for(int i=0 ; i< est_list.size(); i++){
+			OpptVO vo = new OpptVO();
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			estList.add(vo);
+		}
+		ModelAndView mov = new ModelAndView();
+		System.out.println("영업기회상품 추가 estList : " + estList);
 		
-		return result;
+		int result = service.opptPrdtAdd(estList);
+		if(result > 1){
+			mov.setViewName("redirect:/oppt");
+		}
+		return mov;
 	}
+//	// 영업기회상품 추가 ajax
+//	@RequestMapping(value = "/opptPrdtAdd", method = RequestMethod.POST)
+//	@ResponseBody
+//	int opptPrdtAdd(HttpSession session, OpptVO add
+//			, @RequestParam(value="est_list",required=false) List<String> est_list
+//			, String cust_id) {
+//		System.out.println("est_list : " + est_list);
+//		add.setFst_reg_id(session.getAttribute("user").toString());
+//		add.setFin_mdfy_id(session.getAttribute("user").toString());
+//
+//		System.out.println(add);
+//		int result = service.opptPrdtAdd(add);//영업기회별 상품 리스트 추가
+//		System.out.println("영업기회상품추가 result : " + result);
+//		
+//		return result;
+//	}
 
 	// 상세정보에서의 고객 리스트
 	@RequestMapping(value = "/opptCustcompList", method = RequestMethod.GET)

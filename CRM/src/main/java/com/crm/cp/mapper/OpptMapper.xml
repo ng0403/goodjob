@@ -45,7 +45,7 @@
 		<if test="spsblty_rate !=null and spsblty_rate !=''">
 			and a.psblty_rate=#{spsblty_rate}
 		</if>
-		order by a.sales_oppt_id desc
+		order by a.fst_reg_id asc
 		)d
 		where r <![CDATA[ >= ]]>
 		#{startRow} and r <![CDATA[ <= ]]>
@@ -218,7 +218,6 @@
 		,CUST_ID
 		,SALES_OPPT_NM
 		,SALES_LEV_CD
-<!-- 		,EXPT_SALES_AMT -->
 		,EXPT_FIN_D
 		,PSBLTY_RATE
 		,SALES_OPPT_STAT_CD
@@ -236,7 +235,6 @@
 		, #{cust_id}
 		, #{sales_oppt_nm}
 		, #{sales_lev_cd}
-<!-- 		, #{expt_sales_amt} -->
 		, TO_DATE(#{expt_fin_d},'yyyy-MM-dd')
 		, #{psblty_rate}
 		, #{sales_oppt_stat_cd}
@@ -247,6 +245,12 @@
 		, sysdate
 		,'Y'
 		)
+		<selectKey keyProperty="oppt_seq" resultType="String" order="AFTER">
+			SELECT /*+INDEX_DESC(SALES_OPPORTUNITY PK_SALES_OPPORTUNITY)*/ 
+		 	SALES_OPPT_ID
+		from SALES_OPPORTUNITY
+		WHERE ROWNUM=1
+		</selectKey>
 	</update>
 	<!-- 영업기회단계리스트  추가 -->
 	<update id="addOpptStep" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
@@ -257,7 +261,6 @@
 		    SALES_LEV_CD,
 		    FIN_MDFY_DT,
 		    SALES_OPPOR_NM,
-<!-- 		    EXPT_SALES_AMT, -->
 		    EXPT_FIN_D,
 		    PSBLTY_RATE,
 		    SALES_OPPT_STAT_CD,
@@ -275,7 +278,6 @@
 			, #{sales_lev_cd}
 			, sysdate
 			, #{sales_oppt_nm}
-<!-- 			, #{expt_sales_amt} -->
 			, TO_DATE(#{expt_fin_d},'yyyy-MM-dd')
 			, #{psblty_rate}
 			, #{sales_oppt_stat_cd}
@@ -295,15 +297,12 @@
 	</sql>
 
 	<!-- 영업기회 상세정보 고객 리스트 -->
-	<select id="customerList" parameterType="java.util.Map"
-		resultType="com.crm.cp.sales.lead.vo.LeadVo">
+	<select id="customerList" parameterType="java.util.Map"	resultType="com.crm.cp.sales.lead.vo.LeadVo">
 		select
 		a.CUST_ID
 		, b.act_yn
 		, b.CUST_NM
 		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = b.CUST_DIV_CD) CUST_DIV_CD
-<!-- 		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CCS' AND C.CODE = b.STAT_CD) 
- 		STAT_CD -->
 		,a.lead_id
 		from
 		lead a
@@ -317,29 +316,22 @@
 	</select>
 
 	<!-- 영업기회 검색창 고객 리스트 -->
-	<select id="opptSearchCustComp" parameterType="java.util.Map"
-		resultType="com.crm.cp.sales.lead.vo.LeadVo">
+	<select id="opptSearchCustComp" parameterType="java.util.Map" resultType="com.crm.cp.sales.lead.vo.LeadVo">
 		select
-		distinct b.CUST_ID
-		,a.CUST_NM
-		,c.lead_id
-		,a.act_yn
-		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE =
-		a.CUST_DIV_CD) CUST_DIV_CD
-		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CCS' AND C.CODE = a.STAT_CD)
-		STAT_CD
+		a.CUST_ID
+		, b.act_yn
+		, b.CUST_NM
+		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = b.CUST_DIV_CD) CUST_DIV_CD
+		,a.lead_id
 		from
-		customer a
-		, SALES_OPPORTUNITY b
-		, lead c
+		lead a
+		, customer b
 		where
-		b.cust_id = c.cust_id and a.act_yn='Y'
-		and c.cust_id = a.cust_id
+		a.cust_id = b.cust_id and b.act_yn='Y'
 		<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
-		order by b.cust_id
-
+		ORDER BY a.CUST_ID
 	</select>
 
 	<!-- 영업활동 추가 -->
@@ -360,7 +352,7 @@
 	</update>
 	
 	<!-- 영업기회별 상품 추가 -->
-	<update id="opptprdtInsert" parameterType="com.crm.cp.sales.oppt.vo.OpptPrdtVO">
+	<update id="opptprdtInsert" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
 		INSERT INTO PROD_OF_SALES_OPPT
 		  (
 		    SALES_OPPT_ID,
@@ -371,24 +363,20 @@
 		    DISCOUNT,
 		    DISCOUNT_UNIT_CD,
 		    FST_REG_ID,
-		    FST_REG_DT,
-		    FIN_MDFY_ID,
-		    FIN_MDFY_DT
+		    FIN_MDFY_ID
 		  )
 		  VALUES
 		  (
-		    #{sales_oppt_id},
+		    #{oppt_seq},
 		    #{prod_id},
-		    #{prod_qty},
-		    #{prod_price},
+		    #{estim_qty},
+		    #{sales_price},
 		    #{sup_price},
 		    #{discount},
 		    #{discount_unit_cd},
 		    'admin',
-		    sysdate,
-		    'admin',
-		    sysdate,
-		  );
+		    'admin'
+		  )
 	</update>
 
 

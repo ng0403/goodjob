@@ -338,17 +338,17 @@ public class OpptDaoImpl implements OpptDao {
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public int opptPrdtAdd(OpptVO add) {
-		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +add );
+	public int opptPrdtAdd(List<OpptVO> estList) {
+		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +estList );
 		int result = 0;
 
-		result += sqlsession.insert("oppt.opptprdtInsert", ((List<OpptVO>) add).get(0));
+		result += sqlsession.insert("oppt.opptprdtInsert", ((List<OpptVO>) estList).get(0));
 		System.out.println("result 1: " + result);
 		if (result == 1) {
 
-			for (int i = 1; i < ((List<OpptVO>) add).size(); i++) {
-				System.out.println("opptEstimdd : " + ((List<OpptVO>) add).get(i).toString());
-				((List<OpptVO>) add).get(i).setEstim_seq(((List<OpptVO>) add).get(0).getEstim_seq());
+			for (int i = 1; i < ((List<OpptVO>) estList).size(); i++) {
+				System.out.println("opptEstimdd : " + ((List<OpptVO>) estList).get(i).toString());
+				((List<OpptVO>) estList).get(i).setEstim_seq(((List<OpptVO>) estList).get(0).getEstim_seq());
 //				result += sqlsession.insert("oppt.estimateListAdd",	opptPrdtList.get(i));
 				System.out.println("result 2: " + result);
 

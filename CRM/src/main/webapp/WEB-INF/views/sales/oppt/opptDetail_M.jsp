@@ -104,7 +104,7 @@ $(document).ready(function(){
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
 										<option value="<c:out value="${list.code}" />"
-											 <c:if test="${detail.sales_oppt_stat_cd == list.code }">selected="selected"</c:if>>
+											 <c:if test="${opDetail.sales_oppt_stat_cd == list.code }">selected="selected"</c:if>>
 											 ${list.cd_nm}
 										 </option>
 									</c:forEach>
@@ -118,7 +118,7 @@ $(document).ready(function(){
 									<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${otllist}" var="list">
 										<option value="<c:out value="${list.code}" />"
-											 <c:if test="${detail.sales_lev_cd == list.code }">selected="selected"</c:if>>
+											 <c:if test="${opDetail.sales_lev_cd == list.code }">selected="selected"</c:if>>
 											 ${list.cd_nm}
 										 </option>
 										</c:forEach>
@@ -136,16 +136,16 @@ $(document).ready(function(){
 								<input type="hidden" id="hpsblty_rate">
 								<select id="psblty_rate" name="psblty_rate" style="height: 24pt;">
 									<option value="0" style="text-align: center;">==선택==</option>
-									<option <c:if test="${detail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
-									<option <c:if test="${detail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>
-									<option <c:if test="${detail.psblty_rate == 30 }">selected="selected"</c:if>>30</option>
-									<option <c:if test="${detail.psblty_rate == 40 }">selected="selected"</c:if>>40</option>
-									<option <c:if test="${detail.psblty_rate == 50 }">selected="selected"</c:if>>50</option>
-									<option <c:if test="${detail.psblty_rate == 60 }">selected="selected"</c:if>>60</option>
-									<option <c:if test="${detail.psblty_rate == 70 }">selected="selected"</c:if>>70</option>
-									<option <c:if test="${detail.psblty_rate == 80 }">selected="selected"</c:if>>80</option>
-									<option <c:if test="${detail.psblty_rate == 90 }">selected="selected"</c:if>>90</option>
-									<option <c:if test="${detail.psblty_rate == 100 }">selected="selected"</c:if>>100</option>
+									<option <c:if test="${opDetail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
+									<option <c:if test="${opDetail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>
+									<option <c:if test="${opDetail.psblty_rate == 30 }">selected="selected"</c:if>>30</option>
+									<option <c:if test="${opDetail.psblty_rate == 40 }">selected="selected"</c:if>>40</option>
+									<option <c:if test="${opDetail.psblty_rate == 50 }">selected="selected"</c:if>>50</option>
+									<option <c:if test="${opDetail.psblty_rate == 60 }">selected="selected"</c:if>>60</option>
+									<option <c:if test="${opDetail.psblty_rate == 70 }">selected="selected"</c:if>>70</option>
+									<option <c:if test="${opDetail.psblty_rate == 80 }">selected="selected"</c:if>>80</option>
+									<option <c:if test="${opDetail.psblty_rate == 90 }">selected="selected"</c:if>>90</option>
+									<option <c:if test="${opDetail.psblty_rate == 100 }">selected="selected"</c:if>>100</option>
 								</select>	
 							</td>
 						</tr>
@@ -158,8 +158,8 @@ $(document).ready(function(){
 						<tr>
 							<th>메모</th>
 							<td colspan="8" rowspan="2">
-								<input type="hidden" id="hmemo">
-								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
+								<input type="hidden" id="hmemo" value="${opDetail.memo}">
+								<textarea name="memo" class="memo" id="memo" readonly="readonly" style="overflow: auto; resize: none;">${opDetail.memo}</textarea>
 							</td>
 						</tr>
 					</tbody>
