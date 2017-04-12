@@ -228,41 +228,34 @@
 		where cd_grp_id = 'CDC'
 	</select>
 	
-	<!-- 고객사 담당자 리스트 -->
-	<select id="rocList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.RocVO">
-		select 
-<!-- 		      (select cust_nm from customer cust where cust.cust_id = roc.cust_id )CUST_ID, -->
-<!-- 			  (select iuser_nm from iuser i where i.iuser_id = roc.iuser_id )iuser_nm, -->
-<!-- 			  (SELECT c.cd_nm FROM CODE c where c.cd_grp_id='OLC' and c.code = i. org_id ) org_id_nm, -->
-<!-- 			  i.org_id, -->
-<!-- 			  i.PH1, -->
-<!-- 			  i.ph2, -->
-<!-- 			  i.ph3, -->
-<!-- 			  i.CELL_PH1, -->
-<!-- 			  i.CELL_PH2, -->
-<!-- 			  i.CELL_PH3, -->
-<!-- 			  i.email1, -->
-<!-- 			  i.email2, -->
-<!-- 			  roc.key_part, -->
-<!-- 			  roc.fst_reg_id, -->
-<!-- 			  TO_CHAR(roc.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT -->
-				  (select cust_nm from customer cust where cust.cust_id = roc.cust_id ) cust_id,
-				  (select iuser_nm from iuser i where i.iuser_id = roc.iuser_id ) iuser_id,
-				 
-				  roc.key_part,
-				  roc.fst_reg_id,
-				  TO_CHAR(roc.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
-				  
-		from PARTNER_OF_CLIENT roc
-		where cust_id = #{cust_id} 
 	
+	<!-- 고객사 담당자 리스트 -->
+	<select id="pocList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
+		select 
+			  (select cust_nm from customer cust where cust.cust_id = poc.cust_id ) cust_id,
+			  (select iuser_nm from iuser i where i.iuser_id = poc.iuser_id ) iuser_id,
+			  poc.key_part,
+			  poc.fst_reg_id,
+			  TO_CHAR(poc.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+		from PARTNER_OF_CLIENT poc
+		where cust_id = #{cust_id} 
+		order by CUST_ID desc
 	</select>
 	
 	<!-- 영업 담당자 리스트 -->
-	<select id="rosList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.RosVO">
-	
-	
-	
+	<select id="posList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.PosVO">
+		select 
+        	(select SALES_ACTVY_NM from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_id,
+			(select iuser_nm from iuser i where i.iuser_id = pos.iuser_id ) iuser_id,
+			pos.key_part,
+			pos.fst_reg_id,
+			TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+		from SALES_ACTIVITY sa, 
+			 PARTNER_OF_SALESACT pos, 
+			 customer cust
+		where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID
+		and sa.cust_id = cust.cust_id
+		and sa.cust_id = #{cust_id} 
 	</select>
 	<!-- 키맨 리스트 -->
 	<select id="keymanList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">

@@ -11,8 +11,8 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
-import com.crm.cp.sales.custcomp.vo.RocVO;
-import com.crm.cp.sales.custcomp.vo.RosVO;
+import com.crm.cp.sales.custcomp.vo.PocVO;
+import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 
@@ -165,26 +165,26 @@ public class CustCompDaoImpl implements CustCompDao {
 	
 	//고객사 담당자 리스트 가져오기
 	@Override
-	public List<RocVO> getRocList(String cust_id) {
-		List<RocVO> rocVOList = null;
+	public List<PocVO> getPocList(String cust_id) {
+		List<PocVO> pocVOList = null;
 		try {
-			rocVOList = sqlSession.selectList("custcomp.rocList", cust_id);
+			pocVOList = sqlSession.selectList("custcomp.pocList", cust_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rocVOList;
+		return pocVOList;
 	}
 	
 	//영업 담당자 리스트
 	@Override
-	public List<RosVO> getRosList(String cust_id) {
-		List<RosVO> rosVOList = null;
+	public List<PosVO> getPosList(String cust_id) {
+		List<PosVO> posVOList = null;
 		try {
-			rosVOList = sqlSession.selectList("custcomp.rosList", cust_id);
+			posVOList = sqlSession.selectList("custcomp.posList", cust_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return rosVOList;
+		return posVOList;
 	}
 	
 	// 키맨 리스트 가져오기

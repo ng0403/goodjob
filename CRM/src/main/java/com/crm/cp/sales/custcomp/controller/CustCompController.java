@@ -27,8 +27,8 @@ import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.service.CustCompService;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
-import com.crm.cp.sales.custcomp.vo.RocVO;
-import com.crm.cp.sales.custcomp.vo.RosVO;
+import com.crm.cp.sales.custcomp.vo.PocVO;
+import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
@@ -73,6 +73,7 @@ public class CustCompController {
 			mov.addObject("CCSCodeList", CCSCodeList);
 			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("page", page);
+			
 		}
 		return mov;
 	}
@@ -260,40 +261,50 @@ public class CustCompController {
 	}
 	
 	//고객사 당담자 리스트
-	@RequestMapping(value = " rocList.do", method = RequestMethod.POST)
-	public @ResponseBody List<RocVO> rocListList(String cust_id) {
-		List<RocVO> rocVOList = ccService.getRocList(cust_id);
+	@RequestMapping(value = "/ccPocList", method = RequestMethod.POST)
+	public @ResponseBody List<PocVO> pocList(String cust_id) {
 		
-		return rocVOList;
+		List<PocVO> pocVOList = ccService.getPocList(cust_id);
+		System.out.println("pocVOList : " + pocVOList.toString());
+		
+		return pocVOList;
 	}
 	
 	//영업 담당자 리스트
-	@RequestMapping(value = " rosList.do", method = RequestMethod.POST)
-	public @ResponseBody List<RosVO> rosListList(String cust_id) {
-		List<RosVO> rosVOList = ccService.getRosList(cust_id);
+	@RequestMapping(value = "/ccPosList", method = RequestMethod.POST)
+	public @ResponseBody List<PosVO> posList(String cust_id) {
+
+		List<PosVO> posVOList = ccService.getPosList(cust_id);
+		System.out.println("posVOList : " + posVOList.toString());
 		
-		return rosVOList;
+		return posVOList;
 	}
 	
 	// 키맨 리스트
-	@RequestMapping(value = "keymanList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/ccKeymanList", method = RequestMethod.POST)
 	public @ResponseBody List<KeymanVO> keymanList(String cust_id) {
+		
 		List<KeymanVO> kmVOList = ccService.getKeymanList(cust_id);
+		System.out.println("kmVOList : " + kmVOList.toString());
 		
 		return kmVOList;
 	}
 
 	// 영업기회 리스트
-	@RequestMapping(value = "ccOpptList",  method = RequestMethod.POST)
+	@RequestMapping(value = "/ccOpptList",  method = RequestMethod.POST)
 	public @ResponseBody List<OpptVO> opptList(String cust_id) {
+		
 		List<OpptVO> opptVOList = ccService.getOpptList(cust_id);
+		System.out.println("opptVOList : " + opptVOList.toString());
+		
 		return opptVOList;
 	}
 
 	// 영업활동 리스트
-	@RequestMapping(value = "ccActList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/ccActList", method = RequestMethod.POST)
 	public @ResponseBody List<ActVO> actList(String cust_id) {
 		List<ActVO> actVOList = ccService.getActList(cust_id);
+		System.out.println("actVOList : " + actVOList.toString());
 		return actVOList;
 	}
 
@@ -304,17 +315,22 @@ public class CustCompController {
 //
 //		return estVOList;
 //	}
-	@RequestMapping(value = "estimList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/ccEstimList", method = RequestMethod.POST)
 	public @ResponseBody List<EstVO> EstimListList(String cust_id) {
+		
 		List<EstVO> estVOList = ccService.getEstimList(cust_id);
+		System.out.println("estVOList : " + estVOList.toString());
 		
 		return estVOList;
 	}
 
 	// 계약 리스트
-	@RequestMapping(value = "ccContList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/ccContList", method = RequestMethod.POST)
 	public @ResponseBody List<contrVO> contList(String cust_id) {
+		
 		List<contrVO> contVOList = ccService.getContList(cust_id);
+		System.out.println("contVOList : " + contVOList.toString());
+		
 		return contVOList;
 	}
 

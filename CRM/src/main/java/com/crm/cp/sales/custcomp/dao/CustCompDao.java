@@ -7,8 +7,8 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
-import com.crm.cp.sales.custcomp.vo.RocVO;
-import com.crm.cp.sales.custcomp.vo.RosVO;
+import com.crm.cp.sales.custcomp.vo.PocVO;
+import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 
@@ -52,8 +52,8 @@ public interface CustCompDao {
 	void custcompEdit(CustCompVO ccVO);
 	void custcompDelete(String cust_id);
 	List<EstVO> getEstimList(String cust_id);
-	List<RocVO> getRocList(String cust_id);//고객사 담당자 리스트
-	List<RosVO> getRosList(String cust_id);//영업 담당자 리스트
+	List<PocVO> getPocList(String cust_id);//고객사 담당자 리스트
+	List<PosVO> getPosList(String cust_id);//영업 담당자 리스트
 	
 
 	

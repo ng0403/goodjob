@@ -366,24 +366,39 @@ public class CustCompVO {
 
 	@Override
 	public String toString() {
-		return "CustCompVO [cust_id=" + cust_id + ", cust_nm=" + cust_nm
-				+ ", comp_num=" + comp_num + ", corp_num=" + corp_num
-				+ ", sales_scale=" + sales_scale + ", sales_scale_cd="
-				+ sales_scale_cd + ", cust_div_cd=" + cust_div_cd
-				+ ", cust_div_nm=" + cust_div_nm + ", emp_qty=" + emp_qty
-				+ ", indst=" + indst + ", indst_cd=" + indst_cd
-				+ ", cust_zip_cd=" + cust_zip_cd + ", cust_zip_cd1="
-				+ cust_zip_cd1 + ", cust_zip_cd2=" + cust_zip_cd2
-				+ ", zip_cd_sri_num=" + zip_cd_sri_num + ", cust_zip_addr="
-				+ cust_zip_addr + ", cust_addr=" + cust_addr + ", iuser_id_nm="
-				+ iuser_id_nm + ", iuser_nm=" + iuser_nm + ", stat_cd="
-				+ stat_cd + ", stat=" + stat + ", homepage_url=" + homepage_url
-				+ ", rep_ph1=" + rep_ph1 + ", rep_ph2=" + rep_ph2
-				+ ", rep_ph3=" + rep_ph3 + ", fst_reg_id=" + fst_reg_id
-				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
-				+ fin_mdfy_id + ", emp_cd_nm=" + emp_cd_nm
-				+ ", work_stat_cd_nm=" + work_stat_cd_nm + ", custcomp_idx="
-				+ custcomp_idx + "]";
+		return "CustCompVO [cust_id=" + cust_id + ", cust_nm=" + cust_nm + ", comp_num=" + comp_num + ", corp_num="
+				+ corp_num + ", sales_scale=" + sales_scale + ", sales_scale_cd=" + sales_scale_cd + ", cust_div_cd="
+				+ cust_div_cd + ", cust_div_nm=" + cust_div_nm + ", emp_qty=" + emp_qty + ", indst=" + indst
+				+ ", indst_cd=" + indst_cd + ", cust_zip_cd=" + cust_zip_cd + ", cust_zip_cd1=" + cust_zip_cd1
+				+ ", cust_zip_cd2=" + cust_zip_cd2 + ", zip_cd_sri_num=" + zip_cd_sri_num + ", cust_zip_addr="
+				+ cust_zip_addr + ", cust_addr=" + cust_addr + ", cust_dtl_addr=" + cust_dtl_addr + ", iuser_id_nm="
+				+ iuser_id_nm + ", iuser_nm=" + iuser_nm + ", stat_cd=" + stat_cd + ", stat=" + stat + ", homepage_url="
+				+ homepage_url + ", rep_ph1=" + rep_ph1 + ", rep_ph2=" + rep_ph2 + ", rep_ph3=" + rep_ph3
+				+ ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id
+				+ ", emp_cd_nm=" + emp_cd_nm + ", work_stat_cd1_nm=" + work_stat_cd1_nm + ", work_stat_cd_nm="
+				+ work_stat_cd_nm + ", comp_ph1=" + comp_ph1 + ", comp_ph2=" + comp_ph2 + ", comp_ph3=" + comp_ph3
+				+ ", org_nm=" + org_nm + ", biz_status=" + biz_status + ", main_prod=" + main_prod + ", custcomp_idx="
+				+ custcomp_idx + ", getFin_mdfy_id()=" + getFin_mdfy_id() + ", getCust_dtl_addr()=" + getCust_dtl_addr()
+				+ ", getFst_reg_id()=" + getFst_reg_id() + ", getBiz_status()=" + getBiz_status() + ", getMain_prod()="
+				+ getMain_prod() + ", getOrg_nm()=" + getOrg_nm() + ", getCustcomp_idx()=" + getCustcomp_idx()
+				+ ", getCust_id()=" + getCust_id() + ", getCust_nm()=" + getCust_nm() + ", getComp_num()="
+				+ getComp_num() + ", getCorp_num()=" + getCorp_num() + ", getSales_scale_cd()=" + getSales_scale_cd()
+				+ ", getSales_scale()=" + getSales_scale() + ", getCust_div_cd()=" + getCust_div_cd()
+				+ ", getCust_div_nm()=" + getCust_div_nm() + ", getEmp_qty()=" + getEmp_qty() + ", getIndst()="
+				+ getIndst() + ", getIndst_cd()=" + getIndst_cd() + ", getCust_zip_cd()=" + getCust_zip_cd()
+				+ ", getCust_zip_cd1()=" + getCust_zip_cd1() + ", getCust_zip_cd2()=" + getCust_zip_cd2()
+				+ ", getZip_cd_sri_num()=" + getZip_cd_sri_num() + ", getCust_zip_addr()=" + getCust_zip_addr()
+				+ ", getCust_addr()=" + getCust_addr() + ", getIuser_id_nm()=" + getIuser_id_nm() + ", getIuser_nm()="
+				+ getIuser_nm() + ", getStat_cd()=" + getStat_cd() + ", getStat()=" + getStat() + ", getHomepage_url()="
+				+ getHomepage_url() + ", getRep_ph1()=" + getRep_ph1() + ", getRep_ph2()=" + getRep_ph2()
+				+ ", getRep_ph3()=" + getRep_ph3() + ", getFst_reg_dt()=" + getFst_reg_dt() + ", getEmp_cd_nm()="
+				+ getEmp_cd_nm() + ", getWork_stat_cd_nm()=" + getWork_stat_cd_nm() + ", getFst_reg_id_nm()="
+				+ getFst_reg_id_nm() + ", getFin_mdfy_id_nm()=" + getFin_mdfy_id_nm() + ", getComp_ph1()="
+				+ getComp_ph1() + ", getComp_ph2()=" + getComp_ph2() + ", getComp_ph3()=" + getComp_ph3()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
+
+	
 
 }

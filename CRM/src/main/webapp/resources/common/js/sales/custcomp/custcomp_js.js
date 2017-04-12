@@ -5,6 +5,7 @@
 $("#navisub4").show();
 $("#navicustcomp").css("font-weight", "bold");
 
+
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	
@@ -29,17 +30,17 @@ $(document).ready(function() {
 //		}
 //	});
 	
-	//고객사 리스트 가져오기
+	//고객사 담당자 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
-			var tbody = $('#iuserTableTbody');
+			var tbody = $('#pocTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
 			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-			keymanList(cust_id);
+			pocList(cust_id);
 		}
 	});
 	
@@ -47,13 +48,13 @@ $(document).ready(function() {
 	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
-			var tbody = $('#iuserTableTbody');
+			var tbody = $('#posTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
 			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-			keymanList(cust_id);
+			posList(cust_id);
 		}
 	});
 	
@@ -193,24 +194,24 @@ function ccTabFunc(cust_id, cust_nm) {
 	$("#nowCust_id").val(cust_id);
 	viewDetail(cust_id);
 	
-//	$(document).ready(function() {
-//		$("#nowCust_id").val(cust_id); // 현재 cust_id 저장
-//		$("#nowCust_nm").val(cust_nm); // 현재 cust_nm 저장
-//			
-//		if($("#tab1").is(":checked")){ // 상세정보 불러오기
-//			if(cust_id != '')	ccDetail(cust_id);
-//		} else if($("#tab2").is(":checked")){ // 키맨 불러오기
-//			if(cust_id != '')	keymanList(cust_id);
-//		} else if($("#tab3").is(":checked")){
-//			if(cust_id != '')	opptList(cust_id); // 영업기회 불러오기
-//		} else if($("#tab4").is(":checked")){
-//			if(cust_id != '')	actList(cust_id); // 영업활동 불러오기
-//		} else if($("#tab5").is(":checked")){
-//			if(cust_id != '')	estList(cust_id); // 견적 불러오기
-//		} else if($("#tab6").is(":checked")){
-//			if(cust_id != '')	contList(cust_id); // 계약 불러오기
-//		}
-//	});
+	$(document).ready(function() {
+		$("#nowCust_id").val(cust_id); // 현재 cust_id 저장
+		$("#nowCust_nm").val(cust_nm); // 현재 cust_nm 저장
+			
+		if($("#tab1").is(":checked")){ 
+			if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
+		} else if($("#tab2").is(":checked")){ 
+			if(cust_id != '')	posList(cust_id);	 // 영업 담당자 불러오기
+		} else if($("#tab3").is(":checked")){		
+			if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
+		} else if($("#tab4").is(":checked")){
+			if(cust_id != '')	opptList(cust_id);   // 영업기회 불러오기
+		} else if($("#tab5").is(":checked")){
+			if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
+		} else if($("#tab6").is(":checked")){
+			if(cust_id != '')	estList(cust_id);    // 견적 불러오기
+		}
+	});
 }
 
 function viewDetail(cust_id){
@@ -441,7 +442,7 @@ function ccDetail(cust_id) {
 		
 		$.ajax({
 			type : 'POST',
-			url : ctx+'/custCompDetail.do',
+			url : ctx+'/custCompDetail',
 			data : "cust_id="+cust_id,
 			dataType : "json",
 			success : function(data) {
@@ -500,28 +501,28 @@ function comma(str) {
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
-//고객사 담장사원 List ajax 통신
-function rocList(cust_id) {
+//고객사 담당사원 List ajax 통신
+function pocList(cust_id) {
 	$(document).ready(function() {
 		var ctx = $("#ctx").val();
-		var tbody = $('#rocTableTbody');
+		var tbody = $('#pocTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/rocList.do',
+			url : ctx+'/ccPocList',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",
 			success : function(data) {
 				tbody.children().remove();
-				// 키맨 리스트 그리기
+				//고객사 담당자 리스트 그리기
 				if(data.length == 0){
 					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 고객사 담당자가 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+"' id='rocChkbox'  onclick='rocchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"rocDeatil('"+data[i].cust_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cust_id+"</td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"pocDeatil('"+data[i].cust_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cust_id+"</td>" +
 						"<td style='width:15%;'>"+data[i].iuser_id+"</td>" +
 						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
 						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
@@ -531,9 +532,10 @@ function rocList(cust_id) {
 					}
 					if(data.length < 5){
 						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
-							"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td><td style='width:20%;'></td>" +
-							"<td style='width:10%;'></td><td style='width:15%;'></td></tr>";
+							tbodyContent = "<tr style='height: 25px;'>" +
+												"<td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
+												"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td>" +
+											"</tr>";
 							tbody.append(tbodyContent);
 						}
 					}
@@ -546,6 +548,52 @@ function rocList(cust_id) {
 	});
 }
 
+//영업 담당자 List ajax 통신
+function posList(cust_id) {
+	$(document).ready(function() {
+		var ctx = $("#ctx").val();
+		var tbody = $('#posTableTbody');
+		var tbodyContent = "";
+		$.ajax({
+			url : ctx+'/ccPosList',
+			type : 'POST',
+			data : "cust_id="+cust_id,
+			dataType : "json",
+			success : function(data) {
+				tbody.children().remove();
+				//영업 담당자 리스트 그리기
+				if(data.length == 0){
+					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 영업 담당자가 없습니다.</td></tr>";
+					tbody.append(tbodyContent);
+				}else{
+					for (var i = 0; i < data.length; i++) {
+						tbodyContent = "<tr>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='posChkbox'  onclick='poschkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_id+"</td>" +
+						"<td style='width:15%;'>"+data[i].iuser_id+"</td>" +
+						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
+						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:17%;'>"+data[i].fst_reg_dt+"</td>" +
+						"</tr>";
+						tbody.append(tbodyContent);
+					}
+					if(data.length < 5){
+						for(var j = 0; j < 5-data.length; j++){
+							tbodyContent = "<tr style='height: 25px;'>" +
+												"<td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
+												"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td>" +
+											"</tr>";
+							tbody.append(tbodyContent);
+						}
+					}
+				}
+			},
+			error : function() {
+				alert("전송중 오류가 발생했습니다.");
+			}
+		});
+	});
+}
 
 // 키맨 List ajax 통신
 function keymanList(cust_id) {
@@ -554,7 +602,7 @@ function keymanList(cust_id) {
 		var tbody = $('#keymanTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/keymanList.do',
+			url : ctx+'/ccKeymanList',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",
@@ -573,16 +621,23 @@ function keymanList(cust_id) {
 						"<td style='width:15%;'>"+data[i].key_pos+"</td>" +
 						"<td style='width:10%;'>"+data[i].key_job+"</td>" +
 						"<td style='width:12%;'>"+data[i].memo+"</td>" +
-						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:17%;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:10%;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
 					if(data.length < 5){
 						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
-							"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td><td style='width:20%;'></td>" +
-							"<td style='width:10%;'></td><td style='width:15%;'></td></tr>";
+							tbodyContent = "<tr style='height: 25px;'>" +
+												"<td style='width:3%;'></td>" +
+												"<td style='width:10%;'></td>" +
+												"<td style='width:15%;'></td>" +
+												"<td style='width:15%;'></td>" +
+												"<td style='width:10%;'></td>" +
+												"<td style='width:12%;'></td>" +
+												"<td style='width:10%;'></td>" +
+												"<td style='width:15%;'></td>" +
+										  "</tr>";
 							tbody.append(tbodyContent);
 						}
 					}
@@ -602,7 +657,7 @@ function opptList(cust_id) {
 		var tbody = $('#opptTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccOpptList.do',
+			url : ctx+'/ccOpptList',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",
@@ -685,7 +740,7 @@ function actList(cust_id) {
 		var tbody = $('#actTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccActList.do',
+			url : ctx+'/ccActList',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",
@@ -754,7 +809,7 @@ function estList(cust_id) {
 		var tbody = $('#estTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/estimList.do',
+			url : ctx+'/ccEstimList',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",
@@ -803,7 +858,7 @@ function contList(cust_id) {
 		var tbody = $('#contTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccContList.do',
+			url : ctx+'/ccContList',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",

@@ -104,6 +104,18 @@ $(document).ready(function() {
 	});
 });
 
+//고객사 담당자 상세정보
+function pocDeatil(cust_id) {
+	var ctx = $("#ctx").val();
+	window.open(ctx+'/pocDeatilPopup?cust_id='+cust_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+//영업 담당자 상세정보
+function posDeatil(cust_id) {
+	var ctx = $("#ctx").val();
+	window.open(ctx+'/posDeatilPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
 // 키맨 상세정보
 function keymanDeatil(kmn_id) {
 	var ctx = $("#ctx").val();

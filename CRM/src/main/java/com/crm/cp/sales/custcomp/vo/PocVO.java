@@ -1,14 +1,14 @@
 package com.crm.cp.sales.custcomp.vo;
 
-public class RosVO {
-
+public class PocVO {
+	
 	private String cust_id	//고객사 ID
-					, iuser_id	//사원 ID
-					, key_part	//역할명
-					, fst_reg_id // 등록자
-					, fst_reg_dt // 등록일시
-					, fin_mdfy_id // 최종변경자
-					, fin_mdfy_dt; //최종변경일시 
+				, iuser_id	//사원 ID
+				, key_part	//역할명
+				, fst_reg_id // 등록자
+				, fst_reg_dt // 등록일시
+				, fin_mdfy_id // 최종변경자
+				, fin_mdfy_dt; //최종변경일시 
 
 	public String getCust_id() {
 		return cust_id;
@@ -68,7 +68,7 @@ public class RosVO {
 
 	@Override
 	public String toString() {
-		return "RosVO [cust_id=" + cust_id + ", iuser_id=" + iuser_id + ", key_part=" + key_part + ", fst_reg_id="
+		return "PocVO [cust_id=" + cust_id + ", iuser_id=" + iuser_id + ", key_part=" + key_part + ", fst_reg_id="
 				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
 				+ fin_mdfy_dt + "]";
 	}

@@ -15,8 +15,8 @@ import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.dao.CustCompDao;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
-import com.crm.cp.sales.custcomp.vo.RocVO;
-import com.crm.cp.sales.custcomp.vo.RosVO;
+import com.crm.cp.sales.custcomp.vo.PocVO;
+import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
@@ -130,27 +130,21 @@ public class CustCompServiceImpl implements CustCompService {
 		List<CustCompVO> CDCCodeList = ccDao.selectCDC();
 		return CDCCodeList;
 	}
-	
 
-	@Override
-	public List<EstVO> getEstimList(String cust_id) {
-		List<EstVO> estVOList = ccDao.getEstimList(cust_id);
-		return estVOList;
-	}
 
 	//고객사 담당자 리스트
 	@Override
-	public List<RocVO> getRocList(String cust_id) {
-		List<RocVO> rocVOList = ccDao.getRocList(cust_id);
-		return rocVOList;
+	public List<PocVO> getPocList(String cust_id) {
+		List<PocVO> pocVOList = ccDao.getPocList(cust_id);
+		return pocVOList;
 	}
 	
 	//영업 담당자 리스트
 
 	@Override
-	public List<RosVO> getRosList(String cust_id) {
-		List<RosVO> rosVOList = ccDao.getRosList(cust_id);
-		return rosVOList;
+	public List<PosVO> getPosList(String cust_id) {
+		List<PosVO> posVOList = ccDao.getPosList(cust_id);
+		return posVOList;
 	}
 
 	// 키맨 리스트
@@ -180,6 +174,12 @@ public class CustCompServiceImpl implements CustCompService {
 //		List<EstVO> estVOList = ccDao.getEstList(cust_id);
 //		return estVOList;
 //	}
+	//견적 리스트
+	@Override
+	public List<EstVO> getEstimList(String cust_id) {
+		List<EstVO> estVOList = ccDao.getEstimList(cust_id);
+		return estVOList;
+	}
 
 	// 계약 리스트
 	@Override

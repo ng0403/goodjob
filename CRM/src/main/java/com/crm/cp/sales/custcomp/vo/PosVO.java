@@ -1,14 +1,24 @@
 package com.crm.cp.sales.custcomp.vo;
 
-public class RocVO {
-	
-	private String cust_id	//고객사 ID
-				, iuser_id	//사원 ID
-				, key_part	//역할명
-				, fst_reg_id // 등록자
-				, fst_reg_dt // 등록일시
-				, fin_mdfy_id // 최종변경자
-				, fin_mdfy_dt; //최종변경일시 
+public class PosVO {
+
+	private String 
+					  sales_actvy_id //영업담당자 ID
+					, cust_id	//고객사 ID
+					, iuser_id	//사원 ID
+					, key_part	//역할명
+					, fst_reg_id // 등록자
+					, fst_reg_dt // 등록일시
+					, fin_mdfy_id // 최종변경자
+					, fin_mdfy_dt; //최종변경일시 
+
+	public String getSales_actvy_id() {
+		return sales_actvy_id;
+	}
+
+	public void setSales_actvy_id(String sales_actvy_id) {
+		this.sales_actvy_id = sales_actvy_id;
+	}
 
 	public String getCust_id() {
 		return cust_id;
@@ -68,9 +78,10 @@ public class RocVO {
 
 	@Override
 	public String toString() {
-		return "RocVO [cust_id=" + cust_id + ", iuser_id=" + iuser_id + ", key_part=" + key_part + ", fst_reg_id="
-				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
-				+ fin_mdfy_dt + "]";
+		return "PosVO [sales_actvy_id=" + sales_actvy_id + ", cust_id=" + cust_id + ", iuser_id=" + iuser_id
+				+ ", key_part=" + key_part + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt=" + fst_reg_dt
+				+ ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + "]";
 	}
+
 
 }
