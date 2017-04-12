@@ -144,33 +144,15 @@ function opptDelete(){
 function divide(opptId){
 	$("#salesId").val(opptId);
 	viewDetail(opptId);
-//	readDetail();
-//	if($("#tab1").attr("checked")){
-//		viewSalesActive(opptId);
-//		estimList(opptId);
-//	}
-//	else 
-//		if($("#tab2").attr("checked")){
-//		viewSalesActive(opptId);
-//	}else if($("#tab3").attr("checked")){
-//		estimList(opptId);
-//	}
 }
 //현재 checked된 탭에 맞는 함수 실행
 function divideDetail(opptId){
 	$("#salesId").val(opptId);
-//	readDetail();
 	if($("#tab1").attr("checked")){
 	viewDetail(opptId);
 	viewSalesActive(opptId);
-//	opptprdtList(opptId);
 	estimList(opptId);
 	}
-//	else 
-//		if($("#tab2").attr("checked")){
-//		viewSalesActive(opptId);
-//		opptprdtList(opptId);
-//	}
 		else if($("#tab2").attr("checked")){
 		estimList(opptId);
 	}
@@ -273,26 +255,6 @@ function opportunityList(page){
 			var prevStepPage = result.page.prevStepPage;
 			var nextStepPage = result.page.nextStepPage;
 			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-//			var page = '';
-//			page = "<input type='hidden' id='endPageNum' value="+result.page.endPageNum+">"+
-//				   "<input type='hidden' id='pageNum' value="+result.searchInfo.pageNum+">";
-//			if (result.searchInfo.pageNum == result.page.startPageNum  && result.searchInfo.pageNum != result.page.endPageNum) {
-//				page += "<a id='pNum'>◀</a><a>&nbsp;</a>" +												
-//				"<input type='text' id='ccPageInput' size='1px' value="+result.page.startPageNum+" onkeypress=\"opptPageInput(event);\"> "+ "<a>/</a> " +
-//				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+");\" id='pNum' >"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
-//				"<a href='#' onclick=\"opportunityList("+(parseInt(result.searchInfo.pageNum)+parseInt(1))+");\" id='pNum'>▶</a>";
-//			}else if (result.searchInfo.pageNum == result.page.endPageNum) {
-//				page += "<a href='#' onclick=\"opportunityList("+(result.searchInfo.pageNum-1)+");\" id='pNum'>◀</a><a>&nbsp;</a>"+
-//				"<input type='text' id='ccPageInput' size='1px' value="+result.page.endPageNum+" onkeypress=\"opptPageInput(event);\" >"+ "<a>/</a> " +
-//				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+")\" id='pNum'>"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
-//				"<a id='pNum'>▶</a>";
-//			}else {
-//				page += "<a href='#' onclick=\"opportunityList("+(result.searchInfo.pageNum-1)+");\" id='pNum' >◀</a><a>&nbsp;</a>"+
-//				"<input type='text' id='ccPageInput' size='1px' value="+result.searchInfo.pageNum+" onkeypress=\"opptPageInput(event);\"> "+ "<a>/</a> " +
-//				"<a href='#' onclick=\"opportunityList("+result.page.endPageNum+");\" id='pNum'>"+result.page.endPageNum+"</a><a>&nbsp;</a>"+ 
-//				"<a href='#' onclick=\"opportunityList("+(parseInt(result.searchInfo.pageNum)+parseInt(1))+");\" id='pNum'>▶</a>";
-//			}
-//			$("#pageSpace").append(page);
 		},
 		error:function(request){
 			alert("error : " + request);
@@ -468,26 +430,12 @@ function searchCustcompListPopup(ctx){
 }
 
 //고객 이름 입력 함수
-function inputCustNm(custNm,leadId,custId,custType){	
+function inputCustNm(custNm,custId,custType){	
 	if(custType == 'search'){
 		$('#scust_nm').val(custNm);
 		$('#scust_id').val(custId);
 	}else if(custType == 'normal'){
-		$('#cust_nm').val(custNm);
-		$('#cust_id').val(custId);
-		$('#lead_id').val(leadId);
+		$('#cust_nm').val(custId);
+		$('#cust_id').val(custNm);
 	}
 }
-//영업활동 날짜 포맷 변환에 사용되는 함수
-//function dateFormat(timestamp) {
-//	var date = new Date(timestamp);
-//	var year = date.getFullYear();
-//	var month = date.getMonth() + 1;
-//	var day = date.getDate();
-//	var hour = date.getHours();
-//	var min = date.getMinutes();
-//	var sec = date.getSeconds();
-//	var retVal = year + "-" + (month < 10 ? "0" + month : month) + "-"
-//			+ (day < 10 ? "0" + day : day);
-//	return retVal
-//}

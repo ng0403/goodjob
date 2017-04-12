@@ -16,7 +16,6 @@ function custNmSelect(ctx){
  		var custType = $('#custType').val();
 		var custNm=$(this).find('#cust_nm').text();
 		var custId=$(this).find('#cust_id').text();
- 		//준석수정
 		window.opener.inputCustNm(custId,custNm,custType);
 		self.close();
 		

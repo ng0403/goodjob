@@ -19,14 +19,11 @@
 $(function(){
 
 	var ctx = $('#ctx').val();
-//	prodList(ctx);
 	opptProdChargeRealTime();
 	prodallCheck();
 	prodDelete();
-//	opptEstimButton(ctx);
-//	estimCancel();
 	opptProdNmSelect(ctx);
-	startCalendar(ctx);
+//	startCalendar(ctx);
 });	
 
 /*견적 상품목록 수정에 사용되는 변수*/
@@ -37,6 +34,7 @@ var opptProdDeleteEstimId = []; //삭제된 상품에 견적Id List
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInputProd(prod_id,prod_nm,prod_price){
+	alert("opptProd_pop");
 		var unit="";
 		var flg = $('#flg').val();
 		var data = $('#eduCode').val();
@@ -120,21 +118,29 @@ function opptProdChange(){
 	var salesPriceSum = 0;
 	var discountSum = 0;
 	var supplyPriceSum = 0;
-	$("#opptPrdtbody tr").each(function(){
-		var count = $(this).children().eq(2).children().val();
+	$("#opptPrdtbody tr[class!=empty]").each(function(){
+		var countObj=$(this).children().eq(2).children();
+		var salesamtObj=$(this).children().eq(0).children().eq(1);
+		var count = countObj.val();
+		if(count==""){
+			count="0";
+		}
 		var sellamt =  $(this).children().eq(3).text();
+		var disvalObj = $(this).children().eq(4).children().eq(0);
 		var amt = $(this).children().eq(3).text();
 		var salesamt = $(this).children().eq(0).children().eq(1).val();
-		var sellamt =  parseInt(salesamt) * parseInt(count);
-		if(isNaN(sellamt)){
+		var sellamt =  parseInt(salesamt) * parseInt(count);			
+		if(sellamt==""){
 			sellamt="0";
 		}
-		  $(this).children().eq(3).text(sellamt);
-		amt = $(this).children().eq(3).text();
+		amt = sellamt;
+		$(this).children().eq(3).text(comma(amt));
 		salesPriceSum = parseInt(sellamt) + parseInt(salesPriceSum);
 		countSum = parseInt(count) + parseInt(countSum);
-
-		var disval = $(this).children().eq(4).children().eq(0).val();
+		var disval =  disvalObj.val();
+		if(disval==""){
+			disval="0";
+		}
 		var unit = $(this).children().eq(4).children().eq(1).val();
 		var disamt = 0;
 		if(unit == "0001"){
@@ -151,33 +157,50 @@ function opptProdChange(){
 		if(isNaN(disamt) || parseInt(disamt)<0){
 			disamt="0";
 		}
-		$(this).children().eq(5).text(disamt);
+		$(this).children().eq(5).text(comma(disamt));
 		 var realamt = $(this).children().eq(5).text();
-		supplyPriceSum = parseInt(realamt) + parseInt(supplyPriceSum);
-	
+		 supplyPriceSum = parseInt(disamt) + parseInt(supplyPriceSum);
 	});
-	if(isNaN(countSum)){
-		countSum = "0";
-	}
-	if(isNaN(salesPriceSum) || countSum=="0"){
-		
-		salesPriceSum = "0";
-	}
-	if(isNaN(discountSum) || countSum=="0"){
-		discountSum = "0";
-	}
-	if(isNaN(supplyPriceSum) || countSum=="0"){
-		supplyPriceSum = "0";
-	}
-	$("#countSum").text(countSum);
-	$("#salesPriceSum").text(salesPriceSum);
-	$("#discountSum").text(discountSum);
-	$("#supplyPriceSum").text(supplyPriceSum);
+	$("#countSum").text(comma(countSum));
+	$("#salesPriceSum").text(comma(salesPriceSum));
+	$("#discountSum").text(comma(discountSum));
+	$("#supplyPriceSum").text(comma(supplyPriceSum));	
 }
 //input값 bind시 상품 금액 변경 함수 호출
 function opptProdChargeRealTime(){
-	$("#opptPrdtbody").bind('input', function() { 
-		opptProdChange();
+	$("#opptPrdtbody").bind('input', function(event) { 
+		var size = event.target.value;
+	    var target = $(event.target);
+	    var id = target.attr("id");
+	    var count = target.parent().parent().children().eq(2).children().val();
+	    var salesamt = target.parent().parent().children().eq(0).children().eq(1).val();
+	    var sellamt =  parseInt(salesamt) * parseInt(count);
+	    var unit = target.parent().children().eq(1).val();
+	   if(id=='discount'){
+		   if(unit=='0001'){
+			   if(parseInt(size)>parseInt(sellamt)){
+				   alert("판매가 보다 높게 지정할 수 없습니다.");
+				   event.target.value = event.target.value.substr(0, event.target.value.length-1);  
+			   }
+		   }else if(unit=='0002'){
+			   if(parseInt(size) > parseInt(100)){
+				   alert("판매가 보다 높게 지정할 수 없습니다.");
+				   event.target.value = event.target.value.substr(0, event.target.value.length-1);
+			   }
+		   }
+	   }else if(id=='estim_qty'){
+		   if(parseInt(count) >= parseInt(100)){
+			   alert("수량은 1~99까지 가능합니다.");
+			   event.target.value = event.target.value.substr(0, event.target.value.length-1);			   
+		   }else if(parseInt(count) <= parseInt(0)){
+			   alert("수량은 1~99까지 가능합니다.");
+			   event.target.value = "1";	
+		   }
+		   
+	   }
+//	   event.target.value = comma(event.target.value);
+//	   alert(event.target.value);
+	    opptProdChange();
 	});
 }
 //숫자만 입력
@@ -234,22 +257,22 @@ function prodDelete(){
 	});
 }
 
-//달력띄우기
-function startCalendar(ctx){
-	 $("#estim_valid_d").datepicker({
-	        changeMonth: true, //콤보 박스에 월 보이기
-	        changeYear: true, // 콤보 박스에 년도 보이기
-	        showOn: 'button', // 우측에 달력 icon 을 보인다.
-	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	        buttonImageOnly: true //달력에 icon 사용하기
-	    }); 
-	     //마우스를 손가락 손가락 모양으로 하고 여백주기
-	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-	   //날짜 형식을 0000-00-00으로 지정하기
-	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-	/*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
-
-}
+////달력띄우기
+//function startCalendar(ctx){
+//	 $("#estim_valid_d").datepicker({
+//	        changeMonth: true, //콤보 박스에 월 보이기
+//	        changeYear: true, // 콤보 박스에 년도 보이기
+//	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+//	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+//	        buttonImageOnly: true //달력에 icon 사용하기
+//	    }); 
+//	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+//	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+//	   //날짜 형식을 0000-00-00으로 지정하기
+//	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+//	/*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
+//
+//}
 //상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업
 function opptProdNmSelect(ctx){
 	$('#oppt_product_list_table tbody tr').click(function(){

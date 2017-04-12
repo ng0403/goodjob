@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.vo.ActVO;
+import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptChartVO;
@@ -34,6 +35,9 @@ public class OpptController {
 
 	@Resource
 	OpptService service;
+	
+	@Resource
+	EstService estInter;
 
 	@Resource
 	MenuService menuService;
@@ -117,17 +121,25 @@ public class OpptController {
 			// 영업단계 코드 가져오기
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
-			List<EstVO> eduList = service.eduList();
-			List<String> eduCode = new ArrayList<String>();
-
+//			List<EstVO> eduList = service.eduList();
+//			List<String> eduCode = new ArrayList<String>();
+			List<EstVO> elclist = estInter.elcList();
+			List<EstVO> eduList = estInter.eduList();
+			List<String> eduCode = new ArrayList<String>(0);
+			for(EstVO est: eduList){
+				eduCode.add(est.getCode());
+				eduCode.add(est.getCd_nm());
+			}
 
 			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+			map.put("scust_nm", map.get("scust_nm"));
 			map.put("scust_nm", map.get("scust_nm"));
 			
 			//상세정보 출력
 			
 			mov.addObject("eduList", eduList);
 			mov.addObject("eduCode", eduCode);
+			mov.addObject("elclist", elclist);
 			mov.addObject("osclist", osclist);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
@@ -157,8 +169,15 @@ public class OpptController {
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
 			
-			List<EstVO> eduList = service.eduList();
-			List<String> eduCode = new ArrayList<String>();
+//			List<EstVO> eduList = service.eduList();
+//			List<String> eduCode = new ArrayList<String>();
+			List<EstVO> elclist = estInter.elcList();
+			List<EstVO> eduList = estInter.eduList();
+			List<String> eduCode = new ArrayList<String>(0);
+			for(EstVO est: eduList){
+				eduCode.add(est.getCode());
+				eduCode.add(est.getCd_nm());
+			}
 			
 			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 			map.put("scust_nm", map.get("scust_nm"));
@@ -167,6 +186,7 @@ public class OpptController {
 			mov.addObject("flg", "detail");
 			mov.addObject("osclist", osclist);
 			mov.addObject("eduList", eduList);
+			mov.addObject("elclist", elclist);
 			mov.addObject("eduCode", eduCode);
 			mov.addObject("detail", detail);
 			mov.addObject("otllist", otllist);
@@ -288,10 +308,22 @@ public class OpptController {
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = service.opptAdd(add);
-		int result1 = service.opptPrdtAdd(add);//영업기회별 상품 리스트 추가
+		
 		int result2 = service.addOpptStep(add);//영업기회단계리스트추가
-		System.out.println("result1 : " + result);
-		System.out.println("result2 : " + result2);
+		System.out.println("영업기회 추가 result : " + result);
+		System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		
+		return result;
+	}
+	// 영업기회상품 추가 ajax
+	@RequestMapping(value = "/opptPrdtAdd", method = RequestMethod.POST)
+	@ResponseBody
+	int opptPrdtAdd(HttpSession session, OpptVO add) {
+		add.setFst_reg_id(session.getAttribute("user").toString());
+		add.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println(add);
+		int result = service.opptPrdtAdd(add);//영업기회별 상품 리스트 추가
+		System.out.println("영업기회상품추가 result : " + result);
 		
 		return result;
 	}
@@ -590,10 +622,10 @@ public class OpptController {
 		List<EstVO> eduList = service.eduList();
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = service.opptOtlList();
-		List<String> opptPrdtCode = new ArrayList<String>();
+		List<String> eduCode = new ArrayList<String>();
 		for (EstVO est : eduList) {
-			opptPrdtCode.add(est.getCode());
-			opptPrdtCode.add(est.getCd_nm());
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
 		}
 		
 		List<OpptPrdtVO> prod = service.opptPrdtDetail(prdtId);
@@ -612,7 +644,7 @@ public class OpptController {
 		mov.addObject("prod_nm", detail.getProd_nm());
 //		mov.addObject("estim_valid_d", detail.getEstim_valid_d());
 		mov.addObject("eduList", eduList);
-		mov.addObject("opptPrdtCode", opptPrdtCode);
+		mov.addObject("eduCode", eduCode);
 //		mov.addObject("memo", detail.getMemo());
 		mov.addObject("discount_unit_cd", detail.getDiscount_unit_cd());
 		mov.addObject("flg", "detail");

@@ -2,7 +2,7 @@
  * 함수 목록
  * searchCustcompListPopup(ctx)					:	영업기회 검색창 고객 리스트 팝업
  * custcompListPopup(ctx)						:	영업기회 상세정보 고객 리스트 팝업
- * inputCustNm(custNm,leadId,custId,custType)	:	고객 이름 입력 함수
+ * inputCustNm(custNm,custId,custType)			:	고객 이름 입력 함수
  * opptAddBtn()									:	영업기회 추가 버튼 클릭 시 ( css, readonly, disabled -> false )
  * opptMdfyBtn()								:	영업기회 편집 버튼 클릭 시 ( css, readonly, disabled -> false )
  * opptCancelBtn()								:	영업기회 취소 버튼 클릭 시 ( css, readonly, disabled -> true )
@@ -24,7 +24,7 @@
  * estimList(opptId)							:	영업기회별 견적 리스트 조회
  * opptProdList(ctx)							:	영업기회별 상품 리스트 팝업
  * inputOpptProd(prod_id,prod_nm,prod_price)	:	영업기회별 상품 입력 함수
- * opptProdNmSelect(ctx)						:	상품명 클릭 시 부모창에 데이터 전송					
+ * opptProdNmSelect(ctx)						:	상품명 클릭 시 부모창에 데이터 전송		
  * 
  * 
  */
@@ -38,9 +38,9 @@ $(function(){
 	searchCustcompListPopup(ctx);
 	custcompListPopup(ctx);
 	estimateAdd(ctx);
-//	opptProdNmSelect(ctx);
 	startCalendar(ctx);
 	opptProdList(ctx);
+	
 });
 var opptButtonStatus;				//편집인지 추가인지 버튼의 상태 저장
 var opptProdDeleteProdId=[];		//편집 시 삭제된 상품의 상품ID List
@@ -66,7 +66,7 @@ function custcompListPopup(ctx){
 	});
 }
 //고객 이름 입력 함수
-function inputCustNm(custNm,leadId,custId,custType){	
+function inputCustNm(custId,custNm,custType){	
 	if(custType == 'search'){
 		$('#scust_nm').val(custNm);
 		$('#scust_id').val(custId);
@@ -90,6 +90,7 @@ function opptAddBtn() {
 		style:'background-color:white'
 	});
 	// 버튼 활성화
+	$("#opptDetail #cust_nm,#opptDetail #expt_fin_d").attr("readonly",true);
 	$("#customer").attr("disabled",false);
 	$("#opptProdListBtn").attr("disabled",false);
 	$("#opptProdDelete").attr("disabled",false);
@@ -157,7 +158,6 @@ function opptCancelBtn(addFlag) {
 			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
 			// 상세정보에 이전 값 넣기
 			$("#cust_id").val($("#hcust_id").val());
-			$("#lead_id").val($("#hlead_id").val());
 			$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
 			$("#cust_nm").val($("#hcust_nm").val());
 			$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
@@ -184,7 +184,6 @@ function opptCancelBtn(addFlag) {
 			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
 			// 상세정보에 이전 값 넣기
 			$("#cust_id").val($("#hcust_id").val());
-			$("#lead_id").val($("#hlead_id").val());
 			$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
 			$("#cust_nm").val($("#hcust_nm").val());
 			$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
@@ -197,8 +196,10 @@ function opptCancelBtn(addFlag) {
 		
 	}
 }
+
 //영업기회 추가 함수
 function opptAdd(){
+	alert("추가저장 함수 시작");
 	var ctx = $("#ctx").val();
 	var sales_oppt_id = $("#salesId").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
@@ -213,19 +214,6 @@ function opptAdd(){
 	var memo = $("#memo").val();
 	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
 	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
-	var pageNum = $('#pageNum').val();
-	var prod_id = [];
-	var prod_nm = [];
-	var estim_qty = [];
-	var prod_price = $('#prod_price').text();
-	alert("판매가 : " + prod_price);
-	var sales_price = [];
-	var discount= [];
-	var sup_price = [];
-	var est_list = [];
-	var discount_unit_cd = [];
-	var unit_check =0;
-
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
 		return false;
@@ -238,16 +226,53 @@ function opptAdd(){
 	}else if(sales_lev_cd=="0" || sales_lev_cd==null){
 		alert("영업단계를 선택해 주세요.");
 		return false;
-//	}else if(expt_sales_amt=="" || expt_sales_amt==null){
-//		alert("예상 매출액을 입력해 주세요");
-//		return false;
 	}else if(sales_lev_cd=="" || sales_lev_cd==null){
 		alert("예상마감일자를 선택해 주세요.");
 		return false;
 	}else if(psblty_rate=="0" || psblty_rate==null){
 		alert("가능성을 선택해 주세요.");
 		return false;
-	}
+	}$.ajax({
+		type : 'post',
+		url : 'opptAdd',
+		data : {
+			sales_oppt_id : sales_oppt_id,
+			sales_oppt_nm : sales_oppt_nm,
+			sales_lev_cd : sales_lev_cd,
+			expt_fin_d : expt_fin_d,
+			psblty_rate : psblty_rate,
+			sales_oppt_stat_cd : sales_oppt_stat_cd,
+			cust_id : cust_id,
+			memo : memo
+		},
+		datatype : 'json',
+		success:function(result){
+			opptPrdtAdd();
+			alert("영업기회가 추가되었습니다.");
+			location.href = ctx + "/oppt";
+		},
+		error:function(request){
+			alert("error : " + request.status);
+		}
+	});
+}
+//영업기회상품테이블  추가 함수
+function opptPrdtAdd(){
+	var pageNum = $('#pageNum').val();
+	var prod_id = [];
+	var prod_nm = [];
+	var sales_oppt_id = $('#sales_oppt_id').val();
+	var estim_qty = [];
+	var prod_price = $('#prod_price').text();
+	alert("판매가 : " + prod_price);
+	var sales_price = [];
+	var discount= [];
+	var sup_price = [];
+	var cust_id = $('#cust_id').val();
+	alert("고객아이디 확인 : " + cust_id);
+	var est_list = [];
+	var discount_unit_cd = [];
+	var unit_check =0;
 	$("#opptPrdtbody tr").each(function(){
 		cd  = $(this).children().eq(4).children().eq(1).val();
 		if(cd =='0'){
@@ -267,7 +292,7 @@ function opptAdd(){
 		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop()); 
-		alert("판매가 : " + prod_price);
+		alert("opptPrdtAdd 판매가 : " + prod_price);
 		alert("sales_price : " + sales_price);
 		alert("discount : " + discount);
 		alert("sup_price" + sup_price);
@@ -282,38 +307,25 @@ function opptAdd(){
 		return false;
 	}
 	$.ajax({
-		type : 'post',
-		url : 'opptAdd',
+		url : ctx+'/opptPrdtAdd',
+		dataType : 'json',
 		data : {
-			sales_oppt_id : sales_oppt_id,
-			sales_oppt_nm : sales_oppt_nm,
-			sales_lev_cd : sales_lev_cd,
-//			expt_sales_amt : expt_sales_amt,
-			expt_fin_d : expt_fin_d,
-			psblty_rate : psblty_rate,
-			sales_oppt_stat_cd : sales_oppt_stat_cd,
 			cust_id : cust_id,
-			lead_id : lead_id,
-			memo : memo,
-			estim_valid_d : estim_valid_d,
-			estim_lev_cd : estim_lev_cd,
-			cust_id : cust_id,
-			estim_nm : estim_nm,
 			sales_oppt_id : sales_oppt_id,
 			est_list : est_list
 		},
-		datatype : 'json',
-		success:function(result){
-			alert("영업기회가 추가되었습니다.");
+		success:function(){
+			alert("정상적으로 등록되었습니다.");
 			location.href = ctx + "/oppt";
 		},
 		error:function(request){
-			alert("error : " + request.status);
+			alert("error : " + request.status)
 		}
 	});
 }
 //영업기회 상세정보 수정 함수
 function opptModify(){
+	alert("편집저장 함수 시작");
 	var sales_oppt_id = $("#salesId").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
@@ -324,7 +336,6 @@ function opptModify(){
 	var sales_oppt_stat_cd = $("#sales_oppt_stat_cd").val();
 	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
 	var cust_id = $("#cust_id").val();
-	var lead_id = $("#lead_id").val();
 	var cust_nm = $("#cust_nm").val();
 	var memo = $("#memo").val();
 	var pageNum = 1;/*$("#pageNum").val();*/
@@ -357,7 +368,6 @@ function opptModify(){
 		data : {
 			pageNum : pageNum,
 			cust_id : cust_id,
-			lead_id : lead_id,
 			sales_oppt_id : sales_oppt_id,
 			sales_oppt_nm : sales_oppt_nm,
 			sales_lev_cd : sales_lev_cd,
@@ -370,6 +380,7 @@ function opptModify(){
 		datatype : 'json',
 		url : ctx + '/opptModify',
 		success:function(result){
+			opptPrdtModify();
 			alert("수정되었습니다.");
 			
 			location.href= ctx + "/oppt";
@@ -384,9 +395,7 @@ function opptModify(){
 			//영업기회 수정이 정상적으로 되면 list에서 수정된 내용 반영
 			$("#salesId").val(result.opptVO.sales_oppt_id);
 			$("#cust_id").val(result.opptVO.cust_id);
-			$("#lead_id").val(result.opptVO.lead_id);
 			$("#hcust_id").val(result.cust_id); 
-			$("#hlead_id").val(result.opptVO.lead_id);
 			
 			$("input[name=sales_oppt_nm]").val(result.opptVO.sales_oppt_nm);
 			$("input[name=cust_nm]").val(result.opptVO.cust_nm); 
@@ -721,6 +730,7 @@ function viewSalesActive(opptId){
 	
 	//상품 입력 함수
 	function opptInputProd(prod_id,prod_nm,prod_price){
+		alert("opptDEtail");
 			$("#opptPrdtbody .empty").remove();
 			var data = $('#eduCode').val();
 			var tmp = data.replace("[", "");
@@ -772,13 +782,9 @@ function viewSalesActive(opptId){
 						'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 						'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 						'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
-						'<td style="width: 27%;" name="prod_price">'+prod_price+'</td>'+
+						'<td style="width: 27%;" name="prod_price" value="prod_price">'+prod_price+'</td>'+
 						'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
-						'<select id="unit" style="width: 25%;" >'+
-						 unit+
-						 '</select>'+'</td>'+
-						'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
-						'</tr>'
+						'<select id="unit" style="width: 25%;" >'+ unit+ '</select>'+'</td>'+'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+'</tr>'
 				);
 			}
 		}
@@ -875,15 +881,9 @@ function viewSalesActive(opptId){
 			}
 		});
 	}
-//	//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업
-//	function opptProdNmSelect(ctx){
-//		$('#oppt_product_list_table tbody tr').click(function(){
-//			var prod_id=$(this).find('#prod_id').text();
-//			var prod_nm=$(this).find('#prod_nm').text();
-//			var prod_price=$(this).find('#prod_price').text();
-//			alert("opptProd_pop.js : " + prod_id+', ' + prod_nm+', ' + prod_price);
-//			window.opener.opptInputProd(prod_id,prod_nm,prod_price);
-//			self.close();
-//		});
-//	}
+	function inputCustNm(custNm,custId){
+		
+		$('#cust_nm').val(custNm);
+		$('#cust_id').val(custId);
+	}
 }

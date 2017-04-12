@@ -354,12 +354,7 @@ public class OpptDaoImpl implements OpptDao {
 
 			}
 		}
-		if (result > 1) {
-			result += sqlsession.insert("oppt.soeAdd", ((List<OpptVO>) add).get(0));
-			System.out.println("result 3: " + result);
-			String sales_oppt_id = ((List<OpptVO>) add).get(0).getSales_oppt_id();
-			sqlsession.update("estimate.opptLevMdfy",sales_oppt_id);
-		}
+
 		
 
 		System.out.println("result sum: " + result);

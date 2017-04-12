@@ -261,7 +261,7 @@ public class OpptServiceImpl implements OpptService {
 	}
 	@Override
 	public int opptPrdtAdd(OpptVO add) {
-		System.out.println("영업기회별상품 추가 Service opptPrdtList : " +add );
+		System.out.println("영업기회상품 추가 Service opptPrdtList : " +add );
 		return dao.opptPrdtAdd(add);
 	}
 
