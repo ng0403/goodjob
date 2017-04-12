@@ -26,7 +26,7 @@
 		<input id="tab5" type="radio" name="tab" />
 		<input id="tab6" type="radio" name="tab" />
 
-		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
+		<!-- 라벨 : 화면에 표시되는 탭 제목 -->      
 		<label for="tab1">고객사 담당자</label> 
 		<label for="tab2">영업 담당자</label> 
 		<label for="tab3">키맨 </label> 
