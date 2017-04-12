@@ -22,15 +22,43 @@ $(document).ready(function() {
 	});
 	
 	// 상세정보 가져오기
+//	$("#tab1").click(function() {
+//		var cust_id = $("#nowCust_id").val();
+//		if(cust_id != ''){
+//			ccDetail(cust_id);
+//		}
+//	});
+	
+	//고객사 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		if(cust_id != ''){
-			ccDetail(cust_id);
+		if(cust_id == ''){
+			var tbody = $('#iuserTableTbody');
+			tbody.children().remove();
+			var tbodyContent = "";
+			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+			tbody.append(tbodyContent);
+		} else {
+			keymanList(cust_id);
+		}
+	});
+	
+	//영업 담당자 리스트 가져오기
+	$("#tab2").click(function() {
+		var cust_id = $("#nowCust_id").val();
+		if(cust_id == ''){
+			var tbody = $('#iuserTableTbody');
+			tbody.children().remove();
+			var tbodyContent = "";
+			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+			tbody.append(tbodyContent);
+		} else {
+			keymanList(cust_id);
 		}
 	});
 	
 	// 키맨 리스트 가져오기
-	$("#tab2").click(function() {
+	$("#tab3").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#keymanTableTbody');
@@ -44,7 +72,7 @@ $(document).ready(function() {
 	});
 	
 	// 영업기회 리스트 가져오기
-	$("#tab3").click(function() {
+	$("#tab4").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
@@ -58,7 +86,7 @@ $(document).ready(function() {
 	});
 	
 	// 영업활동 리스트 가져오기
-	$("#tab4").click(function() {
+	$("#tab5").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#actTableTbody');
@@ -72,7 +100,7 @@ $(document).ready(function() {
 	});
 	
 	// 견적 리스트 가져오기
-	$("#tab5").click(function() {
+	$("#tab6").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#estTableTbody');
@@ -86,18 +114,18 @@ $(document).ready(function() {
 	});
 	
 	// 계약 리스트 가져오기
-	$("#tab6").click(function() {
-		var cust_id = $("#nowCust_id").val();
-		if(cust_id == ''){
-			var tbody = $('#contTableTbody');
-			tbody.children().remove();
-			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-			tbody.append(tbodyContent);
-		} else {
-			contList(cust_id);
-		}
-	});
+//	$("#tab6").click(function() {
+//		var cust_id = $("#nowCust_id").val();
+//		if(cust_id == ''){
+//			var tbody = $('#contTableTbody');
+//			tbody.children().remove();
+//			var tbodyContent = "";
+//			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+//			tbody.append(tbodyContent);
+//		} else {
+//			contList(cust_id);
+//		}
+//	});
 	
 });
 
@@ -472,6 +500,53 @@ function comma(str) {
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
+//고객사 담장사원 List ajax 통신
+function rocList(cust_id) {
+	$(document).ready(function() {
+		var ctx = $("#ctx").val();
+		var tbody = $('#rocTableTbody');
+		var tbodyContent = "";
+		$.ajax({
+			url : ctx+'/rocList.do',
+			type : 'POST',
+			data : "cust_id="+cust_id,
+			dataType : "json",
+			success : function(data) {
+				tbody.children().remove();
+				// 키맨 리스트 그리기
+				if(data.length == 0){
+					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 고객사 담당자가 없습니다.</td></tr>";
+					tbody.append(tbodyContent);
+				}else{
+					for (var i = 0; i < data.length; i++) {
+						tbodyContent = "<tr>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+"' id='rocChkbox'  onclick='rocchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"rocDeatil('"+data[i].cust_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cust_id+"</td>" +
+						"<td style='width:15%;'>"+data[i].iuser_id+"</td>" +
+						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
+						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:17%;'>"+data[i].fst_reg_dt+"</td>" +
+						"</tr>";
+						tbody.append(tbodyContent);
+					}
+					if(data.length < 5){
+						for(var j = 0; j < 5-data.length; j++){
+							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
+							"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td><td style='width:20%;'></td>" +
+							"<td style='width:10%;'></td><td style='width:15%;'></td></tr>";
+							tbody.append(tbodyContent);
+						}
+					}
+				}
+			},
+			error : function() {
+				alert("전송중 오류가 발생했습니다.");
+			}
+		});
+	});
+}
+
+
 // 키맨 List ajax 통신
 function keymanList(cust_id) {
 	$(document).ready(function() {
@@ -492,15 +567,14 @@ function keymanList(cust_id) {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].kmn_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].kmn_id+"');\" style='color:blue;' class='cnClick'>"+data[i].kmn_nm+"</td>" +
-						"<td style='width:7%;'>"+data[i].pos_nm+"</td>" +
-						"<td style='width:10%;'>"+data[i].ph1+"-"+data[i].ph2+"-"+data[i].ph3+"</td>" +
-						"<td style='width:10%;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
-						"<td style='width:15%; text-align: right; padding-right: 8px;'>"+data[i].email1+"@"+data[i].email2+"</td>" +
-						"<td style='width:20%;'>"+data[i].memo+"</td>" +
-						"<td style='width:10%;'>"+data[i].fst_reg_id_nm+"</td>" +
-						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_id+"</td>" +
+						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
+						"<td style='width:15%;'>"+data[i].key_pos+"</td>" +
+						"<td style='width:10%;'>"+data[i].key_job+"</td>" +
+						"<td style='width:12%;'>"+data[i].memo+"</td>" +
+						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:17%;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
@@ -550,7 +624,7 @@ function opptList(cust_id) {
 						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
 						"<td style='width:7%;'>"+data[i].psblty_rate+"</td>" +
 						"<td style='width:7%;'>"+data[i].sales_oppt_stat_cd_nm+"</td>" +
-						"<td style='width:8%;'>"+data[i].fst_reg_id_nm+"</td>" +
+						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
 						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
@@ -644,7 +718,7 @@ function actList(cust_id) {
 							+ "<td style='height:12px; padding:5px;'>"+data[i].strt_d+"</td>"
 							+ "<td style='height:12px; padding:5px;'>"+strt_t+"</td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_stat_nm+"</td>"
-							+ "<td rowspan='2'>"+data[i].fst_reg_id_nm+"</td>"
+							+ "<td rowspan='2'>"+data[i].fst_reg_id+"</td>"
 							+ "<td rowspan='2'>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr><tr>"
 							+ "<td style='height:12px; padding:5px;'>"+data[i].end_d+"</td>"
@@ -680,7 +754,7 @@ function estList(cust_id) {
 		var tbody = $('#estTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccEstList.do',
+			url : ctx+'/estimList.do',
 			type : 'POST',
 			data : "cust_id="+cust_id,
 			dataType : "json",
@@ -692,15 +766,14 @@ function estList(cust_id) {
 				}else{
 					// 견적 리스트 그리기
 					for (var i = 0; i < data.length; i++) {
-						var sales_price = comma(data[i].sales_price);
+					//	var sales_price = comma(data[i].sales_price);
 						tbodyContent = "<tr>"
 							+ "<th><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
 							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
 							+ "<td>"+data[i].estim_lev_cd_nm+"</td>"
-							+ "<td style='text-align: right; padding-right: 8px;'>"+data[i].estim_qty+"</td>"
-							+ "<td style='text-align: right; padding-right: 8px;'>"+sales_price+"</td>"
+							+ "<td>"+data[i].memo+"</td>"
 							+ "<td>"+data[i].estim_valid_d+"</td>"
-							+ "<td>"+data[i].fst_reg_id_nm+"</td>"
+							+ "<td>"+data[i].fst_reg_id+"</td>"
 							+ "<td>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr>";
 						tbody.append(tbodyContent);
@@ -750,7 +823,7 @@ function contList(cust_id) {
 							+ "<td style='text-align: right; padding-right: 8px;'>"+data[i].contr_qty+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+contr_amt+"</td>"
 							+ "<td>"+data[i].contr_d+"</td>"
-							+ "<td>"+data[i].fst_reg_id_nm+"</td>"
+							+ "<td>"+data[i].fst_reg_id+"</td>"
 							+ "<td>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr>";
 						tbody.append(tbodyContent);
@@ -794,18 +867,18 @@ function custCompList(page){
 			$.each(result.ccVOList, function(i, cc){
 			
 				$("#ccListTbody").append("" +
-						"<tr id='"+cc.sales_oppt_id+"'>"+
-						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+cc.sales_oppt_id+">" +
+						"<tr id='"+cc.cust_id+"'>"+
+						"<th><input type=checkbox  id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
 						"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-						"<input type=hidden id=list_sales_lev_cd value="+cc.sales_lev_cd+"></th>"+
-						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+cc.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+cc.sales_oppt_nm+"</a></td>"+
-						"<td id=list_cust_nm>"+cc.cust_nm+"</td>"+
-						"<td>"+cc.sales_lev_cd_nm+"</td>"+
-						"<td style='text-align: right; padding-right:5px;'>"+comma(cc.expt_sales_amt)+"</td>"+
-						"<td>"+cc.expt_fin_d+"</td>"+
-						"<td>"+cc.psblty_rate+"</td>"+
-						"<td>"+cc.sales_oppt_stat_cd_nm+"</td>"+
-						"<td>"+cc.fst_reg_id+"</td>"+
+						"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
+						"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+						"<td id=cust_nm>"+cc.comp_num+"</td>"+
+						"<td>"+cc.corp_num+"</td>"+
+						"<td>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+						"<td>"+cc.sales_scale+"</td>"+
+						"<td>"+cc.emp_qty+"</td>"+
+						"<td>"+cc.indst+"</td>"+
+						"<td>"+cc.iuser_nm+"</td>"+
 						"<td>"+cc.fst_reg_dt+"</td>+"+
 						"</tr>"
 				);

@@ -41,7 +41,7 @@
 			     	and c.corp_num like '%'||#{sch_corp_num}||'%'
 			    </if>
 			    
-	                order by c.cust_id desc
+	                order by c.cust_id asc
 	                ) b
            		) r 
        <![CDATA[where r.rnum>=#{page.startRow} and r.rnum<=#{page.endRow}]]>
@@ -228,22 +228,58 @@
 		where cd_grp_id = 'CDC'
 	</select>
 	
+	<!-- 고객사 담당자 리스트 -->
+	<select id="rocList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.RocVO">
+		select 
+<!-- 		      (select cust_nm from customer cust where cust.cust_id = roc.cust_id )CUST_ID, -->
+<!-- 			  (select iuser_nm from iuser i where i.iuser_id = roc.iuser_id )iuser_nm, -->
+<!-- 			  (SELECT c.cd_nm FROM CODE c where c.cd_grp_id='OLC' and c.code = i. org_id ) org_id_nm, -->
+<!-- 			  i.org_id, -->
+<!-- 			  i.PH1, -->
+<!-- 			  i.ph2, -->
+<!-- 			  i.ph3, -->
+<!-- 			  i.CELL_PH1, -->
+<!-- 			  i.CELL_PH2, -->
+<!-- 			  i.CELL_PH3, -->
+<!-- 			  i.email1, -->
+<!-- 			  i.email2, -->
+<!-- 			  roc.key_part, -->
+<!-- 			  roc.fst_reg_id, -->
+<!-- 			  TO_CHAR(roc.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT -->
+				  (select cust_nm from customer cust where cust.cust_id = roc.cust_id ) cust_id,
+				  (select iuser_nm from iuser i where i.iuser_id = roc.iuser_id ) iuser_id,
+				 
+				  roc.key_part,
+				  roc.fst_reg_id,
+				  TO_CHAR(roc.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+				  
+		from PARTNER_OF_CLIENT roc
+		where cust_id = #{cust_id} 
+	
+	</select>
+	
+	<!-- 영업 담당자 리스트 -->
+	<select id="rosList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.RosVO">
+	
+	
+	
+	</select>
 	<!-- 키맨 리스트 -->
 	<select id="keymanList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
 <!-- 		  select KMN_ID, CUST_ID,KMN_NM,POS_NM,PH1,PH2,PH3, CELL_PH1,CELL_PH2, CELL_PH3,EMAIL1,EMAIL2,MEMO, FST_REG_ID_NM,TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT,ACT_YN  -->
 <!-- 		  from keyman  -->
-<!-- 		  where cust_id = #{cust_id} and act_yn = 'Y' order by kmn_id desc -->
+<!-- 		  where cust_id = #{cust_id}  order by kmn_id desc -->
 
 		SELECT 
-			CUST_ID, 
-			CONT_ID,
-			KEY_PART,
-			KEY_POS,
-			KEY+JOB,
-			MEMO,
-			FST_REG_ID,
-			TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT,
-		from keyman 
+<!-- 			(select cust_nm from customer cust where cust.cust_id = km.cust_id) CUST_ID,       -->
+            (select cont_nm from contact cont where cont.cont_id = km.cont_id) CONT_ID,    
+            KM.KEY_PART,    
+            KM.KEY_POS,    
+            KM.KEY_JOB,    
+            KM.MEMO,    
+            KM.FST_REG_ID,    
+            TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+		from keyman KM
 		where cust_id = #{cust_id} 
 		order by CUST_ID desc
 	</select>
@@ -257,7 +293,7 @@
 				TO_CHAR(so.expt_fin_d, 'YYYY-MM-DD') expt_fin_d,
 				so.psblty_rate,
 				(select c.cd_nm from code c where c.cd_grp_id = 'OSC' and c.CODE = so.sales_oppt_stat_cd) sales_oppt_stat_cd_nm ,
-				so.fst_reg_id_nm,
+				so.fst_reg_id,
 				TO_CHAR(so.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt  
 		from sales_opportunity so 
 	  where cust_id = #{cust_id} 
@@ -285,9 +321,9 @@
 				, a.psblty_rate
 				, (select cd_nm from code where cd_grp_id='OSC' and code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 				, a.memo
-				, a.fst_reg_id_nm
+				, a.fst_reg_id
 				, a.fst_reg_dt
-				, a.fin_mdfy_id_nm
+				, a.fin_mdfy_id
 				, a.fin_mdfy_dt
 				, a.act_yn
 		from sales_opportunity a, lead b, customer c
@@ -313,7 +349,7 @@
     		    , TO_CHAR(SA.END_D ,'YYYY-MM-DD') end_d
     		    , SA.END_T end_t
     		    , (SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD) sales_actvy_stat_nm
-    		    , SA.FST_REG_ID_NM fst_reg_id_nm
+    		    , SA.FST_REG_ID fst_reg_id
     		    , TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') fst_reg_dt
     		    , SO.SALES_OPPT_NM sales_oppt_nm
  		 FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO
@@ -336,40 +372,55 @@
 	</update>
 	
 	<!-- 견적 리스트 -->
-	<select id="ccEstList" parameterType="String" resultType="com.crm.cp.sales.est.vo.EstVO">
-		select aa.estim_nm,
-			aa.estim_lev_cd
-	     	, aa.estim_id
-			,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd_nm
-			,( select sum(c.sales_price) from
-	      	SALES_OPPORTUNITY_ESTIMATE a
-			, estimate b
-			, estimate_list c
-	      	where b.estim_id = a.estim_id
-	      		and c.estim_id = b.estim_id
-	      		and c.act_yn = 'Y'
-	      		and c.estim_id = aa.estim_id
-	      		group by aa.estim_id) sales_price
-	    	, ( select sum(c.estim_qty) from
-	      	SALES_OPPORTUNITY_ESTIMATE a
-			, estimate b
-			, estimate_list c
-	      where b.estim_id = a.estim_id
-	      	and c.estim_id = b.estim_id
-	      	and c.act_yn = 'Y'
-	      	and c.estim_id = aa.estim_id
-	      group by aa.estim_id) estim_qty   
-			, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
-			, aa.FST_REG_ID_NM
-			, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT 
-		from 
-		ESTIMATE aa, 
-		SALES_OPPORTUNITY_ESTIMATE bb
-		where aa.CUST_ID = #{cust_id}
-		AND aa.ESTIM_ID = bb.ESTIM_ID
-		and aa.ACT_YN='Y' 
-		ORDER BY aa.ESTIM_ID DESC
-	</select>
+<!-- 	<select id="ccEstList" parameterType="String" resultType="com.crm.cp.sales.est.vo.EstVO"> -->
+<!-- 		select aa.estim_nm, -->
+<!-- 			aa.estim_lev_cd -->
+<!-- 	     	, aa.estim_id -->
+<!-- 			,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd_nm -->
+<!-- 			,( select sum(c.sales_price) from -->
+<!-- 	      	SALES_OPPORTUNITY_ESTIMATE a -->
+<!-- 			, estimate b -->
+<!-- 			, estimate_list c -->
+<!-- 	      	where b.estim_id = a.estim_id -->
+<!-- 	      		and c.estim_id = b.estim_id -->
+<!-- 	      		and c.act_yn = 'Y' -->
+<!-- 	      		and c.estim_id = aa.estim_id -->
+<!-- 	      		group by aa.estim_id) sales_price -->
+<!-- 	    	, ( select sum(c.estim_qty) from -->
+<!-- 	      	SALES_OPPORTUNITY_ESTIMATE a -->
+<!-- 			, estimate b -->
+<!-- 			, estimate_list c -->
+<!-- 	      where b.estim_id = a.estim_id -->
+<!-- 	      	and c.estim_id = b.estim_id -->
+<!-- 	      	and c.act_yn = 'Y' -->
+<!-- 	      	and c.estim_id = aa.estim_id -->
+<!-- 	      group by aa.estim_id) estim_qty    -->
+<!-- 			, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D -->
+<!-- 			, aa.FST_REG_ID -->
+<!-- 			, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT  -->
+<!-- 		from  -->
+<!-- 		ESTIMATE aa,  -->
+<!-- 		SALES_OPPORTUNITY_ESTIMATE bb -->
+<!-- 		where aa.CUST_ID = #{cust_id} -->
+<!-- 		AND aa.ESTIM_ID = bb.ESTIM_ID -->
+<!-- 		and aa.ACT_YN='Y'  -->
+<!-- 		ORDER BY aa.ESTIM_ID DESC -->
+<!-- </select> -->
+
+<select id="estimList" parameterType="String" resultType="com.crm.cp.sales.est.vo.EstVO">
+		select 
+			  est.estim_id,	
+			  (select cust_nm from customer cust where cust.cust_id = est.cust_id )CUST_ID,
+			  est.estim_nm,
+			  (SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = est.estim_lev_cd ) estim_lev_cd_nm,
+			  est.memo,   
+			  TO_CHAR(est.estim_valid_d, 'YYYY-MM-DD hh:mm') estim_valid_d,
+			  est.fst_reg_id,
+			  TO_CHAR(est.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+		from ESTIMATE est
+		where cust_id = #{cust_id}
+		order by CUST_ID desc
+</select>
 	
 	<!-- 계약 리스트 -->
 	<select id="ccContList" parameterType="String" resultType="com.crm.cp.sales.cont.vo.contrVO">
@@ -379,7 +430,7 @@
 				, cont.CONTR_QTY contr_qty
 				, cont.CONTR_AMT contr_amt
 				, TO_CHAR(cont.CONTR_D, 'YYYY-MM-DD') contr_d
-				, cont.FST_REG_ID_NM fst_reg_id_nm
+				, cont.FST_REG_ID fst_reg_id
 				, TO_CHAR(cont.FST_REG_DT, 'YYYY-MM-DD hh:mm') fst_reg_dt
 		 FROM CONTRACT cont
    				, CUSTOMER cu
@@ -420,8 +471,8 @@
 	
 	<!-- 키맨 추가 -->
 	<insert id="addKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		 INSERT INTO KEYMAN (KMN_ID, CUST_ID, KMN_NM, POS_NM, PH1, PH2, PH3, CELL_PH1, CELL_PH2, CELL_PH3, EMAIL1, EMAIL2, MEMO, FST_REG_ID_NM, FST_REG_DT, FIN_MDFY_ID_NM, FIN_MDFY_DT, ACT_YN) 
-	     VALUES(KEYMAN_SEQ.nextVal, #{cust_id}, #{kmn_nm}, #{pos_nm}, #{ph1}, #{ph2}, #{ph3}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3}, #{email1}, #{email2}, #{memo}, #{fst_reg_id_nm}, sysdate, #{fin_mdfy_id_nm}, sysdate, 'Y')
+		 INSERT INTO KEYMAN (KMN_ID, CUST_ID, KMN_NM, POS_NM, PH1, PH2, PH3, CELL_PH1, CELL_PH2, CELL_PH3, EMAIL1, EMAIL2, MEMO, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT, ACT_YN) 
+	     VALUES(KEYMAN_SEQ.nextVal, #{cust_id}, #{kmn_nm}, #{pos_nm}, #{ph1}, #{ph2}, #{ph3}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3}, #{email1}, #{email2}, #{memo}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate, 'Y')
 	</insert>
 	
 	<!-- 키맨 상세정보 -->
@@ -439,9 +490,9 @@
 				  EMAIL1,
 				  EMAIL2,
 				  MEMO,
-				  FST_REG_ID_NM,
+				  FST_REG_ID,
 				  FST_REG_DT,
-				  FIN_MDFY_ID_NM,
+				  FIN_MDFY_ID,
 				  FIN_MDFY_DT
 		 FROM KEYMAN 
 	   WHERE KMN_ID = #{kmn_id}
@@ -469,7 +520,7 @@
 			 EMAIL1 = #{email1},
 			 EMAIL2 = #{email2},
 			 MEMO = #{memo},
-			 FIN_MDFY_ID_NM = #{fin_mdfy_id_nm},
+			 FIN_MDFY_ID = #{fin_mdfy_id},
 			 FIN_MDFY_DT = sysdate
 		where KMN_ID = #{kmn_id}
 	</update>
@@ -489,7 +540,7 @@
 				, TO_CHAR(SO.EXPT_FIN_D, 'YYYY-MM-DD') EXPT_FIN_D
 				, SO.PSBLTY_RATE
 				, (SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD
-				, SO.FST_REG_ID_NM
+				, SO.FST_REG_ID
 				, SO.FST_REG_DT
 		FROM SALES_OPPORTUNITY SO, SALES_OPPORTUNITY_ESTIMATE SOE, LEAD L, CUSTOMER CT, ESTIMATE E, CODE C
 		WHERE CT.CUST_ID= #{cust_id} 
