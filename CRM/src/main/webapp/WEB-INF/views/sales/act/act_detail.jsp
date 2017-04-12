@@ -33,10 +33,10 @@
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
-			<div class="caption">■ 영업활동 등록/</div>
+			<div class="caption">■ 영업 > 영업활동 > 영업활동 등록</div>
 		</c:if>
 		<c:if test="${flg == 1 }">
-			<div class="caption">■ 영업활동 상세정보</div>
+			<div class="caption">■ 영업 > 영업활동 > 영업활동 상세정보</div>
 		</c:if>
 	</div>
 	

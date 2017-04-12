@@ -23,7 +23,13 @@ public class ActServiceImpl implements ActService{
 	public List<ActVO> actAllList(Map<String, Object> actMap) {
 		return actDao.actList(actMap);
 	}
-
+	
+	@Override
+	public List<Object> actSchList() {
+		// TODO Auto-generated method stub
+		return actDao.actSchList();
+	}
+	
 	@Override
 	public PagerVO getActListCount(Map<String, Object> actMap) {
 		int actPageNum = (Integer) actMap.get("actPageNum");
@@ -108,6 +114,7 @@ public class ActServiceImpl implements ActService{
 	public void actDelete(String sales_actvy_id) {
 		actDao.actDelete(sales_actvy_id);
 	}
+
 
 /*	@Override
 	public PagerVO getActListCount(Map<String, Object> actMap) {

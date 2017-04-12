@@ -10,6 +10,7 @@ import com.crm.cp.utils.PagerVO;
 public interface ActDao {
 
 	List<ActVO> actList(Map<String, Object> actMap);
+	List<Object> actSchList();
 
 	int getActListCount(Map<String, Object> actMap);
 	
@@ -39,7 +40,7 @@ public interface ActDao {
 	void actEdit(ActVO actvo);
 	
 	void actDelete(String sales_actvy_id);
-	
+
 	/*List<ActVO> actList(Map<String, Object> actMap);
 
 	int getActListCount(Map<String, Object> actMap);*/

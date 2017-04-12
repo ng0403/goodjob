@@ -45,29 +45,52 @@ public class ActController {
 	
 	//전체리스트 출력
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum){
-
-		Map<String,Object> actMap = new HashMap<String,Object>();
+	public @ResponseBody ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	{
+		Map<String, Object> actMap = new HashMap<String, Object>();
 		actMap.put("actPageNum", actPageNum);
 		
 		PagerVO page = actService.getActListCount(actMap);
 		actMap.put("page", page);
-		
+
 		List<ActVO> actList = actService.actAllList(actMap);
 		List<MenuVO> menuList = menuService.selectAll(session);
 		List<ActVO> actDivCd = actService.actDivCdList();
 		List<ActVO> actStatCd = actService.actStatCdList();
 
-		System.out.println("actList : " + actList);
-		
 		ModelAndView mov = new ModelAndView("actSaleList");
+		
 		mov.addObject("menuList", menuList);
 		mov.addObject("actPageNum", actPageNum);
 		mov.addObject("page", page);
 		mov.addObject("actList", actList);
 		mov.addObject("actDivCd", actDivCd);
 		mov.addObject("actStatCd", actStatCd);
+		
 		return mov;
+	}
+	
+	//전체리스트 출력 페이징/검색 
+	@RequestMapping(value="/actSchedule" , method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody Map<String,Object> ActSchedule(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum) throws ParseException
+	{
+		System.out.println("Schedule Test");
+		
+		Map<String, Object> test = new HashMap<String, Object>();
+		
+		List<Object> actSchList = actService.actSchList();
+		//List<MenuVO> menuList = menuService.selectAll(session);
+		//List<ActVO> actDivCd = actService.actDivCdList();
+		//List<ActVO> actStatCd = actService.actStatCdList();
+		
+		System.out.println("actSchList : " + actSchList);
+		
+		test.put("actSchList", actSchList);
+		//test.put("menuList", menuList);
+		//test.put("actDivCd", actDivCd);
+		//test.put("actStatCd", actStatCd);
+
+		return test;
 	}
 	
 	// 영업활동 상세정보
@@ -210,6 +233,7 @@ public class ActController {
 		
 		return "redirect:/act";
 	}
+	
 	//전체리스트 출력 페이징/검색 
 	@RequestMapping(value="/actPaging" , method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> ActListSearch(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum,

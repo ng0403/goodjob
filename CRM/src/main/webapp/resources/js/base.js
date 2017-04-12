@@ -373,7 +373,8 @@
 			
 		//-- Properties
 		browser: {
-			webkit: (window.webkitURL) ? true : false,
+			//webkit: (window.webkitURL) ? true : false,
+			webkit: (window.URL) ? true : false,
 			mozilla: (window.mozInnerScreenX) ? true : false,
 			msie: (navigator.userAgent.indexOf("Trident") != -1) ? true : false
 		},

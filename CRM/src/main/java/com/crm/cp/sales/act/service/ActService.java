@@ -10,6 +10,7 @@ import com.crm.cp.utils.PagerVO;
 public interface ActService {
 
 	List<ActVO> actAllList(Map<String, Object> actMap);
+	List<Object> actSchList();
 
 	PagerVO getActListCount(Map<String, Object> actMap);
 

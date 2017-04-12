@@ -13,15 +13,21 @@
 $(function(){
 	var ctx = $('#ctx').val();
 	var sales_actvy_id = $("#nowSales_actvy_id").val();
-	
+
 	$('#changePasswd').click(function(){
 		passwdModal.show();
 	});
 	
 	/**
+	 * 2017. 04. 10
 	 * #schcalendar : 달력 생성하는 곳(큰 틀)
+	 *                ajax 부분 ( 스케쥴 받아와서 작성 )
+	 *                처음 페이지 들어올 때 바로 호출됨.
+	 *                여기서 이벤트 확인하면 될듯함.
 	 * */
+	//alert("CTX : " + ctx);
 	$('#schcalendar').fullCalendar({
+		
 		header: {
 			left: ' ',
 			center: 'prev title next',
@@ -41,39 +47,40 @@ $(function(){
 		maxTime : 19,
 		axisFormat : "HH:mm",
 		editable: false,
-		events: function(start, end, callback) {
-	        $.ajax({
-	            url: ctx + "/act",
-	            dataType: 'json',
-	            data: {
-	            	syear:start.getFullYear(),
-		        	smonth:start.getMonth()+1,
-		        	eyear:end.getFullYear(),
-		        	emonth:end.getMonth()+1
-	            },
-	            success: function(response) {
- 	            	getPayDay();
+		events: function(callback) {
+			// 그려주는 부분.
+			
+			$.ajax({
+				url : "/actSchedule",
+				type : "POST",
+				dataType : "json",
+				success: function(data) {
+					alert("data : " + data.actSchList.length);
+	            	console.log(data);
+					getPayDay();
+	            	
 	                var events = [];
-	                for(var i = 0 ; i < response.length ; i ++){
+	                
+	                for(var i = 0 ; i < data.length ; i ++){
 	                	var color;
 	                	var textColor;
 	                	var borderColor;
-		                	console.log(response[i].strt_d);
-		                	
-		                	events.push({
-	                        title: response[i].title,
-	                        start: new Date(response[i].STARTTIME),
-	                        end : new Date(response[i].ENDTIME),
-	                        seq : response[i].SEQ,
-	                        allDay: (new Date(response[i].STARTTIME).getHours()<8 || new Date(response[i].END).getHours()>19),
+	                	
+	                	events.push({
+	                        title: data[i].sales_actvy_nm,
+	                        start: new Date(data[i].strt_t),
+	                        end : new Date(data[i].end_t),
 	                        color : color,
 	                        textColor : textColor,
 	                        borderColor:borderColor
 	                    });
 	                }
-	                callback(events);
+	                //callback(events);
 	            },
-	          
+	            error: function(data){
+	            	alert("실패 ");
+	            }
+	         
 	        });
 	    },
 	    /**
@@ -82,16 +89,7 @@ $(function(){
 	    dayClick: function(date) {
 	    	alert("date : " + date + " sales_actvy_id : " + sales_actvy_id);
 	    	location.href = ctx + '/actDetail';
-/*	    	
-			scheduleParam = {seq : 0, title : '', contents : '', starttime : date.getTime(), endtime : date.getTime(), writer:''};
-			$('#title').val(scheduleParam.title);
-			$('#contents').val(scheduleParam.contents);
-			spicker.select(date.getFullYear(),date.getMonth()+1,date.getDate());
-			epicker.select(date.getFullYear(),date.getMonth()+1,date.getDate());
-			$('#etcYn').attr('checked',false);
-			writeModal.show();
-			editorInit('contents');
-*/			
+		
 	    }
 //	    eventClick: function(calEvent, jsEvent, view) {
 //	    	if(calEvent.seq != null){

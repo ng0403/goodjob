@@ -39,25 +39,11 @@
 <input type="hidden" id="ctx" value="${ctx}">
 <input type="hidden" id="selectUser">
 <input type="hidden" id="selectTab" value="tab_Home">
-<!-- 탭 -->
-	<ul class="tab tab-top">
-		<li class="active">
-			<a href="#" id="tab_View" title="main_View">영업활동</a>
-		</li>
-		 
-	</ul>
-<!-- 스케줄 글보기 모달 -->
-	<div id="modal" class="msgbox" style="display: none;">
-		<div class="head">
-			<span id="modal-title"></span>
-	    </div>
-		<div class="body">
-			<span id="modal-contents"></span>
-			<div style="text-align: center; margin-top: 45px;" id="contentsBtn">
-			</div>
-		</div>
+	
+	<div id="title">
+		<div class="caption">■ 영업 > 영업활동 </div>
 	</div>
- 
+	
 	<!-- schedule view modal -->
 	<div id="sviewModal" class="msgbox" style="display: none;">
 		<div class="head">

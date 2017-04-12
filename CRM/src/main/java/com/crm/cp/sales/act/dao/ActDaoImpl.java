@@ -21,6 +21,12 @@ public class ActDaoImpl implements ActDao{
 		
 		return sqlSession.selectList("act.actList",actMap);
 	}
+	
+	@Override
+	public List<Object> actSchList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("act.actSchList");
+	}
 
 	@Override
 	public int getActListCount(Map<String, Object> actMap) {
