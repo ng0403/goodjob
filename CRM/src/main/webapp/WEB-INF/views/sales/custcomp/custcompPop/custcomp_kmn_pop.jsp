@@ -42,6 +42,10 @@
 							<td><input type="text" name="kmn_nm" id="kmn_nm" class="int" autofocus="autofocus" value="${kmVO.kmn_nm}"/></td>
 						</tr>
 						<tr>
+							<th>연락처</th>
+							<td><input type="text" name="cont_id" class="int" value="${kmVO.kmn_cont_id}"" /></td>
+						</tr>
+						<tr>
 							<th>직급</th>
 							<td><input type="text" name="pos_nm" id="pos_nm" class="int" value="${kmVO.pos_nm}"/></td>
 						</tr>

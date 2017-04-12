@@ -117,9 +117,11 @@ function posDeatil(cust_id) {
 }
 
 // 키맨 상세정보
-function keymanDeatil(kmn_id) {
+function keymanDeatil(cust_id) {
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/keymanDetailPopup?kmn_id='+kmn_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	var cont_nm = $('#hcont_nm').val();
+	
+	window.open(ctx+'/keymanDetailPopup?cust_id='+cust_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 영업기회 상세정보 팝업

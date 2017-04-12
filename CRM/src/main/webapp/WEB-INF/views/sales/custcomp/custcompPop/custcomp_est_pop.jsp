@@ -8,11 +8,14 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_estpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/ccestimate.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
+
 <script type="text/javascript">
 $(function() {
 	 $("#estimatediv").mCustomScrollbar({
@@ -93,12 +96,11 @@ $(function() {
 							<td>
 							<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
 							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
-							<input type="button" name="act_opp" value="영업기회" class="est_list_bt" id="opptSelect"/>
 							</td>
 						</tr>
 						<tr>
 							<th>메모</th>
-							<td><textarea class="int_memo" id="memo" cols="23" rows=5">${memo}</textarea></td>
+							<td><textarea class="int_memo" id="memo" cols="23" rows="5">${memo}</textarea></td>
 						</tr>
 					</tbody>
 				</table>
@@ -106,13 +108,13 @@ $(function() {
 			
 			<c:if test="${flag == 0}">
 			<div class="estimate_bt_position2">
-				<input type="button" class="est_list_bt" value="저장" id="est_add" onclick="estAdd('${ctx}');"/>
+				<input type="button" class="est_list_bt" value="저장" id="est_add" onclick="opptEstimAdd('${ctx}');"/>
 				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel"/>
 			</div>
 		</c:if>
 		<c:if test="${flag == 1}">
 			<div class="estimate_bt_position2">
-				<input type="button" class="est_list_bt" value="저장" id="est_mdfy" onclick="EstimUpdate('${ctx}');"/>
+				<input type="button" class="est_list_bt" value="저장" id="est_mdfy" onclick="opptEstimUpdate('${ctx}');"/>
 				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel"/>
 			</div>
 		</c:if>

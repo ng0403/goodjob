@@ -8,7 +8,9 @@ $("#navicustcomp").css("font-weight", "bold");
 
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
-	
+	var cust_id = $("#nowCust_id").val();
+	pocList(cust_id);
+	posList(cust_id);
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
 		// 만약 전체 선택 체크박스가 체크된 상태일 경우
@@ -518,7 +520,9 @@ function pocList(cust_id) {
 				if(data.length == 0){
 					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 고객사 담당자가 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
-				}else{
+				}
+				else
+				{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
@@ -530,6 +534,7 @@ function pocList(cust_id) {
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
+					
 					if(data.length < 5){
 						for(var j = 0; j < 5-data.length; j++){
 							tbodyContent = "<tr style='height: 25px;'>" +

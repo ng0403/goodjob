@@ -19,8 +19,8 @@
 <body  >
 	<div id="css_tabs" style="float: left;">
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked"/>
-		<input id="tab2" type="radio" name="tab" />
+		<input id="tab1" type="radio" name="tab" checked="checked" />
+		<input id="tab2" type="radio" name="tab"  />
 		<input id="tab3" type="radio" name="tab" />
 		<input id="tab4" type="radio" name="tab" />
 		<input id="tab5" type="radio" name="tab" />
@@ -53,7 +53,7 @@
 							<th style='width:15%;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id= pocTableTbody">
+					<tbody id= "pocTableTbody">
 						<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
