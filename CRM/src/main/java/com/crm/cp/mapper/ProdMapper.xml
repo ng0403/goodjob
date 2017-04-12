@@ -137,8 +137,11 @@
 			PROD_CATAL_SAVE_LOC, -->
 			fst_reg_id,
 			fin_mdfy_id
-			)VALUES(
-			PROD_SEQ.NEXTVAL,
+		)VALUES(
+			(SELECT /*+INDEX_DESC(PRODUCT PK_PRODUCT)*/
+				DECODE(MAX(PROD_ID),NULL,'PRD0000001',SUBSTR(MAX(PROD_ID),1,3)||LPAD((SUBSTR(MAX(PROD_ID),4,7)+1),7,0))PROD_ID
+			FROM PRODUCT
+			WHERE ROWNUM = 1),
 			#{cate_id},
 			#{prod_nm},
 			#{prod_div_cd},
@@ -151,7 +154,13 @@
 			#{prod_catal_save_loc, jdbcType=VARCHAR}, -->
 			#{fst_reg_id},
 			#{fst_reg_id}
-			)	
+		)
+		<selectKey keyProperty="prod_seq" resultType="String" order="AFTER">
+			SELECT /*+INDEX_DESC(PRODUCT PK_PRODUCT)*/
+				PROD_ID
+			FROM PRODUCT
+			WHERE ROWNUM = 1
+		</selectKey>
 	</update>
 	
 	
@@ -166,16 +175,16 @@
 			p.prod_url,
 			p.prod_price,
 			p.prod_div_cd,
-			p.prod_dtl_cont,
+			p.prod_dtl_cont
 			<!-- p.prod_img_nm,
 			p.prod_img_save_loc,
 			p.prod_catal_nm,
 			p.prod_catal_save_loc -->
 		FROM PRODUCT p,CATEGORY ca,CODE c
 		WHERE PROD_ID = #{prod_id}	
-    	AND p.cate_id = ca.cate_id
-		AND c.cd_grp_id='PRD'
-		AND p.prod_div_cd = c.code
+	    	AND p.cate_id = ca.cate_id
+			AND c.cd_grp_id='PRD'
+			AND p.prod_div_cd = c.code
 	</select>
 	
 	<update id="prodDelete">
@@ -186,23 +195,99 @@
 			PROD_ID=#{prod_id}
 	</update>
 	
-	<update id="fileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+	<update id="imgFileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
 		insert into ATTACH(
 			ATTACH_ID,
 			FILE_ROOT,
 			FILE_NM,
 			REG_D
-			)VALUES(
-			PROD_SEQ.NEXTVAL,
+		)VALUES(
+			(SELECT /*+INDEX_DESC(ATTACH PK_ATTACH)*/
+				DECODE(MAX(ATTACH_ID),NULL,'ATT0000001',SUBSTR(MAX(ATTACH_ID),1,3)||LPAD((SUBSTR(MAX(ATTACH_ID),4,7)+1),7,0))ATTACH_ID
+			FROM ATTACH
+			WHERE ROWNUM = 1),
 			#{prod_img_nm, jdbcType=VARCHAR},
 			#{prod_img_save_loc, jdbcType=VARCHAR},
-			#{prod_catal_nm, jdbcType=VARCHAR},
 			sysdate
-			)	
+		)
+		<selectKey keyProperty="img_seq" resultType="String" order="AFTER">
+			SELECT /*+INDEX_DESC(ATTACH PK_ATTACH)*/
+				ATTACH_ID
+			FROM ATTACH
+			WHERE ROWNUM = 1
+		</selectKey>
 	</update>
 	
+	<update id="catalFileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		insert into ATTACH(
+			ATTACH_ID,
+			FILE_ROOT,
+			FILE_NM
+		)VALUES(
+			(SELECT /*+INDEX_DESC(ATTACH PK_ATTACH)*/
+				DECODE(MAX(ATTACH_ID),NULL,'ATT0000001',SUBSTR(MAX(ATTACH_ID),1,3)||LPAD((SUBSTR(MAX(ATTACH_ID),4,7)+1),7,0))ATTACH_ID
+			FROM ATTACH
+			WHERE ROWNUM = 1),
+			#{prod_catal_nm, jdbcType=VARCHAR},
+			#{prod_catal_save_loc, jdbcType=VARCHAR},
+		)
+		<selectKey keyProperty="catal_seq" resultType="String" order="AFTER">
+			SELECT /*+INDEX_DESC(ATTACH PK_ATTACH)*/
+				ATTACH_ID
+			FROM ATTACH
+			WHERE ROWNUM = 1
+		</selectKey>
+	</update>
 	
+	<update id="prodImgFileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		insert into PROD_OF_ATTACH(
+			PROD_ID,
+			ATTACH_ID,
+			FILE_FLG,
+			FST_REG_ID,
+			FIN_MDFY_ID
+		)VALUES(
+			#{prod_seq},
+			#{img_seq},
+			'0001',
+			#{fst_reg_id},
+			#{fst_reg_id}
+		)
+	</update>
 	
+	<update id="prodCatalFileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		insert into PROD_OF_ATTACH(
+			PROD_ID,
+			ATTACH_ID,
+			FILE_FLG,
+			FST_REG_ID,
+			FIN_MDFY_ID
+		)VALUES(
+			#{prod_seq},
+			#{catal_seq},
+			'0002',
+			#{fst_reg_id},
+			#{fst_reg_id}
+		)
+	</update>
+	
+	<update id="prodCatalFileUpdateData" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		UPDATE ATTACH
+		SET
+			FILE_ROOT = #{prod_catal_nm, jdbcType=VARCHAR},
+			FILE_NM = #{prod_catal_save_loc, jdbcType=VARCHAR},
+			REG_D = sysdate	
+		WHERE ATTACH_ID=#{attach_id}	
+	</update>
+	
+	<update id="prodImgFileUpdateData" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		UPDATE ATTACH
+		SET
+			FILE_ROOT = #{prod_img_nm, jdbcType=VARCHAR},
+			FILE_NM = #{prod_img_save_loc, jdbcType=VARCHAR},
+			REG_D = sysdate
+		WHERE ATTACH_ID=#{attach_id}
+	</update>
 	
 	
 </mapper>

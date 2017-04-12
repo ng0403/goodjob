@@ -38,8 +38,8 @@ public class ProdDaoImpl implements ProdDao{
 	}
 	
 	@Override
-	public void prodUpdateData(ProdVO dto) {
-		sqlSession.update("prod.prodUpdate", dto);
+	public int prodUpdateData(ProdVO dto) {
+		return sqlSession.update("prod.prodUpdate", dto);
 	}
 	
 	@Override
@@ -93,15 +93,38 @@ public class ProdDaoImpl implements ProdDao{
 	}
 
 	@Override
-	public int fileInsert(ProdVO dto) {
+	public int imgFileInsert(ProdVO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("prod.fileInsert", dto);
+		return sqlSession.insert("prod.imgFileInsert", dto);
 	}
 
 	@Override
-	public int prodFileInsert(ProdVO dto) {
+	public int prodImgFileInsert(ProdVO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("prod.prodFileInsert", dto);
+		return sqlSession.insert("prod.prodImgFileInsert", dto);
+	}
+
+	@Override
+	public int catalFileInsert(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("prod.catalFileInsert", dto);
+	}
+	@Override
+	public int prodCatalFileInsert(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("prod.prodCatalFileInsert", dto);
+	}
+
+	@Override
+	public int imgFileUpdateData(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("prod.prodCatalFileUpdateData", dto);
+	}
+
+	@Override
+	public int catalFileUpdateData(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("prod.prodCatalFileUpdateData", dto);
 	}
 
 }

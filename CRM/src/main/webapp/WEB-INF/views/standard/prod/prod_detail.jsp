@@ -5,6 +5,7 @@
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
+<c:set var="flg" value="${flg }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
@@ -30,7 +31,7 @@ function prodInserts(){
 }
 </script> -->
 </head>
-<body onload='javscript:if(${flg eq "add"}) prodAddFormLoad();'>
+<body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	<div id="write_est">
@@ -78,7 +79,7 @@ function prodInserts(){
 								<select name="prod_div_cd" id="prod_div_cd" class="code" style="display:none">
 									<c:forEach var="pscl" items="${prodServicecCodeList}">
 										<c:choose>
-											<c:when test="${prodDto.prdo_div_cd eq pscl.code }">
+											<c:when test="${prodDto.prod_div_cd eq pscl.code }">
 												<option value="${pscl.code}" selected="selected">${pscl.cd_nm}</option>
 											</c:when>
 											<c:otherwise>
@@ -96,7 +97,7 @@ function prodInserts(){
 							    <input type="button" name="prod_cate" value="카테고리" class="prod_cate" id="prod_cate" disabled>
 							</td>
 							<th>판매가</th>
-							<td><input type="text" name="prod_sales_amt" id="prod_sales_amt" class="customer_txt" value="${prodDto.prod_price}" disabled> 
+							<td><input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled> 
 							</td>							
 						</tr>				
 						<tr>							

@@ -1,9 +1,12 @@
 $(function(){
 	var ctx = $('#ctx').val();
+	var flg = $('#flg').val();
+	if(flg == "add") prodAddFormLoad();
+	else if(flg == "detail") $('#prodSaveBtn').hide();
 	prodMakeBlock();
 	prodAddBtn(ctx);
 	prodCancelBtn(ctx);
-	prodUpdateBtn(ctx);
+//	prodUpdateBtn(ctx);
 	prodSaveBtn(ctx);
 	prodChange(ctx);
 	prodModifyBtn(ctx);
@@ -20,9 +23,10 @@ function actAddBtn(ctx){
 	}); 
 }*/
 function prodCancelBtn(ctx){
-	$("#prodCancelBtn").click(function() {      
-		prodFormClr();
-		prodFormblock();
+	$("#prodCancelBtn").click(function() {
+		location.href="/prod";
+//		prodFormClr();
+//		prodFormblock();
 	});	
 }
 
@@ -266,7 +270,7 @@ function prodIdClick(prod_id) {
 //				$("#prod_div_cd").val(data.prod_div_cd);
 //				$("#cate_id").val(data.cate_id);
 //				$("#cate_nm").val(data.cate_nm);
-//				$("#prod_sales_amt").val(data.prod_sales_amt);
+//				$("#prod_price").val(data.prod_price);
 //				$("#prod_dtl_cont").val(data.prod_dtl_cont);
 //				$("#prod_url").val(data.prod_url);
 //				$("#prod_nm").prop("disabled",true);
@@ -275,7 +279,7 @@ function prodIdClick(prod_id) {
 //				$("#cate_id").prop("disabled",true);
 //				$("#cate_nm").prop("disabled",true);
 //				$("#prod_cate").prop("disabled",true);
-//				$("#prod_sales_amt").prop("disabled",true);
+//				$("#prod_price").prop("disabled",true);
 //				$("#prod_dtl_cont").prop("disabled",true);				
 //				$("#prod_url").prop("disabled",true);				
 //				$("#prod_img").prop("disabled",true);
@@ -320,8 +324,8 @@ function prodModifyBtn(ctx){
 			$("#prod_div_cd").prop("disabled",false);
 			$("#prod_div_cd").css("display",'inline');
 			$("#prod_div_cd").css('visibility','');
-			$("#cate_id").prop("disabled",false);
-			$("#cate_nm").prop("disabled",false);
+//			$("#cate_id").prop("disabled",false);
+//			$("#cate_nm").prop("disabled",false);
 			$("#prod_cate").prop("disabled",false);
 			$("#prod_price").prop("disabled",false);
 			$("#prod_dtl_cont").prop("disabled",false);
@@ -330,11 +334,12 @@ function prodModifyBtn(ctx){
 	
 			$("#prod_img").prop("disabled",false);
 			$("#prod_catal").prop("disabled",false);
+			$('#prodModifyBtn').hide();
+			$('#prodSaveBtn').show();
+//			$('#prodUpdateBtn').remove();
+//			$('#prodSaveBtn').remove();
 			
-			$('#prodUpdateBtn').remove();
-			$('#prodSaveBtn').remove();
-			
-			$('.act_tab_bt_div').append('<input type="button" id="prodUpdateBtn" class="act_bt" value="저장"/>');
+//			$('.act_tab_bt_div').append('<input type="button" id="prodUpdateBtn" class="btn-success-tel" value="저장"/>');
 
 			$('#image_change').css('display','inline');
 			$('#catal_change').css('display','inline');
@@ -344,7 +349,7 @@ function prodModifyBtn(ctx){
 */
 			
 		}else{
-			alert('상품을 선택해주세요.');		
+			alert('상품을 선택해주세요.');
 		}
 		
 	});
@@ -362,15 +367,16 @@ function prodAddBtn(ctx){
 	});
 }
 function prodAddFormLoad(){
+	
 	$("#prodModifyBtn").hide();
 	$("#prod_nm").prop("disabled",false);
 	$("#prod_div_cd").prop("disabled",false);
 	$("#prod_div_cd").css("display",'inline');
 	$("#prod_div_cd").css('visibility','');
-	$("#cate_id").prop("disabled",false);
-	$("#cate_nm").prop("disabled",false);
+//	$("#cate_id").prop("disabled",false);
+//	$("#cate_nm").prop("disabled",false);
 	$("#prod_cate").prop("disabled",false);
-	$("#prod_sales_amt").prop("disabled",false);
+	$("#prod_price").prop("disabled",false);
 	$("#prod_dtl_cont").prop("disabled",false);
 	$("#prod_url").prop("disabled",false);
 	$("#prod_div_cd_view").prop("hidden",true);
@@ -400,50 +406,50 @@ function prodChange(ctx) {
 		$('#catal_change').css('disable','none');
 	});	
 }
-function prodUpdateBtn(ctx){
-	$(".act_tab_bt_div").delegate('#prodUpdateBtn','click', function() {	
-		var data = new FormData();
-		$("#prod_id").prop("hidden",false);
-		var prod_id = $("#prod_id").val();		
-		$("#prod_id").prop("hidden",true);
-				
-		data.append("prod_id",$("#prod_id").val());
-		data.append("cate_id",$("#cate_id").val());
-		data.append("prod_nm",$("#prod_nm").val());
-		data.append("prod_div_cd",$("#prod_div_cd").val());
-		data.append("prod_price",$("#prod_price").val());
-		data.append("prod_url",$("#prod_url").val());
-		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
-		data.append("prod_img",$("#prod_img").get(0).files[0]);
-		data.append("prod_catal",$("#prod_catal").get(0).files[0]);	
-		
-		
-		$.ajax({
-			url: ctx+'/prodUpdate',
-			data:data,
-			type:'POST',
-			mimeType:"multipart/form-data",
-			processData:false,
-			contentType:false,
-			success: function(data) {
-				alert("성공 : ");
-			}
-			
-			,error: function(request,status,error) {
-				alert("오류");
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			} 
-	 	});
-		prodFormblock();
-		prodFormClr();
-		
-		
-	});
-}
+//function prodUpdateBtn(ctx){
+//	$(".act_tab_bt_div").delegate('#prodUpdateBtn','click', function() {	
+//		var data = new FormData();
+//		$("#prod_id").prop("hidden",false);
+//		var prod_id = $("#prod_id").val();		
+//		$("#prod_id").prop("hidden",true);
+//				
+//		data.append("prod_id",$("#prod_id").val());
+//		data.append("cate_id",$("#cate_id").val());
+//		data.append("prod_nm",$("#prod_nm").val());
+//		data.append("prod_div_cd",$("#prod_div_cd").val());
+//		data.append("prod_price",$("#prod_price").val());
+//		data.append("prod_url",$("#prod_url").val());
+//		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
+//		data.append("prod_img",$("#prod_img").get(0).files[0]);
+//		data.append("prod_catal",$("#prod_catal").get(0).files[0]);	
+//		
+//		
+//		$.ajax({
+//			url: ctx+'/prodUpdate',
+//			data:data,
+//			type:'POST',
+//			mimeType:"multipart/form-data",
+//			processData:false,
+//			contentType:false,
+//			success: function(data) {
+//				alert("성공 : ");
+//			}
+//			
+//			,error: function(request,status,error) {
+//				alert("오류");
+//				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//			} 
+//	 	});
+//		prodFormblock();
+//		prodFormClr();
+//		
+//		
+//	});
+//}
 function prodSaveBtn(){
 	var flg = $("#flg").val();
 	
-	$(".act_tab_bt_div").on('#prodSaveBtn','click', function() {
+	$(".act_tab_bt_div").on('click','#prodSaveBtn', function() {
 		if(flg == "add"){
 			$("#prodForm").attr("action", "prodFileUpload");
 			$("#prodForm").submit();
@@ -457,7 +463,7 @@ function prodSaveBtn(){
 //		data.append("cate_id",$("#cate_id").val());
 //		data.append("prod_nm",$("#prod_nm").val());
 //		data.append("prod_div_cd",$("#prod_div_cd").val());
-//		data.append("prod_sales_amt",$("#prod_sales_amt").val());
+//		data.append("prod_price",$("#prod_price").val());
 //		data.append("prod_url",$("#prod_url").val());
 //		data.append("prod_dtl_cont",$("#prod_dtl_cont").text());
 //		data.append("prod_img",$("#prod_img").get(0).files[0]);

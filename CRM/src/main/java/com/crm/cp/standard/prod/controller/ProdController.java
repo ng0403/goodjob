@@ -45,58 +45,58 @@ public class ProdController {
 	private ProdFileManager fileManager;
 	
 
-	@RequestMapping(value="/prodInsert",method=RequestMethod.POST)
-	@ResponseBody
-	public String prodInsert(
-			HttpSession session,
-			HttpServletRequest req,
-			MultipartRequest prod_img,
-			MultipartRequest prod_cate,			 
-			@RequestBody ProdVO dto       
-			)throws Exception{		
-		String loginid = (String)session.getAttribute("user");
-		if(loginid==null){
-			return "redirect:/";
-		}
-		System.out.println(loginid+"님 로그인중");
-		System.out.println(""+dto.getProd_nm()+"\n"+dto.getCate_nm());
-		
-		// 이미지 업로드
-		String imgroot = session.getServletContext().getRealPath("/");
-		String imgpath =  imgroot + File.separator + "pds" + File.separator + "prodImg";
-		// 카탈로그 업로드
-		String catalroot = session.getServletContext().getRealPath("/");
-		String catalpath =  catalroot + File.separator + "pds" + File.separator + "prodCatal";
-		
-		if(!dto.getProd_img().isEmpty()){
-			String newFilename = fileManager.doFileUpload(dto.getProd_img(), imgpath);
-			
-			if(newFilename != null){
-				dto.setProd_img_nm(dto.getProd_img().getOriginalFilename());;
-				dto.setProd_img_save_loc(newFilename);
-			}
-		}
-		
-		if(!dto.getProd_catal().isEmpty()){
-			String newFilename = fileManager.doFileUpload(dto.getProd_catal(), catalpath);
-			
-			if(newFilename != null){
-				dto.setProd_catal_nm(dto.getProd_catal().getOriginalFilename());;
-				dto.setProd_catal_save_loc(newFilename);
-			}
-		}		
-		dto.setFin_mdfy_id(loginid);
-		dto.setFst_reg_id(loginid);
-		
-		
-		
-		
-		System.out.println("업로드 테스트"+dto.toString());
-		
-		prodService.prodInsert(dto);
-		
-		return "redirect:/prod";
-	}
+//	@RequestMapping(value="/prodInsert",method=RequestMethod.POST)
+//	@ResponseBody
+//	public String prodInsert(
+//			HttpSession session,
+//			HttpServletRequest req,
+//			MultipartRequest prod_img,
+//			MultipartRequest prod_cate,			 
+//			@RequestBody ProdVO dto       
+//			)throws Exception{		
+//		String loginid = (String)session.getAttribute("user");
+//		if(loginid==null){
+//			return "redirect:/";
+//		}
+//		System.out.println(loginid+"님 로그인중");
+//		System.out.println(""+dto.getProd_nm()+"\n"+dto.getCate_nm());
+//		
+//		// 이미지 업로드
+//		String imgroot = session.getServletContext().getRealPath("/");
+//		String imgpath =  imgroot + File.separator + "pds" + File.separator + "prodImg";
+//		// 카탈로그 업로드
+//		String catalroot = session.getServletContext().getRealPath("/");
+//		String catalpath =  catalroot + File.separator + "pds" + File.separator + "prodCatal";
+//		
+//		if(!dto.getProd_img().isEmpty()){
+//			String newFilename = fileManager.doFileUpload(dto.getProd_img(), imgpath);
+//			
+//			if(newFilename != null){
+//				dto.setProd_img_nm(dto.getProd_img().getOriginalFilename());;
+//				dto.setProd_img_save_loc(newFilename);
+//			}
+//		}
+//		
+//		if(!dto.getProd_catal().isEmpty()){
+//			String newFilename = fileManager.doFileUpload(dto.getProd_catal(), catalpath);
+//			
+//			if(newFilename != null){
+//				dto.setProd_catal_nm(dto.getProd_catal().getOriginalFilename());;
+//				dto.setProd_catal_save_loc(newFilename);
+//			}
+//		}		
+//		dto.setFin_mdfy_id(loginid);
+//		dto.setFst_reg_id(loginid);
+//		
+//		
+//		
+//		
+//		System.out.println("업로드 테스트"+dto.toString());
+//		
+//		prodService.prodInsert(dto);
+//		
+//		return "redirect:/prod";
+//	}
 	@RequestMapping(value="/prodFileUpload",method=RequestMethod.POST)
 	public String prodFileUpload(
 			HttpSession session,
@@ -316,7 +316,7 @@ public class ProdController {
 
 		mov.addObject("prodServicecCodeList",prodServicecCodeList);
 		mov.addObject("prodDto",dto);
-		mov.addObject("flg","Detail");
+		mov.addObject("flg","detail");
 		
 		return mov;
 	}
@@ -396,26 +396,26 @@ public class ProdController {
 		return mov;
 	}
 	
-	//상품 수정
-	@RequestMapping(value="/prodMdfyForm")
-	public ModelAndView ProdMdfyForm(
-			HttpSession session,
-			@RequestParam(value="prod_id") String prod_id,
-			@RequestParam HashMap<String, Object> prodMap
-			) throws Exception{
-		
-		ModelAndView mov = new ModelAndView("prodDetail");
-		
-		ProdVO dto = prodService.prodRead(prod_id);
-		
-		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
-
-		mov.addObject("prodServicecCodeList",prodServicecCodeList);
-		mov.addObject("prodDto",dto);
-		mov.addObject("flg","Detail");
-		
-		return mov;
-	}	
+//	//상품 수정
+//	@RequestMapping(value="/prodMdfyForm")
+//	public ModelAndView ProdMdfyForm(
+//			HttpSession session,
+//			@RequestParam(value="prod_id") String prod_id,
+//			@RequestParam HashMap<String, Object> prodMap
+//			) throws Exception{
+//		
+//		ModelAndView mov = new ModelAndView("prodDetail");
+//		
+//		ProdVO dto = prodService.prodRead(prod_id);
+//		
+//		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
+//
+//		mov.addObject("prodServicecCodeList",prodServicecCodeList);
+//		mov.addObject("prodDto",dto);
+//		mov.addObject("flg","Detail");
+//		
+//		return mov;
+//	}	
 	
 	//상품카테고리리스트 팝업창 
 	@RequestMapping(value="/prodCateList" , method=RequestMethod.GET)

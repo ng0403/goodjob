@@ -14,7 +14,7 @@ public interface ProdDao {
 
 	int prodInsert(ProdVO dto);
 	
-	void prodUpdateData(ProdVO dto);
+	int prodUpdateData(ProdVO dto);
 	
 	ProdVO prodRead(String prod_id);
 	
@@ -36,8 +36,16 @@ public interface ProdDao {
 
 	List<Object> custcompList(Map<String, Object> map);
 
-	int fileInsert(ProdVO dto);
+	int imgFileInsert(ProdVO dto);
 
-	int prodFileInsert(ProdVO dto);
+	int prodImgFileInsert(ProdVO dto);
+
+	int catalFileInsert(ProdVO dto);
+
+	int prodCatalFileInsert(ProdVO dto);
+
+	int imgFileUpdateData(ProdVO dto);
+
+	int catalFileUpdateData(ProdVO dto);
 
 }

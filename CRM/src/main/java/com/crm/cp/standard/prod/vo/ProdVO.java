@@ -38,10 +38,32 @@ public class ProdVO {
 	String cd_grp_id;  //코드그룹ID 
 	String code;       //코드
 	
+	String prod_seq;
+	String img_seq;
+	String catal_seq;
+	
 	
 	
 	
 
+	public String getProd_seq() {
+		return prod_seq;
+	}
+	public void setProd_seq(String prod_seq) {
+		this.prod_seq = prod_seq;
+	}
+	public String getImg_seq() {
+		return img_seq;
+	}
+	public void setImg_seq(String img_seq) {
+		this.img_seq = img_seq;
+	}
+	public String getCatal_seq() {
+		return catal_seq;
+	}
+	public void setCatal_seq(String catal_seq) {
+		this.catal_seq = catal_seq;
+	}
 	public MultipartFile getProd_img() {
 		return prod_img;
 	}

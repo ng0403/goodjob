@@ -21,7 +21,15 @@ public class ProdServiceImpl implements ProdService{
 	
 	@Override
 	public void prodUpdate(ProdVO dto) {
-			prodDao.prodUpdateData(dto);
+		int result = prodDao.prodUpdateData(dto);
+		String imgFilename = dto.getProd_img_save_loc();
+		String catalFilename = dto.getProd_catal_save_loc();
+		if(imgFilename != null){
+			result += prodDao.imgFileUpdateData(dto);
+		}
+		if(catalFilename != null){
+			result += prodDao.catalFileUpdateData(dto);
+		}
 	}
 	
 	@Override
@@ -51,13 +59,29 @@ public class ProdServiceImpl implements ProdService{
 	@Override
 	public void prodInsert(ProdVO dto){	
 		int result = prodDao.prodInsert(dto);
-		if(result == 1){
-			result += prodDao.fileInsert(dto);
+		String imgFilename = dto.getProd_img_save_loc();
+		String catalFilename = dto.getProd_catal_save_loc();
+		if(imgFilename != null){
+			result += prodDao.imgFileInsert(dto);
+			if(result >= 2){
+				result += prodDao.prodImgFileInsert(dto);
+				result = 1;
+			}
 		}
-		if(result >= 2){
-			result += prodDao.prodFileInsert(dto);
-			result = 0;
+		if(catalFilename != null){
+			result += prodDao.catalFileInsert(dto);
+			if(result >= 2){
+				result += prodDao.prodCatalFileInsert(dto);
+				result = 0;
+			}
 		}
+//		if(result == 1){
+//			result += prodDao.fileInsert(dto);
+//		}
+//		if(result >= 2){
+//			result += prodDao.prodFileInsert(dto);
+//			result = 0;
+//		}
 	}
 	
 	@Override
