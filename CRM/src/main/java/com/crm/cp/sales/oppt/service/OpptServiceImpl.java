@@ -255,14 +255,22 @@ public class OpptServiceImpl implements OpptService {
 	}
 	//영업기회별 상품 상세정보
 	@Override
-	public List<OpptPrdtVO> opptPrdtDetail(String prdtId) {
-		System.out.println("영업기회별 상품 상세정보 prdtId : " + prdtId);
-		return dao.opptPrdtDetail(prdtId);
+	public List<OpptVO> opptPrdtDetail(String opptId) {
+		System.out.println("영업기회별 상품 상세정보 opptId : " + opptId);
+		return dao.opptPrdtDetail(opptId);
 	}
 	@Override
 	public int opptPrdtAdd(List<OpptVO> estList) {
 		System.out.println("영업기회상품 추가 Service opptPrdtList : " +estList );
 		return dao.opptPrdtAdd(estList);
+	}
+	//영업기회상품 삭제
+	@Override
+	public int opptPrdtDel(String sales_oppt_id) {
+		System.out.println("영업기회삭제 sales_oppt_id : " + sales_oppt_id);
+		int result = dao.opptPrdtDel(sales_oppt_id);
+		System.out.println("영업기회삭제 result : " + result);
+		return result;
 	}
 
 

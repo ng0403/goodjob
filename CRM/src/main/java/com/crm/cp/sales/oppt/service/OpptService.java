@@ -112,8 +112,10 @@ public interface OpptService {
 	//영업기회별 상품 리스트 
 	List<OpptPrdtVO> opptprdtList(String sales_oppt_id);
 	//영업기회별 상품 상세정보
-	List<OpptPrdtVO> opptPrdtDetail(String prdtId);
+	List<OpptVO> opptPrdtDetail(String opptId);
 	//영업기회별 상품 추가
 	int opptPrdtAdd(List<OpptVO> estList);
+	//영업기회상품 삭제
+	int opptPrdtDel(String sales_oppt_id);
 	
 }

@@ -89,7 +89,7 @@ $(document).ready(function(){
 							<td>
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
-								<input type="hidden" id="hlead_id" value="${opDetail.lead_id}">
+<%-- 								<input type="hidden" id="hlead_id" value="${opDetail.lead_id}"> --%>
 								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 																
@@ -201,16 +201,16 @@ $(document).ready(function(){
 					<table id="opptPrdttable" class="tabtable" style="text-align: center;">
 						<tbody id="opptPrdtbody">
 							<c:choose>
-								<c:when test="${not empty prodList}">
-									<c:forEach items="${prodList}" var="list">
+								<c:when test="${not empty opptPrdt}">
+									<c:forEach items="${opptPrdt}" var="list">
 										<tr id="priceline" class="${list.prod_id}">
 											<th style="width: 3%;">
 												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
 											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
 											<td style="width: 8%;">
-												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
-											<td style="width: 27%;" >${list.sales_price}</td>
+												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.prod_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
+											<td style="width: 27%;" >${list.prod_price}</td>
 											<td style="width: 15%;" >
 												<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
 												<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">

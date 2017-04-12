@@ -326,38 +326,34 @@ public class OpptDaoImpl implements OpptDao {
 	
 	//영업기회별 상품 상세정보 출력
 	@Override
-	public List<OpptPrdtVO> opptPrdtDetail(String prdtId) {
-		String prod_id = prdtId;
-		System.out.println("prod_id :" + prod_id);
-		List<OpptPrdtVO> result = sqlsession.selectList("oppt.opptPrdtDetail", prod_id);
+	public List<OpptVO> opptPrdtDetail(String opptId) {
+		String prod_id = opptId;
+		System.out.println("opptId :" + prod_id);
+		List<OpptVO> result = sqlsession.selectList("oppt.opptPrdtDetail", prod_id);
 		System.out.println("영업기회별 상품 상세정보 DAOImpl : " + result);
-//		List<OpptPrdtVO> prod = sqlsession.selectList("oppt.opptPrdtProdList",
-//				prod_id);
-//		prod.add(detail);
 		return result;
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public int opptPrdtAdd(List<OpptVO> estList) {
 		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +estList );
 		int result = 0;
 
-		result += sqlsession.insert("oppt.opptprdtInsert", ((List<OpptVO>) estList).get(0));
 		System.out.println("result 1: " + result);
-		if (result == 1) {
-
-			for (int i = 1; i < ((List<OpptVO>) estList).size(); i++) {
-				System.out.println("opptEstimdd : " + ((List<OpptVO>) estList).get(i).toString());
-				((List<OpptVO>) estList).get(i).setEstim_seq(((List<OpptVO>) estList).get(0).getEstim_seq());
-//				result += sqlsession.insert("oppt.estimateListAdd",	opptPrdtList.get(i));
+			for (int i = 0; i < estList.size(); i++) {
+				result += sqlsession.insert("oppt.opptprdtInsert",  estList.get(i));
 				System.out.println("result 2: " + result);
-
 			}
-		}
-
-		
-
 		System.out.println("result sum: " + result);
+		return result;
+	}
+	
+	//영업기회상품 삭제
+	@Override
+	public int opptPrdtDel(String sales_oppt_id) {
+		System.out.println("영업기회상품 삭제 sales_oppt_id : " + sales_oppt_id);
+		int result = sqlsession.delete("oppt.opptPrdtDel", sales_oppt_id);
+		System.out.println("영업기회상품 삭제 result : " + result);
 		return result;
 	}
 

@@ -113,6 +113,8 @@ public class OpptController {
 		int addFlag = 0;
 		
 		if(opptId == null){
+			System.out.println("신규추가컨트롤러");
+
 			addFlag = 0;
 			ModelAndView mov = new ModelAndView("openAdd");
 			
@@ -152,11 +154,14 @@ public class OpptController {
 			return mov;
 			
 		}else {
+			System.out.println("상세정보컨트롤러");
 			ModelAndView mov = new ModelAndView("opptDetail");
 			addFlag = 1;
 			
 			map.put("opptId", opptId);
 			OpptVO detail = service.opptDetail(opptId);
+			List<OpptVO> opptPrdt = service.opptPrdtDetail(opptId);
+			System.out.println("opptPrdt : " + opptPrdt);
 			System.out.println("detail : " + detail);
 			List<ActVO> actList = service.actList(map);
 			System.out.println("actList : " + actList);
@@ -189,6 +194,7 @@ public class OpptController {
 			mov.addObject("eduList", eduList);
 			mov.addObject("elclist", elclist);
 			mov.addObject("eduCode", eduCode);
+			mov.addObject("opptPrdt", opptPrdt);
 			mov.addObject("otllist", otllist);
 			mov.addObject("menuList", menuList);
 			mov.addObject("actList", actList);
@@ -237,8 +243,6 @@ public class OpptController {
 		map.put("endRow", page.getEndRow() + "");
 
 		List<OpptVO> list = service.opptList(map);
-//		List<OpptChartVO> C_oppt_status = service.C_oppt_status();
-//		System.out.println("C_oppt_status Ajax: " + C_oppt_status);
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("oplist", list);
@@ -250,15 +254,6 @@ public class OpptController {
 
 		return result;
 	}
-
-
-//	// 영업기회 상세정보 ajax
-//	@RequestMapping(value = "/opptDetail", method = RequestMethod.POST)
-//	@ResponseBody
-//	OpptVO detail(String opptId) {
-//		OpptVO detail = service.opptDetail(opptId);
-//		return detail;
-//	}
 
 	// 영업활동 tab list ajax
 	@RequestMapping(value = "/opptSalesActiveList", method = RequestMethod.GET)
@@ -283,8 +278,13 @@ public class OpptController {
 
 	// 영업기회 수정 ajax
 	@RequestMapping(value = "/opptModify", method = RequestMethod.POST)
-	@ResponseBody ModelAndView opptModify(HttpSession session, OpptVO detail, int pageNum) {
+	@ResponseBody ModelAndView opptModify(HttpSession session, OpptVO detail, int pageNum
+			, @RequestParam(value="est_list[]",required=false) List<String> est_list
+			, String sales_oppt_id) {
+		int delOppt = service.opptPrdtDel(sales_oppt_id);
+		System.out.println("영업기회상품 삭제 결과 : " + delOppt);
 		System.out.println("Detail Edit Controller");
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		detail.setFin_mdfy_id(session.getAttribute("user").toString());
 		System.out.println("detail : " + detail);
 		int result = service.opptModify(detail);
@@ -292,7 +292,23 @@ public class OpptController {
 		ModelAndView mov = new ModelAndView("oppt");
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
 		int result2 = service.addOpptStep(detail);//영업기회단계리스트추가
-		System.out.println("영업기회단계리스트수정추가 result2 : " + result2);
+		for(int i=0 ; i< est_list.size(); i++){
+			OpptVO vo = new OpptVO();
+			vo.setSales_oppt_id(detail.getSales_oppt_id());
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			vo.setOppt_seq(detail.getOppt_seq());
+			estList.add(vo);
+		}
+		int result1 = service.opptPrdtAdd(estList);
+		System.out.println("영업기회상품 편집추가 result : " + result1);
+		
+		System.out.println("영업기회단계리스트수정추가 result : " + result2);
 		Map<String, Object> opptMap = new HashMap<String, Object>();
 		opptMap.put("opptVO", opptVO);
 		opptMap.put("pageNum", pageNum);
@@ -315,6 +331,7 @@ public class OpptController {
 		int result2 = service.addOpptStep(add);//영업기회단계리스트추가
 		for(int i=0 ; i< est_list.size(); i++){
 			OpptVO vo = new OpptVO();
+			vo.setSales_oppt_id("");
 			vo.setProd_id(est_list.get(i));
 			vo.setProd_nm(est_list.get(++i));
 			vo.setEstim_qty(est_list.get(++i));
@@ -325,11 +342,11 @@ public class OpptController {
 			vo.setOppt_seq(add.getOppt_seq());
 			estList.add(vo);
 		}
-		
 		int result1 = service.opptPrdtAdd(estList);
+		System.out.println("영업기회 상품 추가 result : " + result1);
+		
 		System.out.println("영업기회 추가 result : " + result);
 		System.out.println("영업기회 단계 이력 추가 result : " + result2);
-		System.out.println("영업기회 상품 추가 result : " + result1);
 		
 		return result;
 	}
@@ -692,8 +709,8 @@ public class OpptController {
 			eduCode.add(est.getCd_nm());
 		}
 		
-		List<OpptPrdtVO> prod = service.opptPrdtDetail(prdtId);
-		OpptPrdtVO detail = prod.get(prod.size() - 1);
+		List<OpptVO> prod = service.opptPrdtDetail(prdtId);
+		OpptVO detail = prod.get(prod.size() - 1);
 		prod.remove(prod.size() - 1);
 		mov.addObject("elcList", elcList);
 		mov.addObject("prod_id", detail.getProd_id());

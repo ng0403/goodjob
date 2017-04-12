@@ -119,6 +119,10 @@ function opptMdfyBtn() {
 	//버튼 활성화
 	$("#opptDetail #cust_nm,#opptDetail #expt_fin_d").attr("readonly",true);
 	$("#customer").attr("disabled",false);
+	$("#opptPrdtbody tr").each(function(){
+		$("#discount").attr("readonly",false);
+	});
+	$("#unit").attr("disabled",false);
 	$("#opptProdListBtn").attr("disabled",false);
 	$("#opptProdDelete").attr("disabled",false);
 	$("#memo").attr("style","resize: none; background-color:white;");
@@ -287,7 +291,6 @@ function opptAdd(){
 		},
 		datatype : 'json',
 		success:function(result){
-//			opptPrdtAdd();
 			alert("영업기회가 추가되었습니다.");
 			location.href = ctx + "/oppt";
 		},
@@ -295,98 +298,7 @@ function opptAdd(){
 			alert("error : " + request.status);
 		}
 	});
-}
-//영업기회상품테이블  추가 함수
-function opptPrdtAdd(){
-//	alert("상품추가");
-//	var prod_id = [];
-//	var prod_nm = [];
-//	var sales_oppt_id = $('#sales_oppt_id').val();
-//	var estim_qty = [];
-//	var prod_price = $('#prod_price').text();
-//	var sales_price = [];
-//	var discount= [];
-//	var sup_price = [];
-//	var cust_id = $('#cust_id').val();
-//	var est_list = [];
-//	var discount_unit_cd = [];
-//	var unit_check =0;
-	
-//	$("#opptPrdtbody tr[class!=empty]").each(function(){
-//		cd  = $(this).children().eq(4).children().eq(1).val();
-//		if(cd =='0'){
-//			unit_check++;
-//		}
-//		discount_unit_cd.push(cd);
-//		prod_id.push($(this).children().children().val());
-//		prod_nm.push($(this).children().eq(1).text());
-//		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
-//		sales_price.push(uncomma($(this).children().eq(3).text()));
-//		discount.push(uncomma($(this).children().eq(4).children().val()));
-//		sup_price.push(uncomma($(this).children().eq(5).text()));
-//		est_list.push(prod_id.pop());
-//		est_list.push(prod_nm.pop());
-//		est_list.push(estim_qty.pop());
-//		est_list.push(sales_price.pop());
-//		est_list.push(discount.pop());
-//		est_list.push(sup_price.pop());
-//		est_list.push(discount_unit_cd.pop());
-//	});
 
-//	if(unit_check > 0 ){
-//		alert("할인 단위를 선택해 주세요.");
-//		return false;
-//	}
-//	if(est_list.length==0){
-//		alert("상품을 추가해 주세요");
-//		return false;
-//	}
-//	var $form = $("<form>");
-//	$form.attr({
-//		"action":"/opptPrdtAdd",
-//		"method":"post",
-//		"id":"opptPrdtAdd"
-//	})
-//	
-//	var $cust_id = $("<input>");
-//	$cust_id.attr({
-//		"type":"hidden",
-//		"name":"cust_id",
-//		"value":cust_id
-//	})
-//	var $sales_oppt_id = $("<input>");
-//	$sales_oppt_id.attr({
-//		"type":"hidden",
-//		"name":"sales_oppt_id",
-//		"value":sales_oppt_id
-//	})
-//	var $est_list = $("<input>");
-//	$est_list.attr({
-//		"type":"hidden",
-//		"name":"est_list",
-//		"id":"est_list",
-//		"value":est_list
-//	})
-//	$form.append($cust_id).append($sales_oppt_id).append($est_list);
-//
-//	$("body").append($form);
-//	$form.submit();
-//	$.ajax({
-//		url : ctx+'/opptPrdtAdd',
-//		dataType : 'json',
-//		data : {
-//			cust_id : cust_id,
-//			sales_oppt_id : sales_oppt_id,
-//			est_list : est_list
-//		},
-//		success:function(){
-//			alert("정상적으로 등록되었습니다.");
-//			location.href = ctx + "/oppt";
-//		},
-//		error:function(request){
-//			alert("error : " + request.status)
-//		}
-//	});
 }
 //영업기회 상세정보 수정 함수
 function opptModify(){
@@ -404,7 +316,17 @@ function opptModify(){
 	var cust_nm = $("#cust_nm").val();
 	var memo = $("#memo").val();
 	var pageNum = 1;/*$("#pageNum").val();*/
-	
+	alert("상품추가");
+	var prod_id = [];
+	var prod_nm = [];
+	var estim_qty = [];
+	var prod_price = $('#prod_price').text();
+	var sales_price = [];
+	var discount= [];
+	var sup_price = [];
+	var est_list = [];
+	var discount_unit_cd = [];
+	var unit_check =0;
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
 		return false;
@@ -417,9 +339,6 @@ function opptModify(){
 	}else if(sales_lev_cd=="0" || sales_lev_cd==null){
 		alert("영업단계를 선택해 주세요.");
 		return false;
-//	}else if(expt_sales_amt=="" || expt_sales_amt==null){
-//		alert("예상 매출액을 입력해 주세요");
-//		return false;
 	}else if(sales_lev_cd=="" || sales_lev_cd==null){
 		alert("예상마감일자를 선택해 주세요.");
 		return false;
@@ -427,6 +346,27 @@ function opptModify(){
 		alert("가능성을 선택해 주세요.");
 		return false;
 	}
+	$("#opptPrdtbody tr[class!=empty]").each(function(){
+		cd  = $(this).children().eq(4).children().eq(1).val();
+		if(cd =='0'){
+			unit_check++;
+		}
+		discount_unit_cd.push(cd);
+		prod_id.push($(this).children().children().val());
+		prod_nm.push($(this).children().eq(1).text());
+		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
+		sales_price.push(uncomma($(this).children().eq(3).text()));
+		discount.push(uncomma($(this).children().eq(4).children().val()));
+		sup_price.push(uncomma($(this).children().eq(5).text()));
+		est_list.push(prod_id.pop());
+		est_list.push(prod_nm.pop());
+		est_list.push(estim_qty.pop());
+		est_list.push(sales_price.pop());
+		est_list.push(discount.pop());
+		est_list.push(sup_price.pop());
+		est_list.push(discount_unit_cd.pop());
+	});
+	
 	var ctx = $("#ctx").val();
 	$.ajax({
 		type : 'post',
@@ -440,12 +380,15 @@ function opptModify(){
 			expt_fin_d : expt_fin_d,
 			psblty_rate : psblty_rate,
 			sales_oppt_stat_cd : sales_oppt_stat_cd,
-			memo : memo
+			memo : memo,
+			psblty_rate : psblty_rate,
+			sales_oppt_stat_cd : sales_oppt_stat_cd,
+			est_list : est_list
 		},
 		datatype : 'json',
 		url : ctx + '/opptModify',
 		success:function(result){
-			opptPrdtModify();
+//			opptPrdtModify();
 			alert("수정되었습니다.");
 			
 			location.href= ctx + "/oppt";
@@ -959,7 +902,7 @@ function viewSalesActive(opptId){
 	}
 	//상품 삭제
 	function prodDelete(){
-		$("#prodDelete").click(function(){
+		$("#opptProdDelete").click(function(){
 			if(confirm("삭제 하시겠습니까? ")){
 				$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
 					var classVal =  $(this).val();
@@ -969,7 +912,7 @@ function viewSalesActive(opptId){
 						opptProdDeleteEstimId.push($('#estim_id').val());
 					}
 				});
-					prodChange();	
+					opptProdChange();	
 			}
 		});
 	}
@@ -999,25 +942,7 @@ function viewSalesActive(opptId){
 	    	event.target.value = event.target.value.replace(/[^0-9]/g, "");
 	    }
 	}
-	//상품 목록 삭제
-	function prodDelete(){
-		$("#opptProdDelete").click(function(){
-			if(confirm("삭제 하시겠습니까? ")){
-				var estimId = $('#estim_id').val();
-				$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
-					var classVal =  $(this).val();
-					$("."+classVal).remove();
-					
-					if($('#flg').val()=='detail'){
-						
-						opptProdDeleteProdId.push(classVal);
-						opptProdDeleteEstimId.push(estimId);
-					}
-				});
-					opptProdChange();	
-			}
-		});
-	}
+
 	function inputCustNm(custNm,custId){
 		
 		$('#cust_nm').val(custNm);

@@ -23,13 +23,15 @@ $(function(){
 	prodallCheck();
 	prodDelete();
 	opptProdNmSelect(ctx);
+	opptProdChange();
+	prodDelete();
 //	startCalendar(ctx);
 });	
 
 /*견적 상품목록 수정에 사용되는 변수*/
 var opptProdAddId = [];   		//추가된 상품의 상품Id List
 var opptProdDeleteProdId = [];	//삭제된 상품의 상품Id List
-var opptProdDeleteEstimId = []; //삭제된 상품에 견적Id List
+var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
 
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
@@ -238,17 +240,17 @@ function prodallCheck(){
 }
 //상품 목록 삭제
 function prodDelete(){
-	$("#prodDelete").click(function(){
+	$("#opptProdDelete").click(function(){
 		if(confirm("삭제 하시겠습니까? ")){
 			var estimId = $('#estim_id').val();
-			$("#estimatetbody input[type=checkbox]:checked").each( function(){
+			$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
 				var classVal =  $(this).val();
 				$("."+classVal).remove();
 				
 				if($('#flg').val()=='detail'){
 					
 					opptProdDeleteProdId.push(classVal);
-					opptProdDeleteEstimId.push(estimId);
+					opptProdDeleteOpptId.push(estimId);
 				}
 			});
 				opptProdChange();	
