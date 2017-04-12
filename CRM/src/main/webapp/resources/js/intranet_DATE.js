@@ -965,7 +965,7 @@ function addHoliday(date){
 	for(var i = 0 ; i < aHoliday.length ; i ++){
 		var temp = aHoliday[i].split("/");
 		if(temp[3] == '설날'){
-			$('#schcalendar').fullCalendar( 'renderEvent',{title  : temp[3],start  : new Date(temp[0],(parseInt(temp[1])-1),temp[2]),end : new Date(temp[0],(parseInt(temp[1])-1),parseInt(temp[2])+2),color:'red'} );
+			$('#schcalendar').fullCalendar( 'renderEvent', {title  : temp[3], start  : new Date(temp[0], (parseInt(temp[1])-1), temp[2]), end : new Date(temp[0], (parseInt(temp[1])-1), parseInt(temp[2])+2), color:'red'} );
 		}else if(temp[3] == '추석'){
 			$('#schcalendar').fullCalendar( 'renderEvent',{title  : temp[3],start  : new Date(temp[0],(parseInt(temp[1])-1),temp[2]),end : new Date(temp[0],(parseInt(temp[1])-1),parseInt(temp[2])+2),color:'red'} );
 		}else if(temp[3] != null ){
@@ -987,11 +987,14 @@ function getPayDay(){
 	var m = calDate.getMonth();
 	var d = 25;
 	var payday = new Date(y,m,d);
+	
 	if(yy != y){
 		gfnGetHolidays(y);
 		yy = y;
 	}
+	
 	addHoliday(new Date(y,m,d));
+	
 	if(payday.getDay() == 0){
 		d = d-2;
 	}else if(payday.getDay() == 6){
@@ -1000,5 +1003,26 @@ function getPayDay(){
 	while(isHoliday(new Date(y,m,d))){
 		d = d-1;
 	}
-	$('#schcalendar').fullCalendar( 'renderEvent', {title:'월급날', start:new Date(y,m,d), color:'red'} );
+	//$('#schcalendar').fullCalendar( 'renderEvent', {title:'월급날', start:new Date(y,m,d), color:'red'} );
 }
+
+/**
+ * 일정 계산
+ * */
+function getSchedule()
+{
+	var calDate = $('#schcalendar').fullCalendar('getDate');
+	
+	alert(calDate);
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -55,27 +55,14 @@ $(function(){
 				type : "POST",
 				dataType : "json",
 				success: function(data) {
-					alert("data : " + data.actSchList.length);
-	            	console.log(data);
-					getPayDay();
+	            	getPayDay();
 	            	
-	                var events = [];
-	                
-	                for(var i = 0 ; i < data.length ; i ++){
-	                	var color;
-	                	var textColor;
-	                	var borderColor;
-	                	
-	                	events.push({
-	                        title: data[i].sales_actvy_nm,
-	                        start: new Date(data[i].strt_t),
-	                        end : new Date(data[i].end_t),
-	                        color : color,
-	                        textColor : textColor,
-	                        borderColor:borderColor
-	                    });
-	                }
-	                //callback(events);
+	            	for(var i=0; i<data.actSchList.length; i++)
+	            	{
+	            		//console.log(data.actSchList[i].SALES_ACTVY_NM);
+	            		$('#schcalendar').fullCalendar( 'renderEvent', {title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D), color:'blue'} );
+	            	}
+
 	            },
 	            error: function(data){
 	            	alert("실패 ");
