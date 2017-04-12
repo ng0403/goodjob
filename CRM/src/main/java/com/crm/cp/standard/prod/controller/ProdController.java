@@ -120,7 +120,7 @@ public class ProdController {
 //		dto.setProd_nm(data.getParameter("prod_nm"));
 //		dto.setProd_dtl_cont(data.getParameter("prod_dtl_cont"));
 //		dto.setProd_div_cd(data.getParameter("prod_div_cd"));
-//		dto.setProd_sales_amt(data.getParameter("prod_price"));
+//		dto.setProd_price(data.getParameter("prod_price"));
 //		dto.setProd_url(data.getParameter("prod_url"));
 //		dto.setCate_id(data.getParameter("cate_id"));
 		
@@ -176,7 +176,7 @@ public class ProdController {
 //		dto.setProd_id(data.getParameter("prod_id"));
 //		dto.setProd_nm(data.getParameter("prod_nm"));
 //		dto.setProd_div_cd(data.getParameter("prod_div_cd"));
-//		dto.setProd_sales_amt(data.getParameter("prod_price"));
+//		dto.setProd_price(data.getParameter("prod_price"));
 //		dto.setProd_dtl_cont(data.getParameter("prod_dtl_cont"));
 //		dto.setProd_url(data.getParameter("prod_url"));				
 		
