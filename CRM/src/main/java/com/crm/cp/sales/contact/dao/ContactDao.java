@@ -24,14 +24,19 @@ public interface ContactDao {
 	int deleteKeyman(KeymanVO kVO); // 키맨 수정
 	int deleteKeyman(List<String> keyman_idList); // 키맨 삭제
 	List<OpptVO> getOpptList(String cont_id); // 영업기회 리스트
+	OpptVO ccOpptDetail(String sales_oppt_id); // 영업기회 상세정보
 	List<OpptVO> opptOscList(); 	//영업기회 상태코드 가져오기 
 	List<OpptVO> opptOtlList();		//영업기회단계 코드 가져오기
 	OpptVO ccOpptCustDetail(String cust_id); // 영업기회 팝업 고객정보 가져오기
 	List<KeymanVO> selectKeyman(String cont_id);		 // 영업기회 키맨팝업 정보 가져오기
 	int opptAddcontact(OpptVO add);							//영업기회 추가
+ 	int opptModifycontact(OpptVO detail); 	//영업기회 수정 
+	int deleteOpptcontact(List<String> oppt_idList); // 영업기회 삭제
     int addOpptStepcontact(OpptVO add);		//영업기회단계 추가
 	List<ActVO> actListcontact(String cont_id); //영업활동 리스트 
+	int actEditcontact(ActVO actvo);// 영업활동 수정
  	int deleteopptActivecontact(List<String> keyman_idList); // 키맨 삭제
+
 
 
 }

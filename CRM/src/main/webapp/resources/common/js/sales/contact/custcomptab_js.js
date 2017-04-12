@@ -113,15 +113,15 @@ function keymanDeatil(cust_id) {
 }
 
 // 영업기회 상세정보 팝업
-function ccOpptDetail(sales_oppt_id){
+function ccOpptDetailcontact(sales_oppt_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/opptDetailPopup?sales_oppt_id='+sales_oppt_id+'&flag=1','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/opptDetailPopupcontact?sales_oppt_id='+sales_oppt_id+'&flag=1','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 영업활동 상세정보 팝업
 function ccActDetail(sales_actvy_id){
-	var ctx = $("#ctx").val();
-	window.open(ctx+'/actDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+ 	var ctx = $("#ctx").val();
+	window.open(ctx+'/actDetailPopupcontact?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 견적 상세정보 팝업
@@ -501,6 +501,105 @@ function mdfyCustComp(ctx){
 		});
 	});
 }
+
+
+//영업기회 상세정보 수정 함수
+function contactopptModify(){
+	alert("enter");
+	var sales_oppt_id = $("#sales_oppt_id").val();
+	var sales_oppt_nm = $("#sales_oppt_nm").val();
+	var sales_lev_cd = $("#sales_lev_cd").val();
+	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
+	var expt_sales_amt = $("#expt_sales_amt").val();
+	var expt_fin_d = $("#expt_fin_d").val();
+	var psblty_rate = $("#psblty_rate").val();
+	var sales_oppt_stat_cd = $("#sales_oppt_stat_cd").val();
+	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
+	var cust_id = $("#cust_id").val();
+ 	var cust_nm = $("#cust_nm").val();
+	var memo = $("#memo").val();
+ 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
+		alert("영업기회명을 입력해 주세요.");
+		return false;
+	}else if(cust_id=="" || cust_id==null){
+		alert("고객을 선택해 주세요.");
+		return false;
+	}else if(sales_oppt_stat_cd=="0" || sales_oppt_stat_cd==null){
+		alert("영업기회 상태를 선택해 주세요.");
+		return false;
+	}else if(sales_lev_cd=="0" || sales_lev_cd==null){
+		alert("영업단계를 선택해 주세요.");
+		return false;
+//	}else if(expt_sales_amt=="" || expt_sales_amt==null){
+//		alert("예상 매출액을 입력해 주세요");
+//		return false;
+	}else if(sales_lev_cd=="" || sales_lev_cd==null){
+		alert("예상마감일자를 선택해 주세요.");
+		return false;
+	}else if(psblty_rate=="0" || psblty_rate==null){
+		alert("가능성을 선택해 주세요.");
+		return false;
+	}
+	var ctx = $("#ctx").val();
+	$.ajax({
+		type : 'post',
+		data : {
+ 			cust_id : cust_id,
+ 			sales_oppt_id : sales_oppt_id,
+			sales_oppt_nm : sales_oppt_nm,
+			sales_lev_cd : sales_lev_cd,
+			expt_sales_amt : expt_sales_amt,
+			expt_fin_d : expt_fin_d,
+			psblty_rate : psblty_rate,
+			sales_oppt_stat_cd : sales_oppt_stat_cd,
+			memo : memo
+		},
+		datatype : 'json',
+		url : ctx + '/opptModifycontact',
+		success:function(result){
+			alert("수정되었습니다.");
+			opptListRefresh(cust_id);
+			/*location.href= ctx + "/oppt";*/
+			
+			// 버튼 활성화
+			$("#baseBtnDiv").css("display", "none");
+			$("#addBtnDiv").css("display", "none");
+			$("#NewAddBtnDiv").css("display", "block");
+			$("#mdfBtnDiv").css("display", "none");
+			
+			opportunityList(result.pageNum);
+			//영업기회 수정이 정상적으로 되면 list에서 수정된 내용 반영
+			$("#salesId").val(result.opptVO.sales_oppt_id);
+			$("#cust_id").val(result.opptVO.cust_id);
+			$("#lead_id").val(result.opptVO.lead_id);
+			$("#hcust_id").val(result.cust_id); 
+			$("#hlead_id").val(result.opptVO.lead_id);
+			
+			$("input[name=sales_oppt_nm]").val(result.opptVO.sales_oppt_nm);
+			$("input[name=cust_nm]").val(result.opptVO.cust_nm); 
+			$("#hsales_oppt_nm").val(result.opptVO.sales_oppt_nm);
+			$("#hcust_nm").val(result.opptVO.cust_nm); 
+		
+			$("select[name=sales_oppt_stat_cd]").children().eq(result.opptVO.sales_oppt_stat_cd).attr("selected","selected").css("height", "24pt");
+			$("input[name=expt_sales_amt]").val(result.opptVO.expt_sales_amt);
+			$("input[name=expt_fin_d]").val(result.opptVO.expt_fin_d);
+			$("select[name=psblty_rate]").children().eq(result.opptVO.psblty_rate/10).attr("selected","selected").css("height", "24pt");
+			$("select[name=sales_lev_cd]").children().eq(result.opptVO.sales_lev_cd).attr("selected","selected").css("height", "24pt");
+			$("textarea[name=memo]").val(result.opptVO.memo);
+			$("#hsales_oppt_stat_cd").val(result.opptVO.sales_oppt_stat_cd);
+			$("#hexpt_sales_amt").val(result.opptVO.expt_sales_amt);
+			$("#hexpt_fin_d").val(result.opptVO.expt_fin_d);
+			$("#hpsblty_rate").val(result.opptVO.psblty_rate);
+			$("#hsales_lev_cd").val(result.opptVO.sales_lev_cd);
+			$("#hmemo").val(result.opptVO.memo);
+			
+			readDetail();
+		},
+		error:function(request){
+			alert("error : " + request.status);
+		}
+	});
+}
  
 
 //키맨 삭제
@@ -538,6 +637,16 @@ function keymanDelete() {
 	}
 }
 
+
+function opptcancle(){
+	var a = confirm("취소하시겠습니까?");
+	if(a){
+		self.close();
+	}else
+		{
+		
+		}
+}
 //영업기회 삭제
 function ccOpptDel(ctx){
 	$(document).ready(function() {
@@ -552,7 +661,7 @@ function ccOpptDel(ctx){
 			if(delChk){
 				var cust_id = $("#nowCust_id").val();
 				$.ajax({
-					url : ctx+'/ccOpptDelete.do',
+					url : '/ccOpptDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',
@@ -592,7 +701,7 @@ function ccActDel(ctx){
 			if(delChk){
 				var cust_id = $("#nowCust_id").val();
 				$.ajax({
-					url : ctx+'/ccActDelete.do',
+					url : ctx+'/ccActDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',

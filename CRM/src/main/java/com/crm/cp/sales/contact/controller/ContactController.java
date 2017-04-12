@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.sales.act.service.ActService;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.service.ContactService;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
-import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
 
 @Controller
@@ -29,7 +31,10 @@ public class ContactController {
 
 	@Resource
 	MenuService menuService;
-
+	@Resource
+	OpptService service;
+	@Autowired
+	ActService actService;
 	@Resource
 	ContactService contactService;
 
@@ -268,7 +273,7 @@ public class ContactController {
 	public @ResponseBody List<KeymanVO> keymanList(String cont_id) {
 		System.out.println("keyman list entering" + cont_id);
 		List<KeymanVO> kmVOList = contactService.getKeymanList(cont_id);
-			System.out.println("키맨 리스트 " + kmVOList.toString());
+		System.out.println("키맨 리스트 " + kmVOList.toString());
 		return kmVOList;
 	}
 
@@ -312,6 +317,27 @@ public class ContactController {
 			rstMap.put("deleteResult", deleteResult);
 		}
 		return rstMap;
+	}
+
+	// 영업기회 상세정보
+	@RequestMapping(value = "/opptDetailPopupcontact", method = RequestMethod.GET)
+	public ModelAndView saleschanceDetailPopup(HttpSession session, String sales_oppt_id, int flag) {
+		System.out.println("contact oppt detail enter" + sales_oppt_id);
+		ModelAndView mov = new ModelAndView("/sales/contact/contactPop/custcomp_oppt_pop");
+		OpptVO opptVO = contactService.ccOpptDetail(sales_oppt_id);
+		opptVO.setSales_lev_cd(opptVO.getSales_lev_cd().substring(3, 4));
+		opptVO.setSales_oppt_stat_cd(opptVO.getSales_oppt_stat_cd().substring(3, 4));
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = contactService.opptOscList();
+
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = contactService.opptOtlList();
+		mov.addObject("cust_id", opptVO.getCust_id());
+		mov.addObject("opptVO", opptVO);
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		mov.addObject("flag", flag);
+		return mov;
 	}
 
 	// 영업기회 팝업
@@ -374,6 +400,40 @@ public class ContactController {
 		return result;
 	}
 
+	// 영업기회 수정 ajax
+	@RequestMapping(value = "/opptModifycontact", method = RequestMethod.POST)
+	@ResponseBody
+	ModelAndView opptModify(HttpSession session, OpptVO detail) {
+		System.out.println("Detail Edit Controller");
+		detail.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println("detail : " + detail);
+		int result = contactService.opptModifycontact(detail);
+		System.out.println("Detail Edit Result : " + result);
+		ModelAndView mov = new ModelAndView("oppt");
+		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
+		int result2 = service.addOpptStep(detail);// 영업기회단계리스트추가
+		System.out.println("result2 : " + result2);
+		Map<String, Object> opptMap = new HashMap<String, Object>();
+		opptMap.put("opptVO", opptVO);
+		mov.addObject("opptVO", opptVO);
+		return mov;
+	}
+
+	// 영업기회 삭제
+	@RequestMapping(value = "ccOpptDelete", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> ccActDelete(HttpSession session, @RequestBody List<String> act_idList) {
+		System.out.println("영업기회 삭제 enter" + act_idList.toString());
+
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+			rstMap.put("deleteResult", "standard/home/session_expire");
+		} else {
+			String deleteResult = contactService.deleteOpptcontact(act_idList);
+			rstMap.put("deleteResult", deleteResult);
+		}
+		return rstMap;
+	}
+
 	// 영업활동 tab list ajax
 	/*
 	 * @RequestMapping(value = "/ccActListcontact", method = RequestMethod.POST)
@@ -395,14 +455,77 @@ public class ContactController {
 		System.out.println("영업활동 리스트 " + actList.toString());
 		return actList;
 	}
+	
+	// 영업활동 상세정보 팝업
+		@RequestMapping(value = "/actDetailPopupcontact", method = RequestMethod.GET)
+		public ModelAndView ccActDeatailPopup(HttpSession session, String sales_actvy_id, int flag) {
+			System.out.println("영업활동 enter");
+			ActVO ccActVO = actService.actDetail(sales_actvy_id);
+			
+			String strt_t_h = "";
+			String strt_t_m = "";
+			if(ccActVO.getStrt_t() != null){
+				strt_t_h = ccActVO.getStrt_t().substring(0, 2);
+				strt_t_m = ccActVO.getStrt_t().substring(3, 5);
+			}
+			String end_t_h = "";
+			String end_t_m = "";
+			if(ccActVO.getEnd_t() != null){
+				end_t_h = ccActVO.getEnd_t().substring(0, 2);
+				end_t_m = ccActVO.getEnd_t().substring(3, 5);
+			}
+			
+			List<ActVO> actTypeCd = actService.actTypeCdList();
+			List<ActVO> actStatCd = actService.actStatCdList();
+			
+			ModelAndView mov = new ModelAndView("/sales/contact/contactPop/custcomp_act_pop");
+			mov.addObject("flag", flag);
+			mov.addObject("ccActVO", ccActVO);
+			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("actStatCd", actStatCd);
+			mov.addObject("strt_t_h", strt_t_h);
+			mov.addObject("strt_t_m", strt_t_m);
+			mov.addObject("end_t_h", end_t_h);
+			mov.addObject("end_t_m", end_t_m);
+			
+			return mov;
+			
+		}
+ 
+	//영업활동 수정	
+		@RequestMapping(value="/actEditcontact", method= RequestMethod.POST)
+		public @ResponseBody Map<String, Object> actEdit(@RequestBody ActVO actvo, HttpSession session)
+		{
+			System.out.println("actedit entering" + actvo.toString());
+			System.out.println("user" + session.getAttribute("user").toString());
+/*			
+			System.out.println(actvo);
+	        contactService.actEditcontact(actvo);
+*/	        
+	        Map<String, Object> rstMap = new HashMap<String, Object>();
+			if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+				rstMap.put("mdfyResult", "standard/home/session_expire");
+			} else {
+				actvo.setFin_mdfy_id(session.getAttribute("user").toString());
+/* 				actvo.setSales_actvy_div_cd(actvo.getSales_actvy_div_nm());
+				actvo.setSales_actvy_type_cd(actvo.getSales_actvy_type_nm());
+				actvo.setSales_actvy_stat_cd(actvo.getSales_actvy_stat_nm());
+*/				String kmMdfyRst = contactService.actEditcontact(actvo);
+				rstMap.put("mdfyResult", kmMdfyRst);
+			}
+			return rstMap;
+			
+	      /*  return "redirect:/act";*/
+		}
+  
 
 	// 영업활동 삭제
 	@RequestMapping(value = "opptActiveDeletecontact", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> opptActiveDeletecontact(HttpSession session,
 			@RequestBody List<String> chked_val) {
-		
+
 		System.out.println("delete opptActive_idList " + chked_val.toString());
-		
+
 		Map<String, Object> rstMap = new HashMap<String, Object>();
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			rstMap.put("mdfyResult", "standard/home/session_expire");
@@ -414,4 +537,3 @@ public class ContactController {
 	}
 
 }
- 

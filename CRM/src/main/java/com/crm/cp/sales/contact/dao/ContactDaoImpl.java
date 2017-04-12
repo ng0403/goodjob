@@ -193,6 +193,18 @@ public class ContactDaoImpl implements ContactDao {
 			return opptVOList;
 		}
 		
+		// 영업기회 상세정보
+		@Override
+		public OpptVO ccOpptDetail(String sales_oppt_id) {
+			OpptVO opptVO = null;
+			try {
+				opptVO = sqlSession.selectOne("contact.ccOpptDetailcontact", sales_oppt_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return opptVO;
+		}
+		
 		//영업기회 상태코드 가져오기
 		@Override
 		public List<OpptVO> opptOscList() {
@@ -247,6 +259,28 @@ public class ContactDaoImpl implements ContactDao {
 			int seq = sqlSession.insert("contact.addOpptStepcontact", add);
 			System.out.println("seq : " + seq);
 			return seq;
+		} 
+		//영업기회 수정
+		@Override
+		public int opptModifycontact(OpptVO detail) {
+			// TODO Auto-generated method stub
+			return sqlSession.update("contact.modifycontact", detail);
+		}
+		
+		// 영업기회 삭제
+		@Override
+		public int deleteOpptcontact(List<String> oppt_idList) {
+			int	deleteResultTemp = 0;
+			int deleteResult = 0;
+			try {
+				for (int i = 0; i < oppt_idList.size(); i++) {
+					deleteResultTemp = sqlSession.update("contact.ccOpptDeletecontact", oppt_idList.get(i));
+					deleteResult += deleteResultTemp;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return deleteResult;
 		}
 		
 		//영업활동 리스트
@@ -255,6 +289,19 @@ public class ContactDaoImpl implements ContactDao {
 			// TODO Auto-generated method stub
 			System.out.println("enter actListcontact daoo");
 			return sqlSession.selectList("contact.actListcontact", cont_id);
+		}
+		
+		//영업활동 수정
+		@Override
+		public int actEditcontact(ActVO actvo) {
+			System.out.println("영업활동 수정 dao " + actvo.toString());
+			int rstKm = 0;
+			try {
+				rstKm = sqlSession.update("contact.actEditcontact", actvo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return rstKm;
 		}
 
 		// 영업활동 삭제

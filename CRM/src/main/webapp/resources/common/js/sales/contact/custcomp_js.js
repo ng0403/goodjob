@@ -547,13 +547,13 @@ function opptList() {
 						
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
-						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccOpptDetail('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
+						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccOpptDetailcontact('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
 						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
 						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
 						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
 						"<td style='width:7%;'>"+data[i].psblty_rate+"</td>" +
 						"<td style='width:7%;'>"+data[i].sales_oppt_stat_cd_nm+"</td>" +
-						"<td style='width:8%;'>"+data[i].fst_reg_id_nm+"</td>" +
+						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
 						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
@@ -649,7 +649,7 @@ function actListcontact() {
 							+ "<td style='height:12px; padding:5px;'>"+data[i].strt_d+"</td>"
 							+ "<td style='height:12px; padding:5px;'>"+strt_t+"</td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_stat_nm+"</td>"
-							+ "<td rowspan='2'>"+data[i].fst_reg_id_nm+"</td>"
+							+ "<td rowspan='2'>"+data[i].fst_reg_id+"</td>"
 							+ "<td rowspan='2'>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr><tr>"
 							+ "<td style='height:12px; padding:5px;'>"+data[i].end_d+"</td>"
@@ -707,7 +707,7 @@ function estList(cust_id) {
 							+ "<td style='text-align: right; padding-right: 8px;'>"+data[i].estim_qty+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+sales_price+"</td>"
 							+ "<td>"+data[i].estim_valid_d+"</td>"
-							+ "<td>"+data[i].fst_reg_id_nm+"</td>"
+							+ "<td>"+data[i].fst_reg_id+"</td>"
 							+ "<td>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr>";
 						tbody.append(tbodyContent);
@@ -757,7 +757,7 @@ function contList(cust_id) {
 							+ "<td style='text-align: right; padding-right: 8px;'>"+data[i].contr_qty+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+contr_amt+"</td>"
 							+ "<td>"+data[i].contr_d+"</td>"
-							+ "<td>"+data[i].fst_reg_id_nm+"</td>"
+							+ "<td>"+data[i].fst_reg_id+"</td>"
 							+ "<td>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr>";
 						tbody.append(tbodyContent);
