@@ -746,7 +746,9 @@ function actModify(ctx)
  * */
 function actDelBt(sales_actvy_id)
 {
-	alert(sales_actvy_id);
+	$('#actTabForm')
+		.attr('action', 'actDelete')
+		.submit();
 }
 
 

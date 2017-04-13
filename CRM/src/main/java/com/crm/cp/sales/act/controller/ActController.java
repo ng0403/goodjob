@@ -174,11 +174,11 @@ public class ActController {
 	
 	//영업활동 삭제	
 	@RequestMapping(value = "/actDelete", method = RequestMethod.POST)
-	public String actDelete(String[] act_del) throws IOException
+	public String actDelete(@ModelAttribute ActVO actvo) throws IOException
 	{
-		for (String sales_actvy_id : act_del) {
-			actService.actDelete(sales_actvy_id);
-		}
+		System.out.println("actDelete - sales_actvy_id : " + actvo.getSales_actvy_id());
+		
+		actService.actDelete(actvo.getSales_actvy_id());
 		
 		return "redirect:/act";
 	}
