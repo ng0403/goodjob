@@ -124,8 +124,6 @@ public class OpptController {
 			// 영업단계 코드 가져오기
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
-//			List<EstVO> eduList = service.eduList();
-//			List<String> eduCode = new ArrayList<String>();
 			List<EstVO> elclist = estInter.elcList();
 			List<EstVO> eduList = estInter.eduList();
 			List<String> eduCode = new ArrayList<String>(0);
@@ -174,8 +172,6 @@ public class OpptController {
 			List<OpptVO> otllist = service.opptOtlList();
 			List<MenuVO> menuList = menuService.selectAll(session);
 			
-//			List<EstVO> eduList = service.eduList();
-//			List<String> eduCode = new ArrayList<String>();
 			List<EstVO> elclist = estInter.elcList();
 			List<EstVO> eduList = estInter.eduList();
 			List<String> eduCode = new ArrayList<String>(0);
@@ -248,7 +244,6 @@ public class OpptController {
 		result.put("oplist", list);
 		result.put("osclist", osclist);
 		result.put("otllist", otllist);
-//		result.put("C_oppt_status", C_oppt_status);
 		result.put("page", page);
 		result.put("searchInfo", map);
 
@@ -280,12 +275,15 @@ public class OpptController {
 	@RequestMapping(value = "/opptModify", method = RequestMethod.POST)
 	@ResponseBody ModelAndView opptModify(HttpSession session, OpptVO detail, int pageNum
 			, @RequestParam(value="est_list[]",required=false) List<String> est_list
+			, String total_sup_price
 			, String sales_oppt_id) {
 		int delOppt = service.opptPrdtDel(sales_oppt_id);
 		System.out.println("영업기회상품 삭제 결과 : " + delOppt);
 		System.out.println("Detail Edit Controller");
 		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		detail.setFin_mdfy_id(session.getAttribute("user").toString());
+		detail.setTotal_sup_price(total_sup_price);
+		System.out.println(total_sup_price);
 		System.out.println("detail : " + detail);
 		int result = service.opptModify(detail);
 		System.out.println("Detail Edit Result : " + result);
@@ -321,11 +319,14 @@ public class OpptController {
 	@RequestMapping(value = "/opptAdd", method = RequestMethod.POST)
 	@ResponseBody
 	int opptAdd(HttpSession session, OpptVO add
-			, @RequestParam(value="est_list[]",required=false) List<String> est_list) {
+			, @RequestParam(value="est_list[]",required=false) List<String> est_list
+			, String total_sup_price) {
 		System.out.println("est_list : " + est_list);
 		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println(total_sup_price);
+		add.setTotal_sup_price(total_sup_price);
 		
 		int result = service.opptAdd(add);
 		int result2 = service.addOpptStep(add);//영업기회단계리스트추가

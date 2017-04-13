@@ -1,5 +1,6 @@
 /**
  * 함수 목록
+ * delete_comma(str)								:	콤마 제거
  * searchCustcompListPopup(ctx)					:	영업기회 검색창 고객 리스트 팝업
  * custcompListPopup(ctx)						:	영업기회 상세정보 고객 리스트 팝업
  * inputCustNm(custNm,custId,custType)			:	고객 이름 입력 함수
@@ -42,10 +43,22 @@ $(function(){
 	opptProdList(ctx);
 	
 });
+
+/**
+ * 숫자 콤마 제거(Server 전달 시 필요)
+ * @param str
+ * @returns
+ */
+function delete_comma(str) {
+	str = String(str);
+	return str.replace(/[^\d]+/g, '');
+}
 var opptButtonStatus;				//편집인지 추가인지 버튼의 상태 저장
 var opptProdDeleteProdId=[];		//편집 시 삭제된 상품의 상품ID List
 var opptProdDeleteEstimId=[];		//편집 시 삭제된 상품의 상품ID List 
-var opptProdAddId =[];				//편집 시 추가된 상품의 상품ID List
+var opptProdAddId =[];		
+
+//편집 시 추가된 상품의 상품ID List
 //상품 목록 리스트 팝업
 function opptProdList(ctx){
 	$('#opptProdListBtn').click(function(){
@@ -214,6 +227,7 @@ function opptAdd(){
 	var memo = $("#memo").val();
 	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
 	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
+	var total_sup_price = delete_comma($("#supplyPriceSum").text());
 	var prod_id = [];
 	var prod_nm = [];
 	var estim_qty = [];
@@ -248,7 +262,9 @@ function opptAdd(){
 		if(cd =='0'){
 			unit_check++;
 		}
+		
 		discount_unit_cd.push(cd);
+		
 		prod_id.push($(this).children().children().val());
 		prod_nm.push($(this).children().eq(1).text());
 		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
@@ -277,6 +293,7 @@ function opptAdd(){
 		data : {
 			sales_oppt_id : sales_oppt_id,
 			sales_oppt_nm : sales_oppt_nm,
+			total_sup_price : total_sup_price,
 			sales_lev_cd : sales_lev_cd,
 			expt_fin_d : expt_fin_d,
 			psblty_rate : psblty_rate,
@@ -318,6 +335,7 @@ function opptModify(){
 	var sales_price = [];
 	var discount= [];
 	var sup_price = [];
+	var total_sup_price = delete_comma($("#supplyPriceSum").text());
 	var est_list = [];
 	var discount_unit_cd = [];
 	var unit_check =0;
@@ -369,6 +387,7 @@ function opptModify(){
 			cust_id : cust_id,
 			sales_oppt_id : sales_oppt_id,
 			sales_oppt_nm : sales_oppt_nm,
+			total_sup_price : total_sup_price,
 			sales_lev_cd : sales_lev_cd,
 			expt_sales_amt : expt_sales_amt,
 			expt_fin_d : expt_fin_d,
@@ -932,4 +951,6 @@ function viewSalesActive(opptId){
 		$('#cust_nm').val(custNm);
 		$('#cust_id').val(custId);
 	}
+	
+
 }

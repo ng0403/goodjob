@@ -164,7 +164,8 @@ function opptProdChange(){
 	$("#countSum").text(comma(countSum));
 	$("#salesPriceSum").text(comma(salesPriceSum));
 	$("#discountSum").text(comma(discountSum));
-	$("#supplyPriceSum").text(comma(supplyPriceSum));	
+	$("#supplyPriceSum").text(comma(supplyPriceSum));
+	
 }
 //input값 bind시 상품 금액 변경 함수 호출
 function opptProdChargeRealTime(){
