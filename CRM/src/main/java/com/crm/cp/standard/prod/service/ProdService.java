@@ -37,4 +37,8 @@ public interface ProdService {
 
 	List<Object> custcompList(Map<String, Object> map);
 
+	ProdVO imgList(String prod_id);
+
+	ProdVO catalList(String prod_id);
+
 }

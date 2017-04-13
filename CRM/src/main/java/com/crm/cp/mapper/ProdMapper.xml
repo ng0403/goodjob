@@ -91,14 +91,14 @@
     	from category
 	</select>
 	
-	<sql id="img_file">
-	 		PROD_IMG_NM = #{prod_img_nm, jdbcType=VARCHAR},
-			PROD_IMG_SAVE_LOC = #{prod_img_save_loc, jdbcType=VARCHAR},
-	</sql>
-	<sql id="catal_file">
-	     	PROD_CATAL_NM = #{prod_catal_nm, jdbcType=VARCHAR},
-			PROD_CATAL_SAVE_LOC = #{prod_catal_save_loc, jdbcType=VARCHAR},
-	</sql>
+<!-- 	<sql id="img_file"> -->
+<!-- 	 		PROD_IMG_NM = #{prod_img_nm, jdbcType=VARCHAR}, -->
+<!-- 			PROD_IMG_SAVE_LOC = #{prod_img_save_loc, jdbcType=VARCHAR}, -->
+<!-- 	</sql> -->
+<!-- 	<sql id="catal_file"> -->
+<!-- 	     	PROD_CATAL_NM = #{prod_catal_nm, jdbcType=VARCHAR}, -->
+<!-- 			PROD_CATAL_SAVE_LOC = #{prod_catal_save_loc, jdbcType=VARCHAR}, -->
+<!-- 	</sql> -->
 	
 	
 	<update id="prodUpdate" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
@@ -187,6 +187,28 @@
 			AND p.prod_div_cd = c.code
 	</select>
 	
+	<select id="imgList" parameterType="String" resultType="com.crm.cp.standard.prod.vo.ProdVO">
+		SELECT A.ATTACH_ID,
+				A.FILE_ROOT AS PROD_IMG_NM,
+				A.FILE_NM AS PROD_IMG_SAVE_LOC
+		FROM PRODUCT P, PROD_OF_ATTACH PA, ATTACH A
+		WHERE P.PROD_ID = PA.PROD_ID
+				AND PA.ATTACH_ID = A.ATTACH_ID
+				AND P.PROD_ID = #{PROD_ID}
+				AND PA.FILE_FLG = '0001'
+	</select>
+	
+	<select id="catalList" parameterType="String" resultType="com.crm.cp.standard.prod.vo.ProdVO">
+		SELECT A.ATTACH_ID,
+				A.FILE_ROOT AS PROD_CATAL_NM,
+				A.FILE_NM AS PROD_CATAL_SAVE_LOC
+		FROM PRODUCT P, PROD_OF_ATTACH PA, ATTACH A
+		WHERE P.PROD_ID = PA.PROD_ID
+				AND PA.ATTACH_ID = A.ATTACH_ID
+				AND P.PROD_ID = #{PROD_ID}
+				AND PA.FILE_FLG = '0002'
+	</select>
+	
 	<update id="prodDelete">
 		UPDATE PRODUCT
 		SET
@@ -229,7 +251,7 @@
 			FROM ATTACH
 			WHERE ROWNUM = 1),
 			#{prod_catal_nm, jdbcType=VARCHAR},
-			#{prod_catal_save_loc, jdbcType=VARCHAR},
+			#{prod_catal_save_loc, jdbcType=VARCHAR}
 		)
 		<selectKey keyProperty="catal_seq" resultType="String" order="AFTER">
 			SELECT /*+INDEX_DESC(ATTACH PK_ATTACH)*/
@@ -247,8 +269,14 @@
 			FST_REG_ID,
 			FIN_MDFY_ID
 		)VALUES(
-			#{prod_seq},
-			#{img_seq},
+			<if test="prod_seq != null and imq_seq != null">
+				#{prod_seq},
+				#{img_seq},
+			</if>
+			<if test="prod_id != null and attach_imq_id != null">
+				#{prod_id},
+				#{attach_imq_id},
+			</if>
 			'0001',
 			#{fst_reg_id},
 			#{fst_reg_id}
@@ -263,8 +291,14 @@
 			FST_REG_ID,
 			FIN_MDFY_ID
 		)VALUES(
-			#{prod_seq},
-			#{catal_seq},
+			<if test="prod_seq != null and imq_seq != null">
+				#{prod_seq},
+				#{catal_seq},
+			</if>
+			<if test="prod_id != null and attach_catal_id != null">
+				#{prod_id},
+				#{attach_catal_id},
+			</if>
 			'0002',
 			#{fst_reg_id},
 			#{fst_reg_id}
@@ -277,7 +311,7 @@
 			FILE_ROOT = #{prod_catal_nm, jdbcType=VARCHAR},
 			FILE_NM = #{prod_catal_save_loc, jdbcType=VARCHAR},
 			REG_D = sysdate	
-		WHERE ATTACH_ID=#{attach_id}	
+		WHERE ATTACH_ID=#{attach_catal_id}	
 	</update>
 	
 	<update id="prodImgFileUpdateData" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
@@ -286,8 +320,20 @@
 			FILE_ROOT = #{prod_img_nm, jdbcType=VARCHAR},
 			FILE_NM = #{prod_img_save_loc, jdbcType=VARCHAR},
 			REG_D = sysdate
-		WHERE ATTACH_ID=#{attach_id}
+		WHERE ATTACH_ID=#{attach_img_id}
 	</update>
+	
+	<delete id="prodImgFileDelete" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		delete from PROD_OF_ATTACH
+		where prod_id = #{prod_id}
+			and ATTACH_ID = #{attach_img_id}
+	</delete>
+	
+	<delete id="prodCatalFileDelete" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
+		delete from PROD_OF_ATTACH
+		where prod_id = #{prod_id}
+			and ATTACH_ID = #{attach_catal_id}
+	</delete>
 	
 	
 </mapper>

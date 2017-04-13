@@ -67,7 +67,7 @@ function prodInserts(){
 							<!-- 텍스트 박스 -->
 							<th>상품(서비스)명</th>
 							<td>
-								<input type="text" name="prod_id" id="prod_id" style="display:none;">			
+								<input type="hidden" name="prod_id" id="prod_id" value="${prodDto.prod_id}">			
 							<input type="text" name="prod_nm" id="prod_nm"
 								class="act_nm" style="ms-ime-mode: disabled;" value="${prodDto.prod_nm}" disabled>
 							</td>							
@@ -92,7 +92,7 @@ function prodInserts(){
 			     		</tr>
 						<tr>						
 							<th>카테고리</th>
-							<td><input type="hidden" name="cate_id" id="cate_id" class="oppt_txt_nm">
+							<td><input type="hidden" name="cate_id" id="cate_id" class="oppt_txt_nm" value="${prodDto.cate_id}">
 							    <input type="text" name="cate_nm" id="cate_nm" class="oppt_txt_nm" value="${prodDto.cate_nm}" disabled>							     
 							    <input type="button" name="prod_cate" value="카테고리" class="prod_cate" id="prod_cate" disabled>
 							</td>
@@ -119,6 +119,8 @@ function prodInserts(){
 							<td>&nbsp;</td>												
 							<th>이미지</th>
 							<td id="image">
+								<input type="hidden" name="attach_img_id" id="attach_img_id" value="${imgList.attach_id }">
+								<input type="hidden" id="prod_img_nm" value="${imgList.prod_img_nm }">
 								<input type="button" id="image_change" class="act_bt" value="이미지 변경" style="display: none;"/>
 								
 								<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>
@@ -127,7 +129,9 @@ function prodInserts(){
 						<tr>						
 							<td>&nbsp;</td>							
 					        <th>카달로그</th>
-							<td id="catal">		
+							<td id="catal">
+								<input type="hidden" name="attach_catal_id" id="attach_catal_id" value="${catalList.attach_id }">
+								<input type="hidden" id="prod_catal_nm" value="${catalList.prod_catal_nm }">	
 								<input type="button" id="catal_change" class="act_bt" value="카탈로그 변경" style="display: none;"/>
 					        
 								<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>

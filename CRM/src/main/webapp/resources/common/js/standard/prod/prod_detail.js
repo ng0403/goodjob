@@ -2,7 +2,7 @@ $(function(){
 	var ctx = $('#ctx').val();
 	var flg = $('#flg').val();
 	if(flg == "add") prodAddFormLoad();
-	else if(flg == "detail") $('#prodSaveBtn').hide();
+	else if(flg == "detail") prodDetailFormLoad();
 	prodMakeBlock();
 	prodAddBtn(ctx);
 	prodCancelBtn(ctx);
@@ -394,10 +394,34 @@ function prodAddFormLoad(){
 	
 	prodFormClr();
 }
+
+function prodDetailFormLoad(){
+	$('#prodSaveBtn').hide();
+	$('.prod_file').css("display","none");
+	$('.filedown').remove();				
+	
+	$("#image_change").css('display','none');
+	$("#catal_change").css('display','none');
+	
+	var prod_id = $("#prod_id").val();
+	var prod_img_nm = $("#prod_img_nm").val();
+	var prod_catal_nm = $("#prod_catal_nm").val();
+	
+	if(prod_img_nm != null){
+	$('#image').prepend('<a class="filedown" href="/prodDownload?prod_id='+prod_id+'&mode=img">'+prod_img_nm+'<img src="/resources/image/disk.gif"></a>');
+	}
+	
+	if(prod_catal_nm != null){
+	$('#catal').prepend('<a class="filedown" href="/prodDownload?prod_id='+prod_id+'&mode=catal">'+prod_catal_nm +'<img src="/resources/image/disk.gif"></a>');
+	}
+//	'+ctx+'
+}
+
 function prodChange(ctx) {
 	$("#image_change").click(function() {
 		$('#prod_img').remove();
-		$('#image').append('<input type="file" name="prod_img" id="prod_img" class="prod_file">');		
+		$('#image').append('<input type="file" name="prod_img" id="prod_img" class="prod_file">');
+		$('#image_change').css('disable','none');
 		
 	});
 	$("#catal_change").click(function() {

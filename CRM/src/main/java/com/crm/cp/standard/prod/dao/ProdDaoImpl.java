@@ -127,4 +127,28 @@ public class ProdDaoImpl implements ProdDao{
 		return sqlSession.insert("prod.prodCatalFileUpdateData", dto);
 	}
 
+	@Override
+	public ProdVO imgList(String prod_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("prod.imgList",prod_id);
+	}
+
+	@Override
+	public ProdVO catalList(String prod_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("prod.catalList",prod_id);
+	}
+
+	@Override
+	public int prodImgFileDelete(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("prod.prodImgFileDelete", dto);
+	}
+
+	@Override
+	public int prodCatalFileDelete(ProdVO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("prod.prodCatalFileDelete", dto);
+	}
+
 }

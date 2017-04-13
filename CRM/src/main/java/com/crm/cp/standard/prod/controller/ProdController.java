@@ -206,7 +206,7 @@ public class ProdController {
 
 			System.out.println(newFilename);
 			if(!newFilename.isEmpty()){
-				ProdVO vo = prodService.prodRead(dto.getProd_id());
+				ProdVO vo = prodService.imgList(dto.getProd_id());
 				if(vo!=null && vo.getProd_img_save_loc()!=null){
 					fileManager.doFileDelete(vo.getProd_img_save_loc(), imgpath);							
 				}						
@@ -220,7 +220,7 @@ public class ProdController {
 
 			System.out.println(newFilename);	
 			if(!newFilename.isEmpty()){
-				ProdVO vo = prodService.prodRead(dto.getProd_id());
+				ProdVO vo = prodService.catalList(dto.getProd_id());
 				if(vo!=null && vo.getProd_catal_save_loc()!=null){
 					fileManager.doFileDelete(vo.getProd_catal_save_loc(), imgpath);							
 				}	
@@ -256,21 +256,23 @@ public class ProdController {
 		String path = null;		
     	
 		// 리드 중인 Prod_id 값으로 저장된 ProdVO값을 가져온다.
-		ProdVO dto = prodService.prodRead(prod_id);
+		//ProdVO dto = prodService.prodRead(prod_id);
+		ProdVO imgList = prodService.imgList(prod_id);
+		ProdVO catalList = prodService.catalList(prod_id);
 		
 		// 값이 없으면  Return
-		if(dto==null)
+		if(imgList==null&&catalList==null)
 			return;
 		
 		//  jsp에서 받아온 mode값으로 이미지와 카탈로그 파일중 맞는 위치의 값을 가져온다.
 		if(mode.equals("img")){		
-		SaveFilename = dto.getProd_img_save_loc();
-		OriginalFilename = dto.getProd_img_nm();
+		SaveFilename = imgList.getProd_img_save_loc();
+		OriginalFilename = imgList.getProd_img_nm();
 		path =  root + File.separator + "pds" + File.separator + "prodImg";
 		System.out.println(path+"ㅇㅇ"+path.toString());
 		}else if(mode.equals("catal")){
-		SaveFilename = dto.getProd_catal_save_loc();
-		OriginalFilename = dto.getProd_catal_nm();
+		SaveFilename = catalList.getProd_catal_save_loc();
+		OriginalFilename = catalList.getProd_catal_nm();
 		path =  root + File.separator + "pds" + File.separator + "prodCatal";
 		}
 		
@@ -313,9 +315,13 @@ public class ProdController {
 		ProdVO dto = prodService.prodRead(prod_id);
 		
 		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
+		ProdVO imgList = prodService.imgList(prod_id);
+		ProdVO catalList = prodService.catalList(prod_id);
 
 		mov.addObject("prodServicecCodeList",prodServicecCodeList);
 		mov.addObject("prodDto",dto);
+		mov.addObject("imgList",imgList);
+		mov.addObject("catalList",catalList);
 		mov.addObject("flg","detail");
 		
 		return mov;

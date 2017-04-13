@@ -48,4 +48,12 @@ public interface ProdDao {
 
 	int catalFileUpdateData(ProdVO dto);
 
+	ProdVO imgList(String prod_id);
+
+	ProdVO catalList(String prod_id);
+
+	int prodImgFileDelete(ProdVO dto);
+
+	int prodCatalFileDelete(ProdVO dto);
+
 }

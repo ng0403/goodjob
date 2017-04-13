@@ -26,9 +26,23 @@ public class ProdServiceImpl implements ProdService{
 		String catalFilename = dto.getProd_catal_save_loc();
 		if(imgFilename != null){
 			result += prodDao.imgFileUpdateData(dto);
+			if(result >= 2){
+				result += prodDao.prodImgFileDelete(dto);
+				if(result >= 3){
+					result += prodDao.prodImgFileInsert(dto);
+					result = 1;
+				}
+			}
 		}
 		if(catalFilename != null){
 			result += prodDao.catalFileUpdateData(dto);
+			if(result >= 2){
+				result += prodDao.prodCatalFileDelete(dto);
+				if(result >= 3){
+					result += prodDao.prodCatalFileInsert(dto);
+					result = 0;
+				}
+			}
 		}
 	}
 	
@@ -129,5 +143,17 @@ public class ProdServiceImpl implements ProdService{
 	@Override
 	public List<Object> custcompList(Map<String, Object> map) {
 		return prodDao.custcompList(map);
+	}
+
+	@Override
+	public ProdVO imgList(String prod_id) {
+		// TODO Auto-generated method stub
+		return prodDao.imgList(prod_id);
+	}
+
+	@Override
+	public ProdVO catalList(String prod_id) {
+		// TODO Auto-generated method stub
+		return prodDao.catalList(prod_id);
 	}
 }

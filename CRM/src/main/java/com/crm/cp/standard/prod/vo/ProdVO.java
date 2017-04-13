@@ -42,10 +42,29 @@ public class ProdVO {
 	String img_seq;
 	String catal_seq;
 	
+	String attach_id;
+	String attach_img_id;
+	String attach_catal_id;	
 	
 	
-	
-
+	public String getAttach_id() {
+		return attach_id;
+	}
+	public void setAttach_id(String attach_id) {
+		this.attach_id = attach_id;
+	}
+	public String getAttach_img_id() {
+		return attach_img_id;
+	}
+	public void setAttach_img_id(String attach_img_id) {
+		this.attach_img_id = attach_img_id;
+	}
+	public String getAttach_catal_id() {
+		return attach_catal_id;
+	}
+	public void setAttach_catal_id(String attach_catal_id) {
+		this.attach_catal_id = attach_catal_id;
+	}
 	public String getProd_seq() {
 		return prod_seq;
 	}
