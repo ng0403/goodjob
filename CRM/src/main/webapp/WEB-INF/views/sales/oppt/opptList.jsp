@@ -29,7 +29,7 @@
 			    <label for="scompNam" class="tel_label_list">영업기회명</label>
 			      <input type="text" onkeypress="opptSearchInput(event);" class="tel_search" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
 			    <label for="inputPassword1" class="tel_label_list" >고객명</label>
-			      <input type="text" class="tel_search" id="scust_nm" name="scust_nm" value="${scust_nm}" readonly="readonly">
+			      <input type="text" class="tel_search" id="scust_nm" name="scust_nm" value="${scust_nm}">
 			      <input type="hidden" class="tel_search" id="scust_id" name="scust_id" value="${scust_id}">
 			      <input type="button" class="btn-success-tel" id="searchCustomer" value="고객">
 			    <label for="inputPassword1" class="tel_label_list" id="oppt_lev_label">영업단계</label>

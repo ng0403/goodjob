@@ -432,8 +432,8 @@ function searchCustcompListPopup(ctx){
 //고객 이름 입력 함수
 function inputCustNm(custNm,custId,custType){	
 	if(custType == 'search'){
-		$('#scust_nm').val(custNm);
-		$('#scust_id').val(custId);
+		$('#scust_nm').val(custId);
+		$('#scust_id').val(custNm);
 	}else if(custType == 'normal'){
 		$('#cust_nm').val(custId);
 		$('#cust_id').val(custNm);

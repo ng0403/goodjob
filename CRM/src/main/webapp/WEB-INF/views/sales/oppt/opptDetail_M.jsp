@@ -213,7 +213,7 @@ $(document).ready(function(){
 											<td style="width: 27%;" >${list.prod_price}</td>
 											<td style="width: 15%;" >
 												<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
-												<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">
+												<select id="unit" name="discount_unit_cd" style="width: 35%;" disabled="disabled">
 													<option value="0">선택</option>
 													<c:forEach items="${eduList }" var="eduList">
 														<c:choose>

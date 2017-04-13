@@ -21,10 +21,9 @@ $(function(){
 	var ctx = $('#ctx').val();
 	opptProdChargeRealTime();
 	prodallCheck();
-	prodDelete();
+	opptProdDelete();
 	opptProdNmSelect(ctx);
 	opptProdChange();
-	prodDelete();
 //	startCalendar(ctx);
 });	
 
@@ -239,7 +238,7 @@ function prodallCheck(){
 	});
 }
 //상품 목록 삭제
-function prodDelete(){
+function opptProdDelete(){
 	$("#opptProdDelete").click(function(){
 		if(confirm("삭제 하시겠습니까? ")){
 			var estimId = $('#estim_id').val();
