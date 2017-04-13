@@ -325,13 +325,15 @@ public class ContactController {
 		System.out.println("contact oppt detail enter" + sales_oppt_id);
 		ModelAndView mov = new ModelAndView("/sales/contact/contactPop/custcomp_oppt_pop");
 		OpptVO opptVO = contactService.ccOpptDetail(sales_oppt_id);
+		System.out.println("영업기회 상세정보?? " + opptVO.toString());
 		opptVO.setSales_lev_cd(opptVO.getSales_lev_cd().substring(3, 4));
 		opptVO.setSales_oppt_stat_cd(opptVO.getSales_oppt_stat_cd().substring(3, 4));
 		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = contactService.opptOscList();
-
+		System.out.println("osclist?? " + osclist.toString());
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = contactService.opptOtlList();
+		System.out.println("otllist??? " + otllist.toString());
 		mov.addObject("cust_id", opptVO.getCust_id());
 		mov.addObject("opptVO", opptVO);
 		mov.addObject("osclist", osclist);
@@ -369,7 +371,7 @@ public class ContactController {
 		return opptVOList;
 	}
 
-	// 영업 기회 키맨 리스트
+	// 영업기회 키맨 리스트 팝업
 	@RequestMapping(value = "/keymancompList", method = RequestMethod.GET)
 	public ModelAndView keymancompList(HttpSession session, String cont_id) {
 
@@ -379,6 +381,19 @@ public class ContactController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ModelAndView mov = new ModelAndView("/sales/contact/contactPop/keyman_pop");
 		mov.addObject("kmVOList", kmVOList);
+		return mov;
+	}
+	
+	//영업활동 영업기회 리스트 팝업
+	@RequestMapping(value = "/opptListPop", method = RequestMethod.GET)
+	public ModelAndView opptListPop(HttpSession session, String cont_id) {
+
+		System.out.println("영업기회 pop enter" + cont_id);
+		List<OpptVO> opptVOList = contactService.selectOppt(cont_id); // 키맨 선택
+		System.out.println("	??? " + opptVOList.toString());
+		Map<String, Object> map = new HashMap<String, Object>();
+		ModelAndView mov = new ModelAndView("/sales/contact/contactPop/opptActive_OpptList_Pop");
+		mov.addObject("opptVOList", opptVOList);
 		return mov;
 	}
 
@@ -491,6 +506,39 @@ public class ContactController {
 			return mov;
 			
 		}
+		
+		// 영업활동 추가 팝업창
+		@RequestMapping(value = "/opptActivePopupcontact", method = RequestMethod.GET)
+		public ModelAndView opptActivePopup(HttpSession session,
+				String list_cust_id, String list_cust_nm, String list_sales_oppt_id) {
+			System.out.println("hino");
+			ModelAndView mov = new ModelAndView(
+					"/sales/contact/contactPop/opptActivePopup");
+			// 영업활동 유형코드 가져오기
+			List<ActVO> actTypeCd = service.actTypeCdList();
+			// 영업활동 상태코드 가져오기
+			List<ActVO> actStatCd = service.actStatCdList();
+			// 영업활동 구분코드 가져오기
+			List<ActVO> actDivCd = service.actDivCdList();
+
+			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("actStatCd", actStatCd);
+			mov.addObject("actDivCd", actDivCd);
+
+			System.out.println("list_cust_nm : " +list_cust_nm );
+			System.out.println("list_cust_nm : " +list_cust_nm );
+			// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+
+			mov.addObject("cust_id", list_cust_id);
+			mov.addObject("cust_nm", list_cust_nm);
+			mov.addObject("sales_oppt_id", list_sales_oppt_id);
+			mov.addObject("flg", "add");
+
+			return mov;
+
+		}
+		
+		
  
 	//영업활동 수정	
 		@RequestMapping(value="/actEditcontact", method= RequestMethod.POST)

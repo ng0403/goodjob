@@ -231,7 +231,7 @@ public class ContactDaoImpl implements ContactDao {
 			return opptVO;
 		}
 		
-		//영업기회 키맨 정보 가져오기
+		//영업기회 키맨 팝업 정보 가져오기
 		@Override
 		public List<KeymanVO> selectKeyman(String cont_id) {
 			System.out.println("keyman hi dao " + cont_id);
@@ -243,6 +243,19 @@ public class ContactDaoImpl implements ContactDao {
 			}
 			return kmVOList;
 		}
+		
+		//영업활동 영업기회 팝업 정보 가져오기
+				@Override
+				public List<OpptVO> selectOppt(String cont_id) {
+					System.out.println("Oppt hi dao " + cont_id);
+					List<OpptVO> opptVOList = null;
+					try {
+						opptVOList = sqlSession.selectList("selectOppt", cont_id);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					return opptVOList;
+				}
 		
 		//영업기회 추가
 		@Override

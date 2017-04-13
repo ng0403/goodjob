@@ -306,7 +306,7 @@
 <!-- 		  from keyman  -->
 <!-- 		  where cust_id = #{cust_id} and act_yn = 'Y' order by kmn_id desc -->
 
-		SELECT 
+	<!-- 	SELECT 
 			CUST_ID, 
 			CONT_ID,
 			KEY_PART,
@@ -316,7 +316,23 @@
 			TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
 		from keyman 
 		where cont_id = #{cont_id} 
-		order by CUST_ID desc
+		order by CUST_ID desc -->
+		SELECT 
+                  c.CUST_NM,
+                  k.CUST_ID,
+				  k.CONT_ID,
+				  k.KEY_PART,
+				  k.KEY_POS, 
+				  k.KEY_JOB,
+				  k.MEMO,
+				  k.FST_REG_ID,
+				  k.FST_REG_DT,
+				  k.FIN_MDFY_ID,
+				  k.FIN_MDFY_DT
+		 FROM KEYMAN k, customer c
+	   WHERE k.cont_id  = #{cont_id} and k.cust_id = c.cust_id
+		
+		
 	</select>
 	
 	
@@ -388,6 +404,27 @@
 	     and act_yn = 'Y'
 	   ORDER BY so.sales_oppt_id DESC
 	</select>
+	
+	
+	<!-- 영업활동 영업기회 리스트 정보 -->
+	<select id="selectOppt" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
+		select so.sales_oppt_id,
+			   so.cust_id,
+				so.sales_oppt_nm,
+				(select c.cd_nm from code c where c.cd_grp_id = 'OTL' and c.CODE = so.sales_lev_cd) sales_lev_cd_nm ,
+				so.expt_sales_amt,
+				TO_CHAR(so.expt_fin_d, 'YYYY-MM-DD') expt_fin_d,
+				so.psblty_rate,
+				(select c.cd_nm from code c where c.cd_grp_id = 'OSC' and c.CODE = so.sales_oppt_stat_cd) sales_oppt_stat_cd_nm ,
+				so.fst_reg_id,
+				TO_CHAR(so.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt  
+		from sales_opportunity so, keyman k 
+	  where cont_id = #{cont_id}  and so.cust_id = k.cust_id
+	     and act_yn = 'Y'
+	   ORDER BY so.sales_oppt_id DESC
+	</select>
+	
+	
 	
 	<!-- 영업기회 상세정보 가져오기 -->
 	<select id="ccOpptDetailcontact" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptVO">

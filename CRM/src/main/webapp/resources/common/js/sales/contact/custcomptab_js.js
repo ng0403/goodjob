@@ -37,14 +37,35 @@ $(document).ready(function() {
 	
 	// 영업활동 추가 팝업
 	$('#act_pop_btn').click(function(){
-		var cust_id = $("#nowCust_id").val();
+ 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			alert('고객을 선택해주세요.');
 			return;
 		}else {
-			window.open(ctx+'/actPopup?cust_id='+cust_id+'&flag=0','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/opptActivePopupcontact?cust_id='+cust_id+'&flag=0','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
+	
+	/*//영업활동 추가 팝업
+		$('#act_opp_nm').click(function(){
+			var salesId = $('#salesId').val();
+			if(salesId == "" || salesId == null ){
+				alert("영업기회를 선택해주세요.");
+			}else{
+			var list_sales_oppt_id = $('#salesId').val();
+//			var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
+			var list_cust_id = $('#hcust_id').val();
+			var list_cust_nm = $('#hcust_nm').val();
+//			var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
+			
+			window.open(ctx+'/opptActivePopup?list_sales_oppt_id='+list_sales_oppt_id+
+					'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			}
+		});
+		function addOperatingA(ctx){
+	
+}*/
+
 	
 	// 견적 추가 팝업
 	$('#est_pop_btn').click(function(){
@@ -277,6 +298,30 @@ function ccCancel(){
 		$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
 	});
 }
+
+//영업활동 추가 팝업
+function addOperating(ctx){
+ 	$('#act_opp_nm').click(function(){
+ 		var salesId = $('#sales_oppt_id').val();
+		if(salesId == "" || salesId == null ){
+			alert("영업기회를 선택해주세요.");
+		}else{
+		var list_sales_oppt_id = $('#sales_oppt_id').val();
+//		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
+		var list_cust_id = $('#cust_id').val();
+		var list_cust_nm = $('#cust_nm').val();
+//		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
+		
+		window.open('/opptActiveEstPopup?list_sales_oppt_id='+list_sales_oppt_id+
+				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		}
+	});
+}
+
+
+
+
+
 
 // 기업고객 추가
 function addCustComp(ctx){

@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영업활동 등록</title>
 </head>
@@ -25,6 +27,7 @@
 	<input type="hidden" id="custType" value="${custType}"/>
 	<input type="hidden" id="sales_oppt_id" value="${sales_oppt_id}">
 	<input type="hidden" id="sales_oppt_nm" value="${sales_oppt_nm}">
+<%-- 	<input type="hidden" id="cust_id" value="${sales_cust_id}"> --%>
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="sales_actvy_id" value="${sales_actvy_id}">
 	
@@ -55,8 +58,11 @@
 						<td>
 							<c:choose>
 								<c:when test="${flg eq 'add'}">
-									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
+									<input type="text" name="cust_nm" id="oppt_nm" class="int" value="${cust_nm}" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+									<input type="hidden" name="oppt_id" id="oppt_id">
+								    <input type="button" value="영업기회" id="oppt" class="cont_bt" onclick="javascript:opptListPopup();">
+									 
 								</c:when>
 								<c:when test="${flg eq 'detail'}">
 									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">

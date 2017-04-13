@@ -197,12 +197,19 @@ public class ContactServiceImpl implements ContactService {
 			OpptVO opptVO = contactDao.ccOpptCustDetail(cust_id);
 			return opptVO;
 		}
-
+		//영업기회 키맨 팝업 정보 가져오기
 		@Override
 		public List<KeymanVO> selectKeyman(String cont_id) {
 			List<KeymanVO> kmVOList = contactDao.selectKeyman(cont_id);
 			
 			return kmVOList;
+		}
+		// 영업활동 영업기회 팝업 리스트 가져오기.
+		@Override
+		public List<OpptVO> selectOppt(String cont_id) {
+			List<OpptVO> opptVOList = contactDao.selectOppt(cont_id);
+			
+			return opptVOList;
 		}
 		
 		//영업기회 추가

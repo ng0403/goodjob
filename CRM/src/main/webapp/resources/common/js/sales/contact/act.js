@@ -149,7 +149,7 @@ function ccActMdfy(){
 			dataType : "json",
 			success : function(data) {
  				alert(cust_nm +"에 대한 영업 활동이 수정 되었습니다.");
-				actListRefresh(obj.cust_id);
+ 				actListRefresh();
  
 			},
 			error : function(request,status,error) {

@@ -26,9 +26,8 @@ function activeCancel(){
 //영업활동 popup 저장(수정) 버튼 클릭 시
 function actButton(ctx){
 	$('#activeButton').click(function(){
-		var flg = $('#flg').val();
-		alert(flg);
-		if(flg=='add'){
+ 		var flg = $('#flg').val();
+ 		if(flg=='add'){
 			alert("flag : " + flg);
 			activeAdd();
 		}else if(flg=='detail'){
@@ -40,7 +39,6 @@ function actButton(ctx){
 
 //영업활동 편집
 function activeUpdate(ctx){
-	alert("hi");
 	var sales_actvy_id = $('#sales_actvy_id').val();
 	var sales_actvy_nm = $('#sales_actvy_nm').val();
 	var sales_actvy_div_cd = $('input[name=sales_actvy_div_cd]:checked').val();
@@ -127,7 +125,6 @@ function activeUpdate(ctx){
 }
 //영업활동명 클릭 시 detail값 가져오는 함수
 function opptActiveDetail(){
-	alert("detail");
 	$('#activeButton').val('수정');
 	var strt_t = $("#strt_t").val();
 	var end_t = $("#end_t").val();
@@ -224,10 +221,10 @@ function startDatePicker(ctx){
 
 //영업활동 추가
 function activeAdd(){
-		var sales_actvy_nm = $('#sales_actvy_nm').val();
+ 		var sales_actvy_nm = $('#sales_actvy_nm').val();
 		var sales_actvy_div_cd = $('input[name=sales_actvy_div_cd]:checked').val();
 		var sales_actvy_type_cd  = $('#sales_actvy_type_cd').val();
-		var sales_oppt_id = $('#sales_oppt_id').val();
+		var sales_oppt_id = $('#oppt_id').val();
 		var cust_id = $('#cust_id').val();
 		var sales_actvy_stat_cd = $('#sales_actvy_stat_cd').val();
 		var strt_d = $('#strt_d').val();
@@ -241,6 +238,7 @@ function activeAdd(){
 		var memo = $('#memo').val();
 		var sales_oppt_nm = $('#sales_oppt_nm').val();
 		console.log(sales_oppt_id);
+
 		if(sales_actvy_nm==""||sales_actvy_nm==null){
 			alert("영업활동명을 입력해 주세요");
 			return false;
@@ -294,7 +292,7 @@ function activeAdd(){
 				alert("정상적으로 등록되었습니다.");
 				var estim_id=$("#estim_id",opener.document).val();
 				//console.log(estim_id);
-				window.opener.viewSalesActive(estim_id);
+				actListRefresh();
 				self.close();
 			},
 			error:function(request){

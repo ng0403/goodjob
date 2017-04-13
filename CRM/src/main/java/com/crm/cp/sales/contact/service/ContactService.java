@@ -31,12 +31,13 @@ public interface ContactService {
 	OpptVO ccOpptCustDetail(String cust_id); 									// 영업기회 팝업 고객정보 가져오기
 	List<KeymanVO> selectKeyman(String cont_id);								// 영업기회 키맨팝업 정보 가져오기
 	int opptAddcontact(OpptVO add);												//영업기회 추가
-	int opptModifycontact(OpptVO detail);												//영업기회 수정 
+	int opptModifycontact(OpptVO detail);										//영업기회 수정 
 	String deleteOpptcontact(List<String> oppt_idList); 						// 영업기회 삭제
 	int addOpptStepcontact(OpptVO add);											//영업기회 단계 리스트 추가
 	List<ActVO> actListcontact(String cont_id);								    //영업활동 리스트
 	String actEditcontact(ActVO actvo);											//영업활동 수정
 	String deleteopptActivecontact(List<String> chked_val); 				    // 영업활동 삭제
+	List<OpptVO> selectOppt(String cont_id);								// 영업활동 영업기회 팝업 정보 가져오기.
  
 		
 }

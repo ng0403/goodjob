@@ -11,6 +11,11 @@ function opptListRefresh(){
 	self.close();
 }
 
+function actListRefresh(){
+	window.opener.actListcontact();
+	self.close();
+}
+
 function keymancancle(){
 	var a = confirm("취소하시겠습니까?");
 	if(a){
@@ -121,6 +126,14 @@ function keymanListPopup(){
 	});
 }
 
+//영업기회 상세정보 고객 리스트 팝업
+function opptListPopup(){
+	$('#oppt').click(function(){
+		var cont_id = $("#cont_id",opener.document).val();
+ 		window.open('/opptListPop?cont_id='+cont_id,'newwindow1','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
+}
+
 
 
 function inputCustNm(cust_id,cust_nm){
@@ -132,9 +145,16 @@ function inputCustNm(cust_id,cust_nm){
 
 function inputKeyNm(cust_id){
  	$('#cust_id').val(cust_id);
- 	alert("inputKeyNm " + cust_id);
  	$('#act_oppt_nm').attr('disabled',false).attr('readonly', false);
 }
+ 
+function inputOpptNm(oppt_id, opptNm, cust_id){
+ 	$('#oppt_id').val(oppt_id);
+ 	$('#oppt_nm').val(opptNm);
+ 	$('#cust_id').val(cust_id);
+ 	$('#act_oppt_nm').attr('disabled',false).attr('readonly', false);
+}
+
 
 
 //고객사리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업

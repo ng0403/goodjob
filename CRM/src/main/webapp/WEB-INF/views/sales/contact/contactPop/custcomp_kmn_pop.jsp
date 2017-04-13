@@ -39,7 +39,7 @@
 					<tbody id="tbody">
 						<tr>
 							<th>고객사</th>
-							<td><input type="text" name="cust_nm" id="cust_nm" class="int" autofocus="autofocus"/></td>
+							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus"/></td>
 							 <input type="hidden" id="cust_id" name="cust_id" class="int" />  
 							<td><input type="button" value="고객" id="customer" class="cont_bt" onclick="javascript:custcompListPopup('${ctx}');"></td>
 							

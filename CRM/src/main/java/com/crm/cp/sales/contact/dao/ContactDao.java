@@ -29,6 +29,7 @@ public interface ContactDao {
 	List<OpptVO> opptOtlList();		//영업기회단계 코드 가져오기
 	OpptVO ccOpptCustDetail(String cust_id); // 영업기회 팝업 고객정보 가져오기
 	List<KeymanVO> selectKeyman(String cont_id);		 // 영업기회 키맨팝업 정보 가져오기
+	List<OpptVO> selectOppt(String cont_id);		 // 영업활동 영업기회팝업 정보 가져오기
 	int opptAddcontact(OpptVO add);							//영업기회 추가
  	int opptModifycontact(OpptVO detail); 	//영업기회 수정 
 	int deleteOpptcontact(List<String> oppt_idList); // 영업기회 삭제

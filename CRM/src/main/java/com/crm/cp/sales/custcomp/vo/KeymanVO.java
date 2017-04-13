@@ -3,6 +3,7 @@ package com.crm.cp.sales.custcomp.vo;
 public class KeymanVO {
 	private String cust_id // 고객 아이디
 					 , cont_id // 연락처 아이디
+					 , cust_nm // 연락처 이름
 					 , key_part// 키맨명
 					 , key_pos // 직급
 					 , key_job // 직무
@@ -13,6 +14,16 @@ public class KeymanVO {
 					 , fin_mdfy_dt; //최종변경일시
 
 	
+	 
+
+	public String getCust_nm() {
+		return cust_nm;
+	}
+
+	public void setCust_nm(String cust_nm) {
+		this.cust_nm = cust_nm;
+	}
+
 	public void setFin_mdfy_dt(String fin_mdfy_dt) {
 		this.fin_mdfy_dt = fin_mdfy_dt;
 	}
@@ -94,9 +105,10 @@ public class KeymanVO {
 
 	@Override
 	public String toString() {
-		return "KeymanVO [cust_id=" + cust_id + ", cont_id=" + cont_id + ", key_part=" + key_part + ", key_pos="
-				+ key_pos + ", key_job=" + key_job + ", memo=" + memo + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
-				+ fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + "]";
+		return "KeymanVO [cust_id=" + cust_id + ", cont_id=" + cont_id + ", cust_nm=" + cust_nm + ", key_part="
+				+ key_part + ", key_pos=" + key_pos + ", key_job=" + key_job + ", memo=" + memo + ", fst_reg_id="
+				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
+				+ fin_mdfy_dt + "]";
 	}
 
 	

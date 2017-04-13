@@ -62,7 +62,8 @@ function ccActDetailSelect() {
 							<th>고객사</th>
 							<td>
 								<input type="hidden" name="cust_id" id="cust_id" value="${ccActVO.cust_id}"> 
-								<input type="text" name="cust_nm" id="cust_nm" class="int_email" value="${ccActVO.cust_nm}" readonly="readonly"> 
+								<input type="text" name="cust_nm" id="cust_nm" class="int_email" value="${ccActVO.cust_nm}" readonly="readonly">
+								 
 							</td>
 						</tr>
 						<tr>
@@ -70,7 +71,6 @@ function ccActDetailSelect() {
 							<td>
 							    <input type="hidden" id="sales_oppt_id" value="${ccActVO.sales_oppt_id}">
 							    <input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" value="${ccActVO.sales_oppt_nm}" readonly="readonly" onclick="actOpptListPopup();"> 
-							    <input type="button" name="act_opp" value="영업기회" class="cust_act_btn" id="act_opp_nm" onclick="ccOpptListPop('${ctx}');">
 							</td>
 						</tr>
 						<tr>

@@ -38,6 +38,21 @@ function keyNmSelect(ctx){
 }
 
 
+//영업기회 리스트 tr를 클릭했을 때 영업기회아이디 텍스트를 넣어주는 작업
+function OpptNmSelect(oppt_id, cust_id){
+	$('#comp_list_table tbody tr').click(function(){
+   /* 	 var custType = $('#custType').val();
+*/		var opptNm=$(this).find('#sales_oppt_nm').text();
+/*		var opptId=$(this).find('#oppt_id').text();*/
+		/*var custId=$(this).find('#cust_id').text();*/
+  		//준석수정
+		window.opener.inputOpptNm(oppt_id, opptNm, cust_id);
+		self.close();
+		
+	});
+}
+
+
 //고객 popup 검색 버튼 누를 시 action 실행
 function custSearch(ctx,custType){
 	$('#search_btn').click(function(){
