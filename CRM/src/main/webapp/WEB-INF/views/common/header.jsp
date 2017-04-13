@@ -25,8 +25,8 @@ function logout(){
 
 #logout {
 	margin: 0 auto;
-	margin-top: 45px;
-	margin-right: -39px;
+	margin-top: 34px;
+	margin-right: -44px;
 	float: right;
 	font-weight: bold;
 	
@@ -35,7 +35,7 @@ function logout(){
 #logoutImg {
 	width: 25px;
 	margin: 0 auto;
-	margin-top: 15px;
+	margin-top: 10px;
 	float: right;
 }
 #logoutImg:HOVER {
