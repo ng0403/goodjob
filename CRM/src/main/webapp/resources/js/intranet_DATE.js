@@ -1006,17 +1006,6 @@ function getPayDay(){
 	//$('#schcalendar').fullCalendar( 'renderEvent', {title:'월급날', start:new Date(y,m,d), color:'red'} );
 }
 
-/**
- * 일정 계산
- * */
-function getSchedule()
-{
-	var calDate = $('#schcalendar').fullCalendar('getDate');
-	
-	alert(calDate);
-}
-
-
 
 
 

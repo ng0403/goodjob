@@ -189,6 +189,7 @@ function actMdfyCancelBt(){
 		}
 	});
 }
+
 //날짜 13자리를 yyyy-mm-dd형식으로 변환해주는 함수
 function dateFormat(timestamp) {
 
@@ -352,17 +353,7 @@ function actPaging(actPageNum) {
 				
 				tbodyContent = "<tr>"
 									+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
-									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.
-
-									
-									
-									
-									
-									
-									
-									
-									
-									[i].sales_actvy_id+"')>"
+									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
 									+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
 									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>"
 									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
@@ -638,73 +629,82 @@ function actInsertClick(){
 //영업활동 등록
 function actInsert(ctx) {
 	$(document).ready(function() {
-		var actTbody = $('#act_list_tbody');
-		var actListContent = "";
-		var strt_t_h = $('#strt_t_h').val();
-		var strt_t_m = $('#strt_t_m').val();
-		var end_t_h = $('#end_t_h').val();
-		var end_t_m = $('#end_t_m').val();
+//		var actTbody = $('#act_list_tbody');
+//		var actListContent = "";
+//		var strt_t_h = $('#strt_t_h').val();
+//		var strt_t_m = $('#strt_t_m').val();
+//		var end_t_h = $('#end_t_h').val();
+//		var end_t_m = $('#end_t_m').val();
+//		
+//		if($('#actdiv_1').is(':checked')) {
+//			var sales_actvy_div_nm1=$('#actdiv_1').val();
+//		} else {
+//			var sales_actvy_div_nm1=$('#actdiv_2').val();		
+//		}	
+//		
+//		var obj = {
+//				sales_actvy_nm : $('#sales_actvy_nm').val(),
+//				sales_actvy_div_cd : sales_actvy_div_nm1,
+//				sales_actvy_type_cd : $('#sales_actvy_type_nm').val(),
+//				sales_oppt_id : $('#sales_oppt_id').val(),
+//				cust_id : $('#cust_id').val(),
+//				sales_actvy_stat_cd : $('#sales_actvy_stat_nm').val(),
+//				strt_d : $('#strt_d').val(),
+//				strt_t : $('#strt_t_h').val()+":"+$('#strt_t_m').val(),
+//				end_d : $('#end_d').val(),
+//				end_t : $('#end_t_h').val()+":"+$('#end_t_m').val(),    			
+//		        memo : $('#memo').val()
+//		}
 		
-		if($('#actdiv_1').is(':checked')) {
-			var sales_actvy_div_nm1=$('#actdiv_1').val();
-		} else {
-			var sales_actvy_div_nm1=$('#actdiv_2').val();		
-		}	
-		
-		var obj = {
-				sales_actvy_nm : $('#sales_actvy_nm').val(),
-				sales_actvy_div_cd : sales_actvy_div_nm1,
-				sales_actvy_type_cd : $('#sales_actvy_type_nm').val(),
-				sales_oppt_id : $('#sales_oppt_id').val(),
-				cust_id : $('#cust_id').val(),
-				sales_actvy_stat_cd : $('#sales_actvy_stat_nm').val(),
-				strt_d : $('#strt_d').val(),
-				strt_t : $('#strt_t_h').val()+":"+$('#strt_t_m').val(),
-				end_d : $('#end_d').val(),
-				end_t : $('#end_t_h').val()+":"+$('#end_t_m').val(),    			
-		        memo : $('#memo').val()
+		if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
+		{
+			alert("영업활동명을 입력해 주세요");
+			return false;
+		}
+		else if($('#sales_actvy_type_cd').val() == "0" || $('#sales_actvy_type_cd').val() == null)
+		{
+			alert("활동유형을 선택해 주세요");
+			return false;			
+		}
+		else if($('#sales_actvy_stat_cd').val() == "0"|| $('#sales_actvy_stat_cd').val() == null)
+		{
+			alert("상태를 선택해 주세요");
+			return false;
+		}
+		else if($('#strt_d').val() == "" || $('#strt_d').val() == null)
+		{
+			alert("시작일자를 선택해 주세요");
+			return false;
+		}
+		else if($('#strt_t_h').val() == "0" || $('#strt_t_h').val() == null)
+		{
+			alert("시를 선택해 주세요");
+			return false;
+		}
+		else if($('#strt_t_m').val() == "0" || $('#strt_t_m').val() == null)
+		{
+			alert("분을 선택해 주세요");
+			return false;
+		}
+		else if($('#end_d').val() == "" || $('#end_d').val() == null)
+		{
+			alert("종료일자를 선택해 주세요");
+			return false;
+		}
+		else if($('#end_t_h').val() == "0" || $('#end_t_h').val() == null)
+		{
+			alert("시를 선택해 주세요");
+			return false;
+		}
+		else if($('#end_t_m').val() =="0" || $('#end_t_m').val() == null)
+		{
+			alert("분을 선택해 주세요");
+			return false;
 		}
 		
 		$('#actTabForm') 
 		.attr('action','actInsert')
 		.submit();
-		
-//		if(obj.sales_actvy_nm==""||obj.sales_actvy_nm==null){
-//			alert("영업활동명을 입력해 주세요");
-//			return false;
-//		}else if(obj.sales_actvy_type_cd=="0"||obj.sales_actvy_type_cd==null){
-//			alert("활동유형을 선택해 주세요");
-//			return false;			
-//		}/*else if($('#actdiv_2').is(':checked')){
-//            if(obj.sales_oppt_id==""||obj.sales_oppt_id==null){
-//            	alert("영업기회명을 선택해 주세요");
-//			}else if(obj.cust_id==""||obj.cust_id==null){
-//            	alert("고객사를 선택해 주세요");
-//            }
-//		}*/else if(obj.sales_actvy_stat_cd=="0"||obj.sales_actvy_stat_cd==null){
-//			alert("상태를 선택해 주세요");
-//			return false;
-//		}else if(obj.strt_d==""||obj.strt_d==null){
-//			alert("시작일자를 선택해 주세요");
-//			return false;
-//		}else if(strt_t_h=="0"|| strt_t_h==null){
-//			alert("시를 선택해 주세요");
-//			return false;
-//		}else if(strt_t_m=="0"|| strt_t_m==null){
-//			alert("분을 선택해 주세요");
-//			return false;
-//		}else if(obj.end_d==""||obj.end_d==null){
-//			alert("종료일자를 선택해 주세요");
-//			return false;
-//		}else if(end_t_h=="0"|| end_t_h==null){
-//			alert("시를 선택해 주세요");
-//			return false;
-//		}else if(end_t_m=="0"|| end_t_m==null){
-//			alert("분을 선택해 주세요");
-//			return false;
-//		}
-		
-		
 /*		
 	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
 	    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
@@ -731,44 +731,24 @@ function actInsert(ctx) {
 	});
 }
 
-//영업활동 수정
-function actModify(ctx){
-	$(document).ready(function() {
-		var actTbody = $('#act_list_tbody');
-		var actListContent = "";
-		
-		if($('#actdiv_1').is(':checked')){
-			var sales_actvy_div_nm1=$('#actdiv_1').val();
-			
-		} else {
-			var sales_actvy_div_nm1=$('#actdiv_2').val();		
-		}		
-		var obj = {
-				sales_actvy_id : $("#nowSales_actvy_id").val(),
-				sales_actvy_nm : $('#sales_actvy_nm').val(),
-				sales_actvy_div_cd : sales_actvy_div_nm1,
-				sales_actvy_type_cd : $('#sales_actvy_type_nm').val(),
-				sales_oppt_id : $('#sales_oppt_id').val(),
-				sales_oppt_nm : $('#sales_oppt_nm').val(),
-				cust_id : $('#cust_id').val(),
-				sales_actvy_stat_cd : $('#sales_actvy_stat_nm').val(),
-				strt_d : $('#strt_d').val(),
-				strt_t : $('#strt_t_h').val()+":"+$('#strt_t_m').val(),
-				end_d : $('#end_d').val(),
-				end_t : $('#end_t_h').val()+":"+$('#end_t_m').val(),    			
-		        memo : $('#memo').val()/*,
-		        actPageNum : $('#actPageNum').val()*/
-		}
-
-	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
-	    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
-	    
-	    $('#actTabForm') 
-		.attr('action','actEdit')
+/**
+ * 영업활동 수정 버트 클릭 시
+ * */
+function actModify(ctx)
+{
+	$('#actTabForm')
+		.attr('action', 'actEdit')
 		.submit();
-	    
-	});
 }
+
+/**
+ * 영업활동 삭제 버튼 클릭 시
+ * */
+function actDelBt(sales_actvy_id)
+{
+	alert(sales_actvy_id);
+}
+
 
 //활동구분 클릭했을 때 활성화 비활성화 설정해주기
 function actDivCheck(){
@@ -937,7 +917,37 @@ function actOpptDelBt()
 }
 
 
-
-
+// 수정 버튼 눌렀을 시 ajax부분 (기존)
+//$(document).ready(function() {
+//var actTbody = $('#act_list_tbody');
+//var actListContent = "";
+//
+//if($('#actdiv_1').is(':checked')){
+//	var sales_actvy_div_nm1=$('#actdiv_1').val();
+//	
+//} else {
+//	var sales_actvy_div_nm1=$('#actdiv_2').val();		
+//}		
+//var obj = {
+//		sales_actvy_id : $("#nowSales_actvy_id").val(),
+//		sales_actvy_nm : $('#sales_actvy_nm').val(),
+//		sales_actvy_div_cd : sales_actvy_div_nm1,
+//		sales_actvy_type_cd : $('#sales_actvy_type_nm').val(),
+//		sales_oppt_id : $('#sales_oppt_id').val(),
+//		sales_oppt_nm : $('#sales_oppt_nm').val(),
+//		cust_id : $('#cust_id').val(),
+//		sales_actvy_stat_cd : $('#sales_actvy_stat_nm').val(),
+//		strt_d : $('#strt_d').val(),
+//		strt_t : $('#strt_t_h').val()+":"+$('#strt_t_m').val(),
+//		end_d : $('#end_d').val(),
+//		end_t : $('#end_t_h').val()+":"+$('#end_t_m').val(),    			
+//        memo : $('#memo').val()/*,
+//        actPageNum : $('#actPageNum').val()*/
+//}
+//
+//var jsonData = JSON.stringify(obj);		//JSON Object 생성
+//jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
+//
+//});
 
 

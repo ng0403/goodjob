@@ -56,13 +56,23 @@ $(function(){
 				dataType : "json",
 				success: function(data) {
 	            	getPayDay();
+	            	var events = [];
 	            	
 	            	for(var i=0; i<data.actSchList.length; i++)
 	            	{
-	            		//console.log(data.actSchList[i].SALES_ACTVY_NM);
-	            		$('#schcalendar').fullCalendar( 'renderEvent', {title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D), color:'blue'} );
+	            		// 일정 그려주는 부분.
+	            		$('#schcalendar').fullCalendar('renderEvent', {id:data.actSchList[i].SALES_ACTVY_ID ,title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D), color:'#B7F0B1', textColor:'#000000'} );
+	            		
+//	            		events.push({
+//	                        title: data.actSchList[i].SALES_ACTVY_NM,
+//	                        start: new Date(data.actSchList[i].STRT_D),
+//	                        end : new Date(data.actSchList[i].END_D),
+//	                        color : '#B7F0B1',
+//	                        textColor : '#000000'
+//	                    });
 	            	}
-
+	                
+	                //callback(events);
 	            },
 	            error: function(data){
 	            	alert("실패 ");
@@ -74,81 +84,18 @@ $(function(){
 	     * 페이지 이동으로 변경.
 	     * */
 	    dayClick: function(date) {
-	    	alert("date : " + date + " sales_actvy_id : " + sales_actvy_id);
 	    	location.href = ctx + '/actDetail';
 		
+	    },
+	    /**
+	     * 이벤트 클릭 시 상세보기 화면으로 이동.
+	     * */
+	    eventClick: function(data) {
+	    	if(data.title)
+	    	{
+	    		location.href = ctx + '/actDetail?sales_actvy_id='+data.id;
+	    	}
 	    }
-//	    eventClick: function(calEvent, jsEvent, view) {
-//	    	if(calEvent.seq != null){
-//	    		
-//	    		$.getJSON(getContextPath()+"/scheduleFiles",{seq:calEvent.seq},function(response){
-//	    			var files;
-//	    			files = response;
-//	    		
-//			    	$.getJSON(getContextPath()+"/getSchedule",{seq:calEvent.seq},function(response){
-//			    		var article = response;
-//				    	var sdate = new Date(article.STARTTIME);
-//						var stime = sdate.getFullYear() + "년 " + (sdate.getMonth()+1) + "월 " + sdate.getDate() + "일";
-//						var edate = new Date(article.ENDTIME);
-//						var etime = edate.getFullYear() + "년 " + (edate.getMonth()+1) + "월 " + edate.getDate() + "일";
-//						var fileHtml = '<div class="notify" style="margin-top:5px;">';
-//						for(var i = 0 ; i < files.length ; i ++){
-//							fileHtml += '&nbsp;&nbsp;<a href="javascript:scheduleFileDown('+files[i].seq+')">' + files[i].realname +'</a>&nbsp;&nbsp;';
-//						}
-//						fileHtml += '</div>';
-//						$("#modal-contents").html('<div class="label label-red" style="min-width:300px;">' + stime + ' ~ ' + etime + '</div><br><div class="notify contents-view" style="margin-top:5px;">' + article.contents +'</div>'+fileHtml);
-//						if(article.isWriter == null){
-//							scheduleParam = {seq : article.SEQ,title : article.TITLE, contents : article.CONTENTS, starttime : article.STARTTIME, endtime : article.ENDTIME, files:files};
-//							console.log("seq??" + article.SEQ);
-//							var updateBtn = $('<a/>', {
-//											    href: '#',
-//											    name: 'updateBtn',
-//											    id: 'updateBtn',
-//											    html: '수정',
-//											    addClass : 'btn btn-gray btn-small',
-//											    onclick: 'javascript:contentsUpdate();'
-//											});
-//							var deleteBtn = $('<a/>', {
-//											    href: '#',
-//											    name: 'deleteBtn',
-//											    id: 'deleteBtn',
-//											    html: '삭제',
-//											    addClass : 'btn btn-gray btn-small',
-//											    onclick: 'javascript:contentsDelete('+article.SEQ+');'
-//											});
-//							var closeBtn = $('<a/>', {
-//											    href: '#',
-//											    name: 'closeBtn',
-//											    id: 'closeBtn',
-//											    html: 'Close',
-//											    addClass : 'btn btn-gray btn-small',
-//											    onclick: 'javascript:modal.hide();'
-//											});
-//							
-//							$('#contentsBtn').html( updateBtn[0].outerHTML +  deleteBtn[0].outerHTML +  closeBtn[0].outerHTML);
-//						}else{
-//							
-//							var closeBtn = $('<a/>', {
-//							    href: '#',
-//							    name: 'closeBtn',
-//							    id: 'closeBtn',
-//							    html: 'Close',
-//							    addClass : 'btn btn-gray btn-small',
-//							    onclick: 'javascript:modal.hide();'
-//							});
-//			
-//							$('#contentsBtn').html( closeBtn[0].outerHTML);
-//						}
-//						$("#modal-title").html(article.title + '<span style="float:right;">'+'GUEST'+'</span>');
-//						modal.show();
-//			    	}).fail(function(jqxhr, textStatus, error){
-//						 var err = textStatus + ", " + error;
-//						 console.log( "Request Failed: " + err );
-//						 location.href=getContextPath()+'/common/error.do?code='+textStatus;
-//					});
-//	    		});
-//	    	}
-//	    },
 	});
 	
 	

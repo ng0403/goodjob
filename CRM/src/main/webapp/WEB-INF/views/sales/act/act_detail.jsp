@@ -53,6 +53,7 @@
 			<c:if test="${flg == 1}">
 				<div id="actBaseBtnDiv" class="act_tab_bt_div">
 					<input type="button" id="actMdfBtn" value="편집" class="act_bt"/>
+					<input type="button" id="actDelBtn" value="삭제" class="act_bt" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
 					<input type="button" id="actAddCancelBtn" value="취소" class="act_bt" onclick="actAddCancelBt();"/>
 				</div>
 				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
@@ -196,29 +197,28 @@
 								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="start_text" readonly="readonly">
 								<input type="hidden" id="hstrt_t_h">
 								
-								<select name="strt_t" id="strt_t_h" class="start_hour" disabled="disabled">
+								<select name="strt_t_h" id="strt_t_h" class="start_hour" disabled="disabled">
 									<option value="0" style="text-align: center;">==선택==</option>
-								
-								<c:forEach var="htime" items="${htime}" step="1">
-									<c:if test="${actDetail.strt_t_h == htime}">
-										<option value="htime" selected="selected">${htime}</option>
-									</c:if>
-									<c:if test="${actDetail.strt_t_h != htime}">
-										<option value="htime">${htime}</option>
-									</c:if>
-								</c:forEach>
+									<c:forEach var="htime" items="${htime}" step="1">
+										<c:if test="${actDetail.strt_t_h == htime}">
+											<option value="${htime}" selected="selected">${htime}</option>
+										</c:if>
+										<c:if test="${actDetail.strt_t_h != htime}">
+											<option value="${htime}">${htime}</option>
+										</c:if>
+									</c:forEach>
 								</select>
 								시
 								<input type="hidden" id="hstrt_t_m">
-								<select name="strt_t" id="strt_t_m" class="start_minute" disabled="disabled">
+								<select name="strt_t_m" id="strt_t_m" class="start_minute" disabled="disabled">
 									<option value="0" style="text-align: center;">==선택==</option>
 									
 									<c:forEach var="mtime" items="${mtime}" step="1">
 										<c:if test="${actDetail.strt_t_m == mtime}">
-											<option value="mtime" selected="selected">${mtime}</option>
+											<option value="${mtime}" selected="selected">${mtime}</option>
 										</c:if>
 										<c:if test="${actDetail.strt_t_m != mtime}">
-											<option value="mtime">${mtime}</option>
+											<option value="${mtime}">${mtime}</option>
 										</c:if>
 									</c:forEach>
 								</select>
@@ -228,7 +228,7 @@
 								<input type="hidden" id="hstrt_d">
 								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="start_text" readonly="readonly" style="background-color: white;">
 								<input type="hidden" id="hstrt_t_h">
-								<select name="strt_t" id="strt_t_h" class="start_hour">
+								<select name="strt_t_h" id="strt_t_h" class="start_hour">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<option value="01">1</option>
 										<option value="02">2</option>
@@ -257,7 +257,7 @@
 								</select>
 								시
 								<input type="hidden" id="hstrt_t_m">
-								<select name="strt_t" id="strt_t_m" class="start_minute">
+								<select name="strt_t_m" id="strt_t_m" class="start_minute">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<option value="00">00</option>
 										<option value="10">10</option>
@@ -289,30 +289,30 @@
 									<input type="hidden" id="hend_d">
 									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="end_text" readonly="readonly">
 									<input type="hidden" id="hend_t_h">
-									<select name="ent_t" id="end_t_h" class="end_hour" disabled="disabled">
-										<option value="0" style="text-align: center;">==선택==</option>
 									
-									<c:forEach var="htime" items="${htime}" step="1">
-										<c:if test="${actDetail.end_t_h == htime}">
-											<option value="htime" selected="selected">${htime}</option>
-										</c:if>
-										<c:if test="${actDetail.end_t_h != htime}">
-											<option value="htime">${htime}</option>
-										</c:if>
-									</c:forEach>
+									<select name="end_t_h" id="end_t_h" class="end_hour" disabled="disabled">
+										<option value="0" style="text-align: center;">==선택==</option>
+										<c:forEach var="htime" items="${htime}" step="1">
+											<c:if test="${actDetail.end_t_h == htime}">
+												<option value="${htime}" selected="selected">${htime}</option>
+											</c:if>
+											<c:if test="${actDetail.end_t_h != htime}">
+												<option value="${htime}">${htime}</option>
+											</c:if>
+										</c:forEach>
 									</select>
 									시
 									<input type="hidden" id="hend_t_m">
-									<select name="end_t" id="end_t_m" class="end_minute" disabled="disabled">
+									<select name="end_t_m" id="end_t_m" class="end_minute" disabled="disabled">
 										<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach var="mtime" items="${mtime}" step="1">
-										<c:if test="${actDetail.end_t_m == mtime}">
-											<option value="mtime" selected="selected">${mtime}</option>
-										</c:if>
-										<c:if test="${actDetail.end_t_m != mtime}">
-											<option value="mtime">${mtime}</option>
-										</c:if>
-									</c:forEach>	
+										<c:forEach var="mtime" items="${mtime}" step="1">
+											<c:if test="${actDetail.end_t_m == mtime}">
+												<option value="${mtime}" selected="selected">${mtime}</option>
+											</c:if>
+											<c:if test="${actDetail.end_t_m != mtime}">
+												<option value="${mtime}">${mtime}</option>
+											</c:if>
+										</c:forEach>	
 									</select>
 									분
 								</c:if>
@@ -320,7 +320,7 @@
 									<input type="hidden" id="hend_d">
 									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="end_text" readonly="readonly" style="background-color: white;">
 									<input type="hidden" id="hend_t_h">
-									<select name="ent_t" id="end_t_h" class="end_hour">
+									<select name="end_t_h" id="end_t_h" class="end_hour">
 										<option value="0" style="text-align: center;">==선택==</option>
 											<option value="01">1</option>
 											<option value="02">2</option>
@@ -349,7 +349,7 @@
 									</select>
 									시
 									<input type="hidden" id="hend_t_m">
-									<select name="end_t" id="end_t_m" class="end_minute">
+									<select name="end_t_m" id="end_t_m" class="end_minute">
 										<option value="0" style="text-align: center;">==선택==</option>
 											<option value="00">00</option>
 											<option value="10">10</option>

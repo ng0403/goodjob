@@ -97,47 +97,8 @@ public class ActController {
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView companyCutomerDetail(String sales_actvy_id) 
 	{
-
 		int flg;
-		sales_actvy_id = "SAT0000092";
-		System.out.println("sales_actvy_id : " + sales_actvy_id);
-/*		
-		flg = 1;
-		
-		
-		String[] htime = {"01", "02", "03", "04", "05", "06",
-						 "07", "08", "09", "10", "11", "12",
-						 "13", "14", "15", "16", "17", "18",
-						 "19", "20", "21", "22", "23", "24"};
-		String[] mtime = {"00", "10", "20", "30", "40", "50"};
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		ActVO actVO = actService.actDetail(sales_actvy_id);
-		
-		String cust_id = actVO.getCust_id();
-		
-		List<ActVO> actTypeCd = actService.actTypeCdList();
-		List<ActVO> actStatCd = actService.actStatCdList();
-		List<OpptVO> opptList = actService.opptList(cust_id);
-		
-		ModelAndView mov = new ModelAndView("actSaleDetail");
-		
-		System.out.println("flg : " + flg);
-		System.out.println(actVO.toString());
-		System.out.println(actStatCd.toString());
-		System.out.println("OPPT_LIST : " + opptList.toString());
-		System.out.println("OPPT_LIST : " + opptList);
-		
-		mov.addObject("actDetail", actVO);
-		mov.addObject("actStatCd", actStatCd);
-		mov.addObject("actTypeCd", actTypeCd);
-		mov.addObject("opptList", opptList);
-		mov.addObject("htime", htime);
-		mov.addObject("mtime", mtime);
-		mov.addObject("flg", flg);
-			
-		return mov;
-*/
+
 		if(sales_actvy_id != null)
 		{
 			flg = 1;
@@ -147,27 +108,16 @@ public class ActController {
 					 "19", "20", "21", "22", "23", "24"};
 			String[] mtime = {"00", "10", "20", "30", "40", "50"};
 	
-			Map<String, Object> map = new HashMap<String, Object>();
 			ActVO actVO = actService.actDetail(sales_actvy_id);
-	
-			String cust_id = actVO.getCust_id();
 	
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
-			List<OpptVO> opptList = actService.opptList(cust_id);
 	
 			ModelAndView mov = new ModelAndView("actSaleDetail");
-	
-			System.out.println("flg : " + flg);
-			System.out.println(actVO.toString());
-			System.out.println(actStatCd.toString());
-			System.out.println("OPPT_LIST : " + opptList.toString());
-			System.out.println("OPPT_LIST : " + opptList);
 	
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
-			mov.addObject("opptList", opptList);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
 			mov.addObject("flg", flg);
@@ -183,8 +133,6 @@ public class ActController {
 			
 			ModelAndView mov = new ModelAndView("actSaleAdd");
 			
-			System.out.println("flg : " + flg);
-			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
 			mov.addObject("flg", flg);
@@ -199,13 +147,13 @@ public class ActController {
 	public String actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
 	{
 		actvo.setFst_reg_id(session.getAttribute("user").toString());
-		//sales_actvy_div_cd=0001 할 일 일경우
-		//sales_actvy_div_cd=0002 영업활동일 결우
-		System.out.println(actvo.toString());
+		actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
+		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
+		
+		System.out.println("actInsert : " + actvo.toString());
 		actService.actInsert(actvo);
 
 		return "redirect:/act";
-				
 	}
 
 	//영업활동 수정	
@@ -216,8 +164,9 @@ public class ActController {
 		actvo.setSales_actvy_div_cd(actvo.getSales_actvy_div_nm());
 		actvo.setSales_actvy_type_cd(actvo.getSales_actvy_type_nm());
 		actvo.setSales_actvy_stat_cd(actvo.getSales_actvy_stat_nm());
+		actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
+		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
 		
-		System.out.println(actvo);
         actService.actEdit(actvo);
 		
         return "redirect:/act";
