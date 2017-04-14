@@ -1,0 +1,535 @@
+@CHARSET "UTF-8";
+
+html {
+	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial,
+		"Trebuchet MS";
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: .9em;
+	font-weight: 700;
+}
+
+select {
+	background-color: #ffffff;
+	color: #5F5F5F;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: 110px;
+}
+
+#title .caption {
+	color: #484848;
+	font-weight: bold;
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 10px;
+}
+
+.bs-example {
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 15px;
+}
+
+#operatingapopuptable {
+	width: 100%;
+	margin-left: 15px;
+}
+
+#tbody1 tr {
+	height: 40px;
+}
+
+#operatingapopuptable #tbody1 tr th {
+	padding-right: 20px;
+	text-align: right;
+}
+
+#operatingapopuptable tbody>tr>th {
+	line-height: 1.4;
+	width: 60px;
+	vertical-align: middle;
+}
+
+#operatingapopuptable tbody>tr>td {
+	line-height: 1.4;
+	vertical-align: middle;
+	width: 200px;
+	padding: 3px;
+}
+
+.int {
+	position: relative;
+	width: 250px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_tel {
+	position: relative;
+	width: 60px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_email {
+	position: relative;
+	width: 100px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	font-size: 15px;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_act {
+	position: relative;
+	width: 120px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.memo {
+	border: 1px solid #bebebe;
+	border-radius: 5px 5px 5px 5px;
+	width: 233px;
+}
+
+.oppt_bt_position {
+	float: right;
+	padding-right: 9px;
+	margin-top: 10px;
+}
+
+.cust_oppt_btn {
+	background-color: #eaeaea;
+	color: #353535;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.cust_oppt_btn:hover {
+	background-color: #ABABAB;
+	color: white;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+ @CHARSET "UTF-8";
+
+html {
+	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial,
+		"Trebuchet MS";
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: .9em;
+	font-weight: 700;
+}
+
+select {
+	background-color: #ffffff;
+	color: #5F5F5F;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: 100px;
+}
+
+#title .caption {
+	color: #484848;
+	font-weight: bold;
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 10px;
+}
+
+.bs-example {
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 15px;
+}
+
+#opptPoptbl {
+	width: 100%;
+	margin-left: 15px;
+}
+
+#tbody1 tr {
+	height: 40px;
+}
+
+#opptPoptbl #tbody1 tr th {
+	padding-right: 20px;
+	text-align: right;
+}
+
+#opptPoptbl tbody>tr>th {
+	line-height: 1.4;
+	width: 8%;
+	vertical-align: middle;
+}
+
+#opptPoptbl tbody>tr>td {
+	line-height: 1.4;
+	vertical-align: middle;
+	width: 18%;
+	padding: 3px;
+}
+
+.int {
+	position: relative;
+	width: 250px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_tel {
+	position: relative;
+	width: 50px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_email {
+	position: relative;
+	width: 100px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	font-size: 15px;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_oppt {
+	position: relative;
+	width: 120px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.memo {
+	border: 1px solid #bebebe;
+	border-radius: 5px 5px 5px 5px;
+	width: 233px;
+}
+
+.oppt_bt_position {
+	float: right;
+	padding-right: 9px;
+	margin-top: 10px;
+}
+
+.cust_oppt_btn {
+	background-color: #eaeaea;
+	color: #353535;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.cust_oppt_btn:hover {
+	background-color: #ABABAB;
+	color: white;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+ @CHARSET "UTF-8";
+
+html {
+	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial,
+		"Trebuchet MS";
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: .9em;
+	font-weight: 700;
+}
+
+select {
+	background-color: #ffffff;
+	color: #5F5F5F;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: 100px;
+}
+
+#title .caption {
+	color: #484848;
+	font-weight: bold;
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 10px;
+}
+
+.bs-example {
+	border-bottom: 1px solid #dddddd;
+	padding-bottom: 15px;
+}
+
+#opptPoptbl {
+	width: 100%;
+	margin-left: 15px;
+}
+
+#tbody1 tr {
+	height: 40px;
+}
+
+#opptPoptbl #tbody1 tr th {
+	padding-right: 20px;
+	text-align: right;
+}
+
+#opptPoptbl tbody>tr>th {
+	line-height: 1.4;
+	width: 8%;
+	vertical-align: middle;
+}
+
+#opptPoptbl tbody>tr>td {
+	line-height: 1.4;
+	vertical-align: middle;
+	width: 18%;
+	padding: 3px;
+}
+
+.auth_bt_position {
+	float: right;
+	margin-top: 10px;
+}
+
+.int {
+	position: relative;
+	width: 250px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_tel {
+	position: relative;
+	width: 50px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_email {
+	position: relative;
+	width: 100px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	font-size: 15px;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.int_act {
+	position: relative;
+	width: 120px;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #232323;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 10px;
+}
+
+.memo {
+	border: 1px solid #bebebe;
+	border-radius: 5px 5px 5px 5px;
+	width: 233px;
+}
+
+.act_bt_position {
+	float: right;
+	padding-right: 25px;
+	margin-top: 10px;
+}
+
+.cust_act_btn {
+	background-color: #eaeaea;
+	color: #353535;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.cust_act_btn:hover {
+	background-color: #ABABAB;
+	color: white;
+	border: 1px solid #C0C4CB;
+	padding: 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	width: auto;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+#estimatetable {
+	/* border-left: 2px solid #bebebe;
+	border-right: 2px solid #bebebe; */
+	width: 100%;
+	font-size: 13px;
+	border-collapse: collapse;
+}
+
+#estimatetable #totalprice {
+	background-color: #FAF4C0;
+}
+
+#estimatetable thead tr {
+	background-color: #F2F2F2;
+	font-weight: bold;
+}
+
+#estimatetable thead th {
+	text-align: center;
+}
+
+#estimatetable tbody td {
+	
+}
+
+#estimatetable tbody {
+	
+}
+
+#estimatetable tbody tr {
+	height: 30px;
+	font-family: monospace;
+}
+
+#estimatetable thead>tr>th, #estimatetable thead>tr>td, #estimatetable #priceline>td,
+	#estimatetable #priceline>th, #estimatetable #totalprice>tr,
+	#estimatetable #totalprice>td {
+	border-top: 1px solid #bebebe;
+	border-bottom: 1px solid #bebebe;
+	border-right: 1px solid #bebebe;
+	border-collapse: collapse;
+}
+
+#estimatehead {
+	width: 95%;
+	border-left: 2px solid #bebebe;
+	border-right: 2px solid #bebebe;
+	border-top: 2px solid #bebebe;
+}
+
+#estimatehead #totalprice {
+	background-color: #FAF4C0;
+}
+
+#estimatehead tr>td, #estimatehead tr>th {
+	border: 1px solid #bebebe;
+}
+
+#estimatediv {
+	height: 90px;
+	width: 95%;
+	border-bottom: 2px solid #bebebe;
+}
+
+.estimate_bt_position {
+	width: 100%;
+	padding-top: 10px;
+	padding-right: 26px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dddddd;
+	height: 50px;
+}
+
+.estimate_bt_position2 {
+	width: 100%;
+	padding-top: 10px;
+	padding-right: 26px;
+	height: 50px;
+}
+
+#addproduct {
+	float: right;
+	margin-right: 5px;
+}
+
+#addservice {
+	float: right;
+}
+
+#estimate_confirm {
+	float: right;
+	margin-right: 5px;
+}
+
+#estimate_cancel {
+	float: none;
+}
+
+.ebtn {
+	margin-left: 5px;
+	height: 24px;
+	width: 70px;
+	display: inline-block;
+	margin-bottom: 0;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+	cursor: pointer;
+	border: 1px solid #adadad;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.btn-chance {
+	background-color: #FAF4C0;
+}
+
+.btn-chance:hover, .btn-chance:focus, .btn-chance:active, .btn-chance.active,
+	.open .dropdown-toggle.btn-chance {
+	color: #333333;
+	background-color: #FAED7D;
+	border-color: #ffffff;
+}

@@ -8,7 +8,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <c:set var="popFlg" value="${popFlg}" />
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/custcomp_actpop_css.css" type="text/css" />
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act_oppt_prod.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -20,15 +22,22 @@
 <title>영업기회 등록</title>
 </head>
 <body>
+
 	<div class="keymanview">
 	<c:if test="${popFlg eq 'add'}">
 		<div id="title">
 			<div class="caption">● 영업기회 등록</div>
+			<input type="hidden" id="flg" name="flg" value="${popFlg}">
+			<input type="hidden" id="eduList" name="eduList" value="${eduList}">
+			<input type="hidden" id="eduCode" name="eduCode" value="${eduCode}">
 		</div>
 	</c:if>
 	<c:if test="${popFlg eq 'popDetail'}">
 		<div id="title">
 			<div class="caption">● 영업기회 상세보기</div>
+			<input type="hidden" id="flg" name="flg" value="${popFlg}">
+			<input type="hidden" id="eduList" name="eduList" value="${eduList}">
+			<input type="hidden" id="eduCode" name="eduCode" value="${eduCode}">
 		</div>
 	</c:if>
 		<div class="bt_position_popup">
@@ -36,12 +45,15 @@
 				<form action="opptPopForm" method="post">
 				<table id="operatingapopuptable">
 					<tbody id="tbody1">
+					<!-- 영업기회 TAB 등록 -->
 						<c:if test="${popFlg eq 'add'}">
 							<tr>
 								<th>영업기회명</th>
 								<td> <!-- colspan="3" -->
-									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
+									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" style="ms-ime-mode: disabled; background-color: ">
 								</td>
+							</tr>
+							<tr>	
 								<th>고객사</th>
 								<td>
 									<input type="text" name="cust_nm" id="cust_nm" class="int" readonly="readonly">
@@ -62,10 +74,11 @@
 										</c:forEach>
 									</select>
 								</td>
-						
+							</tr>
+							<tr>
 								<th>영업단계</th>
 								<td>
-								<input type="hidden" id="hsales_lev_cd" value="0">
+									<input type="hidden" id="hsales_lev_cd" value="0">
 										<select name="sales_lev_cd" id="sales_lev_cd" style="height: 24pt;">
 											<option value="0" style="text-align: center;">==선택==</option>
 											<c:forEach items="${otllist}" var="list">
@@ -78,11 +91,6 @@
 								</td>
 							</tr>
 							<tr>
-								<th>예상매출액</th>
-								<td>
-									<input type="hidden" id="hexpt_sales_amt">
-									<input type="text" name="expt_sales_amt" id="expt_sales_amt" class="int" />
-								</td>
 								<th>예상마감일자</th>
 								<td>
 									<input type="hidden" id="hexpt_fin_d">
@@ -214,6 +222,72 @@
 				</table>
 				</form>
 			</div>
+			<div>
+				<table id= "estimatehead">
+							<tr>
+								<th style="width: 3%;">V</th>
+								<td style="width: 32%;">품목명</td>
+								<td style="width: 8%;">수량</td>
+								<td style="width: 27%;">판매가</td>
+								<td style="width: 15%;">할인</td>
+								<td style="width: 15%;">공급가</td>
+							</tr>
+							<tr id="totalprice">
+								<th><input type="checkbox" id="allSelect"></th>
+								<td>계:</td>
+								<td id="countSum">0</td>
+								<td id="salesPriceSum" >0</td>
+								<td id="discountSum">0</td>
+								<td id="supplyPriceSum">0</td>
+							</tr>
+				</table>
+			</div> 
+			<div id = "estimatediv">
+					<table id="estimatetable">
+						<tbody id="opptProdtbody">
+							<c:forEach items="${prod}" var="list">
+								<tr id="priceline" class="${list.prod_id}">
+									<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}"> 
+										<input type="hidden" id="prod_price"  value="${list.prod_price}" ></th>
+										<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
+										<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" min="1" max="100" value="${list.estim_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></td>
+										<td style="width: 27%;" >${list.sales_price}</td>
+										<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value="${list.discount}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>
+						
+										<select id="unit" name="discount_unit_cd" style="width: 30%;">
+											<c:if test="${flg eq 'detail'}">
+												<option value="0" >선택</option>
+												<c:forEach items="${eduList}" var="list2">
+													<c:if test="${list2.code == list.discount_unit_cd}">
+														<option value="${list2.code}" class="seloption">${list2.cd_nm}</option>
+													</c:if>
+													<c:if test="${list2.code != list.discount_unit_cd}">
+														<option value="${list2.code}">${list2.cd_nm}</option>
+													</c:if>
+												</c:forEach>
+											</c:if>
+										</select>
+
+										</td>
+										<td style="width: 15%;" id="sup_price" >${list.sup_price}</td>
+								 </tr>
+							 </c:forEach> 
+						</tbody>
+					</table>
+			</div>
+			<c:if test="${popFlg eq 'add'}">
+				<div class="estimate_bt_position"> 
+					<input type="button" class="btn btn-default"  value="상품추가" id="prodListBtn" onclick="opptProdList()" />
+					<input type="button" class="btn btn-default" value="상품삭제" id="prodDelete"/>
+				</div>
+			</c:if>
+			<c:if test="${popFlg eq 'popDetail'}">
+				<div class="estimate_bt_position2">
+					<input type="button" class="btn btn-success" value="저장" id="opptEstimButton"/>
+					<input type="button" class="btn btn-default" value="취소" id="estimate_cancel"/>
+				</div>
+			</c:if>
+			
 			<c:if test="${popFlg eq 'add'}">
 				<div class="act_bt_position">
 <%-- 					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSaveBtn('${ctx}')"/> --%>

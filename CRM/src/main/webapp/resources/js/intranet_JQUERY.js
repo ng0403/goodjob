@@ -62,14 +62,6 @@ $(function(){
 	            	{
 	            		// 일정 그려주는 부분.
 	            		$('#schcalendar').fullCalendar('renderEvent', {id:data.actSchList[i].SALES_ACTVY_ID ,title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D), color:'#B7F0B1', textColor:'#000000'} );
-	            		
-//	            		events.push({
-//	                        title: data.actSchList[i].SALES_ACTVY_NM,
-//	                        start: new Date(data.actSchList[i].STRT_D),
-//	                        end : new Date(data.actSchList[i].END_D),
-//	                        color : '#B7F0B1',
-//	                        textColor : '#000000'
-//	                    });
 	            	}
 	                
 	                //callback(events);

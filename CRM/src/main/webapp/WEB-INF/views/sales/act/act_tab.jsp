@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>	
 
 <style type="text/css">
@@ -65,7 +66,6 @@
 							<td style="width: 8%;">고객사</td>
 <!-- 							<td style="width: 6%;">상태</td> -->
 							<td style="width: 8%;">영업단계</td>
-							<td style="width: 20%;">예상매출액</td>
 							<td style="width: 8%;">가능성</td>
 							<td style="width: 10%;">등록자</td>
 							<td style="width: 10%;">등록일시</td>
@@ -85,7 +85,6 @@
 										<td>${opptList.sales_lev_cd_nm}</td>
 <%-- 										<td style="text-align: right; padding-right:5px;">${opptList.}</td> --%>
 										<td>${opptList.expt_sales_amt}</td>
-										<td>${opptList.psblty_rate}</td>
 										<td>${opptList.fst_reg_id}</td>
 										<td>${opptList.fst_reg_dt}</td>
 								</tr>

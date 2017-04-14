@@ -3,6 +3,7 @@ package com.crm.cp.sales.act.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,10 +25,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.service.ActService;
 import com.crm.cp.sales.act.vo.ActVO;
+import com.crm.cp.sales.est.service.EstService;
+import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
+import com.crm.cp.sales.oppt.vo.OpptPrdtVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
+import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.Encoder;
 import com.crm.cp.utils.PagerVO;
 
@@ -41,7 +46,10 @@ public class ActController {
 	ActService actService;
 	
 	@Autowired
-	OpptService service;
+	EstService estInter;
+	
+	@Autowired
+	OpptService opptService;
 	
 	//전체리스트 출력
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
@@ -95,7 +103,7 @@ public class ActController {
 	
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView companyCutomerDetail(String sales_actvy_id) 
+	public ModelAndView actDetail(String sales_actvy_id) 
 	{
 		int flg;
 
@@ -109,15 +117,20 @@ public class ActController {
 			String[] mtime = {"00", "10", "20", "30", "40", "50"};
 	
 			ActVO actVO = actService.actDetail(sales_actvy_id);
-	
+			
+			String cust_id = actVO.getCust_id();
+			
+			List<OpptVO> ottpList = actService.opptList(cust_id);
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
-	
+			
+			
 			ModelAndView mov = new ModelAndView("actSaleDetail");
-	
+			
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("opptList", ottpList);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
 			mov.addObject("flg", flg);
@@ -298,16 +311,28 @@ public class ActController {
 	public ModelAndView opptInsertPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_sales_oppt_id) 
 	{
 		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = service.opptOscList();
+		List<OpptVO> osclist = opptService.opptOscList();
 		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = service.opptOtlList();
+		List<OpptVO> otllist = opptService.opptOtlList();
+		List<EstVO> elclist = estInter.elcList();
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+		
+		System.out.println("actDetail - eduCode : " + eduCode.toString());
 		
 		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
 		
 		mov.addObject("popFlg", "add");
-		//mov.addObject("popFlg", "popDetail");
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+		mov.addObject("elclist", elclist);
 		
 		return mov;
 	}
@@ -318,12 +343,20 @@ public class ActController {
 	public ModelAndView opptDetailPop(HttpSession session, String sales_oppt_id) 
 	{
 		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = service.opptOscList();
+		List<OpptVO> osclist = opptService.opptOscList();
 		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = service.opptOtlList();
-		
+		List<OpptVO> otllist = opptService.opptOtlList();
 		// opptDetail -> sales_oppt_id
-		OpptVO opDetail = service.opptDetail(sales_oppt_id);
+		OpptVO opDetail = opptService.opptDetail(sales_oppt_id);
+		
+		List<EstVO> elclist = estInter.elcList();
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
 		
 		System.out.println("osclist : " + osclist);
 		System.out.println("otllist : " + otllist);
@@ -334,6 +367,9 @@ public class ActController {
 		mov.addObject("popFlg", "popDetail");
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+		mov.addObject("elclist", elclist);
 		mov.addObject("opDetail", opDetail);
 		
 		return mov;
@@ -349,31 +385,53 @@ public class ActController {
 		List<OpptVO> opptList = actService.opptList(opptVo.getCust_id());
 		
 		System.out.println("opptTabajax opptList : " + opptList);
-		
-		// 한글 검색 인코더 변환
-		//map.put("pageNum", pageNum + "");
-		
-		//PagerVO page = service.opptPageCount(map);
-		//map.put("startRow", page.getStartRow() + "");
-		//map.put("endRow", page.getEndRow() + "");
-
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("opptList", opptList);
-		//result.put("oplist", list);
-		//result.put("page", page);
-		//result.put("searchInfo", map);
 
 		return result;
 	}
 	
 	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
-	@ResponseBody int opptInsert(HttpSession session, OpptVO opptVo) 
+	@ResponseBody int opptInsert(HttpSession session, @RequestParam(value = "est_list[]", required = false) List<String> est_list, OpptVO opptVo, OpptPrdtVO opptPrdtVo) 
 	{
 		opptVo.setFst_reg_id(session.getAttribute("user").toString());
 		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		System.out.println("OPPT PROD : 1");
+		
+		List<OpptPrdtVO> estList = new ArrayList<OpptPrdtVO>(0);
+		
+		System.out.println("OPPT PROD : 2");
+		estList.add(opptPrdtVo);
+		
+		System.out.println("OPPT PROD : 3");
+		
+		for (int i = 0; i < est_list.size(); i++) 
+		{
+			OpptPrdtVO vo = new OpptPrdtVO();
+			
+			System.out.println("PROD LIST 1 : " + est_list.get(0));
+			System.out.println("PROD LIST 2 : " + est_list.get(1));
+			System.out.println("PROD LIST 3 : " + est_list.get(2));
+			System.out.println("PROD LIST 4 : " + est_list.get(3));
+			System.out.println("PROD LIST 5 : " + est_list.get(4));
+			System.out.println("PROD LIST 6 : " + est_list.get(5));
+			
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setProd_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			
+			estList.add(vo);
+		}
+		
+		System.out.println("OPPT PROD : " + estList);
+		
 		// 영업활동 추가
-		int result = service.opptAdd(opptVo);
+		int result = 0; //opptService.opptAdd(opptVo);
 		
 		return result;
 	}
@@ -386,7 +444,7 @@ public class ActController {
 
 		System.out.println(opptVo.getSales_oppt_id());
 		// 영업활동 편집
-		int result = service.opptModify(opptVo);
+		int result = opptService.opptModify(opptVo);
 		
 		return result;
 	}
@@ -400,7 +458,7 @@ public class ActController {
 			map.put("keyfield", keyfield);
 			map.put("keyword", keyword);
 			
-			List<Object> custcompList = service.opptCustComp(map);
+			List<Object> custcompList = opptService.opptCustComp(map);
 			
 			ModelAndView mov = new ModelAndView("/sales/act/actPop/custcomp_list_pop");
 
@@ -425,5 +483,25 @@ public class ActController {
 
 		return actvo;
 			
+	}
+	
+	//기회-상품추가 팝업 open controller
+	@RequestMapping(value = "/prodList", method = RequestMethod.GET)
+	public ModelAndView prodList(HttpSession session,
+			@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword) 
+	{
+		ModelAndView mov = new ModelAndView("/sales/act/actPop/product_list_pop");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("actController");
+		
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		List<ProdVO> prodList = opptService.prodList(map);
+		mov.addObject("prodList", prodList);
+
+		return mov;
 	}
 }
