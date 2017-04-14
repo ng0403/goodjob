@@ -173,7 +173,7 @@ $(document).ready(function(){
 						<tr>
 	 						<td>
 	 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품삭제" id="opptProdDelete"/>
-								<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="opptProdListBtn"/>
+								<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-left: 20px;" class="btn-success-tel" value="상품추가" id="opptProdListBtn"/>
 	 						</td> 
 						</tr>
 					</tbody>
