@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -13,8 +13,8 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/ccestimate.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custestimate.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
 
 <script type="text/javascript">
 $(function() {
@@ -51,6 +51,8 @@ $(function() {
 	<input type="hidden" id="eduList" value="${eduList}">
 	<input type="hidden" id="eduCode" value="${eduCode}">
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="nowCust_id" value="${custcompDetail.cust_id}"/>
+	<input type="hidden" id="nowCust_nm"/>
  	
  	<br>
  	<div id="title">
@@ -58,6 +60,7 @@ $(function() {
 	</div>
 
 	<div class="est_pop_list_div">
+	
 			<table id="keymanpopuptable" style="border-collapse: collapse;">
 					<tbody id="tbody1">
 						<tr>
@@ -94,8 +97,9 @@ $(function() {
 						<tr>
 							<th>영업기회명</th>
 							<td>
-							<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
-							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
+								<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
+								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
+								<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/>
 							</td>
 						</tr>
 						<tr>
@@ -108,14 +112,14 @@ $(function() {
 			
 			<c:if test="${flag == 0}">
 			<div class="estimate_bt_position2">
-				<input type="button" class="est_list_bt" value="저장" id="est_add" onclick="opptEstimAdd('${ctx}');"/>
-				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel"/>
+				<input type="button" class="est_list_bt" value="저장" id="est_add" onclick="custEstimAdd('${ctx}');"/>
+				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel" onclick="window.close();"/>
 			</div>
 		</c:if>
 		<c:if test="${flag == 1}">
 			<div class="estimate_bt_position2">
-				<input type="button" class="est_list_bt" value="저장" id="est_mdfy" onclick="opptEstimUpdate('${ctx}');"/>
-				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel"/>
+				<input type="button" class="est_list_bt" value="저장" id="est_mdfy" onclick="custEstimUpdate('${ctx}');"/>
+				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel" onclick="window.close();"/>
 			</div>
 		</c:if>
 	</div>	

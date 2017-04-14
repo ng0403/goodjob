@@ -1,5 +1,9 @@
+
 $(document).ready(function() {
+	
 	var ctx = $("#ctx").val();
+
+	estimateAdd(ctx);
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
@@ -45,17 +49,18 @@ $(document).ready(function() {
 	});
 	
 	// 견적 추가 팝업
-	$('#est_pop_btn').click(function(){
-		var cust_id = $("#nowCust_id").val();
-		if(cust_id == ''){
-			alert('고객을 선택해주세요.');
-			return;
-		}else {
-			var cust_nm = $("#nowCust_nm").val();
-			window.open(ctx+'/estPopup?cust_id='+cust_id+'&cust_nm='+cust_nm+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-		}
-	});
-
+//	$('#estimateAdd').click(function(){
+//		var cust_id = $("#nowCust_id").val();
+//		var cust_nm = $("#nowCust_nm").val();
+//		if(cust_id == ''){
+//			alert('고객을 선택해주세요.');
+//			return;
+//		}else {
+//			var cust_nm = $("#nowCust_nm").val();
+//			window.open(ctx+'/custEstimatepopup?cust_id='+cust_id+'&cust_nm='+cust_nm+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//		}
+//	});
+	
 	// 계약 추가 팝업
 	$('#cont_pop_btn').click(function(){
 		var cust_id = $("#nowCust_id").val();
@@ -86,13 +91,15 @@ $(document).ready(function() {
 	});
 	
 	// 기업고객 견적 탭 리스트 체크박스 선택, 해제
+	//견적 모두 선택
 	$("#ccEstListCheck").click(function(){
 		if($("#ccEstListCheck").prop("checked")){
-			$("input[id=chk_est_id]").prop("checked", true);
+			$("input[id=chk_cont_id]").prop("checked", true);
 		} else {
-			$("input[id=chk_est_id]").prop("checked", false);
+			$("input[id=chk_cont_id]").prop("checked", false);
 		}
 	});
+	
 	
 	// 기업고객 계약 탭 리스트 체크박스 선택, 해제
 	$("#ccContListCheck").click(function(){
@@ -136,10 +143,34 @@ function ccActDetail(sales_actvy_id){
 	window.open(ctx+'/actDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
+//견적 추가 팝업
+function estimateAdd(ctx){
+	$('#estimateAdd').click(function(){
+		var hsales_lev_cd = $("#hsales_lev_cd").val();
+		var salesId = $('#salesId').val();
+		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
+		var list_cust_id = $('#nowCust_id').val();
+		
+			if(list_cust_id == "" || list_cust_id == null ){
+				alert("고객사를 선택해주세요.");
+			} else if(sales_lev_cd == "0001" || sales_lev_cd == "0004"){
+				alert("영업단계가 \"제안\", \"견적\"일 때 견적 추가가 가능합니다.");
+			} else {
+				var list_sales_oppt_id = $('#salesId').val();
+				var list_cust_id = $('#nowCust_id').val();//list_sales_oppt_id;
+				alert(list_cust_id);
+				var list_cust_nm = $('#hcust_nm').val();
+				var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
+				var pageNum=$('#pageNum').val();
+				window.open(ctx+'/custEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			}
+		});
+}
+
 // 견적 상세정보 팝업
 function ccEstDetail(estim_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/estDetailPopup?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/custEstimatepopup?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 계약 상세정보 팝업
@@ -168,7 +199,7 @@ function estChkCancel() {
 		$("#ccEstListCheck").prop("checked", false);
 	});
 }
-
+198
 // 계약 전체 체크 해제
 function contChkCancel() {
 	$(document).ready(function() {
@@ -885,6 +916,35 @@ function ccActDel(ctx){
 }
 
 //견적 삭제
+function custEstimDelete(){
+	var salesId = $('#salesId').val();
+	if(salesId == "" || salesId == null ){
+		alert("삭제할 항목을 선택해주세요.");
+	}else{
+	if(confirm("삭제 하시겠습니까? ")){
+		var opptId = $('#salesId').val();
+		var estim_id = [];
+		$('input[name=estim_id]:checked').each(function(){
+			estim_id.push($(this).val());
+		});
+		$.ajax({
+			type : 'get',
+			data :  { estim_id : estim_id },
+			datatype : 'json',
+			url : 'custEstimDelete',
+			success:function(result){
+				alert("견적이 삭제되었습니다.");
+				estimList(opptId);
+			},
+			error:function(request){
+				alert("error : " + request.status);
+			}
+		});
+	   }
+	}
+ }
+
+//견적 삭제
 function ccEstDel(ctx){
 	$(document).ready(function() {
 		var chked_val = [];
@@ -898,7 +958,7 @@ function ccEstDel(ctx){
 			if(delChk){
 				var cust_id = $("#cust_id").val();
 				$.ajax({
-					url : ctx+'/ccEstDelete',
+					url : ctx+'/custEstimDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',

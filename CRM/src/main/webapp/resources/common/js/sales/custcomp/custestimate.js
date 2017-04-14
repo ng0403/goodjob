@@ -9,6 +9,7 @@ $(document).ready(function() {
 	
 	// 상품추가 수량, 금액 실시간 변경
 	$("#estimatetbody").bind('input', function(event) { 
+		
 		var size = event.target.value;
 	    var target = $(event.target);
 	    var id = target.attr("id");
@@ -275,24 +276,25 @@ function prodDelete(){
 	}
 }
 
-// 상품 추가
-function estAdd(ctx){
-	var est_list = []; // 견적당 상품 여러개니까 리스트로 묶어주는거
-	var estim_nm = $('#estim_nm').val();
-	var cust_id = $('#cust_id').val();
-	var estim_lev_cd = $('#estim_lev_cd').val();
-	var estim_valid_d = $('#estim_valid_d').val();
-	var sales_oppt_id = $('#sales_oppt_id').val();
-	var memo = $('#memo').val();
+function custEstimAdd(ctx){
+	alert("sjhgsjcs");
+	var pageNum = $('#pageNum').val();
 	var prod_id = [];
 	var prod_nm = [];
-	var estim_qty = []; // 상품 수량
+	var sales_oppt_id = $('#sales_oppt_id').val();
+	var estim_qty = [];
 	var prod_price = $('#prod_price').text();
-	var sales_price = []; // 판매가
-	var discount_unit_cd = []; // 할인 코드
-	var discount= []; //할인
-	var sup_price = []; // 공급가
-	var unit_check =0; // 할인 선택 됐는지 검사
+	var sales_price = [];
+	var discount= [];
+	var sup_price = [];
+	var estim_valid_d = $('#estim_valid_d').val();
+	var estim_lev_cd = $('#estim_lev_cd').val();
+	var cust_id = $('#cust_id').val();
+	var estim_nm = $('#estim_nm').val();
+	var est_list = [];
+	var memo = $('#memo').val();
+	var discount_unit_cd = [];
+	var unit_check =0;
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
 		return false;
@@ -303,43 +305,38 @@ function estAdd(ctx){
 		alert("견적유효일자를 선택해 주세요");
 		return false;
 	}
-	
-	// 리스트에 추가해서 묶어주는 역할
-	$("#estimatetbody tr[class!=empty]").each(function(){
+	$("#estimatetbody tr").each(function(){
 		cd  = $(this).children().eq(4).children().eq(1).val();
 		if(cd =='0'){
 			unit_check++;
 		}
+		
 		discount_unit_cd.push(cd);
-
 		prod_id.push($(this).children().children().val());
 		prod_nm.push($(this).children().eq(1).text());
 		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
 		sales_price.push(uncomma($(this).children().eq(3).text()));
 		discount.push(uncomma($(this).children().eq(4).children().val()));
 		sup_price.push(uncomma($(this).children().eq(5).text()));
+		
 		est_list.push(prod_id.pop());
 		est_list.push(prod_nm.pop());
 		est_list.push(estim_qty.pop());
 		est_list.push(sales_price.pop());
 		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
-		est_list.push(discount_unit_cd.pop());
+		est_list.push(discount_unit_cd.pop()); 
 	});
-
 	if(unit_check > 0 ){
 		alert("할인 단위를 선택해 주세요.");
 		return false;
 	}
-
 	if(est_list.length==0){
 		alert("상품을 추가해 주세요");
 		return false;
 	}
-
-	$.ajax({
-		type : 'post',
-		url : ctx+'/estAdd',
+	$.ajax({		
+		url : ctx+'/custEstimAdd',
 		dataType : 'json',
 		data : {
 			estim_valid_d : estim_valid_d,
@@ -353,9 +350,10 @@ function estAdd(ctx){
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
 			window.opener.estList(cust_id);
-			self.close();
-			//window.opener.location.reload();
-			//window.close();
+			alert(pageNum);
+//			window.opener.custcompList(pageNum);
+			//self.close();
+			window.close();
 		},
 		error:function(request){
 			alert("error : " + request.status)
@@ -363,7 +361,6 @@ function estAdd(ctx){
 	});
 }
 
-// 견적 수정
 function custEstimUpdate(ctx){
 	var estim_id = $('#estim_id').val();
 	var prod_id = [];
@@ -381,7 +378,6 @@ function custEstimUpdate(ctx){
 	var est_list = [];
 	var discount_unit_cd = [];
 	var memo = $('#memo').val();
-
 	var cd = 0;
 	var unit_check=0;
 
@@ -395,9 +391,7 @@ function custEstimUpdate(ctx){
 		alert("견적유효일자를 선택해 주세요");
 		return false;
 	}
-	
 	$("#estimatetbody tr").each(function(){
-		
 		cd  = $(this).children().eq(4).children().eq(1).val();
 		if(cd =='0'){
 			unit_check++;
@@ -410,6 +404,7 @@ function custEstimUpdate(ctx){
 		discount.push(uncomma($(this).children().eq(4).children().val()));
 		sup_price.push(uncomma($(this).children().eq(5).text()));
 		
+		
 		est_list.push(prod_id.pop());
 		est_list.push(prod_nm.pop());
 		est_list.push(estim_qty.pop());
@@ -418,18 +413,15 @@ function custEstimUpdate(ctx){
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop());
 	});
-	
 	if(unit_check > 0 ){
 		alert("할인 단위를 선택해 주세요.");
 		return false;
 	}
-
 	if(est_list.length==0){
 		alert("상품을 추가해 주세요");
 		return false;
 	}
-	
-	$.ajax({
+	$.ajax({		
 		url : ctx+'/custEstimUpdate',
 		dataType : 'json',
 		data : {
@@ -448,13 +440,15 @@ function custEstimUpdate(ctx){
 		success:function(){
 			alert("정상적으로 수정 되었습니다.");
 			window.opener.estList(cust_id);
-			self.close();
+			//self.close();
+			window.close();
 		},
 		error:function(request){
 			alert("error : " + request.status)
 		}
 	});
 }
+
 
 // 팝업창 자동 리사이즈
 function setWindowResize() {
@@ -498,3 +492,14 @@ function removeChar(event){
     	event.target.value = event.target.value.replace(/[^0-9]/g, "");
     }
 }
+
+
+//영업기회 추가버튼 눌렀을 때.
+function addOppt(){
+	var list_estim_id = $('#estim_id').val();
+	var list_cust_id = $('#cust_id').val();
+	var list_cust_nm = $('#cust_nm').val();
+	window.open('/opptAddEstPopup?list_estim_id='+list_estim_id+
+			     '&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+

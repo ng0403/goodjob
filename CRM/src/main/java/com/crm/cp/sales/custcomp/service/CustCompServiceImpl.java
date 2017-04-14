@@ -19,6 +19,7 @@ import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
 
 @Service
@@ -27,7 +28,7 @@ public class CustCompServiceImpl implements CustCompService {
 	@Resource
 	CustCompDao ccDao;
 
-	// 기업고객 리스트 전체 개수 조회(페이징에 사용)
+	// 기존고객 리스트 전체 개수 조회(페이징에 사용)
 	@Override
 	public PagerVO getCCListCount(Map<String, Object> pMap) {
 		int ccPageNum = (Integer) pMap.get("ccPageNum");
@@ -40,14 +41,14 @@ public class CustCompServiceImpl implements CustCompService {
 		return page;
 	}
 
-	// 기업고객 리스트
+	// 기존고객 리스트
 	@Override
 	public List<CustCompVO> getCCList(Map<String, Object> pMap) {
 		List<CustCompVO> ccVOList = ccDao.getCCList(pMap);
 		return ccVOList;
 	}
 
-	// 기업고객 상세정보+코드
+	// 기존고객 상세정보+코드
 	@Override
 	public CustCompVO getCCDetail(String cust_id) {
 		// 상세정보
@@ -59,7 +60,7 @@ public class CustCompServiceImpl implements CustCompService {
 		return ccVO;
 	}
 
-	// 기업고객 추가
+	// 기존고객 추가
 	@Override
 	public String insertCustComp(CustCompVO ccVO) {
 		//ccVO.setCust_zip_cd(ccVO.getCust_zip_cd1()+ccVO.getCust_zip_cd2());
@@ -74,7 +75,7 @@ public class CustCompServiceImpl implements CustCompService {
 		return resultStr;
 	}
 	
-	// 기업고객 수정
+	// 기존고객 수정
 	@Override
 	public String updateCustComp(CustCompVO ccVO) {
 		ccVO.setCust_zip_cd(ccVO.getCust_zip_cd1()+ccVO.getCust_zip_cd2());
@@ -90,7 +91,7 @@ public class CustCompServiceImpl implements CustCompService {
 		return resultStr;
 	}
 	
-	// 기업고객 삭제
+	// 기존고객 삭제
 	@Override
 	public String deleteCustComp(List<String> cust_idList) {
 		int deleteResult = ccDao.deleteCustComp(cust_idList);
@@ -102,6 +103,39 @@ public class CustCompServiceImpl implements CustCompService {
 		}
 		return resultStr;
 	}
+	
+	//기존고객 추가
+	@Override
+	public int custcompAdd(CustCompVO ccVO) {
+		return ccDao.custcompAdd(ccVO);
+	}
+	
+	//기존고객 수정
+	@Override
+	public int custcompModify(CustCompVO ccVO) {
+		return ccDao.custcompModify(ccVO);
+	}
+	
+	//기존고객 추가
+	@Override
+	public void custcompInsert(CustCompVO ccVO) {
+		ccDao.custcompInsert(ccVO);
+		
+	}
+
+	//기존고객 수정
+	@Override
+	public void custcompEdit(CustCompVO ccVO) {
+		ccDao.custcompEdit(ccVO);
+		
+	}
+
+	//기존고객 삭제
+	@Override
+	public void custcompDelete(String cust_id) {
+		ccDao.custcompDelete(cust_id);
+	}
+
 	
 	// 매출규모 코드
 	@Override
@@ -139,81 +173,21 @@ public class CustCompServiceImpl implements CustCompService {
 		return pocVOList;
 	}
 	
+	
 	//영업 담당자 리스트
-
 	@Override
 	public List<PosVO> getPosList(String cust_id) {
 		List<PosVO> posVOList = ccDao.getPosList(cust_id);
 		return posVOList;
 	}
 
+	
 	// 키맨 리스트
 	@Override
 	public List<KeymanVO> getKeymanList(String cust_id) {
 		List<KeymanVO> kmVOList = ccDao.getKeymanList(cust_id);
 		return kmVOList;
 	}
-
-	// 영업기회 리스트
-	@Override
-	public List<OpptVO> getOpptList(String cust_id) {
-		List<OpptVO> opptVOList = ccDao.getOpptList(cust_id);
-		return opptVOList;
-	}
-
-	// 영업활동 리스트
-	@Override
-	public List<ActVO> getActList(String cust_id) {
-		List<ActVO> actVOList = ccDao.getActList(cust_id);
-		return actVOList;
-	}
-
-	// 견적 리스트
-//	@Override
-//	public List<EstVO> getEstList(String cust_id) {
-//		List<EstVO> estVOList = ccDao.getEstList(cust_id);
-//		return estVOList;
-//	}
-	//견적 리스트
-	@Override
-	public List<EstVO> getEstimList(String cust_id) {
-		List<EstVO> estVOList = ccDao.getEstimList(cust_id);
-		return estVOList;
-	}
-
-	// 계약 리스트
-	@Override
-	public List<contrVO> getContList(String cust_id) {
-		List<contrVO> contVOList = ccDao.getContList(cust_id);
-
-		return contVOList;
-	}
-
-	// 직원검색 리스트 개수
-	@Override
-	public PagerVO getEmpListNum(int iuserPageNum, String iuser_nm) {
-		// 현재 페이지 얻어오기
-		PagerVO page = new PagerVO(iuserPageNum, 0, 15, 10);
-		// 전체 글의 갯수 구하기
-		int empListNum = ccDao.getEmpListNum(iuser_nm);
-		
-		page = new PagerVO(iuserPageNum, empListNum, 15, 10);
-		page.setTotalCount(empListNum);
-				
-		return page;
-	}
-
-	// 직원검색 리스트
-	@Override
-	public List<CustCompVO> getEmpList(Map<String, Object> iuserMap, PagerVO page) {
-		
-		iuserMap.put("startRow", page.getStartRow());
-		iuserMap.put("endRow", page.getEndRow());
-		List<CustCompVO> empVOList = ccDao.getEmpList(iuserMap);
-
-		return empVOList;
-	}
-
 	// 키맨 추가
 	@Override
 	public String insertKeyman(KeymanVO kVO) {
@@ -261,6 +235,27 @@ public class CustCompServiceImpl implements CustCompService {
 		return resultStr;
 	}
 
+	
+	// 영업기회 리스트
+	@Override
+	public List<OpptVO> getOpptList(String cust_id) {
+		List<OpptVO> opptVOList = ccDao.getOpptList(cust_id);
+		return opptVOList;
+	}
+	
+	// 영업기회 리스트 팝업
+	@Override
+	public List<OpptVO> ccOpptPopList(String cust_id) {
+		List<OpptVO> opptList = ccDao.ccOpptPopList(cust_id);
+		return opptList;
+	}
+
+	@Override
+	public CustCompVO custcompDetail(String nowCust_id) {
+		CustCompVO ccVO = ccDao.custcompDetail(nowCust_id);
+		return ccVO;
+	}
+	
 	// 영업기회 팝업 고객정보 가져오기
 	@Override
 	public OpptVO ccOpptCustDetail(String cust_id) {
@@ -287,6 +282,13 @@ public class CustCompServiceImpl implements CustCompService {
 		OpptVO opptVO = ccDao.ccOpptDetail(sales_oppt_id);
 		return opptVO;
 	}
+	
+	// 영업활동 리스트
+	@Override
+	public List<ActVO> getActList(String cust_id) {
+		List<ActVO> actVOList = ccDao.getActList(cust_id);
+		return actVOList;
+	}
 
 	// 영업활동 고객 정보
 	@Override
@@ -308,13 +310,50 @@ public class CustCompServiceImpl implements CustCompService {
 		return resultStr;
 	}
 
-	// 계약 기업고객 정보 가져오기
+	
+	
 	@Override
-	public contrVO getContCust(String cust_id) {
-		contrVO contVO = ccDao.getContCust(cust_id);
-		return contVO;
+	public List<EstVO> elcList() {
+		return ccDao.elcList();
 	}
 
+	@Override
+	public List<EstVO> eduList() {
+		return ccDao.eduList();
+	}
+
+	// 견적 리스트
+//	@Override
+//	public List<EstVO> getEstList(String cust_id) {
+//		List<EstVO> estVOList = ccDao.getEstList(cust_id);
+//		return estVOList;
+//	}
+	//견적 리스트
+	@Override
+	public List<EstVO> getEstimList(String cust_id) {
+		List<EstVO> estVOList = ccDao.getEstimList(cust_id);
+		return estVOList;
+	}
+	
+	//견적 상세보기
+	@Override
+	public List<EstVO> custEstimDetail(String estimId) {
+		return ccDao.custEstimDetail(estimId);
+	}
+
+	//상품 목록 보기
+	@Override
+	public List<ProdVO> prodList(Map<String, Object> map) {
+		return ccDao.prodList(map);
+	}
+
+	//견적 추가
+	@Override
+	public int custEstimAdd(List<EstVO> estList) {
+		return ccDao.custEstimAdd(estList);
+	}
+
+	
 	// 견적 삭제
 	@Override
 	public String deleteEst(List<String> est_idList) {
@@ -327,49 +366,52 @@ public class CustCompServiceImpl implements CustCompService {
 		}
 		return resultStr;
 	}
-
-	// 영업기회 리스트 팝업
-	@Override
-	public List<OpptVO> ccOpptPopList(String cust_id) {
-		List<OpptVO> opptList = ccDao.ccOpptPopList(cust_id);
-		return opptList;
-	}
-
-	@Override
-	public CustCompVO custcompDetail(String nowCust_id) {
-		CustCompVO ccVO = ccDao.custcompDetail(nowCust_id);
-		return ccVO;
-	}
-
+//	@Override
+//	public int custEstimDelete(String estim_id) {
+//		return ccDao.custEstimDelete(estim_id);
+//	}
 	
-	//기존고객 추가
+	
+	// 계약 리스트
 	@Override
-	public int custcompAdd(CustCompVO ccVO) {
-		return ccDao.custcompAdd(ccVO);
+	public List<contrVO> getContList(String cust_id) {
+		List<contrVO> contVOList = ccDao.getContList(cust_id);
+
+		return contVOList;
 	}
 
+	// 직원검색 리스트 개수
 	@Override
-	public int custcompModify(CustCompVO ccVO) {
-		return ccDao.custcompModify(ccVO);
-	}
-
-	@Override
-	public void custcompInsert(CustCompVO ccVO) {
-		ccDao.custcompInsert(ccVO);
+	public PagerVO getEmpListNum(int iuserPageNum, String iuser_nm) {
+		// 현재 페이지 얻어오기
+		PagerVO page = new PagerVO(iuserPageNum, 0, 15, 10);
+		// 전체 글의 갯수 구하기
+		int empListNum = ccDao.getEmpListNum(iuser_nm);
 		
+		page = new PagerVO(iuserPageNum, empListNum, 15, 10);
+		page.setTotalCount(empListNum);
+				
+		return page;
 	}
 
+	// 직원검색 리스트
 	@Override
-	public void custcompEdit(CustCompVO ccVO) {
-		ccDao.custcompEdit(ccVO);
+	public List<CustCompVO> getEmpList(Map<String, Object> iuserMap, PagerVO page) {
 		
+		iuserMap.put("startRow", page.getStartRow());
+		iuserMap.put("endRow", page.getEndRow());
+		List<CustCompVO> empVOList = ccDao.getEmpList(iuserMap);
+
+		return empVOList;
 	}
 
+
+	// 계약 기업고객 정보 가져오기
 	@Override
-	public void custcompDelete(String cust_id) {
-		ccDao.custcompDelete(cust_id);
+	public contrVO getContCust(String cust_id) {
+		contrVO contVO = ccDao.getContCust(cust_id);
+		return contVO;
 	}
-
 
 
 

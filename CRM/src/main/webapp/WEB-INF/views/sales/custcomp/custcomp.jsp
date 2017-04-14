@@ -91,29 +91,12 @@
 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>
-<%-- 					<c:if test="${ccVOList.size() < 5}"> --%>
-<%-- 						<c:forEach begin="0" end="${5-ccVOList.size()}"> --%>
-<!-- 							<tr> -->
-<!-- 								<th></th> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 								<td></td> -->
-<!-- 							</tr> -->
-<%-- 						</c:forEach> --%>
-<%-- 					</c:if> --%>
 				</tbody>
 			</table>
 		</div>
 		
 		<!-- 페이징 처리 -->
 		<div id="pageSpace">
-						
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 			<c:choose>
@@ -161,7 +144,6 @@
 	    		</c:when>
 			</c:choose>
 		</div>
-		
 	</form>
 
 </body>

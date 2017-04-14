@@ -185,21 +185,23 @@
 			<!-- 견적 리스트 -->
 		<div id="tabDiv6" class="tab6_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
-				<button id="est_pop_btn" class="custcomp_btn">견적 추가</button>
-				<button id="addkeymancancel" class="custcomp_btn" onclick="ccEstDel('${ctx}');">삭제</button>
+				<button id="estimateAdd" class="custcomp_btn">견적 추가</button>
+				<button id="addkeymancancel" class="custcomp_btn" onclick="ccEstDel('${ctx}');" >삭제</button>
 			</div>
 			
 			<div id="tableline">
 				<table id="goaltable" class="tabtable">
 					<thead>						
 						<tr>
-							<th style="width: 3%;"><input type="checkbox"  id='estimAllSelect'/></th>
-							<td style="width: 30%;">견적명</td>
+							<th style="width: 3%;"><input type="checkbox"  id='ccEstListCheck'/></th>
+							<td style="width: 25%;">견적명</td>
 							<td style="width: 10%;">견적단계</td>
-							<td style="width: 10%;">메모</td>
-							<td style="width: 17%;">견적유효일자</td>
-							<td style="width: 10%;">등록자</td>
-							<td style="width: 10%;">등록일시</td>
+							<td style="width: 7%;">견적수량</td>
+							<td style="width: 10%;">견적금액</td>
+							<td style="width: 12%;">견적유효일자</td>
+							<td style="width: 11%;">메모</td>
+							<td style="width: 11%;">등록자</td>
+							<td style="width: 11%;">등록일시</td>
 						</tr>
 					</thead>
 					<tbody id="estTableTbody" >

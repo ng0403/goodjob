@@ -15,6 +15,7 @@ import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.prod.vo.ProdVO;
 
 @Repository
 public class CustCompDaoImpl implements CustCompDao {
@@ -29,9 +30,11 @@ public class CustCompDaoImpl implements CustCompDao {
 	// 기업고객 리스트 전체 개수 조회(페이징에 사용)
 	@Override
 	public int getCCListCount(Map<String, Object> pMap) {
+		 
 		int totalCount = 0;
 		try {
 			totalCount = sqlSession.selectOne("ccListTotalCount", pMap);
+			System.out.println("daiooo " + pMap.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,9 +45,12 @@ public class CustCompDaoImpl implements CustCompDao {
 	// 기업고객 리스트 가져오기
 	@Override
 	public List<CustCompVO> getCCList(Map<String, Object> pMap) {
+		System.out.println("enter");
 		List<CustCompVO> ccListVO = null;
 		try {
+			System.out.println("DAOImple : " + pMap.get("page"));
 			ccListVO = sqlSession.selectList("custcompList", pMap);
+			System.out.println("f" + ccListVO.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -114,6 +120,44 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return deleteResult;
 	}
+	
+	@Override
+	public CustCompVO custcompDetail(String nowCust_id) {
+		CustCompVO ccVO = null;
+		ccVO = sqlSession.selectOne("custcomp.custcompDetail", nowCust_id);
+		return ccVO;
+	}
+	
+	
+	//기존고객
+	@Override
+	public int custcompAdd(CustCompVO ccVO) {
+		int seq = sqlSession.insert("custcomp.custcompAdd", ccVO);
+		return seq;
+	}
+
+	@Override
+	public int custcompModify(CustCompVO ccVO) {
+		return sqlSession.update("custcomp.custUpdate", ccVO);
+	}
+
+	@Override
+	public void custcompInsert(CustCompVO ccVO) {
+		sqlSession.insert("custcomp.custcompInsert", ccVO);
+		
+	}
+
+	@Override
+	public void custcompEdit(CustCompVO ccVO) {
+		sqlSession.update("custcomp.custcompEdit", ccVO);
+	}
+
+	@Override
+	public void custcompDelete(String cust_id) {
+		sqlSession.update("custcomp.custcompDelete", cust_id);
+		
+	}
+	
 
 	// 매출규모 코드
 	@Override
@@ -163,6 +207,7 @@ public class CustCompDaoImpl implements CustCompDao {
 		return ccCodeList;
 	}
 	
+	
 	//고객사 담당자 리스트 가져오기
 	@Override
 	public List<PocVO> getPocList(String cust_id) {
@@ -174,6 +219,7 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return pocVOList;
 	}
+	
 	
 	//영업 담당자 리스트
 	@Override
@@ -187,6 +233,7 @@ public class CustCompDaoImpl implements CustCompDao {
 		return posVOList;
 	}
 	
+	
 	// 키맨 리스트 가져오기
 	@Override
 	public List<KeymanVO> getKeymanList(String cust_id) {
@@ -197,91 +244,6 @@ public class CustCompDaoImpl implements CustCompDao {
 			e.printStackTrace();
 		}
 		return kmVOList;
-	}
-
-	// 영업기회 리스트 가져오기
-	@Override
-	public List<OpptVO> getOpptList(String cust_id) {
-		List<OpptVO> opptVOList = null;
-		try {
-			opptVOList = sqlSession.selectList("ccOpptList", cust_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return opptVOList;
-	}
-
-	// 영업활동 리스트 가져오기
-	@Override
-	public List<ActVO> getActList(String cust_id) {
-		List<ActVO> actVOList = null;
-		try {
-			actVOList = sqlSession.selectList("ccActList", cust_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return actVOList;
-	}
-	
-	
-	
-	// 견적 리스트 가져오기
-//	@Override
-//	public List<EstVO> getEstList(String cust_id) {
-//		List<EstVO> estVOList = null;
-//		try {
-//			estVOList = sqlSession.selectList("ccEstList", cust_id);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return estVOList;
-//	}
-	
-	@Override
-	public List<EstVO> getEstimList(String cust_id) {
-		List<EstVO> estVOList = null;
-		try {
-			estVOList = sqlSession.selectList("custcomp.estimList", cust_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return estVOList;
-	}
-
-	// 계약 리스트 가져오기
-	@Override
-	public List<contrVO> getContList(String cust_id) {
-		List<contrVO> contVOList = null;
-		try {
-			contVOList = sqlSession.selectList("ccContList", cust_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return contVOList;
-	}
-
-	// 직원검색 리스트 개수
-	@Override
-	public int getEmpListNum(String iuser_nm) {
-		int empListNum = 0;
-		try {
-			empListNum = sqlSession.selectOne("empListNum", iuser_nm);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return empListNum;
-	}
-
-	// 직원 검색 리스트
-	@Override
-	public List<CustCompVO> getEmpList(Map<String, Object> iuserMap) {
-		List<CustCompVO> empVOList = null;
-		try {
-			empVOList = sqlSession.selectList("empList", iuserMap);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return empVOList;
 	}
 
 	// 키맨 추가
@@ -336,6 +298,19 @@ public class CustCompDaoImpl implements CustCompDao {
 		return rstKm;
 	}
 
+	
+	// 영업기회 리스트 가져오기
+	@Override
+	public List<OpptVO> getOpptList(String cust_id) {
+		List<OpptVO> opptVOList = null;
+		try {
+			opptVOList = sqlSession.selectList("ccOpptList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVOList;
+	}
+	
 	// 영업기회 고객정보 가져오기
 	@Override
 	public OpptVO ccOpptCustDetail(String cust_id) {
@@ -347,7 +322,19 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return opptVO;
 	}
-
+	
+	// 영업기회 리스트 팝업
+		@Override
+		public List<OpptVO> ccOpptPopList(String cust_id) {
+			List<OpptVO> opptList = null;
+			try {
+				opptList = sqlSession.selectList("ccOpptPopList", cust_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return opptList;
+		}
+		
 	// 영업기회 삭제
 	@Override
 	public int deleteOppt(List<String> oppt_idList) {
@@ -375,7 +362,19 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return opptVO;
 	}
-
+	
+	// 영업활동 리스트 가져오기
+	@Override
+	public List<ActVO> getActList(String cust_id) {
+		List<ActVO> actVOList = null;
+		try {
+			actVOList = sqlSession.selectList("ccActList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return actVOList;
+	}
+	
 	// 영업활동 고객정보
 	@Override
 	public ActVO ccActCustDetail(String cust_id) {
@@ -403,7 +402,150 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return deleteResult;
 	}
+	
+	
+	// 견적 리스트 가져오기
+//	@Override
+//	public List<EstVO> getEstList(String cust_id) {
+//		List<EstVO> estVOList = null;
+//		try {
+//			estVOList = sqlSession.selectList("ccEstList", cust_id);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return estVOList;
+//	}
+	
+	@Override
+	public List<EstVO> getEstimList(String cust_id) {
+		List<EstVO> estVOList = null;
+		try {
+			estVOList = sqlSession.selectList("custcomp.estimList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return estVOList;
+	}
+	
+	@Override
+	public List<EstVO> elcList() {
+		return sqlSession.selectList("custcomp.elcList");
+	}
 
+	@Override
+	public List<EstVO> eduList() {
+		return sqlSession.selectList("custcomp.eduList");
+	}
+	
+	// 견적 상세보기
+	@Override
+	public List<EstVO> custEstimDetail(String estimId) {
+		EstVO detail = sqlSession.selectOne("custcomp.custEstimDetail", estimId);
+		List<EstVO> prod = sqlSession.selectList("custcomp.custEstimProdList", estimId);
+		prod.add(detail);
+
+		return prod;
+	}
+
+	//상품 목록 
+	@Override
+	public List<ProdVO> prodList(Map<String, Object> map) {
+		return sqlSession.selectList("custcomp.prodList", map);
+	}
+	
+	// 견적 추가
+	@Override
+	public int custEstimAdd(List<EstVO> estList) {
+		
+		int result = 0;
+
+		System.out.println("고객 아이디 : " + estList);
+		result += sqlSession.insert("custcomp.estimateAdd", estList.get(0));
+		System.out.println("result 1: " + result);
+		if (result == 1) {
+
+			for (int i = 1; i < estList.size(); i++) {
+				System.out.println("custEstimdd : " + estList.get(i).toString());
+				estList.get(i).setEstim_seq(estList.get(0).getEstim_seq());
+				result += sqlSession.insert("custcomp.estimateListAdd",	estList.get(i));
+				System.out.println("result 2: " + result);
+
+			}
+		}
+		if (result > 1) {
+			result += sqlSession.insert("custcomp.soeAdd", estList.get(0));
+			System.out.println("result 3: " + result);
+			String sales_oppt_id = estList.get(0).getSales_oppt_id();
+			sqlSession.update("estimate.opptLevMdfy",sales_oppt_id);
+		}
+		System.out.println("result sum: " + result);
+		return result;
+	}
+
+	// 견적 삭제
+	@Override
+	public int deleteEst(List<String> est_idList) {
+		int deleteResult = 0;
+		try {
+			for (int i = 0; i < est_idList.size(); i++) {
+				deleteResult += sqlSession.update("custcomp.estimateDelete", est_idList.get(i));
+				deleteResult += sqlSession.update("custcomp.estListDelete", est_idList.get(i));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteResult;
+	}
+//	@Override
+//	public int custEstimDelete(String estim_id) {
+//		int result = 0;
+//
+//		result += sqlSession.update("custcomp.estimateDelete", estim_id);
+//		result += sqlSession.update("custcomp.estListDelete", estim_id);
+//		System.out.println("delete result : " + result);
+//
+//		return result;
+//	}
+	
+	
+	// 계약 리스트 가져오기
+	@Override
+	public List<contrVO> getContList(String cust_id) {
+		List<contrVO> contVOList = null;
+		try {
+			contVOList = sqlSession.selectList("ccContList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return contVOList;
+	}
+
+	
+	// 직원검색 리스트 개수
+	@Override
+	public int getEmpListNum(String iuser_nm) {
+		int empListNum = 0;
+		try {
+			empListNum = sqlSession.selectOne("empListNum", iuser_nm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empListNum;
+	}
+
+	// 직원 검색 리스트
+	@Override
+	public List<CustCompVO> getEmpList(Map<String, Object> iuserMap) {
+		List<CustCompVO> empVOList = null;
+		try {
+			empVOList = sqlSession.selectList("empList", iuserMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empVOList;
+	}
+
+	
 	// 계약 기업고객 정보 가져오기
 	@Override
 	public contrVO getContCust(String cust_id) {
@@ -416,67 +558,6 @@ public class CustCompDaoImpl implements CustCompDao {
 		return contrVO;
 	}
 
-	// 견적 삭제
-	@Override
-	public int deleteEst(List<String> est_idList) {
-		int deleteResult = 0;
-		try {
-			for (int i = 0; i < est_idList.size(); i++) {
-				deleteResult += sqlSession.update("oppt.estimateDelete", est_idList.get(i));
-				deleteResult += sqlSession.update("oppt.estListDelete", est_idList.get(i));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return deleteResult;
-	}
-
-	// 영업기회 리스트 팝업
-	@Override
-	public List<OpptVO> ccOpptPopList(String cust_id) {
-		List<OpptVO> opptList = null;
-		try {
-			opptList = sqlSession.selectList("ccOpptPopList", cust_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return opptList;
-	}
-
-	@Override
-	public CustCompVO custcompDetail(String nowCust_id) {
-		CustCompVO ccVO = null;
-		ccVO = sqlSession.selectOne("custcomp.custcompDetail", nowCust_id);
-		return ccVO;
-	}
-
-	@Override
-	public int custcompAdd(CustCompVO ccVO) {
-		int seq = sqlSession.insert("custcomp.custcompAdd", ccVO);
-		return seq;
-	}
-
-	@Override
-	public int custcompModify(CustCompVO ccVO) {
-		return sqlSession.update("custcomp.custUpdate", ccVO);
-	}
-
-	@Override
-	public void custcompInsert(CustCompVO ccVO) {
-		sqlSession.insert("custcomp.custcompInsert", ccVO);
-		
-	}
-
-	@Override
-	public void custcompEdit(CustCompVO ccVO) {
-		sqlSession.update("custcomp.custcompEdit", ccVO);
-	}
-
-	@Override
-	public void custcompDelete(String cust_id) {
-		sqlSession.update("custcomp.custcompDelete", cust_id);
-		
-	}
 
 
 }

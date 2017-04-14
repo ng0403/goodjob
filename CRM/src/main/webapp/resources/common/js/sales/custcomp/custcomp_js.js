@@ -132,7 +132,7 @@ $(document).ready(function() {
 	
 });
 
-// 검색 엔터키 기능
+//검색 엔터키 기능
 function schCustComp(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if (keycode == '13') {
@@ -152,6 +152,205 @@ function chkCancel() {
 		$("#custcompCheck").prop("checked", false);
 	});
 }
+
+//고객사 리스트 출력
+function custCompList(page){
+//	readDetail();
+	alert(page);
+	var ctx = $("#ctx").val();
+	$.ajax({
+		type : 'post',
+		url : ctx + '/custCompAjax',
+		data : {pageNum : page, sch_cust_nm : $("#sch_cust_nm").val(), sch_comp_num : $("#sch_comp_num").val(), sch_corp_num : $("#sch_corp_num").val(), sch_iuser_nm : $("#sch_iuser_nm").val()},
+		datatype : 'json',
+		success:function(result){
+			//리스트 출력 시 버튼 상태 설정
+			$("#functionBtn").css("display", "block");
+//			$("#baseBtnDiv").css("display", "none");
+//			$("#NewAddBtnDiv").css("display", "block");
+//			$("#addBtnDiv").css("display", "none");
+//			$("#mdfBtnDiv").css("display", "none");
+			
+			$("#ccListTbody").children().remove();
+			$.each(result.ccVOList, function(i, cc){
+			
+				$("#ccListTbody").append("" +
+						"<tr id='"+cc.cust_id+"'>"+
+						"<th><input type=checkbox  id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
+						"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+						"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
+						"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+						"<td id=cust_nm>"+cc.comp_num+"</td>"+
+						"<td>"+cc.corp_num+"</td>"+
+						"<td>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+						"<td>"+cc.sales_scale+"</td>"+
+						"<td>"+cc.emp_qty+"</td>"+
+						"<td>"+cc.indst+"</td>"+
+						"<td>"+cc.iuser_nm+"</td>"+
+						"<td>"+cc.fst_reg_dt+"</td>+"+
+						"</tr>"
+				);
+			});
+			//페이지 리스트 갯수
+			if(result.ccVOList.length < 10){
+				for(var j = 0; j < 10-result.ccVOList.length; j++){
+					$("#ccListTbody").append("<tr style='height:30px;'>"
+							+"<th></th>"
+							+"<td></td><td></td><td></td><td></td>"
+							+"<td></td><td></td><td></td><td></td>"
+							+"<td></td></tr>");
+				}
+			}
+			$("#pageSpace").children().remove();	
+			$("#pageSpace").children().remove();
+			var ccPageNum = result.ccPageNum;
+			var startPageNum = result.page.startPageNum;
+			var endPageNum = result.page.endPageNum;
+			var firstPageCount = result.page.firstPageCount;
+			var totalPageCount = result.page.totalPageCount;
+			var prevPageNum = result.page.prevPageNum;
+			var nextPageNum = result.page.nextPageNum;
+			var prevStepPage = result.page.prevStepPage;
+			var nextStepPage = result.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+		},
+		error:function(request){
+			alert("error : " + request);
+		}
+	});
+}
+
+//페이징
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var stepPrev = $("<a>");
+	stepPrev.addClass("prev");
+	stepPrev.html("◀◀");
+	if(ccPageNum != firstPageCount){
+		stepPrev.attr("href","javascript:custCompList("+prevStepPage+")");
+	}
+	$("#pageSpace").append(stepPrev);
+	var prevPage = $("<a>");
+	prevPage.addClass("prev");
+	prevPage.html("◀");
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
+	}
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.attr("href","javascript:custCompList("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.addClass("choice");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("next");
+	nextPage.html("▶");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
+	}
+	$("#pageSpace").append(nextPage);
+	var stepNext = $("<a>");
+	stepNext.addClass("next");
+	stepNext.html("▶▶");
+	if(ccPageNum != totalPageCount){
+		stepNext.attr("href","javascript:custCompList("+nextStepPage+")");
+	}
+	$("#pageSpace").append(stepNext);
+}
+
+//모두체크
+//function custcompAllChk(){
+//	  
+//	var checkbox=$('#ccListTbody tbody').find('input[type=checkbox]');
+//	
+//	if($('#custcompCheck').is(":checked")){
+//		$(checkbox).prop("checked", true);
+//	}else{
+//		$(checkbox).prop("checked", false);
+//	}
+//}
+
+//고객사 전체 선택
+function custcompAllCheck(){
+	$("#custcompSelect").click( function(){
+		var chk = $(this).is(":checked"); //checked 된 경우 true, 아닌 경우 false
+		if(chk){
+			$("#ccListTbody input[type=checkbox]").prop("checked",true);			
+		}else{
+			$("#ccListTbody input[type=checkbox]").prop("checked",false);
+		}
+	});
+}
+
+//all 체크일때 하나라도 체크해지가 된 경우 all checkbox 체크 해제
+function chkCancel(){
+	$("#custcompSelect").prop("checked", false);
+}
+
+//전체 체크 해제
+function custcompChkCancel() {
+	$(document).ready(function() {
+		$("#custcompCheck").prop("checked", false);
+	});
+}
+
+//체크박스 개수 검색함수
+function checkCount(){
+   var count=0;
+   var checkList = $('.cust_check');
+
+   for(var i=0; i<checkList.size(); i++){
+      if($(checkList[i]).is(':checked')){
+         count++;
+      }
+   }
+   return count;
+};
+
+//고객사 추가
+function custcompInsertForm() {
+	var ctx = $("#ctx").val();
+	
+	location.href = ctx + '/custcompDetail';
+}
+
+//고객사 삭제
+function custcompDelete()
+{
+	var form = $('#delForm');
+	
+	if (checkCount() == 0)  {
+		
+		alert("삭제할 항목을 선택해주세요.");
+		
+	} else  {
+		
+		var delYN = confirm("정말 삭제하시겠습니까??");
+		
+			
+		if(!delYN){
+			return false;
+		}
+		form.submit();
+	}	
+}
+
 
 // 기업고객 삭제
 function custCompDel(ctx){
@@ -221,32 +420,30 @@ function viewDetail(cust_id){
 	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
 }
 
-
-
 //페이지 입력 이동
-function pageInput(event) {
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
-			var ccPageNum = $("#ccPageInput").val();
-			var endPageNum = $("#endPageNum").val();
-			var sch_cust_nm = $("#sch_cust_nm").val();
-			var sch_comp_num = $("#sch_comp_num").val();
-			var sch_corp_num = $("#sch_corp_num").val();
-			var sch_iuser_nm = $("#sch_iuser_nm").val();
-			if (parseInt(ccPageNum) > parseInt(endPageNum) || parseInt(ccPageNum) < 1) {
-				alert("페이지 정보를 다시 입력하세요.")
-				$("#ccPageInput").val("1");
-			} else {
-				if(sch_cust_nm == '' && sch_comp_num == '' && sch_corp_num == '' && sch_iuser_nm == ''){
-					paging(ccPageNum);
-				} else {
-					schPaging(ccPageNum);
-				}
-				
-			}
-		}
-	event.stopPropagation();
-}
+//function pageInput(event) {
+//	var keycode = (event.keyCode ? event.keyCode : event.which);
+//		if (keycode == '13') {
+//			var ccPageNum = $("#ccPageInput").val();
+//			var endPageNum = $("#endPageNum").val();
+//			var sch_cust_nm = $("#sch_cust_nm").val();
+//			var sch_comp_num = $("#sch_comp_num").val();
+//			var sch_corp_num = $("#sch_corp_num").val();
+//			var sch_iuser_nm = $("#sch_iuser_nm").val();
+//			if (parseInt(ccPageNum) > parseInt(endPageNum) || parseInt(ccPageNum) < 1) {
+//				alert("페이지 정보를 다시 입력하세요.")
+//				$("#ccPageInput").val("1");
+//			} else {
+//				if(sch_cust_nm == '' && sch_comp_num == '' && sch_corp_num == '' && sch_iuser_nm == ''){
+//					paging(ccPageNum);
+//				} else {
+//					schPaging(ccPageNum);
+//				}
+//				
+//			}
+//		}
+//	event.stopPropagation();
+//}
 
 // 페이징
 //function paging(ccPageNum) {
@@ -831,8 +1028,10 @@ function estList(cust_id) {
 							+ "<th><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
 							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
 							+ "<td>"+data[i].estim_lev_cd_nm+"</td>"
-							+ "<td>"+data[i].memo+"</td>"
+							+ "<td>"+data[i].estim_qty+"</td>"
+							+ "<td>"+data[i].sales_price+"</td>"
 							+ "<td>"+data[i].estim_valid_d+"</td>"
+							+ "<td>"+data[i].memo+"</td>"
 							+ "<td>"+data[i].fst_reg_id+"</td>"
 							+ "<td>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr>";
@@ -904,201 +1103,5 @@ function contList(cust_id) {
 			}
 		});
 	});
-}
-
-//고객사 리스트 출력
-function custCompList(page){
-//	readDetail();
-	var ctx = $("#ctx").val();
-	$.ajax({
-		type : 'post',
-		url : ctx + '/custCompAjax',
-		data : {pageNum : page, sch_cust_nm : $("#sch_cust_nm").val(), sch_comp_num : $("#sch_comp_num").val(), sch_corp_num : $("#sch_corp_num").val(), sch_iuser_nm : $("#sch_iuser_nm").val()},
-		datatype : 'json',
-		success:function(result){
-			//리스트 출력 시 버튼 상태 설정
-			$("#functionBtn").css("display", "block");
-//			$("#baseBtnDiv").css("display", "none");
-//			$("#NewAddBtnDiv").css("display", "block");
-//			$("#addBtnDiv").css("display", "none");
-//			$("#mdfBtnDiv").css("display", "none");
-			
-			$("#ccListTbody").children().remove();
-			$.each(result.ccVOList, function(i, cc){
-			
-				$("#ccListTbody").append("" +
-						"<tr id='"+cc.cust_id+"'>"+
-						"<th><input type=checkbox  id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
-						"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-						"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
-						"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-						"<td id=cust_nm>"+cc.comp_num+"</td>"+
-						"<td>"+cc.corp_num+"</td>"+
-						"<td>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
-						"<td>"+cc.sales_scale+"</td>"+
-						"<td>"+cc.emp_qty+"</td>"+
-						"<td>"+cc.indst+"</td>"+
-						"<td>"+cc.iuser_nm+"</td>"+
-						"<td>"+cc.fst_reg_dt+"</td>+"+
-						"</tr>"
-				);
-			});
-			//페이지 리스트 갯수
-			if(result.oplist.length < 10){
-				for(var j = 0; j < 10-result.oplist.length; j++){
-					$("#ccListTbody").append("<tr style='height:30px;'>"
-							+"<th></th>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td></tr>");
-				}
-			}
-			$("#pageSpace").children().remove();	
-			$("#pageSpace").children().remove();
-			var ccPageNum = result.ccPageNum;
-			var startPageNum = result.page.startPageNum;
-			var endPageNum = result.page.endPageNum;
-			var firstPageCount = result.page.firstPageCount;
-			var totalPageCount = result.page.totalPageCount;
-			var prevPageNum = result.page.prevPageNum;
-			var nextPageNum = result.page.nextPageNum;
-			var prevStepPage = result.page.prevStepPage;
-			var nextStepPage = result.page.nextStepPage;
-			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-		},
-		error:function(request){
-			alert("error : " + request);
-		}
-	});
-}
-
-//페이징
-function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
-	var endPageNo = $("<input>");
-	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
-	var ccPageeNo = $("<input>");
-	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
-	$("#pageSpace").append(endPageNo).append(ccPageeNo);
-	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:custCompList("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
-	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
-	console.log(prevPageNum);
-	console.log(firstPageCount);
-	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
-	}
-	$("#pageSpace").append(prevPage);
-	for(var i = startPageNum; i <= endPageNum; i++){
-		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:custCompList("+i+")");
-		ccPage.html(i);
-		if(i == ccPageNum){
-			var b = $("<b>");
-			ccPage.addClass("choice");
-			ccPage.attr("id","pNum");
-			b.append(ccPage);
-			$("#pageSpace").append(b);
-		}else{
-			$("#pageSpace").append(ccPage);
-		}
-	}
-	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
-	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
-	}
-	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:custCompList("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
-}
-
-//모두체크
-//function custcompAllChk(){
-//	  
-//	var checkbox=$('#ccListTbody tbody').find('input[type=checkbox]');
-//	
-//	if($('#custcompCheck').is(":checked")){
-//		$(checkbox).prop("checked", true);
-//	}else{
-//		$(checkbox).prop("checked", false);
-//	}
-//}
-
-function custcompAllCheck(){
-	$("#custcompSelect").click( function(){
-		var chk = $(this).is(":checked"); //checked 된 경우 true, 아닌 경우 false
-		if(chk){
-			$("#ccListTbody input[type=checkbox]").prop("checked",true);			
-		}else{
-			$("#ccListTbody input[type=checkbox]").prop("checked",false);
-		}
-	});
-}
-
-//all 체크일때 하나라도 체크해지가 된 경우 all checkbox 체크 해제
-function chkCancel(){
-	$("#custcompSelect").prop("checked", false);
-}
-
-//전체 체크 해제
-function custcompChkCancel() {
-	$(document).ready(function() {
-		$("#custcompCheck").prop("checked", false);
-	});
-}
-
-//체크박스 개수 검색함수
-function checkCount(){
-   var count=0;
-   var checkList = $('.cust_check');
-
-   for(var i=0; i<checkList.size(); i++){
-      if($(checkList[i]).is(':checked')){
-         count++;
-      }
-   }
-   return count;
-};
-
-//Insert
-function custcompInsertForm() {
-	var ctx = $("#ctx").val();
-	
-	location.href = ctx + '/custcompDetail';
-}
-
-//delete
-function custcompDelete()
-{
-	var form = $('#delForm');
-	
-	if (checkCount() == 0)  {
-		
-		alert("삭제할 항목을 선택해주세요.");
-		
-	} else  {
-		
-		var delYN = confirm("정말 삭제하시겠습니까??");
-		
-			
-		if(!delYN){
-			return false;
-		}
-		form.submit();
-	}	
 }
 
