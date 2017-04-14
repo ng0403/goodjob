@@ -12,7 +12,7 @@
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/ccestimate.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/ccestimate.js"></script> --%>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custestimate.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
 

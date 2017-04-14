@@ -277,7 +277,6 @@ function prodDelete(){
 }
 
 function custEstimAdd(ctx){
-	alert("sjhgsjcs");
 	var pageNum = $('#pageNum').val();
 	var prod_id = [];
 	var prod_nm = [];
@@ -350,7 +349,7 @@ function custEstimAdd(ctx){
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
 			window.opener.estList(cust_id);
-			alert(pageNum);
+//			alert(pageNum);
 //			window.opener.custcompList(pageNum);
 			//self.close();
 			window.close();

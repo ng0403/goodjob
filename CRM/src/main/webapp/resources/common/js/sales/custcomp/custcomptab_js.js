@@ -170,8 +170,11 @@ function estimateAdd(ctx){
 // 견적 상세정보 팝업
 function ccEstDetail(estim_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/custEstimatepopup?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	
+	window.open(ctx+'/custEstimDetail?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
+
+
 
 // 계약 상세정보 팝업
 function ccContDetail(contr_id){
