@@ -187,28 +187,28 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	$("#pageSpace").append(stepNext);
 }
 //페이지 input Enter 입력 처리
-function estPageInput(event){
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
-			event.preventDefault();
-			var ccPageNum = $("#ccPageInput").val();
-			var endPageNum = $("#endPageNum").val();
-			if (parseInt(ccPageNum) > parseInt(endPageNum) || parseInt(ccPageNum) < 1) {
-				alert("페이지 정보를 다시 입력하세요.")
-				$("#ccPageInput").val("1");
-			} else {
-				list(ccPageNum);
-			}
-		}
-}
+//function estPageInput(event){
+//	var keycode = (event.keyCode ? event.keyCode : event.which);
+//		if (keycode == '13') {
+//			event.preventDefault();
+//			var ccPageNum = $("#ccPageInput").val();
+//			var endPageNum = $("#endPageNum").val();
+//			if (parseInt(ccPageNum) > parseInt(endPageNum) || parseInt(ccPageNum) < 1) {
+//				alert("페이지 정보를 다시 입력하세요.")
+//				$("#ccPageInput").val("1");
+//			} else {
+//				list(ccPageNum);
+//			}
+//		}
+//}
 //견적 검색 input Enter 입력 처리
-function estSearchInput(event){
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if (keycode == '13') {
-		event.preventDefault();
-		searchBtn(1);
-	}
-}
+//function estSearchInput(event){
+//	var keycode = (event.keyCode ? event.keyCode : event.which);
+//	if (keycode == '13') {
+//		event.preventDefault();
+//		searchBtn(1);
+//	}
+//}
 //조회 버튼 클릭에 대한 검색어 입력 여부 확인
 function searchBtn(page){
 	var estim_nm = $("#sestim_nm").val();

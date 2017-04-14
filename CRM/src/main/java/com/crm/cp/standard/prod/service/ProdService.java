@@ -41,4 +41,8 @@ public interface ProdService {
 
 	ProdVO catalList(String prod_id);
 
+	int prodDelete(String prod_id);
+	
+	List<ProdVO> fileList(String prod_id);
+
 }

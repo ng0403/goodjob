@@ -118,13 +118,13 @@ public class ProdDaoImpl implements ProdDao{
 	@Override
 	public int imgFileUpdateData(ProdVO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("prod.prodCatalFileUpdateData", dto);
+		return sqlSession.update("prod.prodCatalFileUpdateData", dto);
 	}
 
 	@Override
 	public int catalFileUpdateData(ProdVO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("prod.prodCatalFileUpdateData", dto);
+		return sqlSession.update("prod.prodCatalFileUpdateData", dto);
 	}
 
 	@Override
@@ -149,6 +149,30 @@ public class ProdDaoImpl implements ProdDao{
 	public int prodCatalFileDelete(ProdVO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("prod.prodCatalFileDelete", dto);
+	}
+
+	@Override
+	public int prodDelete(String prod_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("prod.prodDelete", prod_id);
+	}
+
+	@Override
+	public int fileDelete(String attach_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("prod.fileDelete", attach_id);
+	}
+
+	@Override
+	public void prodFileDelete(String prod_id) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("prod.prodFileDelete", prod_id);
+	}
+
+	@Override
+	public List<ProdVO> fileList(String prod_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("prod.fileList",prod_id);
 	}
 
 }

@@ -40,7 +40,7 @@ $("#naviprod").css("font-weight", "bold");
 	</div>
 	<div id="contact_button_position">
 			<input type="button" id="prodAddBtn" class="btn-success-tel" value="추가"/>
-			<input type="button" id="estimDeleteBtn" class="btn-success-tel" value="삭제">	
+			<input type="button" id="prodDeleteBtn" class="btn-success-tel" value="삭제">	
 	</div>
 	  	
 	<div id="act_list_div">
@@ -59,7 +59,7 @@ $("#naviprod").css("font-weight", "bold");
 			<tbody id="prod_list">
 				<c:forEach items="${prodList}" var="prodList">
 					<tr>
-						<th><input type="checkbox"></th>
+						<th><input type="checkbox" value="${prodList.prod_id}" onclick="javascript:chkCancel();"></th>
 						<td id="list_prod_id">
 							<a class="list_prod_id" href="javascript:prodIdClick('${prodList.prod_id}');">
 								${prodList.prod_nm}
@@ -81,59 +81,52 @@ $("#naviprod").css("font-weight", "bold");
 	<!-- 페이징 처리 --> 
 	<div id="pageSpace">
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-		<input type="hidden" id="startPageNum" value="${page.startPageNum}"/>
-		<input type="hidden" id="prodPageNum" value="${prodPageNum}"/>
+			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 			<c:choose>
-				<c:when test="${page.startPageNum == 1 && page.endPageNum == 1}">
-					<input type='hidden' id='endPageNum' value="${page.endPageNum}"/>
-					<a> ◀ </a>
-					<input type='text' id='prodPageInput' readonly='readonly' value="${page.startPageNum }"
-					 onkeypress="pageInput(event);" class="prod_page_txt"/>
-					<label> / ${page.endPageNum}▶ </label>				
-				</c:when>
-				<c:when test="${prodPageNum == page.startPageNum && prodPageNum != page.endPageNum}">
-					 <a id="pNum"  style="text-decoration: none;"> ◀ </a>
-					 <input type="text" id="prodPageInput" size="1px" value="${page.startPageNum}" class="prod_page_txt" /><a> / </a> 
-					 <a href="#" onclick="prodPaging(${page.endPageNum});" id="pNum" style="text-decoration: none;">${page.endPageNum}</a>
-					 <a href="#" onclick="prodPaging(${prodPageNum+1});" id="pNum" style="text-decoration: none;"> ▶ </a>
-				</c:when>
-				<c:when test="${prodPageNum == page.endPageNum}">
-					<a href="#" onclick="prodPaging(${prodPageNum-1});" id="pNum" style="text-decoration: none;"> ◀ </a>
-					<input type="text" id="prodPageInput" size="1px" value="${page.endPageNum}" class="prod_page_txt" style="text-decoration: none;"/><a> / </a> 
-					<a>${page.endPageNum}</a>
-					<a id="pNum" style="text-decoration: none;"> ▶ </a>
-				</c:when>
-				<c:otherwise>
-					<a href="#" onclick="prodPaging('${prodPageNum-1}')" id="pNum" > ◀ </a>
-					<input type="text" id="prodPageInput" class="prod_page_txt" value="${prodPageNum}" onkeypress="pageInput(event);"/>  
-					<a href="#" onclick="prodPaging('${page.endPageNum}')" id="pNum"> / ${page.endPageNum}</a>
-					<a href="#" onclick="prodPaging('${prodPageNum+1}')" id="pNum"> ▶ </a>
-				</c:otherwise>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀◀</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:prodSearch(${page.prevStepPage})" class="prev">◀◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:prodSearch(${page.prevPageNum})" class="prev">◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+				<c:choose>
+					<c:when test="${i eq ccPageNum }">
+						<b>
+							<a  href="javascript:prodSearch('${i}');" id="pNum" class="choice">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:prodSearch('${i}');">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+	       			<a class="next">▶</a>
+	   		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:prodSearch(${page.nextPageNum})" class="next">▶</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+	       			<a class="next">▶▶</a>
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:prodSearch(${page.nextStepPage})" class="next">▶▶</a>
+	    		</c:when>
 			</c:choose>
 	
-
-<%-- 
-	<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-	<c:choose>
-	<c:when test="${prodPageNum == page.startPageNum}">
-		<a id="pNum">◀</a>&nbsp;
-		<input type="text" id="prodPageInput" class="prod_page_txt" value="${page.startPageNum}"/> / 
-		<a  href="${ctx}/prod?prodPageNum=${page.endPageNum}" id="pNum" >${page.endPageNum}</a>&nbsp;
-		<a href="${ctx}/prod?prodPageNum=${prodPageNum+1}" id="pNum">▶</a>
-	</c:when>
-	<c:when test="${prodPageNum == page.endPageNum}">
-		<a href="${ctx}/prod?prodPageNum=${prodPageNum-1}" id="pNum">◀</a>&nbsp;
-		<input type="text" id="prodPageInput" class="prod_page_txt" value="${page.endPageNum}"/> / 
-		<a  href="${ctx}/prod?prodPageNum=${page.endPageNum}" id="pNum">${page.endPageNum}</a>&nbsp;
-		<a id="pNum">▶</a>
-	</c:when>
-	<c:otherwise>
-		<a href="${ctx}/prod?pageNum=${prodPageNum-1}" id="pNum" >◀</a>&nbsp;
-		<input type="text" id="prodPageInput" class="prod_page_txt" value="${prodPageNum}"/> / 
-		<a  href="${ctx}/prod?prodPageNum=${page.endPageNum}" id="pNum">${page.endPageNum}</a>&nbsp;
-		<a href="${ctx}/prod?prodPageNum=${prodPageNum+1}" id="pNum">▶</a>
-	</c:otherwise>
-	</c:choose> --%>
 	<!-- 페이징 처리 -->	
 	</div>
 <!-- <div class="act_tab_bt_div">

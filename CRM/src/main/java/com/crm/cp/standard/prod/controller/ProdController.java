@@ -331,8 +331,8 @@ public class ProdController {
 	public @ResponseBody Map<String,Object> ProdListSearch(
 			HttpSession session,
 			@RequestParam(value = "prodPageNum", defaultValue = "1") int prodPageNum,
-			String prod_nm,
-			String code
+			@RequestParam (value = "prod_nm" , required = false)String prod_nm,
+			@RequestParam (value = "code" , required = false)String code
 			){
 		System.out.println("검색어 prod_id : "+prod_nm+" 코드 : "+code);				
 		
@@ -372,12 +372,12 @@ public class ProdController {
 		
 		List<ProdVO> prodList = prodService.prodAllList(prodMap);
 		ModelAndView mov = new ModelAndView("prodList");
-		//List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
+		List<ProdVO> prodServicecCodeList = prodService.prodServiceCodeList();
 		//List<MenuVO> menuList = menuService.selectAll(session);
 		
 		System.out.println(page +" : "+ prodPageNum);
 
-		//mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
+		mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
 		//mov.addObject("menuList", menuList);
 		mov.addObject("prodPageNum", prodPageNum);
 		mov.addObject("page", page);
@@ -435,5 +435,17 @@ public class ProdController {
 		return mov;
 	}
 	
+	@RequestMapping(value = "/prodDelete", method = RequestMethod.GET)
+	@ResponseBody
+	public int opptDelete(HttpSession session,
+			@RequestParam(value = "prodDeleteIdList[]") List<String> prodDeleteIdList,
+			@RequestParam(value = "ccPageNum", defaultValue = "1") String pageNum) {
+		int result = 0;
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < prodDeleteIdList.size(); i++) {
+			result += prodService.prodDelete(prodDeleteIdList.get(i));
+		}
+		return result;
+	}
 
 }

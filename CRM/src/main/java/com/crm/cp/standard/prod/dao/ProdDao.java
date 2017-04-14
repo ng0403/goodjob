@@ -56,4 +56,12 @@ public interface ProdDao {
 
 	int prodCatalFileDelete(ProdVO dto);
 
+	int prodDelete(String prod_id);
+
+	int fileDelete(String attach_id);
+
+	void prodFileDelete(String prod_id);
+
+	List<ProdVO> fileList(String prod_id);
+
 }

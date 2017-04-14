@@ -10,6 +10,7 @@ $(function(){
 	prodSaveBtn(ctx);
 	prodChange(ctx);
 	prodModifyBtn(ctx);
+	prodDeleteBtn();
 	//prodIdClick(ctx);
 });
 /* 샘플 
@@ -53,10 +54,53 @@ function prodCancelBtn(ctx){
 //	event.stopPropagation();
 //}
 
+function prodDeleteBtn(){
+	var prodDeleteIdList=[];
+	$("#prodDeleteBtn").click(function(){
+		if($('#prod_list input[type=checkbox]:checked').length==0){
+			alert("삭제할 상품을 선택해 주세요.");
+			return;
+		}else{
+			if(confirm("삭제 하시겠습니까?")){
+				$('#prod_list input[type=checkbox]:checked').each(function(){
+					prodDeleteIdList.push($(this).val());
+				});
+				
+				$.ajax({
+					url : '/prodDelete',
+					type : 'get',
+					datatype : 'json',
+					data : { prodDeleteIdList : prodDeleteIdList},
+					success : function(result){
+						alert(result+'건의 상품이 삭제되었습니다.');
+						prodPaging($('#ccPageNum').val());
+					},
+					error:function(request){
+						alert("error : " + request);
+					}
+				});
+			}else{
+				return;
+			}
+		}
+	})
+}
 
-
-
-
+//상품 전체 선택
+function prodAllselect(){
+	$("#prodListCheck").click( function(){
+		var chk = $(this).is(":checked");
+		if(chk){
+			$("#prod_list input[type=checkbox]").prop("checked",true);			
+		}else{
+			$("#prod_list input[type=checkbox]").prop("checked",false);
+		}
+	});
+}
+//상품 전체 선택 박스 해제
+function chkCancel(){
+	$("#prodListCheck").prop("checked", false);
+}
 function prodSearch(prodPageNum) {
 	$(document).ready(function() {
 		var ctx = $("#ctx").val();
@@ -77,39 +121,39 @@ function prodSearch(prodPageNum) {
 			data : data,
 			type:'POST',
 			dataType : "json",
-			success: function(data) {
+			success: function(result) {
 				var fst_reg_dt = null;
 				
 				
-				if(data.prodList.length == 0){
+				if(result.prodList.length == 0){
 					alert("검색된 데이터가 없습니다.")
 					location.href = ctx + "/prod";
 				}else{
 					tbody.children().remove();
 
-					$('#sprod_nm').val(data.prod_nm);
-					$('#scode').val(data.code);
+					$('#sprod_nm').val(result.prod_nm);
+					$('#scode').val(result.code);
 					
-					for(var i = 0 ; i < data.prodList.length; i++){
-						fst_reg_dt = dateFormat(Number(data.prodList[i].fst_reg_dt));
+					for(var i = 0 ; i < result.prodList.length; i++){
+						fst_reg_dt = dateFormat(Number(result.prodList[i].fst_reg_dt));
 						
 						tbodyContent = "<tr>"
 							+"<th><input type='checkbox'></th>"
-							+"<td id='list_prod_id'><a class='list_prod_id'>"+data.prodList[i].prod_nm
-							+"<input type='hidden' class='list_prod_idh' name='"+data.prodList[i].prod_id+"' value='"+data.prodList[i].prod_id+"'/></a>"
+							+"<td id='list_prod_id'><a class='list_prod_id'>"+result.prodList[i].prod_nm
+							+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 							+"</td>"
-							+"<td>"+data.prodList[i].cd_nm+"</td>"
-							+"<td>"+data.prodList[i].prod_price+"</td>"
-							+"<td>"+data.prodList[i].cate+"</td>"
-							+"<td>"+data.prodList[i].fst_reg_id_nm+"</td>"
+							+"<td>"+result.prodList[i].cd_nm+"</td>"
+							+"<td>"+result.prodList[i].prod_price+"</td>"
+							+"<td>"+result.prodList[i].cate+"</td>"
+							+"<td>"+result.prodList[i].fst_reg_id_nm+"</td>"
 							+"<td>"+fst_reg_dt+"</td></tr>";
 							/*+"<fmt:formatDate value='"+data.prodList[i].fst_reg_dt"' type='time' pattern='yyyy-MM-dd HH:mm:ss'/></td></tr>";*/
 						tbody.append(tbodyContent);
 						$('#prodListCheck').prop("checked",false);						
 					}
 					
-					if(data.prodList.length < 5){
-						for(var j = 0; j < 5-data.prodList.length; j++){
+					if(result.prodList.length < 5){
+						for(var j = 0; j < 5-result.prodList.length; j++){
 							tbodyContent ="<tr style='height:25px;'>"
 								+"<th></th>"
 								+"<td></td><td></td><td></td><td></td>"
@@ -121,30 +165,16 @@ function prodSearch(prodPageNum) {
 					var pageContent = "";
 					// 페이징 다시그리기
 					$("#pageSpace").children().remove();
-					
-					if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-						pageContent = "<input type='hidden' id='endPageNum' value='"+(data.page.endPageNum-1)+"'/>"
-						+"<a> ◀ </a><input type='text' id='prodPageInput' readonly='readonly' value='"+data.page.startPageNum+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>" 
-						+"<a> / "+(data.page.endPageNum-1)+"</a><a> ▶ </a>";
-					} else if(data.prodPageNum == data.page.startPageNum){
-						pageContent = "<input type='hidden' id='endPageNum' value='"+(data.page.endPageNum-1)+"'/>"
-						+"<a> ◀ </a><input type='text' id='prodPageInput' value='"+data.page.startPageNum+"' class='prod_page_txt'  onkeypress=\"pageInput(event);\"/>" 
-						+"<a href='#' onclick=prodSearch("+(data.page.endPageNum-1)+") id='pNum'> / "+(data.page.endPageNum-1)+"</a>"
-						+"<a href='#' onclick=prodSearch("+(data.prodPageNum+1)+") id='pNum'> ▶ </a>";
-					} else if(data.prodPageNum == (data.page.endPageNum-1)){
-						pageContent = "<input type='hidden' id='endPageNum' value='"+(data.page.endPageNum-1)+"'/>"
-						+"<a href='#' onclick=prodSearch("+(data.prodPageNum-1)+") id='pNum'> ◀ </a>"
-						+"<input type='text' id='prodPageInput' value='"+(data.page.endPageNum-1)+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>"
-						+"<a> / "+(data.page.endPageNum-1)+"</a>"
-						+"<a> ▶ </a>";
-					} else {
-						pageContent = "<input type='hidden' id='endPageNum' value='"+(data.page.endPageNum-1)+"'/>"
-						+"<a href='#' onclick=prodSearch("+(data.prodPageNum-1)+") id='pNum'> ◀ </a>"
-						+"<input type='text' id='prodPageInput' value='"+data.prodPageNum+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>"
-						+"<a href='#' onclick=prodSearch("+(data.page.endPageNum-1)+") id='pNum'> / "+(data.page.endPageNum-1)+"</a>"
-						+"<a href='#' onclick=prodSearch("+(data.prodPageNum+1)+") id='pNum'> ▶ </a>";
-					}
-					$("#pageSpace").append(pageContent);					
+					var ccPageNum = result.ccPageNum;
+					var startPageNum = result.page.startPageNum;
+					var endPageNum = result.page.endPageNum;
+					var firstPageCount = result.page.firstPageCount;
+					var totalPageCount = result.page.totalPageCount;
+					var prevPageNum = result.page.prevPageNum;
+					var nextPageNum = result.page.nextPageNum;
+					var prevStepPage = result.page.prevStepPage;
+					var nextStepPage = result.page.nextStepPage;
+					paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);					
 				}		
 			},
 			error : function() {
@@ -154,36 +184,90 @@ function prodSearch(prodPageNum) {
 		}	
 	});
 }
+
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var stepPrev = $("<a>");
+	stepPrev.addClass("prev");
+	stepPrev.html("◀◀");
+	if(ccPageNum != firstPageCount){
+		stepPrev.attr("href","javascript:list("+prevStepPage+")");
+	}
+	$("#pageSpace").append(stepPrev);
+	var prevPage = $("<a>");
+	prevPage.addClass("prev");
+	prevPage.html("◀");
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:list("+prevPageNum+")");
+	}
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.attr("href","javascript:list("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.addClass("choice");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("next");
+	nextPage.html("▶");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:list("+nextPageNum+")");
+	}
+	$("#pageSpace").append(nextPage);
+	var stepNext = $("<a>");
+	stepNext.addClass("next");
+	stepNext.html("▶▶");
+	if(ccPageNum != totalPageCount){
+		stepNext.attr("href","javascript:list("+nextStepPage+")");
+	}
+	$("#pageSpace").append(stepNext);
+}
 function prodPaging(prodPageNum) {	
 	$(document).ready(function() {
-		var ctx = $("#ctx").val();
-		var data = {"prodPageNum":prodPageNum};
+//		var ctx = $("#ctx").val();
+		var data = {"prodPageNum":prodPageNum, "prod_nm" : prod_nm, "code" : code};
+		var prod_nm = $("#sprod_nm").val();
+		var code = $("#scode").val();
 		var tbody = $('#prod_list');
 		var tbodyContent = "";	
 	
 		$.ajax({
-			url: ctx+'/prodListSearch',
+			url: '/prodListSearch',
 			data : data,
 			dataType : "json",
 			type:'POST',
-			success: function(data) {
+			success: function(result) {
 				var fst_reg_dt = null;
 				
 				tbody.children().remove();
 				
-				for (var i = 0; i < data.prodList.length; i++) {
-					fst_reg_dt = dateFormat(Number(data.prodList[i].fst_reg_dt));
-					
+				for (var i = 0; i < result.prodList.length; i++) {
+					fst_reg_dt = dateFormat(Number(result.prodList[i].fst_reg_dt));
 					
 					tbodyContent = "<tr>"
 						+"<th><input type='checkbox'></th>"
-						+"<td id='list_prod_id'><a class='list_prod_id'>"+data.prodList[i].prod_nm
-						+"<input type='hidden' class='list_prod_idh' name='"+data.prodList[i].prod_id+"' value='"+data.prodList[i].prod_id+"'/></a>"
+						+"<td id='list_prod_id'><a class='list_prod_id'>"+result.prodList[i].prod_nm
+						+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 						+"</td>"
-						+"<td>"+data.prodList[i].cd_nm+"</td>"
-						+"<td>"+data.prodList[i].prod_price+"</td>"
-						+"<td>"+data.prodList[i].cate+"</td>"
-						+"<td>"+data.prodList[i].fst_reg_id_nm+"</td>"
+						+"<td>"+result.prodList[i].cd_nm+"</td>"
+						+"<td>"+result.prodList[i].prod_price+"</td>"
+						+"<td>"+result.prodList[i].cate+"</td>"
+						+"<td>"+result.prodList[i].fst_reg_id_nm+"</td>"
 						+"<td>"+fst_reg_dt+"</td></tr>";
 						tbody.append(tbodyContent);
 					$('#prodListCheck').prop("checked",false);						
@@ -194,30 +278,17 @@ function prodPaging(prodPageNum) {
 				var pageContent = "";
 				// 페이징 다시그리기
 				$("#pageSpace").children().remove();
-				
-				if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<a> ◀ </a><input type='text' id='prodPageInput' readonly='readonly' value='"+data.page.startPageNum+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>" 
-					+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-				} else if(data.prodPageNum == data.page.startPageNum){
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<a> ◀ </a><input type='text' id='prodPageInput' value='"+data.page.startPageNum+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>" 
-					+"<a href='#' onclick=prodPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-					+"<a href='#' onclick=prodPaging("+(data.prodPageNum+1)+") id='pNum'> ▶ </a>";
-				} else if(data.prodPageNum == data.page.endPageNum){
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<a href='#' onclick=prodPaging("+(data.prodPageNum-1)+") id='pNum'> ◀ </a>"
-					+"<input type='text' id='prodPageInput' value='"+data.page.endPageNum+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>"
-					+"<a> / "+data.page.endPageNum+"</a>"
-					+"<a> ▶ </a>";
-				} else {
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<a href='#' onclick=prodPaging("+(data.prodPageNum-1)+") id='pNum'> ◀ </a>"
-					+"<input type='text' id='prodPageInput' value='"+data.prodPageNum+"' class='prod_page_txt' onkeypress=\"pageInput(event);\"/>"
-					+"<a href='#' onclick=prodPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-					+"<a href='#' onclick=prodPaging("+(data.prodPageNum+1)+") id='pNum'> ▶ </a>";
-				}
-					$("#pageSpace").append(pageContent);							
+				$("#pageSpace").children().remove();
+				var ccPageNum = result.ccPageNum;
+				var startPageNum = result.page.startPageNum;
+				var endPageNum = result.page.endPageNum;
+				var firstPageCount = result.page.firstPageCount;
+				var totalPageCount = result.page.totalPageCount;
+				var prevPageNum = result.page.prevPageNum;
+				var nextPageNum = result.page.nextPageNum;
+				var prevStepPage = result.page.prevStepPage;
+				var nextStepPage = result.page.nextStepPage;
+				paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);							
 				},error: function(data){
 					alert("전송중 오류가 발생했습니다.");                                                                                                                                                                                                                                                                                                                                                                              
 				}

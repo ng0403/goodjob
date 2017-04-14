@@ -39,7 +39,7 @@
 		      	AND cd.code like #{code}
 		      </if>
 		      
-		      order by p.fst_reg_dt desc
+		      order by p.prod_id desc
 		  ) a order by rownum
 		) SAL
 		<![CDATA[WHERE SAL.num>=#{startRow}
@@ -194,7 +194,7 @@
 		FROM PRODUCT P, PROD_OF_ATTACH PA, ATTACH A
 		WHERE P.PROD_ID = PA.PROD_ID
 				AND PA.ATTACH_ID = A.ATTACH_ID
-				AND P.PROD_ID = #{PROD_ID}
+				AND P.PROD_ID = #{prod_id}
 				AND PA.FILE_FLG = '0001'
 	</select>
 	
@@ -205,17 +205,35 @@
 		FROM PRODUCT P, PROD_OF_ATTACH PA, ATTACH A
 		WHERE P.PROD_ID = PA.PROD_ID
 				AND PA.ATTACH_ID = A.ATTACH_ID
-				AND P.PROD_ID = #{PROD_ID}
+				AND P.PROD_ID = #{prod_id}
 				AND PA.FILE_FLG = '0002'
 	</select>
 	
-	<update id="prodDelete">
+	<update id="prodDelete" parameterType="String">
 		UPDATE PRODUCT
 		SET
 			ACT_YN='N'
 		WHERE
 			PROD_ID=#{prod_id}
 	</update>
+	
+	<select id="fileList" parameterType="String" resultType="com.crm.cp.standard.prod.vo.ProdVO">
+		SELECT A.ATTACH_ID
+		FROM PRODUCT P, PROD_OF_ATTACH PA, ATTACH A
+		WHERE P.PROD_ID = PA.PROD_ID
+				AND PA.ATTACH_ID = A.ATTACH_ID
+				AND P.PROD_ID = #{prod_id}
+	</select>
+	
+	<delete id="fileDelete" parameterType="String">
+		DELETE FROM ATTACH
+		WHERE ATTACH_ID = #{attach_id}
+	</delete>
+	
+	<delete id="prodFileDelete" parameterType="String">
+		DELETE FROM PROD_OF_ATTACH
+		WHERE PROD_ID = #{prod_id}
+	</delete>
 	
 	<update id="imgFileInsert" parameterType="com.crm.cp.standard.prod.vo.ProdVO">
 		insert into ATTACH(

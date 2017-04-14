@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.crm.cp.standard.prod.dao.ProdDao;
 import com.crm.cp.standard.prod.vo.ProdVO;
-import com.crm.cp.utils.PageUtil;
 import com.crm.cp.utils.PagerVO;
 
 @Service("ProdService")
@@ -155,5 +154,29 @@ public class ProdServiceImpl implements ProdService{
 	public ProdVO catalList(String prod_id) {
 		// TODO Auto-generated method stub
 		return prodDao.catalList(prod_id);
+	}
+
+	@Override
+	public int prodDelete(String prod_id) {
+		// TODO Auto-generated method stub
+		int result = prodDao.prodDelete(prod_id);
+		if(result == 1){
+			int result2 = 0;
+			List<ProdVO> attList = fileList(prod_id);
+			for(int i = 0;i<attList.size();i++){
+				String attach_id = attList.get(i).getAttach_id();
+				result2 += prodDao.fileDelete(attach_id);
+			}
+			if(result2 >= 1){
+				prodDao.prodFileDelete(prod_id);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public List<ProdVO> fileList(String prod_id) {
+		// TODO Auto-generated method stub
+		return prodDao.fileList(prod_id);
 	}
 }
