@@ -100,7 +100,7 @@ $(document).ready(function(){
 							<th>상태</th>
 							<td>
 								<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
+								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24px;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
 										<option value="<c:out value="${list.code}" />"
@@ -114,7 +114,7 @@ $(document).ready(function(){
 							<th>영업단계</th>
 							<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
-								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
+								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24px;">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${otllist}" var="list">
 										<option value="<c:out value="${list.code}" />"
@@ -134,7 +134,7 @@ $(document).ready(function(){
 							<th>가능성</th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
-								<select id="psblty_rate" name="psblty_rate" style="height: 24pt;">
+								<select id="psblty_rate" name="psblty_rate" style="height: 24px;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<option <c:if test="${opDetail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
 									<option <c:if test="${opDetail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>

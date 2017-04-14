@@ -83,7 +83,7 @@
 <!-- 		</div> -->
 <!-- 	  </div> -->
 	  
-	  <div id="left_home" style="height: 61%;">
+	  <div id="left_home" style="height: 61%; margin-left: 10px;">
 	   <div id="contract_title">
 	   ■ 영업기회
 	   <input type="button" class="detailPopbtn" id="oppt_detail" value="상세보기">
