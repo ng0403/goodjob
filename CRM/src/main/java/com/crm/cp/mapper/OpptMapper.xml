@@ -44,7 +44,7 @@
 		<if test="spsblty_rate !=null and spsblty_rate !=''">
 			and a.psblty_rate=#{spsblty_rate}
 		</if>
-		order by a.fst_reg_id asc
+		order by a.fst_reg_id desc
 		)d
 		where r <![CDATA[ >= ]]>
 		#{startRow} and r <![CDATA[ <= ]]>

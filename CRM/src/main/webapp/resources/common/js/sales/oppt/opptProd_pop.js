@@ -93,7 +93,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);
-			makeBlock();
+//			makeBlock();
 		}
 	}
 	opptProdChange();
