@@ -150,12 +150,6 @@ $(document).ready(function(){
 							</td>
 						</tr>
 						<tr>
-							<th></th>
-							<td>
-							</td>
-						</tr>	
-						
-						<tr>
 							<th>메모</th>
 							<td colspan="8" rowspan="2">
 								<input type="hidden" id="hmemo">
