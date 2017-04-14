@@ -119,7 +119,7 @@ function opptProdChange(){
 	var discountSum = 0;
 	var supplyPriceSum = 0;
 	$("#opptPrdtbody tr[class!=empty]").each(function(){
-		var countObj=$(this).children().eq(2).children();
+		var countObj=$(this).children().eq(2).children();//상품 수량
 		var salesamtObj=$(this).children().eq(0).children().eq(1);
 		var count = countObj.val();
 		if(count==""){

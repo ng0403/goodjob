@@ -75,6 +75,7 @@ public class OpptController {
 
 		List<OpptVO> list = service.opptList(map);
 
+		System.out.println("page : " + page);
 		mov.addObject("oplist", list);
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);

@@ -46,9 +46,7 @@
 		</if>
 		order by a.fst_reg_id desc
 		)d
-		where r <![CDATA[ >= ]]>
-		#{startRow} and r <![CDATA[ <= ]]>
-		#{endRow}
+		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
 
 	</select>
 	<!-- 홈화면 영업기회 리스트 -->
