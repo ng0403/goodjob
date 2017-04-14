@@ -11,6 +11,7 @@
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/home/home.js"></script>
+<script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
 <title>CRM SOLUTION</title>
 </head>
 <body>
@@ -82,32 +83,38 @@
 <!-- 		</div> -->
 <!-- 	  </div> -->
 	  
-	  <div id="left_home">
+	  <div id="left_home" style="height: 61%;">
 	   <div id="contract_title">
 	   ■ 영업기회
 	   <input type="button" class="detailPopbtn" id="oppt_detail" value="상세보기">
 	   </div>
-	   
-	   <div id="tableline">
-			<table id="goaltable">
-				<thead>
-					<tr>
-						<td>영업기회명</td><td>영업단계</td><td>예정일자</td><td>부서</td><td>담당자</td>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${opptList}" var="opptList" begin="0" end="4">
-					<tr>
-						<td>${opptList.sales_oppt_nm}</td>
-						<td>${opptList.sales_lev_cd_nm}</td>
-						<td>${opptList.expt_fin_d}</td>
-						<td>${opptList.org_nm}</td>
-						<td>${opptList.cust_id}</td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
-		</div>
+	   		<!-- 영업기회 상태 차트  -->
+		<div id="chart_oppt_status" style="margin-top: 5%; margin-left: 19%;">
+<!-- 			<h1>영업기회 상태 현황</h1> -->
+				<svg id="myGraph">
+				</svg>
+					<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
+		</div> 
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td>영업기회명</td><td>영업단계</td><td>예정일자</td><td>부서</td><td>담당자</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<%-- 				<c:forEach items="${opptList}" var="opptList" begin="0" end="4"> --%>
+<!-- 					<tr> -->
+<%-- 						<td>${opptList.sales_oppt_nm}</td> --%>
+<%-- 						<td>${opptList.sales_lev_cd_nm}</td> --%>
+<%-- 						<td>${opptList.expt_fin_d}</td> --%>
+<%-- 						<td>${opptList.org_nm}</td> --%>
+<%-- 						<td>${opptList.cust_id}</td> --%>
+<!-- 					</tr> -->
+<%-- 				</c:forEach> --%>
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
 	  </div>
 	  
 <!-- 	  <div id="right_home"> -->

@@ -16,7 +16,6 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
-<%-- <script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script> --%>
 <script type="text/javascript">
 </script>
 <body>
@@ -178,12 +177,12 @@
 		</div>
 	</form>	
 	
-		<!-- 영업기회 상태 차트  -->
-	<div id="chart_oppt_status" style="margin-top: 5%;">
-		<h1>영업기회 상태 현황</h1>
-			<svg id="myGraph">
-			</svg>
-				<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
-	</div> 
+<!-- 		<!-- 영업기회 상태 차트  --> -->
+<!-- 	<div id="chart_oppt_status" style="margin-top: 5%;"> -->
+<!-- 		<h1>영업기회 상태 현황</h1> -->
+<!-- 			<svg id="myGraph"> -->
+<!-- 			</svg> -->
+<%-- 				<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script> --%>
+<!-- 	</div>  -->
 </body>
 </html>
