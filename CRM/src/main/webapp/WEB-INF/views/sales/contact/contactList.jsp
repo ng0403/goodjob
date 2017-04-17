@@ -92,8 +92,58 @@
 		</c:forEach>
 		</tbody>
 		</table>
-		<div id="pager" class="call_page_div">
+		<div id="pager" class="call_page_div"> 
+		
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+			<input type="hidden" id="ccPageNum" value="${contactPageNum}">
+			<c:choose>
+				<c:when test="${contactPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀◀</a>
+	    		</c:when>
+				<c:when test="${contactPageNum ne page.firstPageCount}">
+	        		<a href="javascript:contactPaging(${page.prevStepPage})" class="prev">◀◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${contactPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀</a>
+	    		</c:when>
+				<c:when test="${contactPageNum ne page.firstPageCount}">
+	        		<a href="javascript:contactPaging(${page.prevPageNum})" class="prev">◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+				<c:choose>
+					<c:when test="${i eq contactPageNum }">
+						<b>
+							<a  href="javascript:contactPaging('${i}');" id="pNum" class="choice">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:contactPaging('${i}');">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${contactPageNum eq page.totalPageCount}">
+	       			<a class="next">▶</a>
+	    		</c:when>
+				<c:when test="${contactPageNum ne page.totalPageCount}">
+	       			<a href="javascript:contactPaging(${page.nextPageNum})" class="next">▶</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${contactPageNum eq page.totalPageCount}">
+	       			<a class="next">▶▶</a>
+	    		</c:when>
+				<c:when test="${contactPageNum ne page.totalPageCount}">
+	       			<a href="javascript:contactPaging(${page.nextStepPage})" class="next">▶▶</a>
+	    		</c:when>
+			</c:choose>
+		 
+		
+		
+		<%-- <input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 		<input type="hidden" id="callPageNum" value="${contactPageNum}"/>
 		<c:choose>
 		<c:when test="${contactPageNum == page.startPageNum}">
@@ -114,7 +164,7 @@
 			<a href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
 			<a href="#" onclick="contactPaging(${contactPageNum+1})" style="text-decoration: none;">▶</a>
 		</c:otherwise>
-		</c:choose>
+		</c:choose> --%>
 	</div>		
 	</div>
 	

@@ -29,7 +29,18 @@
 <c:if test="${flag == 1}">
 	<title>영업기회 정보</title>
 </c:if>
+
+<script type="text/javascript">
+ function ccOpptDetailSelect() {
+ 
+ 	$("#sales_lev_cd > option[value='${opptVO.sales_lev_cd}']").attr("selected", "selected");
+	$("#psblty_rate  > option[value='${opptVO.psblty_rate}']").attr("selected", "selected");
+	$("#sales_oppt_stat_cd > option[value='${opptVO.sales_oppt_stat_cd}']").attr("selected", "selected");
+} 
+</script>
 </head>
+
+
 <body onload="ccOpptDetailSelect();">
 	<div class="saleschanceview">
 		<input type="hidden" id="ctx" value="${ctx}"/>
@@ -67,11 +78,20 @@
 						<tr>
 							<th>영업단계</th>
 							<td>
-								<select name="sales_lev_cd" id="sales_lev_cd">
+								<select name="sales_lev_cd" id="sales_lev_cd" value="${opptVO.sales_lev_cd}">
 									<option value="0" >==선택==</option>
-									<c:forEach items="${otllist}" var="list">
+									<%-- <c:forEach items="${otllist}" var="list">
 										<option value="${list.code}" >${list.cd_nm}</option>
-									</c:forEach>
+									</c:forEach> --%> 
+									 <c:forEach items="${otllist}" var="list">
+									<option value="<c:out value="${list.code}" />"
+                                 	 <c:if test="${opptVO.sales_lev_cd == list.code }">selected="selected"</c:if>>
+                                 	 ${list.cd_nm}
+                               		</option>
+                               		</c:forEach>
+									
+									
+									
 								</select>
 							</td>
 						</tr>
@@ -91,17 +111,17 @@
 							<th>가능성</th>
 							<td>
 								<select id="psblty_rate" name="psblty_rate">
-									<option>선택</option>
-									<option>10</option>
-									<option>20</option>
-									<option>30</option>
-									<option>40</option>
-									<option>50</option>
-									<option>60</option>
-									<option>70</option>
-									<option>80</option>
-									<option>90</option>
-									<option>100</option>
+									<option value="0" >선택</option>
+									<option value="10">10</option>
+									<option value="20">20</option>
+									<option value="30">30</option>
+									<option value="40">40</option>
+									<option value="50">50</option>
+									<option value="60">60</option>
+									<option value="70">70</option>
+									<option value="80">80</option>
+									<option value="90">90</option>
+									<option value="100">100</option>
 								</select>	
 							</td>
 						</tr>
@@ -111,8 +131,16 @@
 								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd">
 									<option value="0">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
+									<option value="<c:out value="${list.code}" />"
+                                 	 <c:if test="${opptVO.sales_oppt_stat_cd == list.code }">selected="selected"</c:if>>
+                                 	 ${list.cd_nm}
+                               		</option>
+                               		</c:forEach>
+                               		
+								<%-- 	<c:forEach items="${osclist}" var="list">
 										<option value="${list.code}" >${list.cd_nm}</option>
-									</c:forEach>
+									</c:forEach>  --%> 
+                           
 								</select>
 							</td>
 						</tr>

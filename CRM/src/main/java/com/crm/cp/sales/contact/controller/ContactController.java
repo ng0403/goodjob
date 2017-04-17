@@ -73,7 +73,8 @@ public class ContactController {
 
 		return mov;
 	}
-
+	
+	 
 	// 연락처 상세정보
 	/*
 	 * @RequestMapping(value = "contactDetail", method = RequestMethod.POST)
@@ -176,8 +177,8 @@ public class ContactController {
 
 	// 연락처 리스트 초성검색 / 그냥검색 페이징
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> searchKeyword(HttpSession session, int contactPageNum, String keyword,
-			String cont_nm, String email, String ph) {
+	public @ResponseBody Map<String, Object> searchKeyword(HttpSession session, String keyword,
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, String cont_nm, String email, String ph) {
 		System.out.println("초성검색 enter");
 		System.out.println("초성?" + keyword);
 		Map<String, Object> kwMap = new HashMap<String, Object>();
@@ -201,15 +202,17 @@ public class ContactController {
 		kwMap.put("email", email);
 		kwMap.put("ph", ph);
 		kwMap.put("keyword", keyword);
-		kwMap.put("contactPageNum", contactPageNum);
+		kwMap.put("ccPageNum", ccPageNum);
 
 		PagerVO page = contactService.ContactListCount(kwMap);
 		kwMap.put("page", page);
 
+		
 		List<ContactVO> contactList = contactService.contactSearchAll(kwMap);
 		kwMap.put("contactList", contactList);
+		System.out.println("contactList " + contactList.toString());
 		kwMap.put("contactListSize", contactList.size());
-
+		System.out.println("contactListSize " +contactList.size());
 		return kwMap;
 	}
 
@@ -326,9 +329,9 @@ public class ContactController {
 		ModelAndView mov = new ModelAndView("/sales/contact/contactPop/custcomp_oppt_pop");
 		OpptVO opptVO = contactService.ccOpptDetail(sales_oppt_id);
 		System.out.println("영업기회 상세정보?? " + opptVO.toString());
-		opptVO.setSales_lev_cd(opptVO.getSales_lev_cd().substring(3, 4));
+/*		opptVO.setSales_lev_cd(opptVO.getSales_lev_cd().substring(3, 4));
 		opptVO.setSales_oppt_stat_cd(opptVO.getSales_oppt_stat_cd().substring(3, 4));
-		// 영업기회 상태 코드 가져오기
+*/		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = contactService.opptOscList();
 		System.out.println("osclist?? " + osclist.toString());
 		// 영업단계 코드 가져오기
@@ -425,8 +428,10 @@ public class ContactController {
 		int result = contactService.opptModifycontact(detail);
 		System.out.println("Detail Edit Result : " + result);
 		ModelAndView mov = new ModelAndView("oppt");
+		System.out.println("step1");
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
-		int result2 = service.addOpptStep(detail);// 영업기회단계리스트추가
+		System.out.println("setp2");
+		int result2 = contactService.addOpptStepcontact(detail);// 영업기회단계리스트추가
 		System.out.println("result2 : " + result2);
 		Map<String, Object> opptMap = new HashMap<String, Object>();
 		opptMap.put("opptVO", opptVO);

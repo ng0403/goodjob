@@ -6,11 +6,17 @@ import java.util.Map;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
-import com.crm.cp.sales.oppt.vo.OpptVO; 
+import com.crm.cp.sales.est.vo.EstVO;
+import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.utils.PagerVO; 
 
 public interface ContactDao {
 
 	public List<ContactVO> contactAllList(Map<String, Object> actMap); 
+	List<ContactVO> getList(Map<String,String> map);
+	// 전체 리스트 개수 가져오기
+	int contactListCount1(Map<String, String> contactMap);
+
 	public int contactListCount(Map<String, Object> contactMap);
 	public ContactVO contactDetail(String cont_id);
 	int contactUpdate(ContactVO contactVO);

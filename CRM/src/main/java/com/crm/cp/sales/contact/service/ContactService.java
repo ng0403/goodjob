@@ -6,6 +6,7 @@ import java.util.Map;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -13,6 +14,10 @@ import com.crm.cp.utils.PagerVO;
 public interface ContactService {
 	public List<ContactVO> contactAllList(Map<String,Object> contactMap); 
 	public PagerVO ContactListCount(Map<String, Object> contactMap);
+    List<ContactVO> getList(Map<String,String> map); //기업의 전체 리스트가져오기
+ // 페이지 정보 얻어오기
+ 	PagerVO ContactListCount1(Map<String, String> contactMap);
+ 	
 	public ContactVO contactDetail(String cont_id);
 	String contactUpdate(ContactVO contactVO);
 	int contactInsert(ContactVO contactVO);

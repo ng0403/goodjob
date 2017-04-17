@@ -550,17 +550,16 @@ function mdfyCustComp(ctx){
 
 //영업기회 상세정보 수정 함수
 function contactopptModify(){
-	alert("enter");
 	var sales_oppt_id = $("#sales_oppt_id").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
 	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
-	var expt_sales_amt = $("#expt_sales_amt").val();
+ 	var expt_sales_amt = $("#expt_sales_amt").val();
 	var expt_fin_d = $("#expt_fin_d").val();
 	var psblty_rate = $("#psblty_rate").val();
 	var sales_oppt_stat_cd = $("#sales_oppt_stat_cd").val();
 	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
-	var cust_id = $("#cust_id").val();
+ 	var cust_id = $("#cust_id").val();
  	var cust_nm = $("#cust_nm").val();
 	var memo = $("#memo").val();
  	if(sales_oppt_nm=="" || sales_oppt_nm==null){
@@ -641,6 +640,7 @@ function contactopptModify(){
 			readDetail();
 		},
 		error:function(request){
+			alert("안됐어");
 			alert("error : " + request.status);
 		}
 	});
