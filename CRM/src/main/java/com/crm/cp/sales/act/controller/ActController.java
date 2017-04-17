@@ -32,7 +32,6 @@ import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
-import com.crm.cp.utils.Encoder;
 import com.crm.cp.utils.PagerVO;
 
 @Controller
@@ -391,13 +390,65 @@ public class ActController {
 		return result;
 	}
 	
+	// 영업기회 추가 ajax
 	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
+	@ResponseBody int opptAdd(HttpSession session, OpptVO add, @RequestParam(value="est_list[]",required=false) List<String> est_list, String total_sup_price) 
+	{
+		System.out.println("est_list : " + est_list);
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+	
+		add.setFst_reg_id(session.getAttribute("user").toString());
+		add.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println(total_sup_price);
+		
+		add.setTotal_sup_price(total_sup_price);
+			
+		int result = opptService.opptAdd(add);
+		int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
+		
+		for(int i=0 ; i< est_list.size(); i++)
+		{
+			OpptVO vo = new OpptVO();
+			
+			vo.setSales_oppt_id("");
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			vo.setOppt_seq(add.getOppt_seq());
+			
+			estList.add(vo);
+		}
+		
+		int result1 = opptService.opptPrdtAdd(estList);
+		
+		System.out.println("영업기회 상품 추가 result : " + result1);
+		
+		System.out.println("영업기회 추가 result : " + result);
+		System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		
+		return result;
+	}	
+
+	@RequestMapping(value = "/opptInsert1", method = RequestMethod.POST)
 	@ResponseBody int opptInsert(HttpSession session, @RequestParam(value = "est_list[]", required = false) List<String> est_list, OpptVO opptVo) 
 	{
 		opptVo.setFst_reg_id(session.getAttribute("user").toString());
 		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
 		
-		List<OpptVO> opptProdList = new ArrayList<OpptVO>();
+		List<OpptVO> opptProdList = new ArrayList<OpptVO>(0);
+		
+		opptProdList.add(opptVo);
+		
+		System.out.println("est_list : " + est_list.get(0));
+		System.out.println("est_list : " + est_list.get(1));
+		System.out.println("est_list : " + est_list.get(2));
+		System.out.println("est_list : " + est_list.get(3));
+		System.out.println("est_list : " + est_list.get(4));
+		System.out.println("est_list : " + est_list.get(5));
 		
 		for (int i = 0; i < est_list.size(); i++) 
 		{
