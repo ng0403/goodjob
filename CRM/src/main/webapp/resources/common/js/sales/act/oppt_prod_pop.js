@@ -21,7 +21,7 @@ $(function(){
 	prodallCheck();
 	opptProdDelete();
 	opptProdNmSelect(ctx);
-	opptProdChange();
+	opptProdUpdate();
 //	startCalendar(ctx);
 });	
 
@@ -94,7 +94,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 //			makeBlock();
 		}
 	}
-	opptProdChange();
+	opptProdUpdate();
 }
 function makeBlock(){
 	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
@@ -111,11 +111,13 @@ function makeBlock(){
 	}
 }
 //상품 목록의 input값 변동에 따른 실시간 update
-function opptProdChange(){	
+function opptProdUpdate(){	
 	var countSum = 0;
 	var salesPriceSum = 0;
 	var discountSum = 0;
 	var supplyPriceSum = 0;
+	
+	//alert("oppt_prod_pop.js - opptProdUpdate()");
 	
 	$("#opptProdtbody tr[class!=empty]").each(function(){
 		var countObj=$(this).children().eq(2).children();
@@ -131,7 +133,9 @@ function opptProdChange(){
 		var disvalObj = $(this).children().eq(4).children().eq(0);
 		var amt = $(this).children().eq(3).text();
 		var salesamt = $(this).children().eq(0).children().eq(1).val();
-		var sellamt =  parseInt(salesamt) * parseInt(count);			
+		var sellamt =  parseInt(salesamt) * parseInt(count);
+		
+		//alert("sellamt : " +sellamt + " salesamt : "  + salesamt);
 		
 		if(sellamt=="")
 		{
@@ -144,6 +148,8 @@ function opptProdChange(){
 		
 		salesPriceSum = parseInt(sellamt) + parseInt(salesPriceSum);
 		countSum = parseInt(count) + parseInt(countSum);
+		
+		//alert(salesPriceSum);
 		
 		var disval =  disvalObj.val();
 		
@@ -180,6 +186,8 @@ function opptProdChange(){
 		
 		var realamt = $(this).children().eq(5).text();
 		supplyPriceSum = parseInt(disamt) + parseInt(supplyPriceSum);
+		
+		//alert(supplyPriceSum);
 	});
 	
 	$("#countSum").text(comma(countSum));
@@ -222,7 +230,7 @@ function opptProdChargeRealTime(){
 	   }
 //	   event.target.value = comma(event.target.value);
 //	   alert(event.target.value);
-	    opptProdChange();
+	    opptProdUpdate();
 	});
 }
 //숫자만 입력
@@ -274,7 +282,7 @@ function opptProdDelete(){
 					opptProdDeleteOpptId.push(estimId);
 				}
 			});
-				opptProdChange();	
+				opptProdUpdate();	
 		}
 	});
 }

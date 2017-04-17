@@ -28,7 +28,6 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
-import com.crm.cp.sales.oppt.vo.OpptPrdtVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
@@ -393,30 +392,16 @@ public class ActController {
 	}
 	
 	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
-	@ResponseBody int opptInsert(HttpSession session, @RequestParam(value = "est_list[]", required = false) List<String> est_list, OpptVO opptVo, OpptPrdtVO opptPrdtVo) 
+	@ResponseBody int opptInsert(HttpSession session, @RequestParam(value = "est_list[]", required = false) List<String> est_list, OpptVO opptVo) 
 	{
 		opptVo.setFst_reg_id(session.getAttribute("user").toString());
 		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
 		
-		System.out.println("OPPT PROD : 1");
-		
-		List<OpptPrdtVO> estList = new ArrayList<OpptPrdtVO>(0);
-		
-		System.out.println("OPPT PROD : 2");
-		estList.add(opptPrdtVo);
-		
-		System.out.println("OPPT PROD : 3");
+		List<OpptVO> opptProdList = new ArrayList<OpptVO>();
 		
 		for (int i = 0; i < est_list.size(); i++) 
 		{
-			OpptPrdtVO vo = new OpptPrdtVO();
-			
-			System.out.println("PROD LIST 1 : " + est_list.get(0));
-			System.out.println("PROD LIST 2 : " + est_list.get(1));
-			System.out.println("PROD LIST 3 : " + est_list.get(2));
-			System.out.println("PROD LIST 4 : " + est_list.get(3));
-			System.out.println("PROD LIST 5 : " + est_list.get(4));
-			System.out.println("PROD LIST 6 : " + est_list.get(5));
+			OpptVO vo = new OpptVO();
 			
 			vo.setProd_id(est_list.get(i));
 			vo.setProd_nm(est_list.get(++i));
@@ -425,13 +410,16 @@ public class ActController {
 			vo.setSup_price(est_list.get(++i));
 			vo.setDiscount_unit_cd(est_list.get(++i));
 			
-			estList.add(vo);
+			opptProdList.add(vo);
+			System.out.println("OPPT PROD : " + opptProdList);
 		}
+		System.out.println("opptVo : " + opptVo);
 		
-		System.out.println("OPPT PROD : " + estList);
-		
-		// 영업활동 추가
-		int result = 0; //opptService.opptAdd(opptVo);
+		// 영업활동 추가 result = 1 이면 성공.
+		//int result = 0; 
+		// DAO에서 컨트롤을 한다. 매개변수는 opptProdList로 보낸다.
+		// actService.opptProdAdd(opptProdList);
+		int result = opptService.opptPrdtAdd(opptProdList);
 		
 		return result;
 	}

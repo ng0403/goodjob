@@ -30,8 +30,6 @@ $(function(){
 		self.close();
 	});
 	
-	alert($('#eduCode').val());
-	
 	//opptSaveBtn(ctx);
 	//startDatePicker(ctx);
 });
@@ -118,7 +116,6 @@ function opptSave()
 		
 	});
 	
-	alert("ajax 들어가기 직전");
 	$.ajax({
 		type : 'post',
 		url : '/opptInsert',
@@ -136,6 +133,7 @@ function opptSave()
 		datatype : 'json',
 		success:function(result){
 			alert("정상적으로 등록되었습니다.");
+			
 			var cust_id = $('#cust_id', opener.document).val();	// 부모창에서 cust_id 받아오는 부분.
 			window.opener.opptTabList(cust_id);
 			self.close();
@@ -226,15 +224,12 @@ function opptMdfySave()
 //상품 리스트 조회
 function opptProdList()
 {
-	alert("상품추가 popup");
 	window.open('/prodList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInProd(prod_id, prod_nm, prod_price)
 {
-	alert("prod_price : " + prod_price);
-	
 	var unit ="";
 	var flg  = $('#flg').val();
 	var data = $('#eduCode').val();
@@ -249,15 +244,18 @@ function opptInProd(prod_id, prod_nm, prod_price)
 		unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
 	}
 	
-	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
+	var t = $('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
 	
-	alert($('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price)));
+	//alert("opptInsertPop.js : " + t);
 	
 	var like = 0;
 	
 	if($("#opptProdtbody tr").length == 0)
 	{
+		// 여기 들어옴.
+		//alert("opptInsertPop.js - if");
+		
 		if($('#flg').val()=='add')
 		{
 			prodAddId.push(prod_id);
@@ -278,6 +276,8 @@ function opptInProd(prod_id, prod_nm, prod_price)
 	}
 	else
 	{
+		//alert("opptInsertPop.js - else");
+
 		$("#opptProdtbody tr").each(function(){		
 			var old_prodId = $(this).attr("class");
 			
@@ -288,6 +288,7 @@ function opptInProd(prod_id, prod_nm, prod_price)
 				like=1;
 			}
 		});
+		
 		if(like==0)
 		{
 			if($('#flg').val()=='detail')
@@ -309,7 +310,9 @@ function opptInProd(prod_id, prod_nm, prod_price)
 			);
 		}
 	}
-	opptProdChange();
+	
+	//alert("opptProdUpdate() 들어가기 전");
+	opptProdUpdate();
 }
 
 

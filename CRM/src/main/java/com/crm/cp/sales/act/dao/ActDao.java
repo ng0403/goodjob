@@ -20,9 +20,6 @@ public interface ActDao {
 
 	List<ActVO> actDivCdList();
 	
-	// 상세보기 화면 영업기회리스트 출력 
-	List<OpptVO> opptList(String cust_id);
-
 	List<Object> actOpptList();
 	
 	List<Object> actOpptList(Map<String, Object> map);
@@ -40,6 +37,15 @@ public interface ActDao {
 	void actEdit(ActVO actvo);
 	
 	void actDelete(String sales_actvy_id);
+	
+	/**
+	 * 영화씨가 봐야할 곳.
+	 * */
+	// 상세보기 화면 영업기회리스트 출력 
+	List<OpptVO> opptList(String cust_id);
+	
+	//public int opptProdAdd(List<OpptPrdtVO> prodList);
+	
 
 	/*List<ActVO> actList(Map<String, Object> actMap);
 

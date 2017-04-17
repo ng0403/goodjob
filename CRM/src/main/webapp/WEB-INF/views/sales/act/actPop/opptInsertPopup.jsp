@@ -17,6 +17,7 @@
 <script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/opptInsertPop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/oppt_prod_pop.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영업기회 등록</title>
