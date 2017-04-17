@@ -37,6 +37,16 @@ $(function(){
 var prodAddId = [];   		//추가된 상품의 상품Id List
 var prodDeleteProdId = [];	//삭제된 상품의 상품Id List
 
+/**
+ * 숫자 콤마 제거(Server 전달 시 필요)
+ * @param str
+ * @returns
+ */
+function delete_comma(str) {
+	str = String(str);
+	return str.replace(/[^\d]+/g, '');
+}
+
 function opptSave()
 {
 	var ctx = $("#ctx").val();
@@ -51,6 +61,7 @@ function opptSave()
 	var memo = $("#memo").val();
 	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
 	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
+	var total_sup_price = delete_comma($("#supplyPriceSum").text());
 	
 	var prod_id = [];
 	var prod_nm = [];
@@ -122,6 +133,7 @@ function opptSave()
 		data : {
 			sales_oppt_id : sales_oppt_id,
 			sales_oppt_nm : sales_oppt_nm,
+			total_sup_price : total_sup_price,
 			sales_lev_cd : sales_lev_cd,
 			expt_fin_d : expt_fin_d,
 			psblty_rate : psblty_rate,
