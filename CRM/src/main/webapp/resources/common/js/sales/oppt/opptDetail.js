@@ -133,7 +133,6 @@ function opptMdfyBtn() {
 	$("#opptDetail #cust_nm,#opptDetail #expt_fin_d").attr("readonly",true);
 	$("#customer").attr("disabled",false);
 	$("#opptPrdtbody tr").each(function(){
-		alert("잘 돌고있네..");
 		$(".discount").attr("readonly",false);
 		$(".unit").attr("disabled",false);
 	});
@@ -169,7 +168,10 @@ function opptCancelBtn(addFlag) {
 			$("#opptDetail select").attr({
 				disabled:true,
 			});
-			
+			$("#opptPrdtbody tr").each(function(){
+				$(".discount").attr("readonly",readonly);
+				$(".unit").attr("disabled",true);
+			});
 			$("#customer").attr("disabled",true);
 			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
 			// 상세정보에 이전 값 넣기
