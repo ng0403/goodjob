@@ -225,7 +225,7 @@
 #estimatediv{
 	height: 150px;
 	width: 95%;
-	border-bottom: 2px solid #bebebe;
+/* 	border-bottom: 2px solid #bebebe; */
 }
 
 .estimate_bt_position{

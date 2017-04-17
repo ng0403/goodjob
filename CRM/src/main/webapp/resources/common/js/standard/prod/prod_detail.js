@@ -107,8 +107,8 @@ function prodSearch(prodPageNum) {
 		var prod_nm = $("#sprod_nm").val();
 		var code = $("#scode").val();
 		var prodListContent = "";
-				
-		if(prod_nm == ''){
+			
+		if(prod_nm == '' && code == ''){
 			alert("검색어를 입력하세요.");
 			return;
 		}else{
@@ -117,7 +117,7 @@ function prodSearch(prodPageNum) {
 			var tbodyContent = "";
 						
 		$.ajax({
-			url: ctx+'/prodListSearch',
+			url: '/prodListSearch',
 			data : data,
 			type:'POST',
 			dataType : "json",
@@ -127,7 +127,7 @@ function prodSearch(prodPageNum) {
 				
 				if(result.prodList.length == 0){
 					alert("검색된 데이터가 없습니다.")
-					location.href = ctx + "/prod";
+					//location.href = "/prod";
 				}else{
 					tbody.children().remove();
 
@@ -145,27 +145,19 @@ function prodSearch(prodPageNum) {
 							+"<td>"+result.prodList[i].cd_nm+"</td>"
 							+"<td>"+result.prodList[i].prod_price+"</td>"
 							+"<td>"+result.prodList[i].cate+"</td>"
-							+"<td>"+result.prodList[i].fst_reg_id_nm+"</td>"
+							+"<td>"+result.prodList[i].fst_reg_id+"</td>"
 							+"<td>"+fst_reg_dt+"</td></tr>";
 							/*+"<fmt:formatDate value='"+data.prodList[i].fst_reg_dt"' type='time' pattern='yyyy-MM-dd HH:mm:ss'/></td></tr>";*/
 						tbody.append(tbodyContent);
 						$('#prodListCheck').prop("checked",false);						
 					}
 					
-					if(result.prodList.length < 5){
-						for(var j = 0; j < 5-result.prodList.length; j++){
-							tbodyContent ="<tr style='height:25px;'>"
-								+"<th></th>"
-								+"<td></td><td></td><td></td><td></td>"
-								+"<td></td><td></td><td></td></tr>";
-							tbody.append(tbodyContent);
-						}
-					}
+					prodMakeBlock();
 					
 					var pageContent = "";
 					// 페이징 다시그리기
 					$("#pageSpace").children().remove();
-					var ccPageNum = result.ccPageNum;
+					var ccPageNum = result.prodPageNum;
 					var startPageNum = result.page.startPageNum;
 					var endPageNum = result.page.endPageNum;
 					var firstPageCount = result.page.firstPageCount;
@@ -196,7 +188,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	stepPrev.addClass("prev");
 	stepPrev.html("◀◀");
 	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:list("+prevStepPage+")");
+		stepPrev.attr("href","javascript:prodPaging("+prevStepPage+")");
 	}
 	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
@@ -205,12 +197,12 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:list("+prevPageNum+")");
+		prevPage.attr("href","javascript:prodPaging("+prevPageNum+")");
 	}
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:list("+i+")");
+		ccPage.attr("href","javascript:prodPaging("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -226,21 +218,21 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	nextPage.addClass("next");
 	nextPage.html("▶");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:list("+nextPageNum+")");
+		nextPage.attr("href","javascript:prodPaging("+nextPageNum+")");
 	}
 	$("#pageSpace").append(nextPage);
 	var stepNext = $("<a>");
 	stepNext.addClass("next");
 	stepNext.html("▶▶");
 	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:list("+nextStepPage+")");
+		stepNext.attr("href","javascript:prodPaging("+nextStepPage+")");
 	}
 	$("#pageSpace").append(stepNext);
 }
 function prodPaging(prodPageNum) {	
-	$(document).ready(function() {
+//	$(document).ready(function() {
 //		var ctx = $("#ctx").val();
-		var data = {"prodPageNum":prodPageNum, "prod_nm" : prod_nm, "code" : code};
+		var data = {"prodPageNum":prodPageNum};
 		var prod_nm = $("#sprod_nm").val();
 		var code = $("#scode").val();
 		var tbody = $('#prod_list');
@@ -267,7 +259,7 @@ function prodPaging(prodPageNum) {
 						+"<td>"+result.prodList[i].cd_nm+"</td>"
 						+"<td>"+result.prodList[i].prod_price+"</td>"
 						+"<td>"+result.prodList[i].cate+"</td>"
-						+"<td>"+result.prodList[i].fst_reg_id_nm+"</td>"
+						+"<td>"+result.prodList[i].fst_reg_id+"</td>"
 						+"<td>"+fst_reg_dt+"</td></tr>";
 						tbody.append(tbodyContent);
 					$('#prodListCheck').prop("checked",false);						
@@ -275,11 +267,11 @@ function prodPaging(prodPageNum) {
 				
 				prodMakeBlock();
 				
-				var pageContent = "";
+				//var pageContent = "";
 				// 페이징 다시그리기
+//				$("#pageSpace").children().remove();
 				$("#pageSpace").children().remove();
-				$("#pageSpace").children().remove();
-				var ccPageNum = result.ccPageNum;
+				var ccPageNum = result.prodPageNum;
 				var startPageNum = result.page.startPageNum;
 				var endPageNum = result.page.endPageNum;
 				var firstPageCount = result.page.firstPageCount;
@@ -293,7 +285,7 @@ function prodPaging(prodPageNum) {
 					alert("전송중 오류가 발생했습니다.");                                                                                                                                                                                                                                                                                                                                                                              
 				}
 		});
-	});
+//	});
 }
 function prodMakeBlock(){
 	var blank = $("#prod_list tr").length;

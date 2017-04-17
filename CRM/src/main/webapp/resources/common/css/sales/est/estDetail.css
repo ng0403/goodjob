@@ -3,6 +3,11 @@
 #estDetail input[type=text], textarea, #estDetail select{
 	background-color: #eaeaea;
 }
+
+div>.detail{
+	margin-top:10%;
+}
+
 .est_tab_bt{
   	 background-color:#eaeaea;
  	 color:#353535;

@@ -35,7 +35,7 @@
 		      	AND p.prod_nm like '%' || #{prod_nm} || '%'
 		      </if>
 		      
-		      <if test="code != null and code != '' ">
+		      <if test="code != null and code != '' and code != 'all'">
 		      	AND cd.code like #{code}
 		      </if>
 		      

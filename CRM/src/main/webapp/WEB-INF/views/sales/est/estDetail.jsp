@@ -138,27 +138,22 @@ $(function() {
 					</tr>
 				</tbody>
 			</table>
-			<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
-				<tr>
-					<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
-					<td style="width: 32%;">품목명</td>
-					<td style="width: 8%;">수량</td>
-					<td style="width: 27%;">판매가</td>
-					<td style="width: 15%;">할인</td>
-					<td style="width: 15%;">공급가</td>
-				</tr>
-				<tr id="totalprice">
-					<th></th>
-					<td>계:</td>
-					<td id="countSum">0</td>
-					<td id="salesPriceSum" >0</td>
-					<td id="discountSum">0</td>
-					<td id="supplyPriceSum">0</td>
-				</tr>
-			</table>
+			
 			<div id="estimatediv" style="margin-left: 22px;">
 			<input type="hidden" id="eduCode" value="${eduCode}">
 				<table id="estimatetable" class="tabtable" style="text-align: center;">
+<!-- 					<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" > -->
+					<thead id="estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;">
+						<tr>
+							<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+							<td style="width: 32%;">품목명</td>
+							<td style="width: 8%;">수량</td>
+							<td style="width: 27%;">판매가</td>
+							<td style="width: 15%;">할인</td>
+							<td style="width: 15%;">공급가</td>
+						</tr>
+					</thead>
+<!-- 			</table> -->
 					<tbody id="estimatetbody">
 						<c:choose>
 							<c:when test="${not empty prodList}">
@@ -193,6 +188,16 @@ $(function() {
 							</c:when>
 						</c:choose>
 					</tbody>
+					<tfoot>
+						<tr id="totalprice">
+						<th></th>
+						<td>계:</td>
+						<td id="countSum">0</td>
+						<td id="salesPriceSum" >0</td>
+						<td id="discountSum">0</td>
+						<td id="supplyPriceSum">0</td>
+					</tr>
+					</tfoot>
 				</table>
 			</div>
 			<div class="estimate_bt_position"> 

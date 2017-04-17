@@ -31,6 +31,8 @@ $("#naviprod").css("font-weight", "bold");
 		<input type="text" id="sprod_nm" class="sprod_nm">
 	    <label for="prod_div" class="prod_label_search">구분</label>
 		<select name="code" id="scode" class="code">
+			<option value="">======</option>
+			<option value="all">전체</option>
 			<c:forEach var="pscl" items="${prodServicecCodeList}">
 				<option value="${pscl.code}">${pscl.cd_nm}</option>
 			</c:forEach>
@@ -87,7 +89,7 @@ $("#naviprod").css("font-weight", "bold");
 	        		<a class="prev">◀◀</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:prodSearch(${page.prevStepPage})" class="prev">◀◀</a>
+	        		<a href="javascript:prodPaging(${page.prevStepPage})" class="prev">◀◀</a>
 	    		</c:when>
 			</c:choose>
 			<c:choose>
@@ -95,18 +97,18 @@ $("#naviprod").css("font-weight", "bold");
 	        		<a class="prev">◀</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:prodSearch(${page.prevPageNum})" class="prev">◀</a>
+	        		<a href="javascript:prodPaging(${page.prevPageNum})" class="prev">◀</a>
 	    		</c:when>
 			</c:choose>
 			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 				<c:choose>
 					<c:when test="${i eq ccPageNum }">
 						<b>
-							<a  href="javascript:prodSearch('${i}');" id="pNum" class="choice">${i}</a>
+							<a  href="javascript:prodPaging('${i}');" id="pNum" class="choice">${i}</a>
 						</b>
 					</c:when>
 					<c:otherwise>
-						<a  href="javascript:prodSearch('${i}');">${i}</a>
+						<a  href="javascript:prodPaging('${i}');">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -115,7 +117,7 @@ $("#naviprod").css("font-weight", "bold");
 	       			<a class="next">▶</a>
 	   		</c:when>
 				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:prodSearch(${page.nextPageNum})" class="next">▶</a>
+	       			<a href="javascript:prodPaging(${page.nextPageNum})" class="next">▶</a>
 	    		</c:when>
 			</c:choose>
 			<c:choose>
@@ -123,7 +125,7 @@ $("#naviprod").css("font-weight", "bold");
 	       			<a class="next">▶▶</a>
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:prodSearch(${page.nextStepPage})" class="next">▶▶</a>
+	       			<a href="javascript:prodPaging(${page.nextStepPage})" class="next">▶▶</a>
 	    		</c:when>
 			</c:choose>
 	

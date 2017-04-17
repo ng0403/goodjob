@@ -119,7 +119,6 @@
 								<textarea name="memo" class="memo" id="memo" readonly="readonly" style="overflow: auto; resize: none;">${detail.memo}</textarea>
 							</td>
 						</tr>
-												
 					</tbody>
 				</table>
 			</div>

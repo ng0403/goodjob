@@ -466,44 +466,47 @@
 	
 	<!-- 영업기회 리스트 조회 -->
 	<select id="opptList" parameterType="java.util.Map" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
-		SELECT D.*, RNUM
-		FROM
-		(
-      		SELECT 
-        		ROWNUM RNUM, 
-        		SO.SALES_OPPT_ID
-        		,SO.CUST_ID
-        		, C.CUST_NM
-        		,SO.SALES_OPPT_NM
-        		,(SELECT CD_NM 
-        		FROM CODE 
-        		WHERE CD_GRP_ID='OTL' 
-        			AND CODE = SO.SALES_LEV_CD) SALES_LEV_CD_NM
-        		,SO.SALES_LEV_CD
-        		,SO.SALES_OPPT_STAT_CD
-        		,SO.EXPT_SALES_AMT
-        		, TO_CHAR(SO.EXPT_FIN_D,'YYYY-MM-DD') EXPT_FIN_D
- 		 	    ,SO.PSBLTY_RATE
- 		 	    ,(SELECT CD_NM 
- 		 	    FROM CODE 
- 		 	    WHERE CD_GRP_ID='OSC' 
- 		 	    	AND CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD_NM
- 		 	    ,SO.MEMO
- 		 	    ,SO.FST_REG_ID
- 		 	    ,TO_CHAR(SO.FST_REG_DT ,'YYYY-MM-DD HH:MM') FST_REG_DT 
- 		 	    ,SO.FIN_MDFY_ID
- 		 	    ,SO.FIN_MDFY_DT
- 		 	    ,SO.ACT_YN
-			FROM 
-				SALES_OPPORTUNITY SO, CUSTOMER C, SALES_OPPORTUNITY_ESTIMATE OE
-			WHERE 
-				1=1 
-				AND SO.CUST_ID = C.CUST_ID
-				AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
-				AND SO.ACT_YN='Y'
-				AND OE.ESTIM_ID = #{estim_id}
-      		ORDER BY SO.SALES_OPPT_ID DESC
-		)D
+		SELECT 
+        	ROWNUM RNUM, 
+        	SO.SALES_OPPT_ID
+        	,SO.CUST_ID
+        	, C.CUST_NM
+        	,SO.SALES_OPPT_NM
+        	,(SELECT CD_NM 
+        	FROM CODE 
+        	WHERE CD_GRP_ID='OTL' 
+        	AND CODE = SO.SALES_LEV_CD) SALES_LEV_CD_NM
+        	,SO.SALES_LEV_CD
+        	,SO.SALES_OPPT_STAT_CD
+        	, TO_CHAR(SO.EXPT_FIN_D,'YYYY-MM-DD') EXPT_FIN_D
+ 		    ,SO.PSBLTY_RATE
+ 		    ,(SELECT CD_NM 
+ 		    FROM CODE 
+ 		    WHERE CD_GRP_ID='OSC' 
+ 		    	AND CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD_NM
+ 		    ,SO.MEMO
+ 		    ,SO.FST_REG_ID
+ 		    ,TO_CHAR(SO.FST_REG_DT ,'YYYY-MM-DD HH:MM') FST_REG_DT 
+ 		    ,SO.FIN_MDFY_ID
+ 		    ,SO.FIN_MDFY_DT
+ 		    ,SO.ACT_YN
+ 		    ,(SELECT EXPT_SALES_AMT  
+              FROM SALES_OPPT_STEP 
+              WHERE 1=1 
+                  AND ROWNUM = 1 
+                  AND FIN_MDFY_DT = ( SELECT MAX(FIN_MDFY_DT) 
+                               		FROM SALES_OPPT_STEP 
+                               		WHERE 1=1 AND SALES_OPPT_ID=SO.SALES_OPPT_ID))EXPT_SALES_AMT
+		FROM 
+			SALES_OPPORTUNITY SO, CUSTOMER C, SALES_OPPORTUNITY_ESTIMATE OE
+		WHERE 
+			1=1 
+			AND SO.CUST_ID = C.CUST_ID
+			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
+			AND SO.ACT_YN='Y'
+			AND OE.ESTIM_ID = #{estim_id}
+      	ORDER BY SO.SALES_OPPT_ID DESC
+		
 	</select>
 	
 	<!-- 영업기회 리스트 row 개수 가져오기 -->

@@ -379,7 +379,7 @@ public class ProdController {
 
 		mov.addObject("prodServicecCodeList",prodServicecCodeList);	 
 		//mov.addObject("menuList", menuList);
-		mov.addObject("prodPageNum", prodPageNum);
+		mov.addObject("ccPageNum", prodPageNum);
 		mov.addObject("page", page);
 		mov.addObject("prodList", prodList);
 		
