@@ -99,7 +99,8 @@ $(function() {
 							<td>
 								<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
 								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
-								<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/>
+								<input type="button" name="act_opp" value="영업기회" class="btn-success-tel" id="opptSelect"  >
+<!-- 								<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/> -->
 							</td>
 						</tr>
 						<tr>

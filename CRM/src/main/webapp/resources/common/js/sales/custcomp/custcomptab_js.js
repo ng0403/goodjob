@@ -94,9 +94,9 @@ $(document).ready(function() {
 	//견적 모두 선택
 	$("#ccEstListCheck").click(function(){
 		if($("#ccEstListCheck").prop("checked")){
-			$("input[id=chk_cont_id]").prop("checked", true);
+			$("input[id=chk_est_id]").prop("checked", true);
 		} else {
-			$("input[id=chk_cont_id]").prop("checked", false);
+			$("input[id=chk_cust_id]").prop("checked", false);
 		}
 	});
 	
@@ -158,7 +158,7 @@ function estimateAdd(ctx){
 			} else {
 				var list_sales_oppt_id = $('#salesId').val();
 				var list_cust_id = $('#nowCust_id').val();//list_sales_oppt_id;
-				alert(list_cust_id);
+				//alert(list_cust_id);
 				var list_cust_nm = $('#hcust_nm').val();
 				var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
 				var pageNum=$('#pageNum').val();
@@ -202,7 +202,7 @@ function estChkCancel() {
 		$("#ccEstListCheck").prop("checked", false);
 	});
 }
-198
+
 // 계약 전체 체크 해제
 function contChkCancel() {
 	$(document).ready(function() {

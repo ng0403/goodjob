@@ -3,8 +3,12 @@
  */
 $(document).ready(function() {
 	 var ctx = $("#ctx").val();
+	 
+	//견적 추가 시 영업기회 팝업 리스트 
 	$('#opptSelect').click(function(){
-		window.open(ctx+'/ccOpptPopList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//		window.open(ctx+'/ccOpptPopList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/custEstActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+
 	}); 
 	
 	// 상품추가 수량, 금액 실시간 변경
@@ -281,6 +285,7 @@ function custEstimAdd(ctx){
 	var prod_id = [];
 	var prod_nm = [];
 	var sales_oppt_id = $('#sales_oppt_id').val();
+	var sales_oppt_nm = $('#sales_oppt_nm').val();
 	var estim_qty = [];
 	var prod_price = $('#prod_price').text();
 	var sales_price = [];
@@ -294,6 +299,10 @@ function custEstimAdd(ctx){
 	var memo = $('#memo').val();
 	var discount_unit_cd = [];
 	var unit_check =0;
+	
+	alert("sales_oppt_id" + sales_oppt_id);
+	alert("sales_oppt_nm" + sales_oppt_nm);
+	
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
 		return false;
@@ -494,11 +503,18 @@ function removeChar(event){
 
 
 //영업기회 추가버튼 눌렀을 때.
-function addOppt(){
-	var list_estim_id = $('#estim_id').val();
-	var list_cust_id = $('#cust_id').val();
-	var list_cust_nm = $('#cust_nm').val();
-	window.open('/opptAddEstPopup?list_estim_id='+list_estim_id+
-			     '&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-}
+//function addOppt(){
+//	var list_estim_id = $('#estim_id').val();
+//	var list_cust_id = $('#cust_id').val();
+//	var list_cust_nm = $('#cust_nm').val();
+//	window.open('/opptAddEstPopup?list_estim_id='+list_estim_id+
+//			     '&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//}
+
+//영업기회 리스트 팝업
+//function actOpptListPopup(ctx){
+//	$('#opptSelect').click(function(){
+//		window.open(ctx+'/custEstActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//	});
+//}
 

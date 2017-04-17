@@ -39,7 +39,7 @@
 			    <if test="sch_corp_num != null and sch_corp_num !=''">
 			     	and c.corp_num like '%'||#{sch_corp_num}||'%'
 			    </if>
-	                order by c.cust_id desc
+	                order by c.cust_id asc
 <!-- 	                ) b -->
            		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
@@ -576,7 +576,7 @@
 		WHERE CT.CUST_ID= #{cust_id} 
 		AND E.ESTIM_LEV_CD = '0002'
 		AND SO.SALES_OPPT_STAT_CD = '0001'
- 	    AND SO.LEAD_ID=L.LEAD_ID 
+<!--  	    AND SO.LEAD_ID=L.LEAD_ID  -->
 		AND L.CUST_ID=CT.CUST_ID
 		AND SO.SALES_OPPT_ID = SOE.SALES_OPPT_ID(+)
 		AND SO.ACT_YN='Y'
@@ -618,7 +618,7 @@
 		where a.ESTIM_ID=b.ESTIM_ID
 			and b.SALES_OPPT_ID=c.SALES_OPPT_ID
 			and c.CUST_ID=d.CUST_ID
-			and a.ESTIM_ID=#{estimId}
+			and a.ESTIM_ID=#{estim_id}
 	</select>
 	
 	<select id="custEstimProdList" resultType="com.crm.cp.sales.est.vo.EstVO" parameterType="String">
@@ -634,7 +634,7 @@
 		from ESTIMATE_LIST a,
 			 PRODUCT b
 		where a.PROD_ID=b.PROD_ID
-			and a.estim_id=#{estimId}
+			and a.estim_id=#{estim_id}
 			and a.act_yn='Y'
 	</select>
 	

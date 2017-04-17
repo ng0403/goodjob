@@ -602,7 +602,7 @@ public class CustCompController {
 	@RequestMapping(value = "/custEstimDetail", method = RequestMethod.GET)
 	public ModelAndView custEstimDetail(HttpSession session,
 			String list_cust_id, String list_cust_nm,
-			String list_sales_oppt_nm, String list_sales_oppt_id, String estimId, String flag) {
+			String list_sales_oppt_nm, String list_sales_oppt_id, String estim_id, String flag) {
 		
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_est_pop");
 		
@@ -614,8 +614,11 @@ public class CustCompController {
 			eduCode.add(est.getCd_nm());
 		}
 
-		List<EstVO> prod = ccService.custEstimDetail(estimId);
+		System.out.println("controller : " + estim_id);
+		List<EstVO> prod = ccService.custEstimDetail(estim_id);
 		EstVO detail = prod.get(prod.size() - 1);
+		System.out.println("222222. controller  : " +detail);
+		System.out.println("1.++++++detail.getEstim_id(): " + detail.getEstim_id());
 		prod.remove(prod.size() - 1);
 		mov.addObject("elcList", elcList);
 		mov.addObject("estim_id", detail.getEstim_id());
@@ -706,6 +709,25 @@ public class CustCompController {
 		return result;
 	}
 	
+	//견적추가에서 영업기회 리스트
+	@RequestMapping(value="/custEstActOpptList" , method=RequestMethod.GET)
+	public ModelAndView custEstActOpptList(HttpSession session,
+			@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
+			@RequestParam(value="keyword", defaultValue="") String keyword,
+			String cust_id){
+		System.out.println("cust_id : "+cust_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("cust_id", cust_id);
+		map.put("keyword", keyword);
+		List<Object> estActOpptList = ccService.custEestActOpptList(map);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/act_oppt_list_pop");
+		
+		mov.addObject("actOpptList", estActOpptList);
+		
+		return mov;
+	}
+	
 	//견적 수정
 	@RequestMapping(value = "/custEstimUpdate", method = RequestMethod.GET)
 	@ResponseBody
@@ -735,7 +757,7 @@ public class CustCompController {
 		map.put("prodAddId", prodAddId);
 		map.put("prodDeleteProdId", prodDeleteProdId);
 		map.put("prodDeleteEstimId", prodDeleteEstimId);
-		int result = service.opptEstimUpdate(map);
+		int result = ccService.custEstimUpdate(map);
 		return result;
 
 	}

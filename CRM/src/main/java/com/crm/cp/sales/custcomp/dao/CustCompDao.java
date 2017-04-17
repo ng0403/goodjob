@@ -58,9 +58,11 @@ public interface CustCompDao {
 	List<EstVO> elcList();
 	List<EstVO> eduList();
 	//List<EstVO> getEstList(String cust_id); 		// 견적 리스트
-	List<EstVO> custEstimDetail(String estimId);	// 견적 상상세보기
-	List<ProdVO> prodList(Map<String, Object> map);	//상품 목록
-	int custEstimAdd(List<EstVO> estList);			//견적 추가
+	List<EstVO> custEstimDetail(String estim_id);	// 견적 상상세보기
+	List<ProdVO> prodList(Map<String, Object> map);	// 상품 목록
+	int custEstimAdd(List<EstVO> estList);			// 견적 추가
+	List<Object> custEstActOpptList(Map<String, Object> map); //견적추가에서 영업기회 팝업리스트
+	int custEstimUpdate(Map<String, Object> map);   // 견적 수정
 	int deleteEst(List<String> est_idList);	 		// 견적 삭제
 //	int custEstimDelete(String estim_id);
 	
@@ -71,6 +73,8 @@ public interface CustCompDao {
 	List<CustCompVO> getEmpList(Map<String, Object> iuserMap); 	// 직원검색 리스트
 	
 	List<EstVO> getEstimList(String cust_id);
+
+
 
 	
 	

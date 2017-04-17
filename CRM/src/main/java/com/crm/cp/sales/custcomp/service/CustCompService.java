@@ -58,9 +58,11 @@ public interface CustCompService {
 	List<EstVO> getEstimList(String cust_id);									// 견적 리스트
 	List<EstVO> elcList();														// 견적 단계 코드
 	List<EstVO> eduList();														//
-	List<EstVO> custEstimDetail(String estimId);								// 견적 상세정보
+	List<EstVO> custEstimDetail(String estim_id);								// 견적 상세정보
 	List<ProdVO> prodList(Map<String, Object> map);								// 상품 리스트
 	int custEstimAdd(List<EstVO> estList);										// 견적 추가
+	List<Object> custEestActOpptList(Map<String, Object> map);					// 견적에서 영업기회 팝업리스트
+	int custEstimUpdate(Map<String, Object> map);								// 견적 수정
 	String deleteEst(List<String> est_idList); 									// 견적 삭제
 //	int custEstimDelete(String estim_id);										//견적 삭제
 	
@@ -73,5 +75,7 @@ public interface CustCompService {
 	void custcompInsert(CustCompVO ccVO);
 	void custcompEdit(CustCompVO ccVO);
 	void custcompDelete(String cust_id);
+
+
 
 }

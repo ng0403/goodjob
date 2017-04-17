@@ -337,8 +337,11 @@ public class CustCompServiceImpl implements CustCompService {
 	
 	//견적 상세보기
 	@Override
-	public List<EstVO> custEstimDetail(String estimId) {
-		return ccDao.custEstimDetail(estimId);
+	public List<EstVO> custEstimDetail(String estim_id) {
+		System.out.println("service : " + estim_id);
+		List<EstVO> result = ccDao.custEstimDetail(estim_id); 
+		System.out.println("service result : "+ result);
+		return result;
 	}
 
 	//상품 목록 보기
@@ -352,8 +355,19 @@ public class CustCompServiceImpl implements CustCompService {
 	public int custEstimAdd(List<EstVO> estList) {
 		return ccDao.custEstimAdd(estList);
 	}
-
 	
+	//견적 추가에서 영업기회 팝업 리스트
+	@Override
+	public List<Object> custEestActOpptList(Map<String, Object> map) {
+		return ccDao.custEstActOpptList(map);
+	}
+
+	//견적 수정
+	@Override
+	public int custEstimUpdate(Map<String, Object> map) {
+		return ccDao.custEstimUpdate(map);
+	}
+
 	// 견적 삭제
 	@Override
 	public String deleteEst(List<String> est_idList) {
@@ -412,7 +426,5 @@ public class CustCompServiceImpl implements CustCompService {
 		contrVO contVO = ccDao.getContCust(cust_id);
 		return contVO;
 	}
-
-
 
 }

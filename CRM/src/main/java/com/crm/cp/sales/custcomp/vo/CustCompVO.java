@@ -38,9 +38,18 @@ public class CustCompVO {
 			, comp_ph2
 			, comp_ph3
 			, org_nm
+			, estim_id
 			
 			, biz_status
 			, main_prod;
+
+	public String getEstim_id() {
+		return estim_id;
+	}
+
+	public void setEstim_id(String estim_id) {
+		this.estim_id = estim_id;
+	}
 
 	public String getFin_mdfy_id() {
 		return fin_mdfy_id;

@@ -1,5 +1,6 @@
 package com.crm.cp.sales.custcomp.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -439,9 +440,10 @@ public class CustCompDaoImpl implements CustCompDao {
 	
 	// 견적 상세보기
 	@Override
-	public List<EstVO> custEstimDetail(String estimId) {
-		EstVO detail = sqlSession.selectOne("custcomp.custEstimDetail", estimId);
-		List<EstVO> prod = sqlSession.selectList("custcomp.custEstimProdList", estimId);
+	public List<EstVO> custEstimDetail(String estim_id) {
+		System.out.println("++++여기닷 " + estim_id);
+		EstVO detail = sqlSession.selectOne("custcomp.custEstimDetail", estim_id);
+		List<EstVO> prod = sqlSession.selectList("custcomp.custEstimProdList", estim_id);
 		prod.add(detail);
 
 		return prod;
@@ -481,6 +483,59 @@ public class CustCompDaoImpl implements CustCompDao {
 		System.out.println("result sum: " + result);
 		return result;
 	}
+
+	//견적 추가에서 영업기회 팝업 리스트
+	@Override
+	public List<Object> custEstActOpptList(Map<String, Object> map) {
+		return sqlSession.selectList("estimate.estActOpptList",map);
+	}
+	
+	// 견적 수정
+	@Override
+	public int custEstimUpdate(Map<String, Object> map) {
+		List<EstVO> estList = (List<EstVO>) map.get("estList");
+		List<String> prodAddId = (List<String>) map.get("prodAddId");
+		List<String> prodDeleteProdId = (List<String>) map	.get("prodDeleteProdId");
+		List<String> prodDeleteEstimId = (List<String>) map.get("prodDeleteEstimId");
+
+		int result = 0;
+		int insertResult = 0;
+		int updateResult = 0;
+		result += sqlSession.update("estimate.estimateUpdate", estList.get(0));
+		if (result == 1) {
+
+			for (int i = 1; i < estList.size(); i++) {
+				estList.get(i).setEstim_id(estList.get(0).getEstim_id());
+				int sw = 0;
+				if (prodAddId != null && !prodAddId.isEmpty()) {
+					for (int j = 0; j < prodAddId.size(); j++) {
+						String id = prodAddId.get(j);
+						if (estList.get(i).getProd_id().equals(id)) {
+							insertResult += sqlSession.insert(
+									"estimate.estimateListMdfyAdd",
+									estList.get(i));
+							sw = 1;
+						}
+					}
+				}
+				if (sw != 1) {
+					result += sqlSession.update("estimate.estimateListUpdate",	estList.get(i));
+				}
+			}
+
+			if (prodDeleteProdId != null && !prodDeleteProdId.isEmpty()) {
+				String estim_id = prodDeleteEstimId.get(0);
+				for (String prod_id : prodDeleteProdId) {
+					Map<String, Object> idMap = new HashMap<String, Object>(0);
+					idMap.put("prod_id", prod_id);
+					idMap.put("estim_id", estim_id);
+					updateResult += sqlSession.update("estimate.estimateListDelete", idMap);
+				}
+			}
+		}
+		return result;
+	}
+	
 
 	// 견적 삭제
 	@Override
@@ -557,7 +612,5 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return contrVO;
 	}
-
-
 
 }
