@@ -133,9 +133,10 @@ function opptMdfyBtn() {
 	$("#opptDetail #cust_nm,#opptDetail #expt_fin_d").attr("readonly",true);
 	$("#customer").attr("disabled",false);
 	$("#opptPrdtbody tr").each(function(){
-		$("#discount").attr("readonly",false);
+		alert("잘 돌고있네..");
+		$(".discount").attr("readonly",false);
+		$(".unit").attr("disabled",false);
 	});
-	$("#unit").attr("disabled",false);
 	$("#opptProdListBtn").attr("disabled",false);
 	$("#opptProdDelete").attr("disabled",false);
 	$("#memo").attr("style","resize: none; background-color:white;");
@@ -838,8 +839,8 @@ function viewSalesActive(opptId){
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 					'<td style="width: 27%;" name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" value=0 onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
-					 '<select id="unit" style="width: 25%;">'+
+					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" class="discount" name="discount" value=0 onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+					 '<select id="unit" class="unit" style="width: 25%;">'+
 					 unit+
 					 '</select>'+'</td>'+
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
@@ -866,8 +867,8 @@ function viewSalesActive(opptId){
 						'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 						'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 						'<td style="width: 27%;" name="prod_price" value="prod_price">'+prod_price+'</td>'+
-						'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
-						'<select id="unit" style="width: 25%;" >'+ unit+ '</select>'+'</td>'+'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+'</tr>'
+						'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+						'<select id="unit" class="unit" style="width: 25%;" >'+ unit+ '</select>'+'</td>'+'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+'</tr>'
 				);
 			}
 		}

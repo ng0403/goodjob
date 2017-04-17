@@ -751,6 +751,7 @@ public class OpptController {
 
 		List<EstVO> prod = service.opptEstimDetail(estimId);
 		EstVO detail = prod.get(prod.size() - 1);
+		System.out.println("controller detail : " + detail);
 		System.out.println("detail.getDiscount_unit_cd() : " + detail.getDiscount_unit_cd());
 		prod.remove(prod.size() - 1);
 		mov.addObject("elcList", elcList);
