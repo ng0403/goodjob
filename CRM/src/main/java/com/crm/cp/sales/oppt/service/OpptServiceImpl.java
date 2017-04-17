@@ -11,7 +11,6 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.dao.OpptDao;
 import com.crm.cp.sales.oppt.vo.OpptChartVO;
-import com.crm.cp.sales.oppt.vo.OpptPrdtVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.sales.oppt.vo.pipeLineVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -245,14 +244,14 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회상태 차트정보 Service :  " +result);
 		return result;
 	}
-	@Override
-	public List<OpptPrdtVO> opptprdtList(String sales_oppt_id) {
-		// TODO Auto-generated method stub
-		System.out.println("영업기회 상품 탭 Service sales_oppt_id : " + sales_oppt_id);
-		List<OpptPrdtVO> result =dao.opptprdtList(sales_oppt_id);
-		System.out.println("영업기회 상품 탭 Service result : " + result);
-		return result;
-	}
+//	@Override
+//	public List<OpptPrdtVO> opptprdtList(String sales_oppt_id) {
+//		// TODO Auto-generated method stub
+//		System.out.println("영업기회 상품 탭 Service sales_oppt_id : " + sales_oppt_id);
+//		List<OpptPrdtVO> result =dao.opptprdtList(sales_oppt_id);
+//		System.out.println("영업기회 상품 탭 Service result : " + result);
+//		return result;
+//	}
 	//영업기회별 상품 상세정보
 	@Override
 	public List<OpptVO> opptPrdtDetail(String opptId) {

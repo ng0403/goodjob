@@ -455,27 +455,6 @@
 	and aa.ACT_YN='Y'
 	</select>
 	
-<!-- 	영업기회별 상품 리스트 조회 -->
-	<select id="opptprdtList" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptPrdtVO">
-		select a.PROD_ID
-		      , b.PROD_NM
-		      , c.SALES_LEV_CD
-		      , a.SALES_OPPT_ID
-		      , a.PROD_QTY
-		      , a.PROD_PRICE
-		      , a.DISCOUNT
-		      , a.DISCOUNT_UNIT_CD
-		      , a.FIN_MDFY_DT
-		from PROD_OF_SALES_OPPT a
-		    , product b
-		    , sales_opportunity c
-		where 1=1
-		  and a.SALES_OPPT_ID(+)=c.SALES_OPPT_ID
-		  and a.PROD_ID=b.PROD_ID
-		  and a.SALES_OPPT_ID=#{sales_oppt_id}
-		    
-	</select>
-	
 <!-- 	상품 목록 조회 -->
 	<select id="prodList"  resultType="com.crm.cp.standard.prod.vo.ProdVO" >
 		select 

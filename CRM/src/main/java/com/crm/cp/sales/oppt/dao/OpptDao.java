@@ -6,7 +6,6 @@ import java.util.Map;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptChartVO;
-import com.crm.cp.sales.oppt.vo.OpptPrdtVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.sales.oppt.vo.pipeLineVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -107,7 +106,7 @@ public interface OpptDao {
 	List<OpptChartVO> C_oppt_status();
 	
 	//영업기회별 상품 리스트 출력
-	List<OpptPrdtVO> opptprdtList(String sales_oppt_id);
+//	List<OpptPrdtVO> opptprdtList(String sales_oppt_id);
 	//영업기회별 상품 상세정보 출력
 	List<OpptVO> opptPrdtDetail(String opptId);
 	//영업기회별 상품 추가
