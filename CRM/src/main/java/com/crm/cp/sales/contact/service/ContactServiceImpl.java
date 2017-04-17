@@ -11,6 +11,7 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.dao.ContactDao;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -27,7 +28,15 @@ public class ContactServiceImpl implements ContactService {
 		public List<ContactVO> contactAllList(Map<String,Object> contactMap) {
 			return contactDao.contactAllList(contactMap);
 		}
-	 
+		
+		public List<ContactVO> getList(Map<String,String> map) {
+			List<ContactVO> list = contactDao.getList(map);
+
+			return list;
+		} 
+		
+		
+		
 	//전체리스트 개수 
 		@Override
 		public PagerVO ContactListCount(Map<String, Object> contactMap) {
@@ -41,6 +50,20 @@ public class ContactServiceImpl implements ContactService {
 		
 			return page;
 		}
+		
+		// 페이지 정보 가져오기
+		@Override
+		public PagerVO ContactListCount1(Map<String, String> PageNum) {
+			// 현재 페이지 얻어오기
+	/*		PageUtil page = new PageUtil(ccPageNum, 0, 5, 5);
+	*/
+			int totalRowCount = contactDao.contactListCount1(PageNum);
+			System.out.println("service ccc " + PageNum);
+			PagerVO page = new PagerVO(Integer.parseInt(PageNum.get("pageNum").trim()), totalRowCount, 10, 10);
+			System.out.println("service page ?"  +page.toString());
+			return page;
+		}
+	 
 		
 		//상세정보
 		@Override

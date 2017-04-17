@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 
 @Repository
@@ -19,6 +20,20 @@ public class ContactDaoImpl implements ContactDao {
 	
 	public void setSqlSessionTemplate(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
+	}
+	
+	@Override
+	public int contactListCount1(Map<String, String> contactMap) {
+		int totalCount = 0;
+		System.out.println("ccccc dao " + contactMap.toString());
+		try {
+			totalCount = sqlSession.selectOne("contact.selectTotalCount1", contactMap);
+			System.out.println("total count? " + totalCount);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalCount;
 	}
 	
 	//전체리스트 개수
@@ -33,7 +48,20 @@ public class ContactDaoImpl implements ContactDao {
 			
 			return totalCount;
 		}
-	
+		
+		//기업의 전체 리스트가져오기
+		@Override
+		public List<ContactVO> getList(Map<String,String> map) {
+			List<ContactVO> list = null;
+			try {
+				list = sqlSession.selectList("contact.selectAll", map); //select id
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+		
+		 
 		//전체리스트 
 		@Override
 		public List<ContactVO> contactAllList(Map<String, Object> contactMap) {
@@ -268,6 +296,7 @@ public class ContactDaoImpl implements ContactDao {
 		//영업기회단계 추가
 		@Override
 		public int addOpptStepcontact(OpptVO add) {
+			System.out.println("enenene");
 			System.out.println("add123 : " + add.toString());
 			int seq = sqlSession.insert("contact.addOpptStepcontact", add);
 			System.out.println("seq : " + seq);
