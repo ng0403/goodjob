@@ -205,7 +205,7 @@ function makeBlock(){
 }
 //상품 전체 선택
 function prodallCheck(){
-	$("#allSelect").click( function(){
+	$("#prodallCheck").click( function(){
 		var chk = $(this).is(":checked");
 		if(chk){
 			$("#estimatetbody tr[class!=empty] input[type=checkbox]").prop("checked",true);			
@@ -216,7 +216,7 @@ function prodallCheck(){
 }
 //상품 전체 선택 박스 해제 함수
 function prodChkCancel(){
-	$("#allSelect").prop("checked",false);
+	$("#prodallCheck").prop("checked",false);
 }
 //상품 삭제
 function prodDelete(){
