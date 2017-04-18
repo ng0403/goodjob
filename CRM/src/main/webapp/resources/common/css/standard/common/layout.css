@@ -33,7 +33,7 @@ html,body{
 }
 
 .bodyFrame {
-	width:85%; 
+	width:100%; 
 	height:84%; 
 	overflow: hidden;  
 	margin: 0 auto;
