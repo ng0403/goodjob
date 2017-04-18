@@ -9,7 +9,7 @@ $(document).ready(function() {
 	
 	// 상품추가 수량, 금액 실시간 변경
 	$("#estimatetbody").bind('input', function(event) { 
-		
+		alert("값 실시간 변경");
 		var size = event.target.value;
 	    var target = $(event.target);
 	    var id = target.attr("id");
