@@ -7,7 +7,7 @@ function LoginValidate(ctx){
 	$('#loginBtn').click(function(){
 		var id = $.trim($('#user').val());
 		var pass = $.trim($('#pass').val());
-		alert("input data : " + id, pass);
+//		alert("input data : " + id, pass);
 		if(id == ''){
 			alert('아이디를 입력해 주세요.');
 		}else if(pass == ''){
@@ -46,7 +46,7 @@ function LoginValidate(ctx){
 		if(event.keyCode==13){
 			var id = $.trim($('#user').val());
 			var pass = $.trim($('#pass').val());
-			alert("input data : " + id, pass);
+//			alert("input data : " + id, pass);
 			if(id == ''){
 				alert('아이디를 입력해 주세요.');
 				$('#USER_ID').focus();
