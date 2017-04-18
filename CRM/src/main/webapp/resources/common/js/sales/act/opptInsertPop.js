@@ -47,6 +47,12 @@ function delete_comma(str) {
 	return str.replace(/[^\d]+/g, '');
 }
 
+//컴마 해제 함수
+function uncomma(str) {
+  str = String(str);
+  return str.replace(/[^\d]+/g, '');
+}
+
 function opptSave()
 {
 	var ctx = $("#ctx").val();
@@ -68,6 +74,7 @@ function opptSave()
 	var sales_price = [];
 	var discount  = [];
 	var sup_price = [];
+	var estim_qty = [];
 	var est_list  = [];
 	var discount_unit_cd = [];
 	var unit_check = 0;
@@ -112,18 +119,19 @@ function opptSave()
 		
 		prod_id.push($(this).children().children().val());
 		prod_nm.push($(this).children().eq(1).text());
-		sales_price.push($(this).children().eq(3).text());
-		discount.push($(this).children().eq(4).children().val());
-		sup_price.push($(this).children().eq(5).text());
+		sales_price.push(uncomma($(this).children().eq(3).text()));
+		discount.push(uncomma($(this).children().eq(4).children().val()));
+		sup_price.push(uncomma($(this).children().eq(5).text()));
+		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
 		
 		est_list.push(prod_id.pop());
 		est_list.push(prod_nm.pop());
+		est_list.push(estim_qty.pop());
 		est_list.push(sales_price.pop());
-		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
+		est_list.push(discount.pop());
 		est_list.push(discount_unit_cd.pop());
 		
-		alert("est_list : " + est_list);
 		
 	});
 	

@@ -403,24 +403,30 @@ public class ActController {
 		
 		add.setTotal_sup_price(total_sup_price);
 			
-		int result = opptService.opptAdd(add);
-		int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
+		int result = opptService.opptAdd(add);	// 기회 insert
+		System.out.println("기회 insert 완료 : " + add);
+		System.out.println("add.getSales_oppt_id() : " + add.getSales_oppt_id());
+		//int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
 		
 		for(int i=0 ; i< est_list.size(); i++)
 		{
+			System.out.println("for문 처음");
 			OpptVO vo = new OpptVO();
 			
 			vo.setSales_oppt_id("");
 			vo.setProd_id(est_list.get(i));
 			vo.setProd_nm(est_list.get(++i));
-			vo.setEstim_qty(est_list.get(++i));
-			vo.setSales_price(est_list.get(++i));
-			vo.setDiscount(est_list.get(++i));
+			//vo.setProd_price(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));	// 수량 개수
+			vo.setSales_price(est_list.get(++i));			
 			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
 			vo.setDiscount_unit_cd(est_list.get(++i));
 			vo.setOppt_seq(add.getOppt_seq());
 			
 			estList.add(vo);
+			
+			System.out.println("for문 estList : " + estList);
 		}
 		
 		int result1 = opptService.opptPrdtAdd(estList);
@@ -428,7 +434,7 @@ public class ActController {
 		System.out.println("영업기회 상품 추가 result : " + result1);
 		
 		System.out.println("영업기회 추가 result : " + result);
-		System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		//System.out.println("영업기회 단계 이력 추가 result : " + result2);
 		
 		return result;
 	}	
