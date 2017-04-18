@@ -50,10 +50,10 @@ $(document).ready(function(){
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${addFlag == 0 }">
-			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px;">영업기회</a> > 영업기회 추가</div>
+			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</div>
 		</c:if>
 		<c:if test="${addFlag == 1 }">
-			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px;">영업기회</a> > 상세정보</div>
+			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 상세정보</div>
 		</c:if>
 	</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
