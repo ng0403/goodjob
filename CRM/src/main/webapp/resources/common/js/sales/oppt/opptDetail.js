@@ -597,7 +597,6 @@ function estimateAdd(ctx){
 		}else{
 		var list_sales_oppt_id = $('#salesId').val();
 		var list_cust_id = $('#hcust_id').val();//list_sales_oppt_id;
-		alert(list_cust_id);
 		var list_cust_nm = $('#hcust_nm').val();
 		var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
 		var pageNum=$('#pageNum').val();

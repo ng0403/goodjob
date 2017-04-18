@@ -28,10 +28,8 @@ function actButton(ctx){
 	$('#activeButton').click(function(){
 		var flg = $('#flg').val();
 		if(flg=='add'){
-			alert("flag : " + flg);
 			activeAdd(ctx);
 		}else if(flg=='detail'){
-			alert("flag : " + flg);
 			activeUpdate(ctx);
 		}
 	});
@@ -39,7 +37,6 @@ function actButton(ctx){
 
 //영업활동 편집
 function activeUpdate(ctx){
-	alert("hihihi");
 	var sales_actvy_id = $('#sales_actvy_id').val();
 	var sales_actvy_nm = $('#sales_actvy_nm').val();
 	var sales_actvy_div_cd = $('input[name=sales_actvy_div_cd]:checked').val();

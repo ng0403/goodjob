@@ -9,7 +9,6 @@ $(document).ready(function() {
 	
 	// 상품추가 수량, 금액 실시간 변경
 	$("#estimatetbody").bind('input', function(event) { 
-		alert("값 실시간 변경");
 		var size = event.target.value;
 	    var target = $(event.target);
 	    var id = target.attr("id");
@@ -349,7 +348,6 @@ function opptEstimAdd(ctx){
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
 			window.opener.estimList(sales_oppt_id);
-			alert(pageNum);
 			window.opener.opportunityList(pageNum);
 			self.close();
 		},

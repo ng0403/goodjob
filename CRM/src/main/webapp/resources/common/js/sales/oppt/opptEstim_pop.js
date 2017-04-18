@@ -40,14 +40,12 @@ function opptEstimAdd(ctx){
 	var sales_oppt_id = $('#sales_oppt_id').val();
 	var estim_qty = [];
 	var prod_price = $('#prod_price').text();
-	alert("판매가 : " + prod_price);
 	var sales_price = [];
 	var discount= [];
 	var sup_price = [];
 	var estim_valid_d = $('#estim_valid_d').val();
 	var estim_lev_cd = $('#estim_lev_cd').val();
 	var cust_id = $('#cust_id').val();
-	alert("고객아이디 확인 : " + cust_id);
 	var estim_nm = $('#estim_nm').val();
 	var est_list = [];
 	var memo = $('#memo').val();
@@ -82,11 +80,11 @@ function opptEstimAdd(ctx){
 		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop()); 
-		alert("판매가 : " + prod_price);
-		alert("sales_price : " + sales_price);
-		alert("discount : " + discount);
-		alert("sup_price" + sup_price);
-		alert("est_list : " + est_list);
+//		alert("판매가 : " + prod_price);
+//		alert("sales_price : " + sales_price);
+//		alert("discount : " + discount);
+//		alert("sup_price" + sup_price);
+//		alert("est_list : " + est_list);
 	});
 	if(unit_check > 0 ){
 		alert("할인 단위를 선택해 주세요.");
@@ -111,7 +109,6 @@ function opptEstimAdd(ctx){
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
 			window.opener.estimList(sales_oppt_id);
-			alert(pageNum);
 			window.opener.opportunityList(pageNum);
 			self.close();
 		},
@@ -225,11 +222,9 @@ function InputProd(prod_id,prod_nm,prod_price){
 		}
 	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
-	alert(flg);
 	var like = 0;
 	if($("#estimatetbody tr").length == 0){
 			if($('#flg').val()=='detail'){
-				alert("prod_id : " + prod_id);
 				prodAddId.push(prod_id);
 			}
 		$('#estimatetbody').append(
@@ -413,7 +408,6 @@ function opptEstimButton(ctx){
 //취소 버튼 클릭
 function estimCancel(){
 	$("#estimate_cancel").click( function(){
-		alert("x");
 		self.close();
 	});
 }
