@@ -117,18 +117,6 @@ $(function() {
 		</c:if>
 	</div>	
 			<div class="estProDiv">
-			<!-- <div>
-			<table id="estimatehead" class="estimatehead" style="border-collapse: collapse;">
-				<tr style="background-color: #eaeaea">
-					<th style="width: 3%;"><input type="checkbox" id="prodallCheck"></th>
-					<td style="width: 32%;">품목명</td>
-					<td style="width: 8%;">수량</td>
-					<td style="width: 18%;">판매가</td>
-					<td style="width: 24%;">할인</td>
-					<td style="width: 15%;">공급가</td>
-				</tr>
-			</table>
-			</div>  -->
 			
 			<div id="estimatediv">
 					<table id="estimatetable" class="estimatetable" style="border-collapse: collapse;">
@@ -181,15 +169,6 @@ $(function() {
 							</tr>
 						</tfoot>
 					</table>
-					<!-- <table id="estimatehead" class="estimatefoot"  style="border-collapse: collapse;">
-						<tr id="totalprice">
-							<td style="width: 220px;" colspan="2">계:</td>
-							<td style="width: 40px;" id="countSum">0</td>
-							<td style="width: 94px;" id="salesPriceSum" >0</td>
-							<td style="width: 126.9px;" id="discountSum">0</td>
-							<td style="width: 78px;" id="supplyPriceSum">0</td>
-						</tr>
-					</table> -->
 				</div>
 				
 		

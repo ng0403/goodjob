@@ -217,6 +217,7 @@ function prodChange(){
 		$(this).children().eq(5).text(comma(disamt));
 		 var realamt = $(this).children().eq(5).text();
 		 supplyPriceSum = parseInt(disamt) + parseInt(supplyPriceSum);
+		 alert(supplyPriceSum);
 	});
 	$("#countSum").text(comma(countSum));
 	$("#salesPriceSum").text(comma(salesPriceSum));

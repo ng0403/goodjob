@@ -23,7 +23,7 @@
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="flg" value="${flg}">
 	<div id="title">
-		<div class="caption">■ 영업기회</div></div>
+		<div class="caption">■ 영업 > 영업기회</div></div>
 		   <div class="search_div" >
 			    <label for="scompNam" class="tel_label_list">영업기회명</label>
 			      <input type="text" onkeypress="opptSearchInput(event);" class="tel_search" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
