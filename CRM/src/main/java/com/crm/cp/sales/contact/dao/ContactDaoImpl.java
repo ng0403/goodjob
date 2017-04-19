@@ -361,5 +361,24 @@ public class ContactDaoImpl implements ContactDao {
 					}
 					return deleteResult;
 				}
+				
+				//영업기회 추가
+				@Override
+				public int opptAdd(OpptVO add) {
+					// TODO Auto-generated method stub
+					System.out.println("addd ? "  + add.toString());
+					int seq = sqlSession.insert("contact.opptadd", add);
+					return seq;
+				}
+				
+				
+				//영업기회별 상품 상세정보 출력
+				@Override
+				public List<OpptVO> opptPrdtDetail(String sales_oppt_id) {
+ 					System.out.println("sales_oppt_id :" + sales_oppt_id);
+					List<OpptVO> result = sqlSession.selectList("contact.opptPrdtDetail", sales_oppt_id);
+					System.out.println("영업기회별 상품 상세정보 DAOImpl : " + result);
+					return result;
+				}
 
 }

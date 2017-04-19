@@ -18,8 +18,7 @@
 </style>
 <script type="text/javascript">
 function ccActDetailSelect() {
- 
- 	$("#strt_t_h > option[value='${strt_t_h}']").attr("selected", "selected");
+  	$("#strt_t_h > option[value='${strt_t_h}']").attr("selected", "selected");
 	$("#strt_t_m > option[value='${strt_t_m}']").attr("selected", "selected");
 	$("#end_t_h > option[value='${end_t_h}']").attr("selected", "selected");
 	$("#end_t_m > option[value='${end_t_m}']").attr("selected", "selected");

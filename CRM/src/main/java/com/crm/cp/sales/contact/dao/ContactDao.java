@@ -43,6 +43,8 @@ public interface ContactDao {
 	List<ActVO> actListcontact(String cont_id); //영업활동 리스트 
 	int actEditcontact(ActVO actvo);// 영업활동 수정
  	int deleteopptActivecontact(List<String> keyman_idList); // 키맨 삭제
+	int opptAdd(OpptVO add);	//영업기회 추가
+	 List<OpptVO> opptPrdtDetail(String sales_oppt_id);	//영업기회별 상품 상세정보 출력
 
 
 

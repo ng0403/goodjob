@@ -8,6 +8,8 @@
 $(function(){
 	custNmSelect(ctx);
 	custSearch(ctx,custType);
+ 	var ctx = $("#ctx").val();
+
 });
 
 //고객사리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업
@@ -65,8 +67,4 @@ function custSearch(ctx,custType){
 		}
 	});
 }
-
-
-
-
 

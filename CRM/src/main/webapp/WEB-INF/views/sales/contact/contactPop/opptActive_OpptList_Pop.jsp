@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/call_pop.js"></script>--%>
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_js.js"></script>
+ 
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>  
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomptab_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>

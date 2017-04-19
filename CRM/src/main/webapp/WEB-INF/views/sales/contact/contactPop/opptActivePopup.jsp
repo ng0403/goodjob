@@ -132,7 +132,7 @@
 					<tr>
 						<th>종료일자</th>
 						<td>
-							<input type="text" id="end_d" name="dend_d" class="int_act"  value="${detail.end_d }" readonly="readonly">
+							<input type="text" id="end_d" name="dend_d" class="int_act"  value="${detail.end_d}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
@@ -144,10 +144,10 @@
 								<c:forEach var="i" begin="1" end="24" step="1">
 									<c:choose>
 										<c:when test="${i < 10 }">
-											<option value="0${i }">${i }</option>
+											<option value="${i}"selected="selected" >${i }</option>
 										</c:when>
 										<c:otherwise>
-											<option value="${i }">${i }</option>
+											<option value="${i }" selected="selected" >${i }</option>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>									
@@ -159,7 +159,7 @@
 								<c:forEach var="i" begin="0" end="50" step="10">
 									<c:choose>
 										<c:when test="${i < 10 }">
-											<option value="0${i }">${i }</option>
+											<option value="0${i }" selected="selected"	>${i }</option>
 										</c:when>
 										<c:otherwise>
 											<option value="${i }">${i }</option>

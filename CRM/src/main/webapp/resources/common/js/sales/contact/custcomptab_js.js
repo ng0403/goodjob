@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-	var ctx = $("#ctx").val();
+ 	var ctx = $("#ctx").val(); 
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
@@ -25,15 +25,21 @@ $(document).ready(function() {
 	
 	// 영업기회 추가 팝업
 	$('#oppt_pop_btn').click(function(){
-		var cust_id = $("#nowCust_id").val();
+ 		var cust_id = $("#nowCust_id").val();
 		var cont_id = $("#cont_id").val();
 		if(cust_id == ''){
 			alert('고객을 선택해주세요.');
 			return;
 		}else {
-			window.open(ctx+'/contactopptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			/*window.open(ctx+'/contactopptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');*/
+			window.open('/contactopptInsertPopup?cust_id='+cust_id+'&flag=0','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+
 		}
-	});
+	}); 
+		 
+ 
+	
+	
 	
 	// 영업활동 추가 팝업
 	$('#act_pop_btn').click(function(){
@@ -137,6 +143,28 @@ function keymanDeatil(cust_id) {
 function ccOpptDetailcontact(sales_oppt_id){
 	var ctx = $("#ctx").val();
 	window.open(ctx+'/opptDetailPopupcontact?sales_oppt_id='+sales_oppt_id+'&flag=1','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+
+//영업기회 디테일
+function contactopptTabDetail(sales_oppt_id, ctx)
+{ 
+	var ctx = $("#ctx").val();
+ 	window.open('/contactopptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+//영업활동명을 클릭했을 때 상세정보
+function contactactDetail(sales_actvy_id) {		
+	var ctx = $("#ctx").val();
+	var at_select = $("#sales_actvy_type_nm");
+	var at_select_option = "";
+	var adiv_select = $("#sales_actvy_div_nm");
+	var adiv_select_option = "";
+	var astat_select = $("#sales_actvy_stat_nm");
+	var astat_select_option = "";
+	
+	location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id;
+	
 }
 
 // 영업활동 상세정보 팝업
@@ -640,7 +668,7 @@ function contactopptModify(){
 			readDetail();
 		},
 		error:function(request){
-			alert("안됐어");
+			
 			alert("error : " + request.status);
 		}
 	});
@@ -657,7 +685,7 @@ function keymanDelete() {
 	if(delChk){
 		var ctx = $("#ctx").val();
 		var cust_id = $("#cust_id").val();
-		alert(cust_id);
+		
 		$.ajax({
 			url : ctx+'/delKeyman',
 			type : 'POST',
@@ -780,7 +808,7 @@ function ccEstDel(ctx){
 			chked_val[index] = item.value;
 		});
 		if(chked_val.length == 0){
-			alert("삭제할 항목을 선택해 주세요");
+			alert("삭제할 항목을 선택해 주세요");	
 		}else{
 			var delChk = confirm("정말 삭제 하시겠습니까?");
 			if(delChk){
@@ -845,4 +873,7 @@ function ccContDel(ctx){
 			}
 		}
 	});
+	 
+	
+	
 }

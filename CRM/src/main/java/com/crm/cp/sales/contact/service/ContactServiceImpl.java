@@ -299,5 +299,20 @@ public class ContactServiceImpl implements ContactService {
 			}
 			return resultStr;
 		}
+		
+		//영업기회 추가
+		@Override
+		public int opptAdd(OpptVO add) {
+			System.out.println("addd service " + add.toString() );
+			// TODO Auto-generated method stub
+			return contactDao.opptAdd(add);
+		}
 
+		
+		//영업기회별 상품 상세정보
+		@Override
+		public List<OpptVO> opptPrdtDetail(String sales_oppt_id) {
+			System.out.println("영업기회별 상품 상세정보 opptId : " + sales_oppt_id);
+			return contactDao.opptPrdtDetail(sales_oppt_id);
+		}
 }

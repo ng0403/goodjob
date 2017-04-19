@@ -8,9 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>  
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomptab_js.js"></script>
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_pop_js.js"></script>
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>  
+ 
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
  
  <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>

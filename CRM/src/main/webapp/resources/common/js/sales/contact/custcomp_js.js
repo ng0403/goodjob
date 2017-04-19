@@ -10,6 +10,89 @@ $(document).ready(function() {
 	keymanList();
 	opptList();
 	actListcontact();
+	
+	//달력띄우기
+	$("#expt_fin_d").datepicker({
+	    changeMonth: true, //콤보 박스에 월 보이기
+	    changeYear: true, // 콤보 박스에 년도 보이기
+	    showOn: 'button', // 우측에 달력 icon 을 보인다.
+	    buttonImage: '/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	    buttonImageOnly: true //달력에 icon 사용하기
+	}); 
+	 //마우스를 손가락 손가락 모양으로 하고 여백주기
+	$('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	//날짜 형식을 0000-00-00으로 지정하기
+	$.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	
+	
+	
+	// 상품추가 수량, 금액 변경
+	function prodChange(){
+ 		var countSum = 0;
+		var salesPriceSum = 0;
+		var discountSum = 0;
+		var supplyPriceSum = 0;
+		$("#opptProdtbody tr[class!=empty]").each(function(){
+			var countObj=$(this).children().eq(2).children();
+			var salesamtObj=$(this).children().eq(0).children().eq(1);
+			var count = countObj.val();
+ 			if(count==""){
+				count="0";
+			}
+			var sellamt =  $(this).children().eq(3).text();
+			var disvalObj = $(this).children().eq(4).children().eq(0);
+			var amt = $(this).children().eq(3).text();
+			var salesamt = $(this).children().eq(0).children().eq(1).val();
+			var sellamt =  parseInt(salesamt) * parseInt(count);			
+			if(sellamt==""){
+				sellamt="0";
+			}
+			amt = sellamt;
+			$(this).children().eq(3).text(comma(amt));
+			salesPriceSum = parseInt(sellamt) + parseInt(salesPriceSum);
+			countSum = parseInt(count) + parseInt(countSum);
+			var disval =  disvalObj.val();
+			if(disval==""){
+				disval="0";
+			}
+			var unit = $(this).children().eq(4).children().eq(1).val();
+  			var disamt = 0;
+			if(unit == "0001"){
+ 				 disamt = parseInt(amt) - parseInt(disval);
+				 discountSum = parseInt(disval) + parseInt(discountSum);
+			}else if(unit == "0002"){
+ 				var dis = parseInt(amt) * (parseInt(disval)/100);
+				disamt = parseInt(amt) - parseInt(dis);
+				 discountSum = parseInt(dis) + parseInt(discountSum);
+			}else if(unit =="0"){
+				disamt = parseInt(amt);
+				$(this).children().eq(4).children().eq(0).val("0");
+			}
+			if(isNaN(disamt) || parseInt(disamt)<0){
+				disamt="0";
+			}
+			$(this).children().eq(5).text(comma(disamt));
+			 var realamt = $(this).children().eq(5).text();
+			 supplyPriceSum = parseInt(disamt) + parseInt(supplyPriceSum);
+ 
+		});
+		$("#countSum").text(comma(countSum));
+		$("#salesPriceSum").text(comma(salesPriceSum));
+		$("#discountSum").text(comma(discountSum));
+		$("#supplyPriceSum").text(comma(supplyPriceSum));	
+	}
+	
+	//input값 bind시 상품 금액 변경 함수 호출
+	function prodChacgeRealTime(){
+		$("#opptProdtbody").bind('input', function() { 
+			prodChange();
+		});
+	}
+	
+	prodChange();
+	prodChacgeRealTime();
+	
+	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
 		// 만약 전체 선택 체크박스가 체크된 상태일 경우
@@ -484,7 +567,7 @@ function keymanList() {
 		var tbody = $('#keymanTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/keymanList',
+			url : '/keymanList',
 			type : 'POST',
 			data : "cont_id="+cont_id,
 			dataType : "json",
@@ -531,7 +614,7 @@ function opptList() {
 		var tbody = $('#opptTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccOpptListcontact',
+			url : '/ccOpptListcontact',
 			type : 'POST',
 			data : "cont_id="+cont_id,	
 			dataType : "json",
@@ -547,7 +630,7 @@ function opptList() {
 						
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
-						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccOpptDetailcontact('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
+						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"contactopptTabDetail('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
 						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
 						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
 						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
@@ -615,7 +698,7 @@ function actListcontact() {
 		var tbody = $('#actTableTbody');
 		var tbodyContent = "";
 		$.ajax({
-			url : ctx+'/ccActListcontact',
+			url : '/ccActListcontact',
 			type : 'POST',
 			data : "cont_id="+cont_id,
 			dataType : "json",
@@ -841,3 +924,238 @@ function custcompDelete()
 	}	
 }
 
+
+//영업 기회 insert 이게 진짜.
+function contactopptSave()
+{
+ 	var ctx = $("#ctx").val();
+	var sales_oppt_id = $("#hsales_oppt_id").val();
+ 	var sales_oppt_nm = $("#sales_oppt_nm").val();
+	var sales_lev_cd = $("#sales_lev_cd").val();
+	var expt_fin_d = $("#expt_fin_d").val();
+	var psblty_rate = $("#psblty_rate").val();
+	var sales_oppt_stat_cd = $("#sales_oppt_stat_cd").val();
+/*	var cust_id = $('#cust_id', opener.document).val();*/
+	var cust_id = $("#cust_id").val();
+ 	var cust_nm = $("#cust_nm").val();
+	var memo = $("#memo").val();
+	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
+	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
+	var total_sup_price = delete_comma($("#supplyPriceSum").text());
+	
+	var prod_id = [];
+	var prod_nm = [];
+	var sales_price = [];
+	var discount  = [];
+	var sup_price = [];
+	var estim_qty = [];
+	var est_list  = [];
+	var discount_unit_cd = [];
+	var unit_check = 0;
+
+//	if(sales_oppt_nm == "" || sales_oppt_nm == null)
+//	{
+//		alert("영업기회명을 입력해 주세요.");
+//		return false;
+//	}
+//	else if(cust_id == "" || cust_id == null)
+//	{
+//		alert("고객을 선택해 주세요.");
+//		return false;
+//	}
+//	else if(sales_oppt_stat_cd == "0" || sales_oppt_stat_cd == null)
+//	{
+//		alert("영업기회 상태를 선택해 주세요.");
+//		return false;
+//	}
+//	else if(sales_lev_cd == "0" || sales_lev_cd == null)
+//	{
+//		alert("영업단계를 선택해 주세요.");
+//		return false;
+//	}
+//	else if(sales_lev_cd == "" || sales_lev_cd == null)
+//	{
+//		alert("예상마감일자를 선택해 주세요.");
+//		return false;
+//	} 
+//	else if(psblty_rate == "0" || psblty_rate == null)
+//	{
+//		alert("가능성을 선택해 주세요.");
+//		return false;
+//	}	
+	
+	$("#opptProdtbody tr").each(function(){
+		cd  = $(this).children().eq(4).children().eq(1).val();
+		if(cd =='0'){
+			unit_check++;
+		}
+		discount_unit_cd.push(cd);
+		
+		prod_id.push($(this).children().children().val());
+		prod_nm.push($(this).children().eq(1).text());
+		sales_price.push(uncomma($(this).children().eq(3).text()));
+		discount.push(uncomma($(this).children().eq(4).children().val()));
+		sup_price.push(uncomma($(this).children().eq(5).text()));
+		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
+		
+		est_list.push(prod_id.pop());
+		est_list.push(prod_nm.pop());
+		est_list.push(estim_qty.pop());
+		est_list.push(sales_price.pop());
+		est_list.push(sup_price.pop());
+		est_list.push(discount.pop());
+		est_list.push(discount_unit_cd.pop());
+		
+		
+	});
+	
+	$.ajax({
+		type : 'post',
+		url : '/contactopptInsert',
+		data : {
+			sales_oppt_id : sales_oppt_id,
+			sales_oppt_nm : sales_oppt_nm,
+			total_sup_price : total_sup_price,
+			sales_lev_cd : sales_lev_cd,
+			expt_fin_d : expt_fin_d,
+			psblty_rate : psblty_rate,
+			sales_oppt_stat_cd : sales_oppt_stat_cd,
+			cust_id : cust_id,
+			memo : memo,
+			est_list : est_list
+		},
+		datatype : 'json',
+		success:function(result){
+			alert("정상적으로 등록되었습니다.");
+			opptListRefresh(cust_id); 
+
+			var cust_id = $('#cust_id', opener.document).val();	// 부모창에서 cust_id 받아오는 부분.
+			/*window.opener.opptTabList(cust_id);
+			self.close();*/
+		},
+		error:function(request){
+			alert("error : " + request.status);
+		}
+	});
+}
+
+//영업기회 수정 이게 진짜.
+function contactopptMdfySave()
+{
+ 	var ctx = $("#ctx").val();
+	var sales_oppt_id = $("#hsales_oppt_id").val();
+	var sales_oppt_nm = $("#sales_oppt_nm").val();
+	var sales_lev_cd = $("#sales_lev_cd").val();
+	var expt_sales_amt = $("#expt_sales_amt").val();
+	var expt_fin_d = $("#expt_fin_d").val();
+	var psblty_rate = $("#psblty_rate").val();
+	var sales_oppt_stat_cd = $("#sales_oppt_stat_cd").val();
+/*	var cust_id = $('#cust_id', opener.document).val();*/
+	var cust_id = $("#cust_id").val();
+ 	var cust_nm = $("#cust_nm").val();
+	var memo = $("#memo").val();
+	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
+	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
+	
+	var prod_id = [];
+	var prod_nm = [];
+	var sales_price = [];
+	var discount  = [];
+	var sup_price = [];
+	var estim_qty = [];
+	var est_list  = [];
+	var discount_unit_cd = [];
+	var unit_check = 0;
+	
+	
+	$("#opptProdtbody tr").each(function(){
+		cd  = $(this).children().eq(4).children().eq(1).val();
+		if(cd =='0'){
+			unit_check++;
+		}
+		discount_unit_cd.push(cd);
+		
+		prod_id.push($(this).children().children().val());
+		prod_nm.push($(this).children().eq(1).text());
+		sales_price.push(uncomma($(this).children().eq(3).text()));
+		discount.push(uncomma($(this).children().eq(4).children().val()));
+		sup_price.push(uncomma($(this).children().eq(5).text()));
+		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
+		
+		est_list.push(prod_id.pop());
+		est_list.push(prod_nm.pop());
+		est_list.push(estim_qty.pop());
+		est_list.push(sales_price.pop());
+		est_list.push(sup_price.pop());
+		est_list.push(discount.pop());
+		est_list.push(discount_unit_cd.pop());
+		
+		
+	});
+	
+/*
+	if(sales_oppt_nm=="" || sales_oppt_nm==null){
+		alert("영업기회명을 입력해 주세요.");
+		return false;
+	}else if(cust_id=="" || cust_id==null){
+		alert("고객을 선택해 주세요.");
+		return false;
+	}else if(sales_oppt_stat_cd=="0" || sales_oppt_stat_cd==null){
+		alert("영업기회 상태를 선택해 주세요.");
+		return false;
+	}else if(sales_lev_cd=="0" || sales_lev_cd==null){
+		alert("영업단계를 선택해 주세요.");
+		return false;
+	}else if(expt_sales_amt=="" || expt_sales_amt==null){
+		alert("예상 매출액을 입력해 주세요");
+		return false;
+	}else if(sales_lev_cd=="" || sales_lev_cd==null){
+		alert("예상마감일자를 선택해 주세요.");
+		return false;
+	}else if(psblty_rate=="0" || psblty_rate==null){
+		alert("가능성을 선택해 주세요.");
+		return false;
+	}
+*/	
+	if(confirm("수정 하시겠습니까? "))
+	{
+		$.ajax({
+			type : 'post',
+			url : '/contactopptModfy',
+			data : {
+				sales_oppt_id : sales_oppt_id,
+				sales_oppt_nm : sales_oppt_nm,
+				sales_lev_cd : sales_lev_cd,
+				expt_sales_amt : expt_sales_amt,
+				expt_fin_d : expt_fin_d,
+				psblty_rate : psblty_rate,
+				sales_oppt_stat_cd : sales_oppt_stat_cd,
+				cust_id : cust_id,
+				memo : memo,
+				est_list:est_list
+			},
+			datatype : 'json',
+			success : function(result) {
+				alert("정상적으로 수정되었습니다.");
+
+				var cust_id = $('#cust_id', opener.document).val(); // 부모창에서
+																	// cust_id
+																	// 받아오는 부분.
+				/*window.opener.opptTabList(cust_id);*/
+				opptListRefresh(cust_id); 
+ 				/*self.close();*/
+
+			},
+			error : function(request) {
+				alert("error : " + request.status);
+			}
+		});
+	}
+	else
+	{
+		return false;
+	}
+	
+
+	 
+}

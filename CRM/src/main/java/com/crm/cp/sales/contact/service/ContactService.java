@@ -42,7 +42,8 @@ public interface ContactService {
 	List<ActVO> actListcontact(String cont_id);								    //영업활동 리스트
 	String actEditcontact(ActVO actvo);											//영업활동 수정
 	String deleteopptActivecontact(List<String> chked_val); 				    // 영업활동 삭제
-	List<OpptVO> selectOppt(String cont_id);								// 영업활동 영업기회 팝업 정보 가져오기.
- 
-		
+	List<OpptVO> selectOppt(String cont_id);								// 영업활동 영업기회 팝업 정보 가져오기. 
+	int opptAdd(OpptVO add);	//영업기회 추가
+    List<OpptVO> opptPrdtDetail(String sales_oppt_id);                    	//영업기회별 상품 상세정보
+
 }
