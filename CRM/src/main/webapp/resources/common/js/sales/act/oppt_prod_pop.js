@@ -182,6 +182,8 @@ function opptProdUpdate(){
 	var discountSum = 0;
 	var supplyPriceSum = 0;
 	
+	alert("너를 수정해야하니??");
+	
 	$("#opptProdtbody tr[class!=empty]").each(function(){
 		var countObj=$(this).children().eq(2).children();
 		var salesamtObj=$(this).children().eq(0).children().eq(1);

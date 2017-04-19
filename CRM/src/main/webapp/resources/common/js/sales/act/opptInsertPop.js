@@ -79,6 +79,9 @@ function startCalendar(ctx)
 
 }
 
+/**
+ * 영화씨
+ * */
 function opptSave()
 {
 	var ctx = $("#ctx").val();

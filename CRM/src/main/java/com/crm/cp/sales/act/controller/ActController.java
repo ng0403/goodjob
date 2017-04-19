@@ -473,7 +473,7 @@ public class ActController {
 		int result = opptService.opptAdd(add);	// 기회 insert
 		System.out.println("기회 insert 완료 : " + add);
 		System.out.println("add.getSales_oppt_id() : " + add.getSales_oppt_id());
-		//int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
+		int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
 		
 		//estList.add(add);
 		
@@ -503,7 +503,7 @@ public class ActController {
 		System.out.println("영업기회 상품 추가 result : " + result1);
 		
 		System.out.println("영업기회 추가 result : " + result);
-		//System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		System.out.println("영업기회 단계 이력 추가 result : " + result2);
 		
 		return result;
 	}	
@@ -517,9 +517,12 @@ public class ActController {
 
 		//OpptVO detail
 		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+
+		opptVo.setTotal_sup_price(total_sup_price);
 		
 		int result = actService.opptTabModify(opptVo);
 		System.out.println(result);
+		int result2 = opptService.addOpptStep(opptVo);//영업기회단계리스트추가
 		
 		for(int i=0 ; i< est_list.size(); i++)
 		{
@@ -536,11 +539,11 @@ public class ActController {
 			
 			estList.add(vo);
 			
-			System.out.println("for문 estList : " + estList);
 		}
 		
 		int result1 = actService.opptTabPrdtModfy(estList);
 		System.out.println(result1);
+		System.out.println("영업기회 단계 이력 추가 result : " + result2);
 		
 		return result;
 	}

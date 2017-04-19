@@ -843,7 +843,6 @@ function opptTabList(cust_id)
 						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
 						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 						"<td>"+list.sales_lev_cd_nm+"</td>"+
-						"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
 						"<td>"+list.expt_fin_d+"</td>"+
 						"<td>"+list.psblty_rate+"</td>"+
 						"<td>"+list.fst_reg_id+"</td>"+
@@ -875,7 +874,6 @@ function actTabFunc(sales_actvy_id) {
 
 function opptTabDetail(sales_oppt_id)
 {
-	alert("sales_oppt_id : " + sales_oppt_id);
 	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 

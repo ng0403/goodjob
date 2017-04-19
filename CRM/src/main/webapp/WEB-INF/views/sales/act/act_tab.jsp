@@ -66,7 +66,6 @@
 							<td style="width: 8%;">고객사</td>
 							<td style="width: 6%;">상태</td>
 							<td style="width: 8%;">영업단계</td>
-							<td style="width: 10%;">예상매출액</td>
 							<td style="width: 10%;">예상마감일자</td>
 							<td style="width: 7%;">가능성</td>
 							<td style="width: 8%;">등록자</td>
@@ -86,7 +85,6 @@
 										<td>${opptList.cust_nm}</td>
 										<td>${opptList.sales_oppt_stat_cd_nm}</td>
 										<td>${opptList.sales_lev_cd_nm}</td>
-										<td style="text-align: right; padding-right:5px;">comma(${opptList.expt_sales_amt})</td>
 										<td>${opptList.expt_fin_d}</td>
 										<td>${opptList.psblty_rate}</td>
 										<td>${opptList.fst_reg_id}</td>
