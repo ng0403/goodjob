@@ -45,7 +45,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="actOpptList" items="${actOpptList}"> 
+				<c:forEach var="actOpptList" items="${estActOpptList}"> 
 				<tr>
 					<td style="width:10%;" id="sales_oppt_id">${actOpptList.sales_oppt_id}</td>
 					<td style="width:20%;" id="sales_oppt_nm">${actOpptList.sales_oppt_nm}</td>

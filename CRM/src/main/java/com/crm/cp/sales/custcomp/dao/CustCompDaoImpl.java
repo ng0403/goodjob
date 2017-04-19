@@ -664,8 +664,8 @@ public class CustCompDaoImpl implements CustCompDao {
 
 	// 영업활동 삭제
 	@Override
-	public int custActiveDelete(String cust_id) {
-		return sqlSession.update("custcomp.ccActDelete", cust_id);
+	public int custActiveDelete(String sales_actvy_id) {
+		return sqlSession.update("custcomp.ccActDelete", sales_actvy_id);
 	}
 
 	// 영업활동 상세보기

@@ -81,7 +81,7 @@ public interface CustCompDao {
 
 	int custActiveAdd(ActVO act);			// 영업활동 추가
 	int custActiveUpdate(ActVO act);		// 영업활동 수정
-	int custActiveDelete(String cust_id);	// 영업활동 삭제
+	int custActiveDelete(String sales_actvy_id);	// 영업활동 삭제
 	ActVO actDetail(String sales_actvy_id);		// 영업활동 상세보기
 
 

@@ -139,10 +139,9 @@ function ccOpptDetail(sales_oppt_id){
 	window.open(ctx+'/opptDetailPopup?sales_oppt_id='+sales_oppt_id+'&flag=1','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
-// 영업활동 상세정보 팝업
+//영업활동 상세정보 팝업
 function ccActDetail(sales_actvy_id){
 	var ctx = $("#ctx").val();
-	alert(sales_actvy_id);
 	window.open(ctx+'/custActiveDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
@@ -158,16 +157,17 @@ function ccContDetail(contr_id){
 	window.open(ctx+'/contDetailPopup?contr_id='+contr_id+'&flag=1','newwindow','width=500, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
-
 //영업활동 추가 팝업
 function custActiveAdd(ctx){
 	$('#act_cust_nm').click(function(){
-		var salesId = $('#salesId').val();
+		
 		var list_sales_oppt_id = $('#salesId').val();
 		var list_cust_id = $('#nowCust_id').val();
+		var list_cust_nm = $('#cust_nm').val();
 		
-		window.open(ctx+'/custActiveEstPopup?list_sales_oppt_id='+list_sales_oppt_id+
-				'&list_cust_id='+list_cust_id+'&flag=1', 'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/custActivePopup?list_sales_oppt_id='+list_sales_oppt_id+
+				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&flag=1', 'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		
 	});
 }
 
@@ -904,9 +904,9 @@ function ccActDel(ctx){
 		}else{
 			var delChk = confirm("정말 삭제 하시겠습니까?");
 			if(delChk){
-				var cust_id = $("#nowCust_id").val();
+				var cust_id = $("#cust_id").val();
 				$.ajax({
-					url : ctx+'/ccActDelete',
+					url : '/custActiveDelete',
 					type : 'POST',
 					data :  JSON.stringify(chked_val),
 					dataType : 'json',
@@ -931,35 +931,6 @@ function ccActDel(ctx){
 		}
 	});
 }
-
-//견적 삭제
-function custEstimDelete(){
-	var salesId = $('#salesId').val();
-	if(salesId == "" || salesId == null ){
-		alert("삭제할 항목을 선택해주세요.");
-	}else{
-	if(confirm("삭제 하시겠습니까? ")){
-		var opptId = $('#salesId').val();
-		var estim_id = [];
-		$('input[name=estim_id]:checked').each(function(){
-			estim_id.push($(this).val());
-		});
-		$.ajax({
-			type : 'get',
-			data :  { estim_id : estim_id },
-			datatype : 'json',
-			url : 'custEstimDelete',
-			success:function(result){
-				alert("견적이 삭제되었습니다.");
-				estimList(opptId);
-			},
-			error:function(request){
-				alert("error : " + request.status);
-			}
-		});
-	   }
-	}
- }
 
 //견적 삭제
 function ccEstDel(ctx){

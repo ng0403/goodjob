@@ -461,15 +461,20 @@ public class CustCompServiceImpl implements CustCompService {
 	}
 
 	// 영업활동 삭제
-	@Override
-	public int custActiveDelete(String cust_id) {
-		return ccDao.custActiveDelete(cust_id);
-	}
+//	@Override
+//	public int custActiveDelete(String cust_id) {
+//		return ccDao.custActiveDelete(cust_id);
+//	}
 
 	// 영업활동 상세장보
 	@Override
 	public ActVO actDetail(String sales_actvy_id) {
 		return ccDao.actDetail(sales_actvy_id);
+	}
+
+	@Override
+	public int custtActiveDelete(String sales_actvy_id) {
+		return ccDao.custActiveDelete(sales_actvy_id);
 	}
 
 

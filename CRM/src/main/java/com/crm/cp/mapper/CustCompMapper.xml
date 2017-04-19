@@ -393,6 +393,7 @@
 	      AND SA.CUST_ID = C.CUST_ID(+)
 		  AND SA.ACT_YN = 'Y'
 	</select>
+	
 	<!-- 영업활동 추가 -->
 	<update id="actListAdd" parameterType="com.crm.cp.sales.custcomp.vo.CustActVO" >
 		INSERT INTO SALES_ACTIVITY

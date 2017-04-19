@@ -36,7 +36,7 @@ $(document).ready(function(){
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="nowCust_id" value="${custcompDetail.cust_id}"/>
-	<input type="hidden" id="nowCust_nm"/>
+	<input type="hidden" id="nowCust_nm"  value="${custcompDetail.cust_nm}"/>
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">

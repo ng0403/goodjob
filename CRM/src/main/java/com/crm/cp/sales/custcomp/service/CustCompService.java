@@ -83,8 +83,10 @@ public interface CustCompService {
 
 	int custActiveAdd(ActVO act);												// 영업활동 추가
 	int custActiveUpdate(ActVO act);											// 영업활동 수정
-	int custActiveDelete(String cust_id);										// 영업활동 삭제
+	//int custActiveDelete(String cust_id);										// 영업활동 삭제
+	int custtActiveDelete(String sales_actvy_id);
 	ActVO actDetail(String actvyId);											// 영업활동 상세정보
+
 	
 
 
