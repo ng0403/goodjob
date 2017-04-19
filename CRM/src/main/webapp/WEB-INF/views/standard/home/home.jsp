@@ -19,42 +19,42 @@
 <input type="hidden" id="ctx" value="${ctx}"/>
 	<div class="caption">■ 홈</div></div>
 	
-	<div id="left_home">
-	   <div id="contract_title">
-	   ■ 계약실적
-	   <input type="button" class="detailPopbtn" value="상세보기" id="estimResultBtn">
-	   </div>
+<!-- 	<div id="left_home"> -->
+<!-- 	   <div id="contract_title"> -->
+<!-- 	   ■ 계약실적 -->
+<!-- 	   <input type="button" class="detailPopbtn" value="상세보기" id="estimResultBtn"> -->
+<!-- 	   </div> -->
 
-	   <div id="tableline">
-			<table id="goaltable">
-				<thead>
-					<tr>
-						<td rowspan="2">부서</td>
-						<td rowspan="2">담당자</td>
-						<td colspan="2">전월</td>
-						<td colspan="2">당월</td>
-					</tr>
-					<tr>
-						<td>실적</td>
-						<td>이익</td>
-						<td>실적</td>
-						<td>이익</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td rowspan="2">부서</td> -->
+<!-- 						<td rowspan="2">담당자</td> -->
+<!-- 						<td colspan="2">전월</td> -->
+<!-- 						<td colspan="2">당월</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>실적</td> -->
+<!-- 						<td>이익</td> -->
+<!-- 						<td>실적</td> -->
+<!-- 						<td>이익</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
 					
-						<td>${loginOrgNm}</td>
-						<td>${loginIuserNm}</td>
-						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.lastMonthSum}</fmt:formatNumber></td>
-						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.lastMonthProfit}</fmt:formatNumber></td>
-						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.thatMonthSum}</fmt:formatNumber></td>
-						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.thatMonthSum}</fmt:formatNumber></td>
-					</tr>
-				</tbody>
-			</table>
-		 </div>
-	  </div>
+<%-- 						<td>${loginOrgNm}</td> --%>
+<%-- 						<td>${loginIuserNm}</td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.lastMonthSum}</fmt:formatNumber></td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.lastMonthProfit}</fmt:formatNumber></td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.thatMonthSum}</fmt:formatNumber></td> --%>
+<%-- 						<td style="text-align: right;"><fmt:formatNumber>${contrResultSum.thatMonthSum}</fmt:formatNumber></td> --%>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		 </div> -->
+<!-- 	  </div> -->
 	  
 <!-- 	  <div id="right_home"> -->
 <!-- 	   <div id="contract_title"> -->
