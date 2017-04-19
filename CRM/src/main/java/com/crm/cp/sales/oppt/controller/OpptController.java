@@ -58,9 +58,6 @@ public class OpptController {
 		
 		// 메뉴리스트 가져오기
 		List<MenuVO> menuList = menuService.selectAll(session);
-		// 영업기회 상태 정보 가져오기(차트)
-//		List<OpptChartVO> C_oppt_status = service.C_oppt_status();
-//		System.out.println("C_oppt_status : " + C_oppt_status);
 		
 		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 		map.put("scust_nm", map.get("scust_nm"));
@@ -70,13 +67,13 @@ public class OpptController {
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 
+		//영업기회 리스트 가져오기
 		List<OpptVO> list = service.opptList(map);
 
 		System.out.println("page : " + page);
 		mov.addObject("oplist", list);
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
-//		mov.addObject("C_oppt_status", C_oppt_status);
 		mov.addObject("page", page);
 		mov.addObject("menuList", menuList);
 		mov.addObject("searchInfo", map);
@@ -87,6 +84,7 @@ public class OpptController {
 	@RequestMapping(value="/opptChartStatus", method={RequestMethod.GET,RequestMethod.POST})
 	   public @ResponseBody Map<String, Object> opptChartStatus( ModelMap model, HttpServletRequest request) {
 	      
+		//영업기회상태 차트 데이터
 	      List<OpptChartVO> C_oppt_status = service.C_oppt_status();
 			System.out.println("C_oppt_status 차트 : " + C_oppt_status);
 		
@@ -117,11 +115,13 @@ public class OpptController {
 			
 			// 영업기회 상태 코드 가져오기
 			List<OpptVO> osclist = service.opptOscList();
-			
 			// 영업단계 코드 가져오기
 			List<OpptVO> otllist = service.opptOtlList();
+			//메뉴리스트 가져오기
 			List<MenuVO> menuList = menuService.selectAll(session);
+			//견적단계코드 가져오기
 			List<EstVO> elclist = estInter.elcList();
+			//견적할인단위코드 가져오기
 			List<EstVO> eduList = estInter.eduList();
 			List<String> eduCode = new ArrayList<String>(0);
 			for(EstVO est: eduList){
@@ -155,6 +155,7 @@ public class OpptController {
 			
 			map.put("opptId", opptId);
 			OpptVO detail = service.opptDetail(opptId);
+			//영업기회상세정보페이지-상품리스트 가져오기
 			List<OpptVO> opptPrdt = service.opptPrdtDetail(opptId);
 			System.out.println("opptPrdt : " + opptPrdt);
 			System.out.println("detail : " + detail);
@@ -164,12 +165,13 @@ public class OpptController {
 			
 			// 영업기회 상태 코드 가져오기
 			List<OpptVO> osclist = service.opptOscList();
-			
 			// 영업단계 코드 가져오기
 			List<OpptVO> otllist = service.opptOtlList();
+			//메뉴리스트 가져오기
 			List<MenuVO> menuList = menuService.selectAll(session);
-			
+			//견적단계코드 가져오기
 			List<EstVO> elclist = estInter.elcList();
+			//견적할인단위코드 가져오기
 			List<EstVO> eduList = estInter.eduList();
 			List<String> eduCode = new ArrayList<String>(0);
 			for(EstVO est: eduList){
@@ -198,7 +200,7 @@ public class OpptController {
 			return mov;
 		}
 	}
-	//영업기회상품추가 팝업 open controller
+	//영업기회-상품추가 팝업 open controller
 		@RequestMapping(value = "/opptPrdtOpen", method = RequestMethod.GET)
 		public ModelAndView opptPrdtOpen(
 				HttpSession session,
@@ -210,6 +212,7 @@ public class OpptController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("keyfield", keyfield);
 			map.put("keyword", keyword);
+			//상품리스트 가져오기
 			List<ProdVO> prodList = service.prodList(map);
 			mov.addObject("prodList", prodList);
 			
@@ -234,7 +237,7 @@ public class OpptController {
 		PagerVO page = service.opptPageCount(map);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
-
+		//영업기회 리스트 출력
 		List<OpptVO> list = service.opptList(map);
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -258,6 +261,7 @@ public class OpptController {
 		for (int i = 0; i < opptidList.size(); i++) {
 			int delOppt = service.opptPrdtDel(opptidList.get(i));
 			System.out.println("영업기회상품 삭제 결과 : " + delOppt);
+			//영업기회 삭제 
 			result += service.opptDelete(opptidList.get(i));
 		}
 		return result;
@@ -274,6 +278,7 @@ public class OpptController {
 		PagerVO page = service.actCount(map);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
+		//영업활동 리스트 가져오기
 		List<ActVO> actList = service.actList(map);
 		Map<String, Object> map2 = new HashMap<String, Object>();
 
@@ -290,19 +295,25 @@ public class OpptController {
 			, @RequestParam(value="est_list[]",required=false) List<String> est_list
 			, String total_sup_price
 			, String sales_oppt_id) {
+		//영업기회상품리스트 삭제
 		int delOppt = service.opptPrdtDel(sales_oppt_id);
 		System.out.println("영업기회상품 삭제 결과 : " + delOppt);
 		System.out.println("Detail Edit Controller");
+		
 		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		detail.setFin_mdfy_id(session.getAttribute("user").toString());
 		detail.setTotal_sup_price(total_sup_price);
 		System.out.println(total_sup_price);
 		System.out.println("detail : " + detail);
+		
 		int result = service.opptModify(detail);
 		System.out.println("Detail Edit Result : " + result);
+		
 		ModelAndView mov = new ModelAndView("oppt");
+		//영업기회 상세정보
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
-		int result2 = service.addOpptStep(detail);//영업기회단계리스트추가
+		//영업기회단계이력추가
+		int result2 = service.addOpptStep(detail);
 		for(int i=0 ; i< est_list.size(); i++){
 			OpptVO vo = new OpptVO();
 			vo.setSales_oppt_id(detail.getSales_oppt_id());
@@ -316,6 +327,7 @@ public class OpptController {
 			vo.setOppt_seq(detail.getOppt_seq());
 			estList.add(vo);
 		}
+		//영업기회-상품리스트 추가
 		int result1 = service.opptPrdtAdd(estList);
 		System.out.println("영업기회상품 편집추가 result : " + result1);
 		
@@ -646,8 +658,10 @@ public class OpptController {
 			String list_sales_oppt_nm, String list_sales_oppt_id, String estimId,String flag) {
 		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/custcomp_est_pop");
 
-		List<EstVO> elcList = service.elcList();
-		List<EstVO> eduList = service.eduList();
+		//견적단계코드 가져오기
+		List<EstVO> elcList = estInter.elcList();
+		//견적할인단위코드 가져오기
+		List<EstVO> eduList = estInter.eduList();
 		List<String> eduCode = new ArrayList<String>();
 		for (EstVO est : eduList) {
 			eduCode.add(est.getCode());

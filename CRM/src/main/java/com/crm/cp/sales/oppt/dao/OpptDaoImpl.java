@@ -21,7 +21,7 @@ public class OpptDaoImpl implements OpptDao {
 	@Autowired
 	SqlSession sqlsession;
 
-	//영업기회 메인화면 리스트 출력
+	//영업기회 리스트 출력(사용)
 	@Override
 	public List<OpptVO> opptList(Map<String, String> map) {
 		// TODO Auto-generated method stub
@@ -33,19 +33,19 @@ public class OpptDaoImpl implements OpptDao {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("oppt.list_for_home");
 	}
-
+	//영업기회 상세정보(사용)
 	@Override
 	public OpptVO opptDetail(String opptId) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("oppt.detail", opptId);
 	}
-
+	// 영업기회 상태 코드 가져오기(사용)
 	@Override
 	public List<OpptVO> opptOscList() {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("oppt.osclist");
 	}
-
+	// 영업단계 코드 가져오기(사용)
 	@Override
 	public List<OpptVO> opptOtlList() {
 		// TODO Auto-generated method stub
@@ -140,7 +140,7 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("영업기회 견적 탭 Dao sales_oppt_id : " + sales_oppt_id);
 		return sqlsession.selectList("oppt.estimList", sales_oppt_id);
 	}
-
+	//상품리스트 가져오기(사용)
 	@Override
 	public List<ProdVO> prodList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -203,7 +203,7 @@ public class OpptDaoImpl implements OpptDao {
 		return result;
 
 	}
-
+	//영업기회 삭제 (사용)
 	@Override
 	public int opptDelete(String opptId) {
 		// TODO Auto-generated method stub
@@ -307,6 +307,7 @@ public class OpptDaoImpl implements OpptDao {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("oppt.pipeLineSum",map);
 	}
+	//영업기회상태 차트 데이터(사용)
 	@Override
 	public List<OpptChartVO> C_oppt_status() {
 		List<OpptChartVO> result = sqlsession.selectList("chart.C_oppt_status");
@@ -324,7 +325,7 @@ public class OpptDaoImpl implements OpptDao {
 //				return result;
 //	}
 	
-	//영업기회별 상품 상세정보 출력
+	//영업기회상세정보페이지-상품리스트 가져오기
 	@Override
 	public List<OpptVO> opptPrdtDetail(String opptId) {
 		String prod_id = opptId;
@@ -349,7 +350,7 @@ public class OpptDaoImpl implements OpptDao {
 		return result;
 	}
 	
-	//영업기회상품 삭제
+	//영업기회상품리스트 삭제(사용)
 	@Override
 	public int opptPrdtDel(String sales_oppt_id) {
 		System.out.println("영업기회상품 삭제 sales_oppt_id : " + sales_oppt_id);

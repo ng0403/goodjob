@@ -23,7 +23,7 @@ public class OpptServiceImpl implements OpptService {
 	@Resource
 	OpptDao dao;
 
-	//영업기회 메인화면 리스트 출력
+	//영업기회 리스트 출력(사용)
 	@Override
 	public List<OpptVO> opptList(Map<String, String> map) {
 		// TODO Auto-generated method stub
@@ -35,7 +35,7 @@ public class OpptServiceImpl implements OpptService {
 		// TODO Auto-generated method stub
 		return dao.opptList(); 
 	}
-
+	//영업기회 상세정보(사용)
 	@Override
 	public OpptVO opptDetail(String opptId) {
 		
@@ -43,13 +43,13 @@ public class OpptServiceImpl implements OpptService {
 		OpptVO detail = dao.opptDetail(opptId);
 		return detail;
 	}
-
+	// 영업기회 상태 코드 가져오기(사용)
 	@Override
 	public List<OpptVO> opptOscList() {
 		// TODO Auto-generated method stub
 		return dao.opptOscList();
 	}
-
+	// 영업단계 코드 가져오기(사용)
 	@Override
 	public List<OpptVO> opptOtlList() {
 		// TODO Auto-generated method stub
@@ -148,7 +148,7 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회 견적 탭 Service sales_oppt_id : " + sales_oppt_id);
 		return dao.estimList(sales_oppt_id);
 	}
-
+	//상품리스트 가져오기(사용)
 	@Override
 	public List<ProdVO> prodList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -179,7 +179,7 @@ public class OpptServiceImpl implements OpptService {
 		// TODO Auto-generated method stub
 		return dao.opptEstimDelete(estim_id);
 	}
-
+	//영업기회 삭제 (사용)
 	@Override
 	public int opptDelete(String opptId) {
 		// TODO Auto-generated method stub
@@ -239,6 +239,7 @@ public class OpptServiceImpl implements OpptService {
 		// TODO Auto-generated method stub
 		return dao.pipeLineSum(map);
 	}
+	//영업기회상태 차트 데이터(사용)
 	@Override
 	public List<OpptChartVO> C_oppt_status() {
 		List<OpptChartVO> result = dao.C_oppt_status();
@@ -253,19 +254,19 @@ public class OpptServiceImpl implements OpptService {
 //		System.out.println("영업기회 상품 탭 Service result : " + result);
 //		return result;
 //	}
-	//영업기회별 상품 상세정보
+	//영업기회상세정보페이지-상품리스트 가져오기
 	@Override
 	public List<OpptVO> opptPrdtDetail(String opptId) {
 		System.out.println("영업기회별 상품 상세정보 opptId : " + opptId);
 		return dao.opptPrdtDetail(opptId);
 	}
-	//영업기회상품 테이블 추가(사용)
+	//영업기회-상품 테이블 추가(사용)
 	@Override
 	public int opptPrdtAdd(List<OpptVO> estList) {
 		System.out.println("영업기회상품 추가 Service opptPrdtList : " +estList );
 		return dao.opptPrdtAdd(estList);
 	}
-	//영업기회상품 삭제
+	//영업기회-상품리스트 삭제(사용)
 	@Override
 	public int opptPrdtDel(String sales_oppt_id) {
 		System.out.println("영업기회삭제 sales_oppt_id : " + sales_oppt_id);
