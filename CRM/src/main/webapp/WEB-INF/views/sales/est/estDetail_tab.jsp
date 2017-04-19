@@ -41,13 +41,15 @@ $(function() {
 //       });
 	$(document).ready(function() {
 		var estim_id =$('#estim_id').val();
+		var sales_oppt_id =$('#sales_oppt_id').val();
 		//var custId =$('#hcust_id').val();
 //	 	URLEncoder.encode(opptId , "UTF-8");
 		//$('#salesId').val(opptId);
 		
 //	 	alert("선택된 사용자 ID : " + opptId);
+		viewEstHistory(sales_oppt_id)
 		viewSalesActive(estim_id);
-		viewSalesOppt(estim_id);
+		//viewSalesOppt(estim_id);
 		//estimList(opptId);
 	});
 });  
@@ -67,7 +69,7 @@ $(function() {
 <!-- 			<div class="caption">■ 견적상세정보</div> -->
 <!-- 		</div> -->
 <!-- 		<label for="tab1">상품/서비스</label> -->
-		<label for="tab1">영업기회</label>
+		<label for="tab1" style="width:12%;">견적 히스토리</label>
 		<label for="tab2">영업활동</label>
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
@@ -144,32 +146,53 @@ $(function() {
 <!-- 				</div> -->
 <!-- 			</div> -->
 <!-- 		</div> -->
-		<div id="tabDiv1" class="tab2_content">			
-			<div class="bt_position_authuser" style="float: right;">
-				<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/>
-				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actAddCancelBt();"/>
-			</div>
+<!-- 		<div id="tabDiv1" class="tab2_content">			 -->
+<!-- 			<div class="bt_position_authuser" style="float: right;"> -->
+<!-- 				<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/> -->
+<!-- 				<input type="button" id="actAddCancelBtn" class="act_bt" value="삭제" onclick="actAddCancelBt();"/> -->
+<!-- 			</div> -->
 			
+<!-- 			<div id="tableline"> -->
+<!-- 				<table id="goaltable" class="tabtable"> -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th style="width: 3%;"><input type="checkbox"  id='opptAllSelect'/></th> -->
+<!-- 							<td style="width: 20%;">영업기회명</td> -->
+<!-- 							<td style="width: 8%;">고객사</td> -->
+<!-- 							<td style="width: 6%;">상태</td> -->
+<!-- 							<td style="width: 8%;">영업단계</td> -->
+<!-- 							<td style="width: 10%;">예상매출액</td> -->
+<!-- 							<td style="width: 10%;">예상마감일자</td> -->
+<!-- 							<td style="width: 7%;">가능성</td> -->
+<!-- 							<td style="width: 8%;">등록자</td> -->
+<!-- 							<td style="width: 15%;">등록일시</td> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody id="activeOpptList"> -->
+						
+<!-- 					</tbody> -->
+<!-- 					</table> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		<div id="tabDiv1" class="tab2_content">				
 			<div id="tableline">
 				<table id="goaltable" class="tabtable">
 					<thead>
 						<tr>
-							<th style="width: 3%;"><input type="checkbox"  id='opptAllSelect'/></th>
-							<td style="width: 20%;">영업기회명</td>
-							<td style="width: 8%;">고객사</td>
-							<td style="width: 6%;">상태</td>
-							<td style="width: 8%;">영업단계</td>
-							<td style="width: 10%;">예상매출액</td>
-							<td style="width: 10%;">예상마감일자</td>
-							<td style="width: 7%;">가능성</td>
+							<td style="width: 18%;">영업기회명</td>
+							<td style="width: 18%;">견적명</td>
+							<td style="width: 8%;">견적단계</td>
+							<td style="width: 8%;">견적수량</td>
+							<td style="width: 13%;">견적금액</td>
+							<td style="width: 13%;">견적유효일자</td>
 							<td style="width: 8%;">등록자</td>
-							<td style="width: 15%;">등록일시</td>
+							<td style="width: 14%;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="activeOpptList">
+					<tbody id="estHistoryList">
 						
 					</tbody>
-					</table>
+				</table>
 			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->

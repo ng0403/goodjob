@@ -15,6 +15,7 @@ $(function(){
 	activeCancel();
 	actButton(ctx);
 	startDatePicker(ctx);
+	actOpptListPopup(ctx);
 });
 
 //영업활동 취소 버튼
@@ -34,6 +35,24 @@ function actButton(ctx){
 			alert("flag : " + flg);
 			activeUpdate(ctx);
 		}
+	});
+}
+//고객명 입력 함수
+function inputCustNm(custNm,custId){
+	$('#cust_nm').val(custNm);
+	$('#cust_id').val(custId);
+//	$('#inputCust').val('true');
+}
+
+//영업기회 리스트 팝업
+function actOpptListPopup(ctx){
+	$('#opptSelect').click(function(){
+//		if($('#cust_id').val()!=''){
+		window.open(ctx+'/estActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//		}else{
+//			alert('고객을 먼저 선택해주세요.');
+//			return;
+//		}
 	});
 }
 

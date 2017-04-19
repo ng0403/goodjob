@@ -17,6 +17,6 @@ function prodNmSelect(ctx){
 		var prod_price=$(this).find('#prod_price').text();
 		alert("opptProd_pop.js : " + prod_id+', ' + prod_nm+', ' + prod_price);
 		window.opener.inputProd(prod_id,prod_nm,prod_price);
-		self.close();
+		//self.close();
 	});
 }

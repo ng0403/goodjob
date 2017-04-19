@@ -182,13 +182,13 @@
 							</select>
 						</td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<th>영업기회</th> -->
-<!-- 						<td> -->
-<!-- 							<input type="text" id="sales_oppt_nm" name="sales_oppt_nm" class="int"/> -->
-<!-- 							<input type="button" id="opptSelect" value="영업기회" class="ebtn btn-chance"/>  -->
-<!-- 						</td> -->
-<!-- 					</tr>     -->
+					<tr>
+						<th>영업기회</th>
+						<td>
+							<input type="text" id="sales_oppt_nm" name="sales_oppt_nm" class="int"/>
+							<input type="button" id="opptSelect" value="영업기회" class="ebtn btn-chance"/> 
+						</td>
+					</tr>    
 					<tr>
 						<th>상태</th>
 						<td>

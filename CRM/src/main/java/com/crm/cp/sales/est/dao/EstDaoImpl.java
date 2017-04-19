@@ -245,5 +245,11 @@ public class EstDaoImpl implements EstDao{
 		return sqlSession.insert("estimate.opptSoeAdd", opptVo);
 	}
 
+	@Override
+	public List<OpptVO> estHistoryList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("estimate.estHistoryList", map);
+	}
+
 	
 }

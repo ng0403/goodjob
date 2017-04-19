@@ -62,20 +62,20 @@
 		    <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button> 
 		</div>
 <!-- </form> -->
-		<div id="contact_button_position">
-			<input type="button" id="addBtn" value="추가" class="btn-success-tel" onclick="estAddBtn();"/>
-			<input type="button" id="estimDeleteBtn" class="btn-success-tel" value="삭제">	
-		</div>
+<!-- 		<div id="contact_button_position"> -->
+<!-- 			<input type="button" id="addBtn" value="추가" class="btn-success-tel" onclick="estAddBtn();"/> -->
+<!-- 			<input type="button" id="estimDeleteBtn" class="btn-success-tel" value="삭제">	 -->
+<!-- 		</div> -->
 	    
 	    <div id="tableline">
 			<table id="goaltable" class="tabtable">
 				<thead>
 					<tr>
-						<th style="width: 3%;"><input type="checkbox" id="estimAllSelect" ></th>
+<!-- 						<th style="width: 3%;"><input type="checkbox" id="estimAllSelect" ></th> -->
 						<td style="width: 26%;">견적명</td>
-						<td style="width: 10%;">견적단계</td>
-						<td style="width: 10%;">견적수량</td>
-						<td style="width: 14%;">견적금액</td>
+						<td style="width: 11%;">견적단계</td>
+						<td style="width: 11%;">견적수량</td>
+						<td style="width: 15%;">견적금액</td>
 						<td style="width: 14%;">견적유효일자</td>
 						<td style="width: 9%;">등록자</td>
 						<td style="width: 14%;">등록일시</td>
@@ -84,7 +84,7 @@
 				<tbody id="estList">
 					<c:forEach var="result" items="${list}" >
 						<tr>
-							<th><input type="checkbox" value="${result.estim_id}" onclick="javascript:chkCancel();"></th>
+<%-- 							<th><input type="checkbox" value="${result.estim_id}" onclick="javascript:chkCancel();"></th> --%>
 							<td style='text-align: left; padding-left:5px;'>
 								<a style='text-decoration: none;' href="javascript:estDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>

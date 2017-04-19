@@ -68,17 +68,17 @@ $(function() {
 				<tbody id="estDetail">
 					<tr>
 						<td colspan="4">
-							<div id="baseBtnDiv" class="bt_position_authuser">
-								<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/>
-								<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
-							</div>
+<!-- 							<div id="baseBtnDiv" class="bt_position_authuser"> -->
+<!-- 								<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/> -->
+<!-- 								<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
+<!-- 							</div> -->
 					<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
 					<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
 					<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
 					<!-- 		</div> -->
 							<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-								<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/>
-								<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="취소" class="custcomp_btn" onclick="cancel_Click();"/>
+<%-- 								<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
+								<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
 							</div>
 						</td>
 					</tr>
@@ -93,15 +93,15 @@ $(function() {
 							<input type="hidden"
 							name="cust_id" id="cust_id" value="${detail.cust_id }" /> 
 							<input type="hidden" name="lead_id" id="lead_id" value="" /> 
-							<input type="button" class="btn-success-tel" id="customer" value="고객"
-							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
+<!-- 							<input type="button" class="btn-success-tel" id="customer" value="고객" -->
+<%-- 							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled"> --%>
 						</td>
 					<tr>
 						<th>영업기회명</th>
 						<td><input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id }"> 
 							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" value="${detail.sales_oppt_nm }">
-							<input type="button" name="act_opp" value="영업기회"
-							class="btn-success-tel" id="opptSelect"  disabled="disabled">
+<!-- 							<input type="button" name="act_opp" value="영업기회" -->
+<!-- 							class="btn-success-tel" id="opptSelect"  disabled="disabled"> -->
 						<th>견적유효일자</th>
 						<td><label for="start_day" class="oppt_txt_nm"></label>
 							<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
@@ -111,30 +111,35 @@ $(function() {
 					<tr>
 						<th>견적단계</th>
 						<td colspan="3">
-							<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled">
-								<option value="" style="text-align: center;" >선택</option>
-								<c:forEach items="${elclist}" var="elclist">
-									<c:choose>
-										<c:when test="${detail.estim_lev_cd eq elclist.code }">
-											<option value="${elclist.code}" selected="selected">${elclist.cd_nm}</option>
-										</c:when>
-										<c:otherwise>
-											<option value="${elclist.code}">${elclist.cd_nm}</option>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</select>
+<!-- 							<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled"> -->
+<!-- 								<option value="" style="text-align: center;" >선택</option> -->
+<%-- 								<c:forEach items="${elclist}" var="elclist"> --%>
+<%-- 									<c:choose> --%>
+<%-- 										<c:when test="${detail.estim_lev_cd eq elclist.code }"> --%>
+<%-- 											<option value="${elclist.code}" selected="selected">${elclist.cd_nm}</option> --%>
+<%-- 										</c:when> --%>
+<%-- 										<c:otherwise> --%>
+<%-- 											<option value="${elclist.code}">${elclist.cd_nm}</option> --%>
+<%-- 										</c:otherwise> --%>
+<%-- 									</c:choose> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</select> -->
+							<c:forEach items="${elclist}" var="elclist">
+								<c:if test="${detail.estim_lev_cd eq elclist.code }">
+									<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="${elclist.cd_nm }">
+								</c:if>
+							</c:forEach>
 						</td>
 					</tr>
  					<tr>
 						<th>참고사항</th> 
-						<td colspan="2"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
+						<td colspan="3"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
  							class="int_detail_ad" value="${detail.memo}">
  						</td>
- 						<td>
- 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
-							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/>
- 						</td> 
+<!--  						<td> -->
+<!--  							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/> -->
+<!-- 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/> -->
+<!--  						</td>  -->
 					</tr>
 				</tbody>
 			</table>

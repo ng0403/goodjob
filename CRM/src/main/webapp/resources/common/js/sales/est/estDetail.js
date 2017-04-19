@@ -36,7 +36,7 @@ $(function(){
 	prodallCheck();
 	prodDelete();
 	prodChacgeRealTime();
-	startCalendar(ctx);
+//	startCalendar(ctx);
 	prodChange();
 	addOperating();
 	actAllCheck();
@@ -53,6 +53,12 @@ function custcompListPopup(ctx){
 		window.open(ctx+'/estCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
+//고객명 입력 함수
+function inputCustNm(custNm,custId){
+	$('#cust_nm').val(custNm);
+	$('#cust_id').val(custId);
+	$('#inputCust').val('true');
+}
 //영업기회 리스트 팝업
 function actOpptListPopup(ctx){
 	$('#opptSelect').click(function(){
@@ -64,12 +70,7 @@ function actOpptListPopup(ctx){
 		}
 	});
 }
-//고객명 입력 함수
-function inputCustNm(custNm,custId){	
-	$('#cust_nm').val(custNm);
-	$('#cust_id').val(custId);
-	$('#inputCust').val('true');
-}
+
 //영업기회명 입력 함수
 function inputOpptNm(opptNm,opptId){
 	$('#sales_oppt_nm').val(opptNm);
@@ -451,12 +452,12 @@ function estAdd(ctx){
 		"name":"estim_nm",
 		"value":estim_nm
 	})
-	var $sales_oppt_id = $("<input>");
-	$sales_oppt_id.attr({
-		"type":"hidden",
-		"name":"sales_oppt_id",
-		"value":sales_oppt_id
-	})
+//	var $sales_oppt_id = $("<input>");
+//	$sales_oppt_id.attr({
+//		"type":"hidden",
+//		"name":"sales_oppt_id",
+//		"value":sales_oppt_id
+//	})
 	var $memo = $("<input>");
 	$memo.attr({
 		"type":"hidden",
@@ -470,7 +471,7 @@ function estAdd(ctx){
 		"id":"est_list",
 		"value":est_list
 	})
-	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
+	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list);
 
 	$("body").append($form);
 	$form.submit();
@@ -614,12 +615,12 @@ function estUpdate(ctx){
 		"name":"estim_nm",
 		"value":estim_nm
 	})
-	var $sales_oppt_id = $("<input>");
-	$sales_oppt_id.attr({
-		"type":"hidden",
-		"name":"sales_oppt_id",
-		"value":sales_oppt_id
-	})
+//	var $sales_oppt_id = $("<input>");
+//	$sales_oppt_id.attr({
+//		"type":"hidden",
+//		"name":"sales_oppt_id",
+//		"value":sales_oppt_id
+//	})
 	var $memo = $("<input>");
 	$memo.attr({
 		"type":"hidden",
@@ -656,7 +657,7 @@ function estUpdate(ctx){
 		"name":"prodDeleteEstimId",
 		"value":prodDeleteEstimId
 	})
-	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId);
+	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId);
 
 	$("body").append($form);
 	$form.submit();
@@ -785,40 +786,97 @@ function opptActiveDelete(){
 }
 
 //영업기회 리스트 조회
-function viewSalesOppt(estim_id){
-	$("#activeList").children().remove();
+//function viewSalesOppt(estim_id){
+//	$("#activeList").children().remove();
+//	$.ajax({  
+//		type : 'GET',
+//		url : '/estimSalesOpptList',
+//		data : {estim_id : estim_id},
+//		dataType : 'json', 
+//		success:function(result){
+//			var content = "";
+//			if(result.opptList.length==0){
+//				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업기회가 없습니다.</td></tr>";	
+//			}
+//			else{
+//			$.each(result.opptList, function(i, list){
+//				//영업활동 리스트 추가
+//				content +="<tr id='"+list.sales_oppt_id+"'>"+
+//				"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+//				"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
+//				"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
+//				"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"opptDetailPopup('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+//				"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
+//				"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
+//				"<td>"+list.sales_lev_cd_nm+"</td>"+
+//				"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
+//				"<td>"+list.expt_fin_d+"</td>"+
+//				"<td>"+list.psblty_rate+"</td>"+
+//				"<td>"+list.fst_reg_id+"</td>"+
+//				"<td>"+list.fst_reg_dt+"</td>+"+
+//				"</tr>"	
+//			});
+//			
+//			if(result.opptList.length < 5){
+//				for(var j = 0; j < 5-result.opptList.length; j++){
+//					content += "<th></th>"+ 
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"</tr>";
+//					
+//					}
+//				}
+//			}	
+//			$("#activeOpptList").append(content);
+//		},
+//		error:function(request){
+//			alert("error : " + request.status);
+//		}
+//	});
+//}
+//견적 히스토리 리스트 조회
+function viewEstHistory(sales_oppt_id){
+	$("#estHistoryList").children().remove();
 	$.ajax({  
 		type : 'GET',
-		url : '/estimSalesOpptList',
-		data : {estim_id : estim_id},
+		url : '/estimHistory',
+		data : {sales_oppt_id : sales_oppt_id},
 		dataType : 'json', 
 		success:function(result){
 			var content = "";
-			if(result.opptList.length==0){
-				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업기회가 없습니다.</td></tr>";	
-			}
-			else{
-			$.each(result.opptList, function(i, list){
+//			if(result.estHistory.length==0){
+//				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업기회가 없습니다.</td></tr>";	
+//			}
+//			else{
+			$.each(result.estHistory, function(i, data){
 				//영업활동 리스트 추가
-				content +="<tr id='"+list.sales_oppt_id+"'>"+
-				"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
-				"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
-				"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
-				"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"opptDetailPopup('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
-				"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
-				"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
-				"<td>"+list.sales_lev_cd_nm+"</td>"+
-				"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
-				"<td>"+list.expt_fin_d+"</td>"+
-				"<td>"+list.psblty_rate+"</td>"+
-				"<td>"+list.fst_reg_id+"</td>"+
-				"<td>"+list.fst_reg_dt+"</td>+"+
+				content +="<tr id='"+data.sales_oppt_id+"'>"+
+//				"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+//				"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
+//				"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
+				"<td><input type='hidden' id='sales_oppt_id' value='"+data.sales_oppt_id+"'>"+data.sales_oppt_nm+"</td>"+
+				"<td style='text-align: left; padding-left:5px;'>"+
+				"<a style='text-decoration: none;' href=javascript:estDetail('"+data.estim_id+"');>"+
+					data.estim_nm+"</a></td>"+
+				"<td>"+data.estim_lev_cd_nm+"</td>"+
+				"<td>"+data.estim_qty+"</td>"+
+				"<td style='text-align: right; padding-right:5px;'>"+comma(data.sales_price)+"</td>"+
+				"<td>"+data.estim_valid_d+"</td>"+
+				"<td>"+data.fst_reg_id_nm+"</td>"+
+				"<td>"+data.fst_reg_dt+"</td>"+
 				"</tr>"	
 			});
 			
-			if(result.opptList.length < 5){
-				for(var j = 0; j < 5-result.opptList.length; j++){
-					content += "<th></th>"+ 
+			if(result.estHistory.length < 5){
+				for(var j = 0; j < 5-result.estHistory.length; j++){
+					content += ""+ 
 					"<td></td>"+
 					"<td></td>"+
 					"<td></td>"+
@@ -827,20 +885,30 @@ function viewSalesOppt(estim_id){
 					"<td></td>"+
 					"<td></td>"+
 					"<td></td>"+
-					"<td></td>"+
+//					"<td></td>"+
 					"</tr>";
 					
 					}
 				}
-			}	
-			$("#activeOpptList").append(content);
+//			}	
+			$("#estHistoryList").append(content);
 		},
 		error:function(request){
 			alert("error : " + request.status);
 		}
 	});
 }
-
+//견적 히스토리 상세정보 출력
+function estDetail(estim_id){
+//	$("#estim_id").val(estim_id);
+//	$("#estim_detail").attr({
+//		"action":"estDetail",
+//		"method":"get"
+//	})
+//	$("#estim_detail").submit();
+	window.open('/estHistoryPopup?estim_id='+estim_id
+			,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
 //영업기회탬에서 추가버튼 눌렀을 때.
 function addOppt(){
 	var list_estim_id = $('#estim_id').val();
@@ -853,35 +921,36 @@ function addOppt(){
 //영업활동 추가 팝업
 function addOperating(){
 	$('#act_opp_nm').click(function(){
-		var salesId = $('#sales_oppt_id').val();
-		if(salesId == "" || salesId == null ){
-			alert("영업기회를 선택해주세요.");
-		}else{
-		var list_sales_oppt_id = $('#sales_oppt_id').val();
+//		var salesId = $('#sales_oppt_id').val();
+//		if(salesId == "" || salesId == null ){
+//			alert("영업기회를 선택해주세요.");
+//		}else{
+//		var list_sales_oppt_id = $('#sales_oppt_id').val();
+		var list_estim_id = $('#estim_id').val();
 //		var list_cust_id = $('#'+list_sales_oppt_id+' #hcust_id').val();
 		var list_cust_id = $('#cust_id').val();
 		var list_cust_nm = $('#cust_nm').val();
 //		var list_cust_nm = $('#'+hsales_oppt_id+' #hcust_nm').text();
 		
-		window.open('/opptActiveEstPopup?list_sales_oppt_id='+list_sales_oppt_id+
-				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-		}
+		window.open('/opptActiveEstPopup?list_estim_id='+list_estim_id+/*list_sales_oppt_id='+list_sales_oppt_id+
+*/				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//		}
 	});
 }
 
 //영업활동 상세정보 팝업
 function opptActiveDetailPopup(actvyId){
 	var popup;
-	var sales_oppt_nm = $('#sales_oppt_nm').val();
-	popup=window.open('opptActiveDetailEstPopup?actvyId='+actvyId +'&sales_oppt_nm='+sales_oppt_nm
+//	var sales_oppt_nm = $('#sales_oppt_nm').val();
+	popup=window.open('opptActiveDetailEstPopup?actvyId='+actvyId 
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업기회 상세정보 팝업
 function opptDetailPopup(salesOppt_id){
 	var popup;
-	var sales_oppt_nm = $('#sales_oppt_nm').val();
-	popup=window.open('opptDetailEstPopup?actvyId='+salesOppt_id +'&sales_oppt_nm='+sales_oppt_nm
+//	var sales_oppt_nm = $('#sales_oppt_nm').val();
+	popup=window.open('opptDetailEstPopup?salesOppt_id='+salesOppt_id/* +'&sales_oppt_nm='+sales_oppt_nm*/
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
@@ -898,7 +967,7 @@ function actAllCheck(){
 }
 
 //영업기회 모두 선택
-function actAllCheck(){
+function opptAllCheck(){
 	$("#opptAllSelect").click( function(){
 		var chk = $(this).is(":checked");
 		if(chk){
@@ -991,18 +1060,18 @@ function clearDetail(){
 }
 //달력띄우기
 function startCalendar(ctx){
-	 $("#sestim_valid_d").datepicker({
-	        changeMonth: true, //콤보 박스에 월 보이기
-	        changeYear: true, // 콤보 박스에 년도 보이기
-	        showOn: 'button', // 우측에 달력 icon 을 보인다.
-	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	        buttonImageOnly: true //달력에 icon 사용하기
-	    }); 
-	     //마우스를 손가락 손가락 모양으로 하고 여백주기
-	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-	   //날짜 형식을 0000-00-00으로 지정하기
-	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
+//	 $("#sestim_valid_d").datepicker({
+//	        changeMonth: true, //콤보 박스에 월 보이기
+//	        changeYear: true, // 콤보 박스에 년도 보이기
+//	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+//	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+//	        buttonImageOnly: true //달력에 icon 사용하기
+//	    }); 
+//	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+//	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+//	   //날짜 형식을 0000-00-00으로 지정하기
+//	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+//	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
 	    
 	    $("#estim_valid_d_detail").datepicker({
 	        changeMonth: true, //콤보 박스에 월 보이기

@@ -150,58 +150,58 @@ public class EstController {
 	}
 	
 	// 기업에서 기업명을 눌렀을 때
-	@RequestMapping(value = "/prodDetail", method = RequestMethod.GET)
-	public ModelAndView EstimateDetail(HttpServletRequest request,
-			HttpSession session,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
-			@RequestParam Map<String, String> map,
-			@RequestParam (value = "estim_qty" , required = false) String estim_qty,
-			@RequestParam (value = "sales_price" , required = false) String sales_price,
-			@RequestParam (value = "discount" , required = false) String discount,
-			@RequestParam (value = "sup_price" , required = false) String sup_price,
-			@RequestParam (value = "estim_id" , required = false) String estim_id) {
-
-			
-		if (session.getAttribute("user") == null) {
-
-			return new ModelAndView("redirect:/");
-		}
-		// 페이지 정보를 얻어옴
-		
-		/*map.put("pageNum", ccPageNum+"");
-		PageUtil page = estInter.getCCListCount(map);
-		map.put("startRow", page.getStartRow()+"");
-		map.put("endRow", page.getEndRow()+"");*/
-		if(estim_qty != null ){
-		map.put("total_estim_qty", + Integer.parseInt(estim_qty) + "");
-		}
-		if(sales_price != null){
-			map.put("total_sales_price", + Integer.parseInt(estim_qty) + "");
-			}
-		if(discount != null ){
-			map.put("total_discount", + Integer.parseInt(estim_qty) + "");
-			}
-		if(sup_price != null ){
-			map.put("total_sup_price", + Integer.parseInt(estim_qty) + "");
-			}
-		
-
-		/*List<EstVO> list = estInter.getList(map);*/
-		/*List<EstVO> elclist = estInter.elcList();*/
-		//List<MenuVO> menuList = menuService.selectAll(session);
-
-		List<EstVO> prodlist = estInter.getProdList(map);
-
-		ModelAndView mov = new ModelAndView("estimate");
-		
-		mov.addObject("prodlist", prodlist);
-		/*mov.addObject("page", page);*/
-		/*mov.addObject("ccPageNum", ccPageNum);*/
-		//mov.addObject("menuList", menuList);
-		/*mov.addObject("elclist", elclist);*/
-		 
-		return mov;
-	}
+//	@RequestMapping(value = "/prodDetail", method = RequestMethod.GET)
+//	public ModelAndView EstimateDetail(HttpServletRequest request,
+//			HttpSession session,
+//			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
+//			@RequestParam Map<String, String> map,
+//			@RequestParam (value = "estim_qty" , required = false) String estim_qty,
+//			@RequestParam (value = "sales_price" , required = false) String sales_price,
+//			@RequestParam (value = "discount" , required = false) String discount,
+//			@RequestParam (value = "sup_price" , required = false) String sup_price,
+//			@RequestParam (value = "estim_id" , required = false) String estim_id) {
+//
+//			
+//		if (session.getAttribute("user") == null) {
+//
+//			return new ModelAndView("redirect:/");
+//		}
+//		// 페이지 정보를 얻어옴
+//		
+//		/*map.put("pageNum", ccPageNum+"");
+//		PageUtil page = estInter.getCCListCount(map);
+//		map.put("startRow", page.getStartRow()+"");
+//		map.put("endRow", page.getEndRow()+"");*/
+//		if(estim_qty != null ){
+//		map.put("total_estim_qty", + Integer.parseInt(estim_qty) + "");
+//		}
+//		if(sales_price != null){
+//			map.put("total_sales_price", + Integer.parseInt(estim_qty) + "");
+//			}
+//		if(discount != null ){
+//			map.put("total_discount", + Integer.parseInt(estim_qty) + "");
+//			}
+//		if(sup_price != null ){
+//			map.put("total_sup_price", + Integer.parseInt(estim_qty) + "");
+//			}
+//		
+//
+//		/*List<EstVO> list = estInter.getList(map);*/
+//		/*List<EstVO> elclist = estInter.elcList();*/
+//		//List<MenuVO> menuList = menuService.selectAll(session);
+//
+//		List<EstVO> prodlist = estInter.getProdList(map);
+//
+//		ModelAndView mov = new ModelAndView("estimate");
+//		
+//		mov.addObject("prodlist", prodlist);
+//		/*mov.addObject("page", page);*/
+//		/*mov.addObject("ccPageNum", ccPageNum);*/
+//		//mov.addObject("menuList", menuList);
+//		/*mov.addObject("elclist", elclist);*/
+//		 
+//		return mov;
+//	}
 
 	//견적 상세정보 ajax
 	@RequestMapping(value="/estDetail", method=RequestMethod.GET)
@@ -359,22 +359,42 @@ public class EstController {
 	}
 	
 	// 영업기회 tab list ajax
-	@RequestMapping(value = "/estimSalesOpptList", method = RequestMethod.GET)
+//	@RequestMapping(value = "/estimSalesOpptList", method = RequestMethod.GET)
+//	@ResponseBody
+//	Map<String, Object> opptList(
+//			@RequestParam Map<String, String> map,
+//			@RequestParam(value = "opptPageNum", defaultValue = "1") String opptPageNum) {
+//
+//		map.put("opptPageNum", opptPageNum);
+//		PagerVO page = estInter.opptCount(map);
+//		map.put("startRow", page.getStartRow() + "");
+//		map.put("endRow", page.getEndRow() + "");
+//		List<OpptVO> opptList = estInter.opptList(map);
+//		Map<String, Object> map2 = new HashMap<String, Object>();
+//
+//		map2.put("page", page);
+//		map2.put("opptPageNum", opptPageNum);
+//		map2.put("opptList", opptList);
+//
+//		System.out.println(map2);
+//		return map2;
+//	}
+	
+	@RequestMapping(value = "/estimHistory", method = RequestMethod.GET)
 	@ResponseBody
-	Map<String, Object> opptList(
-			@RequestParam Map<String, String> map,
-			@RequestParam(value = "opptPageNum", defaultValue = "1") String opptPageNum) {
+	Map<String, Object> estimHistory(
+			@RequestParam Map<String, String> map) {
 
-		map.put("opptPageNum", opptPageNum);
-		PagerVO page = estInter.opptCount(map);
-		map.put("startRow", page.getStartRow() + "");
-		map.put("endRow", page.getEndRow() + "");
-		List<OpptVO> opptList = estInter.opptList(map);
+//		map.put("opptPageNum", opptPageNum);
+//		PagerVO page = estInter.opptCount(map);
+//		map.put("startRow", page.getStartRow() + "");
+//		map.put("endRow", page.getEndRow() + "");
+		List<OpptVO> estHistory = estInter.estHistoryList(map);
 		Map<String, Object> map2 = new HashMap<String, Object>();
-
-		map2.put("page", page);
-		map2.put("opptPageNum", opptPageNum);
-		map2.put("opptList", opptList);
+		System.out.println(map);
+//		map2.put("page", page);
+//		map2.put("opptPageNum", opptPageNum);
+		map2.put("estHistory", estHistory);
 
 		System.out.println(map2);
 		return map2;
@@ -400,6 +420,39 @@ public class EstController {
 
 		return map2;
 	}
+	// 영업기회 탭에서 insert POPUP
+	@RequestMapping(value = "/estHistoryPopup", method = RequestMethod.GET)
+	public ModelAndView estHistoryPop(HttpSession session, String estim_id) 
+			{
+		List<EstVO> elclist = estInter.elcList();
+		// 할인단위 코드 가져오기
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+
+		List<EstVO> prod = estInter.estDetail(estim_id);
+	
+		EstVO detail = prod.get(prod.size()-1);
+		prod.remove(prod.size()-1);
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/estHistoryPopup");
+		
+		//mov.addObject("popFlg", "add");
+		mov.addObject("flg", "detail");
+
+		mov.addObject("detail", detail);
+		mov.addObject("prodList", prod);
+		mov.addObject("eduList", eduList);
+		mov.addObject("elclist", elclist);
+		mov.addObject("eduCode", eduCode);
+		
+//		mov.addObject("estim_id", estim_id);
+			
+		return mov;
+	}
+	
 	
 	// 영업기회 탭에서 insert POPUP
 	@RequestMapping(value = "/opptAddEstPopup", method = RequestMethod.GET)
@@ -409,13 +462,21 @@ public class EstController {
 		List<OpptVO> osclist = opptService.opptOscList();
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = opptService.opptOtlList();
-		
+		// 할인단위 코드 가져오기
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
 		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
 		
 		//mov.addObject("popFlg", "add");
 		mov.addObject("flg", "add");
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
 		
 		mov.addObject("cust_id", list_cust_id);
 		mov.addObject("cust_nm", list_cust_nm);
@@ -437,12 +498,21 @@ public class EstController {
 		List<OpptVO> osclist = opptService.opptOscList();
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = opptService.opptOtlList();
-
+		// 할인단위 코드 가져오기
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
 		OpptVO detail = opptService.opptDetail(salesOppt_id);
 		System.out.println("detail : " + detail);
 	
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+		
 		mov.addObject("opDetail", detail);
 		mov.addObject("sales_oppt_id", salesOppt_id);
 		mov.addObject("sales_oppt_nm", sales_oppt_nm);
@@ -454,7 +524,7 @@ public class EstController {
 	// 영업활동 추가 팝업창
 	@RequestMapping(value = "/opptActiveEstPopup", method = RequestMethod.GET)
 	public ModelAndView opptActivePopup(HttpSession session,
-			String list_cust_id, String list_cust_nm, String list_sales_oppt_id) {
+			String list_cust_id, String list_cust_nm, String list_estim_id) {
 		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
 		// 영업활동 유형코드 가져오기
 		List<ActVO> actTypeCd = opptService.actTypeCdList();
@@ -469,7 +539,7 @@ public class EstController {
 
 		mov.addObject("cust_id", list_cust_id);
 		mov.addObject("cust_nm", list_cust_nm);
-		mov.addObject("sales_oppt_id", list_sales_oppt_id);
+		mov.addObject("estim_id", list_estim_id);
 		mov.addObject("flg", "add");
 
 		return mov;
@@ -506,13 +576,37 @@ public class EstController {
 	
 	//영업기회 tab 영업기회  추가
 	@RequestMapping(value = "/estimOpptAdd", method = RequestMethod.POST)
-	@ResponseBody int opptInsert(HttpSession session, OpptVO opptVo) 
+	@ResponseBody int opptInsert(HttpSession session,OpptVO opptVo,
+			@RequestParam(value="est_list[]",required=false) List<String> est_list,
+			String total_sup_price) 
 	{
 		opptVo.setFst_reg_id(session.getAttribute("user").toString());
 		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		opptVo.setTotal_sup_price(total_sup_price);
+		
 		// 영업활동 추가
 		int result = opptService.opptAdd(opptVo);
-		if(result == 1){
+		
+		System.out.println(opptVo.getSales_oppt_id());
+		System.out.println(opptVo.getOppt_seq());
+		System.out.println(opptVo.getTotal_sup_price());
+		result += opptService.addOpptStep(opptVo);//영업기회단계리스트추가
+		for(int i=0 ; i< est_list.size(); i++){
+			OpptVO vo = new OpptVO();
+			vo.setSales_oppt_id("");
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));
+			vo.setSales_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			vo.setOppt_seq(opptVo.getOppt_seq());
+			estList.add(vo);
+		}
+		result += opptService.opptPrdtAdd(estList);
+		if(result >= 3){
 			result += estInter.opptAdd(opptVo);
 		}
 		return result;
@@ -520,14 +614,40 @@ public class EstController {
 	
 	//영업기회 tab 영업기회  수정
 	@RequestMapping(value = "/estimOpptModfy", method = RequestMethod.POST)
-	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo) 
+	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo
+			, @RequestParam(value="est_list[]",required=false) List<String> est_list
+			, String total_sup_price
+			, String sales_oppt_id) 
 	{
 		opptVo.setFst_reg_id(session.getAttribute("user").toString());
 		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		opptVo.setTotal_sup_price(total_sup_price);
 
 		System.out.println(opptVo.getSales_oppt_id());
 		// 영업활동 편집
 		int result = opptService.opptModify(opptVo);
+		result += opptService.addOpptStep(opptVo);
+		int delOppt = 0;
+		if(result == 2){
+			delOppt = opptService.opptPrdtDel(sales_oppt_id);
+		}
+		if(delOppt == 1){
+			for(int i=0 ; i< est_list.size(); i++){
+				OpptVO vo = new OpptVO();
+				vo.setSales_oppt_id(opptVo.getSales_oppt_id());
+				vo.setProd_id(est_list.get(i));
+				vo.setProd_nm(est_list.get(++i));
+				vo.setEstim_qty(est_list.get(++i));
+				vo.setSales_price(est_list.get(++i));
+				vo.setDiscount(est_list.get(++i));
+				vo.setSup_price(est_list.get(++i));
+				vo.setDiscount_unit_cd(est_list.get(++i));
+				//vo.setOppt_seq(opptVo.getOppt_seq());
+				estList.add(vo);
+			}
+			result += opptService.opptPrdtAdd(estList);
+		}		
 
 		return result;
 	}

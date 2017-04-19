@@ -68,7 +68,7 @@ function list(page){
 				//console.log(data);
 				$("#estList").append("" +	
 				 "<tr>"+
-					"<th><input type='checkbox' value="+data.estim_id+"></th>"+
+//					"<th><input type='checkbox' value="+data.estim_id+"></th>"+
 					"<td style='text-align: left; padding-left:5px;'>"+
 					"<a style='text-decoration: none;' href=javascript:estDetail('"+data.estim_id+"');>"+
 						data.estim_nm+"</a></td>"+
@@ -85,7 +85,7 @@ function list(page){
 				for(var i=0 ;  i < 10-result.list.length ; i++){
 					$("#estList").append("" +
 							 "<tr>"+
-								"<th></th>"+
+//								"<th></th>"+
 								"<td>"+
 								"</td>"+
 								"<td></td>"+

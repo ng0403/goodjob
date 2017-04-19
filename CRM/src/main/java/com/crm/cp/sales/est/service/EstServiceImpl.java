@@ -222,6 +222,11 @@ public class EstServiceImpl implements EstService {
 		return estDaoi.opptAdd(opptVo);
 	}
 
+	@Override
+	public List<OpptVO> estHistoryList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return estDaoi.estHistoryList(map);
+	}
 
 
 }
