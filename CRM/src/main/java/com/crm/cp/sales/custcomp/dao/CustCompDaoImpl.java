@@ -388,6 +388,28 @@ public class CustCompDaoImpl implements CustCompDao {
 		return ccActVO;
 	}
 
+	// 영업활동 추가
+	@Override
+	public int custActAdd(List<ActVO> actList) {
+		
+		int result = 0;
+
+		result += sqlSession.insert("custcomp.estimateAdd", actList.get(0));
+		System.out.println("result 1: " + result);
+		if (result == 1) {
+
+			for (int i = 1; i < actList.size(); i++) {
+				System.out.println("custEstimdd : " + actList.get(i).toString());
+				//actList.get(i).setEstim_seq(actList.get(0).getEstim_seq());
+				result += sqlSession.insert("custcomp.actListAdd",	actList.get(i));
+				System.out.println("result 2: " + result);
+
+			}
+		}
+		return result;
+	}
+	
+	
 	// 영업활동 삭제
 	@Override
 	public int deleteAct(List<String> act_idList) {
@@ -611,6 +633,45 @@ public class CustCompDaoImpl implements CustCompDao {
 			e.printStackTrace();
 		}
 		return contrVO;
+	}
+
+	@Override
+	public List<ActVO> actTypeCdList() {
+		return sqlSession.selectList("custcomp.actTypeCdList");
+	}
+
+	@Override
+	public List<ActVO> actStatCdList() {
+		return sqlSession.selectList("custcomp.actStatCdList");
+	}
+
+	@Override
+	public List<ActVO> actDivCdList() {
+		return sqlSession.selectList("custcomp.actDivCdList");
+	}
+
+	// 영업활동 추가
+	@Override
+	public int custActiveAdd(ActVO act) {
+		return sqlSession.insert("custcomp.actListAdd", act);
+	}
+	
+	// 영업활동 수정
+	@Override
+	public int custActiveUpdate(ActVO act) {
+		return sqlSession.update("custcomp.custActiveUpdate", act);
+	}
+
+	// 영업활동 삭제
+	@Override
+	public int custActiveDelete(String cust_id) {
+		return sqlSession.update("custcomp.ccActDelete", cust_id);
+	}
+
+	// 영업활동 상세보기
+	@Override
+	public ActVO actDetail(String sales_actvy_id) {
+		return sqlSession.selectOne("custcomp.actDetail", sales_actvy_id);
 	}
 
 }

@@ -151,7 +151,7 @@
 			<!-- 영업활동 리스트 -->
 		<div id="tabDiv5" class="tab5_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_pop_btn" class="custcomp_btn" value="영업활동 추가"/>
+				<input type="button" id="act_cust_nm" class="custcomp_btn" value="영업활동 추가"/>
 				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="ccActDel('${ctx}');"/>
 			</div>
 			

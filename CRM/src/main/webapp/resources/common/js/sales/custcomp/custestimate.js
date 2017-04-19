@@ -300,8 +300,8 @@ function custEstimAdd(ctx){
 	var discount_unit_cd = [];
 	var unit_check =0;
 	
-	alert("sales_oppt_id" + sales_oppt_id);
-	alert("sales_oppt_nm" + sales_oppt_nm);
+//	alert("sales_oppt_id" + sales_oppt_id);
+//	alert("sales_oppt_nm" + sales_oppt_nm);
 	
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");

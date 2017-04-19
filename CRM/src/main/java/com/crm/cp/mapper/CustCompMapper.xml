@@ -327,6 +327,24 @@
 		where sales_oppt_id = #{oppt_idList}
 	</update>
 	 
+	<!-- 영업활동유형코드 리스트 -->
+	<select id="actTypeCdList" resultType="com.crm.cp.sales.act.vo.ActVO">
+		SELECT CODE sales_actvy_type_cd, CD_NM sales_actvy_type_nm FROM CODE WHERE
+		CD_GRP_ID='ATC'
+	</select>
+
+	<!-- 영업상태코드 리스트 -->
+	<select id="actStatCdList" resultType="com.crm.cp.sales.act.vo.ActVO">
+		SELECT CODE sales_actvy_stat_cd, CD_NM sales_actvy_stat_nm FROM CODE WHERE
+		CD_GRP_ID='ASC'
+	</select>
+
+	<!-- 영업구분코드 리스트 -->
+	<select id="actDivCdList" resultType="com.crm.cp.sales.act.vo.ActVO">
+	SELECT CODE sales_actvy_div_cd, CD_NM sales_actvy_div_nm FROM CODE
+	WHERE CD_GRP_ID='ADC'
+	</select>
+	 
 	 <!-- 영업활동 리스트 -->
 	<select id="ccActList" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 	 	SELECT SA.SALES_ACTVY_ID sales_actvy_id
@@ -352,6 +370,118 @@
 	<select id="ccActCustDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 		select cust_id, cust_nm from customer where cust_id = #{cust_id}
 	</select>
+	
+	<select id="actDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
+		SELECT SA.SALES_ACTVY_ID 
+	            ,SA.SALES_ACTVY_NM 
+			    ,SALES_ACTVY_DIV_CD
+				,SALES_ACTVY_TYPE_CD
+				,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D 
+				,SA.STRT_T 
+				,TO_CHAR(SA.END_D ,'YYYY-MM-DD') END_D 
+				,SA.END_T
+				,SALES_ACTVY_STAT_CD
+			    ,SA.FST_REG_ID ,SA.FIN_MDFY_ID, SA.FST_REG_DT
+			    ,SO.SALES_OPPT_ID
+			    ,SO.SALES_OPPT_NM
+			    ,C.CUST_ID
+	            ,C.CUST_NM
+	            ,SA.MEMO
+	      FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, CUSTOMER C
+		  WHERE SA.SALES_ACTVY_ID = #{sales_actvy_id}
+	      AND SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
+	      AND SA.CUST_ID = C.CUST_ID(+)
+		  AND SA.ACT_YN = 'Y'
+	</select>
+	<!-- 영업활동 추가 -->
+	<update id="actListAdd" parameterType="com.crm.cp.sales.custcomp.vo.CustActVO" >
+		INSERT INTO SALES_ACTIVITY
+		(
+			SALES_ACTVY_ID,
+		    SALES_ACTVY_NM, 
+		    SALES_ACTVY_DIV_CD, 
+		    SALES_ACTVY_TYPE_CD, 
+		    SALES_OPPT_ID, CUST_ID,
+			SALES_ACTVY_STAT_CD, 
+		    STRT_D, 
+		    STRT_T,
+		    END_D, END_T, 
+		    MEMO,
+			FST_REG_ID,
+		    FIN_MDFY_ID
+		  )
+		  VALUES
+		  (
+			 (SELECT 
+		     		DECODE(MAX(SALES_ACTVY_ID), NULL, 'SAT0000001', 'SAT' || lpad( (SUBSTR( MAX( SALES_ACTVY_ID ), 4, 7 ) + 1), 7, 0)) SALES_ACTVY_ID
+		      FROM SALES_ACTIVITY
+		      WHERE ROWNUM=1),
+			  #{sales_actvy_nm, jdbcType=VARCHAR},
+		      #{sales_actvy_div_cd, jdbcType=VARCHAR},
+		      #{sales_actvy_type_cd, jdbcType=VARCHAR},
+		      #{sales_oppt_id, jdbcType=VARCHAR},
+			  #{cust_id, jdbcType=VARCHAR},
+		      #{sales_actvy_stat_cd, jdbcType=VARCHAR},
+		      TO_DATE(#{strt_d},'yyyy-MM-dd'),
+		      #{strt_t},
+		      TO_DATE(#{end_d},'yyyy-MM-dd'),
+		      #{end_t},#{memo},
+		      #{fst_reg_id, jdbcType=VARCHAR},
+		      #{fin_mdfy_id, jdbcType=VARCHAR}
+		    )
+		    
+<!-- 		INSERT INTO SALES_ACTIVITY -->
+<!-- 		( -->
+<!-- 			SALES_ACTVY_ID,  -->
+<!-- 			SALES_ACTVY_NM,  -->
+<!-- 			SALES_ACTVY_TYPE_CD,  -->
+<!-- 			SALES_OPPT_ID,  -->
+<!-- 			CUST_ID, -->
+<!-- 			SALES_ACTVY_STAT_CD,  -->
+<!-- 			STRT_D,  -->
+<!-- 			STRT_T,  -->
+<!-- 			END_D,  -->
+<!-- 			END_T,  -->
+<!-- 			MEMO,  -->
+<!-- 			FST_REG_ID -->
+<!-- 		) -->
+<!-- 		VALUES -->
+<!-- 		( -->
+<!-- 			(SELECT  -->
+<!-- 			    DECODE(MAX(SALES_ACTVY_ID), NULL, 'SAT0000001', 'SAT' || lpad( (SUBSTR( MAX( SALES_ACTVY_ID ), 4, 7 ) + 1), 7, 0)) SALES_ACTVY_ID -->
+<!-- 			FROM SALES_ACTIVITY -->
+<!-- 			WHERE ROWNUM=1), -->
+<!-- 			#{sales_actvy_nm},  -->
+<!-- 			#{sales_actvy_type_cd},  -->
+<!-- 			#{sales_oppt_id}, -->
+<!-- 			(select cust_id from customer where cust_nm = #{cust_nm}),  -->
+<!-- 			#{sales_actvy_stat_cd}, -->
+<!-- 			TO_DATE(#{strt_d},'yyyy-MM-dd'),  -->
+<!-- 			#{strt_t}, -->
+<!-- 			TO_DATE(#{end_d},'yyyy-MM-dd'),  -->
+<!-- 			#{end_t},  -->
+<!-- 			#{memo},  -->
+<!-- 			#{fst_reg_id} -->
+<!-- 		)  	 -->
+	</update>	
+	
+	<!-- 영업활동 수정 -->
+	<update id="custActiveUpdate" parameterType="com.crm.cp.sales.act.vo.ActVO">
+	      UPDATE SALES_ACTIVITY 
+		  SET SALES_ACTVY_NM =#{sales_actvy_nm}
+			  , SALES_ACTVY_DIV_CD=#{sales_actvy_div_cd}
+			  , SALES_ACTVY_TYPE_CD=#{sales_actvy_type_cd}
+			  , SALES_OPPT_ID=#{sales_oppt_id}
+			  , CUST_ID=#{cust_id} 
+	          , SALES_ACTVY_STAT_CD=#{sales_actvy_stat_cd}
+	          , STRT_D= TO_DATE(#{strt_d},'yyyy-MM-dd')
+	          , STRT_T=#{strt_t}, END_D= TO_DATE(#{end_d},'yyyy-MM-dd')
+	          , END_T=#{end_t}
+	          , MEMO=#{memo}
+	          , FIN_MDFY_DT=sysdate
+	          , FIN_MDFY_ID=#{fin_mdfy_id}
+		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
+	</update>
 	
 	<!-- 영업활동 삭제 -->
 	<update id="ccActDelete" parameterType="String">

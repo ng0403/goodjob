@@ -2,8 +2,10 @@
 $(document).ready(function() {
 	
 	var ctx = $("#ctx").val();
-
+	
+	custActiveAdd(ctx);
 	estimateAdd(ctx);
+	
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
@@ -140,7 +142,33 @@ function ccOpptDetail(sales_oppt_id){
 // 영업활동 상세정보 팝업
 function ccActDetail(sales_actvy_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/actDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	alert(sales_actvy_id);
+	window.open(ctx+'/custActiveDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+// 견적 상세정보 팝업
+function ccEstDetail(estim_id){
+	var ctx = $("#ctx").val();
+	window.open(ctx+'/custEstimDetail?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+//계약 상세정보 팝업
+function ccContDetail(contr_id){
+	var ctx = $("#ctx").val();
+	window.open(ctx+'/contDetailPopup?contr_id='+contr_id+'&flag=1','newwindow','width=500, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+
+
+//영업활동 추가 팝업
+function custActiveAdd(ctx){
+	$('#act_cust_nm').click(function(){
+		var salesId = $('#salesId').val();
+		var list_sales_oppt_id = $('#salesId').val();
+		var list_cust_id = $('#nowCust_id').val();
+		
+		window.open(ctx+'/custActiveEstPopup?list_sales_oppt_id='+list_sales_oppt_id+
+				'&list_cust_id='+list_cust_id+'&flag=1', 'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
 }
 
 //견적 추가 팝업
@@ -167,20 +195,6 @@ function estimateAdd(ctx){
 		});
 }
 
-// 견적 상세정보 팝업
-function ccEstDetail(estim_id){
-	var ctx = $("#ctx").val();
-	
-	window.open(ctx+'/custEstimDetail?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-}
-
-
-
-// 계약 상세정보 팝업
-function ccContDetail(contr_id){
-	var ctx = $("#ctx").val();
-	window.open(ctx+'/contDetailPopup?contr_id='+contr_id+'&flag=1','newwindow','width=500, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-}
 
 // 영업기회 전체 체크 해제
 function opptChkCancel() {

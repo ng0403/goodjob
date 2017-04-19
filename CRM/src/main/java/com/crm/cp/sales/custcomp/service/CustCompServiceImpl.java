@@ -296,7 +296,13 @@ public class CustCompServiceImpl implements CustCompService {
 		ActVO ccActVO = ccDao.ccActCustDetail(cust_id);
 		return ccActVO;
 	}
-
+	
+	// 영업활동 추가
+	@Override
+	public int custActAdd(List<ActVO> actList) {
+		return ccDao.custActAdd(actList);
+	}
+	
 	// 영업활동 삭제
 	@Override
 	public String deleteAct(List<String> act_idList) {
@@ -426,5 +432,45 @@ public class CustCompServiceImpl implements CustCompService {
 		contrVO contVO = ccDao.getContCust(cust_id);
 		return contVO;
 	}
+
+	@Override
+	public List<ActVO> actTypeCdList() {
+		return ccDao.actTypeCdList();
+	}
+
+	@Override
+	public List<ActVO> actStatCdList() {
+		return ccDao.actStatCdList();
+	}
+
+	@Override
+	public List<ActVO> actDivCdList() {
+		return ccDao.actDivCdList();
+	}
+
+	// 영업활동 추가 
+	@Override
+	public int custActiveAdd(ActVO act) {
+		return ccDao.custActiveAdd(act);
+	}
+
+	// 영업활동 수정
+	@Override
+	public int custActiveUpdate(ActVO act) {
+		return ccDao.custActiveUpdate(act);
+	}
+
+	// 영업활동 삭제
+	@Override
+	public int custActiveDelete(String cust_id) {
+		return ccDao.custActiveDelete(cust_id);
+	}
+
+	// 영업활동 상세장보
+	@Override
+	public ActVO actDetail(String sales_actvy_id) {
+		return ccDao.actDetail(sales_actvy_id);
+	}
+
 
 }

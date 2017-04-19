@@ -53,6 +53,7 @@ public interface CustCompDao {
 	
 	List<ActVO> getActList(String cust_id); 		// 영업활동 리스트
 	ActVO ccActCustDetail(String cust_id); 			// 영업활동 고객 정보
+	int custActAdd(List<ActVO> actList);			// 영업활동 추가
 	int deleteAct(List<String> act_idList); 		// 영업활동 삭제
 	
 	List<EstVO> elcList();
@@ -73,6 +74,17 @@ public interface CustCompDao {
 	List<CustCompVO> getEmpList(Map<String, Object> iuserMap); 	// 직원검색 리스트
 	
 	List<EstVO> getEstimList(String cust_id);
+
+	List<ActVO> actTypeCdList();
+	List<ActVO> actStatCdList();
+	List<ActVO> actDivCdList();
+
+	int custActiveAdd(ActVO act);			// 영업활동 추가
+	int custActiveUpdate(ActVO act);		// 영업활동 수정
+	int custActiveDelete(String cust_id);	// 영업활동 삭제
+	ActVO actDetail(String sales_actvy_id);		// 영업활동 상세보기
+
+
 
 
 

@@ -52,6 +52,7 @@ public interface CustCompService {
 	
 	List<ActVO> getActList(String cust_id);										// 영업활동 리스트
 	ActVO ccActCustDetail(String cust_id); 										// 영업활동 고객 정보
+	int custActAdd(List<ActVO> actList);										// 영업활동 추가
 	String deleteAct(List<String> act_idList); 									// 영업활동 삭제
 	
 	//List<EstVO> getEstList(String cust_id);										// 견적 리스트
@@ -75,6 +76,17 @@ public interface CustCompService {
 	void custcompInsert(CustCompVO ccVO);
 	void custcompEdit(CustCompVO ccVO);
 	void custcompDelete(String cust_id);
+
+	List<ActVO> actTypeCdList();												// 영업활동 유형코드
+	List<ActVO> actStatCdList();												// 영업활동 상태코드
+	List<ActVO> actDivCdList();													// 영업활동 구분코드
+
+	int custActiveAdd(ActVO act);												// 영업활동 추가
+	int custActiveUpdate(ActVO act);											// 영업활동 수정
+	int custActiveDelete(String cust_id);										// 영업활동 삭제
+	ActVO actDetail(String actvyId);											// 영업활동 상세정보
+	
+
 
 
 
