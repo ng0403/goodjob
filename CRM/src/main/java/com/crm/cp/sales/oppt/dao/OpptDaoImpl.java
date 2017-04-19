@@ -160,6 +160,7 @@ public class OpptDaoImpl implements OpptDao {
 		return sqlsession.selectList("oppt.estimCustomList", map);
 	}
 
+	//영업기회별 견적 추가
 	@Override
 	public int opptEstimAdd(List<EstVO> estList) {
 		// TODO Auto-generated method stub
@@ -190,6 +191,7 @@ public class OpptDaoImpl implements OpptDao {
 		return result;
 	}
 
+	//영업기회별 견적 삭제
 	@Override
 	public int opptEstimDelete(String estim_id) {
 		// TODO Auto-generated method stub
@@ -210,18 +212,21 @@ public class OpptDaoImpl implements OpptDao {
 		return sqlsession.update("oppt.opptDelete", opptId);
 	}
 
+	//영업기회별 활동 상세정보
 	@Override
 	public ActVO actDetail(String actvyId) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("oppt.actDetail", actvyId);
 	}
 
+	//영업기회별 활동 수정
 	@Override
 	public int opptActiveUpdate(ActVO act) {
 		// TODO Auto-generated method stub
 		return sqlsession.update("oppt.opptActiveUpdate", act);
 	}
 
+	//영업기회별 견적 상세정보
 	@Override
 	public List<EstVO> opptEstimDetail(String estimId) {
 		// TODO Auto-generated method stub
@@ -233,6 +238,7 @@ public class OpptDaoImpl implements OpptDao {
 		return prod;
 	}
 
+	//영업기회별 견적 수정
 	@Override
 	public int opptEstimUpdate(Map<String, Object> map) {
 		List<EstVO> estList = (List<EstVO>) map.get("estList");
