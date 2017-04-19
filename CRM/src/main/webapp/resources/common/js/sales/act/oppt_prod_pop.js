@@ -14,15 +14,62 @@
  * OpptProdNmSelect(ctx)						:	상품명 클릭 시
  */
 
-$(function(){
+$(document).ready(function() {
 
 	var ctx = $('#ctx').val();
-	opptProdChargeRealTime();
-	prodallCheck();
-	opptProdDelete();
-	opptProdNmSelect(ctx);
-	opptProdUpdate();
-//	startCalendar(ctx);
+	
+	$("#opptProdtbody").bind('input', function(event) { 
+		var size = event.target.value;
+	    var target = $(event.target);
+	    var id = target.attr("id");
+	    var count = target.parent().parent().children().eq(2).children().val();
+	    var salesamt = target.parent().parent().children().eq(0).children().eq(1).val();
+	    var sellamt =  parseInt(salesamt) * parseInt(count);
+	    var unit = target.parent().children().eq(1).val();
+	    
+	    if(id=='discount')
+ 	    {
+	    	if (unit == '0001') 
+	    	{
+	    		if (parseInt(size) > parseInt(sellamt)) 
+	    		{
+	    			alert("판매가 보다 높게 지정할 수 없습니다.");
+	    			
+	    			event.target.value = event.target.value.substr(0, event.target.value.length - 1);
+	    		}
+	    	} 
+	    	else if (unit == '0002') 
+	    	{
+	    		if (parseInt(size) > parseInt(100)) 
+	    		{
+	    			alert("판매가 보다 높게 지정할 수 없습니다.");
+	    			event.target.value = event.target.value.substr(0, event.target.value.length - 1);
+	    		}
+			}
+		} 
+	    else if (id == 'estim_qty') 
+	    {
+	    	if (parseInt(count) >= parseInt(100)) 
+	    	{
+	    		alert("수량은 1~99까지 가능합니다.");
+	    		event.target.value = event.target.value.substr(0, event.target.value.length - 1);
+	    	} 
+	    	else if (parseInt(count) <= parseInt(0)) 
+	    	{
+				alert("수량은 1~99까지 가능합니다.");
+				event.target.value = "1";
+			}
+	   }
+	   
+	   opptProdUpdate();
+	});
+	
+	opptProdNmSelect(ctx);	// 상품 팝업에서 클릭 했을 때.
+	//opptProdChargeRealTime();
+	//prodallCheck();
+	//opptProdDelete();
+	//opptProdUpdate();
+	//startCalendar(ctx);
 });	
 
 /*견적 상품목록 수정에 사용되는 변수*/
@@ -32,28 +79,35 @@ var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
 
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
-function opptInputProd(prod_id,prod_nm,prod_price){
-
-		var unit="";
-		var flg = $('#flg').val();
-		var data = $('#eduCode').val();
-		var tmp = data.replace("[", "");
-		var tmp2 = tmp.replace("]", "");
-		var arr = tmp2.split(',');
-		unit = '<option value=0>선택</option>';
-		for(var i=0; i<arr.length ; i=i+2){
-			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
-		}
-	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
+function opptInProd(prod_id, prod_nm, prod_price)
+{
+	$("#opptProdtbody .empty").remove();
+	//var unit ="";
+	//var flg  = $('#flg').val();
+	var data = $('#eduCode').val();
+	var tmp  = data.replace("[", "");
+	var tmp2 = tmp.replace("]", "");
+	var arr  = tmp2.split(',');
+	var unit = '<option value=0>선택</option>';
+	
+	for(var i=0; i<arr.length ; i=i+2)
+	{
+		unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
+	}
+	
+	var t = $('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
 	
 	var like = 0;
-	if($("#opptPrdtbody tr").length == 0){
-			if($('#flg').val()=='add'){
-				
-				opptProdAddId.push(prod_id);
-			}
-		$('#opptPrdtbody').append(
+	
+	if($("#opptProdtbody tr").length == 0)
+	{
+		if($('#flg').val()=='add')
+		{
+			prodAddId.push(prod_id);
+		}
+		
+		$('#opptProdtbody').append(
 				'<tr id="priceline" class='+prod_id+'>'+
 				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
@@ -65,21 +119,30 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
 		);
 		like = 1;
-	}else{
-		$("#opptPrdtbody tr").each(function(){		
+	}
+	else
+	{
+		//alert("opptInsertPop.js - else");
+
+		$("#opptProdtbody tr").each(function(){		
 			var old_prodId = $(this).attr("class");
-			if(prod_id == old_prodId){
+			
+			if(prod_id == old_prodId)
+			{
 				var count = $(this).children().eq(2).children().val();
 				$(this).children().eq(2).children().val(parseInt(count)+parseInt(1));
 				like=1;
 			}
 		});
-		if(like==0){
-			if($('#flg').val()=='detail'){
-				opptProdAddId.push(prod_id);
+		
+		if(like==0)
+		{
+			if($('#flg').val()=='detail')
+			{
+				prodAddId.push(prod_id);
 			}
-			$('#opptPrdtbody').append(
-					
+	
+			$('#opptProdtbody').append(
 					'<tr id="priceline" class='+prod_id+'>'+
 					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
@@ -91,11 +154,12 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);
-//			makeBlock();
 		}
 	}
+	
 	opptProdUpdate();
 }
+
 function makeBlock(){
 	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
 		$('#opptPrdtbody').append(
@@ -110,14 +174,13 @@ function makeBlock(){
 				);
 	}
 }
+
 //상품 목록의 input값 변동에 따른 실시간 update
 function opptProdUpdate(){	
 	var countSum = 0;
 	var salesPriceSum = 0;
 	var discountSum = 0;
 	var supplyPriceSum = 0;
-	
-	//alert("oppt_prod_pop.js - opptProdUpdate()");
 	
 	$("#opptProdtbody tr[class!=empty]").each(function(){
 		var countObj=$(this).children().eq(2).children();
@@ -135,8 +198,6 @@ function opptProdUpdate(){
 		var salesamt = $(this).children().eq(0).children().eq(1).val();
 		var sellamt =  parseInt(salesamt) * parseInt(count);
 		
-		//alert("sellamt : " +sellamt + " salesamt : "  + salesamt);
-		
 		if(sellamt=="")
 		{
 			sellamt="0";
@@ -144,12 +205,11 @@ function opptProdUpdate(){
 		
 		amt = sellamt;
 		
+		// 판매가 콤마 찍어서 출력해주는 부분.
 		$(this).children().eq(3).text(comma(amt));
 		
 		salesPriceSum = parseInt(sellamt) + parseInt(salesPriceSum);
 		countSum = parseInt(count) + parseInt(countSum);
-		
-		//alert(salesPriceSum);
 		
 		var disval =  disvalObj.val();
 		
@@ -163,17 +223,22 @@ function opptProdUpdate(){
 		
 		if(unit == "0001")
 		{
-			 disamt = parseInt(amt) - parseInt(disval);
-			 discountSum = parseInt(disval) + parseInt(discountSum);
+			//alert("원");
+			
+			disamt = parseInt(amt) - parseInt(disval);
+			discountSum = parseInt(disval) + parseInt(discountSum);
 		}
 		else if(unit == "0002")
 		{
+			//alert("%");
+			
 			var dis = parseInt(amt) * (parseInt(disval)/100);
 			disamt = parseInt(amt) - parseInt(dis);
 			discountSum = parseInt(dis) + parseInt(discountSum);
 		}
 		else if(unit =="0")
 		{
+			//alert(" 0 ");
 			disamt = parseInt(amt);
 			$(this).children().eq(4).children().eq(0).val("0");
 		}
@@ -182,12 +247,14 @@ function opptProdUpdate(){
 			disamt="0";
 		}
 		
+		//alert("unit : " + unit + " disamt : " + disamt);
+		
 		$(this).children().eq(5).text(comma(disamt));
 		
 		var realamt = $(this).children().eq(5).text();
 		supplyPriceSum = parseInt(disamt) + parseInt(supplyPriceSum);
 		
-		//alert(supplyPriceSum);
+		//alert("supplyPriceSum : " + supplyPriceSum);
 	});
 	
 	$("#countSum").text(comma(countSum));
@@ -196,43 +263,16 @@ function opptProdUpdate(){
 	$("#supplyPriceSum").text(comma(supplyPriceSum));
 	
 }
+
 //input값 bind시 상품 금액 변경 함수 호출
-function opptProdChargeRealTime(){
-	$("#opptPrdtbody").bind('input', function(event) { 
-		var size = event.target.value;
-	    var target = $(event.target);
-	    var id = target.attr("id");
-	    var count = target.parent().parent().children().eq(2).children().val();
-	    var salesamt = target.parent().parent().children().eq(0).children().eq(1).val();
-	    var sellamt =  parseInt(salesamt) * parseInt(count);
-	    var unit = target.parent().children().eq(1).val();
-	   if(id=='discount'){
-		   if(unit=='0001'){
-			   if(parseInt(size)>parseInt(sellamt)){
-				   alert("판매가 보다 높게 지정할 수 없습니다.");
-				   event.target.value = event.target.value.substr(0, event.target.value.length-1);  
-			   }
-		   }else if(unit=='0002'){
-			   if(parseInt(size) > parseInt(100)){
-				   alert("판매가 보다 높게 지정할 수 없습니다.");
-				   event.target.value = event.target.value.substr(0, event.target.value.length-1);
-			   }
-		   }
-	   }else if(id=='estim_qty'){
-		   if(parseInt(count) >= parseInt(100)){
-			   alert("수량은 1~99까지 가능합니다.");
-			   event.target.value = event.target.value.substr(0, event.target.value.length-1);			   
-		   }else if(parseInt(count) <= parseInt(0)){
-			   alert("수량은 1~99까지 가능합니다.");
-			   event.target.value = "1";	
-		   }
-		   
-	   }
-//	   event.target.value = comma(event.target.value);
-//	   alert(event.target.value);
-	    opptProdUpdate();
+function opptProdChargeRealTime()
+{
+	//opptPrdtbody
+	$("#opptProdtbody").bind('input', function(){
+		opptProdUpdate();
 	});
 }
+
 //숫자만 입력
 function onlyNumber(event){
     event = event || window.event;
@@ -242,6 +282,7 @@ function onlyNumber(event){
     else
         return false;
 }
+
 //숫자가 아닌 경우 input값 수정
 function removeChar(event) {
     event = event || window.event;
@@ -256,6 +297,7 @@ function removeChar(event) {
     	event.target.value = event.target.value.replace(/[^0-9]/g, "");    	
     }
 }
+
 //상품 목록 모두 선택
 function prodallCheck(){
 	$("#allSelect").click( function(){
@@ -267,6 +309,7 @@ function prodallCheck(){
 		}
 	});
 }
+
 //상품 목록 삭제
 function opptProdDelete(){
 	$("#opptProdDelete").click(function(){
@@ -277,12 +320,11 @@ function opptProdDelete(){
 				$("."+classVal).remove();
 				
 				if($('#flg').val()=='detail'){
-					
 					opptProdDeleteProdId.push(classVal);
 					opptProdDeleteOpptId.push(estimId);
 				}
 			});
-				opptProdUpdate();	
+			opptProdUpdate();	
 		}
 	});
 }
@@ -298,3 +340,73 @@ function opptProdNmSelect(ctx){
 		self.close();
 	});
 }
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
+//function opptInputProd(prod_id,prod_nm,prod_price){
+//
+//		var unit="";
+//		var flg = $('#flg').val();
+//		var data = $('#eduCode').val();
+//		var tmp = data.replace("[", "");
+//		var tmp2 = tmp.replace("]", "");
+//		var arr = tmp2.split(',');
+//		unit = '<option value=0>선택</option>';
+//		for(var i=0; i<arr.length ; i=i+2){
+//			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
+//		}
+//	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
+//	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
+//	
+//	var like = 0;
+//	if($("#opptPrdtbody tr").length == 0){
+//			if($('#flg').val()=='add'){
+//				
+//				opptProdAddId.push(prod_id);
+//			}
+//		$('#opptPrdtbody').append(
+//				'<tr id="priceline" class='+prod_id+'>'+
+//				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
+//				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
+//				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+//				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
+//				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
+//				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
+//				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+//				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
+//		);
+//		like = 1;
+//	}else{
+//		$("#opptPrdtbody tr").each(function(){		
+//			var old_prodId = $(this).attr("class");
+//			if(prod_id == old_prodId){
+//				var count = $(this).children().eq(2).children().val();
+//				$(this).children().eq(2).children().val(parseInt(count)+parseInt(1));
+//				like=1;
+//			}
+//		});
+//		if(like==0){
+//			if($('#flg').val()=='detail'){
+//				opptProdAddId.push(prod_id);
+//			}
+//			$('#opptPrdtbody').append(
+//					
+//					'<tr id="priceline" class='+prod_id+'>'+
+//					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
+//					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
+//					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+//					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
+//					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
+//					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
+//					 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+//					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
+//					'</tr>'
+//			);
+////			makeBlock();
+//		}
+//	}
+//	opptProdUpdate();
+//}

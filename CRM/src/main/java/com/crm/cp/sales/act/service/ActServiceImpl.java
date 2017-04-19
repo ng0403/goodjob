@@ -58,16 +58,6 @@ public class ActServiceImpl implements ActService{
 		return actDao.actDivCdList();
 	}
 	
-	/**
-	 * 상세보기 화면
-	 * 영업기회 리스트 출력
-	 * */
-	@Override
-	public List<OpptVO> opptList(String cust_id) {
-		// TODO Auto-generated method stub
-		return actDao.opptList(cust_id);
-	}
-
 	@Override
 	public List<Object> actOpptList() {
 		return actDao.actOpptList();
@@ -113,6 +103,38 @@ public class ActServiceImpl implements ActService{
 	@Override
 	public void actDelete(String sales_actvy_id) {
 		actDao.actDelete(sales_actvy_id);
+	}
+	
+	/*영화씨가 봐야할 부분.*/
+	/**
+	 * 상세보기 화면
+	 * 영업기회 리스트 출력
+	 * */
+	@Override
+	public List<OpptVO> opptList(String cust_id) {
+		// TODO Auto-generated method stub
+		return actDao.opptList(cust_id);
+	}
+
+	// 상품 삭제
+	@Override
+	public int opptProdDelete(String opptId) {
+		// TODO Auto-generated method stub
+		return actDao.opptProdDelete(opptId);
+	}
+
+	// 영업기회 수정
+	@Override
+	public int opptTabModify(OpptVO detail) {
+		// TODO Auto-generated method stub
+		return actDao.opptTabModify(detail);
+	}
+
+	// 상품 수정
+	@Override
+	public int opptTabPrdtModfy(List<OpptVO> opptList) {
+		// TODO Auto-generated method stub
+		return actDao.opptTabPrdtModfy(opptList);
 	}
 
 

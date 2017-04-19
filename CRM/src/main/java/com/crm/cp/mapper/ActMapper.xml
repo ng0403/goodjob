@@ -249,6 +249,7 @@
 	      WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
 	
+	<!-- 영화씨가 봐야될 쿼리. -->
 	<!-- 상세보기 영업기회리스트 출력  -->
 	<select id="detailOpptList" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
 		select d.*, r
@@ -274,13 +275,70 @@
 		)d
 		where d.cust_id = #{cust_id} and d.sales_oppt_stat_cd = '0001'
 	</select>
-
-
-
-
-
-
 	
+	<!-- 업데이트 -->
+	<update id="opptTabModfy" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		UPDATE sales_opportunity
+		SET
+			SALES_OPPT_NM      = #{sales_oppt_nm},
+			SALES_OPPT_STAT_CD = #{sales_oppt_stat_cd},
+			SALES_LEV_CD       = #{sales_lev_cd},
+			EXPT_FIN_D         = #{expt_fin_d},
+			PSBLTY_RATE        = #{psblty_rate},
+			MEMO               = #{memo}
+		WHERE
+			SALES_OPPT_ID = #{sales_oppt_id}
+	</update>
+	
+	<!-- 영업기회별 상품 추가 -->
+	<update id="opptprdtInsert" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		INSERT INTO PROD_OF_SALES_OPPT
+		  (
+		    SALES_OPPT_ID,
+		    PROD_ID,
+		    PROD_QTY,
+		    PROD_PRICE,
+		    SUP_PRICE,
+		    DISCOUNT,
+		    DISCOUNT_UNIT_CD,
+		    FST_REG_ID,
+		    FIN_MDFY_ID
+		  )
+		  VALUES
+		  (
+			#{sales_oppt_id}
+		    ,#{prod_id}
+		    ,#{estim_qty}
+		    ,#{sales_price}
+		    ,#{sup_price}
+		    ,#{discount}
+		    ,#{discount_unit_cd}
+		    ,'admin'
+		    ,'admin'
+		  )
+	</update>
+	<!-- /업데이트 -->
+	
+	<!-- 삭제 -->
+	<update id="opptTabDelete" parameterType="String">
+		UPDATE sales_opportunity
+		SET act_yn = 'N'
+		WHERE sales_oppt_id = #{opptId}
+	</update>
+	
+	<!-- 영업기회 별 상품 테이블 삭제 -->
+	<delete id="opptProdDelete" parameterType="String">
+		DELETE FROM prod_of_sales_oppt
+		WHERE sales_oppt_id = #{opptId}
+	</delete>
+	<!-- /삭제 -->
+
+
+
+
+
+
+	<!-- 안씀. -->	
 	<select id="actOneSelectId" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 	      SELECT SA.SALES_ACTVY_NM ,SA.SALES_ACTVY_ID 
 			    ,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ADC' AND C.code = SA.SALES_ACTVY_DIV_CD) SALES_ACTVY_DIV_CD

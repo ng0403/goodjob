@@ -55,19 +55,6 @@ public class ActDaoImpl implements ActDao{
 		return sqlSession.selectList("act.actDivCdList");
 	}
 	
-	/**
-	 * 상세보기 화면
-	 * 영업기회 리스트 출력
-	 * */
-	@Override
-	public List<OpptVO> opptList(String cust_id) {
-		// TODO Auto-generated method stub
-		System.out.println(cust_id);
-		List<OpptVO> test = sqlSession.selectList("act.detailOpptList", cust_id);
-		
-		return test;
-	}
-
 	@Override
 	public List<Object> actOpptList() {
 		return sqlSession.selectList("act.actOpptList");
@@ -115,6 +102,72 @@ public class ActDaoImpl implements ActDao{
 	public void actDelete(String sales_actvy_id) {
 		sqlSession.update("act.actDelete", sales_actvy_id);
 		
+	}
+	
+	/*영화씨가 봐야할 부분.*/
+	/**
+	 * 상세보기 화면
+	 * 영업기회 리스트 출력
+	 * */
+	@Override
+	public List<OpptVO> opptList(String cust_id) {
+		// TODO Auto-generated method stub
+		System.out.println(cust_id);
+		List<OpptVO> test = sqlSession.selectList("act.detailOpptList", cust_id);
+		
+		return test;
+	}
+
+	@Override
+	public int opptProdDelete(String opptId) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		
+		// 영업기회를 지우고 난 뒤에 해당 영업기회의 상품들을 지원야한다.
+		// 상품과 단계이력은 delete로 아예 지워야한다.
+		result += sqlSession.update("act.opptTabDelete", opptId);
+		
+		System.out.println("actDaoImpl - opptProdDelete (result) : " + result);
+		
+		if(result == 1)
+		{
+			System.out.println("영업기회는 삭제됨.");
+			sqlSession.delete("act.opptProdDelete", opptId);
+			System.out.println("영업기회별 상품도 삭제됨.");
+		}
+		else
+		{
+			System.out.println("ERROR " + result);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int opptTabModify(OpptVO detail) {
+		// TODO Auto-generated method stub
+		//opptTabDelete
+		return sqlSession.update("act.opptTabModfy", detail);
+	}
+
+	@Override
+	public int opptTabPrdtModfy(List<OpptVO> opptList) {
+		// TODO Auto-generated method stub
+		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " + opptList );
+		int result = 0;
+
+		String opptId = opptList.get(0).getSales_oppt_id();
+		sqlSession.delete("act.opptProdDelete", opptId);
+		
+		for (int i = 0; i < opptList.size(); i++) 
+		{
+			result += sqlSession.insert("act.opptprdtInsert",  opptList.get(i));
+			System.out.println("result 2: " + result);
+		}
+		
+		System.out.println("result sum: " + result);
+		
+		return result;
 	}
 
 

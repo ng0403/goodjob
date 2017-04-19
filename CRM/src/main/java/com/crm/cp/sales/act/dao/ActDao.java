@@ -44,11 +44,11 @@ public interface ActDao {
 	// 상세보기 화면 영업기회리스트 출력 
 	List<OpptVO> opptList(String cust_id);
 	
-	//public int opptProdAdd(List<OpptPrdtVO> prodList);
+	// 상품 삭제 (해야됨.)
+	int opptProdDelete(String opptId);
 	
-
-	/*List<ActVO> actList(Map<String, Object> actMap);
-
-	int getActListCount(Map<String, Object> actMap);*/
-
+	int opptTabModify(OpptVO detail);
+	
+	int opptTabPrdtModfy(List<OpptVO> opptList);
+	
 }

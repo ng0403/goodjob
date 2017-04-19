@@ -20,9 +20,6 @@ public interface ActService {
 
 	List<ActVO> actDivCdList();
 	
-	// 상세보기 화면 영업기회리스트 출력 
-	List<OpptVO> opptList(String cust_id);
-
 	List<Object> actOpptList();
 
 	List<Object> actOpptList(Map<String, Object> map);
@@ -41,7 +38,18 @@ public interface ActService {
 	
 	void actDelete(String sales_actvy_id);
 
-
+	/**
+	 * 영화씨가 봐야할 곳.
+	 * */
+	// 상세보기 화면 영업기회리스트 출력 
+	List<OpptVO> opptList(String cust_id);
+	
+	// 상품 삭제 (해야됨.)
+	int opptProdDelete(String opptId);
+	
+	int opptTabModify(OpptVO detail);
+	
+	int opptTabPrdtModfy(List<OpptVO> opptList);
 
 	/*PagerVO getActListCount(Map<String, Object> actMap);*/
 

@@ -303,196 +303,7 @@ public class ActController {
 		return mov;
 	}
 
-	//opptInsert
-	// 영업기회 탭에서 insert POPUP
-	@RequestMapping(value = "/opptInsertPopup", method = RequestMethod.GET)
-	public ModelAndView opptInsertPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_sales_oppt_id) 
-	{
-		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = opptService.opptOscList();
-		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = opptService.opptOtlList();
-		List<EstVO> elclist = estInter.elcList();
-		List<EstVO> eduList = estInter.eduList();
-		List<String> eduCode = new ArrayList<String>(0);
-		
-		for(EstVO est: eduList){
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
-		}
-		
-		System.out.println("actDetail - eduCode : " + eduCode.toString());
-		
-		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
-		
-		mov.addObject("popFlg", "add");
-		mov.addObject("osclist", osclist);
-		mov.addObject("otllist", otllist);
-		mov.addObject("eduList", eduList);
-		mov.addObject("eduCode", eduCode);
-		mov.addObject("elclist", elclist);
-		
-		return mov;
-	}
 	
-	//opptInsert
-	// 영업기회 탭에서 insert POPUP
-	@RequestMapping(value = "/opptDetailPop", method = RequestMethod.GET)
-	public ModelAndView opptDetailPop(HttpSession session, String sales_oppt_id) 
-	{
-		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = opptService.opptOscList();
-		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = opptService.opptOtlList();
-		// opptDetail -> sales_oppt_id
-		OpptVO opDetail = opptService.opptDetail(sales_oppt_id);
-		
-		List<EstVO> elclist = estInter.elcList();
-		List<EstVO> eduList = estInter.eduList();
-		List<String> eduCode = new ArrayList<String>(0);
-		
-		for(EstVO est: eduList){
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
-		}
-		
-		System.out.println("osclist : " + osclist);
-		System.out.println("otllist : " + otllist);
-		System.out.println("opDetail : " + opDetail);
-		
-		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
-		//mov.addObject("popFlg", "add");
-		mov.addObject("popFlg", "popDetail");
-		mov.addObject("osclist", osclist);
-		mov.addObject("otllist", otllist);
-		mov.addObject("eduList", eduList);
-		mov.addObject("eduCode", eduCode);
-		mov.addObject("elclist", elclist);
-		mov.addObject("opDetail", opDetail);
-		
-		return mov;
-	}	
-	
-	// 영업기회 리스트 ajax
-	@RequestMapping(value = "/opptTabajax", method = RequestMethod.POST)
-	@ResponseBody Map<String, Object> listajax(OpptVO opptVo,
-				@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) 
-	{
-		System.out.println("opptTabajax cust_id : " + opptVo.getCust_id());
-		
-		List<OpptVO> opptList = actService.opptList(opptVo.getCust_id());
-		
-		System.out.println("opptTabajax opptList : " + opptList);
-
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("opptList", opptList);
-
-		return result;
-	}
-	
-	// 영업기회 추가 ajax
-	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
-	@ResponseBody int opptAdd(HttpSession session, OpptVO add, @RequestParam(value="est_list[]",required=false) List<String> est_list, String total_sup_price) 
-	{
-		System.out.println("est_list : " + est_list);
-		List<OpptVO> estList = new ArrayList<OpptVO>(0);
-	
-		add.setFst_reg_id(session.getAttribute("user").toString());
-		add.setFin_mdfy_id(session.getAttribute("user").toString());
-		System.out.println(total_sup_price);
-		
-		add.setTotal_sup_price(total_sup_price);
-			
-		int result = opptService.opptAdd(add);	// 기회 insert
-		System.out.println("기회 insert 완료 : " + add);
-		System.out.println("add.getSales_oppt_id() : " + add.getSales_oppt_id());
-		//int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
-		
-		for(int i=0 ; i< est_list.size(); i++)
-		{
-			System.out.println("for문 처음");
-			OpptVO vo = new OpptVO();
-			
-			vo.setSales_oppt_id("");
-			vo.setProd_id(est_list.get(i));
-			vo.setProd_nm(est_list.get(++i));
-			//vo.setProd_price(est_list.get(++i));
-			vo.setEstim_qty(est_list.get(++i));	// 수량 개수
-			vo.setSales_price(est_list.get(++i));			
-			vo.setSup_price(est_list.get(++i));
-			vo.setDiscount(est_list.get(++i));
-			vo.setDiscount_unit_cd(est_list.get(++i));
-			vo.setOppt_seq(add.getOppt_seq());
-			
-			estList.add(vo);
-			
-			System.out.println("for문 estList : " + estList);
-		}
-		
-		int result1 = opptService.opptPrdtAdd(estList);
-		
-		System.out.println("영업기회 상품 추가 result : " + result1);
-		
-		System.out.println("영업기회 추가 result : " + result);
-		//System.out.println("영업기회 단계 이력 추가 result : " + result2);
-		
-		return result;
-	}	
-
-	@RequestMapping(value = "/opptInsert1", method = RequestMethod.POST)
-	@ResponseBody int opptInsert(HttpSession session, @RequestParam(value = "est_list[]", required = false) List<String> est_list, OpptVO opptVo) 
-	{
-		opptVo.setFst_reg_id(session.getAttribute("user").toString());
-		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
-		
-		List<OpptVO> opptProdList = new ArrayList<OpptVO>(0);
-		
-		opptProdList.add(opptVo);
-		
-		System.out.println("est_list : " + est_list.get(0));
-		System.out.println("est_list : " + est_list.get(1));
-		System.out.println("est_list : " + est_list.get(2));
-		System.out.println("est_list : " + est_list.get(3));
-		System.out.println("est_list : " + est_list.get(4));
-		System.out.println("est_list : " + est_list.get(5));
-		
-		for (int i = 0; i < est_list.size(); i++) 
-		{
-			OpptVO vo = new OpptVO();
-			
-			vo.setProd_id(est_list.get(i));
-			vo.setProd_nm(est_list.get(++i));
-			vo.setProd_price(est_list.get(++i));
-			vo.setDiscount(est_list.get(++i));
-			vo.setSup_price(est_list.get(++i));
-			vo.setDiscount_unit_cd(est_list.get(++i));
-			
-			opptProdList.add(vo);
-			System.out.println("OPPT PROD : " + opptProdList);
-		}
-		System.out.println("opptVo : " + opptVo);
-		
-		// 영업활동 추가 result = 1 이면 성공.
-		//int result = 0; 
-		// DAO에서 컨트롤을 한다. 매개변수는 opptProdList로 보낸다.
-		// actService.opptProdAdd(opptProdList);
-		int result = opptService.opptPrdtAdd(opptProdList);
-		
-		return result;
-	}
-	
-	@RequestMapping(value = "/opptModfy", method = RequestMethod.POST)
-	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo) 
-	{
-		opptVo.setFst_reg_id(session.getAttribute("user").toString());
-		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
-
-		System.out.println(opptVo.getSales_oppt_id());
-		// 영업활동 편집
-		int result = opptService.opptModify(opptVo);
-		
-		return result;
-	}
 	
 	// 상세정보에서의 고객 리스트
 	@RequestMapping(value = "/opptCustPopup", method = RequestMethod.GET)
@@ -530,6 +341,9 @@ public class ActController {
 			
 	}
 	
+	/**
+	 * 영화씨
+	 * */
 	//기회-상품추가 팝업 open controller
 	@RequestMapping(value = "/prodList", method = RequestMethod.GET)
 	public ModelAndView prodList(HttpSession session,
@@ -548,5 +362,208 @@ public class ActController {
 		mov.addObject("prodList", prodList);
 
 		return mov;
+	}
+	
+	//opptInsert
+	// 영업기회 탭에서 insert POPUP
+	@RequestMapping(value = "/opptInsertPopup", method = RequestMethod.GET)
+	public ModelAndView opptInsertPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_sales_oppt_id) 
+	{
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = opptService.opptOscList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = opptService.opptOtlList();
+		List<EstVO> elclist = estInter.elcList();
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		
+		for(EstVO est: eduList)
+		{
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+		
+		System.out.println("actDetail - eduCode : " + eduCode.toString());
+		
+		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
+			
+		mov.addObject("popFlg", "add");
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+		mov.addObject("elclist", elclist);
+			
+		return mov;
+	}
+		
+	// opptDetailPop
+	// 영업기회 탭에서 opptDetailPop
+	@RequestMapping(value = "/opptDetailPop", method = RequestMethod.GET)
+	public ModelAndView opptDetailPop(HttpSession session, String sales_oppt_id) 
+	{
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = opptService.opptOscList();
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = opptService.opptOtlList();
+		// opptDetail -> sales_oppt_id
+		OpptVO opDetail = opptService.opptDetail(sales_oppt_id);
+			
+		List<EstVO> elclist = estInter.elcList();
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		
+		for(EstVO est: eduList)
+		{
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+		
+		List<OpptVO> prodlist = opptService.opptPrdtDetail(sales_oppt_id);
+		
+		System.out.println("opptDetailPop - elclist : " + elclist);
+		System.out.println("opptDetailPop - eduList : " + eduList);
+		System.out.println("opptDetailPop - eduCode : " + eduCode);
+		System.out.println("opptDetailPop - opDetail : " + opDetail);
+		System.out.println("opptDetailPop - prod : " + prodlist);
+		
+		ModelAndView mov = new ModelAndView("/sales/act/actPop/opptInsertPopup");
+
+		mov.addObject("popFlg", "popDetail");
+		mov.addObject("prodlist", prodlist);
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		mov.addObject("eduList", eduList);
+		mov.addObject("eduCode", eduCode);
+		mov.addObject("elclist", elclist);
+		mov.addObject("opDetail", opDetail);
+		
+		return mov;
+	}	
+		
+	// 영업기회 리스트 ajax
+	@RequestMapping(value = "/opptTabajax", method = RequestMethod.POST)
+	@ResponseBody Map<String, Object> listajax(OpptVO opptVo,
+				@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) 
+	{
+		System.out.println("opptTabajax cust_id : " + opptVo.getCust_id());
+			
+		List<OpptVO> opptList = actService.opptList(opptVo.getCust_id());
+		
+		System.out.println("opptTabajax opptList : " + opptList);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("opptList", opptList);
+
+		return result;
+	}
+		
+	// 영업기회 추가 ajax
+	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
+	@ResponseBody int opptAdd(HttpSession session, OpptVO add, @RequestParam(value="est_list[]",required=false) List<String> est_list, String total_sup_price) 
+	{
+		System.out.println("est_list : " + est_list);
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		
+		add.setFst_reg_id(session.getAttribute("user").toString());
+		add.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println("opptAdd - total_sup_price : " + total_sup_price);
+		
+		add.setTotal_sup_price(total_sup_price);
+			
+		int result = opptService.opptAdd(add);	// 기회 insert
+		System.out.println("기회 insert 완료 : " + add);
+		System.out.println("add.getSales_oppt_id() : " + add.getSales_oppt_id());
+		//int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
+		
+		//estList.add(add);
+		
+		for(int i=0 ; i< est_list.size(); i++)
+		{
+			System.out.println("for문 처음");
+			OpptVO vo = new OpptVO();
+			
+			vo.setSales_oppt_id("");
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			//vo.setProd_price(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));	// 수량 개수
+			vo.setSales_price(est_list.get(++i));			
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			vo.setOppt_seq(add.getOppt_seq());
+			
+			estList.add(vo);
+			
+			System.out.println("for문 estList : " + estList);
+		}
+		
+		int result1 = opptService.opptPrdtAdd(estList);
+		
+		System.out.println("영업기회 상품 추가 result : " + result1);
+		
+		System.out.println("영업기회 추가 result : " + result);
+		//System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		
+		return result;
+	}	
+	
+	// 영업기회 수정
+	@RequestMapping(value = "/opptTabModfy", method = RequestMethod.POST)
+	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo, @RequestParam(value="est_list[]",required=false) List<String> est_list, String total_sup_price) 
+	{
+		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		//OpptVO detail
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		
+		int result = actService.opptTabModify(opptVo);
+		System.out.println(result);
+		
+		for(int i=0 ; i< est_list.size(); i++)
+		{
+			OpptVO vo = new OpptVO();
+			
+			vo.setSales_oppt_id(opptVo.getSales_oppt_id());
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));	// 수량 개수
+			vo.setSales_price(est_list.get(++i));			
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			
+			estList.add(vo);
+			
+			System.out.println("for문 estList : " + estList);
+		}
+		
+		int result1 = actService.opptTabPrdtModfy(estList);
+		System.out.println(result1);
+		
+		return result;
+	}
+		
+	// 영업기회 삭제 / 영업기회별 상품 삭제
+	@RequestMapping(value = "/opptTabDelete", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody int opptDelete(HttpSession session, OpptVO opptVo,
+			@RequestParam(value="opptidList[]", required=false) List<String> opptidList) 
+	{
+		System.out.println("opptidList : " + opptidList);
+		
+		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		// 영업활동 삭제
+		int result = 0;
+			
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < opptidList.size(); i++) 
+		{
+			result += actService.opptProdDelete(opptidList.get(i));
+		}
+		
+		return result;
 	}
 }

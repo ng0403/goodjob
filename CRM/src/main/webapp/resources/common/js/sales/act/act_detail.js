@@ -802,6 +802,9 @@ function searchActDiv(){
 	}
 }
 
+/**
+ * 영화씨가 봐야될 부분.
+ * */
 // 영업기회탬에서 추가버튼 눌렀을 때.
 function opptInsertPop()
 {
@@ -830,20 +833,19 @@ function opptTabList(cust_id)
 			$("#activeOpptList").children().remove();
 			
 			$.each(result.opptList, function(i, list){
-				console.log(result);
-				console.log(result.opptList);
+				
 				$("#activeOpptList").append("" +
 						"<tr id='"+list.sales_oppt_id+"'>"+
 						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
 						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
-						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
-						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+	//opptTabDetail('"+list.sales_oppt_id+"');'
+						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
 						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
+						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 						"<td>"+list.sales_lev_cd_nm+"</td>"+
 						"<td style='text-align: right; padding-right:5px;'>"+comma(list.expt_sales_amt)+"</td>"+
 						"<td>"+list.expt_fin_d+"</td>"+
 						"<td>"+list.psblty_rate+"</td>"+
-						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 						"<td>"+list.fst_reg_id+"</td>"+
 						"<td>"+list.fst_reg_dt+"</td>+"+
 						"</tr>"
@@ -871,16 +873,19 @@ function actTabFunc(sales_actvy_id) {
 	});
 }
 
-function opptTabDetail(ctx, sales_oppt_id)
+function opptTabDetail(sales_oppt_id)
 {
-	alert("ctx : " + ctx + "sales_oppt_id : " + sales_oppt_id);
-	window.open(ctx+'/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	alert("sales_oppt_id : " + sales_oppt_id);
+	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 
 function actOpptDelBt()
 {
 	var salesId = $('#salesId').val();
+	var custId  = $('#cust_id').val();
+	
+	alert("custID : " + custId);
 	
 	if($("input[name=sales_oppt_id]:checked").length==0)
 	{
@@ -895,20 +900,20 @@ function actOpptDelBt()
 			var opptId = $('#salesId').val();
 			var sales_actvy_id = [];
 		
-			$("input[name=list_sales_oppt_id]:checked").each(function(){
+			$("input[name=sales_oppt_id]:checked").each(function(){
 				opptidList.push($(this).val());
 			});
 			
 			$.ajax({
 				type : 'get',
-				url : 'opptDelete',
+				url : 'opptTabDelete',
 				data : {
-						 opptidList : opptidList
-					},
+					opptidList : opptidList
+				},
 				dataType : 'json',
 				success : function(result){
 					alert("영업기회가 삭제되었습니다.");
-					opptTabList();
+					opptTabList(custId);
 				},
 				error : function(request){
 					alert("error : " + request);

@@ -64,11 +64,13 @@
 							<th style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
 							<td style="width: 20%;">영업기회명</td>
 							<td style="width: 8%;">고객사</td>
-<!-- 							<td style="width: 6%;">상태</td> -->
+							<td style="width: 6%;">상태</td>
 							<td style="width: 8%;">영업단계</td>
-							<td style="width: 8%;">가능성</td>
-							<td style="width: 10%;">등록자</td>
-							<td style="width: 10%;">등록일시</td>
+							<td style="width: 10%;">예상매출액</td>
+							<td style="width: 10%;">예상마감일자</td>
+							<td style="width: 7%;">가능성</td>
+							<td style="width: 8%;">등록자</td>
+							<td style="width: 15%;">등록일시</td>
 						</tr>
 					</thead>
 					<tbody id="activeOpptList">
@@ -79,12 +81,14 @@
 										<input type="checkbox"  id="actAllSelect" name="sales_oppt_id" value="${opptList.sales_oppt_id}"/>
 									</th>
 										<td>
-											<a onclick="opptTabDetail('${ctx}','${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
+											<a onclick="opptTabDetail('${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
 										</td>
 										<td>${opptList.cust_nm}</td>
+										<td>${opptList.sales_oppt_stat_cd_nm}</td>
 										<td>${opptList.sales_lev_cd_nm}</td>
-<%-- 										<td style="text-align: right; padding-right:5px;">${opptList.}</td> --%>
-										<td>${opptList.expt_sales_amt}</td>
+										<td style="text-align: right; padding-right:5px;">comma(${opptList.expt_sales_amt})</td>
+										<td>${opptList.expt_fin_d}</td>
+										<td>${opptList.psblty_rate}</td>
 										<td>${opptList.fst_reg_id}</td>
 										<td>${opptList.fst_reg_dt}</td>
 								</tr>

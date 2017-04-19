@@ -47,10 +47,36 @@ function delete_comma(str) {
 	return str.replace(/[^\d]+/g, '');
 }
 
+//숫자 사이 쉼표 추가
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
 //컴마 해제 함수
 function uncomma(str) {
   str = String(str);
   return str.replace(/[^\d]+/g, '');
+}
+
+//달력띄우기
+function startCalendar(ctx)
+{
+	 $("#expt_fin_d").datepicker({
+		 changeMonth: true, //콤보 박스에 월 보이기
+		 changeYear: true, // 콤보 박스에 년도 보이기
+		 showOn: 'button', // 우측에 달력 icon 을 보인다.
+		 buttonImage: '/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+		 buttonImageOnly: true //달력에 icon 사용하기
+	  }); 
+	   
+	 //마우스를 손가락 손가락 모양으로 하고 여백주기
+	 $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	  
+	 //날짜 형식을 0000-00-00으로 지정하기
+	 $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	/*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
+
 }
 
 function opptSave()
@@ -132,7 +158,6 @@ function opptSave()
 		est_list.push(discount.pop());
 		est_list.push(discount_unit_cd.pop());
 		
-		
 	});
 	
 	$.ajax({
@@ -170,7 +195,6 @@ function opptMdfySave()
 	var sales_oppt_id = $("#hsales_oppt_id").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
-	var expt_sales_amt = $("#expt_sales_amt").val();
 	var expt_fin_d = $("#expt_fin_d").val();
 	var psblty_rate = $("#psblty_rate").val();
 	var sales_oppt_stat_cd = $("#sales_oppt_stat_cd").val();
@@ -179,6 +203,44 @@ function opptMdfySave()
 	var memo = $("#memo").val();
 	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();
 	var sales_oppt_stat_cd_nm =  $("#sales_oppt_stat_cd option:selected").text();
+	var total_sup_price = delete_comma($("#supplyPriceSum").text());
+	
+	var prod_id = [];
+	var prod_nm = [];
+	var sales_price = [];
+	var discount  = [];
+	var sup_price = [];
+	var estim_qty = [];
+	var est_list  = [];
+	var discount_unit_cd = [];
+	var unit_check = 0;
+	
+	$("#opptProdtbody tr").each(function(){
+		cd  = $(this).children().eq(4).children().eq(1).val();
+		
+		if(cd =='0')
+		{
+			unit_check++;
+		}
+		discount_unit_cd.push(cd);
+		
+		prod_id.push($(this).children().children().val());
+		prod_nm.push($(this).children().eq(1).text());
+		sales_price.push(uncomma($(this).children().eq(3).text()));
+		discount.push(uncomma($(this).children().eq(4).children().val()));
+		sup_price.push(uncomma($(this).children().eq(5).text()));
+		estim_qty.push(uncomma($(this).children().eq(2).children().val()));
+		
+		est_list.push(prod_id.pop());
+		est_list.push(prod_nm.pop());
+		est_list.push(estim_qty.pop());
+		est_list.push(sales_price.pop());
+		est_list.push(sup_price.pop());
+		est_list.push(discount.pop());
+		est_list.push(discount_unit_cd.pop());
+		
+	});
+	
 /*
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
@@ -207,17 +269,18 @@ function opptMdfySave()
 	{
 		$.ajax({
 			type : 'post',
-			url : '/opptModfy',
+			url : '/opptTabModfy',
 			data : {
 				sales_oppt_id : sales_oppt_id,
 				sales_oppt_nm : sales_oppt_nm,
+				total_sup_price : total_sup_price,
 				sales_lev_cd : sales_lev_cd,
-				expt_sales_amt : expt_sales_amt,
 				expt_fin_d : expt_fin_d,
 				psblty_rate : psblty_rate,
 				sales_oppt_stat_cd : sales_oppt_stat_cd,
 				cust_id : cust_id,
-				memo : memo
+				memo : memo,
+				est_list : est_list
 			},
 			datatype : 'json',
 			success : function(result) {
@@ -247,93 +310,6 @@ function opptProdList()
 	window.open('/prodList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
-//상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
-function opptInProd(prod_id, prod_nm, prod_price)
-{
-	var unit ="";
-	var flg  = $('#flg').val();
-	var data = $('#eduCode').val();
-	var tmp  = data.replace("[", "");
-	var tmp2 = tmp.replace("]", "");
-	var arr  = tmp2.split(',');
-	
-	unit = '<option value=0>선택</option>';
-	
-	for(var i=0; i<arr.length ; i=i+2)
-	{
-		unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
-	}
-	
-	var t = $('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
-	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
-	
-	//alert("opptInsertPop.js : " + t);
-	
-	var like = 0;
-	
-	if($("#opptProdtbody tr").length == 0)
-	{
-		// 여기 들어옴.
-		//alert("opptInsertPop.js - if");
-		
-		if($('#flg').val()=='add')
-		{
-			prodAddId.push(prod_id);
-		}
-		
-		$('#opptProdtbody').append(
-				'<tr id="priceline" class='+prod_id+'>'+
-				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
-				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
-				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
-				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
-				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
-				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
-		);
-		like = 1;
-	}
-	else
-	{
-		//alert("opptInsertPop.js - else");
-
-		$("#opptProdtbody tr").each(function(){		
-			var old_prodId = $(this).attr("class");
-			
-			if(prod_id == old_prodId)
-			{
-				var count = $(this).children().eq(2).children().val();
-				$(this).children().eq(2).children().val(parseInt(count)+parseInt(1));
-				like=1;
-			}
-		});
-		
-		if(like==0)
-		{
-			if($('#flg').val()=='detail')
-			{
-				prodAddId.push(prod_id);
-			}
-			$('#opptProdtbody').append(
-					
-					'<tr id="priceline" class='+prod_id+'>'+
-					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
-					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
-					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
-					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
-					 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
-					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
-					'</tr>'
-			);
-		}
-	}
-	
-	//alert("opptProdUpdate() 들어가기 전");
-	opptProdUpdate();
-}
 
 
 
