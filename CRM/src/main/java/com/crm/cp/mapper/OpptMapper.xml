@@ -270,7 +270,8 @@
 			#{sales_oppt_id}
 		</if>
 		 <if test="sales_oppt_id == ''">
-			 (select sales_oppt_id from sales_opportunity where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPORTUNITY where 1=1))
+<!-- 			 (select sales_oppt_id from sales_opportunity where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPORTUNITY where 1=1)) -->
+			#{oppt_seq}
 		</if>
 			, #{sales_lev_cd}
 			, sysdate
