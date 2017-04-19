@@ -78,13 +78,13 @@ public class OpptServiceImpl implements OpptService {
 		// TODO Auto-generated method stub
 		return dao.opptModify(detail);
 	}
-//영업기회 추가
+//영업기회 추가(사용)
 	@Override
 	public int opptAdd(OpptVO add) {
 		// TODO Auto-generated method stub
 		return dao.opptAdd(add);
 	}
-	//영업기회단계 추가
+	//영업기회단계 추가(사용)
 	@Override
 	public int addOpptStep(OpptVO add) {
 		System.out.println("add : " + add);
@@ -161,6 +161,7 @@ public class OpptServiceImpl implements OpptService {
 		return dao.elcList();
 	}
 
+	//견적 고객리스트 (사용안함)
 	@Override
 	public List<Object> estimCustomList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -258,6 +259,7 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회별 상품 상세정보 opptId : " + opptId);
 		return dao.opptPrdtDetail(opptId);
 	}
+	//영업기회상품 테이블 추가(사용)
 	@Override
 	public int opptPrdtAdd(List<OpptVO> estList) {
 		System.out.println("영업기회상품 추가 Service opptPrdtList : " +estList );

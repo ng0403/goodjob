@@ -76,7 +76,7 @@ public interface OpptService {
 	//견적 단계 코드
 	List<EstVO> elcList();
 	
-	//견적 고객 리스트
+	//견적 고객 리스트(사용안함)
 	List<Object> estimCustomList(Map<String, Object> map);
 
 	//견적 추가

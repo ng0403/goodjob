@@ -71,14 +71,14 @@ public class OpptDaoImpl implements OpptDao {
 		return sqlsession.update("oppt.modify", detail);
 	}
 
-	//영업기회 추가
+	//영업기회 추가(사용)
 	@Override
 	public int opptAdd(OpptVO add) {
 		// TODO Auto-generated method stub
 		int seq = sqlsession.insert("oppt.add", add);
 		return seq;
 	}
-	//영업기회단계 추가
+	//영업기회단계 추가(사용)
 	@Override
 	public int addOpptStep(OpptVO add) {
 		System.out.println("add : " + add);
@@ -153,6 +153,7 @@ public class OpptDaoImpl implements OpptDao {
 		return sqlsession.selectList("oppt.elcList");
 	}
 
+	//견적 고객리스트 (사용안함)
 	@Override
 	public List<Object> estimCustomList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -333,6 +334,7 @@ public class OpptDaoImpl implements OpptDao {
 		return result;
 	}
 	
+	//영업기회상품 테이블 추가(사용)
 	@Override
 	public int opptPrdtAdd(List<OpptVO> estList) {
 		System.out.println("영업기회별상품 추가 Dao opptPrdtList : " +estList );

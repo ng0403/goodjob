@@ -37,7 +37,7 @@ $(function(){
 	estimAllCheck();
 	opptprdtAllCheck
 	searchCustcompListPopup(ctx);
-	custcompListPopup(ctx);
+	custcompListPopup(ctx);	//고객 검색 버튼 (사용)
 	estimateAdd(ctx);
 	startCalendar(ctx);
 	opptProdList(ctx);
@@ -71,13 +71,13 @@ function searchCustcompListPopup(ctx){
 		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 }
-//영업기회 상세정보 고객 리스트 팝업
+//영업기회 상세정보 고객 리스트 팝업 (고객 버튼클릭 시)
 function custcompListPopup(ctx){
 	$('#customer').click(function(){
 		window.open(ctx+'/opptCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
-//고객 이름 입력 함수
+//고객팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수
 function inputCustNm(custId,custNm,custType){	
 	if(custType == 'search'){
 		$('#scust_nm').val(custNm);
@@ -215,7 +215,7 @@ function opptCancelBtn(addFlag) {
 	}
 }
 
-//영업기회 추가 함수
+//영업기회추가 저장 함수
 function opptAdd(){
 	var ctx = $("#ctx").val();
 	var sales_oppt_id = $("#salesId").val();
@@ -766,7 +766,6 @@ function viewSalesActive(opptId){
 				start_d = data.strt_d;
 				end_d = data.end_d;
 				reg_dt = data.fst_reg_dt;
-				//영업활동 리스트 추가
 				content +="<tr>"+
 				"<th rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
 				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
@@ -948,11 +947,11 @@ function viewSalesActive(opptId){
 	    }
 	}
 
-	function inputCustNm(custNm,custId){
-		
-		$('#cust_nm').val(custNm);
-		$('#cust_id').val(custId);
-	}
+//	function inputCustNm(custNm,custId){
+//		
+//		$('#cust_nm').val(custNm);
+//		$('#cust_id').val(custId);
+//	}
 	
 
 }

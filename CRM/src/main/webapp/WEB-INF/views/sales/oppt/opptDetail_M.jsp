@@ -49,9 +49,9 @@ $(document).ready(function(){
 	<input type="hidden" id="flg" value="${flg}">
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
-		<c:if test="${addFlag == 0 }">
-			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</div>
-		</c:if>
+<%-- 		<c:if test="${addFlag == 0 }"> --%>
+<!-- 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</div> -->
+<%-- 		</c:if> --%>
 		<c:if test="${addFlag == 1 }">
 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 상세정보</div>
 		</c:if>
@@ -59,7 +59,7 @@ $(document).ready(function(){
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv"  class="bt_position_authuser">
-				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" /><!-- disabled="disabled" -->
+				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" />
 				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="NewAddBtnDiv" style="display: none;" class="bt_position_authuser">

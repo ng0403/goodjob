@@ -1,4 +1,7 @@
+
 /**
+// * 영업기회 신규추가/상세 페이지 고객 리스트 팝업 자바 스크립트
+ *  
  * 함수 목록
  * custNmSelect(ctx)			:	고객명 선택 시
  * custSearch(ctx,custType)		:	고객 검색
