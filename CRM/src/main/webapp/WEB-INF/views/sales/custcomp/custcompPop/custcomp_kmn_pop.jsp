@@ -33,49 +33,31 @@
 		<div class="bt_position_popup">
 		   
 		   <div class="bs-example" data-example-id="simple-table">
-		   		<input type="hidden" id="cust_id" value="${cust_id}"/>
-		   		<input type="hidden" id="kmn_id" name="kmn_id" value="${kmVO.kmn_id}"/>
-			 <table id="keymanpopuptable">  			
+<%-- 		   		<input type="hidden" id="cont_id" value="${cont_id}"/>
+ --%><%-- 		   		<input type="hidden" id="cont_id" name="cont_id" value="${kmVO.cont_id}"/>
+ --%>			 <table id="keymanpopuptable">  			
 					<tbody id="tbody">
 						<tr>
-							<th>키맨명</th>
-							<td><input type="text" name="kmn_nm" id="kmn_nm" class="int" autofocus="autofocus" value="${kmVO.kmn_nm}"/></td>
+							<th>연락처명</th>
+							<td><input type="text" name="cont_nm" id="cont_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus"/></td>
+							    <input type="hidden" id="cont_id" name="cont_id" class="int"/> 
+							    <input type="hidden" id="cust_id" name="cust_id" class="int" value="${cust_id}"/> 
+							<td><input type="button" value="연락처" id="contact" class="cont_bt" onclick="javascript:contactListPopup('${ctx}');"></td>
+							
 						</tr>
-						<tr>
-							<th>연락처</th>
-							<td><input type="text" name="cont_id" class="int" value="${kmVO.kmn_cont_id}"" /></td>
+ 						<tr>
+							<th>역할</th>
+							<td><input type="text" name="key_part" id="key_part" class="int" value="${kmVO.key_part}"/></td>
 						</tr>
 						<tr>
 							<th>직급</th>
-							<td><input type="text" name="pos_nm" id="pos_nm" class="int" value="${kmVO.pos_nm}"/></td>
+							<td><input type="text" name="key_pos" id="key_pos" class="int" value="${kmVO.key_pos}"/></td>
 						</tr>
 						<tr>
-							<th>전화번호</th>
-							<td>
-								<input type="text" id="ph1" name="ph1" class="int_tel" value="${kmVO.ph1}"/>
-								-
-								<input type="text" id="ph2" name="ph2" class="int_tel" value="${kmVO.ph2}"/>
-								-
-								<input type="text" id="ph3" name="ph3" class="int_tel" value="${kmVO.ph3}"/>
-							</td>
+							<th>직무</th>
+							<td><input type="text" name="key_job" id="key_job" class="int" value="${kmVO.key_job}"/></td>
 						</tr>
-						<tr>
-							<th>이동전화번호</th>
-							<td>
-								<input type="text" id="cell_ph1" name="cell_ph1" class="int_tel" value="${kmVO.cell_ph1}"/>
-								-
-								<input type="text" id="cell_ph2" name="cell_ph2" class="int_tel" value="${kmVO.cell_ph2}"/>
-								-
-								<input type="text" id="cell_ph3" name="cell_ph3" class="int_tel" value="${kmVO.cell_ph3}"/>
-							</td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td>
-								<input type="text" id="email1" name="email1" class="int_email" value="${kmVO.email1}"/>@
-								&nbsp;<input type="text" id="email2" name="email2" class="int_email" value="${kmVO.email2}"/>
-							</td>
-						</tr>
+						  
 						<tr>
 							<th>메모</th>
 							<td><textarea cols="10" rows="5" id="memo" name="memo" class="int_memo" style="resize:none; overflow: auto;">${kmVO.memo}</textarea></td>
@@ -87,13 +69,13 @@
 			<c:if test="${flag == 0}">
 				<div class="keyman_bt_position">
 					<input type="button" class="keyman_bt" value="저장" id="keyman_add" onclick="keymanAdd();"/>
-					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel"/>
+					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="keyman_bt_position">
-					<input type="button" class="keyman_bt" value="저장" id="keyman_mdfy" onclick="keymanMdfy();"/>
-					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel"/>
+					<input type="button" class="keyman_bt" value="저장" id="keyman_mdfy" onclick="keymanMdfy1('${kmVO.cust_id}','${kmVO.cont_id}');"/>
+					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
 				</div>
 			</c:if>
 		</div>

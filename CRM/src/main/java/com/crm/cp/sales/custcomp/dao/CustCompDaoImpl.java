@@ -252,7 +252,7 @@ public class CustCompDaoImpl implements CustCompDao {
 	public int insertKeyman(KeymanVO kVO) {
 		int rstKm = 0;
 		try {
-			rstKm = sqlSession.insert("addKeyman", kVO);
+			rstKm = sqlSession.insert("custcomp.addKeyman", kVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -261,35 +261,39 @@ public class CustCompDaoImpl implements CustCompDao {
 
 	// 키맨 삭제
 	@Override
-	public int deleteKeyman(List<String> keyman_idList) {
+	public int deleteKeyman(KeymanVO kVO) {
 		int	deleteResultTemp = 0;
 		int deleteResult = 0;
 		try {
-			for (int i = 0; i < keyman_idList.size(); i++) {
+/*			for (int i = 0; i < keyman_idList.size(); i++) {
 				deleteResultTemp = sqlSession.update("keymanDelete", keyman_idList.get(i));
 				deleteResult += deleteResultTemp;
-			}
+			}*/
+				deleteResultTemp = sqlSession.delete("keymanDelete", kVO);
+				deleteResult += deleteResultTemp;
+		
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return deleteResult;
 	}
-
+ 
 	// 키맨 상세정보
-	@Override
-	public KeymanVO keymanDetail(String kmn_id) {
-		KeymanVO kmVO = null;
-		try {
-			kmVO = sqlSession.selectOne("kmDetail", kmn_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return kmVO;
-	}
+			@Override
+			public KeymanVO keymanDetail(Map<String, Object> map) {
+				KeymanVO kmVO = null;
+				try {
+					kmVO = sqlSession.selectOne("kmDetail", map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return kmVO;
+			}
 
 	// 키맨 수정
 	@Override
-	public int deleteKeyman(KeymanVO kVO) {
+	public int mdfyKeyman(KeymanVO kVO) {
 		int rstKm = 0;
 		try {
 			rstKm = sqlSession.update("mdfyKeyman", kVO);
@@ -298,7 +302,22 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return rstKm;
 	}
+	
+	
+	//연락처 리스트 팝업
+	@Override
+	public List<Object> contactList() {
+		System.out.println("연락처 리스트 dao get " );
+		return sqlSession.selectList("contactListPop");
+	}
 
+	//연락처 리스트 팝업
+	@Override
+	public List<Object> contactList(Map<String, Object> map) {
+		System.out.println("연락처 리스트 dao post");
+		return sqlSession.selectList("contactListPop",map);
+		
+	}
 	
 	// 영업기회 리스트 가져오기
 	@Override
@@ -672,6 +691,18 @@ public class CustCompDaoImpl implements CustCompDao {
 	@Override
 	public ActVO actDetail(String sales_actvy_id) {
 		return sqlSession.selectOne("custcomp.actDetail", sales_actvy_id);
+	}
+
+	// 영업담당자 추가
+	@Override
+	public int custPosAdd(PosVO pos) {
+		return sqlSession.insert("custcomp.posListAdd", pos);
+	}
+
+	//영업담당자에서 영업활동 리스트 
+	@Override
+	public List<Object> custSaleActList(Map<String, Object> map) {
+		return sqlSession.selectList("custcomp.actList",map);
 	}
 
 }

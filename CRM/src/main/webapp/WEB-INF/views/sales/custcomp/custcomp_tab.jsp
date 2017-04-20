@@ -93,7 +93,6 @@
 			
 		</div>
 		
-		
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
@@ -122,8 +121,8 @@
 				</table>
 			</div>
 		</div>
-			
-			<!-- 영업기회 리스트 -->
+		
+		<!-- 영업기회 리스트 -->
 		<div id="tabDiv4" class="tab4_content" style="width: 100%;">
 <!-- 			<div class="bt_position_authuser"> -->
 <!-- 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" /> -->

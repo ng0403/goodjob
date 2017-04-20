@@ -24,14 +24,6 @@ $(document).ready(function() {
 		}
 	});
 	
-	// 상세정보 가져오기
-//	$("#tab1").click(function() {
-//		var cust_id = $("#nowCust_id").val();
-//		if(cust_id != ''){
-//			ccDetail(cust_id);
-//		}
-//	});
-	
 	//고객사 담당자 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
@@ -445,87 +437,6 @@ function viewDetail(cust_id){
 //	event.stopPropagation();
 //}
 
-// 페이징
-//function paging(ccPageNum) {
-//	$(document).ready(function() {
-//		var ctx = $("#ctx").val();
-//		var allData = {"ccPageNum": ccPageNum};
-//		var tbody = $('#ccListTbody');
-//		var tbodyContent = "";
-//		
-//		$.ajax({
-//			url : ctx+'/custcompPaging.do',
-//			type : 'POST',
-//			data : allData,
-//			dataType : "json",
-//			success : function(data) {
-//				if(data.result == 'standard/home/session_expire'){
-//					location.href = ctx + '/sessionExpire';
-//				}else{
-//					tbody.children().remove();
-//					
-//					for (var i = 0; i < data.ccVOList.length; i++) {
-//						tbodyContent = "<tr>"
-//							+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
-//							+"<td style='text-align: left; padding-left: 8px;'>"
-//							+"<a href='#' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\" style='color: blue;' class='cnClick'>"+data.ccVOList[i].cust_nm+"</a></td>"
-//							+"	<td>"+data.ccVOList[i].comp_num+"</td>" 
-//							+"<td>"+data.ccVOList[i].corp_num+"</td>"
-//							+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
-//							+"<td>"+data.ccVOList[i].sales_scale+"</td>"
-//							+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
-//							+"<td>"+data.ccVOList[i].indst+"</td>"
-//							+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
-//							+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
-//						tbody.append(tbodyContent);
-//						$("#ccListCheck").prop("checked", false);
-//					}
-//					
-//					if(data.ccVOList.length < 5){
-//						for(var j = 0; j < 5-data.ccVOList.length; j++){
-//							tbodyContent ="<tr style='height:30px;'>"
-//								+"<th></th>"
-//								+"<td></td><td></td><td></td><td></td>"
-//								+"<td></td><td></td><td></td><td></td>"
-//								+"<td></td></tr>";
-//							tbody.append(tbodyContent);
-//						}
-//					}
-//					var pageContent = "";
-//					// 페이징 다시그리기
-//					$("#pagingDiv").children().remove();
-//					
-//					if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-//						+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-//						+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-//					} else if(data.ccPageNum == data.page.startPageNum){
-//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-//						+"<a> ◀ </a><input type='text' id='ccPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-//						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-//						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
-//					} else if(data.ccPageNum == data.page.endPageNum){
-//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-//						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
-//						+"<input type='text' id='ccPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
-//						+"<a> / "+data.page.endPageNum+"</a>"
-//						+"<a> ▶ </a>";
-//					} else {
-//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-//						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
-//						+"<input type='text' id='ccPageInput' value='"+data.ccPageNum+"' onkeypress=\"pageInput(event);\"/>"
-//						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-//						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
-//					}
-//					$("#pagingDiv").append(pageContent);
-//				}
-//			},
-//			error : function() {
-//				alert("전송중 오류가 발생했습니다.");
-//			}
-//		});
-//	});
-//}
 
 // 조회 페이징
 function schPaging(ccPageNum) {
@@ -771,7 +682,7 @@ function posList(cust_id) {
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='posChkbox'  onclick='poschkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_id+"</td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"posDeatil('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</td>" +
 						"<td style='width:15%;'>"+data[i].iuser_id+"</td>" +
 						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
 						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
@@ -798,9 +709,62 @@ function posList(cust_id) {
 }
 
 // 키맨 List ajax 통신
+//function keymanList(cust_id) {
+//	$(document).ready(function() {
+//		var ctx = $("#ctx").val();
+//		var tbody = $('#keymanTableTbody');
+//		var tbodyContent = "";
+//		$.ajax({
+//			url : ctx+'/ccKeymanList',
+//			type : 'POST',
+//			data : "cust_id="+cust_id,
+//			dataType : "json",
+//			success : function(data) {
+//				tbody.children().remove();
+//				// 키맨 리스트 그리기
+//				if(data.length == 0){
+//					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 키맨이 없습니다.</td></tr>";
+//					tbody.append(tbodyContent);
+//				}else{
+//					for (var i = 0; i < data.length; i++) {
+//						tbodyContent = "<tr>" +
+//						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+//						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_id+"</td>" +
+//						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
+//						"<td style='width:15%;'>"+data[i].key_pos+"</td>" +
+//						"<td style='width:10%;'>"+data[i].key_job+"</td>" +
+//						"<td style='width:12%;'>"+data[i].memo+"</td>" +
+//						"<td style='width:10%;'>"+data[i].fst_reg_id+"</td>" +
+//						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
+//						"</tr>";
+//						tbody.append(tbodyContent);
+//					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr style='height: 25px;'>" +
+//												"<td style='width:3%;'></td>" +
+//												"<td style='width:10%;'></td>" +
+//												"<td style='width:15%;'></td>" +
+//												"<td style='width:15%;'></td>" +
+//												"<td style='width:10%;'></td>" +
+//												"<td style='width:12%;'></td>" +
+//												"<td style='width:10%;'></td>" +
+//												"<td style='width:15%;'></td>" +
+//										  "</tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
+//				}
+//			},
+//			error : function() {
+//				alert("전송중 오류가 발생했습니다.");
+//			}
+//		});
+//	});
+//}
 function keymanList(cust_id) {
-	$(document).ready(function() {
-		var ctx = $("#ctx").val();
+ 	$(document).ready(function() {
+ 		var ctx = $("#ctx").val();
 		var tbody = $('#keymanTableTbody');
 		var tbodyContent = "";
 		$.ajax({
@@ -817,8 +781,8 @@ function keymanList(cust_id) {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_id+"</td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
 						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
 						"<td style='width:15%;'>"+data[i].key_pos+"</td>" +
 						"<td style='width:10%;'>"+data[i].key_job+"</td>" +
@@ -851,7 +815,6 @@ function keymanList(cust_id) {
 		});
 	});
 }
-
 // 영업기회 List ajax 통신
 //function opptList(cust_id) {
 //	$(document).ready(function() {
@@ -1105,3 +1068,86 @@ function contList(cust_id) {
 	});
 }
 
+
+//쓰지 않는 페이징 함수
+//페이징
+//function paging(ccPageNum) {
+//	$(document).ready(function() {
+//		var ctx = $("#ctx").val();
+//		var allData = {"ccPageNum": ccPageNum};
+//		var tbody = $('#ccListTbody');
+//		var tbodyContent = "";
+//		
+//		$.ajax({
+//			url : ctx+'/custcompPaging.do',
+//			type : 'POST',
+//			data : allData,
+//			dataType : "json",
+//			success : function(data) {
+//				if(data.result == 'standard/home/session_expire'){
+//					location.href = ctx + '/sessionExpire';
+//				}else{
+//					tbody.children().remove();
+//					
+//					for (var i = 0; i < data.ccVOList.length; i++) {
+//						tbodyContent = "<tr>"
+//							+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
+//							+"<td style='text-align: left; padding-left: 8px;'>"
+//							+"<a href='#' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\" style='color: blue;' class='cnClick'>"+data.ccVOList[i].cust_nm+"</a></td>"
+//							+"	<td>"+data.ccVOList[i].comp_num+"</td>" 
+//							+"<td>"+data.ccVOList[i].corp_num+"</td>"
+//							+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
+//							+"<td>"+data.ccVOList[i].sales_scale+"</td>"
+//							+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
+//							+"<td>"+data.ccVOList[i].indst+"</td>"
+//							+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
+//							+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
+//						tbody.append(tbodyContent);
+//						$("#ccListCheck").prop("checked", false);
+//					}
+//					
+//					if(data.ccVOList.length < 5){
+//						for(var j = 0; j < 5-data.ccVOList.length; j++){
+//							tbodyContent ="<tr style='height:30px;'>"
+//								+"<th></th>"
+//								+"<td></td><td></td><td></td><td></td>"
+//								+"<td></td><td></td><td></td><td></td>"
+//								+"<td></td></tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
+//					var pageContent = "";
+//					// 페이징 다시그리기
+//					$("#pagingDiv").children().remove();
+//					
+//					if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
+//						+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
+//					} else if(data.ccPageNum == data.page.startPageNum){
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a> ◀ </a><input type='text' id='ccPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
+//						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
+//					} else if(data.ccPageNum == data.page.endPageNum){
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
+//						+"<input type='text' id='ccPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
+//						+"<a> / "+data.page.endPageNum+"</a>"
+//						+"<a> ▶ </a>";
+//					} else {
+//						pageContent = "<input type='hidden' id='ccPageNum' value='"+data.ccPageNum+"'/><input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
+//						+"<input type='text' id='ccPageInput' value='"+data.ccPageNum+"' onkeypress=\"pageInput(event);\"/>"
+//						+"<a href='#' onclick=paging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
+//						+"<a href='#' onclick=paging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
+//					}
+//					$("#pagingDiv").append(pageContent);
+//				}
+//			},
+//			error : function() {
+//				alert("전송중 오류가 발생했습니다.");
+//			}
+//		});
+//	});
+//}

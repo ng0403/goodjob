@@ -181,7 +181,19 @@ public class CustCompServiceImpl implements CustCompService {
 		return posVOList;
 	}
 
-	
+	// 키맨 삭제
+//	@Override
+//	public String deleteKeyman(List<String> keyman_idList) {
+//		int deleteResult = ccDao.deleteKeyman(keyman_idList);
+//		String resultStr = null;
+//		if(deleteResult == keyman_idList.size()){
+//			resultStr = "키맨 삭제가 완료 되었습니다.";
+//		} else {
+//			resultStr = "키맨 삭제에 실패 했습니다.";
+//		}
+//		return resultStr;
+//	}
+
 	// 키맨 리스트
 	@Override
 	public List<KeymanVO> getKeymanList(String cust_id) {
@@ -204,28 +216,37 @@ public class CustCompServiceImpl implements CustCompService {
 
 	// 키맨 삭제
 	@Override
-	public String deleteKeyman(List<String> keyman_idList) {
-		int deleteResult = ccDao.deleteKeyman(keyman_idList);
+	public String deleteKeyman(KeymanVO kVO) {
+		int deleteResult = ccDao.deleteKeyman(kVO);
+		System.out.println("과연 무엇일까" + deleteResult);
 		String resultStr = null;
-		if(deleteResult == keyman_idList.size()){
+		/*if(deleteResult == keyman_idList.size()){
 			resultStr = "키맨 삭제가 완료 되었습니다.";
 		} else {
 			resultStr = "키맨 삭제에 실패 했습니다.";
+		}*/
+		if(deleteResult == 1)
+		{
+			resultStr = "키맨 삭제가 완료 되었습니다.";
+		}
+		else{
+			resultStr = "키맨 삭제에 실패 했습니다.";
+					
 		}
 		return resultStr;
 	}
 
 	// 키맨 상세정보
-	@Override
-	public KeymanVO keymanDetail(String kmn_id) {
-		KeymanVO kmVO = ccDao.keymanDetail(kmn_id);
-		return kmVO;
-	}
+			@Override
+			public KeymanVO keymanDetail(Map<String, Object> map) {
+				KeymanVO kmVO = ccDao.keymanDetail(map);
+				return kmVO;
+			}
 	
 	// 키맨 수정
 	@Override
 	public String mdfyKeyman(KeymanVO kVO) {
-		int mdfyResult = ccDao.deleteKeyman(kVO);
+		int mdfyResult = ccDao.mdfyKeyman(kVO);
 		String resultStr = null;
 		if(mdfyResult == 1){
 			resultStr = "키맨 수정이 완료 되었습니다.";
@@ -234,7 +255,19 @@ public class CustCompServiceImpl implements CustCompService {
 		}
 		return resultStr;
 	}
-
+	
+	
+	//연락처 리스트 팝업
+	@Override
+	public List<Object> contactList() {
+		return ccDao.contactList();
+	}
+	
+	//연락처 리스트 팝업
+	@Override
+	public List<Object> contactList(Map<String, Object> map) {
+		return ccDao.contactList(map);
+	}
 	
 	// 영업기회 리스트
 	@Override
@@ -475,6 +508,25 @@ public class CustCompServiceImpl implements CustCompService {
 	@Override
 	public int custtActiveDelete(String sales_actvy_id) {
 		return ccDao.custActiveDelete(sales_actvy_id);
+	}
+
+	//영업담당자 상세보기
+	@Override
+	public ActVO posDetail(String sales_actvy_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//영업담당자 추가
+	@Override
+	public int custPosAdd(PosVO pos) {
+		return ccDao.custPosAdd(pos);
+	}
+
+	//영업담당자에서 영업활동 리스트 팝업
+	@Override
+	public List<Object> custSaleActList(Map<String, Object> map) {
+		return ccDao.custSaleActList(map);
 	}
 
 

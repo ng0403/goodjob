@@ -240,7 +240,8 @@
 	<!-- 영업 담당자 리스트 -->
 	<select id="posList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.PosVO">
 		select 
-        	(select SALES_ACTVY_NM from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_id,
+        	(select SALES_ACTVY_ID from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_id,
+        	(select SALES_ACTVY_NM from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_nm,
 			(select iuser_nm from iuser i where i.iuser_id = pos.iuser_id ) iuser_id,
 			pos.key_part,
 			pos.fst_reg_id,
@@ -253,14 +254,51 @@
 		and sa.cust_id = #{cust_id} 
 	</select>
 	
+	<update id="posListAdd" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
+		
+	
+	</update>
+	
+	
+	 <!-- 영업활동 전체 리스트 -->
+	<select id="actList" parameterType="java.util.Map" resultType="com.crm.cp.sales.act.vo.ActVO">
+		SELECT SAL.* 
+		FROM
+			(
+				SELECT P.*, ROWNUM RNUM 
+				FROM 
+					(
+						SELECT 
+            
+							  SA.SALES_ACTVY_ID
+	             				, SA.SALES_ACTVY_NM 
+							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ADC' AND C.code = SA.SALES_ACTVY_DIV_CD) SALES_ACTVY_DIV_CD
+							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) SALES_ACTVY_TYPE_CD
+							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_CD
+							,SO.SALES_OPPT_NM
+	             				,CUST.CUST_ID
+						FROM 
+							SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, CUSTOMER CUST
+						WHERE 
+							SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
+							AND CUST.CUST_ID = SA.CUST_ID
+              				AND CUST.CUST_ID = #{cust_id}
+             				AND SA.ACT_YN = 'Y'
+						ORDER BY SA.FST_REG_DT DESC
+					) P
+			) SAL
+               
+	</select>
+	
+	
 	<!-- 키맨 리스트 -->
 	<select id="keymanList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
 <!-- 		  select KMN_ID, CUST_ID,KMN_NM,POS_NM,PH1,PH2,PH3, CELL_PH1,CELL_PH2, CELL_PH3,EMAIL1,EMAIL2,MEMO, FST_REG_ID_NM,TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT,ACT_YN  -->
 <!-- 		  from keyman  -->
 <!-- 		  where cust_id = #{cust_id}  order by kmn_id desc -->
 
-		SELECT 
-<!-- 			(select cust_nm from customer cust where cust.cust_id = km.cust_id) CUST_ID,       -->
+<!-- 			SELECT 
+			(select cust_nm from customer cust where cust.cust_id = km.cust_id) CUST_ID,      
             (select cont_nm from contact cont where cont.cont_id = km.cont_id) CONT_ID,    
             KM.KEY_PART,    
             KM.KEY_POS,    
@@ -270,7 +308,93 @@
             TO_CHAR(FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
 		from keyman KM
 		where cust_id = #{cust_id} 
-		order by CUST_ID desc
+		order by CUST_ID desc -->
+		
+		    SELECT 
+                  a.conT_NM,
+                  k.CUST_ID,
+				  k.CONT_ID,
+				  k.KEY_PART,
+				  k.KEY_POS, 
+				  k.KEY_JOB,
+				  k.MEMO,
+				  k.FST_REG_ID,
+				  k.FST_REG_DT,
+				  k.FIN_MDFY_ID,
+				  k.FIN_MDFY_DT
+		 FROM KEYMAN k, customer c, contact a
+	   WHERE c.cust_id  = #{cust_id} and k.cont_id = a.cont_id and k.cust_id = c.cust_id
+		 
+	</select>
+	
+ 	<!-- 키맨 추가 -->
+	<insert id="addKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		 INSERT INTO KEYMAN (
+		 	CUST_ID, 
+		 	CONT_ID, 
+		 	KEY_PART, 
+		 	KEY_POS, 
+		 	KEY_JOB, 
+		 	MEMO, 
+		 	FST_REG_ID, 
+		 	FST_REG_DT, 
+		 	FIN_MDFY_ID, 
+		 	FIN_MDFY_DT) 
+	     VALUES( 
+	     	#{cust_id}, 
+	     	#{cont_id}, 
+	     	#{key_part}, 
+	     	#{key_pos}, 
+	     	#{key_job},  
+	     	#{memo}, 
+	     	#{fst_reg_id}, 
+	     	sysdate, 
+	     	'', 
+	     	sysdate)
+	</insert>
+	
+ 	<!-- 키맨 상세정보 -->
+	<select id="kmDetail" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		  SELECT 
+                  c.CUST_NM,
+                  k.CUST_ID,
+				  k.CONT_ID,
+				  k.KEY_PART,
+				  k.KEY_POS, 
+				  k.KEY_JOB,
+				  k.MEMO,
+				  k.FST_REG_ID,
+				  k.FST_REG_DT,
+				  k.FIN_MDFY_ID,
+				  k.FIN_MDFY_DT
+		 FROM KEYMAN k, customer c
+	   WHERE k.cust_ID = #{cust_id} and k.cont_id = #{cont_id} and k.cust_id = c.cust_id
+	</select>
+	
+	<!-- 키맨 삭제 -->
+	<delete id="keymanDelete" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		<!-- update KEYMAN 
+		set ACT_YN = 'N'
+		where KMN_ID = #{keyman_idList} -->
+		delete keyman
+		where cont_id =#{cont_id} and cust_id =#{cust_id}
+	</delete>
+	
+	<!-- 키맨 수정 -->
+	<update id="mdfyKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+ 		update KEYMAN 
+		set KEY_PART = #{key_part},
+			 KEY_POS = #{key_pos}, 
+			 MEMO = #{memo},
+			 FIN_MDFY_ID = #{fin_mdfy_id},
+			 FIN_MDFY_DT = sysdate
+		where CUST_ID = #{cust_id} and cont_id = #{cont_id}
+ 	</update>
+	
+	<!-- 연락처 리스트 -->
+ 	<select id="contactListPop" resultType="com.crm.cp.sales.contact.vo.ContactVO">
+	     select *
+		from contact
 	</select>
 	
 	<!-- 영업기회 리스트 -->
@@ -631,60 +755,13 @@
 	</select>
 	
 	<!-- 키맨 추가 -->
-	<insert id="addKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		 INSERT INTO KEYMAN (KMN_ID, CUST_ID, KMN_NM, POS_NM, PH1, PH2, PH3, CELL_PH1, CELL_PH2, CELL_PH3, EMAIL1, EMAIL2, MEMO, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT, ACT_YN) 
-	     VALUES(KEYMAN_SEQ.nextVal, #{cust_id}, #{kmn_nm}, #{pos_nm}, #{ph1}, #{ph2}, #{ph3}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3}, #{email1}, #{email2}, #{memo}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate, 'Y')
-	</insert>
+<!-- 	<insert id="addKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO"> -->
+<!-- 		 INSERT INTO KEYMAN (KMN_ID, CUST_ID, KMN_NM, POS_NM, PH1, PH2, PH3, CELL_PH1, CELL_PH2, CELL_PH3, EMAIL1, EMAIL2, MEMO, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT, ACT_YN)  -->
+<!-- 	     VALUES(KEYMAN_SEQ.nextVal, #{cust_id}, #{kmn_nm}, #{pos_nm}, #{ph1}, #{ph2}, #{ph3}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3}, #{email1}, #{email2}, #{memo}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate, 'Y') -->
+<!-- 	</insert> -->
 	
-	<!-- 키맨 상세정보 -->
-	<select id="kmDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		SELECT KMN_ID,
-				  CUST_ID,
-				  KMN_NM,
-				  POS_NM,
-				  PH1,
-				  PH2,
-				  PH3,
-				  CELL_PH1,
-				  CELL_PH2,
-				  CELL_PH3,
-				  EMAIL1,
-				  EMAIL2,
-				  MEMO,
-				  FST_REG_ID,
-				  FST_REG_DT,
-				  FIN_MDFY_ID,
-				  FIN_MDFY_DT
-		 FROM KEYMAN 
-	   WHERE KMN_ID = #{kmn_id}
-		   AND ACT_YN = 'Y'
-	</select>
+
 	
-	<!-- 키맨 삭제 -->
-	<update id="keymanDelete" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		update KEYMAN 
-		set ACT_YN = 'N'
-		where KMN_ID = #{keyman_idList}
-	</update>
-	
-	<!-- 키맨 수정 -->
-	<update id="mdfyKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		update KEYMAN 
-		set KMN_NM = #{kmn_nm},
-			 POS_NM = #{pos_nm},
-			 PH1 = #{ph1},
-			 PH2 = #{ph2},
-			 PH3 = #{ph3},
-			 CELL_PH1 = #{cell_ph1},
-			 CELL_PH2 = #{cell_ph2},
-			 CELL_PH3 = #{cell_ph3},
-			 EMAIL1 = #{email1},
-			 EMAIL2 = #{email2},
-			 MEMO = #{memo},
-			 FIN_MDFY_ID = #{fin_mdfy_id},
-			 FIN_MDFY_DT = sysdate
-		where KMN_ID = #{kmn_id}
-	</update>
 	
 	<!-- 계약 기업고객 정보 가져오기 -->
 	<select id="ccContCustDetail" parameterType="String" resultType="com.crm.cp.sales.cont.vo.contrVO">

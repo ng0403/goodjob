@@ -40,9 +40,13 @@ public interface CustCompService {
 	
 	List<KeymanVO> getKeymanList(String cust_id);								// 키맨 리스트
 	String insertKeyman(KeymanVO kVO); 											// 키맨 추가
-	KeymanVO keymanDetail(String kmn_id); 										// 키맨 상세정보
+ 	KeymanVO keymanDetail(Map<String, Object> map); 							// 키맨 상세정보
 	String mdfyKeyman(KeymanVO kVO);											// 키맨 수정
-	String deleteKeyman(List<String> keyman_idList); 							// 키맨 삭제
+	String deleteKeyman(KeymanVO kVO); 											// 키맨 삭제
+	
+	List<Object> contactList();													//연락처 리스트 팝업
+	List<Object> contactList(Map<String, Object> map);							//연락처 리스트 팝업
+	
 	
 	List<OpptVO> getOpptList(String cust_id);									// 영업기회 리스트
 	OpptVO ccOpptCustDetail(String cust_id); 									// 영업기회 팝업 고객정보 가져오기
@@ -84,10 +88,14 @@ public interface CustCompService {
 	int custActiveAdd(ActVO act);												// 영업활동 추가
 	int custActiveUpdate(ActVO act);											// 영업활동 수정
 	//int custActiveDelete(String cust_id);										// 영업활동 삭제
-	int custtActiveDelete(String sales_actvy_id);
-	ActVO actDetail(String actvyId);											// 영업활동 상세정보
+	int custtActiveDelete(String sales_actvy_id);								//// 영업활동 삭제
 
-	
+	ActVO actDetail(String actvyId);											// 영업활동 상세정보
+	ActVO posDetail(String sales_actvy_id);										// 영업담당자 상세보기
+	int custPosAdd(PosVO pos);													// 영업담당자 추가
+	List<Object> custSaleActList(Map<String, Object> map);						// 영업담당자에서 영업활동리스트
+
+
 
 
 

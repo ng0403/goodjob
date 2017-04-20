@@ -11,10 +11,18 @@ public class KeymanVO {
 					 , fst_reg_id // 등록자
 					 , fst_reg_dt // 등록일시
 					 , fin_mdfy_id // 최종변경자
-					 , fin_mdfy_dt; //최종변경일시
-
+					 , fin_mdfy_dt //최종변경일시
+					 , cont_nm;	 //연락처 이름
 	
 	 
+
+	public String getCont_nm() {
+		return cont_nm;
+	}
+
+	public void setCont_nm(String cont_nm) {
+		this.cont_nm = cont_nm;
+	}
 
 	public String getCust_nm() {
 		return cust_nm;
