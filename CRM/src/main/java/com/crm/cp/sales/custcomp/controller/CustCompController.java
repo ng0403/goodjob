@@ -33,6 +33,7 @@ import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.service.IuserService;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -48,13 +49,17 @@ public class CustCompController {
 	MenuService menuService;
 	
 	@Autowired
-	EstService estInter;		// 견적 서비스
+	EstService estInter;		//견적 서비스
 	
 	@Autowired
-	OpptService opptService;	// 영업기회 서비스
+	OpptService opptService;	//영업기회 서비스
 	
 	@Autowired
-	ActService actService;
+	ActService actService;		//영업활동 서비스
+	
+	@Resource
+	IuserService iuserService;	//사원 서비스
+	
 
 	// 기존고객 리스트(MaV)
 	@RequestMapping(value = "/custcomp", method = RequestMethod.GET)
@@ -326,16 +331,20 @@ public class CustCompController {
 		return posVOList;
 	}
 	
-	//영업 담당자 상세보기
+	//영업 담당자 상세보기 팝업창
 	@RequestMapping(value = "/custPosDetailPopup", method = RequestMethod.GET)
 	public ModelAndView custPosDetailPopup(HttpSession session, 
-											String sales_actvy_id, String sales_actvy_nm, 
-											String sales_oppt_nm) {
+			@RequestParam Map<String, String> map,
+											String sales_actvy_id, String cust_id, 
+											String iuser_id) {
 
 		System.out.println("영업담당자 상세정보 팝업 sales_actvy_id : " + sales_actvy_id);
-		System.out.println("영업담당자 상세정보 팝업 sales_actvy_nm : " + sales_actvy_nm);
+		//System.out.println("영업담당자 상세정보 팝업 sales_actvy_nm : " + sales_actvy_nm);
 		
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_pos_pop");
+		map.put("sales_actvy_id", sales_actvy_id);
+		map.put("iuser_id", iuser_id);
+		map.put("cust_id", cust_id);
 		
 		// 영업활동 유형코드 가져오기
 		List<ActVO> actTypeCd = service.actTypeCdList();
@@ -344,7 +353,7 @@ public class CustCompController {
 		// 영업활동 구분코드 가져오기
 		List<ActVO> actDivCd = service.actDivCdList();
 		
-		ActVO detail = ccService.posDetail(sales_actvy_id);
+		PosVO detail = ccService.posDetail(map);
 		System.out.println("영업활동 상세 페이지 detail : " + detail);
 	
 		
@@ -352,9 +361,9 @@ public class CustCompController {
 		mov.addObject("actTypeCd", actTypeCd);
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("actDivCd", actDivCd);
-		mov.addObject("cust_nm", detail.getCust_nm());
+		//mov.addObject("cust_nm", detail.getCust_nm());
 		mov.addObject("sales_actvy_id", sales_actvy_id);
-		mov.addObject("sales_actvy_nm", sales_actvy_nm);
+		//mov.addObject("sales_actvy_nm", sales_actvy_nm);
 		mov.addObject("flg", "detail");
 		return mov;
 	}
@@ -391,6 +400,23 @@ public class CustCompController {
 
 	}
 	
+	// 영업담당자 상세정보 입력
+//	@ResponseBody
+//	@RequestMapping(value = "/custtSaleActDetail", method = RequestMethod.GET)
+//	public Map<String, Object> custtSaleActDetail(HttpSession session, String sales_actvy_id) {
+//		
+//		Map<String, Object> map = new HashMap<String, Object>(0);
+//
+//		PosVO detail = ccService.posDetail(sales_actvy_id);
+//
+//		map.put("detail", detail);
+//		map.put("cust_id", detail.getCust_id());
+//		map.put("cust_nm", detail.getCust_nm());
+//		map.put("flg", "detail");
+//
+//		return map;
+//	}
+	
 	// 영업담당자 추가
 	@RequestMapping(value = "/custPosAdd", method = RequestMethod.POST)
 	@ResponseBody
@@ -405,7 +431,7 @@ public class CustCompController {
 
 	}
 	
-	//영업담당자추가에서 영업활동리스트 
+	//영업담당자 추가에서 영업활동 리스트 
 	@RequestMapping(value="/custSaleActList" , method=RequestMethod.GET)
 	public ModelAndView custSaleActList(HttpSession session,
 											@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
@@ -424,6 +450,78 @@ public class CustCompController {
 		
 		return mov;
 	}
+	
+	//영업담당자 추가에서 사원 리스트 
+//	@RequestMapping(value="/custSaleActIuserList" , method=RequestMethod.GET)
+//	public ModelAndView custSaleActIuserList(HttpSession session,
+//											@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
+//											@RequestParam(value="keyword", defaultValue="") String keyword,
+//											String cust_id){
+//		System.out.println("cust_id : " + cust_id);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("keyfield", keyfield);
+//		map.put("cust_id", cust_id);
+//		map.put("keyword", keyword);
+//		List<Object> slaeActIuserOpptList = ccService.custSaleActIuserList(map);
+//		System.out.println("slaeActOpptList : " + slaeActIuserOpptList);
+//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/sale_iuser_list");
+//		
+//		mov.addObject("slaeActIuserOpptList", slaeActIuserOpptList);
+//		
+//		return mov;
+//	}
+	
+	// 영업 담당자 상세정보에서의 직원 리스트_직원검색버튼 클릭 시 팝업 오픈(사용)
+	@RequestMapping(value = "/custSaleActIuserList", method = RequestMethod.GET)
+	public ModelAndView custCompIuserList(
+											HttpSession session,
+											@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
+											@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+		System.out.println("영업담당자 상세페이지 직원검색 버튼 클릭 컨트롤러");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		List<Object> iuserList = iuserService.iuserList(map);
+		System.out.println("iuserList : " + iuserList);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/sale_iuser_list");
+
+		mov.addObject("iuserList", iuserList);
+
+		// javascript에서 상세정보에서의 고객 리스트인지 구분하기 위한 값 전달
+		mov.addObject("iuserType", "normal");
+
+		return mov;
+	}
+	
+	
+	// 영업담당자 수정
+	@RequestMapping(value = "/custSaleActUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public int custSaleActUpdate(HttpSession session, PosVO pos) {
+		
+		pos.setFin_mdfy_id(session.getAttribute("user").toString());
+		int result = ccService.custSaleActUpdate(pos);
+
+		
+		return result;
+	}
+
+	// 영업딤딩자 삭제
+	@RequestMapping(value = "/custSaleActDelete",  method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody
+	public int custSaleActDelete(HttpSession session, String cust_id,
+									@RequestBody List<String> chked_val) {
+		System.out.println("Dddd");
+		System.out.println( "dkdkdkdkdkdk" +chked_val);
+		int result = 0;
+		// 모든 checked된 영업기회에 대해 삭제
+		for (int i = 0; i < chked_val.size(); i++) {
+			result += ccService.custSaleActDelete(chked_val.get(i));
+		}
+		return result;
+	}
+	
 	
 	//고객별 키맨//
 	// 키맨 리스트
@@ -445,21 +543,6 @@ public class CustCompController {
 		return mov;
 	}
 	
-	// 키맨 추가
-//		@RequestMapping(value = "/addKeyman.do", method = RequestMethod.POST)
-//		public @ResponseBody Map<String, Object> addKeyman(HttpSession session, KeymanVO kVO) {
-//			Map<String, Object> rstMap = new HashMap<String, Object>();
-//			if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-//				rstMap.put("addResult", "standard/home/session_expire");
-//			} else {
-//				kVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-//				kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
-//				String kmAddRst = ccService.insertKeyman(kVO);
-//				rstMap.put("addResult", kmAddRst);
-//			}
-//			return rstMap;
-//		}
-	
 	// 키맨 상세정보 추가할 것
 	@RequestMapping(value = "/keymanDetailPopup", method = RequestMethod.GET)
 	public ModelAndView keymanDetailPopup(HttpSession session, String cust_id, int flag, String cont_id) {
@@ -476,20 +559,6 @@ public class CustCompController {
 		mov.addObject("flag", flag);
 		return mov;
 	}
-	
-	// 키맨 수정
-//		@RequestMapping(value = "/mdfyKeyman.do", method = RequestMethod.POST)
-//		public @ResponseBody Map<String, Object> mdfyKeyman(HttpSession session, KeymanVO kVO) {
-//			Map<String, Object> rstMap = new HashMap<String, Object>();
-//			if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-//				rstMap.put("mdfyResult", "standard/home/session_expire");
-//			} else {
-//				kVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
-//				String kmMdfyRst = ccService.mdfyKeyman(kVO);
-//				rstMap.put("mdfyResult", kmMdfyRst);
-//			}
-//			return rstMap;
-//		}
 	
 	// 키맨 추가
 	@RequestMapping(value = "/addKeymancustcomp", method = RequestMethod.POST)
@@ -553,169 +622,118 @@ public class CustCompController {
 				String deleteResult = ccService.deleteKeyman(kmVO);
 				rstMap.put("deleteResult", deleteResult);
 			}
-			
 		}
-		 
 	
 		return rstMap;
 	}
+	
+	// 연락처 리스트 팝업창
+	@RequestMapping(value = "/contactListPop", method = RequestMethod.GET)
+	public ModelAndView CustcompList(HttpSession session) {
+		System.out.println("연락처 리스트 팝업 enter");
+		List<Object> contactList = ccService.contactList();
+		System.out.println("연락처 리스트 팝업창 " + contactList.toString());
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/contact_list_pop");
+
+		mov.addObject("contactList", contactList);
+
+		return mov;
+	}
+
+	// 연락처 리스트 팝업창
+	@RequestMapping(value = "/contactListPop", method = RequestMethod.POST)
+	public ModelAndView CustcompListSearch(HttpSession session,
+			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+		
+		System.out.println("연락처 리스트 팝업 성공");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+
+		List<Object> contactList = ccService.contactList(map);
+		System.out.println("contactList  " + contactList.toString());
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/contact_list_pop");
+
+		mov.addObject("custcompList", contactList);
+
+		return mov;
+	}
+
 	
 	//고객별 영업기회//
 	// 영업기회 서비스
 	@Resource
 	OpptService service;
 	
-	// 영업기회 리스트
-//	@RequestMapping(value = "/ccOpptList",  method = RequestMethod.POST)
-//	public @ResponseBody List<OpptVO> opptList(String cust_id) {
-//		
-//		List<OpptVO> opptVOList = ccService.getOpptList(cust_id);
-//		System.out.println("opptVOList 용: " + opptVOList.toString());
-//		
-//		return opptVOList;
-//	}
-//	
-//	// 영업기회 팝업
-//	@RequestMapping(value = "/opptPopup", method = RequestMethod.GET)
-//	public ModelAndView saleschancePopup(HttpSession session, String cust_id, int flag) {
-//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_oppt_pop");
-//		OpptVO opptVO = ccService.ccOpptCustDetail(cust_id);
-//		//영업기회 상태 코드 가져오기
-//		List<OpptVO> osclist = service.opptOscList();
-//				
-//		//영업단계 코드 가져오기
-//		List<OpptVO> otllist = service.opptOtlList();
-//		mov.addObject("cust_id", cust_id);
-//		mov.addObject("opptVO", opptVO);
-//		mov.addObject("osclist", osclist);
-//		mov.addObject("otllist", otllist);
-//		mov.addObject("flag", flag);
-//		return mov;
-//	}
-//	
-//	// 영업기회 상세정보
-//	@RequestMapping(value = "/opptDetailPopup", method = RequestMethod.GET)
-//	public ModelAndView saleschanceDetailPopup(HttpSession session, String sales_oppt_id, int flag) {
-//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_oppt_pop");
-//		OpptVO opptVO = ccService.ccOpptDetail(sales_oppt_id);
-//		opptVO.setSales_lev_cd(opptVO.getSales_lev_cd().substring(3, 4));
-//		opptVO.setSales_oppt_stat_cd(opptVO.getSales_oppt_stat_cd().substring(3, 4));
-//		//영업기회 상태 코드 가져오기
-//		List<OpptVO> osclist = service.opptOscList();
-//				
-//		//영업단계 코드 가져오기
-//		List<OpptVO> otllist = service.opptOtlList();
-//		mov.addObject("cust_id", opptVO.getCust_id());
-//		mov.addObject("opptVO", opptVO);
-//		mov.addObject("osclist", osclist);
-//		mov.addObject("otllist", otllist);
-//		mov.addObject("flag", flag);
-//		return mov;
-//	}
-//	
-//	// 영업기회 삭제
-//	@RequestMapping(value = "ccOpptDelete.do", method = RequestMethod.POST)
-//	public @ResponseBody Map<String, Object> ccOpptDelete(HttpSession session, @RequestBody List<String> oppt_idList) {
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
-//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-//			rstMap.put("deleteResult", "standard/home/session_expire");
-//		} else {
-//			String deleteResult = ccService.deleteOppt(oppt_idList);
-//			rstMap.put("deleteResult", deleteResult);
-//		}
-//		return rstMap;
-//	}
-//
-//	// 영업기회리스트 팝업창
-//	@RequestMapping(value = "/ccOpptPopList", method = RequestMethod.GET)
-//	public ModelAndView ccOpptPopList(HttpSession session, String cust_id) {
-//		List<OpptVO> ccOpptPopList = ccService.ccOpptPopList(cust_id);
-//		
-//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_oppt_list_pop");
-//		mov.addObject("ccOpptPopList", ccOpptPopList);
-//		return mov;
-//	}
-//	
-//	// 영업기회 삭제
-//	@RequestMapping(value = "ccActDelete.do", method = RequestMethod.POST)
-//	public @ResponseBody Map<String, Object> ccActDelete(HttpSession session, @RequestBody List<String> act_idList) {
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
-//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-//			rstMap.put("deleteResult", "standard/home/session_expire");
-//		} else {
-//			String deleteResult = ccService.deleteAct(act_idList);
-//			rstMap.put("deleteResult", deleteResult);
-//		}
-//		return rstMap;
-//	}
 	
 	//고객사별 영업기회 탭
 	// 영업기회 리스트 ajax
-		@RequestMapping(value = "/opptTabajax", method = RequestMethod.POST)
-		@ResponseBody Map<String, Object> listajax(OpptVO opptVo,
-					@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) 
-		{
-			System.out.println("opptTabajax cust_id : " + opptVo.getCust_id());
-				
-			List<OpptVO> opptList = actService.opptList(opptVo.getCust_id());
+	@RequestMapping(value = "/opptTabajax", method = RequestMethod.POST)
+	@ResponseBody Map<String, Object> listajax(OpptVO opptVo,
+				@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) 
+	{
+		System.out.println("opptTabajax cust_id : " + opptVo.getCust_id());
 			
-			System.out.println("opptTabajax 고객사 opptList : " + opptList);
-			Map<String, Object> result = new HashMap<String, Object>();
-			result.put("opptList", opptList);
+		List<OpptVO> opptList = actService.opptList(opptVo.getCust_id());
+		
+		System.out.println("opptTabajax 고객사 opptList : " + opptList);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("opptList", opptList);
 
-			return result;
-		}
+		return result;
+	}
+		
+	// 영업기회 추가 ajax
+	@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
+	@ResponseBody int opptAdd(HttpSession session, OpptVO add, @RequestParam(value="est_list[]",required=false) List<String> est_list, String total_sup_price) 
+	{
+		System.out.println("est_list : " + est_list);
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		
+		add.setFst_reg_id(session.getAttribute("user").toString());
+		add.setFin_mdfy_id(session.getAttribute("user").toString());
+		System.out.println("opptAdd - total_sup_price : " + total_sup_price);
+		
+		add.setTotal_sup_price(total_sup_price);
 			
-		// 영업기회 추가 ajax
-		@RequestMapping(value = "/opptInsert", method = RequestMethod.POST)
-		@ResponseBody int opptAdd(HttpSession session, OpptVO add, @RequestParam(value="est_list[]",required=false) List<String> est_list, String total_sup_price) 
+		int result = opptService.opptAdd(add);	// 기회 insert
+		System.out.println("기회 insert 완료 : " + add);
+		System.out.println("add.getSales_oppt_id() : " + add.getSales_oppt_id());
+		int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
+		
+		//estList.add(add);
+		
+		for(int i=0 ; i< est_list.size(); i++)
 		{
-			System.out.println("est_list : " + est_list);
-			List<OpptVO> estList = new ArrayList<OpptVO>(0);
+			System.out.println("for문 처음");
+			OpptVO vo = new OpptVO();
 			
-			add.setFst_reg_id(session.getAttribute("user").toString());
-			add.setFin_mdfy_id(session.getAttribute("user").toString());
-			System.out.println("opptAdd - total_sup_price : " + total_sup_price);
+			vo.setSales_oppt_id("");
+			vo.setProd_id(est_list.get(i));
+			vo.setProd_nm(est_list.get(++i));
+			//vo.setProd_price(est_list.get(++i));
+			vo.setEstim_qty(est_list.get(++i));	// 수량 개수
+			vo.setSales_price(est_list.get(++i));			
+			vo.setSup_price(est_list.get(++i));
+			vo.setDiscount(est_list.get(++i));
+			vo.setDiscount_unit_cd(est_list.get(++i));
+			vo.setOppt_seq(add.getOppt_seq());
 			
-			add.setTotal_sup_price(total_sup_price);
-				
-			int result = opptService.opptAdd(add);	// 기회 insert
-			System.out.println("기회 insert 완료 : " + add);
-			System.out.println("add.getSales_oppt_id() : " + add.getSales_oppt_id());
-			int result2 = opptService.addOpptStep(add);//영업기회단계리스트추가
+			estList.add(vo);
 			
-			//estList.add(add);
-			
-			for(int i=0 ; i< est_list.size(); i++)
-			{
-				System.out.println("for문 처음");
-				OpptVO vo = new OpptVO();
-				
-				vo.setSales_oppt_id("");
-				vo.setProd_id(est_list.get(i));
-				vo.setProd_nm(est_list.get(++i));
-				//vo.setProd_price(est_list.get(++i));
-				vo.setEstim_qty(est_list.get(++i));	// 수량 개수
-				vo.setSales_price(est_list.get(++i));			
-				vo.setSup_price(est_list.get(++i));
-				vo.setDiscount(est_list.get(++i));
-				vo.setDiscount_unit_cd(est_list.get(++i));
-				vo.setOppt_seq(add.getOppt_seq());
-				
-				estList.add(vo);
-				
-				System.out.println("for문 estList : " + estList);
-			}
-			
-			int result1 = opptService.opptPrdtAdd(estList);
-			
-			System.out.println("영업기회 상품 추가 result : " + result1);
-			
-			System.out.println("영업기회 추가 result : " + result);
-			System.out.println("영업기회 단계 이력 추가 result : " + result2);
-			
-			return result;
-		}	
+			System.out.println("for문 estList : " + estList);
+		}
+		
+		int result1 = opptService.opptPrdtAdd(estList);
+		
+		System.out.println("영업기회 상품 추가 result : " + result1);
+		
+		System.out.println("영업기회 추가 result : " + result);
+		System.out.println("영업기회 단계 이력 추가 result : " + result2);
+		
+		return result;
+	}	
 		
 	//기회-상품추가 팝업 open controller
 	@RequestMapping(value = "/prodList", method = RequestMethod.GET)
@@ -1254,41 +1272,6 @@ public class CustCompController {
 		mov.addObject("contVO", contVO);
 		return mov;
 	}
-	
-	// 연락처 리스트 팝업창
-	@RequestMapping(value = "/contactListPop", method = RequestMethod.GET)
-	public ModelAndView CustcompList(HttpSession session) {
-		System.out.println("연락처 리스트 팝업 enter");
-		List<Object> contactList = ccService.contactList();
-		System.out.println("연락처 리스트 팝업창 " + contactList.toString());
-		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/contact_list_pop");
-
-		mov.addObject("contactList", contactList);
-
-		return mov;
-	}
-
-	// 연락처 리스트 팝업창
-	@RequestMapping(value = "/contactListPop", method = RequestMethod.POST)
-	public ModelAndView CustcompListSearch(HttpSession session,
-			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
-			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
-		
-		System.out.println("연락처 리스트 팝업 성공");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("keyfield", keyfield);
-		map.put("keyword", keyword);
-
-		List<Object> contactList = ccService.contactList(map);
-		System.out.println("contactList  " + contactList.toString());
-		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/contact_list_pop");
-
-		mov.addObject("custcompList", contactList);
-
-		return mov;
-	}
-
-	
 	
 	
 }

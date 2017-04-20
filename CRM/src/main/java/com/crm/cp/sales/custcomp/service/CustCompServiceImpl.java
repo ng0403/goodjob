@@ -499,7 +499,7 @@ public class CustCompServiceImpl implements CustCompService {
 //		return ccDao.custActiveDelete(cust_id);
 //	}
 
-	// 영업활동 상세장보
+	// 영업활동 상세정보
 	@Override
 	public ActVO actDetail(String sales_actvy_id) {
 		return ccDao.actDetail(sales_actvy_id);
@@ -511,11 +511,10 @@ public class CustCompServiceImpl implements CustCompService {
 	}
 
 	//영업담당자 상세보기
-	@Override
-	public ActVO posDetail(String sales_actvy_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public PosVO posDetail(String sales_actvy_id) {
+//		return ;
+//	}
 
 	//영업담당자 추가
 	@Override
@@ -527,6 +526,45 @@ public class CustCompServiceImpl implements CustCompService {
 	@Override
 	public List<Object> custSaleActList(Map<String, Object> map) {
 		return ccDao.custSaleActList(map);
+	}
+
+	//영업담당자에서 사원 리스트
+//	@Override
+//	public List<Object> custSaleActIuserList(Map<String, Object> map) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	//영업담당자에서 사원 리스트
+	@Override
+	public List<Object> iuserList(Map<String, Object> map) {
+		List<Object> list=null;
+		
+		try{
+			list=ccDao.searchList("custcomp.userSelect", map);
+		} catch(Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return list;
+	}
+	
+	//영업담당자 수정
+	@Override
+	public int custSaleActUpdate(PosVO pos) {
+		return ccDao.custSaleActUpdate(pos);
+	}
+
+	//영업담당자 삭제
+	@Override
+	public int custSaleActDelete(String sales_actvy_id) {
+		return ccDao.custSaleActDelete(sales_actvy_id);
+	}
+
+	@Override
+	public PosVO posDetail(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return ccDao.posDetail(map);
 	}
 
 

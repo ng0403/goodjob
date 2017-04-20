@@ -97,25 +97,17 @@ function pocDeatil(cust_id) {
 }
 
 //영업 담당자 상세정보
-function posDeatil(sales_actvy_id) {
+function posDeatil(sales_actvy_id, iuser_id) {
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/custPosDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	var cust_id = $("#nowCust_id").val();
+	window.open(ctx+'/custPosDetailPopup?sales_actvy_id='+sales_actvy_id+'&iuser_id='+iuser_id+'&cust_id='+cust_id+'&flag=1','newwindow','width=500, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //키맨 상세정보 추가할 것
 function keymanDeatil(cust_id,cont_id) {
 	var ctx = $("#ctx").val();
-  	
 	window.open(ctx+'/keymanDetailPopup?cust_id='+cust_id+'&flag=1'+'&cont_id=' + cont_id,'newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
-
-// 키맨 상세정보
-//function keymanDeatil(cust_id) {
-//	var ctx = $("#ctx").val();
-//	var cont_nm = $('#hcont_nm').val();
-//	
-//	window.open(ctx+'/keymanDetailPopup?cust_id='+cust_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-//}
 
 // 영업기회 상세정보 팝업
 function ccOpptDetail(sales_oppt_id){
@@ -462,7 +454,7 @@ function readDetail(){
 //			data :  JSON.stringify(chked_val),
 //			dataType : 'json',
 //			contentType : 'application/json',
-//			success : function(data){
+//			success : function(data){ 
 //				if(data.deleteResult == 'standard/home/session_expire'){
 //					location.href = ctx + '/sessionExpire';
 //				} else {

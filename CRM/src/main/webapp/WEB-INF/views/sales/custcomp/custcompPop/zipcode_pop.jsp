@@ -8,6 +8,7 @@
 <title>우편번호</title>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/addr/zipcode_js.js"></script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/zipcode_css.css" type="text/css" />
 </head>

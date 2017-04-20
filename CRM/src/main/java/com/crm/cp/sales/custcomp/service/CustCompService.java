@@ -89,11 +89,16 @@ public interface CustCompService {
 	int custActiveUpdate(ActVO act);											// 영업활동 수정
 	//int custActiveDelete(String cust_id);										// 영업활동 삭제
 	int custtActiveDelete(String sales_actvy_id);								//// 영업활동 삭제
-
 	ActVO actDetail(String actvyId);											// 영업활동 상세정보
-	ActVO posDetail(String sales_actvy_id);										// 영업담당자 상세보기
+	
+	PosVO posDetail(Map<String, String> map);										// 영업담당자 상세보기
 	int custPosAdd(PosVO pos);													// 영업담당자 추가
-	List<Object> custSaleActList(Map<String, Object> map);						// 영업담당자에서 영업활동리스트
+	List<Object> custSaleActList(Map<String, Object> map);						// 영업담당자에서 영업활동 리스트
+	//List<Object> custSaleActIuserList(Map<String, Object> map);					// 영업담당자에서 사원 리스트
+	List<Object> iuserList(Map<String, Object> map);							// 영업담당자에서 사원 리스트
+
+	int custSaleActUpdate(PosVO pos);											// 영업담당자 수정
+	int custSaleActDelete(String string);										// 영업담당자 삭제
 
 
 

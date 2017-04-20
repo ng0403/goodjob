@@ -11,6 +11,7 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_contpop_css.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }

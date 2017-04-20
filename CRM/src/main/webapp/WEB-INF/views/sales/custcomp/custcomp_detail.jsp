@@ -10,6 +10,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
@@ -18,11 +19,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var flg = ${flg};
-	if(flg == 1)//상세정보를 눌렀을 경우
+	if(flg == detail)//상세정보를 눌렀을 경우
 	{
 		$('#baseBtnDiv').css('display', 'block');
 		$('#mdfBtnDiv').css('display', 'none');
-	} else if(flg == 0)//신규추가를 눌렀을 경우
+	} else if(flg == add)//신규추가를 눌렀을 경우
 		{
 		
 		$("#baseBtnDiv").css("display", "none");

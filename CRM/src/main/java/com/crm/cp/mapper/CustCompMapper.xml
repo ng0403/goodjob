@@ -242,7 +242,9 @@
 		select 
         	(select SALES_ACTVY_ID from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_id,
         	(select SALES_ACTVY_NM from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_nm,
-			(select iuser_nm from iuser i where i.iuser_id = pos.iuser_id ) iuser_id,
+			(select iuser_id from iuser i where i.iuser_id = pos.iuser_id ) iuser_id,
+			(select iuser_nm from iuser i where i.iuser_id = pos.iuser_id ) iuser_nm,
+			
 			pos.key_part,
 			pos.fst_reg_id,
 			TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
@@ -254,9 +256,48 @@
 		and sa.cust_id = #{cust_id} 
 	</select>
 	
-	<update id="posListAdd" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
-		
+	<!-- 영업 담당자 상세보기 -->
+	<select id="posDetail" parameterType="map" resultType="com.crm.cp.sales.custcomp.vo.PosVO">
+		select 
+        	(select SALES_ACTVY_ID from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_id,
+        	(select SALES_ACTVY_NM from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_nm,
+      		(select iuser_id from iuser i where i.iuser_id = pos.iuser_id ) iuser_id,     
+			(select iuser_nm from iuser i where i.iuser_id = pos.iuser_id ) iuser_nm,
+		      cust.cust_id,
+		      cust.cust_nm,
+		      pos.key_part,
+		      sa.memo,
+			  pos.fst_reg_id,
+			  TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+		from SALES_ACTIVITY sa, 
+			 PARTNER_OF_SALESACT pos, 
+			 customer cust
+		where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID
+		and sa.cust_id = cust.cust_id
+		and cust.cust_id = #{cust_id}
+		and pos.iuser_id = #{iuser_id}
+<!-- 		and pos.SALES_ACTVY_ID = #{sales_actvy_id} -->
+	</select>
 	
+	<!-- 영업 담당자 추가 -->
+	<update id="posListAdd" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
+		 insert into PARTNER_OF_SALESACT
+		 (
+			  SALES_ACTVY_ID,
+			  iuser_id,
+			  key_part,
+			  fst_reg_id,
+			  fst_reg_dt
+		 )
+		 	values
+		 (
+			  #{sales_actvy_id, jdbcType=VARCHAR},
+			  #{iuser_id, jdbcType=VARCHAR},
+			  #{key_part, jdbcType=VARCHAR},
+			  'admin',
+			  sysdate
+			 
+		 )	
 	</update>
 	
 	
@@ -290,6 +331,26 @@
                
 	</select>
 	
+	<select id="userSelect" parameterType="string" resultType="map">
+		SELECT *
+		FROM IUSER
+		WHERE ACT_YN='Y';
+	</select>
+	
+	
+	<!-- 영업담당자 수정 -->
+	<update id="custSaleActUpdate" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
+	      update PARTNER_OF_SALESACT
+		  set   
+		        key_part = #{key_part, jdbcType=VARCHAR}
+		  WHERE SALES_ACTVY_ID = #{sales_actvy_id, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 영업담당자 삭제 -->
+	<delete id="custSaleActDelete" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
+	      delete from PARTNER_OF_SALESACT
+		  where SALES_ACTVY_ID = #{sales_actvy_id, jdbcType=VARCHAR}
+	</delete>
 	
 	<!-- 키맨 리스트 -->
 	<select id="keymanList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
@@ -753,15 +814,6 @@
 	                ) b
            		) r <![CDATA[where r.rnum>=#{startRow} and r.rnum<=#{endRow}]]>
 	</select>
-	
-	<!-- 키맨 추가 -->
-<!-- 	<insert id="addKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO"> -->
-<!-- 		 INSERT INTO KEYMAN (KMN_ID, CUST_ID, KMN_NM, POS_NM, PH1, PH2, PH3, CELL_PH1, CELL_PH2, CELL_PH3, EMAIL1, EMAIL2, MEMO, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT, ACT_YN)  -->
-<!-- 	     VALUES(KEYMAN_SEQ.nextVal, #{cust_id}, #{kmn_nm}, #{pos_nm}, #{ph1}, #{ph2}, #{ph3}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3}, #{email1}, #{email2}, #{memo}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate, 'Y') -->
-<!-- 	</insert> -->
-	
-
-	
 	
 	<!-- 계약 기업고객 정보 가져오기 -->
 	<select id="ccContCustDetail" parameterType="String" resultType="com.crm.cp.sales.cont.vo.contrVO">

@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/act_oppt_list_pop.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/cont/contJs.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/cont/cont_pop.js"></script>

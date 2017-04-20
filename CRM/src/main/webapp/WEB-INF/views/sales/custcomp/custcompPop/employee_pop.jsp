@@ -10,6 +10,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/employee_js.js"></script>
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/employee_css.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>

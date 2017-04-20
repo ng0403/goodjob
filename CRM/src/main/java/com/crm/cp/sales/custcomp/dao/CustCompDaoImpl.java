@@ -705,4 +705,37 @@ public class CustCompDaoImpl implements CustCompDao {
 		return sqlSession.selectList("custcomp.actList",map);
 	}
 
+	//영업담당자 상세보기
+	@Override
+	public PosVO posDetail(Map<String, String> map) {
+		return sqlSession.selectOne("custcomp.posDetail", map);
+	}
+
+	
+	@Override
+	public List<Object> searchList(String root, Map<String, Object> map)
+			throws Exception {
+		List<Object> lists = null;
+		try {
+			lists = (List<Object>)sqlSession.selectList(root, map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			
+			throw e;
+		}		
+		return lists;
+	}
+
+	//영업 담당자 수정
+	@Override
+	public int custSaleActUpdate(PosVO pos) {
+		return sqlSession.update("custcomp.custSaleActUpdate", pos);
+	}
+
+	//영업 담당자 삭제
+	@Override
+	public int custSaleActDelete(String sales_actvy_id) {
+		return sqlSession.update("custcomp.custSaleActDelete", sales_actvy_id);
+	}
+
 }

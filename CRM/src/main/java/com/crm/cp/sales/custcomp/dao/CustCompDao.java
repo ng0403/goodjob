@@ -76,6 +76,8 @@ public interface CustCompDao {
 	
 	int getEmpListNum(String iuser_nm); 						// 직원검색 리스트 개수
 	List<CustCompVO> getEmpList(Map<String, Object> iuserMap); 	// 직원검색 리스트
+	public List<Object> searchList(String root, Map<String, Object> map)
+			throws Exception;
 	
 	List<EstVO> getEstimList(String cust_id);
 
@@ -88,9 +90,12 @@ public interface CustCompDao {
 	int custActiveDelete(String sales_actvy_id);				// 영업활동 삭제
 	ActVO actDetail(String sales_actvy_id);						// 영업활동 상세보기
 
-	int custPosAdd(PosVO pos);									//영업담당자 추가
+	int custPosAdd(PosVO pos);									// 영업담당자 추가
+	List<Object> custSaleActList(Map<String, Object> map);		// 영업담당자에서 영업활동 리스트
+	PosVO posDetail(Map<String, String> map);						// 영업담당자 상세보기
 
-	List<Object> custSaleActList(Map<String, Object> map);		//영업담당자에서 영업활동 리스트
+	int custSaleActUpdate(PosVO pos);							// 영업담당자 수정
+	int custSaleActDelete(String sales_actvy_id);				// 영업담당자 삭제
 
 
 

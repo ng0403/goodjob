@@ -9,6 +9,7 @@
  */
 
 $(function(){
+	var custType = $('#custType').val();
 	custNmSelect(ctx);
 	custSearch(ctx,custType);
 });
