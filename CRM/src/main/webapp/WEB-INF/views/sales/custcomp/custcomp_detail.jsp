@@ -186,7 +186,7 @@ $(document).ready(function(){
 									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" />
 								</td>
 							</tr>
-							<tr>
+<!-- 							<tr> -->
 <!-- 								<th>산업군</th> -->
 <!-- 									<td> -->
 <!-- 										<input type="hidden" id="hindst_cd" /> -->
@@ -205,15 +205,15 @@ $(document).ready(function(){
 <!-- 									<input type="hidden" id="main_prod"/> -->
 <!-- 									<input type="text" name="main_prod" id="main_prod" class="int" maxlength="50"readonly="readonly" /> -->
 <!-- 								</td> -->
-								<th>영업담당자</th>
-								<td>
-									<input type="hidden" name="hiuser_id_nm" id="hiuser_id_nm"/>
-									<input type="hidden" name="iuser_id_nm" id="iuser_id_nm"/>
-									<input type="hidden" name="hiuser_nm" id="hiuser_nm"/>
-									<input type="text" name="iuser_nm" id="iuser_nm" class="int_ad" value="${custcompDetail.iuser_nm}" readonly="readonly" />
-									<input type="button" name="iuser_search" id="iuser_search" value="직원" class="custcomp_btn" disabled="disabled"/>
-								</td>
-							</tr>
+<!-- 								<th>영업담당자</th> -->
+<!-- 								<td> -->
+<!-- 									<input type="hidden" name="hiuser_id_nm" id="hiuser_id_nm"/> -->
+<!-- 									<input type="hidden" name="iuser_id_nm" id="iuser_id_nm"/> -->
+<!-- 									<input type="hidden" name="hiuser_nm" id="hiuser_nm"/> -->
+<%-- 									<input type="text" name="iuser_nm" id="iuser_nm" class="int_ad" value="${custcompDetail.iuser_nm}" readonly="readonly" /> --%>
+<!-- 									<input type="button" name="iuser_search" id="iuser_search" value="직원" class="custcomp_btn" disabled="disabled"/> -->
+<!-- 								</td> -->
+<!-- 							</tr> -->
 						</tbody>
 					</table>
 				</div>
