@@ -84,7 +84,7 @@ $(document).ready(function() {
 			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-			opptList(cust_id);
+			opptTabList(cust_id);
 		}
 	});
 	
@@ -406,7 +406,7 @@ function ccTabFunc(cust_id, cust_nm) {
 		} else if($("#tab3").is(":checked")){		
 			if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
 		} else if($("#tab4").is(":checked")){
-			if(cust_id != '')	opptList(cust_id);   // 영업기회 불러오기
+			if(cust_id != '')	opptTabList(cust_id);   // 영업기회 불러오기
 		} else if($("#tab5").is(":checked")){
 			if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
 		} else if($("#tab6").is(":checked")){
@@ -853,55 +853,55 @@ function keymanList(cust_id) {
 }
 
 // 영업기회 List ajax 통신
-function opptList(cust_id) {
-	$(document).ready(function() {
-		var ctx = $("#ctx").val();
-		var tbody = $('#opptTableTbody');
-		var tbodyContent = "";
-		$.ajax({
-			url : ctx+'/ccOpptList',
-			type : 'POST',
-			data : "cust_id="+cust_id,
-			dataType : "json",
-			success : function(data) {
-				tbody.children().remove();
-				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 영업기회가 없습니다.</td></tr>";
-					tbody.append(tbodyContent);
-				}else{
-					// 영업기회 리스트 그리기
-					for (var i = 0; i < data.length; i++) {
-						var expt_sales_amt = comma(data[i].expt_sales_amt);
-						
-						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
-						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccOpptDetail('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
-						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
-						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
-						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
-						"<td style='width:7%;'>"+data[i].psblty_rate+"</td>" +
-						"<td style='width:7%;'>"+data[i].sales_oppt_stat_cd_nm+"</td>" +
-						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
-						"</tr>";
-						tbody.append(tbodyContent);
-					}
-					if(data.length < 5){
-						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:30%;'></td>" +
-							"<td style='width:8%;'></td><td style='width:12%;'></td><td style='width:12%;'></td>" +
-							"<td style='width:7%;'></td><td style='width:7%;'></td><td style='width:8%;'></td><td style='width:15%;'></td></tr>";
-							tbody.append(tbodyContent);
-						}
-					}
-				}
-			},
-			error : function() {
-				alert("전송중 오류가 발생했습니다.");
-			}
-		});
-	});
-}
+//function opptList(cust_id) {
+//	$(document).ready(function() {
+//		var ctx = $("#ctx").val();
+//		var tbody = $('#opptTableTbody');
+//		var tbodyContent = "";
+//		$.ajax({
+//			url : ctx+'/ccOpptList',
+//			type : 'POST',
+//			data : "cust_id="+cust_id,
+//			dataType : "json",
+//			success : function(data) {
+//				tbody.children().remove();
+//				if(data.length == 0){
+//					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 영업기회가 없습니다.</td></tr>";
+//					tbody.append(tbodyContent);
+//				}else{
+//					// 영업기회 리스트 그리기
+//					for (var i = 0; i < data.length; i++) {
+//						var expt_sales_amt = comma(data[i].expt_sales_amt);
+//						
+//						tbodyContent = "<tr>" +
+//						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
+//						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccOpptDetail('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
+//						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
+//						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
+//						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
+//						"<td style='width:7%;'>"+data[i].psblty_rate+"</td>" +
+//						"<td style='width:7%;'>"+data[i].sales_oppt_stat_cd_nm+"</td>" +
+//						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
+//						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
+//						"</tr>";
+//						tbody.append(tbodyContent);
+//					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:30%;'></td>" +
+//							"<td style='width:8%;'></td><td style='width:12%;'></td><td style='width:12%;'></td>" +
+//							"<td style='width:7%;'></td><td style='width:7%;'></td><td style='width:8%;'></td><td style='width:15%;'></td></tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
+//				}
+//			},
+//			error : function() {
+//				alert("전송중 오류가 발생했습니다.");
+//			}
+//		});
+//	});
+//}
 
 //날짜 13자리를 yyyy-mm-dd형식으로 변환해주는 함수
 function dateFormat(timestamp) {

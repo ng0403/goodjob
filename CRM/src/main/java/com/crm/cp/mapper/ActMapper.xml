@@ -273,7 +273,7 @@
 				1=1 and a.cust_id = c.cust_id and a.act_yn='Y'
       		order by a.sales_oppt_id desc
 		)d
-		where d.cust_id = #{cust_id} and d.sales_oppt_stat_cd = '0001'
+		where d.cust_id = #{cust_id} and act_yn='Y'
 	</select>
 	
 	<!-- 업데이트 -->

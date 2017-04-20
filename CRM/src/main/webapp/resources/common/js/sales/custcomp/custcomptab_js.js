@@ -29,15 +29,15 @@ $(document).ready(function() {
 	});
 	
 	// 영업기회 추가 팝업
-	$('#oppt_pop_btn').click(function(){
-		var cust_id = $("#nowCust_id").val();3
-		if(cust_id == ''){
-			alert('고객을 선택해주세요.');
-			return;
-		}else {
-			window.open(ctx+'/opptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-		}
-	});
+//	$('#oppt_pop_btn').click(function(){
+//		var cust_id = $("#nowCust_id").val();3
+//		if(cust_id == ''){
+//			alert('고객을 선택해주세요.');
+//			return;
+//		}else {
+//			window.open(ctx+'/opptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//		}
+//	});
 	
 	// 영업활동 추가 팝업
 	$('#act_pop_btn').click(function(){

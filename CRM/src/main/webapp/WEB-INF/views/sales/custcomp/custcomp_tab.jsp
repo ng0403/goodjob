@@ -11,6 +11,10 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/opptInsertPop.js"></script>
+
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
@@ -121,28 +125,56 @@
 			
 			<!-- 영업기회 리스트 -->
 		<div id="tabDiv4" class="tab4_content" style="width: 100%;">
-			<div class="bt_position_authuser">
-				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" />
-				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/>
+<!-- 			<div class="bt_position_authuser"> -->
+<!-- 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" /> -->
+<%-- 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/> --%>
+<!-- 			</div> -->
+			
+			<div class="bt_position_authuser" style="float: right;">
+				<input type="button" id="actAddSaveBtn" class="custcomp_btn" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/>
+				<input type="button" id="actAddCancelBtn" class="custcomp_btn" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
 			<div id="tableline2">
-				<table id="opptTable" class="tabtable">
+<!-- 				<table id="opptTable" class="tabtable"> -->
+				<table id="goaltable" class="tabtable">
 					<thead>
 						<tr>
-							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th>
-							<th style='width:30%;'>영업기회명</th>
-							<th style='width:8%;'>영업단계</th>
-							<th style='width:12%;'>예상매출액</th>
-							<th style='width:12%;'>예상마감일자</th>
-							<th style='width:7%;'>가능성(%)</th>
-							<th style='width:7%;'>상태</th>
-							<th style='width:8%;'>등록자</th>
-							<th style='width:15%;'>등록일시</th>
+<!-- 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th> -->
+							<th style="width: 3%;"><input type="checkbox"  id='actOpptAllSelect'/></th>
+							<td style="width: 20%;">영업기회명</td>
+							<td style="width: 8%;">고객사</td>
+							<td style="width: 6%;">상태</td>
+							<td style="width: 8%;">영업단계</td>
+							<td style="width: 10%;">예상마감일자</td>
+							<td style="width: 7%;">가능성</td>
+							<td style="width: 8%;">등록자</td>
+							<td style="width: 15%;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="opptTableTbody">
-							<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
+					<tbody id="activeOpptList">
+						<c:forEach items="${opptList}" var="opptList">
+							<c:if test="${not empty opptList}">
+								<tr id="${opptList.sales_oppt_id}">
+									<th>
+										<input type="checkbox"  id="actOpptAllSelect" name="sales_oppt_id" value="${opptList.sales_oppt_id}"/>
+									</th>
+										<td>
+											<a onclick="opptTabDetail('${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
+										</td>
+										<td>${opptList.cust_nm}</td>
+										<td>${opptList.sales_oppt_stat_cd_nm}</td>
+										<td>${opptList.sales_lev_cd_nm}</td>
+										<td>${opptList.expt_fin_d}</td>
+										<td>${opptList.psblty_rate}</td>
+										<td>${opptList.fst_reg_id}</td>
+										<td>${opptList.fst_reg_dt}</td>
+								</tr>
+							</c:if>
+							<c:if test="${empty opptList}">
+								<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
+							</c:if>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
