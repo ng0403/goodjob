@@ -266,7 +266,7 @@
 												<option value="0" >선택</option>
 												<c:forEach items="${eduList}" var="list2">
 													<c:if test="${list2.code == prodlist.discount_unit_cd}">
-														<option value="${list2.code}" class="seloption">${list2.cd_nm}</option>
+														<option value="${list2.code}" class="seloption" selected="selected">${list2.cd_nm}</option>
 													</c:if>
 													<c:if test="${list2.code != prodlist.discount_unit_cd}">
 														<option value="${list2.code}">${list2.cd_nm}</option>

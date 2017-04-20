@@ -150,7 +150,6 @@ public class ActController {
 			
 			return mov;
 		}
-/**/		
 	}
 	
 	//영업활동등록
@@ -324,21 +323,6 @@ public class ActController {
 			mov.addObject("custType", "normal");
 
 			return mov;
-		}
-	
-	//영업활동등록
-	@RequestMapping(value = "/actInsertT", method = RequestMethod.POST)
-	public @ResponseBody Object actInsertT(@RequestBody ActVO actvo, HttpSession session)
-	{
-		/*		actvo.setStrt_d(new java.sql.Date(actvo.getStrt_d().getTime()));
-		actvo.setEnd_d(new java.sql.Date(actvo.getEnd_d().getTime()));*/
-			
-		actvo.setFst_reg_id(session.getAttribute("user").toString());
-		System.out.println(actvo.toString());
-		actService.actInsert(actvo);
-
-		return actvo;
-			
 	}
 	
 	/**

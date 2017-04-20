@@ -10,7 +10,6 @@
  * prodDelete()									:	상품 삭제
  * opptEstimButton(ctx)							:	저장(수정) 버튼 클릭
  * estimCancel()								:	취소 버튼 클릭
- * startCalendar(ctx)							:	달력 띄우기	
  * OpptProdNmSelect(ctx)						:	상품명 클릭 시
  */
 
@@ -65,11 +64,11 @@ $(document).ready(function() {
 	});
 	
 	opptProdNmSelect(ctx);	// 상품 팝업에서 클릭 했을 때.
-	//opptProdChargeRealTime();
+	opptProdChargeRealTime();
+	opptProdUpdate();
 	//prodallCheck();
 	//opptProdDelete();
 	//opptProdUpdate();
-	//startCalendar(ctx);
 });	
 
 /*견적 상품목록 수정에 사용되는 변수*/
@@ -122,8 +121,6 @@ function opptInProd(prod_id, prod_nm, prod_price)
 	}
 	else
 	{
-		//alert("opptInsertPop.js - else");
-
 		$("#opptProdtbody tr").each(function(){		
 			var old_prodId = $(this).attr("class");
 			
@@ -182,8 +179,6 @@ function opptProdUpdate(){
 	var discountSum = 0;
 	var supplyPriceSum = 0;
 	
-	alert("너를 수정해야하니??");
-	
 	$("#opptProdtbody tr[class!=empty]").each(function(){
 		var countObj=$(this).children().eq(2).children();
 		var salesamtObj=$(this).children().eq(0).children().eq(1);
@@ -223,24 +218,21 @@ function opptProdUpdate(){
 		var unit = $(this).children().eq(4).children().eq(1).val();
 		var disamt = 0;
 		
+		alert(unit);
+		
 		if(unit == "0001")
 		{
-			//alert("원");
-			
 			disamt = parseInt(amt) - parseInt(disval);
 			discountSum = parseInt(disval) + parseInt(discountSum);
 		}
 		else if(unit == "0002")
 		{
-			//alert("%");
-			
 			var dis = parseInt(amt) * (parseInt(disval)/100);
 			disamt = parseInt(amt) - parseInt(dis);
 			discountSum = parseInt(dis) + parseInt(discountSum);
 		}
 		else if(unit =="0")
 		{
-			//alert(" 0 ");
 			disamt = parseInt(amt);
 			$(this).children().eq(4).children().eq(0).val("0");
 		}
@@ -249,14 +241,12 @@ function opptProdUpdate(){
 			disamt="0";
 		}
 		
-		//alert("unit : " + unit + " disamt : " + disamt);
 		
 		$(this).children().eq(5).text(comma(disamt));
 		
 		var realamt = $(this).children().eq(5).text();
 		supplyPriceSum = parseInt(disamt) + parseInt(supplyPriceSum);
 		
-		//alert("supplyPriceSum : " + supplyPriceSum);
 	});
 	
 	$("#countSum").text(comma(countSum));
@@ -269,7 +259,6 @@ function opptProdUpdate(){
 //input값 bind시 상품 금액 변경 함수 호출
 function opptProdChargeRealTime()
 {
-	//opptPrdtbody
 	$("#opptProdtbody").bind('input', function(){
 		opptProdUpdate();
 	});

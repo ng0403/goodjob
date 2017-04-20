@@ -81,6 +81,7 @@ function startCalendar(ctx)
 
 /**
  * 영화씨
+ * 위 전역변수와 ready안에 있는 부분
  * */
 function opptSave()
 {
