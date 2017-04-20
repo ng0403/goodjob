@@ -82,7 +82,7 @@ function startCalendar(ctx)
 }
 
 /**
- * 영화씨
+ * 
  * 위 전역변수와 ready안에 있는 부분
  * */
 function opptSave()
@@ -316,10 +316,10 @@ function opptProdList()
 	window.open('/prodList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
-//영업기회탬에서 추가버튼 눌렀을 때.
+//영업기회 탭에서 추가버튼 눌렀을 때.
 function opptInsertPop()
 {
-	window.open('/opptInsertPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptInsertPopup','newwindow','width=700, height=650, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //컴마 입력 함수
@@ -368,7 +368,7 @@ function opptTabList(cust_id)
 //영업기회 상세정보 고객 리스트 팝업
 function opptCustPopup(ctx)
 {
-	window.open(ctx+'/opptCustPopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/opptCustPopup','newwindow','width=700, height=650, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기
@@ -385,7 +385,7 @@ function actTabFunc(sales_actvy_id) {
 
 function opptTabDetail(sales_oppt_id)
 {
-	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 
