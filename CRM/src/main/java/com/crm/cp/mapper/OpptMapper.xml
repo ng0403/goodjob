@@ -299,15 +299,13 @@
 	<select id="customerList" parameterType="java.util.Map"	resultType="com.crm.cp.sales.lead.vo.LeadVo">
 		select
 		a.CUST_ID
-		, b.act_yn
-		, b.CUST_NM
-		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = b.CUST_DIV_CD) CUST_DIV_CD
-		,a.lead_id
+		,a.act_yn
+		,a.CUST_NM
+		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = a.CUST_DIV_CD) CUST_DIV_CD
 		from
-		lead a
-		, customer b
+			customer a
 		where
-		a.cust_id = b.cust_id and b.act_yn='Y'
+			a.act_yn='Y'
 		<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
@@ -318,15 +316,14 @@
 	<select id="opptSearchCustComp" parameterType="java.util.Map" resultType="com.crm.cp.sales.lead.vo.LeadVo">
 		select
 		a.CUST_ID
-		, b.act_yn
-		, b.CUST_NM
-		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = b.CUST_DIV_CD) CUST_DIV_CD
-		,a.lead_id
+		, a.act_yn
+		, a.CUST_NM
+		,(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='CDC' AND C.CODE = a.CUST_DIV_CD) CUST_DIV_CD
+		
 		from
-		lead a
-		, customer b
+			customer a
 		where
-		a.cust_id = b.cust_id and b.act_yn='Y'
+			a.act_yn='Y'
 		<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
