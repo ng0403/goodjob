@@ -393,8 +393,9 @@
 		
 		delete
 		from keyman
-		where cust_id = #{keyman_idList}
+		where cust_id = #{cust_id} and cont_id = #{cont_id}
 	</delete>
+ 
 	
 	<!-- 키맨 수정 -->
 	<update id="mdfyKeymancontact" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">

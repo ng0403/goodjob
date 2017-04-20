@@ -182,7 +182,7 @@ public class ContactDaoImpl implements ContactDao {
 		
 		// 키맨 수정
 		@Override
-		public int deleteKeyman(KeymanVO kVO) {
+		public int mdfyKeyman(KeymanVO kVO) {
 			int rstKm = 0;
 			try {
 				rstKm = sqlSession.update("contact.mdfyKeymancontact", kVO);
@@ -194,7 +194,7 @@ public class ContactDaoImpl implements ContactDao {
 
 		
 		// 키맨 삭제
-		@Override
+	/*	@Override
 		public int deleteKeyman(List<String> keyman_idList) {
 			int	deleteResultTemp = 0;
 			int deleteResult = 0;
@@ -203,6 +203,26 @@ public class ContactDaoImpl implements ContactDao {
 					deleteResultTemp = sqlSession.delete("keymanDeletecontact", keyman_idList.get(i));
 					deleteResult += deleteResultTemp;
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return deleteResult;
+		}*/
+		
+		// 키맨 삭제
+		@Override
+		public int deleteKeyman(KeymanVO kVO) {
+			int	deleteResultTemp = 0;
+			int deleteResult = 0;
+			try {
+	/*			for (int i = 0; i < keyman_idList.size(); i++) {
+					deleteResultTemp = sqlSession.update("keymanDelete", keyman_idList.get(i));
+					deleteResult += deleteResultTemp;
+				}*/
+					deleteResultTemp = sqlSession.delete("keymanDeletecontact", kVO);
+					deleteResult += deleteResultTemp;
+			
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

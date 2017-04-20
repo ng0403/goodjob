@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 </head>
-<body  >
+<body>
 	<div id="css_tabs" style="float: left;">
 		<!-- 라디오 버튼 -->
 		<!-- <input id="tab1" type="radio" name="tab" /> -->
@@ -42,7 +42,7 @@
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="keyman_pop_btn" class="custcomp_btn" value="키맨 추가" />
-				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete();"/>
+				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
 			<div id="tableline2">

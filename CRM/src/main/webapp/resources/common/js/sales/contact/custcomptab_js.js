@@ -676,7 +676,8 @@ function contactopptModify(){
  
 
 //키맨 삭제
-function keymanDelete() {
+function keymanDelete1() {
+ 
 	var chked_val = [];
  	$(":checkbox[id='kmChkbox']:checked").each(function(index, item){
 		chked_val[index] = item.value;

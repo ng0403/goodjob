@@ -27,8 +27,10 @@ public interface ContactDao {
 	int insertKeyman(KeymanVO kVO); // 키맨 추가
 	List<KeymanVO> getKeymanList(String cont_id); // 키맨 리스트
 	KeymanVO keymanDetail(String cust_id); // 키맨 상세정보
-	int deleteKeyman(KeymanVO kVO); // 키맨 수정
-	int deleteKeyman(List<String> keyman_idList); // 키맨 삭제
+	int mdfyKeyman(KeymanVO kVO); // 키맨 수정
+	/*int deleteKeyman(List<String> keyman_idList);*/ // 키맨 삭제
+	int deleteKeyman(KeymanVO kVO); 	// 키맨 삭제
+
 	List<OpptVO> getOpptList(String cont_id); // 영업기회 리스트
 	OpptVO ccOpptDetail(String sales_oppt_id); // 영업기회 상세정보
 	List<OpptVO> opptOscList(); 	//영업기회 상태코드 가져오기 

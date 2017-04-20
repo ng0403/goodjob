@@ -16,6 +16,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="title">
+		<div class="caption">■ 연락처 추가</div>
+	</div>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="nowCall_id"/>
 	<input type="hidden" id="hCust_div_nm"/>

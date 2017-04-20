@@ -28,7 +28,9 @@ public interface ContactService {
 	List<KeymanVO> getKeymanList(String cust_id);
 	KeymanVO keymanDetail(String cust_id); 										// 키맨 상세정보
 	String mdfyKeyman(KeymanVO kVO);											// 키맨 수정
-	String deleteKeyman(List<String> keyman_idList); 							// 키맨 삭제
+/*	String deleteKeyman(List<String> keyman_idList); 							// 키맨 삭제
+*/	String deleteKeyman(KeymanVO kVO); 							// 키맨 삭제
+
 	List<OpptVO> getOpptList(String cont_id);									// 영업기회 리스트 
 	OpptVO ccOpptDetail(String sales_oppt_id); 									// 영업기회 상세정보 
 	List<OpptVO> opptOscList(); 												//영업기회 상태코드 가져오기

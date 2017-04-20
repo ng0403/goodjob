@@ -56,6 +56,7 @@ function keymanAdd() {
 	});
 }
 
+//키맨 수정
 function keymanMdfy(a) {
 	$(document).ready(function() {
 		var ctx = $("#ctx").val();

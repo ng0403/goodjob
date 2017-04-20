@@ -92,7 +92,7 @@ public class ContactController {
 	 * contactService.contactDetail(cont_id); return contactVO; }
 	 */
 
-	@RequestMapping(value = "contact_detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/contact_detail", method = RequestMethod.GET)
 	public ModelAndView companyCutomerDetail(HttpSession session, @RequestParam("cont_id") String cont_id) {
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
@@ -316,7 +316,7 @@ public class ContactController {
 	}
 
 	// 키맨 삭제
-	@RequestMapping(value = "delKeyman", method = RequestMethod.POST)
+/*	@RequestMapping(value = "delKeyman", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> keymanDelete(HttpSession session,
 			@RequestBody List<String> keyman_idList) {
 		Map<String, Object> rstMap = new HashMap<String, Object>();
@@ -328,7 +328,41 @@ public class ContactController {
 			rstMap.put("deleteResult", deleteResult);
 		}
 		return rstMap;
-	}
+	}*/
+	// 키맨 삭제
+		@RequestMapping(value = "delKeyman", method = RequestMethod.POST)
+		public @ResponseBody Map<String, Object> keymanDelete(HttpSession session, @RequestBody List<String> keyman_idList) {
+			System.out.println("삭제 리스트??  " + keyman_idList.toString());
+			
+			String cont_id = "";
+			String cust_id = "";
+			KeymanVO kmVO = new KeymanVO();
+			Map<String, Object> rstMap = new HashMap<String, Object>();
+			for(int i=0; i<keyman_idList.size(); i++)
+			{
+				String del[] = keyman_idList.get(i).split(":");
+
+				
+				cont_id = del[0];
+				cust_id = del[1];
+				System.out.println("cont_id ? " +cont_id);
+				System.out.println("cust_id? " + cust_id);
+				kmVO.setCont_id(cont_id);
+				kmVO.setCust_id(cust_id); 
+				
+				if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+					rstMap.put("mdfyResult", "standard/home/session_expire");
+				} else {
+					String deleteResult = contactService.deleteKeyman(kmVO);
+					rstMap.put("deleteResult", deleteResult);
+				}
+				
+			}
+			 
+		
+			return rstMap;
+		}
+	
 
 	// 영업기회 상세정보
 	@RequestMapping(value = "/opptDetailPopupcontact", method = RequestMethod.GET)

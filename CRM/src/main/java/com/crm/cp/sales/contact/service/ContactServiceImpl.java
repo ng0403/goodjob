@@ -163,7 +163,7 @@ public class ContactServiceImpl implements ContactService {
 		// 키맨 수정
 		@Override
 		public String mdfyKeyman(KeymanVO kVO) {
-			int mdfyResult = contactDao.deleteKeyman(kVO);
+			int mdfyResult = contactDao.mdfyKeyman(kVO);
 			String resultStr = null;
 			if(mdfyResult == 1){
 				resultStr = "키맨 수정이 완료 되었습니다.";
@@ -174,7 +174,7 @@ public class ContactServiceImpl implements ContactService {
 		}
 		
 		// 키맨 삭제
-		@Override
+	/*	@Override
 		public String deleteKeyman(List<String> keyman_idList) {
 			int deleteResult = contactDao.deleteKeyman(keyman_idList);
 			String resultStr = null;
@@ -184,7 +184,31 @@ public class ContactServiceImpl implements ContactService {
 				resultStr = "키맨 삭제에 실패 했습니다.";
 			}
 			return resultStr;
+		}*/
+		
+		// 키맨 삭제
+		@Override
+		public String deleteKeyman(KeymanVO kVO) {
+			int deleteResult = contactDao.deleteKeyman(kVO);
+			System.out.println("과연 무엇일까" + deleteResult);
+			String resultStr = null;
+			/*if(deleteResult == keyman_idList.size()){
+				resultStr = "키맨 삭제가 완료 되었습니다.";
+			} else {
+				resultStr = "키맨 삭제에 실패 했습니다.";
+			}*/
+			if(deleteResult == 1)
+			{
+				resultStr = "키맨 삭제가 완료 되었습니다.";
+			}
+			else{
+				resultStr = "키맨 삭제에 실패 했습니다.";
+						
+			}
+			return resultStr;
 		}
+		
+		
 		
 		// 영업기회 리스트
 		@Override
