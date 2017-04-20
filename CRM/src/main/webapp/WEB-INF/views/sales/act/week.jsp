@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/main.css"/>
 <link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+
 <script src="${pageContext.request.contextPath}/resources/SE/js/HuskyEZCreator.js" type="text/javascript" charset="utf-8"></script>
 <script src='${pageContext.request.contextPath}/resources/lib/jquery.min.js'></script>
 <script src='${pageContext.request.contextPath}/resources/lib/jquery-ui.custom.min.js'></script>
@@ -35,7 +37,7 @@
 <body style="background-color:white;">
 
 <div >
-<div id="dboardbody" class="jui" style="width: 1250px;margin: 0 auto;">
+<div id="dboardbody" class="jui" style="width: 1000px; margin: 0 auto;">	<!-- 1250  margin: 0 auto; -->
 <input type="hidden" id="ctx" value="${ctx}">
 <input type="hidden" id="selectUser">
 <input type="hidden" id="selectTab" value="tab_Home">
@@ -51,7 +53,7 @@
 	    </div>
 		<div class="body">
 			<div class="contents-view" id="sviewModal-contents"></div>
-			<div style="text-align: center; margin-bottom: 10px;">
+			<div style="text-align: center; margin-bottom: 50px;">	<!-- 10 -->
 				<a href="#" class="btn btn-gray btn-small" onclick='javascript:sviewModal.hide();'>Close</a>
 			</div> 
 		</div>
@@ -60,7 +62,7 @@
 	<!-- 내용영역 -->
 	<div class="panel main-container">
 		<div class="head">
-			<i class="icon-home"></i>업무 시스템(&nbsp;<span id="head-year"></span>년&nbsp;<span id="head-month"></span>월&nbsp;<span id="head-day"></span>일&nbsp;<span id="head-hour"></span>시&nbsp;<span id="head-min"></span>분&nbsp;)
+			<i class="icon-home"></i>영업활동 일정(&nbsp;<span id="head-year"></span>년&nbsp;<span id="head-month"></span>월&nbsp;<span id="head-day"></span>일&nbsp;<span id="head-hour"></span>시&nbsp;<span id="head-min"></span>분&nbsp;)
   		 
 		</div>
 		<div class="body">
@@ -137,7 +139,7 @@
 		<div id="main_View" style="display: block;">
 			<div class="group" >
 				<a class="left btn btn-mini btn-gray-black" id="sview-refresh"><span>새로고침</span>&nbsp;<i class="icon-refresh"></i></a>
-				(날짜의 빈공간을 클릭하면 스케줄을 등록 할 수 있습니다.)
+				(날짜의 빈공간을 클릭하면 영업활동을 추가 할 수 있습니다.)
 			</div>
 			<!-- 달력 Cell 생성해주는 부분	. -->
 			<div id='schcalendar'></div>

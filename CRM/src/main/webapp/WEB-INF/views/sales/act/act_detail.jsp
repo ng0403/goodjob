@@ -9,6 +9,7 @@
 <c:set var="actDetail" value="${actDetail}" />
 <c:set var="flg" value="${flg}" />
 
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">

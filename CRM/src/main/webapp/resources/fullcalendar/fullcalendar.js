@@ -690,7 +690,7 @@ function Calendar(element, options, eventSources) {
 
 	function freezeContentHeight() {
 		content.css({
-			width: '100%',
+			width: '100%',	/* 100 */
 			height: content.height(),
 			overflow: 'hidden'
 		});

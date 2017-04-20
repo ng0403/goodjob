@@ -983,10 +983,19 @@ function getPayDay(){
 	if($('#schcalendar').attr('class') == null){
 		calDate = new Date();
 	}
+/*	
 	var y = calDate.getFullYear();
 	var m = calDate.getMonth();
 	var d = 25;
+*/	
+	var y = 2017;
+	var m = 04;
+	var d = 02;
+	var d1 = 04;
+	var d2 = 09;
 	var payday = new Date(y,m,d);
+	
+	//alert(payday);
 	
 	if(yy != y){
 		gfnGetHolidays(y);
@@ -1003,6 +1012,9 @@ function getPayDay(){
 	while(isHoliday(new Date(y,m,d))){
 		d = d-1;
 	}
+	$('#schcalendar').fullCalendar( 'renderEvent', {title:'대체공휴일', start:new Date(y,m,d), color:'red'} );
+	$('#schcalendar').fullCalendar( 'renderEvent', {title:'대체공휴일', start:new Date(y,m,d1), color:'red'} );
+	$('#schcalendar').fullCalendar( 'renderEvent', {title:'선거일', start:new Date(y,m,d2), color:'red'} );
 	//$('#schcalendar').fullCalendar( 'renderEvent', {title:'월급날', start:new Date(y,m,d), color:'red'} );
 }
 

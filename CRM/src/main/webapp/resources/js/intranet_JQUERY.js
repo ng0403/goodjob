@@ -31,7 +31,7 @@ $(function(){
 		header: {
 			left: ' ',
 			center: 'prev title next',
-			right: 'today, month, basicWeek, basicDay'
+			right: 'month, basicWeek, basicDay'	/* right: 'today, month, basicWeek, basicDay' */
 		},
 		titleFormat: {
 			month: 'yyyy년 MMMM',

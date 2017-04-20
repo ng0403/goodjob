@@ -36,7 +36,7 @@ html .fc,
 	}
 
 .fc-header-left {
-	width: 25%;
+	width: 25%; /* 25 */
 	text-align: left;
 	}
 	
@@ -104,11 +104,11 @@ html .fc,
 	
 .fc-content {
 	clear: both;
-	zoom: 1; /* for IE7, gives accurate coordinates for [un]freezeContentHeight */
+	zoom: 1; /* for IE7, gives accurate coordinates for [un]freezeContentHeight */ /* 1 */
 	}
 	
 .fc-view {
-	width: 100%;
+	width: 100%;	/* 100 */
 	overflow: hidden;
 	}
 	
@@ -334,7 +334,7 @@ a.fc-event,
 	top: 0           !important; /* importants override pre jquery ui 1.7 styles */
 	right: -3px      !important;
 	width: 7px       !important;
-	height: 100%     !important;
+	height: 100%     !important;	/* 100 */
 	cursor: e-resize;
 	}
 	
