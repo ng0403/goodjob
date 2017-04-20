@@ -77,6 +77,70 @@
 								</c:if>
 							    
 							</td>
+							<th>고객사</th>
+							<td>
+								<c:if test="${flg eq '1'}">
+									<input type="hidden" id="hcust_id">
+								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
+								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly"> 
+								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer" disabled="disabled">
+								</c:if>
+								<c:if test="${flg eq '0'}">
+									<input type="hidden" id="hcust_id">
+								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
+								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly" style="background-color: white;"> 
+								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer">
+								</c:if>
+							    
+							</td>
+			     		</tr>
+						<tr>
+							<th>영업기회명</th>
+							<td>
+								<c:if test="${flg eq '1'}">
+									<input type="hidden" id="hsales_oppt_id">
+									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
+							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly"> 
+							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" disabled="disabled">
+								</c:if>
+								<c:if test="${flg eq '0'}">
+									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
+							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly" style="background-color: white;"> 
+							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" >
+								</c:if>
+							    	
+							</td>
+							<th>상태</th>
+							<td>
+								<c:if test="${flg eq '1'}">
+								    <input type="hidden" id="hsales_actvy_stat_cd">
+<%-- 								    <input type="hidden" id="sales_actvy_stat_cd" name="sales_actvy_stat_cd" value="${actStatCd.sales_actvy_stat_cd}"> --%>
+								    <select name="sales_actvy_stat_nm" id="sales_actvy_stat_nm" class="act_tab_select" disabled="disabled">
+								    	<option value="0" style="text-align: center;">==상태==</option>						    
+								      	<c:forEach var="actStatCd" items="${actStatCd}">
+								      		<c:if test="${actDetail.sales_actvy_stat_cd == actStatCd.sales_actvy_stat_cd}">
+								      			<option selected="selected" value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+								      		</c:if>
+								      		<c:if test="${actDetail.sales_actvy_stat_cd != actStatCd.sales_actvy_stat_cd}">
+								      			<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+								      		</c:if>
+										</c:forEach>
+			     				  	</select>
+			     				  	
+			     			  	</c:if>
+			     			  	<c:if test="${flg eq '0'}">
+			     			  		<input type="hidden" id="hsales_actvy_stat_cd">
+								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select">
+								    	<option value="0" style="text-align: center;">==상태==</option>						    
+								      	<c:forEach var="actStatCd" items="${actStatCd}">
+											<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+										</c:forEach>
+			     				  	</select>
+			     			  	</c:if>
+			     			  	
+							</td>
+						</tr>
+						<tr>
 							<th>활동구분</th>
 							<td>
 							    <input type="hidden" id="hsales_actvy_div_cd">
@@ -124,70 +188,7 @@
 			     			    	</select>
 								</c:if>
 			     			</td>
-			     		</tr>
-						<tr>
-							<th>영업기회명</th>
-							<td>
-								<c:if test="${flg eq '1'}">
-									<input type="hidden" id="hsales_oppt_id">
-									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
-							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly"> 
-							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" disabled="disabled">
-								</c:if>
-								<c:if test="${flg eq '0'}">
-									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
-							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly" style="background-color: white;"> 
-							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" >
-								</c:if>
-							    	
-							</td>
-							<th>고객사</th>
-							<td>
-								<c:if test="${flg eq '1'}">
-									<input type="hidden" id="hcust_id">
-								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
-								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly"> 
-								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer" disabled="disabled">
-								</c:if>
-								<c:if test="${flg eq '0'}">
-									<input type="hidden" id="hcust_id">
-								    <input type="hidden" id="cust_id" value="${actDetail.cust_id}">
-								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly" style="background-color: white;"> 
-								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer">
-								</c:if>
-							    
-							</td>
-							<th>상태</th>
-							<td>
-								<c:if test="${flg eq '1'}">
-								    <input type="hidden" id="hsales_actvy_stat_cd">
-<%-- 								    <input type="hidden" id="sales_actvy_stat_cd" name="sales_actvy_stat_cd" value="${actStatCd.sales_actvy_stat_cd}"> --%>
-								    <select name="sales_actvy_stat_nm" id="sales_actvy_stat_nm" class="act_tab_select" disabled="disabled">
-								    	<option value="0" style="text-align: center;">==상태==</option>						    
-								      	<c:forEach var="actStatCd" items="${actStatCd}">
-								      		<c:if test="${actDetail.sales_actvy_stat_cd == actStatCd.sales_actvy_stat_cd}">
-								      			<option selected="selected" value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-								      		</c:if>
-								      		<c:if test="${actDetail.sales_actvy_stat_cd != actStatCd.sales_actvy_stat_cd}">
-								      			<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-								      		</c:if>
-										</c:forEach>
-			     				  	</select>
-			     				  	
-			     			  	</c:if>
-			     			  	<c:if test="${flg eq '0'}">
-			     			  		<input type="hidden" id="hsales_actvy_stat_cd">
-								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select">
-								    	<option value="0" style="text-align: center;">==상태==</option>						    
-								      	<c:forEach var="actStatCd" items="${actStatCd}">
-											<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-										</c:forEach>
-			     				  	</select>
-			     			  	</c:if>
-			     			  	
-							</td>
-						</tr>
-				
+						</tr>	
 						<tr>
 							<th>시간일자 / 시간</th>
 							<td>

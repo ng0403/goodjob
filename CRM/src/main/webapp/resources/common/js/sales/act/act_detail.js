@@ -1,6 +1,7 @@
 $(function(){
 	var ctx = $('#ctx').val();
 	var sales_actvy_id = $("#nowSales_actvy_id").val();
+	
 	startCalendar(ctx);
 	endCalendar(ctx);
 	actAddBtn();
@@ -146,11 +147,13 @@ function actMdfyCancelBt(){
 	// 취소 버튼 기능
 	$(document).ready(function() {
 		
-		var ynChk = confirm("정말 취소하시겠습니까?");
+		var ynChk = confirm("수정을 취소하시겠습니까?");
+		var salesId = $("#sales_actvy_id").val()
 		
 		if(ynChk)
 		{
 			location.href = '/act';
+			//location.href = '/actDetail?sales_actvy_id=' + salesId;
 //			$("#act_tab_tbody input[type='text']").css("background-color", "#EAEAEA");
 //			$("#memo").css("background-color", "#EAEAEA");
 //
@@ -702,9 +705,23 @@ function actInsert(ctx) {
 			return false;
 		}
 		
-		$('#actTabForm') 
-		.attr('action','actInsert')
-		.submit();
+		var ynChk = confirm("해당 정보를 추가하시겠습니까?");
+		
+		if(ynChk)
+		{
+			alert("정상 등록되었습니다.");
+			
+			$('#actTabForm') 
+			.attr('action','actInsert')
+			.submit();
+		}
+		else
+		{
+			alert("취소되었습니다.");
+			return false;
+		}
+		
+		
 /*		
 	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
 	    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
@@ -736,9 +753,21 @@ function actInsert(ctx) {
  * */
 function actModify(ctx)
 {
-	$('#actTabForm')
+	var ynChk = confirm("해당 정보를 수정하시겠습니까?");
+	
+	if(ynChk)
+	{
+		alert("정상 수정되었습니다.");
+		
+		$('#actTabForm')
 		.attr('action', 'actEdit')
 		.submit();
+	}
+	else
+	{
+		return false;
+	}	
+	
 }
 
 /**
@@ -746,9 +775,21 @@ function actModify(ctx)
  * */
 function actDelBt(sales_actvy_id)
 {
-	$('#actTabForm')
+	var ynChk = confirm("해당 정보를 삭제하시겠습니까?");
+	
+	if(ynChk)
+	{
+		alert("해당 영업활동이 삭제되었습니다.");
+		
+		$('#actTabForm')
 		.attr('action', 'actDelete')
 		.submit();
+	}
+	else
+	{
+		return false;
+	}
+	
 }
 
 
@@ -801,11 +842,6 @@ function searchActDiv(){
 		$('#sact_oppt_nm').attr("disabled",false);
 	}
 }
-
-/**
- * 영화씨가 봐야될 부분.
- * */
-
 
 
 // 수정 버튼 눌렀을 시 ajax부분 (기존)

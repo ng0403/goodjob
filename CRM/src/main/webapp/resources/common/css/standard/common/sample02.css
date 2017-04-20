@@ -7,7 +7,7 @@ nav {
 	float: left;     
 	text-align: center;
 	position: absolute;
-	z-index: 2;
+	z-index: 20;		/* 2 `*/
 	margin: 0 auto;
 	margin-top: 58px;
 	margin-bottom: 10px;

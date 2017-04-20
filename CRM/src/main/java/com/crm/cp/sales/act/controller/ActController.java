@@ -161,7 +161,16 @@ public class ActController {
 		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
 		
 		System.out.println("actInsert : " + actvo.toString());
-		actService.actInsert(actvo);
+		
+		if(actvo.getSales_actvy_div_cd().equals("0001"))
+		{
+			actService.actInsert(actvo);
+		}
+		if(actvo.getSales_actvy_div_cd().equals("0002"))
+		{
+			actService.actInsert(actvo);
+		}
+		
 
 		return "redirect:/act";
 	}

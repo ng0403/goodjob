@@ -77,7 +77,7 @@ function actDelete()
 		}
 	
 		form.submit();
-	}	
+	}
 }
 
 //$(function(){

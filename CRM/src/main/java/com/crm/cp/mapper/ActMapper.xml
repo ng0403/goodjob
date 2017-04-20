@@ -227,7 +227,7 @@
         		WHERE 
         		 	ROWNUM=1),
         		 #{sales_actvy_nm}, #{sales_actvy_div_cd}, #{sales_actvy_type_cd}, #{sales_oppt_id},
-		   		 (select cust_id from customer where cust_nm = #{cust_nm}), #{sales_actvy_stat_cd}, TO_DATE(#{strt_d},'yyyy-MM-dd'), #{strt_t},
+		   		 #{cust_id}, #{sales_actvy_stat_cd}, TO_DATE(#{strt_d},'yyyy-MM-dd'), #{strt_t},
 		   		 TO_DATE(#{end_d},'yyyy-MM-dd'), #{end_t}, #{memo}, #{fst_reg_id}
 		     )
 	</update>
