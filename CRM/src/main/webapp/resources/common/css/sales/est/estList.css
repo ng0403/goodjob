@@ -69,11 +69,37 @@ select{
 
 
 #goaltable {
+	width:100%;
+	margin-top: 10px;
+	border-top: 2px solid #C0C4CB;
+	border-bottom: 2px solid #C0C4CB;
 	border-collapse: collapse;
+}
+
+#goaltable thead tr{
+	border-bottom: 2px solid #C0C4CB;
+	background-color: #F2F2F2;
+	font-weight: bold;
+}
+
+#goaltable td{
+	height:25px;
 }
 
 #goaltable tbody tr:hover {
 	background-color: #ebe7e7;
+}
+
+#goaltable tbody td{
+	color: black;
+	border-bottom: 1px solid #DDDDDD;
+/* 	padding:1.5px; */
+	padding-right:10px;
+}
+
+#goaltable tbody td a{
+	color: inherit;
+	text-decoration: none;
 }
 
 #ccPageInput {

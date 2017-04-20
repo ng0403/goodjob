@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estList.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
@@ -37,7 +37,7 @@
 		<input type="hidden" id="estim_id" name="estim_id">
 	</form>
 	<div id="title">
-		<div class="caption">■ 견적</div>
+		<div class="caption">■ 영업 > 견적</div>
 	</div>
 		<div class="search_div" >
 			<label for="scompNam" class="tel_label_list">견적명</label>
@@ -89,8 +89,8 @@
 								<a style='text-decoration: none;' href="javascript:estDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>
 							<td><c:out value="${result.estim_lev_cd_nm}" /></td>
-							<td><c:out value="${result.estim_qty}" /></td>
-							<td style='text-align: right; padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
+							<td style='text-align: right; padding-right:50px;'><c:out value="${result.estim_qty}" /></td>
+							<td style='text-align: right; padding-right:50px;'><fmt:formatNumber value="${result.sales_price}" /></td>
 							<td><c:out value="${result.estim_valid_d}" /></td>
 							<td><c:out value="${result.fst_reg_id}" /></td>
 							<td><c:out value="${result.fst_reg_dt}" /></td>

@@ -14,7 +14,9 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
+
 	<link rel="stylesheet"
 	href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 <script type="text/javascript"
@@ -55,7 +57,7 @@ $(function() {
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<div id="title">
-			<div class="caption">■ 견적상세정보</div>
+			<div class="caption">■ 영업 > 견적 > 상세정보</div>
 		</div>
 		<!-- <label>상세정보</label> -->
 
@@ -68,18 +70,18 @@ $(function() {
 				<tbody id="estDetail">
 					<tr>
 						<td colspan="4">
-<!-- 							<div id="baseBtnDiv" class="bt_position_authuser"> -->
+							<div id="baseBtnDiv" class="bt_position_authuser">
 <!-- 								<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/> -->
-<!-- 								<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
-<!-- 							</div> -->
+								<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
+							</div>
 					<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
 					<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
 					<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
 					<!-- 		</div> -->
-							<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
+<!-- 							<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser"> -->
 <%-- 								<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
-								<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
-							</div>
+<!-- 								<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
+<!-- 							</div> -->
 						</td>
 					</tr>
 					<tr>
@@ -92,7 +94,7 @@ $(function() {
 						<td><input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" value="${detail.cust_nm }" >
 							<input type="hidden"
 							name="cust_id" id="cust_id" value="${detail.cust_id }" /> 
-							<input type="hidden" name="lead_id" id="lead_id" value="" /> 
+<!-- 							<input type="hidden" name="lead_id" id="lead_id" value="" />  -->
 <!-- 							<input type="button" class="btn-success-tel" id="customer" value="고객" -->
 <%-- 							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled"> --%>
 						</td>

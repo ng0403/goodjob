@@ -48,7 +48,7 @@ $(function() {
 		
 //	 	alert("선택된 사용자 ID : " + opptId);
 		viewEstHistory(sales_oppt_id)
-		viewSalesActive(estim_id);
+// 		viewSalesActive(estim_id);
 		//viewSalesOppt(estim_id);
 		//estimList(opptId);
 	});
@@ -70,7 +70,7 @@ $(function() {
 <!-- 		</div> -->
 <!-- 		<label for="tab1">상품/서비스</label> -->
 		<label for="tab1" style="width:12%;">견적 히스토리</label>
-		<label for="tab2">영업활동</label>
+<!-- 		<label for="tab2">영업활동</label> -->
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 <!-- 		<div id="tabDiv1" class="tab1_content">			 -->
@@ -196,38 +196,38 @@ $(function() {
 			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
-		<div id="tabDiv2" class="tab3_content">
-			<div class="bt_position_authuser">
-				<button id="act_opp_nm" class="btn btn-default">영업활동 추가</button>
-				<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptActiveDelete();">삭제</button>
-			</div>
+<!-- 		<div id="tabDiv2" class="tab3_content"> -->
+<!-- 			<div class="bt_position_authuser"> -->
+<!-- 				<button id="act_opp_nm" class="btn btn-default">영업활동 추가</button> -->
+<!-- 				<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptActiveDelete();">삭제</button> -->
+<!-- 			</div> -->
 		
-			<div id="tableline">
-				<table id="goaltable" class="tabtable">
-					<thead>
-						<tr>
-							<th rowspan="2" style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
-							<td rowspan="2" style="width: 20%;">영업활동명</td>
-							<td rowspan="2" style="width: 8%;">활동구분</td>
-							<td rowspan="2" style="width: 20%;">영업기회명</td>
-							<td rowspan="2" style="width: 8%;">활동유형</td>
-							<td style="width: 9%;">시작일자</td>
-							<td style="width: 9%;">시작시간</td>
-							<td rowspan="2" style="width: 6%;">상태</td>
-							<td rowspan="2" style="width: 7%;">등록자</td>
-							<td rowspan="2" style="width: 10%;">등록일시</td>
-						</tr>
-						<tr>
-							<td>종료일자</td>
-							<td>종료시간</td>
-						</tr>
-					</thead>
-					<tbody id="activeList">	
-						<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+<!-- 			<div id="tableline"> -->
+<!-- 				<table id="goaltable" class="tabtable"> -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th rowspan="2" style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th> -->
+<!-- 							<td rowspan="2" style="width: 20%;">영업활동명</td> -->
+<!-- 							<td rowspan="2" style="width: 8%;">활동구분</td> -->
+<!-- 							<td rowspan="2" style="width: 20%;">영업기회명</td> -->
+<!-- 							<td rowspan="2" style="width: 8%;">활동유형</td> -->
+<!-- 							<td style="width: 9%;">시작일자</td> -->
+<!-- 							<td style="width: 9%;">시작시간</td> -->
+<!-- 							<td rowspan="2" style="width: 6%;">상태</td> -->
+<!-- 							<td rowspan="2" style="width: 7%;">등록자</td> -->
+<!-- 							<td rowspan="2" style="width: 10%;">등록일시</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>종료일자</td> -->
+<!-- 							<td>종료시간</td> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody id="activeList">	 -->
+<!-- 						<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 </body>
 </html>

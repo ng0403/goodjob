@@ -869,7 +869,7 @@ function viewEstHistory(sales_oppt_id){
 				"<td>"+data.estim_qty+"</td>"+
 				"<td style='text-align: right; padding-right:5px;'>"+comma(data.sales_price)+"</td>"+
 				"<td>"+data.estim_valid_d+"</td>"+
-				"<td>"+data.fst_reg_id_nm+"</td>"+
+				"<td>"+data.fst_reg_id+"</td>"+
 				"<td>"+data.fst_reg_dt+"</td>"+
 				"</tr>"	
 			});

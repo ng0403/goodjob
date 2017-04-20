@@ -28,7 +28,7 @@
 	</c:if>
 	<c:if test="${flg eq 'detail'}">
 		<div id="title">
-			<div class="caption">● 영업기회 상세/수정</div>
+			<div class="caption">● 견적 상세정보</div>
 		</div>
 	</c:if>
 	<input type="hidden" id="flg" value="${flg}">
@@ -40,9 +40,16 @@
 						<tr>
 							<th>영업기회명</th>
 							<td> <!-- colspan="3" -->
-								<input type="hidden" id="sales_oppt_id" value="${sales_oppt_id}">
-								<input type="text" name="sales_oppt_nm" value="${sales_oppt_nm}" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
+								<input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id}">
+							<input type="text" name="sales_oppt_nm" value="${detail.sales_oppt_nm}" id="sales_oppt_nm" class="int2" style="ms-ime-mode: disabled; background-color: ">
 							</td>
+						</tr>
+						<tr>
+							<th>견적명</th>
+							<td>
+								<input type="text" name="estim_nm_detail" id="estim_nm" readonly="readonly" class="int2" value="${detail.estim_nm }">	
+							 	<input type="hidden" id="estim_id" value="${detail.estim_id }">
+							 </td>
 						</tr>
 						<tr>
 							<th>고객사</th>
@@ -50,82 +57,116 @@
 								<c:choose>
 									<c:when test="${flg eq 'add'}">
 										<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="int" readonly="readonly" />
-								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}"/>
+										<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}"/>
 									</c:when>
 									<c:when test="${flg eq 'detail'}">
-										<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" class="int" readonly="readonly" />
-								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
+										<input type="text" name="cust_nm" id="cust_nm" value="${detail.cust_nm}" class="int" readonly="readonly" />
+										<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}"/>
 									</c:when>
 								</c:choose>
 							</td>
 						</tr>
 						<tr>
-							<th>상태</th>
-							<td>
-								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
-									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach items="${osclist}" var="osclist">
-										<c:if test="${opDetail.sales_oppt_stat_cd == osclist.code}">
-							      			<option selected="selected" value="${osclist.code}">${osclist.cd_nm}</option>
-							      		</c:if>
-							      		<c:if test="${opDetail.sales_oppt_stat_cd != osclist.code}">
-							      			<option value="${osclist.code}">${osclist.cd_nm}</option>
-							      		</c:if>
-									</c:forEach>
-								</select>
+<!-- 							<th>상태</th> -->
+<!-- 							<td> -->
+<!-- 								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;"> -->
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<%-- 									<c:forEach items="${osclist}" var="osclist"> --%>
+<%-- 										<c:if test="${detail.sales_oppt_stat_cd == osclist.code}"> --%>
+<%-- 							      			<option selected="selected" value="${osclist.code}">${osclist.cd_nm}</option> --%>
+<%-- 							      		</c:if> --%>
+<%-- 							      		<c:if test="${detail.sales_oppt_stat_cd != osclist.code}"> --%>
+<%-- 							      			<option value="${osclist.code}">${osclist.cd_nm}</option> --%>
+<%-- 							      		</c:if> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</select> -->
+<%-- 								<c:forEach items="${osclist}" var="osclist"> --%>
+<%-- 									<c:if test="${detail.sales_oppt_stat_cd == osclist.code}"> --%>
+<%-- 										<input type="text" name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" value="${osclist.cd_nm}" class="int" readonly="readonly" /> --%>
+<%-- 									</c:if> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</td> -->
+							<th>견적단계</th>
+							<td colspan="3">
+								<c:forEach items="${elclist}" var="elclist">
+									<c:if test="${detail.estim_lev_cd eq elclist.code }">
+										<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="${elclist.cd_nm }">
+									</c:if>
+								</c:forEach>
 							</td>
 						</tr>
 						<tr>
-							<th>영업단계</th>
-							<td>
-								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
-									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach items="${otllist}" var="otllist">
-										<option value="${otllist.code}"
-											<c:if test="${opDetail.sales_lev_cd == otllist.code }">selected="selected"</c:if>>
-												 ${otllist.cd_nm}
-										</option>
-									</c:forEach>
-								</select>
+<!-- 							<th>영업단계</th> -->
+<!-- 							<td> -->
+<!-- 								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;"> -->
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<%-- 									<c:forEach items="${otllist}" var="otllist"> --%>
+<%-- 										<option value="${otllist.code}" --%>
+<%-- 											<c:if test="${detail.sales_lev_cd == otllist.code }">selected="selected"</c:if>> --%>
+<%-- 												 ${otllist.cd_nm} --%>
+<!-- 										</option> -->
+<%-- 									</c:forEach> --%>
+<!-- 								</select> -->
+<%-- 								<c:forEach items="${otllist}" var="otllist"> --%>
+<%-- 									<c:if test="${detail.sales_lev_cd == otllist.code }"> --%>
+<%-- 										<input type="text"  name="sales_lev_cd" id="sales_lev_cd" value="${otllist.cd_nm}" class="int" readonly="readonly" /> --%>
+<%-- 									</c:if> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</td> -->
+							<th>견적유효일자</th>
+							<td><label for="start_day" class="oppt_txt_nm"></label>
+								<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
+								class="int" readonly="readonly" value="${detail.estim_valid_d }">
 							</td>
 						</tr>
+						<tr>
+							<th>참고사항</th> 
+							<td colspan="3"><input type="text" name="memo" id="memo" style="width: 90%;" readonly=readonly
+	 							class="int_detail_ad" value="${detail.memo}">
+	 						</td>
+	 					</tr>
 <!-- 						<tr> -->
 <!-- 							<th>예상매출액</th> -->
 <!-- 							<td> -->
 <%-- 								<input type="text" name="expt_sales_amt" id="expt_sales_amt" value="${opDetail.expt_sales_amt}" class="int"  readonly="readonly"/> --%>
 <!-- 							</td> -->
 <!-- 						</tr> -->
-						<tr>
-							<th>예상마감일자</th>
-							<td>
-								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
-							</td>
-						</tr>	
-						<tr>
-							<th>가능성</th>
-							<td>
-								<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt;">
-									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach var="i" begin="10" end="100" step="10">
-										<c:choose>
-											<c:when test="${opDetail.psblty_rate eq i }">
-												<option value="${i }" selected="selected">${i }</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${i }">${i }</option>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</select>	
-							</td>
-						</tr>
-						<tr>
-							<th>메모</th>
-							<td colspan="2" rowspan="2">
-								<input type="hidden" id="hmemo">
-								<textarea name="memo" class="memo" id="memo" readonly="readonly" style="overflow: auto; resize: none;">${detail.memo}</textarea>
-							</td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<th>예상마감일자</th> -->
+<!-- 							<td> -->
+<%-- 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${detail.expt_fin_d}" readonly="readonly" class="int"> --%>
+<!-- 							</td> -->
+<!-- 						</tr>	 -->
+<!-- 						<tr> -->
+<!-- 							<th>가능성</th> -->
+<!-- 							<td> -->
+<!-- 								<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt;"> -->
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<%-- 									<c:forEach var="i" begin="10" end="100" step="10"> --%>
+<%-- 										<c:choose> --%>
+<%-- 											<c:when test="${detail.psblty_rate eq i }"> --%>
+<%-- 												<option value="${i }" selected="selected">${i }</option> --%>
+<%-- 											</c:when> --%>
+<%-- 											<c:otherwise> --%>
+<%-- 												<option value="${i }">${i }</option> --%>
+<%-- 											</c:otherwise> --%>
+<%-- 										</c:choose> --%>
+<%-- 									</c:forEach> --%>
+<!-- 								</select>	 -->
+<%-- 								<c:forEach var="i" begin="10" end="100" step="10"> --%>
+<%-- 									<c:if test="${detail.psblty_rate eq i }"> --%>
+<%-- 										<input type="text" id="psblty_rate" name="psblty_rate" value="${i }" readonly="readonly" class="int">% --%>
+<%-- 									</c:if> --%>
+<%-- 								</c:forEach> --%>
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>메모</th> -->
+<!-- 							<td colspan="2" rowspan="2"> -->
+<!-- 								<input type="hidden" id="hmemo"> -->
+<%-- 								<textarea name="memo" class="memo" id="memo" readonly="readonly" style="overflow: auto; resize: none;">${detail.memo}</textarea> --%>
+<!-- 							</td> -->
+<!-- 						</tr> -->
 						<tr>
 							<th>
 							</th>
@@ -134,15 +175,15 @@
 				</table>
 			</div>
 
-			<div class="act_bt_position" id="oppt_add_btn_div">
-				<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSave()"/>
-				<input type="button" class="cust_oppt_btn" value="취소" id="opptAdd_cancel" />
-			</div>
+<!-- 			<div class="act_bt_position" id="oppt_add_btn_div"> -->
+<!-- 				<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSave()"/> -->
+<!-- 				<input type="button" class="cust_oppt_btn" value="취소" id="opptAdd_cancel" /> -->
+<!-- 			</div> -->
 		
 			<div class="act_bt_position" id="oppt_mdfy_btn_div">
-				<input type="button" class="cust_oppt_btn" value="편집" id="opptModfyButton" />
-				<input type="button" class="cust_oppt_btn" value="저장" id="opptModfySaveBtn" onclick="opptMdfySave()" />
-				<input type="button" class="cust_oppt_btn" value="취소" id="opptModfy_cancel" />
+<!-- 				<input type="button" class="cust_oppt_btn" value="편집" id="opptModfyButton" /> -->
+<!-- 				<input type="button" class="cust_oppt_btn" value="저장" id="opptModfySaveBtn" onclick="opptMdfySave()" /> -->
+				<input type="button" class="cust_oppt_btn" value="닫기" id="opptModfy_cancel" />
 			</div>
 			
 		</div>
@@ -174,7 +215,7 @@
 						</tr>
 					</thead>
 					<tbody id="opptPrdtbody" class="estimatetbody">
-				 		<c:forEach items="${prod}" var="list">
+				 		<c:forEach items="${prodList}" var="list">
 							<tr id="priceline" class="${list.prod_id}">
 								<th style="width: 3%;">
 									<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();"> 
@@ -225,12 +266,12 @@
 						</tr>
 					</table> -->
 			</div>
-			<div class="estimate_bt_position"> 
-				<input type="button" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
-				<input type="button" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/>
+<!-- 			<div class="estimate_bt_position">  -->
+<!-- 				<input type="button" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/> -->
+<!-- 				<input type="button" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/> -->
 <%-- 				<input type="button" class="est_list_bt"  value="상품추가" onclick="prodList('${ctx}');"/> --%>
 <!-- 				<input type="button" class="est_list_bt" value="상품삭제" onclick="prodDelete();"/> -->
-			</div>
+<!-- 			</div> -->
 		</div>
 
 	</div>

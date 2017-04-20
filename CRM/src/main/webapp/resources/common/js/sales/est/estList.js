@@ -13,10 +13,22 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
+	estimListMakeBlock();
 	estimAllselect();
 	estimDeleteBtn(ctx);
 	startCalendar(ctx);	
 });
+function estimListMakeBlock(){
+	var blank = $("#estList tr").length;
+	if( blank < 10){
+		for(var j = 0; j < 10-blank; j++){
+			var block ="<tr style='height:43px;'>"
+				+"<td></td><td></td><td></td><td></td>"
+				+"<td></td><td></td><td></td></tr>";
+			$("#estList").append(block);
+		}
+	}
+}
 //견적 추가 버튼 클릭 시
 function estAddBtn(){
 	location.href="/estAddForm"
@@ -76,7 +88,7 @@ function list(page){
 					"<td>"+data.estim_qty+"</td>"+
 					"<td style='text-align: right; padding-right:5px;'>"+comma(data.sales_price)+"</td>"+
 					"<td>"+data.estim_valid_d+"</td>"+
-					"<td>"+data.fst_reg_id_nm+"</td>"+
+					"<td>"+data.fst_reg_id+"</td>"+
 					"<td>"+data.fst_reg_dt+"</td>"+
 				"</tr>"
 				);
