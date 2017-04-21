@@ -13,23 +13,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <title>영업 담당자</title>
-<script type="text/javascript">
-$(document).ready(function(){
-	var flg = ${flg};
-	if(flg == 1)//상세정보를 눌렀을 경우
-	{
-		$('#custSaleActSelect').css('display', 'block');
-		$('#custSaleActSelect').css('display', 'none');
-	} else if(flg == 0)//신규추가를 눌렀을 경우
-		{
-		
-		$("#custSaleActSelect").css("display", "block");
-		$("#custIuserSelect").css("display", "block");
-	
-		
-	}
-});
-</script>
+<c:set var="flg" value="${flg}"/>
 
 </head>
 <body onload='javscript:if(${flg == "detail"}) custSaleActDetail();'>
@@ -45,19 +29,34 @@ $(document).ready(function(){
 	<div class="bt_position_popup">
    		<div class="bs-example" data-example-id="simple-table">
   
-	 		<table id="operatingapopuptable">  			
+	 		<table id="SaleActTable">  			
 				<tbody id="tbody1">
 					<tr>  
 						<th>고객사</th>
-						<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
-							<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+						<td>
+							<c:if test="${flg == 'detail' }">
+								<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
+								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+							</c:if>
+							<c:if test="${flg == 'add' }">
+								<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}">
+								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+							</c:if>
+							
+						</td>
 					</tr>
 					<tr>
 						<th>영업활동명</th>																	
 						<td>
 							<input type="hidden" name="sales_actvy_id" id="sales_actvy_id" value="${sales_actvy_id}">
 							<input type="text" name="sales_actvy_nm"  id="sales_actvy_nm" class="int" value="${detail.sales_actvy_nm}" >
-							<input type="button" name="cust_sale_act" id="custSaleActSelect" class="btn-success-tel" value="영업활동" >
+							<c:if test="${flg == 'detail' }">
+								<input type="button" name="cust_sale_act" id="custSaleActSelect" class="btn-success-tel" value="영업활동" style="display: none;">
+							</c:if>
+							<c:if test="${flg == 'add' }">
+								<input type="button" name="cust_sale_act" id="custSaleActSelect" class="btn-success-tel" value="영업활동">
+							</c:if>
+							
 						</td>
 					</tr>
 					<tr>
@@ -65,12 +64,20 @@ $(document).ready(function(){
 						<td>
 							<input type="hidden" name="iuser_id"    id="iuser_id" class="int" value="${detail.iuser_id}" >
 							<input type="text" name="iuser_nm"    id="iuser_nm" class="int" value="${detail.iuser_nm}" >
-							<input type="button" name="iuser_id"  id="custIuserSelect" class="btn-success-tel" value="사원" >
+							<c:if test="${flg == 'detail' }">
+								<input type="button" name="iuser_id"  id="custIuserSelect" class="btn-success-tel" value="사원" style="display: none;" >
+							</c:if>
+							<c:if test="${flg == 'add' }">
+								<input type="button" name="iuser_id"  id="custIuserSelect" class="btn-success-tel" value="사원" >
+							</c:if>
+							
 						</td>
 					</tr>
 					<tr>
 						<th>역할명</th>																	
-						<td><input type="text" name="key_part" id="key_part" class="int" value="${detail.key_part}" ></td>
+						<td>
+							<input type="text" name="ckey_part" id="ckey_part" class="int" value="${detail.key_part}">
+						</td>
 					</tr>
 <!-- 					<tr> -->
 <!-- 						<th>영업활동 구분</th> -->

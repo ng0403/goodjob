@@ -16,23 +16,7 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>기존고객 상세정보</title>
-<script type="text/javascript">
-$(document).ready(function(){
-	var flg = ${flg};
-	if(flg == detail)//상세정보를 눌렀을 경우
-	{
-		$('#baseBtnDiv').css('display', 'block');
-		$('#mdfBtnDiv').css('display', 'none');
-	} else if(flg == add)//신규추가를 눌렀을 경우
-		{
-		
-		$("#baseBtnDiv").css("display", "none");
-		$("#addBtnDiv").css("display", "block");
-		$("#mdfBtnDiv").css("display", "none");
-		custCompAddBtn();
-	}
-});
-</script>
+
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}"/>

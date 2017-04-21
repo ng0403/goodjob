@@ -344,12 +344,14 @@
 		  set   
 		        key_part = #{key_part, jdbcType=VARCHAR}
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id, jdbcType=VARCHAR}
+		  and iuser_id = #{iuser_id, jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 영업담당자 삭제 -->
 	<delete id="custSaleActDelete" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
 	      delete from PARTNER_OF_SALESACT
 		  where SALES_ACTVY_ID = #{sales_actvy_id, jdbcType=VARCHAR}
+		  and iuser_id = #{iuser_id, jdbcType=VARCHAR}
 	</delete>
 	
 	<!-- 키맨 리스트 -->

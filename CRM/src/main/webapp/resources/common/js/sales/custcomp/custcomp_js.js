@@ -681,7 +681,7 @@ function posList(cust_id) {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='posChkbox'  onclick='poschkCancel();'></td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_actvy_id+":"+data[i].iuser_id+"' id='posChkbox'  onclick='posSalechkCancel();'></td>" +
 						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"posDeatil('"+data[i].sales_actvy_id+"','"+data[i].iuser_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</td>" +
 						"<td style='width:15%;'>"+data[i].iuser_nm+"</td>" +
 						"<td style='width:15%;'>"+data[i].key_part+"</td>" +

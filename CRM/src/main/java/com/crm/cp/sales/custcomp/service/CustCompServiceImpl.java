@@ -556,15 +556,32 @@ public class CustCompServiceImpl implements CustCompService {
 	}
 
 	//영업담당자 삭제
-	@Override
-	public int custSaleActDelete(String sales_actvy_id) {
-		return ccDao.custSaleActDelete(sales_actvy_id);
-	}
+//	@Override
+//	public int custSaleActDelete(String sales_actvy_id) {
+//		return ccDao.custSaleActDelete(sales_actvy_id);
+//	}
 
 	@Override
 	public PosVO posDetail(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return ccDao.posDetail(map);
+	}
+
+	//영업담당자 삭제
+	@Override
+	public String custSaleActDelete(PosVO pos) {
+		int deleteResult = ccDao.custSaleActDelete(pos);
+		System.out.println("과연 무엇일까" + deleteResult);
+		String resultStr = null;
+		if(deleteResult == 1)
+		{
+			resultStr = "삭제가 완료 되었습니다.";
+		}
+		else{
+			resultStr = "삭제에 실패 했습니다.";
+					
+		}
+		return resultStr;
 	}
 
 

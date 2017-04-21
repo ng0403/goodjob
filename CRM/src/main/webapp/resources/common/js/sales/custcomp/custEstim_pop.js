@@ -82,11 +82,11 @@ function opptEstimAdd(ctx){
 		est_list.push(discount.pop());
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop()); 
-		alert("판매가 : " + prod_price);
-		alert("sales_price : " + sales_price);
-		alert("discount : " + discount);
-		alert("sup_price" + sup_price);
-		alert("est_list : " + est_list);
+//		alert("판매가 : " + prod_price);
+//		alert("sales_price : " + sales_price);
+//		alert("discount : " + discount);
+//		alert("sup_price" + sup_price);
+//		alert("est_list : " + est_list);
 	});
 	if(unit_check > 0 ){
 		alert("할인 단위를 선택해 주세요.");
@@ -229,7 +229,7 @@ function InputProd(prod_id,prod_nm,prod_price){
 	var like = 0;
 	if($("#estimatetbody tr").length == 0){
 			if($('#flg').val()=='detail'){
-				alert("prod_id : " + prod_id);
+				//alert("prod_id : " + prod_id);
 				prodAddId.push(prod_id);
 			}
 		$('#estimatetbody').append(
@@ -413,7 +413,7 @@ function opptEstimButton(ctx){
 //취소 버튼 클릭
 function estimCancel(){
 	$("#estimate_cancel").click( function(){
-		alert("x");
+		//alert("x");
 		self.close();
 	});
 }

@@ -95,7 +95,9 @@ public interface CustCompDao {
 	PosVO posDetail(Map<String, String> map);						// 영업담당자 상세보기
 
 	int custSaleActUpdate(PosVO pos);							// 영업담당자 수정
-	int custSaleActDelete(String sales_actvy_id);				// 영업담당자 삭제
+	//int custSaleActDelete(String sales_actvy_id);				// 영업담당자 삭제
+
+	int custSaleActDelete(PosVO pos);							// 영업담당자 삭제
 
 
 

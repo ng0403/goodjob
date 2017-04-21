@@ -98,7 +98,9 @@ public interface CustCompService {
 	List<Object> iuserList(Map<String, Object> map);							// 영업담당자에서 사원 리스트
 
 	int custSaleActUpdate(PosVO pos);											// 영업담당자 수정
-	int custSaleActDelete(String string);										// 영업담당자 삭제
+	//int custSaleActDelete(String string);										// 영업담당자 삭제
+
+	String custSaleActDelete(PosVO pos);										// 영업담당자 삭제
 
 
 

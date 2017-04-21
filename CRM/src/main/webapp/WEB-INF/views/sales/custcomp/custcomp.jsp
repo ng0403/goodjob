@@ -51,7 +51,7 @@
 	</div>
 	
 	<div id="functionBtn">	
-		<input type="button" value="엑셀저장" onclick="" class="custcomp_functionBtn" />
+<!-- 		<input type="button" value="엑셀저장" onclick="" class="custcomp_functionBtn" /> -->
 		<input type="button" value="삭제" class="custcomp_functionBtn" onclick="custcompDelete()" />
 		<input type="button" value="추가" class="custcomp_functionBtn" onclick="custcompInsertForm();" />
 <!-- 		<input type="button" value="편집" onclick="" class="custcomp_bt" /> -->

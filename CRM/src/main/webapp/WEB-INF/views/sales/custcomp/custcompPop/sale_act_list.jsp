@@ -58,8 +58,7 @@
 								<th rowspan="2">
 									<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
 								</th>
-								<td style="text-align: left; padding-left: 5px;" class="act_nm_tag" id="sales_actvy_nm" onclick="custSaleActSelect('${ctx}')">${actList.sales_actvy_nm}</td>
-<%-- 								<input type="hidden" value="${actList.sales_actvy_id}" id="sales_actvy_id"> --%>
+								<td style="text-align: left; padding-left: 5px;" class="act_nm_tag" id="sales_actvy_nm" onclick="custSaleActSelect('${ctx}')">${actList.sales_actvy_nm}<input type="hidden" value="${actList.sales_actvy_id}" id="sales_actvy_id"></td>
 <%-- 								<input type="hidden" value="${actList.sales_actvy_nm}" id="sales_actvy_nm"> --%>
 <%-- 									<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a> --%>
 								<td style="text-align: center;" rowspan="2" class="act_div_tag">${actList.sales_actvy_div_cd}</td>

@@ -733,9 +733,23 @@ public class CustCompDaoImpl implements CustCompDao {
 	}
 
 	//영업 담당자 삭제
+//	@Override
+//	public int custSaleActDelete(String sales_actvy_id) {
+//		return sqlSession.update("custcomp.custSaleActDelete", sales_actvy_id);
+//	}
+
+	//영업 담당자 삭제
 	@Override
-	public int custSaleActDelete(String sales_actvy_id) {
-		return sqlSession.update("custcomp.custSaleActDelete", sales_actvy_id);
+	public int custSaleActDelete(PosVO pos) {
+		int	deleteResultTemp = 0;
+		int deleteResult = 0;
+		try {
+				deleteResultTemp = sqlSession.delete("custcomp.custSaleActDelete", pos);
+				deleteResult += deleteResultTemp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteResult;
 	}
 
 }

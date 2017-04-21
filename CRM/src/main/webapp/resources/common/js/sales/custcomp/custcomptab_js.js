@@ -88,6 +88,16 @@ $(document).ready(function() {
 			$("input[id=chk_cont_id]").prop("checked", false);
 		}
 	});
+	
+	// 영업담당자 탭 리스트 체크박스 선택, 해제
+	$("#posListCheck").click(function(){
+		if($("#posListCheck").prop("checked")){
+			$("input[id=posChkbox]").prop("checked", true);
+		} else {
+			$("input[id=posChkbox]").prop("checked", false);
+		}
+	});
+	
 });
 
 //고객사 담당자 상세정보
@@ -140,7 +150,7 @@ function custPosAdd(ctx){
 		
 		var list_sales_oppt_id = $('#salesId').val();
 		var list_cust_id = $('#nowCust_id').val();
-		var list_cust_nm = $('#cust_nm').val();
+		var list_cust_nm = $('#nowCust_nm').val();
 		
 		window.open(ctx+'/custPosPopup?list_sales_oppt_id='+list_sales_oppt_id+
 				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&flag=1', 'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
@@ -187,6 +197,12 @@ function estimateAdd(ctx){
 		});
 }
 
+//영업담당자 전체 체크 해제
+function posSalechkCancel() {
+	$(document).ready(function() {
+		$("#posListCheck").prop("checked", false);
+	});
+}
 
 // 영업기회 전체 체크 해제
 function opptChkCancel() {
@@ -437,42 +453,44 @@ function readDetail(){
 //	$("#memo").attr("style","resize: none;");
 }
 
+//영업담당자 삭제
+function posDelete() {
+	var chked_val = [];
+ 	$(":checkbox[id='posChkbox']:checked").each(function(index, item){
+		chked_val[index] = item.value;
+	});
+	var delChk = confirm("정말 삭제 하시겠습니까?");
+	if(delChk){
+		var ctx = $("#ctx").val();
+		var cust_id = $("#nowCust_id").val();
+		var sales_actvy_id = $("#sales_actvy_id").val();
+		//alert("영업담당자 삭제 : " + cust_id);
+		$.ajax({
+			url : ctx+'/custSaleActDelete',
+			type : 'POST',
+			data :  JSON.stringify(chked_val),
+			dataType : 'json',
+			contentType : 'application/json',
+			success : function(data){
+				if(data.deleteResult == 'standard/home/session_expire'){
+					location.href = ctx + '/sessionExpire';
+				} else {
+					alert(data.deleteResult);
+					posList(cust_id);
+				}
+			},
+			error : function(data){
+				alert(data.deleteResult);
+				history.back();
+			}
+		});
+	} else {
+		return;
+	}
+}
+
 
 //키맨 삭제
-//function keymanDelete() {
-//	var chked_val = [];
-//	$(":checkbox[id='kmChkbox']:checked").each(function(index, item){
-//		chked_val[index] = item.value;
-//	});
-//	var delChk = confirm("정말 삭제 하시겠습니까?");
-//	if(delChk){
-//		var ctx = $("#ctx").val();
-//		var cust_id = $("#nowCust_id").val();
-//		$.ajax({
-//			url : ctx+'/delKeyman',
-//			type : 'POST',
-//			data :  JSON.stringify(chked_val),
-//			dataType : 'json',
-//			contentType : 'application/json',
-//			success : function(data){ 
-//				if(data.deleteResult == 'standard/home/session_expire'){
-//					location.href = ctx + '/sessionExpire';
-//				} else {
-//					alert(data.deleteResult);
-//					keymanList(cust_id);
-//				}
-//			},
-//			error : function(data){
-//				alert(data.deleteResult);
-//				history.back();
-//			}
-//		});
-//	} else {
-//		return;
-//	}
-//}
-
-//키맨 삭제 추가할 것.
 function keymanDelete() {
 	var chked_val = [];
  	$(":checkbox[id='kmChkbox']:checked").each(function(index, item){

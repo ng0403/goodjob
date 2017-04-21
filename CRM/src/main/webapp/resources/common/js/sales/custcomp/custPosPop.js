@@ -29,16 +29,18 @@ $(document).ready(function() {
 
 
 //영업담당자 탭에서 영업활동 추가 시 영업활동명 보이기
-function inputOpptNm(sales_actvy_nm){
+function inputOpptNm(sales_actvy_nm, sales_actvy_id){
 	$('#sales_actvy_nm').val(sales_actvy_nm);
+	$('#sales_actvy_id').val(sales_actvy_id);
 }
 
 //영업활동리스트 tr를 클릭했을 때 영업활동명 텍스트를 넣어주는 작업
 function custSaleActSelect(ctx){
 	$('#dboardtable tbody tr').click(function(){
 		var sales_actvy_nm=$(this).find('#sales_actvy_nm').text();
+		var sales_actvy_id=$(this).find('#sales_actvy_id').val();
 		
-		window.opener.inputOpptNm(sales_actvy_nm);
+		window.opener.inputOpptNm(sales_actvy_nm, sales_actvy_id);
 		self.close();
 	});
 }
@@ -110,7 +112,7 @@ function sleActiveAdd(ctx){
 	var sales_actvy_nm = $('#sales_actvy_nm').val();
 	var iuser_id = $('#iuser_id').val();
 	var iuser_nm = $('#iuser_nm').val();
-	var key_part  = $('#key_part').val();
+	var key_part  = $('#ckey_part').val();
 //	var sales_actvy_div_cd  = $('#sales_actvy_div_cd').val();
 //	var sales_actvy_type_cd  = $('#sales_actvy_type_cd').val();
 //	var sales_actvy_stat_cd  = $('#sales_actvy_stat_cd').val();
@@ -143,7 +145,10 @@ function sleActiveAdd(ctx){
 //	}else if(memo=="0"||memo==null){
 //		alert("상태를 선택해 주세요");
 //		return false;
-//	}       
+//	}
+	
+//	alert("sales_actvy_id : " + sales_actvy_id);
+	
 	$.ajax({
 		type : 'post',
 		data : {
@@ -153,10 +158,6 @@ function sleActiveAdd(ctx){
 			iuser_id : iuser_id,
 			iuser_nm : iuser_nm,
 			key_part : key_part
-//			sales_actvy_div_cd : sales_actvy_div_cd,
-//			sales_actvy_type_cd : sales_actvy_type_cd,
-//			sales_actvy_stat_cd : sales_actvy_stat_cd,
-//			memo : memo,
 		
 		},
 		datatype : 'json',
@@ -184,31 +185,27 @@ function custSaleActDetail(){
 		data : {sales_actvy_id : sales_actvy_id},
 		success:function(result){
 				$('#flg').val(result.flg);
-				if(result.flg=='detail'){
+				if(result.flg=='detail')
+				{
 					$('#activeButton').val('수정');
 				}
-				var sales_actvy_div_cd = result.detail.sales_actvy_div_cd;
-				var sales_actvy_type_cd = result.detail.sales_actvy_type_cd;
-				var sales_actvy_stat_cd = result.detail.sales_actvy_stat_cd;
+				
 				var key_part = result.detail.key_part;
-				var memo = result.detail.memo;
-				$('#memo').val(result.detail.memo);
 				
 				$('input[name=sales_actvy_div_cd]').each(function(){
 					var v =$(this).val();
-					if(v==sales_actvy_div_cd){
+					
+					if(v==sales_actvy_div_cd)
+					{
 						$(this).attr("checked",true);
 					}
 				});
+				
 				$('#cust_id').val(result.cust_id);
 				$('#cust_nm').val(result.cust_nm);
 				$('#sales_oppt_id').val(result.sales_oppt_id);
 				$('#sales_actvy_nm').val(result.detail.sales_actvy_nm);
-				$('#key_part').val(result.detail.key_part);
-				$('#memo').val(result.detail.memo);
-				
-				$('#sales_actvy_type_cd').children().eq(sales_actvy_type_cd).attr("selected",true);
-				$('#sales_actvy_stat_cd').children().eq(sales_actvy_stat_cd).attr("selected",true);
+				$('#ckey_part').val(result.detail.key_part);
 				
 		},
 		error:function(request){
@@ -219,12 +216,13 @@ function custSaleActDetail(){
 }
 
 function activeUpdate(ctx){
+	
 	var cust_id = $('#cust_id').val();
 	var sales_actvy_id = $('#sales_actvy_id').val();
 	var sales_actvy_nm = $('#sales_actvy_nm').val();
 	var iuser_id = $('#iuser_id').val();
 	var iuser_nm = $('#iuser_nm').val();
-	var key_part  = $('#key_part').val();
+	var key_part  = $('#ckey_part').val();
 
 //	if(sales_actvy_nm==""||sales_actvy_nm==null){
 //		alert("영업활동명을 입력해 주세요");

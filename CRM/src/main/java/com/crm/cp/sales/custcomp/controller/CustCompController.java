@@ -354,7 +354,7 @@ public class CustCompController {
 		List<ActVO> actDivCd = service.actDivCdList();
 		
 		PosVO detail = ccService.posDetail(map);
-		System.out.println("영업활동 상세 페이지 detail : " + detail);
+		System.out.println("영업담당자 상세 페이지 detail : " + detail);
 	
 		
 		mov.addObject("detail", detail);
@@ -368,7 +368,7 @@ public class CustCompController {
 		return mov;
 	}
 	
-	// 영업활동 추가 팝업창
+	// 영업담당자 추가 팝업창
 	@RequestMapping(value = "/custPosPopup", method = RequestMethod.GET)
 	public ModelAndView custPosPopup(HttpSession session, 
 											String list_cust_id, String list_cust_nm, String list_sales_actvy_id) {
@@ -386,10 +386,10 @@ public class CustCompController {
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("actDivCd", actDivCd);
 
-		System.out.println("영어활동 추가 탭 list_cust_id : " +list_cust_id );
+		System.out.println("영업담당자 추가 탭 list_cust_id : " +list_cust_id );
 		System.out.println("list_cust_nm : " +list_cust_nm );
 		System.out.println("list_sales_actvy_id : " + list_sales_actvy_id);
-		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+		// 영업담당자 추가 시에 들어갈 sales_oppt_id값 전달
 
 		mov.addObject("cust_id", list_cust_id);
 		mov.addObject("cust_nm", list_cust_nm);
@@ -426,6 +426,7 @@ public class CustCompController {
 		
 		// 영업담당자 추가
 		int result = ccService.custPosAdd(pos);
+		System.out.println("영업담당자 추가 : " + result);
 		// return 1;
 		return result;
 
@@ -451,26 +452,6 @@ public class CustCompController {
 		return mov;
 	}
 	
-	//영업담당자 추가에서 사원 리스트 
-//	@RequestMapping(value="/custSaleActIuserList" , method=RequestMethod.GET)
-//	public ModelAndView custSaleActIuserList(HttpSession session,
-//											@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
-//											@RequestParam(value="keyword", defaultValue="") String keyword,
-//											String cust_id){
-//		System.out.println("cust_id : " + cust_id);
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("keyfield", keyfield);
-//		map.put("cust_id", cust_id);
-//		map.put("keyword", keyword);
-//		List<Object> slaeActIuserOpptList = ccService.custSaleActIuserList(map);
-//		System.out.println("slaeActOpptList : " + slaeActIuserOpptList);
-//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/sale_iuser_list");
-//		
-//		mov.addObject("slaeActIuserOpptList", slaeActIuserOpptList);
-//		
-//		return mov;
-//	}
-	
 	// 영업 담당자 상세정보에서의 직원 리스트_직원검색버튼 클릭 시 팝업 오픈(사용)
 	@RequestMapping(value = "/custSaleActIuserList", method = RequestMethod.GET)
 	public ModelAndView custCompIuserList(
@@ -494,7 +475,6 @@ public class CustCompController {
 		return mov;
 	}
 	
-	
 	// 영업담당자 수정
 	@RequestMapping(value = "/custSaleActUpdate", method = RequestMethod.POST)
 	@ResponseBody
@@ -507,20 +487,41 @@ public class CustCompController {
 		return result;
 	}
 
-	// 영업딤딩자 삭제
+	// 영업담당자 삭제
 	@RequestMapping(value = "/custSaleActDelete",  method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseBody
-	public int custSaleActDelete(HttpSession session, String cust_id,
-									@RequestBody List<String> chked_val) {
-		System.out.println("Dddd");
-		System.out.println( "dkdkdkdkdkdk" +chked_val);
-		int result = 0;
-		// 모든 checked된 영업기회에 대해 삭제
-		for (int i = 0; i < chked_val.size(); i++) {
-			result += ccService.custSaleActDelete(chked_val.get(i));
+	public @ResponseBody Map<String, Object> custSaleActDelete(HttpSession session, String cust_id, PosVO pos,
+																@RequestBody  List<String> chked_val) {
+		System.out.println( "영업담당자 삭제 : " +chked_val);
+		
+		String sales_actvy_id = "";
+		String iuser_id = "";
+		
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		for(int i=0; i<chked_val.size(); i++)
+		{
+			String del[] = chked_val.get(i).split(":");
+
+			
+			sales_actvy_id = del[0];
+			iuser_id = del[1];
+			System.out.println("sales_actvy_id : " +sales_actvy_id);
+			System.out.println("iuser_id : " + iuser_id);
+			pos.setSales_actvy_id(sales_actvy_id);
+			pos.setIuser_id(iuser_id); 
+			
+			if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+				rstMap.put("mdfyResult", "standard/home/session_expire");
+			} else {
+				String deleteResult = ccService.custSaleActDelete(pos);
+				rstMap.put("deleteResult", deleteResult);
+			}
 		}
-		return result;
+		
+		return rstMap;
+		
 	}
+	
+	
 	
 	
 	//고객별 키맨//
