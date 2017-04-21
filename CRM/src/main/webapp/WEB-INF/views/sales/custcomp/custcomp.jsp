@@ -19,7 +19,7 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
-		<div class="caption">■ 고객사
+		<div class="caption">■ 고객 > 고객사
 <%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
 		</div>
 	</div>
