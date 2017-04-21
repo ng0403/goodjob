@@ -16,6 +16,9 @@
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <%-- <script src="${ctx}/resources/common/js/sales/oppt/opptlist.js"></script> --%>
 </head>
+
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	var opptId =$('#hsales_oppt_id').val();
@@ -47,7 +50,6 @@ $(document).ready(function() {
 		<input id="tab2" type="radio" name="tab" /> 
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-<!-- 		<label for="tab1">상세정보</label>  -->
 		<label for="tab1">영업활동 </label> 
 		<label for="tab2">견적</label> 
 
@@ -58,7 +60,7 @@ $(document).ready(function() {
 				<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
-			<div id="tableline">
+			<div id="tableline" class="FixHeader">
 				<table id="goaltable" class="tabtable">
 					<thead>
 						<tr>
@@ -78,7 +80,7 @@ $(document).ready(function() {
 							<td>종료시간</td>
 						</tr>
 					</thead>
-					<tbody id="activeList">	
+					<tbody id="activeList" class="FixTbody">	
 							<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 					</table>
@@ -91,7 +93,7 @@ $(document).ready(function() {
 			<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
-		<div id="tableline">
+		<div id="tableline" class="FixHeader">
 			<table id="goaltable" class="tabtable">
 				<thead>						
 					<tr>
@@ -105,7 +107,7 @@ $(document).ready(function() {
 						<td style="width: 10%;">등록일시</td>
 					</tr>
 				</thead>
-				<tbody id="estimList" >
+				<tbody id="estimList"  class="FixTbody">
 				<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
 				</tbody>
 				</table>

@@ -1,5 +1,14 @@
 @CHARSET "UTF-8";
 
+/* .FixHeader div.wrap{position: relative;padding-top:30px;width:850px;height: 300px;overflow: hidden;} */
+/* .FixHeader div.wrap > div {height: 300px;overflow: auto;} */
+/* .FixHeader table{width: 800px} */
+/* .FixHeader thead tr{position: absolute;top: 0;display: block;background-color: #DEDEDE;width: 800px;height: 30px;} */
+/* .FixHeader thead th{width: 200px} */
+/* .FixHeader tbody{display: block;height: 300px;} */
+/* .FixHeader tbody tr{height: auto;} */
+/* .FixHeader tbody td{width: 200px;text-align: center;} */
+
 #opptDetail input[type=text], textarea, #opptDetail select{
 	background-color: #eaeaea;
 }
