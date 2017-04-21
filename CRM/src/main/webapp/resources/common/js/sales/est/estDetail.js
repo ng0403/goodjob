@@ -187,7 +187,7 @@ function inputProd(prod_id,prod_nm,prod_price){
 			);
 		}
 	}
-	makeBlock();
+//	makeBlock();
 	prodChange();	
 }
 function makeBlock(){
@@ -874,22 +874,22 @@ function viewEstHistory(sales_oppt_id){
 				"</tr>"	
 			});
 			
-			if(result.estHistory.length < 5){
-				for(var j = 0; j < 5-result.estHistory.length; j++){
-					content += ""+ 
-					"<td></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td></td>"+
+//			if(result.estHistory.length < 5){
+//				for(var j = 0; j < 5-result.estHistory.length; j++){
+//					content += ""+ 
 //					"<td></td>"+
-					"</tr>";
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"</tr>";
 					
-					}
-				}
+//					}
+//				}
 //			}	
 			$("#estHistoryList").append(content);
 		},

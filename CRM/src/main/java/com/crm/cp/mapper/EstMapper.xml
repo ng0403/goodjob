@@ -142,8 +142,10 @@
       		group by aa.estim_id) sales_price
 		, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
 	from 
-	ESTIMATE aa
-	where aa.ACT_YN='Y' 
+	ESTIMATE aa,
+	SALES_OPPORTUNITY_ESTIMATE bb
+	where aa.estim_id = bb.estim_id
+	and aa.ACT_YN='Y' 
   		)e
 	)d
    <where>	

@@ -80,7 +80,6 @@ public class EstController {
 			map.put("estim_valid_d", estim_valid_d  + "");
 			}
 		
-		
 		List<EstVO> list = estInter.getList(map);
 		
 		List<EstVO> elclist = estInter.elcList();

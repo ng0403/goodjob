@@ -66,7 +66,15 @@ select{
 .oppt_nm_class{
 	cursor: pointer;
 }
-
+.tel_search {
+	position: relative;
+	width: 8%;
+	height: 24px;
+	border: 1px solid #bebebe;
+	color: #333;
+	border-radius: 5px 5px 5px 5px;
+	margin-right: 40px;
+}
 
 #goaltable {
 	width:100%;
