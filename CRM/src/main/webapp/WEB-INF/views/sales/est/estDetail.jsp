@@ -57,7 +57,7 @@ $(function() {
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<div id="title">
-			<div class="caption">■ 영업 > 견적 > 상세정보</div>
+			<div class="caption">■ 영업 > <a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적</a> > 상세정보</div>
 		</div>
 		<!-- <label>상세정보</label> -->
 
@@ -126,11 +126,18 @@ $(function() {
 <%-- 									</c:choose> --%>
 <%-- 								</c:forEach> --%>
 <!-- 							</select> -->
-							<c:forEach items="${elclist}" var="elclist">
-								<c:if test="${detail.estim_lev_cd eq elclist.code }">
-									<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="${elclist.cd_nm }">
-								</c:if>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${detail.estim_lev_cd != '' }">
+									<c:forEach items="${elclist}" var="elclist">
+										<c:if test="${detail.estim_lev_cd eq elclist.code }">
+											<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="${elclist.cd_nm }">
+										</c:if>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="">
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
  					<tr>

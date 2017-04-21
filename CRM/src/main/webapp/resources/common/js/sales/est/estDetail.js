@@ -29,7 +29,7 @@
 $(function(){	
 	var buttonStatus = "";
 	var ctx = $("#ctx").val();
-	makeBlock();
+//	makeBlock();
 	custcompListPopup(ctx);
 	actOpptListPopup(ctx);
 	prodList(ctx);

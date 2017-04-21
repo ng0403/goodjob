@@ -158,6 +158,12 @@ div>.detail{
 	font-size: 12px;
 }
 
+#estDetail th {
+	text-align: right;
+	width: 15%;
+	height: 28px;
+	padding-right: 10px;
+}
 #estDetail tr {
 	height: 40px;
 }
