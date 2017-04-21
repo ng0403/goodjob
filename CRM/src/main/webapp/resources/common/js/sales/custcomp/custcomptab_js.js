@@ -6,7 +6,7 @@ $(document).ready(function() {
 	custActiveAdd(ctx);
 	estimateAdd(ctx);
 	custPosAdd(ctx);
-	
+	addCustManager(ctx);
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){

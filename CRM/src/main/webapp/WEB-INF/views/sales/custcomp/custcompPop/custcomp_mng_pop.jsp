@@ -40,8 +40,15 @@
 				<tbody id="tbody1">
 					<tr>  
 						<th>고객사</th>
-						<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">
-							<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
+						<td>
+							<c:if test="${flg == 'add' }">
+								<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
+								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+							</c:if>
+							<c:if test="${flg == 'detail' }">
+								<input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">
+								<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
+							</c:if>
 					</tr>
 					<tr>  
 						<th>담당사원</th>
