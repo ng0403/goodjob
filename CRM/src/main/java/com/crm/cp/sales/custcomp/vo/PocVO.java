@@ -2,13 +2,31 @@ package com.crm.cp.sales.custcomp.vo;
 
 public class PocVO {
 	
-	private String cust_id	//고객사 ID
+	private String  cust_id	//고객사 ID
+				, cust_nm
 				, iuser_id	//사원 ID
+				, iuser_nm	//사원 ID
 				, key_part	//역할명
 				, fst_reg_id // 등록자
 				, fst_reg_dt // 등록일시
 				, fin_mdfy_id // 최종변경자
 				, fin_mdfy_dt; //최종변경일시 
+
+	public String getCust_nm() {
+		return cust_nm;
+	}
+
+	public void setCust_nm(String cust_nm) {
+		this.cust_nm = cust_nm;
+	}
+
+	public String getIuser_nm() {
+		return iuser_nm;
+	}
+
+	public void setIuser_nm(String iuser_nm) {
+		this.iuser_nm = iuser_nm;
+	}
 
 	public String getCust_id() {
 		return cust_id;

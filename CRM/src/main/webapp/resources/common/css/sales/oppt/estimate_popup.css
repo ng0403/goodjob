@@ -1,3 +1,10 @@
+/* 고정시킬 TR의 클래스명
+밑에 아이디에는 해당 테이블이 들어가는 div 아이디를 입력해라!! */
+.headerLock { 
+  position: relative; 
+  top:expression(document.getElementById("salesOpptPrdtdiv").scrollTop); 
+  z-index:99; 
+}
 .bs-example{
 	
 	border:1px solid tranceparent;
@@ -234,9 +241,12 @@
 }
 
 #estimatediv{
-	height: 90px;
+/* 	height: 90px; */
 	width: 95%;
 	border-bottom: 2px solid #bebebe;
+	margin-left: 22px;
+	overflow: auto;
+	height: 205px;
 }
 
 .estimate_bt_position{

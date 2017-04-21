@@ -227,8 +227,10 @@
 	<!-- 고객사 담당자 리스트 -->
 	<select id="pocList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
 		select 
-			  (select cust_nm from customer cust where cust.cust_id = poc.cust_id ) cust_id,
-			  (select iuser_nm from iuser i where i.iuser_id = poc.iuser_id ) iuser_id,
+			  (select cust_id from customer cust where cust.cust_id = poc.cust_id ) cust_id,
+			  (select cust_nm from customer cust where cust.cust_id = poc.cust_id ) cust_nm,
+			  (select iuser_id from iuser i where i.iuser_id = poc.iuser_id ) iuser_id,
+			  (select iuser_nm from iuser i where i.iuser_id = poc.iuser_id ) iuser_nm,
 			  poc.key_part,
 			  poc.fst_reg_id,
 			  TO_CHAR(poc.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt

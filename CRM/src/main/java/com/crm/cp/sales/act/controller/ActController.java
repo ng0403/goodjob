@@ -104,9 +104,13 @@ public class ActController {
 	public ModelAndView actDetail(String sales_actvy_id) 
 	{
 		int flg;
+		
+		System.out.println("Detail : " + sales_actvy_id);
 
 		if(sales_actvy_id != null)
 		{
+			System.out.println("Detail - if : " + sales_actvy_id);
+			
 			flg = 1;
 			String[] htime = {"01", "02", "03", "04", "05", "06",
 					 "07", "08", "09", "10", "11", "12",
@@ -118,7 +122,7 @@ public class ActController {
 			
 			String cust_id = actVO.getCust_id();
 			
-			List<OpptVO> ottpList = actService.opptList(cust_id);
+			//List<OpptVO> ottpList = actService.opptList(cust_id);
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
 			
@@ -128,7 +132,7 @@ public class ActController {
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
-			mov.addObject("opptList", ottpList);
+			//mov.addObject("opptList", ottpList);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
 			mov.addObject("flg", flg);
@@ -215,7 +219,7 @@ public class ActController {
 		
 		if(act_search_div_id.equals("") || act_search_div_id.equals(null))
 		{
-			System.out.println(act_search_div_id);
+			System.out.println("mapping actPaging : " + act_search_div_id);
 		}
 		else
 		{

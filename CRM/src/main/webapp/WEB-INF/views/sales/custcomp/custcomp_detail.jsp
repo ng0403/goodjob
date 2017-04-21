@@ -28,7 +28,8 @@
 			<div class="caption">■ 고객사 추가</div>
 		</c:if>
 		<c:if test="${flg == 1 }">
-			<div class="caption">■ 고객사 상세정보</div>
+<!-- 			<div class="caption">■ 고객사 상세정보</div> -->
+			<div class="caption">■ 고객 > <a href="/custcomp" style="font-size: 15px; text-decoration:none; color: black;">고객사</a> > 상세정보</div>
 		</c:if>
 	</div>
 	<div id="custcomp_tab_detail">
@@ -36,7 +37,7 @@
 			<form id="custCompForm" method="post">
 			
 				<div id="baseBtnDiv" class="bt_position_authuser">
-					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/>
+<!-- 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/> -->
 <!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
 					<input type="button" id="mdfBtn" 	   value="편집" class="custcomp_btn" onclick="custCompMdfyBtn();"/>
 					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
@@ -119,7 +120,7 @@
 									
 									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num"  value="${custcompDetail.zip_cd_sri_num}"/>
 									<input type="text" name="cust_zip_cd" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" maxlength="5" readonly="readonly"/>
-									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/>
+<!-- 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/> -->
 									&nbsp;
 									<input type="text" name="cust_addr" id="cust_addr" class="int_ad" value="${custcompDetail.cust_addr}"  readonly="readonly"/>
 									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr" class="int_ad" value="${custcompDetail.cust_dtl_addr}"  readonly="readonly"/>

@@ -34,6 +34,7 @@ import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.iuser.service.IuserService;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
@@ -450,6 +451,103 @@ public class CustCompController {
 		mov.addObject("slaeActOpptList", slaeActOpptList);
 		
 		return mov;
+	}
+	// 고객사별 담당자 추가 팝업창
+	@RequestMapping(value = "/custMngPopup", method = RequestMethod.GET)
+	public ModelAndView custMngPopup(HttpSession session, 
+			String list_cust_id, String list_cust_nm) {
+		
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_mng_pop");
+		
+		
+		System.out.println("영어활동 추가 탭 list_cust_id : " +list_cust_id );
+		System.out.println("list_cust_nm : " +list_cust_nm );
+		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+		
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("flg", "add");
+		
+		return mov;
+		
+	}
+		
+		// 고객사별 담당자 추가 팝업창
+	@RequestMapping(value = "/custMngDetailPopup", method = RequestMethod.GET)
+	public ModelAndView custMngDetailPopup(HttpSession session,
+			@RequestParam Map<String, String> map,
+			String list_cust_id, String list_cust_nm,
+			String list_iuser_id, String list_iuser_nm) {
+		
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_mng_pop");
+		map.put("cust_id", list_cust_id);
+		map.put("iuser_id", list_iuser_id);
+			
+		IuserVO detail = iuserService.ccMngDetail(map);
+		System.out.println("영어활동 추가 탭 list_cust_id : " +list_cust_id );
+		System.out.println("list_cust_nm : " +detail );
+		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+			
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("detail", detail);
+		mov.addObject("flg", "detail");
+			
+		return mov;
+			
+	}
+	
+	// 고객사 담당직원 추가
+	@RequestMapping(value = "/ccMngAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public int ccMngAdd(HttpSession session, IuserVO iuserVo) {
+		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
+		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		// 고객사 담당직원 추가
+		int result = iuserService.ccMngAdd(iuserVo);
+		System.out.println("result : " + result);
+		// return 1;
+		return result;
+
+	}
+		
+	// 고객사 담당직원 수정
+	@RequestMapping(value = "/ccMngUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public int ccMngUpdate(HttpSession session, IuserVO iuserVo) {
+		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
+		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		// 고객사 담당직원 수정
+		int result = iuserService.ccMngUpdate(iuserVo);
+		System.out.println("result : " + result);
+		// return 1;
+		return result;
+	}
+	
+	// 고객사 담당직원 삭제 
+	@RequestMapping(value = "/custMngDelete", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody int custMngDelete(HttpSession session, IuserVO iuserVo,
+			@RequestParam(value="ccMngDelList[]", required=false) List<String> ccMngDelList) 
+	{
+		System.out.println("opptidList : " + ccMngDelList);
+		
+		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
+		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
+			// 영업활동 삭제
+		int result = 0;
+		System.out.println(ccMngDelList);
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < ccMngDelList.size(); i++){
+			String cust_id = ccMngDelList.get(i).split(":")[0];
+			String iuser_id = ccMngDelList.get(i).split(":")[1];
+			iuserVo.setCust_id(cust_id);
+			iuserVo.setIuser_id(iuser_id);
+			result += iuserService.custMngDelete(iuserVo);
+		}
+		
+		return result;
 	}
 	
 	// 영업 담당자 상세정보에서의 직원 리스트_직원검색버튼 클릭 시 팝업 오픈(사용)

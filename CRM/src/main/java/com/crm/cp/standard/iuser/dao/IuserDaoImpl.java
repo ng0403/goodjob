@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.standard.iuser.vo.IuserVO;
+
 @Repository
 public class IuserDaoImpl implements IuserDao {
 
@@ -115,6 +117,37 @@ public class IuserDaoImpl implements IuserDao {
 		Object arg = sqlSession.delete(root, obj);
 		return arg;
 	}
+	
+	@Override
+	public int ccMngAdd(IuserVO iuserVo) {
+		int result =sqlSession.insert("user.ccMngAdd", iuserVo);
+		return result;
+	}
+
+	@Override
+	public List<IuserVO> ccMngList(Map<String, String> map) {
+		return sqlSession.selectList("user.ccMngList", map);
+	}
+
+	@Override
+	public int ccMngUpdate(IuserVO iuserVo) {
+		// TODO Auto-generated method stub
+		int result = sqlSession.update("user.ccMngUpdate", iuserVo);
+		return result;
+	}
+
+	@Override
+	public IuserVO ccMngDetail(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("user.ccMngDetail", map);
+	}
+
+	@Override
+	public int custMngDelete(IuserVO iuserVo) {
+		// TODO Auto-generated method stub
+		int result = sqlSession.delete("user.ccMngDelete", iuserVo);
+		return result;
+	}	
 
 
 }

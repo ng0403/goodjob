@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>

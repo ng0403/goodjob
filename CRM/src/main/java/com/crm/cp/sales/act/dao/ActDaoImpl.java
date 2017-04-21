@@ -77,8 +77,20 @@ public class ActDaoImpl implements ActDao{
 
 	@Override
 	public ActVO actDetail(String sales_actvy_id) {
-		ActVO actVO=null;
-		actVO =sqlSession.selectOne("act.actDetail", sales_actvy_id);
+		ActVO actVO = null;		
+		List<ActVO> tmp = sqlSession.selectList("act.actListTemp", sales_actvy_id);
+		
+		if(tmp.get(0).getSales_oppt_id() == null && tmp.get(0).getCust_id() == null)
+		{
+			System.out.println("Detail 2 : " + sales_actvy_id);
+			actVO = sqlSession.selectOne("act.actDetail2", sales_actvy_id);
+		}
+		else
+		{
+			actVO = sqlSession.selectOne("act.actDetail", sales_actvy_id);
+		}
+		
+		
 		return actVO;
 	}
 

@@ -12,11 +12,10 @@ input[type=text] {
 }
 
 select{
-	 margin-left: 10px;
   	 background-color:#ffffff;
  	 color:#5F5F5F;
  	 border:1px solid #C0C4CB;
- 	 padding:5px 5px;
+/*  	 padding:5px 5px; */
  	 border-radius:5px 5px 5px 5px;
 }
 
