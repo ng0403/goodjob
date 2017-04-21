@@ -78,13 +78,7 @@
 						    <input type="text" name="company_nm" id="company_nm" class="int" value="${contactDetail.company_nm }" readonly="readonly"/> 
 						    <input type="button" name="compSearch" value="회사" class="call_tab_bt" id="comp_list_bt" disabled="disabled" />
 						</td>
-						<th>이메일</th>
-						<td>
-						    <input type="hidden" id="hemail1"/>
-							<input type="hidden" id="hemail2"/>
-						    <input type="text" name="email1" id="email1" class="int_email" value="${contactDetail.email1 }" readonly="readonly"/> @ 
-						    <input type="text" name="email2" id="email2" class="int_email" value="${contactDetail.email2 }" readonly="readonly"/>
-						</td>
+						
 						</tr>
 					<tr>
 						<th>이동전화번호</th>
@@ -121,6 +115,15 @@
 						    <input type="text" name="iuser_nm" id="iuser_nm" class="int" readonly="readonly"> 
 						    <input type="button" name="iuser_search" value="직원" class="call_tab_bt" id="iuser_search" disabled="disabled">
 						</td> -->
+					</tr>
+					<tr>
+					<th>이메일</th>
+						<td>
+						    <input type="hidden" id="hemail1"/>
+							<input type="hidden" id="hemail2"/>
+						    <input type="text" name="email1" id="email1" class="int_email" value="${contactDetail.email1 }" readonly="readonly"/> @ 
+						    <input type="text" name="email2" id="email2" class="int_email" value="${contactDetail.email2 }" readonly="readonly"/>
+						</td>
 					</tr>
 					<%-- <tr>
 						<th>주소지</th>

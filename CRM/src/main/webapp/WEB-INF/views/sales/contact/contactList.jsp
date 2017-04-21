@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/contact/contact.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>	
@@ -28,7 +29,7 @@
 	
 	<div class="search_div">
 	    <label for="inputEmail1" class="tel_label_list">이름</label>
-	    <input type="text" name="cont_nm" id="call_name" class="tel_search" autofocus="autofocus" onkeydown="callSearchEnter(event);">
+	    <input type="text" name="cont_nm" id="cont_nm" class="tel_search" autofocus="autofocus" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이메일</label>
 	    <input type="email" name="email" id="email"  class="tel_search" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이동전화번호</label>

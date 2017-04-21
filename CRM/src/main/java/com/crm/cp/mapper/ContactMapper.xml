@@ -182,7 +182,7 @@
 		FROM contact
 		where act_yn ='Y' 
 		<if test="contact_name !=null and contact_name !=''">
-			AND (case when cont_nm end) like '%'||#{contact_name}||'%'
+			AND (case when cont_nm end) like '%'||#{cont_nm}||'%'
 		</if>
 		<if test="contact_email !=null and contact_email !=''">
 			AND (case when email1 end) || '@' || (case when email2 end) like '%'||#{contact_email}||'%' 
@@ -190,10 +190,7 @@
 		<if test="contact_tel !=null and contact_tel !=''">
 			AND (case when CELL_PH1 end) || '-' || (case when CELL_PH2 end) || '-' || (case when CELL_PH3 end) like '%'||#{contact_tel}||'%'
 		</if>
-		<if test="comapny_nm !=null and company_nm !=''">
-			AND company_nm like '%'||#{company_nm}||'%'
-		</if>
-		<if test="keyword!=null and keyword!=''">
+ 		<if test="keyword!=null and keyword!=''">
 			<!--  <include refid="where-list1"/> -->
 		</if> 
 	</select>
