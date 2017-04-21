@@ -3,6 +3,8 @@ package com.crm.cp.standard.iuser.service;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.standard.iuser.vo.IuserVO;
+
 public interface IuserService {
 	
 	public List<Object> iuserList();
@@ -20,5 +22,13 @@ public interface IuserService {
 	public Object iuserAuthDetail(String temp);
 	public List<Object> codeList(Map<String, Object> map);
 	public List<Object> orgList(Map<String, Object> map);
+	
+	//고객사 담당사원 추가
+	public int ccMngAdd(IuserVO iuserVo);
+	//고객사 담당사원 리스트
+	public List<IuserVO> ccMngList(Map<String, String> map);
+	public int ccMngUpdate(IuserVO iuserVo);
+	public IuserVO ccMngDetail(Map<String, String> map);
+	public int custMngDelete(IuserVO iuserVo);
 	
 }

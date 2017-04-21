@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.crm.cp.standard.iuser.dao.IuserDao;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 
 
 
@@ -116,5 +117,37 @@ public class IuserServiceImpl implements IuserService{
 	public Object iuserOneSelectByIdNM(Object id_nm) {
 		Object obj = dao.selectOnes("user.userIDOneSelect", id_nm);
 		return obj;
+	}
+	
+	//고객사 담당사원 추가
+	@Override
+	public int ccMngAdd(IuserVO iuserVo) {
+		// TODO Auto-generated method stub
+		System.out.println("iuserService 고객사 담당직원 : " + iuserVo);
+		return dao.ccMngAdd(iuserVo);
+	}
+
+	@Override
+	public List<IuserVO> ccMngList(Map<String, String> map) {
+		System.out.println("고객사 담당사원 리스트 map : "+map);
+		return dao.ccMngList(map);
+	}
+
+	@Override
+	public int ccMngUpdate(IuserVO iuserVo) {
+		// TODO Auto-generated method stub
+		return dao.ccMngUpdate(iuserVo);
+	}
+
+	@Override
+	public IuserVO ccMngDetail(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return dao.ccMngDetail(map);
+	}
+
+	@Override
+	public int custMngDelete(IuserVO iuserVo) {
+		// TODO Auto-generated method stub
+		return dao.custMngDelete(iuserVo);
 	}
 }

@@ -97,8 +97,80 @@ $(document).ready(function() {
 			$("input[id=posChkbox]").prop("checked", false);
 		}
 	});
+	// 고갹담당자 탭 리스트 체크박스 선택, 해제
+	$("#pocListCheck").click(function(){
+		if($("#pocListCheck").prop("checked")){
+			$("input[id=pocChkbox]").prop("checked", true);
+		} else {
+			$("input[id=pocChkbox]").prop("checked", false);
+		}
+	});
 	
 });
+//고객사별 담당사원 추가 팝업
+function addCustManager(ctx){
+$('#poc_pop_btn').click(function(){
+var custId = $('#nowCust_id').val();
+if(custId == "" || custId == null ){
+alert("고객사를 선택해주세요.");
+}else{
+var list_cust_id = $('#nowCust_id').val();
+var list_cust_nm = $('#nowCust_nm').val();
+
+window.open(ctx+'/custMngPopup?list_cust_id='+list_cust_id+
+'&list_cust_nm='+list_cust_nm,'newwindow1','width=510, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+}
+});
+}
+
+//고객명 클릭 시 detail값 가져오는 함수
+function ccMngDetail(cust_id,iuser_id,iuser_nm){
+var list_cust_nm = $('#nowCust_nm').val();
+window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+
+'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
+'newwindow1','width=510, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+
+}
+
+//키맨 삭제
+function custMngDelete() {
+	var ccMngDelList = [];
+	$(":checkbox[id='pocChkbox']:checked").each(function(index, item){
+		ccMngDelList[index] = item.value;
+	});
+	if(ccMngDelList.length == 0){
+		alert("삭제할 항목을 선택해주세요.");
+		return false;
+	}
+	var delChk = confirm("정말 삭제 하시겠습니까?");
+	if(delChk){
+		var ctx = $("#ctx").val();
+		var cust_id = $("#nowCust_id").val();
+		$.ajax({
+			url : ctx+'/custMngDelete',
+			type : 'POST',
+			data :  {ccMngDelList :ccMngDelList},
+			dataType : 'json',
+//			contentType : 'application/json',
+			success : function(data){
+				if(data.deleteResult == 'standard/home/session_expire'){
+					location.href = ctx + '/sessionExpire';
+				} else {
+					pocList(cust_id);
+				}
+			},
+			error : function(request){
+				alert(request.status);
+//				history.back();
+			}
+		});
+	} else {
+		return;
+	}
+}
+function pocchkCancel(){
+	$("#pocListCheck").prop("checked", false);
+}
 
 //고객사 담당자 상세정보
 function pocDeatil(cust_id) {

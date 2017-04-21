@@ -111,7 +111,7 @@ public class IuserController {
 	//사용자등록
 	@RequestMapping(value = "/insertuser", method = RequestMethod.POST)
 	public @ResponseBody Object userInsert(@RequestBody IuserVO vo, HttpSession session) {
-		vo.setFst_reg_id_nm(session.getAttribute("user").toString());
+		vo.setFst_reg_id(session.getAttribute("user").toString());
 		System.out.println(vo.toString());
 		iuserService.insertUser(vo);
 		authIuserService.authUserInsert(vo);
@@ -126,7 +126,7 @@ public class IuserController {
 	//사용자편집
 	@RequestMapping(value = "/iuserEdit", method = RequestMethod.POST)
 	public @ResponseBody Object iuserEdit (@RequestBody IuserVO vo, HttpSession session) {
-		vo.setFin_mdfy_id_nm(session.getAttribute("user").toString());		
+		vo.setFin_mdfy_id(session.getAttribute("user").toString());		
 		iuserService.iuserEdit(vo);
 	    Object data = iuserService.iuserOneSelectById(vo.getIuser_id());
 		return data;

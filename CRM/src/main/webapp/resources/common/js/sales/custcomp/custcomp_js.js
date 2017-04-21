@@ -633,9 +633,9 @@ function pocList(cust_id) {
 				{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"pocDeatil('"+data[i].cust_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cust_id+"</td>" +
-						"<td style='width:15%;'>"+data[i].iuser_id+"</td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'>"+data[i].cust_nm+"</td>" +
+						"<td style='width:15%;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
 						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
 						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
 						"<td style='width:17%;'>"+data[i].fst_reg_dt+"</td>" +
@@ -643,15 +643,15 @@ function pocList(cust_id) {
 						tbody.append(tbodyContent);
 					}
 					
-					if(data.length < 5){
-						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'>" +
-												"<td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
-												"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td>" +
-											"</tr>";
-							tbody.append(tbodyContent);
-						}
-					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr style='height: 25px;'>" +
+//												"<td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
+//												"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td>" +
+//											"</tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
 				}
 			},
 			error : function() {
@@ -690,15 +690,15 @@ function posList(cust_id) {
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
-					if(data.length < 5){
-						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'>" +
-												"<td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
-												"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td>" +
-											"</tr>";
-							tbody.append(tbodyContent);
-						}
-					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr style='height: 25px;'>" +
+//												"<td style='width:3%;'></td><td style='width:10%;'></td><td style='width:7%;'></td>" +
+//												"<td style='width:10%;'></td><td style='width:10%;'></td><td style='width:15%;'></td>" +
+//											"</tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
 				}
 			},
 			error : function() {
@@ -792,21 +792,21 @@ function keymanList(cust_id) {
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
-					if(data.length < 5){
-						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'>" +
-												"<td style='width:3%;'></td>" +
-												"<td style='width:10%;'></td>" +
-												"<td style='width:15%;'></td>" +
-												"<td style='width:15%;'></td>" +
-												"<td style='width:10%;'></td>" +
-												"<td style='width:12%;'></td>" +
-												"<td style='width:10%;'></td>" +
-												"<td style='width:15%;'></td>" +
-										  "</tr>";
-							tbody.append(tbodyContent);
-						}
-					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr style='height: 25px;'>" +
+//												"<td style='width:3%;'></td>" +
+//												"<td style='width:10%;'></td>" +
+//												"<td style='width:15%;'></td>" +
+//												"<td style='width:15%;'></td>" +
+//												"<td style='width:10%;'></td>" +
+//												"<td style='width:12%;'></td>" +
+//												"<td style='width:10%;'></td>" +
+//												"<td style='width:15%;'></td>" +
+//										  "</tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
 				}
 			},
 			error : function() {
@@ -945,19 +945,19 @@ function actList(cust_id) {
 							+ "<td style='height:12px; padding:5px;'>"+end_t+"</td></tr>";
 						tbody.append(tbodyContent);
 					}
-					if(data.length < 5){
-						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr style='height: 25px;'>"
-								+ "<td rowspan='2'></td>"
-								+ "<td rowspan='2'></td><td rowspan='2'></td>"
-								+ "<td rowspan='2'></td><td rowspan='2'></td>"
-								+ "<td style='height:12px; padding:5px;'></td><td style=' height:12px; padding:5px;'></td>" 
-								+	"<td rowspan='2'></td>"
-								+ "<td rowspan='2'></td><td rowspan='2'></td>"
-								+ "</tr><tr style='height: 25px;'><td></td><td></td></tr>";
-							tbody.append(tbodyContent);
-						}
-					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr style='height: 25px;'>"
+//								+ "<td rowspan='2'></td>"
+//								+ "<td rowspan='2'></td><td rowspan='2'></td>"
+//								+ "<td rowspan='2'></td><td rowspan='2'></td>"
+//								+ "<td style='height:12px; padding:5px;'></td><td style=' height:12px; padding:5px;'></td>" 
+//								+	"<td rowspan='2'></td>"
+//								+ "<td rowspan='2'></td><td rowspan='2'></td>"
+//								+ "</tr><tr style='height: 25px;'><td></td><td></td></tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
 				}
 			},
 			error : function() {
@@ -1000,15 +1000,15 @@ function estList(cust_id) {
 							+ "</tr>";
 						tbody.append(tbodyContent);
 					}
-					if(data.length < 5){
-						for(var j = 0; j < 5-data.length; j++){
-							tbodyContent = "<tr>"
-								+ "<th></th>"
-								+ "<td></td><td></td><td></td>"
-								+ "<td></td><td></td><td></td><td></td></tr>";
-							tbody.append(tbodyContent);
-						}
-					}
+//					if(data.length < 5){
+//						for(var j = 0; j < 5-data.length; j++){
+//							tbodyContent = "<tr>"
+//								+ "<th></th>"
+//								+ "<td></td><td></td><td></td>"
+//								+ "<td></td><td></td><td></td><td></td></tr>";
+//							tbody.append(tbodyContent);
+//						}
+//					}
 				}
 			},
 			error : function() {

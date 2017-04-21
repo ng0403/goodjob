@@ -143,5 +143,75 @@
 	   UPDATE IUSER
 	   SET ACT_YN = 'N', FIN_MDFY_DT = sysdate        
 	   WHERE IUSER_ID = #{iuser_id}
-    </update> 
+    </update>
+    
+    <insert id="ccMngAdd" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+		INSERT
+				INTO PARTNER_OF_CLIENT
+				  (
+				    CUST_ID,
+				    IUSER_ID,
+				    KEY_PART,
+				    FST_REG_ID,
+				    FIN_MDFY_ID
+				  )
+				  VALUES
+				  (
+				    #{cust_id},
+				    #{iuser_id},
+				    #{key_part},
+				    #{fst_reg_id},
+				    #{fin_mdfy_id}
+				  )
+	</insert>
+	<select id="ccMngList" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
+		SELECT a.CUST_ID,
+				b.CUST_NM,
+				a.IUSER_ID,
+	       		c.IUSER_NM,
+				a.KEY_PART,
+				a.FST_REG_ID,
+				a.FST_REG_DT,
+				a.FIN_MDFY_ID,
+				a.FIN_MDFY_DT
+		FROM PARTNER_OF_CLIENT a, CUSTOMER b, IUSER c
+	    where 1=1
+	        and a.CUST_ID=b.CUST_ID
+	        and a.IUSER_ID=c.IUSER_ID
+	        and a.CUST_ID=#{cust_id}
+	</select>
+	<select id="ccMngDetail" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
+		SELECT a.CUST_ID,
+			b.CUST_NM,
+			a.IUSER_ID,
+       		c.IUSER_NM,
+			a.KEY_PART,
+			c.EMAIL1,
+			c.EMAIL2,
+			c.CELL_PH1,
+			c.CELL_PH2,
+			c.CELL_PH3,
+			a.FST_REG_ID,
+			a.FST_REG_DT,
+			a.FIN_MDFY_ID,
+			a.FIN_MDFY_DT
+		FROM PARTNER_OF_CLIENT a, CUSTOMER b, IUSER c
+	    where 1=1
+	    	and a.CUST_ID=b.CUST_ID
+       		and a.IUSER_ID=c.IUSER_ID
+			AND a.CUST_ID=#{cust_id}
+			and a.iuser_id=#{iuser_id}
+	</select>
+	<update id="ccMngUpdate" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+		update PARTNER_OF_CLIENT
+		set KEY_PART=#{key_part},
+		    FIN_MDFY_ID=#{fin_mdfy_id}
+		where cust_id=#{cust_id}
+			and iuser_id=#{iuser_id}
+	</update>
+	<delete id="ccMngDelete" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+		delete from PARTNER_OF_CLIENT
+		where cust_id=#{cust_id}
+			and iuser_id=#{iuser_id}
+	</delete>
 </mapper>

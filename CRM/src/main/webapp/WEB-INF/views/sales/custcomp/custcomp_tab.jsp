@@ -12,6 +12,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/opptInsertPop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
@@ -42,7 +43,7 @@
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="poc_pop_btn" class="custcomp_btn" value="담당자 추가" />
-				<input type="button" id="deletePocbtn" class="custcomp_btn" value="삭제" onclick="pocDelete();"/>
+				<input type="button" id="deletePocbtn" class="custcomp_btn" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			
 			<div id="tableline2">

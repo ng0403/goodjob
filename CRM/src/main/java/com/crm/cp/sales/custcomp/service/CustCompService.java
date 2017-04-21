@@ -11,6 +11,7 @@ import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -101,10 +102,5 @@ public interface CustCompService {
 	//int custSaleActDelete(String string);										// 영업담당자 삭제
 
 	String custSaleActDelete(PosVO pos);										// 영업담당자 삭제
-
-
-
-
-
 
 }

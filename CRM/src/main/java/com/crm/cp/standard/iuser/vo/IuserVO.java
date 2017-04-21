@@ -26,15 +26,58 @@ public class IuserVO {
 	String zip_cd_sri_num;
 	String iuser_dtl_addr;
 	String iuser_div_cd;
-	String fst_reg_id_nm;
+	String fst_reg_id;
+	public String getFst_reg_id() {
+		return fst_reg_id;
+	}
+
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
+	}
+
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
+	}
+
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
+	}
+
+	public String getCust_nm() {
+		return cust_nm;
+	}
+
+	public void setCust_nm(String cust_nm) {
+		this.cust_nm = cust_nm;
+	}
+
+	public String getCust_id() {
+		return cust_id;
+	}
+
+	public void setCust_id(String cust_id) {
+		this.cust_id = cust_id;
+	}
+
+	public String getKey_part() {
+		return key_part;
+	}
+
+	public void setKey_part(String key_part) {
+		this.key_part = key_part;
+	}
+
 	Date fst_reg_dt;
-	String fin_mdfy_id_nm;
+	String fin_mdfy_id;
 	Date fin_mdfy_dt;
 	String act_yn;
 	String auth_id;
 	String auth_nm;
 	String org_nm;
 	String code;
+	String cust_nm;
+	String cust_id;
+	String key_part;
 	String cd_nm;
 	
 	public IuserVO(){}
@@ -44,8 +87,8 @@ public class IuserVO {
 			String cell_ph1, String cell_ph2, String cell_ph3, String ph1,
 			String ph2, String ph3, String comp_ph1, String comp_ph2,
 			String comp_ph3, String zip_cd, String zip_cd_sri_num,
-			String iuser_dtl_addr, String iuser_div_cd, String fst_reg_id_nm,
-			Date fst_reg_dt, String fin_mdfy_id_nm, Date fin_mdfy_dt,
+			String iuser_dtl_addr, String iuser_div_cd, String fst_reg_id,
+			Date fst_reg_dt, String fin_mdfy_id, Date fin_mdfy_dt,
 			String act_yn, String auth_id, String auth_nm, String org_nm,
 			String code, String cd_nm) {
 		super();
@@ -69,9 +112,9 @@ public class IuserVO {
 		this.zip_cd_sri_num = zip_cd_sri_num;
 		this.iuser_dtl_addr = iuser_dtl_addr;
 		this.iuser_div_cd = iuser_div_cd;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.auth_id = auth_id;
@@ -241,28 +284,12 @@ public class IuserVO {
 		this.iuser_div_cd = iuser_div_cd;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
-	}
-
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
-	}
-
 	public Date getFst_reg_dt() {
 		return fst_reg_dt;
 	}
 
 	public void setFst_reg_dt(Date fst_reg_dt) {
 		this.fst_reg_dt = fst_reg_dt;
-	}
-
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
-	}
-
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
 	}
 
 	public Date getFin_mdfy_dt() {
@@ -332,8 +359,8 @@ public class IuserVO {
 				+ comp_ph2 + ", comp_ph3=" + comp_ph3 + ", zip_cd=" + zip_cd
 				+ ", zip_cd_sri_num=" + zip_cd_sri_num + ", iuser_dtl_addr="
 				+ iuser_dtl_addr + ", iuser_div_cd=" + iuser_div_cd
-				+ ", fst_reg_id_nm=" + fst_reg_id_nm + ", fst_reg_dt="
-				+ fst_reg_dt + ", fin_mdfy_id_nm=" + fin_mdfy_id_nm
+				+ ", fst_reg_id_nm=" + fst_reg_id + ", fst_reg_dt="
+				+ fst_reg_dt + ", fin_mdfy_id_nm=" + fin_mdfy_id
 				+ ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn=" + act_yn
 				+ ", auth_id=" + auth_id + ", auth_nm=" + auth_nm + ", org_nm="
 				+ org_nm + ", code=" + code + ", cd_nm=" + cd_nm + "]";
