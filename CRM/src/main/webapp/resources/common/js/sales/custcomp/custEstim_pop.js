@@ -225,7 +225,7 @@ function InputProd(prod_id,prod_nm,prod_price){
 		}
 	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
-	alert(flg);
+	//alert(flg);
 	var like = 0;
 	if($("#estimatetbody tr").length == 0){
 			if($('#flg').val()=='detail'){
