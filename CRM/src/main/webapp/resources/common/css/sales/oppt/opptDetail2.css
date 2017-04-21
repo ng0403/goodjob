@@ -17,6 +17,12 @@
   z-index:99; 
 }
 
+#ccustomertable_M th {
+   text-align: right;
+   width: 15%;
+   height: 28px;
+   padding-right: 10px;
+}
 #opptDetail input[type=text], textarea, #opptDetail select{
 	background-color: #eaeaea;
 }

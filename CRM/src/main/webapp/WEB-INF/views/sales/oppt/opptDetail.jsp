@@ -94,7 +94,7 @@ $(document).ready(function() {
 		</div>
 		
 		<div id="tableline" class="FixHeader">
-			<table id="goaltable" class="tabtable">
+			<table id="goaltable" class="tabtable" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
 						<th style="width: 3%;"><input type="checkbox"  id='estimAllSelect'/></th>
