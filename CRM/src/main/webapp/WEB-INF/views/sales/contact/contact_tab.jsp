@@ -15,14 +15,19 @@
  
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
  
- <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
+
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css"/>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
- 
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 </head>
 
+
+
 <body>
-	<div id="css_tabs" style="float: left;">
+	<div id="css_tabs" style="float: left;   margin-top:-5%;">
 		<!-- 라디오 버튼 -->
 		<!-- <input id="tab1" type="radio" name="tab" /> -->
 		<input id="tab1" type="radio" name="tab" checked="checked" />
@@ -43,13 +48,13 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn" class="custcomp_btn" value="키맨 추가" />
+				<input type="button" id="keyman_pop_btn" class="custcomp_btn" value="추가" />
 				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
-			<div id="tableline2" >
+			<div id="tableline2">
 				<table class="tabtable"> 
-					<thead class="headerLock">
+					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
 							<th style='width:10%;'>고객사명</th>
@@ -69,14 +74,14 @@
 			<!-- 영업기회 리스트 -->
 		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" />
+				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="추가" />
 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel()"/>
 			</div>
 			
 			<div id="tableline2">
 				<table id="opptTable" class="tabtable">
 					<thead>
-						<tr class="tr_table_fix_header">
+						<tr  class="headerLock">
 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th>
 							<th style='width:30%;'>영업기회명</th>
 							<th style='width:8%;'>영업단계</th>
@@ -98,7 +103,7 @@
 			<!-- 영업활동 리스트 -->
 		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_pop_btn" class="custcomp_btn" value="영업활동 추가" "/>
+				<input type="button" id="act_pop_btn" class="custcomp_btn" value="추가"/>
 				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="opptActiveDeletecontact();"/>
 			</div>
 			

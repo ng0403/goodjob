@@ -327,7 +327,7 @@ function paging(ccPageNum) {
 						tbodyContent = "<tr>"
 							+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
 							+"<td style='text-align: left; padding-left: 8px;'>"
-							+"<a href='#' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\" style='color: blue;' class='cnClick'>"+data.ccVOList[i].cust_nm+"</a></td>"
+							+"<a href='#' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\" style='color: black;' class='cnClick'>"+data.ccVOList[i].cust_nm+"</a></td>"
 							+"	<td>"+data.ccVOList[i].comp_num+"</td>" 
 							+"<td>"+data.ccVOList[i].corp_num+"</td>"
 							+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
@@ -425,7 +425,7 @@ function schPaging(ccPageNum) {
 								tbodyContent = "<tr>"
 									+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
 									+"<td style='text-align: left; padding-left: 8px;'>"
-									+"<a href='#' style='color: blue;' class='cnClick' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\">"+data.ccVOList[i].cust_nm+"</a></td>"
+									+"<a href='#' style='color: black;' class='cnClick' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\">"+data.ccVOList[i].cust_nm+"</a></td>"
 									+"	<td>"+data.ccVOList[i].comp_num+"</td>"
 									+"<td>"+data.ccVOList[i].corp_num+"</td>"
 									+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
@@ -581,7 +581,7 @@ function keymanList() {
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cust_nm+"</td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"');\" style='color:black;' class='cnClick'>"+data[i].cust_nm+"</td>" +
 						"<td style='width:7%;'>"+data[i].key_pos+"</td>" +
  						"<td style='width:20%;'>"+data[i].memo+"</td>" +
 						"<td style='width:10%;'>"+data[i].fst_reg_id+"</td>" +
@@ -630,7 +630,7 @@ function opptList() {
 						
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
-						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"contactopptTabDetail('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
+						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"contactopptTabDetail('"+data[i].sales_oppt_id+"');\" style='color:black;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
 						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
 						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
 						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
@@ -725,7 +725,7 @@ function actListcontact() {
 						}*/
  						tbodyContent = "<tr>"
 							+ "<td rowspan='2'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
-							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
+							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:black;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_div_nm+"</td>"
 							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'>"+data[i].sales_oppt_nm+"</td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_type_nm+"</td>"
@@ -785,7 +785,7 @@ function estList(cust_id) {
 						var sales_price = comma(data[i].sales_price);
 						tbodyContent = "<tr>"
 							+ "<th><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
-							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
+							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:black;' class='cnClick'>"+data[i].estim_nm+"</td>"
 							+ "<td>"+data[i].estim_lev_cd_nm+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+data[i].estim_qty+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+sales_price+"</td>"
@@ -835,7 +835,7 @@ function contList(cust_id) {
 						var contr_amt = comma(data[i].contr_amt);
 						tbodyContent = "<tr>"
 							+ "<th><input type='checkbox' value='"+data[i].contr_id+"' id='chk_cont_id' onclick=\"contChkCancel();\"></th>"
-							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccContDetail('"+data[i].contr_id+"');\" style='color:blue;' class='cnClick'>"+data[i].contr_nm+"</a></td>"
+							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccContDetail('"+data[i].contr_id+"');\" style='color:black;' class='cnClick'>"+data[i].contr_nm+"</a></td>"
 							+ "<td>"+data[i].contr_num+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+data[i].contr_qty+"</td>"
 							+ "<td style='text-align: right; padding-right: 8px;'>"+contr_amt+"</td>"

@@ -1,21 +1,23 @@
 /**
  * 키맨추가 관련 js파일
  */
+//키맨 새로고침
 function keymanListRefresh() {
  	window.opener.keymanList();
 	self.close();
 }
-
+//영업기회 새로고침
 function opptListRefresh(){
  	window.opener.opptList();
 	self.close();
 }
-
+//영업활동 새로고침
 function actListRefresh(){
 	window.opener.actListcontact();
 	self.close();
 }
 
+//키맨 취소키
 function keymancancle(){
 	var a = confirm("취소하시겠습니까?");
 	if(a){
@@ -26,6 +28,7 @@ function keymancancle(){
 		}
 }
 
+//키맨 추가
 function keymanAdd() {
 	$(document).ready(function() {
  	var cont_id = $("#cont_id").val();
@@ -114,6 +117,7 @@ $(document).ready(function() {
 
 //영업기회 상세정보 고객 리스트 팝업
 function custcompListPopup(ctx){
+	alert("어디");
 	$('#customer').click(function(){
 		window.open(ctx+'/opptCustcompList','newwindow1','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
@@ -129,6 +133,7 @@ function keymanListPopup(){
 
 //영업기회 상세정보 고객 리스트 팝업
 function opptListPopup(){
+	alert("어디1");
 	$('#oppt').click(function(){
 		var cont_id = $("#cont_id",opener.document).val();
  		window.open('/opptListPop?cont_id='+cont_id,'newwindow1','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
@@ -137,18 +142,19 @@ function opptListPopup(){
 
 
 
-function inputCustNm(cust_id,cust_nm){
-	
+function inputCustNm(cust_id,cust_nm){ 
 	$('#cust_id').val(cust_id);
 	$('#cust_nm').val(cust_nm);
 	$('#act_oppt_nm').attr('disabled',false).attr('readonly', false);
 }
 
+//키맨 이름 tr 추가.
 function inputKeyNm(cust_id){
  	$('#cust_id').val(cust_id);
  	$('#act_oppt_nm').attr('disabled',false).attr('readonly', false);
 }
- 
+
+//영업기회 이름 추가 
 function inputOpptNm(oppt_id, opptNm, cust_id){
  	$('#oppt_id').val(oppt_id);
  	$('#oppt_nm').val(opptNm);
@@ -243,7 +249,7 @@ function opptActiveDeletecontact() {
 }
 
 
-
+//영업기회 저장
 function contactopptSave()
 {
 	alert("hi");

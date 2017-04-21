@@ -6,7 +6,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callTab.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script>
@@ -17,16 +20,17 @@
 </head>
 <body>
 <div id="title">
-		<div class="caption">■ 연락처 추가</div>
+		<div class="caption">■ 고객 > <a href="/contact">연락처</a> > 연락처 추가</div>
 	</div>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="nowCall_id"/>
 	<input type="hidden" id="hCust_div_nm"/>
-	<div id="css_tabs">
+	
+	<div style="margin-top:4%">
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" />
+		<!-- <input id="tab1" type="radio" name="tab" checked="checked" /> -->
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label for="tab1">상세정보</label>
+		<!-- <label for="tab1">상세정보</label> -->
 		
 		<form id="contactForm" method="post" role="form" >
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->

@@ -802,7 +802,7 @@ public class ContactController {
 				@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
 				@RequestParam(value = "keyword", defaultValue = "") String keyword) 
 		{
-			ModelAndView mov = new ModelAndView("/sales/act/actPop/product_list_pop");
+			ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/product_list_pop");
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			System.out.println("actController1111");

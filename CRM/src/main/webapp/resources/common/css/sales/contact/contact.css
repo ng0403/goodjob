@@ -1,3 +1,11 @@
+.headerLock {
+position: relative;
+top:expression(document.getElementById("salesOpptPrdtdiv").scrllTop);
+z-index:99;
+}
+
+
+
 /* svg Css */
 svg {
 	width: 355px;
@@ -50,7 +58,7 @@ svg {
 
 #oppt_lev_label{
 	margin-left: 40px;
-}
+}ㅌ
 .tel_search {
 	position: relative;
 	width: 8%;
@@ -114,4 +122,10 @@ svg {
 	margin-top: 5px;
 	padding-right: 10px;
 }
+
+
+#contactbody input {
+    text-align: center;
+}
+
 

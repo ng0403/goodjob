@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/contact/contact.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>	
@@ -23,7 +23,7 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<div id="title">
-		<div class="caption">■ 연락처</div>
+		<div class="caption">■ 고객 > 연락처</div>
 	</div>
  
 	
@@ -82,13 +82,13 @@
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
 			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></th>
-			<td style="width:10%; text-align: left; padding-left:5px;" >          <%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
-			<a href="#" onclick="contactDetail('${contactList.cont_id}')" style="color: blue; cursor: pointer;" class="callClick">${contactList.cont_nm}</a></td>
-  			<td style="width:10%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
-			<td style="width:15%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
+			<td style="width:20%; text-align: left; padding-left:5px;" >          <%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
+			<a href="#" onclick="contactDetail('${contactList.cont_id}')" style="color: black; cursor: pointer;" class="callClick">${contactList.cont_nm}</a></td>
+  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
+			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>
- 			<td style="width:15%; text-align:center;"><fmt:formatDate value="${contactList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
+ 			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
 		</tr>
 		</c:forEach>
 		</tbody>

@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callTab.css" type="text/css" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
@@ -15,11 +15,12 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/addr/zipcode_js.js"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
 <div id="title">
-		<div class="caption">■ 연락처 상세</div>
+		<div class="caption">■ 고객 > <a href="/contact">연락처</a> > 연락처 상세</div>
 	</div>
 
 	<input type="hidden" id="ctx" value="${ctx}">
