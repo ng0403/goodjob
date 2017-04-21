@@ -9,6 +9,14 @@
 /* .FixHeader tbody tr{height: auto;} */
 /* .FixHeader tbody td{width: 200px;text-align: center;} */
 
+/* 고정시킬 TR의 클래스명
+밑에 아이디에는 해당 테이블이 들어가는 div 아이디를 입력해라!! */
+.headerLock { 
+  position: relative; 
+  top:expression(document.getElementById("tableline").scrollTop); 
+  z-index:99; 
+}
+
 #opptDetail input[type=text], textarea, #opptDetail select{
 	background-color: #eaeaea;
 }
@@ -95,7 +103,7 @@
 #tableline2 {
 	padding-top: 5px;
 	width: 100%;
-	height: 200px;
+	height: 255px;
 	overflow-y: auto; 
 	overflow-x: none;
 }
@@ -104,6 +112,7 @@
 	border-collapse: collapse;
 	border: 2px solid #DDD;
 	width: 100%;
+	overflow: auto;
 }
 
 .tabtable th {
@@ -651,8 +660,8 @@
 #tableline {
 	padding-top: 5px;
 	width: 100%;
-	height: 200px;
-	overflow-y: auto; 
+	height: 305px;
+	overflow-y: none; 
 	overflow-x: none;
 }
 

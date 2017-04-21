@@ -622,10 +622,10 @@ function estimList(opptId){
 		success:function(result){
 			var content ="";
 			if(result.length==0){
-				content = "<tr style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
+				content = "<tr class='headerLock' style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
 			}else{
 			$.each(result,function(i,data){
-				content += '<tr>'+	
+				content += '<tr class="headerLock">'+	
 						'<th><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
 						'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
 						'<td>'+data.estim_lev_cd+'</td>'+
@@ -638,7 +638,7 @@ function estimList(opptId){
 			});
 			if(result.length < 5){
 				for(var j = 0; j < 5-result.length; j++){
-					content += "<tr>"
+					content += "<tr class='headerLock'>"
 						+ "<th></th>"
 						+ "<td></td><td></td><td></td>"
 						+ "<td></td><td></td><td></td><td></td></tr>";

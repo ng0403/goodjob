@@ -63,7 +63,7 @@ $(document).ready(function() {
 			<div id="tableline" class="FixHeader">
 				<table id="goaltable" class="tabtable">
 					<thead>
-						<tr>
+						<tr class="headerLock">
 							<th rowspan="2" style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
 							<td rowspan="2" style="width: 20%;">영업활동명</td>
 							<td rowspan="2" style="width: 8%;">활동구분</td>
@@ -96,7 +96,7 @@ $(document).ready(function() {
 		<div id="tableline" class="FixHeader">
 			<table id="goaltable" class="tabtable">
 				<thead>						
-					<tr>
+					<tr class="headerLock">
 						<th style="width: 3%;"><input type="checkbox"  id='estimAllSelect'/></th>
 						<td style="width: 30%;">견적명</td>
 						<td style="width: 11%;">견적단계</td>
