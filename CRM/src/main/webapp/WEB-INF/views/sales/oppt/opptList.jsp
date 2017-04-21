@@ -26,20 +26,20 @@
 		<div class="caption">■ 영업 > 영업기회</div></div>
 		   <div class="search_div" >
 			    <label for="scompNam" class="tel_label_list">영업기회명</label>
-			      <input type="text" onkeypress="opptSearchInput(event);" class="tel_search" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
+			      <input type="text" style="width:325px;" onkeypress="opptSearchInput(event);" class="tel_search" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
 			    <label for="inputPassword1" class="tel_label_list" >고객명</label>
 			      <input type="text" class="tel_search" id="scust_nm" name="scust_nm" value="${scust_nm}">
 			      <input type="hidden" class="tel_search" id="scust_id" name="scust_id" value="${scust_id}">
 			      <input type="button" class="btn-success-tel" id="searchCustomer" value="고객">
 			    <label for="inputPassword1" class="tel_label_list" id="oppt_lev_label">영업단계</label>
-			      <select class="tel_search" name="ssales_lev_cd" id="ssales_lev_cd_select">
+			      <select class="tel_label_list" name="ssales_lev_cd" id="ssales_lev_cd_select"style="padding-top: 2px;">
 			      		<option value="">선택</option>
 			      		<c:forEach items="${otllist}" var="list">
 						<option value="${list.code}" >${list.cd_nm}</option>
 						</c:forEach>
 			      </select>
 			    <label for="inputPassword1" class="tel_label_list">가능성(%)</label>
-			    	<select class="tel_search" name="spsblty_rate" id="spsblty_rate_select">
+			    	<select class="tel_label_list" name="spsblty_rate" id="spsblty_rate_select" style="padding-top: 2px;">
 			    		<option value="">선택</option>
 			      		<option value="10">10</option>
 			      		<option value="20">20</option>
@@ -52,8 +52,7 @@
 			      		<option value="90">90</option>
 			      		<option value="100">100</option>
 			      </select>
-			    <input type="button"  class="btn-success-tel" id="searchlist" 
-			    		onclick="javascript:searchBtn('${pageNum}');" value="조회">
+			    <input type="button"  class="btn-success-tel" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" value="조회">
 		    </div>		
 		    <div id="contact_button_position">
 		    	<input type="button" class="btn-success-tel" value="추가" onclick="AddCustomerOpen();">

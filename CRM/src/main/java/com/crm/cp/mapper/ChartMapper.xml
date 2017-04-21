@@ -5,22 +5,25 @@
 
 	<!-- 영업기회 리스트 -->
 	<select id="C_oppt_status" resultType="com.crm.cp.sales.oppt.vo.OpptChartVO" parameterType="java.util.Map">
-		select ing.ing as "진행중", compl.cplt as "계약완료", fail.fail as "계약실패" 
+		   select ing.ing as "진행중", compl.cplt as "계약완료", fail.fail as "계약실패" 
 			from (select count(*) as ing
 			        from sales_opportunity a, customer c
 					where 1=1 
 					and a.cust_id=c.cust_id 
-			        and a.sales_oppt_stat_cd = '0001') ing, 
-			        (select count(*) as cplt
+			        and a.sales_oppt_stat_cd = '0001'
+			        and a.act_yn='Y') ing, 
+			     (select count(*) as cplt
 			        from sales_opportunity a, customer c
 					where 1=1 
 					and a.cust_id=c.cust_id 
-			        and a.sales_oppt_stat_cd = '0002') compl,
-			        (select count(*) fail
+			        and a.sales_oppt_stat_cd = '0002'
+              		and a.act_yn='Y') compl,
+			     (select count(*) fail
 			        from sales_opportunity a, customer c
 					where 1=1 
 					and a.cust_id=c.cust_id 
-			        and a.sales_oppt_stat_cd = '0003') fail 
+			        and a.sales_oppt_stat_cd = '0003'
+              		and a.act_yn='Y') fail
 
 	</select>
 	
