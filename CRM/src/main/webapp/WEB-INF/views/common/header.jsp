@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/navi.js"></script>
+<%-- <script src="${ctx}/resources/common/js/standard/common/navi.js"></script> --%>
 <script type="text/javascript">
 function logout(){
 	var chk = confirm('로그아웃 하시겠습니까?');
