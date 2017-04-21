@@ -32,14 +32,14 @@
 			      <input type="hidden" class="tel_search" id="scust_id" name="scust_id" value="${scust_id}">
 			      <input type="button" class="btn-success-tel" id="searchCustomer" value="고객">
 			    <label for="inputPassword1" class="tel_label_list" id="oppt_lev_label">영업단계</label>
-			      <select class="tel_label_list" name="ssales_lev_cd" id="ssales_lev_cd_select"style="padding-top: 2px;">
+			      <select class="tel_label_list" name="ssales_lev_cd" id="ssales_lev_cd_select" style="height: 25px;">
 			      		<option value="">선택</option>
 			      		<c:forEach items="${otllist}" var="list">
 						<option value="${list.code}" >${list.cd_nm}</option>
 						</c:forEach>
 			      </select>
 			    <label for="inputPassword1" class="tel_label_list">가능성(%)</label>
-			    	<select class="tel_label_list" name="spsblty_rate" id="spsblty_rate_select" style="padding-top: 2px;">
+			    	<select class="tel_label_list" name="spsblty_rate" id="spsblty_rate_select" style="height: 25px;" >
 			    		<option value="">선택</option>
 			      		<option value="10">10</option>
 			      		<option value="20">20</option>
