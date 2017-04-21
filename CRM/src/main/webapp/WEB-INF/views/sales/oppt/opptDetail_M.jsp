@@ -173,7 +173,7 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 				<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
-					<tr>
+					<tr class="headerLock">
 						<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
 						<td style="width: 8%;">수량</td>
