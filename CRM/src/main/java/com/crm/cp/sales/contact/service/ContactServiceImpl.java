@@ -40,13 +40,15 @@ public class ContactServiceImpl implements ContactService {
 	//전체리스트 개수 
 		@Override
 		public PagerVO ContactListCount(Map<String, Object> contactMap) {
+			System.out.println("ContactListCount service " +  contactMap.toString());
 			int actPageNum = (Integer) contactMap.get("contactPageNum");
 			// 현재 페이지 얻어오기
-			PagerVO page = new PagerVO(actPageNum, 0, 4, 10);
+			PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
 			// 전체 글의 갯수 구하기
+			System.out.println("actPage Num " + actPageNum);
 			int totalRowCount = contactDao.contactListCount(contactMap);
-					
-			page = new PagerVO(actPageNum, totalRowCount, 4, 10);
+			System.out.println("totalRowCount ? " + totalRowCount);		
+			page = new PagerVO(actPageNum, totalRowCount, 10, 10);
 		
 			return page;
 		}

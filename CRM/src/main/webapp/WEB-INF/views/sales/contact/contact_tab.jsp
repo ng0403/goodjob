@@ -18,7 +18,9 @@
  <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+ 
 </head>
+
 <body>
 	<div id="css_tabs" style="float: left;">
 		<!-- 라디오 버튼 -->
@@ -45,9 +47,9 @@
 				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
-			<div id="tableline2">
-				<table class="tabtable" style="border-collapse: collapse;"> 
-					<thead>
+			<div id="tableline2" >
+				<table class="tabtable"> 
+					<thead class="headerLock">
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
 							<th style='width:10%;'>고객사명</th>
@@ -74,7 +76,7 @@
 			<div id="tableline2">
 				<table id="opptTable" class="tabtable">
 					<thead>
-						<tr>
+						<tr class="tr_table_fix_header">
 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th>
 							<th style='width:30%;'>영업기회명</th>
 							<th style='width:8%;'>영업단계</th>
@@ -103,7 +105,7 @@
 			<div id="tableline2">
 				<table id="actTable" class="tabtable">
 					<thead>
-						<tr>
+						<tr class="headerLock">
 							<th style='width:3%;' rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
 							<th style='width:16%;' rowspan="2">영업활동명</th>
 							<th style='width:6%;' rowspan="2">활동구분</th>

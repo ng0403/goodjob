@@ -76,7 +76,7 @@ function pageInputCall(event) {
 	
 // 초성 검색 페이징
 function searchAcnkEvent(contactPageNum, keyword){
-		var ctx = $("#ctx").val();
+ 		var ctx = $("#ctx").val();
 		var cont_nm = $("#cont_nm").val();
 		var email = $("#email").val();
 		var ph = $("#ph").val();
@@ -129,32 +129,30 @@ function searchAcnkEvent(contactPageNum, keyword){
 							tbody.append(tbodyContent);
 						}
  						
-						if(data.callListSize < 4){
-							for(var i=0; i<4-data.contactListSize; i++){
-								tbodyContent='<tr style="height: 35.5px;"><th></th>'
+						if(data.contactListSize < 10){
+  							for(var i=0; i<10-data.contactListSize; i++){
+								tbodyContent='<tr><th></th>'
 									+'<td style="width:10%;"></td>'
 									+'<td style="width:10%;"></td>'
 									+'<td style="width:10%;"></td>'
 									+'<td style="width:10%;"></td>'
 									+'<td style="width:15%;"></td>'
 									+'<td style="width:10%;"></td>'
-									+'<td style="width:10%;"></td>'
-									+'<td style="width:10%;"></td>'
-									+'<td style="width:15%;"></td></tr>';
+									'</tr>';
 								tbody.append(tbodyContent);
 							}
 						}    
 						
 						$("#pageSpace").children().remove();
-						var ccPageNum = result.ccPageNum;
-						var startPageNum = result.page.startPageNum;
-						var endPageNum = result.page.endPageNum;
-						var firstPageCount = result.page.firstPageCount;
-						var totalPageCount = result.page.totalPageCount;
-						var prevPageNum = result.page.prevPageNum;
-						var nextPageNum = result.page.nextPageNum;
-						var prevStepPage = result.page.prevStepPage;
-						var nextStepPage = result.page.nextStepPage;
+						var ccPageNum = data.ccPageNum;
+						var startPageNum = data.page.startPageNum;
+						var endPageNum = data.page.endPageNum;
+						var firstPageCount = data.page.firstPageCount;
+						var totalPageCount = data.page.totalPageCount;
+						var prevPageNum = data.page.prevPageNum;
+						var nextPageNum = data.page.nextPageNum;
+						var prevStepPage = data.page.prevStepPage;
+						var nextStepPage = data.page.nextStepPage;
 						paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
 						
 						
@@ -211,7 +209,7 @@ function callSearchEnter(event) {
 
 //연락처 리스트 출력
 function contactList(page){
-//	readDetail();
+ //	readDetail();
 	var ctx = $("#ctx").val();
 	$.ajax({
 		type : 'post',
@@ -252,9 +250,8 @@ function contactList(page){
 				                   
 			   tbody.append(tbodyContent);
 			}
-			
-			if(data.contactList.length < 4){
-				for(var i=0; i<4-data.contactListSize; i++){
+ 			if(data.contactList.length < 10){
+ 				for(var i=0; i<10-data.contactListSize; i++){
 					tbodyContent='<tr style="height: 35.5px;"><th></th>'
 						+'<td style="width:10%;"></td>'
 						+'<td style="width:10%;"></td>'
@@ -266,7 +263,7 @@ function contactList(page){
 				}		
 			}
 			//페이지 리스트 갯수
-			if(data.contactList.length < 10){
+		/*	if(data.contactListSize < 10){
 				for(var j = 0; j < 10-result.oplist.length; j++){
 					$("#listTable").append("<tr style='height:30px;'>"
 							+"<th></th>"
@@ -274,7 +271,7 @@ function contactList(page){
 							+"<td></td><td></td><td></td><td></td>"
 							+"<td></td></tr>");
 				}
-			}
+			}*/
 			$("#pageSpace").children().remove();	
 			$("#pageSpace").children().remove();
 			var contactPageNum = data.contactPageNum;
@@ -317,7 +314,7 @@ function contactPaging(contactPageNum) {
 		type : 'POST',
 		data : contactData,
 		success : function(data) {
-
+			alert("success");
 			if(data.contactListSize == 0){
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/contact';
@@ -352,9 +349,9 @@ function contactPaging(contactPageNum) {
 			   tbody.append(tbodyContent);
 			}
 			
-			if(data.contactList.length < 4){
-				for(var i=0; i<4-data.contactListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;"><th></th>'
+			if(data.contactList.length < 10){
+ 				for(var i=0; i<10-data.contactListSize; i++){
+					tbodyContent='<tr><th></th>'
 						+'<td style="width:10%;"></td>'
 						+'<td style="width:10%;"></td>'
 						+'<td style="width:10%;"></td>'

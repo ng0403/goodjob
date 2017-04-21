@@ -187,7 +187,7 @@ public class ContactController {
 	// 연락처 리스트 초성검색 / 그냥검색 페이징
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> searchKeyword(HttpSession session, String keyword,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, String cont_nm, String email, String ph) {
+			@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum, String cont_nm, String email, String ph) {
 		System.out.println("초성검색 enter");
 		System.out.println("초성?" + keyword);
 		Map<String, Object> kwMap = new HashMap<String, Object>();
@@ -211,9 +211,10 @@ public class ContactController {
 		kwMap.put("email", email);
 		kwMap.put("ph", ph);
 		kwMap.put("keyword", keyword);
-		kwMap.put("ccPageNum", ccPageNum);
-
+		kwMap.put("contactPageNum", contactPageNum);
+		System.out.println("kwMap?? " + kwMap.toString());
 		PagerVO page = contactService.ContactListCount(kwMap);
+		System.out.println("page? " + page.toString());
 		kwMap.put("page", page);
 
 		

@@ -39,6 +39,7 @@ public class ContactDaoImpl implements ContactDao {
 	//전체리스트 개수
 		@Override
 		public int contactListCount(Map<String, Object> contactMap) {
+			System.out.println("contact Map Dao "  + contactMap.toString());
 			int totalCount = 0;
 			try {
 				totalCount = sqlSession.selectOne("contact.selectTotalCount", contactMap);
