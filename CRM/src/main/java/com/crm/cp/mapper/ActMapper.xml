@@ -184,6 +184,14 @@
 	  </if>
 	</sql>
 	
+	<select id="actListTemp" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
+		SELECT *
+		FROM 
+			SALES_ACTIVITY
+		WHERE
+			SALES_ACTVY_ID = #{sales_actvy_id}
+	</select>
+	
 	<!-- 상세보기 -->
 	<select id="actDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 		  SELECT SA.SALES_ACTVY_ID 
@@ -208,9 +216,32 @@
 	            ,SA.MEMO
 	      FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, CUSTOMER C
 		  WHERE SA.SALES_ACTVY_ID = #{sales_actvy_id}
-	      AND SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
-	      AND SA.CUST_ID = C.CUST_ID(+)
-		  AND SA.ACT_YN = 'Y'
+	      	AND SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
+	      	AND SA.CUST_ID = C.CUST_ID(+)
+		  	AND SA.ACT_YN = 'Y'
+	</select>
+	
+	<!-- actDetail2 -->
+	<select id="actDetail2" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
+		  SELECT SA.SALES_ACTVY_ID 
+	            ,SA.SALES_ACTVY_NM 
+			    ,SALES_ACTVY_DIV_CD
+				,SALES_ACTVY_TYPE_CD
+				,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D 
+				,SA.STRT_T
+				,SUBSTR(SA.STRT_T, 1, 2) STRT_T_H
+				,SUBSTR(SA.STRT_T, 4, 5) STRT_T_M
+				,TO_CHAR(SA.END_D ,'YYYY-MM-DD') END_D
+				, SA.END_T
+				,SUBSTR(SA.END_T, 1, 2) END_T_H
+				,SUBSTR(SA.END_T, 4, 5) END_T_M
+				,SALES_ACTVY_STAT_CD
+			    ,SA.FST_REG_ID ,SA.FIN_MDFY_ID
+			    ,TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') FST_REG_DT
+	            ,SA.MEMO
+	      FROM SALES_ACTIVITY SA
+		  WHERE SA.SALES_ACTVY_ID = #{sales_actvy_id}
+		  	AND SA.ACT_YN = 'Y'
 	</select>
 	
 	<!-- 영영활등 등록 -->

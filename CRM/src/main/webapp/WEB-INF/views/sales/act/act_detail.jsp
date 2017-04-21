@@ -34,10 +34,10 @@
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
-			<div class="caption">■ 영업 > 영업활동 > 영업활동 등록</div>
+			<div class="caption">■ 영업 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동</a> > 영업활동 등록</div>
 		</c:if>
 		<c:if test="${flg == 1 }">
-			<div class="caption">■ 영업 > 영업활동 > 영업활동 상세정보</div>
+			<div class="caption">■ 영업 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동</a> > 영업활동 상세정보</div>
 		</c:if>
 	</div>
 	
@@ -84,7 +84,7 @@
 									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly"> 
-								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer" disabled="disabled">
+								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="hcust_id">
@@ -102,7 +102,7 @@
 									<input type="hidden" id="hsales_oppt_id">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly"> 
-							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" disabled="disabled">
+							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
