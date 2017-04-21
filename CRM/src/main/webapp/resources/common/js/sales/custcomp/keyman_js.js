@@ -41,7 +41,7 @@ function keymanAdd() {
 			type : 'POST',
 			dataType : "json",
 			success : function(data){
-				alert("성공!");
+				//alert("성공!");
 				if(data.addResult == 'standard/home/session_expire'){
 					alert("세션이 만료되었습니다.");
 					alert("로그인 페이지로 이동합니다.");
