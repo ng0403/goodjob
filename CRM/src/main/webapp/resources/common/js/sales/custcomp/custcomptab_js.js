@@ -401,6 +401,8 @@ function custCompCancelBtn() {
 		$("#iuser_nm").val($("#hiuser_nm").val()).attr("readonly", true); // 영업담당자
 		$("#iuser_id_nm").val($("#hiuser_id_nm").val()).attr("readonly", true); // 영업담당자
 		$("#stat_cd").children().eq($("#hstat_cd").val()).attr("selected", "selected"); // 기업 상태 코드 선택
+		
+		history.back(-1);
 	}
 }
 
