@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <title>고객사</title>
 
-</head>
+</head>   
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
