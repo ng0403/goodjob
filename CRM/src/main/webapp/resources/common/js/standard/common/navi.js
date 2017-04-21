@@ -51,24 +51,24 @@
 
 		});
 		
-		$(".naviT").delegate('.navibtn', 'click',function(event) {
-			var navibtn=$(this).text();
-			if($(this).attr('href')=='#'){
-				event.preventDefault();
-			}
-			
-			var allmenu = $('#test').find('.hide1');
-			allmenu.hide();
-			
-			var submenu = $(this).next("ul");
-			if ($(this).next("ul").find(".subbtn").length >= 1) {
-				if (submenu.is(":visible")) {
-					submenu.slideUp();
-				} else {
-					submenu.slideDown();
-				}
-			}
-		});
+//		$(".naviT").delegate('.navibtn', 'click',function(event) {
+//			var navibtn=$(this).text();
+//			if($(this).attr('href')=='#'){
+//				event.preventDefault();
+//			}
+//			
+//			var allmenu = $('#test').find('.hide1');
+//			allmenu.hide();
+//			
+//			var submenu = $(this).next("ul");
+//			if ($(this).next("ul").find(".subbtn").length >= 1) {
+//				if (submenu.is(":visible")) {
+//					submenu.slideUp();
+//				} else {
+//					submenu.slideDown();
+//				}
+//			}
+//		});
 		
 	}
 	
