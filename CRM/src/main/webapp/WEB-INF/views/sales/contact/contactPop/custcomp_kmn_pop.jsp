@@ -39,7 +39,7 @@
 					<tbody id="tbody">
 						<tr>
 							<th>고객사</th>
-							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus"/></td>
+							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus" readonly="readonly"/></td>
 							 <input type="hidden" id="cust_id" name="cust_id" class="int" />  
 							<td><input type="button" value="고객" id="customer" class="cont_bt" onclick="javascript:custcompListPopup('${ctx}');"></td>
 							
@@ -73,7 +73,7 @@
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="keyman_bt_position">
-					<input type="button" class="keyman_bt" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}');"/>
+					<input type="button" class="keyman_bt" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}','${kmVO.cont_id}');"/>
 					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
 				</div>
 			</c:if>

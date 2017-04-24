@@ -26,7 +26,8 @@ public interface ContactService {
 	public List<Object> compList();
 	String insertKeyman(KeymanVO kVO); 	
 	List<KeymanVO> getKeymanList(String cust_id);
-	KeymanVO keymanDetail(String cust_id); 										// 키맨 상세정보
+	/*KeymanVO keymanDetail(String cust_id); */										// 키맨 상세정보
+	KeymanVO keymanDetail(Map<String, Object> map); 								//키맨 상세정보
 	String mdfyKeyman(KeymanVO kVO);											// 키맨 수정
 /*	String deleteKeyman(List<String> keyman_idList); 							// 키맨 삭제
 */	String deleteKeyman(KeymanVO kVO); 							// 키맨 삭제

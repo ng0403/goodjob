@@ -157,11 +157,19 @@ public class ContactServiceImpl implements ContactService {
 		}
 		
 		// 키맨 상세정보
-		@Override
+		/*@Override
 		public KeymanVO keymanDetail(String cust_id) {
 			KeymanVO kmVO = contactDao.keymanDetail(cust_id);
 			return kmVO;
-		}
+		}*/
+		
+		// 키맨 상세정보
+					@Override
+					public KeymanVO keymanDetail(Map<String, Object> map) {
+						KeymanVO kmVO = contactDao.keymanDetail(map);
+						return kmVO;
+					}
+		
 		// 키맨 수정
 		@Override
 		public String mdfyKeyman(KeymanVO kVO) {

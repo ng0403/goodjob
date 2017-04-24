@@ -31,6 +31,14 @@ function keymancancle(){
 //키맨 추가
 function keymanAdd() {
 	$(document).ready(function() {
+		
+	if($("#cust_nm").val() == '' || $("#cust_nm").val() == null)	
+	{
+		alert("고객사를 입력해 주세요.");
+		return 0;
+	}
+  	
+		
  	var cont_id = $("#cont_id").val();
  	var ctx = $("#ctx").val();
  	var keymanData = {"cust_id": $("#cust_id").val(), "cont_id": cont_id, "key_part": $("#key_part").val(),
@@ -60,11 +68,18 @@ function keymanAdd() {
 }
 
 //키맨 수정
-function keymanMdfy(a) {
+function keymanMdfy(a, b) { 
 	$(document).ready(function() {
+		
+		
+		if($("#cust_nm").val() == '' || $("#cust_nm").val() == null)	
+		{
+			alert("고객사를 입력해 주세요.");
+			return 0;
+		}
 		var ctx = $("#ctx").val();
 		 
-		var keymanData = { "cust_id": a, "key_part": $("#key_part").val(), "key_pos": $("#key_pos").val()
+		var keymanData = { "cont_id":b, "cust_id": a, "key_part": $("#key_part").val(), "key_pos": $("#key_pos").val()
 				,  "memo":$("#memo").val()};
 		
 		var cust_id = $("#cust_id").val();

@@ -26,7 +26,8 @@ public interface ContactDao {
 	public List<Object> compList();
 	int insertKeyman(KeymanVO kVO); // 키맨 추가
 	List<KeymanVO> getKeymanList(String cont_id); // 키맨 리스트
-	KeymanVO keymanDetail(String cust_id); // 키맨 상세정보
+	/*KeymanVO keymanDetail(String cust_id);*/ // 키맨 상세정보
+	KeymanVO keymanDetail(Map<String, Object> map); // 키맨 상세정보 
 	int mdfyKeyman(KeymanVO kVO); // 키맨 수정
 	/*int deleteKeyman(List<String> keyman_idList);*/ // 키맨 삭제
 	int deleteKeyman(KeymanVO kVO); 	// 키맨 삭제

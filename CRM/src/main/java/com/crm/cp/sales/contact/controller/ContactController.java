@@ -291,8 +291,14 @@ public class ContactController {
 
 	// 키맨 상세정보
 	@RequestMapping(value = "/keymanDetailPopupcontact", method = RequestMethod.GET)
-	public ModelAndView keymanDetailPopup(HttpSession session, String cust_id, int flag) {
-		KeymanVO kmVO = contactService.keymanDetail(cust_id);
+	public ModelAndView keymanDetailPopup(HttpSession session, String cust_id, int flag, String cont_id) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cust_id", cust_id);
+		map.put("cont_id", cont_id);
+		
+		KeymanVO kmVO = contactService.keymanDetail(map);
+		
 		System.out.println("key man who ? " +  kmVO.toString());
 		ModelAndView mov = new ModelAndView("/sales/contact/contactPop/custcomp_kmn_pop");
 		mov.addObject("kmVO", kmVO);

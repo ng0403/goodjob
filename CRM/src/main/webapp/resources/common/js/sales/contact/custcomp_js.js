@@ -581,7 +581,7 @@ function keymanList() {
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"');\" style='color:black;' class='cnClick'>"+data[i].cust_nm+"</td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:black;' class='cnClick'>"+data[i].cust_nm+"</td>" +
 						"<td style='width:7%;'>"+data[i].key_pos+"</td>" +
  						"<td style='width:20%;'>"+data[i].memo+"</td>" +
 						"<td style='width:10%;'>"+data[i].fst_reg_id+"</td>" +

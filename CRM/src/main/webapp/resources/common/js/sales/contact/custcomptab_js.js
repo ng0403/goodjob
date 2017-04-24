@@ -134,10 +134,11 @@ $(document).ready(function() {
 });
 
 // 키맨 상세정보
-function keymanDeatil(cust_id) {
-	var ctx = $("#ctx").val();
-	window.open(ctx+'/keymanDetailPopupcontact?cust_id='+cust_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+function keymanDeatil(cust_id,cont_id) {
+ 	var ctx = $("#ctx").val();
+	window.open(ctx+'/keymanDetailPopupcontact?cust_id='+cust_id+'&flag=1'+'&cont_id=' + cont_id,'newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
+ 
 
 // 영업기회 상세정보 팝업
 function ccOpptDetailcontact(sales_oppt_id){

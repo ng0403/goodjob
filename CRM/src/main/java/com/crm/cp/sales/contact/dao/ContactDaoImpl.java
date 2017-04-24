@@ -170,11 +170,23 @@ public class ContactDaoImpl implements ContactDao {
 		}
 		
 		// 키맨 상세정보
-		@Override
+		/*@Override
 		public KeymanVO keymanDetail(String cust_id) {
 			KeymanVO kmVO = null;
 			try {
 				kmVO = sqlSession.selectOne("kmDetailcontact", cust_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return kmVO;
+		}*/
+		
+		// 키맨 상세정보
+		@Override
+		public KeymanVO keymanDetail(Map<String, Object> map) {
+			KeymanVO kmVO = null;
+			try {
+				kmVO = sqlSession.selectOne("kmDetailcontact", map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

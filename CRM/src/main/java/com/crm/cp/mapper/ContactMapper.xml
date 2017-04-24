@@ -353,8 +353,8 @@
 	
 	
 	<!-- 키맨 상세정보 -->
-	<select id="kmDetailcontact" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
-		<!-- SELECT CUST_ID,
+	<!-- <select id="kmDetailcontact" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		SELECT CUST_ID,
 				  CONT_ID,
 				  KEY_PART,
 				  KEY_POS, 
@@ -365,7 +365,7 @@
 				  FIN_MDFY_ID,
 				  FIN_MDFY_DT
 		 FROM KEYMAN 
-	   WHERE CUST_ID = #{cust_id}  -->
+	   WHERE CUST_ID = #{cust_id} 
 	    SELECT 
                   c.CUST_NM,
                   k.CUST_ID,
@@ -380,6 +380,24 @@
 				  k.FIN_MDFY_DT
 		 FROM KEYMAN k, customer c
 	   WHERE k.cust_ID = #{cust_id} and k.cust_id = c.cust_id
+	</select> -->
+	
+	<!-- 키맨 상세정보 -->
+	<select id="kmDetailcontact" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		  SELECT 
+                  c.CUST_NM,
+                  k.CUST_ID,
+				  k.CONT_ID,
+				  k.KEY_PART,
+				  k.KEY_POS, 
+				  k.KEY_JOB,
+				  k.MEMO,
+				  k.FST_REG_ID,
+				  k.FST_REG_DT,
+				  k.FIN_MDFY_ID,
+				  k.FIN_MDFY_DT
+		 FROM KEYMAN k, customer c
+	   WHERE k.cust_ID = #{cust_id} and k.cont_id = #{cont_id} and k.cust_id = c.cust_id
 	</select>
 	
 	<!-- 키맨 삭제 -->
@@ -402,7 +420,7 @@
 			 MEMO = #{memo},
 			 FIN_MDFY_ID = #{fin_mdfy_id},
 			 FIN_MDFY_DT = sysdate
-		where CUST_ID = #{cust_id}
+		where CUST_ID = #{cust_id} and CONT_ID = #{cont_id}
 	</update>
 	
 	<!-- 영업기회 리스트 -->
