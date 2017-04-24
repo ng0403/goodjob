@@ -49,15 +49,15 @@
     </select>
     
      <select id="searchCateDetail" parameterType="String" resultType="com.crm.cp.standard.category.vo.CategoryVO">
-    	SELECT a.CATE_ID, a.CATE_NM, a.UP_CATE_ID, b.CATE_NM as UP_CATE_NM, a.CATE_DTL_CONT, a.FST_REG_ID_NM, a.FST_REG_DT, a.FIN_MDFY_ID_NM, a.FIN_MDFY_DT, a.ACT_YN
+    	SELECT a.CATE_ID, a.CATE_NM, a.UP_CATE_ID, b.CATE_NM as UP_CATE_NM, a.CATE_DTL_CONT, a.fst_reg_id, a.FST_REG_DT, a.fin_mdfy_id, a.FIN_MDFY_DT, a.ACT_YN
 		FROM CATEGORY a, CATEGORY b
 		WHERE a.UP_CATE_ID = b.CATE_ID (+)
 		AND a.CATE_ID = #{cate_id}
     </select>
     
     <insert id="cateInsert" parameterType="com.crm.cp.standard.category.vo.CategoryVO">
-		INSERT INTO CATEGORY(CATE_NM, UP_CATE_ID, CATE_DTL_CONT, FST_REG_ID_NM, FIN_MDFY_ID_NM, ACT_YN)
-		VALUES(#{cate_nm}, #{up_cate_id}, #{cate_dtl_cont}, #{fst_reg_id_nm}, #{fin_mdfy_id_nm}, #{act_yn})
+		INSERT INTO CATEGORY(CATE_NM, UP_CATE_ID, CATE_DTL_CONT, fst_reg_id, fin_mdfy_id, ACT_YN)
+		VALUES(#{cate_nm}, #{up_cate_id}, #{cate_dtl_cont}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn})
     </insert>
     
     <update id="cateUpdate" parameterType="com.crm.cp.standard.category.vo.CategoryVO">

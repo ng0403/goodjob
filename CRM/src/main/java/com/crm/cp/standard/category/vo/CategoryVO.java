@@ -9,9 +9,9 @@ public class CategoryVO {
 	String up_cate_id;
 	String up_cate_nm;
 	String cate_dtl_cont;
-	String fst_reg_id_nm;
+	String fst_reg_id;
 	Date fst_reg_dt;
-	String fin_mdfy_id_nm;
+	String fin_mdfy_id;
 	Date fin_mdfy_dt;
 	String act_yn;
 	List<CategoryVO> cateVO;
@@ -21,25 +21,25 @@ public class CategoryVO {
 	}
 	
 	public CategoryVO(String cate_id, String cate_nm, String up_cate_id,
-			String cate_dtl_cont, String fst_reg_id_nm, Date fst_reg_dt,
-			String fin_mdfy_id_nm, Date fin_mdfy_dt, String act_yn,
+			String cate_dtl_cont, String fst_reg_id, Date fst_reg_dt,
+			String fin_mdfy_id, Date fin_mdfy_dt, String act_yn,
 			List<CategoryVO> cateVO) {
 		super();
 		this.cate_id = cate_id;
 		this.cate_nm = cate_nm;
 		this.up_cate_id = up_cate_id;
 		this.cate_dtl_cont = cate_dtl_cont;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.cateVO = cateVO;
 	}
 
 	public CategoryVO(String cate_id, String cate_nm, String up_cate_id,
-			String up_cate_nm, String cate_dtl_cont, String fst_reg_id_nm,
-			Date fst_reg_dt, String fin_mdfy_id_nm, Date fin_mdfy_dt,
+			String up_cate_nm, String cate_dtl_cont, String fst_reg_id,
+			Date fst_reg_dt, String fin_mdfy_id, Date fin_mdfy_dt,
 			String act_yn, List<CategoryVO> cateVO) {
 		super();
 		this.cate_id = cate_id;
@@ -47,9 +47,9 @@ public class CategoryVO {
 		this.up_cate_id = up_cate_id;
 		this.up_cate_nm = up_cate_nm;
 		this.cate_dtl_cont = cate_dtl_cont;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.cateVO = cateVO;
@@ -89,12 +89,12 @@ public class CategoryVO {
 		this.cate_dtl_cont = cate_dtl_cont;
 	}
 	
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 	
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 	
 	public Date getFst_reg_dt() {
@@ -105,12 +105,12 @@ public class CategoryVO {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 	
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
 	
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 	
 	public Date getFin_mdfy_dt() {
@@ -149,9 +149,9 @@ public class CategoryVO {
 	public String toString() {
 		return "CategoryVO [cate_id=" + cate_id + ", cate_nm=" + cate_nm
 				+ ", up_cate_id=" + up_cate_id + ", cate_dtl_cont="
-				+ cate_dtl_cont + ", fst_reg_id_nm=" + fst_reg_id_nm
-				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id_nm="
-				+ fin_mdfy_id_nm + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
+				+ cate_dtl_cont + ", fst_reg_id=" + fst_reg_id
+				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
+				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn="
 				+ act_yn + ", cateVO=" + cateVO + "]";
 	}
 	

@@ -53,8 +53,8 @@ public class CategoryController {
 	//카테고리 등록
 	@RequestMapping(value = "/cateInsert", method = RequestMethod.POST)
 	public @ResponseBody Map<String,Object> cateInsert(HttpSession session, @RequestBody CategoryVO vo){
-		vo.setFst_reg_id_nm(session.getAttribute("user").toString());
-		vo.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		vo.setFst_reg_id(session.getAttribute("user").toString());
+		vo.setFin_mdfy_id(session.getAttribute("user").toString());
 		Map<String,Object> map = cateService.insert(vo);
 		return map;
 	}
@@ -62,7 +62,7 @@ public class CategoryController {
 	//카테고리 수정
 	@RequestMapping(value = "/cateUpdate", method = RequestMethod.POST)
 	public @ResponseBody Object cateUpdate(HttpSession session, @RequestBody CategoryVO vo){
-		vo.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		vo.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = cateService.update(vo);
 		return result;
 	}

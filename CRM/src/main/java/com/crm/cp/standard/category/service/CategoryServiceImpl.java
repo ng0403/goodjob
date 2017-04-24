@@ -35,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
 				}
 			}
 			list.add(new CategoryVO(ca.getCate_id(), ca.getCate_nm(), ca.getUp_cate_id(), ca.getCate_dtl_cont(), 
-					ca.getFst_reg_id_nm(), ca.getFst_reg_dt(), ca.getFin_mdfy_id_nm(), ca.getFin_mdfy_dt(), ca.getAct_yn(), subList));
+					ca.getFst_reg_id(), ca.getFst_reg_dt(), ca.getFin_mdfy_id(), ca.getFin_mdfy_dt(), ca.getAct_yn(), subList));
 		}		
 		return list;
 	}
