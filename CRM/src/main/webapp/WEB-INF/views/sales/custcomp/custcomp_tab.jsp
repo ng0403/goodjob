@@ -25,20 +25,20 @@
 	<div id="css_tabs" style="float: left;">
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked" />
-		<input id="tab2" type="radio" name="tab"  />
+		<input id="tab2" type="radio" name="tab" />
 		<input id="tab3" type="radio" name="tab" />
 		<input id="tab4" type="radio" name="tab" />
 		<input id="tab5" type="radio" name="tab" />
-		<input id="tab6" type="radio" name="tab" />
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->      
 		<label for="tab1">고객사 담당자</label> 
-		<label for="tab2">영업 담당자</label> 
-		<label for="tab3">키맨 </label> 
-		<label for="tab4">영업기회</label> 
-		<label for="tab5">영업활동</label> 
-		<label for="tab6">견적</label>
+		<label for="tab2">키맨 </label> 
+		<label for="tab3">영업기회</label> 
+		<label for="tab4">영업활동</label> 
+		<label for="tab5">견적</label>
 		
+<!-- 		<input id="tab2" type="radio" name="tab"  /> -->
+<!-- 		<label for="tab2">영업 담당자</label>  -->
 		<!-- 탭 내용 : 고객사 담당 사원 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
@@ -68,34 +68,34 @@
 		
 		
 		<!-- 탭 내용 : 영업 담당 사원 -->
-		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
-			<div class="bt_position_authuser">
-				<input type="button" id="pos_pop_btn" class="custcomp_btn" value="담당자 추가" />
-				<input type="button" id="deletePosbtn" class="custcomp_btn" value="삭제" onclick="posDelete();"/>
-			</div>
+<!-- 		<div id="tabDiv2" class="tab2_content" style="width: 100%;"> -->
+<!-- 			<div class="bt_position_authuser"> -->
+<!-- 				<input type="button" id="pos_pop_btn" class="custcomp_btn" value="담당자 추가" /> -->
+<!-- 				<input type="button" id="deletePosbtn" class="custcomp_btn" value="삭제" onclick="posDelete();"/> -->
+<!-- 			</div> -->
 			
-			<div id="tableline2">
-				<table class="tabtable" style="border-collapse: collapse;"> 
-					<thead>
-						<tr>
-							<th style='width:3%;'><input type="checkbox"  id='posListCheck'/></th>
-							<th style='width:20%;'>영업활동명</th>
-							<th style='width:15%;'>사원명</th>
-							<th style='width:20%;'>역할명</th>
-							<th style='width:15%;'>등록자</th>
-							<th style='width:20%;'>등록일시</th>
-						</tr>
-					</thead>
-					<tbody id="posTableTbody">
-						<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>
-					</tbody>
-				</table>
-			</div>
+<!-- 			<div id="tableline2"> -->
+<!-- 				<table class="tabtable" style="border-collapse: collapse;">  -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th style='width:3%;'><input type="checkbox"  id='posListCheck'/></th> -->
+<!-- 							<th style='width:20%;'>영업활동명</th> -->
+<!-- 							<th style='width:15%;'>사원명</th> -->
+<!-- 							<th style='width:20%;'>역할명</th> -->
+<!-- 							<th style='width:15%;'>등록자</th> -->
+<!-- 							<th style='width:20%;'>등록일시</th> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody id="posTableTbody"> -->
+<!-- 						<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
 			
-		</div>
+<!-- 		</div> -->
 		
 		<!-- 탭 내용 : 키맨 리스트 -->
-		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
+		<div id="tabDiv2" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="keyman_pop_btn" class="custcomp_btn" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="custcomp_btn" value="삭제" onclick="keymanDelete();"/>
@@ -124,7 +124,7 @@
 		</div>
 		
 		<!-- 영업기회 리스트 -->
-		<div id="tabDiv4" class="tab4_content" style="width: 100%;">
+		<div id="tabDiv3" class="tab4_content" style="width: 100%;">
 <!-- 			<div class="bt_position_authuser"> -->
 <!-- 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" /> -->
 <%-- 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/> --%>
@@ -181,7 +181,7 @@
 		</div>
 			
 			<!-- 영업활동 리스트 -->
-		<div id="tabDiv5" class="tab5_content" style="width: 100%;">
+		<div id="tabDiv4" class="tab5_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_cust_nm" class="custcomp_btn" value="영업활동 추가"/>
 				<input type="button" id="actDel" class="custcomp_btn" value="삭제" onclick="ccActDel('${ctx}');"/>
@@ -215,7 +215,7 @@
 		</div>
 	
 			<!-- 견적 리스트 -->
-		<div id="tabDiv6" class="tab6_content" style="width: 100%;"> 
+		<div id="tabDiv5" class="tab6_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
 				<button id="estimateAdd" class="custcomp_btn">견적 추가</button>
 				<button id="addkeymancancel" class="custcomp_btn" onclick="ccEstDel('${ctx}');" >삭제</button>
