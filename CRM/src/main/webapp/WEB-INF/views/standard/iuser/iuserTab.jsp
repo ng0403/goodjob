@@ -92,7 +92,7 @@
 					</tbody>
 				</table>
 				<div class="bt_position_authuser">
-					<input type="button" id="submitbtn" class="iuser_tab_bt" value="추가"/>
+<!-- 					<input type="button" id="submitbtn" class="iuser_tab_bt" value="추가"/> -->
 					<input type="button" id="modifybtn" class="iuser_tab_bt" value="편집"/>
 					<input type="reset" id="cancelbtn" class="iuser_tab_bt" value="취소"/>
 					<input type="button" id="addsavebtn" class="iuser_tab_bt" value="저장"/>

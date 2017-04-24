@@ -23,6 +23,8 @@ function userFormInit(){
 	$('#addsavebtn').attr('disabled', true);
 	$('#cancelbtn').attr('disabled', true);
 	$('#submitbtn').attr('disabled',false);
+	$('#addsavebtn').css('display','none');
+	$('#modifysavebtn').css('display','none');
 }
 
 function codePop(ctx){
@@ -176,7 +178,8 @@ function modifyData(ctx){  //편집 버튼에 대한 내용 (버튼 활성화 �
 		
 		$('#modifysavebtn').css("display", "inline-block");
 		$('#addsavebtn').css("display", "none");
-		$('#modifybtn').attr("disabled", true);
+		$('#modifybtn').css("display", "none");
+//		$('#modifybtn').attr("disabled", true);
 		$('#submitbtn').attr('disabled',true);
 	});
 }
@@ -366,7 +369,10 @@ function modifysaveUser(ctx){ //사용자 편집 ajax부분
 
 function cancelbtnEvent(){
 	$('#cancelbtn').click(function(){
+		$('#modifybtn').css("display", "inline-block");
 		$('#addsavebtn').css('display','inline-block');
+		$('#modifysavebtn').css('display','none');
+		$('#addsavebtn').css('display','none');
 		$('#modifysavebtn').css('display','none');
 		userFormInit();
 	});
