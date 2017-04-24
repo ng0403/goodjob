@@ -18,14 +18,14 @@ public class AuthVO {
 
 	public AuthVO(){ }
 
-	public AuthVO(String auth_id, String fin_mdfy_id_nm) {
+	public AuthVO(String auth_id, String fin_mdfy_id) {
 		super();
 		this.auth_id = auth_id;
 		this.fin_mdfy_id = fin_mdfy_id;
 	}
 	
 	public AuthVO(String auth_id, String auth_nm, String act_yn,
-			String fst_reg_id, Date fst_reg_dt, String fin_mdfy_id_nm,
+			String fst_reg_id, Date fst_reg_dt, String fin_mdfy_id,
 			Date fin_mdfy_dt, String menu_nm) {
 		super();
 		this.auth_id = auth_id;
