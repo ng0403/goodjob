@@ -9,13 +9,13 @@
 	<!-- 중앙바디 + 어사이드 구조 -->
 	<definition name="onebodyLayout" template="/WEB-INF/views/layout/onebody_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
-		<put-attribute name="navi" value="/WEB-INF/views/common/navi.jsp" />
+		<put-attribute name="navi" value="/WEB-INF/views/common/sfa_navi.jsp" />
+<!-- 		<put-attribute name="sub_menu_bar" value="/WEB-INF/views/common/sub_menu_bar.jsp" /> -->
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
 
 	<definition name="home" extends="onebodyLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/standard/home/home.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/standard/home/home.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="cont" extends="onebodyLayout">
