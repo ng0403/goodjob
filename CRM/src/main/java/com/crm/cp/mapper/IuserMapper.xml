@@ -42,13 +42,12 @@
 	  </if>
 	</sql>
 	
+<!-- 	사용자 리스트 출력 -->
 	<select id="userSelect" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
 	 	select u.IUSER_ID, u.ID_NM, u.IUSER_NM, oz.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, u.CELL_PH2, u.CELL_PH3, 
-        		a.AUTH_NM , u.ACT_YN, c.CD_NM
-		FROM iuser u, organization oz, AUTHORIZATION_IUSER iu, AUTHORIZATION a, CODE c
+        		u.ACT_YN, c.CD_NM
+		FROM iuser u, organization oz, CODE c
 		WHERE u.ORG_ID = oz.ORG_ID
-		AND u.IUSER_ID = iu.IUSER_ID(+)
-		AND iu.AUTH_ID = a.AUTH_ID(+)
 		AND u.IUSER_DIV_CD = c.CODE
 		AND c.CD_GRP_ID = 'USR'
       <if test="keyword!=null and keyword!='' ">
@@ -92,7 +91,7 @@
 	
 	<select id="userOneSelect" parameterType="string" resultType="map">
 		SELECT u.IUSER_ID, u.ID_NM, u.IUSER_NM, o.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, 
-       		   u.CELL_PH2, u.CELL_PH3, a.AUTH_NM, c.CD_NM, u.ACT_YN
+       		   u.CELL_PH2, u.CELL_PH3, c.CD_NM, u.ACT_YN
 		from IUSER u, ORGANIZATION o, CODE c
 		WHERE 1=1
 		AND u.IUSER_ID = #{userId}
@@ -103,11 +102,10 @@
 	
 	<select id="userIDOneSelect" parameterType="string" resultType="map">
 		SELECT u.IUSER_ID, u.ID_NM, u.IUSER_NM, o.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, 
-       		   u.CELL_PH2, u.CELL_PH3, a.AUTH_NM, c.CD_NM, u.ACT_YN
-		from IUSER u, AUTHORIZATION_IUSER iu, AUTHORIZATION a, ORGANIZATION o, CODE c
+       		   u.CELL_PH2, u.CELL_PH3, c.CD_NM, u.ACT_YN
+		from IUSER u,  ORGANIZATION o, CODE c
 		WHERE u.IUSER_ID = iu.IUSER_ID
 		AND u.ID_NM = #{id_nm}
-		AND iu.AUTH_ID = a.AUTH_ID
 		AND u.ORG_ID = o.ORG_ID
 		AND u.IUSER_DIV_CD = c.CODE
 		AND c.CD_GRP_ID = 'USR'

@@ -51,6 +51,7 @@ public class IuserController {
 		map.put("keyword", keyword);
 		
 		List<Object> list = iuserService.iuserList(map);
+		System.out.println("사용자 리스트 출력 : " + list.size());
 		List<Object> authName = iuserService.iuserAuthName();
 		List<MenuVO> menuList = menuService.selectAll(session);
 				

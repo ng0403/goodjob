@@ -51,6 +51,8 @@ public class IuserServiceImpl implements IuserService{
 //		dao.checkUpdate("user.iuserAuthEdit", obj);
 	}
 
+	
+	//사용자 리스트 조회
 	@Override
 	public List<Object> iuserList(Map<String, Object> map) {
        
