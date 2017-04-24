@@ -61,6 +61,7 @@ public class IuserDaoImpl implements IuserDao {
 		return result;
 	}
 
+	//사용자 리스트 편집
 	@Override
 	public Object checkUpdate(String root, Object obj) {
 		

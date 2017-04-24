@@ -89,8 +89,8 @@ function userDetailClick(ctx) {
 					$('#active_flg_Y').attr("disabled", true);
 				}
 
-				$('#auth_name').val(data.auth_id);
-				$('#auth_name').attr("disabled", true);
+//				$('#auth_name').val(data.auth_id);
+//				$('#auth_name').attr("disabled", true);
 				$('#tabDiv1 input').attr("disabled", true);
 				$('#addsavebtn').attr("disabled", true);
 				$('#modifybtn').attr("disabled", false);
@@ -117,7 +117,7 @@ function iuserListAdd(){
 		$('#cell_phone1').val("")+"-"+$('#cell_phone2').val("")+"-"+$('#cell_phone3').val("");
 		$('#email1').val("") + "@"+$('#email2').val("");
 		$('#tabDiv1 input').attr("disabled", false);
-		$('#auth_name').attr("disabled", false);
+//		$('#auth_name').attr("disabled", false);
 		$('#addsavebtn').attr("disabled", false);
 		$('#modifybtn').attr("disabled", true);
 		$('#submitbtn').attr("disabled", true);
@@ -173,8 +173,8 @@ function iuserListEdit(ctx){
 						$('#active_flg_Y').attr("disabled", true);
 					}
 
-					$('#auth_name').val(data.auth_id);
-					$('#auth_name').attr("disabled", true);
+//					$('#auth_name').val(data.auth_id);
+//					$('#auth_name').attr("disabled", true);
 					$('#tabDiv1 input').attr("disabled", true);
 					$('#addsavebtn').attr("disabled", true);
 					$('#modifybtn').attr("disabled", false);

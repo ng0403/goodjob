@@ -127,24 +127,29 @@ public class IuserController {
 	//사용자편집
 	@RequestMapping(value = "/iuserEdit", method = RequestMethod.POST)
 	public @ResponseBody Object iuserEdit (@RequestBody IuserVO vo, HttpSession session) {
-		vo.setFin_mdfy_id(session.getAttribute("user").toString());		
+		vo.setFin_mdfy_id(session.getAttribute("user").toString());	
+		System.out.println("사용자 상세정보 조회 ID정보 : " + vo.toString());
 		iuserService.iuserEdit(vo);
+		System.out.println("사용자 상세정보 편집 후 조회할 ID정보 : " + vo.getIuser_id());
 	    Object data = iuserService.iuserOneSelectById(vo.getIuser_id());
+	    System.out.println("편집을 마친 사용자 정보 : " + data);
 		return data;
 	}
 	
 	//사용자리스트에서 사용자ID 클릭했을 때 
 	@RequestMapping(value = "/iuserDetail", method = RequestMethod.POST)
 	public @ResponseBody Object iuserDetail(@RequestBody String userId, HttpSession session) throws IOException {
+		System.out.println("사용자 상세정보 조회 ID : " + userId);
 		Object user = iuserService.iuserSelectById(userId);
-		
 		return user;
 		
 	}
 
 	@RequestMapping(value = "/iuserDelete", method = RequestMethod.POST)
 	public String bankDelete(String[] del_code) throws IOException {
+		System.out.println("삭제될 데이터 반복문 들어가기전  : " + del_code);
 		for (String iuser_id : del_code) {
+			System.out.println("삭제될 데이터  : " + del_code);
 			iuserService.removeIuser(iuser_id);
 		}
 		return "redirect:/user";

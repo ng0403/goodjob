@@ -23,11 +23,11 @@
 	<div class="userpadding">
 	<div id="css_tabs">
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" /> <input
-			id="tab2" type="radio" name="tab" />
+		<input id="tab1" type="radio" name="tab" checked="checked" /> 
+<!-- 		<input id="tab2" type="radio" name="tab" /> -->
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
-		<label for="tab1">사용자상세</label> <label for="tab2" id="userAuthTab">사용자권한</label>
+<!-- 		<label for="tab1">사용자상세</label> <label for="tab2" id="userAuthTab">사용자권한</label> -->
 		
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
@@ -81,13 +81,13 @@
 							<td>
 								<input type="radio" id = "active_flg_Y" name="act_yn" value="Y" checked="checked" />Y&nbsp; 
 								<input type="radio" id = "active_flg_N" name="act_yn" value="N" />N</td>
-							<th>권한</th>
-							<td>
-							<select name="auth_name" id="auth_name" class="int_select">
-									<c:forEach var="auth" items="${authName}">
-										<option value="${auth.auth_id}">${auth.auth_nm}</option>
-									</c:forEach>
-							</select></td>
+<!-- 							<th>권한</th> -->
+<!-- 							<td> -->
+<!-- 							<select name="auth_name" id="auth_name" class="int_select"> -->
+<%-- 									<c:forEach var="auth" items="${authName}"> --%>
+<%-- 										<option value="${auth.auth_id}">${auth.auth_nm}</option> --%>
+<%-- 									</c:forEach> --%>
+<!-- 							</select></td> -->
 						</tr>
 					</tbody>
 				</table>
@@ -102,34 +102,34 @@
 		</div>
 		
 		<!-- 두 번째 탭 내용 사용자권한 리스트 -->
-		<div id="tabDiv2" class="tab2_content">
-		<div class="bt_position">
-			<select name="keyfield" id="iuserKeyfield">
-				<option value="au_id">권한ID</option>
-				<option value="ua_id">사용자ID명</option>
-			</select> <input id="iuserKeyword" type="text" name="keyword" class="int_search"> &nbsp;
-			<button id="iuserAuthSearch" class="iuser_tab_bt">검색</button>
-		</div>
-			<div id="title"></div>
-			<div class="bs-example_authuser" data-example-id="simple-table">
-				<!-- <form name="userForm" id="userForm" method="post" > -->
-				<table id="mastertable">
-					<thead>
-						<tr>
-							<th scope="row"></th>
-							<th></th>
-							<td style="width: 25%;">권한ID</td>
-							<td style="width: 25%;">최초등록자</td>
-							<td style="width: 25%;">최초등록일</td>
-							<td style="width: 25%;">사용자ID</td>
-						</tr>
-					</thead>
-					<tbody id="userAuthBody">
+<!-- 		<div id="tabDiv2" class="tab2_content"> -->
+<!-- 		<div class="bt_position"> -->
+<!-- 			<select name="keyfield" id="iuserKeyfield"> -->
+<!-- 				<option value="au_id">권한ID</option> -->
+<!-- 				<option value="ua_id">사용자ID명</option> -->
+<!-- 			</select> <input id="iuserKeyword" type="text" name="keyword" class="int_search"> &nbsp; -->
+<!-- 			<button id="iuserAuthSearch" class="iuser_tab_bt">검색</button> -->
+<!-- 		</div> -->
+<!-- 			<div id="title"></div> -->
+<!-- 			<div class="bs-example_authuser" data-example-id="simple-table"> -->
+<!-- 				<form name="userForm" id="userForm" method="post" > -->
+<!-- 				<table id="mastertable"> -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th scope="row"></th> -->
+<!-- 							<th></th> -->
+<!-- 							<td style="width: 25%;">권한ID</td> -->
+<!-- 							<td style="width: 25%;">최초등록자</td> -->
+<!-- 							<td style="width: 25%;">최초등록일</td> -->
+<!-- 							<td style="width: 25%;">사용자ID</td> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody id="userAuthBody"> -->
 						
-					</tbody>
-				</table>
-			</div>
-		</div>
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 	</div>
 

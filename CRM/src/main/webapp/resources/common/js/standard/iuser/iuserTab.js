@@ -199,7 +199,7 @@ function addsaveUser(ctx){ // 사용자추가 ajax부분
 		obj.cell_ph1 = $('#cell_phone1').val();
 		obj.cell_ph2 = $('#cell_phone2').val();
 		obj.cell_ph3 = $('#cell_phone3').val();	
-		obj.auth_id = $('#auth_name').val();
+//		obj.auth_id = $('#auth_name').val();
 		obj.email1 = $('#email1').val();
 		obj.email2 = $('#email2').val();
 		
@@ -239,11 +239,12 @@ function addsaveUser(ctx){ // 사용자추가 ajax부분
 		}else if(obj.act_yn==""||obj.act_yn==null){
 			alert("상태를 입력해 주세요");
 			return false;
-		}else if(obj.auth_id==""||obj.auth_id==null){
-			alert("권한값을 입력해 주세요");
-			return false;
 		}
-		
+//		else if(obj.auth_id==""||obj.auth_id==null){
+//			alert("권한값을 입력해 주세요");
+//			return false;
+//		}
+//		
 		var jsonData = JSON.stringify(obj);		//JSON Object 생성
 		
 		jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
@@ -266,7 +267,7 @@ function addsaveUser(ctx){ // 사용자추가 ajax부분
 										"<td style='width:10%;' class='org_name_tag'>"+data.ORG_NM+"</td>" +
 												"<td style='width:20%;' class='email_tag'>"+data.EMAIL1+"@"+data.EMAIL2+"</td>" +
 														"<td style='width:20%;' class='cell_phone_tag'>"+data.CELL_PH1+"-"+data.CELL_PH2+"-"+data.CELL_PH3+"</td>" +
-																"<td style='width:10%;' class='auth_name_tag'>"+data.AUTH_NM+"</td>" +
+//																"<td style='width:10%;' class='auth_name_tag'>"+data.AUTH_NM+"</td>" +
 																		"<td style='width:10%;' class='code_name_tag'>"+data.CD_NM+"</td>";
 
 				if(data.ACT_YN=='Y'){
@@ -315,7 +316,7 @@ function modifysaveUser(ctx){ //사용자 편집 ajax부분
  		obj.cell_ph1 = $('#cell_phone1').val();
  		obj.cell_ph2 = $('#cell_phone2').val();
  		obj.cell_ph3 = $('#cell_phone3').val(); 		
-		obj.auth_id = $('#auth_name').val();
+//		obj.auth_id = $('#auth_name').val();
 		obj.email1 = $('#email1').val();
 		obj.email2 = $('#email2').val();
 		
@@ -340,7 +341,7 @@ function modifysaveUser(ctx){ //사용자 편집 ajax부분
 						$(list[i]).parent().children('.org_name_tag').text(data.ORG_NM);
 						$(list[i]).parent().children('.email_tag').text(data.EMAIL1+'@'+data.EMAIL2);
 						$(list[i]).parent().children('.cell_phone_tag').text(data.CELL_PH1+'-'+data.CELL_PH2+'-'+data.CELL_PH3);
-						$(list[i]).parent().children('.auth_name_tag').text(data.AUTH_NM);
+//						$(list[i]).parent().children('.auth_name_tag').text(data.AUTH_NM);
 						$(list[i]).parent().children('.code_name_tag').text(data.CD_NM);
 
 						if(data.ACT_YN == 'Y'){

@@ -39,9 +39,9 @@ $("#naviuser").css("font-weight", "bold");
 					<td style="width:10%;">사용자ID</td>
 					<td style="width:10%;">사용자명</td>
 					<td style="width:10%;">조직명</td>
-					<td style="width:20%;">이메일</td>
-					<td style="width:20%;">연락처</td>
-					<td style="width:10%;">권한</td>
+					<td style="width:25%;">이메일</td>
+					<td style="width:25%;">연락처</td>
+<!-- 					<td style="width:10%;">권한</td> -->
 					<td style="width:10%;">사용자구분</td>
 					<td style="width:10%;">상태</td>
 				</tr>
@@ -55,16 +55,16 @@ $("#naviuser").css("font-weight", "bold");
 					</td>
 					<td style="width:10%;" class="user_name_tag">${list.iuser_nm}</td>
 					<td style="width:10%;" class="org_name_tag">${list.org_nm}</td>
-					<td style="width:20%;" class="email_tag">${list.email1}@${list.email2}</td>
-					<td style="width:20%;" class="cell_phone_tag">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td>
-					<td style="width:10%;" class="auth_name_tag">
-					<c:if test="${empty list.auth_nm}">
-						권한없음
-					</c:if>
-					<c:if test="${not empty list.auth_nm}">
-						${list.auth_nm}
-					</c:if>
-					</td>
+					<td style="width:25%;" class="email_tag">${list.email1}@${list.email2}</td>
+					<td style="width:25%;" class="cell_phone_tag">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td>
+<!-- 					<td style="width:10%;" class="auth_name_tag"> -->
+<%-- 					<c:if test="${empty list.auth_nm}"> --%>
+<!-- 						권한없음 -->
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${not empty list.auth_nm}"> --%>
+<%-- 						${list.auth_nm} --%>
+<%-- 					</c:if> --%>
+<!-- 					</td> -->
 					<td style="width:10%;" class="code_name_tag">${list.cd_nm}</td>
 					<td style="width:10%;" class="active_flag_tag">
 					<c:if test="${list.act_yn=='Y'}">활성화</c:if>

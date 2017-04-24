@@ -37,15 +37,18 @@ public class IuserServiceImpl implements IuserService{
 		return iuser;
 	}
 	
+	//사용자리스트 삭제
 	@Override
 	public void removeIuser(String iuser_id) {
+		System.out.println("삭제될 대상 iuser_id : " + iuser_id);
 		dao.checkUpdate("user.iuserDelete", iuser_id);
+		
 	}
 
 	@Override
 	public void iuserEdit(Object obj) {
 		dao.checkUpdate("user.iuserEdit", obj);
-		dao.checkUpdate("user.iuserAuthEdit", obj);
+//		dao.checkUpdate("user.iuserAuthEdit", obj);
 	}
 
 	@Override
@@ -88,9 +91,12 @@ public class IuserServiceImpl implements IuserService{
 		
 	}
 
+	//사용자 리스트 사용자 상세정보 조회
 	@Override
 	public Object iuserSelectById(String userId) {
+		System.out.println("iuserSelectById Service : " + userId);
 		Object obj = dao.selectOne("user.iuserSelectById", userId);
+		System.out.println("iuserSelectById Service result : " + obj);
 		return obj;
 	}
 	
@@ -108,7 +114,9 @@ public class IuserServiceImpl implements IuserService{
 
 	@Override
 	public Object iuserOneSelectById(Object userId) {
+		System.out.println("사용자 상세정보 userId :  "+userId);
 		Object obj = dao.selectOnes("user.userOneSelect", userId);
+		System.out.println("사용자 상세정보 결과 :  "+obj);
 		return obj;
 	}
 
