@@ -22,6 +22,10 @@
 			<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont.jsp" /> 
 	</definition> 
 	
+	<definition name="board_list" extends="onebodyLayout">
+			<put-attribute name="body" value="/WEB-INF/views/standard/board/board_list.jsp" /> 
+	</definition> 
+	
 	<definition name="cont_detail" extends="onebodyLayout">
 	<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont_detail.jsp" />	
 	</definition>

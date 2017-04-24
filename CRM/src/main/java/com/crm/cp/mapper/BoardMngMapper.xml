@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardmng">
+
+<!-- 전체 행의 개수 -->
+	<select id="boardMngListCount" parameterType="java.util.Map" resultType="int">
+	    select count(*) as cnt
+		 FROM TB_BOARD_MNG
+		where del_flg='N'   
+	</select>
+	 
+<select id="BoardMngList" parameterType="int" resultType="map">
+select X.*
+		from ( 
+		    select rownum as rnum, A.*
+		        from (
+		SELECT
+ 		 *
+		FROM tb_board_mng
+) A
+	  ) X
+ <![CDATA[
+		 where X.rnum >= #{page.startRow} and X.rnum <= #{page.endRow}
+			]]>
+ </select>
+ 
+ 
+ <select id="ReadPage"  resultType="com.crm.cp.standard.boardmng.vo.BoardMngVO">
+ SELECT A.BOARD_MNG_NO, A.BOARD_MNG_CD, A.BOARD_NM, A.REPLY_FLG, A.ACTIVE_FLG, A.FILE_ATTACH_FLG, A.NOTICE_FLG, B.CODE_TXT
+ FROM TB_BOARD_MNG A , TB_CODE_DETAIL B
+ WHERE BOARD_MNG_NO = #{BOARD_MNG_NO} AND A.BOARD_MNG_CD = B.CODE1
+ </select>
+ 
+  <update id="Modify" >
+ 
+ update tb_board_mng set BOARD_NM = #{BOARD_NM}, FILE_ATTACH_FLG =  #{FILE_ATTACH_FLG}, REPLY_FLG =  #{REPLY_FLG},
+ ACTIVE_FLG =  #{ACTIVE_FLG}, NOTICE_FLG =  #{NOTICE_FLG}
+ where BOARD_MNG_NO = #{BOARD_MNG_NO}
+ 
+ </update>
+ 
+ <insert id ="Add">
+ 
+insert into tb_board_mng (board_mng_no, board_mng_cd, board_nm, reply_flg, file_attach_flg, notice_flg, active_flg, created_by)
+values (
+  (
+    SELECT /*+INDEX_DESC(TB_BOARD_MNG TB_BOARD_MNG_PK)*/
+      DECODE(MAX(board_mng_no), NULL, 'BMG1000001', SUBSTR(MAX(board_mng_no), 1, 3) || (SUBSTR(MAX(board_mng_no), 4, 7)+1)) board_mng_no
+    FROM tb_board_mng
+     <![CDATA[
+    WHERE board_mng_no < CONCAT('BMG', '9999999')
+          AND ROWNUM = 1
+          	]]>
+   ),
+   
+   #{BOARD_MNG_CD},
+   #{BOARD_NM},
+   #{REPLY_FLG},
+   #{FILE_ATTACH_FLG}, 
+   #{NOTICE_FLG},
+   #{ACTIVE_FLG},
+    'ADMIN' 
+)
+ 
+ </insert>
+ 
+ 
+ <delete id="Delete">
+ DELETE TB_BOARD_MNG
+ WHERE BOARD_MNG_NO = #{BOARD_MNG_NO}
+ </delete>
+ 
+ 
+ <select id="ajaxList" resultType="com.crm.cp.standard.boardmng.vo.BoardMngVO">
+ 
+ SELECT
+  BOARD_MNG_NO, BOARD_MNG_CD, BOARD_NM, to_char(to_date(CREATED,'yy-mm-dd hh:mi'),'yyyy-mm-dd hh:mm') CREATED, ACTIVE_FLG
+FROM TB_BOARD_MNG
+ 
+ </select>
+ 
+ <select id="codetxt" parameterType="String" resultType="map">
+ select CODE1, CODE_TXT
+from TB_CODE_DETAIL
+where CODE_TXT = #{CODE_TXT}
+ </select>
+ 
+  
+
+</mapper>
