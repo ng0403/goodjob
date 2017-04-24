@@ -38,7 +38,7 @@
 				</tr>
 				<tr>
 					<th>생성자</th>
-					<td colspan="2"><input type="text" name="uc_user_id" id="uc_user_id" class="int" value="${authUser.fst_reg_id_nm}" disabled="disabled"/></td>
+					<td colspan="2"><input type="text" name="uc_user_id" id="uc_user_id" class="int" value="${authUser.fst_reg_id}" disabled="disabled"/></td>
 				</tr>
 				<tr>
 					<th>생성일</th>

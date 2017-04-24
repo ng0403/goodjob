@@ -10,9 +10,9 @@ public class AuthVO {
 	private String auth_id;    
 	private String auth_nm;
 	private String act_yn;
-	private String fst_reg_id_nm;
+	private String fst_reg_id;
 	private Date fst_reg_dt;
-	private String fin_mdfy_id_nm;
+	private String fin_mdfy_id;
 	private Date fin_mdfy_dt;
 	private String menu_nm;
 
@@ -21,19 +21,19 @@ public class AuthVO {
 	public AuthVO(String auth_id, String fin_mdfy_id_nm) {
 		super();
 		this.auth_id = auth_id;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 	
 	public AuthVO(String auth_id, String auth_nm, String act_yn,
-			String fst_reg_id_nm, Date fst_reg_dt, String fin_mdfy_id_nm,
+			String fst_reg_id, Date fst_reg_dt, String fin_mdfy_id_nm,
 			Date fin_mdfy_dt, String menu_nm) {
 		super();
 		this.auth_id = auth_id;
 		this.auth_nm = auth_nm;
 		this.act_yn = act_yn;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.menu_nm = menu_nm;
 	}
@@ -62,12 +62,12 @@ public class AuthVO {
 		this.act_yn = act_yn;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public Date getFst_reg_dt() {
@@ -78,12 +78,12 @@ public class AuthVO {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
 	public Date getFin_mdfy_dt() {

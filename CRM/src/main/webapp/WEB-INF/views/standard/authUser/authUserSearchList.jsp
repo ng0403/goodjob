@@ -49,11 +49,11 @@
 					<td style="width:10%;">${auth.auth_id}</td>
 					<td style="width:15%;">${auth.auth_nm}</td>
 					<td style="width:15%;">${auth.act_yn}</td>
-					<td style="width:15%;">${auth.fst_reg_id_nm}</td>
+					<td style="width:15%;">${auth.fst_reg_id}</td>
 					<td style="width:15%;">
 						<fmt:formatDate value="${auth.fst_reg_dt}" pattern="yyyy-MM-dd"/>
 					</td>
-					<td style="width:15%;">${auth.fin_mdfy_id_nm}</td>
+					<td style="width:15%;">${auth.fin_mdfy_id}</td>
 					<td style="width:15%;">
 						<fmt:formatDate value="${auth.fin_mdfy_dt}" pattern="yyyy-MM-dd"/>
 					</td>

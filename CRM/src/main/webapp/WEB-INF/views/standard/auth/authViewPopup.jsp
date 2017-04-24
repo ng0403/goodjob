@@ -45,7 +45,7 @@
 								</tr>
 								<tr>
 									<th>생성자</th>
-									<td><input type="text" name="dc_user_id" id="dc_user_id" class="int" value="${auth.fst_reg_id_nm}" disabled="disabled"/></td>
+									<td><input type="text" name="dc_user_id" id="dc_user_id" class="int" value="${auth.fst_reg_id}" disabled="disabled"/></td>
 								</tr>
 								<tr>
 									<th>생성일</th>

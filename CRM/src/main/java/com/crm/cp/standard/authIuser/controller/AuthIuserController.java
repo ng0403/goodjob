@@ -86,7 +86,7 @@ public class AuthIuserController {
 	@RequestMapping(value = "/authIuserEdit", method = RequestMethod.POST)
 	public @ResponseBody Map<String,Object> authEdit(@RequestBody AuthIuserVO vo, HttpSession session) {
 		Map<String,Object> map = new HashMap<String, Object>();
-		vo.setFst_reg_id_nm(session.getAttribute("user").toString());
+		vo.setFst_reg_id(session.getAttribute("user").toString());
 		int result = authIuserService.searchUserAuth(vo);
 		if(result == 0){
 			map.put("checkResult", false);
@@ -106,7 +106,7 @@ public class AuthIuserController {
 	
 	@RequestMapping(value="/authUserInsertData", method=RequestMethod.POST)
 	public @ResponseBody List<Object> authUserInsertData(@RequestBody AuthIuserVO authUser, HttpSession session){
-		authUser.setFst_reg_id_nm(session.getAttribute("user").toString());
+		authUser.setFst_reg_id(session.getAttribute("user").toString());
 		int result = authIuserService.searchUserAuth(authUser);
 		
 		if(result == 1){

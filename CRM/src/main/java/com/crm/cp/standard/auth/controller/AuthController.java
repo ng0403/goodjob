@@ -72,7 +72,7 @@ public class AuthController {
 	//권한수정
 	@RequestMapping(value = "/authEdit", method = RequestMethod.POST)
 	public @ResponseBody List<Object> authEdit(@RequestBody AuthVO vo, HttpSession session) {
-		vo.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		vo.setFin_mdfy_id(session.getAttribute("user").toString());
 		authSerivce.authEdit(vo);
 		List<Object> authList= authSerivce.authList();
 		return authList;
@@ -96,8 +96,8 @@ public class AuthController {
 	
 	@RequestMapping(value = "/authInsert", method = RequestMethod.POST)
 	public @ResponseBody List<Object> authInsert(@RequestBody AuthVO JSON, HttpSession session) {
-		JSON.setFst_reg_id_nm(session.getAttribute("user").toString());
-		JSON.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		JSON.setFst_reg_id(session.getAttribute("user").toString());
+		JSON.setFin_mdfy_id(session.getAttribute("user").toString());
 		authSerivce.authInsert(JSON);
 		
 		List<Object> authList= authSerivce.authList();

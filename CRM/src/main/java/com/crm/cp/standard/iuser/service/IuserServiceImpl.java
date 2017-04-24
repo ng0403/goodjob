@@ -27,9 +27,8 @@ public class IuserServiceImpl implements IuserService{
 
 	@Override
 	public void insertUser(Object user) {
-		
+		System.out.println("insertUser user : " + user);
 		dao.insert("user.iuserInsert", user);
-		
 	}
 
 	@Override

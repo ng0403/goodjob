@@ -115,19 +115,19 @@
 		AND c.CD_GRP_ID = 'USR'
 	</select>
 	
-	<insert id="iuserInsert" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
-		INSERT INTO IUSER(
+	<update id="iuserInsert" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+		INSERT INTO IUSER(IUSER_ID,
 			ID_NM, IUSER_NM, PWD, EMAIL1, EMAIL2, CELL_PH1, CELL_PH2, CELL_PH3, PH1, PH2, PH3,
-			COMP_PH1, COMP_PH2, COMP_PH3, IUSER_DIV_CD, ORG_ID, ACT_YN, FST_REG_ID_NM, FIN_MDFY_ID_NM)
+			COMP_PH1, COMP_PH2, COMP_PH3, IUSER_DIV_CD, ORG_ID, ACT_YN, FST_REG_ID, FIN_MDFY_ID)
 		VALUES(
-			#{id_nm}, #{iuser_nm}, #{pwd}, #{email1}, #{email2}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3},
+			#{iuser_id},#{id_nm}, #{iuser_nm}, #{pwd}, #{email1}, #{email2}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3},
 			#{ph1}, #{ph2}, #{ph3}, #{comp_ph1}, #{comp_ph2}, #{comp_ph3}, #{iuser_div_cd},
-			#{org_id}, #{act_yn}, #{fst_reg_id_nm}, #{fst_reg_id_nm})
-	</insert>
+			#{org_id}, #{act_yn}, #{fst_reg_id}, #{fst_reg_id})
+	</update>
 	
 	<update id="iuserEdit" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		UPDATE IUSER 
-		SET ORG_ID=#{org_id}, IUSER_NM=#{iuser_nm}, ID_NM=#{id_nm}, PWD=#{pwd}, EMAIL1=#{email1}, EMAIL2=#{email2}, 
+		SET ORG_ID=#{org_id}, IUSER_NM=#{iuser_nm}, ID_NM=#{iuser_id}, PWD=#{pwd}, EMAIL1=#{email1}, EMAIL2=#{email2}, 
 			CELL_PH1=#{cell_ph1}, CELL_PH2=#{cell_ph2}, CELL_PH3=#{cell_ph3}, PH1=#{ph1}, PH2=#{ph2}, PH3=#{ph3},
   			COMP_PH1=#{comp_ph1}, COMP_PH2=#{comp_ph2}, COMP_PH3=#{comp_ph3}, IUSER_DIV_CD=#{iuser_div_cd}, ACT_YN=#{act_yn}, FIN_MDFY_ID_NM=#{fin_mdfy_id_nm}, FIN_MDFY_DT = sysdate
 		WHERE IUSER_ID=#{iuser_id}
@@ -145,7 +145,7 @@
 	   WHERE IUSER_ID = #{iuser_id}
     </update>
     
-    <insert id="ccMngAdd" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+    <update id="ccMngAdd" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		INSERT
 				INTO PARTNER_OF_CLIENT
 				  (
@@ -163,7 +163,7 @@
 				    #{fst_reg_id},
 				    #{fin_mdfy_id}
 				  )
-	</insert>
+	</update>
 	<select id="ccMngList" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
 		SELECT a.CUST_ID,
 				b.CUST_NM,

@@ -89,7 +89,7 @@ function getUserAuth(ctx) {
 						//날짜함수변환 
 						fst_reg_d = dateFormat(Number(data[i].fst_reg_d));
 						
-						tbodyContent = "<tr><td>"+data[i].auth_id+"<td>"+data[i].fst_reg_id_nm+"</td><td>"+fst_reg_d+"</td><td>"+data[i].id_nm+"</td></tr>";
+						tbodyContent = "<tr><td>"+data[i].auth_id+"<td>"+data[i].fst_reg_id+"</td><td>"+fst_reg_d+"</td><td>"+data[i].id_nm+"</td></tr>";
 						tbody.append(tbodyContent);
 					}
 					
@@ -128,7 +128,7 @@ function getUserAuthSearch(ctx) {
 					for (var i=0; i < data.length; i++) {
 						//날짜함수변환 
 						fst_reg_d = dateFormat(Number(data[i].fst_reg_d));
-						tbodyContent = "<tr><td>"+data[i].auth_id+"<td>"+data[i].fst_reg_id_nm+"</td><td>"+fst_reg_d+"</td><td>"+data[i].id_nm+"</td></tr>";
+						tbodyContent = "<tr><td>"+data[i].auth_id+"<td>"+data[i].fst_reg_id+"</td><td>"+fst_reg_d+"</td><td>"+data[i].id_nm+"</td></tr>";
 						tbody.append(tbodyContent);
 					}
 					

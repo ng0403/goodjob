@@ -317,7 +317,7 @@ function editUserAuth(data){
 		
 		var args = '<tr><th><input type="checkbox" id="ckselect" value="'+data[i].auth_id+'"></th>'
 			+'<td style="width: 25%;"><a href="#">'+data[i].auth_id+'</a></td>'
-			+'<td style="width: 25%;">'+data[i].fst_reg_id_nm+'</td>'
+			+'<td style="width: 25%;">'+data[i].fst_reg_id+'</td>'
 			+'<td style="width: 25%;">'+fst_reg_d+'</td>'
 			+'<td style="width: 25%;">'+data[i].id_nm+'</td></tr>'
 		$('#ausermastertable tbody').append(args);

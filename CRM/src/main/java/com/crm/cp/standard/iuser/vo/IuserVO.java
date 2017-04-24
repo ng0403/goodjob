@@ -359,7 +359,7 @@ public class IuserVO {
 				+ comp_ph2 + ", comp_ph3=" + comp_ph3 + ", zip_cd=" + zip_cd
 				+ ", zip_cd_sri_num=" + zip_cd_sri_num + ", iuser_dtl_addr="
 				+ iuser_dtl_addr + ", iuser_div_cd=" + iuser_div_cd
-				+ ", fst_reg_id_nm=" + fst_reg_id + ", fst_reg_dt="
+				+ ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
 				+ fst_reg_dt + ", fin_mdfy_id_nm=" + fin_mdfy_id
 				+ ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn=" + act_yn
 				+ ", auth_id=" + auth_id + ", auth_nm=" + auth_nm + ", org_nm="

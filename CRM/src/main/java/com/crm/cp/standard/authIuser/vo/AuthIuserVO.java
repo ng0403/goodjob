@@ -9,27 +9,27 @@ public class AuthIuserVO {
 	
 	String auth_id;
 	String iuser_id;
-	String fst_reg_id_nm;
+	String fst_reg_id;
 	Date fst_reg_d;
 	String id_nm;
 	
 	public AuthIuserVO(){ }
 
-	public AuthIuserVO(String auth_id, String fst_reg_id_nm, Date fst_reg_d,
+	public AuthIuserVO(String auth_id, String fst_reg_id, Date fst_reg_d,
 			String id_nm) {
 		super();
 		this.auth_id = auth_id;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_d = fst_reg_d;
 		this.id_nm = id_nm;
 	}
 	
-	public AuthIuserVO(String auth_id, String iuser_id, String fst_reg_id_nm,
+	public AuthIuserVO(String auth_id, String iuser_id, String fst_reg_id,
 			Date fst_reg_d, String id_nm) {
 		super();
 		this.auth_id = auth_id;
 		this.iuser_id = iuser_id;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_d = fst_reg_d;
 		this.id_nm = id_nm;
 	}
@@ -42,12 +42,12 @@ public class AuthIuserVO {
 		this.auth_id = auth_id;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public Date getFst_reg_d() {

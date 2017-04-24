@@ -46,7 +46,7 @@
 							<tr>
 							    <th><input type="checkbox" id="ckselect" value="${authUser.auth_id}"></th>
 								<td style="width: 25%;"><a href="#">${authUser.auth_id}</a></td>
-								<td style="width: 25%;">${authUser.fst_reg_id_nm}</td>
+								<td style="width: 25%;">${authUser.fst_reg_id}</td>
 								<td style="width: 25%;"><fmt:formatDate value="${authUser.fst_reg_d}" pattern="yyyy-MM-dd"/></td>
 								<td style="width: 25%;">${authUser.id_nm}</td>
 							</tr>

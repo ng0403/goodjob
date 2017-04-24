@@ -36,6 +36,7 @@ public class AuthIuserServiceImpl implements AuthIuserService{
 	
 	@Override
 	public void authUserInsert(Object obj) {
+		System.out.println("authUserInsert obj : " + obj);
 		dao.insert("authIuser.userInsert", obj);
 		
 	}

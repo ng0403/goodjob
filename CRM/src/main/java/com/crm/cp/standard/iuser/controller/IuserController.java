@@ -112,9 +112,10 @@ public class IuserController {
 	@RequestMapping(value = "/insertuser", method = RequestMethod.POST)
 	public @ResponseBody Object userInsert(@RequestBody IuserVO vo, HttpSession session) {
 		vo.setFst_reg_id(session.getAttribute("user").toString());
-		System.out.println(vo.toString());
+		vo.setIuser_id(vo.getId_nm());
+		System.out.println("사용자 등록 시 넘어가는 값 : " + vo.toString());
 		iuserService.insertUser(vo);
-		authIuserService.authUserInsert(vo);
+//		authIuserService.authUserInsert(vo);
 		Object obj= iuserService.iuserOneSelectByIdNM(vo.getId_nm());
 
 		return obj;
