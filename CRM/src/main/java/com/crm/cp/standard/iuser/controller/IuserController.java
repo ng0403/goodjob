@@ -117,6 +117,7 @@ public class IuserController {
 		System.out.println("사용자 등록 시 넘어가는 값 : " + vo.toString());
 		iuserService.insertUser(vo);
 //		authIuserService.authUserInsert(vo);
+		System.out.println("vo.getId_nm() : " + vo.getId_nm());
 		Object obj= iuserService.iuserOneSelectByIdNM(vo.getId_nm());
 
 		return obj;

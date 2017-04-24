@@ -122,9 +122,12 @@ public class IuserServiceImpl implements IuserService{
 		return obj;
 	}
 
+	//사용자 추가 후 리스트 호출
 	@Override
 	public Object iuserOneSelectByIdNM(Object id_nm) {
+		System.out.println("iuserOneSelectByIdNM id_nm : " + id_nm);
 		Object obj = dao.selectOnes("user.userIDOneSelect", id_nm);
+		System.out.println("iuserOneSelectByIdNM result obj : " + obj);
 		return obj;
 	}
 	

@@ -47,7 +47,8 @@
 	 	select u.IUSER_ID, u.ID_NM, u.IUSER_NM, oz.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, u.CELL_PH2, u.CELL_PH3, 
         		u.ACT_YN, c.CD_NM
 		FROM iuser u, organization oz, CODE c
-		WHERE u.ORG_ID = oz.ORG_ID
+		WHERE 1=1
+    	AND u.ORG_ID = oz.ORG_ID(+)
 		AND u.IUSER_DIV_CD = c.CODE
 		AND c.CD_GRP_ID = 'USR'
       <if test="keyword!=null and keyword!='' ">
@@ -104,7 +105,7 @@
 		SELECT u.IUSER_ID, u.ID_NM, u.IUSER_NM, o.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, 
        		   u.CELL_PH2, u.CELL_PH3, c.CD_NM, u.ACT_YN
 		from IUSER u,  ORGANIZATION o, CODE c
-		WHERE u.IUSER_ID = iu.IUSER_ID
+		WHERE 1=1
 		AND u.ID_NM = #{id_nm}
 		AND u.ORG_ID = o.ORG_ID
 		AND u.IUSER_DIV_CD = c.CODE
@@ -123,7 +124,7 @@
 	
 	<update id="iuserEdit" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		UPDATE IUSER 
-		SET ORG_ID=#{org_id}, IUSER_NM=#{iuser_nm}, ID_NM=#{iuser_id}, PWD=#{pwd}, EMAIL1=#{email1}, EMAIL2=#{email2}, 
+		SET ORG_ID=#{org_id}, IUSER_NM=#{iuser_nm}, ID_NM=#{id_nm}, PWD=#{pwd}, EMAIL1=#{email1}, EMAIL2=#{email2}, 
 			CELL_PH1=#{cell_ph1}, CELL_PH2=#{cell_ph2}, CELL_PH3=#{cell_ph3}, PH1=#{ph1}, PH2=#{ph2}, PH3=#{ph3},
   			COMP_PH1=#{comp_ph1}, COMP_PH2=#{comp_ph2}, COMP_PH3=#{comp_ph3}, IUSER_DIV_CD=#{iuser_div_cd}, ACT_YN=#{act_yn}, FIN_MDFY_ID=#{fin_mdfy_id}, FIN_MDFY_DT = sysdate
 		WHERE IUSER_ID=#{iuser_id}
