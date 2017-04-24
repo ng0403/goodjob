@@ -26,7 +26,7 @@
 	</sql>
 
     <select id="authMenuSelect" resultType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">
-		SELECT a.AUTH_ID, a.AUTH_NM, b.MENU_ID, c.MENU_NM, a.ACT_YN, a.FST_REG_ID_NM,
+		SELECT a.AUTH_ID, a.AUTH_NM, b.MENU_ID, c.MENU_NM, a.ACT_YN, a.fst_reg_id,
       		   a.FST_REG_DT, b.RETRV_YN, b.CREAT_YN, b.MDFY_YN, b.DEL_YN, b.DEFLT_YN
 		FROM AUTHORIZATION a, AUTHORIZATION_MENU b, MENU c
 		WHERE b.AUTH_ID = a.AUTH_ID
@@ -50,7 +50,7 @@
     
     <select id="menuSelect" resultType="com.crm.cp.standard.menu.vo.MenuVO">
 		SELECT a.MENU_ID, a.MENU_NM, a.MENU_URL, a.MENU_LEV, b.MENU_NM as UP_MENU_NM, a.ACT_YN, 
-       		   a.FST_REG_ID_NM, a.FST_REG_DT, a.FIN_MDFY_ID_NM, a.FIN_MDFY_DT
+       		   a.fst_reg_id, a.FST_REG_DT, a.fin_mdfy_id, a.FIN_MDFY_DT
 		FROM MENU a, MENU b
 		WHERE a.UP_MENU_ID = b.MENU_ID (+)
    		AND a.ACT_YN = 'Y'
@@ -61,8 +61,8 @@
     </select>
     
     <insert id="authMenuInsert" parameterType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">
-    	INSERT INTO AUTHORIZATION_MENU(AUTH_ID, MENU_ID, CREAT_YN, RETRV_YN, MDFY_YN , DEL_YN, DEFLT_YN, FST_REG_ID_NM)
-		VALUES(#{auth_id},#{menu_id},#{creat_yn},#{retrv_yn},#{mdfy_yn},#{del_yn},#{deflt_yn},#{fst_reg_id_nm})
+    	INSERT INTO AUTHORIZATION_MENU(AUTH_ID, MENU_ID, CREAT_YN, RETRV_YN, MDFY_YN , DEL_YN, DEFLT_YN, fst_reg_id)
+		VALUES(#{auth_id},#{menu_id},#{creat_yn},#{retrv_yn},#{mdfy_yn},#{del_yn},#{deflt_yn},#{fst_reg_id})
     </insert>
     
     <update id="authMenuPopUpdate" parameterType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">

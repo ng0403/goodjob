@@ -11,7 +11,7 @@ public class AuthMenuVO {
 	String menu_id;
 	String menu_nm;
 	String act_yn;
-	String fst_reg_id_nm;
+	String fst_reg_id;
 	Date fst_reg_dt;
 	String creat_yn;
 	String mdfy_yn;
@@ -22,7 +22,7 @@ public class AuthMenuVO {
 	public AuthMenuVO(){}
 
 	public AuthMenuVO(String auth_id, String auth_nm, String menu_id,
-			String menu_nm, String act_yn, String fst_reg_id_nm,
+			String menu_nm, String act_yn, String fst_reg_id,
 			Date fst_reg_dt, String creat_yn, String mdfy_yn, String del_yn,
 			String retrv_yn, String deflt_yn) {
 		super();
@@ -31,7 +31,7 @@ public class AuthMenuVO {
 		this.menu_id = menu_id;
 		this.menu_nm = menu_nm;
 		this.act_yn = act_yn;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
 		this.creat_yn = creat_yn;
 		this.mdfy_yn = mdfy_yn;
@@ -80,12 +80,12 @@ public class AuthMenuVO {
 		this.act_yn = act_yn;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public Date getFst_reg_dt() {
@@ -140,7 +140,7 @@ public class AuthMenuVO {
 	public String toString() {
 		return "AuthMenuVO [auth_id=" + auth_id + ", auth_nm=" + auth_nm
 				+ ", menu_id=" + menu_id + ", menu_nm=" + menu_nm + ", act_yn="
-				+ act_yn + ", fst_reg_id_nm=" + fst_reg_id_nm + ", fst_reg_dt="
+				+ act_yn + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
 				+ fst_reg_dt + ", creat_yn=" + creat_yn + ", mdfy_yn="
 				+ mdfy_yn + ", del_yn=" + del_yn + ", retrv_yn=" + retrv_yn
 				+ ", deflt_yn=" + deflt_yn + "]";

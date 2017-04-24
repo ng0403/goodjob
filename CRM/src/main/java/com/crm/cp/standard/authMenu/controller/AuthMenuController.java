@@ -68,7 +68,7 @@ public class AuthMenuController {
 	
 	@RequestMapping(value="/authmenuEdit", method=RequestMethod.POST)
 	public @ResponseBody List<Object> AuthMenuUpdateConfrim(HttpSession session,@RequestBody AuthMenuVO vo){
-		vo.setFst_reg_id_nm(session.getAttribute("user").toString());
+		vo.setFst_reg_id(session.getAttribute("user").toString());
 		authmenuService.authMenuPopUpdate(vo);
 		List<Object> obj= authmenuService.authMenuList();
 
@@ -89,7 +89,7 @@ public class AuthMenuController {
 	
 	@RequestMapping(value="/authMenuInsert", method=RequestMethod.POST)
 	public @ResponseBody List<Object> authMenuInsertByJSON(@RequestBody AuthMenuVO authMenu, HttpSession session){
-		authMenu.setFst_reg_id_nm(session.getAttribute("user").toString());
+		authMenu.setFst_reg_id(session.getAttribute("user").toString());
 		System.out.println(authMenu.toString());		
 		try {
 			authmenuService.authMenuInsert(authMenu);
