@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="selectMenuTree" parameterType="string" resultType="com.crm.cp.standard.menu.vo.MenuVO">
-    	SELECT a.MENU_ID, a.MENU_NM, a.MENU_URL, a.MENU_LEV, a.UP_MENU_ID, a.FST_REG_DT, a.FST_REG_ID_NM, a.FIN_MDFY_DT, a.FIN_MDFY_ID_NM, a.ACT_YN
+    	SELECT a.MENU_ID, a.MENU_NM, a.MENU_URL, a.MENU_LEV, a.UP_MENU_ID, a.FST_REG_DT, a.FST_REG_ID, a.FIN_MDFY_DT, a.fin_mdfy_id, a.ACT_YN
     	FROM MENU a 
 		WHERE a.MENU_LEV = #{menu_lev}
 		order by a.MENU_ID
@@ -38,15 +38,15 @@
 	
 	<select id="selectPmenu" resultType="com.crm.cp.standard.menu.vo.MenuVO">
 		SELECT MENU_ID, MENU_NM, MENU_URL, MENU_LEV, UP_MENU_ID,
-			   FST_REG_ID_NM, FST_REG_DT, FIN_MDFY_ID_NM, FIN_MDFY_DT, ACT_YN                                                         
+			   FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT, ACT_YN                                                         
 		FROM MENU
 		WHERE MENU_LEV = '0001'
 		ORDER BY MENU_ID
 	</select>
 	
 	<select id="searchMenu" resultType="com.crm.cp.standard.menu.vo.MenuVO">
-    	SELECT MENU_ID, MENU_NM, MENU_URL, MENU_LEV, UP_MENU_ID, FST_REG_ID_NM, 
-    		   FST_REG_DT, FIN_MDFY_ID_NM, FIN_MDFY_DT, ACT_YN
+    	SELECT MENU_ID, MENU_NM, MENU_URL, MENU_LEV, UP_MENU_ID, FST_REG_ID, 
+    		   FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT, ACT_YN
 		FROM MENU
 		WHERE MENU_LEV = '0001'
 		<if test="keyword!=null and keyword!='' ">
@@ -63,21 +63,21 @@
     </select>
     
     <select id="selectDetail" parameterType="string" resultType="com.crm.cp.standard.menu.vo.MenuVO">
-    	SELECT a.MENU_ID, a.MENU_NM, a.MENU_URL, a.MENU_LEV, a.UP_MENU_ID, a.FST_REG_ID_NM, 
-      		   a.FST_REG_DT, a.FIN_MDFY_ID_NM, a.FIN_MDFY_DT, a.ACT_YN, b.MENU_NM as UP_MENU_NM
+    	SELECT a.MENU_ID, a.MENU_NM, a.MENU_URL, a.MENU_LEV, a.UP_MENU_ID, a.FST_REG_ID, 
+      		   a.FST_REG_DT, a.FIN_MDFY_ID, a.FIN_MDFY_DT, a.ACT_YN, b.MENU_NM as UP_MENU_NM
 		FROM MENU a, MENU b
 		WHERE a.UP_MENU_ID = b.MENU_ID(+)
 		AND a.MENU_ID = #{menu_id}
     </select>
     
     <insert id="insertMenu" parameterType="com.crm.cp.standard.menu.vo.MenuVO">
-    	INSERT INTO MENU(MENU_NM,MENU_URL,MENU_LEV,UP_MENU_ID,FST_REG_ID_NM,FIN_MDFY_ID_NM,ACT_YN)
-		VALUES(#{menu_nm},#{menu_url},#{menu_lev},#{up_menu_id},#{fst_reg_id_nm},#{fin_mdfy_id_nm},#{act_yn})
+    	INSERT INTO MENU(MENU_NM,MENU_URL,MENU_LEV,UP_MENU_ID,FST_REG_ID,FIN_MDFY_ID,ACT_YN)
+		VALUES(#{menu_nm},#{menu_url},#{menu_lev},#{up_menu_id},#{fst_reg_id},#{fin_mdfy_id},#{act_yn})
     </insert>
     
     <insert id="authMenuInsert" parameterType="com.crm.cp.standard.menu.vo.MenuVO">
-    	INSERT INTO AUTHORIZATION_MENU(AUTH_ID, MENU_ID, CREAT_YN, MDFY_YN, DEL_YN , RETRV_YN, DEFLT_YN, FST_REG_ID_NM)
-		VALUES(#{auth_id},#{menu_id},#{creat_yn},#{mdfy_yn},#{del_yn},#{retrv_yn},#{deflt_yn},#{fst_reg_id_nm})
+    	INSERT INTO AUTHORIZATION_MENU(AUTH_ID, MENU_ID, CREAT_YN, MDFY_YN, DEL_YN , RETRV_YN, DEFLT_YN, FST_REG_ID)
+		VALUES(#{auth_id},#{menu_id},#{creat_yn},#{mdfy_yn},#{del_yn},#{retrv_yn},#{deflt_yn},#{fst_reg_id})
     </insert>
     
     <update id="updateMenu" parameterType="com.crm.cp.standard.menu.vo.MenuVO">
@@ -88,7 +88,7 @@
     		UP_MENU_ID = #{up_menu_id},
     		MENU_LEV = #{menu_lev},
 			ACT_YN = #{act_yn},
-			FIN_MDFY_ID_NM = #{fin_mdfy_id_nm},
+			FIN_MDFY_ID = #{fin_mdfy_id},
 			FIN_MDFY_DT = sysdate
     	WHERE
     		MENU_ID = #{menu_id}

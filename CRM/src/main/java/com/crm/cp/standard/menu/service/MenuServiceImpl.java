@@ -65,8 +65,8 @@ public class MenuServiceImpl implements MenuService{
 			}
 					
 			list.add(new MenuVO(me.getMenu_id(), me.getMenu_nm(),  me.getMenu_url(),
-					me.getMenu_lev(), me.getUp_menu_id(), me.getFst_reg_id_nm(), 
-					me.getFst_reg_dt(), me.getFin_mdfy_id_nm(), me.getFin_mdfy_dt(), me.getAct_yn(), subList));
+					me.getMenu_lev(), me.getUp_menu_id(), me.getFst_reg_id(), 
+					me.getFst_reg_dt(), me.getFin_mdfy_id(), me.getFin_mdfy_dt(), me.getAct_yn(), subList));
 		}		
 		return list;
 	}
@@ -100,8 +100,8 @@ public class MenuServiceImpl implements MenuService{
 	@Override
 	public Map<String,Object> insertMenu(HttpSession session, MenuVO data) {
 		Map<String,Object> map = new HashMap<String, Object>();
-		data.setFst_reg_id_nm(session.getAttribute("user").toString());
-		data.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		data.setFst_reg_id(session.getAttribute("user").toString());
+		data.setFin_mdfy_id(session.getAttribute("user").toString());
 		try {
 			int result = dao.insert("menu.insertMenu", data);	//메뉴등록
 			Object menuId = dao.selectOne("menu.selectInsertMenuId", data);	//저장한 메뉴의 menu_id 검색
@@ -116,14 +116,14 @@ public class MenuServiceImpl implements MenuService{
 	//메뉴권한 등록
 	@Override
 	public int insertMenuAuth(HttpSession session, MenuVO data) {
-		data.setFst_reg_id_nm(session.getAttribute("user").toString());
+		data.setFst_reg_id(session.getAttribute("user").toString());
 		int result = dao.insert("menu.authMenuInsert", data);
 		return result;
 	}
 
 	@Override
 	public int updateMenu(HttpSession session, MenuVO data) {
-		data.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		data.setFin_mdfy_id(session.getAttribute("user").toString());
 		System.out.println("메뉴 수정정보:"+data.toString());
 		int result = dao.update("menu.updateMenu", data);
 		return result;

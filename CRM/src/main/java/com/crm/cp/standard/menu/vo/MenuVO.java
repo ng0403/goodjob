@@ -13,9 +13,9 @@ public class MenuVO {
 	String menu_lev;
 	String up_menu_id;
 	String up_menu_nm;
-	String fst_reg_id_nm;
+	String fst_reg_id;
 	Date fst_reg_dt;
-	String fin_mdfy_id_nm;
+	String fin_mdfy_id;
 	Date fin_mdfy_dt;
 	String act_yn;
 	String deflt_yn;
@@ -56,8 +56,8 @@ public class MenuVO {
 	}
 	
 	public MenuVO(String menu_id, String menu_nm, String menu_url,
-			String menu_lev, String up_menu_id, String fst_reg_id_nm,
-			Date fst_reg_dt, String fin_mdfy_id_nm, Date fin_mdfy_dt,
+			String menu_lev, String up_menu_id, String fst_reg_id,
+			Date fst_reg_dt, String fin_mdfy_id, Date fin_mdfy_dt,
 			String act_yn, ArrayList<MenuVO> menuVO) {
 		super();
 		this.menu_id = menu_id;
@@ -65,17 +65,17 @@ public class MenuVO {
 		this.menu_url = menu_url;
 		this.menu_lev = menu_lev;
 		this.up_menu_id = up_menu_id;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.menuVO = menuVO;
 	}
 
 	public MenuVO(String menu_id, String menu_nm, String menu_url,
-			String menu_lev, String up_menu_id, String fst_reg_id_nm,
-			Date fst_reg_dt, String fin_mdfy_id_nm, Date fin_mdfy_dt,
+			String menu_lev, String up_menu_id, String fst_reg_id,
+			Date fst_reg_dt, String fin_mdfy_id, Date fin_mdfy_dt,
 			String act_yn, String deflt_yn, String creat_yn, String mdfy_yn,
 			String del_yn, String retrv_yn, String auth_id, String iuser_id,
 			String id_nm) {
@@ -85,9 +85,9 @@ public class MenuVO {
 		this.menu_url = menu_url;
 		this.menu_lev = menu_lev;
 		this.up_menu_id = up_menu_id;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.deflt_yn = deflt_yn;
@@ -102,7 +102,7 @@ public class MenuVO {
 	
 	public MenuVO(String menu_id, String menu_nm, String menu_url,
 			String menu_lev, String up_menu_id, String up_menu_nm,
-			String fst_reg_id_nm, Date fst_reg_dt, String fin_mdfy_id_nm,
+			String fst_reg_id, Date fst_reg_dt, String fin_mdfy_id,
 			Date fin_mdfy_dt, String act_yn, String deflt_yn, String creat_yn,
 			String mdfy_yn, String del_yn, String retrv_yn, String auth_id,
 			String iuser_id, String id_nm, ArrayList<MenuVO> menuVO) {
@@ -113,9 +113,9 @@ public class MenuVO {
 		this.menu_lev = menu_lev;
 		this.up_menu_id = up_menu_id;
 		this.up_menu_nm = up_menu_nm;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.deflt_yn = deflt_yn;
@@ -169,12 +169,12 @@ public class MenuVO {
 		this.up_menu_id = up_menu_id;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id = fst_reg_id;
 	}
 
 	public Date getFst_reg_dt() {
@@ -185,12 +185,12 @@ public class MenuVO {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
 	public Date getFin_mdfy_dt() {
@@ -293,9 +293,9 @@ public class MenuVO {
 	public String toString() {
 		return "MenuVO [menu_id=" + menu_id + ", menu_nm=" + menu_nm
 				+ ", menu_url=" + menu_url + ", menu_lev=" + menu_lev
-				+ ", up_menu_id=" + up_menu_id + ", fst_reg_id_nm="
-				+ fst_reg_id_nm + ", fst_reg_dt=" + fst_reg_dt
-				+ ", fin_mdfy_id_nm=" + fin_mdfy_id_nm + ", fin_mdfy_dt="
+				+ ", up_menu_id=" + up_menu_id + ", fst_reg_id="
+				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt
+				+ ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
 				+ fin_mdfy_dt + ", act_yn=" + act_yn + ", deflt_yn=" + deflt_yn
 				+ ", creat_yn=" + creat_yn + ", mdfy_yn=" + mdfy_yn
 				+ ", del_yn=" + del_yn + ", retrv_yn=" + retrv_yn
