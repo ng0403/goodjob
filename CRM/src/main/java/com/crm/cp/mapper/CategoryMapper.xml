@@ -56,8 +56,18 @@
     </select>
     
     <insert id="cateInsert" parameterType="com.crm.cp.standard.category.vo.CategoryVO">
-		INSERT INTO CATEGORY(CATE_NM, UP_CATE_ID, CATE_DTL_CONT, fst_reg_id, fin_mdfy_id, ACT_YN)
-		VALUES(#{cate_nm}, #{up_cate_id}, #{cate_dtl_cont}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn})
+		INSERT 
+			INTO CATEGORY(CATE_ID, CATE_NM, UP_CATE_ID, CATE_DTL_CONT, fst_reg_id, fin_mdfy_id, ACT_YN)
+		VALUES
+			(
+				(SELECT /*+INDEX_DESC(CATEGORY PK_CATEGORY)*/
+    				DECODE(MAX(CATE_ID), NULL, 'CAT0000001', 'CAT' || lpad( (SUBSTR( MAX( CATE_ID ), 4, 7 ) + 1), 7, 0)) ORG_ID
+				 FROM 
+    				CATEGORY
+				 WHERE 
+    				ROWNUM=1),
+				#{cate_nm}, #{up_cate_id}, #{cate_dtl_cont}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn}
+			)
     </insert>
     
     <update id="cateUpdate" parameterType="com.crm.cp.standard.category.vo.CategoryVO">
