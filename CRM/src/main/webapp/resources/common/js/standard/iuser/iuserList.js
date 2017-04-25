@@ -123,7 +123,7 @@ function iuserListAdd(){
 		$('#submitbtn').attr("disabled", true);
 		$('#addsavebtn').css("display", "inline-block");
 		$('#modifysavebtn').css("display", "none");
-		$('#addsavebtn').css('display','block');
+		$('#modifybtn').css("display", "none");
 		$('#modifysavebtn').css('display','none');
 	});
 }

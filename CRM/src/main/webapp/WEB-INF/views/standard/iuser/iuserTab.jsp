@@ -52,19 +52,19 @@
 						</tr>	
 						<tr>
 							<th>집전화</th>
-							<td><input type="text" name="ph1" id="home_phone1" class="iuser_tel" maxlength="4" /> - 
-							    <input type="text" name="ph2" id="home_phone2" class="iuser_tel" maxlength="4" /> - 
-							    <input type="text" name="ph3" id="home_phone3" class="iuser_tel" maxlength="4" />
+							<td><input type="text" name="ph1" id="home_phone1" class="iuser_tel" maxlength="4" style=" width: 50px;"/> - 
+							    <input type="text" name="ph2" id="home_phone2" class="iuser_tel" maxlength="4" style=" width: 50px;" /> - 
+							    <input type="text" name="ph3" id="home_phone3" class="iuser_tel" maxlength="4" style=" width: 50px;" />
 							</td>
 							<th>회사전화</th>
-							<td><input type="text" name="comp_ph1" id="company_phone1" class="iuser_tel" maxlength="4" /> - 
-							    <input type="text" name="comp_ph2" id="company_phone2" class="iuser_tel" maxlength="4" /> - 
-							    <input type="text" name="comp_ph3" id="company_phone3" class="iuser_tel" maxlength="4" />
+							<td><input type="text" name="comp_ph1" id="company_phone1" class="iuser_tel" maxlength="4" style=" width: 50px;" /> - 
+							    <input type="text" name="comp_ph2" id="company_phone2" class="iuser_tel" maxlength="4" style=" width: 50px;" /> - 
+							    <input type="text" name="comp_ph3" id="company_phone3" class="iuser_tel" maxlength="4" style=" width: 50px;" />
 							</td>
 							<th>핸드폰</th>
-							<td><input type="text" name="cell_ph1" id="cell_phone1" class="iuser_tel" maxlength="4" /> - 
-							    <input type="text" name="cell_ph2" id="cell_phone2" class="iuser_tel" maxlength="4" /> - 
-							    <input type="text" name="cell_ph3" id="cell_phone3" class="iuser_tel" maxlength="4" />
+							<td><input type="text" name="cell_ph1" id="cell_phone1" class="iuser_tel" maxlength="4" style=" width: 50px;" /> - 
+							    <input type="text" name="cell_ph2" id="cell_phone2" class="iuser_tel" maxlength="4" style=" width: 50px;" /> - 
+							    <input type="text" name="cell_ph3" id="cell_phone3" class="iuser_tel" maxlength="4" style=" width: 50px;" />
 							</td>
 							<th>이메일</th>
 							<td><input type="text" name="email1" id="email1" class="iuser_email" /> @ 
