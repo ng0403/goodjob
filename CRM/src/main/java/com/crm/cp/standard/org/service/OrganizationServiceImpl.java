@@ -16,7 +16,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	private OrgDao dao;
 
 	@Override
-	public List<Object> selectTreeOne() {		
+	public List<Object> selectTreeOne() {
 		List<Object> list=dao.selectAll("organization.orgTreeOne");
 		
 		return list;
@@ -55,19 +55,35 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 	
 	@Override
-	public Object insertOrg(HttpSession session, Map<String,String> data) {
+	public Object insertOrg(HttpSession session, Map<String,String> data) 
+	{
 		OrganizationVO dto = new OrganizationVO();
-		dto.setFst_reg_id_nm(session.getAttribute("user").toString());
-		dto.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		dto.setFst_reg_id(session.getAttribute("user").toString());
+		dto.setFin_mdfy_id(session.getAttribute("user").toString());
 		Map<String,Object> result = new HashMap<String,Object>();
-		if(data.get("org_flag").toString().equals("org_type")){
+		
+		System.out.println("insertOrg - dtoList : " + dto);
+		System.out.println("insertOrg - dto : " + dto.getFst_reg_id());
+		System.out.println("insertOrg - data : " + data.get("org_flag"));
+		
+		if(data.get("org_flag").toString().equals("org_type"))
+		{
+			System.out.println("insertOrg - if (org_flag == org_type)");
+			
 			dto.setOrg_type_nm(data.get("org_type_nm"));
 			dto.setAct_yn(data.get("act_yn"));
+			
 			int ok = dao.insert("organization.typeinsert", dto);
+			
 			result.put("ok", ok);
+			
 			Map<String, Object> org_type = dao.selectOnes("organization.selectOrgTypeId",dto);
 			result.put("org_type_id", org_type.get("ORG_TYPE_ID"));
-		}else{
+		}
+		else
+		{
+			System.out.println("insertOrg - else (org_flag != org_type)");
+			
 			dto.setOrg_nm(data.get("org_nm"));
 			dto.setUp_org_id(data.get("up_org_id"));
 			dto.setOrg_type_id(data.get("org_type_id"));
@@ -83,13 +99,22 @@ public class OrganizationServiceImpl implements OrganizationService {
 			dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
 			dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
 			dto.setAct_yn(data.get("act_yn"));
-			if(dto.getUp_org_id().equals("G***")){
+			
+			if(dto.getUp_org_id().equals("G***"))
+			{
+				System.out.println("insertOrg - else (org_flag != org_type) - if");
+				
 				int ok = dao.insert("organization.pinsert", dto);
 				result.put("ok", ok);
-			}else{
+			}
+			else
+			{
+				System.out.println("insertOrg - else (org_flag != org_type) - else");
+				
 				int ok = dao.insert("organization.insert", dto);
 				result.put("ok", ok);
 			}
+			
 			Map<String, Object> org = dao.selectOnes("organization.selectOrgId", dto);
 			result.put("org_id", org.get("ORG_ID"));
 		}
@@ -100,8 +125,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 	@Override
 	public Object orgDetailOne(HttpSession session, Map<String,String> data){
 		OrganizationVO dto = new OrganizationVO();
-		dto.setFst_reg_id_nm(session.getAttribute("user").toString());
-		dto.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		dto.setFst_reg_id(session.getAttribute("user").toString());
+		dto.setFin_mdfy_id(session.getAttribute("user").toString());
 		Object result;
 		if(data.get("org_flag").toString().equals("org_type")){
 			dto.setOrg_type_id(data.get("org_id"));
@@ -124,7 +149,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	public int orgUpdate(HttpSession session, Map<String, String> data) {
 		int result = 0;
 		OrganizationVO dto = new OrganizationVO();
-		dto.setFin_mdfy_id_nm(session.getAttribute("user").toString());
+		dto.setFin_mdfy_id(session.getAttribute("user").toString());
 		if(data.get("org_flag").toString().equals("org_type")){
 			dto.setOrg_type_id(data.get("org_type_id"));
 			dto.setOrg_type_nm(data.get("org_type_nm"));

@@ -58,6 +58,9 @@ public class OrgController {
 	
 	@RequestMapping(value="/orgInsert", method=RequestMethod.POST)
 	public @ResponseBody Object orginsert(HttpSession session, @RequestBody Map<String,String> data)throws Exception {
+		System.out.println("controller orginsert - data.toString : " + data.toString());
+		System.out.println("controller orginsert - data : " + data);
+		
 		Object result = orgService.insertOrg(session, data);
 		return result;
 	}

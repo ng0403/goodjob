@@ -103,17 +103,26 @@ function orgResetBtn_funct(ctx){
 	}
 }
 
+/**
+ * 2017. 04. 24 월요일
+ * 트리에서 추가버튼을 눌렀을 시 Controll로 전송하는 부분.
+ * orgId가 넘어가는지 확인함.
+ * */
 function orgDetailButtonEvent(ctx){
 	//등록버튼 누를시 이벤트
 	$('#orgSubmitBtn').click(function(){
-		if($('#org_mode').val() == 'insert'){
+		if($('#org_mode').val() == 'insert')
+		{
 			var flag=true;
 			var org_flag = $('#org_insert_mode').val();
 			var node;
-			if(org_flag == 'org_type'){
+			
+			if(org_flag == 'org_type')
+			{
 				node = $('.orgDetail').find('input[type="text"]');
 				/*node = $('.orgtypeDetail').find('input[type="text"]');*/
-			}else{
+			}else
+			{
 				node = $('.orgDetail').find('input[type="text"]');
 			}
 					
@@ -126,8 +135,10 @@ function orgDetailButtonEvent(ctx){
 				}
 			});
 			
-			if(flag == true){
-				if(org_flag == 'org_type'){
+			if(flag == true)
+			{
+				if(org_flag == 'org_type')
+				{
 					/*obj.org_flag = 'org_type';
 					obj.org_type_id = $('#org_type_id2').val();
 					obj.org_type_nm = $('#org_type_name').val();
@@ -138,7 +149,9 @@ function orgDetailButtonEvent(ctx){
 					}*/
 					obj.org_flag = 'org';
 					obj.org_nm = $('#org_name').val();
+					
 					$('#p_org_id').prop('disabled',false);
+					
 					obj.up_org_id = $('#p_org_id').val();
 					obj.org_type_id = $('#org_type_id').val();
 					obj.rep_emp_id = $('#user_id').val();
@@ -152,35 +165,49 @@ function orgDetailButtonEvent(ctx){
 					obj.zip_cd = $('#post1').val()+$('#post2').val();
 					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
 					obj.org_addr_dtl = $('#addr_detail').val();
-					if($('#active_flg_Y').is(':checked')){
+					
+					if($('#active_flg_Y').is(':checked'))
+					{
 						obj.act_yn = $('#active_flg_Y').val();
-					}else{
-						obj.act_yn = $('#active_flg_N').val();
-					} 
-				}else{
-					obj.org_flag = 'org';
-					obj.org_nm = $('#org_name').val();
-					$('#p_org_id').prop('disabled',false);
-					obj.up_org_id = $('#p_org_id').val();
-					obj.org_type_id = $('#org_type_id').val();
-					obj.rep_emp_id = $('#user_id').val();
-					obj.org_lev_cd= $('#code').val();
-					obj.phone_no1 = $('#phone_no1').val();
-					obj.phone_no2 = $('#phone_no2').val();
-					obj.phone_no3 = $('#phone_no3').val();
-					obj.fax_no1 = $('#fax_no1').val();
-					obj.fax_no2 = $('#fax_no2').val();
-					obj.fax_no3 = $('#fax_no3').val();
-					obj.zip_cd = $('#post1').val()+$('#post2').val();
-					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
-					obj.org_addr_dtl = $('#addr_detail').val();
-					if($('#active_flg_Y').is(':checked')){
-						obj.act_yn = $('#active_flg_Y').val();
-					}else{
+					}
+					else
+					{
 						obj.act_yn = $('#active_flg_N').val();
 					} 
 				}
+				else
+				{
+					obj.org_flag = 'org';
+					obj.org_nm = $('#org_name').val();
+					
+					$('#p_org_id').prop('disabled',false);
+					
+					obj.up_org_id = $('#p_org_id').val();
+					obj.org_type_id = $('#org_type_id').val();
+					obj.rep_emp_id = $('#user_id').val();
+					obj.org_lev_cd= $('#code').val();
+					obj.phone_no1 = $('#phone_no1').val();
+					obj.phone_no2 = $('#phone_no2').val();
+					obj.phone_no3 = $('#phone_no3').val();
+					obj.fax_no1 = $('#fax_no1').val();
+					obj.fax_no2 = $('#fax_no2').val();
+					obj.fax_no3 = $('#fax_no3').val();
+					obj.zip_cd = $('#post1').val()+$('#post2').val();
+					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
+					obj.org_addr_dtl = $('#addr_detail').val();
+					
+					if($('#active_flg_Y').is(':checked'))
+					{
+						obj.act_yn = $('#active_flg_Y').val();
+					}
+					else
+					{
+						obj.act_yn = $('#active_flg_N').val();
+					} 
+				}
+				
 				var data = JSON.stringify(obj);
+				
 				$.ajaxSettings.traditional = true;
 				$.ajax({
 					url: ctx+'/orgInsert',
@@ -189,26 +216,42 @@ function orgDetailButtonEvent(ctx){
 			        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			        dataType:'json',
 			        success: function(result){
-			        	if(result.ok != 1 ){
+			        	if(result.ok != 1 )
+			        	{
 			        		alert("올바르게 저장되지 않았습니다.");
-			        	}else{
+			        	}
+			        	else
+			        	{
 			        		alert("입력정보가 저장되었습니다.");
 
 			        		detaildisabled();
 			        	}
+			        	
 			        	var node = org_searchNode($('#orgTree'), 'NEW');
-						if(org_flag == 'org_type'){
+						
+			        	if(org_flag == 'org_type')
+			        	{
 							$(node).val(result.org_type_id);
-							if($('#active_flg2_Y').is(':checked')){	//활성화여부가 Y일 경우
+							
+							if($('#active_flg2_Y').is(':checked'))	//활성화여부가 Y일 경우
+							{
 								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
-							}else{
+							}
+							else
+							{
 								$(node).next().css('text-decoration','line-through');
 							}
-						}else{
+						}
+			        	else
+			        	{
 							$(node).val(result.org_id);
-							if($('#active_flg_Y').is(':checked')){	//활성화여부가 Y일 경우
+							
+							if($('#active_flg_Y').is(':checked'))	//활성화여부가 Y일 경우
+							{
 								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
-							}else{
+							}
+							else
+							{
 								$(node).next().css('text-decoration','line-through');
 							}
 						}
@@ -217,25 +260,37 @@ function orgDetailButtonEvent(ctx){
 			            alert("error");
 			        }
 				});
+				
 				$('#orgTree').find('input[type="checkbox"]').prop('disabled',false);
+				
 				reset();
+				
 				$('#orgTree').find('input').prop('checked',false);
 				$('#orgSubmitBtn').hide();
 				$('#orgUpdateBtn').hide();
 				$('#orgResetBtn').hide();
 				$('#org_mode').val('waiting');				
-			}else{
+			}
+			else
+			{
 				alert('빈 공간을 채워주세요.');
 			}
-		}else if($('#org_mode').val() == 'update'){
+		}
+		else if($('#org_mode').val() == 'update')
+		{
 			var flag=true;
 			var org_flag = $('#org_insert_mode').val();
 			var node;
-			if(org_flag == 'org_type'){
+			
+			if(org_flag == 'org_type')
+			{
 				node = $('.orgtypeDetail').find('input[type="text"]');
-			}else{
+			}
+			else
+			{
 				node = $('.orgDetail').find('input[type="text"]');
 			}
+			
 			var obj = new Object();
 			
 			//텍스트 입력 공백 확인
@@ -245,8 +300,10 @@ function orgDetailButtonEvent(ctx){
 				}
 			});
 			
-			if(flag == true){
-				if(org_flag == 'org_type'){
+			if(flag == true)
+			{
+				if(org_flag == 'org_type')
+				{
 					/*obj.org_flag = 'org_type';
 					obj.org_type_id = $('#org_type_id2').val();
 					obj.org_type_nm = $('#org_type_name').val();
@@ -255,7 +312,9 @@ function orgDetailButtonEvent(ctx){
 					}else{
 						obj.act_yn = $('#active_flg2_N').val();
 					}*/
-				}else{
+				}
+				else
+				{
 					obj.org_flag = 'org';
 					obj.org_id = $('#org_id').val();
 					obj.org_nm = $('#org_name').val();
@@ -272,13 +331,19 @@ function orgDetailButtonEvent(ctx){
 					obj.zip_cd = $('#post1').val()+$('#post2').val();
 					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
 					obj.org_addr_dtl = $('#addr_detail').val();
-					if($('#active_flg_Y').is(':checked')){
+					
+					if($('#active_flg_Y').is(':checked'))
+					{
 						obj.act_yn = $('#active_flg_Y').val();
-					}else{
+					}
+					else
+					{
 						obj.act_yn = $('#active_flg_N').val();
 					} 
 				}
+				
 				var data = JSON.stringify(obj);
+				
 				$.ajaxSettings.traditional = true;
 				$.ajax({
 					url: ctx+'/orgUpdate',
@@ -287,9 +352,12 @@ function orgDetailButtonEvent(ctx){
 			        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			        dataType:'json',
 			        success: function(data){
-			        	if(data.result != 1 ){
+			        	if(data.result != 1 )
+			        	{
 			        		alert("올바르게 수정되지 않았습니다.");
-			        	}else{
+			        	}
+			        	else
+			        	{
 			        		alert("입력정보가 수정되었습니다.");
 			        		editTree(data.TreeList, data.TreeListTwo);
 			        		detaildisabled();
@@ -300,11 +368,14 @@ function orgDetailButtonEvent(ctx){
 			        }
 				});
 				reset();
+				
 				$('#orgSubmitBtn').hide();
 				$('#orgUpdateBtn').hide();
 				$('#orgResetBtn').hide();
 				$('#org_mode').val('waiting');
-			}else{
+			}
+			else
+			{
 				alert('빈 공간을 채워주세요.');
 			}
 		}

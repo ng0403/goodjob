@@ -292,42 +292,64 @@ function orgAnckEvent(ctx){
 function orgButtonEvent(ctx){
 	//추가버튼 누를시 이벤트
 	$('.bt_position').delegate('#orgAddBtn','click',function(){
-		if($('#org_mode').val() == 'waiting'){
-			if(org_checkTotalCount() == 0){	//체크가 하나도 안 되어 있는 경우
+		var up_org_ud = $('.masterCheck').val();
+		var tmp=[];
+		
+		// 선탟한 상위 조직을 담는 부분.
+		$('#orgTree input[type=checkbox]:checked').each(function(){
+			tmp.push($(this).val());
+        });
+		
+		if($('#org_mode').val() == 'waiting')
+		{
+			if(org_checkTotalCount() == 0)		//체크가 하나도 안 되어 있는 경우( 상위 조직 생성 )
+			{
 				$('#org_mode').val('insert');
-				if(!($('#tmpText').is(':focus'))){
+				
+				if(!($('#tmpText').is(':focus')))
+				{
 					var topNode = $('#orgTree');
+					
 					topNode.append(
 							'<li><img class="no_f_orgFlag" src="'+ctx+'/resources/image/no_treebtn.png"/>'+
 							' <input type="checkbox" class="masterCheck">'+
 							' <a class="sub_org">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"></a></li>'
 					);
+					
 					var lastChildeNode = $(topNode).children().last();
+					
 					$(lastChildeNode).children('input[type="checkbox"]').prop('checked',true);
 					$('#tmpText').focus();
 					$('#tmpText').blur(function(){
 						var hasOrgName = validateOrgName(ctx,'org_type',$(this).val());
 						
-						if(hasOrgName == 'true'){	//조직명이 존재하면
+						if(hasOrgName == 'true')	//조직명이 존재하면
+						{
 							alert("중복되는 조직명입니다.\n다시 입력해주세요.");
 							$(this).focus();
-						}else if(hasOrgName == 'false'){
+						}
+						else if(hasOrgName == 'false')
+						{
 							$('#orgInsertForm').find('input[type="text"]').prop('disabled',false);
 							$('#orgInsertForm').find('input[type="radio"]').prop('disabled',false);
+							
 							reset();
+							
 							$('#orgTree').find('input[type="checkbox"]').prop('disabled','disabled');
 							$(this).parent().parent().find('input[type="checkbox"]').val('NEW');
 							$('#org_type_name').val($(this).val());	//상세창에 조직유형명 세팅
 							$('#org_insert_mode').val('org_type');	//입력모드 조직유형으로 전환
 							
 							//a태그에 텍스트 입력정보 넣기
-							if($(this).val() != ''){
+							if($(this).val() != '')
+							{
 								$(this).parent().text($(this).val());
-							}else{
+							}
+							else
+							{
 								$(this).parent().text('NewNode');
 							}
-							
 							
 							/*$('.orgDetail').hide();
 							$('.orgtypeDetail').show();
@@ -338,6 +360,7 @@ function orgButtonEvent(ctx){
 							$('#orgResetBtn').show();
 							$('#org_type_id2').prop('disabled',true);
 							$('#org_type_id2').val('***');*/
+							
 							$('#org_name').val($(this).val());
 							$('.orgDetail').show();
 							$('.orgtypeDetail').hide();
@@ -356,50 +379,75 @@ function orgButtonEvent(ctx){
 							$('#code').val('0001');
 							
 							
-						}else{
+						}
+						else
+						{
 							orgResetBtn_funct();
 						}
 					});
 				}
-			}else if(org_checkTotalCount() == 1){
-				if($(org_All_checkedNode()).attr('class') == 'subCheck'){
+			}
+			else if(org_checkTotalCount() == 1)		// 하위 조직 생성할 경우. 
+			{
+				alert("하위 조직 생성한 경우");
+				if($(org_All_checkedNode()).attr('class') == 'subCheck')
+				{
 					alert('더이상 하위객체를 생성할 수 없습니다.');
-				}else{
+				}
+				else
+				{
 					$('#org_mode').val('insert');
-					if($(org_checkedNode('masterCheck')).attr('class') == 'masterCheck'){	//조직유형에 처크될 경우
-						if(!($('#tmpText').is(':focus'))){
+	
+					if($(org_checkedNode('masterCheck')).attr('class') == 'masterCheck')	//조직유형에 체크될 경우
+					{
+						alert("조직유형에 체크될 경우");
+						
+						if(!($('#tmpText').is(':focus')))
+						{
 							var node = $(org_checkedNode('masterCheck')).parent();
 							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
 							
-							if(hasElement == 0){	//조직유형 밑에 조직명이 없을 경우
+							if(hasElement == 0)	//조직유형 밑에 조직명이 없을 경우
+							{
 								$(node).append(
 									'<ul class="orgtree_sub">'+					
 									'<li><input type="checkbox" class="subCheck">'+
 									' <a class="sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
-							}else{	//조직유형 밑에 조직명이 있을 경우
+							}
+							else	//조직유형 밑에 조직명이 있을 경우
+							{
 								$(node).children('ul').append(				
 									'<li><input type="checkbox" class="subCheck">'+
 									' <a class="sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 								);
 							}
+							
 							$(node).find('.orgtree_sub').children('li').show();
-							if($(node).children('.f_orgFlag').size() == 0 ){
+							
+							if($(node).children('.f_orgFlag').size() == 0 )
+							{
 								$(node).children('.no_f_orgFlag').remove();
 								$(node).prepend('<img class="f_orgFlag" src="'+ctx+'/resources/image/treebtn2.png"/>');
-							}else{
+							}
+							else
+							{
 								$(node).children('.f_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
 							}
+							
 							$('#tmpText').focus();
 							$('#tmpText').blur(function(){
 								var hasOrgName = validateOrgName(ctx, 'org',$(this).val());
 								
-								if(hasOrgName == 'true'){	//조직명이 존재하면
+								if(hasOrgName == 'true')	//조직명이 존재하면
+								{
 									alert("중복되는 조직명입니다.\n다시 입력해주세요.");
 									$(this).focus();
-								}else{
+								}
+								else
+								{
 									$('#orgInsertForm').find('input[type="text"]').prop('disabled',false);
 									$('#orgInsertForm').find('input[type="radio"]').prop('disabled',false);
 									reset();
@@ -418,9 +466,12 @@ function orgButtonEvent(ctx){
 									$('#org_insert_mode').val('org'); //입력모드 조직유형으로 전환
 														
 									//a태그에 텍스트 입력정보 넣기
-									if($(this).val() != ''){
+									if($(this).val() != '')
+									{
 										$(this).parent().text($(this).val());
-									}else{
+									}
+									else
+									{
 										$(this).parent().text('NewNode');
 									}								
 									
@@ -431,16 +482,20 @@ function orgButtonEvent(ctx){
 									$('#orgSubmitBtn').show();
 									$('#orgUpdateBtn').hide();
 									$('#orgResetBtn').show();
+									
 									$('#org_id').prop('disabled',true);
 									$('#org_id').val('G***');
 									$('#p_org_id').prop('disabled',true);
-									$('#p_org_id').val('G***');
+									$('#p_org_id').val(tmp);
 									$('#org_type_id').prop('disabled',true);
 									$('#org_type_id').val('ORT01');
 								}
 							});
 						}
-					}else if($(org_checkedNode('subCheck')).attr('class') == 'subCheck'){	//부서에 처크된 경우
+					}
+					else if($(org_checkedNode('subCheck')).attr('class') == 'subCheck') 	//부서에 처크된 경우
+					{
+						
 						if(!($('#tmpText').is(':focus'))){
 							var node = $(org_checkedNode('subCheck')).parent();
 							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
@@ -452,26 +507,37 @@ function orgButtonEvent(ctx){
 									' <a class="super_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
-							}else{	//상위조직에 하위조직이 있을 경우
+							}
+							else	//상위조직에 하위조직이 있을 경우
+							{	
 								$(node).children('ul').append(				
 									'<li><input type="checkbox" class="ssubCheck">'+
 									' <a class="super_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 								);
 							}
+							
 							$(node).find('.orgtree_super_sub').children('li').show();
-							if($(node).children('.s_orgFlag').size() == 0){
+							
+							if($(node).children('.s_orgFlag').size() == 0)
+							{
 								$(node).children('.no_s_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
-							}else{
+							}
+							else
+							{
 								$(node).children('.s_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
 							}
+							
 							$('#tmpText').focus();
 							$('#tmpText').blur(function(){
 								var hasOrgName = validateOrgName(ctx, 'org',$(this).val());
-								if(hasOrgName == 'true'){	//조직명이 존재하면
+								if(hasOrgName == 'true')		//조직명이 존재하면
+								{
 									alert("중복되는 메뉴명입니다.\n다시 입력해주세요.");
 									$(this).focus();
-								}else{
+								}
+								else
+								{
 									$('#orgInsertForm').find('input[type="text"]').prop('disabled',false);
 									$('#orgInsertForm').find('input[type="radio"]').prop('disabled',false);
 									reset();
@@ -492,11 +558,15 @@ function orgButtonEvent(ctx){
 									$('#org_insert_mode').val('org'); //입력모드 조직유형으로 전환
 									
 									//a태그에 텍스트 입력정보 넣기
-									if($(this).val() != ''){
+									if($(this).val() != '')
+									{
 										$(this).parent().text($(this).val());
-									}else{
+									}
+									else
+									{
 										$(this).parent().text('NewNode');
 									}
+									
 									$('.orgDetail').show();
 									$('.orgtypeDetail').hide();
 									$('#oorg').show();
@@ -511,38 +581,54 @@ function orgButtonEvent(ctx){
 								}
 							});
 						}
-					}else{	//조직유형이나 부서에 체크되지 않은 경우 (팀에 체크된 경우)
-						if(!($('#tmpText').is(':focus'))){
+					}
+					else		//조직유형이나 부서에 체크되지 않은 경우 (팀에 체크된 경우)
+					{
+						if(!($('#tmpText').is(':focus')))
+						{
 							var node = $(org_checkedNode('ssubCheck')).parent();
 							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
 							
-							if(hasElement == 0){	//상위조직에 하위조직이 없을 경우
+							if(hasElement == 0)		//상위조직에 하위조직이 없을 경우
+							{
 								$(node).append(
 									'<ul class="orgtree_super_ssub">'+					
 									'<li><input type="checkbox" class="s_ssubCheck">'+
 									' <a class="super_s_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
-							}else{	//상위조직에 하위조직이 있을 경우
+							}
+							else		//상위조직에 하위조직이 있을 경우
+							{
 								$(node).children('ul').append(				
 									'<li><input type="checkbox" class="s_ssubCheck">'+
 									' <a class="super_s_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 								);
 							}
+							
 							$(node).find('.orgtree_super_ssub').children('li').show();
-							if($(node).children('.ss_orgFlag').size() == 0){
+							
+							if($(node).children('.ss_orgFlag').size() == 0)
+							{
 								$(node).children('.no_ss_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
-							}else{
+							}
+							else
+							{
 								$(node).children('.ss_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
 							}
+							
 							$('#tmpText').focus();
 							$('#tmpText').blur(function(){
 								var hasOrgName = validateOrgName(ctx, 'org',$(this).val());
-								if(hasOrgName == 'true'){	//조직명이 존재하면
+								
+								if(hasOrgName == 'true')		//조직명이 존재하면
+								{
 									alert("중복되는 메뉴명입니다.\n다시 입력해주세요.");
 									$(this).focus();
-								}else{
+								}
+								else
+								{
 									$('#orgInsertForm').find('input[type="text"]').prop('disabled',false);
 									$('#orgInsertForm').find('input[type="radio"]').prop('disabled',false);
 									reset();
@@ -563,11 +649,15 @@ function orgButtonEvent(ctx){
 									$('#org_insert_mode').val('org'); //입력모드 조직유형으로 전환
 									
 									//a태그에 텍스트 입력정보 넣기
-									if($(this).val() != ''){
+									if($(this).val() != '')
+									{
 										$(this).parent().text($(this).val());
-									}else{
+									}
+									else
+									{
 										$(this).parent().text('NewNode');
 									}
+									
 									$('.orgDetail').show();
 									$('.orgtypeDetail').hide();
 									$('#oorg').show();
@@ -584,12 +674,18 @@ function orgButtonEvent(ctx){
 						}
 					}
 				}
-			}else{
+			}
+			else
+			{
 				alert('추가를 하려면 하나만 선택하세요.');
 			}
-		}else if($('#org_mode').val() == 'insert'){
+		}
+		else if($('#org_mode').val() == 'insert')
+		{
 			alert('정보 입력중입니다.');
-		}else if($('#org_mode').val() == 'update'){
+		}
+		else if($('#org_mode').val() == 'update')
+		{
 			alert('정보 수정중입니다.');
 		}
 	});

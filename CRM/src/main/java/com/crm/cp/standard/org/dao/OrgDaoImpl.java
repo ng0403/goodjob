@@ -19,7 +19,8 @@ public class OrgDaoImpl implements OrgDao {
 	@Override
 	public int insert(String root, Object obj) {
 		
-		int result = sqlSession.insert(root, obj);
+		// insert -> update
+		int result = sqlSession.update(root, obj);
 		return result;
 	}
 

@@ -24,9 +24,9 @@ public class OrganizationVO {
 	String rep_emp_id;
 	String rep_emp_nm;
 	String org_lev_cd;
-	String fst_reg_id_nm;
+	String fst_reg_id;
 	Date fst_reg_dt;
-	String fin_mdfy_id_nm;
+	String fin_mdfy_id;
 	Date fin_mdfy_dt;
 	String act_yn;
 	String cd_nm;
@@ -45,8 +45,8 @@ public class OrganizationVO {
 			String zip_cd_sri_num, String addr_detail, String org_addr_dtl,
 			String ph1, String ph2, String ph3, String fax_ph1, String fax_ph2,
 			String fax_ph3, String up_org_id, String rep_emp_id,
-			String rep_emp_nm, String org_lev_cd, String fst_reg_id_nm,
-			Date fst_reg_dt, String fin_mdfy_id_nm, Date fin_mdfy_dt,
+			String rep_emp_nm, String org_lev_cd, String fst_reg_id,
+			Date fst_reg_dt, String fin_mdfy_id, Date fin_mdfy_dt,
 			String act_yn, String cd_nm, String id_nm, String iuser_nm,
 			String iuser_id, String email1, String email2) {
 		super();
@@ -68,9 +68,9 @@ public class OrganizationVO {
 		this.rep_emp_id = rep_emp_id;
 		this.rep_emp_nm = rep_emp_nm;
 		this.org_lev_cd = org_lev_cd;
-		this.fst_reg_id_nm = fst_reg_id_nm;
+		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+		this.fin_mdfy_id = fin_mdfy_id;
 		this.fin_mdfy_dt = fin_mdfy_dt;
 		this.act_yn = act_yn;
 		this.cd_nm = cd_nm;
@@ -211,12 +211,12 @@ public class OrganizationVO {
 		this.org_lev_cd = org_lev_cd;
 	}
 
-	public String getFst_reg_id_nm() {
-		return fst_reg_id_nm;
+	public String getFst_reg_id() {
+		return fst_reg_id;
 	}
 
-	public void setFst_reg_id_nm(String fst_reg_id_nm) {
-		this.fst_reg_id_nm = fst_reg_id_nm;
+	public void setFst_reg_id(String fst_reg_id) {
+		this.fst_reg_id= fst_reg_id;
 	}
 
 	public Date getFst_reg_dt() {
@@ -227,12 +227,12 @@ public class OrganizationVO {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
-	public String getFin_mdfy_id_nm() {
-		return fin_mdfy_id_nm;
+	public String getFin_mdfy_id() {
+		return fin_mdfy_id;
 	}
 
-	public void setFin_mdfy_id_nm(String fin_mdfy_id_nm) {
-		this.fin_mdfy_id_nm = fin_mdfy_id_nm;
+	public void setFin_mdfy_id(String fin_mdfy_id) {
+		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
 	public Date getFin_mdfy_dt() {
@@ -326,8 +326,8 @@ public class OrganizationVO {
 				+ fax_ph2 + ", fax_ph3=" + fax_ph3 + ", up_org_id=" + up_org_id
 				+ ", rep_emp_id=" + rep_emp_id + ", rep_emp_nm=" + rep_emp_nm
 				+ ", org_lev_cd=" + org_lev_cd + ", fst_reg_id_nm="
-				+ fst_reg_id_nm + ", fst_reg_dt=" + fst_reg_dt
-				+ ", fin_mdfy_id_nm=" + fin_mdfy_id_nm + ", fin_mdfy_dt="
+				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt
+				+ ", fin_mdfy_id_nm=" + fin_mdfy_id + ", fin_mdfy_dt="
 				+ fin_mdfy_dt + ", act_yn=" + act_yn + ", cd_nm=" + cd_nm
 				+ ", id_nm=" + id_nm + ", iuser_nm=" + iuser_nm + ", iuser_id="
 				+ iuser_id + ", email1=" + email1 + ", email2=" + email2 + "]";

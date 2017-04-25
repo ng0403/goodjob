@@ -41,7 +41,7 @@ $("#naviorg").css("font-weight", "bold");
 					<c:if test="${two_count != 0}">
 						<img class="f_orgFlag" src="${ctx}/resources/image/treebtn1.png"/>
 					</c:if>
-					<input type="checkbox" class="masterCheck" value="${treeOne.org_id}"/>
+					<input type="checkbox" class="masterCheck" id="chk_org_id" value="${treeOne.org_id}"/>
 					<c:if test="${treeOne.act_yn == 'Y'}">
 						<%-- <a class="master_org">${treeOne.org_nm}</a>	 --%>
 						<a class="sub_org">${treeOne.org_nm}</a>	
