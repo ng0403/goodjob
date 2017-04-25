@@ -46,7 +46,8 @@
 							<td><input type="text" name="pwd" id="pwd"
 								class="iuser_txt"></input></td>
 							<th>구분</th>
-							<td><input type="text" name="iuser_div_cd" id="user_type_cd" class="iuser_txt"> 
+							<td><input type="text" name="iuser_div_nm" id="user_type_nm" class="iuser_txt"> 
+								<input type="hidden" name="iuser_div_cd" id="user_type_cd" class="iuser_txt"> 
 							    <input type="button" name="codeSearch" value="찾기" class="iuser_tab_bt" id="userTypePop">
 							</td>
 						</tr>	
@@ -74,7 +75,8 @@
 						<tr>
 							<th>조직</th>
 							<td>
-								<input type="text" name="org_id" id="org_id" class="iuser_txt"> 
+								<input type="text" name="org_nm" id="org_nm" class="iuser_txt"> 
+								<input type="hidden" name="org_id" id="org_id" class="iuser_txt"> 
 								<input type="button" name="orgSearch" value="찾기" class="iuser_org_bt" id="orgPopup">
 							</td>
 							<th>상태</th>

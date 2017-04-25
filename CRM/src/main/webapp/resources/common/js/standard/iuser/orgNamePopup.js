@@ -47,20 +47,28 @@ function checkClear(){
 }
 
 function orgIdChoice() {
-	$('#orgChoice').click(function() {
-		if (checkCount() == 0) {
-			alert("선택할 항목을 선택해주세요.");
-		}else if(checkCount()>1){
-			alert("한가지 항목을 선택해주세요.");
-		} 
-		else {
-			var node = searchCheckNode();
-			var confi = confirm("정말 선택하시겠습니까??");
-			if(confi){
-				var org_id = $(node).val();
-				$(opener.document).find('#org_id').val(org_id); //부모에서 org_id를 찾고 org_id를 넣어준담.
-				self.close();
-			}
-		}
+	$('#mastertable tbody tr').click(function(){
+		var orgId=$(this).find('#org_id').text();
+		var orgNm=$(this).find('#org_nm').text();
+		$(opener.document).find('#org_id').val(orgId);
+		$(opener.document).find('#org_nm').val(orgNm);
+		self.close();
+		
 	});
+//	$('#orgChoice').click(function() {
+//		if (checkCount() == 0) {
+//			alert("선택할 항목을 선택해주세요.");
+//		}else if(checkCount()>1){
+//			alert("한가지 항목을 선택해주세요.");
+//		} 
+//		else {
+//			var node = searchCheckNode();
+//			var confi = confirm("정말 선택하시겠습니까??");
+//			if(confi){
+//				var org_id = $(node).val();
+//				$(opener.document).find('#org_id').val(org_id); //부모에서 org_id를 찾고 org_id를 넣어준담.
+//				self.close();
+//			}
+//		}
+//	});
 }

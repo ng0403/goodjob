@@ -361,7 +361,10 @@ function modifysaveUser(ctx){ //사용자 편집 ajax부분
 			}
 		});
 		reset_text();
+		$('#modifybtn').css("display", "inline-block");
 		$('#addsavebtn').css('display','inline-block');
+		$('#modifysavebtn').css('display','none');
+		$('#addsavebtn').css('display','none');
 		$('#modifysavebtn').css('display','none');
 		userFormInit();
 	});

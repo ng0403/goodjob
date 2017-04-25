@@ -180,6 +180,9 @@ function iuserListEdit(ctx){
 					$('#tabDiv1 input').attr("disabled", true);
 					$('#addsavebtn').attr("disabled", true);
 					$('#modifybtn').attr("disabled", false);
+					$('#modifybtn').css("display", "inline-block");
+					$('#cancelbtn').css("display", "inline-block");
+					$('#addsavebtn').css("display", "none");
 					//권한 가져오기
 				},
 				error : function(e) {

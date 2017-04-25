@@ -39,7 +39,7 @@
 		<table id="mastertable">
 			<thead>
 				<tr>
-					<th><input id="allCheck" type="checkbox"/></th>
+<!-- 					<th><input id="allCheck" type="checkbox"/></th> -->
 					<td style="width:20%;">코드그룹ID</td>
 					<td style="width:20%;">코드</td>
 					<td style="width:20%;">코드명</td>
@@ -50,10 +50,10 @@
 			<tbody>
 				<c:forEach var="codeList" items="${codeList}">
 				<tr onMouseOver="style.backgroundColor='#ebe7e7'" onMouseOut="style.backgroundColor=''">
-					<th scope="row"><input type="checkbox" class="ab" id="checkCode" name="checkCode" value="${codeList.code}"></th>
+<%-- 					<th scope="row"><input type="checkbox" class="ab" id="checkCode" name="checkCode" value="${codeList.code}"></th> --%>
 					<td style="width:20%;">${codeList.cd_grp_id}</td>
-					<td style="width:15%;">${codeList.code}</td>
-					<td style="width:20%;">${codeList.cd_nm}</td>
+					<td style="width:15%;" id="code">${codeList.code}</td>
+					<td style="width:20%;" id="cd_nm">${codeList.cd_nm}</td>
 					<td style="width:20%;">${codeList.cd_seq_num}</td>
 					<td style="width:25%;">${codeList.cd_dtl_cont}</td>
 				</tr>
@@ -63,9 +63,9 @@
 		</form>
 	</div>
 	<br>
-	<div class="bt_position">
-		<input type="button" class="iuser_type_bt" value="선택" id="codeChoice"/>
-		<input type="button" class="iuser_type_bt" value="취소" id="codeClear"/>
-	</div>
+<!-- 	<div class="bt_position"> -->
+<!-- 		<input type="button" class="iuser_type_bt" value="선택" id="codeChoice"/> -->
+<!-- 		<input type="button" class="iuser_type_bt" value="취소" id="codeClear"/> -->
+<!-- 	</div> -->
 </body>
 </html>

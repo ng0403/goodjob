@@ -41,7 +41,7 @@
 		<table id="mastertable">
 			<thead>
 				<tr>
-					<th><input id="allCheck" type="checkbox"/></th>
+<!-- 					<th><input id="allCheck" type="checkbox"/></th> -->
 					<td style="width:25%;">조직ID</td>
 					<td style="width:25%;">조직이름</td>
 					<td style="width:25%;">대표사원ID</td>
@@ -51,9 +51,9 @@
 			<tbody>
 				<c:forEach var="orgList" items="${orgList}">
 				<tr onMouseOver="this.style.backgroundColor='#ebe7e7'" onMouseOut="this.style.backgroundColor=''">
-					<th scope="row"><input type="checkbox" class="ab" id="orgCheck" name="orgCheck" value="${orgList.org_id}"></th>
-					<td style="width:25%;">${orgList.org_id}</td>
-					<td style="width:25%;">${orgList.org_nm}</td>
+<%-- 					<th scope="row"><input type="checkbox" class="ab" id="orgCheck" name="orgCheck" value="${orgList.org_id}"></th> --%>
+					<td style="width:25%;" id="org_id">${orgList.org_id}</td>
+					<td style="width:25%;" id="org_nm">${orgList.org_nm}</td>
 					<td style="width:25%;">${orgList.rep_emp_id}</td>
 					<td style="width:25%;">${orgList.org_type_id}</td>
 				</tr>
@@ -63,9 +63,9 @@
 		</form>
 	</div>
 	<br>
-	<div class="bt_position">
-		<input type="button" class="org_name_bt" value="선택" id="orgChoice"/>
-		<input type="button" class="org_name_bt" value="취소" id="orgClear"/>
-	</div>
+<!-- 	<div class="bt_position"> -->
+<!-- 		<input type="button" class="org_name_bt" value="선택" id="orgChoice"/> -->
+<!-- 		<input type="button" class="org_name_bt" value="취소" id="orgClear"/> -->
+<!-- 	</div> -->
 </body>
 </html>
