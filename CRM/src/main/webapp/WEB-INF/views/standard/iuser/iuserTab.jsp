@@ -77,7 +77,7 @@
 							<td>
 								<input type="text" name="org_nm" id="org_nm" class="iuser_txt"> 
 								<input type="hidden" name="org_id" id="org_id" class="iuser_txt"> 
-								<input type="button" name="orgSearch" value="찾기" class="iuser_org_bt" id="orgPopup">
+								<input type="button" name="orgSearch" id="orgSearch" value="찾기" class="iuser_org_bt" id="orgPopup">
 							</td>
 							<th>상태</th>
 							<td>
