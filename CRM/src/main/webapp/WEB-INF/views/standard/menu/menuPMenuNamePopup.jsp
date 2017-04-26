@@ -51,11 +51,11 @@
 					<td style="width:13%;" id="menu_name">${menuList.menu_nm}</td>
 					<td style="width:17%;">${menuList.menu_url}</td>
 					<td style="width:10%;">${menuList.act_yn}</td>
-					<td style="width:12%;">${menuList.fst_reg_id_nm}</td>
+					<td style="width:12%;">${menuList.fst_reg_id}</td>
 					<td style="width:14%;">
 						<fmt:formatDate value="${menuList.fst_reg_dt}" pattern="yyyy-MM-dd"/>
 					</td>
-					<td style="width:12%;">${menuList.fin_mdfy_id_nm}</td>
+					<td style="width:12%;">${menuList.fin_mdfy_id}</td>
 					<td style="width:15%;">
 						<fmt:formatDate value="${menuList.fin_mdfy_dt}" pattern="yyyy-MM-dd"/>
 					</td>

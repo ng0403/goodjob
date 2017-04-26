@@ -43,7 +43,7 @@ $("#navimenu").css("font-weight", "bold");
 						<ul class="menutree_sub">					
 						<c:forEach var="sub" items="${menu.menuVO}">
 							<li>
-								<input type="checkbox" class="subCheck" value="${sub.menu_id}"/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck" value="${sub.menu_id}"/>
 								<c:if test="${sub.act_yn == 'Y'}">
 									<a class="sub_menu">${sub.menu_nm}</a>
 								</c:if>

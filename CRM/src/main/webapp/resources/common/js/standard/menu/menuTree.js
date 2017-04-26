@@ -346,7 +346,7 @@ function menuButtonEvent(ctx){
 					if(hasElement == 0){
 						$(node).append(
 							'<ul class="menutree_sub">'+					
-							'<li><input type="checkbox" class="subCheck">'+
+							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
 							' <a class="sub_menu">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 						);
@@ -386,7 +386,7 @@ function menuButtonEvent(ctx){
 						});
 					}else{
 						$(node).find('ul').append(				
-							'<li><input type="checkbox" class="subCheck">'+
+							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
 							' <a class="sub_menu">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 						);

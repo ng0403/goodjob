@@ -192,6 +192,7 @@ function menuDetailButtonEvent(ctx){
 						$('#menu_mode').val('waiting');
 						$('#menuInsertForm').each(function() {
 							this.reset();
+							naviOutput();
 				        });
 			        },
 			        error: function(request,status,error){
@@ -227,6 +228,7 @@ function menuDetailButtonEvent(ctx){
 			        		alert("올바르게 수정되지 않았습니다.");
 			        	}else{
 			        		alert("입력정보가 수정되었습니다.");
+							naviOutput();
 			        	}
 			        },
 			        error: function(){
@@ -260,6 +262,7 @@ function menuDetailButtonEvent(ctx){
 						$(tmp).prepend('<img class="no_menuFlag" src="'+ctx+'/resources/image/no_treebtn.png"/>');
 						$(tmp).children('input').prop('class','masterCheck');
 						$(tmp).children('a').prop('class','master_menu');
+						$(tmp).text().replace(/&nbsp;/g, '');
 						
 						$('#menuTree').last().append(tmp);
 						
@@ -318,6 +321,8 @@ function menuDetailButtonEvent(ctx){
 								$(masterNode).find('ul').append(tmp);
 							}
 							$(tmp).find('img').remove();
+							$.trim($(tmp));
+							$(tmp).prepend('&nbsp;&nbsp;&nbsp;&nbsp;');
 							$(tmp).children('input').prop('class','subCheck');
 							$(tmp).children('a').prop('class','sub_menu');
 						}else{	//자식노드가 있을 경우
