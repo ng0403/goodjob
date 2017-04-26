@@ -262,7 +262,9 @@ function menuDetailButtonEvent(ctx){
 						$(tmp).prepend('<img class="no_menuFlag" src="'+ctx+'/resources/image/no_treebtn.png"/>');
 						$(tmp).children('input').prop('class','masterCheck');
 						$(tmp).children('a').prop('class','master_menu');
-						$(tmp).text().replace(/&nbsp;/g, '');
+//						console.log($(tmp).html());
+						$(tmp).html($(tmp).html().replace(/&nbsp;/g, ''));
+//						console.log($(tmp).html().replace(/&nbsp;/g, ''));
 						
 						$('#menuTree').last().append(tmp);
 						
