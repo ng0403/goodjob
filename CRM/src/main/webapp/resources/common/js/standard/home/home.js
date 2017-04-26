@@ -41,8 +41,7 @@ function HomeDetailPop(ctx){
 //영업활동 상세보기 버튼
 function opptActResult(ctx){
 	$('#opptActBtn').click(function(event){
-		alert("상세보기 버튼 클릭");
-		Location.href=ctx + '/act';
+		location.href = ctx + '/act';
 	});
 }
 function contrResult(ctx){
