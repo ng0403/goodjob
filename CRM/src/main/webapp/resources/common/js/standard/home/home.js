@@ -4,6 +4,7 @@ $(function(){
 	atagfunc(ctx);
 	contrResult(ctx);
 	pipeLine(ctx);
+	opptActResult(ctx);
 });
 
 function HomeDetailPop(ctx){
@@ -37,7 +38,13 @@ function HomeDetailPop(ctx){
 	});
 	
 }
-
+//영업활동 상세보기 버튼
+function opptActResult(ctx){
+	$('#opptActBtn').click(function(event){
+		alert("상세보기 버튼 클릭");
+		Location.href=ctx + '/act';
+	});
+}
 function contrResult(ctx){
 	$('#estimResultBtn').click(function(event){
 		event.preventDefault();

@@ -96,6 +96,16 @@
 					) P
 				) SAL
 	</select>
+	<select id="homeActList" parameterType="java.util.Map" resultType="java.util.Map">
+			select a.sales_actvy_nm
+				,  TO_CHAR (a.strt_d , 'YYYY-MM-DD') strt_d
+				, TO_CHAR (a.end_d , 'YYYY-MM-DD') end_d
+				, b.cust_nm
+			from sales_activity a, customer b
+			where 1=1
+			and  a.cust_id=b.cust_id
+			and sysdate BETWEEN a.strt_d and a.end_d+ 0.99999
+	</select>
 
 	<!-- 리스트 개수 -->
 	<select id="actListTotalCount" resultType="int">

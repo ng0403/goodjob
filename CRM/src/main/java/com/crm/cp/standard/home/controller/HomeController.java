@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.service.contrService;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.data_board.service.Data_boardService;
+import com.crm.cp.standard.home.service.HomeService;
 import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
@@ -43,6 +45,9 @@ public class HomeController {
 	
 	@Autowired
 	contrService contrService;
+
+	@Autowired
+	HomeService homeService;
 	
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public String noticeMain(@ModelAttribute IuserVO user
@@ -102,13 +107,16 @@ public class HomeController {
 		System.out.println("접속자의 ip 주소 : " + ip);
 		String userId = session.getAttribute("user").toString();
 		List<OpptVO> opptList = opptService.opptList();
+		List<ActVO> opptActList = homeService.opptActList();
 		System.out.println("opptList" + opptList);
+		System.out.println("opptActList" + opptActList);
 		System.out.println("GET /Home : ");
 		
 		ModelAndView mov = new ModelAndView("home");
 		List<MenuVO> menuList = menuService.selectAll(session);
 		mov.addObject("menuList", menuList);
 		mov.addObject("opptList", opptList);
+		mov.addObject("opptActList", opptActList);
 		
 		return mov;
 		
