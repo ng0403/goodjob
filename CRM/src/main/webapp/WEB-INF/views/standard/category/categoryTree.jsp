@@ -43,7 +43,7 @@ $("#navicategory").css("font-weight", "bold");
 						<ul class="catetree_sub">					
 						<c:forEach var="sub" items="${cate.cateVO}">
 							<li>
-								<input type="checkbox" class="subCheck" value="${sub.cate_id}"/>
+								&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck" value="${sub.cate_id}"/>
 								<c:if test="${sub.act_yn == 'Y'}">
 									<a class="sub_cate">${sub.cate_nm}</a>
 								</c:if>

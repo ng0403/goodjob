@@ -277,7 +277,7 @@ function cateButtonEvent(ctx)
 					{
 						$(node).append(
 							'<ul class="catetree_sub">'+					
-							'<li><input type="checkbox" class="subCheck">'+
+							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
 							' <a class="sub_cate">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 						);
@@ -332,7 +332,7 @@ function cateButtonEvent(ctx)
 					else
 					{
 						$(node).find('ul').append(				
-							'<li><input type="checkbox" class="subCheck">'+
+							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
 							' <a class="sub_cate">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 						);

@@ -162,3 +162,15 @@ svg {
 	text-align: center;
 }
 
+/* Table 해더 고정 */ 
+.tableline #goaltable tbody tr:hover{
+	background-color:#ebe7e7;
+}
+
+.tableline #goaltable tbody{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	float: left;
+	width: 100%;
+	height: 200px;
+}
