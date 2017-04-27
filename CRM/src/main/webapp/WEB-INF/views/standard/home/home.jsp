@@ -112,7 +112,7 @@
 <!-- 		</div> -->
 <!-- 	  </div> -->
 	  
-	  <div id="left_home" style="height: 40%; margin-left: 10px;">
+	  <div id="right_home" style="height: 40%;">
 	   <div id="contract_title">
 	   ■ 영업기회
 	   <input type="button" class="detailPopbtn" id="oppt_detail" value="상세보기">
@@ -146,30 +146,30 @@
 <!-- 		</div> -->
 	  </div>
 	  
-	  <div id="right_home">
-	   <div id="contract_title">
-	   ■ 일정/약속
-	   <input type="button" class="detailPopbtn" id="schedule_detail" value="상세보기">
-	   </div>
-	   <div id="tableline">
-			<table id="goaltable" class="scheduletable">
-				<thead>
-					<tr>
-						<td>약속유형</td><td>약속내용</td><td>일자</td><td>담당부서</td><td>담당자</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${schedule.CD_NM}</td>
-						<td>${schedule.SCHEDULE_CONT}</td>
-						<td><fmt:formatDate value="${schedule.SCHEDULE_DT}" pattern="yyyy-MM-dd HH:mm"/></td>
-						<td>${schedule.ORG_NM}</td>
-						<td id="scheduleId">${schedule.FST_REG_ID_NM}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	  </div>
+<!-- 	  <div id="right_home"> -->
+<!-- 	   <div id="contract_title"> -->
+<!-- 	   ■ 일정/약속 -->
+<!-- 	   <input type="button" class="detailPopbtn" id="schedule_detail" value="상세보기"> -->
+<!-- 	   </div> -->
+<!-- 	   <div id="tableline"> -->
+<!-- 			<table id="goaltable" class="scheduletable"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<td>약속유형</td><td>약속내용</td><td>일자</td><td>담당부서</td><td>담당자</td> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<%-- 						<td>${schedule.CD_NM}</td> --%>
+<%-- 						<td>${schedule.SCHEDULE_CONT}</td> --%>
+<%-- 						<td><fmt:formatDate value="${schedule.SCHEDULE_DT}" pattern="yyyy-MM-dd HH:mm"/></td> --%>
+<%-- 						<td>${schedule.ORG_NM}</td> --%>
+<%-- 						<td id="scheduleId">${schedule.FST_REG_ID_NM}</td> --%>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	  </div> -->
 	  <div id="left_home">
 	   <div id="contract_title">
 	   ■ 공지사항
