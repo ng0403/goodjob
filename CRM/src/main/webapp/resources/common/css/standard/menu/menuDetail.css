@@ -192,6 +192,7 @@ select{
 	vertical-align: bottom;
     border-bottom: 2px solid #dddddd;
     padding: 8px;
+    padding-left:20px;
     background-color: #F2F2F2;
 }
     

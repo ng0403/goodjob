@@ -19,7 +19,7 @@
 <input type="hidden" id="ctx" value="${ctx}"/>
 	<div class="caption">■ 홈</div></div>
 	
-	<div id="left_home">
+	<div id="left_home" style="height: 40%;">
 	   <div id="contract_title">
 	   ■ 금일영업활동
 	   <input type="button" class="detailPopbtn" value="상세보기" id="opptActBtn">

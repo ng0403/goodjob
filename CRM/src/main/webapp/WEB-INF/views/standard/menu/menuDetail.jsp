@@ -91,18 +91,16 @@
 				<table id="mastertable">
 					<thead>
 						<tr>
-							<th scope="row"></th>
-							<th></th>
-							<td style="width: 10%;">권한ID</td>
-							<td style="width: 10%;">권한명</td>
 							<td style="width: 10%;">메뉴ID</td>
-							<td style="width: 10%;">메뉴명</td>
-							<td style="width: 7%;">생성</td>
-							<td style="width: 7%;">조회</td>
-							<td style="width: 7%;">수정</td>
-							<td style="width: 7%;">삭제</td>
+							<td style="width: 14%;">메뉴명</td>
+							<td style="width: 10%;">권한ID</td>
+							<td style="width: 14%;">권한명</td>
+							<td style="width: 5%;">생성</td>
+							<td style="width: 5%;">조회</td>
+							<td style="width: 5%;">수정</td>
+							<td style="width: 5%;">삭제</td>
 							<td style="width: 10%;">디폴트</td>
-							<td style="width: 10%;">최초사용자</td>
+							<td style="width: 10%;">최초등록자</td>
 							<td style="width: 12%;">최초등록일</td>
 						</tr>
 					</thead>
