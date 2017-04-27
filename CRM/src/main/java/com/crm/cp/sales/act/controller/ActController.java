@@ -127,7 +127,7 @@ public class ActController {
 			List<ActVO> actStatCd = actService.actStatCdList();
 			
 			
-			ModelAndView mov = new ModelAndView("actSaleDetail");
+			ModelAndView mov = new ModelAndView("/sales/act/act_detail");
 			
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
@@ -146,7 +146,7 @@ public class ActController {
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
 			
-			ModelAndView mov = new ModelAndView("actSaleAdd");
+			ModelAndView mov = new ModelAndView("/sales/act/act_detail");
 			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);

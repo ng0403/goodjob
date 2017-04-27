@@ -289,7 +289,8 @@ function orgAnckEvent(ctx){
 
 
 //트리클릭이벤트
-function orgButtonEvent(ctx){
+function orgButtonEvent(ctx)
+{
 	//추가버튼 누를시 이벤트
 	$('.bt_position').delegate('#orgAddBtn','click',function(){
 		var up_org_ud = $('.masterCheck').val();
@@ -302,13 +303,17 @@ function orgButtonEvent(ctx){
 		
 		if($('#org_mode').val() == 'waiting')
 		{
+			alert("if - #orgmode = waiting");
+			
 			if(org_checkTotalCount() == 0)		//체크가 하나도 안 되어 있는 경우( 상위 조직 생성 )
 			{
+				alert("if - org_checkTotalCount()");
+				
 				$('#org_mode').val('insert');
 				
 				if(!($('#tmpText').is(':focus')))
 				{
-					var topNode = $('#orgTree');
+					var topNode = $('#orgTree');	// orgTree.jsp -> ul - id
 					
 					topNode.append(
 							'<li><img class="no_f_orgFlag" src="'+ctx+'/resources/image/no_treebtn.png"/>'+
@@ -351,15 +356,7 @@ function orgButtonEvent(ctx){
 								$(this).parent().text('NewNode');
 							}
 							
-							/*$('.orgDetail').hide();
-							$('.orgtypeDetail').show();
-							$('#oorg').show();
-							$('#orgaddr').show();
-							$('#orgSubmitBtn').show();
-							$('#orgUpdateBtn').hide();
-							$('#orgResetBtn').show();
-							$('#org_type_id2').prop('disabled',true);
-							$('#org_type_id2').val('***');*/
+							alert("ROOT NODE");
 							
 							$('#org_name').val($(this).val());
 							$('.orgDetail').show();

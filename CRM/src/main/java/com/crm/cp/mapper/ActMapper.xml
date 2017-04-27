@@ -254,6 +254,18 @@
 		  	AND SA.ACT_YN = 'Y'
 	</select>
 	
+	<!-- Home 화면에 필요한 일일일정 -->
+	<select id="dailySchedule" resultType="com.crm.cp.sales.act.vo.ActVO">
+		SELECT
+			*
+		FROM
+			SALES_ACTIVITY
+		WHERE
+			TO_CAHR(STRT_D, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
+		AND
+			ACT_YN = 'Y'
+	</select>
+	
 	<!-- 영영활등 등록 -->
 	<update id="actInsert" parameterType="com.crm.cp.sales.act.vo.ActVO">
 	    INSERT INTO SALES_ACTIVITY(

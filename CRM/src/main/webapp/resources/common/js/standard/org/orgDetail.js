@@ -111,6 +111,11 @@ function orgResetBtn_funct(ctx){
 function orgDetailButtonEvent(ctx){
 	//등록버튼 누를시 이벤트
 	$('#orgSubmitBtn').click(function(){
+		
+		var t = org_checkTotalCount();
+		
+		alert(t);
+		
 		if($('#org_mode').val() == 'insert')
 		{
 			var flag=true;
@@ -457,41 +462,62 @@ function detaildisabled(){
 
 
 //트리 정보 재갱신
-function editTree(TreeList, TreeListTwo){
+function editTree(TreeList, TreeListTwo)
+{
 	var ctx = $('#ctx').val();
 	var list = "";
 	
-	for(var i=0; i<TreeList.length; i++){
+	for(var i=0; i<TreeList.length; i++)
+	{
 		list+='<li>';
+		
 		var two_count = 0;
-		for(var j=0; j<TreeListTwo.length; j++){
-			if(TreeList[i].org_id == TreeListTwo[j].up_org_id){
+		
+		for(var j=0; j<TreeListTwo.length; j++)
+		{
+			if(TreeList[i].org_id == TreeListTwo[j].up_org_id)
+			{
 				two_count++;
 			}
 		}
-		if(two_count==0){
+		
+		if(two_count==0)
+		{
 			list+='<img class="no_f_orgFlag" src="'+ctx+'/resources/image/no_treebtn.png"/>';
-		}else{
+		}
+		else
+		{
 			list+='<img class="f_orgFlag" src="'+ctx+'/resources/image/treebtn1.png"/>';
 		}
 		list+='<input type="checkbox" class="masterCheck" value="'+TreeList[i].org_id+'"/>';
 		
-		if(TreeList[i].act_yn == 'Y'){
+		if(TreeList[i].act_yn == 'Y')
+		{
 			list+='<a class="sub_org">'+TreeList[i].org_nm+'</a>';
-		}else{
+		}
+		else
+		{
 			list+='<a class="sub_org"><del>'+TreeList[i].org_nm+'</del></a>';
 		}
-		if(TreeListTwo.length != 0){
+		
+		if(TreeListTwo.length != 0)
+		{
 			list+='<ul class="orgtree_sub">';
-			for(var n=0; n<TreeListTwo.length; n++){
-				if(TreeList[i].org_id == TreeListTwo[n].up_org_id){
+			
+			for(var n=0; n<TreeListTwo.length; n++)
+			{
+				if(TreeList[i].org_id == TreeListTwo[n].up_org_id)
+				{
 					list+="<li class='hh'>";
 									
 					list+='<input type="checkbox" class="subCheck" value="'+TreeListTwo[n].org_id+'"/>';
 					
-					if(TreeListTwo[n].act_yn == 'Y'){
+					if(TreeListTwo[n].act_yn == 'Y')
+					{
 						list+='<a class="sub_org">'+TreeListTwo[n].org_nm+'</a>';
-					}else{
+					}
+					else
+					{
 						list+='<a class="sub_org"><del>'+TreeListTwo[n].org_nm+'</del></a>';
 					}
 								

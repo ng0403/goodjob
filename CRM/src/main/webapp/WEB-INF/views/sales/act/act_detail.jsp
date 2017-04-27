@@ -9,10 +9,9 @@
 <c:set var="actDetail" value="${actDetail}" />
 <c:set var="flg" value="${flg}" />
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>	
@@ -44,25 +43,6 @@
 	<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 	<div id="tabDiv1" class="tab1_content">
 		<form id="actTabForm" method="post">
-			<c:if test="${flg == 0}">
-				<div id="actAddBtnDiv" class="act_tab_bt_div">
-					<input type="button" id="actAddSaveBtn" value="저장" onclick="actInsert('${ctx}');" class="act_bt"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="act_bt" onclick="actAddCancelBt();"/>
-				</div>
-			</c:if>
-			
-			<c:if test="${flg == 1}">
-				<div id="actBaseBtnDiv" class="act_tab_bt_div">
-					<input type="button" id="actMdfBtn" value="편집" class="act_bt"/>
-					<input type="button" id="actDelBtn" value="삭제" class="act_bt" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="act_bt" onclick="actAddCancelBt();"/>
-				</div>
-				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
-					<input type="button" id="actMdfSaveBtn" value="저장" onclick="actModify('${ctx}');" class="act_bt"/>
-					<input type="button" id="actMdfCancelBtn" value="취소" class="act_bt" onclick="actMdfyCancelBt();"/>
-				</div>
-			</c:if>
-
 				<table id="act_tab_table">
 					<tbody id="act_tab_tbody">
 						<tr>
@@ -70,29 +50,30 @@
 							<td>
 								<c:if test="${flg == 1}">
 									<input type="hidden" id="sales_actvy_id" name="sales_actvy_id" value="${actDetail.sales_actvy_id}">
-							    	<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" value="${actDetail.sales_actvy_nm}" class="act_nm" style="ms-ime-mode: disabled;" readonly="readonly" />
+							    	<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" value="${actDetail.sales_actvy_nm}" class="int" style="ms-ime-mode: disabled;" readonly="readonly" />
 								</c:if>
 								<c:if test="${flg == 0}">
 									<input type="hidden" id="hsales_actvy_nm">
-							    	<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" value="${actDetail.sales_actvy_nm}" class="act_nm" style="background-color: white;"/>
+							    	<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" value="${actDetail.sales_actvy_nm}" class="int" style="background-color: white;"/>
 								</c:if>
 							    
 							</td>
+						</tr>
+						<tr>
 							<th>고객사</th>
 							<td>
 								<c:if test="${flg eq '1'}">
 									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
-								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly"> 
-								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer" style="display: none;" disabled="disabled">
+								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="int" readonly="readonly"> 
+								    <input type="button" name="customer" value="고객" class="int" id="customer" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
-								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="customer_txt" readonly="readonly" style="background-color: white;"> 
-								    <input type="button" name="customer" value="고객" class="act_cus_tab_bt" id="customer">
+								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="int" readonly="readonly" style="background-color: white;">
+								    <input type="button" name="customer" value="고객" class="cust_act_btn" id="customer">
 								</c:if>
-							    
 							</td>
 			     		</tr>
 						<tr>
@@ -101,16 +82,18 @@
 								<c:if test="${flg eq '1'}">
 									<input type="hidden" id="hsales_oppt_id">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
-							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly"> 
+							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="int_act" readonly="readonly"> 
 							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
-							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="oppt_txt_nm" readonly="readonly" style="background-color: white;"> 
-							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" >
+							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="int_act" readonly="readonly" style="background-color: white;"> 
+							    	<input type="button" name="act_opp" value="영업기회" class="cust_act_btn" id="act_opp_nm" >
 								</c:if>
 							    	
 							</td>
+						</tr>
+						<tr>
 							<th>상태</th>
 							<td>
 								<c:if test="${flg eq '1'}">
@@ -160,7 +143,9 @@
 							 	    <input type="radio" id = "actdiv_1" name="sales_actvy_div_cd" value="0001" onclick="actDivCheck()"/>할일&nbsp; 
 									<input type="radio" id = "actdiv_2" name="sales_actvy_div_cd" value="0002" onclick="actDivCheck()"/>영업기회
 								</c:if>
-							</td>	
+							</td>
+						</tr>
+						<tr>
 							<th>활동유형</th>
 							<td>
 								<c:if test="${flg eq '1'}">
@@ -196,7 +181,7 @@
 							
 							<c:if test="${flg eq '1'}">
 								<input type="hidden" id="hstrt_d">
-								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="start_text" readonly="readonly">
+								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="int_act" readonly="readonly">
 								<input type="hidden" id="hstrt_t_h">
 								
 								<select name="strt_t_h" id="strt_t_h" class="start_hour" disabled="disabled">
@@ -228,7 +213,7 @@
 							</c:if>
 							<c:if test="${flg eq '0'}">
 								<input type="hidden" id="hstrt_d">
-								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="start_text" readonly="readonly" style="background-color: white;">
+								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="int_act" readonly="readonly" style="background-color: white;">
 								<input type="hidden" id="hstrt_t_h">
 								<select name="strt_t_h" id="strt_t_h" class="start_hour">
 									<option value="0" style="text-align: center;">==선택==</option>
@@ -272,24 +257,13 @@
 							</c:if>
 								
 							</td>
-							<th rowspan="2">메모</th>
-							<td rowspan="2" colspan="3">
-							    <input type="hidden" id="hmemo">
-							    <c:if test="${flg eq '1'}">
-							    	<textarea rows="5" cols="59" name="memo" id="memo" class="act_memo" readonly="readonly"></textarea>
-							    </c:if>
-							    <c:if test="${flg eq '0'}">
-							    	<textarea rows="5" cols="59" name="memo" id="memo" class="act_memo" style="background-color: white;"></textarea>
-							    </c:if>
-							</td>
 						</tr>
-						
 						<tr>
 							<th>종료일자 / 시간</th>
 							<td>
 								<c:if test="${flg eq '1'}">
 									<input type="hidden" id="hend_d">
-									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="end_text" readonly="readonly">
+									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="int_act" readonly="readonly">
 									<input type="hidden" id="hend_t_h">
 									
 									<select name="end_t_h" id="end_t_h" class="end_hour" disabled="disabled">
@@ -320,7 +294,7 @@
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="hend_d">
-									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="end_text" readonly="readonly" style="background-color: white;">
+									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="int_act" readonly="readonly" style="background-color: white;">
 									<input type="hidden" id="hend_t_h">
 									<select name="end_t_h" id="end_t_h" class="end_hour">
 										<option value="0" style="text-align: center;">==선택==</option>
@@ -365,9 +339,40 @@
 									
 							</td>
 						</tr>
+						<tr>
+							<th rowspan="2">메모</th>
+							<td rowspan="2" colspan="3">
+							    <input type="hidden" id="hmemo">
+							    <c:if test="${flg eq '1'}">
+							    	<textarea rows="5" cols="59" name="memo" id="memo" class="act_memo" readonly="readonly"></textarea>
+							    </c:if>
+							    <c:if test="${flg eq '0'}">
+							    	<textarea rows="5" cols="59" name="memo" id="memo" class="act_memo" style="background-color: white;"></textarea>
+							    </c:if>
+							</td>
+						</tr>
 					</tbody>
 				</table>
-			</form>	
+				
+			<c:if test="${flg == 0}">
+				<div id="actAddBtnDiv" class="act_tab_bt_div">
+					<input type="button" id="actAddSaveBtn" value="저장" onclick="actInsert('${ctx}');" class="cust_oppt_btn"/>
+					<input type="button" id="actAddCancelBtn" value="취소" class="cust_oppt_btn" onclick="actAddCancelBt();"/>
+				</div>
+			</c:if>
+			
+			<c:if test="${flg == 1}">
+				<div id="actBaseBtnDiv" class="act_tab_bt_div">
+					<input type="button" id="actMdfBtn" value="편집" class="cust_oppt_btn"/>
+					<input type="button" id="actDelBtn" value="삭제" class="cust_oppt_btn" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
+					<input type="button" id="actAddCancelBtn" value="취소" class="cust_oppt_btn" onclick="actAddCancelBt();"/>
+				</div>
+				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
+					<input type="button" id="actMdfSaveBtn" value="저장" onclick="actModify('${ctx}');" class="cust_oppt_btn"/>
+					<input type="button" id="actMdfCancelBtn" value="취소" class="cust_oppt_btn" onclick="actMdfyCancelBt();"/>
+				</div>
+			</c:if>
+		</form>	
 	</div>
 
 </body>

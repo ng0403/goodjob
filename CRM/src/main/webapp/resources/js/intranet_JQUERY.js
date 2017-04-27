@@ -76,7 +76,8 @@ $(function(){
 	     * 페이지 이동으로 변경.
 	     * */
 	    dayClick: function(date) {
-	    	location.href = ctx + '/actDetail';
+	    	window.open(ctx + '/actDetail','newwindow2','width=650, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	    	//location.href = ctx + '/actDetail';
 		
 	    },
 	    /**
@@ -85,7 +86,8 @@ $(function(){
 	    eventClick: function(data) {
 	    	if(data.title)
 	    	{
-	    		location.href = ctx + '/actDetail?sales_actvy_id='+data.id;
+	    		window.open(ctx + '/actDetail?sales_actvy_id='+data.id,'newwindow2','width=650, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	    		//location.href = ctx + '/actDetail?sales_actvy_id='+data.id;
 	    	}
 	    }
 	});
