@@ -24,7 +24,7 @@ $(function(){
 });
 var count = 0;
 var schAddFlg = 0;
-var i = 0;
+var otllist;
 
 //영업기회 검색 조건 추가
 function addForm(){
@@ -32,20 +32,20 @@ function addForm(){
 	    var addedFormDiv = document.getElementById("search_div");
 	    var str = "";
 	    str+="<br><label for='scompNam' class='tel_label_list'>"+'영업기회명'+"</label>";
-	    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+i+"' name='ssales_oppt_nm"+i+"' autofocus='autofocus' value="+ssales_oppt_nm+">";
+	    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value="+ssales_oppt_nm+">";
 	    str+="<label for='inputPassword1' class='tel_label_list' >"+'고객명'+"</label>";
-	    str+="<input type='text' class='tel_search' id='scust_nm"+i+"' name='scust_nm"+i+"' value="+scust_nm+">";
-	    str+="<input type='hidden' class='tel_search' id='scust_id"+i+"' name='scust_id"+i+"' value="+scust_id+">";
+	    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value="+scust_nm+">";
+	    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value="+scust_id+">";
 	    str+="<input type='button' class='btn-success-tel' id='searchCustomer' value='고객'>";
 	    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label'>"+'영업단계'+"</label>";
-	    str+="<select class='tel_label_list' name='ssales_lev_cd"+i+"' id='ssales_lev_cd_select"+i+"' style='height: 25px;'>";
+	    str+="<select class='tel_label_list' name='ssales_lev_cd"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px;'>";
 	    str+="<option value=''>"+'선택'+"</option>";
-	    str+="<c:forEach items='otllist' var='list'>";
+	    str+="<c:forEach items="+otllist+" var='list'>";
 	    str+="<option value="+ +" >"+ +"</option>";
 	    str+="</c:forEach>";
 	    str+="</select>";
 	    str+="<label for='inputPassword1' class='tel_label_list'>"+'가능성(%)'+"</label>";
-	    str+="<select class='tel_label_list' name='spsblty_rate' id='spsblty_rate_select' style='height: 25px;' >";
+	    str+="<select class='tel_label_list' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='height: 25px;' >";
 	    str+="<option value=''>"+'선택'+"</option>";
 	    str+="<option value='10'>"+'10'+"</option>";
 	    str+="<option value='20'>"+'20'+"</option>";
