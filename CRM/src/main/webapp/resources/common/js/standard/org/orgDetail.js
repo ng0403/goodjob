@@ -112,10 +112,6 @@ function orgDetailButtonEvent(ctx){
 	//등록버튼 누를시 이벤트
 	$('#orgSubmitBtn').click(function(){
 		
-		var t = org_checkTotalCount();
-		
-		alert(t);
-		
 		if($('#org_mode').val() == 'insert')
 		{
 			var flag=true;

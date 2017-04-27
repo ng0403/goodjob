@@ -82,27 +82,57 @@ public class OrganizationServiceImpl implements OrganizationService {
 		}
 		else
 		{
+			System.out.println("up_org_id : " + data.get("up_org_id"));
+			System.out.println("org_flag : " + data.get("org_flag"));
 			System.out.println("insertOrg - else (org_flag != org_type)");
 			
-			dto.setOrg_nm(data.get("org_nm"));
-			dto.setUp_org_id(data.get("up_org_id"));
-			dto.setOrg_type_id(data.get("org_type_id"));
-			dto.setRep_emp_id(data.get("rep_emp_id"));
-			dto.setOrg_lev_cd(data.get("org_lev_cd"));
-			dto.setPh1(data.get("phone_no1"));
-			dto.setPh2(data.get("phone_no2"));
-			dto.setPh3(data.get("phone_no3"));
-			dto.setFax_ph1(data.get("fax_no1"));
-			dto.setFax_ph2(data.get("fax_no2"));
-			dto.setFax_ph3(data.get("fax_no3"));
-			dto.setZip_cd(data.get("zip_cd"));
-			dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
-			dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
-			dto.setAct_yn(data.get("act_yn"));
+			if(data.get("up_org_id").equals("G***"))
+			{
+				Object up_org_id = dao.selectOne();
+				
+				System.out.println("up_org_id : " + up_org_id);
+				System.out.println("같음");
+				
+				dto.setUp_org_id((String)up_org_id);
+				dto.setOrg_nm(data.get("org_nm"));
+				dto.setOrg_type_id(data.get("org_type_id"));
+				dto.setRep_emp_id(data.get("rep_emp_id"));
+				dto.setOrg_lev_cd(data.get("org_lev_cd"));
+				dto.setPh1(data.get("phone_no1"));
+				dto.setPh2(data.get("phone_no2"));
+				dto.setPh3(data.get("phone_no3"));
+				dto.setFax_ph1(data.get("fax_no1"));
+				dto.setFax_ph2(data.get("fax_no2"));
+				dto.setFax_ph3(data.get("fax_no3"));
+				dto.setZip_cd(data.get("zip_cd"));
+				dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
+				dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
+				dto.setAct_yn(data.get("act_yn"));
+			}
+			else
+			{
+				dto.setOrg_nm(data.get("org_nm"));
+				dto.setUp_org_id(data.get("up_org_id"));
+				dto.setOrg_type_id(data.get("org_type_id"));
+				dto.setRep_emp_id(data.get("rep_emp_id"));
+				dto.setOrg_lev_cd(data.get("org_lev_cd"));
+				dto.setPh1(data.get("phone_no1"));
+				dto.setPh2(data.get("phone_no2"));
+				dto.setPh3(data.get("phone_no3"));
+				dto.setFax_ph1(data.get("fax_no1"));
+				dto.setFax_ph2(data.get("fax_no2"));
+				dto.setFax_ph3(data.get("fax_no3"));
+				dto.setZip_cd(data.get("zip_cd"));
+				dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
+				dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
+				dto.setAct_yn(data.get("act_yn"));
+			}
+			
 			
 			if(dto.getUp_org_id().equals("G***"))
 			{
 				System.out.println("insertOrg - else (org_flag != org_type) - if");
+				System.out.println("값 유지 되나??? : " + dto);
 				
 				int ok = dao.insert("organization.pinsert", dto);
 				result.put("ok", ok);
@@ -201,8 +231,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 		
 		@SuppressWarnings("unchecked")
 		List<String> master = (List<String>) data.get("master");
-		for (String org_type_id : master) {
-			result = dao.update("organization.orgtypeDelete", org_type_id);
+		for (String m_org_id : master) {
+			System.out.println("master delete : " + m_org_id);
+			result = dao.update("organization.orgtypeDelete", m_org_id);
 		}
 		
 		return result;

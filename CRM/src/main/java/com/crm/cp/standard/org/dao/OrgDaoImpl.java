@@ -35,7 +35,24 @@ public class OrgDaoImpl implements OrgDao {
 			e.printStackTrace();
 			return null;
 		}
-
+	}
+	
+	@Override
+	public Object selectOne() {
+		
+		try {
+			
+			Object result = sqlSession.selectOne("indexOrgId");
+			
+			System.out.println("dat - org_id index : " + result);
+			
+			return result;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	@Override

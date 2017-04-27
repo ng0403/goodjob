@@ -116,6 +116,16 @@
 		</if>
 	</select>
 	
+	<!--  -->
+	<select id="indexOrgId" resultType="String">
+		SELECT /*+INDEX_DESC(ORGANIZATION PK_ORGANIZATION)*/
+   			DECODE(MAX(ORG_ID), NULL, 'ORG0000001', 'ORG' || lpad( (SUBSTR( MAX( ORG_ID ), 4, 7 ) + 1), 7, 0)) ORG_ID
+		FROM 
+    		ORGANIZATION
+		WHERE 
+    		ROWNUM=1
+	</select>
+	
 	<update id="typeinsert" parameterType="com.crm.cp.standard.org.vo.OrganizationVO">
 		INSERT INTO ORGANIZATION_TYPE(
 			ORG_TYPE_NM,
@@ -280,10 +290,10 @@
 	</update>
 	
 	<update id="orgtypeDelete" parameterType="String">
-		UPDATE organization_type
+		UPDATE organization
 	    SET 
 	    	ACT_YN = 'N'
 	    WHERE
-	    	ORG_TYPE_ID = #{org_type_id}
+	    	ORG_ID = #{m_org_id}
 	</update>
 </mapper>

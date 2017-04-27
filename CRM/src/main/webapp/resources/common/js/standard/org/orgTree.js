@@ -53,7 +53,8 @@ function orgTree(ctx){
 }
 
 //각 메뉴의 a태그를 누를시 이벤트
-function orgAnckEvent(ctx){
+function orgAnckEvent(ctx)
+{
 		//조직유형의 a태그 누를시
 		$('#orgTree').delegate('.master_org','click',function(){
 			if($('#org_mode').val() == 'waiting'){
@@ -302,13 +303,9 @@ function orgButtonEvent(ctx)
         });
 		
 		if($('#org_mode').val() == 'waiting')
-		{
-			alert("if - #orgmode = waiting");
 			
-			if(org_checkTotalCount() == 0)		//체크가 하나도 안 되어 있는 경우( 상위 조직 생성 )
+			if(org_checkTotalCount() == 0)		// 체크가 하나도 안 되어 있는 경우( 상위 조직 생성 )
 			{
-				alert("if - org_checkTotalCount()");
-				
 				$('#org_mode').val('insert');
 				
 				if(!($('#tmpText').is(':focus')))
@@ -356,8 +353,6 @@ function orgButtonEvent(ctx)
 								$(this).parent().text('NewNode');
 							}
 							
-							alert("ROOT NODE");
-							
 							$('#org_name').val($(this).val());
 							$('.orgDetail').show();
 							$('.orgtypeDetail').hide();
@@ -374,7 +369,6 @@ function orgButtonEvent(ctx)
 							$('#org_type_id').val('ORT01');
 							$('#code').prop('disabled',true);
 							$('#code').val('0001');
-							
 							
 						}
 						else
@@ -398,7 +392,7 @@ function orgButtonEvent(ctx)
 					if($(org_checkedNode('masterCheck')).attr('class') == 'masterCheck')	//조직유형에 체크될 경우
 					{
 						alert("조직유형에 체크될 경우");
-						
+							
 						if(!($('#tmpText').is(':focus')))
 						{
 							var node = $(org_checkedNode('masterCheck')).parent();

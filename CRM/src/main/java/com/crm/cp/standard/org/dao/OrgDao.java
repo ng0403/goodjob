@@ -17,6 +17,8 @@ public interface OrgDao {
 	public Map<String, Object> selectOne(String root);
 
 	public Object selectOne(String root, Object obj);
+	
+	public Object selectOne();
 
 	public Map<String, Object> selectOnes(String root, Object obj);
 
