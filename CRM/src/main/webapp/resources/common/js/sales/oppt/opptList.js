@@ -20,7 +20,71 @@ $(function(){
 //	tabClick(); // tab 클릭시 checked 설정 및 tab에 맞는 함수 실행
 	opptAllCheck(); //영업기회 all check 함수
 	searchCustcompListPopup();
+//	addForm();
 });
+var count = 0;
+var schAddFlg = 0;
+var i = 0;
+
+
+function addForm(){
+	if(count<2){
+	    var addedFormDiv = document.getElementById("search_div");
+	    var str = "";
+	    str+="<br><label for='scompNam' class='tel_label_list'>"+'영업기회명'+"</label>";
+	    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+i+"' name='ssales_oppt_nm"+i+"' autofocus='autofocus' value="+ssales_oppt_nm+">";
+	    str+="<label for='inputPassword1' class='tel_label_list' >"+'고객명'+"</label>";
+	    str+="<input type='text' class='tel_search' id='scust_nm"+i+"' name='scust_nm"+i+"' value="+scust_nm+">";
+	    str+="<input type='hidden' class='tel_search' id='scust_id"+i+"' name='scust_id"+i+"' value="+scust_id+">";
+	    str+="<input type='button' class='btn-success-tel' id='searchCustomer' value='고객'>";
+	    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label'>"+'영업단계'+"</label>";
+	    str+="<select class='tel_label_list' name='ssales_lev_cd"+i+"' id='ssales_lev_cd_select"+i+"' style='height: 25px;'>";
+	    str+="<option value=''>"+'선택'+"</option>";
+	    str+="<c:forEach items='otllist' var='list'>";
+	    str+="<option value="+ +" >"+ +"</option>";
+	    str+="</c:forEach>";
+	    str+="</select>";
+	    str+="<label for='inputPassword1' class='tel_label_list'>"+'가능성(%)'+"</label>";
+	    str+="<select class='tel_label_list' name='spsblty_rate' id='spsblty_rate_select' style='height: 25px;' >";
+	    str+="<option value=''>"+'선택'+"</option>";
+	    str+="<option value='10'>"+'10'+"</option>";
+	    str+="<option value='20'>"+'20'+"</option>";
+	    str+="<option value='30'>"+'30'+"</option>";
+	    str+="<option value='40'>"+'40'+"</option>";
+	    str+="<option value='50'>"+'50'+"</option>";
+	    str+="<option value='60'>"+'60'+"</option>";
+	    str+="<option value='70'>"+'70'+"</option>";
+	    str+="<option value='80'>"+'80'+"</option>";
+	    str+="<option value='90'>"+'90'+"</option>";
+	    str+="<option value='100'>"+'100'+"</option>";
+	    str+="</select>";
+	    str+="<label onclick='delForm();' style='margin-left:3px;'>"+'X'+"</label>";
+	}else{
+		alert("검색 조건은 최대 3개 입니다.");
+	}
+    // 추가할 폼(에 들어갈 HTML)
+   
+    var addedDiv = document.createElement("addedSch"); // 폼 생성
+    addedDiv.id = "added_"+count; // 폼 Div에 ID 부여 (삭제를 위해)
+    addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
+    addedFormDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
+
+    count++;
+    document.baseForm.count.value=count;
+    // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
+}
+
+function delForm(){
+    var addedFormDiv = document.getElementById("search_div");
+
+    if(count >=1){ // 현재 폼이 두개 이상이면
+               var addedDiv = document.getElementById("added_"+(--count));
+               // 마지막으로 생성된 폼의 ID를 통해 Div객체를 가져옴
+               addedFormDiv.removeChild(addedDiv); // 폼 삭제 
+    }else{ // 마지막 폼만 남아있다면
+               document.baseForm.reset(); // 폼 내용 삭제
+    }
+}
 
 function tabClick(){
 	
