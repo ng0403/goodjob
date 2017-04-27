@@ -22,9 +22,9 @@ $(function(){
 	searchCustcompListPopup();
 //	addForm();
 });
-var count = 0;
 var schAddFlg = 0;
 var otllist;
+var count = 0;
 
 //영업기회 검색 조건 추가
 function addForm(){
@@ -32,13 +32,13 @@ function addForm(){
 	    var addedFormDiv = document.getElementById("search_div");
 	    var str = "";
 	    str+="<br><label for='scompNam' class='tel_label_list'>"+'영업기회명'+"</label>";
-	    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value="+ssales_oppt_nm+">";
+	    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
 	    str+="<label for='inputPassword1' class='tel_label_list' >"+'고객명'+"</label>";
-	    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value="+scust_nm+">";
-	    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value="+scust_id+">";
+	    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value=''>";
+	    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 	    str+="<input type='button' class='btn-success-tel' id='searchCustomer' value='고객'>";
 	    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label'>"+'영업단계'+"</label>";
-	    str+="<select class='tel_label_list' name='ssales_lev_cd"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px;'>";
+	    str+="<select class='tel_label_list' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px;'>";
 	    str+="<option value=''>"+'선택'+"</option>";
 	    str+="<c:forEach items="+otllist+" var='list'>";
 	    str+="<option value="+ +" >"+ +"</option>";
@@ -268,7 +268,20 @@ function opportunityList(page){
 	$.ajax({
 		type : 'post',
 		url : ctx + '/opptajax',
-		data : {pageNum : page, ssales_oppt_nm : $("#ssales_oppt_nm").val(), scust_id : $("#scust_id").val(), ssales_lev_cd : $("#ssales_lev_cd_select").val(), spsblty_rate : $("#spsblty_rate_select").val()},
+		data : {pageNum : page
+			, ssales_oppt_nm : $("#ssales_oppt_nm").val()
+			, ssales_oppt_nm0 : $("#ssales_oppt_nm0").val()
+			, ssales_oppt_nm1 : $("#ssales_oppt_nm1").val()
+			, scust_id : $("#scust_id").val()
+			, scust_id0 : $("#scust_id0").val()
+			, scust_id1 : $("#scust_id1").val()
+			, ssales_lev_cd : $("#ssales_lev_cd_select").val()
+			, ssales_lev_cd0 : $("#ssales_lev_cd_select0").val()
+			, ssales_lev_cd1 : $("#ssales_lev_cd_select1").val()
+			, spsblty_rate : $("#spsblty_rate_select").val()
+			, spsblty_rate0 : $("#spsblty_rate_select0").val()
+			, spsblty_rate1 : $("#spsblty_rate_select1").val()
+		},
 		datatype : 'json',
 		success:function(result){
 			//리스트 출력 시 버튼 상태 설정

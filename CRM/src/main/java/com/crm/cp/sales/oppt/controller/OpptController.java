@@ -230,9 +230,17 @@ public class OpptController {
 		// 영업단계 코드 가져오기
 		List<OpptVO> otllist = service.opptOtlList();
 
+		System.out.println(map.get("ssales_lev_cd"));
 		// 한글 검색 인코더 변환
 		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+		map.put("ssales_oppt_nm0", map.get("ssales_oppt_nm0"));
+		map.put("ssales_oppt_nm1", map.get("ssales_oppt_nm1"));
 		map.put("scust_nm", map.get("scust_nm"));
+		map.put("scust_nm0", map.get("scust_nm0"));
+		map.put("scust_nm1", map.get("scust_nm1"));
+		map.put("ssales_lev_cd", map.get("ssales_lev_cd"));
+		map.put("ssales_lev_cd0", map.get("ssales_lev_cd0"));
+		map.put("ssales_lev_cd1", map.get("ssales_lev_cd1"));
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
 		map.put("startRow", page.getStartRow() + "");

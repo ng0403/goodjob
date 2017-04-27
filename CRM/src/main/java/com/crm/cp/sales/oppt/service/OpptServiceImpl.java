@@ -26,7 +26,7 @@ public class OpptServiceImpl implements OpptService {
 	//영업기회 리스트 출력(사용)
 	@Override
 	public List<OpptVO> opptList(Map<String, String> map) {
-		// TODO Auto-generated method stub
+		System.out.println("검색어 Map : " + map);
 		return dao.opptList(map); 
 	}
 	//홈화면 영업기회 리스트 출력

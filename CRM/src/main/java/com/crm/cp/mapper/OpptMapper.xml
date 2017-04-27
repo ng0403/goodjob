@@ -32,18 +32,49 @@
 		where 1=1 
 		and a.cust_id=c.cust_id 
 		and a.act_yn='Y'
-		<if test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
-			and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
-		</if>
-		<if test="scust_id !=null and scust_id !=''">
-			and a.cust_id = #{scust_id}
-		</if>
-		<if test="ssales_lev_cd !=null and ssales_lev_cd !=''">
-			and a.sales_lev_cd = #{ssales_lev_cd}
-		</if>
-		<if test="spsblty_rate !=null and spsblty_rate !=''">
-			and a.psblty_rate=#{spsblty_rate}
-		</if>
+		<choose>
+			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 != null and ssales_oppt_nm0 != '' and ssales_oppt_nm1 != null and ssales_oppt_nm1 != ''">
+				and (a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+				or a.sales_oppt_nm like '%'||#{ssales_oppt_nm0}||'%'
+				or a.sales_oppt_nm like '%'||#{ssales_oppt_nm1}||'%')
+			</when>
+			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 != null and ssales_oppt_nm0 != ''">
+				and (a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+				or a.sales_oppt_nm like '%'||#{ssales_oppt_nm0}||'%')
+			</when>
+			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
+				and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+			</when>
+		</choose>
+		<choose>
+			<when test="scust_id !=null and scust_id !='' and scust_id0 != null and scust_id0 != '' and scust_id1 != null and scust_id1 != ''">
+				and (a.cust_id = #{scust_id}
+				or a.cust_id = #{scust_id0}
+				or a.cust_id = #{scust_id1})
+			</when>
+			<when test="scust_id !=null and scust_id !='' and scust_id0 != null and scust_id0 != ''">
+				and (a.cust_id = #{scust_id}
+				or a.cust_id = #{scust_id0})
+			</when>
+			<when test="scust_id !=null and scust_id !='' ">
+				and a.cust_id = #{scust_id}
+			</when>
+		</choose>
+		<choose>
+			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' and ssales_lev_cd0 != null and ssales_lev_cd0 != '' and ssales_lev_cd1 != null and ssales_lev_cd1 != ''">
+				and (a.ssales_lev_cd = #{ssales_lev_cd}
+				or a.sales_lev_cd = #{ssales_lev_cd0}
+				or a.sales_lev_cd = #{ssales_lev_cd1})
+			</when>
+			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' and ssales_lev_cd0 != null and ssales_lev_cd0 != ''">
+				and (a.sales_lev_cd = #{ssales_lev_cd}
+				or a.sales_lev_cd = #{ssales_lev_cd1})
+			</when>
+			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' ">
+				and a.sales_lev_cd = #{ssales_lev_cd}
+			</when>
+		</choose>
+		
 		order by a.fst_reg_id desc
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
