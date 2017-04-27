@@ -26,7 +26,7 @@ var count = 0;
 var schAddFlg = 0;
 var i = 0;
 
-
+//영업기회 검색 조건 추가
 function addForm(){
 	if(count<2){
 	    var addedFormDiv = document.getElementById("search_div");
@@ -73,7 +73,7 @@ function addForm(){
     document.baseForm.count.value=count;
     // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
-
+//영업기회 검색 조건 삭제
 function delForm(){
     var addedFormDiv = document.getElementById("search_div");
 
