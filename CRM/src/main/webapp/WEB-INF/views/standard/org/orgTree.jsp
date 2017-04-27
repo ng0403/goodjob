@@ -56,7 +56,7 @@ $("#naviorg").css("font-weight", "bold");
 							<c:if test="${treeOne.org_id == sub.up_org_id}">
 								<li class='hh'>
 																										
-									<input type="checkbox" class="subCheck" value="${sub.org_id}"/>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck" value="${sub.org_id}"/>
 									<c:if test="${sub.act_yn == 'Y'}">
 										<a class="sub_org">${sub.org_nm}</a>
 									</c:if>

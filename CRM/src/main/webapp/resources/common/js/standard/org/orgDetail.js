@@ -506,7 +506,7 @@ function editTree(TreeList, TreeListTwo)
 				{
 					list+="<li class='hh'>";
 									
-					list+='<input type="checkbox" class="subCheck" value="'+TreeListTwo[n].org_id+'"/>';
+					list+='&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck" value="'+TreeListTwo[n].org_id+'"/>';
 					
 					if(TreeListTwo[n].act_yn == 'Y')
 					{

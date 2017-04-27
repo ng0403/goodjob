@@ -303,8 +303,8 @@ function orgButtonEvent(ctx)
         });
 		
 		if($('#org_mode').val() == 'waiting')
-			
-			if(org_checkTotalCount() == 0)		// 체크가 하나도 안 되어 있는 경우( 상위 조직 생성 )
+		{
+			if(org_checkTotalCount() == 0)		//체크가 하나도 안 되어 있는 경우( 상위 조직 생성 )
 			{
 				$('#org_mode').val('insert');
 				
@@ -370,6 +370,7 @@ function orgButtonEvent(ctx)
 							$('#code').prop('disabled',true);
 							$('#code').val('0001');
 							
+							
 						}
 						else
 						{
@@ -380,7 +381,6 @@ function orgButtonEvent(ctx)
 			}
 			else if(org_checkTotalCount() == 1)		// 하위 조직 생성할 경우. 
 			{
-				alert("하위 조직 생성한 경우");
 				if($(org_All_checkedNode()).attr('class') == 'subCheck')
 				{
 					alert('더이상 하위객체를 생성할 수 없습니다.');
@@ -391,8 +391,6 @@ function orgButtonEvent(ctx)
 	
 					if($(org_checkedNode('masterCheck')).attr('class') == 'masterCheck')	//조직유형에 체크될 경우
 					{
-						alert("조직유형에 체크될 경우");
-							
 						if(!($('#tmpText').is(':focus')))
 						{
 							var node = $(org_checkedNode('masterCheck')).parent();
@@ -402,7 +400,7 @@ function orgButtonEvent(ctx)
 							{
 								$(node).append(
 									'<ul class="orgtree_sub">'+					
-									'<li><input type="checkbox" class="subCheck">'+
+									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
 									' <a class="sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
@@ -410,7 +408,7 @@ function orgButtonEvent(ctx)
 							else	//조직유형 밑에 조직명이 있을 경우
 							{
 								$(node).children('ul').append(				
-									'<li><input type="checkbox" class="subCheck">'+
+									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
 									' <a class="sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 								);
@@ -486,7 +484,6 @@ function orgButtonEvent(ctx)
 					}
 					else if($(org_checkedNode('subCheck')).attr('class') == 'subCheck') 	//부서에 처크된 경우
 					{
-						
 						if(!($('#tmpText').is(':focus'))){
 							var node = $(org_checkedNode('subCheck')).parent();
 							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
@@ -494,7 +491,7 @@ function orgButtonEvent(ctx)
 							if(hasElement == 0){	//상위조직에 하위조직이 없을 경우
 								$(node).append(
 									'<ul class="orgtree_super_sub">'+					
-									'<li><input type="checkbox" class="ssubCheck">'+
+									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="ssubCheck">'+
 									' <a class="super_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
@@ -502,7 +499,7 @@ function orgButtonEvent(ctx)
 							else	//상위조직에 하위조직이 있을 경우
 							{	
 								$(node).children('ul').append(				
-									'<li><input type="checkbox" class="ssubCheck">'+
+									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="ssubCheck">'+
 									' <a class="super_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 								);
@@ -584,7 +581,7 @@ function orgButtonEvent(ctx)
 							{
 								$(node).append(
 									'<ul class="orgtree_super_ssub">'+					
-									'<li><input type="checkbox" class="s_ssubCheck">'+
+									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="s_ssubCheck">'+
 									' <a class="super_s_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
@@ -592,7 +589,7 @@ function orgButtonEvent(ctx)
 							else		//상위조직에 하위조직이 있을 경우
 							{
 								$(node).children('ul').append(				
-									'<li><input type="checkbox" class="s_ssubCheck">'+
+									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="s_ssubCheck">'+
 									' <a class="super_s_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 								);
