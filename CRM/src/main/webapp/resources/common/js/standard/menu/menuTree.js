@@ -175,6 +175,7 @@ function menuDelete(ctx,list){
         dataType:'json',
         success: function(result){
         	okFlag = result;
+        	naviOutput();
         },
         error: function(){
             alert("error");

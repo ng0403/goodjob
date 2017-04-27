@@ -38,16 +38,16 @@ function clickEvent(ctx){
 					fst_reg_dt = dateFormat(Number(result[i].fst_reg_dt));
 					
 	        		var data = '<tr>'+
+	        		'<td style="width: 10%;">'+result[i].menu_id+'</td>'+
+					'<td style="width: 14%;">'+result[i].menu_nm+'</td>'+
 					'<td style="width: 10%;">'+result[i].auth_id+'</td>'+
-					'<td style="width: 10%;">'+result[i].auth_nm+'</td>'+
-					'<td style="width: 10%;">'+result[i].menu_id+'</td>'+
-					'<td style="width: 10%;">'+result[i].menu_nm+'</td>'+
-					'<td style="width: 7%;">'+result[i].creat_yn+'</td>'+
-					'<td style="width: 7%;">'+result[i].retrv_yn+'</td>'+
-					'<td style="width: 7%;">'+result[i].mdfy_yn+'</td>'+
-					'<td style="width: 7%;">'+result[i].del_yn+'</td>'+
+					'<td style="width: 14%;">'+result[i].auth_nm+'</td>'+
+					'<td style="width: 5%;">'+result[i].creat_yn+'</td>'+
+					'<td style="width: 5%;">'+result[i].retrv_yn+'</td>'+
+					'<td style="width: 5%;">'+result[i].mdfy_yn+'</td>'+
+					'<td style="width: 5%;">'+result[i].del_yn+'</td>'+
 					'<td style="width: 10%;">'+result[i].deflt_yn+'</td>'+
-					'<td style="width: 10%;">'+result[i].fst_reg_id_nm+'</td>'+
+					'<td style="width: 10%;">'+result[i].fst_reg_id+'</td>'+
 					'<td style="width: 12%;">'+fst_reg_dt+'</td></tr>';
 	        		$('#authMenuBody').append(data);	        		
 	        	}
