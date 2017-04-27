@@ -112,15 +112,15 @@
 <!-- 		</div> -->
 <!-- 	  </div> -->
 	  
-	  <div id="left_home" style="height: 61%; margin-left: 10px;">
+	  <div id="left_home" style="height: 40%; margin-left: 10px;">
 	   <div id="contract_title">
 	   ■ 영업기회
 	   <input type="button" class="detailPopbtn" id="oppt_detail" value="상세보기">
 	   </div>
 	   		<!-- 영업기회 상태 차트  -->
-		<div id="chart_oppt_status" style="margin-top: 5%; margin-left: 19%;">
+		<div id="chart_oppt_status" style="margin-left: 120px;"><!-- style="margin-top: 5%; margin-left: 19%;" -->
 <!-- 			<h1>영업기회 상태 현황</h1> -->
-				<svg id="myGraph">
+				<svg id="myGraph" style="width: 450px; height: 220px;">
 				</svg>
 					<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
 		</div> 

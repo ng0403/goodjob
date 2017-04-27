@@ -4,8 +4,8 @@
  */
 
 $(function(){
-	chart();
-//	CircleChart();
+//	chart();
+	CircleChart();
 });
 //데이터 불러오기 > 축과 척도 설정 > 틀 그리기 > 축 그리기 
 //> 요소에 데이터 엮기 > 요소 속성 설정
@@ -32,6 +32,7 @@ function chart(){
   var offsetX = 30;
   var offsetY = 20;
   var barElements;
+  var ps;
   var dataMax = 300;
   var barWidth = 25;
   var barMargin = 40;
@@ -113,6 +114,9 @@ function chart(){
 			  	  .text(function(d, i){
 			  		  return labelName[i];
 			  	  })
+			  	  
+  
+			  	  
   		  
   	  });
 
@@ -140,8 +144,8 @@ function CircleChart(){
 	  var svgHeight = window.getComputedStyle(svgEle, null).getPropertyValue("height");
 	  
 	  //값에는 단위가 붙어 있으므로 높이를 구함.
-	  svgWidth = parseFloat(svgWidth);
-	  svgHeight = parseFloat(svgHeight);
+	  svgWidth = "450";//parseFloat(svgWidth);
+	  svgHeight = "220";//parseFloat(svgHeight);
 	  
 	  //원 그래프의 좌표값을 계산하는 메서드
 	  var pie = d3.pie()	//원그래프 레이아웃
@@ -158,6 +162,54 @@ function CircleChart(){
 	  					  
 	 //원 그래프의 중심으로 함.
 	  					  .attr("transform", "translate("+svgWidth/2+", "+svgHeight/2+")")
+	var ps=d3.select("#myGraph")
+		  .append("rect")
+		  .attr("class", "ps")
+		  .attr("width", "25px")
+		  .attr("height", "25px")
+		  .attr("x", "0")
+		  .attr("y", "20")
+		  .attr("fill", "rgb(255, 51, 68)")
+	var psLabel=d3.select("#myGraph").append("text")
+				    .attr("x", "40")
+				    .attr("y", "40")
+				    .attr("fill", "black")
+				    .attr("font-family", "sans-serif")
+				    .attr("font-size","15")
+				    .text("진행중")
+    var ps2=d3.select("#myGraph")
+			    .append("rect")
+			    .attr("class", "ps2")
+			    .attr("width", "25px")
+			    .attr("height", "25px")
+			    .attr("fill", "rgb(255, 115, 40)")
+			    .attr("x", "0")
+			    .attr("y", "60")
+    var psLabel2=d3.select("#myGraph").append("text")
+			    .attr("x", "40")
+			    .attr("y", "80")
+			    .attr("fill", "black")
+			    .attr("font-family", "sans-serif")
+			    .attr("font-size","15")
+			    .text("계약완료")
+    var ps3=d3.select("#myGraph")
+			    .append("rect")
+			    .attr("class", "ps3")
+			    .attr("width", "25px")
+			    .attr("height", "25px")
+			    .attr("fill", "rgb(211, 212, 213)")
+			    .attr("x", "0")
+			    .attr("y", "100")
+    var psLabel3=d3.select("#myGraph")
+    			.append("text")
+			    .attr("x", "40")
+			    .attr("y", "120")
+			    .attr("fill", "black")
+			    .attr("font-family", "sans-serif")
+			    .attr("font-size","15")
+			    .text("계약실패")
+		    
+
 	 //데이터 추가
 	  pieElements.append("path")		//데이터 수만큼 path 요소가 추가됨.
 	  			 .attr("class", "pie")	//CSS 클래스 설정
@@ -189,7 +241,7 @@ function CircleChart(){
 	  			 					  .attr("class", "total")		//CSS 클래스 설정
 	  			 					  //가운데 표시
 	  			 					  .attr("transform", "translate("+svgWidth/2+", "+(svgHeight/2+5)+")")
-	  			 					  .text("영업기회상태")	//문자표시
+//	  			 					  .text("영업기회상태")	//문자표시
 	  			 					  //숫자를 부채꼴의 가운데에 표시
 	  			 					  pieElements.append("text")		//데이터 수만큼 text 요소가 추가됨
 	  			 					  			 .attr("class", "pieNum")	//CSS 클래스 설정
