@@ -162,15 +162,52 @@ svg {
 	text-align: center;
 }
 
-/* Table 해더 고정 */ 
-.tableline #goaltable tbody tr:hover{
+/* Table 해더 고정 */
+#acttable{
+	border: 2px solid #DDD;
+	width: 100%;
+	height:80px;
+	border-collapse: collapse;
+}
+
+#acttable th{
+	width: 5%;
+	text-align: center;
+}
+
+#acttable thead{
+	text-align: center;
+}
+
+#acttable tr,
+#acttable tr td{
+	border: 1px solid #DDD;
+}
+
+#acttable thead th,
+#acttable thead td {
+	background-color: #F2F2F2;
+	font-weight: bold;
+	height:10px;
+	padding: 5px 5px;
+	
+}
+
+#acttable tbody tr,
+#acttable tbody tr td {
+	text-align: center;
+}
+
+#acttable tr:hover{
 	background-color:#ebe7e7;
 }
 
-.tableline #goaltable tbody{
+#acttable {
 	overflow-y:scroll;
 	overflow-x:hidden;
 	float: left;
 	width: 100%;
 	height: 200px;
 }
+
+

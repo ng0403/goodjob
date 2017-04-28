@@ -6,12 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/home/home.css" type="text/css" />
+
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/home/home.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/home/home.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
+
 <title>CRM SOLUTION</title>
 </head>
 <body>
@@ -25,26 +27,25 @@
 	   <input type="button" class="detailPopbtn" value="상세보기" id="opptActBtn">
 	   </div>
 
-	   <div class="tableline" id="tableline">
-			<table id="goaltable">
+	   <div id="tableline" class="tableline">
+			<table id="acttable">
 				<thead>
 					<tr>
-						<td>영업활동명</td>
-						<td>고객사</td>
-						<td>시작일자</td>
-						<td>종료일자</td>
+						<th>영업활동명</th>
+						<th>고객사</th>
+						<th>시작일자</th>
+						<th>종료일자</th>
 					</tr>
 				</thead>
-				<tbody>
-				<c:forEach items="${opptActList}" var="opptActList" begin="0" end="4">
-					<tr>
-					
-						<td>${opptActList.SALES_ACTVY_NM}</td>
-						<td>${opptActList.CUST_NM}</td>
-						<td>${opptActList.STRT_D}</td>
-						<td>${opptActList.END_D}</td>
-					</tr>
-				</c:forEach>
+				<tbody > <!-- id="acttable" -->
+					<c:forEach items="${opptActList}" var="opptActList" begin="0" end="4">
+						<tr>
+							<td>${opptActList.SALES_ACTVY_NM}</td>
+							<td>${opptActList.CUST_NM}</td>
+							<td>${opptActList.STRT_D}</td>
+							<td>${opptActList.END_D}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		 </div>
