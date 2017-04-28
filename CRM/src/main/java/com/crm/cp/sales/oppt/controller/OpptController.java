@@ -257,6 +257,25 @@ public class OpptController {
 
 		return result;
 	}
+	// otllist list ajax
+	@RequestMapping(value = "/otllist", method = RequestMethod.POST)
+	@ResponseBody
+	Map<String, Object> otllist(@RequestParam Map<String, String> map) {
+		System.out.println("otllist Controller enter ");
+//		// 영업기회 상태 코드 가져오기
+//		List<OpptVO> osclist = service.opptOscList();
+		
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = service.opptOtlList();
+		System.out.println("otllist Controller : " + otllist);
+		
+		// 한글 검색 인코더 변환
+		Map<String, Object> result = new HashMap<String, Object>();
+//		result.put("osclist", osclist);
+		result.put("otllist", otllist);
+		
+		return result;
+	}
 
 //	영업기회삭제
 	@RequestMapping(value = "/opptDelete", method = RequestMethod.GET)

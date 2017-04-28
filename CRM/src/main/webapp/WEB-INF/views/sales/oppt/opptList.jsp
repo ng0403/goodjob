@@ -23,6 +23,7 @@
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
+	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">■ 영업 > 영업기회</div></div>
 		   <div class="search_div" id="search_div" >

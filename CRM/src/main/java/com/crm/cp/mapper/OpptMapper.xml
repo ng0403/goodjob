@@ -68,7 +68,7 @@
 			</when>
 			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' and ssales_lev_cd0 != null and ssales_lev_cd0 != ''">
 				and (a.sales_lev_cd = #{ssales_lev_cd}
-				or a.sales_lev_cd = #{ssales_lev_cd1})
+				or a.sales_lev_cd = #{ssales_lev_cd0})
 			</when>
 			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' ">
 				and a.sales_lev_cd = #{ssales_lev_cd}
