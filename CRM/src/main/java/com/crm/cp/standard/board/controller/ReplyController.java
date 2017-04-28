@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,20 +20,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.crm.cp.standard.board.service.ReplyService;
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.board.vo.ReplyVO;
 import com.crm.cp.utils.PagerVO;
 
 @Controller
-@RequestMapping("/reply")
+/*@RequestMapping("/reply")*/
 public class ReplyController {
 	
 	@Autowired
 	ReplyService replyService;
 	
 	@RequestMapping(value="/reply_add", method=RequestMethod.POST) 
-	public ResponseEntity<List<ReplyVO>> replyadd(@RequestBody ReplyVO vo){
+	public ResponseEntity<List<ReplyVO>> replyadd(@RequestBody ReplyVO vo, HttpSession session){
 		int BOARD_NO = vo.getBOARD_NO();
+		System.out.println("entering");
+		vo.setCREATED_BY(session.getAttribute("user").toString());
+		vo.setUPDATED_BY(session.getAttribute("user").toString());
 		System.out.println("replyvo?" +vo.toString());
+
+		
 		ResponseEntity<List<ReplyVO>> entity = null;
 		    try {
  		      replyService.addReply(vo); 
@@ -81,18 +88,18 @@ public class ReplyController {
 	 
 	 @RequestMapping(value="/search_replyInqr", method={RequestMethod.GET,RequestMethod.POST})
 		public @ResponseBody Map<String, Object> search_reply_list( ModelMap model, HttpServletRequest request,
-														   @RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+														   @RequestParam(value = "replyPageNum", defaultValue = "1") int replyPageNum) {
 			System.out.println("search entering1111");
 	 		String BOARD_NO = request.getParameter("BOARD_NO");
- 	 		
+ 	 		System.out.println("replyPageNum ?? " + replyPageNum);
 	 		System.out.println("REPLY_NO !" + BOARD_NO);
  		    Map<String,Object> map = new HashMap<String,Object>();
 		    
- 			map.put("pageNum", pageNum);
+ 			map.put("pageNum", replyPageNum);
  			map.put("BOARD_NO", BOARD_NO);
  			
 			PagerVO page = replyService.getReplyListCount(map);
-			System.out.println("page?" + page.toString());
+			System.out.println("reply page?" + page.toString());
 			if(page.getEndRow()==1){
 				page.setEndRow(0);
 			}
@@ -104,13 +111,39 @@ public class ReplyController {
 			map.put("endRow", endRow);
 
 			List<ReplyVO> list = replyService.SearchList(map);
-			System.out.println("list?" + list.toString());
+			System.out.println("reply list?" + list.toString()); 
 			
 			model.addAttribute("page", page);
-			model.addAttribute("pageNum", pageNum);
-			model.addAttribute("qna_list", list);
+			model.addAttribute("pageNum", replyPageNum);
+			model.addAttribute("reply_list", list);
+			model.addAttribute("replyListSize", list.size());
 
 			return model;
+		}
+	 
+	 
+	// 전체리스트 출력 페이징/검색
+		@RequestMapping(value = "/replyPaging", method = RequestMethod.POST)
+		public @ResponseBody Map<String, Object> ActListSearch(HttpSession session,
+				@RequestParam(value = "replyPageNum", defaultValue = "1") int replyPageNum, @RequestParam(value= "BOARD_NO") String BOARD_NO) {
+			
+			System.out.println("reply paging entering" + BOARD_NO);
+			Map<String, Object> replyMap = new HashMap<String, Object>();  
+			 
+			replyMap.put("replyPageNum", replyPageNum);
+			replyMap.put("BOARD_NO", BOARD_NO);
+
+			PagerVO page = replyService.replyListCount(replyMap);
+			System.out.println("boardPage ? " + page.toString());
+			replyMap.put("page", page);
+
+			List<ReplyVO> replyList = replyService.replyAllList(replyMap);
+			System.out.println("replyList? "  + replyList.toString());
+			System.out.println("replyListSize? " + replyList.size());
+			replyMap.put("replyList", replyList);
+			replyMap.put("replyListSize", replyList.size());
+
+			return replyMap;
 		}
 	 
 	 

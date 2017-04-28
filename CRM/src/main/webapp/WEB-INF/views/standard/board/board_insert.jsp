@@ -9,6 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
 <!-- 부가적인 테마 -->
@@ -45,46 +47,13 @@
 	</form>
 
 	<div id="btns"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "btn btn-primary btn-sm" value="저장"/>
-		 <input type="button" id="board_list_fbtn" class="btn btn-default btn-sm" value="취소"/> 
+		 <input type="button" id ="board_add_fbtn" class = "btn btn-primary btn-sm" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="btn btn-default btn-sm" value="취소" onclick="goboardList();"/> 
 	</div>
 
 </div> 
  
-<script>  
-
-$("#board_list_fbtn").on("click", function(){  
-		
-	     var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
-	 	alert(BOARD_MNG_NO);
-    	 location.href = "/board/boardInqr?BOARD_MNG_NO="+BOARD_MNG_NO; 
-    	
- 	}) 
- 	
- 	$("#board_add_fbtn").on("click", function(){
- 	 
- 	     var formObj = $("form[role='form']");
-  	     
- 		 formObj.attr("action", "/board/boardInsert");
- 		 formObj.attr("method", "post");
- 		 formObj.submit(); 
- 		 
- 	})
- 	
- 	
- 	$("#fileuploadPop").on("click",function(){
-	     var formObj = $("form[role='form1']");
-
- 		 formObj.attr("action", "/board/file_insert");
- 		 formObj.attr("method", "post");
- 		 formObj.submit(); 
- 		
- 	})
-  
-	 
-  
-</script>
-
+ 
  
 
 </body>

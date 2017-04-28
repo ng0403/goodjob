@@ -18,11 +18,28 @@ public class BoardMngServiceImpl implements BoardMngService {
 	
 	@Override
 	public PagerVO getBoardMngListCount(Map<String, Object> map) {
+		System.out.println("getboardmnglistcount" + map.toString());
 		int boardPageNum = (Integer)map.get("pageNum");
 		int totalRowCount = boardmngDao.BoardMngListCount("boardmngListCount", map);
 		
 		PagerVO page = new PagerVO(boardPageNum, totalRowCount, 10, 999);
 		
+		return page;
+	}
+	
+	//전체리스트 개수 
+	@Override
+	public PagerVO getBoardMngListCountP(Map<String, Object> boardMap) {
+		System.out.println("BoardListCount service " +  boardMap.toString());
+		int actPageNum = (Integer) boardMap.get("boardPageNum");
+		// 현재 페이지 얻어오기
+		PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+		// 전체 글의 갯수 구하기
+		System.out.println("actPage Num " + actPageNum);
+		int totalRowCount = boardmngDao.BoardMngListCountP(boardMap);
+		System.out.println("totalRowCount ? " + totalRowCount);		
+		page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+	
 		return page;
 	}
 
@@ -64,9 +81,9 @@ public class BoardMngServiceImpl implements BoardMngService {
 	}
 
 	@Override
-	public List<Object> codetxt(String CODE_TXT) {
+	public List<BoardMngVO> codelist() {
 		
-		return boardmngDao.codetxt(CODE_TXT);
+		return boardmngDao.codelist();
 		
 	}
 

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
 
 @Repository
@@ -20,8 +21,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<Object> list(Map map) {	
-		 
-		return sqlSession.selectList("BoardList", map);
+		 System.out.println("board Dao List ? " + map.toString());
+		 List<Object> qwer = sqlSession.selectList("BoardList", map);
+		 System.out.println("qwerqwer ?? " + qwer.toString());
+		return qwer ;
 	}
 
 	@Override
@@ -32,7 +35,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void insert(BoardVO vo) {
-		 
+		 System.out.println("insert Dao/ " + vo.toString());
  		 sqlSession.insert("InsertBoard",vo);
 	}
 
@@ -62,6 +65,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int BoardListCount(String string, Map<String, Object> map) {
+		System.out.println("BoardListCount Dao " + map.toString());
 		int totalCount = 0;
 		try {
 			totalCount = sqlSession.selectOne("board.boardListCount", map);
@@ -123,9 +127,26 @@ public class BoardDaoImpl implements BoardDao {
 		
 	}
  
+	
+	//전체리스트 개수
+			@Override
+			public int boardListCount(Map<String, Object> boardMap) {
+				System.out.println("board Map Dao "  + boardMap.toString());
+				int totalCount = 0;
+				try {
+					totalCount = sqlSession.selectOne("board.selectTotalCount", boardMap);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return totalCount;
+			}
 
-
-
- 
+			//전체리스트 
+			@Override
+			public List<BoardVO> boardAllList(Map<String, Object> boardMap) {
+				List<BoardVO> obj = sqlSession.selectList("board.selectAll", boardMap);
+				return obj;
+			}
 
 }

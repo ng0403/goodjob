@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +18,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.boardmng.service.BoardMngService;
 import com.crm.cp.standard.boardmng.vo.BoardMngVO;
 import com.crm.cp.utils.PagerVO;
 
 @Controller
-@RequestMapping("/board_mng")
+/*@RequestMapping("/board_mng")*/
 public class BoardMngController {
 	
 	@Autowired
 	BoardMngService boardmngService;
 	
+	//게시판 관리 리스트
 	@RequestMapping(value="/boardmngInqr", method=RequestMethod.GET) 
 	public ModelAndView boardmngList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam Map<String, Object> map ) throws Exception{
 		map.put("pageNum", pageNum);
@@ -39,7 +43,7 @@ public class BoardMngController {
 		}
  		List<Object> boardmnglist = boardmngService.list(map); 
  		
-		ModelAndView mov = new ModelAndView("/board_mng/board_mng_list");
+		ModelAndView mov = new ModelAndView("board_mng_list");
 		mov.addObject("boardmnglist", boardmnglist);
 		mov.addObject("page",  page);
 		mov.addObject("pageNum",  pageNum); 
@@ -49,11 +53,28 @@ public class BoardMngController {
 	}
 	
 	@RequestMapping(value="/board_mng_detail", method=RequestMethod.GET)
-	public void board_mng_detail(@RequestParam("BOARD_MNG_NO")String BOARD_MNG_NO, Model model ){
+	public ModelAndView board_mng_detail(@RequestParam("BOARD_MNG_NO")String BOARD_MNG_NO , HttpSession session ){
 		
-	
-	model.addAttribute("board_mng_list", boardmngService.detail(BOARD_MNG_NO));
+		 
+		//		접속된 사용자 아이디 
+		String sessionID = (String) session.getAttribute("user");
+		System.out.println("접속된 계정 : " + sessionID);
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sessionID", sessionID);  
+		
+		BoardMngVO vo = boardmngService.detail(BOARD_MNG_NO);
+		System.out.println("vo ?? " + vo.toString());
+		
+		List<BoardMngVO> codelist = boardmngService.codelist();
+		System.out.println("codelist ??? " + codelist.toString());
+		
+		
+		ModelAndView mov = new ModelAndView("board_mng_detail");
+ 		mov.addObject("board_mng_list", vo);
+ 		mov.addObject("codelist", codelist);
+	 
+ 		return mov;
 	}
 	
 	@RequestMapping(value="/board_mng_modify", method=RequestMethod.GET)
@@ -69,11 +90,19 @@ public class BoardMngController {
 		
 		boardmngService.modify(vo);
 		System.out.println("modify success" + vo.toString());
-		return "redirect:/board_mng/boardmngInqr";
+		return "redirect:/boardmngInqr";
 	}
 	
 	@RequestMapping(value="/board_mng_add" ,method=RequestMethod.GET)
-	public void board_mng_add() {
+	public ModelAndView board_mng_add() {
+		
+		List<BoardMngVO> codelist = boardmngService.codelist();
+		System.out.println("codelist ??? " + codelist.toString());
+
+		ModelAndView mov = new ModelAndView("board_mng_add");
+		mov.addObject("codelist", codelist);
+		
+		return mov;
 		
 	}
 	
@@ -81,10 +110,10 @@ public class BoardMngController {
 	@RequestMapping(value="/board_mng_add" ,method=RequestMethod.POST)
 	public String board_mng_add_post(BoardMngVO vo) {
 		
-		System.out.println("enter board_mng_add...");
+		System.out.println("enter board_mng_add..." + vo.toString());
 		boardmngService.add(vo);
 		
-		return "redirect:/board_mng/boardmngInqr";
+		return "redirect:/boardmngInqr";
 		
 	}
 	
@@ -114,53 +143,31 @@ public class BoardMngController {
 		
 	}
 	
-	@RequestMapping(value="/board_mng_codetxt", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> board_mng_codetxt(@RequestBody String CODE_TXT ) {
-		
-		Map<String, Object> map = new HashMap<String, Object>(); 
-		List<Object> codelist = boardmngService.codetxt(CODE_TXT);
-		map.put("data", codelist);
-		
-		System.out.println(map);
-		return map;
-	}
-	
-	@RequestMapping(value="/ajax_list", method=RequestMethod.POST) 
-	 @ResponseBody
-	public ResponseEntity<List<BoardMngVO>> ajax_list(){ 
-		
-		System.out.println("ajax List Entering");
+	// 전체리스트 출력 페이징/검색
+		@RequestMapping(value = "/boardmngPaging", method = RequestMethod.POST)
+		public @ResponseBody Map<String, Object> ActListSearch(HttpSession session,
+				@RequestParam(value = "boardPageNum", defaultValue = "1") int boardPageNum, @RequestParam Map<String, Object> boardMap) {
+			
+			
+	  		boardMap.put("boardPageNum", boardPageNum);
+	  		System.out.println("board paging entering" + boardMap.toString());
+	  		
+			PagerVO page = boardmngService.getBoardMngListCountP(boardMap);
+			System.out.println("boardPage ? " + page.toString());
+			boardMap.put("page", page);
 
-		ResponseEntity<List<BoardMngVO>> entity = null;
-	    try {
-	      
-	     List<BoardMngVO> vo = boardmngService.ajaxlist();
-	     String ACTIVE_FLG;
-	     String ACTIVE_FLGS = "Y";
-	     for(int i = 0; i< vo.size() ; i++){ 
-	     ACTIVE_FLG = vo.get(i).getACTIVE_FLG(); 
- 	     boolean A = ACTIVE_FLG.equals(ACTIVE_FLGS);
- 	     
-	    if(A == true)
-	     { 
- 	    	 vo.get(i).setACTIVE_FLG("활성화");
-	     }
-	     else{ 
- 	    	 vo.get(i).setACTIVE_FLG("비활성화"); 
-	    }
-	    
-	      entity = new ResponseEntity(vo, HttpStatus.OK);
-	     }
-	      
-	    } catch (Exception e) {
-	      e.printStackTrace();
-	      entity = new ResponseEntity( HttpStatus.BAD_REQUEST);
-	    }
-	    return entity;
-		 
-	}
+			List<Object> boardList = boardmngService.list(boardMap);
+			System.out.println("boardLitst? "  + boardList.toString());
+			System.out.println("boardListSize? " + boardList.size());
+			
+			
+			
+			boardMap.put("boardList", boardList);
+			boardMap.put("boardListSize", boardList.size());
+
+			return boardMap;
+		}
 	
-	
+	  
 
 }

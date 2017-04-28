@@ -22,7 +22,7 @@ import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.PagerVO;
 
 @Controller
-@RequestMapping("/board/*")
+/*@RequestMapping("/board/*")*/
 public class QnABoardController {
 	
 	@Autowired
@@ -32,19 +32,22 @@ public class QnABoardController {
 	SessionAuthService sessionAuthService;
 */	
 	@RequestMapping(value="/QnAInqr", method={RequestMethod.GET, RequestMethod.POST} )
-	public ModelAndView QnA_List(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam Map<String, Object> map,  HttpSession session ) {
+	public ModelAndView QnA_List(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam("BOARD_MNG_NO") String BOARD_MNG_NO, @RequestParam Map<String, Object> map,  HttpSession session ) {
 
-		System.out.println("board_list Insert");
+		System.out.println("qna_list Entering" + map.toString());
 		
 //		접속된 사용자 아이디 
-		String sessionID = (String) session.getAttribute("user_id");
+		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
 		
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
 		
 		map.put("pageNum", pageNum);
-		map.put("sessionID", sessionID);  
-
-		PagerVO page= qnaService.getQnaListCount(map);
+		map.put("sessionID", sessionID);   
+ 		PagerVO page= qnaService.getQnaListCount(map);
+		System.out.println("qnaListCOunt? " + page.toString());
 		map.put("page", page);
 		
 		if(page.getEndRow() == 1){
@@ -54,29 +57,30 @@ public class QnABoardController {
 		System.out.println("session 정보 : " + session_auth_list); 
 */		
  		List<Object> boardlist = qnaService.list(map); 
- 		
-		ModelAndView mov = new ModelAndView("/board/QnA_List");
+ 		System.out.println("QnaList ? " + boardlist.toString());
+ 		System.out.println("map??" + map.toString()); 
+		ModelAndView mov = new ModelAndView("QnA_List");
 		mov.addObject("boardlist", boardlist);
 		mov.addObject("page",  page);
 		mov.addObject("pageNum",  pageNum);
+		mov.addObject("BOARD_MNG_NO", BOARD_MNG_NO);
 /*		mov.addObject("session_auth_list",session_auth_list); */
-		
+		System.out.println("movvv??? " + mov.toString());
 		return mov; 
 	}
 	
 	@RequestMapping(value="/QnA_detail", method= RequestMethod.GET)
-	public void boardDetail(@RequestParam("BOARD_NO") int BOARD_NO, Model model, HttpSession session) throws Exception {
+	public ModelAndView boardDetail(@RequestParam("BOARD_NO") int BOARD_NO, HttpSession session) throws Exception {
 		
-		System.out.println("hi detail" + BOARD_NO);
+		System.out.println("qna detail" + BOARD_NO);
 		
 //		접속된 사용자 아이디 
-		String sessionID = (String) session.getAttribute("user_id");
+		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sessionID", sessionID);  
-		
-		
+		 
 		
 		qnaService.viewadd(BOARD_NO);
 		
@@ -88,38 +92,52 @@ public class QnABoardController {
 		BoardVO vo1 = new BoardVO();
 		vo1 = (BoardVO) qnaService.CODE(QUESTION_TYPE_CD);
 		
-		String CODE_TXT = vo1.getCODE_TXT();
+		String CODE_NM = vo1.getCD_NM();
 		
-		String QUESTION_TITLE = "[" + CODE_TXT + "] " + "    " + TITLE;
+		String QUESTION_TITLE = "[" + CODE_NM + "] " + "    " + TITLE;
 		
 		
  		vo.setQUESTION_TITLE(QUESTION_TITLE);
 		
-  		model.addAttribute("boardlist", vo );
+ 		ModelAndView mov = new ModelAndView("QnA_detail");
+ 		mov.addObject("boardlist", vo);
+ 		
+ 		return mov;
 		 
 	}
 	 
-	
+	//보드 추가
 	@RequestMapping(value="/QnA_insert", method=RequestMethod.GET)
-	public void board_add() {
-		  
+	public ModelAndView board_add(@RequestParam("BOARD_MNG_NO") String BOARD_MNG_NO) {
+		
+		System.out.println("BOARD_MNG_NO"+ BOARD_MNG_NO);
+		
+		  ModelAndView mov = new ModelAndView("QnA_insert");
+		  mov.addObject("board_mng" ,BOARD_MNG_NO);
+		  System.out.println("insert mov??" + mov.toString());
+
+		  return mov;
 	}
 	
+	//보드 추가
 	@RequestMapping(value="/QnA_insert", method=RequestMethod.POST)
-	public String  board_insert(BoardVO vo) { 
-		System.out.println("QnA Insert Entering");
+	public String  board_insert(BoardVO vo, HttpSession session, String BOARD_MNG_NO) { 
+		System.out.println("QnA Insert Entering" + BOARD_MNG_NO);
+		
+		vo.setCREATED_BY(session.getAttribute("user").toString());
+		vo.setUPDATED_BY(session.getAttribute("user").toString());
 		qnaService.insert(vo);  
    
 		System.out.println("board_insert success....");
  
 	 
-		return "redirect:/board/QnAInqr"; 
+		return "redirect:/QnAInqr?BOARD_MNG_NO=" + BOARD_MNG_NO; 
 		 
 	} 
 	
 	
-	@RequestMapping(value="/QnA_modify", method=RequestMethod.GET)
-	public void board_modifyPage(int BOARD_NO, Model model)
+	@RequestMapping(value="/QnAmodify", method=RequestMethod.GET)
+	public ModelAndView board_modifyPage(int BOARD_NO)
 	{
 		BoardVO vo = new BoardVO();
 		vo = qnaService.read(BOARD_NO);
@@ -131,19 +149,23 @@ public class QnABoardController {
 		
 		vo.setQUESTION_TITLE(QUESTION_TITLE);
 		System.out.println("modify Page Entering");
-		model.addAttribute( "boardVO", vo );
-		System.out.println("modify string" + model.toString());
+ 		
+		ModelAndView mov = new ModelAndView("QnA_modify");
+		mov.addObject("boardVO", vo);
+		
+		
+		return mov;
 	}
 	
 	@RequestMapping(value="/QnA_modify", method=RequestMethod.POST)
 	public String board_modify(BoardVO vo)
 	{
 		System.out.println("modify  Entering" + vo);
-		
+ 		
 		qnaService.modify(vo);
 		System.out.println("modify success" + vo.toString());
 		
-		return "redirect:/board/QnAInqr";
+		return "redirect:/QnAInqr?BOARD_MNG_NO=BMG1000003";
 	}
 	
 	
@@ -184,6 +206,29 @@ public class QnABoardController {
 
 		return model;
 	}
+	
+	
+	
+	// 전체리스트 출력 페이징/검색
+		@RequestMapping(value = "/qnaPaging", method = RequestMethod.POST)
+		public @ResponseBody Map<String, Object> ActListSearch(HttpSession session,
+				@RequestParam(value = "boardPageNum", defaultValue = "1") int boardPageNum, @RequestParam Map<String, Object> boardMap) {
+			System.out.println("boardPageNum " + boardMap.toString());
+			System.out.println("qnaPaging entering"+ boardMap.toString()); 
+			boardMap.put("boardPageNum", boardPageNum);
+
+			PagerVO page = qnaService.boardListCount(boardMap);
+			System.out.println("boardPage ? " + page.toString());
+			boardMap.put("page", page);
+
+			List<BoardVO> boardList = qnaService.boardAllList(boardMap);
+			System.out.println("QnALIST? "  + boardList.toString());
+			System.out.println("boardListSize? " + boardList.size());
+			boardMap.put("boardList", boardList);
+			boardMap.put("boardListSize", boardList.size());
+
+			return boardMap;
+		}
 	
 	
 

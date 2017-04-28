@@ -13,6 +13,7 @@
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> 
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>   
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
@@ -27,9 +28,9 @@
 
 <div class="container"> <!-- 전체 div-->
 
-	<form role="form" name="modifyForm" action="/board/board_modify " method="post">
+	<form role="form" name="modifyForm" action="/board_modify" method="post">
 	 <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardVO.BOARD_NO}"> 
-
+	 <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${boardVO.BOARD_MNG_NO}">
 <div> <!-- 제목 div-->
    	<label id="txt" >제  목</label>
  <input type="text" class="form-control" name="TITLE" value= "${boardVO.TITLE }"/>
@@ -47,9 +48,9 @@
  </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" class="btn btn-primary btn-sm">저장</button>
+ <button type="submit" id = "board_modify_fbtn" class="btn btn-primary btn-sm" onclick="board_modify_save();">저장</button>
 <!--  <input type="button" class="btn btn-default" id="board_modify_fbtn" value="저장"/> -->
- <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록"/>
+ <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 </div>
 
 
@@ -81,36 +82,6 @@
   </div>
 </div>
  
-
-
-<script>
- 
-$(document).ready(
-	function() {
-var formObj = $("form[role='form']");
-
-console.log(formObj);
- 
-$("#board_list_fbtn").on("click", function(){  
-    	location.href = "/board/QnAInqr";
- 	})
- 	
-$("#board_modify_fbtn").on("click", function(){
-/* 	alert("go1"); 
-	formObj.submit(); */
-	
-	$("form[name='modifyForm']").attr("action", "${ctx}/board/QnA_modify").submit();
-	
-}) 		
-});
-
-
- 
- 
-</script>
-
- 
-
 </body>
 </html>
 <%-- <%@include file="../include/footer.jsp"%> --%>

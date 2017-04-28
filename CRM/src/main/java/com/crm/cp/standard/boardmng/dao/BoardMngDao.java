@@ -13,7 +13,8 @@ public interface BoardMngDao {
 	public void add(BoardMngVO vo);
 	public void remove(String dc);
 	public List<BoardMngVO> ajaxlist();
-	public List<Object> codetxt(String CODE_TXT);
+	public List<BoardMngVO> codelist();
  
+	public int BoardMngListCountP(Map<String, Object> boardMap);
 
 }

@@ -14,9 +14,18 @@ select X.*
 		from ( 
 		    select rownum as rnum, A.*
 		        from (
-		SELECT
- 		 *
-		FROM tb_board_mng
+			SELECT
+ 		 BOARD_MNG_NO,
+ 		 BOARD_MNG_CD,
+ 		 BOARD_NM,
+ 		 REPLY_FLG,
+ 		 FILE_ATTACH_FLG,
+ 		 NOTICE_FLG,
+ 		 ACTIVE_FLG, 
+ 		 DEL_FLG, 
+ 		 CREATED,
+ 		 DECODE(ACTIVE_FLG , 'Y' , '활성화', 'N', '비활성화') AS ACTIVE_FLGSTRING
+		 FROM tb_board_mng
 ) A
 	  ) X
  <![CDATA[
@@ -26,9 +35,9 @@ select X.*
  
  
  <select id="ReadPage"  resultType="com.crm.cp.standard.boardmng.vo.BoardMngVO">
- SELECT A.BOARD_MNG_NO, A.BOARD_MNG_CD, A.BOARD_NM, A.REPLY_FLG, A.ACTIVE_FLG, A.FILE_ATTACH_FLG, A.NOTICE_FLG, B.CODE_TXT
- FROM TB_BOARD_MNG A , TB_CODE_DETAIL B
- WHERE BOARD_MNG_NO = #{BOARD_MNG_NO} AND A.BOARD_MNG_CD = B.CODE1
+ SELECT A.BOARD_MNG_NO, A.BOARD_MNG_CD, A.BOARD_NM, A.REPLY_FLG, A.ACTIVE_FLG, A.FILE_ATTACH_FLG, A.NOTICE_FLG, B.CD_NM
+ FROM TB_BOARD_MNG A , CODE B
+ WHERE BOARD_MNG_NO = #{BOARD_MNG_NO} AND A.BOARD_MNG_CD = B.CODE AND B.CD_GRP_ID='BOG'
  </select>
  
   <update id="Modify" >
@@ -70,19 +79,12 @@ values (
  WHERE BOARD_MNG_NO = #{BOARD_MNG_NO}
  </delete>
  
+  
  
- <select id="ajaxList" resultType="com.crm.cp.standard.boardmng.vo.BoardMngVO">
- 
- SELECT
-  BOARD_MNG_NO, BOARD_MNG_CD, BOARD_NM, to_char(to_date(CREATED,'yy-mm-dd hh:mi'),'yyyy-mm-dd hh:mm') CREATED, ACTIVE_FLG
-FROM TB_BOARD_MNG
- 
- </select>
- 
- <select id="codetxt" parameterType="String" resultType="map">
- select CODE1, CODE_TXT
-from TB_CODE_DETAIL
-where CODE_TXT = #{CODE_TXT}
+ <select id="codelist" resultType="map">
+ select CODE, CD_NM
+from CODE
+where cd_grp_id='BOG'
  </select>
  
   

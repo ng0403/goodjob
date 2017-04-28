@@ -22,5 +22,8 @@ public interface QnABoardDao {
 	
 	public List<BoardVO> QnAList(Map<String, Object> map);
 	public List<BoardVO> QnAList2(Map<String, Object> map);
+	
+	public int boardListCount(Map<String, Object> boardMap); // 보드 리스트 개수
+	public List<BoardVO> boardAllList(Map<String, Object> boardMap); 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crm.cp.standard.board.dao.ReplyDao;
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.board.vo.ReplyVO;
 import com.crm.cp.utils.PagerVO;
  
@@ -48,6 +49,29 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> SearchList(Map<String, Object> map) {
 		List<ReplyVO> list = replyDao.SearchList(map);
 		return list;
+	}
+	
+	
+	//전체리스트 개수 
+	@Override
+	public PagerVO replyListCount(Map<String, Object> replyMap) {
+		System.out.println("ReplyListCount service " +  replyMap.toString());
+		int actPageNum = (Integer) replyMap.get("replyPageNum");
+		// 현재 페이지 얻어오기
+		PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+		// 전체 글의 갯수 구하기
+		System.out.println("actPage Num " + actPageNum);
+		int totalRowCount = replyDao.replyListCount(replyMap);
+		System.out.println("totalRowCount ? " + totalRowCount);		
+		page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+	
+		return page;
+	}
+
+	//전체리스트 
+	@Override
+	public List<ReplyVO> replyAllList(Map<String,Object> replyMap) {
+		return replyDao.replyAllList(replyMap);
 	}
 
 }

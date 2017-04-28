@@ -7,8 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" /> 
-<%-- 
+<link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_modify.js"></script> 
+ 
+
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/common.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" />
@@ -19,7 +21,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" /> --%>
+ <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
 
 <title>Insert title here</title>
 </head>
@@ -33,7 +35,7 @@
 
 <div class="container"> <!-- 전체 div-->
 
-	<form role="form" name="modifyForm" action="/board/board_modify " method="post">
+	<form role="form" name="modifyForm" action="/board_modify " method="post">
 	 <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardVO.BOARD_NO}"> 
 	 <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${boardVO.BOARD_MNG_NO}">  
 	<div> <!-- 제목 div-->
@@ -56,9 +58,9 @@
  </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" class="btn btn-primary btn-sm">저장</button>
+ <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="btn btn-primary btn-sm">저장</button>
 <!--  <input type="button" class="btn btn-default" id="board_modify_fbtn" value="저장"/> -->
- <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록"/>
+ <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" onClick="board_list();" value="목록"/>
 </div>
 
 
@@ -98,22 +100,11 @@ $(document).ready(
 	function() {
 	 
 var formObj = $("form[role='form']");
-
-$("#board_modify_fbtn").on("click", function(){
-/* 	alert("go1"); 
-	formObj.submit(); */
 	
-	$("form[name='modifyForm']").attr("action", "${ctx}/board/board_modify").submit();
-	
-}) 		
 });
 
 
-$("#board_list_fbtn").on("click", function(){  
-	var BOARD_MNG_NO = $("#BOARD_MNG_NO").val(); 
-    	location.href = "/board/boardInqr?BOARD_MNG_NO=" + BOARD_MNG_NO;
- 	})
- 	
+
 
  
  
@@ -123,4 +114,4 @@ $("#board_list_fbtn").on("click", function(){
 
 </body>
 </html>
-<%-- <%@include file="../include/footer.jsp"%> --%>
+ 

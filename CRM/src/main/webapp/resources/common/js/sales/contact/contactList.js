@@ -387,7 +387,6 @@ function contactPaging(contactPageNum) {
 			
 			//시작
 			
-			
 			$("#pageSpace").children().remove();
 			var ccPageNum = data.contactPageNum;
 			alert("ccPageNum" +ccPageNum); 

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.board.vo.ReplyVO;
 
 @Repository
@@ -54,5 +55,28 @@ public class ReplyDaoImpl implements ReplyDao {
 		return sqlSession.selectList("reply.SearchList", map);
 
 	}
+	
+	
+	//전체리스트 개수
+	@Override
+	public int replyListCount(Map<String, Object> replyMap) {
+		System.out.println("reply Map Dao "  + replyMap.toString());
+		int totalCount = 0;
+		try {
+			totalCount = sqlSession.selectOne("reply.selectTotalCount", replyMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
+
+	//전체리스트 
+	@Override
+	public List<ReplyVO> replyAllList(Map<String, Object> boardMap) {
+		List<ReplyVO> obj = sqlSession.selectList("reply.selectAll", boardMap);
+		return obj;
+	}
+
 
 }

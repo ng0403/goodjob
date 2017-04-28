@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.dao.BoardDao;
 import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.PagerVO;
@@ -18,6 +19,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Object> list(Map map) {
+		System.out.println("boardList Service " + map.toString());
  		return boardDao.list(map);
 	}
 
@@ -28,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void insert(BoardVO vo) {
-		
+		System.out.println("insert dao " + vo.toString());
  		 boardDao.insert(vo);
 	}
 
@@ -60,6 +62,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public PagerVO getBoardListCount(Map<String, Object> map) {
+		System.out.println("getboardListCOunt  " + map.toString());
 		int boardPageNum = (Integer)map.get("pageNum");
 		int totalRowCount = boardDao.BoardListCount("boardListCount", map);
 		
@@ -117,7 +120,28 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.viewadd(BOARD_NO);
 		
 	}
+	
+	
+	//전체리스트 개수 
+			@Override
+			public PagerVO boardListCount(Map<String, Object> boardMap) {
+				System.out.println("BoardListCount service " +  boardMap.toString());
+				int actPageNum = (Integer) boardMap.get("boardPageNum");
+				// 현재 페이지 얻어오기
+				PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+				// 전체 글의 갯수 구하기
+				System.out.println("actPage Num " + actPageNum);
+				int totalRowCount = boardDao.boardListCount(boardMap);
+				System.out.println("totalRowCount ? " + totalRowCount);		
+				page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+			
+				return page;
+			}
  
- 
+			//전체리스트 
+			@Override
+			public List<BoardVO> boardAllList(Map<String,Object> boardMap) {
+				return boardDao.boardAllList(boardMap);
+			}
  
 }

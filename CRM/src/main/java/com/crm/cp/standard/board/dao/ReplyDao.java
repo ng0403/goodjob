@@ -3,6 +3,7 @@ package com.crm.cp.standard.board.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.board.vo.ReplyVO;
 
 public interface ReplyDao {
@@ -12,5 +13,10 @@ public interface ReplyDao {
 	  public void removeReply(String REPLY_NO);
 	  int ReplyListCount(String string, Map<String, Object> map);
 	 public List<ReplyVO> SearchList(Map<String, Object> map); 
+	 
+	 
+		public int replyListCount(Map<String, Object> replyMap);
+		public List<ReplyVO> replyAllList(Map<String, Object> replyMap); 
+
 
 }

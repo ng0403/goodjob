@@ -7,12 +7,13 @@
 <html>
 <head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> 
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/boardmng/boardmng_detail.js"></script>  
 <link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-
+ 
+<body> 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -36,18 +37,24 @@
 	<div id="board_mng_detail" >
   
   <form role="form" name="board_mng_form"> 
-   <input type='hidden' id="BOARD__MNG_NO" name='BOARD_MNG_NO' value="${board_mng_list.BOARD_MNG_NO}"/> 
-  
-	<table class="table">
+   <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng_list.BOARD_MNG_NO}"/> 
+ 	<table class="table">
 	<tr> 
 	<td>게시판이름</td>
- <td><input type="text" class="form-control" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM} " style="width:50%" /></td> 
+ <td><input type="text" class="form-control" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM}" style="width:50%" /></td> 
 	<td>게시판분류</td>
    <td> 
-   <select class="form-control" id="sel1" onchange= fn_SelectBox(this.value);>
-     <option value="공지사항">공지사항</option>
-    <option value="게시판">게시판</option>
-    <option value="Q&A">Q&A</option>
+   <select class="form-control" id="sel1"> 
+    <c:forEach items="${codelist}" var="list">
+ 		 <c:choose>
+			 <c:when test="${board_mng_list.BOARD_MNG_CD eq list.CODE}">
+			 <option value="${list.CODE}" selected="selected">${list.CD_NM}</option>
+		     </c:when>
+		     <c:otherwise>
+		     <option value="${list.CODE}">${list.CD_NM}</option>							
+			 </c:otherwise>
+			 </c:choose>
+		 </c:forEach> 
    </select>
    </td>
 	</tr>
@@ -106,173 +113,16 @@
 	</div>
 	
 	<div id = "button_div">
-	<input type="button" id="board_mng_modify_fbtn" class = "btn btn-primary btn-sm" value="편집"/>
-	<input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록"/>
+	<input type="button" id="board_mng_modify_fbtn" class = "btn btn-primary btn-sm" value="편집" onclick="modify_fbtn();"/>
+	<input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 	</div>
 	
 	<div id = "button_div1">
-		<input type="button" class = "btn btn-primary btn-sm" id="board_mng_add_fbtn"  value="저장"/>
-		<input type="button" class="btn btn-primary btn-sm" id="board_cancle_fbtn" value="취소"/>
+		<input type="button" class = "btn btn-primary btn-sm" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
+		<input type="button" class="btn btn-primary btn-sm" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
 	</div>
 
-</div>
- 
-<script>
- 
-var formObj = $("form[role='form']");
-
-$("#board_list_fbtn").on("click", function(){  
-     	location.href = "/board_mng/boardmngInqr";
- 	})
- 	
- $("#board_mng_modify_fbtn").on("click", function() {
- 	 $("#BOARD_NM").attr("readonly", false);
-	 $("#BOARD_MNG_CD").attr("disabled", false);
-	 $("#sel1").attr("disabled", false);
-	 $(".radio_class").prop('disabled', false); 
-	 
-	 $("#button_div").hide();
-     $("#button_div1").show();
-
-
-  	 })	 
- 	 
- $("#board_cancle_fbtn").on("click", function(){
-
-	 fn_lock();
-	 $("#button_div1").hide();
-	 $("#button_div").show(); 
-
- }) 
- 
- 
- $("#board_mng_add_fbtn").on("click", function() {
-     
-     formObj.attr("action", "/board_mng/board_mng_modify");
-	 formObj.attr("method", "post");
-	 formObj.submit();
-     
- })
- 
- function fn_lock() {
-   
-	var CODE_TXT = $("#CODE_TXT").val(); 
-	var ACTIVE_FLG = $("#ACTIVE_FLG").val(); 
-	var REPLY_FLG = $("#REPLY_FLG").val();
-	var FILE_ATTACH_FLG = $("#FILE_ATTACH_FLG").val();
-	var NOTICE_FLG = $("#NOTICE_FLG").val();
- 
-	if(ACTIVE_FLG == 'Y')
-	{
- 	 $('input:radio[id="active_flg_y"]').attr("checked", true);
-	}
-	else{
-	 $('input:radio[id="active_flg_n"]').attr("checked", true); 
-	}
-	
-	if(REPLY_FLG =='Y')
-	{
-	  $('input:radio[id="reply_flg_y"]').attr("checked", true);
-
-	}
-	else{
-	  $('input:radio[id="reply_flg_n"]').attr("checked", true); 
-
-	}
-	
-	if(FILE_ATTACH_FLG =='Y')
-	{
-	  $('input:radio[id="file_attach_flg_y"]').attr("checked", true);
-
-	}
-	else{
-	  $('input:radio[id="file_attach_flg_n"]').attr("checked", true); 
-
-	}
-	
-	if(NOTICE_FLG =='Y')
-	{
-	  $('input:radio[id="notice_flg_y"]').attr("checked", true);
-
-	}
-	else{
-	  $('input:radio[id="notice_flg_n"]').attr("checked", true); 
-
-	}
-	
-	$("#BOARD_NM").prop('readonly', true);
- 	$(".radio_class").prop('disabled', 'disabled');
- 	$("#sel1").prop('disabled', 'disabled');
-
-	
-}
- 	  
- 
- 
- function fn_SelectBox(e){
-	 	 
-		var CODE_TXT = e;  
-		
-		 $.ajax({
-		 				url : '/board_mng/board_mng_codetxt',
-		 				headers : {
-		 		            "Content-Type" : "application/json",
-		 		            "X-HTTP-Method-Override" : "POST"
-		 		         },
-		 				data : CODE_TXT,
-		 				dataType : 'json',
-		 				processData: false,
-		 				contentType: false,
-		 				type: 'POST',
-		 				success : function(result) {
-	 	 					
-		 					var ajaxList = result.data; 
-		 					
-	 	 					var liststr = ""; 
-		 					
-		 					liststr  += ajaxList[0].CODE1;
-		 					
-		 					var boardcddiv = document.getElementById("board_cd_div");
-		 					boardcddiv.innerHTML = liststr; 
-		 					
-							 $(".form-control option[value='"+ ajaxList[0].CODE_TXT+"']").attr("selected", true); 
-							 
-		 				} 
-		 		 
-		 })
-	 
-}
- 	 
- 	 
- 	 
- 
-$(document).ready(function(){ 
-	var CODE_TXT = $("#CODE_TXT").val();
-	$("#button_div1").hide();
-	$(".form-control option[value='"+ CODE_TXT  +"']").attr("selected", true);  
-
-	fn_lock();
-	
- $("#board_modify_fbtn").on("click", function(){
-	 	formObj.attr("action", "/board/board_modify");
-		formObj.attr("method", "get");		
-		formObj.submit();
-	 /* $("form[name='form_modify']").attr("action", "${ctx}/board/board_read?BOARD_NO=?").submit();  */
-	 
- })
- 
- 
- $("#board_remove_fbtn").on("click", function(){
-	 formObj.attr("action", "/board/board_remove");
-	 formObj.attr("method", "post");
-	 formObj.submit();
- })
- 
-  
-}) 
-</script>
-
- 
+</div> 
 
 </body>
 </html>

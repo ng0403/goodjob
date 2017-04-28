@@ -20,12 +20,18 @@ public class BoardVO {
 	private String BOARD_MNG_CD;
 	private String REPLY_FLG;
 	private String QUESTION_TITLE;
-	private String CODE_TXT;
+	private String CD_NM;
  	private int FILE_NO;
 	private String FILE_PATH;
 	private String FILE_NM;
 	private String FILE_EXT;  
  	
+	public String getCD_NM() {
+		return CD_NM;
+	}
+	public void setCD_NM(String cD_NM) {
+		CD_NM = cD_NM;
+	}
 	public int getFILE_NO() {
 		return FILE_NO;
 	}
@@ -50,12 +56,7 @@ public class BoardVO {
 	public void setFILE_EXT(String fILE_EXT) {
 		FILE_EXT = fILE_EXT;
 	}
-	public String getCODE_TXT() {
-		return CODE_TXT;
-	}
-	public void setCODE_TXT(String cODE_TXT) {
-		CODE_TXT = cODE_TXT;
-	}
+	 
 	public String getQUESTION_TITLE() {
 		return QUESTION_TITLE;
 	}
@@ -172,8 +173,8 @@ public class BoardVO {
 				+ ", ANSWER_FLG=" + ANSWER_FLG + ", ACTIVE_FLG=" + ACTIVE_FLG + ", DEL_FLG=" + DEL_FLG + ", CREATED_BY="
 				+ CREATED_BY + ", CREATED=" + CREATED + ", UPDATED_BY=" + UPDATED_BY + ", UPDATED=" + UPDATED
 				+ ", delcode=" + delcode + ", BOARD_MNG_CD=" + BOARD_MNG_CD + ", REPLY_FLG=" + REPLY_FLG
-				+ ", QUESTION_TITLE=" + QUESTION_TITLE + ", CODE_TXT=" + CODE_TXT + ", FILE_NO=" + FILE_NO
-				+ ", FILE_PATH=" + FILE_PATH + ", FILE_NM=" + FILE_NM + ", FILE_EXT=" + FILE_EXT + "]";
+				+ ", QUESTION_TITLE=" + QUESTION_TITLE + ", CD_NM=" + CD_NM + ", FILE_NO=" + FILE_NO + ", FILE_PATH="
+				+ FILE_PATH + ", FILE_NM=" + FILE_NM + ", FILE_EXT=" + FILE_EXT + "]";
 	} 
 	 
   

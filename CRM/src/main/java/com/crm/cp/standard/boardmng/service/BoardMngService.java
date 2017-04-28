@@ -14,5 +14,7 @@ public interface BoardMngService {
 	  public void add(BoardMngVO vo);
 	  public void remove(String dc);
 	  public List<BoardMngVO> ajaxlist();
-	  public List<Object> codetxt(String CODE_TXT);
+	  public List<BoardMngVO> codelist();
+	  PagerVO getBoardMngListCountP(Map<String, Object> map);	//페이징처리
+	
 }

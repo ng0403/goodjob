@@ -19,6 +19,7 @@ public class QnaBoardServiceImpl implements QnABoardService {
 
 	@Override
 	public List<Object> list(Map map) {
+		System.out.println("qnaService map ? " +map.toString());
  		return qnaboardDao.list(map);
 
 	}
@@ -92,6 +93,29 @@ public class QnaBoardServiceImpl implements QnABoardService {
 		// TODO Auto-generated method stub
 		return qnaboardDao.QnAList2(map);
 	}
+	
+	
+	//전체리스트 개수 
+	@Override
+	public PagerVO boardListCount(Map<String, Object> boardMap) {
+		System.out.println("BoardListCount service " +  boardMap.toString());
+		int actPageNum = (Integer) boardMap.get("boardPageNum");
+		// 현재 페이지 얻어오기
+		PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+		// 전체 글의 갯수 구하기
+		System.out.println("actPage Num " + actPageNum);
+		int totalRowCount = qnaboardDao.boardListCount(boardMap);
+		System.out.println("totalRowCount ? " + totalRowCount);		
+		page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+	
+		return page;
+	}
  
 
+	//전체리스트 
+	@Override
+	public List<BoardVO> boardAllList(Map<String,Object> boardMap) {
+		return qnaboardDao.boardAllList(boardMap);
+	}
+	
 }

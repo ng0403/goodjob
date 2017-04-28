@@ -23,5 +23,8 @@ public interface QnABoardService {
 	  
 	  public List<BoardVO> QnAList(Map<String, Object> map);
 	  public List<BoardVO> QnAList2(Map<String, Object> map);
-
+	  
+	  
+	  public PagerVO boardListCount(Map<String, Object> boardMap); //보드 페이징
+	  public List<BoardVO> boardAllList(Map<String,Object> boardMap); 
 }

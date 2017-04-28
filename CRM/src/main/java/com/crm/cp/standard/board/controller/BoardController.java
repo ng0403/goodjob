@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.service.BoardService;
 import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.FileManager;
@@ -43,11 +44,12 @@ import com.crm.cp.utils.PagerVO;
 	/*@Autowired
 	SessionAuthService sessionAuthService;*/
 	 
+	//보드 전체 리스트.
 	@RequestMapping(value="/boardInqr", method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView boardList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam Map<String, Object> map ,HttpSession session
 			,@RequestParam("BOARD_MNG_NO") String BOARD_MNG_NO) throws Exception{
 		 
-		System.out.println("board_list Insert ");
+		System.out.println("board_list Entering " + map.toString());
 		
 //		접속된 사용자 아이디 
 		String sessionID = (String) session.getAttribute("user");
@@ -74,7 +76,7 @@ import com.crm.cp.utils.PagerVO;
  		List<Object> boardlist = boardService.list(map); 
  		System.out.println("list boardlist " + boardlist.toString());
  		System.out.println("map??" + map.toString());
-		ModelAndView mov = new ModelAndView("/standard/board/board_list");
+		ModelAndView mov = new ModelAndView("board_list");
 		mov.addObject("boardlist", boardlist);
 		mov.addObject("page",  page);
 		mov.addObject("pageNum",  pageNum);
@@ -85,11 +87,12 @@ import com.crm.cp.utils.PagerVO;
 		return mov; 
 	} 
 	
+	//보드 상세정보
 	@RequestMapping(value="/boardDetail", method= RequestMethod.GET)
 	public ModelAndView boardDetail(@RequestParam("BOARD_NO") int BOARD_NO, HttpSession session) throws Exception {
 		System.out.println("detail entering");
 //		접속된 사용자 아이디 
-		String sessionID = (String) session.getAttribute("user_id");
+		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -103,7 +106,7 @@ import com.crm.cp.utils.PagerVO;
 		String FILE_CD = vo.getFILE_CD(); 
 		
 		boardService.viewadd(BOARD_NO);
-		ModelAndView mov = new ModelAndView("/standard/board/board_detail");
+		ModelAndView mov = new ModelAndView("board_detail");
  	
 		if(FILE_CD == null)
 		{
@@ -122,30 +125,30 @@ import com.crm.cp.utils.PagerVO;
 		 
 	}
 	
+	
+	//보드 추가.
 	@RequestMapping(value="/boardInsert", method=RequestMethod.GET)
 	public ModelAndView board_add(@RequestParam("BOARD_MNG_NO") String BOARD_MNG_NO) {
 		  System.out.println("Entering"); 
  		  System.out.println(BOARD_MNG_NO);
-		  ModelAndView mov = new ModelAndView("/standard/board/board_insert");
+		  ModelAndView mov = new ModelAndView("board_insert");
 		  mov.addObject("board_mng" ,BOARD_MNG_NO);
 		  System.out.println("insert mov??" + mov.toString());
 
  		  return mov; 
 	}
 	
-	
+	//보드 추가.
 	@RequestMapping(value="/boardInsert", method=RequestMethod.POST)
 	public String  board_insert(MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach, HttpSession session) { 
  		  
 		 MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		 Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 	     MultipartFile multipartFile = null; 
- 	     
- 	     
- 	     	 
- 	    	 
+ 	      
 	     while(iterator.hasNext()){
 	        multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+	        System.out.println("multipartFile? " + multipartFile);
 	        if(multipartFile.isEmpty() == false){
 	        	
  	 		    attach.setFILE_NM(multipartFile.getOriginalFilename());
@@ -156,9 +159,8 @@ import com.crm.cp.utils.PagerVO;
  	 		    
  	 		    for(int i= 0; toke.hasMoreElements() ; i++)
  	 		    {
-  	 		     filename[i] = toke.nextToken();
-  	 		   
-  	 		    }
+  	 		     filename[i] = toke.nextToken(); 
+   	 		    }
  	 		   
  	 		    attach.setFILE_NM(filename[0]);
  	 		    attach.setFILE_EXT(filename[1]);  
@@ -179,18 +181,22 @@ import com.crm.cp.utils.PagerVO;
 			boardService.insertAttachData(attach);
 		
 		}
+	 }
+	    String file_nm = attach.getFILE_NM();
+	    if(file_nm == null)
+	    {
+	    	attach.setFILE_NM("");
 	    }
-		
-		boardService.insert(attach);  
+ 		boardService.insert(attach);  
    
 		System.out.println("board_insert success....");
  
 	 
-		return "redirect:/board/boardInqr"; 
+		return "redirect:/boardInqr?BOARD_MNG_NO=BMG1000002"; 
 		 
 	} 
 	  
-	
+	//보드 수정
 	@RequestMapping(value="/boardModify", method=RequestMethod.GET)
 	public ModelAndView board_modifyPage(int BOARD_NO, Model model)
 	{ 
@@ -200,7 +206,7 @@ import com.crm.cp.utils.PagerVO;
 		System.out.println("modify vo/" + vo);
 		String FILE_CD = vo.getFILE_CD();
 		
-		ModelAndView mov = new ModelAndView("/standard/board/board_modify");
+		ModelAndView mov = new ModelAndView("board_modify");
 
 		if(FILE_CD != null){
 			mov.addObject("boardVO", boardService.readFileModify(BOARD_NO));
@@ -213,16 +219,18 @@ import com.crm.cp.utils.PagerVO;
 		
 	}
 	
+	//보드 수정
 	@RequestMapping(value="/board_modify", method=RequestMethod.POST)
 	public String board_modify(BoardVO vo)
 	{
 		System.out.println("modify  Entering" + vo);
 		
 		boardService.modify(vo);
-		
-		return "redirect:/board/boardInqr";
+		String BOARD_MNG_NO = vo.getBOARD_MNG_NO();
+		return "redirect:/boardInqr?BOARD_MNG_NO=" + BOARD_MNG_NO;
 	}
 	
+	//보드 삭제
 	@RequestMapping(value="/board_remove", method=RequestMethod.POST) 
 	 @ResponseBody
 	public ResponseEntity<String> board_remove(@RequestBody String del_code){ 
@@ -250,20 +258,20 @@ import com.crm.cp.utils.PagerVO;
 	    return entity;
 	}
 	
-	
+	//보드 삭제
 	@RequestMapping(value="/detail_remove", method=RequestMethod.POST) 
-	public String detailRemove(int BOARD_NO){ 
+	public String detailRemove(int BOARD_NO, String BOARD_MNG_NO){ 
 		
-		System.out.println("remove insert");
+		System.out.println("remove insert" + BOARD_NO + "," + BOARD_MNG_NO);
 
 		 
 			boardService.removeDetail(BOARD_NO); 
-	     
-	    return "redirect:/board/boardInqr";
+			
+	    return "redirect:/boardInqr?BOARD_MNG_NO="+BOARD_MNG_NO;
 	}
 	
-	
-	@RequestMapping(value="/ajax_list", method=RequestMethod.POST) 
+	//ajax 리스트
+	/*@RequestMapping(value="/ajax_list", method=RequestMethod.POST) 
 	 @ResponseBody
 	public ResponseEntity<List<BoardVO>> ajax_list( ){ 
 		
@@ -280,7 +288,7 @@ import com.crm.cp.utils.PagerVO;
 	    }
 	    return entity;
 		 
-	}
+	}*/
 	
 	
 	@RequestMapping(value="/QnAajax_list", method=RequestMethod.POST) 
@@ -380,7 +388,26 @@ import com.crm.cp.utils.PagerVO;
 
 	}
 	 
-	
+	// 전체리스트 출력 페이징/검색
+	@RequestMapping(value = "/boardPaging", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> ActListSearch(HttpSession session,
+			@RequestParam(value = "boardPageNum", defaultValue = "1") int boardPageNum, @RequestParam Map<String, Object> boardMap) {
+		
+		System.out.println("board paging entering");
+  		boardMap.put("boardPageNum", boardPageNum);
+
+		PagerVO page = boardService.boardListCount(boardMap);
+		System.out.println("boardPage ? " + page.toString());
+		boardMap.put("page", page);
+
+		List<BoardVO> boardList = boardService.boardAllList(boardMap);
+		System.out.println("boardLitst? "  + boardList.toString());
+		System.out.println("boardListSize? " + boardList.size());
+		boardMap.put("boardList", boardList);
+		boardMap.put("boardListSize", boardList.size());
+
+		return boardMap;
+	}
  	
  
 }

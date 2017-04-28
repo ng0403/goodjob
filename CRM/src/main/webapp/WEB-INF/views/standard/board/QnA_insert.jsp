@@ -14,6 +14,7 @@
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>  
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
@@ -32,6 +33,7 @@
 			<label id="txt" >제  목</label>
  		</div>  
 		<div>  
+	 <input type='hidden' id ="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${board_mng}">	
 	 <input type="text" class="inputTxt" id="TITLE" name="TITLE" placeholder="제목을 입력해 주세요."  />
 	 <label id="txt" >질문 유형</label> 
  	 <select class="form-control" id="sel1" name = "QUESTION_TITLE">
@@ -52,32 +54,13 @@
 	</form>
 
 	<div id="btns"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "btn btn-primary btn-sm" value="저장"/>
-		 <input type="button" id="board_list_fbtn" class="btn btn-primary btn-sm" value="취소"/> 
+		 <input type="button" id ="board_add_fbtn" class = "btn btn-primary btn-sm" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="btn btn-primary btn-sm" value="취소" onclick="go_list();"/> 
 	</div>
 
 </div> 
  
-<script>  
-
-$("#board_list_fbtn").on("click", function(){  
-	 
-	location.href = "/board/QnAInqr"; 
-    	
- 	}) 
- 	
- 	$("#board_add_fbtn").on("click", function(){
- 	     var formObj = $("form[role='form']");
-  	     
- 		 formObj.attr("action", "/board/QnA_insert");
- 		 formObj.attr("method", "post");
- 		 formObj.submit(); 
- 		 
- 	}) 
-	 
-  
-</script>
-
+ 
  
 
 </body>

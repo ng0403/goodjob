@@ -3,6 +3,7 @@ package com.crm.cp.standard.board.service;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.PagerVO;
   
@@ -29,5 +30,9 @@ public interface BoardService {
 	  
 	  public void insertAttachData(BoardVO attach);
 	  public Object searchOneFiledata(String FILE_CD); 
+	  
+	  public PagerVO boardListCount(Map<String, Object> boardMap); //보드 페이징
+	  public List<BoardVO> boardAllList(Map<String,Object> boardMap); 
+
  
 }

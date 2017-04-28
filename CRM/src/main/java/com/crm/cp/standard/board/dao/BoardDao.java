@@ -5,6 +5,7 @@ package com.crm.cp.standard.board.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
 
 public interface BoardDao {
@@ -29,6 +30,8 @@ public interface BoardDao {
 	public void insertAttachData(BoardVO attach);
     public Object searchOneFiledata(String FILE_CD);
 
-	
+	public int boardListCount(Map<String, Object> boardMap);
+	public List<BoardVO> boardAllList(Map<String, Object> boardMap); 
+
  
 }

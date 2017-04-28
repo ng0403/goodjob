@@ -22,7 +22,10 @@ public class QnABoardDaoImpl implements QnABoardDao {
 	
 	@Override
 	public List<Object> list(Map map) {
-		return sqlSession.selectList("board.QnAList", map);
+		System.out.println("qna dao map ? " + map.toString());
+		List<Object> qwer = sqlSession.selectList("QnAList", map);
+		System.out.println("qwer ??? " + qwer.toString());
+		return qwer ;
 
 	}
 
@@ -107,6 +110,26 @@ public class QnABoardDaoImpl implements QnABoardDao {
 	  return sqlSession.selectList("board.selectQnA2", map);
  
 	}
+	
+	
+	//전체리스트 개수
+	@Override
+	public int boardListCount(Map<String, Object> boardMap) {
+		System.out.println("board Map Dao "  + boardMap.toString());
+		int totalCount = 0;
+		try {
+			totalCount = sqlSession.selectOne("board.selectTotalCount", boardMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
 	 
-
+	//전체리스트 
+	@Override
+	public List<BoardVO> boardAllList(Map<String, Object> boardMap) {
+		List<BoardVO> obj = sqlSession.selectList("board.QnAList", boardMap);
+		return obj;
+	}
 }
