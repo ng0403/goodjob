@@ -29,8 +29,6 @@ var ctx = $("#ctx").val();
 //영업기회 검색 조건 추가
 function addForm(){
 	if(count<2){
-		alert(count);
-		
 		$.ajax({
 			type : 'post',
 			url :'/otllist',
