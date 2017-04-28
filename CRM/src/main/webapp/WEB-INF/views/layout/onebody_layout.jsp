@@ -24,6 +24,9 @@
 		</div>
 		
 		<div class="bodyFrame">
+			<div class="sub_menu_bar">
+<%-- 				<tiles:insertAttribute name="sub_menu_bar"></tiles:insertAttribute> --%>
+			</div>
 			<div class="body" >
 				<tiles:insertAttribute name="body"></tiles:insertAttribute>
 			</div>

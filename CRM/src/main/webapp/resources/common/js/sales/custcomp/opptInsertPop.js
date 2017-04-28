@@ -393,7 +393,7 @@ function actOpptDelBt()
 {
 	var custId  = $('#cust_id').val();
 	
-	alert("custID : " + custId);
+	//alert("custID : " + custId);
 	
 	if($("input[name=list_sales_oppt_id]:checked").length==0)
 	{

@@ -149,7 +149,7 @@ function chkCancel() {
 //고객사 리스트 출력
 function custCompList(page){
 //	readDetail();
-	alert(page);
+//	alert(page);
 	var ctx = $("#ctx").val();
 	$.ajax({
 		type : 'post',
@@ -958,3 +958,4 @@ function contList(cust_id) {
 		});
 	});
 }
+

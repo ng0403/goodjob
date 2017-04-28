@@ -49,14 +49,14 @@ select{
 	border-color: #BDBDBD;
 }
 
-#title .caption {
-	color: #484848;
-	font-weight: bold;
-	border-bottom: 1px solid #dddddd;
-  	text-align: left;
-  	padding-top: 10px;
-  	padding-bottom: 10px;
-}
+/* #title .caption { */
+/* 	color: #484848; */
+/* 	font-weight: bold; */
+/* 	border-bottom: 1px solid #dddddd; */
+/*   	text-align: left; */
+/*   	padding-top: 10px; */
+/*   	padding-bottom: 10px; */
+/* } */
 
 /*연락처 검색부분*/
 .search_div {

@@ -27,6 +27,10 @@ html,body{
 	</div>
 	
 	<div class="bodyFrame" style="width:100%; height:80%; overflow: hidden;">
+		<div class="sub_menu_bar">
+		
+		</div>
+	
 		<div class="tree" style="width:25%;height: 100%; float:left; padding-left: 20px;  padding-right: 10px;">
 			<tiles:insertAttribute name="tree"></tiles:insertAttribute></div>
 		<div class="treeDetail" style="width:70%;height: 100%; float:left; padding-right: 15px;">

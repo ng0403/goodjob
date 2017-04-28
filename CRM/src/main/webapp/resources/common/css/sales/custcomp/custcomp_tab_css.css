@@ -149,7 +149,8 @@
 	padding-right: 10px;
 }
 
-#custcomptable select {
+/* select 박스 */
+select {
 	font-size: 12px;
 	background-color: #ffffff;
 	color: #5F5F5F;
@@ -335,8 +336,8 @@
 	height: 48%;
 }
 
-#title {
-	margin-top: 10px;	
-}
+/* #title { */
+/* 	margin-top: 10px;	 */
+/* } */
 
  

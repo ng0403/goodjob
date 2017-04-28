@@ -60,7 +60,8 @@ body, input, textarea, button, select, table {font:12px '돋움',Dotum,sans-seri
 .hide {position: absolute; left: -9999em; text-indent:-9999em;font-size:0;line-height:0;z-index:-1;}
 
 /*로그인*/
-body {background:#fffbcc;}
+/* body {	background: #fffbcc; } */
+body { background: #131230; }
 #wrap {
 		position:absolute;
 		left:50%;top:50%;

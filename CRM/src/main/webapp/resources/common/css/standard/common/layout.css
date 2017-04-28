@@ -17,14 +17,16 @@ html,body{
 	float:left;
 	overflow: hidden;  
 	text-align: center; 
-	background:#fffbcc;
+/* 	background:#fffbcc; */
+	background: #131230;
 }
 
 .header {
 	width:100%; 
 	height: 40%;  
 	float:left; 
-	background-color: #fffbcc;
+/* 	background-color: #fffbcc; */
+	background: #131230;
 }
 .menuNavi{
 	width:10%;   
@@ -34,38 +36,49 @@ html,body{
 
 .bodyFrame {
 	width:100%; 
-	height:84%; 
+	height:100%; 
 	overflow: hidden;  
 	margin: 0 auto;
 	overflow: auto;
 }
+
+.sub_menu_bar {
+	width: 13%;
+	height: 100%;
+	float: left;
+	background: #131230;
+}
+
 .body{
-	width: 85%;
+	width: 87%;
 	height: 100%; 
-	padding-left: 20px;  
-	padding-right: 20px;  
 	margin: 0 auto;
+    float: left;
 }
 .body1{
-	width: 85%;
+	width: 87%;
 	height: 100%; 
-	padding-left: 20px;  
-	padding-right: 20px;  
 	margin: 0 auto;
+/* 	float: left; */
+	display: inline-block;
 /* 	overflow: auto; */
 }
 .master {
-	width:100%;
-	height: 50%;
+	width: 100%;
+	height: 40%;
+	display: inline-block;
+	padding-bottom: 10px;
 }
 .detail {
-	width:100%; 
-	height: 50%; 
+/* 	width:100%;  */
+	width: 100%;
+	height: 60%; 
 	margin-top: 15px;
+	display: inline-block;
 }
 .footer {
 	width:100%; 
-	height: 3%; 
+/* 	height: 3%;  */
 	float: left;
 }
 
@@ -79,11 +92,15 @@ html,body{
 	font-weight: bold;
 	font-family: sans-serif;
 	float: left;
-	padding: 15px;
-	margin-left: 45px;
+	padding: 7px;
+	margin-left: -144px;
+	color: #ffffff;
+	text-shadow: -1px 0 #eaeaea, 0 1px #eaeaea, 1px 0 #eaeaea, 0 -1px #eaeaea;
+	-moz-text-shadow: -1px 0 #eaeaea, 0 1px #eaeaea, 3px 0 #eaeaea, 0 -1px #eaeaea;
+	-webkit-text-shadow: -1px 0 #eaeaea, 0 1px #eaeaea, 1px 0 #eaeaea, 0 -1px #eaeaea;
 }
 
 #pageSpace {
-	width: 100%;
+	width: 90%;
 	text-align: center;
 }

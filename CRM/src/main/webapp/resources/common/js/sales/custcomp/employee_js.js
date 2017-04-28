@@ -98,7 +98,7 @@ function empSearch(empPageNum) {
 				}
 			},
 			error : function(data){
-				alert(data);
+				//alert(data);
 			}
 		});
 	});

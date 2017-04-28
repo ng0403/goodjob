@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+/* 탭 선택 시 표시할 요소(div) 정의(1번 탭 선택 시 첫 번째 div 요소 표시) */
+#css_tabs #tab1:nth-of-type(1), #css_tabs #tab1:nth-of-type(1) ~ #tabDiv1:nth-of-type(1),
+#css_tabs #tab2:nth-of-type(2), #css_tabs #tab2:nth-of-type(2) ~ #tabDiv2:nth-of-type(2),
+#css_tabs #tab3:nth-of-type(3), #css_tabs #tab3:nth-of-type(3) ~ #tabDiv3:nth-of-type(3),
+#css_tabs #tab4:nth-of-type(4), #css_tabs #tab4:nth-of-type(4) ~ #tabDiv4:nth-of-type(4),
+#css_tabs #tab5:nth-of-type(5), #css_tabs #tab5:nth-of-type(5) ~ #tabDiv5:nth-of-type(5),
+#css_tabs #tab6:nth-of-type(6), #css_tabs #tab6:nth-of-type(6) ~ #tabDiv6:nth-of-type(6){
+    display:none;
+}
+#css_tabs #tab1:nth-of-type(1):checked ~ #tabDiv1:nth-of-type(1),
+#css_tabs #tab2:nth-of-type(2):checked ~ #tabDiv2:nth-of-type(2),
+#css_tabs #tab3:nth-of-type(3):checked ~ #tabDiv3:nth-of-type(3),
+#css_tabs #tab4:nth-of-type(4):checked ~ #tabDiv4:nth-of-type(4),
+#css_tabs #tab5:nth-of-type(5):checked ~ #tabDiv5:nth-of-type(5),
+#css_tabs #tab6:nth-of-type(6):checked ~ #tabDiv6:nth-of-type(6){
+    display:block;
+}
+
+
+/* 라벨 기본 스타일 지정 */
+
+#css_tabs {
+/* 	margin-top: 5px; */
+	width: 100%;
+	padding-top: 25px;
+}
+
+#css_tabs > label {
+    display:inline-block;
+    font-size:.9em;
+    font-weight:700;
+    padding:5px;
+    text-align:center;
+    width:100px;
+    line-height:1.8em;
+    border-radius:8px 8px 0 0; 
+    box-shadow:-2px 0 2px rgba(0, 0, 0, 0.1);
+    background:#eee;
+    color:#777;
+    border:1px solid #ccc;
+    border-width:1px 1px 0;
+    margin-bottom:-1px;
+    
+}
+#css_tabs > label:hover {
+    cursor:pointer; /*마우스 올렸을 때 손 모양*/
+}
+
+/* 선택된 라벨, 커서를 올린 라벨 스타일 지정 */
+#css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
+    background:#818181;
+    color:#fff
+}
+#css_tabs input:nth-of-type(2):checked ~ label:nth-of-type(2), #css_tabs > label[for=tab2]:hover {
+    background:#818181;
+    color:#fff;
+}
+
+#css_tabs input:nth-of-type(3):checked ~ label:nth-of-type(3), #css_tabs > label[for=tab3]:hover {
+    background:#818181;
+    color:#fff;
+}
+
+#css_tabs input:nth-of-type(4):checked ~ label:nth-of-type(4), #css_tabs > label[for=tab4]:hover {
+    background:#818181;
+    color:#fff;
+}
+
+#css_tabs input:nth-of-type(5):checked ~ label:nth-of-type(5), #css_tabs > label[for=tab5]:hover {
+    background:#818181;
+    color:#fff;
+}
+
+#css_tabs input:nth-of-type(6):checked ~ label:nth-of-type(6), #css_tabs > label[for=tab6]:hover {
+    background:#818181;
+    color:#fff;
+}
+
+/*  실제 내용이 담긴 div 요소 스타일 지정 */
+#css_tabs .tab1_content, #css_tabs .tab2_content, #css_tabs .tab3_content, #css_tabs .tab4_content, #css_tabs .tab5_content, #css_tabs .tab6_content {
+    border:1px solid #ddd;
+    height:100%;
+ 
+}
+
+/* 버튼 공통 */
+.button {
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+.button:hover {
+	text-decoration: none;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+}
+/* function 기능 버튼 */ 
+.functionBtn {
+	color: #e9e9e9;
+	border: solid 1px #555;
+	background: #6e6e6e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#888),
+		to(#575757));
+	background: -moz-linear-gradient(top, #888, #575757);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#888888',
+		endColorstr='#575757');
+}
+
+.functionBtn:hover {
+	background: #616161;
+	background: -webkit-gradient(linear, left top, left bottom, from(#757575),
+		to(#4b4b4b));
+	background: -moz-linear-gradient(top, #757575, #4b4b4b);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#757575',
+		endColorstr='#4b4b4b');
+}
+
+.functionBtn:active {
+	color: #afafaf;
+	background: -webkit-gradient(linear, left top, left bottom, from(#575757),
+		to(#888));
+	background: -moz-linear-gradient(top, #575757, #888);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#575757',
+		endColorstr='#888888');
+}
+
+
+.bt_position_authuser {
+	margin-top: 10px;
+	float: right;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}

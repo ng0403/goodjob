@@ -5,16 +5,26 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<!-- 새로운 공통 css 파일 -->
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+
+<!-- 기존 css 파일 -->
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+
+<!-- 기존 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
 <title>기존고객 상세정보</title>
 
 </head>
@@ -35,20 +45,22 @@
 	<div id="custcomp_tab_detail">
 				
 			<form id="custCompForm" method="post">
-			
-				<div id="baseBtnDiv" class="bt_position_authuser">
-<!-- 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/> -->
-<!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
-					<input type="button" id="mdfBtn" 	   value="편집" class="custcomp_btn" onclick="custCompMdfyBtn();"/>
-					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
-				</div>
-				<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="addSaveBtn"   value="저장" class="custcomp_btn" onclick="addCustComp('${ctx}');"/>
-					<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
-				</div>
-				<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-					<input type="button" id="mdfSaveBtn"   value="저장" class="custcomp_btn" onclick="mdfyCustComp('${ctx}');" />
-					<input type="button" id="mdfCancelBtn" value="취소" class="custcomp_btn" onclick="custCompCancelBtn();"/>
+				
+				<div class="detailBtn">
+					<div id="baseBtnDiv" class="bt_position_authuser">
+	<!-- 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/> -->
+	<!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
+						<input type="button" id="mdfBtn" 	   value="편집" class="button functionBtn" onclick="custCompMdfyBtn();"/>
+						<input type="button" id="addCancelBtn" value="취소" class="button search_btn" onclick="custCompCancelBtn();"/>
+					</div>
+					<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
+						<input type="button" id="addSaveBtn"   value="저장" class="button functionBtn" onclick="addCustComp('${ctx}');"/>
+						<input type="button" id="addCancelBtn" value="취소" cclass="button search_btn" onclick="custCompCancelBtn();"/>
+					</div>
+					<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
+						<input type="button" id="mdfSaveBtn"   value="저장" class="button functionBtn" onclick="mdfyCustComp('${ctx}');" />
+						<input type="button" id="mdfCancelBtn" value="취소" class="button search_btn" onclick="custCompCancelBtn();"/>
+					</div>
 				</div>
 				
 				<div id="custcompdiv">
