@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
 <!-- 페이지 공통 js파일 -->
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/listSort.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script>
 
 <!-- 고객사 부분 js파일 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
@@ -101,9 +101,9 @@
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
 						<th style="width: 16%" onclick="goSort();" id="tblTh">기업명</th>
-						<th style="width: 8%">사업자번호</th>
-						<th style="width: 8%">법인번호</th>
-						<th style="width: 10%">대표전화번호</th>
+						<th style="width: 8%"  onclick="goSort();" id="tblTh">사업자번호</th>
+						<th style="width: 8%"  onclick="goSort();" id="tblTh">법인번호</th>
+						<th style="width: 10%" onclick="goSort();" id="tblTh">대표전화번호</th>
 						<th style="width: 10%" onclick="goSort();" id="tblTh">매출규모</th>
 						<th style="width: 8%"  onclick="goSort();" id="tblTh">직원수</th>
 						<th style="width: 14%" onclick="goSort();" id="tblTh">산업군</th>
