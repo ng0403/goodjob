@@ -50,7 +50,7 @@
 					<div id="baseBtnDiv" class="bt_position_authuser">
 	<!-- 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/> -->
 	<!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
-						<input type="button" id="mdfBtn" 	   value="편집" class="button functionBtn" onclick="custCompMdfyBtn();"/>
+						<input type="button" id="mdfBtn" 	   value="편집" class="button search_btn" onclick="custCompMdfyBtn();"/>
 						<input type="button" id="addCancelBtn" value="취소" class="button search_btn" onclick="custCompCancelBtn();"/>
 					</div>
 					<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
