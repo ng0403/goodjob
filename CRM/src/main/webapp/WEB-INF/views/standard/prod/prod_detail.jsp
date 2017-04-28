@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_pop.js"></script>	

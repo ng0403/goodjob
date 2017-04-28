@@ -382,7 +382,8 @@ public class ProdController {
 		mov.addObject("ccPageNum", prodPageNum);
 		mov.addObject("page", page);
 		mov.addObject("prodList", prodList);
-		
+		System.out.println(prodList);
+		System.out.println(page);
 		return mov;
 	}
 	//상품 입력 폼 출력

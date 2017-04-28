@@ -55,6 +55,7 @@
 }
 
 .bs-example #mastertable thead tr{
+	display: table;
 	height:35px;
 }
 
