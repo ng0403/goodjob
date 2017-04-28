@@ -10,13 +10,26 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptList.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <title>개인 고객</title>
 </head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script>
 <script type="text/javascript">
+</script>
+<script>
+   var tableSort;
+   onload=function() {
+      tableSort = $(".tabtable").tableSort(".tbody");
+
+
+   }
+   function goSort() {
+      tableSort.view();
+   }
 </script>
 <body>
 <form action="" method="get" id="listForm" >
@@ -79,7 +92,7 @@
 						<th style="width: 12%">등록일시</th>
 					</tr>
 				</thead>
-				<tbody id="listTable" >
+				<tbody id="listTable" class="tbody">
 				<c:forEach items="${oplist}" var="list" begin="0" end="9">
 					<tr id="${list.sales_oppt_id}">
 						<th>

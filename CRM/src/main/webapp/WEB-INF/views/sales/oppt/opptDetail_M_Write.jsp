@@ -7,9 +7,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -60,20 +61,20 @@ $(document).ready(function(){
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv"  class="bt_position_authuser">
-				<input type="button" id="modifybtn" class="btn-success-tel"  onclick="opptMdfyBtn();" value="편집" />
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="modifybtn" class="button functionBtn"  onclick="opptMdfyBtn();" value="편집" />
+				<input type="button" id="cancelbtn" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="NewAddBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="submitbtn" style="display: none;" class="btn-success-tel" onclick="opptAddBtn();" value="추가" />
-				<input type="button" id="cancelbtn" style="display: none;" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="submitbtn" style="display: none;" class="button functionBtn" onclick="opptAddBtn();" value="추가" />
+				<input type="button" id="cancelbtn" style="display: none;" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="addsavebtn" class="btn-success-tel" onclick="opptAdd();" value="저장" />
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="addsavebtn" class="button functionBtn" onclick="opptAdd();" value="저장" />
+				<input type="button" id="cancelbtn" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="modifysavebtn" class="btn-success-tel" value="저장" onclick="opptModify();"/>
-				<input type="button" id="cancelbtn" class="btn-success-tel" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="modifysavebtn" class="button functionBtn" value="저장" onclick="opptModify();"/>
+				<input type="button" id="cancelbtn" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
 			<div id="ccustomerdiv">
@@ -165,8 +166,8 @@ $(document).ready(function(){
 					<tbody id="opptProd">
 						<tr>
 	 						<td>
-	 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품삭제" id="opptProdDelete"/>
-								<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="opptProdListBtn"/>
+	 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품삭제" id="opptProdDelete"/>
+								<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품추가" id="opptProdListBtn"/>
 	 						</td> 
 						</tr>
 					</tbody>

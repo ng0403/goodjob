@@ -8,7 +8,8 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -56,8 +57,8 @@ $(document).ready(function() {
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_authuser">
-				<button id="act_opp_nm" class="btn btn-default">영업활동 추가</button>
-				<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptActiveDelete();">삭제</button>
+				<button id="act_opp_nm" class="button functionBtn">영업활동 추가</button>
+				<button id="addkeymancancel" class="button functionBtn" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
 			<div id="tableline" class="FixHeader">
@@ -89,8 +90,8 @@ $(document).ready(function() {
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
 		<div class="bt_position_authuser">
-			<button id="estimateAdd" class="btn btn-default">견적 추가</button>
-			<button id="addkeymancancel" class="btn-success-tel" onclick="javascript:opptEstimDelete();">삭제</button>
+			<button id="estimateAdd" class="button functionBtn">견적 추가</button>
+			<button id="addkeymancancel" class="button functionBtn" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
 		<div id="tableline" class="FixHeader">
