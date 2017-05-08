@@ -44,7 +44,7 @@ $(document).ready(function() {
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	
-	<div id="css_tabs" style="margin-top: 25%;">
+	<div id="css_tabs" >
 		<!-- 라디오 버튼 -->
 <!-- 		<input id="tab1" type="radio" name="tab" />  -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> 

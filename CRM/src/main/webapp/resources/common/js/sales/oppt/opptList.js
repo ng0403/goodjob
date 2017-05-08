@@ -19,6 +19,8 @@
 $(function(){
 	opptAllCheck(); //영업기회 all check 함수
 	searchCustcompListPopup();
+	searchCustcompListPopup0();
+	searchCustcompListPopup1();
 });
 var count = 0;
 var schAddFlg = 0;
@@ -551,16 +553,30 @@ function estimList(opptId){
 	});
 }
 //영업기회 검색창 고객 리스트 팝업
+function searchCustcompListPopup1(ctx){
+	var ctx = $("#ctx").val();
+	var count;
+	$('#searchCustomer1').click(function(){
+		alert("세번째 고객");
+		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+	});  
+}
+//영업기회 검색창 고객 리스트 팝업
 function searchCustcompListPopup(ctx){
 	var ctx = $("#ctx").val();
 	var count;
+
 	$('#searchCustomer').click(function(){
+		alert("첫번째 고객");
 		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
+}
+//영업기회 검색창 고객 리스트 팝업
+function searchCustcompListPopup0(ctx){
+	var ctx = $("#ctx").val();
+	var count;
 	$('#searchCustomer0').click(function(){
-		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
-	});  
-	$('#searchCustomer1').click(function(){
+		alert("두번째 고객");
 		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 }
