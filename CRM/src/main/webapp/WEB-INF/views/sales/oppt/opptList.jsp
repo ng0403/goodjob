@@ -67,7 +67,7 @@
 				      		<option value="90">90</option>
 				      		<option value="100">100</option>
 				      </select>
-					<label id="schAddBtn"style="margin-left: 30px;" onclick="addForm();">검색조건추가</label>
+					<label id="schAddBtn"style="margin-left: 10px;margin-right: 10px; font-size: 22pt;" onclick="addForm();">+</label>
 			
 			    <input type="button"  class="button search_btn" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
