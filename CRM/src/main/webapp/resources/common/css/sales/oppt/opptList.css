@@ -75,13 +75,13 @@ svg {
 #goaltable {
 	width:100%;
 	margin-top: 10px;
-	border-top: 2px solid #C0C4CB;
-	border-bottom: 2px solid #C0C4CB;
+/* 	border-top: 2px solid #C0C4CB; */
+/* 	border-bottom: 2px solid #C0C4CB; */
 	border-collapse: collapse;
 }
 
 #goaltable thead tr{
-	border-bottom: 2px solid #C0C4CB;
+/* 	border-bottom: 2px solid #C0C4CB; */
 	background-color: #F2F2F2;
 	font-weight: bold;
 }

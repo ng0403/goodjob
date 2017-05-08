@@ -224,10 +224,10 @@
 }
 
 #estimatehead{
-	width : 95%;
-	border-left: 2px solid #bebebe;
-	border-right: 2px solid #bebebe;
-	border-top:2px solid #bebebe;
+	width : 100%;
+/* 	border-left: 2px solid #bebebe; */
+/* 	border-right: 2px solid #bebebe; */
+/* 	border-top:2px solid #bebebe; */
 }
 
 #estimatehead #totalprice{
@@ -242,11 +242,11 @@
 
 #estimatediv{
 /* 	height: 90px; */
-	width: 95%;
-	border-bottom: 2px solid #bebebe;
-	margin-left: 22px;
+	width: 100%;
+/* 	border-bottom: 2px solid #bebebe; */
+/* 	margin-left: 22px; */
 	overflow: auto;
-	height: 205px;
+/* 	height: 205px; */
 }
 
 .estimate_bt_position{

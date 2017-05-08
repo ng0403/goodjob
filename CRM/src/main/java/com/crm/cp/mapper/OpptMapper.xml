@@ -18,7 +18,8 @@
 		code=a.sales_lev_cd) sales_lev_cd_nm
 		, a.sales_lev_cd
 		, a.sales_oppt_stat_cd
-		, (select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id)) expt_sales_amt
+		, case when ((select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id))) is null then 0
+		else (select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id)) end as expt_sales_amt 
 		, to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d
 		, a.psblty_rate
 		, (select cd_nm from code where cd_grp_id='OSC' and	code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm

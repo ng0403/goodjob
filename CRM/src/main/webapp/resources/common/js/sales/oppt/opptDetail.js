@@ -740,7 +740,7 @@ function viewSalesActive(opptId){
 					'<tr id="priceline" class='+prod_id+' name="prt">'+
 					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+					'<td style="width: 35%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 					'<td style="width: 27%;" name="prod_price">'+prod_price+'</td>'+
 					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" class="discount" name="discount" value=0 onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
@@ -768,7 +768,7 @@ function viewSalesActive(opptId){
 						'<tr id="priceline" class='+prod_id+' name="prt">'+
 						'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
 						'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-						'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+						'<td style="width: 35%;" id="prod_nm">'+prod_nm+'</td>'+
 						'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 						'<td style="width: 27%;" name="prod_price" value="prod_price">'+prod_price+'</td>'+
 						'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
@@ -784,7 +784,7 @@ function viewSalesActive(opptId){
 			$('#opptPrdtbody').append(
 					'<tr id="priceline" class="empty">'+
 					'<th style="width: 3%;"></th>'+
-					'<td style="width: 32%;"></td>'+
+					'<td style="width: 35%;"></td>'+
 					'<td style="width: 8%;"></td>'+
 					'<td style="width: 27%;"></td>'+
 					'<td style="width: 15%;"></td>'+

@@ -45,7 +45,7 @@
 				   	<label for="inputPassword1" class="tel_label_list" >고객명</label>
 				    <input type="text" class="tel_search" id="scust_nm" name="scust_nm" value="${scust_nm}">
 				    <input type="hidden" class="tel_search" id="scust_id" name="scust_id" value="${scust_id}">
-				    <input type="button" class="btn-success-tel" id="searchCustomer" value="고객">
+				    <input type="button" class="button search_btn" id="searchCustomer" value="고객">
 			    	<label for="inputPassword1" class="tel_label_list" id="oppt_lev_label">영업단계</label>
 				    <select class="tel_label_list" name="ssales_lev_cd" id="ssales_lev_cd_select" style="height: 25px;">
 				    	<option value="">선택</option>
@@ -69,13 +69,8 @@
 				      </select>
 					<label id="schAddBtn"style="margin-left: 30px;" onclick="addForm();">검색조건추가</label>
 			
-			    <input type="button"  class="btn-success-tel" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="button search_btn" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
-		    <div id="contact_button_position">
-		    	<input type="button" class="btn-success-tel" value="추가" onclick="AddCustomerOpen();">
-				<input type="button" class="btn-success-tel" value="삭제" onclick="opptDelete();" >
-			</div>
-		    
 			<div id="tableline">	 
 				<table id="goaltable" class="tabtable">
 				<thead>
@@ -118,55 +113,62 @@
 				</tbody>
 			</table>
 		</div>
-
-		<!-- 페이징 처리 -->
-		<div id="pageSpace">
-			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
-			<c:choose>
-				<c:when test="${ccPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀◀</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:opportunityList(${page.prevStepPage})" class="prev">◀◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:opportunityList(${page.prevPageNum})" class="prev">◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+		<div class="bottom_div">
+			
+			<div id="contact_button_position" class="functionBtn_div">
+			    	<input type="button" class="button functionBtn" value="추가" onclick="AddCustomerOpen();">
+					<input type="button" class="button functionBtn" value="삭제" onclick="opptDelete();" >
+			</div>
+	
+			<!-- 페이징 처리 -->
+			<div id="pageSpace" class="pagination">
+				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
-					<c:when test="${i eq ccPageNum }">
-						<b>
-							<a  href="javascript:opportunityList('${i}');" id="pNum" class="choice">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:opportunityList('${i}');">${i}</a>
-					</c:otherwise>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+		        		<a class="prev">◀◀</a>
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+		        		<a href="javascript:opportunityList(${page.prevStepPage})" class="prev">◀◀</a>
+		    		</c:when>
 				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.totalPageCount}">
-	       			<a class="next">▶</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:opportunityList(${page.nextPageNum})" class="next">▶</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.totalPageCount}">
-	       			<a class="next">▶▶</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:opportunityList(${page.nextStepPage})" class="next">▶▶</a>
-	    		</c:when>
-			</c:choose>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+		        		<a class="prev">◀</a>
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+		        		<a href="javascript:opportunityList(${page.prevPageNum})" class="prev">◀</a>
+		    		</c:when>
+				</c:choose>
+				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+					<c:choose>
+						<c:when test="${i eq ccPageNum }">
+							<b>
+								<a  href="javascript:opportunityList('${i}');" id="pNum" class="choice">${i}</a>
+							</b>
+						</c:when>
+						<c:otherwise>
+							<a  href="javascript:opportunityList('${i}');">${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+		       			<a class="next">▶</a>
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+		       			<a href="javascript:opportunityList(${page.nextPageNum})" class="next">▶</a>
+		    		</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+		       			<a class="next">▶▶</a>
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+		       			<a href="javascript:opportunityList(${page.nextStepPage})" class="next">▶▶</a>
+		    		</c:when>
+				</c:choose>
+			</div>
 		</div>
 	</form>	
 	

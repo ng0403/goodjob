@@ -19,8 +19,8 @@
 $(function(){
 	opptAllCheck(); //영업기회 all check 함수
 	searchCustcompListPopup();
-	searchCustcompListPopup0();
-	searchCustcompListPopup1();
+//	searchCustcompListPopup0();
+//	searchCustcompListPopup1();
 });
 var count = 0;
 var schAddFlg = 0;
@@ -83,47 +83,7 @@ function addForm(){
 		alert("검색 조건은 최대 3개 입니다.");
 //	}
 	}
-//	    var addedFormDiv = document.getElementById("search_div");
-//	    var str = "";
-//	    str+="<br><label for='scompNam' class='tel_label_list'>"+'영업기회명'+"</label>";
-//	    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
-//	    str+="<label for='inputPassword1' class='tel_label_list' >"+'고객명'+"</label>";
-//	    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value=''>";
-//	    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
-//	    str+="<input type='button' class='btn-success-tel' id='searchCustomer"+count+"' value='고객'>";
-//	    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label'>"+'영업단계'+"</label>";
-//	    str+="<select class='tel_label_list' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px;'>";
-//	    str+="<option value=''>"+'선택'+"</option>";
-//	    str+="<c:forEach items='' var=''>";
-////	    str+="<option value='' >" "</option>";
-//	    str+="</c:forEach>";
-//	    str+="</select>";
-//	    str+="<label for='inputPassword1' class='tel_label_list'>"+'가능성(%)'+"</label>";
-//	    str+="<select class='tel_label_list' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='height: 25px;' >";
-//	    str+="<option value=''>"+'선택'+"</option>";
-//	    str+="<option value='10'>"+'10'+"</option>";
-//	    str+="<option value='20'>"+'20'+"</option>";
-//	    str+="<option value='30'>"+'30'+"</option>";
-//	    str+="<option value='40'>"+'40'+"</option>";
-//	    str+="<option value='50'>"+'50'+"</option>";
-//	    str+="<option value='60'>"+'60'+"</option>";
-//	    str+="<option value='70'>"+'70'+"</option>";
-//	    str+="<option value='80'>"+'80'+"</option>";
-//	    str+="<option value='90'>"+'90'+"</option>";
-//	    str+="<option value='100'>"+'100'+"</option>";
-//	    str+="</select>";
-//	    str+="<label onclick='delForm();' style='margin-left:3px;'>"+'X'+"</label>";
-//	}else{
-//		alert("검색 조건은 최대 3개 입니다.");
-//	}
-    // 추가할 폼(에 들어갈 HTML)
-   
-//	  var addedDiv = document.createElement("div"); // 폼 생성
-//	    addedDiv.id = "added_"+count; // 폼 Div에 ID 부여 (삭제를 위해)
-//	    addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
-//	    addedFormDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
-//
-//	    count++;
+
 //    document.listForm.count.value=count;
     // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
@@ -553,14 +513,14 @@ function estimList(opptId){
 	});
 }
 //영업기회 검색창 고객 리스트 팝업
-function searchCustcompListPopup1(ctx){
-	var ctx = $("#ctx").val();
-	var count;
+//function searchCustcompListPopup1(ctx){
+//	var ctx = $("#ctx").val();
+//	var count;
 	$('#searchCustomer1').click(function(){
 		alert("세번째 고객");
-		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+		window.open('/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
-}
+//}
 //영업기회 검색창 고객 리스트 팝업
 function searchCustcompListPopup(ctx){
 	var ctx = $("#ctx").val();
@@ -571,15 +531,15 @@ function searchCustcompListPopup(ctx){
 		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 }
-//영업기회 검색창 고객 리스트 팝업
-function searchCustcompListPopup0(ctx){
-	var ctx = $("#ctx").val();
-	var count;
+////영업기회 검색창 고객 리스트 팝업
+//function searchCustcompListPopup0(ctx){
+//	var ctx = $("#ctx").val();
+//	var count;
 	$('#searchCustomer0').click(function(){
 		alert("두번째 고객");
-		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+		window.open('/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
-}
+//}
 
 //고객 이름 입력 함수
 function inputCustNm(custNm,custId,custType){	

@@ -59,7 +59,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				'<tr id="priceline" class='+prod_id+'>'+
 				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+				'<td style="width: 35%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
 				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
 				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
@@ -85,7 +85,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<tr id="priceline" class='+prod_id+'>'+
 					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+					'<td style="width: 35%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
 					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
 					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
@@ -103,7 +103,7 @@ function makeBlock(){
 		$('#opptPrdtbody').append(
 				'<tr id="priceline" class="empty">'+
 				'<th style="width: 3%;"></th>'+
-				'<td style="width: 32%;"></td>'+
+				'<td style="width: 35%;"></td>'+
 				'<td style="width: 8%;"></td>'+
 				'<td style="width: 27%;"></td>'+
 				'<td style="width: 15%;"></td>'+

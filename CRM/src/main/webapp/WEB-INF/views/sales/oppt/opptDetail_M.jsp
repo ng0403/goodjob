@@ -95,7 +95,7 @@ $(document).ready(function(){
 								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 																
-								<input type="button" class="btn-success-tel" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
+								<input type="button" class="button search_btn" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
 						<tr>
@@ -164,17 +164,19 @@ $(document).ready(function(){
 			<div id="salesOpptPrdtdiv">
 				<input type="hidden" id="inputCust" value="false"/>
 				
-				<table>
-					<tbody id="opptProd">
-						<tr>
-	 						<td>
-	 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품삭제" id="opptProdDelete"/>
-								<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-left: 20px;" class="button functionBtn" value="상품추가" id="opptProdListBtn"/>
-	 						</td> 
-						</tr>
-					</tbody>
-				</table>
-				<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
+				<div class="detailBtn">
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품삭제" id="opptProdDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품추가" id="opptProdListBtn"/>
+				</div>
+<!-- 				<table> -->
+<!-- 					<tbody id="opptProd"> -->
+<!-- 						<tr> -->
+<!-- 	 						<td> -->
+<!-- 	 						</td>  -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
 					<tr class="headerLock">
 						<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
@@ -186,13 +188,13 @@ $(document).ready(function(){
 					<tr id="totalprice">
 <!-- 						<th></th> -->
 						<td>계:</td>
-						<td id="countSum">0</td>
-						<td id="salesPriceSum" >0</td>
-						<td id="discountSum">0</td>
-						<td id="supplyPriceSum">0</td>
+						<td id="countSum"style="width: 8%;">0</td>
+						<td id="salesPriceSum" style="width: 27%;">0</td>
+						<td id="discountSum" style="width: 15%;">0</td>
+						<td id="supplyPriceSum" style="width: 15%;">0</td>
 					</tr>
 				</table>
-				<div id="estimatediv" style="margin-left: 22px;">
+				<div id="estimatediv" style="">
 					<input type="hidden" id="eduCode" value="${eduCode}">
 					<table id="opptPrdttable" class="tabtable" style="text-align: center;">
 						<tbody id="opptPrdtbody">
@@ -203,13 +205,13 @@ $(document).ready(function(){
 											<th style="width: 3%;">
 												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
-											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
+											<td style="width: 35%;" id="prod_nm">${list.prod_nm}</td>
 											<td style="width: 8%;">
 												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.prod_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
 											<td style="width: 27%;" >${list.prod_price}</td>
 											<td style="width: 15%;" >
 												<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" class="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
-												<select id="unit" class="unit" name="discount_unit_cd" style="width: 35%;" disabled="disabled">
+												<select id="unit" class="unit" name="discount_unit_cd" style="width: 30%;" disabled="disabled">
 													<option value="0">선택</option>
 													<c:forEach items="${eduList }" var="eduList">
 														<c:choose>
