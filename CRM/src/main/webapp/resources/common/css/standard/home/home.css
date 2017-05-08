@@ -62,6 +62,7 @@ svg {
 	padding-bottom: 15px;
 	padding-left: 10px;
 	padding-right: 10px;
+	margin-left: 12px;
 	margin-bottom: 12px;
 	overflow: auto;
 } 
@@ -75,6 +76,7 @@ svg {
 	padding-bottom: 15px;
 	padding-left: 10px;
 	padding-right: 10px;
+	margin-right: 12px;
 	margin-bottom: 12px;
 	overflow: auto;
 }
