@@ -175,7 +175,7 @@ $(document).ready(function(){
 <!-- 				</table> -->
 				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
 					<tr>
-						<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+						<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
 						<td style="width: 8%;">수량</td>
 						<td style="width: 27%;">판매가</td>
@@ -183,7 +183,7 @@ $(document).ready(function(){
 						<td style="width: 15%;">공급가</td>
 					</tr>
 					<tr id="totalprice">
-						<th></th>
+<!-- 						<th></th> -->
 						<td>계:</td>
 						<td id="countSum"style="width: 8%;">0</td>
 						<td id="salesPriceSum" style="width: 27%;">0</td>

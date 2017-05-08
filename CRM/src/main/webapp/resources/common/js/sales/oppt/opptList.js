@@ -39,20 +39,20 @@ function addForm(){
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
 				    str+="<br><label for='scompNam' class='tel_label_list'>"+'영업기회명'+"</label>";
-				    str+="<input type='text' style='width:325px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
-				    str+="<label for='inputPassword1' class='tel_label_list' >"+'고객명'+"</label>";
-				    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value=''>";
+				    str+="<input type='text' style='width:325px; margin-left: 6px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
+				    str+="<label for='inputPassword1' class='tel_label_list' style='margin-left: 4px;'>"+'고객명'+"</label>";
+				    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value='' style='margin-left: 6px;margin-right: 5px'>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
-				    str+="<input type='button' class='btn-success-tel' id='searchCustomer"+count+"' value='고객'>";
-				    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label'>"+'영업단계'+"</label>";
-				    str+="<select class='tel_label_list' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px;'>";
+				    str+="<input type='button' class='button search_btn' id='searchCustomer"+count+"' value='고객'>";
+				    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label' style='margin-left:43px;'>"+'영업단계'+"</label>";
+				    str+="<select class='tel_label_list' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px; margin-left: 6px;'>";
 				    str+="<option value=''>"+'선택'+"</option>";
 				    $.each(result.otllist,function(i,list){
 				    	str+="<option value="+list.code+" >"+list.cd_nm+"</option>";
 				    	});
 				    str+="</select>";
-				    str+="<label for='inputPassword1' class='tel_label_list'>"+'가능성(%)'+"</label>";
-				    str+="<select class='tel_label_list' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='height: 25px;' >";
+				    str+="<label for='inputPassword1' class='tel_label_list' style='margin-left: 6px;'>"+'가능성(%)'+"</label>";
+				    str+="<select class='tel_label_list' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='height: 25px;margin-left: 5px;' >";
 				    str+="<option value=''>"+'선택'+"</option>";
 				    str+="<option value='10'>"+'10'+"</option>";
 				    str+="<option value='20'>"+'20'+"</option>";
