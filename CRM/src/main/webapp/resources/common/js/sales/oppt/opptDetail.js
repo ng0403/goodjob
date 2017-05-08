@@ -671,17 +671,17 @@ function viewSalesActive(opptId){
 				end_d = data.end_d;
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
-				"<th rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
+				"<th rowspan='2' style='width: 3%;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
 				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
 				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
-				"<td rowspan='2'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
-				"<td>"+start_d+"</td>"+
-				"<td>"+data.strt_t+"</td>"+
-				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2'>"+data.fst_reg_id+"</td>"+
-				"<td rowspan='2'>"+reg_dt+"</td>"+
+				"<td rowspan='2'style='width: 8%;'>"+data.sales_actvy_div_nm+"</td>"+
+				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 6%;'>"+data.sales_oppt_nm+"</td>"+
+				"<td rowspan='2'style='width: 8%;'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td style='width: 9%;'>"+start_d+"</td>"+
+				"<td style='width: 9%;'>"+data.strt_t+"</td>"+
+				"<td rowspan='2'style='width: 6%;'>"+data.sales_actvy_stat_nm+"</td>"+
+				"<td rowspan='2'style='width: 7%;'>"+data.fst_reg_id+"</td>"+
+				"<td rowspan='2'style='width: 10%;'>"+reg_dt+"</td>"+
 				"</tr>"+
 				"<tr>"+
 				"<td>"+end_d+"</td>"+
