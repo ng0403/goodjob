@@ -74,6 +74,20 @@
 				and a.sales_lev_cd = #{ssales_lev_cd}
 			</when>
 		</choose>
+		<choose>
+			<when test="spsblty_rate !=null and spsblty_rate !='' and spsblty_rate0 != null and spsblty_rate0 != '' and spsblty_rate1 != null and spsblty_rate1 != ''">
+				and (a.psblty_rate = #{spsblty_rate}
+				or a.psblty_rate = #{spsblty_rate0}
+				or a.psblty_rate = #{spsblty_rate1})
+			</when>
+			<when test="spsblty_rate !=null and spsblty_rate !='' and spsblty_rate0 != null and spsblty_rate0 != ''">
+				and (a.psblty_rate = #{spsblty_rate}
+				or a.psblty_rate = #{spsblty_rate0})
+			</when>
+			<when test="spsblty_rate !=null and spsblty_rate !='' ">
+				and a.psblty_rate = #{spsblty_rate}
+			</when>
+		</choose>
 		
 		order by a.fst_reg_id desc
 		)d

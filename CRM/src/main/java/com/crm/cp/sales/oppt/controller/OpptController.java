@@ -241,6 +241,9 @@ public class OpptController {
 		map.put("ssales_lev_cd", map.get("ssales_lev_cd"));
 		map.put("ssales_lev_cd0", map.get("ssales_lev_cd0"));
 		map.put("ssales_lev_cd1", map.get("ssales_lev_cd1"));
+		map.put("psblty_rate", map.get("psblty_rate"));
+		map.put("psblty_rate0", map.get("psblty_rate0"));
+		map.put("psblty_rate1", map.get("psblty_rate1"));
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
 		map.put("startRow", page.getStartRow() + "");
