@@ -517,7 +517,7 @@ function estimList(opptId){
 //	var ctx = $("#ctx").val();
 //	var count;
 	$('#searchCustomer1').click(function(){
-		alert("세번째 고객");
+//		alert("세번째 고객");
 		window.open('/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 //}
@@ -527,7 +527,7 @@ function searchCustcompListPopup(ctx){
 	var count;
 
 	$('#searchCustomer').click(function(){
-		alert("첫번째 고객");
+//		alert("첫번째 고객");
 		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 }
@@ -536,7 +536,7 @@ function searchCustcompListPopup(ctx){
 //	var ctx = $("#ctx").val();
 //	var count;
 	$('#searchCustomer0').click(function(){
-		alert("두번째 고객");
+//		alert("두번째 고객");
 		window.open('/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 //}
