@@ -10,6 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/org/orgTree.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgTree.js"></script>
 
 <title>리스트</title>
@@ -123,9 +125,9 @@ $("#naviorg").css("font-weight", "bold");
 	<br>
 		<!-- 기본 버튼 -->
 	<div class="bt_position">
-		<button type="button" class="org_btn" id="orgAddBtn">추가</button>
-		<button type="button" class="org_btn" id="orgDelBtn">삭제</button>
-		<button type="button" class="org_btn" id="orgAllCancelBtn">선택취소</button>
+		<button type="button" class="button functionBtn" id="orgAddBtn">추가</button>
+		<button type="button" class="button functionBtn" id="orgDelBtn">삭제</button>
+		<button type="button" class="button search_btn" id="orgAllCancelBtn">선택취소</button>
 	</div>
 </body>
 </html>

@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>사용자등록</title>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/org/orgDetail.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>	
 </head>
 <body>   
@@ -46,7 +48,7 @@
 							<th>조직대표</th>
 							<td>							
 							<input type="text" class="int" name="user_id" id="user_id" disabled="disabled"/>
-							<input type="button" class="org_btn" value="검색" id="oorg" onclick="OOrgName()"/>
+							<input type="button" class="button search_btn" value="검색" id="oorg" onclick="OOrgName()"/>
 							</td>
 							<th>조직레벨</th>
 							<td>
@@ -74,7 +76,7 @@
 							&nbsp;-&nbsp;							
 								<input type="text" name="zip_no2" id="post2" class="int_zip" disabled="disabled" /></input>	
 								<input type="hidden" id="zip_cd_sri_num" name="zip_cd_sri_num" disabled="disabled"/>	
-								<input type="button" class="org_btn" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
+								<input type="button" class="button search_btn" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
 								<input type="text" name="addr_detail1" id="addr" class="int_zipadd1" disabled="disabled"/>
 								<input type="text" name="addr_detail2" id="addr_detail" class="int_zipadd2" disabled="disabled"/>
 							</td>
@@ -106,9 +108,9 @@
 				  </form>
 				  
 					<div class="bt_position_detail">
-						<input type="button" class="org_btn" value="저장" id="orgSubmitBtn"/>
-						<input type="button" class="org_btn" value="편집" id="orgUpdateBtn"/>
-						<input type="reset" class="org_btn" value="취소" id="orgResetBtn"/>
+						<input type="button" class="button functionBtn" value="추가" id="orgSubmitBtn"/>
+						<input type="button" class="button search_btn" value="편집" id="orgUpdateBtn"/>
+						<input type="reset" class="button search_btn" value="취소" id="orgResetBtn"/>
 					</div>				  
 				</div>
 			

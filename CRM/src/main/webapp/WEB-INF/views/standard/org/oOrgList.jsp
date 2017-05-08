@@ -9,6 +9,8 @@
 <title>조직대표</title>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/org/oOrgList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/org/oOrgList.js"></script>
 <script type="text/javascript">
 $("#navisub11").show();
@@ -30,7 +32,7 @@ $("#naviorg").css("font-weight", "bold");
 			<option value="id_nm">사용자ID</option>
 		</select>
 			<input type="text" name="searchValue" class="boxTF" id="title_text" /> &nbsp;
-			<button type="submit" id="search_btn" class="org_search_bt">검 색</button>
+			<button type="submit" id="search_btn" class="button search_btn">검 색</button>
 	</form>
 </div>
 											
@@ -56,8 +58,8 @@ $("#naviorg").css("font-weight", "bold");
 								</tbody>			
 							</table>      
                  <div class="bt_position">
-					<input type="button" class="org_ceo_bt" value="선택" id="oorgChoice"/>
-					<input type="button" class="org_ceo_bt" value="취소" onclick="allChk(obj);"/>
+					<input type="button" class="button search_btn" value="선택" id="oorgChoice"/>
+					<input type="button" class="button search_btn" value="취소" onclick="allChk(obj);"/>
 				</div>      
                 <div style="clear:both"></div>
             </div>		

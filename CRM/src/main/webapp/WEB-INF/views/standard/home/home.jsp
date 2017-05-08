@@ -27,8 +27,8 @@
 	   <input type="button" class="detailPopbtn" value="상세보기" id="opptActBtn">
 	   </div>
 
-	   <div id="tableline" class="tableline">
-			<table id="acttable">
+	   <div id="tableline1" class="tableline">
+			<table id="acttable1">
 				<thead>
 					<tr>
 						<th>영업활동명</th>
