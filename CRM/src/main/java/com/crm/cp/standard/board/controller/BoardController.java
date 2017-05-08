@@ -66,10 +66,7 @@ import com.crm.cp.utils.PagerVO;
 		PagerVO page=boardService.getBoardListCount(map); 
 		map.put("page", page);
 		
-/*		List<SessionAuthVO> session_auth_list = sessionAuthService.sessionInqr(map);
-		System.out.pdrintln("session 정보 : " + session_auth_list);
-*/
-		
+ 		
 		if(page.getEndRow() == 1){
 			page.setEndRow(0);
 		}

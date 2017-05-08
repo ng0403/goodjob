@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.crm.cp.standard.notice.vo.NoticeVO;
+import com.crm.cp.utils.PagerVO;
 
 public interface NoticeService {
 
@@ -17,5 +18,5 @@ public interface NoticeService {
 	public void insertOneNotice(NoticeVO noticeVO);
 	public List<Object> searchListOrg();
 	public void modifyNotice(Map<?, ?> json);
-
+ 
 }

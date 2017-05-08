@@ -229,7 +229,8 @@ function callSearchEnter(event) {
 
 //연락처 리스트 출력
 function contactList(page){
- //	readDetail();
+	alert('hie');
+  //	readDetail();
 	var ctx = $("#ctx").val();
 	$.ajax({
 		type : 'post',
@@ -317,6 +318,7 @@ function contactList(page){
 
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
+	alert('he');
  	var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
@@ -349,37 +351,29 @@ function contactPaging(contactPageNum) {
 			
 			for (var i = 0; i < data.contactList.length; i++) {
 				
-				tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
-/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
-*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
-*/        			+"<td><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: blue; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
-					+'<td style="width:10%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>';
- 
-        		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
-        				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
-					}else{
-						tbodyContent +='
-					}*/
-        			tbodyContent+='<td style="width:15%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
+				tbodyContent +='<tr><th style="width:20px;"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
+         			+"<td style='width:20%;'><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
+					+'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'; 
+        			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
-         			+'<td style="width:15%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
+         			+'<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
         		}
 				                   
 			   tbody.append(tbodyContent);
 			}
 			
 			if(data.contactList.length < 10){
- 				for(var i=0; i<10-data.contactListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;><th></th>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>' 
-						+'<td style="width:15%;"></td></tr>';
+				for(var i=0; i<10-data.contactListSize; i++){
+						tbodyContent='<tr style="height: 35.5px;"><th></th>'
+							+'<td style="width:10%;"></td>'
+							+'<td style="width:10%;"></td>'
+							+'<td style="width:10%;"></td>'
+							+'<td style="width:10%;"></td>'
+							+'<td style="width:10%;"></td>' 
+							+'<td style="width:15%;"></td></tr>';
 					tbody.append(tbodyContent);
-				}		
+				}	
 			}
 			
 			var pageContent = "";

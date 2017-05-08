@@ -124,7 +124,7 @@ function deleteAction() {
   
 //보드 리스트 그냥 페이징
 function boaradPaging(boardPageNum) {
-   	var ctx = $("#ctx").val();
+    	var ctx = $("#ctx").val();
   	var tbody = $('#board_list_tbody');
 	var tbodyContent = "";
   	var boardData = { "boardPageNum": boardPageNum };

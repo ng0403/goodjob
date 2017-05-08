@@ -11,14 +11,16 @@
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomptab_js.js"></script>
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_pop_js.js"></script>
- <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>  
- 
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
  
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css"/>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
