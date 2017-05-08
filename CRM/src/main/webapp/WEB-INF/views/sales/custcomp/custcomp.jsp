@@ -149,8 +149,8 @@
 		
 		<div class="bottom_div">
 			<div class="functionBtn_div">	
-			<input type="button" value="추가" class="button functionBtn" onclick="custcompInsertForm();" />
-			<input type="button" value="삭제" class="button functionBtn" onclick="custcompDelete()" />
+				<input type="button" value="추가" class="button functionBtn" onclick="custcompInsertForm();" />
+				<input type="button" value="삭제" class="button functionBtn" onclick="custcompDelete()" />
 	<!-- 		<input type="button" value="편집" onclick="" class="custcomp_bt" /> -->
 	<!-- 		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" /> -->
 			</div>
