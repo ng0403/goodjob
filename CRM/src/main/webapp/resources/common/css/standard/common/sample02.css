@@ -16,6 +16,10 @@ nav {
 }
 
 
+.sub_menu_bar ul {
+	display: none;
+}
+
 nav ul ul {
 	display: none;
 }
@@ -82,7 +86,7 @@ nav ul {
 	.sub_menu_bar ul {
 /* 		background: #5f6975;  */
 		width: 10%;
-		background-color: #5a5a5a;
+		background-color: #131230;
 		border-radius: 0px; 
 		padding: 0;
 		position: absolute; 
@@ -90,8 +94,8 @@ nav ul {
 	}
 		.sub_menu_bar ul li {
 			float: none; 
-			border-top: 1px solid #6b727c;
-			border-bottom: 1px solid #575f6a; 
+/* 			border-top: 1px solid #6b727c; */
+/* 			border-bottom: 1px solid #575f6a;  */
 			position: relative;
 			vertical-align: middle;
 			margin-bottom: 6px;
@@ -123,5 +127,6 @@ a {
 	font-style: normal;
 	line-height: 35px;
 	height: 30px;
+	text-decoration: none;
 }
 		
