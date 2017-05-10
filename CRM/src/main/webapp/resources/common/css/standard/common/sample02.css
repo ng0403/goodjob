@@ -16,6 +16,10 @@ nav {
 }
 
 
+.sub_menu_bar ul {
+	display: none;
+}
+
 nav ul ul {
 	display: none;
 }
