@@ -97,6 +97,7 @@ public class QnABoardController {
 		
  		ModelAndView mov = new ModelAndView("QnA_detail");
  		mov.addObject("boardlist", vo);
+ 		mov.addObject("sessionID", sessionID);
  		
  		return mov;
 		 

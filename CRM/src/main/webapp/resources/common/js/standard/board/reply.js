@@ -117,6 +117,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 
 //댓글 추가
 		function reply_add(){  	
+		 var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
  		 var BOARD_NO = $("#BOARD_NO").val(); 
 		 var REPLY_CONTENT_OBJ = $("#reply_content");
 		 var REPLY_CONTENT = REPLY_CONTENT_OBJ.val();
@@ -130,7 +131,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 			dataType:'text',
 			processData: false,
 			contentType: false,
-			data:  JSON.stringify({"board_NO":BOARD_NO, "reply_CONTENT":REPLY_CONTENT, "created_BY":CREATED_BY}),
+			data:  JSON.stringify({"board_NO":BOARD_NO, "reply_CONTENT":REPLY_CONTENT, "created_BY":CREATED_BY, "board_MNG_NO":BOARD_MNG_NO}),
 			success:function(result){
 				alert("succsss");
 				replyPaging(1);

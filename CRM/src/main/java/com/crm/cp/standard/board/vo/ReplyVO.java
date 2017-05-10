@@ -2,6 +2,7 @@ package com.crm.cp.standard.board.vo;
 
 public class ReplyVO {
 	
+	private String BOARD_MNG_NO;
 	private Integer BOARD_NO;
 	private String REPLY_NO;
 	private String REPLY_CONTENT;
@@ -10,6 +11,14 @@ public class ReplyVO {
 	private String UPDATED_BY;
 	private String UPDATED;
 	 
+	public String getBOARD_MNG_NO() {
+		return BOARD_MNG_NO;
+	}
+
+	public void setBOARD_MNG_NO(String bOARD_MNG_NO) {
+		BOARD_MNG_NO = bOARD_MNG_NO;
+	}
+
 	public Integer getBOARD_NO() {
 		return BOARD_NO;
 	}
@@ -60,10 +69,9 @@ public class ReplyVO {
 	} 
 	@Override
 	public String toString() {
-		return "ReplyVO [BOARD_NO=" + BOARD_NO + ", REPLY_NO=" + REPLY_NO + ", REPLY_CONTENT=" + REPLY_CONTENT
-				+ ", CREATED_BY=" + CREATED_BY + ", CREATED=" + CREATED + ", UPDATED_BY=" + UPDATED_BY + ", UPDATED="
-				+ UPDATED + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "ReplyVO [BOARD_MNG_NO=" + BOARD_MNG_NO + ", BOARD_NO=" + BOARD_NO + ", REPLY_NO=" + REPLY_NO
+				+ ", REPLY_CONTENT=" + REPLY_CONTENT + ", CREATED_BY=" + CREATED_BY + ", CREATED=" + CREATED
+				+ ", UPDATED_BY=" + UPDATED_BY + ", UPDATED=" + UPDATED + "]";
 	}
  
 

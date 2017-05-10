@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
  <c:set var="SessionID" value="${sessionScope.user_id}" />
-<%-- <%@include file="../include/header.jsp"%> --%>
+ <%-- <%@include file="../include/header.jsp"%> --%>
 
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,9 +19,9 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />--%> 
  <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-부가적인 테마
+<!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-합쳐지고 최소화된 최신 자바스크립트
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
 
 <title>Insert title here</title>
@@ -41,7 +41,7 @@
 </form>
 
  <div class="navi_div">
-		Q&A > 리스트 > 게시글
+		게시판 > 리스트 > 게시글
 </div> 
 
 <div class="container"> <!-- 전체 div-->
@@ -66,13 +66,12 @@
  	</div> 
 		 <textarea  rows="10" id="boardcontent"  readonly="readonly" >${boardlist.CONTENT}</textarea>
 	</div> 
-
+ 	 
 	<div id="detail_btns"> <!-- 버튼 div  -->
 		<input type="button" id="board_modify_fbtn" class = "button search_btn" value="편집" onClick="board_modify();"/> 
 		<input type="button" id="board_remove_fbtn" class="button functionBtn" value="삭제" onClick="board_detail_remove();"/>  
 		<input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onClick="goboardList();"/>
-	</div>
-
+	</div> 
 
 	<!-- 댓글div -->
 	<div id="reply_div" class="timeline-body" style ="height:50px; margin-top:10px; width:90% "> 

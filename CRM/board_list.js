@@ -1,8 +1,6 @@
  $(function(){
 	var ctx = $('#ctx').val();
-	
-	
-	
+	 
   });
  
  $(document).ready(function(){
@@ -51,7 +49,7 @@
  
  //보드 상세보기.
  function boardDetail(a){
- var no = a;
+  var no = a;
      location.href="/boardDetail?BOARD_NO=" + no;
  } 
  
@@ -73,10 +71,7 @@ function board_modify(){
  		formObj.attr("action", "/boardModify");
 		formObj.attr("method", "get");		
 		formObj.submit();
- 	     
- 	 /* $("form[name='form_modify']").attr("action", "${ctx}/board/board_read?BOARD_NO=?").submit();  */
-	 
- } 
+} 
 
 //보드 상세 삭제
 function board_detail_remove() {

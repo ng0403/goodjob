@@ -88,23 +88,20 @@ import com.crm.cp.utils.PagerVO;
 	@RequestMapping(value="/boardDetail", method= RequestMethod.GET)
 	public ModelAndView boardDetail(@RequestParam("BOARD_NO") int BOARD_NO, HttpSession session) throws Exception {
 		System.out.println("detail entering");
-//		접속된 사용자 아이디 
+		//		접속된 사용자 아이디 
 		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("sessionID", sessionID);  
-		
-/*		List<SessionAuthVO> session_auth_list = sessionAuthService.sessionInqr(map);
-		System.out.println("session 정보 : " + session_auth_list); 
-*/		
+		map.put("sessionID", sessionID);   
+ 
 		BoardVO vo = boardService.detail(BOARD_NO);
 		System.out.println("vovo?" + vo);
 		String FILE_CD = vo.getFILE_CD(); 
 		
 		boardService.viewadd(BOARD_NO);
 		ModelAndView mov = new ModelAndView("board_detail");
- 	
+ 	    mov.addObject("sessionID",sessionID);
 		if(FILE_CD == null)
 		{
 		  
