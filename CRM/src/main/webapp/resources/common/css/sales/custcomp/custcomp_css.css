@@ -162,3 +162,10 @@ tbody {
 	margin-top: 5px;
 }
 
+
+#schAddBtn {
+	margin-left: 10px;
+	margin-right: 10px; 
+	font-size: 22pt; 
+	cursor: pointer;
+}

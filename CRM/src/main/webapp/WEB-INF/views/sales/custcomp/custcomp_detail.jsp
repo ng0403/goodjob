@@ -160,30 +160,41 @@
 							</tr>	
 							<tr>
 								<th>산업군</th>
-									<td>
-										<input type="hidden" id="hindst_cd" />
-										<select id="indst_cd" name="indst_cd" disabled="disabled">
-											<option value="0" style="text-align: center;">==산업군==</option>
-											<c:forEach var="IDC" items="${IDCCodeList}">
-												<option value="<c:out value="${IDC.indst_cd}" />"
-													 <c:if test="${custcompDetail.indst_cd == IDC.indst_cd }">selected="selected"</c:if>>
-													 ${IDC.indst}
-												</option>
-											</c:forEach>
-										</select>
-									</td>
+								<td colspan="8">
+									<input type="hidden" id="hindst_cd" />
+									<select id="indst_cd" name="indst_cd" disabled="disabled">
+										<option value="0" style="text-align: center;">==산업군==</option>
+										<c:forEach var="IDC" items="${IDCCodeList}">
+											<option value="<c:out value="${IDC.indst_cd}" />"
+												 <c:if test="${custcompDetail.indst_cd == IDC.indst_cd }">selected="selected"</c:if>>
+												 ${IDC.indst}
+											</option>
+										</c:forEach>
+									</select>
+								</td>
 								
 <!-- 								<th>기업업종</th> -->
 <!-- 								<td> -->
 <!-- 									<input type="hidden" id="hindst_cd"/> -->
 <%-- 										<input type="text" name="indst_cd1" id="indst_cd1" class="int" value="${custcompDetail.indst}" maxlength="50"readonly="readonly" /> --%>
 <!-- 								</td> -->
-								<th>기업업태</th>
-								<td>
-									<input type="hidden" id="hbiz_status"/>
-									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" />
-								</td>
+<!-- 								<th>기업업태</th> -->
+<!-- 								<td> -->
+<!-- 									<input type="hidden" id="hbiz_status"/> -->
+<!-- 									<select id="biz_status" name="biz_status" disabled="disabled"> -->
+<!-- 										<option value="0" style="text-align: center;">==기업업태==</option> -->
+<%-- 										<c:forEach var="IDC" items="${IDCCodeList}"> --%>
+<%-- 											<option value="<c:out value="${IDC.biz_status}" />" --%>
+<%-- 												 <c:if test="${custcompDetail.biz_status == IDC.biz_status }">selected="selected"</c:if>> --%>
+<%-- 												 ${IDC.biz_status} --%>
+<!-- 											</option> -->
+<%-- 										</c:forEach> --%>
+<!-- 									</select> -->
+										
+<%-- 									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" /> --%>
+<!-- 								</td> -->
 							</tr>
+							
 <!-- 							<tr> -->
 <!-- 								<th>산업군</th> -->
 <!-- 									<td> -->
