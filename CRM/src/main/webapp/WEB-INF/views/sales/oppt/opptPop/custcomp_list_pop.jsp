@@ -16,6 +16,7 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="custType" value="${custType}"/>
+	<input type="hidden" id="custFlg" value="${pop_flg}"/>
 	<div id="title">
 		<div class="caption">■ 고객사 리스트</div>
 		

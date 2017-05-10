@@ -20,7 +20,8 @@ function custNmSelect(ctx){
  		var custType = $('#custType').val();
 		var custNm=$(this).find('#cust_nm').text();
 		var custId=$(this).find('#cust_id').text();
-		window.opener.inputCustNm(custId,custNm,custType);
+		var pop_flg=$('#custFlg').val();
+		window.opener.inputCustNm(custId,custNm,custType, pop_flg);
 		self.close();
 		
 	});

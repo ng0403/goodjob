@@ -440,8 +440,11 @@ public class OpptController {
 	@RequestMapping(value = "/opptSearchCustcompList", method = RequestMethod.GET)
 	public ModelAndView opptSearchCustcompList(
 			HttpSession session,
+			String pop_flg,
 			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+		
+		System.out.println("검색조건 입력 flg : " + pop_flg);
 		System.out.println("검색 창에서의 고객 검색 버튼 클릭");
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -454,6 +457,7 @@ public class OpptController {
 
 		// javascript에서 검색창에서의 고객 리스트인지 구분하기 위한 값 전달
 		mov.addObject("custType", "search");
+		mov.addObject("pop_flg", pop_flg);
 
 		return mov;
 	}
