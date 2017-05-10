@@ -33,28 +33,28 @@
  
         <!-- 개인고객 -->
 		<div id="callCustKeyBtnDiv" class="call_tab_bt_div"> 
-		    <input type="button" id="custpsonBtn" value="편집" class="call_tab_bt" onclick="callCustBtn();"/>
-		    <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="call_tab_bt"/>
+		    <input type="button" id="custpsonBtn" value="편집" class="button search_btn" onclick="callCustBtn();"/>
+		    <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="button search_btn"/>
 		    
  		</div>
 		
 		<!-- 개인고객 추가 편집 버튼  -->
 		<div id="callCustBtnDiv" class="call_tab_bt_div" style="display: none;"> 
-		    <input type="button" id="custpsonBtn" value="편집" class="call_tab_bt" onclick="callCustBtn();"/>
-			<input type="button" id="custpsonMdiBtn" value="편집" class="call_tab_bt" disabled="disabled"/>
+		    <input type="button" id="custpsonBtn" value="편집" class="button search_btn" onclick="callCustBtn();"/>
+			<input type="button" id="custpsonMdiBtn" value="편집" class="button search_btn" disabled="disabled"/>
 		</div>
 	 
 		<!-- 개인고객 추가 저장/취소 버튼  -->
 		<div id="custpsonAddBtnDiv" style="display: none;" class="call_tab_bt_div">
-			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="call_tab_bt"/>
-			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="call_tab_bt"/>
+			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="button search_btn"/>
+			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="button search_btn"/>
 	    </div>
 	 
 	    
 	    <!-- 개인고객 편집 저장/취소 버튼  -->
 		<div id="callCustMdfBtnDiv" style="display: none;" class="call_tab_bt_div">
-			<input type="button" id="callCustMdfSaveBtn" value="저장" onclick="callCustEdit()" class="call_tab_bt"/>
-			<input type="button" id="callCustMdfCancelBtn" value="취소" onclick="callCancelBtn()" class="call_tab_bt"/>
+			<input type="button" id="callCustMdfSaveBtn" value="저장" onclick="callCustEdit()" class="button search_btn"/>
+			<input type="button" id="callCustMdfCancelBtn" value="취소" onclick="callCancelBtn()" class="button search_btn"/>
 		</div>
 	 
 				

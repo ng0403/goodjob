@@ -14,6 +14,7 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/common.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
  <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
@@ -58,9 +59,9 @@
  </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="btn btn-primary btn-sm">저장</button>
+ <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="button functionBtn">저장</button>
 <!--  <input type="button" class="btn btn-default" id="board_modify_fbtn" value="저장"/> -->
- <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" onClick="board_list();" value="목록"/>
+ <input type="button" class="button search_btn" id="board_list_fbtn" onClick="board_list();" value="목록"/>
 </div>
 
 

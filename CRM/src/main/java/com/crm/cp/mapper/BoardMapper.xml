@@ -39,13 +39,10 @@
 		SELECT
 		*
 		FROM tb_board
-		WHERE ACTIVE_FLG='Y' and BOARD_MNG_NO = 'BMG1000002'
-		<if test="title !=null and title !=''">
-			AND title like '%'||#{title}||'%'
-		</if>
-		<if test="content !=null and content !=''">
-			AND content like '%'||#{content}||'%'
-		</if>
+		WHERE ACTIVE_FLG='Y' and BOARD_MNG_NO = #{BOARD_MNG_NO}
+		<if test="keyword !=null and keyword !=''">
+			AND title like '%'||#{keyword}||'%'
+		</if> 
 		ORDER BY BOARD_NO DESC
 		) a
 		) b
@@ -64,6 +61,13 @@
 		</if>
 		<if test="content !=null and content !=''">
 			AND content like '%'||#{content}||'%'
+		</if>
+			<if test="qna_answer != null and qna_answer != '' ">
+			AND ANSWER_FLG = #{qna_answer}
+		</if>
+
+		<if test="keyword != null and keyword != ''">
+			AND TITLE LIKE '%'||#{keyword}||'%'
 		</if>
 	</select>
 
@@ -97,6 +101,13 @@
 		FROM TB_BOARD A, CODE B
 		WHERE ACTIVE_FLG = 'Y' AND BOARD_MNG_NO = #{BOARD_MNG_NO} AND B.CD_GRP_ID = 'QAT' AND
 		A.QUESTION_TYPE_CD = B.CODE
+		<if test="qna_answer != null and qna_answer != '' ">
+			AND ANSWER_FLG = #{qna_answer}
+		</if>
+
+		<if test="keyword != null and keyword != ''">
+			AND TITLE LIKE '%'||#{keyword}||'%'
+		</if>
 		ORDER BY A.BOARD_NO DESC 
 		) A
 		) X
@@ -152,9 +163,9 @@
 	<insert id="InsertBoard" parameterType="com.crm.cp.standard.board.vo.BoardVO">
 		INSERT INTO TB_BOARD (BOARD_NO, BOARD_MNG_NO, FILE_CD, TITLE, CONTENT,
 		VIEW_CNT, QUESTION_TYPE_CD, CREATED_BY, UPDATED_BY)
-		VALUES(board_seq.nextval, 'BMG1000002',(SELECT FILE_CD FROM TB_FILE
-		WHERE FILE_NM =#{FILE_NM}), #{TITLE}, #{CONTENT}, '0', 'abcd',
-		'admin', '')
+		VALUES(board_seq.nextval, #{BOARD_MNG_NO},(SELECT FILE_CD FROM TB_FILE
+		WHERE FILE_NM =#{FILE_NM}), #{TITLE}, #{CONTENT}, '0', ' ',
+		#{CREATED_BY}, '')
 
 	</insert>
 
@@ -203,16 +214,11 @@
 		where BOARD_NO = #{BOARD_NO}
 	</update>
 
-	<update id="ModifyBoard">
-
-		update tb_board set title = #{TITLE}, content = #{CONTENT}
+	<update id="ModifyBoard"> 
+		update tb_board set title = #{TITLE}, content = #{CONTENT}, updated_by = #{UPDATED_BY}
 		where BOARD_NO = #{BOARD_NO}
 	</update>
-
-
-	
-
-
+ 
 
 
 	<select id="QnACount" parameterType="java.util.Map" resultType="int">
@@ -245,6 +251,7 @@
 		<if test="keyword != null and keyword != ''">
 			AND TITLE LIKE '%' || #{keyword} || '%'
 		</if>
+		 
 		ORDER BY BOARD_NO DESC ) A
 		) X
      <![CDATA[

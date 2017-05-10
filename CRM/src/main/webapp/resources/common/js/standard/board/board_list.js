@@ -100,7 +100,8 @@ function board_detail_remove() {
  
  //보드 추가 저장
  function board_add_save(){
-	 var formObj = $("form[role='form']");
+	 var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
+ 	 var formObj = $("form[role='form']");
      if(confirm("저장하시겠습니까?")){
 	 formObj.attr("action", "/boardInsert");
 	 formObj.attr("method", "post");
@@ -165,13 +166,13 @@ function deleteAction() {
   
 
 //보드 리스트 그냥 페이징
-function boaradPaging(boardPageNum) {
-	alert(boardPageNum);
-  	var ctx = $("#ctx").val();
-  	 var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
- 	var tbody = $('#board_list_tbody');
+function boardPaging(boardPageNum) {
+	var keyword = $("#keyword").val();
+    	var ctx = $("#ctx").val();
+  	var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
+  	var tbody = $('#board_list_tbody');
 	var tbodyContent = "";
-  	var boardData = { "boardPageNum": boardPageNum, "BOARD_MNG_NO" : BOARD_MNG_NO
+  	var boardData = { "boardPageNum": boardPageNum, "BOARD_MNG_NO" : BOARD_MNG_NO, "keyword" : keyword
  			        };
 	
 	$.ajax({

@@ -137,11 +137,18 @@ import com.crm.cp.utils.PagerVO;
 	
 	//보드 추가.
 	@RequestMapping(value="/boardInsert", method=RequestMethod.POST)
-	public String  board_insert(MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach, HttpSession session) { 
- 		  
-		 MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		 Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-	     MultipartFile multipartFile = null; 
+	public String  board_insert(MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach, HttpSession session, @RequestParam Map<String, Object> map ) { 
+		
+		String BOARD_MNG_NO = (String) map.get("BOARD_MNG_NO");
+		
+		String sessionID = (String) session.getAttribute("user");
+		System.out.println("접속된 계정 : " + sessionID);
+		attach.setCREATED_BY(sessionID);
+		
+		
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+	    MultipartFile multipartFile = null; 
  	      
 	     while(iterator.hasNext()){
 	        multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -189,17 +196,21 @@ import com.crm.cp.utils.PagerVO;
 		System.out.println("board_insert success....");
  
 	 
-		return "redirect:/boardInqr?BOARD_MNG_NO=BMG1000002"; 
+		return "redirect:/boardInqr?BOARD_MNG_NO=" + BOARD_MNG_NO; 
 		 
 	} 
 	  
 	//보드 수정
 	@RequestMapping(value="/boardModify", method=RequestMethod.GET)
-	public ModelAndView board_modifyPage(int BOARD_NO, Model model)
+	public ModelAndView board_modifyPage(int BOARD_NO, Model model, HttpSession session)
 	{ 
 		System.out.println("hi MODIFY" + BOARD_NO);
 		
+		String sessionID = (String) session.getAttribute("user");
+		System.out.println("접속된 계정 : " + sessionID);
+ 		
 		BoardVO vo = boardService.detail(BOARD_NO);
+		vo.setUPDATED_BY(sessionID);
 		System.out.println("modify vo/" + vo);
 		String FILE_CD = vo.getFILE_CD();
 		
@@ -218,8 +229,12 @@ import com.crm.cp.utils.PagerVO;
 	
 	//보드 수정
 	@RequestMapping(value="/board_modify", method=RequestMethod.POST)
-	public String board_modify(BoardVO vo)
+	public String board_modify(BoardVO vo, HttpSession session)
 	{
+		String sessionID = (String) session.getAttribute("user");
+		System.out.println("접속된 계정 : " + sessionID);
+
+ 		vo.setUPDATED_BY(sessionID);
 		System.out.println("modify  Entering" + vo);
 		
 		boardService.modify(vo);
@@ -390,7 +405,7 @@ import com.crm.cp.utils.PagerVO;
 	public @ResponseBody Map<String, Object> ActListSearch(HttpSession session,
 			@RequestParam(value = "boardPageNum", defaultValue = "1") int boardPageNum, @RequestParam Map<String, Object> boardMap) {
 		
-		System.out.println("board paging entering");
+		System.out.println("board paging entering" + boardMap.toString());
   		boardMap.put("boardPageNum", boardPageNum);
 
 		PagerVO page = boardService.boardListCount(boardMap);

@@ -53,10 +53,7 @@ public class QnABoardController {
 		if(page.getEndRow() == 1){
 			page.setEndRow(0);
 		}
-/*		List<SessionAuthVO> session_auth_list = sessionAuthService.sessionInqr(map);
-		System.out.println("session 정보 : " + session_auth_list); 
-*/		
- 		List<Object> boardlist = qnaService.list(map); 
+  		List<Object> boardlist = qnaService.list(map); 
  		System.out.println("QnaList ? " + boardlist.toString());
  		System.out.println("map??" + map.toString()); 
 		ModelAndView mov = new ModelAndView("QnA_List");
@@ -64,8 +61,7 @@ public class QnABoardController {
 		mov.addObject("page",  page);
 		mov.addObject("pageNum",  pageNum);
 		mov.addObject("BOARD_MNG_NO", BOARD_MNG_NO);
-/*		mov.addObject("session_auth_list",session_auth_list); */
-		System.out.println("movvv??? " + mov.toString());
+ 		System.out.println("movvv??? " + mov.toString());
 		return mov; 
 	}
 	
@@ -158,10 +154,11 @@ public class QnABoardController {
 	}
 	
 	@RequestMapping(value="/QnA_modify", method=RequestMethod.POST)
-	public String board_modify(BoardVO vo)
+	public String board_modify(BoardVO vo, HttpSession session)
 	{
+
+		vo.setUPDATED_BY(session.getAttribute("user").toString());
 		System.out.println("modify  Entering" + vo);
- 		
 		qnaService.modify(vo);
 		System.out.println("modify success" + vo.toString());
 		

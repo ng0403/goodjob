@@ -16,6 +16,7 @@
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>  
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
@@ -54,9 +55,9 @@
 
  
 <div id="btns"> <!-- 버튼 div  -->
-<input type="button" id="board_modify_fbtn" class = "btn btn-primary btn-sm" value="편집" onclick="board_modify();"/>
- <input type="button" id="board_remove_fbtn" class="btn btn-primary btn-sm" value="삭제" onclick="board_detail_remove();"/>
-   <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록" onclick="go_list();"/>
+<input type="button" id="board_modify_fbtn" class = "button search_btn" value="편집" onclick="board_modify();"/>
+ <input type="button" id="board_remove_fbtn" class="button functionBtn" value="삭제" onclick="board_detail_remove();"/>
+   <input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 </div>
  
  

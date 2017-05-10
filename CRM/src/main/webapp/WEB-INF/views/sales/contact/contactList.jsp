@@ -35,13 +35,10 @@
 	    <input type="email" name="email" id="email"  class="tel_search" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이동전화번호</label>
 	    <input type="text" name="ph" id="ph" class="tel_search" placeholder="" onkeydown="callSearchEnter(event);">
- 	    <button id="search_btn" type="submit" class="call_bt" onclick="searchAcnkEvent(1,'');">조회</button> 
+ 	    <button id="search_btn" type="submit" class="button search_btn" onclick="searchAcnkEvent(1,'');">조회</button> 
 	</div>
 			
-	<div id="contact_button_position">
-			<input type="button" class="call_bt" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
-			<input type="button" class="call_bt" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
-	</div>
+	
 	<div class="initialSerach">
 		<input type="hidden" id="acnk">
 		  <table id="initialtable">
@@ -94,8 +91,13 @@
 		</c:forEach>
 		</tbody>
 		</table>
-		<div id="pager" class="call_page_div"> 
+		<div class="bottom_div">
+	       <div id="contact_button_position">
+			<input type="button" class="button functionBtn" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+			<input type="button" class="button functionBtn" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+	       </div>
 		
+		<div id="pageSpace" class="pagination"> 
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="ccPageNum" value="${contactPageNum}">
 			<c:choose>
@@ -168,6 +170,7 @@
 		</c:otherwise>
 		</c:choose> --%>
 	</div>		
+	</div>
 	</div>
 	
 	

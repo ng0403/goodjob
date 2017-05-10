@@ -9,7 +9,7 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>  
 <script src="${ctx}/resources/common/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script> 
-
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 
@@ -71,7 +71,7 @@ label {
  					</select>
 				 <label for="keyword">제목 :</label>
 				 <input type="text" id="keyword" name="keyword" class="inputTxt" >&nbsp; 
-				 <input type="button" class="btn btn-default btn-sm" onclick="QnAListInqr(1);" value="검색">
+				 <input type="button" class="button search_btn" onclick="boardPaging(1);" value="조회">
 		 
 				</form> 
 				</div>
@@ -114,12 +114,14 @@ label {
 					</form>
 				</div>
 				</div>	
-		 <div class="paging_div">
-		 <div class="left">
-		 <input type="button" id = "board_add_fbtn" class = "btn btn-primary btn-sm" value="추가" onclick="board_add();"/> <input type="button" id ="board_remove_fbtn" class="btn btn-primary btn-sm" value="삭제"  onclick="deleteAction() "/>	 
+		 <div class="bottom_div">
+		 
+		 <div class="functionBtn_div">
+		 <input type="button" id = "board_add_fbtn" class = "button functionBtn" value="추가" onclick="board_add();"/>
+		  <input type="button" id ="board_remove_fbtn" class="button functionBtn" value="삭제"  onclick="deleteAction() "/>	 
 		</div>
 		
-		 <div id="pager" class="call_page_div"> 
+		 <div id="pageSpace" class="pagination"> 
 		
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="ccPageNum" value="${contactPageNum}">
@@ -128,7 +130,7 @@ label {
 	        		<a class="prev">◀◀</a>
 	    		</c:when>
 				<c:when test="${boardPageNum ne page.firstPageCount}">
-	        		<a href="javascript:boaradPaging(${page.prevStepPage})" class="prev">◀◀</a>
+	        		<a href="javascript:boardPaging(${page.prevStepPage})" class="prev">◀◀</a>
 	    		</c:when>
 			</c:choose>
 			<c:choose>
@@ -136,18 +138,18 @@ label {
 	        		<a class="prev">◀</a>
 	    		</c:when>
 				<c:when test="${boardPageNum ne page.firstPageCount}">
-	        		<a href="javascript:boaradPaging(${page.prevPageNum})" class="prev">◀</a>
+	        		<a href="javascript:boardPaging(${page.prevPageNum})" class="prev">◀</a>
 	    		</c:when>
 			</c:choose>
 			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 				<c:choose>
 					<c:when test="${i eq contactPageNum }">
 						<b>
-							<a  href="javascript:boaradPaging('${i}');" id="pNum" class="choice">${i}</a>
+							<a  href="javascript:boardPaging('${i}');" id="pNum" class="choice">${i}</a>
 						</b>
 					</c:when>
 					<c:otherwise>
-						<a  href="javascript:boaradPaging('${i}');">${i}</a>
+						<a  href="javascript:boardPaging('${i}');">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -156,7 +158,7 @@ label {
 	       			<a class="next">▶</a>
 	    		</c:when>
 				<c:when test="${boardPageNum ne page.totalPageCount}">
-	       			<a href="javascript:boaradPaging(${page.nextPageNum})" class="next">▶</a>
+	       			<a href="javascript:boardPaging(${page.nextPageNum})" class="next">▶</a>
 	    		</c:when>
 			</c:choose>
 			<c:choose>
@@ -164,7 +166,7 @@ label {
 	       			<a class="next">▶▶</a>
 	    		</c:when>
 				<c:when test="${boardPageNum ne page.totalPageCount}">
-	       			<a href="javascript:boaradPaging(${page.nextStepPage})" class="next">▶▶</a>
+	       			<a href="javascript:boardPaging(${page.nextStepPage})" class="next">▶▶</a>
 	    		</c:when>
 			</c:choose>
    </div>
@@ -173,10 +175,7 @@ label {
 					
 					
 </div>
-  
-<div class = paging_div>
-
-</div> 
+ 
 
 </div>
 

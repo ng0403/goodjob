@@ -156,14 +156,18 @@ function deleteAction() {
 
 
 // Q&A 리스트 그냥 페이징
-function boaradPaging(boardPageNum) {
- 	var ctx = $("#ctx").val();
+function boardPaging(boardPageNum) {
+	var keyword = $("#keyword").val();
+	var qna_answer = $("#qna_answer").val();
+  	var ctx = $("#ctx").val();
 	var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
   	var tbody = $('#board_list_tbody');
 	var tbodyContent = "";
 	var boardData = {
 		"boardPageNum" : boardPageNum,
-		"BOARD_MNG_NO" : BOARD_MNG_NO
+		"BOARD_MNG_NO" : BOARD_MNG_NO,
+		"keyword" : keyword,
+		"qna_answer" : qna_answer
 	};
 
 	$
@@ -233,7 +237,7 @@ function boaradPaging(boardPageNum) {
 }
 
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount,
-		totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage) {
+    totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage) {
 	var endPageNo = $("<input>");
 	endPageNo.attr({
 		"type" : "hidden",
@@ -252,7 +256,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount,
 	stepPrev.addClass("prev");
 	stepPrev.html("◀◀");
 	if (ccPageNum != firstPageCount) {
-		stepPrev.attr("href", "javascript:boardPaging(" + prevStepPage + ")");
+		stepPrev.attr("href", "javascript:boardPaging('" + prevStepPage + "')");
 	}
 	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");

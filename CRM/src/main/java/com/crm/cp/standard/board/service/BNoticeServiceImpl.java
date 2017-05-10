@@ -20,14 +20,14 @@ public class BNoticeServiceImpl implements BNoticeService {
 		@Override
 		public PagerVO getNoticeListCount(Map<String, Object> boardMap) {
 			System.out.println("BoardListCount service " +  boardMap.toString());
-			int actPageNum = (Integer) boardMap.get("boardPageNum");
+			int pageNum = (Integer) boardMap.get("pageNum");
 			// 현재 페이지 얻어오기
-			PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+			PagerVO page = new PagerVO(pageNum, 0, 10, 10);
 			// 전체 글의 갯수 구하기
-			System.out.println("actPage Num " + actPageNum);
+			System.out.println("actPage Num " + pageNum);
 			int totalRowCount = noticeDao.getNoticeListCount(boardMap);
 			System.out.println("totalRowCount ? " + totalRowCount);		
-			page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+			page = new PagerVO(pageNum, totalRowCount, 10, 10);
 		
 			return page;
 		}

@@ -74,6 +74,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/standard/board_mng/board_mng_detail.jsp" />
 	</definition>
+	
+	<definition name="Notice_List" extends="onebodyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/standard/board/notice_list.jsp" />
+	</definition>
 
 	<definition name="cont" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/cont/cont.jsp" />

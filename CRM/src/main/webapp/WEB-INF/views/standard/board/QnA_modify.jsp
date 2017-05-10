@@ -14,6 +14,7 @@
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>   
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
@@ -48,9 +49,9 @@
  </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" class="btn btn-primary btn-sm" onclick="board_modify_save();">저장</button>
+ <button type="submit" id = "board_modify_fbtn" class="button functionBtn" onclick="board_modify_save();">저장</button>
 <!--  <input type="button" class="btn btn-default" id="board_modify_fbtn" value="저장"/> -->
- <input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록" onclick="go_list();"/>
+ <input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 </div>
 
 

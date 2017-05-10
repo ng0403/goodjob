@@ -34,7 +34,7 @@ public class BNoticeDaoImpl implements BNoticeDao {
 	@Override
 	public List<Object> list(Map map) {	
 		 System.out.println("notice Dao List ? " + map.toString());
-		 List<Object> qwer = sqlSession.selectList("bnotice.NoticeList", map);
+		 List<Object> qwer = sqlSession.selectList("bnotice.selectAll", map);
 		 System.out.println("qwerqwer ?? " + qwer.toString());
 		return qwer ;
 	}

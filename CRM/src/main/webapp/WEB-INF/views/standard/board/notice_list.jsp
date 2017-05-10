@@ -13,7 +13,8 @@
 <script src="${ctx}/resources/common/js/standard/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
   <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
- <!-- 합쳐지고 최소화된 최신 CSS -->
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -67,7 +68,7 @@
                            <td style='width:10%;'>${boardVO.BOARD_NO}</td> 
                            <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</td>
                            <td style='width:10%;'>${boardVO.CREATED_BY} </td>
-                           <td style='width:20%;'><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.CREATED}" /></td>
+                           <td style='width:20%;'>${boardVO.CREATED}</td>
                            <td style='width:10%;'>${boardVO.VIEW_CNT}</td>   
                         </tr> 
                      </c:forEach>
@@ -76,6 +77,7 @@
             </div>
        </form>
     </div>   
+ 
  <div class="bottom_div">
        <div class="functionBtn_div">
          <input type="button" id = "board_add_fbtn"  class = "button functionBtn" value="추가" onclick="board_add();"/> 
@@ -130,7 +132,8 @@
 	    		</c:when>
 			</c:choose>
    </div>
- 
+
+   
 </div>
  </div>
 <script type="text/javascript">

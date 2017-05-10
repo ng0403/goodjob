@@ -11,6 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/board/boardCSS.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/reply.js"></script>  
@@ -67,9 +68,9 @@
 	</div> 
 
 	<div id="detail_btns"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "btn btn-primary btn-sm" value="편집" onClick="board_modify();"/> 
-		<input type="button" id="board_remove_fbtn" class="btn btn-primary btn-sm" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록" onClick="goboardList();"/>
+		<input type="button" id="board_modify_fbtn" class = "button search_btn" value="편집" onClick="board_modify();"/> 
+		<input type="button" id="board_remove_fbtn" class="button functionBtn" value="삭제" onClick="board_detail_remove();"/>  
+		<input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onClick="goboardList();"/>
 	</div>
 
 
@@ -82,7 +83,7 @@
 		</div> 
 		<!-- 댓글 등록 버튼 -->
 		 <div id="detail_btn_div" class="reply_div col-md-4" style="float:right; margin-top:-40px; margin-right:-380px;" >
-	     <input type="button" id="reply_add_fbtn" class = "btn btn-primary btn-sm " value="저장" onclick="reply_add();"/> 
+	     <input type="button" id="reply_add_fbtn" class = "button functionBtn " value="저장" onclick="reply_add();"/> 
 		</div>
  
 	</div>

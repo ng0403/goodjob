@@ -8,8 +8,7 @@
  
 //댓글 리스트 그냥 페이징
 function replyPaging(boardPageNum) {
-	alert(boardPageNum);
-  	var ctx = $("#ctx").val();
+   	var ctx = $("#ctx").val();
   	var BOARD_NO = $("#BOARD_NO").val();
  	var tbody = $('#reply_list_tbody');
 	var tbodyContent = "";
@@ -32,11 +31,7 @@ function replyPaging(boardPageNum) {
 			
 			if(data.reply_list.length < 10){
  				for(var i=0; i<10-data.replyListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:10%"></td>'
- 						+'<td style="width:10%;"></td>'
-						+'<td style="width:40%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:20%;"></td>'
+					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:10%"></td>' 
  						+'<td style="width:10%;"></td></tr>';
 					tbody.append(tbodyContent);
 				}		
@@ -122,12 +117,10 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 
 //댓글 추가
 		function reply_add(){  	
-	  	alert("insert");
-		 var BOARD_NO = $("#BOARD_NO").val(); 
+ 		 var BOARD_NO = $("#BOARD_NO").val(); 
 		 var REPLY_CONTENT_OBJ = $("#reply_content");
 		 var REPLY_CONTENT = REPLY_CONTENT_OBJ.val();
-	  	 alert(REPLY_CONTENT);
-	  	 var CREATED_BY = "${SessionID}" ;
+ 	  	 var CREATED_BY = "${SessionID}" ;
 	  	$.ajax({
 			type:'POST',
 			url:'/reply_add',
