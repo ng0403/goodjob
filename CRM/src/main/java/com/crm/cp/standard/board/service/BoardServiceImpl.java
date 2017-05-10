@@ -143,5 +143,11 @@ public class BoardServiceImpl implements BoardService {
 			public List<BoardVO> boardAllList(Map<String,Object> boardMap) {
 				return boardDao.boardAllList(boardMap);
 			}
+
+			@Override
+			public void AnswerFlg(int BOARD_NO) {
+				System.out.println("service map ? " + BOARD_NO);
+				  boardDao.AnswerFlg(BOARD_NO); 
+			}
  
 }

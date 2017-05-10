@@ -19,6 +19,7 @@ public interface BoardService {
 	  public BoardVO read(int BOARD_NO); 
 	  public BoardVO readFileModify(int BOARD_NO);
 	  public void modify(BoardVO vo);
+	  public void AnswerFlg(int BOARD_NO);
 	  public void insert(BoardVO vo);
 	  public void removeBoard(String dc);
 	  public void removeDetail(int BOARD_NO);

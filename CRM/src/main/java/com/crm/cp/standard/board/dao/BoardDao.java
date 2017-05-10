@@ -18,6 +18,7 @@ public interface BoardDao {
 	public BoardVO read(int BOARD_NO);  
 	public BoardVO readFileModify(int BOARD_NO);
 	public void modify(BoardVO vo);
+	public void AnswerFlg(int BOARD_NO);
 	public void insert(BoardVO vo);
 	public BoardVO ReadFilePage(int BOARD_NO);
 	public List<BoardVO> SearchList(Map<String, Object> map); 

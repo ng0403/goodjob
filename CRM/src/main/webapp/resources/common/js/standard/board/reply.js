@@ -1,8 +1,6 @@
   $(document).ready(function(){
 
-	 replyPaging(1);
-
-
+	 replyPaging(1); 
 })
  
  

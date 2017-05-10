@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.crm.cp.standard.board.service.BoardService;
 import com.crm.cp.standard.board.service.ReplyService;
-import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.board.vo.ReplyVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -30,6 +30,7 @@ public class ReplyController {
 	
 	@Autowired
 	ReplyService replyService;
+	BoardService boardService;
 	
 	@RequestMapping(value="/reply_add", method=RequestMethod.POST) 
 	public ResponseEntity<List<ReplyVO>> replyadd(@RequestBody ReplyVO vo, HttpSession session){
@@ -38,7 +39,14 @@ public class ReplyController {
 		vo.setCREATED_BY(session.getAttribute("user").toString());
 		vo.setUPDATED_BY(session.getAttribute("user").toString());
 		System.out.println("replyvo?" +vo.toString());
-
+		
+		//q&a 답변을 할 때에 answer flg 변환
+		String BOARD_MNG_NO = vo.getBOARD_MNG_NO();
+ 		
+		if(vo.getBOARD_MNG_NO().equals("BMG1000003"))
+		{
+ 			boardService.AnswerFlg(BOARD_NO);
+		}
 		
 		ResponseEntity<List<ReplyVO>> entity = null;
 		    try {
