@@ -76,15 +76,15 @@
 				<thead>
 					<tr>
 						<th style="width: 3%"><input type="checkbox"  id='opptAllSelect'/></th>
-						<th style="width: 26%">영업기회명</th>
-						<th style="width: 10%">고객명</th>
-						<th style="width: 8%">영업단계</th>
-						<th style="width: 10%">예상매출액</th>
-						<th style="width: 10%">예상마감일자</th>
-						<th style="width: 5%">가능성</th>
-						<th style="width: 8%">상태</th>
-						<th style="width: 8%">등록자</th>
-						<th style="width: 12%">등록일시</th>
+						<th onclick="goSort();" style="width: 26%">영업기회명</th>
+						<th onclick="goSort();" style="width: 10%">고객명</th>
+						<th onclick="goSort();" style="width: 8%">영업단계</th>
+						<th onclick="goSort();" style="width: 10%">예상매출액</th>
+						<th onclick="goSort();" style="width: 10%">예상마감일자</th>
+						<th onclick="goSort();" style="width: 5%">가능성</th>
+						<th onclick="goSort();" style="width: 8%">상태</th>
+						<th onclick="goSort();" style="width: 8%">등록자</th>
+						<th onclick="goSort();" style="width: 12%">등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="listTable" class="tbody">

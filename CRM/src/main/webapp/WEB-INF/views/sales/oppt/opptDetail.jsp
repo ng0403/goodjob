@@ -7,9 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -65,20 +65,20 @@ $(document).ready(function() {
 				<table id="goaltable" class="tabtable">
 					<thead>
 						<tr class="headerLock">
-							<th rowspan="2" style="width: 3%;"><input type="checkbox"  id='actAllSelect'/></th>
-							<td rowspan="2" style="width: 20%;">영업활동명</td>
-							<td rowspan="2" style="width: 8%;">활동구분</td>
-							<td rowspan="2" style="width: 20%;">영업기회명</td>
-							<td rowspan="2" style="width: 8%;">활동유형</td>
-							<td style="width: 9%;">시작일자</td>
-							<td style="width: 9%;">시작시간</td>
-							<td rowspan="2" style="width: 6%;">상태</td>
-							<td rowspan="2" style="width: 7%;">등록자</td>
-							<td rowspan="2" style="width: 10%;">등록일시</td>
+							<th rowspan="2" style="width: 3% !important;"><input type="checkbox"  id='actAllSelect'/></th>
+							<td rowspan="2" style="width: 20% !important;">영업활동명</td>
+							<td rowspan="2" style="width: 8% !important;">활동구분</td>
+							<td rowspan="2" style="width: 20% !important;">영업기회명</td>
+							<td rowspan="2" style="width: 8% !important;">활동유형</td>
+							<td style="width: 9% !important;">시작일자</td>
+							<td style="width: 9% !important;">시작시간</td>
+							<td rowspan="2" style="width: 6% !important;">상태</td>
+							<td rowspan="2" style="width: 7% !important;">등록자</td>
+							<td rowspan="2" style="width: 10% !important;">등록일시</td>
 						</tr>
 						<tr>
-							<td>종료일자</td>
-							<td>종료시간</td>
+							<td style="width: 9% !important;">종료일자</td>
+							<td style="width: 9% !important;">종료시간</td>
 						</tr>
 					</thead>
 					<tbody id="activeList" class="FixTbody">	
@@ -98,14 +98,14 @@ $(document).ready(function() {
 			<table id="goaltable" class="tabtable" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
-						<th style="width: 3%;"><input type="checkbox"  id='estimAllSelect'/></th>
-						<td style="width: 30%;">견적명</td>
-						<td style="width: 11%;">견적단계</td>
-						<td style="width: 10%;">견적수량</td>
-						<td style="width: 15%;">견적금액</td>
-						<td style="width: 10%;">견적유효일자</td>
-						<td style="width: 9%;">등록자</td>
-						<td style="width: 10%;">등록일시</td>
+						<th style="width: 3% !important;"><input type="checkbox"  id='estimAllSelect'/></th>
+						<td style="width: 30% !important;">견적명</td>
+						<td style="width: 11% !important;">견적단계</td>
+						<td style="width: 10% !important;">견적수량</td>
+						<td style="width: 15% !important;">견적금액</td>
+						<td style="width: 10% !important;">견적유효일자</td>
+						<td style="width: 9% !important;">등록자</td>
+						<td style="width: 10% !important;">등록일시</td>
 					</tr>
 				</thead>
 				<tbody id="estimList"  class="FixTbody">
