@@ -28,7 +28,7 @@
 	   </div>
 
 	   <div id="tableline1" class="tableline">
-			<table id="acttable1">
+			<table id="acttable">
 				<thead>
 					<tr>
 						<th>영업활동명</th>
