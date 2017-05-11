@@ -20,13 +20,13 @@ function logout(){
 <style type="text/css">
 
 #guideline {
-	width: 85%;	
+	width: 100%;	
 }
 
 #logout {
 	margin: 0 auto;
-	margin-top: 34px;
-	margin-right: -44px;
+	margin-top: 37px;
+	margin-right: -38px;
 	float: right;
 	font-weight: bold;
 	color: #ffffff;
@@ -37,6 +37,7 @@ function logout(){
 	width: 25px;
 	margin: 0 auto;
 	margin-top: 10px;
+	margin-right: 40px;
 	float: right;
 }
 #logoutImg:HOVER {

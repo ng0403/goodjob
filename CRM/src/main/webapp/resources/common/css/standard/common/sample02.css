@@ -99,6 +99,8 @@ nav ul {
 			position: relative;
 			vertical-align: middle;
 			margin-bottom: 6px;
+			margin-top: 10px;
+			margin-left: 5px;
 /* 			width: 100%: */
 		}
 			.sub_menu_bar ul li a {
