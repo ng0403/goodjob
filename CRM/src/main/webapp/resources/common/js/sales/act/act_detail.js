@@ -50,21 +50,21 @@ function actAddBtn(){
 function actMdfyBtn(){
 	$("#actMdfBtn").click(function() {
 		$("#act_tab_tbody input[type='text']").css("background-color", "white");
+		$("#sales_oppt_nm").css("background-color","#EAEAEA");
+		$("#cust_nm").css("background-color","#EAEAEA");
 		$("#memo").css("background-color", "white");
-		$("#act_tab_tbody input").attr("readonly", false);
-		$("#memo").attr("disabled", false);
-		$("#memo").attr("readonly", false);
+		
+		$('#sales_actvy_nm').attr("readonly", false);
 		$("#act_tab_tbody input").attr("disabled", false);
-		$("#sales_actvy_type_nm").attr("disabled", false);
+		$("#sales_actvy_type_cd").attr("disabled", false);
 		$("#actdiv_1").attr("disabled", false);
 		$("#actdiv_2").attr("disabled", false);
-		$("#sales_actvy_stat_nm").attr("disabled", false);
-		$("#act_opp_nm").attr("disabled", false);
-		$("#customer").attr("disabled", false);
+		$("#sales_actvy_stat_cd").attr("disabled", false);
 		$("#strt_t_h").attr("disabled",false);
 		$("#strt_t_m").attr("disabled",false);
 		$("#end_t_h").attr("disabled",false);
 		$("#end_t_m").attr("disabled",false);
+		$("#memo").attr("readonly", false);
 		
 		//할일을 클릭했을 때 영업기회명과 고객사 비활성화
 		if($('#actdiv_1').is(':checked')){
@@ -91,7 +91,8 @@ function actAddCancelBt(){
 	
 	if(ynChk == true)
 	{
-		location.href = ctx + '/act';
+		window.opener.location.href = ctx + '/act';
+		self.close();
 	}
   });
 }
@@ -152,43 +153,10 @@ function actMdfyCancelBt(){
 		
 		if(ynChk)
 		{
-			location.href = '/act';
+			window.opener.location.href = '/act';
+			self.close();
+			
 			//location.href = '/actDetail?sales_actvy_id=' + salesId;
-//			$("#act_tab_tbody input[type='text']").css("background-color", "#EAEAEA");
-//			$("#memo").css("background-color", "#EAEAEA");
-//
-//			// 버튼 활성화
-//			$("#actBaseBtnDiv").css("display", "block");
-//			$("#actAddBtnDiv").css("display", "none");
-//			$("#actMdfBtnDiv").css("display", "none");
-//
-//			// 취소 클릭했을 때 원래 값 넣어주기
-//			$('#sales_actvy_nm').val($('#hsales_actvy_nm').val()).attr('disabled', true);
-//		
-//			if($('#hsales_actvy_div_cd').val()=='0001')
-//			{
-//				$('#actdiv_1').val($('#hsales_actvy_div_cd').val()).prop("checked", true);
-//				$('#actdiv_1').attr("disabled", true);
-//				$('#actdiv_2').attr("disabled", true);
-//			} 
-//			else 
-//			{
-//				$('#actdiv_2').val($('#hsales_actvy_div_cd').val()).prop("checked", true);
-//				$('#actdiv_1').attr("disabled", true);
-//				$('#actdiv_2').attr("disabled", true);
-//			}
-//			
-//			$('#sales_actvy_type_nm').val($('#hsales_actvy_type_nm').val()).attr("selected", "selected").attr('disabled',true);
-//			$('#sales_oppt_nm').val($('#hsales_oppt_id').val()).attr('disabled',true);
-//			$('#cust_nm').val($('#hcust_id').val()).attr('disabled',true);
-//			$('#sales_actvy_stat_nm').val($('#hsales_actvy_stat_cd').val()).attr("selected", "selected").attr('disabled',true);
-//			$('#strt_d').val($('#hstrt_d').val()).attr('disabled',true);
-//			$('#strt_t_h').val($('#hstrt_t_h').val()).attr('disabled',true);
-//			$('#strt_t_m').val($('#hstrt_t_m').val()).attr('disabled',true);
-//			$('#end_d').val($('#hend_d').val()).attr('disabled',true);
-//			$('#end_t_h').val($('#hend_t_h').val()).attr('disabled',true);
-//			$('#end_t_m').val($('#hend_t_m').val()).attr('disabled',true);
-//			$('#memo').val($('#hmemo').val()).attr('disabled',true);
 		}
 	});
 }
@@ -639,25 +607,11 @@ function actInsert(ctx) {
 //		var end_t_h = $('#end_t_h').val();
 //		var end_t_m = $('#end_t_m').val();
 //		
-//		if($('#actdiv_1').is(':checked')) {
-//			var sales_actvy_div_nm1=$('#actdiv_1').val();
-//		} else {
-//			var sales_actvy_div_nm1=$('#actdiv_2').val();		
-//		}	
-//		
-//		var obj = {
-//				sales_actvy_nm : $('#sales_actvy_nm').val(),
-//				sales_actvy_div_cd : sales_actvy_div_nm1,
-//				sales_actvy_type_cd : $('#sales_actvy_type_nm').val(),
-//				sales_oppt_id : $('#sales_oppt_id').val(),
-//				cust_id : $('#cust_id').val(),
-//				sales_actvy_stat_cd : $('#sales_actvy_stat_nm').val(),
-//				strt_d : $('#strt_d').val(),
-//				strt_t : $('#strt_t_h').val()+":"+$('#strt_t_m').val(),
-//				end_d : $('#end_d').val(),
-//				end_t : $('#end_t_h').val()+":"+$('#end_t_m').val(),    			
-//		        memo : $('#memo').val()
-//		}
+		if($('#actdiv_1').is(':checked')) {
+			var sales_actvy_div_nm1=$('#actdiv_1').val();
+		} else {
+			var sales_actvy_div_nm1=$('#actdiv_2').val();		
+		}	
 		
 		if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
 		{
@@ -704,47 +658,52 @@ function actInsert(ctx) {
 			alert("분을 선택해 주세요");
 			return false;
 		}
+
+		var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
+		var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
 		
-		var ynChk = confirm("해당 정보를 추가하시겠습니까?");
-		
-		if(ynChk)
-		{
-			alert("정상 등록되었습니다.");
-			
-			$('#actTabForm') 
-			.attr('action','actInsert')
-			.submit();
-		}
-		else
-		{
-			alert("취소되었습니다.");
-			return false;
-		}
-		
-		
-/*		
-	    var jsonData = JSON.stringify(obj);		//JSON Object 생성
-	    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
-	    
 		$.ajax({
 			type : 'POST',
-			url : ctx+'/actInsert',
-			data : jsonData,
-			contentType : 'application/json; charset=UTF-8',
+			url : '/actInsert',
+			data : {
+				sales_actvy_nm : $('#sales_actvy_nm').val(),
+				sales_actvy_div_cd : sales_actvy_div_nm1,
+				sales_actvy_type_cd : $('#sales_actvy_type_cd').val(),
+				sales_oppt_id : $('#sales_oppt_id').val(),
+				cust_id : $('#cust_id').val(),
+				sales_actvy_stat_cd : $('#sales_actvy_stat_cd').val(),
+				strt_d : $('#strt_d').val(),
+				strt_t : strt_t,
+				strt_t_h : $('#strt_t_h').val(),
+				strt_t_m : $('#strt_t_m').val(),
+				end_d : $('#end_d').val(),
+				end_t : end_t,
+				end_t_h : $('#end_t_h').val(),
+				end_t_m : $('#end_t_m').val(),
+		        memo : $('#memo').val()
+			},
 			dataType : "json",
 			success : function(data) {
 				
-				      alert("영업활동이 등록되었습니다.");
-				      
-				      actAddReset();
-				      $("#memo").css("background-color", "#EAEAEA");
-				      actPaging("1");
+				var ynChk = confirm("해당 정보를 추가하시겠습니까?");
+				if(ynChk)
+				{
+					alert("영업활동이 등록되었습니다.");
+					
+					window.opener.location.href = '/act';
+					self.close();
+				}
+				else
+				{
+					alert("취소되었습니다.");
+				}
+				
 			},
 			error : function(request,status,error) {
 		          alert("활동등록code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		    }
 		});
-*/
+
 	});
 }
 
@@ -753,21 +712,103 @@ function actInsert(ctx) {
  * */
 function actModify(ctx)
 {
-	var ynChk = confirm("해당 정보를 수정하시겠습니까?");
-	
-	if(ynChk)
-	{
-		alert("정상 수정되었습니다.");
-		
-		$('#actTabForm')
-		.attr('action', 'actEdit')
-		.submit();
-	}
-	else
-	{
-		return false;
+	if($('#actdiv_1').is(':checked')) {
+		var sales_actvy_div_nm1=$('#actdiv_1').val();
+	} else {
+		var sales_actvy_div_nm1=$('#actdiv_2').val();		
 	}	
 	
+//	if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
+//	{
+//		alert("영업활동명을 입력해 주세요");
+//		return false;
+//	}
+//	else if($('#sales_actvy_type_cd').val() == "0" || $('#sales_actvy_type_cd').val() == null)
+//	{
+//		alert("활동유형을 선택해 주세요");
+//		return false;			
+//	}
+//	else if($('#sales_actvy_stat_cd').val() == "0"|| $('#sales_actvy_stat_cd').val() == null)
+//	{
+//		alert("상태를 선택해 주세요");
+//		return false;
+//	}
+//	else if($('#strt_d').val() == "" || $('#strt_d').val() == null)
+//	{
+//		alert("시작일자를 선택해 주세요");
+//		return false;
+//	}
+//	else if($('#strt_t_h').val() == "0" || $('#strt_t_h').val() == null)
+//	{
+//		alert("시를 선택해 주세요");
+//		return false;
+//	}
+//	else if($('#strt_t_m').val() == "0" || $('#strt_t_m').val() == null)
+//	{
+//		alert("분을 선택해 주세요");
+//		return false;
+//	}
+//	else if($('#end_d').val() == "" || $('#end_d').val() == null)
+//	{
+//		alert("종료일자를 선택해 주세요");
+//		return false;
+//	}
+//	else if($('#end_t_h').val() == "0" || $('#end_t_h').val() == null)
+//	{
+//		alert("시를 선택해 주세요");
+//		return false;
+//	}
+//	else if($('#end_t_m').val() =="0" || $('#end_t_m').val() == null)
+//	{
+//		alert("분을 선택해 주세요");
+//		return false;
+//	}
+
+	var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
+	var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
+	
+	$.ajax({
+		type : 'POST',
+		url : '/actEdit',
+		data : {
+			sales_actvy_id : $('#sales_actvy_id').val(),
+			sales_actvy_nm : $('#sales_actvy_nm').val(),
+			sales_actvy_div_cd : sales_actvy_div_nm1,
+			sales_actvy_type_cd : $('#sales_actvy_type_cd').val(),
+			sales_oppt_id : $('#sales_oppt_id').val(),
+			cust_id : $('#cust_id').val(),
+			sales_actvy_stat_cd : $('#sales_actvy_stat_cd').val(),
+			strt_d : $('#strt_d').val(),
+			strt_t : strt_t,
+			strt_t_h : $('#strt_t_h').val(),
+			strt_t_m : $('#strt_t_m').val(),
+			end_d : $('#end_d').val(),
+			end_t : end_t,
+			end_t_h : $('#end_t_h').val(),
+			end_t_m : $('#end_t_m').val(),
+	        memo : $('#memo').val()
+		},
+		dataType : "json",
+		success : function(data) {
+			var ynChk = confirm("해당 정보를 수정하시겠습니까?");
+			
+			if(ynChk)
+			{
+				alert("정상 수정되었습니다.");
+				
+				window.opener.location.href = '/act';
+				self.close();
+			}
+			else
+			{
+				alert("취소되었습니다.");
+			}
+			
+		},
+		error : function(request,status,error) {
+	          alert("활동등록code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    }
+	});
 }
 
 /**
@@ -775,27 +816,42 @@ function actModify(ctx)
  * */
 function actDelBt(sales_actvy_id)
 {
-	var ynChk = confirm("해당 정보를 삭제하시겠습니까?");
+	var dsales_actvy_id = sales_actvy_id;
 	
-	if(ynChk)
-	{
-		alert("해당 영업활동이 삭제되었습니다.");
-		
-		$('#actTabForm')
-		.attr('action', 'actDelete')
-		.submit();
-	}
-	else
-	{
-		return false;
-	}
+	$.ajax({
+		type : 'POST',
+		url : '/actDelete',
+		data : {
+			sales_actvy_id : dsales_actvy_id,
+		},
+		dataType : "json",
+		success : function(data) {
+			var ynChk = confirm("해당 정보를 삭제하시겠습니까?");
+			
+			if(ynChk)
+			{
+				alert("해당 영업활동이 삭제되었습니다.");
+				
+				window.opener.location.href = '/act';
+				self.close();
+			}
+			else
+			{
+				alert("취소되었습니다.");
+			}
+			
+		},
+		error : function(request,status,error) {
+	          alert("활동등록code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    }
+	});
 	
 }
 
 
 //활동구분 클릭했을 때 활성화 비활성화 설정해주기
-function actDivCheck(){
-
+function actDivCheck()
+{
 	if($('#actdiv_1').is(':checked')){
 		 $("#sales_oppt_nm").css("background-color","#EAEAEA");
 	     $('#sales_oppt_nm').attr("disabled",true);
@@ -817,7 +873,8 @@ function actDivCheck(){
 	}
 }
 
-function reset(){
+function reset()
+{
 	 $('#sales_actvy_nm').val("");
 	 $('#actdiv_1').prop("checked",false);
 	 $('#actdiv_2').prop("checked",false);
@@ -832,7 +889,6 @@ function reset(){
 	 $('#end_t_h').val("0");
 	 $('#end_t_m').val("0");
 	 $('#memo').val("");
-	 
 }
 
 function searchActDiv(){

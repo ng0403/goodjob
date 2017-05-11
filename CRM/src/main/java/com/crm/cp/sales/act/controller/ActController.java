@@ -156,54 +156,84 @@ public class ActController {
 		}
 	}
 	
-	//영업활동등록
 	@RequestMapping(value = "/actInsert", method = RequestMethod.POST)
-	public String actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
+	public @ResponseBody int actInsert(ActVO actvo, HttpSession session, HttpServletRequest request)
 	{
 		actvo.setFst_reg_id(session.getAttribute("user").toString());
 		actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
 		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
+		int result = 0;
 		
 		System.out.println("actInsert : " + actvo.toString());
 		
 		if(actvo.getSales_actvy_div_cd().equals("0001"))
 		{
-			actService.actInsert(actvo);
+			result = actService.actInsert(actvo);
 		}
 		if(actvo.getSales_actvy_div_cd().equals("0002"))
 		{
-			actService.actInsert(actvo);
+			result = actService.actInsert(actvo);
 		}
 		
-
-		return "redirect:/act";
+		System.out.println("result : " + result);
+		
+		return result;
+		
+//		return "redirect:/act";
 	}
+	
+	//영업활동등록
+//	@RequestMapping(value = "/actInsert", method = RequestMethod.POST)
+//	public int actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
+//	{
+//		actvo.setFst_reg_id(session.getAttribute("user").toString());
+//		actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
+//		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
+//		int result = 0;
+//		
+//		System.out.println("actInsert : " + actvo.toString());
+//		
+//		if(actvo.getSales_actvy_div_cd().equals("0001"))
+//		{
+//			result = actService.actInsert(actvo);
+//		}
+//		if(actvo.getSales_actvy_div_cd().equals("0002"))
+//		{
+//			result = actService.actInsert(actvo);
+//		}
+//		
+//		System.out.println("result : " + result);
+//		
+//		return result;
+//		
+////		return "redirect:/act";
+//	}
 
 	//영업활동 수정	
 	@RequestMapping(value="/actEdit", method= RequestMethod.POST)
-	public String actEdit(@ModelAttribute ActVO actvo, HttpSession session)
+	public @ResponseBody int actEdit(ActVO actvo, HttpSession session)
 	{
+		int result = 0;
+		
+		System.out.println("actEdit : " + actvo.toString());
+		
 		actvo.setFin_mdfy_id(session.getAttribute("user").toString());
-		actvo.setSales_actvy_div_cd(actvo.getSales_actvy_div_nm());
-		actvo.setSales_actvy_type_cd(actvo.getSales_actvy_type_nm());
-		actvo.setSales_actvy_stat_cd(actvo.getSales_actvy_stat_nm());
-		actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
-		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
 		
-        actService.actEdit(actvo);
+		result = actService.actEdit(actvo);
 		
-        return "redirect:/act";
+        return result;
 	}
 	
 	//영업활동 삭제	
 	@RequestMapping(value = "/actDelete", method = RequestMethod.POST)
-	public String actDelete(@ModelAttribute ActVO actvo) throws IOException
+	public @ResponseBody int actDelete(ActVO actvo) throws IOException
 	{
-		System.out.println("actDelete - sales_actvy_id : " + actvo.getSales_actvy_id());
+		int result = 0;
+		System.out.println("actDelete - sales_actvy_id : " + actvo.toString());
 		
-		actService.actDelete(actvo.getSales_actvy_id());
+		result = actService.actDelete(actvo.getSales_actvy_id());
 		
-		return "redirect:/act";
+		return result;
 	}
 	
 	//전체리스트 출력 페이징/검색 

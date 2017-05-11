@@ -85,8 +85,8 @@ public class ActServiceImpl implements ActService{
 	}
 
 	@Override
-	public void actInsert(ActVO actvo) {
-		actDao.actInsert(actvo);
+	public int actInsert(ActVO actvo) {
+		return actDao.actInsert(actvo);
 	}
 
 	@Override
@@ -96,13 +96,13 @@ public class ActServiceImpl implements ActService{
 	}
 
 	@Override
-	public void actEdit(ActVO actvo) {
-		actDao.actEdit(actvo);
+	public int actEdit(ActVO actvo) {
+		return actDao.actEdit(actvo);
 	}
 	
 	@Override
-	public void actDelete(String sales_actvy_id) {
-		actDao.actDelete(sales_actvy_id);
+	public int actDelete(String sales_actvy_id) {
+		return actDao.actDelete(sales_actvy_id);
 	}
 	
 	/*영화씨가 봐야할 부분.*/

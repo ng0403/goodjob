@@ -95,8 +95,8 @@ public class ActDaoImpl implements ActDao{
 	}
 
 	@Override
-	public void actInsert(ActVO actvo) {
-		sqlSession.insert("act.actInsert", actvo);
+	public int actInsert(ActVO actvo) {
+		return sqlSession.insert("act.actInsert", actvo);
 	}
 
 	@Override
@@ -106,13 +106,13 @@ public class ActDaoImpl implements ActDao{
 	}
 
 	@Override
-	public void actEdit(ActVO actvo) {
-		sqlSession.update("act.actEdit", actvo);
+	public int actEdit(ActVO actvo) {
+		return sqlSession.update("act.actEdit", actvo);
 	}
 	
 	@Override
-	public void actDelete(String sales_actvy_id) {
-		sqlSession.update("act.actDelete", sales_actvy_id);
+	public int actDelete(String sales_actvy_id) {
+		return sqlSession.update("act.actDelete", sales_actvy_id);
 		
 	}
 	

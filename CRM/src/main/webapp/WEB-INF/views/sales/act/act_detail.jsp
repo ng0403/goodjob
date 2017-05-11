@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>	
@@ -66,13 +67,13 @@
 									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="int" readonly="readonly"> 
-								    <input type="button" name="customer" value="고객" class="int" id="customer" style="display: none;" disabled="disabled">
+								    <input type="button" name="customer" value="고객" class="button search_btn" id="customer" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="int" readonly="readonly" style="background-color: white;">
-								    <input type="button" name="customer" value="고객" class="cust_act_btn" id="customer">
+								    <input type="button" name="customer" value="고객" class="button search_btn" id="customer">
 								</c:if>
 							</td>
 			     		</tr>
@@ -83,12 +84,12 @@
 									<input type="hidden" id="hsales_oppt_id">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="int_act" readonly="readonly"> 
-							    	<input type="button" name="act_opp" value="영업기회" class="act_bt" id="act_opp_nm" style="display: none;" disabled="disabled">
+							    	<input type="button" name="act_opp" value="영업기회" class="button search_btn" id="act_opp_nm" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="int_act" readonly="readonly" style="background-color: white;"> 
-							    	<input type="button" name="act_opp" value="영업기회" class="cust_act_btn" id="act_opp_nm" >
+							    	<input type="button" name="act_opp" value="영업기회" class="button search_btn" id="act_opp_nm" >
 								</c:if>
 							    	
 							</td>
@@ -99,7 +100,7 @@
 								<c:if test="${flg eq '1'}">
 								    <input type="hidden" id="hsales_actvy_stat_cd">
 <%-- 								    <input type="hidden" id="sales_actvy_stat_cd" name="sales_actvy_stat_cd" value="${actStatCd.sales_actvy_stat_cd}"> --%>
-								    <select name="sales_actvy_stat_nm" id="sales_actvy_stat_nm" class="act_tab_select" disabled="disabled">
+								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select" disabled="disabled">
 								    	<option value="0" style="text-align: center;">==상태==</option>						    
 								      	<c:forEach var="actStatCd" items="${actStatCd}">
 								      		<c:if test="${actDetail.sales_actvy_stat_cd == actStatCd.sales_actvy_stat_cd}">
@@ -150,7 +151,7 @@
 							<td>
 								<c:if test="${flg eq '1'}">
 <%-- 									<input type="hidden" id="sales_actvy_type_cd" name="sales_actvy_type_cd" value="${actTypeCd.sales_actvy_type_cd}"> --%>
-									<select name="sales_actvy_type_nm" id="sales_actvy_type_nm" class="act_tab_select" disabled="disabled">
+									<select name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="act_tab_select" disabled="disabled">
 										<option value="0" style="text-align: center;">=활동유형=</option>
 										<c:forEach var="actTypeCd" items="${actTypeCd}">
 											<c:if test="${actDetail.sales_actvy_type_cd == actTypeCd.sales_actvy_type_cd}">
@@ -356,20 +357,20 @@
 				
 			<c:if test="${flg == 0}">
 				<div id="actAddBtnDiv" class="act_tab_bt_div">
-					<input type="button" id="actAddSaveBtn" value="저장" onclick="actInsert('${ctx}');" class="cust_oppt_btn"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="cust_oppt_btn" onclick="actAddCancelBt();"/>
+					<input type="button" id="actAddSaveBtn" value="추가" onclick="actInsert('${ctx}');" class="button functionBtn"/>
+					<input type="button" id="actAddCancelBtn" value="취소" class="button search_btn" onclick="actAddCancelBt();"/>
 				</div>
 			</c:if>
 			
 			<c:if test="${flg == 1}">
 				<div id="actBaseBtnDiv" class="act_tab_bt_div">
-					<input type="button" id="actMdfBtn" value="편집" class="cust_oppt_btn"/>
-					<input type="button" id="actDelBtn" value="삭제" class="cust_oppt_btn" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="cust_oppt_btn" onclick="actAddCancelBt();"/>
+					<input type="button" id="actMdfBtn" value="편집" class="button search_btn"/>
+					<input type="button" id="actDelBtn" value="삭제" class="button functionBtn" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
+					<input type="button" id="actAddCancelBtn" value="취소" class="button search_btn" onclick="actAddCancelBt();"/>
 				</div>
 				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
-					<input type="button" id="actMdfSaveBtn" value="저장" onclick="actModify('${ctx}');" class="cust_oppt_btn"/>
-					<input type="button" id="actMdfCancelBtn" value="취소" class="cust_oppt_btn" onclick="actMdfyCancelBt();"/>
+					<input type="button" id="actMdfSaveBtn" value="추가" onclick="actModify('${ctx}');" class="button functionBtn"/>
+					<input type="button" id="actMdfCancelBtn" value="취소" class="button search_btn" onclick="actMdfyCancelBt();"/>
 				</div>
 			</c:if>
 		</form>	

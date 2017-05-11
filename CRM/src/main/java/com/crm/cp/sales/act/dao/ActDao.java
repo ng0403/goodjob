@@ -30,13 +30,13 @@ public interface ActDao {
 
 	ActVO actDetail(String sales_actvy_id);
 
-	void actInsert(ActVO actvo);
+	int actInsert(ActVO actvo);
 
 	Object actOneSelectId(String sales_actvy_id);
 
-	void actEdit(ActVO actvo);
+	int actEdit(ActVO actvo);
 	
-	void actDelete(String sales_actvy_id);
+	int actDelete(String sales_actvy_id);
 	
 	/**
 	 * 영화씨가 봐야할 곳.
