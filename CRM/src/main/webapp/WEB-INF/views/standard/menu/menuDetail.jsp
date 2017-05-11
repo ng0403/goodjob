@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>메뉴등록</title>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/menu/menuDetail.css" type="text/css"/>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <script type='text/javascript' src='${ctx}/resources/common/js/standard/menu/menuDetail.js'></script>
 
 </head>

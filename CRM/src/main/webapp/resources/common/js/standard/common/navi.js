@@ -58,11 +58,11 @@
 			if($(this).attr('href')=='#'){
 				//event.preventDefault();
 				var submenu = $(this).next("ul").html();
-				console.log(submenu);
+//				console.log(submenu);
 				if ($(this).next("ul").find(".subbtn").length >= 1) {
 					var menuT_sul = $("<ul>");
 					menuT_sul.addClass("hide1");
-					console.log($(this).next("ul").attr("id"));
+//					console.log($(this).next("ul").attr("id"));
 					menuT_sul.attr("id",$(this).next("ul").attr("id"));
 					menuT_sul.attr("style","display: inline;");
 					

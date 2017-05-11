@@ -8,6 +8,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/menu/menuTree.js"></script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/menu/menuTree.css"/>
 <title>리스트</title>
 <script type="text/javascript">

@@ -66,24 +66,22 @@ $(function() {
 		<div id="tabDiv1" class="tab1_content">			
 			<div id="ccustomerdiv">
 			<input type="hidden" id="inputCust" value="false"/>
-			
+				<div id="baseBtnDiv" class="bt_position_authuser">
+<!-- 				<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/> -->
+					<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
+				</div>
+	<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
+	<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
+	<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
+	<!-- 		</div> -->
+<!--			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser"> -->
+<%--				<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
+<!--				<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
+<!--			</div> -->
 			<table id="contactable">
 				<tbody id="estDetail">
 					<tr>
-						<td colspan="4">
-							<div id="baseBtnDiv" class="bt_position_authuser">
-<!-- 								<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/> -->
-								<input type="button" id="listLocaBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/>
-							</div>
-					<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
-					<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
-					<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
-					<!-- 		</div> -->
-<!-- 							<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser"> -->
-<%-- 								<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
-<!-- 								<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
-<!-- 							</div> -->
-						</td>
+
 					</tr>
 					<tr>
 						<th>견적명</th>
@@ -154,21 +152,27 @@ $(function() {
 				</tbody>
 			</table>
 			
-			<div id="estimatediv" style="margin-left: 22px;">
-			<input type="hidden" id="eduCode" value="${eduCode}">
+			
+				<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
+					<tr>
+						<th style="width: 3%;" rowspan="2"><input type="checkbox" id="allSelect"></th>
+						<td style="width: 32%;">품목명</td>
+						<td style="width: 8%;">수량</td>
+						<td style="width: 27%;">판매가</td>
+						<td style="width: 15%;">할인</td>
+						<td style="width: 15%;">공급가</td>
+					</tr>
+					<tr id="totalprice">
+						<td>계:</td>
+						<td id="countSum">0</td>
+						<td id="salesPriceSum" >0</td>
+						<td id="discountSum">0</td>
+						<td id="supplyPriceSum">0</td>
+					</tr>
+				</table>
+				<div id="estimatediv" style="margin-left: 22px;">
+				<input type="hidden" id="eduCode" value="${eduCode}">
 				<table id="estimatetable" class="tabtable" style="text-align: center;">
-<!-- 					<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" > -->
-					<thead id="estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;">
-						<tr>
-							<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
-							<td style="width: 32%;">품목명</td>
-							<td style="width: 8%;">수량</td>
-							<td style="width: 27%;">판매가</td>
-							<td style="width: 15%;">할인</td>
-							<td style="width: 15%;">공급가</td>
-						</tr>
-					</thead>
-<!-- 			</table> -->
 					<tbody id="estimatetbody">
 						<c:choose>
 							<c:when test="${not empty prodList}">
@@ -203,16 +207,6 @@ $(function() {
 							</c:when>
 						</c:choose>
 					</tbody>
-					<tfoot>
-						<tr id="totalprice">
-						<th></th>
-						<td>계:</td>
-						<td id="countSum">0</td>
-						<td id="salesPriceSum" >0</td>
-						<td id="discountSum">0</td>
-						<td id="supplyPriceSum">0</td>
-					</tr>
-					</tfoot>
 				</table>
 			</div>
 			<div class="estimate_bt_position"> 
@@ -223,5 +217,3 @@ $(function() {
 </div>
 </body>
 </html>
-
-
