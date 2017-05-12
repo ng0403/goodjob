@@ -626,22 +626,28 @@ function estimList(opptId){
 			}else{
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
-						'<th><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
-						'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
-						'<td>'+data.estim_lev_cd+'</td>'+
-						'<td>'+data.estim_qty+'</td>'+
-						'<td style="text-align: right; padding-right: 5px;">'+comma(data.sales_price)+'</td>'+
-						'<td>'+data.estim_valid_d+'</td>'+
-						'<td>'+data.fst_reg_id+'</td>'+
-						'<td>'+data.fst_reg_dt+'</td>'+
+						'<th style="width: 3% !important;"><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
+						'<td style="text-align: left; padding-left: 5px; width: 30% !important;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
+						'<td style="width: 11% !important;">'+data.estim_lev_cd+'</td>'+
+						'<td style="width: 10% !important;">'+data.estim_qty+'</td>'+
+						'<td style="text-align: right; padding-right: 5px; width: 15% !important;">'+comma(data.sales_price)+'</td>'+
+						'<td style="width: 10% !important;">'+data.estim_valid_d+'</td>'+
+						'<td style="width: 9% !important;">'+data.fst_reg_id+'</td>'+
+						'<td style="width: 10% !important;">'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});
 			if(result.length < 5){
 				for(var j = 0; j < 5-result.length; j++){
 					content += "<tr class='headerLock'>"
-						+ "<th></th>"
-						+ "<td></td><td></td><td></td>"
-						+ "<td></td><td></td><td></td><td></td></tr>";
+						+ "<th style='width: 3% !important;'></th>"
+						+ "<td style='width: 30% !important;'></td>" 
+						+ "<td style='width: 11% !important;'></td>"
+						+ "<td style='width: 10% !important;'></td>"
+						+ "<td style='width: 15% !important;'></td>"
+						+ "<td style='width: 10% !important;'></td>"
+						+ "<td style='width: 9% !important;'></td>"
+						+ "<td style='width: 10% !important;'></td>"
+						+ "</tr>";
 				}
 			}	
 			}	
