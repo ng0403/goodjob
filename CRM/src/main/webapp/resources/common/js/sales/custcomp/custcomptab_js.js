@@ -350,6 +350,7 @@ function custCompMdfyBtn() {
 		style:'background-color:white'
 	});
 	
+	
 //	$("#custcomptbody #cust_nm, #custcomptbody #cust_div_cd").attr("readonly",false);
 	
 //	$("#cust_zip_cd").attr("readonly", true);

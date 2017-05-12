@@ -24,7 +24,7 @@
 	<div id="left_home" style="height: 40%;">
 	   <div id="contract_title">
 	   ■ 금일영업활동
-	   <input type="button" class="detailPopbtn" value="상세보기" id="opptActBtn">
+	   <input type="button" class="button search_btn" value="상세보기" id="opptActBtn">
 	   </div>
 
 	   <div id="tableline1" class="tableline">
@@ -116,7 +116,7 @@
 	  <div id="right_home" style="height: 40%;">
 	   <div id="contract_title">
 	   ■ 영업기회
-	   <input type="button" class="detailPopbtn" id="oppt_detail" value="상세보기">
+	   <input type="button" class="button search_btn" id="oppt_detail" value="상세보기">
 	   </div>
 	   		<!-- 영업기회 상태 차트  -->
 		<div id="chart_oppt_status" style="margin-left: 120px;"><!-- style="margin-top: 5%; margin-left: 19%;" -->
@@ -174,7 +174,7 @@
 	  <div id="left_home">
 	   <div id="contract_title">
 	   ■ 공지사항
-	   <input type="button" class="detailPopbtn" id="notice_detail" value="상세보기">
+	   <input type="button" class="button search_btn" id="notice_detail" value="상세보기">
 	   </div>
 	   
 	   <div id="tableline">
@@ -202,7 +202,7 @@
 	  <div id="right_home">
 	   <div id="contract_title">
 	   ■ 자료실
-	   <input type="button" class="detailPopbtn" id="dboard_detail" value="상세보기">
+	   <input type="button" class="button search_btn" id="dboard_detail" value="상세보기">
 	   </div>
 	   
 	   <div id="tableline">

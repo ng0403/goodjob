@@ -39,7 +39,7 @@
 		</c:if>
 		<c:if test="${flg == 1 }">
 <!-- 			<div class="caption">■ 고객사 상세정보</div> -->
-			<div class="caption">■ 고객 > <a href="/custcomp" style="font-size: 15px; text-decoration:none; color: black;">고객사</a> > 상세정보</div>
+			<div class="caption">■ 고객 > <a href="/custcomp" style="font-size: 15px; text-decoration:none; color: blue;">고객사</a> > 상세정보</div>
 		</c:if>
 	</div>
 	<div id="custcomp_tab_detail">
@@ -67,13 +67,13 @@
 					<table id="custcomptable">
 						<tbody id="custcomptbody" class="custcomptbody">
 							<tr >
-								<th >고객사명</th>
+								<th id="th" style="color:red">*고객사명</th>
 								<td>
 									<input type="hidden" id="cust_id" name="cust_id" value="${custcompDetail.cust_id}" />
 									<input type="hidden" id="hcust_nm" value="${custcompDetail.cust_nm}" />
 									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${custcompDetail.cust_nm}"  style="ms-ime-mode: disabled;" readonly="readonly" />
 								</td>
-								<th >고객사구분</th>
+								<th style="color:red">*고객사구분</th>
 								<td>
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" /> 
 									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled">

@@ -2,7 +2,10 @@
 $("#navisub4").show();
 $("#navicustcomp").css("font-weight", "bold");
 
-
+var count = 0;
+var schAddFlg = 0;
+var ccllist;
+//var ctx = $("#ctx").val();
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
@@ -120,21 +123,18 @@ $(document).ready(function() {
 //		}
 //	});
 	
+
 });
 
-var count = 0;
-var schAddFlg = 0;
-var ccllist;
-var ctx = $("#ctx").val();
 
 //고객사 검색 조건 추가
 function addForm(){
 	if(count<2){
-		$.ajax({
-			type : 'post',
-			url :'/ccllist',
-			datatype : 'json',
-			success:function(result){
+//		$.ajax({
+//			type : 'post',
+//			url :'/ccllist',
+//			datatype : 'json',
+//			success:function(result){
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
 				    str+="<br><label for='sch_cust_nm' class='tel_label_list'>고객사명</label>";
@@ -145,7 +145,7 @@ function addForm(){
 				    str+="<input type='text' style='margin-left: 5px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
 				    str+="<label for='sch_iuser_nm' style='margin-left: 4px;' class='tel_label_list'>영업담당자</label> ";
 				    str+="<input type='text' style='margin-left: 5px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<label onclick='delForm(this);' id='schDelBth' >"+'-'+"</label>";
+				    str+="<label  id='schDelBth' >"+'-'+"</label>";
 				    
 				    var addedDiv = document.createElement("div"); 	// 폼 생성
 				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
@@ -153,11 +153,11 @@ function addForm(){
 				    addedFormDiv.appendChild(addedDiv); 			// 삽입할 DIV에 생성한 폼 삽입
 
 				    count++;
-			},
-			error:function(request){
-				alert("error : " + request);
-			}
-		});
+//			},
+//			error:function(request){
+//				alert("error : " + request);
+//			}
+//		});
 	}else{
 		alert("검색 조건은 최대 3개 입니다.");
 
@@ -166,12 +166,19 @@ function addForm(){
     // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
 
+//$(".schDelBth").click(function() {
+//	var addedFormDiv = document.getElementById("search_div");
+//    addedFormDiv.removeChild(obj.parentNode); 				// 폼 삭제 
+//    --count;
+//});
+
+
 //고객사 검색 조건 삭제
 function delForm(obj){
     var addedFormDiv = document.getElementById("search_div");
         addedFormDiv.removeChild(obj.parentNode); 				// 폼 삭제 
         --count;
-    
+}   
 //    var addedFormDiv = document.getElementById("search_div");
 //    if(count >=1){ 														// 현재 폼이 두개 이상이면
 //    	var addedDiv = document.getElementById("added_"+(--count));		// 마지막으로 생성된 폼의 ID를 통해 Div객체를 가져옴
@@ -179,7 +186,7 @@ function delForm(obj){
 //    }else{ 																// 마지막 폼만 남아있다면
 //               document.baseForm.reset(); 								// 폼 내용 삭제
 //    }
-}
+
 
 
 //검색 엔터키 기능

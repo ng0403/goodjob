@@ -23,7 +23,7 @@ html,body{
 	<div class="headFrame"><!--  style="width:100%; height: 15%; /* solid black; */float:left;" -->
 		<div class="header"><!--  style="width:100%;height: 40%; /* solid black; */float:left; background:#fffbcc;" -->
 				<div id="mainTitleDiv">
-						<label id="mainTitle">SFA</label>
+						<label id="mainTitle">SFA <a style="font-size: 20pt;">(Sales Force Automation)</a></label>
 				</div>
 				<tiles:insertAttribute name="header"></tiles:insertAttribute></div>
 		<div class="navi"> <!-- style="width:100%;height: 60%; /* solid black; */float:left;"> -->
