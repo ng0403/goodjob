@@ -32,6 +32,9 @@
 <!-- <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/select/1.2.2/css/select.semanticui.min.css"  /> -->
 <%-- <link type="text/css" rel="stylesheet" href="${ctx}/resources/common/css/standard/common/semantic/editor.semanticui.min.css" /> --%>
 
+<%-- <script type="text/javascript"  src="${ctx}/resources/common/js/standard/tablesorter/jquery-latest.js"></script> --%>
+<%-- <script type="text/javascript"  ssrc="${ctx}/resources/common/js/standard/tablesorter/jquery.tablesorter.js"></script> --%>
+
 <!-- 새로운 공통 css 파일 -->
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
@@ -53,6 +56,12 @@
 	function goSort() {
 		tableSort.view();
 	}
+	
+// 	$ ( document ) .ready ( function () {  
+// 		$ ( "#myTable" ) .tablesorter ({sortList : [[ 0 , 0 ], [ 1 , 0 ]] });
+// 	}); 
+		    	
+	
 </script>
 
 
@@ -96,11 +105,17 @@
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline">
+		
+<!-- 			<table id="ccListTable" class="tablesorter">  -->
 			<table id="ccListTable" class="tblSort" >
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
-						<th style="width: 16%" onclick="goSort();" id="tblTh">기업명</th>
+						<th style="width: 16%" onclick="goSort();" id="tblTh">
+							기업명
+							<img id="imgUp"   class="imgArrow" alt="up" src="${ctx}/resources/image/icon/up.png">
+							<img id="imgDown" class="imgArrow" alt="up" src="${ctx}/resources/image/icon/down.png">
+						</th>
 						<th style="width: 8%"  onclick="goSort();" id="tblTh">사업자번호</th>
 						<th style="width: 8%"  onclick="goSort();" id="tblTh">법인번호</th>
 						<th style="width: 10%" onclick="goSort();" id="tblTh">대표전화번호</th>

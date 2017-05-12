@@ -273,6 +273,24 @@ th {
 	text-align: center;
 }
 
+/* th부분 화살표 */
+.imgArrow {
+	
+	width: 12px;
+/* 	vertical-align: middle; */
+/* 	text-align: right; */
+	color: #bebebe;
+}
+
+/* #imgUp{ */
+/* 	margin-top: -10px; */
+/* } */
+
+/* #imgDown { */
+/* 	margin-left: -17px; */
+/* 	margin-top: 20px; */
+/* } */
+
 
 /* 페이징 부분 */
 #pageSpace {
