@@ -528,7 +528,8 @@ function searchCustcompListPopup(ctx){
 	$('#searchCustomer').click(function(){
 		var pop_flg='n';
 		window.open(ctx+'/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
-	});  
+	});
+	
 }
 ////영업기회 검색창 고객 리스트 팝업
 	$(document).on("click", "#searchCustomer0", function(){

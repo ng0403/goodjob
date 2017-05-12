@@ -643,21 +643,6 @@ function actInsert(ctx) {
 			alert("분을 선택해 주세요");
 			return false;
 		}
-		else if($('#end_d').val() == "" || $('#end_d').val() == null)
-		{
-			alert("종료일자를 선택해 주세요");
-			return false;
-		}
-		else if($('#end_t_h').val() == "0" || $('#end_t_h').val() == null)
-		{
-			alert("시를 선택해 주세요");
-			return false;
-		}
-		else if($('#end_t_m').val() =="0" || $('#end_t_m').val() == null)
-		{
-			alert("분을 선택해 주세요");
-			return false;
-		}
 
 		var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 		var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
@@ -718,11 +703,11 @@ function actModify(ctx)
 		var sales_actvy_div_nm1=$('#actdiv_2').val();		
 	}	
 	
-//	if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
-//	{
-//		alert("영업활동명을 입력해 주세요");
-//		return false;
-//	}
+	if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
+	{
+		alert("영업활동명을 입력해 주세요");
+		return false;
+	}
 //	else if($('#sales_actvy_type_cd').val() == "0" || $('#sales_actvy_type_cd').val() == null)
 //	{
 //		alert("활동유형을 선택해 주세요");

@@ -21,8 +21,18 @@ function custNmSelect(ctx){
 		var custNm=$(this).find('#cust_nm').text();
 		var custId=$(this).find('#cust_id').text();
 		var pop_flg=$('#custFlg').val();
-		window.opener.inputCustNm(custId,custNm,custType, pop_flg);
-		self.close();
+
+		if(pop_flg == 'd')
+		{
+			window.opener.inputCustNm1(custId,custNm,custType, pop_flg);	// 디테일에서 flg = 1
+			self.close();
+		}
+		else
+		{
+			window.opener.inputCustNm(custId,custNm,custType, pop_flg);		// list화면에서
+			self.close();
+		}
+		
 		
 	});
 }

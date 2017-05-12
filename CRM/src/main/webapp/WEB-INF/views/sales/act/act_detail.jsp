@@ -47,7 +47,7 @@
 				<table id="act_tab_table">
 					<tbody id="act_tab_tbody">
 						<tr>
-							<th>영업활동명</th>
+							<th><span style="color: red;">*영업활동명</span></th>
 							<td>
 								<c:if test="${flg == 1}">
 									<input type="hidden" id="sales_actvy_id" name="sales_actvy_id" value="${actDetail.sales_actvy_id}">
@@ -95,7 +95,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>상태</th>
+							<th><span style="color: red;">*상태</span></th>
 							<td>
 								<c:if test="${flg eq '1'}">
 								    <input type="hidden" id="hsales_actvy_stat_cd">
@@ -126,7 +126,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>활동구분</th>
+							<th><span style="color: red;">*활동구분</span></th>
 							<td>
 							    <input type="hidden" id="hsales_actvy_div_cd">
 							    
@@ -147,7 +147,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>활동유형</th>
+							<th><span style="color: red;">*활동유형</span></th>
 							<td>
 								<c:if test="${flg eq '1'}">
 <%-- 									<input type="hidden" id="sales_actvy_type_cd" name="sales_actvy_type_cd" value="${actTypeCd.sales_actvy_type_cd}"> --%>
@@ -177,7 +177,7 @@
 			     			</td>
 						</tr>	
 						<tr>
-							<th>시간일자 / 시간</th>
+							<th><span style="color: red;">*시간일자 / 시간</span></th>
 							<td>
 							
 							<c:if test="${flg eq '1'}">

@@ -81,13 +81,13 @@ $(document).ready(function(){
 				<table id="ccustomertable_M">
 					<tbody id="opptDetail">
 						<tr>
-							<th>영업기회명</th>
+							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
 								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; background-color: ">
 							</td>
-							<th>고객사</th>
+							<th><span style="color: red;">*고객사</span></th>
 							<td>
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
@@ -99,7 +99,7 @@ $(document).ready(function(){
 								</td>
 						</tr>
 						<tr>
-							<th>상태</th>
+							<th><span style="color: red;">*상태</span></th>
 							<td>
 								<input type="hidden" id="hsales_oppt_stat_cd" value="0">
 								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24px;">
@@ -113,7 +113,7 @@ $(document).ready(function(){
 								</select>
 							</td>
 						
-							<th>영업단계</th>
+							<th><span style="color: red;">*영업단계</span></th>
 							<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
 								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24px;">
@@ -133,7 +133,7 @@ $(document).ready(function(){
 								<input type="hidden" id="hexpt_fin_d">
 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
 							</td>
-							<th>가능성</th>
+							<th><span style="color: red;">*가능성</span></th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
 								<select id="psblty_rate" name="psblty_rate" style="height: 24px;">

@@ -30,22 +30,22 @@
 				<table class=table>
 					<tbody id="tbody1">
 						<tr class="orgDetail">
-							<th>조직ID</th>
+							<th><span style="color: red;">*조직ID</span></th>
 							<td><input type="text" name="org_id" id="org_id" class="int" disabled="disabled"></input></td>
-							<th>조직명</th>
+							<th><span style="color: red;">*조직명</span></th>
 							<td><input type="text" name="org_name" id="org_name" class="int" disabled="disabled"></input></td>
 						</tr>
 						<tr class="orgDetail">
 							<th>상위조직ID</th>
 							<td><input type="text" class="int" name="p_org_id" id="p_org_id" disabled="disabled"/>
 							</td>							
-							<th>조직유형ID</th>
+							<th><span style="color: red;">*조직유형ID</span></th>
 							<td>
 							<input type="text" class="int" name="org_type_id" id="org_type_id" disabled="disabled"/>
 							</td>
 						</tr>
 						<tr class="orgDetail">	    		
-							<th>조직대표</th>
+							<th><span style="color: red;">*조직대표</span></th>
 							<td>							
 							<input type="text" class="int" name="user_id" id="user_id" disabled="disabled"/>
 							<input type="button" class="button search_btn" value="검색" id="oorg" onclick="OOrgName()"/>
@@ -56,7 +56,7 @@
 							</td>
 						</tr>
 						<tr class="orgDetail">				
-							<th>전화번호</th>
+							<th><span style="color: red;">*전화번호</span></th>
 							<td>
 								<input type="text" name="phone_no1" id="phone_no1" class="int_tel" maxlength="4" disabled="disabled"/>&nbsp;-
 								<input type="text" name="phone_no2" id="phone_no2" class="int_tel" maxlength="4" disabled="disabled"/>&nbsp;-
@@ -70,7 +70,7 @@
 							</td>							
 						</tr>						
 						<tr class="orgDetail">						
-							<th>주소</th>
+							<th><span style="color: red;">*주소</span></th>
 							<td colspan="3">
 								<input type="text" name="zip_no1" id="post1" class="int_zip" disabled="disabled"/>
 							&nbsp;-&nbsp;							
@@ -82,7 +82,7 @@
 							</td>
 						</tr>
 						<tr class="orgDetail">
-							<th>활성화여부</th>
+							<th><span style="color: red;">*활성화여부</span></th>
 							<td style="padding : 10px 0px 0px 30px;">
 							<input type="radio" name="active_flg" checked="checked" id="active_flg_Y" value="Y" disabled="disabled"/>&nbsp;Y&nbsp;&nbsp;
 							<input type="radio" name="active_flg" id="active_flg_N" value="N" disabled="disabled"/>&nbsp;N</td>
@@ -96,7 +96,7 @@
 							<td><input type="text" name="org_type_name" id="org_type_name" class="int" disabled="disabled"></input></td>
 						</tr>
 						<tr class="orgtypeDetail">
-							<th>활성화여부</th>
+							<th><span style="color: red;">*활성화여부</span></th>
 							<td style="padding : 10px 0px 0px 30px;">
 							<input type="radio" name="active_flg2"  id="active_flg2_Y"  checked="checked" value="Y" disabled="disabled"/>&nbsp;Y&nbsp;&nbsp;
 							<input type="radio" name="active_flg2"  id="active_flg2_N" value="N" disabled="disabled"/>&nbsp;N</td>

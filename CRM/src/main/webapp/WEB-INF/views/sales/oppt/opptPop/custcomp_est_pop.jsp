@@ -58,7 +58,7 @@ $(function() {
 			<table id="keymanpopuptable" style="border-collapse: collapse;">
 					<tbody id="tbody1">
 						<tr>
-							<th>견적명</th>
+							<th><span style="color: red;">*견적명</span></th>
 							<td>
 								<input type="text" name="estim_nm" id="estim_nm" class="est_txt" value="${estim_nm}" autofocus="autofocus">
 								<input type="hidden" name="estim_id" id="estim_id" value="${estim_id}">
@@ -72,7 +72,7 @@ $(function() {
 							</td>
 						</tr>
 						<tr>
-							<th>견적단계</th>
+							<th><span style="color: red;">*견적단계</span></th>
 							<td>
 								<select id="estim_lev_cd" class="estim_lev_cd" name="estim_lev_cd">
 									<option value="0" style="text-align: center;">==선택==</option>
@@ -83,13 +83,13 @@ $(function() {
 							</td>
 						</tr>
 						<tr>
-							<th>견적유효일자</th>
+							<th><span style="color: red;">*견적유효일자</span></th>
 							<td>
 							<input type="text" id="estim_valid_d" name="estim_valid_d" class="est_txt" value="${estim_valid_d}"/>	
 							</td>
 						</tr>
 						<tr>
-							<th>영업기회명</th>
+							<th><span style="color: red;">*영업기회명</span></th>
 							<td>
 							<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
 							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">

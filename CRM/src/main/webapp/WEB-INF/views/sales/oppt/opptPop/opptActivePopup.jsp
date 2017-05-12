@@ -37,7 +37,7 @@
 	 <table id="operatingapopuptable">  			
 							<tbody id="tbody1">
 									<tr>
-							<th>영업활동명</th>																	
+							<th><span style="color: red;">*영업활동명</span></th>																	
 							<td><input type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" value="" ></td>
 						</tr>
 						<tr>  
@@ -47,7 +47,7 @@
 <!-- 								<input type="button" id="customer" value="고객"></td> -->
 						</tr>
 						<tr>
-							<th>영업활동구분</th>
+							<th><span style="color: red;">*영업활동구분</span></th>
 							<td>
 							<c:forEach items="${actDivCd}" var="list">
 							<input type="radio" id = "" name="sales_actvy_div_cd" class="sales_actvy_div_cd" value="${list.sales_actvy_div_cd}"/>${list.sales_actvy_div_nm}&nbsp; 
@@ -55,7 +55,7 @@
 <!-- 								<input type="radio" id = "" name="" class="sales_actvy_div_cd" value="" />영업기회</td> -->
 						</tr>
 						<tr>
-							<th>시작일자</th>
+							<th><span style="color: red;">*시작일자</span></th>
 							<td>
 							<input type="text" id="strt_d" name="dstrt_d" class="int_act" value="" readonly="readonly"></td>
 						</tr>
@@ -153,7 +153,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>활동유형</th>
+							<th><span style="color: red;">*활동유형</span></th>
 							<td>
 							<select name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="time">
 							<option value="0" style="text-align: center;">==선택==</option>
@@ -172,7 +172,7 @@
 <!-- 							</td> -->
 <!-- 						</tr>     -->
 						<tr>
-							<th>상태</th>
+							<th><span style="color: red;">*상태</span></th>
 							<td>
 							<select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="time">
 							<option value="0" style="text-align: center;">==선택==</option>

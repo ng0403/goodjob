@@ -418,6 +418,7 @@ public class OpptController {
 	@RequestMapping(value = "/opptCustcompList", method = RequestMethod.GET)
 	public ModelAndView opptCustcompList(
 			HttpSession session,
+			String pop_flg,
 			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
 
@@ -425,6 +426,8 @@ public class OpptController {
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 		List<Object> custcompList = service.opptCustComp(map);
+		
+		System.out.println("opptCustcompList pop_flg : " + pop_flg);
 		ModelAndView mov = new ModelAndView(
 				"/sales/oppt/opptPop/custcomp_list_pop");
 
@@ -432,6 +435,7 @@ public class OpptController {
 
 		// javascript에서 상세정보에서의 고객 리스트인지 구분하기 위한 값 전달
 		mov.addObject("custType", "normal");
+		mov.addObject("pop_flg", pop_flg);
 
 		return mov;
 	}
