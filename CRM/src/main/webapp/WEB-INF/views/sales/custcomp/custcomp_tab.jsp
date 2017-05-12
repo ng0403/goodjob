@@ -23,6 +23,11 @@
 <!-- 기존 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 </head>
 <body  >
 	<div id="css_tabs" style="float: left;">
@@ -45,8 +50,8 @@
 		<!-- 탭 내용 : 고객사 담당 사원 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="poc_pop_btn" class="button functionBtn" value="담당자 추가" />
-				<input type="button" id="deletePocbtn" class="button functionBtn" value="삭제" onclick="custMngDelete();"/>
+				<input type="button" id="poc_pop_btn" class="ui orange button" value="담당자 추가" />
+				<input type="button" id="deletePocbtn" class="ui orange button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			
 			<div id="tableline2">

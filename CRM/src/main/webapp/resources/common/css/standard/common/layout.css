@@ -54,6 +54,7 @@ html,body{
 	height: 100%; 
 	margin: 0 auto;
     float: left;
+    overflow: auto;
 }
 .body1{
 	width: 87%;
@@ -101,8 +102,9 @@ html,body{
 }
 
 #pageSpace {
-	width: 90%;
+/* 	width:50%; */
 	text-align: center;
+	margin-right: 15px;
 }
 
 #mainTxt {

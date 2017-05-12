@@ -145,7 +145,7 @@ function addForm(){
 				    str+="<input type='text' style='margin-left: 5px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
 				    str+="<label for='sch_iuser_nm' style='margin-left: 4px;' class='tel_label_list'>영업담당자</label> ";
 				    str+="<input type='text' style='margin-left: 5px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<label  id='schDelBth' >"+'-'+"</label>";
+				    str+="<label  onclick='delForm(this)' id='schDelBth' >"+'-'+"</label>";
 				    
 				    var addedDiv = document.createElement("div"); 	// 폼 생성
 				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
@@ -281,29 +281,31 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
 	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:custCompList("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
+//	var stepPrev = $("<a>");
+//	stepPrev.addClass("icon item");
+//	stepPrev.html("◀◀");
+//	if(ccPageNum != firstPageCount){
+//		stepPrev.attr("href","javascript:custCompList("+prevStepPage+")");
+//	}
+//	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
 		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
 	}
+	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
+		ccPage.addClass("item");
 		ccPage.attr("href","javascript:custCompList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
-			ccPage.addClass("choice");
 			ccPage.attr("id","pNum");
 			b.append(ccPage);
 			$("#pageSpace").append(b);
@@ -312,19 +314,21 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 		}
 	}
 	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
 		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
 	}
+	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:custCompList("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
+//	var stepNext = $("<a>");
+//	stepNext.addClass("next");
+//	stepNext.html("▶▶");
+//	if(ccPageNum != totalPageCount){
+//		stepNext.attr("href","javascript:custCompList("+nextStepPage+")");
+//	}
+//	$("#pageSpace").append(stepNext);
 }
 
 //모두체크

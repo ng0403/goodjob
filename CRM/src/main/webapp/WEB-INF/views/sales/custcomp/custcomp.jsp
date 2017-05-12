@@ -6,56 +6,36 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 
 <!-- 페이지 공통 js파일 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script>
-
 <!-- 고객사 부분 js파일 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 
-<!-- semantic UI js파일 불러오기 -->
-<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.14/js/dataTables.semanticui.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.semanticui.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"></script> -->
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/semantic/dataTables.editor.min.js"></script> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/semantic/editor.semanticui.min.js"></script> --%>
-
-<!-- semantic UI css파일 불러오기 -->
-<!-- <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" /> -->
-<!-- <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.14/css/dataTables.semanticui.min.css" /> -->
-<!-- <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.semanticui.min.css"  /> -->
-<!-- <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/select/1.2.2/css/select.semanticui.min.css"  /> -->
-<%-- <link type="text/css" rel="stylesheet" href="${ctx}/resources/common/css/standard/common/semantic/editor.semanticui.min.css" /> --%>
-
-<%-- <script type="text/javascript"  src="${ctx}/resources/common/js/standard/tablesorter/jquery-latest.js"></script> --%>
-<%-- <script type="text/javascript"  ssrc="${ctx}/resources/common/js/standard/tablesorter/jquery.tablesorter.js"></script> --%>
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <!-- 새로운 공통 css 파일 -->
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
 <!-- 기존 공통 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-
 <!-- 고객사부분 css파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
-
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/table.js"></script> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/table.css" type="text/css" /> --%>
 
 <title>고객사</title>
 <script>
-	var tableSort;
-	onload=function() {
-		tableSort = $(".tblSort").tableSort(".tbody");
-	}
-	function goSort() {
-		tableSort.view();
-	}
+// 	var tableSort;
+// 	onload=function() {
+// 		tableSort = $(".tblSort").tableSort(".tbody");
+// 	}
+// 	function goSort() {
+// 		tableSort.view();
+// 	}
 	
 // 	$ ( document ) .ready ( function () {  
 // 		$ ( "#myTable" ) .tablesorter ({sortList : [[ 0 , 0 ], [ 1 , 0 ]] });
@@ -66,30 +46,49 @@
 
 
 </head>   
-<body>
+<body style="overflow: auto;">
 
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
 	<input type="hidden" id="count" value="">
 	<div id="title">
-		<div class="caption">■ 고객 > 고객사
+		<div class="caption">
+			<h3 class="ui yellow header">■ 고객 > 고객사</h3>
 <%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
 		</div>
 	</div>
 
 	<div class="search_div"  id="search_div" >
-		<label for="sch_cust_nm" class="tel_label_list">고객사명</label>
-			<input type="text" class="inp_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/> 
-		<label for="sch_comp_num" class="tel_label_list">사업자번호</label> 
-			<input type="text" class="inp_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/> 
-		<label for="sch_corp_num" class="tel_label_list">법인번호</label> 
-			<input type="text" class="inp_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/> 
-		<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label> 
-			<input type="text" class="inp_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/>
+		<div class="ui left icon input">
+			<input type="text" placeholder="고객사명" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);">
+			<i class="users icon"></i>
+		</div>	
+		<div class="ui left icon input">
+			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'>
+			<i class="suitcase icon"></i>
+		</div>	
+		<div class="ui left icon input">	
+			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'>
+			<i class="law icon"></i>
+		</div>	
+		<div class="ui left icon input">	
+			<input type="text" placeholder="영업담당자" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);" >
+			<i class="user icon"></i>
+		</div>	
+			
+<!-- 			<label for="sch_cust_nm" class="tel_label_list">고객사명</label> -->
+<!-- 				<input type="text" class="inp_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/>  -->
+<!-- 			<label for="sch_comp_num" class="tel_label_list">사업자번호</label>  -->
+<!-- 				<input type="text" class="inp_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
+<!-- 			<label for="sch_corp_num" class="tel_label_list">법인번호</label>  -->
+<!-- 				<input type="text" class="inp_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
+<!-- 			<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label>  -->
+<!-- 				<input type="text" class="inp_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/> -->
+			
+			<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>
 		
-		<label id="schAddBtn" onclick="addForm();">+</label>
-
-		<input type="button" id="custcomp_search" class="button search_btn" value="조회" onclick="schPaging('${pageNum}');" />
+<%-- 		<input type="button" id="custcomp_search" class="button search_btn" value="조회" onclick="schPaging('${pageNum}');" /> --%>
+		<input type="button" id="custcomp_search" class="ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
 		
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
 <!-- 				<option value="all" style="text-align: center;">전체</option> -->
@@ -105,16 +104,15 @@
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline">
-		
-<!-- 			<table id="ccListTable" class="tablesorter">  -->
-			<table id="ccListTable" class="tblSort" >
+			<table id="ccListTable" class="ui celled table" cellspacing="0" width="100%">
+<!-- 			<table id="ccListTable" class="tblSort" > -->
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
 						<th style="width: 16%" onclick="goSort();" id="tblTh">
 							기업명
-							<img id="imgUp"   class="imgArrow" alt="up" src="${ctx}/resources/image/icon/up.png">
-							<img id="imgDown" class="imgArrow" alt="up" src="${ctx}/resources/image/icon/down.png">
+<%-- 							<img id="imgUp"   class="imgArrow" alt="up" src="${ctx}/resources/image/icon/up.png"> --%>
+<%-- 							<img id="imgDown" class="imgArrow" alt="up" src="${ctx}/resources/image/icon/down.png"> --%>
 						</th>
 						<th style="width: 8%"  onclick="goSort();" id="tblTh">사업자번호</th>
 						<th style="width: 8%"  onclick="goSort();" id="tblTh">법인번호</th>
@@ -164,64 +162,75 @@
 		
 		<div class="bottom_div">
 			<div class="functionBtn_div">	
-				<input type="button" value="추가" class="button functionBtn" onclick="custcompInsertForm();" />
-				<input type="button" value="삭제" class="button functionBtn" onclick="custcompDelete()" />
+				<input type="button" value="추가" class="ui orange button" onclick="custcompInsertForm();" />
+				<input type="button" value="삭제" class="ui orange button" onclick="custcompDelete()" />
+				<input type="button" id="exportBtn" class="ui orange button" value="엑셀" onclick=""  />	
+				
 	<!-- 		<input type="button" value="편집" onclick="" class="custcomp_bt" /> -->
 	<!-- 		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" /> -->
 			</div>
 			<!-- 페이징 처리 -->
-			<div id="pageSpace" class="pagination">
+<!-- 			<div id="pageSpace" class="pagination"> -->
+			<div id="pageSpace" class="ui right floated pagination menu">
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${ccPageNum eq page.firstPageCount}"> --%>
+<!-- 		        		<a class="prev">◀◀</a> -->
+<!-- 		        		<a class="icon item">◀◀</a> -->
+							
+<%-- 		    		</c:when> --%>
+<%-- 					<c:when test="${ccPageNum ne page.firstPageCount}"> --%>
+<%-- 		        		<a href="javascript:custCompList(${page.prevStepPage})" class="prev">◀◀</a> --%>
+<%-- 		    		</c:when> --%>
+<%-- 				</c:choose> --%>
 				<c:choose>
 					<c:when test="${ccPageNum eq page.firstPageCount}">
-		        		<a class="prev">◀◀</a>
+<!-- 		        		<a class="prev">◀</a> -->
+							<a class="icon item">
+		        				<i class="left chevron icon"></i>
+		        			</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:custCompList(${page.prevStepPage})" class="prev">◀◀</a>
-		    		</c:when>
-				</c:choose>
-				<c:choose>
-					<c:when test="${ccPageNum eq page.firstPageCount}">
-		        		<a class="prev">◀</a>
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:custCompList(${page.prevPageNum})" class="prev">◀</a>
+		        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+		        			<i class="left chevron icon"></i>
+		        		</a>
 		    		</c:when>
 				</c:choose>
 				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 					<c:choose>
 						<c:when test="${i eq ccPageNum }">
 							<b>
-								<a  href="javascript:custCompList('${i}');" id="pNum" class="choice">${i}</a>
+<%-- 								<a  href="javascript:custCompList('${i}');" id="pNum" class="choice">${i}</a> --%>
+								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
 							</b>
 						</c:when>
 						<c:otherwise>
-							<a  href="javascript:custCompList('${i}');"  >${i}</a>
+							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${ccPageNum eq page.totalPageCount}">
-		       			<a class="next">▶</a>
+<!-- 		       			<a class="next">▶</a> -->
+							<a class="icon item">
+		        				<i class="right chevron icon"></i>
+		        			</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:custCompList(${page.nextPageNum})" class="next">▶</a>
+		       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+		       				<i class="right chevron icon"></i>
+		       			</a>
 		    		</c:when>
 				</c:choose>
-				<c:choose>
-					<c:when test="${ccPageNum eq page.totalPageCount}">
-		       			<a class="next">▶▶</a>
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:custCompList(${page.nextStepPage})" class="next">▶▶</a>
-		    		</c:when>
-				</c:choose>
-			</div>
-			
-			<div id="rightBtn_div">
- 				<input type="button" id="exportBtn" class="button search_btn" value="엑셀" onclick=""  />
-			
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${ccPageNum eq page.totalPageCount}"> --%>
+<!-- 		       			<a class="next">▶▶</a> -->
+<%-- 		    		</c:when> --%>
+<%-- 					<c:when test="${ccPageNum ne page.totalPageCount}"> --%>
+<%-- 		       			<a href="javascript:custCompList(${page.nextStepPage})" class="next">▶▶</a> --%>
+<%-- 		    		</c:when> --%>
+<%-- 				</c:choose> --%>
 			</div>
 			
 		</div>

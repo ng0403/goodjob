@@ -23,7 +23,9 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
 
-
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <title>기존고객 상세정보</title>
 
@@ -50,16 +52,16 @@
 					<div id="baseBtnDiv" class="bt_position_authuser">
 	<!-- 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/> -->
 	<!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
-						<input type="button" id="mdfBtn" 	   value="편집" class="button search_btn" onclick="custCompMdfyBtn();"/>
-						<input type="button" id="addCancelBtn" value="취소" class="button search_btn" onclick="custCompCancelBtn();"/>
+						<input type="button" id="mdfBtn" 	   value="편집" class="ui orange button" onclick="custCompMdfyBtn();"/>
+						<input type="button" id="addCancelBtn" value="취소" class="ui button" onclick="custCompCancelBtn();"/>
 					</div>
 					<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-						<input type="button" id="addSaveBtn"   value="저장" class="button functionBtn" onclick="addCustComp('${ctx}');"/>
-						<input type="button" id="addCancelBtn" value="취소" cclass="button search_btn" onclick="custCompCancelBtn();"/>
+						<input type="button" id="addSaveBtn"   value="저장" class="ui orange button" onclick="addCustComp('${ctx}');"/>
+						<input type="button" id="addCancelBtn" value="취소" cclass="ui button" onclick="custCompCancelBtn();"/>
 					</div>
 					<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-						<input type="button" id="mdfSaveBtn"   value="저장" class="button functionBtn" onclick="mdfyCustComp('${ctx}');" />
-						<input type="button" id="mdfCancelBtn" value="취소" class="button search_btn" onclick="custCompCancelBtn();"/>
+						<input type="button" id="mdfSaveBtn"   value="저장" class="ui orange button" onclick="mdfyCustComp('${ctx}');" />
+						<input type="button" id="mdfCancelBtn" value="취소" class="ui button" onclick="custCompCancelBtn();"/>
 					</div>
 				</div>
 				
