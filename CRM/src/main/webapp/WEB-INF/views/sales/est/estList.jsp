@@ -40,7 +40,7 @@
 	<div id="title">
 		<div class="caption">■ 영업 > 견적</div>
 	</div>
-		<div class="search_div" >
+		<div class="search_div" id="search_div1">
 			<label for="scompNam" class="tel_label_list">견적명</label>
 			<input type="text" class="tel_search" name="estim_nm" id="sestim_nm" value="${estim_nm}" autofocus="autofocus" onkeypress="estSearchInput(event);"> 
 		    <label for="inputPassword1" class="tel_label_list">견적단계</label>
@@ -60,7 +60,54 @@
 			<label for="start_day" class="tel_label_list">견적유효일자</label>
 			<input type="text" name="estim_valid_d" id="sestim_valid_d" class="tel_search" readonly="readonly"/>
 		   <%-- value = "<fmt: parseDate  value="${estim_valid_d}" pattern="yy/MM/dd"/>"  --%>
+		    <label id="schAddBtn" onclick="addForm();">+</label>
 		    <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button> 
+		</div>
+		<div class="search_div" id="search_div2">
+			<label for="scompNam" class="tel_label_list">견적명</label>
+			<input type="text" class="tel_search" name="estim_nm" id="sestim_nm1" value="${estim_nm1}" autofocus="autofocus" onkeypress="estSearchInput(event);"> 
+		    <label for="inputPassword1" class="tel_label_list">견적단계</label>
+			<select class="tel_search" name="estim_lev_cd" id="sestim_lev_cd1">
+				<option value="">선택</option>
+				<c:forEach items="${elclist}" var="elclist">
+					<option value="${elclist.code}">${elclist.cd_nm}</option>
+				</c:forEach>
+			</select>
+			<label for="inputPassword1" class="tel_label_list">견적금액</label>
+	    	<input type="text" class="tel_search" name="sales_price_1" id="ssales_price_11" value="${sales_price_11}" onkeypress="estSearchInput(event);">
+			<select class="tel_search" name="sales_price_2" id="ssales_price_21">
+				<option value="">선택</option>
+				<option value="1">원</option>
+				<option value="10000">만원</option>
+			</select>
+			<label for="start_day" class="tel_label_list">견적유효일자</label>
+			<input type="text" name="estim_valid_d" id="sestim_valid_d1" class="tel_search" readonly="readonly"/>
+		   <%-- value = "<fmt: parseDate  value="${estim_valid_d}" pattern="yy/MM/dd"/>"  --%>
+		   <label id="schAddBtn1" onclick=delForm(this.value);>-</label>
+		    <!-- <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button>  -->
+		</div>
+		<div class="search_div" id="search_div3">
+			<label for="scompNam" class="tel_label_list">견적명</label>
+			<input type="text" class="tel_search" name="estim_nm" id="sestim_nm2" value="${estim_nm2}" autofocus="autofocus" onkeypress="estSearchInput(event);"> 
+		    <label for="inputPassword1" class="tel_label_list">견적단계</label>
+			<select class="tel_search" name="estim_lev_cd" id="sestim_lev_cd2">
+				<option value="">선택</option>
+				<c:forEach items="${elclist}" var="elclist">
+					<option value="${elclist.code}">${elclist.cd_nm}</option>
+				</c:forEach>
+			</select>
+			<label for="inputPassword1" class="tel_label_list">견적금액</label>
+	    	<input type="text" class="tel_search" name="sales_price_1" id="ssales_price_12" value="${sales_price_12}" onkeypress="estSearchInput(event);">
+			<select class="tel_search" name="sales_price_2" id="ssales_price_22">
+				<option value="">선택</option>
+				<option value="1">원</option>
+				<option value="10000">만원</option>
+			</select>
+			<label for="start_day" class="tel_label_list">견적유효일자</label>
+			<input type="text" name="estim_valid_d" id="sestim_valid_d2" class="tel_search" readonly="readonly"/>
+		   <%-- value = "<fmt: parseDate  value="${estim_valid_d}" pattern="yy/MM/dd"/>"  --%>
+		   <label id="schAddBtn2" onclick=delForm(this.value);>-</label>
+		    <!-- <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button>  -->
 		</div>
 <!-- </form> -->
 <!-- 		<div id="contact_button_position"> -->

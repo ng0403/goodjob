@@ -11,12 +11,15 @@
  * startCalendar(ctx)				:	달력 띄우기
  */
 
+	var count = 0;
+
 $(function(){
 	var ctx = $('#ctx').val();
 	estimListMakeBlock();
 	estimAllselect();
 	estimDeleteBtn(ctx);
-	startCalendar(ctx);	
+	startCalendar(ctx);
+	$("#search_div2, #search_div3").hide();
 });
 function estimListMakeBlock(){
 	var blank = $("#estList tr").length;
@@ -221,6 +224,32 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 //		searchBtn(1);
 //	}
 //}
+//검샏조건 추가
+function addForm(){
+	if(count == 0){
+		$("#search_div2").show();
+		count++;
+	}else if(count == 1){
+		$("#search_div3").show();
+		count++;
+	}else if(count >= 2){
+		alert("검색조건을 더 이상 추가할 수 없습니다.");
+		count = 2;
+	}else{
+		count = 0;
+	}
+}
+//검샏조건 제거
+function delForm(message){
+	console.log(count);
+	console.log(message);
+	console.log($(this).parent("div").html());
+	$(this).parent("div").next("input:text").val("");
+	$(this).parent("div").next("select").index(0);
+	$(this).parent("div").hide();
+	console.log(count);
+	count--;
+}
 //조회 버튼 클릭에 대한 검색어 입력 여부 확인
 function searchBtn(page){
 	var estim_nm = $("#sestim_nm").val();
@@ -358,7 +387,20 @@ function startCalendar(ctx){
 	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
 	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
 	    
-	    $("#estim_valid_d_detail").datepicker({
+	    $("#sestim_valid_d1").datepicker({
+	        changeMonth: true, //콤보 박스에 월 보이기
+	        changeYear: true, // 콤보 박스에 년도 보이기
+	        showOn: 'button', // 우측에 달력 icon 을 보인다.
+	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	        buttonImageOnly: true //달력에 icon 사용하기
+	    }); 
+	     //마우스를 손가락 손가락 모양으로 하고 여백주기
+	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	   //날짜 형식을 0000-00-00으로 지정하기
+	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
+	    
+	    $("#sestim_valid_d2").datepicker({
 	        changeMonth: true, //콤보 박스에 월 보이기
 	        changeYear: true, // 콤보 박스에 년도 보이기
 	        showOn: 'button', // 우측에 달력 icon 을 보인다.
