@@ -92,29 +92,90 @@ svg {
 	color:#484848;
   	font-weight:bold;
   	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
-  	border-bottom: 1px solid #dddddd;
+/*   	border-bottom: 1px solid #dddddd; */
   	padding-left: 10px;
   	padding-top:10px;
   	padding-bottom: 10px;
   	
 } 
 
-.detailPopbtn{	  
-	 float: right;
-	 font-weight: normal;
-  	 background-color:#eaeaea;
- 	 color:#353535;
- 	 white-space: nowrap;
- 	 border:1px solid #C0C4CB;
- 	 padding:3.5px 3.5px;
- 	 border-radius:5px 5px 5px 5px;
- 	 width: auto;
- 	 margin-right: 5px;
- 	 cursor: pointer;
- 	 vertical-align: middle;  
- 	 text-align:center;
- 	 margin-top: -5px;
+/* .detailPopbtn{	   */
+/* 	 float: right; */
+/* 	 font-weight: normal; */
+/*   	 background-color:#eaeaea; */
+/*  	 color:#353535; */
+/*  	 white-space: nowrap; */
+/*  	 border:1px solid #C0C4CB; */
+/*  	 padding:3.5px 3.5px; */
+/*  	 border-radius:5px 5px 5px 5px; */
+/*  	 width: auto; */
+/*  	 margin-right: 5px; */
+/*  	 cursor: pointer; */
+/*  	 vertical-align: middle;   */
+/*  	 text-align:center; */
+/*  	 margin-top: -5px; */
+/* } */
+
+.button {
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 1em .55em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
 }
+
+.button:hover {
+	text-decoration: none;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+.search_btn {
+	color: #606060;
+	border: solid 1px #b7b7b7;
+	background: #fff;
+	float: right;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#ededed));
+	background: -moz-linear-gradient(top, #fff, #ededed);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+		endColorstr='#ededed');
+}
+
+.search_btn:hover {
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#dcdcdc));
+	background: -moz-linear-gradient(top, #fff, #dcdcdc);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
+		endColorstr='#dcdcdc');
+}
+
+.search_btn:active {
+	color: #999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed),
+		to(#fff));
+	background: -moz-linear-gradient(top, #ededed, #fff);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed',
+		endColorstr='#ffffff');
+}
+
 
 .contract_detail:hover,
 .contract_detail:focus,
@@ -217,6 +278,7 @@ svg {
 	float: left;
 	width: 100%;
 	height: 200px;
+	margin-top: 18px;
 }
 
 
