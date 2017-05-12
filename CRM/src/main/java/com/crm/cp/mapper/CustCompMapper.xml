@@ -32,27 +32,22 @@
                     and c.act_yn = 'Y'   
                     <choose>
 						<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != '' and sch_cust_nm1 != null and sch_cust_nm1 != ''">
-							and (c.cust_nm like '%'||#{sch_cust_nm}||'%'
-							or c.cust_nm like '%'||#{sch_cust_nm0}||'%'
-							or c.cust_nm like '%'||#{sch_cust_nm1}||'%')
+							and (c.cust_nm like '%'||#{sch_cust_nm}||'%' 
+								or c.cust_nm like '%'||#{sch_cust_nm0}||'%' or c.cust_nm like '%'||#{sch_cust_nm1}||'%')
 						</when>
 						<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != ''">
-							and (c.cust_nm like '%'||#{sch_cust_nm}||'%'
-							or c.cust_nm like '%'||#{sch_cust_nm0}||'%')
-						</when>
+							and (c.cust_nm like '%'||#{sch_cust_nm}||'%' or c.cust_nm like '%'||#{sch_cust_nm0}||'%')
+		 				</when>
 						<when test="sch_cust_nm !=null and sch_cust_nm !=''">
 							and c.cust_nm like '%'||#{sch_cust_nm}||'%'
 						</when>
 					</choose>
 					<choose>
 						<when test="sch_comp_num !=null and sch_comp_num !='' and sch_comp_num0 != null and sch_comp_num0 != '' and sch_comp_num1 != null and sch_comp_num1 != ''">
-							and (c.comp_num = #{sch_comp_num}
-							or c.comp_num = #{sch_comp_num0}
-							or c.comp_num = #{sch_comp_num1})
+							and (c.comp_num = #{sch_comp_num} or c.comp_num = #{sch_comp_num0} or c.comp_num = #{sch_comp_num1})
 						</when>
 						<when test="sch_comp_num !=null and sch_comp_num !='' and sch_comp_num0 != null and ssch_comp_num0 != ''">
-							and (c.comp_num = #{sch_comp_num}
-							or c.comp_num = #{sch_comp_num0})
+							and (c.comp_num = #{sch_comp_num} or c.comp_num = #{sch_comp_num0})
 						</when>
 						<when test="sch_comp_num !=null and sch_comp_num !='' ">
 							and c.comp_num = #{sch_comp_num}
@@ -61,12 +56,10 @@
 					<choose>
 						<when test="sch_corp_num !=null and sch_corp_num !='' and sch_corp_num0 != null and sch_corp_num0 != '' and sch_corp_num1 != null and sch_corp_num1 != ''">
 							and (c.corp_num = #{sch_corp_num}
-							or c.corp_num = #{sch_corp_num0}
-							or c.corp_num = #{sch_corp_num1})
+								or c.corp_num = #{sch_corp_num0} or c.corp_num = #{sch_corp_num1})
 						</when>
 						<when test="sch_corp_num !=null and sch_comp_num !='' and sch_corp_num0 != null and sch_corp_num0 != ''">
-							and (c.corp_num = #{sch_corp_num}
-							or c.corp_num = #{sch_corp_num0})
+							and (c.corp_num = #{sch_corp_num} or c.corp_num = #{sch_corp_num0})
 						</when>
 						<when test="sch_corp_num !=null and sch_corp_num !='' ">
 							and c.corp_num = #{sch_corp_num}

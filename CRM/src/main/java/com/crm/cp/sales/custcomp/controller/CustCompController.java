@@ -139,23 +139,6 @@ public class CustCompController {
 		return pMap;
 	}
 	
-	// ccllist list ajax
-	@RequestMapping(value = "/ccllist", method = RequestMethod.POST)
-	@ResponseBody
-	Map<String, Object> ccllist(@RequestParam Map<String, Object> pMap) {
-		System.out.println("ccllist Controller enter ");
-		
-		// 기업고객리스트 가져오기
-		List<CustCompVO> ccllist = ccService.getCCList(pMap);
-		System.out.println("ccllist Controller : " + ccllist);
-		
-		// 한글 검색 인코더 변환
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("ccllist", ccllist);
-		
-		return result;
-	}
-	
 	// 기업고객 상세정보
 //	@RequestMapping(value = "custCompDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
 //	public @ResponseBody CustCompVO companyCutomerDetail(String cust_id) {
