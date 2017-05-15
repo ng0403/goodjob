@@ -12,8 +12,14 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
 <!-- 새로운 공통 css 파일 -->
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> --%>
 
 <!-- 기존 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
@@ -23,9 +29,6 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
 
-<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <title>기존고객 상세정보</title>
 
@@ -37,43 +40,46 @@
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
-			<div class="caption">■ 고객사 추가</div>
+			<div class="caption">
+				<h3 class="ui header" style="background: #fff;">■ 고객사 추가</h3>
+			</div>
 		</c:if>
 		<c:if test="${flg == 1 }">
-<!-- 			<div class="caption">■ 고객사 상세정보</div> -->
-			<div class="caption">■ 고객 > <a href="/custcomp" style="font-size: 15px; text-decoration:none; color: blue;">고객사</a> > 상세정보</div>
+			<div class="caption">
+				<h3 class="ui header" style="background: #fff;">■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration:none; color: blue;">고객사</a>  > 상세정보</h3>
+				
+			</div>
 		</c:if>
 	</div>
 	<div id="custcomp_tab_detail">
-				
 			<form id="custCompForm" method="post">
 				
 				<div class="detailBtn">
 					<div id="baseBtnDiv" class="bt_position_authuser">
-	<!-- 					<input type="button" id="backBtn" value="뒤로" class="custcomp_btn" onclick="custCompBackBtn();"/> -->
-	<!-- 					<input type="button" id="addBtn" value="추가" class="custcomp_btn" onclick="custCompAddBtn();"/> -->
 						<input type="button" id="mdfBtn" 	   value="편집" class="ui orange button" onclick="custCompMdfyBtn();"/>
-						<input type="button" id="addCancelBtn" value="취소" class="ui button" onclick="custCompCancelBtn();"/>
+						<input type="button" id="addCancelBtn" value="취소" class="ui button" 		 onclick="custCompCancelBtn();"/>
 					</div>
 					<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 						<input type="button" id="addSaveBtn"   value="저장" class="ui orange button" onclick="addCustComp('${ctx}');"/>
-						<input type="button" id="addCancelBtn" value="취소" cclass="ui button" onclick="custCompCancelBtn();"/>
+						<input type="button" id="addCancelBtn" value="취소" cclass="ui button" 		 onclick="custCompCancelBtn();"/>
 					</div>
 					<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
 						<input type="button" id="mdfSaveBtn"   value="저장" class="ui orange button" onclick="mdfyCustComp('${ctx}');" />
-						<input type="button" id="mdfCancelBtn" value="취소" class="ui button" onclick="custCompCancelBtn();"/>
+						<input type="button" id="mdfCancelBtn" value="취소" class="ui button" 		 onclick="custCompCancelBtn();"/>
 					</div>
 				</div>
 				
 				<div id="custcompdiv">
-					<table id="custcomptable">
-						<tbody id="custcomptbody" class="custcomptbody">
+					<table id="custcomptable" class="ui celled table">
+						<tbody id="custcomptbody" class="detailtbody">
 							<tr >
 								<th id="th" style="color:red">*고객사명</th>
 								<td>
-									<input type="hidden" id="cust_id" name="cust_id" value="${custcompDetail.cust_id}" />
-									<input type="hidden" id="hcust_nm" value="${custcompDetail.cust_nm}" />
-									<input type="text" name="cust_nm" id="cust_nm" class="int" value="${custcompDetail.cust_nm}"  style="ms-ime-mode: disabled;" readonly="readonly" />
+									<div class="ui input focus">
+										<input type="hidden" id="cust_id" name="cust_id" value="${custcompDetail.cust_id}" />
+										<input type="hidden" id="hcust_nm" value="${custcompDetail.cust_nm}" />
+										<input type="text" name="cust_nm" id="cust_nm"  value="${custcompDetail.cust_nm}"  style="ms-ime-mode: disabled;" readonly="readonly" />
+									</div>
 								</td>
 								<th style="color:red">*고객사구분</th>
 								<td>
@@ -100,13 +106,17 @@
 							<tr>	
 								<th>사업자번호</th>
 								<td>
-									<input type="hidden" id="hcomp_num" value="${custcompDetail.comp_num}"/>
-									<input type="text" name="comp_num" id="comp_num" class="int" value="${custcompDetail.comp_num}" maxlength="10" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
+									<div class="ui input focus">
+										<input type="hidden" id="hcomp_num" value="${custcompDetail.comp_num}"/>
+										<input type="text" name="comp_num" id="comp_num" class="int" value="${custcompDetail.comp_num}" maxlength="10" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
+									</div>
 								</td>
 								<th>법인번호</th>
 								<td>
-									<input type="hidden" id="hcorp_num" value="${custcompDetail.corp_num}"/>
-									<input type="text" name="corp_num" id="corp_num" class="int" value="${custcompDetail.corp_num}"maxlength="13" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
+									<div class="ui input focus">
+										<input type="hidden" id="hcorp_num" value="${custcompDetail.corp_num}"/>
+										<input type="text" name="corp_num" id="corp_num" class="int" value="${custcompDetail.corp_num}"maxlength="13" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
+									</div>
 								</td>
 							</tr>	
 							<tr>
@@ -121,23 +131,25 @@
 								</td>	
 								<th>홈페이지</th>
 								<td>
-									<input type="hidden" id="hhomepage_url" value="${custcompDetail.homepage_url}"/>
-									<a id="aHpUrl" target="_blank" title="클릭하면 해당 URL로 이동합니다."><input type="text" name="homepage_url" id="homepage_url" class="int" value="${custcompDetail.homepage_url}" maxlength="30"readonly="readonly" style="cursor: pointer; "/></a>
+									<div class="ui input focus">
+										<input type="hidden" id="hhomepage_url" value="${custcompDetail.homepage_url}"/>
+										<a id="aHpUrl" target="_blank" title="클릭하면 해당 URL로 이동합니다."><input type="text" name="homepage_url" id="homepage_url" class="int" value="${custcompDetail.homepage_url}" maxlength="30"readonly="readonly" style="cursor: pointer; "/></a>
+									</div>
 								</td>
 							</tr>
 							<tr>
 								<th>주소지</th>
 								<td colspan="8">
-									<input type="hidden" id="hcust_zip_cd" value="${custcompDetail.cust_zip_cd}" />
-									<input type="hidden" id="hcust_addr" value="${custcompDetail.cust_addr}" />
-									<input type="hidden" id="hcust_dtl_addr" value="${custcompDetail.cust_dtl_addr}" />
-									
-									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num"  value="${custcompDetail.zip_cd_sri_num}"/>
-									<input type="text" name="cust_zip_cd" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" maxlength="5" readonly="readonly"/>
-<!-- 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/> -->
-									&nbsp;
-									<input type="text" name="cust_addr" id="cust_addr" class="int_ad" value="${custcompDetail.cust_addr}"  readonly="readonly"/>
-									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr" class="int_ad" value="${custcompDetail.cust_dtl_addr}"  readonly="readonly"/>
+										<input type="hidden" id="hcust_zip_cd" value="${custcompDetail.cust_zip_cd}" />
+										<input type="hidden" id="hcust_addr" value="${custcompDetail.cust_addr}" />
+										<input type="hidden" id="hcust_dtl_addr" value="${custcompDetail.cust_dtl_addr}" />
+										
+										<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num"  value="${custcompDetail.zip_cd_sri_num}"/>
+										<input type="text" name="cust_zip_cd" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}" maxlength="5" readonly="readonly"/>
+	<!-- 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/> -->
+										&nbsp;
+										<input type="text" name="cust_addr" id="cust_addr" class="int_ad" value="${custcompDetail.cust_addr}"  readonly="readonly"/>
+										<input type="text" name="cust_dtl_addr" id="cust_dtl_addr" class="int_ad" value="${custcompDetail.cust_dtl_addr}"  readonly="readonly"/>
 								</td>
 							</tr>
 							<tr>	
@@ -156,8 +168,10 @@
 								</td>
 								<th>직원수</th>
 								<td>
-									<input type="hidden" id="hemp_qty" />
-									<input type="text" name="emp_qty" id="emp_qty" class="int" value="${custcompDetail.emp_qty}"  maxlength="6" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
+									<div class="ui input focus">
+										<input type="hidden" id="hemp_qty" />
+										<input type="text" name="emp_qty" id="emp_qty" class="int" value="${custcompDetail.emp_qty}"  maxlength="6" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;' readonly="readonly"/>
+									</div>
 								</td>
 							</tr>	
 							<tr>

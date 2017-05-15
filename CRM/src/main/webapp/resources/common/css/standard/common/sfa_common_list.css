@@ -28,3 +28,7 @@
 	float: right;
 }
 
+table tbody tr th {
+	text-align: right;
+}
+

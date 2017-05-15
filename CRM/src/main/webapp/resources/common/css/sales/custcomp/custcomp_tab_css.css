@@ -257,7 +257,7 @@ select {
  
 }
 
-.custcomptbody input{
+#custcomptbody input{
 	background-color: #EAEAEA;
 }
 

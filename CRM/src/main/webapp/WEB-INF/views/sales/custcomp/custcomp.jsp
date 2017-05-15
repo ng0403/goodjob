@@ -50,7 +50,7 @@ $(function() {
 
 	<div class="search_div"  id="search_div" >
 		<div class="ui left icon input">
-			<input type="text" placeholder="고객사명" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);">
+			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);">
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
@@ -77,7 +77,6 @@ $(function() {
 			
 			<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>
 		
-<%-- 		<input type="button" id="custcomp_search" class="button search_btn" value="조회" onclick="schPaging('${pageNum}');" /> --%>
 		<input type="button" id="custcomp_search" class="ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
 		
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
@@ -95,7 +94,6 @@ $(function() {
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline">
 			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" width="100%">
-<!-- 			<table id="ccListTable" class="tblSort" > -->
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
@@ -135,11 +133,9 @@ $(function() {
 			<div class="functionBtn_div">	
 				<input type="button" value="추가" class="ui orange button" onclick="custcompInsertForm();" />
 				<input type="button" value="삭제" class="ui orange button" onclick="custcompDelete()" />
-				<input type="button" id="exportBtn" class="ui orange button" value="엑셀" onclick=""  />	
-				
-	<!-- 		<input type="button" value="편집" onclick="" class="custcomp_bt" /> -->
-	<!-- 		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" /> -->
+				<input type="button" value="엑셀" class="ui orange button" id="exportBtn"   onclick=""  />	
 			</div>
+			
 			<!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
@@ -170,9 +166,9 @@ $(function() {
 				</c:forEach>
 				<c:choose>
 					<c:when test="${ccPageNum eq page.totalPageCount}">
-							<a class="icon item">
-		        				<i class="right chevron icon"></i>
-		        			</a>	
+						<a class="icon item">
+	        				<i class="right chevron icon"></i>
+	        			</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.totalPageCount}">
 		       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
@@ -181,7 +177,6 @@ $(function() {
 		    		</c:when>
 				</c:choose>
 			</div>
-			
 		</div>
 	</form>
 </body>
