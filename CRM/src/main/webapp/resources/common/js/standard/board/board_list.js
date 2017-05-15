@@ -98,6 +98,18 @@ function board_detail_remove() {
  
  //보드 추가 저장
  function board_add_save(){
+	 
+	 if($("#TITLE").val() == "" || $("#TITLE").val() == null)
+	{
+		 alert("제목을 입력해 주세요.");
+		 return false;
+	}
+	 if($("#CONTENT").val() == "" || $("#CONTENT").val() == null)
+		 {
+		 alert("내용을 입력해 주세요.")
+		 return false;	
+		 }
+	  
 	 var formObj = $("form[role='form']");
      if(confirm("저장하시겠습니까?")){
 	 formObj.attr("action", "/boardInsert");
@@ -163,9 +175,8 @@ function deleteAction() {
   
 
 //보드 리스트 그냥 페이징
-function boaradPaging(boardPageNum) {
-	alert(boardPageNum);
-  	var ctx = $("#ctx").val();
+function boardPaging(boardPageNum) {
+   	var ctx = $("#ctx").val();
   	 var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
  	var tbody = $('#board_list_tbody');
 	var tbodyContent = "";

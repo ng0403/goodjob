@@ -25,10 +25,10 @@
 </head>
 <body> 
    
-<div class="main_div">
-   <div class="navi_div">
-       게시판 > 리스트
-   </div>
+   <div id="title">
+		<div class="caption">■ 공지사항 > 리스트
+		</div>
+	</div>
  
    <!-- Q&A 리스트, 조회화면 -->
    <div class="search_div">

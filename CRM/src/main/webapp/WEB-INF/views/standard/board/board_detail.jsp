@@ -38,11 +38,13 @@
 <form role="form1">
  <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardlist.BOARD_NO}"/> 
  <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${boardlist.BOARD_MNG_NO}"/>
-</form>
+</form> 
+ 
+<div id="title">
+		<div class="caption">■ 게시판 > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}">리스트</a> > 게시글
+		</div>
+</div>
 
- <div class="navi_div">
-		게시판 > 리스트 > 게시글
-</div> 
 
 <div class="container"> <!-- 전체 div-->
 
@@ -99,7 +101,7 @@
  
   <div class="paging_div">
 	 
-		 <div id="pager" class="call_page_div"> 
+		 <div id="pageSpace" class="pagination"> 
 		
 		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="ccPageNum" value="${replyPageNum}">
@@ -154,37 +156,7 @@
 	</div>  
  
  
-<script>
 
-
- function remove_reply(e){ 
-		var REPLY_NO = e;
-		
-		if(confirm("정보를 삭제 하시겠습니까?")){
-		 $.ajax({
-				url : '/reply/reply_remove/',
-				headers : {
-		            "Content-Type" : "application/json",
-		            "X-HTTP-Method-Override" : "POST"
-		         },
-				data : REPLY_NO,
-				dataType : 'text',
-				processData: false,
-				contentType: false,
-				type: 'POST',
-				success : function(result) {
-					 
-					if(result=="success"){
-				  		replyListInqr(1); 
-
- 					}
-					  
-				} 
-		         
-				}) 
-		}
-	} 
-</script>
 
  
 

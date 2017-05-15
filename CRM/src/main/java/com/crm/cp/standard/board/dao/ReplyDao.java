@@ -17,6 +17,8 @@ public interface ReplyDao {
 	 
 		public int replyListCount(Map<String, Object> replyMap);
 		public List<ReplyVO> replyAllList(Map<String, Object> replyMap); 
+		
+		public void AnswerFlg(int BOARD_NO);
 
 
 }

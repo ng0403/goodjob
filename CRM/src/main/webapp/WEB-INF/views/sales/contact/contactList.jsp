@@ -10,13 +10,23 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script> 
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
+
+<script>
+   $(function() {
+      $('table').tablesort();
+   });            
+</script>
 
  
 <title>연락처</title>
@@ -28,16 +38,17 @@
 	</div>
  
 	
-	<div class="search_div">
+	<div class="search_div" id = "search_div">
 	    <label for="inputEmail1" class="tel_label_list">이름</label>
 	    <input type="text" name="cont_nm" id="cont_nm" class="tel_search" autofocus="autofocus" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이메일</label>
 	    <input type="email" name="email" id="email"  class="tel_search" onkeydown="callSearchEnter(event);">
 	    <label for="inputPassword1" class="tel_label_list">이동전화번호</label>
 	    <input type="text" name="ph" id="ph" class="tel_search" placeholder="" onkeydown="callSearchEnter(event);">
- 	    <button id="search_btn" type="submit" class="button search_btn" onclick="searchAcnkEvent(1,'');">조회</button> 
+	    	<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>		
+	 <button id="search_btn" type="submit" class="button search_btn" onclick="searchAcnkEvent(1,'');">조회</button> 
+	    
 	</div>
-			
 	
 	<div class="initialSerach">
 		<input type="hidden" id="acnk">
@@ -64,7 +75,7 @@
 	</div>
 	
 	<div id="tableline">
-		<table id="goaltable">
+		<table id="goaltable" class="ui sortable celled table">
 		<thead>
 		<tr>
 			<th><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
@@ -76,7 +87,7 @@
  			<td style="width:10%;">등록일시</td>
 		</tr>
 		</thead>
-		<tbody id="call_list_tbody">
+		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
 			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></th>

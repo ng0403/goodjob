@@ -580,7 +580,34 @@ function contactAddp(){
 }
 
 function contactInsert() {
-    var formObj = $("form[role='form']");
+ 	if($("#cont_nm").val() == null || $("#cont_nm").val() == ""){
+		alert("이름을 입력해 주세요.");
+		return false;
+}
+if($("#company_nm").val() == null || $("#company_nm").val() == ""){
+	alert("회사명을 입력해 주세요.");
+	return false;
+}
+if($("#ph1").val() == null || $("#ph1").val() == "")
+	{
+	alert("연락처를 입력해 주세요.");
+	return false; 
+	}
+if($("#ph2").val() == null || $("#ph2").val() == "")
+{
+alert("연락처를 입력해 주세요.");
+return false; 
+}
+
+if($("#ph3").val() == null || $("#ph3").val() == "")
+{
+alert("연락처를 입력해 주세요.");
+return false; 
+}
+	
+	
+	
+     var formObj = $("form[role='form']");
 
 	 formObj.attr("action", "/contactInsert");
 	 formObj.attr("method", "post");

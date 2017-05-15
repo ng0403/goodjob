@@ -27,8 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.service.BoardService;
+import com.crm.cp.standard.board.service.ReplyService;
 import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.FileManager;
 import com.crm.cp.utils.PagerVO;
@@ -40,7 +40,7 @@ import com.crm.cp.utils.PagerVO;
 	private static final String[] filename = null;
 	@Autowired
 	BoardService boardService; 
-	
+	ReplyService replyService;
 	/*@Autowired
 	SessionAuthService sessionAuthService;*/
 	 
@@ -70,7 +70,7 @@ import com.crm.cp.utils.PagerVO;
 		if(page.getEndRow() == 1){
 			page.setEndRow(0);
 		}
- 		List<Object> boardlist = boardService.list(map); 
+  		List<Object> boardlist = boardService.list(map); 
  		System.out.println("list boardlist " + boardlist.toString());
  		System.out.println("map??" + map.toString());
 		ModelAndView mov = new ModelAndView("board_list");

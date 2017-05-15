@@ -15,6 +15,7 @@ public interface QnABoardDao {
 	
 	public BoardVO read(int BOARD_NO);  
 	public void modify(BoardVO vo);
+
 	public int getQnACount(Map<String, Object> map);
 	public BoardVO CODE(String QUESTION_TYPE_CD);
 

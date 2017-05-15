@@ -78,5 +78,10 @@ public class ReplyDaoImpl implements ReplyDao {
 		return obj;
 	}
 
-
+	@Override
+	public void AnswerFlg(int BOARD_NO) {
+		System.out.println("AnswerFlg " + BOARD_NO);
+		sqlSession.update("board.AnswerFlg", BOARD_NO);
+		
+	}
 }

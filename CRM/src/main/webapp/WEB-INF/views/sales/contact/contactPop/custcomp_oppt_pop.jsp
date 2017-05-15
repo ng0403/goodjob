@@ -102,13 +102,13 @@
 							</td>
 						</tr>
 						<tr>
-							<th>예상마감일자</th>
+							<th><span style="color">*예상마감일자</span></th>
 							<td>
 								<input type="text" name="expt_fin_d" id="expt_fin_d" class="int_oppt" value="${opptVO.expt_fin_d}"/>
 							</td>
 						</tr>
 						<tr>
-							<th>가능성</th>
+							<th><span style="color">*가능성</span></th>
 							<td>
 								<select id="psblty_rate" name="psblty_rate">
 									<option value="0" >선택</option>
@@ -126,7 +126,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>상태</th>
+							<th><span style="color">*상태</span></th>
 							<td>
 								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd">
 									<option value="0">==선택==</option>

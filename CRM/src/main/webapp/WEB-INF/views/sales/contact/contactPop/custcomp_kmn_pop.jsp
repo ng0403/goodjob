@@ -9,10 +9,12 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
 
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_kmnpop_css.css" type="text/css" />
 <c:if test="${flag == 0}">
 	<title>키맨 등록</title>
-</c:if>
+</c:if>	
 <c:if test="${flag == 1}">
 	<title>키맨 정보</title>
 </c:if>
@@ -38,10 +40,12 @@
  --%>			 <table id="keymanpopuptable">  			
 					<tbody id="tbody">
 						<tr>
-							<th>고객사</th>
-							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus" readonly="readonly"/></td>
+							<th><span style="color:red">*고객사</span></th>
+							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus" readonly="readonly"/>
+							<input type="button" value="고객" id="customer" class="button search_btn" onclick="javascript:custcompListPopup('${ctx}');">
+							</td>
 							 <input type="hidden" id="cust_id" name="cust_id" class="int" />  
-							<td><input type="button" value="고객" id="customer" class="cont_bt" onclick="javascript:custcompListPopup('${ctx}');"></td>
+							
 							
 						</tr>
  						<tr>
@@ -67,14 +71,14 @@
 			
 			<c:if test="${flag == 0}">
 				<div class="keyman_bt_position">
-					<input type="button" class="keyman_bt" value="저장" id="keyman_add" onclick="keymanAdd();"/>
-					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
+					<input type="button" class="button functionBtn" value="저장" id="keyman_add" onclick="keymanAdd();"/>
+					<input type="button" class="button search_btn" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="keyman_bt_position">
-					<input type="button" class="keyman_bt" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}','${kmVO.cont_id}');"/>
-					<input type="button" class="keyman_bt" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
+					<input type="button" class="button functionBtn" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}','${kmVO.cont_id}');"/>
+					<input type="button" class="button search_btn" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
 				</div>
 			</c:if>
 		</div>

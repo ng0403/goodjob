@@ -20,5 +20,6 @@ public interface ReplyService {
 	  
 	  public PagerVO replyListCount(Map<String, Object> boardMap); //댓글 페이징
 	  public List<ReplyVO> replyAllList(Map<String,Object> boardMap); //댓글 리스트 
+	  public void AnswerFlg(int BOARD_NO); 
 
 }

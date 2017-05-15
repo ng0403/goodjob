@@ -9,7 +9,6 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>  
 <script src="${ctx}/resources/common/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script> 
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 
@@ -42,14 +41,13 @@ label {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" />
- <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
- <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
-
+ <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+ 
 <div class="main_div">
 
-<div class="navi_div">
-	Q&A > 리스트
+<div id="title">
+		<div class="caption">■ Q&A > 리스트
+		</div>
 </div>
 
 <div class="search_div">

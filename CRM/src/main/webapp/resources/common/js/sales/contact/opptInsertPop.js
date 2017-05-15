@@ -21,13 +21,15 @@ $(function(){
 	
 	// 취소 버튼 눌렀을 때.
 	$("#opptAdd_cancel").click(function(){
-		window.opener.location.href = '/actDetail';
+ 		if(confirm("취소 하시겠습니까?")){
 		self.close();
+ 		}
 	});
 	
 	$('#opptModfy_cancel').click(function(){
-		window.opener.location.href = '/actDetail';
-		self.close();
+ 		if(confirm("취소 하시겠습니까?")){
+ 		self.close();
+ 		}
 	});
 	
 	//opptSaveBtn(ctx);

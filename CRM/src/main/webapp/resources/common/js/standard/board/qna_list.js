@@ -55,6 +55,18 @@ function board_add() {
 
 // 추가 페이지 저장.
 function board_add_save() {
+	
+	if($("#TITLE").val() == null || $("#TITLE").val() == "")
+		{
+		alert("제목을 입력해 주세요.");
+		return false;
+		}
+	if($("#CONTENT").val() == null || $("#CONTENT").val() == "")
+		{
+		alert("내용을 입력해 주세요.");
+		return false;
+		}
+	
 	var formObj = $("form[role='form']");
 	if(confirm("저장 하시겠습니까?")){
 	formObj.attr("action", "/QnA_insert");

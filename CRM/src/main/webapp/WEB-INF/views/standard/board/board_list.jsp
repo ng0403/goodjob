@@ -24,10 +24,10 @@
 </head>
 <body> 
    
-<div class="main_div">
-   <div class="navi_div">
-       게시판 > 리스트
-   </div>
+  <div id="title">
+		<div class="caption">■ 게시판 > 리스트
+		</div>
+</div>
  
    <!-- Q&A 리스트, 조회화면 -->
    <div class="search_div">
@@ -45,8 +45,8 @@
    <div class="list_div">
       <div class="list1_div" id ="list1_div">  
           <form name="delAllForm" id ="delAllForm" method="post" action="/board/board_remove">  
-           <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/>  
-            <div class="table_div">
+           <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/> 
+             <div class="table_div">
                <table  class="table table-hover" >
                   <thead>
                      <tr>
@@ -65,7 +65,7 @@
                         <tr class="open_list">
                            <td scope="row" style='width:10%;'><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
                            <td style='width:10%;'>${boardVO.BOARD_NO}</td> 
-                           <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</td>
+                           <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE} </td>                           
                            <td style='width:10%;'>${boardVO.CREATED_BY} </td>
                            <td style='width:20%;'><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.CREATED}" /></td>
                            <td style='width:10%;'>${boardVO.VIEW_CNT}</td>   

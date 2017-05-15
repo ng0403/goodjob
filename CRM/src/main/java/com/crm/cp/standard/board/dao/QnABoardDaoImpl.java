@@ -132,4 +132,6 @@ public class QnABoardDaoImpl implements QnABoardDao {
 		List<BoardVO> obj = sqlSession.selectList("board.QnAList", boardMap);
 		return obj;
 	}
+	
+	
 }

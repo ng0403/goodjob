@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act_oppt_prod.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script>
@@ -55,23 +56,23 @@
 					<!-- 영업기회 TAB 등록 -->
 						<c:if test="${popFlg eq 'add'}">
 							<tr>
-								<th>영업기회명</th>
+								<th><span style="color:red">*영업기회명</span></th>
 								<td> <!-- colspan="3" -->
 									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" style="ms-ime-mode: disabled; background-color: ">
 								</td>
 							</tr>
 							<tr>	
-								<th>고객사</th>
+								<th><span style="color:red">*고객사</span></th>
 								<td>
 									<input type="text" name="cust_nm" id="cust_nm" class="int" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" class="int">
 <%-- 									<input type="button" class="btn-success-tel" id="customerPop" value="고객" disabled="disabled" onclick="opptCustPopup('${ctx}');"> --%>
-								<input type="button" value="키맨" id="customer" class="cont_bt" onclick="javascript:keymanListPopup();">
+								<input type="button" value="고객사" id="customer" class="button search_btn" onclick="javascript:keymanListPopup();">
 								
 								</td>
 							</tr>
 							<tr>
-								<th>상태</th>
+								<th><span style="color:red">*상태</span></th>
 								<td>
 									<input type="hidden" id="hsales_oppt_stat_cd" value="0">
 									<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" style="height: 24pt;">
@@ -86,7 +87,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>영업단계</th>
+								<th><span style="color:red">*영업단계</span></th>
 								<td>
 									<input type="hidden" id="hsales_lev_cd" value="0">
 										<select name="sales_lev_cd" id="sales_lev_cd" style="height: 24pt;">
@@ -101,14 +102,14 @@
 								</td>
 							</tr>
 							<tr>
-								<th>예상마감일자</th>
+								<th><span style="color:red">*예상마감일자</span></th>
 								<td>
 									<input type="hidden" id="hexpt_fin_d">
 									<input type="text" name="expt_fin_d" id="expt_fin_d" class="int">
 								</td>
 							</tr>	
 							<tr>
-								<th>가능성</th>
+								<th><span style="color:red">*가능성</span></th>
 								<td>
 									<input type="hidden" id="hpsblty_rate">
 									<select id="psblty_rate" name="psblty_rate" style="height: 24pt;">
@@ -140,13 +141,13 @@
 						<!-- 상세보기 -->
 						<c:if test="${popFlg eq 'popDetail'}">
 							<tr>
-								<th>영업기회명</th>
+								<th><span style="color:red">*영업기회명</span></th>
 								<td> <!-- colspan="3" -->
 									<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 									<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
 									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int" style="ms-ime-mode: disabled; background-color: ">
 								</td>
-								<th>고객사</th>
+								<th><span style="color:red">*고객사</span></th>
 								<td>
 									<%-- <input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}"> --%>
 									<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
@@ -156,7 +157,7 @@
  								</td>
 							</tr>
 							<tr>
-								<th>상태</th>
+								<th><span style="color:red">*상태</span></th>
 								<td>
 									<input type="hidden" id="hsales_oppt_stat_cd" value="0">
 									<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
@@ -172,7 +173,7 @@
 									</select>
 								</td>
 						
-								<th>영업단계</th>
+								<th><span style="color:red">*영업단계</span></th>
 								<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
 										<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
@@ -187,19 +188,12 @@
 								</td>
 							</tr>
 							<tr>
-								<th>예상매출액</th>
-								<td>
-									<input type="hidden" id="hexpt_sales_amt">
-									<input type="text" name="expt_sales_amt" id="expt_sales_amt" value="${opDetail.expt_sales_amt}" class="int"  readonly="readonly"/>
-								</td>
-								<th>예상마감일자</th>
+ 								<th><span style="color:red">*예상마감일자</span></th>
 								<td>
 									<input type="hidden" id="hexpt_fin_d">
 									<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
 								</td>
-							</tr>	
-							<tr>
-								<th>가능성</th>
+								<th><span style="color:red">*가능성</span></th>
 								<td>
 									<input type="hidden" id="hpsblty_rate">
 									<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt;">
@@ -216,7 +210,8 @@
 										<option <c:if test="${opDetail.psblty_rate == 100 }">selected="selected"</c:if>>100</option>
 									</select>	
 								</td>
-							</tr>
+							</tr>	
+							 
 							<tr>
 								<th>메모</th>
 								<td colspan="8" rowspan="2">
@@ -234,7 +229,7 @@
 				<table id= "estimatehead">
 							<tr>
 								<th style="width: 3%;">V</th>
-								<td style="width: 32%;">품목명</td>
+								<td style="width: 32%;"><span style="color:red">*품목명</span></td>
 								<td style="width: 8%;">수량</td>
 								<td style="width: 27%;">판매가</td>
 								<td style="width: 15%;">할인</td>
@@ -285,29 +280,29 @@
 			</div>
 			<c:if test="${popFlg eq 'add'}">
 				<div class="estimate_bt_position"> 
-					<input type="button" class="btn btn-default"  value="상품추가" id="prodListBtn" onclick="opptProdList()" />
-					<input type="button" class="btn btn-default" value="상품삭제" id="prodDelete"/>
+					<input type="button" class="button functionBtn"  value="상품추가" id="prodListBtn" onclick="opptProdList()" />
+					<input type="button" class="button functionBtn" value="상품삭제" id="prodDelete"/>
 				</div>
 			</c:if>
-			<c:if test="${popFlg eq 'popDetail'}">
+			<%-- <c:if test="${popFlg eq 'popDetail'}">
 				<div class="estimate_bt_position2">
-					<input type="button" class="btn btn-success" value="저장" id="opptEstimButton" onclick="opptEstimSave()"/>
-					<input type="button" class="btn btn-default" value="취소" id="estimate_cancel"/>
+					<input type="button" class="button functionBtn" value="저장" id="opptEstimButton" onclick="opptEstimSave()"/>
+					<input type="button" class="btn button search_btn" value="취소" id="estimate_cancel"/>
 				</div>
-			</c:if>
+			</c:if>	 --%>
 			
 			<c:if test="${popFlg eq 'add'}">
 				<div class="act_bt_position">
 <%-- 					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSaveBtn('${ctx}')"/> --%>
-					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="contactopptSave()"/>
-					<input type="button" class="cust_oppt_btn" value="취소" id="opptAdd_cancel" />
+					<input type="button" class="button functionBtn" value="등록" id="opptSaveButton" onclick="contactopptSave()"/>
+					<input type="button" class="button search_btn" value="취소" id="opptAdd_cancel" />
 				</div>
 			</c:if>
 			<c:if test="${popFlg eq 'popDetail'}">
 				<div class="act_bt_position">
-					<input type="button" class="cust_oppt_btn" value="편집" id="opptModfyButton" />
-					<input type="button" class="cust_oppt_btn" value="저장" id="opptModfySaveBtn" onclick="contactopptMdfySave()" />
-					<input type="button" class="cust_oppt_btn" value="취소" id="opptModfy_cancel" />
+					<input type="button" class="button search_btn" value="편집" id="opptModfyButton" />
+					<input type="button" class="button functionBtn" value="저장" id="opptModfySaveBtn" onclick="contactopptMdfySave()" />
+					<input type="button" class="button search_btn" value="취소" id="opptModfy_cancel" />
 				</div>
 			</c:if>
 			

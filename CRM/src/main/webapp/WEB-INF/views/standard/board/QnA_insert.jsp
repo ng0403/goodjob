@@ -23,8 +23,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<div class="navi_div">
-		Q&A > 리스트 > 추가
+<div id="title">
+		<div class="caption">■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${board_mng}">리스트</a> >  추가
+		</div>
 </div>
 
 <div class="container" >  <!-- 전체 div-->

@@ -20,7 +20,10 @@ $(function(){
 //영업활동 취소 버튼
 function activeCancel(){
 	$("#activeAdd_cancel").click( function(){
-		self.close();
+		if(confirm("취소하시겠습니까?")){
+			self.close();	
+		}
+		
 	});
 }
 //영업활동 popup 저장(수정) 버튼 클릭 시

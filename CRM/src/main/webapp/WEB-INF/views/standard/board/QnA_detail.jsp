@@ -17,22 +17,24 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>  
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/reply.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
 
 <form role="form" name = "form_modify" method="post">
  <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardlist.BOARD_NO}"> 
  <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value= "${boardlist.BOARD_MNG_NO}">
 </form>
- 
- <div class="navi_div">
-		Q&A > 리스트 > 게시글
+
+<div id="title">
+		<div class="caption">■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}">리스트</a> > 게시글
+		</div>
 </div>
 
 <div class="container"> <!-- 전체 div-->
@@ -101,20 +103,61 @@
 
 </div>
  
- 
-</div>
- 
- 
- <div class="col-md-12" id="reply_list" style="margin-top:10px">
- 
- <table id = "reply_table" class="table">
- 
- </table>
- 
- </div> 
-
-</div>	
-
+<div class="paging_div">
+	 
+		 <div id="pageSpace" class="pagination"> 
+		
+		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+			<input type="hidden" id="ccPageNum" value="${replyPageNum}">
+			<c:choose>
+				<c:when test="${replyPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀◀</a>
+	    		</c:when>
+				<c:when test="${replyPageNum ne page.firstPageCount}">
+	        		<a href="javascript:replyPaging(${page.prevStepPage})" class="prev">◀◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${replyPageNum eq page.firstPageCount}">
+	        		<a class="prev">◀</a>
+	    		</c:when>
+				<c:when test="${replyPageNum ne page.firstPageCount}">
+	        		<a href="javascript:replyPaging(${page.prevPageNum})" class="prev">◀</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+				<c:choose>
+					<c:when test="${i eq replyPageNum }">
+						<b>
+							<a  href="javascript:replyPaging('${i}');" id="pNum" class="choice">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:replyPaging('${i}');">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${replyPageNum eq page.totalPageCount}">
+	       			<a class="next">▶</a>
+	    		</c:when>
+				<c:when test="${replyPageNum ne page.totalPageCount}">
+	       			<a href="javascript:replyPaging(${page.nextPageNum})" class="next">▶</a>
+	    		</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${replyPageNum eq page.totalPageCount}">
+	       			<a class="next">▶▶</a>
+	    		</c:when>
+				<c:when test="${replyPageNum ne page.totalPageCount}">
+	       			<a href="javascript:replyPaging(${page.nextStepPage})" class="next">▶▶</a>
+	    		</c:when>
+			</c:choose>
+   </div>
+		
+		<div class="right">
+ 		</div> 
+	</div>  
  
 
 </body>

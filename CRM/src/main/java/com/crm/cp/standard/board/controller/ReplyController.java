@@ -41,11 +41,10 @@ public class ReplyController {
 		System.out.println("replyvo?" +vo.toString());
 		
 		//q&a 답변을 할 때에 answer flg 변환
-		String BOARD_MNG_NO = vo.getBOARD_MNG_NO();
- 		
+  		
 		if(vo.getBOARD_MNG_NO().equals("BMG1000003"))
 		{
- 			boardService.AnswerFlg(BOARD_NO);
+			replyService.AnswerFlg(BOARD_NO);
 		}
 		
 		ResponseEntity<List<ReplyVO>> entity = null;
@@ -61,12 +60,12 @@ public class ReplyController {
 	
 	
 	 @RequestMapping(value = "/reply_list/{BOARD_NO}", method = RequestMethod.GET)
-	  public ResponseEntity<List<ReplyVO>> list(@PathVariable("BOARD_NO") Integer BOARD_NO) {
-		System.out.println("board_no ajax " + BOARD_NO); 
+	  public ResponseEntity<List<ReplyVO>> list(@PathVariable("BOARD_NO") Integer BOARD_NO, @RequestParam Map<String, Object> map) {
+		System.out.println("board_no ajax " + map.toString()); 
  	    ResponseEntity<List<ReplyVO>> entity = null;
 	    try {
 	      
- 	      entity = new ResponseEntity(replyService.listReply(BOARD_NO), HttpStatus.OK);
+ 	      entity = new ResponseEntity(replyService.replyAllList(map), HttpStatus.OK);
 
 	    } catch (Exception e) {
 	      e.printStackTrace();

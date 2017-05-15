@@ -8,6 +8,8 @@
 <link rel="stylesheet"
 	href="${ctx}/resources/common/css/sales/oppt/custcomp_actpop_css.css"
 	type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />	
+	
 <!-- <link rel="stylesheet" -->
 <%-- 	href="${ctx}/resources/common/css/sales/oppt/operating_activity_popup.css" --%>
 <!-- 	type="text/css" /> -->
@@ -48,7 +50,7 @@
 			<table id="operatingapopuptable">  			
 				<tbody id="tbody1">
 					<tr>
-						<th>영업활동명</th>																	
+						<th><span style="color:red">*영업활동명</span></th>																	
 						<td>
 							<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" value="${detail.sales_actvy_nm }" >
 						</td>
@@ -61,7 +63,7 @@
 									<input type="text" name="cust_nm" id="oppt_nm" class="int" value="${cust_nm}" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
 									<input type="hidden" name="oppt_id" id="oppt_id">
-								    <input type="button" value="영업기회" id="oppt" class="cont_bt" onclick="javascript:opptListPopup();">
+								    <input type="button" value="영업기회" id="oppt" class="button search_btn" onclick="javascript:opptListPopup();">
 									 
 								</c:when>
 								<c:when test="${flg eq 'detail'}">
@@ -73,7 +75,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>영업활동구분</th>
+						<th><span style="color:red">*영업활동구분</span></th>
 						<td>
 							<c:forEach items="${actDivCd}" var="list">
 								<c:choose>
@@ -89,13 +91,13 @@
 						</td>
 					</tr>
 					<tr>
-						<th>시작일자</th>
+						<th><span style="color:red">*시작일자</span></th>
 						<td>
 							<input type="text" id="strt_d" name="dstrt_d" class="int_act" value="${detail.strt_d}" readonly="readonly">
 						</td>
 					</tr>
 					 <tr>
-					 	<th>시작시간</th>
+					 	<th><span style="color:red">*시작시간</span></th>
 					 	<td>
 					 		<input type="hidden" id="strt_t" value="${detail.strt_t }">
 							<select name="strt_t" id="strt_t_h" class="start_hour">
@@ -130,13 +132,13 @@
 						</td>
 					</tr>
 					<tr>
-						<th>종료일자</th>
+						<th><span style="color:red">*종료일자</span></th>
 						<td>
 							<input type="text" id="end_d" name="dend_d" class="int_act"  value="${detail.end_d}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
-						<th>종료시간</th>
+						<th><span style="color:red">*종료시간</span></th>
 						<td>
 							<input type="hidden" id="end_t" value="${detail.end_t }">
 							<select name="ent_t" id="end_t_h" class="end_hour">
@@ -171,7 +173,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>활동유형</th>
+						<th><span style="color:red">*활동유형</span></th>
 						<td>
 							<select name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="time">
 								<option value="0" style="text-align: center;">==선택==</option>
@@ -196,7 +198,7 @@
 <!-- 						</td> -->
 <!-- 					</tr>     -->
 					<tr>
-						<th>상태</th>
+						<th><span style="color:red">*상태</span></th>
 						<td>
 							<select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="time">
 								<option value="0" style="text-align: center;">==선택==</option>
@@ -223,8 +225,8 @@
 			</table>
 		</div>
 		<div class="act_bt_position">
-			<input type="button" class="cust_oppt_btn" value="저장" id="activeButton"/>
-			<input type="button" class="cust_oppt_btn" value="취소" id="activeAdd_cancel"/>
+			<input type="button" class="button functionBtn" value="저장" id="activeButton"/>
+			<input type="button" class="button search_btn" value="취소" id="activeAdd_cancel"/>
 		</div>
 	</div>
 </div>

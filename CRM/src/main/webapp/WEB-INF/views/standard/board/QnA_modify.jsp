@@ -23,8 +23,9 @@
  <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
  
  
-<div class="navi_div">
-		Q&A > 리스트 > 수정
+<div id="title">
+		<div class="caption">■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}">리스트</a> >  수정
+		</div>
 </div>
 
 <div class="container"> <!-- 전체 div-->

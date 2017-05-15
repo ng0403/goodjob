@@ -29,8 +29,9 @@
 <body>
  
 
-<div class="navi_div">
-		게시판 > 리스트 > 수정
+<div id="title">
+		<div class="caption">■ 게시판 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}">리스트</a> >  수정
+		</div>
 </div>
  
 

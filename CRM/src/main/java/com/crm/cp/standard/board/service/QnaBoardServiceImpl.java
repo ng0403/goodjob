@@ -118,4 +118,5 @@ public class QnaBoardServiceImpl implements QnABoardService {
 		return qnaboardDao.boardAllList(boardMap);
 	}
 	
+
 }

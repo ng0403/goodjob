@@ -953,37 +953,41 @@ function contactopptSave()
 	var discount_unit_cd = [];
 	var unit_check = 0;
 
-//	if(sales_oppt_nm == "" || sales_oppt_nm == null)
-//	{
-//		alert("영업기회명을 입력해 주세요.");
-//		return false;
-//	}
-//	else if(cust_id == "" || cust_id == null)
-//	{
-//		alert("고객을 선택해 주세요.");
-//		return false;
-//	}
-//	else if(sales_oppt_stat_cd == "0" || sales_oppt_stat_cd == null)
-//	{
-//		alert("영업기회 상태를 선택해 주세요.");
-//		return false;
-//	}
-//	else if(sales_lev_cd == "0" || sales_lev_cd == null)
-//	{
-//		alert("영업단계를 선택해 주세요.");
-//		return false;
-//	}
-//	else if(sales_lev_cd == "" || sales_lev_cd == null)
-//	{
-//		alert("예상마감일자를 선택해 주세요.");
-//		return false;
-//	} 
-//	else if(psblty_rate == "0" || psblty_rate == null)
-//	{
-//		alert("가능성을 선택해 주세요.");
-//		return false;
-//	}	
-	
+	if(sales_oppt_nm == "" || sales_oppt_nm == null)
+	{
+		alert("영업기회명을 입력해 주세요.");
+		return false;
+	}
+	else if(cust_id == "" || cust_id == null)
+	{
+		alert("고객을 선택해 주세요.");
+		return false;
+	}
+	else if(sales_oppt_stat_cd == "0" || sales_oppt_stat_cd == null)
+	{
+		alert("영업기회 상태를 선택해 주세요.");
+		return false;
+	}
+	else if(sales_lev_cd == "0" || sales_lev_cd == null)
+	{
+		alert("영업단계를 선택해 주세요.");
+		return false;
+	}
+	else if(expt_fin_d == "" || expt_fin_d == null)
+	{
+		alert("예상마감일자를 선택해 주세요.");
+		return false;
+	} 
+	else if(psblty_rate == "0" || psblty_rate == null)
+	{
+		alert("가능성을 선택해 주세요.");
+		return false;
+	}
+	else if($("#prod_nm").val() == "" || $("#prod_nm").val() == null)
+	{
+		alert("상품을 추가해 주세요.");
+		return false;
+	}
 	$("#opptProdtbody tr").each(function(){
 		cd  = $(this).children().eq(4).children().eq(1).val();
 		if(cd =='0'){

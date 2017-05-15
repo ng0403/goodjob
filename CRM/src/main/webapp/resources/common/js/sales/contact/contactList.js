@@ -1,4 +1,7 @@
- $(function(){
+ 	var count = 0;
+
+
+$(function(){
 	var ctx = $('#ctx').val();
  });
 //13자리 날짜 변환 함수
@@ -97,7 +100,7 @@ function pageInputCall(event) {
 	
 // 초성 검색 페이징
 function searchAcnkEvent(contactPageNum, keyword){
- 		var ctx = $("#ctx").val();
+  		var ctx = $("#ctx").val();
 		var cont_nm = $("#cont_nm").val();
 		var email = $("#email").val();
 		var ph = $("#ph").val();
@@ -174,34 +177,8 @@ function searchAcnkEvent(contactPageNum, keyword){
 						var prevStepPage = data.page.prevStepPage;
 						var nextStepPage = data.page.nextStepPage;
 						paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-						
-						
-						/*var pageContent = "";
-						// 페이징 다시그리기
-						$("#pager").children().remove();
-						if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a> ◀ </a><input type='text' id='callPageInput' class='call_page_txt' readonly='readonly' value='"+data.page.startPageNum+"'/>" 
-							+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-						} else if(data.contactPageNum == data.page.startPageNum){
-							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a style='text-decoration: none;'> ◀ </a> <input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"'/>" 
-							+"<a href='#' onclick=\"searchAcnkEvent("+data.page.endPageNum+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum+1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ▶ </a>";
-						} else if(data.contactPageNum == data.page.endPageNum){
-							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum-1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ◀ </a>"
-							+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.page.endPageNum+"'/>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+data.page.endPageNum+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-							+"<a style='text-decoration: none;'> ▶ </a>";
-						} else {
-							pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum-1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ◀ </a>"
-							+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"'/>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+data.page.endPageNum+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-							+"<a href='#' onclick=\"searchAcnkEvent("+(data.contactPageNum+1)+", '"+data.keyword+"');\" id='pNum' style='text-decoration: none;'> ▶ </a>";
-						}
-						$("#pager").append(pageContent);*/
+				 	
+						 
 					}
 				},
 				error: function(){
@@ -224,6 +201,44 @@ function callSearchEnter(event) {
 		}
 	}
 	event.stopPropagation();
+}
+
+
+//고객사 검색 조건 추가
+function addForm(){
+	if(count<2){
+//		$.ajax({
+//			type : 'post',
+//			url :'/ccllist',
+//			datatype : 'json',
+//			success:function(result){
+				var addedFormDiv = document.getElementById("search_div");
+				var str = "";
+				    str+="<br><label for='inputEmail1' class='tel_label_list'>이름</label>";
+				    str+="<input type='text' style='margin-left: 9px;' class='inp_search' autofocus='autofocus' id='cont_nm"+count+"' name='cont_nm"+count+"' onkeydown='schCustComp(event);'/>";
+				    str+="<label for='inputPassword1' style='margin-left: 3px;' class='tel_label_list'>이메일</label> ";
+				    str+="<input type='email' style='margin-left: 6px;' class='tel_search' id='email"+count+"' name='email"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<label for='inputPassword1' style='margin-left: 4px;' class='tel_label_list'>이동전화번호</label> ";
+				    str+="<input type='text' style='margin-left: 5px;' class='tel_search' id='ph"+count+"' name='ph"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+ 				    str+="<label  onclick='delForm(this)' id='schDelBth' >"+'-'+"</label>";
+				    
+				    var addedDiv = document.createElement("div"); 	// 폼 생성
+				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
+				    addedDiv.innerHTML  = str; 						// 폼 Div안에 HTML삽입
+				    addedFormDiv.appendChild(addedDiv); 			// 삽입할 DIV에 생성한 폼 삽입
+
+				    count++;
+//			},
+//			error:function(request){
+//				alert("error : " + request);
+//			}
+//		});
+	}else{
+		alert("검색 조건은 최대 3개 입니다.");
+
+	}
+	//    document.listForm.count.value=count;
+    // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
 
 

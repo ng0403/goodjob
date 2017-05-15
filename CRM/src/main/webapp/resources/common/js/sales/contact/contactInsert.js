@@ -581,16 +581,6 @@ function contactAddp(){
 	location.href="/contactInsert";
 }
 
-function contactInsert() {
-	
-    var formObj = $("form[role='form']");
-
-	 formObj.attr("action", "/contactInsert");
-	 formObj.attr("method", "post");
-	 formObj.submit();  
- 
-} 
-
  
 //개인고객 수정
 function callCustEdit() {

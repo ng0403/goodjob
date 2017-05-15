@@ -40,7 +40,7 @@ public class ReplyServiceImpl implements ReplyService {
 		int boardPageNum = (Integer)map.get("pageNum");
 		int totalRowCount = replyDao.ReplyListCount("replyListCount", map);
 		
-		PagerVO page = new PagerVO(boardPageNum, totalRowCount, 4, 999);
+		PagerVO page = new PagerVO(boardPageNum, totalRowCount,5, 999);
 		
 		return page;
 	}
@@ -73,5 +73,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> replyAllList(Map<String,Object> replyMap) {
 		return replyDao.replyAllList(replyMap);
 	}
-
+	@Override
+	public void AnswerFlg(int BOARD_NO) {
+		System.out.println("service map ? " + BOARD_NO);
+		replyDao.AnswerFlg(BOARD_NO); 
+	}
 }

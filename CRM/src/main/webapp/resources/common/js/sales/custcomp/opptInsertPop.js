@@ -19,16 +19,7 @@ $(function(){
 		$('#memo').attr("readonly", false);
 	});
 	
-	// 취소 버튼 눌렀을 때.
-	$("#opptAdd_cancel").click(function(){
-		window.opener.location.href = '/actDetail';
-		self.close();
-	});
-	
-	$('#opptModfy_cancel').click(function(){
-		window.opener.location.href = '/actDetail';
-		self.close();
-	});
+	  
 	
 	opptAllChck();
 	chkCancel();

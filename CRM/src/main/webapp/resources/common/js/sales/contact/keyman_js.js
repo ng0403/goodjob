@@ -132,8 +132,7 @@ $(document).ready(function() {
 
 //영업기회 상세정보 고객 리스트 팝업
 function custcompListPopup(ctx){
-	alert("어디");
-	$('#customer').click(function(){
+ 	$('#customer').click(function(){
 		window.open(ctx+'/opptCustcompList','newwindow1','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
@@ -148,8 +147,7 @@ function keymanListPopup(){
 
 //영업기회 상세정보 고객 리스트 팝업
 function opptListPopup(){
-	alert("어디1");
-	$('#oppt').click(function(){
+ 	$('#oppt').click(function(){
 		var cont_id = $("#cont_id",opener.document).val();
  		window.open('/opptListPop?cont_id='+cont_id,'newwindow1','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
@@ -189,6 +187,7 @@ function custNmSelect(cust_id, cust_nm){
 
 //영업기회 추가 함수
 function ccOpptAddcontact() {
+	alert("hi");
 	var sales_oppt_id = $("#salesId").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
@@ -200,6 +199,13 @@ function ccOpptAddcontact() {
 	var cust_nm = $("#cust_nm").val();
 	var lead_id = $("#lead_id").val();
 	var memo = $("#memo").val();
+	
+	
+	if($("#sales_lev_cd").val() == '0')
+		{
+		alert("영업단계를 선택해 주세요.");
+		return false;
+		}
 
 	$.ajax({
 		type : 'post',

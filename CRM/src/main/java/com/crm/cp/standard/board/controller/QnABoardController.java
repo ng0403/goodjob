@@ -28,7 +28,7 @@ public class QnABoardController {
 	@Autowired
 	QnABoardService qnaService; 
 	
-/*	@Autowired
+/*	@Autowired	
 	SessionAuthService sessionAuthService;
 */	
 	@RequestMapping(value="/QnAInqr", method={RequestMethod.GET, RequestMethod.POST} )

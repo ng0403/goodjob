@@ -5,12 +5,12 @@
  
  
 //댓글 리스트 그냥 페이징
-function replyPaging(boardPageNum) {
-   	var ctx = $("#ctx").val();
+function replyPaging(replyPageNum) {
+    	var ctx = $("#ctx").val();
   	var BOARD_NO = $("#BOARD_NO").val();
  	var tbody = $('#reply_list_tbody');
 	var tbodyContent = "";
-  	var boardData = { "boardPageNum": boardPageNum, "BOARD_NO" : BOARD_NO
+  	var boardData = { "replyPageNum": replyPageNum, "BOARD_NO" : BOARD_NO
  			        };
 	
 	$.ajax({
@@ -19,16 +19,14 @@ function replyPaging(boardPageNum) {
 		data : boardData,
 		success : function(data) {
    				tbody.children().remove();
-			
-			 for (var i = 0; i < data.reply_list.length; i++) { 
+ 			 for (var i = 0; i < data.reply_list.length; i++) { 
  				tbodyContent +='<tr><th class="col-sm-1">' + data.reply_list[i].created_BY + '</th>'
  				+ '<th class="col-sm-10">' + data.reply_list[i].reply_CONTENT+ '<span style="float:right" class="glyphicon glyphicon-remove" id = '+data.reply_list[i].reply_NO+' onclick="remove_reply(this.id);"></span></th></tr>';
         		}
  			   tbody.append(tbodyContent);
  	 
-			
-			if(data.reply_list.length < 10){
- 				for(var i=0; i<10-data.replyListSize; i++){
+ 			if(data.reply_list.length < 5){
+ 				for(var i=0; i<5-data.replyListSize; i++){
 					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:10%"></td>' 
  						+'<td style="width:10%;"></td></tr>';
 					tbody.append(tbodyContent);
@@ -60,7 +58,7 @@ function replyPaging(boardPageNum) {
  
 
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
-	var endPageNo = $("<input>");
+ 	var endPageNo = $("<input>");
 	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
 	var ccPageeNo = $("<input>");
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
@@ -70,7 +68,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	stepPrev.addClass("prev");
 	stepPrev.html("◀◀");
 	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:boardPaging("+prevStepPage+")");
+		stepPrev.attr("href","javascript:replyPaging("+prevStepPage+")");
 	}
 	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
@@ -79,12 +77,12 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:boardPaging("+prevPageNum+")");
+		prevPage.attr("href","javascript:replyPaging("+prevPageNum+")");
 	}
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:boardPaging("+i+")");
+		ccPage.attr("href","javascript:replyPaging("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -100,14 +98,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	nextPage.addClass("next");
 	nextPage.html("▶");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:boardPaging("+nextPageNum+")");
+		nextPage.attr("href","javascript:replyPaging("+nextPageNum+")");
 	}
 	$("#pageSpace").append(nextPage);
 	var stepNext = $("<a>");
 	stepNext.addClass("next");
 	stepNext.html("▶▶");
 	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:boardPaging("+nextStepPage+")");
+		stepNext.attr("href","javascript:replyPaging("+nextStepPage+")");
 	}
 	$("#pageSpace").append(stepNext);
 }
@@ -140,5 +138,31 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 			      });
 		} 
 	 
-	 
+		function remove_reply(e){ 
+			var REPLY_NO = e;
+			
+			if(confirm("정보를 삭제 하시겠습니까?")){
+			 $.ajax({
+					url : '/reply_remove/',
+					headers : {
+			            "Content-Type" : "application/json",
+			            "X-HTTP-Method-Override" : "POST"
+			         },
+					data : REPLY_NO,
+					dataType : 'text',
+					processData: false,
+					contentType: false,
+					type: 'POST',
+					success : function(result) {
+						 
+						if(result=="success"){
+							replyPaging(1); 
+
+	 					}
+						  
+					} 
+			         
+					}) 
+			}
+		} 
 	 

@@ -23,9 +23,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-  
-<div class="navi_div">
-		게시판 > 리스트 > 추가
+ 
+<div id="title">
+		<div class="caption">■ 게시판 > <a href="/boardInqr?BOARD_MNG_NO=${board_mng}">리스트</a> >  추가
+		</div>
 </div>
 
 <div class="container" >  <!-- 전체 div-->
