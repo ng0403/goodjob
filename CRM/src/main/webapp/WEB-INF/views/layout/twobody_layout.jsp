@@ -13,7 +13,7 @@
 		<div class="headFrame" >
 			<div class="header" >
 				<div id="mainTitleDiv">
-					<label id="mainTitle">SFA <a style="font-size: 20pt;">(Sales Force Automation)</a></label>
+					<label id="mainTitle">SFA <label style="font-size: 20pt; font-weight: normal;">(Sales Force Automation)</label></label>
 				</div>
 				<tiles:insertAttribute name="header"></tiles:insertAttribute>
 			</div>
