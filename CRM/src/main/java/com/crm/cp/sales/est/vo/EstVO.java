@@ -43,6 +43,19 @@ public class EstVO {
 	private String total_discount;
 	private String total_sup_price;
 	
+	private String estim_nm1;
+	private String estim_nm2;
+	private String estim_lev_cd1;
+	private String estim_lev_cd2;
+	private String sales_price_11;
+	private String sales_price_12;
+	private String sales_price_21;
+	private String sales_price_22;
+	private String sales_price1;
+	private String sales_price2;
+	private String estim_valid_d1;
+	private String estim_valid_d2;
+	
 	
 	public EstVO(String estim_id, String cust_id, String estim_nm,
 			String estim_lev_cd, String estim_lev_cd_nm, String estim_valid_d,
@@ -88,6 +101,78 @@ public class EstVO {
 		this.total_sales_price = total_sales_price;
 		this.total_discount = total_discount;
 		this.total_sup_price = total_sup_price;
+	}
+	public String getEstim_nm1() {
+		return estim_nm1;
+	}
+	public void setEstim_nm1(String estim_nm1) {
+		this.estim_nm1 = estim_nm1;
+	}
+	public String getEstim_nm2() {
+		return estim_nm2;
+	}
+	public void setEstim_nm2(String estim_nm2) {
+		this.estim_nm2 = estim_nm2;
+	}
+	public String getEstim_lev_cd1() {
+		return estim_lev_cd1;
+	}
+	public void setEstim_lev_cd1(String estim_lev_cd1) {
+		this.estim_lev_cd1 = estim_lev_cd1;
+	}
+	public String getEstim_lev_cd2() {
+		return estim_lev_cd2;
+	}
+	public void setEstim_lev_cd2(String estim_lev_cd2) {
+		this.estim_lev_cd2 = estim_lev_cd2;
+	}
+	public String getSales_price_11() {
+		return sales_price_11;
+	}
+	public void setSales_price_11(String sales_price_11) {
+		this.sales_price_11 = sales_price_11;
+	}
+	public String getSales_price_12() {
+		return sales_price_12;
+	}
+	public void setSales_price_12(String sales_price_12) {
+		this.sales_price_12 = sales_price_12;
+	}
+	public String getSales_price_21() {
+		return sales_price_21;
+	}
+	public void setSales_price_21(String sales_price_21) {
+		this.sales_price_21 = sales_price_21;
+	}
+	public String getSales_price_22() {
+		return sales_price_22;
+	}
+	public void setSales_price_22(String sales_price_22) {
+		this.sales_price_22 = sales_price_22;
+	}
+	public String getSales_price1() {
+		return sales_price1;
+	}
+	public void setSales_price1(String sales_price1) {
+		this.sales_price1 = sales_price1;
+	}
+	public String getSales_price2() {
+		return sales_price2;
+	}
+	public void setSales_price2(String sales_price2) {
+		this.sales_price2 = sales_price2;
+	}
+	public String getEstim_valid_d1() {
+		return estim_valid_d1;
+	}
+	public void setEstim_valid_d1(String estim_valid_d1) {
+		this.estim_valid_d1 = estim_valid_d1;
+	}
+	public String getEstim_valid_d2() {
+		return estim_valid_d2;
+	}
+	public void setEstim_valid_d2(String estim_valid_d2) {
+		this.estim_valid_d2 = estim_valid_d2;
 	}
 	public EstVO() {
 		super();

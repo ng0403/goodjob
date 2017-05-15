@@ -54,7 +54,7 @@
 	</div>
 		<div class="search_div" id="search_div1">
 			<div class="ui left icon input">
-				<input type="text" placeholder="견적명" autofocus="autofocus" name="estim_nm" id="sestim_nm" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
+				<input type="text" placeholder="견적명" name="estim_nm" id="sestim_nm" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
 		    	<i class="file text outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">

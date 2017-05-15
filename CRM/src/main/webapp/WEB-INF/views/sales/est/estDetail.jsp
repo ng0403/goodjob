@@ -79,7 +79,7 @@ $(function() {
 <!--				<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
 <!--			</div> -->
 			<table id="contactable">
-				<tbody id="estDetail">
+				<tbody id="estDetail" class="detailtbody">
 					<tr>
 
 					</tr>

@@ -148,9 +148,36 @@
 	and aa.ACT_YN='Y' 
   		)e
 	)d
-   <where>	
-	 <if test="estim_nm !=null and estim_nm !=''">
-		   d.estim_nm like '%'||#{estim_nm}||'%'
+   <where>
+			1=1	
+	 	<if test="estim_nm !=null and estim_nm !='' and estim_nm1 !=null and estim_nm1 !='' and estim_nm2 !=null and estim_nm2 !=''">
+		   and(d.estim_nm like '%'||#{estim_nm}||'%'
+				or d.estim_nm like '%'||#{estim_nm1}||'%'
+				or d.estim_nm like '%'||#{estim_nm2}||'%')
+		</if>
+		<if test="estim_nm !=null and estim_nm !='' and estim_nm1 !=null and estim_nm1 !=''">
+		   and(d.estim_nm like '%'||#{estim_nm}||'%'
+				or d.estim_nm like '%'||#{estim_nm1}||'%')
+		</if>
+		<if test="estim_nm !=null and estim_nm !='' and estim_nm2 !=null and estim_nm2 !=''">
+		   and(d.estim_nm like '%'||#{estim_nm}||'%'
+				or d.estim_nm like '%'||#{estim_nm2}||'%')
+		</if>
+		<if test="estim_nm !=null and estim_nm !=''">
+		   and d.estim_nm like '%'||#{estim_nm}||'%'
+		</if>
+		<if test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd1 !=null and estim_lev_cd1 !='' and estim_lev_cd2 !=null and estim_lev_cd2 !=''">
+			and(d.estim_lev_cd = #{estim_lev_cd}
+				or d.estim_lev_cd = #{estim_lev_cd1}
+				or d.estim_lev_cd = #{estim_lev_cd2})
+		</if>
+		<if test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd1 !=null and estim_lev_cd1 !=''">
+			and(d.estim_lev_cd = #{estim_lev_cd}
+				or d.estim_lev_cd = #{estim_lev_cd1})
+		</if>
+		<if test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd2 !=null and estim_lev_cd2 !=''">
+			and(d.estim_lev_cd = #{estim_lev_cd}
+				or d.estim_lev_cd = #{estim_lev_cd2})
 		</if>
 		<if test="estim_lev_cd !=null and estim_lev_cd !=''">
 			and d.estim_lev_cd = #{estim_lev_cd}
