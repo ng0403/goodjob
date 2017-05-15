@@ -15,8 +15,9 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
 <!-- 새로운 공통 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
@@ -40,8 +41,12 @@
 // 	$ ( document ) .ready ( function () {  
 // 		$ ( "#myTable" ) .tablesorter ({sortList : [[ 0 , 0 ], [ 1 , 0 ]] });
 // 	}); 
-		    	
-	
+
+$(function() {
+
+	$('table').tablesort();
+
+});		   	
 </script>
 
 
@@ -104,46 +109,27 @@
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline">
-			<table id="ccListTable" class="ui celled table" cellspacing="0" width="100%">
+			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" width="100%">
 <!-- 			<table id="ccListTable" class="tblSort" > -->
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
-						<th style="width: 16%" onclick="goSort();" id="tblTh">
-							기업명
-<%-- 							<img id="imgUp"   class="imgArrow" alt="up" src="${ctx}/resources/image/icon/up.png"> --%>
-<%-- 							<img id="imgDown" class="imgArrow" alt="up" src="${ctx}/resources/image/icon/down.png"> --%>
-						</th>
-						<th style="width: 8%"  onclick="goSort();" id="tblTh">사업자번호</th>
-						<th style="width: 8%"  onclick="goSort();" id="tblTh">법인번호</th>
-						<th style="width: 10%" onclick="goSort();" id="tblTh">대표전화번호</th>
-						<th style="width: 10%" onclick="goSort();" id="tblTh">매출규모</th>
-						<th style="width: 8%"  onclick="goSort();" id="tblTh">직원수</th>
-						<th style="width: 14%" onclick="goSort();" id="tblTh">산업군</th>
-						<th style="width: 8%"  onclick="goSort();" id="tblTh">영업 담당자</th>
-						<th style="width: 15%" onclick="goSort();" id="tblTh">등록일시</th>
+						<th style="width: 16%" id="tblTh" class=""> 기업명</th>
+						<th style="width: 8%"  id="tblTh" class="">사업자번호</th>
+						<th style="width: 8%"  id="tblTh" class="">법인번호</th>
+						<th style="width: 10%" id="tblTh" class="" >대표전화번호</th>
+						<th style="width: 10%" id="tblTh" class="">매출규모</th>
+						<th style="width: 8%"  id="tblTh" class="">직원수</th>
+						<th style="width: 14%" id="tblTh" class="">산업군</th>
+						<th style="width: 8%"  id="tblTh" class="">영업 담당자</th>
+						<th style="width: 15%" id="tblTh" class="">등록일시</th>
 					</tr>
 				</thead>
-<!-- 			<table id="ccListTable" class="ui celled table" cellspacing="0" width="100%" > -->
-<!-- 				<thead> -->
-<!-- 					<tr> -->
-<!-- 						<th style="width: 3%;"><input type="checkbox"  id='ccListCheck'/></th> -->
-<!-- 						<th style="width: 16%">기업명</th> -->
-<!-- 						<th style="width: 8%">사업자번호</th> -->
-<!-- 						<th style="width: 8%">법인번호</th> -->
-<!-- 						<th style="width: 10%">대표전화번호</th> -->
-<!-- 						<th style="width: 10%">매출규모</th> -->
-<!-- 						<th style="width: 8%" >직원수</th> -->
-<!-- 						<th style="width: 14%">산업군</th> -->
-<!-- 						<th style="width: 8%" >영업 담당자</th> -->
-<!-- 						<th style="width: 15%">등록일시</th> -->
-<!-- 					</tr> -->
-<!-- 				</thead> -->
 				<tbody id="ccListTbody" class="tbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
 							<th><input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"  onclick="chkCancel();"></th>
-							<td id="ccListTableNmTd" style="text-align: left; padding-left: 8px;">
+							<td id="ccListTableNmTd" style="text-align: left; padding-left: 14px;">
 								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');"  class="cnClick">${cc.cust_nm}</a>
 							</td>
 							<td style="text-align: center;">${cc.comp_num}</td><!-- 사업자번호 -->
