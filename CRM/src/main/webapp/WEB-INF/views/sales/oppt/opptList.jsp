@@ -10,8 +10,11 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptList.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
 <title>개인 고객</title>
 </head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -20,16 +23,12 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script>
 <script type="text/javascript">
 </script>
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+
 <script>
-   var tableSort;
-   onload=function() {
-      tableSort = $(".tabtable").tableSort(".tbody");
-
-
-   }
-   function goSort() {
-      tableSort.view();
-   }
+   $(function() {
+      $('table').tablesort();
+   });            
 </script>
 <body>
 <form action="" method="get" id="listForm" >
@@ -38,53 +37,60 @@
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
 	<input type="hidden" id="count" value="">
 	<div id="title">
-		<div class="caption">■ 영업 > 영업기회</div></div>
+		<div class="caption">
+			<h3 class="ui yellow header">■ 영업 > 영업기회</h3>
+		</div>
+	</div>
 		   <div class="search_div" id="search_div" >
-			   		<label for="scompNam" class="tel_label_list">영업기회명</label>
-				    <input type="text" style="width:325px;" onkeypress="opptSearchInput(event);" class="tel_search" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
-				   	<label for="inputPassword1" class="tel_label_list" >고객명</label>
-				    <input type="text" class="tel_search" id="scust_nm" name="scust_nm" value="${scust_nm}">
-				    <input type="hidden" class="tel_search" id="scust_id" name="scust_id" value="${scust_id}">
-				    <input type="button" class="button search_btn" id="searchCustomer" value="고객">
-			    	<label for="inputPassword1" class="tel_label_list" id="oppt_lev_label">영업단계</label>
-				    <select class="tel_label_list" name="ssales_lev_cd" id="ssales_lev_cd_select" style="height: 25px;">
-				    	<option value="">선택</option>
+			   <div class="ui left icon input">
+					<input type="text" placeholder="영업기회명" autofocus="autofocus" style="width:325px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
+					<i class="users icon"></i>
+			   </div>	
+			   <div class="ui left icon input">
+					<input type="text" placeholder="고객명" autofocus="autofocus" id="scust_nm" name="scust_nm" value="${scust_nm}">
+					<i class="users icon"></i>
+				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
+			   </div>	
+				    <input type="button" class="ui orange button" id="searchCustomer" value="고객">
+				  <select name="ssales_lev_cd" id="ssales_lev_cd_select" >
+				    	<option value="">영업기회단계</option>
 				      	<c:forEach items="${otllist}" var="list">
 							<option value="${list.code}" >${list.cd_nm}</option>
 						</c:forEach>
 				    </select>
-				    <label for="inputPassword1" class="tel_label_list">가능성(%)</label>
-				    	<select class="tel_label_list" name="spsblty_rate" id="spsblty_rate_select" style="height: 25px;" >
-				    		<option value="">선택</option>
-				      		<option value="10">10</option>
-				      		<option value="20">20</option>
-				      		<option value="30">30</option>
-				      		<option value="40">40</option>
-				      		<option value="50">50</option>
-				      		<option value="60">60</option>
-				      		<option value="70">70</option>
-				      		<option value="80">80</option>
-				      		<option value="90">90</option>
-				      		<option value="100">100</option>
-				      </select>
+			    	<select class="semanticUiComboBox" name="spsblty_rate" id="spsblty_rate_select">
+			    		<option class="item" value="">가능성</option>
+			      		<option class="item" value="10">10</option>
+			      		<option class="item" value="20">20</option>
+			      		<option class="item" value="30">30</option>
+			      		<option class="item" value="40">40</option>
+			      		<option class="item" value="50">50</option>
+			      		<option class="item" value="60">60</option>
+			      		<option class="item" value="70">70</option>
+			      		<option class="item" value="80">80</option>
+			      		<option class="item" value="90">90</option>
+			      		<option class="item" value="100">100</option>
+			      	</select>
+
 					<label id="schAddBtn"style="margin-left: 10px;margin-right: 10px; font-size: 22pt;" onclick="addForm();">+</label>
 			
-			    <input type="button"  class="button search_btn" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="ui orange button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
 			<div id="tableline">	 
-				<table id="goaltable" class="tabtable">
+				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
+<!-- 				<table id="goaltable" class="tabtable"> -->
 				<thead>
 					<tr>
 						<th style="width: 3%"><input type="checkbox"  id='opptAllSelect'/></th>
-						<th onclick="goSort();" style="width: 26%">영업기회명</th>
-						<th onclick="goSort();" style="width: 10%">고객명</th>
-						<th onclick="goSort();" style="width: 8%">영업단계</th>
-						<th onclick="goSort();" style="width: 10%">예상매출액</th>
-						<th onclick="goSort();" style="width: 10%">예상마감일자</th>
-						<th onclick="goSort();" style="width: 5%">가능성</th>
-						<th onclick="goSort();" style="width: 8%">상태</th>
-						<th onclick="goSort();" style="width: 8%">등록자</th>
-						<th onclick="goSort();" style="width: 12%">등록일시</th>
+						<th style="width: 26%">영업기회명</th>
+						<th style="width: 10%">고객명</th>
+						<th style="width: 8%">영업단계</th>
+						<th style="width: 10%">예상매출액</th>
+						<th style="width: 10%">예상마감일자</th>
+						<th style="width: 5%">가능성</th>
+						<th style="width: 8%">상태</th>
+						<th style="width: 8%">등록자</th>
+						<th style="width: 12%">등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="listTable" class="tbody">
@@ -114,70 +120,52 @@
 			</table>
 		</div>
 		<div class="bottom_div">
-			
-			<div id="contact_button_position" class="functionBtn_div">
-			    	<input type="button" class="button functionBtn" value="추가" onclick="AddCustomerOpen();">
-					<input type="button" class="button functionBtn" value="삭제" onclick="opptDelete();" >
+			<div class="functionBtn_div">
+		    	<input type="button" class="ui orange button" value="추가" onclick="AddCustomerOpen();">
+				<input type="button" class="ui orange button" value="삭제" onclick="opptDelete();" >
 			</div>
-	
 			<!-- 페이징 처리 -->
-			<div id="pageSpace" class="pagination">
+			<div id="pageSpace" class="ui right floated pagination menu">
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
 					<c:when test="${ccPageNum eq page.firstPageCount}">
-		        		<a class="prev">◀◀</a>
+		        		<a class="icon item">
+		        				<i class="left chevron icon"></i>
+		        		</a>
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:opportunityList(${page.prevStepPage})" class="prev">◀◀</a>
-		    		</c:when>
-				</c:choose>
-				<c:choose>
-					<c:when test="${ccPageNum eq page.firstPageCount}">
-		        		<a class="prev">◀</a>
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:opportunityList(${page.prevPageNum})" class="prev">◀</a>
+		        		<a href="javascript:opportunityList(${page.prevPageNum})" class="icon item">
+		        			<i class="left chevron icon"></i>
+		        		</a>
 		    		</c:when>
 				</c:choose>
 				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 					<c:choose>
 						<c:when test="${i eq ccPageNum }">
 							<b>
-								<a  href="javascript:opportunityList('${i}');" id="pNum" class="choice">${i}</a>
+								<a  href="javascript:opportunityList('${i}');" id="pNum" class="item">${i}</a>
 							</b>
 						</c:when>
 						<c:otherwise>
-							<a  href="javascript:opportunityList('${i}');">${i}</a>
+							<a  href="javascript:opportunityList('${i}');" class="item">${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${ccPageNum eq page.totalPageCount}">
-		       			<a class="next">▶</a>
+		       			<a class="icon item">
+		        			<i class="right chevron icon"></i>
+		        		</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:opportunityList(${page.nextPageNum})" class="next">▶</a>
-		    		</c:when>
-				</c:choose>
-				<c:choose>
-					<c:when test="${ccPageNum eq page.totalPageCount}">
-		       			<a class="next">▶▶</a>
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:opportunityList(${page.nextStepPage})" class="next">▶▶</a>
+		       			<a href="javascript:opportunityList(${page.nextPageNum})"  class="icon item" >
+		       				<i class="right chevron icon"></i>
+		       			</a>
 		    		</c:when>
 				</c:choose>
 			</div>
 		</div>
 	</form>	
-	
-<!-- 		<!-- 영업기회 상태 차트  --> 
-<!-- 	<div id="chart_oppt_status" style="margin-top: 5%;"> -->
-<!-- 		<h1>영업기회 상태 현황</h1> -->
-<!-- 			<svg id="myGraph"> -->
-<!-- 			</svg> -->
-<%-- 				<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script> --%>
-<!-- 	</div>  -->
-</body>
+	</body>
 </html>

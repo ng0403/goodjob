@@ -4,6 +4,49 @@ svg {
 	height: 325px;
 	border: 1px solid black;
 }
+
+select{
+	margin: 0em !important;
+    max-width: 100% !important;
+    -webkit-box-flex: 1 !important;
+    -webkit-flex: 1 0 auto !important;
+    -ms-flex: 1 0 auto !important;
+    flex: 1 0 auto !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    text-align: left !important;
+    line-height: 1.21428571em !important;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    padding: 0.67857143em 1em !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(34, 36, 38, 0.15) !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+    border-radius: 0.28571429rem !important;
+    -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    box-shadow: none !important;
+}
+select .semanticUiComboBox{
+	margin: 0em !important;
+    max-width: 100% !important;
+    -webkit-box-flex: 1 !important;
+    -webkit-flex: 1 0 auto !important;
+    -ms-flex: 1 0 auto !important;
+    flex: 1 0 auto !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    text-align: left !important;
+    line-height: 1.21428571em !important;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    padding: 0.67857143em 1em !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(34, 36, 38, 0.15) !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+    border-radius: 0.28571429rem !important;
+    -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    box-shadow: none !important;
+}
 .bar {
 	fill : orange;
 }

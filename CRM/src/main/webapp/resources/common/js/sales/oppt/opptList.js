@@ -39,22 +39,24 @@ function addForm(){
 			success:function(result){
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
-				    str+="<br><label for='scompNam' class='tel_label_list'>"+'영업기회명'+"</label>";
-				    str+="<input type='text' style='width:325px; margin-left: 6px;' onkeypress='opptSearchInput(event);' class='tel_search' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
-				    str+="<label for='inputPassword1' class='tel_label_list' style='margin-left: 4px;'>"+'고객명'+"</label>";
-				    str+="<input type='text' class='tel_search' id='scust_nm"+count+"' name='scust_nm"+count+"' value='' style='margin-left: 6px;margin-right: 5px'>";
+				    str+="<br><div class='ui left icon input'>";
+				    str+="<input type='text' placeholder='영업기회명' autofocus='autofocus' style='width:325px;' onkeypress='opptSearchInput(event);' id='ssales_oppt_nm' name='ssales_oppt_nm' autofocus='autofocus' value=''>";
+				    str+="<i class='users icon'></i>";
+				    str+="</div>";
+				    str+="<div class='ui left icon input'>";
+				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm' name='scust_nm' value=''>";
+				    str+="<i class='users icon'></i>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
-				    str+="<input type='button' class='button search_btn' id='searchCustomer"+count+"' value='고객'>";
-				    str+="<label for='inputPassword1' class='tel_label_list' id='oppt_lev_label' style='margin-left:43px;'>"+'영업단계'+"</label>";
-				    str+="<select class='tel_label_list' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='height: 25px; margin-left: 6px;'>";
-				    str+="<option value=''>"+'선택'+"</option>";
+				    str+="</div>";
+				    str+="<input type='button' class='ui orange button' id='searchCustomer"+count+"' value='고객'>";
+				    str+="<select class='semanticUiComboBox' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"'>";
+				    str+="<option value=''>"+'영업기회단계'+"</option>";
 				    $.each(result.otllist,function(i,list){
 				    	str+="<option value="+list.code+" >"+list.cd_nm+"</option>";
 				    	});
 				    str+="</select>";
-				    str+="<label for='inputPassword1' class='tel_label_list' style='margin-left: 6px;'>"+'가능성(%)'+"</label>";
-				    str+="<select class='tel_label_list' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='height: 25px;margin-left: 5px;' >";
-				    str+="<option value=''>"+'선택'+"</option>";
+				    str+="<select class='semanticUiComboBox' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"'>";
+				    str+="<option value=''>"+'가능성'+"</option>";
 				    str+="<option value='10'>"+'10'+"</option>";
 				    str+="<option value='20'>"+'20'+"</option>";
 				    str+="<option value='30'>"+'30'+"</option>";
@@ -362,30 +364,25 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var ccPageeNo = $("<input>");
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
-	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:opportunityList("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
+
 	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
 		prevPage.attr("href","javascript:opportunityList("+prevPageNum+")");
 	}
+	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
+		ccPage.addClass("item");
 		ccPage.attr("href","javascript:opportunityList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
-			ccPage.addClass("choice");
 			ccPage.attr("id","pNum");
 			b.append(ccPage);
 			$("#pageSpace").append(b);
@@ -394,19 +391,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 		}
 	}
 	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
 		nextPage.attr("href","javascript:opportunityList("+nextPageNum+")");
 	}
+	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:opportunityList("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
 }
 //영업활동 리스트 조회
 function viewSalesActive(opptId){
