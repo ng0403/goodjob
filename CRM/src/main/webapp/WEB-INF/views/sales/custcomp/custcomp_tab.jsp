@@ -245,7 +245,7 @@
 						</tr>
 					</thead>
 					<tbody id="estTableTbody" >
-						<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
+						<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
 					</tbody>
 				</table>
 			</div>

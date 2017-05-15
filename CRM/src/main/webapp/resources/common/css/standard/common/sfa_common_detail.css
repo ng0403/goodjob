@@ -149,7 +149,7 @@ select {
 	font-size: 11pt;
 	font-weight: bold;
 	text-align: left;
-	padding-top: 10px;
+	padding-top: 5px;
 	padding-left: 10px;
 /* 	padding-bottom: 15px; */
 }
@@ -282,8 +282,7 @@ select {
 /* 상세보기 버튼 */
 .detailBtn {
 	float: right;
-	padding-right: 10px;
-	padding-bottom: 15px;
+	margin-top: -10px;
 }
 
 /* 테이블 */
@@ -294,6 +293,7 @@ table {
 
 table th, table td {
 	border: 1px solid #dcdcdc;
+	padding: 3px;
 }
 
 table thead tr th {

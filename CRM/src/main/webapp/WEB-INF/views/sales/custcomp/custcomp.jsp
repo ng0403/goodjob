@@ -31,24 +31,9 @@
 <title>고객사</title>
 <script>
 $(function() {
-
 	$('table').tablesort();
-
 });		   	
-// 	var tableSort;
-// 	onload=function() {
-// 		tableSort = $(".tblSort").tableSort(".tbody");
-// 	}
-// 	function goSort() {
-// 		tableSort.view();
-// 	}
-	
-// 	$ ( document ) .ready ( function () {  
-// 		$ ( "#myTable" ) .tablesorter ({sortList : [[ 0 , 0 ], [ 1 , 0 ]] });
-// 	}); 
-
 </script>
-
 
 </head>   
 <body style="overflow: auto;">
@@ -58,7 +43,7 @@ $(function() {
 	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui yellow header" style="background: #fff;">■ 고객 > 고객사</h3>
+			<h3 class="ui header" style="background: #fff;">■ 고객 > 고객사</h3>
 <%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
 		</div>
 	</div>

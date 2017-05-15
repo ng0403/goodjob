@@ -22,9 +22,8 @@
 /* 라벨 기본 스타일 지정 */
 
 #css_tabs {
-/* 	margin-top: 5px; */
 	width: 100%;
-	padding-top: 25px;
+	padding-top: 10px;
 }
 
 #css_tabs > label {

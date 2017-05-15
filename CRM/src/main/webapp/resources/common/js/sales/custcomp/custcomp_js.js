@@ -139,22 +139,22 @@ function addForm(){
 				var str = "";
 				
 					str+="<br><div class='ui left icon input'>";
-					str+="<input type='text' placeholder='고객사명' class='inp_search' autofocus='autofocus' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
+					str+="<input type='text' placeholder='고객사명' style='margin-right: 3px;' class='inp_search' autofocus='autofocus' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
 				    str+="<i class='users icon'></i>";
 				    str+="</div>";
 				    
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='사업자번호' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<input type='text' placeholder='사업자번호' style='margin-right: 3px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
 				    str+="<i class='suitcase icon'></i>";
 				    str+="</div>";
 				    
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='법인번호' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<input type='text' placeholder='법인번호' style='margin-right: 3px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
 				    str+="<i class='law icon'></i>";
 				    str+="</div>";
 				    
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='영업담당자' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
+				    str+="<input type='text' placeholder='영업담당자' style='margin-right: 3px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
 				    str+="<i class='user icon'></i>";
 				    str+="</div>";
 				    
