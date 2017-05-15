@@ -9,8 +9,7 @@
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
@@ -22,8 +21,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script> 
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
-
+ 
 
 <script>
    $(function() {
@@ -42,14 +40,20 @@
  
 	
 	<div class="search_div" id = "search_div">
-	    <label for="inputEmail1" class="tel_label_list">이름</label>
-	    <input type="text" name="cont_nm" id="cont_nm" class="tel_search" autofocus="autofocus" onkeydown="callSearchEnter(event);">
-	    <label for="inputPassword1" class="tel_label_list">이메일</label>
-	    <input type="email" name="email" id="email"  class="tel_search" onkeydown="callSearchEnter(event);">
-	    <label for="inputPassword1" class="tel_label_list">이동전화번호</label>
-	    <input type="text" name="ph" id="ph" class="tel_search" placeholder="" onkeydown="callSearchEnter(event);">
-	    	<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>		
-	 <button id="search_btn" type="submit" class="button search_btn" onclick="searchAcnkEvent(1,'');">조회</button> 
+	<div class="ui left icon input">
+			<input type="text" placeholder="이름" autofocus="autofocus" id="cont_nm" name="cont_nm" onkeydown="callSearchEnter(event);">
+			<i class="user icon"></i>
+	</div>	
+		<div class="ui left icon input">
+			<input type="text" placeholder="이메일" autofocus="autofocus" id="email" name="email" onkeydown="callSearchEnter(event);">
+			<i class="mail icon"></i>
+	</div>
+	<div class="ui left icon input">
+			<input type="text" placeholder="이동전화번호" autofocus="autofocus" id="ph" name="ph" onkeydown="callSearchEnter(event);">
+			<i class="mobile icon"></i>
+	</div>	
+ 	    	<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>		
+	 <button id="search_btn" type="submit" class="ui orange button" onclick="searchAcnkEvent(1,'');">조회</button> 
 	    
 	</div>
 	
@@ -106,84 +110,52 @@
 		</tbody>
 		</table>
 		<div class="bottom_div">
-	       <div id="contact_button_position">
-			<input type="button" class="button functionBtn" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
-			<input type="button" class="button functionBtn" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
-	       </div>
-		
-		<div id="pageSpace" class="pagination"> 
-		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${contactPageNum}">
-			<c:choose>
-				<c:when test="${contactPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀◀</a>
-	    		</c:when>
-				<c:when test="${contactPageNum ne page.firstPageCount}">
-	        		<a href="javascript:contactPaging(${page.prevStepPage})" class="prev">◀◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${contactPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀</a>
-	    		</c:when>
-				<c:when test="${contactPageNum ne page.firstPageCount}">
-	        		<a href="javascript:contactPaging(${page.prevPageNum})" class="prev">◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+	       <div id="functionBtn_div">
+			<input type="button" class="ui orange button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+			<input type="button" class="ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+	       </div> 
+	
+	     <div id="pageSpace" class="ui right floated pagination menu">
+				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
-					<c:when test="${i eq contactPageNum }">
-						<b>
-							<a  href="javascript:contactPaging('${i}');" id="pNum" class="choice">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:contactPaging('${i}');">${i}</a>
-					</c:otherwise>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+						<a class="icon item">
+	        				<i class="left chevron icon"></i>
+	        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+		        		<a href="javascript:contactPaging(${page.prevPageNum})" class="icon item">
+		        			<i class="left chevron icon"></i>
+		        		</a>
+		    		</c:when>
 				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${contactPageNum eq page.totalPageCount}">
-	       			<a class="next">▶</a>
-	    		</c:when>
-				<c:when test="${contactPageNum ne page.totalPageCount}">
-	       			<a href="javascript:contactPaging(${page.nextPageNum})" class="next">▶</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${contactPageNum eq page.totalPageCount}">
-	       			<a class="next">▶▶</a>
-	    		</c:when>
-				<c:when test="${contactPageNum ne page.totalPageCount}">
-	       			<a href="javascript:contactPaging(${page.nextStepPage})" class="next">▶▶</a>
-	    		</c:when>
-			</c:choose>
-		 
-		
-		
-		<%-- <input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-		<input type="hidden" id="callPageNum" value="${contactPageNum}"/>
-		<c:choose>
-		<c:when test="${contactPageNum == page.startPageNum}">
-			<a style="text-decoration: none;">◀</a>
-			<input type="text" id="contactPageInput" class="call_page_txt" value="${page.startPageNum}" onkeypress="pageInputCall(event);"/>  
-			<a href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
-			<a href="#" onclick="contactPaging(${contactPageNum+1})" style='text-decoration: none;'>▶</a>
-		</c:when>
-		<c:when test="${contactPageNum == page.endPageNum}">
-			<a href="#" onclick="contactPaging(${contactPageNum-1})" style="text-decoration: none;">◀</a>
-			<input type="text" id="callPageInput" class="call_page_txt" value="${page.endPageNum}" onkeypress="pageInputCall(event);"/> 
-			<a  href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
-			<a style="text-decoration: none;">▶</a>
-		</c:when>
-		<c:otherwise>
-			<a href="#" onclick="contactPaging(${contactPageNum-1})" style="text-decoration: none;">◀</a>
-			<input type="text" id="callPageInput" class="call_page_txt" value="${contactPageNum}" onkeypress="pageInputCall(event);"/>
-			<a href="#" onclick="contactPaging(${page.endPageNum})" style='text-decoration: none;'>/ ${page.endPageNum}</a>
-			<a href="#" onclick="contactPaging(${contactPageNum+1})" style="text-decoration: none;">▶</a>
-		</c:otherwise>
-		</c:choose> --%>
-	</div>		
+				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+					<c:choose>
+						<c:when test="${i eq ccPageNum }">
+							<b>
+								<a  href="javascript:contactPaging('${i}');" id="pNum" class="item">${i}</a>
+							</b>
+						</c:when>
+						<c:otherwise>
+							<a  href="javascript:contactPaging('${i}');" class="item" >${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+							<a class="icon item">
+		        				<i class="right chevron icon"></i>
+		        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+		       			<a href="javascript:contactPaging(${page.nextPageNum})" class="icon item">
+		       				<i class="right chevron icon"></i>
+		       			</a>
+		    		</c:when>
+				</c:choose>
+			</div>
+	
 	</div>
 	</div>
 	

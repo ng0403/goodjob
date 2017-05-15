@@ -22,6 +22,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
  
+ <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+ 
  
 <div id="title">
 		<div class="caption">■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}">리스트</a> >  수정
@@ -49,10 +53,8 @@
 </div>
  </form>
 <div id="btns"> <!-- 버튼 div  -->
-<!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" class="button functionBtn" onclick="board_modify_save();">저장</button>
-<!--  <input type="button" class="btn btn-default" id="board_modify_fbtn" value="저장"/> -->
- <input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onclick="go_list();"/>
+  <button type="submit" id = "board_modify_fbtn" class="ui orange button" onclick="board_modify_save();">저장</button>
+  <input type="button" class="ui orange button" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 </div>
 
 

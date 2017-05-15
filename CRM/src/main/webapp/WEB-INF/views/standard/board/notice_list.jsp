@@ -12,7 +12,7 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
-  <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
@@ -20,6 +20,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <title>Insert title here</title>
 
 </head>
@@ -38,7 +43,7 @@
             <label >제  목</label>
             <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
    
-             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="button search_btn" value="검색">
+             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="ui orange button" value="검색">
       <!--  </form>   -->
       </div>
    </div>
@@ -80,58 +85,50 @@
  
  <div class="bottom_div">
        <div class="functionBtn_div">
-         <input type="button" id = "board_add_fbtn"  class = "button functionBtn" value="추가" onclick="board_add();"/> 
-           <input type="button" id ="board_remove_fbtn" class="button functionBtn" value="삭제"  onclick="deleteAction() "/>
+         <input type="button" id = "board_add_fbtn"  class = "ui orange button" value="추가" onclick="board_add();"/> 
+           <input type="button" id ="board_remove_fbtn" class="ui orange button" value="삭제"  onclick="deleteAction() "/>
       </div> 
-   <div id="pageSpace" class="pagination"> 
-		
-		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${contactPageNum}">
-			<c:choose>
-				<c:when test="${boardPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀◀</a>
-	    		</c:when>
-				<c:when test="${boardPageNum ne page.firstPageCount}">
-	        		<a href="javascript:boardPaging(${page.prevStepPage})" class="prev">◀◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${boardPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀</a>
-	    		</c:when>
-				<c:when test="${boardPageNum ne page.firstPageCount}">
-	        		<a href="javascript:boardPaging(${page.prevPageNum})" class="prev">◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+   <!-- 페이징 처리 -->
+			<div id="pageSpace" class="ui right floated pagination menu">
+				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
-					<c:when test="${i eq contactPageNum }">
-						<b>
-							<a  href="javascript:boardPaging('${i}');" id="pNum" class="choice">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:boardPaging('${i}');">${i}</a>
-					</c:otherwise>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+						<a class="icon item">
+	        				<i class="left chevron icon"></i>
+	        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+		        		<a href="javascript:boardPaging(${page.prevPageNum})" class="icon item">
+		        			<i class="left chevron icon"></i>
+		        		</a>
+		    		</c:when>
 				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${boardPageNum eq page.totalPageCount}">
-	       			<a class="next">▶</a>
-	    		</c:when>
-				<c:when test="${boardPageNum ne page.totalPageCount}">
-	       			<a href="javascript:boardPaging(${page.nextPageNum})" class="next">▶</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${boardPageNum eq page.totalPageCount}">
-	       			<a class="next">▶▶</a>
-	    		</c:when>
-				<c:when test="${boardPageNum ne page.totalPageCount}">
-	       			<a href="javascript:boardPaging(${page.nextStepPage})" class="next">▶▶</a>
-	    		</c:when>
-			</c:choose>
-   </div>
+				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+					<c:choose>
+						<c:when test="${i eq ccPageNum }">
+							<b>
+								<a  href="javascript:boardPaging('${i}');" id="pNum" class="item">${i}</a>
+							</b>
+						</c:when>
+						<c:otherwise>
+							<a  href="javascript:boardPaging('${i}');" class="item" >${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+							<a class="icon item">
+		        				<i class="right chevron icon"></i>
+		        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+		       			<a href="javascript:boardPaging(${page.nextPageNum})" class="icon item">
+		       				<i class="right chevron icon"></i>
+		       			</a>
+		    		</c:when>
+				</c:choose>
+			</div>
 
    
 </div>

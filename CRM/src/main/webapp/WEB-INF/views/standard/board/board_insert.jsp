@@ -20,6 +20,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -50,8 +55,8 @@
 	</form>
 
 	<div id="btns"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "button functionBtn" value="저장" onclick="board_add_save();"/>
-		 <input type="button" id="board_list_fbtn" class="button search_btn" value="취소" onclick="goboardList();"/> 
+		 <input type="button" id ="board_add_fbtn" class = "ui orange button" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="ui orange button" value="취소" onclick="goboardList();"/> 
 	</div>
 
 </div> 

@@ -6,10 +6,12 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callTab.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+ <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
@@ -39,12 +41,12 @@
 		<div id="tabDiv1" class="tab1_content"> 
 	    
 	    <!-- 개인고객 편집 저장/취소 버튼  -->
+	 <div class="detailBtn"> 
 		<div id="callCustMdfBtnDiv" class="call_tab_bt_div">
-			 <input type="button" id="callAddBtn" value="저장" onclick="contactInsert()" class="button functionBtn"/>
-		     <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="button search_btn"/>
-	  
+			 <input type="button" id="callAddBtn" value="저장" onclick="contactInsert()" class="ui orange button"/>
+		     <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="ui orange button"/>
 		</div>
-				
+	</div>			
 		<div class="call_tab_div">
 			<table id="contactable">
 				<tbody id="contactbody">
@@ -64,7 +66,7 @@
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" /> 
-						    <input type="button" name="compSearch" value="회사" class="call_tab_bt" id="comp_list_bt"/>
+						    <input type="button" name="compSearch" value="회사" class="ui orange button" id="comp_list_bt"/>
 						</td> 
 						</tr>
 					<tr>

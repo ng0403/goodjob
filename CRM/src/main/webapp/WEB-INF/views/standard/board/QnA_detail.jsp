@@ -26,6 +26,10 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 
 <form role="form" name = "form_modify" method="post">
  <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardlist.BOARD_NO}"> 
@@ -59,16 +63,16 @@
 <c:choose>
 	<c:when test= "${sessionID eq 'admin'}">
 	<div id="btns"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "button search_btn" value="답변" onClick="board_modify();"/> 
-		<input type="button" id="board_remove_fbtn" class="button functionBtn" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onClick="go_list();"/>
+		<input type="button" id="board_modify_fbtn" class = "ui orange button" value="답변" onClick="board_modify();"/> 
+		<input type="button" id="board_remove_fbtn" class="ui orange button" value="삭제" onClick="board_detail_remove();"/>  
+		<input type="button" class="ui orange button" id="board_list_fbtn" value="목록" onClick="go_list();"/>
 	</div>
 	</c:when>
  	<c:otherwise>
 	<div id="btns"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "button search_btn" value="편집" onClick="board_modify();"/> 
-		<input type="button" id="board_remove_fbtn" class="button functionBtn" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onClick="go_list();"/>
+		<input type="button" id="board_modify_fbtn" class = "ui orange button" value="편집" onClick="board_modify();"/> 
+		<input type="button" id="board_remove_fbtn" class="ui orange button" value="삭제" onClick="board_detail_remove();"/>  
+		<input type="button" class="ui orange button" id="board_list_fbtn" value="목록" onClick="go_list();"/>
 	</div>
 	</c:otherwise>
 	</c:choose>
@@ -84,7 +88,7 @@
 		</div> 
 		<!-- 댓글 등록 버튼 -->
 		 <div id="detail_btn_div" class="reply_div col-md-4" style="float:right; margin-top:-40px; margin-right:-380px;" >
-	     <input type="button" id="reply_add_fbtn" class = "button functionBtn " value="저장" onclick="reply_add();"/> 
+	     <input type="button" id="reply_add_fbtn" class = "ui orange button " value="저장" onclick="reply_add();"/> 
 		</div>
  
 	</div>

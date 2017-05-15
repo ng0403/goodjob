@@ -102,10 +102,10 @@ public class ReplyController {
 	 		System.out.println("REPLY_NO !" + BOARD_NO);
  		    Map<String,Object> map = new HashMap<String,Object>();
 		    
- 			map.put("pageNum", replyPageNum);
+ 			map.put("replyPageNum", replyPageNum);
  			map.put("BOARD_NO", BOARD_NO);
- 			
-			PagerVO page = replyService.getReplyListCount(map);
+ 
+			PagerVO page = replyService.replyListCount(map);
 			System.out.println("reply page?" + page.toString());
 			if(page.getEndRow()==1){
 				page.setEndRow(0);

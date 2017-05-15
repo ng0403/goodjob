@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:set var="ctx" value="${pageContext.request.contextPath }" />
-<link rel="stylesheet"
-	href="${ctx}/resources/common/css/sales/oppt/custcomp_actpop_css.css"
-	type="text/css" />
+<c:set var="ctx" value="${pageContext.request.contextPath }" /> 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />	
 	
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${ctx}/resources/common/css/sales/oppt/operating_activity_popup.css" --%>
-<!-- 	type="text/css" /> -->
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>	
+	
+	
+ <!-- 	type="text/css" /> -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
@@ -63,7 +63,7 @@
 									<input type="text" name="cust_nm" id="oppt_nm" class="int" value="${cust_nm}" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
 									<input type="hidden" name="oppt_id" id="oppt_id">
-								    <input type="button" value="영업기회" id="oppt" class="button search_btn" onclick="javascript:opptListPopup();">
+								    <input type="button" value="영업기회" id="oppt" class="ui orange button" onclick="javascript:opptListPopup();">
 									 
 								</c:when>
 								<c:when test="${flg eq 'detail'}">
@@ -224,9 +224,9 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="act_bt_position">
-			<input type="button" class="button functionBtn" value="저장" id="activeButton"/>
-			<input type="button" class="button search_btn" value="취소" id="activeAdd_cancel"/>
+		<div class="detailBtn">
+			<input type="button" class="ui orange button" value="저장" id="activeButton"/>
+			<input type="button" class="ui orange button" value="취소" id="activeAdd_cancel"/>
 		</div>
 	</div>
 </div>

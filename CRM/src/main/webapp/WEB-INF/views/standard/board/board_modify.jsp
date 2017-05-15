@@ -23,6 +23,11 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
+ 
+ <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+ 
 
 <title>Insert title here</title>
 </head>
@@ -60,9 +65,8 @@
  </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="button functionBtn">저장</button>
-<!--  <input type="button" class="btn btn-default" id="board_modify_fbtn" value="저장"/> -->
- <input type="button" class="button search_btn" id="board_list_fbtn" onClick="board_list();" value="목록"/>
+ <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="ui orange button">저장</button>
+  <input type="button" class="ui orange button" id="board_list_fbtn" onClick="board_list();" value="목록"/>
 </div>
 
 
@@ -88,7 +92,7 @@
       <!-- Footer -->
       <div class="modal-footer">
         Footer
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button" class="ui orange button" data-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>

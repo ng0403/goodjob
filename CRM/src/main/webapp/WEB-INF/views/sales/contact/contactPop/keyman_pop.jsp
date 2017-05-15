@@ -9,7 +9,10 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/comp_list_pop.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+  
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -42,7 +45,7 @@
 					<option value="oppt_nm">회사명</option>
 				</select>
 				<input id="search_text" type="text" name="keyword" class="comp_list_txt"> &nbsp;
-				<button id="search_btn" type="submit" class="comp_list_bt">검색</button>
+				<button id="search_btn" type="submit" class="ui orange button">검색</button>
 			</form>
 		</div>
 	

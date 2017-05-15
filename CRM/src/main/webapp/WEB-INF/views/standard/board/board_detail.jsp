@@ -12,17 +12,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/board/boardCSS.css" type="text/css" /> 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
+
+
+ <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/reply.js"></script>  
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />--%> 
+ 
+ 
  <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 
 <title>Insert title here</title>
 </head>
@@ -63,16 +69,16 @@
   		<%--   <label for="created"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardlist.CREATED}" /></label>  --%>
  		<%-- <label for="created"> ${boardlist.CREATED} </label>  --%>
   		<label for="view_cnt">조회 : ${boardlist.VIEW_CNT}</label> 
-  		<label> <a href="/file_down?FILE_CD=${boardlist.FILE_CD}">${boardlist.FILE_NM}</a></label>	 
+  		<label> <a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM}</a></label>	 
  		<br/> 
  	</div> 
 		 <textarea  rows="10" id="boardcontent"  readonly="readonly" >${boardlist.CONTENT}</textarea>
 	</div> 
  	 
 	<div id="detail_btns"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "button search_btn" value="편집" onClick="board_modify();"/> 
-		<input type="button" id="board_remove_fbtn" class="button functionBtn" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="button search_btn" id="board_list_fbtn" value="목록" onClick="goboardList();"/>
+		<input type="button" id="board_modify_fbtn" class = "ui orange button" value="편집" onClick="board_modify();"/> 
+		<input type="button" id="board_remove_fbtn" class="ui orange button" value="삭제" onClick="board_detail_remove();"/>  
+		<input type="button" class="ui orange button" id="board_list_fbtn" value="목록" onClick="goboardList();"/>
 	</div> 
 
 	<!-- 댓글div -->
@@ -84,7 +90,7 @@
 		</div> 
 		<!-- 댓글 등록 버튼 -->
 		 <div id="detail_btn_div" class="reply_div col-md-4" style="float:right; margin-top:-40px; margin-right:-380px;" >
-	     <input type="button" id="reply_add_fbtn" class = "button functionBtn " value="저장" onclick="reply_add();"/> 
+	     <input type="button" id="reply_add_fbtn" class = "ui orange button " value="저장" onclick="reply_add();"/> 
 		</div>
  
 	</div>
@@ -98,58 +104,48 @@
 	</div> 
 
 </div>	
- 
-  <div class="paging_div">
-	 
-		 <div id="pageSpace" class="pagination"> 
-		
-		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${replyPageNum}">
-			<c:choose>
-				<c:when test="${replyPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀◀</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.firstPageCount}">
-	        		<a href="javascript:replyPaging(${page.prevStepPage})" class="prev">◀◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${replyPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.firstPageCount}">
-	        		<a href="javascript:replyPaging(${page.prevPageNum})" class="prev">◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+    
+			<!-- 페이징 처리 -->
+			<div id="pageSpace" class="ui right floated pagination menu">
+				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
-					<c:when test="${i eq replyPageNum }">
-						<b>
-							<a  href="javascript:replyPaging('${i}');" id="pNum" class="choice">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:replyPaging('${i}');">${i}</a>
-					</c:otherwise>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+						<a class="icon item">
+	        				<i class="left chevron icon"></i>
+	        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+		        		<a href="javascript:replyPaging(${page.prevPageNum})" class="icon item">
+		        			<i class="left chevron icon"></i>
+		        		</a>
+		    		</c:when>
 				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${replyPageNum eq page.totalPageCount}">
-	       			<a class="next">▶</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.totalPageCount}">
-	       			<a href="javascript:replyPaging(${page.nextPageNum})" class="next">▶</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${replyPageNum eq page.totalPageCount}">
-	       			<a class="next">▶▶</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.totalPageCount}">
-	       			<a href="javascript:replyPaging(${page.nextStepPage})" class="next">▶▶</a>
-	    		</c:when>
-			</c:choose>
-   </div>
+				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+					<c:choose>
+						<c:when test="${i eq ccPageNum }">
+							<b>
+								<a  href="javascript:replyPaging('${i}');" id="pNum" class="item">${i}</a>
+							</b>
+						</c:when>
+						<c:otherwise>
+							<a  href="javascript:replyPaging('${i}');" class="item" >${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+							<a class="icon item">
+		        				<i class="right chevron icon"></i>
+		        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+		       			<a href="javascript:replyPaging(${page.nextPageNum})" class="icon item">
+		       				<i class="right chevron icon"></i>
+		       			</a>
+		    		</c:when>
+				</c:choose>
+			</div>
 		
 		<div class="right">
  		</div> 

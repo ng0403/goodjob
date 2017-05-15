@@ -14,16 +14,16 @@
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
  
+ 
+ <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+ 
 
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css"/>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
 </head>
 
 
@@ -50,8 +50,8 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn" class="button functionBtn" value="추가" />
-				<input type="button" id="deletekeymanbtn" class="button functionBtn" value="삭제" onclick="keymanDelete1();"/>
+				<input type="button" id="keyman_pop_btn" class="ui orange button" value="추가" />
+				<input type="button" id="deletekeymanbtn" class="ui orange button" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
 			<div id="tableline2">
@@ -76,8 +76,8 @@
 			<!-- 영업기회 리스트 -->
 		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="oppt_pop_btn" class="button functionBtn" value="추가" />
-				<input type="button" id="opptDel" class="button functionBtn" value="삭제" onclick="ccOpptDel()"/>
+				<input type="button" id="oppt_pop_btn" class="ui orange button" value="추가" />
+				<input type="button" id="opptDel" class="ui orange button" value="삭제" onclick="ccOpptDel()"/>
 			</div>
 			
 			<div id="tableline2">
@@ -105,8 +105,8 @@
 			<!-- 영업활동 리스트 -->
 		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_pop_btn" class="button functionBtn" value="추가"/>
-				<input type="button" id="actDel" class="button functionBtn" value="삭제" onclick="opptActiveDeletecontact();"/>
+				<input type="button" id="act_pop_btn" class="ui orange button" value="추가"/>
+				<input type="button" id="actDel" class="ui orange button" value="삭제" onclick="opptActiveDeletecontact();"/>
 			</div>
 			
 			<div id="tableline2">

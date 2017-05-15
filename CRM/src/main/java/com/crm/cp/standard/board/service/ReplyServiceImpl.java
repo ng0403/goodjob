@@ -58,12 +58,12 @@ public class ReplyServiceImpl implements ReplyService {
 		System.out.println("ReplyListCount service " +  replyMap.toString());
 		int actPageNum = (Integer) replyMap.get("replyPageNum");
 		// 현재 페이지 얻어오기
-		PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+		PagerVO page = new PagerVO(actPageNum, 0, 5, 10);
 		// 전체 글의 갯수 구하기
 		System.out.println("actPage Num " + actPageNum);
 		int totalRowCount = replyDao.replyListCount(replyMap);
 		System.out.println("totalRowCount ? " + totalRowCount);		
-		page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+		page = new PagerVO(actPageNum, totalRowCount, 5, 10);
 	
 		return page;
 	}
