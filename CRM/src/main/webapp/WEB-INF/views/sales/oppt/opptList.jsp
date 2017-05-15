@@ -14,7 +14,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <title>개인 고객</title>
 </head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
@@ -38,7 +38,7 @@
 	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui yellow header">■ 영업 > 영업기회</h3>
+			<h3 class="ui header" style="background: #fff;">■ 영업 > 영업기회</h3>
 		</div>
 	</div>
 		   <div class="search_div" id="search_div" >

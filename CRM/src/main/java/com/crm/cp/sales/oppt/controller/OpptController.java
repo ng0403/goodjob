@@ -60,7 +60,17 @@ public class OpptController {
 		List<MenuVO> menuList = menuService.selectAll(session);
 		
 		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+		map.put("ssales_oppt_nm0", map.get("ssales_oppt_nm0"));
+		map.put("ssales_oppt_nm1", map.get("ssales_oppt_nm1"));
 		map.put("scust_nm", map.get("scust_nm"));
+		map.put("scust_nm0", map.get("scust_nm0"));
+		map.put("scust_nm1", map.get("scust_nm1"));
+		map.put("ssales_lev_cd", map.get("ssales_lev_cd"));
+		map.put("ssales_lev_cd0", map.get("ssales_lev_cd0"));
+		map.put("ssales_lev_cd1", map.get("ssales_lev_cd1"));
+		map.put("psblty_rate", map.get("psblty_rate"));
+		map.put("psblty_rate0", map.get("psblty_rate0"));
+		map.put("psblty_rate1", map.get("psblty_rate1"));
 
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
@@ -241,15 +251,16 @@ public class OpptController {
 		map.put("ssales_lev_cd", map.get("ssales_lev_cd"));
 		map.put("ssales_lev_cd0", map.get("ssales_lev_cd0"));
 		map.put("ssales_lev_cd1", map.get("ssales_lev_cd1"));
-		map.put("psblty_rate", map.get("psblty_rate"));
-		map.put("psblty_rate0", map.get("psblty_rate0"));
-		map.put("psblty_rate1", map.get("psblty_rate1"));
+		map.put("spsblty_rate", map.get("spsblty_rate"));
+		map.put("spsblty_rate0", map.get("spsblty_rate0"));
+		map.put("spsblty_rate1", map.get("spsblty_rate1"));
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		//영업기회 리스트 출력
 		List<OpptVO> list = service.opptList(map);
+		System.out.println("검색결과 list :"+ list);
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("oplist", list);
@@ -465,26 +476,6 @@ public class OpptController {
 
 		return mov;
 	}
-
-//	@RequestMapping(value = "/estimCustomList", method = RequestMethod.GET)
-//	public ModelAndView estimCustomList(
-//			HttpSession session,
-//			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
-//			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
-//
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("keyfield", keyfield);
-//		map.put("keyword", keyword);
-//		List<Object> custcompList = service.estimCustomList(map);
-//		ModelAndView mov = new ModelAndView(
-//				"/sales/oppt/opptPop/custcomp_list_pop");
-//		mov.addObject("custcompList", custcompList);
-//
-//		// javascript에서 검색창에서의 고객 리스트인지 구분하기 위한 값 전달
-//		mov.addObject("custType", "estim");
-//
-//		return mov;
-//	}
 
 	// 영업활동 추가 팝업창 오픈
 	@RequestMapping(value = "/opptActivePopup", method = RequestMethod.GET)
@@ -768,21 +759,4 @@ public class OpptController {
 	}
 	
 	
-//	//홈화면 pipeline 상세보기 버튼 클릭 시 연결되는 부분 (현재 사용안함)
-//	@RequestMapping(value="/pipeLinePop" , method=RequestMethod.GET)
-//	public ModelAndView estimResultpop(HttpSession session){
-//			
-//			String userId = session.getAttribute("user").toString();
-//			String empcd = service.findEmpCd(userId);
-//			System.out.println(empcd);
-//			Map<String,String> map = new HashMap<String,String>(0);
-//			map.put("empcd", empcd);
-//			map.put("userId", userId);
-//			List<pipeLineVO> pipeLineList = service.pipeLineList(map);
-//			ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/pipeLine_list_pop");
-//		
-//			mov.addObject("pipeLineList", pipeLineList);
-//	
-//		return mov;
-//	}
 }

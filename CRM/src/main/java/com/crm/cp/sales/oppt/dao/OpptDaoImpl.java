@@ -25,6 +25,7 @@ public class OpptDaoImpl implements OpptDao {
 	@Override
 	public List<OpptVO> opptList(Map<String, String> map) {
 		// TODO Auto-generated method stub
+		System.out.println("리스트 검색조건 DaoImpl map : " + map);
 		return sqlsession.selectList("oppt.list", map);
 	}
 	//홈화면 리스트 출력

@@ -63,7 +63,7 @@
 		</choose>
 		<choose>
 			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' and ssales_lev_cd0 != null and ssales_lev_cd0 != '' and ssales_lev_cd1 != null and ssales_lev_cd1 != ''">
-				and (a.ssales_lev_cd = #{ssales_lev_cd}
+				and (a.sales_lev_cd = #{ssales_lev_cd}
 				or a.sales_lev_cd = #{ssales_lev_cd0}
 				or a.sales_lev_cd = #{ssales_lev_cd1})
 			</when>

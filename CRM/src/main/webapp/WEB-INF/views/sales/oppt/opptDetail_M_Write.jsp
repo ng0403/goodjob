@@ -61,7 +61,7 @@ $(document).ready(function(){
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${addFlag == 0 }">
 			<div class="caption">
-			<h3 class="ui yellow header">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</h3>
+			<h3 class="ui header" style="background: #fff;">■ 영업 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
 			</div>
 		</c:if>
 <%-- 		<c:if test="${addFlag == 1 }"> --%>
@@ -70,19 +70,19 @@ $(document).ready(function(){
 	</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content" style="text-align: right;">
-			<div id="baseBtnDiv"  class="bt_position_authuser" style="padding: 5px;">
+			<div id="baseBtnDiv"  class="bt_position_authuser">
 				<input type="button" id="modifybtn" class="ui orange button"  onclick="opptMdfyBtn();" value="편집" />
 				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
-			<div id="NewAddBtnDiv" style="display: none; padding: 5px;" class="bt_position_authuser">
+			<div id="NewAddBtnDiv" style="display: none; " class="bt_position_authuser">
 				<input type="button" id="submitbtn" style="display: none;" class="ui orange button" onclick="opptAddBtn();" value="추가" />
 				<input type="button" id="cancelbtn" style="display: none;" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
-			<div id="addBtnDiv" style="display: none; padding: 5px;" class="bt_position_authuser">
+			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="addsavebtn" class="ui orange button" onclick="opptAdd();" value="저장" />
 				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
-			<div id="mdfBtnDiv" style="display: none; padding: 5px;" class="bt_position_authuser">
+			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="modifysavebtn" class="ui orange button" value="저장" onclick="opptModify();"/>
 				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>

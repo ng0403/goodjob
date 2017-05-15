@@ -634,14 +634,14 @@ function viewSalesActive(opptId){
 				"<th rowspan='2' style='width: 3% !important;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
 				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'>" +
 				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
-				"<td rowspan='2'style='width: 8% !important;'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 6%;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2'style='width: 8% !important;'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td rowspan='2' style='width: 8% !important;'>"+data.sales_actvy_div_nm+"</td>"+
+				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'>"+data.sales_oppt_nm+"</td>"+
+				"<td rowspan='2' style='width: 8% !important;'>"+data.sales_actvy_type_nm+"</td>"+
 				"<td style='width: 9% !important;'>"+start_d+"</td>"+
 				"<td style='width: 9% !important;'>"+data.strt_t+"</td>"+
-				"<td rowspan='2'style='width: 6% !important;'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2'style='width: 7% !important;'>"+data.fst_reg_id+"</td>"+
-				"<td rowspan='2'style='width: 10% !important;'>"+reg_dt+"</td>"+
+				"<td rowspan='2' style='width: 6% !important;'>"+data.sales_actvy_stat_nm+"</td>"+
+				"<td rowspan='2' style='width: 7% !important;'>"+data.fst_reg_id+"</td>"+
+				"<td rowspan='2' style='width: 10% !important;'>"+reg_dt+"</td>"+
 				"</tr>"+
 				"<tr>"+
 				"<td style='width: 9% !important;'>"+end_d+"</td>"+
@@ -651,22 +651,22 @@ function viewSalesActive(opptId){
 			
 			if(result.actList.length < 5){
 				for(var j = 0; j < 5-result.actList.length; j++){
-					content += "<th rowspan='2' style='width: 3% !important;'></th>"+ 
-					"<td rowspan='2'style='width: 20% !important;'></td>"+
-					"<td rowspan='2'style='width: 8% !important;'></td>"+
-					"<td rowspan='2'style='width: 20% !important;'></td>"+
-					"<td rowspan='2'style='width: 8% !important;'></td>"+
-					"<td style='width: 9% !important;'></td>"+
-					"<td style='width: 9% !important;'></td>"+
-					"<td rowspan='2'style='width: 6% !important;></td>"+
-					"<td rowspan='2'style='width: 7% !important;></td>"+
-					"<td rowspan='2'style='width: 10% !important;></td>"+
-					"</tr>"+
-					"<tr>"+
-					"<td style='width: 9% !important;'></td>"+
-					"<td style='width: 9% !important;'></td>"+
-					"</tr>";
-					
+					content += "<tr>"+
+								"<th rowspan='2' style='width: 3% !important;'></th>"+ 
+								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'></td>"+
+								"<td rowspan='2' style='width: 8% !important;'></td>"+
+								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'></td>"+
+								"<td rowspan='2' style='width: 8% !important;'></td>"+
+								"<td style='width: 9% !important;'></td>"+
+								"<td style='width: 9% !important;'></td>"+
+								"<td rowspan='2' style='width: 6% !important;'></td>"+
+								"<td rowspan='2' style='width: 7% !important;'></td>"+
+								"<td rowspan='2' style='width: 10% !important;'></td>"+
+								"</tr>"+
+								"<tr>"+
+								"<td style='width: 9% !important;'></td>"+
+								"<td style='width: 9% !important;'></td>"+
+								"</tr>";
 					}
 				}
 			}	

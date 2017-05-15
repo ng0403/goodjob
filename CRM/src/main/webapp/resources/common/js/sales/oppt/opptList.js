@@ -49,13 +49,13 @@ function addForm(){
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
 				    str+="<input type='button' class='ui orange button' id='searchCustomer"+count+"' value='고객' style='margin-left: 3px;'>";
-				    str+="<select class='semanticUiComboBox' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important;'>";
+				    str+="<select name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important;'>";
 				    str+="<option value=''>"+'영업기회단계'+"</option>";
 				    $.each(result.otllist,function(i,list){
 				    	str+="<option value="+list.code+" >"+list.cd_nm+"</option>";
 				    	});
 				    str+="</select>";
-				    str+="<select class='semanticUiComboBox' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='margin-left: 3px !important;'>";
+				    str+="<select name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='margin-left: 3px !important;'>";
 				    str+="<option value=''>"+'가능성'+"</option>";
 				    str+="<option value='10'>"+'10'+"</option>";
 				    str+="<option value='20'>"+'20'+"</option>";
@@ -282,8 +282,19 @@ function uncomma(str) {
 }
 //영업기회 리스트 출력
 function opportunityList(page){
-//	readDetail();
 	var ctx = $("#ctx").val();
+//	alert($("#ssales_oppt_nm").val());
+//	alert($("#ssales_oppt_nm0").val());
+//	alert($("#ssales_oppt_nm1").val());
+//	alert($("#scust_id").val());
+//	alert($("#scust_id0").val());
+//	alert($("#scust_id1").val());
+//	alert($("#ssales_lev_cd_select").val());
+//	alert($("#ssales_lev_cd_select0").val());
+//	alert($("#ssales_lev_cd_select1").val());
+//	alert($("#spsblty_rate_select").val());
+//	alert($("#spsblty_rate_select0").val());
+//	alert($("#spsblty_rate_select1").val());
 	$.ajax({
 		type : 'post',
 		url : ctx + '/opptajax',
@@ -303,6 +314,7 @@ function opportunityList(page){
 		},
 		datatype : 'json',
 		success:function(result){
+			alert("검색완료");
 			//리스트 출력 시 버튼 상태 설정
 			$("#baseBtnDiv").css("display", "none");
 			$("#NewAddBtnDiv").css("display", "block");

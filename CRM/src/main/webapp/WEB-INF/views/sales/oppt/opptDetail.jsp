@@ -49,13 +49,13 @@ $(document).ready(function() {
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
-			<div class="bt_position_authuser" style=" padding: 5px;">
+			<div class="bt_position_authuser">
 				<button id="act_opp_nm" class="ui orange button">영업활동 추가</button>
 				<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
 			<div id="tableline" class="FixHeader">
-				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
+				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 					<thead>
 						<tr class="headerLock">
 							<th rowspan="2" style="width: 3% !important;"><input type="checkbox"  id='actAllSelect'/></th>
@@ -88,7 +88,7 @@ $(document).ready(function() {
 		</div>
 		
 		<div id="tableline" class="FixHeader">
-			<table id="goaltable" class="ui sortable celled table" cellspacing="0" style="height: 192px;">
+			<table id="goaltable" class="ui celled table" cellspacing="0" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
 						<th style="width: 3% !important;"><input type="checkbox"  id='estimAllSelect'/></th>
