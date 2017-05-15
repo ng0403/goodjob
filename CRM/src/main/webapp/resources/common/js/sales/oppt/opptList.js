@@ -40,11 +40,11 @@ function addForm(){
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
 				    str+="<br><div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='영업기회명' autofocus='autofocus' style='width:325px;' onkeypress='opptSearchInput(event);' id='ssales_oppt_nm' name='ssales_oppt_nm' autofocus='autofocus' value=''>";
+				    str+="<input type='text' placeholder='영업기회명' autofocus='autofocus' style='width:325px;' onkeypress='opptSearchInput(event);' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
 				    str+="<i class='users icon'></i>";
 				    str+="</div>";
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm' name='scust_nm' value=''>";
+				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm"+count+"' name='scust_nm"+count+"' value=''>";
 				    str+="<i class='users icon'></i>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
