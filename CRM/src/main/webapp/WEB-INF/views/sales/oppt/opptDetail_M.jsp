@@ -10,8 +10,11 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> --%>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
@@ -55,30 +58,32 @@ $(document).ready(function(){
 <!-- 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</div> -->
 <%-- 		</c:if> --%>
 		<c:if test="${addFlag == 1 }">
-			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 상세정보</div>
+			<div class="caption">
+				<h3 class="ui yellow header">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</h3>
+			</div>
 		</c:if>
 	</div>
-		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
-		<div id="tabDiv1" class="tab1_content">
-			<div id="baseBtnDiv"  class="bt_position_authuser">
-				<input type="button" id="modifybtn" class="button functionBtn"  onclick="opptMdfyBtn();" value="편집" />
-				<input type="button" id="cancelbtn" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
+<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
+		<div id="tabDiv1" class="tab1_content" style="text-align: right;">
+			<div id="baseBtnDiv"  class="bt_position_authuser" style="padding: 5px;">
+				<input type="button" id="modifybtn" class="ui orange button"  onclick="opptMdfyBtn();" value="편집" />
+				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소"/>
 			</div>
-			<div id="NewAddBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="submitbtn" style="display: none;" class="button functionBtn" onclick="opptAddBtn();" value="추가" />
-				<input type="button" id="cancelbtn" style="display: none;" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
+			<div id="NewAddBtnDiv" style="display: none; padding: 5px;" class="bt_position_authuser">
+				<input type="button" id="submitbtn" style="display: none;" class="ui orange button" onclick="opptAddBtn();" value="추가" />
+				<input type="button" id="cancelbtn" style="display: none;" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소"/>
 			</div>
-			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="addsavebtn" class="button functionBtn" onclick="opptAdd();" value="저장" />
-				<input type="button" id="cancelbtn" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
+			<div id="addBtnDiv" style="display: none; padding: 5px;" class="bt_position_authuser">
+				<input type="button" id="addsavebtn" class="ui orange button" onclick="opptAdd();" value="저장" />
+				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
-			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="modifysavebtn" class="button functionBtn" value="저장" onclick="opptModify();"/>
-				<input type="button" id="cancelbtn" class="button functionBtn" onclick="opptCancelBtn(${addFlag});" value="취소" />
+			<div id="mdfBtnDiv" style="display: none; padding: 5px;" class="bt_position_authuser">
+				<input type="button" id="modifysavebtn" class="ui orange button" value="저장" onclick="opptModify();"/>
+				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
 			<div id="ccustomerdiv">
-				<table id="ccustomertable_M">
+				<table id="ccustomertable_M" class="ui celled table">
 					<tbody id="opptDetail">
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
@@ -164,9 +169,9 @@ $(document).ready(function(){
 			<div id="salesOpptPrdtdiv">
 				<input type="hidden" id="inputCust" value="false"/>
 				
-				<div class="detailBtn">
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품삭제" id="opptProdDelete"/>
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="button functionBtn" value="상품추가" id="opptProdListBtn"/>
+				<div class="detailBtn" style="padding: 5px;">
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품삭제" id="opptProdDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
 <!-- 				<table> -->
 <!-- 					<tbody id="opptProd"> -->

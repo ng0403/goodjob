@@ -10,29 +10,19 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
-
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
-<%-- <script src="${ctx}/resources/common/js/sales/oppt/opptlist.js"></script> --%>
 </head>
-
-
 
 <script type="text/javascript">
 $(document).ready(function() {
 	var opptId =$('#hsales_oppt_id').val();
 	var custId =$('#hcust_id').val();
-// 	URLEncoder.encode(opptId , "UTF-8");
 	$('#salesId').val(opptId);
-	
-// 	alert("선택된 사용자 ID : " + opptId);
 	viewSalesActive(opptId);
-// 	opptprdtList(opptId);
 	estimList(opptId);
 });
 
@@ -59,13 +49,13 @@ $(document).ready(function() {
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
-			<div class="bt_position_authuser">
-				<button id="act_opp_nm" class="button functionBtn">영업활동 추가</button>
-				<button id="addkeymancancel" class="button functionBtn" onclick="javascript:opptActiveDelete();">삭제</button>
+			<div class="bt_position_authuser" style=" padding: 5px;">
+				<button id="act_opp_nm" class="ui orange button">영업활동 추가</button>
+				<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
 			<div id="tableline" class="FixHeader">
-				<table id="goaltable" class="tabtable">
+				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 					<thead>
 						<tr class="headerLock">
 							<th rowspan="2" style="width: 3% !important;"><input type="checkbox"  id='actAllSelect'/></th>
@@ -92,13 +82,13 @@ $(document).ready(function() {
 		</div>
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
-		<div class="bt_position_authuser">
-			<button id="estimateAdd" class="button functionBtn">견적 추가</button>
-			<button id="addkeymancancel" class="button functionBtn" onclick="javascript:opptEstimDelete();">삭제</button>
+		<div class="bt_position_authuser" style=" padding: 5px;">
+			<button id="estimateAdd" class="ui orange button">견적 추가</button>
+			<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
 		<div id="tableline" class="FixHeader">
-			<table id="goaltable" class="tabtable" style="height: 192px;">
+			<table id="goaltable" class="ui sortable celled table" cellspacing="0" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
 						<th style="width: 3% !important;"><input type="checkbox"  id='estimAllSelect'/></th>

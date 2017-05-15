@@ -20,7 +20,7 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script> --%>
 <script type="text/javascript">
 </script>
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
@@ -44,7 +44,7 @@
 		   <div class="search_div" id="search_div" >
 			   <div class="ui left icon input">
 					<input type="text" placeholder="영업기회명" autofocus="autofocus" style="width:325px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
-					<i class="users icon"></i>
+					<i class="database icon"></i>
 			   </div>	
 			   <div class="ui left icon input">
 					<input type="text" placeholder="고객명" autofocus="autofocus" id="scust_nm" name="scust_nm" value="${scust_nm}">

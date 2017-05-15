@@ -159,66 +159,11 @@ function opptCancelBtn(addFlag) {
 		if(addFlag == 0)	// 추가할 때
 		{
 			location.href = '/oppt';
-//			$("#baseBtnDiv").css("display", "none");
-//			$("#addBtnDiv").css("display", "none");
-//			$("#NewAddBtnDiv").css("display", "block");
-//			$("#mdfBtnDiv").css("display", "none");
-//			$("#submitbtn").css("display", "block");
-//			$("#NewAddBtnDiv cancelbtn").css("display", "block");	//css, readonly, disabled true 상태로 변경
-			
-//			$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
-//				readonly:true,
-//				style:'background-color:#EAEAEA'
-//			});
-//			$("#opptDetail select").attr({
-//				disabled:true,
-//			});
-//			$("#opptPrdtbody tr").each(function(){
-//				$(".discount").attr("readonly",readonly);
-//				$(".unit").attr("disabled",true);
-//			});
-//			$("#customer").attr("disabled",true);
-//			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
-//			// 상세정보에 이전 값 넣기
-//			$("#cust_id").val($("#hcust_id").val());
-//			$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
-//			$("#cust_nm").val($("#hcust_nm").val());
-//			$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
-//			$("#expt_fin_d").val($("#hexpt_fin_d").val());
-//			$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected").css("height", "24pt");
-//			$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected").css("height", "24pt");
-//			$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected").css("height", "24pt");
-//			$("#memo").val($("#hmemo").val());
 		}
 		else if(addFlag == 1)	// 상세보기 화면일 경우
 		{
 			location.href = '/oppt';
 			
-//			$("#baseBtnDiv").css("display", "block");
-//			$("#addBtnDiv").css("display", "none");
-//			$("#NewAddBtnDiv").css("display", "none");
-//			$("#mdfBtnDiv").css("display", "none");
-//			//css, readonly, disabled true 상태로 변경
-//			$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
-//				readonly:true,
-//				style:'background-color:#EAEAEA'
-//			});
-//			$("#opptDetail select").attr({
-//				disabled:true,
-//			});
-//			
-//			$("#customer").attr("disabled",true);
-//			$("#memo").attr("style","resize: none; background-color:#EAEAEA;");
-//			// 상세정보에 이전 값 넣기
-//			$("#cust_id").val($("#hcust_id").val());
-//			$("#sales_oppt_nm").val($("#hsales_oppt_nm").val());
-//			$("#cust_nm").val($("#hcust_nm").val());
-//			$("#expt_sales_amt").val($("#hexpt_sales_amt").val());
-//			$("#expt_fin_d").val($("#hexpt_fin_d").val());
-//			$("#sales_oppt_stat_cd").val($("#hsales_oppt_stat_cd").val()).attr("selected","selected").css("height", "24pt");
-//			$("#psblty_rate").children().eq($("#hpsblty_rate").val()/10).attr("selected","selected").css("height", "24pt");
-//			$("#sales_lev_cd").children().eq($("#hsales_lev_cd").val()).attr("selected","selected").css("height", "24pt");
-//			$("#memo").val($("#hmemo").val());	
 		}
 		
 	}
@@ -710,7 +655,7 @@ function viewSalesActive(opptId){
 					"<td rowspan='2'style='width: 20% !important;'></td>"+
 					"<td rowspan='2'style='width: 8% !important;'></td>"+
 					"<td rowspan='2'style='width: 20% !important;'></td>"+
-					"<td style='width: 8% !important;'></td>"+
+					"<td rowspan='2'style='width: 8% !important;'></td>"+
 					"<td style='width: 9% !important;'></td>"+
 					"<td style='width: 9% !important;'></td>"+
 					"<td rowspan='2'style='width: 6% !important;></td>"+

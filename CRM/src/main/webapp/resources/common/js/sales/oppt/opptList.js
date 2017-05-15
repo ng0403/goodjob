@@ -41,21 +41,21 @@ function addForm(){
 				var str = "";
 				    str+="<br><div class='ui left icon input'>";
 				    str+="<input type='text' placeholder='영업기회명' autofocus='autofocus' style='width:325px;' onkeypress='opptSearchInput(event);' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' autofocus='autofocus' value=''>";
-				    str+="<i class='users icon'></i>";
+				    str+="<i class='database icon'></i>";
 				    str+="</div>";
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm"+count+"' name='scust_nm"+count+"' value=''>";
+				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm"+count+"' name='scust_nm"+count+"' value='' style='margin-left: 3px;'>";
 				    str+="<i class='users icon'></i>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
-				    str+="<input type='button' class='ui orange button' id='searchCustomer"+count+"' value='고객'>";
-				    str+="<select class='semanticUiComboBox' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"'>";
+				    str+="<input type='button' class='ui orange button' id='searchCustomer"+count+"' value='고객' style='margin-left: 3px;'>";
+				    str+="<select class='semanticUiComboBox' name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important;'>";
 				    str+="<option value=''>"+'영업기회단계'+"</option>";
 				    $.each(result.otllist,function(i,list){
 				    	str+="<option value="+list.code+" >"+list.cd_nm+"</option>";
 				    	});
 				    str+="</select>";
-				    str+="<select class='semanticUiComboBox' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"'>";
+				    str+="<select class='semanticUiComboBox' name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='margin-left: 3px !important;'>";
 				    str+="<option value=''>"+'가능성'+"</option>";
 				    str+="<option value='10'>"+'10'+"</option>";
 				    str+="<option value='20'>"+'20'+"</option>";
