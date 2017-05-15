@@ -137,15 +137,28 @@ function addForm(){
 //			success:function(result){
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
-				    str+="<br><label for='sch_cust_nm' class='tel_label_list'>고객사명</label>";
-				    str+="<input type='text' style='margin-left: 9px;' class='inp_search' autofocus='autofocus' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<label for='sch_comp_num' style='margin-left: 3px;' class='tel_label_list'>사업자번호</label> ";
-				    str+="<input type='text' style='margin-left: 6px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
-				    str+="<label for='sch_corp_num' style='margin-left: 4px;' class='tel_label_list'>법인번호</label> ";
-				    str+="<input type='text' style='margin-left: 5px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
-				    str+="<label for='sch_iuser_nm' style='margin-left: 4px;' class='tel_label_list'>영업담당자</label> ";
-				    str+="<input type='text' style='margin-left: 5px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<label  onclick='delForm(this)' id='schDelBth' >"+'-'+"</label>";
+				
+					str+="<br><div class='ui left icon input'>";
+					str+="<input type='text' placeholder='고객사명' class='inp_search' autofocus='autofocus' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
+				    str+="<i class='users icon'></i>";
+				    str+="</div>";
+				    
+				    str+="<div class='ui left icon input'>";
+				    str+="<input type='text' placeholder='사업자번호' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<i class='suitcase icon'></i>";
+				    str+="</div>";
+				    
+				    str+="<div class='ui left icon input'>";
+				    str+="<input type='text' placeholder='법인번호' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<i class='law icon'></i>";
+				    str+="</div>";
+				    
+				    str+="<div class='ui left icon input'>";
+				    str+="<input type='text' placeholder='영업담당자' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
+				    str+="<i class='user icon'></i>";
+				    str+="</div>";
+				    
+				    str+="<label  onclick='delForm(this)' id='schDelBth' class='ui button' >"+'-'+"</label>";
 				    
 				    var addedDiv = document.createElement("div"); 	// 폼 생성
 				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
@@ -166,28 +179,12 @@ function addForm(){
     // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
 
-//$(".schDelBth").click(function() {
-//	var addedFormDiv = document.getElementById("search_div");
-//    addedFormDiv.removeChild(obj.parentNode); 				// 폼 삭제 
-//    --count;
-//});
-
-
 //고객사 검색 조건 삭제
 function delForm(obj){
     var addedFormDiv = document.getElementById("search_div");
         addedFormDiv.removeChild(obj.parentNode); 				// 폼 삭제 
         --count;
 }   
-//    var addedFormDiv = document.getElementById("search_div");
-//    if(count >=1){ 														// 현재 폼이 두개 이상이면
-//    	var addedDiv = document.getElementById("added_"+(--count));		// 마지막으로 생성된 폼의 ID를 통해 Div객체를 가져옴
-//            addedFormDiv.removeChild(addedDiv); 						// 폼 삭제 
-//    }else{ 																// 마지막 폼만 남아있다면
-//               document.baseForm.reset(); 								// 폼 내용 삭제
-//    }
-
-
 
 //검색 엔터키 기능
 function schCustComp(event) {
@@ -281,13 +278,6 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
 	
-//	var stepPrev = $("<a>");
-//	stepPrev.addClass("icon item");
-//	stepPrev.html("◀◀");
-//	if(ccPageNum != firstPageCount){
-//		stepPrev.attr("href","javascript:custCompList("+prevStepPage+")");
-//	}
-//	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
 	prevPage.addClass("icon item");
 	var prevI = $("<i>");
@@ -322,26 +312,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-//	var stepNext = $("<a>");
-//	stepNext.addClass("next");
-//	stepNext.html("▶▶");
-//	if(ccPageNum != totalPageCount){
-//		stepNext.attr("href","javascript:custCompList("+nextStepPage+")");
-//	}
-//	$("#pageSpace").append(stepNext);
 }
-
-//모두체크
-//function custcompAllChk(){
-//	  
-//	var checkbox=$('#ccListTbody tbody').find('input[type=checkbox]');
-//	
-//	if($('#custcompCheck').is(":checked")){
-//		$(checkbox).prop("checked", true);
-//	}else{
-//		$(checkbox).prop("checked", false);
-//	}
-//}
 
 //고객사 전체 선택
 function custcompAllCheck(){
@@ -393,21 +364,16 @@ function custcompDelete()
 	var form = $('#delForm');
 	
 	if (checkCount() == 0)  {
-		
 		alert("삭제할 항목을 선택해주세요.");
-		
 	} else  {
-		
 		var delYN = confirm("정말 삭제하시겠습니까??");
-		
-			
+
 		if(!delYN){
 			return false;
 		}
 		form.submit();
 	}	
 }
-
 
 // 기업고객 삭제
 function custCompDel(ctx){
@@ -479,32 +445,6 @@ function viewDetail(cust_id){
 	var ctx = $("#ctx").val();
 	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
 }
-
-//페이지 입력 이동
-//function pageInput(event) {
-//	var keycode = (event.keyCode ? event.keyCode : event.which);
-//		if (keycode == '13') {
-//			var ccPageNum = $("#ccPageInput").val();
-//			var endPageNum = $("#endPageNum").val();
-//			var sch_cust_nm = $("#sch_cust_nm").val();
-//			var sch_comp_num = $("#sch_comp_num").val();
-//			var sch_corp_num = $("#sch_corp_num").val();
-//			var sch_iuser_nm = $("#sch_iuser_nm").val();
-//			if (parseInt(ccPageNum) > parseInt(endPageNum) || parseInt(ccPageNum) < 1) {
-//				alert("페이지 정보를 다시 입력하세요.")
-//				$("#ccPageInput").val("1");
-//			} else {
-//				if(sch_cust_nm == '' && sch_comp_num == '' && sch_corp_num == '' && sch_iuser_nm == ''){
-//					paging(ccPageNum);
-//				} else {
-//					schPaging(ccPageNum);
-//				}
-//				
-//			}
-//		}
-//	event.stopPropagation();
-//}
-
 
 // 조회 페이징
 function schPaging(ccPageNum) {

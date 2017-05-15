@@ -28,7 +28,7 @@
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+/*   box-sizing: inherit; */
 }
 
 html {
@@ -490,6 +490,8 @@ table {
 td,
 th {
   padding: 0;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+  border-collapse: collapse;
 }
 
 /*******************************
@@ -21672,12 +21674,15 @@ Floated Menu / Item
 }
 
 .ui.pagination.menu .item {
-  min-width: 3em;
+  min-width: 1em;
   text-align: center;
+  height: 7px;
+  vertical-align: middle;
+  margin-top: 4px;
 }
 
 .ui.pagination.menu .icon.item i.icon {
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 /* Active */

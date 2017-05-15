@@ -10,7 +10,7 @@
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 
 <!-- 페이지 공통 js파일 -->
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script> --%>
 <!-- 고객사 부분 js파일 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 
@@ -20,7 +20,7 @@
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
 <!-- 새로운 공통 css 파일 -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <!-- 기존 공통 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <!-- 고객사부분 css파일 -->
@@ -30,6 +30,11 @@
 
 <title>고객사</title>
 <script>
+$(function() {
+
+	$('table').tablesort();
+
+});		   	
 // 	var tableSort;
 // 	onload=function() {
 // 		tableSort = $(".tblSort").tableSort(".tbody");
@@ -42,11 +47,6 @@
 // 		$ ( "#myTable" ) .tablesorter ({sortList : [[ 0 , 0 ], [ 1 , 0 ]] });
 // 	}); 
 
-$(function() {
-
-	$('table').tablesort();
-
-});		   	
 </script>
 
 
@@ -58,7 +58,7 @@ $(function() {
 	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui yellow header">■ 고객 > 고객사</h3>
+			<h3 class="ui yellow header" style="background: #fff;">■ 고객 > 고객사</h3>
 <%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
 		</div>
 	</div>
@@ -114,15 +114,15 @@ $(function() {
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
-						<th style="width: 16%" id="tblTh" class=""> 기업명</th>
-						<th style="width: 8%"  id="tblTh" class="">사업자번호</th>
-						<th style="width: 8%"  id="tblTh" class="">법인번호</th>
-						<th style="width: 10%" id="tblTh" class="" >대표전화번호</th>
-						<th style="width: 10%" id="tblTh" class="">매출규모</th>
-						<th style="width: 8%"  id="tblTh" class="">직원수</th>
-						<th style="width: 14%" id="tblTh" class="">산업군</th>
-						<th style="width: 8%"  id="tblTh" class="">영업 담당자</th>
-						<th style="width: 15%" id="tblTh" class="">등록일시</th>
+						<th style="width: 16%" id="tblTh" > 기업명</th>
+						<th style="width: 8%"  id="tblTh" >사업자번호</th>
+						<th style="width: 8%"  id="tblTh" >법인번호</th>
+						<th style="width: 10%" id="tblTh" >대표전화번호</th>
+						<th style="width: 10%" id="tblTh" >매출규모</th>
+						<th style="width: 8%"  id="tblTh" >직원수</th>
+						<th style="width: 14%" id="tblTh" >산업군</th>
+						<th style="width: 8%"  id="tblTh" >영업 담당자</th>
+						<th style="width: 15%" id="tblTh" >등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="ccListTbody" class="tbody">
@@ -156,26 +156,14 @@ $(function() {
 	<!-- 		<input type="button" value="저장" onclick="custcompInsertForm();" class="custcomp_bt" /> -->
 			</div>
 			<!-- 페이징 처리 -->
-<!-- 			<div id="pageSpace" class="pagination"> -->
 			<div id="pageSpace" class="ui right floated pagination menu">
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
-<%-- 				<c:choose> --%>
-<%-- 					<c:when test="${ccPageNum eq page.firstPageCount}"> --%>
-<!-- 		        		<a class="prev">◀◀</a> -->
-<!-- 		        		<a class="icon item">◀◀</a> -->
-							
-<%-- 		    		</c:when> --%>
-<%-- 					<c:when test="${ccPageNum ne page.firstPageCount}"> --%>
-<%-- 		        		<a href="javascript:custCompList(${page.prevStepPage})" class="prev">◀◀</a> --%>
-<%-- 		    		</c:when> --%>
-<%-- 				</c:choose> --%>
 				<c:choose>
 					<c:when test="${ccPageNum eq page.firstPageCount}">
-<!-- 		        		<a class="prev">◀</a> -->
-							<a class="icon item">
-		        				<i class="left chevron icon"></i>
-		        			</a>	
+						<a class="icon item">
+	        				<i class="left chevron icon"></i>
+	        			</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.firstPageCount}">
 		        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
@@ -187,7 +175,6 @@ $(function() {
 					<c:choose>
 						<c:when test="${i eq ccPageNum }">
 							<b>
-<%-- 								<a  href="javascript:custCompList('${i}');" id="pNum" class="choice">${i}</a> --%>
 								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
 							</b>
 						</c:when>
@@ -198,7 +185,6 @@ $(function() {
 				</c:forEach>
 				<c:choose>
 					<c:when test="${ccPageNum eq page.totalPageCount}">
-<!-- 		       			<a class="next">▶</a> -->
 							<a class="icon item">
 		        				<i class="right chevron icon"></i>
 		        			</a>	
@@ -209,14 +195,6 @@ $(function() {
 		       			</a>
 		    		</c:when>
 				</c:choose>
-<%-- 				<c:choose> --%>
-<%-- 					<c:when test="${ccPageNum eq page.totalPageCount}"> --%>
-<!-- 		       			<a class="next">▶▶</a> -->
-<%-- 		    		</c:when> --%>
-<%-- 					<c:when test="${ccPageNum ne page.totalPageCount}"> --%>
-<%-- 		       			<a href="javascript:custCompList(${page.nextStepPage})" class="next">▶▶</a> --%>
-<%-- 		    		</c:when> --%>
-<%-- 				</c:choose> --%>
 			</div>
 			
 		</div>

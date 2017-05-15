@@ -84,7 +84,7 @@ html,body{
 }
 
 #mainTitleDiv {
-	width: 80%;	
+	width: 100%;	
 	margin: auto;
 }
 
@@ -94,7 +94,7 @@ html,body{
 	font-family: sans-serif;
 	float: left;
 	padding: 7px;
-	margin-left: -144px;
+	padding-top: 17px;
 	color: #ffffff;
 	text-shadow: -1px 0 #eaeaea, 0 1px #eaeaea, 1px 0 #eaeaea, 0 -1px #eaeaea;
 	-moz-text-shadow: -1px 0 #eaeaea, 0 1px #eaeaea, 3px 0 #eaeaea, 0 -1px #eaeaea;
