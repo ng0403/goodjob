@@ -622,7 +622,7 @@ function actInsert(ctx) {
 		{
 			alert("활동유형을 선택해 주세요");
 			return false;			
-		}
+		} 
 		else if($('#sales_actvy_stat_cd').val() == "0"|| $('#sales_actvy_stat_cd').val() == null)
 		{
 			alert("상태를 선택해 주세요");
