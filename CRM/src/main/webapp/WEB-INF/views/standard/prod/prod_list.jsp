@@ -13,50 +13,73 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_detail.js"></script>
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+
+<script>
+   $(function() {
+      $('table').tablesort();
+   });            
+</script>
 <script type="text/javascript">
 $("#navisub11").show();
 $("#naviprod").css("font-weight", "bold");
 </script>
 <title>상품(서비스)</title>
 </head>
-<body>
+<body style="overflow: auto;">
 	<form id="prod_detail">
 		<input type="hidden" name="prod_id" id="prod_id">
 	</form>
 	<div id="title">
-		<div class="caption">■ 상품(서비스)</div>
+		<div class="caption">
+			<h3 class="ui header" style="background: #fff;">■ 기준정보  > 상품(서비스)</h3>
+		</div>
 	</div>
 	<div class="search_div">
-		<label for="prod_nm" class="prod_label_search">상품(서비스)명</label>
-		<input type="text" id="sprod_nm" class="sprod_nm">
-	    <label for="prod_div" class="prod_label_search">구분</label>
-		<select name="code" id="scode" class="code">
-			<option value="">======</option>
-			<option value="all">전체</option>
-			<c:forEach var="pscl" items="${prodServicecCodeList}">
-				<option value="${pscl.code}">${pscl.cd_nm}</option>
-			</c:forEach>
-		</select>
-		<input type="button" id="prod_search" class="btn-success-tel" value="조회" onclick="prodSearch(1);" />
+		<div class="ui left icon input">
+			<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm">
+			<i class="industry icon"></i>
+		</div>
+	    <div class="ui left icon input">
+			<select name="code" id="scode" class="code">
+				<option value="">구분</option>
+				<option value="all">전체</option>
+				<c:forEach var="pscl" items="${prodServicecCodeList}">
+					<option value="${pscl.code}">${pscl.cd_nm}</option>
+				</c:forEach>
+			</select>
+			<i class="list layout icon"></i>
+		</div>
+		<input type="button" id="prod_search"  class="ui orange button" value="조회" onclick="prodSearch('${ccpageNum}');" />
+		
+<!-- 		<label for="prod_nm" class="prod_label_search">상품(서비스)명</label> -->
+<!-- 		<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm"> -->
+<!-- 	    <label for="prod_div" class="prod_label_search">구분</label> -->
+<!-- 		<select name="code" id="scode" class="code"> -->
+<!-- 			<option value="">=======</option> -->
+<!-- 			<option value="all">전체</option> -->
+<%-- 			<c:forEach var="pscl" items="${prodServicecCodeList}"> --%>
+<%-- 				<option value="${pscl.code}">${pscl.cd_nm}</option> --%>
+<%-- 			</c:forEach> --%>
+<!-- 		</select> -->
+<!-- 		<input type="button" id="prod_search" class="btn-success-tel" value="조회" onclick="prodSearch(1);" /> -->
 <!-- 			    <button id="search_btn" type="submit" class="act_bt">조회</button>  -->
-	</div>
-	<div id="contact_button_position">
-			<input type="button" id="prodAddBtn" class="btn-success-tel" value="추가"/>
-			<input type="button" id="prodDeleteBtn" class="btn-success-tel" value="삭제">	
-	</div>
-	  	
+	</div>	  	
 	<div id="act_list_div">
-		<table id="act_list_table" class="tabtable">
+		<table id="act_list_table" class="ui sortable celled table" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th><input type="checkbox"  id='prodListCheck'/></th>
-					<td>상품(서비스)명</td>
-					<td >구분</td>
-					<td >판매가</td>
-					<td >카테고리</td>
-					<td >등록자</td>
-					<td >등록일시</td>
+					<th id="tblTh" >상품(서비스)명</th>
+					<th id="tblTh" >구분</th>
+					<th id="tblTh" >판매가</th>
+					<th id="tblTh" >카테고리</th>
+					<th id="tblTh" >등록자</th>
+					<th id="tblTh" >등록일시</th>
 				</tr>
 			</thead>
 			<tbody id="prod_list">
@@ -80,55 +103,53 @@ $("#naviprod").css("font-weight", "bold");
 			</tbody>
 		</table>
 	</div>
+	<div class="bottom_div">
+		<div class="functionBtn_div">
+			<input type="button" id="prodAddBtn" class="ui orange button" value="추가"/>
+			<input type="button" id="prodDeleteBtn" class="ui orange button" value="삭제">	
+		</div>
 				
 	<!-- 페이징 처리 --> 
-	<div id="pageSpace">
-		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
-			<c:choose>
-				<c:when test="${ccPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀◀</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:prodPaging(${page.prevStepPage})" class="prev">◀◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.firstPageCount}">
-	        		<a href="javascript:prodPaging(${page.prevPageNum})" class="prev">◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+		<div id="pageSpace" class="ui right floated pagination menu">
+				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
-					<c:when test="${i eq ccPageNum }">
-						<b>
-							<a  href="javascript:prodPaging('${i}');" id="pNum" class="choice">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:prodPaging('${i}');">${i}</a>
-					</c:otherwise>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+						<a class="icon item">
+	        				<i class="left chevron icon"></i>
+	        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+		        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+		        			<i class="left chevron icon"></i>
+		        		</a>
+		    		</c:when>
 				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.totalPageCount}">
-	       			<a class="next">▶</a>
-	   		</c:when>
-				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:prodPaging(${page.nextPageNum})" class="next">▶</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.totalPageCount}">
-	       			<a class="next">▶▶</a>
-	    		</c:when>
-				<c:when test="${ccPageNum ne page.totalPageCount}">
-	       			<a href="javascript:prodPaging(${page.nextStepPage})" class="next">▶▶</a>
-	    		</c:when>
-			</c:choose>
+				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+					<c:choose>
+						<c:when test="${i eq ccPageNum }">
+							<b>
+								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+							</b>
+						</c:when>
+						<c:otherwise>
+							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+							<a class="icon item">
+		        				<i class="right chevron icon"></i>
+		        			</a>	
+		    		</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+		       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+		       				<i class="right chevron icon"></i>
+		       			</a>
+		    		</c:when>
+				</c:choose>
+			</div>
 	
 	<!-- 페이징 처리 -->	
 	</div>

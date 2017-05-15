@@ -66,14 +66,14 @@ function prodInserts(){
 					<tbody id="act_tab_tbody">
 						<tr>
 							<!-- 텍스트 박스 -->
-							<th>상품(서비스)명</th>
+							<th><span style="color:red;">*상품(서비스)명</span></th>
 							<td>
 								<input type="hidden" name="prod_id" id="prod_id" value="${prodDto.prod_id}">			
 							<input type="text" name="prod_nm" id="prod_nm"
 								class="act_nm" style="ms-ime-mode: disabled;" value="${prodDto.prod_nm}" disabled>
 							</td>							
 							<!-- 셀렉트 박스 -->
-							<th>구분</th>
+							<th><span style="color:red;">*구분</span></th>
 							<td>
 								<input type="text" name="prod_div_cd_view" id="prod_div_cd_view" class="end_text" value="${prodDto.cd_nm}" disabled>
 								
@@ -92,12 +92,12 @@ function prodInserts(){
 							</td>							
 			     		</tr>
 						<tr>						
-							<th>카테고리</th>
+							<th><span style="color:red;">*카테고리</span></th>
 							<td><input type="hidden" name="cate_id" id="cate_id" class="oppt_txt_nm" value="${prodDto.cate_id}">
 							    <input type="text" name="cate_nm" id="cate_nm" class="oppt_txt_nm" value="${prodDto.cate_nm}" disabled>							     
 							    <input type="button" name="prod_cate" value="카테고리" class="prod_cate" id="prod_cate" disabled>
 							</td>
-							<th>판매가</th>
+							<th><span style="color:red;">*판매가</span></th>
 							<td><input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled> 
 							</td>							
 						</tr>				

@@ -184,29 +184,24 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
 	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:prodPaging("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:prodPaging("+prevPageNum+")");
+		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
 	}
+	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:prodPaging("+i+")");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:custCompList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
-			ccPage.addClass("choice");
 			ccPage.attr("id","pNum");
 			b.append(ccPage);
 			$("#pageSpace").append(b);
@@ -215,19 +210,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 		}
 	}
 	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:prodPaging("+nextPageNum+")");
+		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
 	}
+	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:prodPaging("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
 }
 function prodPaging(prodPageNum) {	
 //	$(document).ready(function() {

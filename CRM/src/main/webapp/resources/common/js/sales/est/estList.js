@@ -59,6 +59,16 @@ function list(page){
 	var sales_price_1 =  $("#ssales_price_1").val();
 	var sales_price_2 =  $("#ssales_price_2").val();
 	var estim_valid_d = $("#sestim_valid_d").val();
+	var estim_nm1 = $("#sestim_nm1").val();
+	var estim_lev_cd1 = $("#sestim_lev_cd1").val();
+	var sales_price_11 =  $("#ssales_price_11").val();
+	var sales_price_21 =  $("#ssales_price_21").val();
+	var estim_valid_d1 = $("#sestim_valid_d1").val();
+	var estim_nm2 = $("#sestim_nm2").val();
+	var estim_lev_cd2 = $("#sestim_lev_cd2").val();
+	var sales_price_12 =  $("#ssales_price_12").val();
+	var sales_price_22 =  $("#ssales_price_22").val();
+	var estim_valid_d2 = $("#sestim_valid_d2").val();
 	$.ajax({
 		type : 'GET',
 		url : '/estListAjax',
@@ -68,7 +78,17 @@ function list(page){
 			estim_lev_cd : estim_lev_cd, 
 			sales_price_1 : sales_price_1, 
 			sales_price_2 : sales_price_2, 
-			estim_valid_d : estim_valid_d 
+			estim_valid_d : estim_valid_d,
+			estim_nm1 : estim_nm1, 
+			estim_lev_cd1 : estim_lev_cd1, 
+			sales_price_11 : sales_price_11, 
+			sales_price_21 : sales_price_21, 
+			estim_valid_d1 : estim_valid_d1,
+			estim_nm2 : estim_nm2, 
+			estim_lev_cd2 : estim_lev_cd2, 
+			sales_price_12 : sales_price_12, 
+			sales_price_22 : sales_price_22, 
+			estim_valid_d2 : estim_valid_d2
 		},
 		datatype : 'json',
 		success:function(result){
@@ -88,8 +108,8 @@ function list(page){
 					"<a style='text-decoration: none;' href=javascript:estDetail('"+data.estim_id+"');>"+
 						data.estim_nm+"</a></td>"+
 					"<td>"+data.estim_lev_cd_nm+"</td>"+
-					"<td style='text-align: right; padding-right:50px;'>"+data.estim_qty+"</td>"+
-					"<td style='text-align: right; padding-right:50px;'>"+comma(data.sales_price)+"</td>"+
+					"<td style='text-align: right;'>"+data.estim_qty+"</td>"+
+					"<td style='text-align: right;'>"+comma(data.sales_price)+"</td>"+
 					"<td>"+data.estim_valid_d+"</td>"+
 					"<td>"+data.fst_reg_id+"</td>"+
 					"<td>"+data.fst_reg_dt+"</td>"+
@@ -156,29 +176,24 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
 	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:list("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:list("+prevPageNum+")");
+		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
 	}
+	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:list("+i+")");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:custCompList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
-			ccPage.addClass("choice");
 			ccPage.attr("id","pNum");
 			b.append(ccPage);
 			$("#pageSpace").append(b);
@@ -187,19 +202,58 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 		}
 	}
 	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:list("+nextPageNum+")");
+		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
 	}
+	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:list("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
+//	var stepPrev = $("<a>");
+//	stepPrev.addClass("prev");
+//	stepPrev.html("◀◀");
+//	if(ccPageNum != firstPageCount){
+//		stepPrev.attr("href","javascript:list("+prevStepPage+")");
+//	}
+//	$("#pageSpace").append(stepPrev);
+//	var prevPage = $("<a>");
+//	prevPage.addClass("prev");
+//	prevPage.html("◀");
+//	console.log(prevPageNum);
+//	console.log(firstPageCount);
+//	if(ccPageNum != firstPageCount){
+//		prevPage.attr("href","javascript:list("+prevPageNum+")");
+//	}
+//	$("#pageSpace").append(prevPage);
+//	for(var i = startPageNum; i <= endPageNum; i++){
+//		var ccPage = $("<a>");
+//		ccPage.attr("href","javascript:list("+i+")");
+//		ccPage.html(i);
+//		if(i == ccPageNum){
+//			var b = $("<b>");
+//			ccPage.addClass("choice");
+//			ccPage.attr("id","pNum");
+//			b.append(ccPage);
+//			$("#pageSpace").append(b);
+//		}else{
+//			$("#pageSpace").append(ccPage);
+//		}
+//	}
+//	var nextPage = $("<a>");
+//	nextPage.addClass("next");
+//	nextPage.html("▶");
+//	if(ccPageNum != totalPageCount){
+//		nextPage.attr("href","javascript:list("+nextPageNum+")");
+//	}
+//	$("#pageSpace").append(nextPage);
+//	var stepNext = $("<a>");
+//	stepNext.addClass("next");
+//	stepNext.html("▶▶");
+//	if(ccPageNum != totalPageCount){
+//		stepNext.attr("href","javascript:list("+nextStepPage+")");
+//	}
+//	$("#pageSpace").append(stepNext);
 }
 //페이지 input Enter 입력 처리
 //function estPageInput(event){
@@ -243,10 +297,10 @@ function addForm(){
 function delForm(message){
 	console.log(count);
 	console.log(message);
-	console.log($(this).parent("div").html());
-	$(this).parent("div").next("input:text").val("");
-	$(this).parent("div").next("select").index(0);
-	$(this).parent("div").hide();
+	console.log($("#"+message+"").parent("div"));
+	$("#"+message+"").parent("div").find("input:text").val("");
+	$("#"+message+"").parent("div").find("select").index(0);
+	$("#"+message+"").parent("div").hide();
 	console.log(count);
 	count--;
 }
