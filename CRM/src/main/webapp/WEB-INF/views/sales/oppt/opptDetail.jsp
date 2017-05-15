@@ -54,7 +54,7 @@ $(document).ready(function() {
 				<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
-			<div id="tableline" class="FixHeader">
+			<div id="tableline" class="detailtbody" >
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 					<thead>
 						<tr class="headerLock">
@@ -74,7 +74,7 @@ $(document).ready(function() {
 							<td style="width: 9% !important;">종료시간</td>
 						</tr>
 					</thead>
-					<tbody id="activeList" class="FixTbody">	
+					<tbody id="activeList" class="detailtbody" >	
 							<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 					</table>
@@ -82,12 +82,12 @@ $(document).ready(function() {
 		</div>
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
-		<div class="bt_position_authuser" style=" padding: 5px;">
+		<div class="bt_position_authuser" style="text-align: right;">
 			<button id="estimateAdd" class="ui orange button">견적 추가</button>
 			<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
-		<div id="tableline" class="FixHeader">
+		<div id="tableline" class="detailtbody" >
 			<table id="goaltable" class="ui celled table" cellspacing="0" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
@@ -101,7 +101,7 @@ $(document).ready(function() {
 						<td style="width: 10% !important;">등록일시</td>
 					</tr>
 				</thead>
-				<tbody id="estimList"  class="FixTbody">
+				<tbody id="estimList"  class="detailtbody" >
 				<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
 				</tbody>
 				</table>

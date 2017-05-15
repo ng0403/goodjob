@@ -11,18 +11,18 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 </head>
+
 <style type="text/css">
+.th-inner{position: absolute; top:0; line-height: 30px; text-align: left;}
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
@@ -88,18 +88,22 @@ $(document).ready(function(){
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->
+							<div class="ui input focus">
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
 								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; background-color: ">
+							</div>
 							</td>
 							<th><span style="color: red;">*고객사</span></th>
 							<td>
+							<div class="ui input focus">
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
 <%-- 								<input type="hidden" id="hlead_id" value="${opDetail.lead_id}"> --%>
 								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 																
+							</div>
 								<input type="button" class="button search_btn" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
@@ -135,8 +139,10 @@ $(document).ready(function(){
 						<tr>
 							<th>예상마감일자</th>
 							<td>
+							<div>
 								<input type="hidden" id="hexpt_fin_d">
 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
+							</div>
 							</td>
 							<th><span style="color: red;">*가능성</span></th>
 							<td>
@@ -159,28 +165,22 @@ $(document).ready(function(){
 						<tr>
 							<th>메모</th>
 							<td colspan="8" rowspan="2">
+							<div class="ui input focus">
 								<input type="hidden" id="hmemo" value="${opDetail.memo}">
 								<textarea name="memo" class="memo" id="memo" readonly="readonly" style="overflow: auto; resize: none;">${opDetail.memo}</textarea>
+							</div>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div id="salesOpptPrdtdiv">
+			<div id="salesOpptPrdtdiv"  style="height: 200px;">
 				<input type="hidden" id="inputCust" value="false"/>
 				
-				<div class="detailBtn" style="padding: 5px;">
+				<div class="detailBtn">
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품삭제" id="opptProdDelete"/>
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
-<!-- 				<table> -->
-<!-- 					<tbody id="opptProd"> -->
-<!-- 						<tr> -->
-<!-- 	 						<td> -->
-<!-- 	 						</td>  -->
-<!-- 						</tr> -->
-<!-- 					</tbody> -->
-<!-- 				</table> -->
 				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
 					<tr class="headerLock">
 						<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
@@ -201,7 +201,7 @@ $(document).ready(function(){
 				</table>
 				<div id="estimatediv" style="">
 					<input type="hidden" id="eduCode" value="${eduCode}">
-					<table id="opptPrdttable" class="tabtable" style="text-align: center;">
+					<table id="opptPrdttable" class="tabtable" style="text-align: center; height: 200px;">
 						<tbody id="opptPrdtbody">
 							<c:choose>
 								<c:when test="${not empty opptPrdt}">
@@ -210,7 +210,7 @@ $(document).ready(function(){
 											<th style="width: 3%;">
 												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
-											<td style="width: 35%;" id="prod_nm">${list.prod_nm}</td>
+											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
 											<td style="width: 8%;">
 												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.prod_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
 											<td style="width: 27%;" >${list.prod_price}</td>

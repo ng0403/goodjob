@@ -43,11 +43,11 @@
 	</div>
 		   <div class="search_div" id="search_div" >
 			   <div class="ui left icon input">
-					<input type="text" placeholder="영업기회명" autofocus="autofocus" style="width:325px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" autofocus="autofocus" value="${ssales_oppt_nm}">
+					<input type="text" placeholder="영업기회명"  style="width:325px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}">
 					<i class="database icon"></i>
 			   </div>	
 			   <div class="ui left icon input">
-					<input type="text" placeholder="고객명" autofocus="autofocus" id="scust_nm" name="scust_nm" value="${scust_nm}">
+					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}">
 					<i class="users icon"></i>
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			   </div>	

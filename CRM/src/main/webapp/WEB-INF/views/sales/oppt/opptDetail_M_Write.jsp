@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -19,7 +20,6 @@
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script> --%>
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 </head>
 <style type="text/css">
@@ -34,6 +34,7 @@ $(document).ready(function(){
 	{
 		$('#baseBtnDiv').css('display', 'block');
 		$('#NewAddBtnDiv').css('display', 'none');
+		$('#psblty_rate').attr('disable', 'none');
 	}else if(addFlag == 0)//신규추가를 눌렀을 경우
 		{
 		$("#baseBtnDiv").css("display", "none");
@@ -93,16 +94,20 @@ $(document).ready(function(){
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->
+							<div class="ui input focus">
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
 								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int" style="ms-ime-mode: disabled; background-color: ">
+							</div>
 							</td>
 							<th><span style="color: red;">*고객사</span></th>
 							<td>
+							<div class="ui input focus">
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
 								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
+							</div>
 								<input type="button" class="button search_btn" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
@@ -138,8 +143,10 @@ $(document).ready(function(){
 						<tr>
 							<th>예상마감일자</th>
 							<td>
+							<div class="ui input focus">
 								<input type="hidden" id="hexpt_fin_d">
 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
+							</div>
 							</td>
 							<th><span style="color: red;">*가능성</span></th>
 							<td>
@@ -162,8 +169,10 @@ $(document).ready(function(){
 						<tr>
 							<th>메모</th>
 							<td colspan="8" rowspan="2">
+							<div class="ui input focus">
 								<input type="hidden" id="hmemo">
 								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
+							</div>
 							</td>
 						</tr>
 					</tbody>
