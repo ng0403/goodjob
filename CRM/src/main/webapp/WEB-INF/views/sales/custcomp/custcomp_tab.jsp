@@ -57,7 +57,7 @@
 			</div>
 			
 			<div id="tableline2">
-				<table class="tabtable" class="ui sortable celled table" style="border-collapse: collapse;"> 
+				<table class="tabtable" class="ui celled table" > 
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='pocListCheck'/></th>

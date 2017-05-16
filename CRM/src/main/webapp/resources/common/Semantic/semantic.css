@@ -12098,6 +12098,7 @@ select {
 .ui[class*="left icon"].input > input {
   padding-left: 2.67142857em !important;
   padding-right: 1em !important;
+  margin-right: 5px;
 }
 
 /* Focus */

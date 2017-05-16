@@ -75,6 +75,7 @@ nav ul {
 		nav ul li a {
 			display: block; 
 			margin: 0 auto;
+			font-size: 13pt;
 			padding-bottom: 6px;
 /* 			width: 125px; */
 /* 			color: #757575;  */
@@ -85,7 +86,7 @@ nav ul {
 		
 	.sub_menu_bar ul {
 /* 		background: #5f6975;  */
-		width: 10%;
+		width: 13%;
 		background-color: #131230;
 		border-radius: 0px; 
 		padding: 0;
@@ -106,6 +107,7 @@ nav ul {
 			.sub_menu_bar ul li a {
 				padding: 5px;
 				color: #fff;
+				font-size: 11pt;
 			}	
 				.sub_menu_bar ul li a:hover {
 /* 					background: #4b545f; */

@@ -51,14 +51,14 @@ html,body{
 }
 
 .body{
-	width: 86%;
+	width: 85%;
 	height: 100%; 
 	margin: 0 auto;
-    float: left;
+/*     float: left; */
     overflow: auto;
 }
 .body1{
-	width: 86%;
+	width: 87%;
 	height: 100%; 
 	margin: 0 auto;
 /* 	float: left; */
@@ -66,16 +66,19 @@ html,body{
 /* 	overflow: auto; */
 }
 .master {
-	width: 100%;
+	width: 98%;
 	height: 45%;
-	display: inline-block;
+/* 	display: inline-block; */
 	padding-bottom: 5px;
+	margin: 0 auto;
+	
 }
 .detail {
-	width: 100%;
+	width: 98%;
 	height: 47%; 
-	display: inline-block;
+/* 	display: inline-block; */
 	padding-top: 40px;
+	margin: 0 auto;
 }
 .footer {
 	width:100%; 
