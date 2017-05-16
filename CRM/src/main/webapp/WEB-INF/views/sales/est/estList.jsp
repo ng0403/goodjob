@@ -64,7 +64,6 @@
 						<option value="${elclist.code}">${elclist.cd_nm}</option>
 					</c:forEach>
 				</select>
-				<i class="cubes icon"></i>
 			</div>
 			<div class="ui left icon input">
 		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_1" value="${sales_price_1}" onkeypress="estSearchInput(event);">
@@ -105,7 +104,7 @@
 		</div>
 		<div id="search_div2" style="padding-bottom: 15px;">
 			<div class="ui left icon input">
-				<input type="text" placeholder="견적명" name="estim_nm1" id="sestim_nm1" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
+				<input type="text" placeholder="견적명" name="estim_nm1" id="sestim_nm1" value="${estim_nm}" onkeypress="estSearchInput(event);"/> 
 		    	<i class="file text outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
@@ -115,10 +114,9 @@
 						<option value="${elclist.code}">${elclist.cd_nm}</option>
 					</c:forEach>
 				</select>
-				<i class="cubes icon"></i>
 			</div>
 			<div class="ui left icon input">
-		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_11" value="${sales_price_1}" onkeypress="estSearchInput(event);">
+		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_11" value="${sales_price_1}" onkeypress="estSearchInput(event);"/>
 				<i class="won icon"></i>
 				<select name="sales_price_2" id="ssales_price_21">
 					<option value="">선택</option>
@@ -134,7 +132,7 @@
 		</div>
 		<div id="search_div3" style="padding-bottom: 15px;">
 			<div class="ui left icon input">
-				<input type="text" placeholder="견적명" name="estim_nm2" id="sestim_nm2" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
+				<input type="text" placeholder="견적명" name="estim_nm2" id="sestim_nm2" value="${estim_nm}" onkeypress="estSearchInput(event);"/> 
 		    	<i class="file text outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
@@ -144,10 +142,9 @@
 						<option value="${elclist.code}">${elclist.cd_nm}</option>
 					</c:forEach>
 				</select>
-				<i class="cubes icon"></i>
 			</div>
 			<div class="ui left icon input">
-		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_12" value="${sales_price_1}" onkeypress="estSearchInput(event);">
+		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_12" value="${sales_price_1}" onkeypress="estSearchInput(event);"/>
 				<i class="won icon"></i>
 				<select name="sales_price_2" id="ssales_price_22">
 					<option value="">선택</option>

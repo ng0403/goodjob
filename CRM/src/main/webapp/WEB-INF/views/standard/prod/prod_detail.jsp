@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod_detail.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
@@ -94,7 +94,7 @@ function prodInserts(){
 								<div class="ui input focus">
 									<input type="text" name="prod_div_cd_view" id="prod_div_cd_view" class="end_text" value="${prodDto.cd_nm}" disabled>
 									
-									<select name="prod_div_cd" id="prod_div_cd" class="code" style="display:none">
+									<select name="prod_div_cd" id="prod_div_cd" class="code" style="display:none;">
 										<c:forEach var="pscl" items="${prodServicecCodeList}">
 											<c:choose>
 												<c:when test="${prodDto.prod_div_cd eq pscl.code }">
@@ -138,8 +138,7 @@ function prodInserts(){
 							<th >url</th>
 							<td id="url">
 								<div class="ui input focus">
-									<input type="text" id="prod_url" name="prod_url" class="end_text" 
-									style="padding:0px;" value="${prodDto.prod_url}" disabled>
+									<input type="text" id="prod_url" name="prod_url" class="end_text" value="${prodDto.prod_url}" disabled>
 								</div>
 							</td>					
 						</tr>

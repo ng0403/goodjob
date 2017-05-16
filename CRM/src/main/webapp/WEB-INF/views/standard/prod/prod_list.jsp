@@ -36,7 +36,7 @@ $("#naviprod").css("font-weight", "bold");
 	</form>
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 기준정보  > 상품(서비스)</h3>
+			<h3 class="ui header" style="background: #fff;">■ 기준정보  > 상품/서비스</h3>
 		</div>
 	</div>
 	<div class="search_div">

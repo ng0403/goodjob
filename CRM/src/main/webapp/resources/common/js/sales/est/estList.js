@@ -119,7 +119,7 @@ function list(page){
 			if(result.list.length < 10){
 				for(var i=0 ;  i < 10-result.list.length ; i++){
 					$("#estList").append("" +
-							 "<tr>"+
+							 "<td>"+
 //								"<th></th>"+
 								"<td>"+
 								"</td>"+
