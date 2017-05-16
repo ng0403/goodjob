@@ -36,3 +36,8 @@ table tbody tr th {
 #tableline2 {
     padding: 10px;
 }
+
+
+#tblTh {
+	text-align: center;
+}

@@ -75,9 +75,9 @@ $(function() {
 <!-- 			<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label>  -->
 <!-- 				<input type="text" class="inp_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/> -->
 			
-			<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>
+			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 		
-		<input type="button" id="custcomp_search" class="ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
+		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
 		
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
 <!-- 				<option value="all" style="text-align: center;">전체</option> -->
@@ -131,8 +131,8 @@ $(function() {
 		
 		<div class="bottom_div">
 			<div class="functionBtn_div">	
-				<input type="button" value="추가" class="ui orange button" onclick="custcompInsertForm();" />
-				<input type="button" value="삭제" class="ui orange button" onclick="custcompDelete()" />
+				<input type="button" value="추가" class="tiny ui orange button" onclick="custcompInsertForm();" />
+				<input type="button" value="삭제" class="tiny ui orange button" onclick="custcompDelete()" />
 <!-- 				<input type="button" value="엑셀" class="ui orange button" id="exportBtn"   onclick=""  />	 -->
 			</div>
 			
