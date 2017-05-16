@@ -80,7 +80,7 @@
 		    	<i class="checked calendar icon"></i>
 		    </div>
 		    <label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
-		    <button type="submit" class="tiny ui orange button" id="searchlist" onclick="searchBtn('${ccpageNum}');">조회</button> 
+		    <button type="submit" class="tiny ui orange button" id="searchlist" onclick="searchBtn('${ccPageNum}');">조회</button> 
 <!-- 			<label for="scompNam" class="tel_label_list">견적명</label> -->
 <%-- 			<input type="text" class="tel_search" name="estim_nm" id="sestim_nm" value="${estim_nm}" autofocus="autofocus" onkeypress="estSearchInput(event);">  --%>
 <!-- 		    <label for="inputPassword1" class="tel_label_list">견적단계</label> -->
@@ -103,7 +103,7 @@
 <!-- 		    <label id="schAddBtn" onclick="addForm();">+</label> -->
 <!-- 		    <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button>  -->
 		</div>
-		<div class="search_div" id="search_div2">
+		<div id="search_div2" style="padding-bottom: 15px;">
 			<div class="ui left icon input">
 				<input type="text" placeholder="견적명" name="estim_nm1" id="sestim_nm1" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
 		    	<i class="file text outline icon"></i>
@@ -132,7 +132,7 @@
 		    </div>
 		    <label id="schAddBtn1" class="tiny ui button" onclick=delForm(this.id);>-</label>
 		</div>
-		<div class="search_div" id="search_div3">
+		<div id="search_div3" style="padding-bottom: 15px;">
 			<div class="ui left icon input">
 				<input type="text" placeholder="견적명" name="estim_nm2" id="sestim_nm2" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
 		    	<i class="file text outline icon"></i>

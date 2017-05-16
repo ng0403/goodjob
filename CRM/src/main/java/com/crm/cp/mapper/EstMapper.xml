@@ -44,74 +44,74 @@
   	where 1=1
 	<choose>
 		<when test="estim_nm !=null and estim_nm !='' and estim_nm1 !=null and estim_nm1 !='' and estim_nm2 !=null and estim_nm2 !=''">
-		   and(d.estim_nm like '%'||#{estim_nm}||'%'
-				or d.estim_nm like '%'||#{estim_nm1}||'%'
-				or d.estim_nm like '%'||#{estim_nm2}||'%')
+		   and(e.estim_nm like '%'||#{estim_nm}||'%'
+				or e.estim_nm like '%'||#{estim_nm1}||'%'
+				or e.estim_nm like '%'||#{estim_nm2}||'%')
 		</when>
 		<when test="estim_nm !=null and estim_nm !='' and estim_nm1 !=null and estim_nm1 !=''">
-		   and(d.estim_nm like '%'||#{estim_nm}||'%'
-				or d.estim_nm like '%'||#{estim_nm1}||'%')
+		   and(e.estim_nm like '%'||#{estim_nm}||'%'
+				or e.estim_nm like '%'||#{estim_nm1}||'%')
 		</when>
 		<when test="estim_nm !=null and estim_nm !='' and estim_nm2 !=null and estim_nm2 !=''">
-		   and(d.estim_nm like '%'||#{estim_nm}||'%'
-				or d.estim_nm like '%'||#{estim_nm2}||'%')
+		   and(e.estim_nm like '%'||#{estim_nm}||'%'
+				or e.estim_nm like '%'||#{estim_nm2}||'%')
 		</when>
 		<when test="estim_nm !=null and estim_nm !=''">
-		   and d.estim_nm like '%'||#{estim_nm}||'%'
+		   and e.estim_nm like '%'||#{estim_nm}||'%'
 		</when>
 	</choose>
 	<choose>
 		<when test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd1 !=null and estim_lev_cd1 !='' and estim_lev_cd2 !=null and estim_lev_cd2 !=''">
-			and(d.estim_lev_cd = #{estim_lev_cd}
-				or d.estim_lev_cd = #{estim_lev_cd1}
-				or d.estim_lev_cd = #{estim_lev_cd2})
+			and(e.estim_lev_cd = #{estim_lev_cd}
+				or e.estim_lev_cd = #{estim_lev_cd1}
+				or e.estim_lev_cd = #{estim_lev_cd2})
 		</when>
 		<when test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd1 !=null and estim_lev_cd1 !=''">
-			and(d.estim_lev_cd = #{estim_lev_cd}
-				or d.estim_lev_cd = #{estim_lev_cd1})
+			and(e.estim_lev_cd = #{estim_lev_cd}
+				or e.estim_lev_cd = #{estim_lev_cd1})
 		</when>
 		<when test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd2 !=null and estim_lev_cd2 !=''">
-			and(d.estim_lev_cd = #{estim_lev_cd}
-				or d.estim_lev_cd = #{estim_lev_cd2})
+			and(e.estim_lev_cd = #{estim_lev_cd}
+				or e.estim_lev_cd = #{estim_lev_cd2})
 		</when>
 		<when test="estim_lev_cd !=null and estim_lev_cd !=''">
-			and d.estim_lev_cd = #{estim_lev_cd}
+			and e.estim_lev_cd = #{estim_lev_cd}
 		</when>
 	</choose>
 	<choose>
 		<when test="sales_price !=null and sales_price !='' and sales_price1 !=null and sales_price1 !='' and sales_price2 !=null and sales_price2 !=''">
-			and(d.sales_price = #{sales_price}
-				or d.sales_price = #{sales_price1}
-				or d.sales_price = #{sales_price2})
+			and(e.sales_price = #{sales_price}
+				or e.sales_price = #{sales_price1}
+				or e.sales_price = #{sales_price2})
 		</when>
 		<when test="sales_price !=null and sales_price !='' and sales_price1 !=null and sales_price1 !=''">
-			and(d.sales_price = #{sales_price}
-				or d.sales_price = #{sales_price1})
+			and(e.sales_price = #{sales_price}
+				or e.sales_price = #{sales_price1})
 		</when>
 		<when test="sales_price !=null and sales_price !='' and sales_price2 !=null and sales_price2 !=''">
-			and(d.sales_price = #{sales_price}
-				or d.sales_price = #{sales_price2})
+			and(e.sales_price = #{sales_price}
+				or e.sales_price = #{sales_price2})
 		</when>
 		<when test="sales_price !=null and sales_price !=''">
-			and d.sales_price = #{sales_price}
+			and e.sales_price = #{sales_price}
 		</when>
 	</choose>
 	<choose>
 		<when test="estim_valid_d !=null and estim_valid_d !='' and estim_valid_d1 !=null and estim_valid_d1 !='' and estim_valid_d2 !=null and estim_valid_d2 !=''">
-			and(d.ESTIM_VALID_D = #{estim_valid_d}
-				or d.ESTIM_VALID_D = #{estim_valid_d1}
-				or d.ESTIM_VALID_D = #{estim_valid_d2})
+			and(e.ESTIM_VALID_D = #{estim_valid_d}
+				or e.ESTIM_VALID_D = #{estim_valid_d1}
+				or e.ESTIM_VALID_D = #{estim_valid_d2})
 		</when>
 		<when test="estim_valid_d !=null and estim_valid_d !='' and estim_valid_d1 !=null and estim_valid_d1 !=''">
-			and(d.ESTIM_VALID_D = #{estim_valid_d}
-				or d.ESTIM_VALID_D = #{estim_valid_d1})
+			and(e.ESTIM_VALID_D = #{estim_valid_d}
+				or e.ESTIM_VALID_D = #{estim_valid_d1})
 		</when>
 		<when test="estim_valid_d !=null and estim_valid_d !='' and estim_valid_d2 !=null and estim_valid_d2 !=''">
-			and(d.ESTIM_VALID_D = #{estim_valid_d}
-				or d.ESTIM_VALID_D = #{estim_valid_d2})
+			and(e.ESTIM_VALID_D = #{estim_valid_d}
+				or e.ESTIM_VALID_D = #{estim_valid_d2})
 		</when>
 		<when test="estim_valid_d !=null and estim_valid_d !=''">
-			and d.ESTIM_VALID_D = #{estim_valid_d}
+			and e.ESTIM_VALID_D = #{estim_valid_d}
 		</when>
 	</choose>  
 	order by e.estim_id desc
