@@ -158,7 +158,7 @@ function addForm(){
 				    str+="<i class='user icon'></i>";
 				    str+="</div>";
 				    
-				    str+="<label  onclick='delForm(this)' id='schDelBth' class='ui button' >"+'-'+"</label>";
+				    str+="<label  onclick='delForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
 				    
 				    var addedDiv = document.createElement("div"); 	// 폼 생성
 				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)

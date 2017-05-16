@@ -66,19 +66,19 @@ $(document).ready(function(){
 <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content" style="text-align: right;">
 			<div id="baseBtnDiv"  class="bt_position_authuser">
-				<input type="button" id="modifybtn" class="ui orange button"  onclick="opptMdfyBtn();" value="편집" />
+				<input type="button" id="modifybtn" class="tiny ui orange button"  onclick="opptMdfyBtn();" value="편집" />
 				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="NewAddBtnDiv" style="display: none; " class="bt_position_authuser">
-				<input type="button" id="submitbtn" style="display: none;" class="ui orange button" onclick="opptAddBtn();" value="추가" />
+				<input type="button" id="submitbtn" style="display: none;" class="tiny ui orange button" onclick="opptAddBtn();" value="추가" />
 				<input type="button" id="cancelbtn" style="display: none;" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="addsavebtn" class="ui orange button" onclick="opptAdd();" value="저장" />
+				<input type="button" id="addsavebtn" class="tiny ui orange button" onclick="opptAdd();" value="저장" />
 				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="modifysavebtn" class="ui orange button" value="저장" onclick="opptModify();"/>
+				<input type="button" id="modifysavebtn" class="tiny ui orange button" value="저장" onclick="opptModify();"/>
 				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
@@ -178,8 +178,8 @@ $(document).ready(function(){
 				<input type="hidden" id="inputCust" value="false"/>
 				
 				<div class="detailBtn">
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-bottom: 10px;" class="ui orange button" value="상품삭제" id="opptProdDelete"/>
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품추가" id="opptProdListBtn"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-bottom: 10px;" class="tiny ui orange button" value="상품삭제" id="opptProdDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
 				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
 					<tr class="headerLock">

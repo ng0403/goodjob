@@ -51,7 +51,7 @@
 					<i class="users icon"></i>
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			   </div>	
-				    <input type="button" class="ui orange button" id="searchCustomer" value="고객">
+				    <input type="button" class="tiny tiny tiny ui orange button" id="searchCustomer" value="고객">
 				  <select name="ssales_lev_cd" id="ssales_lev_cd_select" >
 				    	<option value="">영업기회단계</option>
 				      	<c:forEach items="${otllist}" var="list">
@@ -74,7 +74,7 @@
 
 					<label id="schAddBtn"style="margin-left: 10px;margin-right: 10px; font-size: 22pt;" onclick="addForm();">+</label>
 			
-			    <input type="button"  class="ui orange button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
 			<div id="tableline">	 
 				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
@@ -121,8 +121,8 @@
 		</div>
 		<div class="bottom_div">
 			<div class="functionBtn_div">
-		    	<input type="button" class="ui orange button" value="추가" onclick="AddCustomerOpen();">
-				<input type="button" class="ui orange button" value="삭제" onclick="opptDelete();" >
+		    	<input type="button" class="tiny tiny ui orange button" value="추가" onclick="AddCustomerOpen();">
+				<input type="button" class="tiny tiny ui orange button" value="삭제" onclick="opptDelete();" >
 			</div>
 			<!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

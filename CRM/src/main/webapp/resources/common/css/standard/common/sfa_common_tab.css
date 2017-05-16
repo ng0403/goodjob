@@ -18,7 +18,6 @@
     display:block;
 }
 
-
 /* 라벨 기본 스타일 지정 */
 
 #css_tabs {
@@ -84,6 +83,14 @@
  
 }
 
+.bt_position_authuser {
+	margin-top: 10px;
+	float: right;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+
 /* 버튼 공통 */
 .button {
 	display: inline-block;
@@ -145,9 +152,3 @@
 }
 
 
-.bt_position_authuser {
-	margin-top: 10px;
-	float: right;
-	margin-right: 10px;
-	margin-bottom: 10px;
-}

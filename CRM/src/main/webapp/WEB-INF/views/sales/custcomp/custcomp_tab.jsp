@@ -17,14 +17,14 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
-<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+<%-- <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css"> --%>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script> -->
+<%-- <script src="${ctx}/resources/common/Semantic/semantic.js"></script> --%>
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
 
 <!-- 새로운 공통 css 파일 -->
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_tab.css" type="text/css" /> --%>
 
 <!-- 기존 css 파일 -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
@@ -68,7 +68,7 @@
 							<th style='width:15%;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id= "pocTableTbody">
+					<tbody id= "pocTableTbody" class="tbody">
 						<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
@@ -126,7 +126,7 @@
 							<th style='width:15%;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id="keymanTableTbody">
+					<tbody id="keymanTableTbody" class="tbody">
 							<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
@@ -152,17 +152,17 @@
 						<tr>
 <!-- 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th> -->
 							<th style="width: 3%;"><input type="checkbox"  id='actOpptAllSelect'/></th>
-							<td style="width: 20%;">영업기회명</td>
-							<td style="width: 8%;">고객사</td>
-							<td style="width: 6%;">상태</td>
-							<td style="width: 8%;">영업단계</td>
-							<td style="width: 10%;">예상마감일자</td>
-							<td style="width: 7%;">가능성</td>
-							<td style="width: 8%;">등록자</td>
-							<td style="width: 15%;">등록일시</td>
+							<th style="width: 20%;">영업기회명</td>
+							<th style="width: 8%;">고객사</td>
+							<th style="width: 6%;">상태</td>
+							<th style="width: 8%;">영업단계</td>
+							<th style="width: 10%;">예상마감일자</td>
+							<th style="width: 7%;">가능성</td>
+							<th style="width: 8%;">등록자</td>
+							<th style="width: 15%;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="activeOpptList">
+					<tbody id="activeOpptList" class="tbody">
 						<c:forEach items="${opptList}" var="opptList">
 							<c:if test="${not empty opptList}">
 								<tr id="${opptList.sales_oppt_id}">
@@ -217,8 +217,8 @@
 							<th style='width:8%; height:12px; padding:5px;'>종료시간</th>
 						</tr>
 					</thead>
-					<tbody id="actTableTbody">
-						<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
+					<tbody id="actTableTbody" class="tbody">
+						<tr style='height: 150px; text-align: center;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -236,18 +236,18 @@
 					<thead>						
 						<tr>
 							<th style="width: 3%;"><input type="checkbox"  id='ccEstListCheck'/></th>
-							<td style="width: 25%;">견적명</td>
-							<td style="width: 10%;">견적단계</td>
-							<td style="width: 7%;">견적수량</td>
-							<td style="width: 10%;">견적금액</td>
-							<td style="width: 12%;">견적유효일자</td>
-							<td style="width: 11%;">메모</td>
-							<td style="width: 11%;">등록자</td>
-							<td style="width: 11%;">등록일시</td>
+							<th style="width: 25%;">견적명</td>
+							<th style="width: 10%;">견적단계</td>
+							<th style="width: 7%;">견적수량</td>
+							<th style="width: 10%;">견적금액</td>
+							<th style="width: 12%;">견적유효일자</td>
+							<th style="width: 11%;">메모</td>
+							<th style="width: 11%;">등록자</td>
+							<th style="width: 11%;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="estTableTbody" >
-						<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
+					<tbody id="estTableTbody" class="tbody" >
+						<tr style='height: 150px; text-align: center;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
 					</tbody>
 				</table>
 			</div>
