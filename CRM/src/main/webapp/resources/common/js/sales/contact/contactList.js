@@ -104,11 +104,20 @@ function searchAcnkEvent(contactPageNum, keyword){
 		var cont_nm = $("#cont_nm").val();
 		var email = $("#email").val();
 		var ph = $("#ph").val();
+		
+		var cont_nm0 = $("#cont_nm0").val();
+		var email0 = $("#email0").val();
+		var ph0 = $("#ph0").val();
+		var cont_nm1 = $("#cont_nm1").val();
+		var email1 = $("#email1").val();
+		var ph1 = $("#ph1").val();
+		
  		var callData = { "contactPageNum": contactPageNum, 
 				"keyword": keyword,
 		        "cont_nm": cont_nm, 
 		        "email":email, 
 		        "ph":ph,
+		        "cont_nm0" : cont_nm0, "email0" : email0, "ph0" : ph0, "cont_nm1" : cont_nm1, "email1" : email1, "ph1" : ph1
  		        };
 		
 		if(keyword == '전체'){
@@ -189,7 +198,7 @@ function searchAcnkEvent(contactPageNum, keyword){
 }
 
 //검색 엔터키 기능
-function callSearchEnter(event) {
+function contactSearchEnter(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	
 	if (keycode == '13') {
@@ -207,21 +216,27 @@ function callSearchEnter(event) {
 //고객사 검색 조건 추가
 function addForm(){
 	if(count<2){
-//		$.ajax({
-//			type : 'post',
-//			url :'/ccllist',
-//			datatype : 'json',
-//			success:function(result){
+
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
-				    str+="<br><label for='inputEmail1' class='tel_label_list'>이름</label>";
-				    str+="<input type='text' style='margin-left: 9px;' class='inp_search' autofocus='autofocus' id='cont_nm"+count+"' name='cont_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<label for='inputPassword1' style='margin-left: 3px;' class='tel_label_list'>이메일</label> ";
-				    str+="<input type='email' style='margin-left: 6px;' class='tel_search' id='email"+count+"' name='email"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
-				    str+="<label for='inputPassword1' style='margin-left: 4px;' class='tel_label_list'>이동전화번호</label> ";
-				    str+="<input type='text' style='margin-left: 5px;' class='tel_search' id='ph"+count+"' name='ph"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
- 				    str+="<label  onclick='delForm(this)' id='schDelBth' >"+'-'+"</label>";
-				    
+				str+="<br><div class='ui left icon input'>";
+				str+="<input type='text' placeholder='이름' style='margin-right: 3px;' class='inp_search' autofocus='autofocus' id='cont_nm"+count+"' name='cont_nm"+count+"' onkeydown='contactSearchEnter(event);'/>";
+			    str+="<i class='user icon'></i>";
+			    str+="</div>";
+			    
+			    str+="<div class='ui left icon input'>";
+			    str+="<input type='text' placeholder='이메일' style='margin-right: 3px;' class='inp_search' id='email"+count+"' name='email"+count+"'  maxlength='9' onkeydown='contactSearchEnter(event);'   style='ime-mode:disabled;'/>";
+			    str+="<i class='mail icon'></i>";
+			    str+="</div>";
+			    
+			    str+="<div class='ui left icon input'>";
+			    str+="<input type='text' placeholder='이동전화번호' style='margin-right: 3px;' class='inp_search' id='ph"+count+"' name='ph"+count+"'  maxlength='9' onkeydown='contactSearchEnter(event);'   style='ime-mode:disabled;'/>";
+			    str+="<i class='mobile icon'></i>";
+			    str+="</div>";
+			    
+			    str+="<label  onclick='delForm(this)' id='schDelBth' class='ui button' >"+'-'+"</label>";
+
+			    
 				    var addedDiv = document.createElement("div"); 	// 폼 생성
 				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
 				    addedDiv.innerHTML  = str; 						// 폼 Div안에 HTML삽입
@@ -241,6 +256,13 @@ function addForm(){
     // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
 
+
+//고객사 검색 조건 삭제
+function delForm(obj){
+    var addedFormDiv = document.getElementById("search_div");
+        addedFormDiv.removeChild(obj.parentNode); 				// 폼 삭제 
+        --count;
+} 
 
 //연락처 리스트 출력
 function contactList(page){
@@ -409,35 +431,7 @@ function contactPaging(contactPageNum) {
  			var nextStepPage = data.page.nextStepPage;
  			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
 			
- 
-			
-			// 페이징 다시그리기
-			/*$("#pager").children().remove();
-
-			if(data.contactPageNum == data.page.startPageNum){
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='callPageNum' value='"+data.contactPageNum+"'/>"
-								+"<a style='text-decoration: none;'> ◀ </a> <input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"' onkeypress=\"pageInputCall(event);\"/>" 
-								+"<a href='#' onclick=contactPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=contactPaging("+(data.contactPageNum+1)+") id='pNum' style='text-decoration: none;'> ▶ </a>";
-			} else if(data.contactPageNum == data.page.endPageNum){
-
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='contactPageNum' value='"+data.contactPageNum+"'/>"
-				                +"<a href='#' onclick=contactPaging("+(data.contactPageNum-1)+") id='pNum' style='text-decoration: none;'> ◀ </a>"
-								+"<input type='text' id='contactPageInput' class='call_page_txt' value='"+data.page.endPageNum+"' onkeypress=\"pageInputCall(event);\"/>"
-								+"<a href='#' onclick=contactPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-								+"<a style='text-decoration: none;'> ▶ </a>";
-			} else {
-
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='contactPageNum' value='"+data.contactPageNum+"'/>"
-				                +"<a href='#' onclick=contactPaging("+(data.contactPageNum-1)+") id='pNum' style='text-decoration: none;'> ◀ </a>"
-								+"<input type='text' id='callPageInput' class='call_page_txt' value='"+data.contactPageNum+"' onkeypress=\"pageInputCall(event);\"/>"
-								+"<a href='#' onclick=contactPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none;'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=contactPaging("+(data.contactPageNum+1)+") id='pNum' style='text-decoration: none;'> ▶ </a>";
-			}
-			$("#pager").append(pageContent);*/
+  
 		},
 		error : function() {
 			alert("제가 문제입니다 페이징");
@@ -446,6 +440,7 @@ function contactPaging(contactPageNum) {
 }
 
 
+//페이징
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
 	var endPageNo = $("<input>");
 	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
@@ -453,29 +448,24 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
 	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:contactPaging("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
 	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:contactPaging("+prevPageNum+")");
+		prevPage.attr("href","javascript:replyPaging("+prevPageNum+")");
 	}
+	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:contactPaging("+i+")");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:replyPaging("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
-			ccPage.addClass("choice");
 			ccPage.attr("id","pNum");
 			b.append(ccPage);
 			$("#pageSpace").append(b);
@@ -484,19 +474,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 		}
 	}
 	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:contactPaging("+nextPageNum+")");
+		nextPage.attr("href","javascript:replyPaging("+nextPageNum+")");
 	}
+	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:contactPaging("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
 }
 
 //개인고객 , 키맨 삭제

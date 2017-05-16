@@ -187,31 +187,23 @@ public class ContactController {
 	// 연락처 리스트 초성검색 / 그냥검색 페이징
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> searchKeyword(HttpSession session, String keyword,
-			@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum, String cont_nm, String email, String ph) {
+			@RequestParam(value = "contactPageNum", defaultValue = "1") 
+	int contactPageNum, String cont_nm, String email, String ph, String cont_nm0, String email0, String ph0, String cont_nm1, String email1, String ph1) {
 		System.out.println("초성검색 enter");
 		System.out.println("초성?" + keyword);
-		Map<String, Object> kwMap = new HashMap<String, Object>();
-		/*
-		 * if (session.getAttribute("user") == null) { //로그인 페이지 이동
-		 * kwMap.put("result", "standard/home/session_expire"); } else {
-		 * kwMap.put("call_name",call_name); kwMap.put("call_email",call_email);
-		 * kwMap.put("call_tel", call_tel); kwMap.put("call_iuser_nm",
-		 * call_iuser_nm); kwMap.put("keyword", keyword);
-		 * kwMap.put("callPageNum", callPageNum);
-		 * 
-		 * PagerVO page = callService.CallListCount(kwMap); kwMap.put("page",
-		 * page);
-		 * 
-		 * List<CallVO> callList = callService.callSearchAll(kwMap);
-		 * kwMap.put("callList", callList); kwMap.put("callListSize",
-		 * callList.size()); }
-		 */
+		Map<String, Object> kwMap = new HashMap<String, Object>(); 
 
 		kwMap.put("cont_nm", cont_nm);
 		kwMap.put("email", email);
 		kwMap.put("ph", ph);
 		kwMap.put("keyword", keyword);
 		kwMap.put("contactPageNum", contactPageNum);
+		kwMap.put("cont_nm0", cont_nm0);
+		kwMap.put("email0", email0);
+		kwMap.put("ph0", ph0);
+		kwMap.put("cont_nm1", cont_nm1);
+		kwMap.put("email1", email1);
+		kwMap.put("ph1", ph1);
 		System.out.println("kwMap?? " + kwMap.toString());
 		PagerVO page = contactService.ContactListCount(kwMap);
 		System.out.println("page? " + page.toString());

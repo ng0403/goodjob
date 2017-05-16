@@ -20,10 +20,10 @@
 
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
-
-
+ 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 
 <title>영업기회 리스트</title>
@@ -40,7 +40,7 @@
 					<option value="oppt_nm">회사명</option>
 				</select>
 				<input id="search_text" type="text" name="keyword" class="comp_list_txt"> &nbsp;
-				<button id="search_btn" type="submit" class="comp_list_bt">검색</button>
+				<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
 			</form>
 		</div>
 	

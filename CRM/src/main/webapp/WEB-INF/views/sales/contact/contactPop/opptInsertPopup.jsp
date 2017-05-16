@@ -68,8 +68,7 @@
 								<td>
 									<input type="text" name="cust_nm" id="cust_nm" class="int" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" class="int">
-<%-- 									<input type="button" class="btn-success-tel" id="customerPop" value="고객" disabled="disabled" onclick="opptCustPopup('${ctx}');"> --%>
-								<input type="button" value="고객사" id="customer" class="ui orange button" onclick="javascript:keymanListPopup();">
+ 								<input type="button" value="고객사" id="customer" class="tiny ui orange button" onclick="javascript:keymanListPopup();">
 								
 								</td>
 							</tr>
@@ -282,8 +281,8 @@
 			</div>
 			<c:if test="${popFlg eq 'add'}">
 				<div class="estimate_bt_position"> 
-					<input type="button" class="ui orange button"  value="상품추가" id="prodListBtn" onclick="opptProdList()" />
-					<input type="button" class="ui orange button" value="상품삭제" id="prodDelete"/>
+					<input type="button" class="tiny ui orange button"  value="상품추가" id="prodListBtn" onclick="opptProdList()" />
+					<input type="button" class="tiny ui orange button" value="상품삭제" id="prodDelete"/>
 				</div>
 			</c:if>
 			<%-- <c:if test="${popFlg eq 'popDetail'}">
@@ -296,15 +295,15 @@
 			<c:if test="${popFlg eq 'add'}">
 				<div class="act_bt_position">
 <%-- 					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSaveBtn('${ctx}')"/> --%>
-					<input type="button" class="ui orange button" value="등록" id="opptSaveButton" onclick="contactopptSave()"/>
-					<input type="button" class="ui orange button" value="취소" id="opptAdd_cancel" />
+					<input type="button" class="tiny ui orange button" value="등록" id="opptSaveButton" onclick="contactopptSave()"/>
+					<input type="button" class="tiny ui button" value="취소" id="opptAdd_cancel" />
 				</div>
 			</c:if>
 			<c:if test="${popFlg eq 'popDetail'}">
 				<div class="act_bt_position">
-					<input type="button" class="ui orange button" value="편집" id="opptModfyButton" />
-					<input type="button" class="ui orange button" value="저장" id="opptModfySaveBtn" onclick="contactopptMdfySave()" />
-					<input type="button" class="ui orange button" value="취소" id="opptModfy_cancel" />
+					<input type="button" class="tiny ui orange button" value="편집" id="opptModfyButton" />
+					<input type="button" class="tiny ui orange button" value="저장" id="opptModfySaveBtn" onclick="contactopptMdfySave()" />
+					<input type="button" class="tiny ui button" value="취소" id="opptModfy_cancel" />
 				</div>
 			</c:if>
 			

@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
@@ -206,14 +211,14 @@ function ccActDetailSelect() {
 		
 			<c:if test="${flag == 0}">
 				<div class="act_bt_position">
-					<input type="button" class="button functionBtn" value="저장" id="oppt_add" onclick="ccActAdd();"/>
-					<input type="button" class="button search_btn" value="취소" id="oppt_cancel" onclick="ccActClose();"/>
+					<input type="button" class="tiny ui orange button" value="저장" id="oppt_add" onclick="ccActAdd();"/>
+					<input type="button" class="tiny ui  button" value="취소" id="oppt_cancel" onclick="ccActClose();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="act_bt_position">
-					<input type="button" class="button functionBtn" value="저장" id="oppt_mdfy" onclick="ccActMdfy();"/>
-					<input type="button" class="button search_btn" value="취소" id="oppt_cancel" onclick="ccActClose();"/>
+					<input type="button" class="tiny ui orange button" value="저장" id="oppt_mdfy" onclick="ccActMdfy();"/>
+					<input type="button" class="tiny ui button" value="취소" id="oppt_cancel" onclick="ccActClose();"/>
 				</div>
 			</c:if>
 		</div>

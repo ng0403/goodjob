@@ -29,7 +29,8 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <div id="title">
-		<div class="caption">■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${board_mng}">리스트</a> >  추가
+		<div class="caption"> 
+	 <h3 class="ui header" style="background: #fff;"> ■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${board_mng}" style="font-size: 14pt; text-decoration:none; color: blue;">리스트</a> >  추가 </h3>
 		</div>
 </div>
 
@@ -61,8 +62,8 @@
 	</form>
 
 	<div id="btns"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "ui orange button" value="저장" onclick="board_add_save();"/>
-		 <input type="button" id="board_list_fbtn" class="ui orange button" value="취소" onclick="go_list();"/> 
+		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="go_list();"/> 
 	</div>
 
 </div> 

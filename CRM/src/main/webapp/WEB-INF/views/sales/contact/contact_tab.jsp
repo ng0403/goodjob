@@ -50,8 +50,8 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn" class="ui orange button" value="추가" />
-				<input type="button" id="deletekeymanbtn" class="ui orange button" value="삭제" onclick="keymanDelete1();"/>
+				<input type="button" id="keyman_pop_btn" class="tiny ui orange button" value="추가" />
+				<input type="button" id="deletekeymanbtn" class="tiny ui orange button" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
 			<div id="tableline2">
@@ -76,8 +76,8 @@
 			<!-- 영업기회 리스트 -->
 		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="oppt_pop_btn" class="ui orange button" value="추가" />
-				<input type="button" id="opptDel" class="ui orange button" value="삭제" onclick="ccOpptDel()"/>
+				<input type="button" id="oppt_pop_btn" class="tiny ui orange button" value="추가" />
+				<input type="button" id="opptDel" class="tiny ui orange button" value="삭제" onclick="ccOpptDel()"/>
 			</div>
 			
 			<div id="tableline2">
@@ -105,8 +105,8 @@
 			<!-- 영업활동 리스트 -->
 		<div id="tabDiv3" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_pop_btn" class="ui orange button" value="추가"/>
-				<input type="button" id="actDel" class="ui orange button" value="삭제" onclick="opptActiveDeletecontact();"/>
+				<input type="button" id="act_pop_btn" class="tiny ui orange button" value="추가"/>
+				<input type="button" id="actDel" class="tiny ui orange button" value="삭제" onclick="opptActiveDeletecontact();"/>
 			</div>
 			
 			<div id="tableline2">

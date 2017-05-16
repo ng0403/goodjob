@@ -98,7 +98,7 @@ public class ContactServiceImpl implements ContactService {
 		//초성검색
 		@Override
 		public List<ContactVO> contactSearchAll(Map<String,Object> contactMap){
-			System.out.println("초성 service");
+			System.out.println("초성 service" + contactMap.toString());
 			return contactDao.contactSearchAll(contactMap);
 		}
 		

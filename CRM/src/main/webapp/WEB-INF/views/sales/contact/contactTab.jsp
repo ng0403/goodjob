@@ -22,7 +22,9 @@
 </head>
 <body>
 <div id="title">
-		<div class="caption">■ 고객 > <a href="/contact">연락처</a> > 연락처 상세</div>
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;">■ 고객 > <a href="/contact" style="font-size: 14pt; text-decoration:none; color: blue;">연락처</a> > 연락처 상세 </h3>
+		</div>
 	</div>
 
 	<input type="hidden" id="ctx" value="${ctx}">
@@ -36,28 +38,32 @@
         <!-- 개인고객 -->
         <div class="detailBtn">
 		<div id="baseBtnDiv" class="bt_position_authuser"> 
-		    <input type="button" id="custpsonBtn" value="편집" class="ui orange button" onclick="callCustBtn();"/>
-		    <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="ui orange button"/>
+		    <input type="button" id="custpsonBtn" value="편집" class="tiny ui orange button" onclick="callCustBtn();"/>
+		    <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 		    
  		</div> 
 	 </div>
 		<!-- 개인고객 추가 저장/취소 버튼  -->
 		<div class="detailBtn">
 		<div id="baseBtnDiv" style="display: none;" class="bt_position_authuser">
-			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="ui orange button"/>
-			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="ui orange button"/>
+			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="tiny ui orange button"/>
+			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 	    </div>
 	  </div>
 				
 		<div class="call_tab_div">
 			<table id="contactable">
-				<tbody id="contactbody">
+				<tbody id="contactbody" class="detailtbody">
 					<tr>
 						<th><span style="color:red">*이름</span></th>
 						<td>
+						<div class="ui input focus">
 						<input type="hidden" name="cont_id" id="cont_id" value="${contactDetail.cont_id}" />
 						<input type="hidden" id="hcall_nm"/>
-						<input type="text" name="cont_nm" id="cont_nm" class="int" value="${contactDetail.cont_nm}" readonly="readonly"/></td>
+						<input type="text" name="cont_nm" id="cont_nm" class="int" value="${contactDetail.cont_nm}" readonly="readonly"/>
+						</div>
+						</td>
+		
 						<!-- <th>구분</th>
 						<td>
 						   <input type="text" name="cust_div_nm" id="cust_div_nm" class="int"/>
@@ -68,7 +74,7 @@
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" value="${contactDetail.company_nm }" readonly="readonly"/> 
-						    <input type="button" name="compSearch" value="회사" class="ui orange button" id="comp_list_bt" disabled="disabled" />
+						    <input type="button" name="compSearch" value="회사" class="tiny ui orange button" id="comp_list_bt" disabled="disabled" />
 						</td>
 						
 						</tr>
@@ -96,16 +102,15 @@
 					</tr>
 					<tr>
 					<th>이메일</th>
-						<td>
+						<td rowspan="2">
 						    <input type="hidden" id="hemail1"/>
 							<input type="hidden" id="hemail2"/>
-						    <input type="text" name="email1" id="email1" class="int_email" value="${contactDetail.email1 }" readonly="readonly"/> @ 
-						    <input type="text" name="email2" id="email2" class="int_email" value="${contactDetail.email2 }" readonly="readonly"/>
-						</td>
+						    <input type="text" name="email1" id="email1" class="int_tel" value="${contactDetail.email1 }" readonly="readonly"/> @ 
+						    <input type="text" name="email2" id="email2" class="int" value="${contactDetail.email2 }" readonly="readonly"/>
+						</td>	
 					</tr>
 					 
-					</tr> 
-				</tbody>
+ 				</tbody>
 			</table>
 			</div>
 		  </div>

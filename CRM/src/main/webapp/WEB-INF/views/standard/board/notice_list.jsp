@@ -31,7 +31,8 @@
 <body> 
    
    <div id="title">
-		<div class="caption">■ 공지사항 > 리스트
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;"> ■ 공지사항 > 리스트</h3> 
 		</div>
 	</div>
  
@@ -43,7 +44,7 @@
             <label >제  목</label>
             <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
    
-             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="ui orange button" value="검색">
+             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색">
       <!--  </form>   -->
       </div>
    </div>
@@ -53,7 +54,7 @@
           <form name="delAllForm" id ="delAllForm" method="post" action="/board/board_remove">  
            <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/>  
             <div class="table_div">
-               <table  class="table table-hover" >
+               <table  class="ui sortable celled table" >
                   <thead>
                      <tr>
                         <th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
@@ -85,8 +86,8 @@
  
  <div class="bottom_div">
        <div class="functionBtn_div">
-         <input type="button" id = "board_add_fbtn"  class = "ui orange button" value="추가" onclick="board_add();"/> 
-           <input type="button" id ="board_remove_fbtn" class="ui orange button" value="삭제"  onclick="deleteAction() "/>
+         <input type="button" id = "board_add_fbtn"  class = "tiny ui orange button" value="추가" onclick="board_add();"/> 
+           <input type="button" id ="board_remove_fbtn" class="tiny ui orange button" value="삭제"  onclick="deleteAction() "/>
       </div> 
    <!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

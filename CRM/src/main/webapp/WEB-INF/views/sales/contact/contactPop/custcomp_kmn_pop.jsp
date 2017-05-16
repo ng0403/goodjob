@@ -14,7 +14,8 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> f
+
 <c:if test="${flag == 0}">
 	<title>키맨 등록</title>
 </c:if>	
@@ -45,7 +46,7 @@
 						<tr>
 							<th><span style="color:red">*고객사</span></th>
 							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus" readonly="readonly"/>
-							<input type="button" value="고객" id="customer" class="ui orange button" onclick="javascript:custcompListPopup('${ctx}');">
+							<input type="button" value="고객" id="customer" class="tiny ui orange button" onclick="javascript:custcompListPopup('${ctx}');">
 							</td>
 							 <input type="hidden" id="cust_id" name="cust_id" class="int" />  
 							
@@ -74,14 +75,14 @@
 			
 			<c:if test="${flag == 0}">
 				<div class="detailBtn">
-					<input type="button" class="ui orange button" value="저장" id="keyman_add" onclick="keymanAdd();"/>
-					<input type="button" class="ui orange button" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
+					<input type="button" class="tiny ui orange button" value="저장" id="keyman_add" onclick="keymanAdd();"/>
+					<input type="button" class="tiny ui button" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="detailBtn">
-					<input type="button" class="ui orange button" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}','${kmVO.cont_id}');"/>
-					<input type="button" class="ui orange button" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
+					<input type="button" class="tiny ui orange button" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}','${kmVO.cont_id}');"/>
+					<input type="button" class="tiny ui button" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
 				</div>
 			</c:if>
 		</div>

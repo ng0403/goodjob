@@ -28,8 +28,9 @@
  
  
 <div id="title">
-		<div class="caption">■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}">리스트</a> >  수정
-		</div>
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;"> ■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">리스트</a> >  수정 </h3>
+	 	</div>
 </div>
 
 <div class="container"> <!-- 전체 div-->
@@ -53,8 +54,8 @@
 </div>
  </form>
 <div id="btns"> <!-- 버튼 div  -->
-  <button type="submit" id = "board_modify_fbtn" class="ui orange button" onclick="board_modify_save();">저장</button>
-  <input type="button" class="ui orange button" id="board_list_fbtn" value="목록" onclick="go_list();"/>
+  <button type="submit" id = "board_modify_fbtn" class="tiny ui orange button" onclick="board_modify_save();">저장</button>
+  <input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 </div>
 
 

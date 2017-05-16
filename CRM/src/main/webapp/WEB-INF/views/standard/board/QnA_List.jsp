@@ -51,7 +51,9 @@ label {
 <div class="main_div">
 
 <div id="title">
-		<div class="caption">■ Q&A > 리스트
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;"> ■ Q&A > 리스트 </h3>
+		
 		</div>
 </div>
 
@@ -85,7 +87,7 @@ label {
  <form name="delAllForm" id ="delAllForm" method="post" action="/board/board_remove"> 
  <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/>   
 
-	<table class="table table-hover">
+	<table class="ui sortable celled table">
 						<thead>
 						<tr>
 							<th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
@@ -120,8 +122,8 @@ label {
 		 <div class="bottom_div">
 		 
 		 <div class="functionBtn_div">
-		 <input type="button" id = "board_add_fbtn" class = "ui orange button" value="추가" onclick="board_add();"/>
-		  <input type="button" id ="board_remove_fbtn" class="ui orange button" value="삭제"  onclick="deleteAction() "/>	 
+		 <input type="button" id = "board_add_fbtn" class = "tiny ui orange button" value="추가" onclick="board_add();"/>
+		  <input type="button" id ="board_remove_fbtn" class="tiny ui orange button" value="삭제"  onclick="deleteAction() "/>	 
 		</div>
 		
 		 <!-- 페이징 처리 -->

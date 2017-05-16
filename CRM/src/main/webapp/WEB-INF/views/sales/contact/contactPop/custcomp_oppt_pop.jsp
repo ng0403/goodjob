@@ -71,7 +71,7 @@
 							<td>
 								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly"	class="int_oppt" value="${opptVO.cust_nm}">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opptVO.cust_id}" />
-								<input type="button" value="키맨" id="customer" class="cont_bt" onclick="javascript:keymanListPopup();">
+								<input type="button" value="키맨" id="customer" class="tiny ui orange button" onclick="javascript:keymanListPopup();">
 								
 							</td>
 						</tr>
@@ -155,14 +155,14 @@
 			</div>
 			<c:if test="${flag == 0}">
 				<div class="oppt_bt_position">
-					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_add" onclick="ccOpptAddcontact();"/>
-					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel" onclick ="opptcancle();"/>
+					<input type="button" class="tiny ui orange button" value="저장" id="oppt_add" onclick="ccOpptAddcontact();"/>
+					<input type="button" class="tiny ui button" value="취소" id="oppt_cancel" onclick ="opptcancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
 				<div class="oppt_bt_position">
-					<input type="button" class="cust_oppt_btn" value="저장" id="oppt_mdfy" onclick="contactopptModify();"/>
-					<input type="button" class="cust_oppt_btn" value="취소" id="oppt_cancel" onclick ="opptcancle();"/>
+					<input type="button" class="tiny ui orange button" value="저장" id="oppt_mdfy" onclick="contactopptModify();"/>
+					<input type="button" class="tiny ui button" value="취소" id="oppt_cancel" onclick ="opptcancle();"/>
 				</div>
 			</c:if>
 		</div>

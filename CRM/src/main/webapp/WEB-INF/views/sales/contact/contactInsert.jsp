@@ -24,7 +24,9 @@
 </head>
 <body>
 <div id="title">
-		<div class="caption">■ 고객 > <a href="/contact">연락처</a> > 연락처 추가</div>
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;"> ■ 고객 > <a href="/contact" style="font-size: 14pt; text-decoration:none; color: blue;"> 연락처</a> > 연락처 추가</h3>		
+		</div>
 </div>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="nowCall_id"/>
@@ -43,8 +45,8 @@
 	    <!-- 개인고객 편집 저장/취소 버튼  -->
 	 <div class="detailBtn"> 
 		<div id="callCustMdfBtnDiv" class="call_tab_bt_div">
-			 <input type="button" id="callAddBtn" value="저장" onclick="contactInsert()" class="ui orange button"/>
-		     <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="ui orange button"/>
+			 <input type="button" id="callAddBtn" value="저장" onclick="contactInsert()" class="tiny ui orange button"/>
+		     <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui orange button"/>
 		</div>
 	</div>			
 		<div class="call_tab_div">
@@ -66,7 +68,7 @@
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" /> 
-						    <input type="button" name="compSearch" value="회사" class="ui orange button" id="comp_list_bt"/>
+						    <input type="button" name="compSearch" value="회사" class="tiny ui orange button" id="comp_list_bt"/>
 						</td> 
 						</tr>
 					<tr>

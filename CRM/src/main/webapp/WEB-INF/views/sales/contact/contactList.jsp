@@ -6,28 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
-
-<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script> 
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
-
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/callList.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
-
+ 
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script> 
- 
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script> 
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> 
+  
 
 <script>
    $(function() {
       $('table').tablesort();
    });            
 </script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
  
 <title>연락처</title>
@@ -35,25 +31,27 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<div id="title">
-		<div class="caption">■ 고객 > 연락처</div>
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;">■ 고객 > 연락처</h3> 
+		</div>
 	</div>
  
 	
 	<div class="search_div" id = "search_div">
 	<div class="ui left icon input">
-			<input type="text" placeholder="이름" autofocus="autofocus" id="cont_nm" name="cont_nm" onkeydown="callSearchEnter(event);">
+			<input type="text" placeholder="이름" autofocus="autofocus" id="cont_nm" name="cont_nm" onkeydown="contactSearchEnter(event);">
 			<i class="user icon"></i>
 	</div>	
 		<div class="ui left icon input">
-			<input type="text" placeholder="이메일" autofocus="autofocus" id="email" name="email" onkeydown="callSearchEnter(event);">
+			<input type="text" placeholder="이메일" autofocus="autofocus" id="email" name="email" onkeydown="contactSearchEnter(event);">
 			<i class="mail icon"></i>
 	</div>
 	<div class="ui left icon input">
-			<input type="text" placeholder="이동전화번호" autofocus="autofocus" id="ph" name="ph" onkeydown="callSearchEnter(event);">
+			<input type="text" placeholder="이동전화번호" autofocus="autofocus" id="ph" name="ph" onkeydown="contactSearchEnter(event);">
 			<i class="mobile icon"></i>
 	</div>	
- 	    	<label id="schAddBtn" class="ui button" onclick="addForm();">+</label>		
-	 <button id="search_btn" type="submit" class="ui orange button" onclick="searchAcnkEvent(1,'');">조회</button> 
+ 	    	<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>		
+	 <button id="search_btn" type="submit" class="tiny ui orange button" onclick="searchAcnkEvent(1,'');">조회</button> 
 	    
 	</div>
 	
@@ -109,10 +107,11 @@
 		</c:forEach>
 		</tbody>
 		</table>
+		</div>
 		<div class="bottom_div">
-	       <div id="functionBtn_div">
-			<input type="button" class="ui orange button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
-			<input type="button" class="ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+	       <div class="functionBtn_div">
+			<input type="button" class="tiny ui orange button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+			<input type="button" class="tiny ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
 	       </div> 
 	
 	     <div id="pageSpace" class="ui right floated pagination menu">
@@ -157,7 +156,7 @@
 			</div>
 	
 	</div>
-	</div>
+	
 	
 	
  

@@ -35,7 +35,9 @@
  
 
 <div id="title">
-		<div class="caption">■ 게시판 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}">리스트</a> >  수정
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;">■ 게시판 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">리스트</a> >  수정 </h3>
+ 		
 		</div>
 </div>
  
@@ -65,8 +67,8 @@
  </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
- <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="ui orange button">저장</button>
-  <input type="button" class="ui orange button" id="board_list_fbtn" onClick="board_list();" value="목록"/>
+ <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="tiny ui orange button">저장</button>
+  <input type="button" class="tiny ui orange button" id="board_list_fbtn" onClick="board_list();" value="목록"/>
 </div>
 
 
@@ -92,7 +94,7 @@
       <!-- Footer -->
       <div class="modal-footer">
         Footer
-        <button type="button" class="ui orange button" data-dismiss="modal">닫기</button>
+        <button type="button" class="tiny ui orange button" data-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>

@@ -63,7 +63,7 @@
 									<input type="text" name="cust_nm" id="oppt_nm" class="int" value="${cust_nm}" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
 									<input type="hidden" name="oppt_id" id="oppt_id">
-								    <input type="button" value="영업기회" id="oppt" class="ui orange button" onclick="javascript:opptListPopup();">
+								    <input type="button" value="영업기회" id="oppt" class="tiny ui orange button" onclick="javascript:opptListPopup();">
 									 
 								</c:when>
 								<c:when test="${flg eq 'detail'}">
@@ -225,8 +225,8 @@
 			</table>
 		</div>
 		<div class="detailBtn">
-			<input type="button" class="ui orange button" value="저장" id="activeButton"/>
-			<input type="button" class="ui orange button" value="취소" id="activeAdd_cancel"/>
+			<input type="button" class="tiny ui orange button" value="저장" id="activeButton"/>
+			<input type="button" class="tiny ui button" value="취소" id="activeAdd_cancel"/>
 		</div>
 	</div>
 </div>

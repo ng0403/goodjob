@@ -9,6 +9,10 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script> 
+
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/call/employee_css.css" type="text/css" />
 </head>
 <body>
@@ -29,7 +33,7 @@
 								<fieldset>
 									<legend>검색 영역</legend>
 									<input type="text" name="emp_search" id="emp_search" style="outline:none" maxlength="30" autocomplete="off" title="검색어 입력" autofocus="autofocus"/>
-									<button class="searchBtn" onClick="empSearch(1);">검색</button>
+									<button class="tiny ui orange button" onClick="empSearch(1);">검색</button>
 								</fieldset>
 							</div>
 						</div>
