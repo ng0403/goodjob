@@ -12,6 +12,10 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
@@ -65,24 +69,28 @@ $(function() {
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<!-- <label for="tab1">견적등록</label> -->
 		<div id="title">
-			<div class="caption">■ 견적등록</div>
+			<div class="caption">
+				<h3 class="ui header" style="background: #fff;">
+					■ 영업 > 
+					<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적</a>
+					 > 견적추가
+				</h3>
+			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">	
-					
+			<div id="addBtnDiv" class="bt_position_authuser">
+				<input type="button" id="addSaveBtn" value="저장" class="btn-success-tel" onclick="save_Click();" class="custcomp_btn"/>
+				<input type="button" id="addCancelBtn" value="취소" class="btn-success-tel" onclick="cancel_Click();"/>
+			</div>		
 			<div id="ccustomerdiv">
 			<input type="hidden" id="inputCust" value="false"/>
 			
 			<table id="contactable">
 				<tbody id="estDetail">
-					<tr>
-						<td colspan="4">
-							<div id="addBtnDiv" class="bt_position_authuser">
-								<input type="button" id="addSaveBtn" value="저장" class="btn-success-tel" onclick="save_Click();" class="custcomp_btn"/>
-								<input type="button" id="addCancelBtn" value="취소" class="btn-success-tel" onclick="cancel_Click();"/>
-							</div>
-						</td>
-					</tr>
+					
+							
+					
 					<tr>
 						<th class="txtr">견적명</th>
 						<td>

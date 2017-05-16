@@ -138,7 +138,7 @@ function prodSearch(prodPageNum) {
 						fst_reg_dt = dateFormat(Number(result.prodList[i].fst_reg_dt));
 						
 						tbodyContent = "<tr>"
-							+"<th><input type='checkbox'></th>"
+							+"<td><input type='checkbox'></td>"
 							+"<td id='list_prod_id'><a class='list_prod_id'>"+result.prodList[i].prod_nm
 							+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 							+"</td>"

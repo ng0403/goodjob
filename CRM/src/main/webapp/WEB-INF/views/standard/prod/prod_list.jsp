@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link rel="stylesheet"
-	href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
@@ -41,7 +41,7 @@ $("#naviprod").css("font-weight", "bold");
 	</div>
 	<div class="search_div">
 		<div class="ui left icon input">
-			<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm">
+			<input type="text" placeholder="상품(서비스)명" id="sprod_nm" class="sprod_nm">
 			<i class="industry icon"></i>
 		</div>
 	    <div class="ui left icon input">
@@ -54,7 +54,7 @@ $("#naviprod").css("font-weight", "bold");
 			</select>
 			<i class="list layout icon"></i>
 		</div>
-		<input type="button" id="prod_search"  class="ui orange button" value="조회" onclick="prodSearch('${ccpageNum}');" />
+		<input type="button" id="prod_search"  class="tiny ui orange button" value="조회" onclick="prodSearch('${ccpageNum}');" />
 		
 <!-- 		<label for="prod_nm" class="prod_label_search">상품(서비스)명</label> -->
 <!-- 		<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm"> -->
@@ -85,9 +85,9 @@ $("#naviprod").css("font-weight", "bold");
 			<tbody id="prod_list">
 				<c:forEach items="${prodList}" var="prodList">
 					<tr>
-						<th><input type="checkbox" value="${prodList.prod_id}" onclick="javascript:chkCancel();"></th>
+						<td><input type="checkbox" value="${prodList.prod_id}" onclick="javascript:chkCancel();"></td>
 						<td id="list_prod_id">
-							<a class="list_prod_id" href="javascript:prodIdClick('${prodList.prod_id}');">
+							<a class="list_prod_id" style="color: inherit;" href="javascript:prodIdClick('${prodList.prod_id}');">
 								${prodList.prod_nm}
 							</a>
 						</td>
@@ -105,8 +105,8 @@ $("#naviprod").css("font-weight", "bold");
 	</div>
 	<div class="bottom_div">
 		<div class="functionBtn_div">
-			<input type="button" id="prodAddBtn" class="ui orange button" value="추가"/>
-			<input type="button" id="prodDeleteBtn" class="ui orange button" value="삭제">	
+			<input type="button" id="prodAddBtn" class="tiny ui orange button" value="추가"/>
+			<input type="button" id="prodDeleteBtn" class="tiny ui orange button" value="삭제">	
 		</div>
 				
 	<!-- 페이징 처리 --> 

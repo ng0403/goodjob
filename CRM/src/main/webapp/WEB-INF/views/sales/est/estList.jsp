@@ -12,8 +12,8 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 <script type="text/javascript"
@@ -79,8 +79,8 @@
 				<input type="text" placeholder="견적유효일자" name="estim_valid_d" id="sestim_valid_d" readonly="readonly"/>
 		    	<i class="checked calendar icon"></i>
 		    </div>
-		    <label id="schAddBtn" class="ui button" onclick="addForm();">+</label>
-		    <button type="submit" class="ui orange button" id="searchlist" onclick="searchBtn('${ccpageNum}');">조회</button> 
+		    <label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
+		    <button type="submit" class="tiny ui orange button" id="searchlist" onclick="searchBtn('${ccpageNum}');">조회</button> 
 <!-- 			<label for="scompNam" class="tel_label_list">견적명</label> -->
 <%-- 			<input type="text" class="tel_search" name="estim_nm" id="sestim_nm" value="${estim_nm}" autofocus="autofocus" onkeypress="estSearchInput(event);">  --%>
 <!-- 		    <label for="inputPassword1" class="tel_label_list">견적단계</label> -->
@@ -130,7 +130,7 @@
 				<input type="text" placeholder="견적유효일자" name="estim_valid_d" id="sestim_valid_d1" readonly="readonly"/>
 		    	<i class="checked calendar icon"></i>
 		    </div>
-		    <label id="schAddBtn1" class="ui button" onclick=delForm(this.id);>-</label>
+		    <label id="schAddBtn1" class="tiny ui button" onclick=delForm(this.id);>-</label>
 		</div>
 		<div class="search_div" id="search_div3">
 			<div class="ui left icon input">
@@ -159,7 +159,7 @@
 				<input type="text" placeholder="견적유효일자" name="estim_valid_d" id="sestim_valid_d2" readonly="readonly"/>
 		    	<i class="checked calendar icon"></i>
 		    </div>
-		   <label id="schAddBtn2" class="ui button" onclick=delForm(this.id);>-</label>
+		   <label id="schAddBtn2" class="tiny ui button" onclick=delForm(this.id);>-</label>
 		</div>
 <!-- </form> -->
 <!-- 		<div id="contact_button_position"> -->

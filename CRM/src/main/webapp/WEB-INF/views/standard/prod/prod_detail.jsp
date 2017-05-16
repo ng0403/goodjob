@@ -8,10 +8,15 @@
 <c:set var="flg" value="${flg }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/tab_example.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/prod/prod.css" type="text/css" />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_pop.js"></script>	
@@ -45,79 +50,100 @@ function prodInserts(){
 <!-- 		<label for="tab1">상세정보</label> -->
 		<div id="title">
 			<c:if test="${flg eq 'add'}">
-				<div class="caption">상품/서비스 등록</div>
+				<div class="caption">
+					<h3 class="ui header" style="background: #fff;">■ 기준정보 > 
+					<a href="/prod" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">상품/서비스</a>
+					 > 상품/서비스 추가
+					</h3>
+				</div>
 			</c:if>
 			<c:if test="${flg eq 'detail'}">
-				<div class="caption">상품/서비스 상세/수정</div>
+				<div class="caption"><h3 class="ui header" style="background: #fff;">■ 기준정보 > 
+					<a href="/prod" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">상품/서비스</a>
+					 > 상세정보
+					</h3>
+				</div>
 			</c:if>
 		</div>
 		
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 		
-		<form method="post" name="prodForm" id="prodForm" enctype="multipart/form-data">
-		<div class="act_tab_bt_div">
-					<input type="button" id="prodCancelBtn" class="btn-success-tel" value="취소"/>
-					<input type="button" id="prodModifyBtn" class="btn-success-tel" value="편집"/>
+			<form method="post" name="prodForm" id="prodForm" enctype="multipart/form-data">
+				<div class="act_tab_bt_div">
+					<input type="button" id="prodSaveBtn" class="tiny ui orange button" value="저장"/>
+					<input type="button" id="prodModifyBtn" class="tiny ui button" value="편집"/>
+					<input type="button" id="prodCancelBtn" class="tiny ui button" value="취소"/>
 					<!-- <input type="button" id="prodAddBtn" class="btn-success-tel" value="추가"/> -->
-					<input type="button" id="prodSaveBtn" class="btn-success-tel" value="저장"/>
-		</div>
-				<table id="act_tab_table">
+				</div>
+				<table id="act_tab_table" class="ui celled table">
 					<tbody id="act_tab_tbody">
 						<tr>
 							<!-- 텍스트 박스 -->
 							<th><span style="color:red;">*상품(서비스)명</span></th>
 							<td>
-								<input type="hidden" name="prod_id" id="prod_id" value="${prodDto.prod_id}">			
-							<input type="text" name="prod_nm" id="prod_nm"
-								class="act_nm" style="ms-ime-mode: disabled;" value="${prodDto.prod_nm}" disabled>
+								<div class="ui input focus">
+									<input type="hidden" name="prod_id" id="prod_id" value="${prodDto.prod_id}">			
+									<input type="text" name="prod_nm" id="prod_nm"
+										class="act_nm" style="ms-ime-mode: disabled;" value="${prodDto.prod_nm}" disabled>
+								</div>
 							</td>							
 							<!-- 셀렉트 박스 -->
 							<th><span style="color:red;">*구분</span></th>
 							<td>
-								<input type="text" name="prod_div_cd_view" id="prod_div_cd_view" class="end_text" value="${prodDto.cd_nm}" disabled>
-								
-								<select name="prod_div_cd" id="prod_div_cd" class="code" style="display:none">
-									<c:forEach var="pscl" items="${prodServicecCodeList}">
-										<c:choose>
-											<c:when test="${prodDto.prod_div_cd eq pscl.code }">
-												<option value="${pscl.code}" selected="selected">${pscl.cd_nm}</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${pscl.code}">${pscl.cd_nm}</option>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</select>								
+								<div class="ui input focus">
+									<input type="text" name="prod_div_cd_view" id="prod_div_cd_view" class="end_text" value="${prodDto.cd_nm}" disabled>
+									
+									<select name="prod_div_cd" id="prod_div_cd" class="code" style="display:none">
+										<c:forEach var="pscl" items="${prodServicecCodeList}">
+											<c:choose>
+												<c:when test="${prodDto.prod_div_cd eq pscl.code }">
+													<option value="${pscl.code}" selected="selected">${pscl.cd_nm}</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${pscl.code}">${pscl.cd_nm}</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</select>	
+								</div>							
 							</td>							
 			     		</tr>
 						<tr>						
 							<th><span style="color:red;">*카테고리</span></th>
-							<td><input type="hidden" name="cate_id" id="cate_id" class="oppt_txt_nm" value="${prodDto.cate_id}">
-							    <input type="text" name="cate_nm" id="cate_nm" class="oppt_txt_nm" value="${prodDto.cate_nm}" disabled>							     
-							    <input type="button" name="prod_cate" value="카테고리" class="prod_cate" id="prod_cate" disabled>
+							<td>
+								<div class="ui input focus">
+									<input type="hidden" name="cate_id" id="cate_id" class="oppt_txt_nm" value="${prodDto.cate_id}">
+								    <input type="text" name="cate_nm" id="cate_nm" class="oppt_txt_nm" value="${prodDto.cate_nm}" disabled>							     
+								</div>
+								<input type="button" name="prod_cate" value="카테고리" class="tiny ui orange button" id="prod_cate" disabled>
 							</td>
 							<th><span style="color:red;">*판매가</span></th>
-							<td><input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled> 
+							<td>
+								<div class="ui input focus">
+									<input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled>
+								</div>
 							</td>							
 						</tr>				
 						<tr>							
 							<th rowspan="3">설명</th>
 							<td rowspan="3">
-								<textarea rows="6" cols="60" style="resize: none; overflow: auto;" name="prod_dtl_cont"
-								 	id="prod_dtl_cont" class="prodTarea" disabled>
-								 	${prodDto.prod_dtl_cont}								 	
-								</textarea>
+								<div class="ui input focus">
+									<textarea rows="6" cols="60" style="resize: none;" name="prod_dtl_cont"
+									 	id="prod_dtl_cont" class="prodTarea" disabled>
+									 	${prodDto.prod_dtl_cont}								 	
+									</textarea>
+								</div>
 							</td>
 							<th >url</th>
 							<td id="url">
-							<input type="text" id="prod_url" name="prod_url" class="end_text" 
-								style="padding:0px;" value="${prodDto.prod_url}" disabled>
-								
+								<div class="ui input focus">
+									<input type="text" id="prod_url" name="prod_url" class="end_text" 
+									style="padding:0px;" value="${prodDto.prod_url}" disabled>
+								</div>
 							</td>					
 						</tr>
-						<tr>							
-							<td>&nbsp;</td>												
+						<tr>																			
 							<th>이미지</th>
 							<td id="image">
 								<input type="hidden" name="attach_img_id" id="attach_img_id" value="${imgList.attach_id }">
@@ -127,8 +153,7 @@ function prodInserts(){
 								<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>
 							</td>												
 						</tr>
-						<tr>						
-							<td>&nbsp;</td>							
+						<tr>													
 					        <th>카달로그</th>
 							<td id="catal">
 								<input type="hidden" name="attach_catal_id" id="attach_catal_id" value="${catalList.attach_id }">

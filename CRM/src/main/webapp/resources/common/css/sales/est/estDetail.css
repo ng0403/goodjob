@@ -619,13 +619,13 @@ div>.detail{
 	padding-right: 10px;
 }
 
-#ccustomerdiv {
-	padding-left: 30px;
-}
+/* #ccustomerdiv { */
+/* 	padding-left: 30px; */
+/* } */
 
 #contactable {
 
-	width: 98%;
+	width: 100%;
 }
 
 #ccustomertbody tr {
