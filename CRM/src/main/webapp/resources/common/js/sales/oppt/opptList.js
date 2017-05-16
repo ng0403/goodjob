@@ -48,7 +48,7 @@ function addForm(){
 				    str+="<i class='users icon'></i>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
-				    str+="<input type='button' class='ui orange button' id='searchCustomer"+count+"' value='고객' style='margin-left: 3px;'>";
+				    str+="<input type='button' class='tiny ui orange button' id='searchCustomer"+count+"' value='고객' >";
 				    str+="<select name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important;'>";
 				    str+="<option value=''>"+'영업기회단계'+"</option>";
 				    $.each(result.otllist,function(i,list){
@@ -68,7 +68,7 @@ function addForm(){
 				    str+="<option value='90'>"+'90'+"</option>";
 				    str+="<option value='100'>"+'100'+"</option>";
 				    str+="</select>";
-				    str+="<label onclick='delForm(this);' style='margin-left:3px;'>"+'X'+"</label>";
+				    str+="<label onclick='delForm(this);' class='tiny ui button'>"+'X'+"</label>";
 				    
 					  var addedDiv = document.createElement("div"); // 폼 생성
 					    addedDiv.id = "added_"+count; // 폼 Div에 ID 부여 (삭제를 위해)

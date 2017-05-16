@@ -311,6 +311,13 @@
 			value="/WEB-INF/views/sales/oppt/opptDetail.jsp" />
 	</definition>
 
+	<!-- 영업기회 상세보기 -->
+<!-- 	<definition name="opptDetail2" extends="threebodyLayout">  -->
+<!--  		<put-attribute name="master2" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp" />  -->
+<!--  		<put-attribute name="middle" value="/WEB-INF/views/sales/oppt/opptDetail_G.jsp" />  -->
+<!-- 		<put-attribute name="detail2" value="/WEB-INF/views/sales/oppt/opptDetail.jsp" /> -->
+<!-- 	</definition> -->
+	
 	<!-- 연락처 -->
 	<definition name="contact" extends="onebodyLayout">
 		<put-attribute name="body"

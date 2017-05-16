@@ -9,7 +9,7 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptList.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptList.css" type="text/css" /> --%>
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -52,13 +52,13 @@
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			   </div>	
 				    <input type="button" class="tiny tiny tiny ui orange button" id="searchCustomer" value="고객">
-				  <select name="ssales_lev_cd" id="ssales_lev_cd_select" >
+				  <select name="ssales_lev_cd" id="ssales_lev_cd_select" style="height: 35px; background: #fff;">
 				    	<option value="">영업기회단계</option>
 				      	<c:forEach items="${otllist}" var="list">
 							<option value="${list.code}" >${list.cd_nm}</option>
 						</c:forEach>
 				    </select>
-			    	<select class="semanticUiComboBox" name="spsblty_rate" id="spsblty_rate_select">
+			    	<select class="semanticUiComboBox" name="spsblty_rate" id="spsblty_rate_select" style="height: 35px; background: #fff;">
 			    		<option class="item" value="">가능성</option>
 			      		<option class="item" value="10">10</option>
 			      		<option class="item" value="20">20</option>
@@ -72,7 +72,7 @@
 			      		<option class="item" value="100">100</option>
 			      	</select>
 
-					<label id="schAddBtn"style="margin-left: 10px;margin-right: 10px; font-size: 22pt;" onclick="addForm();">+</label>
+					<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 			
 			    <input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
@@ -96,12 +96,12 @@
 				<tbody id="listTable" class="tbody">
 				<c:forEach items="${oplist}" var="list" begin="0" end="9">
 					<tr id="${list.sales_oppt_id}">
-						<th>
+						<td>
 							<input type="checkbox" id="list_sales_oppt_id" name="list_sales_oppt_id" value="${list.sales_oppt_id}" onclick="chkCancel();">
 							<input type="hidden" id="list_cust_id" value="${list.cust_id}">
 							<input type="hidden" id="list_sales_lev_cd" value="${list.sales_lev_cd}">
 							
-						</th>
+						</td>
 						<td class="oppt_nm_class" style="text-align: left; padding-left:5px;" >
 							<a onclick="divide('${list.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${list.sales_oppt_nm}</a>
 						</td>

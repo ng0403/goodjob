@@ -50,8 +50,8 @@ $(document).ready(function() {
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_authuser" style="text-align: right;">
-				<button id="act_opp_nm" class="ui orange button">영업활동 추가</button>
-				<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
+				<button id="act_opp_nm" class="tiny ui orange button">영업활동 추가</button>
+				<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
 			<div id="tableline" class="detailtbody" >
@@ -83,8 +83,8 @@ $(document).ready(function() {
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
 		<div class="bt_position_authuser" style="text-align: right;">
-			<button id="estimateAdd" class="ui orange button">견적 추가</button>
-			<button id="addkeymancancel" class="ui orange button" onclick="javascript:opptEstimDelete();">삭제</button>
+			<button id="estimateAdd" class="tiny ui orange button">견적 추가</button>
+			<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
 		<div id="tableline" class="detailtbody" >

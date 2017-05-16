@@ -77,7 +77,7 @@ $(function() {
 			
 			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 		
-		<input type="button" id="custcomp_search" class="tiny tiny ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
+		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
 		
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
 <!-- 				<option value="all" style="text-align: center;">전체</option> -->
@@ -92,8 +92,8 @@ $(function() {
 	</div>
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
-		<div id="tableline">
-			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" width="100%">
+		<div id="tableline" class="tablewh">
+			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" style="height: 500px;">
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>

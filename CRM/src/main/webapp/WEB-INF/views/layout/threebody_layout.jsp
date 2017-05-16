@@ -26,12 +26,16 @@
 			<div class="sub_menu_bar">
 	
 			</div>
-			<div class="body1">
-				<div class="master">
-					<tiles:insertAttribute name="master"></tiles:insertAttribute>
+			<div class="body2">
+				
+				<div class="master2">
+					<tiles:insertAttribute name="master2"></tiles:insertAttribute>
 				</div>
-				<div class="detail" >
-					<tiles:insertAttribute name="detail"></tiles:insertAttribute>
+				<div class="middle">
+					<tiles:insertAttribute name="middle"></tiles:insertAttribute>
+				</div>	
+				<div class="detail"2 >
+					<tiles:insertAttribute name="detail2"></tiles:insertAttribute>
 				</div>
 			</div>
 		</div>

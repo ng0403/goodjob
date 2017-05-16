@@ -64,27 +64,27 @@ $(document).ready(function(){
 		</c:if>
 	</div>
 <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
-		<div id="tabDiv1" class="tab1_content" style="text-align: right;">
+		<div id="tabDiv1" class="tab1_content" style="text-align: right; ">
 			<div id="baseBtnDiv"  class="bt_position_authuser">
 				<input type="button" id="modifybtn" class="tiny ui orange button"  onclick="opptMdfyBtn();" value="편집" />
-				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="NewAddBtnDiv" style="display: none; " class="bt_position_authuser">
 				<input type="button" id="submitbtn" style="display: none;" class="tiny ui orange button" onclick="opptAddBtn();" value="추가" />
-				<input type="button" id="cancelbtn" style="display: none;" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="cancelbtn" style="display: none;" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="addsavebtn" class="tiny ui orange button" onclick="opptAdd();" value="저장" />
-				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="modifysavebtn" class="tiny ui orange button" value="저장" onclick="opptModify();"/>
-				<input type="button" id="cancelbtn" class="ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
-			<div id="ccustomerdiv">
+			<div id="ccustomerdiv" style="padding-top: 10px;">
 				<table id="ccustomertable_M" class="ui celled table">
-					<tbody id="opptDetail">
+					<tbody id="opptDetail" class="tbody">
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->
