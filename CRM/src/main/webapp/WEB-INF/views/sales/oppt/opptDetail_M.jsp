@@ -174,11 +174,11 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 			</div>
-			<div id="salesOpptPrdtdiv"  style="height: 200px;">
+			<div id="salesOpptPrdtdiv"  style="height: 200px; padding-top: 10px;">
 				<input type="hidden" id="inputCust" value="false"/>
 				
 				<div class="detailBtn">
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품삭제" id="opptProdDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-bottom: 10px;" class="ui orange button" value="상품삭제" id="opptProdDelete"/>
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
 				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >

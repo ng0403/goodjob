@@ -52,12 +52,12 @@
 		<!-- 탭 내용 : 고객사 담당 사원 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="poc_pop_btn" class="ui orange button" value="담당자 추가" />
+				<input type="button" id="poc_pop_btn"  class="ui orange button" value="담당자 추가" />
 				<input type="button" id="deletePocbtn" class="ui orange button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			
 			<div id="tableline2">
-				<table class="tabtable" class="ui celled table" style="border-collapse: collapse;"> 
+				<table class="tabtable" class="ui sortable celled table" style="border-collapse: collapse;"> 
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='pocListCheck'/></th>
@@ -107,12 +107,12 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv2" class="tab3_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn" class="button functionBtn" value="키맨 추가" />
-				<input type="button" id="deletekeymanbtn" class="button functionBtn" value="삭제" onclick="keymanDelete();"/>
+				<input type="button" id="keyman_pop_btn"  class="ui orange button" value="키맨 추가" />
+				<input type="button" id="deletekeymanbtn" class="ui orange button" value="삭제" onclick="keymanDelete();"/>
 			</div>
 			
 			<div id="tableline2">
-				<table class="tabtable" style="border-collapse: collapse;"> 
+				<table class="tabtable" class="ui sortable celled table" style="border-collapse: collapse;"> 
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
@@ -141,13 +141,13 @@
 <!-- 			</div> -->
 			
 			<div class="bt_position_authuser" style="float: right;">
-				<input type="button" id="actAddSaveBtn" class="button functionBtn" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/>
-				<input type="button" id="actAddCancelBtn" class="button functionBtn" value="삭제" onclick="actOpptDelBt();"/>
+				<input type="button" id="actAddSaveBtn"   class="ui orange button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/>
+				<input type="button" id="actAddCancelBtn" class="ui orange button" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
 			<div id="tableline2">
 <!-- 				<table id="opptTable" class="tabtable"> -->
-				<table id="goaltable" class="tabtable">
+				<table id="goaltable" class="ui sortable celled table">
 					<thead>
 						<tr>
 <!-- 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th> -->
@@ -193,12 +193,12 @@
 			<!-- 영업활동 리스트 -->
 		<div id="tabDiv4" class="tab5_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_cust_nm" class="button functionBtn" value="영업활동 추가"/>
-				<input type="button" id="actDel" class="button functionBtn" value="삭제" onclick="ccActDel('${ctx}');"/>
+				<input type="button" id="act_cust_nm" class="ui orange button" value="영업활동 추가"/>
+				<input type="button" id="actDel"      class="ui orange button" value="삭제" onclick="ccActDel('${ctx}');"/>
 			</div>
 			
 			<div id="tableline2">
-				<table id="actTable" class="tabtable">
+				<table id="actTable" class="ui sortable celled table">
 					<thead>
 						<tr>
 							<th style='width:3%;' rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
@@ -227,12 +227,12 @@
 			<!-- 견적 리스트 -->
 		<div id="tabDiv5" class="tab6_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
-				<button id="estimateAdd" class="button functionBtn">견적 추가</button>
-				<button id="addkeymancancel" class="button functionBtn" onclick="ccEstDel('${ctx}');" >삭제</button>
+				<button id="estimateAdd"     class="ui orange button">견적 추가</button>
+				<button id="addkeymancancel" class="ui orange button" onclick="ccEstDel('${ctx}');" >삭제</button>
 			</div>
 			
 			<div id="tableline">
-				<table id="goaltable" class="tabtable">
+				<table id="goaltable" class="ui sortable celled table">
 					<thead>						
 						<tr>
 							<th style="width: 3%;"><input type="checkbox"  id='ccEstListCheck'/></th>
