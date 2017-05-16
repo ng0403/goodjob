@@ -160,7 +160,7 @@ public class OpptController {
 			
 		}else {
 			System.out.println("상세정보컨트롤러");
-			ModelAndView mov = new ModelAndView("opptDetail");
+			ModelAndView mov = new ModelAndView("opptDetail"); 
 			addFlag = 1;
 			
 			map.put("opptId", opptId);

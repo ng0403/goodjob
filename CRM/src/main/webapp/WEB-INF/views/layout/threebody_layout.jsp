@@ -27,14 +27,13 @@
 	
 			</div>
 			<div class="body2">
-				
 				<div class="master2">
 					<tiles:insertAttribute name="master2"></tiles:insertAttribute>
 				</div>
 				<div class="middle">
 					<tiles:insertAttribute name="middle"></tiles:insertAttribute>
 				</div>	
-				<div class="detail"2 >
+				<div class="detail2" >
 					<tiles:insertAttribute name="detail2"></tiles:insertAttribute>
 				</div>
 			</div>

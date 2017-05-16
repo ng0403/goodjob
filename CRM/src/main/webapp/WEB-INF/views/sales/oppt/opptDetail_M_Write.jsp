@@ -44,9 +44,7 @@ $(document).ready(function(){
 			//$('#NewAddBtnDiv').css('display', 'block');
 			opptAddBtn();
 		}
-	
 });
-	
 
 </script>
 <script>

@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/home/home.css" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/home/home.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
@@ -23,8 +23,12 @@
 	
 	<div id="left_home" style="height: 40%;">
 	   <div id="contract_title">
-	   ■ 금일영업활동
-	   <input type="button" class="button search_btn" value="상세보기" id="opptActBtn">
+	   		<div id="hometext">
+	   			■ 금일영업활동
+	   		</div>
+	   		<div id="homebtn">
+		    	<input type="button" class="tiny ui button" value="상세보기" id="opptActBtn">
+	   		</div>
 	   </div>
 
 	   <div id="tableline1" class="tableline">
@@ -115,13 +119,17 @@
 	  
 	  <div id="right_home" style="height: 40%;">
 	   <div id="contract_title">
-	   ■ 영업기회
-	   <input type="button" class="button search_btn" id="oppt_detail" value="상세보기">
+		   <div id="hometext">
+		   		■ 영업기회
+		   </div>
+		   <div id="homebtn">
+		   		<input type="button" class="tiny ui button" id="oppt_detail" value="상세보기">
+		   </div>
 	   </div>
 	   		<!-- 영업기회 상태 차트  -->
 		<div id="chart_oppt_status" style="margin-left: 120px;"><!-- style="margin-top: 5%; margin-left: 19%;" -->
 <!-- 			<h1>영업기회 상태 현황</h1> -->
-				<svg id="myGraph" style="width: 450px; height: 220px;">
+				<svg id="myGraph" style="width: 450px; height: 215px;">
 				</svg>
 					<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
 		</div> 
@@ -173,8 +181,12 @@
 <!-- 	  </div> -->
 	  <div id="left_home">
 	   <div id="contract_title">
-	   ■ 공지사항
-	   <input type="button" class="button search_btn" id="notice_detail" value="상세보기">
+	   		<div id="hometext">
+	   			■ 공지사항
+	   		</div>
+	   		<div id="homebtn">
+	   			<input type="button" class="tiny ui button" id="notice_detail" value="상세보기">
+	   		</div>
 	   </div>
 	   
 	   <div id="tableline">
@@ -201,8 +213,12 @@
 	  </div>
 	  <div id="right_home">
 	   <div id="contract_title">
-	   ■ 자료실
-	   <input type="button" class="button search_btn" id="dboard_detail" value="상세보기">
+	   		<div id="hometext">
+	   			■ 자료실
+	   		</div>	
+	   		<div id="homebtn">
+	   			<input type="button" class="tiny ui button" id="dboard_detail" value="상세보기">
+	   		</div>	
 	   </div>
 	   
 	   <div id="tableline">

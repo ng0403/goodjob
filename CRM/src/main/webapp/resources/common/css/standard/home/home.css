@@ -116,7 +116,7 @@ svg {
 /*  	 margin-top: -5px; */
 /* } */
 
-.button {
+.tiny {
 	display: inline-block;
 	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
 	*display: inline;
@@ -137,45 +137,26 @@ svg {
 	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
 }
 
-.button:hover {
+.tiny:hover {
 	text-decoration: none;
 }
 
-.button:active {
+.tiny:active {
 	position: relative;
 	top: 1px;
 }
 
-.search_btn {
-	color: #606060;
-	border: solid 1px #b7b7b7;
-	background: #fff;
-	float: right;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
-		to(#ededed));
-	background: -moz-linear-gradient(top, #fff, #ededed);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
-		endColorstr='#ededed');
+#contract_title {
+	width: 100%;
 }
-
-.search_btn:hover {
-	background: #ededed;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
-		to(#dcdcdc));
-	background: -moz-linear-gradient(top, #fff, #dcdcdc);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',
-		endColorstr='#dcdcdc');
+#hometext {
+	float: left;
 }
-
-.search_btn:active {
-	color: #999;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ededed),
-		to(#fff));
-	background: -moz-linear-gradient(top, #ededed, #fff);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed',
-		endColorstr='#ffffff');
+#homebtn{
+	text-align: right;
+	padding-right: 10px;
+	
 }
-
 
 .contract_detail:hover,
 .contract_detail:focus,

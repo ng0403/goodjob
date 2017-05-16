@@ -43,10 +43,8 @@ $(document).ready(function(){
 			//$('#NewAddBtnDiv').css('display', 'block');
 			opptAddBtn();
 		}
-	
 });
 	
-
 </script>
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
@@ -174,31 +172,35 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 			</div>
-			<div id="salesOpptPrdtdiv"  style="height: 200px; padding-top: 10px;">
+				<div id="salesOpptPrdtdiv"  style="padding-top: 10px; ">
 				<input type="hidden" id="inputCust" value="false"/>
 				
-				<div class="detailBtn">
+				<div class="detailBtn" style="width:100%; float: right;">
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-bottom: 10px;" class="tiny ui orange button" value="상품삭제" id="opptProdDelete"/>
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
-				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
-					<tr class="headerLock">
-						<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
-						<td style="width: 32%;">품목명</td>
-						<td style="width: 8%;">수량</td>
-						<td style="width: 27%;">판매가</td>
-						<td style="width: 15%;">할인</td>
-						<td style="width: 15%;">공급가</td>
-					</tr>
-					<tr id="totalprice">
-<!-- 						<th></th> -->
-						<td>계:</td>
-						<td id="countSum"style="width: 8%;">0</td>
-						<td id="salesPriceSum" style="width: 27%;">0</td>
-						<td id="discountSum" style="width: 15%;">0</td>
-						<td id="supplyPriceSum" style="width: 15%;">0</td>
-					</tr>
-				</table>
+				<div style="border: 0.5px solid #bebebe; height: 200px; overflow: auto;">
+				
+					<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
+						<tr class="headerLock">
+							<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+							<td style="width: 32%;">품목명</td>
+							<td style="width: 8%;">수량</td>
+							<td style="width: 27%;">판매가</td>
+							<td style="width: 15%;">할인</td>
+							<td style="width: 15%;">공급가</td>
+						</tr>
+						<tr id="totalprice">
+	<!-- 						<th></th> -->
+							<td>계:</td>
+							<td id="countSum"style="width: 8%;">0</td>
+							<td id="salesPriceSum" style="width: 27%;">0</td>
+							<td id="discountSum" style="width: 15%;">0</td>
+							<td id="supplyPriceSum" style="width: 15%;">0</td>
+						</tr>
+					</table>
+				
+				
 				<div id="estimatediv" style="">
 					<input type="hidden" id="eduCode" value="${eduCode}">
 					<table id="opptPrdttable" class="tabtable" style="text-align: center; height: 200px;">
@@ -238,6 +240,8 @@ $(document).ready(function(){
 						</tbody>
 					</table>
 				</div>
+				</div>
+			
 			</div>
 		</div>
 
