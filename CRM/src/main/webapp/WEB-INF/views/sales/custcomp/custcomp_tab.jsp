@@ -32,7 +32,7 @@
 
 </head>
 <body  >
-	<div id="css_tabs" style="float: left;">
+	<div id="css_tabs" style="float: left; padding-top: 30px;">
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked" />
 		<input id="tab2" type="radio" name="tab" />

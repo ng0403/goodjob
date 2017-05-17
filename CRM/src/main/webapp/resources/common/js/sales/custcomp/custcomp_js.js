@@ -2,6 +2,7 @@
 $("#navisub4").show();
 $("#navicustcomp").css("font-weight", "bold");
 
+
 var count = 0;
 var schAddFlg = 0;
 var ccllist;
@@ -11,6 +12,7 @@ $(document).ready(function() {
 	var cust_id = $("#nowCust_id").val();
 	pocList(cust_id);
 	posList(cust_id);
+//	$("#search_div2, #search_div3").hide();
 	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
@@ -139,26 +141,26 @@ function addForm(){
 				var str = "";
 				
 					str+="<br><div class='ui left icon input'>";
-					str+="<input type='text' placeholder='고객사명' style='margin-right: 3px;' class='inp_search' autofocus='autofocus' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
+					str+="<input type='text' placeholder='고객사명' style='margin-right: 7px;' class='inp_search' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
 				    str+="<i class='users icon'></i>";
 				    str+="</div>";
 				    
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='사업자번호' style='margin-right: 3px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<input type='text' placeholder='사업자번호' style='margin-right: 7px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
 				    str+="<i class='suitcase icon'></i>";
 				    str+="</div>";
 				    
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='법인번호' style='margin-right: 3px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
+				    str+="<input type='text' placeholder='법인번호' style='margin-right: 7px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
 				    str+="<i class='law icon'></i>";
 				    str+="</div>";
 				    
 				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='영업담당자' style='margin-right: 3px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
+				    str+="<input type='text' placeholder='영업담당자' style='margin-right: 7px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
 				    str+="<i class='user icon'></i>";
 				    str+="</div>";
 				    
-				    str+="<label  onclick='delForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
+				    str+="<label  onclick='dellForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
 				    
 				    var addedDiv = document.createElement("div"); 	// 폼 생성
 				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
@@ -180,7 +182,7 @@ function addForm(){
 }
 
 //고객사 검색 조건 삭제
-function delForm(obj){
+function dellForm(obj){
     var addedFormDiv = document.getElementById("search_div");
         addedFormDiv.removeChild(obj.parentNode); 				// 폼 삭제 
         --count;

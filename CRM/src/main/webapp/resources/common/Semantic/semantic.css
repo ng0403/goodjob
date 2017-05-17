@@ -11861,20 +11861,20 @@ img.ui.bordered.image {
 .ui.input.focus input,
 .ui.input input:focus {
   border-color: #85B7D9;
-  background: #FFFFFF;
-  color: rgba(0, 0, 0, 0.8);
-  box-shadow: none;
-  padding: 5px;
+/*   background: #FFFFFF; */
+/*   color: rgba(0, 0, 0, 0.8); */
+/*   box-shadow: none; */
+/*   padding: 5px; */
   	
-  	position: relative;
-	width: 200px;
-	height: 17px;
-	border: 1px solid #bebebe;
-	font-size: 11pt;
+/*   	position: relative; */
+/* 	width: 200px; */
+/* 	height: 17px; */
+/* 	border: 1px solid #bebebe; */
+/* 	font-size: 11pt; */
 	color: #333;
-	background: rgb(220, 220, 220);
-	z-index: 10;
-	border-radius: 5px 5px 5px 5px;
+/* 	background: rgb(220, 220, 220); */
+/* 	z-index: 10; */
+/* 	border-radius: 5px 5px 5px 5px; */
 	
 }
 
