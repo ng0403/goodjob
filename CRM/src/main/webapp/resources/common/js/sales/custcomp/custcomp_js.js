@@ -199,7 +199,17 @@ function searchBtn(page){
 	var sch_comp_num = $("#sch_comp_num").val();
 	var sch_corp_num = $("#sch_corp_num").val();
 	var sch_iuser_nm = $("#sch_iuser_nm").val();
-
+	
+	var sch_cust_nm0 = $("#sch_cust_nm0").val();
+	var sch_comp_num0 = $("#sch_comp_num0").val();
+	var sch_corp_num0 = $("#sch_corp_num0").val();
+	var sch_iuser_nm0 = $("#sch_iuser_nm0").val();
+	
+	var sch_cust_nm1 = $("#sch_cust_nm1").val();
+	var sch_comp_num1 = $("#sch_comp_num1").val();
+	var sch_corp_num1 = $("#sch_corp_num1").val();
+	var sch_iuser_nm1 = $("#sch_iuser_nm1").val();
+	
 	custCompList(page);
 }
 
@@ -251,7 +261,7 @@ function custCompList(page){
 							"<td>"+cc.sales_scale+"</td>"+
 							"<td>"+cc.emp_qty+"</td>"+
 							"<td>"+cc.indst+"</td>"+
-							"<td>"+cc.iuser_nm+"</td>"+
+//							"<td>"+cc.iuser_nm+"</td>"+
 							"<td>"+cc.fst_reg_dt+"</td>+"+
 							"</tr>"
 					);
@@ -264,7 +274,7 @@ function custCompList(page){
 							+"<th></th>"
 							+"<td></td><td></td><td></td><td></td>"
 							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td></tr>");
+							+"</tr>");
 				}
 			}
 			$("#pageSpace").children().remove();	

@@ -135,8 +135,14 @@ table tbody tr th {
 	margin-bottom: 10px;
 }
 
+.tbody tr td {
+	text-align: center;
+}
 /* 테이블 크기 고정 */
 #tableline{
 	height: 500px;
 }
 
+#tableline2 tr th, #tableline2 tr td {
+	text-align: center;
+}

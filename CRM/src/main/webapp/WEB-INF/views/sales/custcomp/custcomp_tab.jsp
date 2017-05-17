@@ -57,7 +57,7 @@
 			</div>
 			
 			<div id="tableline2">
-				<table class="tabtable" class="ui celled table" > 
+				<table class="ui celled table" > 
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='pocListCheck'/></th>
@@ -105,7 +105,7 @@
 <!-- 		</div> -->
 		
 		<!-- 탭 내용 : 키맨 리스트 -->
-		<div id="tabDiv2" class="tab3_content" style="width: 100%;">
+		<div id="tabDiv2" class="ui celled table" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="keyman_pop_btn"  class="tiny ui orange button" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="tiny ui orange button" value="삭제" onclick="keymanDelete();"/>
@@ -134,7 +134,7 @@
 		</div>
 		
 		<!-- 영업기회 리스트 -->
-		<div id="tabDiv3" class="tab4_content" style="width: 100%;">
+		<div id="tabDiv3" class="ui celled table" style="width: 100%;">
 <!-- 			<div class="bt_position_authuser"> -->
 <!-- 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" /> -->
 <%-- 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/> --%>
@@ -166,9 +166,9 @@
 						<c:forEach items="${opptList}" var="opptList">
 							<c:if test="${not empty opptList}">
 								<tr id="${opptList.sales_oppt_id}">
-									<th>
+									<td>
 										<input type="checkbox"  id="actOpptAllSelect" name="sales_oppt_id" value="${opptList.sales_oppt_id}"/>
-									</th>
+									</td>
 										<td>
 											<a onclick="opptTabDetail('${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
 										</td>
@@ -191,7 +191,7 @@
 		</div>
 			
 			<!-- 영업활동 리스트 -->
-		<div id="tabDiv4" class="tab5_content" style="width: 100%;">
+		<div id="tabDiv4" class="ui celled table" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_cust_nm" class="tiny ui orange button" value="영업활동 추가"/>
 				<input type="button" id="actDel"      class="tiny ui orange button" value="삭제" onclick="ccActDel('${ctx}');"/>
@@ -231,7 +231,7 @@
 				<button id="addkeymancancel" class="tiny ui orange button" onclick="ccEstDel('${ctx}');" >삭제</button>
 			</div>
 			
-			<div id="tableline">
+			<div id="tableline2">
 				<table id="goaltable" class="ui sortable celled table">
 					<thead>						
 						<tr>

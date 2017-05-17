@@ -50,7 +50,7 @@ $(function() {
 
 	<div class="search_div"  id="search_div" >
 		<div class="ui left icon input">
-			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);">
+			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" oonkeypress="schCustComp(event);">
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
@@ -96,7 +96,7 @@ $(function() {
 			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" >
 				<thead>
 					<tr>
-						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
+						<th style="width: 3%; text-align:center; "><input type="checkbox"  id='ccListCheck'/></th>
 						<th style="width: 16%" id="tblTh" > 기업명</th>
 						<th style="width: 8%"  id="tblTh" >사업자번호</th>
 						<th style="width: 8%"  id="tblTh" >법인번호</th>
@@ -111,7 +111,9 @@ $(function() {
 				<tbody id="ccListTbody" class="tbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
-							<th style="text-align: center;"><input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"   onclick="chkCancel();"></th>
+							<td style="text-align: center;">
+								<input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"   onclick="chkCancel();">
+							</td>
 							<td id="ccListTableNmTd" style="text-align: left; padding-left: 14px;">
 								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');"  class="cnClick">${cc.cust_nm}</a>
 							</td>
