@@ -336,6 +336,14 @@ function opptModify(){
 		est_list.push(sup_price.pop());
 		est_list.push(discount_unit_cd.pop());
 	});
+	if(unit_check > 0 ){
+		alert("할인 단위를 선택해 주세요.");
+		return false;
+	}
+	if(est_list.length==0){
+		alert("상품을 추가해 주세요");
+		return false;
+	}
 	
 	var ctx = $("#ctx").val();
 	$.ajax({
