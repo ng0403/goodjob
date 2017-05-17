@@ -59,7 +59,7 @@ html,body{
 }
 .body1{
 	width: 87%;
-	height: auto; 
+	height: 100%; 
 	margin: 0 auto;
 /* 	float: left; */
 	display: inline-block;
