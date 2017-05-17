@@ -102,7 +102,7 @@ $(document).ready(function(){
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 																
 							</div>
-								<input type="button" class="button search_btn" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
+								<input type="button" class="tiny ui orange basic button" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
 						<tr>
@@ -172,14 +172,14 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 			</div>
-				<div id="salesOpptPrdtdiv"  style="padding-top: 10px; ">
+			<div id="salesOpptPrdtdiv"  style="padding-top: 10px; ">
 				<input type="hidden" id="inputCust" value="false"/>
 				
 				<div class="detailBtn" style="width:100%; float: right;">
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-bottom: 10px;" class="tiny ui orange button" value="상품삭제" id="opptProdDelete"/>
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
-				<div style="border: 0.5px solid #bebebe; height: 200px; overflow: auto;">
+				<div style="height: 200px;">
 				
 					<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
 						<tr class="headerLock">
@@ -191,7 +191,6 @@ $(document).ready(function(){
 							<td style="width: 15%;">공급가</td>
 						</tr>
 						<tr id="totalprice">
-	<!-- 						<th></th> -->
 							<td>계:</td>
 							<td id="countSum"style="width: 8%;">0</td>
 							<td id="salesPriceSum" style="width: 27%;">0</td>
@@ -201,9 +200,9 @@ $(document).ready(function(){
 					</table>
 				
 				
-				<div id="estimatediv" style="">
+				<div id="estimatediv" style="overflow: auto;">
 					<input type="hidden" id="eduCode" value="${eduCode}">
-					<table id="opptPrdttable" class="tabtable" style="text-align: center; height: 200px;">
+					<table id="opptPrdttable" class="tabtable" style="text-align: center; height: 200px; ">
 						<tbody id="opptPrdtbody">
 							<c:choose>
 								<c:when test="${not empty opptPrdt}">
@@ -217,7 +216,7 @@ $(document).ready(function(){
 												<input type=number style="width: 80%; text-align: center;" readonly="readonly" name="estim_qty" id="estim_qty" min="1" max="100" value="${list.prod_qty}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>		
 											<td style="width: 27%;" >${list.prod_price}</td>
 											<td style="width: 15%;" >
-												<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" class="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
+												<input type=number style="width: 50%; text-align: right;" readonly="readonly" id="discount" class="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
 												<select id="unit" class="unit" name="discount_unit_cd" style="width: 30%;" disabled="disabled">
 													<option value="0">선택</option>
 													<c:forEach items="${eduList }" var="eduList">

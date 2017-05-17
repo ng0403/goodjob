@@ -260,6 +260,12 @@ function uncomma(str) {
 
 // 상품 삭제
 function prodDelete(){
+	var chkCount = $("#estimatetbody input[type=checkbox]:checked").length;
+	if(chkCount == 0)
+		{
+		alert("상품을 체크해주세요.");
+		}
+	else{
 	if(confirm("삭제 하시겠습니까? ")){
 		$("#estimatetbody input[type=checkbox]:checked").each( function(){
 			var classVal =  $(this).val();
@@ -272,6 +278,7 @@ function prodDelete(){
 		});
 		$("#prodallCheck").prop("checked", false);
 		prodChange();	
+	}
 	}
 }
 

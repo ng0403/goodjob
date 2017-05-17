@@ -51,7 +51,7 @@
 					<i class="users icon"></i>
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			   </div>	
-				    <input type="button" class="tiny tiny tiny ui orange button" id="searchCustomer" value="고객">
+				    <input type="button" class="tiny ui orange basic button" id="searchCustomer" value="고객">
 				  <select name="ssales_lev_cd" id="ssales_lev_cd_select" style="height: 35px; background: #fff;">
 				    	<option value="">영업기회단계</option>
 				      	<c:forEach items="${otllist}" var="list">

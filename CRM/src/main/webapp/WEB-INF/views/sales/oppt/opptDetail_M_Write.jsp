@@ -13,14 +13,12 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 </head>
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
@@ -86,7 +84,7 @@ $(document).ready(function(){
 				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
-			<div id="ccustomerdiv">
+			<div id="ccustomerdiv" style="padding-top: 10px;">
 				<table id="ccustomertable_M" class="ui celled table">
 					<tbody id="opptDetail">
 						<tr>
@@ -106,7 +104,7 @@ $(document).ready(function(){
 								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 							</div>
-								<input type="button" class="button search_btn" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
+								<input type="button" class="tiny ui orange basic button" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
 						<tr>
@@ -176,32 +174,33 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 			</div>
-			<div id="salesOpptPrdtdiv">
+			<div id="salesOpptPrdtdiv"  style="padding-top: 10px; ">
 				<input type="hidden" id="inputCust" value="false"/>
-				<div class="detailBtn" style="padding: 5px;">
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품삭제" id="opptProdDelete"/>
+				
+				<div class="detailBtn" style="width:100%; float: right;">
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px; margin-bottom: 10px;" class="tiny ui orange button" value="상품삭제" id="opptProdDelete"/>
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품추가" id="opptProdListBtn"/>
 				</div>
-
-				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
-					<tr>
-						<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
-						<td style="width: 32%;">품목명</td>
-						<td style="width: 8%;">수량</td>
-						<td style="width: 27%;">판매가</td>
-						<td style="width: 15%;">할인</td>
-						<td style="width: 15%;">공급가</td>
-					</tr>
-					<tr id="totalprice">
-<!-- 						<th></th> -->
-						<td>계:</td>
-						<td id="countSum"style="width: 8%;">0</td>
-						<td id="salesPriceSum" style="width: 27%;">0</td>
-						<td id="discountSum" style="width: 15%;">0</td>
-						<td id="supplyPriceSum" style="width: 15%;">0</td>
-					</tr>
-				</table>
-				<div id="estimatediv" style="">
+				<div style="height: 200px;">
+				
+					<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
+						<tr class="headerLock">
+							<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+							<td style="width: 32%;">품목명</td>
+							<td style="width: 8%;">수량</td>
+							<td style="width: 27%;">판매가</td>
+							<td style="width: 15%;">할인</td>
+							<td style="width: 15%;">공급가</td>
+						</tr>
+						<tr id="totalprice">
+							<td>계:</td>
+							<td id="countSum"style="width: 8%;">0</td>
+							<td id="salesPriceSum" style="width: 27%;">0</td>
+							<td id="discountSum" style="width: 15%;">0</td>
+							<td id="supplyPriceSum" style="width: 15%;">0</td>
+						</tr>
+					</table>
+				<div id="estimatediv" style="overflow: auto;">
 					<input type="hidden" id="eduCode" value="${eduCode}">
 					<table id="opptPrdttable" class="tabtable" style="text-align: center;">
 						<tbody id="opptPrdtbody">

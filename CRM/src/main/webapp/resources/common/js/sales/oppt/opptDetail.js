@@ -705,7 +705,7 @@ function viewSalesActive(opptId){
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 					'<td style="width: 27%;" name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" class="discount" name="discount" value=0 onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount" value=0 onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
 					 '<select id="unit" class="unit" style="width: 25%;">'+
 					 unit+
 					 '</select>'+'</td>'+
@@ -733,7 +733,7 @@ function viewSalesActive(opptId){
 						'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 						'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 						'<td style="width: 27%;" name="prod_price" value="prod_price">'+prod_price+'</td>'+
-						'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+						'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
 						'<select id="unit" class="unit" style="width: 15%;" >'+ unit+ '</select>'+'</td>'+'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+'</tr>'
 				);
 			}
@@ -773,6 +773,10 @@ function viewSalesActive(opptId){
 	//상품 삭제
 	function prodDelete(){
 		$("#opptProdDelete").click(function(){
+		var chkCount = $("#opptPrdtbody input[type=checkbox]:checked").length; 
+		if(chkCount == 0){
+			alert("상품을 체크해주세요.");
+		}else{
 			if(confirm("삭제 하시겠습니까? ")){
 				$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
 					var classVal =  $(this).val();
@@ -783,6 +787,7 @@ function viewSalesActive(opptId){
 					}
 				});
 					opptProdChange();	
+			}
 			}
 		});
 	}

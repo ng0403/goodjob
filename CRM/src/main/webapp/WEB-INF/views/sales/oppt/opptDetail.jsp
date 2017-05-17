@@ -37,7 +37,7 @@ $(document).ready(function() {
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	
-	<div id="css_tabs" style="padding-bottom: 10px;">
+	<div id="css_tabs" style="padding-bottom: 10px; margin-top: 14%;">
 		<!-- 라디오 버튼 -->
 <!-- 		<input id="tab1" type="radio" name="tab" />  -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> 
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
-			<div class="bt_position_authuser" style="text-align: right;">
+			<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
 				<button id="act_opp_nm" class="tiny ui orange button">영업활동 추가</button>
 				<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>

@@ -59,10 +59,10 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				'<tr id="priceline" class='+prod_id+'>'+
 				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-				'<td style="width: 35%;" id="prod_nm">'+prod_nm+'</td>'+
+				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
 				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
+				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
 				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
 				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
 		);
@@ -85,10 +85,10 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<tr id="priceline" class='+prod_id+'>'+
 					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
-					'<td style="width: 35%;" id="prod_nm">'+prod_nm+'</td>'+
+					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
 					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: center;" id="discount" name="discount" min="0" max="100" value=0>'+
+					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
 					 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
@@ -103,7 +103,7 @@ function makeBlock(){
 		$('#opptPrdtbody').append(
 				'<tr id="priceline" class="empty">'+
 				'<th style="width: 3%;"></th>'+
-				'<td style="width: 35%;"></td>'+
+				'<td style="width: 32%;"></td>'+
 				'<td style="width: 8%;"></td>'+
 				'<td style="width: 27%;"></td>'+
 				'<td style="width: 15%;"></td>'+
@@ -238,22 +238,29 @@ function prodallCheck(){
 		}
 	});
 }
-//상품 목록 삭제
+//상품 목록 삭제(영업기회 디테일 화면)
 function opptProdDelete(){
 	$("#opptProdDelete").click(function(){
-		if(confirm("삭제 하시겠습니까? ")){
-			var estimId = $('#estim_id').val();
-			$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
-				var classVal =  $(this).val();
-				$("."+classVal).remove();
-				
-				if($('#flg').val()=='detail'){
+		var chkCount = $("#opptPrdtbody input[type=checkbox]:checked").length;
+		if(chkCount == 0)
+			{
+			alert("상품을 체크해주세요.");
+			}
+		else{
+			if(confirm("삭제 하시겠습니까? ")){
+				var estimId = $('#estim_id').val();
+				$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
+					var classVal =  $(this).val();
+					$("."+classVal).remove();
 					
-					opptProdDeleteProdId.push(classVal);
-					opptProdDeleteOpptId.push(estimId);
-				}
-			});
-				opptProdChange();	
+					if($('#flg').val()=='detail'){
+						
+						opptProdDeleteProdId.push(classVal);
+						opptProdDeleteOpptId.push(estimId);
+					}
+				});
+					opptProdChange();	
+			}
 		}
 	});
 }
