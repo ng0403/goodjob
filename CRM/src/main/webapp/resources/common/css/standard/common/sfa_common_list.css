@@ -135,7 +135,7 @@ table tbody tr th {
 	margin-bottom: 10px;
 }
 
-.tbody tr td {
+.tbody tr td, .tbody tr th {
 	text-align: center;
 }
 /* 테이블 크기 고정 */

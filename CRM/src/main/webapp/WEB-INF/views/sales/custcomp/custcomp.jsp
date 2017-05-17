@@ -50,7 +50,7 @@ $(function() {
 
 	<div class="search_div"  id="search_div" >
 		<div class="ui left icon input">
-			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" oonkeypress="schCustComp(event);">
+			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" onkeypress="schCustComp(event);">
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
@@ -61,10 +61,10 @@ $(function() {
 			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeypress="schCustComp(event);" style='ime-mode:disabled;'>
 			<i class="law icon"></i>
 		</div>	
-		<div class="ui left icon input">	
-			<input type="text" placeholder="영업담당자" id="sch_iuser_nm" name="sch_iuser_nm" onkeypress="schCustComp(event);" >
-			<i class="user icon"></i>
-		</div>	
+<!-- 		<div class="ui left icon input">	 -->
+<!-- 			<input type="text" placeholder="영업담당자" id="sch_iuser_nm" name="sch_iuser_nm" onkeypress="schCustComp(event);" > -->
+<!-- 			<i class="user icon"></i> -->
+<!-- 		</div>	 -->
 			
 <!-- 			<label for="sch_cust_nm" class="tel_label_list">고객사명</label> -->
 <!-- 				<input type="text" class="inp_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/>  -->
@@ -96,7 +96,7 @@ $(function() {
 			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" >
 				<thead>
 					<tr>
-						<th style="width: 3%; text-align:center; "><input type="checkbox"  id='ccListCheck'/></th>
+						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='ccListCheck'/></th>
 						<th style="width: 16%" id="tblTh" > 기업명</th>
 						<th style="width: 8%"  id="tblTh" >사업자번호</th>
 						<th style="width: 8%"  id="tblTh" >법인번호</th>

@@ -147,10 +147,10 @@ function addForm(){
 		    str+="<i class='law icon'></i>";
 		    str+="</div>";
 		    
-		    str+="<div class='ui left icon input'>";
-		    str+="<input type='text' placeholder='영업담당자' style='margin-right: 7px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeypress='schCustComp(event);'/>";
-		    str+="<i class='user icon'></i>";
-		    str+="</div>";
+//		    str+="<div class='ui left icon input'>";
+//		    str+="<input type='text' placeholder='영업담당자' style='margin-right: 7px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeypress='schCustComp(event);'/>";
+//		    str+="<i class='user icon'></i>";
+//		    str+="</div>";
 		    
 		    str+="<label  onclick='dellForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
 		    
@@ -176,7 +176,7 @@ function dellForm(obj){
 function schCustComp(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	if (keycode == '13') {
-		if ($("#sch_cust_nm").val() == '' && $("#sch_comp_num").val() == '' && $("#sch_corp_num").val() == '' && $("#sch_iuser_nm").val() == '') {
+		if ($("#sch_cust_nm").val() == '' && $("#sch_comp_num").val() == '' && $("#sch_corp_num").val() == '' ) {
 			alert("검색어를 입력하세요.")
 			$("#sch_cust_nm").focus();
 		} else {
@@ -198,17 +198,14 @@ function searchBtn(page){
 	var sch_cust_nm = $("#sch_cust_nm").val();
 	var sch_comp_num = $("#sch_comp_num").val();
 	var sch_corp_num = $("#sch_corp_num").val();
-	var sch_iuser_nm = $("#sch_iuser_nm").val();
 	
 	var sch_cust_nm0 = $("#sch_cust_nm0").val();
 	var sch_comp_num0 = $("#sch_comp_num0").val();
 	var sch_corp_num0 = $("#sch_corp_num0").val();
-	var sch_iuser_nm0 = $("#sch_iuser_nm0").val();
 	
 	var sch_cust_nm1 = $("#sch_cust_nm1").val();
 	var sch_comp_num1 = $("#sch_comp_num1").val();
 	var sch_corp_num1 = $("#sch_corp_num1").val();
-	var sch_iuser_nm1 = $("#sch_iuser_nm1").val();
 	
 	custCompList(page);
 }
@@ -230,10 +227,7 @@ function custCompList(page){
 					sch_comp_num1 : $("#sch_comp_num1").val(), 
 					sch_corp_num : $("#sch_corp_num").val(), 
 					sch_corp_num0 : $("#sch_corp_num0").val(), 
-					sch_corp_num1 : $("#sch_corp_num1").val(), 
-					sch_iuser_nm : $("#sch_iuser_nm").val(),
-					sch_iuser_nm0 : $("#sch_iuser_nm0").val(),
-					sch_iuser_nm1 : $("#sch_iuser_nm1").val()
+					sch_corp_num1 : $("#sch_corp_num1").val() 
 				},
 				datatype : 'json',
 		success:function(result){
