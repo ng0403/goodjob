@@ -16,9 +16,10 @@ html{
 #orgTree{
   border : 2px solid transparent ;
   padding : 20px;
-  height: 450px;
+  height: 440px;
   color: #428bca;
   font-weight: bold;
+  overflow: auto;
 }
 
 #orgTree li{
@@ -33,7 +34,8 @@ html{
 	display: none;
 }
 
-.bt_position{
+.org_bt_position{
+	margin-top:29px;
 	float:right;
 }
 
@@ -49,6 +51,5 @@ html{
 }
 
 #orgTreeForm{
-	height: 450px;
-	overflow: auto;
+	height: 440px;
 }

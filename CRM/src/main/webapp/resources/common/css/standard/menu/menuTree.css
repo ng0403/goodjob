@@ -16,9 +16,10 @@ html{
 #menuTree{
   border : 2px solid transparent ;
   padding : 20px;
-  height: 450px;
+  height: 440px;
   color:#484848;
   font-weight: bold;
+  overflow-y: auto;
 }
   
 #menuTree li{
@@ -43,8 +44,8 @@ html{
 }
 
 #menuTreeForm{
-	height: 450px;
-	overflow: auto;
+	height: 440px;
+/* 	overflow: auto; */
 }
 
 #menuTree a{
@@ -57,7 +58,8 @@ html{
 	text-decoration: underline;
 }
 
-.bt_position{
+.menu_bt_position{
+	margin-top:29px;
 	float:right;
 }
 .menutree_btn {

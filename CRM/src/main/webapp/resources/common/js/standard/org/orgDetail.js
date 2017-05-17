@@ -2,6 +2,7 @@ $(function(){
 	var ctx = $('#ctx').val();
 	orgDetailButtonEvent(ctx);	
 	userAuthTab_click(ctx);
+	$("#orgResetBtn").show();
 });
 
 function orgTreeAddr_pop(){
@@ -83,7 +84,7 @@ function orgResetBtn_funct(ctx){
 				$(node).parent().remove();
 			}else{
 				var node = org_searchTextNode($(checknode).parent(), $('#org_name').val());
-				var nodeCount = $(node).parent().parent().children('li').size();
+				var nodeCount = $(node).parent().parent().children('li').lenght;
 				if(nodeCount == 1){
 					$(node).parent().parent().parent().children('img').attr('src',ctx+"/resources/image/no_treebtn.png");
 				}
@@ -98,7 +99,7 @@ function orgResetBtn_funct(ctx){
 		$('#orgTree').find('input').prop('checked',false);
 		$('#orgSubmitBtn').hide();
 		$('#orgUpdateBtn').hide();
-		$('#orgResetBtn').hide();
+		$('#orgResetBtn').show();
 		$('#org_mode').val('waiting');
 	}
 }
@@ -269,7 +270,7 @@ function orgDetailButtonEvent(ctx){
 				$('#orgTree').find('input').prop('checked',false);
 				$('#orgSubmitBtn').hide();
 				$('#orgUpdateBtn').hide();
-				$('#orgResetBtn').hide();
+				$('#orgResetBtn').show();
 				$('#org_mode').val('waiting');				
 			}
 			else
@@ -372,7 +373,7 @@ function orgDetailButtonEvent(ctx){
 				
 				$('#orgSubmitBtn').hide();
 				$('#orgUpdateBtn').hide();
-				$('#orgResetBtn').hide();
+				$('#orgResetBtn').show();
 				$('#org_mode').val('waiting');
 			}
 			else

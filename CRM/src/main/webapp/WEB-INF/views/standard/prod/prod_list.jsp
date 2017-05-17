@@ -52,9 +52,8 @@ $("#naviprod").css("font-weight", "bold");
 					<option value="${pscl.code}">${pscl.cd_nm}</option>
 				</c:forEach>
 			</select>
-			<i class="list layout icon"></i>
 		</div>
-		<input type="button" id="prod_search"  class="tiny ui orange button" value="조회" onclick="prodSearch('${ccpageNum}');" />
+		<input type="button" id="prod_search"  class="tiny ui orange button" value="조회" onclick="prodSearch('${ccPageNum}');" />
 		
 <!-- 		<label for="prod_nm" class="prod_label_search">상품(서비스)명</label> -->
 <!-- 		<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm"> -->
@@ -92,7 +91,7 @@ $("#naviprod").css("font-weight", "bold");
 							</a>
 						</td>
 						<td>${prodList.cd_nm}</td>
-						<td>${prodList.prod_price}</td>
+						<td style='text-align: right;'><fmt:formatNumber value="${prodList.prod_price}" /></td>
 						<td>${prodList.cate}</td>
 						<td>${prodList.fst_reg_id}</td>
 						<td>

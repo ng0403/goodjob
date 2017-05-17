@@ -7,7 +7,7 @@ function cateDetail_init(){
 	$('#act_y').prop('checked',true);
 	$('#cateUpdateBtn').hide();
 	$('#cateSubmitBtn').hide();
-	$('#cateResetBtn').hide();
+	$('#cateResetBtn').show();
 	$('#upCateSearch').hide();
 	cateDetailButtonEvent(ctx);
 }
@@ -28,7 +28,7 @@ function cate_checkCount(selectNodeClass){
 	var count=0;
 	var checkList =	$('.'+selectNodeClass);
 	
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -40,7 +40,7 @@ function cate_checkCount(selectNodeClass){
 function cate_checkedNode(ClassName){
 	var node;
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 		}
@@ -53,7 +53,7 @@ function cate_checkNodeList(ClassName){
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
 
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			list.push(checkList[i]);
 		}
@@ -82,7 +82,7 @@ function serializeObject(a)
 function selectNode(id, className, value){
 	var node=null;
 	var selectList = $('#'+id).find('.'+className);
-	for(var i=0; i<selectList.size(); i++){
+	for(var i=0; i<selectList.lenght; i++){
 		if($(selectList[i]).val() == value){
 			node = selectList[i];
 		}
@@ -132,7 +132,7 @@ function cateDetailButtonEvent(ctx){
 			        	}else{
 			        		alert("입력정보가 저장되었습니다.");
 			        		var list = cate_checkNodeList('subCheck');
-				        	if($(list).size() == 0){
+				        	if($(list).lenght == 0){
 				        		$(cate_checkedNode('masterCheck')).val(result.cate_id);
 				        	}else{
 				        		$(cate_checkedNode('subCheck')).val(result.cate_id);
@@ -152,7 +152,7 @@ function cateDetailButtonEvent(ctx){
 						$('#upCateSearch').hide();
 						$('#cateUpdateBtn').hide();
 						$('#cateSubmitBtn').hide();
-						$('#cateResetBtn').hide();
+						$('#cateResetBtn').show();
 						$('#cate_mode').val('waiting');
 						$('#cateInsertForm').each(function() {
 							this.reset();
@@ -193,7 +193,7 @@ function cateDetailButtonEvent(ctx){
 							if($('#up_cate_nm').val() == ''){	//메뉴레벨1로 선택하여 수정했을 경우
 								var cateID = $('#cate_id').val();
 								var node = selectNode("cateTree", "masterCheck", cateID);
-								if($(node).size() == 1 ){	//상위메뉴에 있는 정보 그대로 수정할 경우
+								if($(node).lenght == 1 ){	//상위메뉴에 있는 정보 그대로 수정할 경우
 									if($('#act_y').is(':checked')){	//활성화여부가 Y일 경우
 										$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
 									}else{
@@ -217,7 +217,7 @@ function cateDetailButtonEvent(ctx){
 									$('#cateTree').last().append(tmp);
 									
 									//기존에 있던 상위노드 이미지 전환
-									var childCount = $(masterImgNode).children('li').size();
+									var childCount = $(masterImgNode).children('li').lenght;
 									if(childCount == 0){
 										$(masterImgNode).prop('src',ctx+'/resources/image/no_treebtn.png');
 									}
@@ -226,12 +226,12 @@ function cateDetailButtonEvent(ctx){
 								var cateID = $('#cateInsertForm').find('#cate_id').val();
 								p_cateID = $('#up_cate_id').val();
 								var node = selectNode("cateTree", "subCheck", cateID);
-								if($(node).parent().parent().children().size() == 1){
+								if($(node).parent().parent().children().lenght == 1){
 									$(node).parent().parent().parent().children('img').prop('src',ctx+'/resources/image/no_treebtn.png');
 								}else{
 									$(node).parent().parent().parent().children('img').prop('src',ctx+'/resources/image/treebtn2.png');
 								}
-								if($(node).size() == 1 ){	//하위메뉴에 있는 정보 그대로 수정할 때
+								if($(node).lenght == 1 ){	//하위메뉴에 있는 정보 그대로 수정할 때
 									var currentMasterNode = $(selectNode("cateTree", "subCheck", cateID)).parent().parent().parent();
 									if($(currentMasterNode).find('.masterCheck').val() == p_cateID){	//현재보이는 상위메뉴와 입력한 정보의 상위메뉴가 같으면
 										if($('#act_y').is(':checked')){	//활성화여부가 Y일 경우
@@ -249,7 +249,7 @@ function cateDetailButtonEvent(ctx){
 										$(node).next().text($("#cate_nm").val());
 										var tmp = $(node).parent().detach();
 										var masterNode = $(selectNode("cateTree", "masterCheck", p_cateID)).parent();
-										if($(masterNode).find('ul').size() == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
+										if($(masterNode).find('ul').lenght == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
 											$(masterNode).append('<ul class="catetree_sub"></ul>');
 											$(masterNode).find('ul').append(tmp);
 										}else{	//이동할 상위메뉴에 하위메뉴 리스트가 있는 경우
@@ -263,7 +263,7 @@ function cateDetailButtonEvent(ctx){
 									var nodelist = $(node1).find('li');	//이동노드의 자식리스트
 									var masterNode = $(selectNode("cateTree", "masterCheck", p_cateID)).parent();	//이동할 상위메뉴위치
 									
-									if($(nodelist).size() == 0){	//이동노드의 자식이 없는 경우
+									if($(nodelist).lenght == 0){	//이동노드의 자식이 없는 경우
 										if($('#act_y').is(':checked')){	//활성화여부가 Y일 경우
 											$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
 										}else{
@@ -271,7 +271,7 @@ function cateDetailButtonEvent(ctx){
 										}
 										//상위노드를 하위노드로 옮기기
 										var tmp = $(node1).detach();
-										if($(masterNode).find('ul').size() == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
+										if($(masterNode).find('ul').lenght == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
 											$(masterNode).append('<ul class="catetree_sub"></ul>');
 											$(masterNode).find('ul').append(tmp);
 										}else{	//이동할 상위메뉴에 하위메뉴 리스트가 있는 경우
@@ -292,7 +292,7 @@ function cateDetailButtonEvent(ctx){
 						$('#cateTree').find('input[tyoe="radio"]').children().prop('selected',false);
 						$('#cateSubmitBtn').hide();
 						$('#upCateSearch').hide();
-						$('#cateResetBtn').hide();
+						$('#cateResetBtn').show();
 						$('#cate_mode').val('waiting');
 						$('#cate_id').val("");
 						$('#cate_nm').val("");
@@ -336,7 +336,7 @@ function cateDetailButtonEvent(ctx){
 		$('#upCateSearch').hide();
 		$('#cateUpdateBtn').hide();
 		$('#cateSubmitBtn').hide();
-		$('#cateResetBtn').hide();
+		$('#cateResetBtn').show();
 	});
 	
 	//부모 카테고리 검색버튼 누를시 팝업창 띄움

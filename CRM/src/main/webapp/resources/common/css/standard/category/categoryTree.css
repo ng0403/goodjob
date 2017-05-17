@@ -17,9 +17,10 @@ html{
 #cateTree{
   border : 2px solid transparent ;
   padding : 20px;
-  height: 450px;
+  height: 440px;
   color:#484848;
   font-weight: bold;
+  overflow: auto;
 }
   
 #cateTree li{
@@ -27,8 +28,7 @@ html{
 }
 
 #categoryDiv{
-	height: 400px;
-	overflow: auto;
+	height: 440px;
 }
 
 .catetree_sub li{
@@ -44,8 +44,7 @@ html{
 }
 
 #cateTreeForm{
-	height: 450px;
-	overflow: auto;
+	height: 440px;
 }
 
 #cateTree a{
@@ -58,9 +57,9 @@ html{
 	text-decoration: underline;
 }
 
-.bt_position{
+.cata_bt_position{
 	float:right;
-	margin-top: 55px;
+	margin-top: 29px;
 }
 
 .catetree_btn {

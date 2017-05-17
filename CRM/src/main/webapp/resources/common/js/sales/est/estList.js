@@ -108,8 +108,8 @@ function list(page){
 					"<a style='text-decoration: none;' href=javascript:estDetail('"+data.estim_id+"');>"+
 						data.estim_nm+"</a></td>"+
 					"<td>"+data.estim_lev_cd_nm+"</td>"+
-					"<td style='text-align: right;'>"+data.estim_qty+"</td>"+
-					"<td style='text-align: right;'>"+comma(data.sales_price)+"</td>"+
+					"<td style='text-align: right;padding-right:5px;'>"+data.estim_qty+"</td>"+
+					"<td style='text-align: right;padding-right:5px;'>"+comma(data.sales_price)+"</td>"+
 					"<td>"+data.estim_valid_d+"</td>"+
 					"<td>"+data.fst_reg_id+"</td>"+
 					"<td>"+data.fst_reg_dt+"</td>"+

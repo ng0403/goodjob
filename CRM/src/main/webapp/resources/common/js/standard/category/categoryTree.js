@@ -14,7 +14,7 @@ function cate_totalCheckCount(){
 	var count=0;
 	var checkList =	$('#cateTree').find('input[type="checkbox"]');
 
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -27,7 +27,7 @@ function cate_checkCount(selectNodeClass){
 	var count=0;
 	var checkList =	$('.'+selectNodeClass);
 
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -65,7 +65,7 @@ function cateCheckEvent(ctx){
 function cate_checkedNode(ClassName){
 	var node;
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 		}
@@ -78,7 +78,7 @@ function cate_checkNodeList(ClassName){
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
 
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).lenght; i++){
 		if($(checkList[i]).is(':checked')){
 			list.push(checkList[i]);
 		}
@@ -113,7 +113,7 @@ function cate_checkedCateIDList(ClassName)
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
 	
-	for(var i=0; i<checkList.size(); i++)
+	for(var i=0; i<checkList.lenght; i++)
 	{
 		if($(checkList[i]).is(':checked'))
 		{
@@ -271,13 +271,13 @@ function cateButtonEvent(ctx)
 				if(!($('#tmpText').is(':focus')))
 				{
 					var node = $(cate_checkedNode('masterCheck')).parent();
-					var hasElement = $(node).find('ul').size(); //ul태그 여부 (하위 서브메뉴틀 없을경우)
+					var hasElement = $(node).find('ul').lenght; //ul태그 여부 (하위 서브메뉴틀 없을경우)
 					
 					if(hasElement == 0)
 					{
 						$(node).append(
 							'<ul class="catetree_sub">'+					
-							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
+							'<li style="margin-left:15px;"><input type="checkbox" class="subCheck">'+
 							' <a class="sub_cate">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 						);
@@ -286,7 +286,7 @@ function cateButtonEvent(ctx)
 						$(node).find('.subCheck').last().prop('checked',true);
 						$(node).find('li').show();
 						
-						if($(node).children('.cateFlag').size() == 0 )
+						if($(node).children('.cateFlag').lenght == 0 )
 						{
 							$(node).children('.no_cateFlag').remove();
 							$(node).prepend('<img class="cateFlag" src="'+ctx+'/resources/image/treebtn2.png"/>');
@@ -332,7 +332,7 @@ function cateButtonEvent(ctx)
 					else
 					{
 						$(node).find('ul').append(				
-							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
+							'<li style="margin-left:15px;"><input type="checkbox" class="subCheck">'+
 							' <a class="sub_cate">'+
 							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
 						);
@@ -416,7 +416,7 @@ function cateButtonEvent(ctx)
 						alert('삭제되었습니다.');
 						var master = cate_checkNodeList('masterCheck');
 						
-						for(var i=0; i<$(master).size(); i++)
+						for(var i=0; i<$(master).lenght; i++)
 						{
 							$(master[i]).next().css('text-decoration','line-through');
 							$(master[i]).prop('checked',false);
@@ -424,7 +424,7 @@ function cateButtonEvent(ctx)
 						
 						var sub = cate_checkNodeList('subCheck');
 						
-						for(var j=0; j<$(sub).size(); j++)
+						for(var j=0; j<$(sub).lenght; j++)
 						{
 							$(sub[j]).prop('checked',false);
 							$(sub[j]).next().css('text-decoration','line-through');

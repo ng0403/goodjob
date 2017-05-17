@@ -28,8 +28,7 @@ function menuForm_disable(flag){
 function menu_checkCount(selectNodeClass){
 	var count=0;
 	var checkList =	$('.'+selectNodeClass);
-
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -41,7 +40,7 @@ function menu_checkCount(selectNodeClass){
 function selectNode(id, className, value){
 	var node=null;
 	var selectList = $('#'+id).find('.'+className);
-	for(var i=0; i<selectList.size(); i++){
+	for(var i=0; i<selectList.length; i++){
 		if($(selectList[i]).val() == value){
 			node = selectList[i];
 		}
@@ -53,7 +52,7 @@ function selectNode(id, className, value){
 function menu_checkedNode(ClassName){
 	var node;
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).length; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 		}
@@ -66,7 +65,7 @@ function menu_checkNodeList(ClassName){
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
 
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).length; i++){
 		if($(checkList[i]).is(':checked')){
 			list.push(checkList[i]);
 		}
@@ -78,7 +77,7 @@ function menu_checkNodeList(ClassName){
 function menu_checkedMenuIDList(ClassName){
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			list.push($(checkList[i]).val());
 		}
@@ -91,7 +90,7 @@ function menu_checkedSubMenuIDList(p_menu_id){
 	var list = new Array();
 	var node = selectNode('menuTree', 'masterCheck', p_menu_id);
 	var subList = $(node).parent().find('.subCheck');
-	for(var i=0; i<$(subList).size(); i++){
+	for(var i=0; i<$(subList).length; i++){
 		if($(subList[i]).is(':checked')){
 			list.push($(subList[i]).val());
 		}
@@ -310,7 +309,7 @@ function menuButtonEvent(ctx){
 							'<li><img class="no_menuFlag" src="'+ctx+'/resources/image/no_treebtn.png"/>'+
 							' <input type="checkbox" class="masterCheck">'+
 							' <a class="master_menu">'+
-							' <input id="tmpText" type="text" size="5" value="NewNode"></a></li>'
+							' <input id="tmpText" type="text" size="5" style="width:60px;" value="NewNode"></a></li>'
 					);
 					var lastChildeNode = $(topNode).children().last();
 					$(lastChildeNode).children('input[type="checkbox"]').prop('checked',true);
@@ -342,19 +341,19 @@ function menuButtonEvent(ctx){
 				$('#menu_mode').val('insert');
 				if(!($('#tmpText').is(':focus'))){
 					var node = $(menu_checkedNode('masterCheck')).parent();
-					var hasElement = $(node).find('ul').size(); //ul태그 여부 (하위 서브메뉴틀 없을경우)
+					var hasElement = $(node).find('ul').length; //ul태그 여부 (하위 서브메뉴틀 없을경우)
 					
 					if(hasElement == 0){
 						$(node).append(
 							'<ul class="menutree_sub">'+					
-							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
+							'<li style="margin-left:15px;"><input type="checkbox" class="subCheck">'+
 							' <a class="sub_menu">'+
-							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
+							' <input id="tmpText" type="text" size="5" style="width:60px;" value="NewNode"/></a></li></ul>'
 						);
 						$(node).find('.subCheck').prop('checked',false);
 						$(node).find('.subCheck').last().prop('checked',true);
 						$(node).find('li').show();
-						if($(node).children('.menuFlag').size() == 0 ){
+						if($(node).children('.menuFlag').length == 0 ){
 							$(node).children('.no_menuFlag').remove();
 							$(node).prepend('<img class="menuFlag" src="'+ctx+'/resources/image/treebtn2.png"/>');
 						}else{
@@ -387,9 +386,9 @@ function menuButtonEvent(ctx){
 						});
 					}else{
 						$(node).find('ul').append(				
-							'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
+							'<li style="margin-left:15px;"><input type="checkbox" class="subCheck">'+
 							' <a class="sub_menu">'+
-							' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li>'
+							' <input id="tmpText" type="text" size="5" style="width:60px;" value="NewNode"/></a></li>'
 						);
 						$(node).find('.subCheck').prop('checked',false);
 						$(node).find('.subCheck').last().prop('checked',true);
@@ -440,7 +439,7 @@ function menuButtonEvent(ctx){
 				if(result){
 					var data = new Array();
 					var masterList = menu_checkedMenuIDList("masterCheck");
-					for(var i=0; i<$(masterList).size(); i++){
+					for(var i=0; i<$(masterList).length; i++){
 						var obj = new Object();
 						obj.p_menu_id = masterList[i];
 						var subList = menu_checkedSubMenuIDList(masterList[i]);
@@ -451,15 +450,15 @@ function menuButtonEvent(ctx){
 					if(okFlag == 1){
 						alert('삭제되었습니다.');
 						var master = menu_checkNodeList('masterCheck');
-						for(var i=0; i<$(master).size(); i++){
+						for(var i=0; i<$(master).length; i++){
 							var sub = menu_checkNodeList('subCheck');
 							
-							if($(sub).size() == 0){	//하위메뉴가 없을 경우
+							if($(sub).length == 0){	//하위메뉴가 없을 경우
 								var tmp = $(master[i]).next().text();
 								$(master[i]).next().css('text-decoration','line-through');
 								$(master[i]).prop('checked',false);
 							}else{	//하위메뉴가 있을 경우
-								for(var j=0; j<$(sub).size(); j++){
+								for(var j=0; j<$(sub).length; j++){
 									$(sub[j]).prop('checked',false);
 									$(sub[j]).next().css('text-decoration','line-through');
 								}

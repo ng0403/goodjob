@@ -177,7 +177,7 @@ select{
 .int_search{
     position:relative;
 	width:45%;
-	height:24px;
+/* 	height:24px; */
 	border:1px solid #bebebe;
 	color:#333;
 	border-radius: 5px 5px 5px 5px;
@@ -197,6 +197,7 @@ select{
 .table tbody > tr > th,
 .table tbody > tr > td{
 	padding-bottom: 5px;
+	height:38px;
 }
 
 .table tbody > tr > td {
@@ -207,6 +208,28 @@ select{
 }
 
 /* -----------------------------------------권한관리리스트----------------------------------------------- */
+#searchKey{
+	margin: 0em !important;
+    max-width: 100% !important;
+    -webkit-box-flex: 1 !important;
+    -webkit-flex: 1 0 auto !important;
+    -ms-flex: 1 0 auto !important;
+    flex: 1 0 auto !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    text-align: left !important;
+    line-height: 1.21428571em !important;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    padding: 0.67857143em 1em !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(34, 36, 38, 0.15) !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+    border-radius: 0.28571429rem !important;
+    -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    box-shadow: none !important;
+}
+
 .auth_bt_position{
 	padding-top: 10px;
 	float: right;
@@ -264,31 +287,36 @@ select{
 
 .bs-example_orglist #mastertable{
 	width:100%;
-	border-collapse: collapse;
-    border-spacing: 0;
-    border:1px solid #dddddd;
-    margin-bottom:-10px;
+	float: left;
+/* 	border-collapse: collapse; */
+/*     border-spacing: 0; */
+/*     border:1px solid #dddddd; */
+/*     margin-bottom:-10px; */
     
 }
 
 .bs-example_orglist #mastertable thead{
 	float: left; 
 	width:100%;
+	text-align:center;
 	
 }
 
 .bs-example_orglist #mastertable thead tr{
-	height:35px;
+/* 	height:35px; */
 	width: 100%;
+	padding: 5px;
 }
 
-.bs-example_orglist #mastertable thead td{
+.bs-example_orglist #mastertable thead th{
 	width: 25%;
-	font-weight: bold;
-	vertical-align: bottom;
-    border-bottom: 2px solid #dddddd;
-    padding: 8px;
-    background-color: #F2F2F2;
+/* 	font-weight: bold; */
+/* 	vertical-align: bottom; */
+/*     border-bottom: 2px solid #dddddd; */
+/*     padding: 8px; */
+/*     background-color: #F2F2F2; */
+	padding-left:7px;
+	padding-right:7px;
 }
 
 .bs-example_orglist #mastertable tbody{
@@ -304,25 +332,33 @@ select{
 
 }
 
-.bs-example_orglist #mastertable tbody td{
-	width: 25%;
-	padding: 8px;
-    line-height: 1.428571429;
-    vertical-align: top;
-    border-top: 1px solid #dddddd;
-    text-align: left;
-}
+/* .bs-example_orglist #mastertable tbody td{ */
+/* 	width: 25%; */
+/* 	padding: 8px; */
+/*     line-height: 1.428571429; */
+/*     vertical-align: top; */
+/*     border-top: 1px solid #dddddd; */
+/*     text-align: left; */
+/* } */
 
-.bs-example_orglist #mastertable thead tr th{
-  float: left;
+/* .bs-example_orglist #mastertable thead tr th{ */
+/*   float: left; */
 
-}
-
+/* } */
 .bt_position{
-     margin-top: 7px;
-     margin-right:10px;
-     color:#484848;
-     font-weight: bold;
+     margin-top: 10px;
+/*      margin-right:10px; */
+/*      color:#484848; */
+/*      font-weight: bold; */
+     float: right;
+     margin-bottom: 10px;
+} 
+
+.bt_position_detail{
+     margin-top: 10px;
+/*      margin-right:10px; */
+/*      color:#484848; */
+/*      font-weight: bold; */
      float: right;
      margin-bottom: 10px;
 } 

@@ -121,7 +121,7 @@ function prodInserts(){
 							<th><span style="color:red;">*판매가</span></th>
 							<td>
 								<div class="ui input focus">
-									<input type="text" name="prod_price" id="prod_price" class="customer_txt" value="${prodDto.prod_price}" disabled>
+									<input type="text" name="prod_price" id="prod_price" style='text-align: right;' class="customer_txt" value="${prodDto.prod_price}" disabled>
 								</div>
 							</td>							
 						</tr>				

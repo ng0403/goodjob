@@ -9,6 +9,11 @@
 <title>상품/서비스 상세정보</title>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/category/categoryDetail.css" type="text/css" />
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/category/categoryDetail.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 </head>
 <body>
 <div id="css_tabs">
@@ -21,9 +26,14 @@
 		<div id="tabDiv1" class="tab1_content">
 	    
 	    <div id="cateMasterDiv">
+		    <div class="bt_position_detail">
+				<input type="button" class="tiny ui orange button" value="저장" id="cateSubmitBtn" />
+				<input type="button" class="tiny ui button" value="편집" id="cateUpdateBtn" />
+				<input type="reset" class="tiny ui button" value="취소" id="cateResetBtn" />
+			</div>
 		<form id="cateInsertForm" method="post">
 			<input type="hidden" id="cate_insert_mode"/>
-			<table class="table">
+			<table class="ui sortable celled table">
 				<tbody class="tbody">
 					<tr class="cate_text">
 						<th class="cate_nm_th1">카테고리명</th>
@@ -35,7 +45,7 @@
 						<td class="cate_text_td2">
 							<input type="hidden" name="up_cate_id" id="up_cate_id"/>
 							<input type="text" name="up_cate_nm" id="up_cate_nm" class="cate_nm_text"/>
-							<input type="button" value="검색" id="upCateSearch" class="btn btn-default"/>
+							<input type="button" value="검색" id="upCateSearch" class="tiny ui orange button"/>
 						</td>
 					</tr>
 					<tr class="cate_contents">
@@ -43,8 +53,8 @@
 						<td colspan="4"><textarea rows="10" cols="68" name="cate_dtl_cont" id="cate_dtl_cont" class="txtarea_cont"></textarea></td>							
 					</tr>
 					<tr>
-						<th>활성화</th>
-						<td>
+						<th class="cate_nm_th1">활성화</th>
+						<td colspan="3">
 							Y<input type="radio" name="act_yn" id="act_y" value="Y">&nbsp;
 							N<input type="radio" name="act_yn" id="act_n" value="N">
 						</td>							
@@ -54,11 +64,7 @@
 		</form>	
 		</div>
 		</div>
-		<div class="bt_position_detail">
-			<input type="button" class="catetree_btn" value="저장" id="cateSubmitBtn" />
-			<input type="button" class="catetree_btn" value="편집" id="cateUpdateBtn" />
-			<input type="reset" class="catetree_btn" value="취소" id="cateResetBtn" />
-		</div>
+		
 	</div>
 </body>
 </html>

@@ -32,7 +32,7 @@ function clickEvent(ctx){
 	        dataType:'json',
 	        success: function(result){
 	        	var fst_reg_dt = null;
-	        	for(var i=0; i<$(result).size(); i++){
+	        	for(var i=0; i<$(result).length; i++){
 	        	
 	        		//날짜함수변환 
 					fst_reg_dt = dateFormat(Number(result[i].fst_reg_dt));
@@ -76,7 +76,7 @@ function clickEvent(ctx){
 		    success: function(result){
 		    	var fst_reg_dt = null;
 		    	$('#authMenuBody tr').remove();
-		    	for(var i=0; i<$(result).size(); i++){
+		    	for(var i=0; i<$(result).length; i++){
 		    		fst_reg_dt = dateFormat(Number(result[i].fst_reg_dt));
 		    		
 		       		var data = '<tr>'+
@@ -165,7 +165,7 @@ function menuDetailButtonEvent(ctx){
 			        dataType:'json',
 			        success: function(result){
 			        	var list = menu_checkNodeList('subCheck');
-			        	if($(list).size() == 0){
+			        	if($(list).length == 0){
 			        		$(menu_checkedNode('masterCheck')).val(result.menu_id);
 			        	}else{
 			        		$(menu_checkedNode('subCheck')).val(result.menu_id);
@@ -242,7 +242,7 @@ function menuDetailButtonEvent(ctx){
 					var menuID = $('#menuInsertForm').find('#menu_id').val();
 					var node = selectNode("menuTree", "masterCheck", menuID);
 					
-					if($(node).size() == 1 ){	//상위메뉴에 있는 정보 그대로 수정할 경우
+					if($(node).length == 1 ){	//상위메뉴에 있는 정보 그대로 수정할 경우
 						if($('.menu_active_flg_Y').is(':checked')){	//활성화여부가 Y일 경우
 							$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
 						}else{
@@ -269,7 +269,7 @@ function menuDetailButtonEvent(ctx){
 						$('#menuTree').last().append(tmp);
 						
 						//기존에 있던 상위노드 이미지 전환
-						var childCount = $(masterImgNode).children('li').size();
+						var childCount = $(masterImgNode).children('li').length;
 						if(childCount == 0){
 							$(masterImgNode).prop('src',ctx+'/resources/image/no_treebtn.png');
 						}
@@ -278,7 +278,7 @@ function menuDetailButtonEvent(ctx){
 					var menuID = $('#menuInsertForm').find('#menu_id').val();
 					p_menuID = $('#p_menu_id').val();
 					var node = selectNode("menuTree", "subCheck", menuID);
-					if($(node).size() == 1 ){	//하위메뉴에 있는 정보 그대로 수정할 때
+					if($(node).length == 1 ){	//하위메뉴에 있는 정보 그대로 수정할 때
 						var currentMasterNode = $(selectNode("menuTree", "subCheck", menuID)).parent().parent().parent();
 						if($(currentMasterNode).find('.masterCheck').val() == p_menuID){	//현재보이는 상위메뉴와 입력한 정보의 상위메뉴가 같으면
 							if($('.menu_active_flg_Y').is(':checked')){	//활성화여부가 Y일 경우
@@ -296,7 +296,7 @@ function menuDetailButtonEvent(ctx){
 							$(node).next().text($("#menu_name").val());
 							var tmp = $(node).parent().detach();
 							var masterNode = $(selectNode("menuTree", "masterCheck", p_menuID)).parent();
-							if($(masterNode).find('ul').size() == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
+							if($(masterNode).find('ul').length == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
 								$(masterNode).append('<ul class="menutree_sub"></ul>');
 								$(masterNode).find('ul').append(tmp);
 							}else{	//이동할 상위메뉴에 하위메뉴 리스트가 있는 경우
@@ -308,7 +308,7 @@ function menuDetailButtonEvent(ctx){
 						var nodelist = $(node1).find('li');	//이동노드의 자식리스트
 						var masterNode = $(selectNode("menuTree", "masterCheck", p_menuID)).parent();	//이동할 상위메뉴위치
 						
-						if($(nodelist).size() == 0){	//이동노드의 자식이 없는 경우
+						if($(nodelist).length == 0){	//이동노드의 자식이 없는 경우
 							if($('.menu_active_flg_Y').is(':checked')){	//활성화여부가 Y일 경우
 								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
 							}else{
@@ -316,7 +316,7 @@ function menuDetailButtonEvent(ctx){
 							}
 							//상위노드를 하위노드로 옮기기
 							var tmp = $(node1).detach();
-							if($(masterNode).find('ul').size() == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
+							if($(masterNode).find('ul').length == 0){	//이동할 상위메뉴에 하위메뉴 리스트가 없는 경우
 								$(masterNode).append('<ul class="menutree_sub"></ul>');
 								$(masterNode).find('ul').append(tmp);
 							}else{	//이동할 상위메뉴에 하위메뉴 리스트가 있는 경우

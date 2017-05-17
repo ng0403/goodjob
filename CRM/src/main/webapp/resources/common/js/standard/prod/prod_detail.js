@@ -12,6 +12,7 @@ $(function(){
 	prodModifyBtn(ctx);
 	prodDeleteBtn();
 	//prodIdClick(ctx);
+	priceComma();
 });
 /* 샘플 
 function actAddBtn(ctx){
@@ -23,6 +24,16 @@ function actAddBtn(ctx){
 		$("#actBaseBtnDiv").css("display", "none");
 	}); 
 }*/
+function priceComma(){
+	var price = $("#prod_price").val();
+	$("#prod_price").val(comma(price));
+}
+
+function priceUnComma(){
+	var price = $("#prod_price").val();
+	$("#prod_price").val(uncomma(price));
+}
+
 function prodCancelBtn(ctx){
 	$("#prodCancelBtn").click(function() {
 		location.href="/prod";
@@ -143,7 +154,7 @@ function prodSearch(prodPageNum) {
 							+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 							+"</td>"
 							+"<td>"+result.prodList[i].cd_nm+"</td>"
-							+"<td>"+result.prodList[i].prod_price+"</td>"
+							+"<td style='text-align: right;'>"+comma(result.prodList[i].prod_price)+"</td>"
 							+"<td>"+result.prodList[i].cate+"</td>"
 							+"<td>"+result.prodList[i].fst_reg_id+"</td>"
 							+"<td>"+fst_reg_dt+"</td></tr>";
@@ -247,7 +258,7 @@ function prodPaging(prodPageNum) {
 						+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 						+"</td>"
 						+"<td>"+result.prodList[i].cd_nm+"</td>"
-						+"<td>"+result.prodList[i].prod_price+"</td>"
+						+"<td style='text-align: right;'>"+comma(result.prodList[i].prod_price)+"</td>"
 						+"<td>"+result.prodList[i].cate+"</td>"
 						+"<td>"+result.prodList[i].fst_reg_id+"</td>"
 						+"<td>"+fst_reg_dt+"</td></tr>";
@@ -387,6 +398,7 @@ function prodModifyBtn(ctx){
 	
 			$("#prod_img").prop("disabled",false);
 			$("#prod_catal").prop("disabled",false);
+			priceUnComma();
 			$('#prodModifyBtn').hide();
 			$('#prodSaveBtn').show();
 //			$('#prodUpdateBtn').remove();
@@ -614,4 +626,15 @@ function prodFormClr() {
 	$("#prod_img").val('');
 	$("#prod_catal").val('');
 	$('.filedown').remove();
+}
+//컴마 입력 함수
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+//컴마 해제 함수
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
 }

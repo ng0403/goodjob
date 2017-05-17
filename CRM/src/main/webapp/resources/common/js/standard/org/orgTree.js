@@ -394,13 +394,13 @@ function orgButtonEvent(ctx)
 						if(!($('#tmpText').is(':focus')))
 						{
 							var node = $(org_checkedNode('masterCheck')).parent();
-							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
+							var hasElement = $(node).children('ul').length; //ul태그 여부 (하위 서브조직이 없을경우)
 							
 							if(hasElement == 0)	//조직유형 밑에 조직명이 없을 경우
 							{
 								$(node).append(
 									'<ul class="orgtree_sub">'+					
-									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck">'+
+									'<li style="margin-left:15px;"><input type="checkbox" class="subCheck">'+
 									' <a class="sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
@@ -416,7 +416,7 @@ function orgButtonEvent(ctx)
 							
 							$(node).find('.orgtree_sub').children('li').show();
 							
-							if($(node).children('.f_orgFlag').size() == 0 )
+							if($(node).children('.f_orgFlag').length == 0 )
 							{
 								$(node).children('.no_f_orgFlag').remove();
 								$(node).prepend('<img class="f_orgFlag" src="'+ctx+'/resources/image/treebtn2.png"/>');
@@ -486,12 +486,12 @@ function orgButtonEvent(ctx)
 					{
 						if(!($('#tmpText').is(':focus'))){
 							var node = $(org_checkedNode('subCheck')).parent();
-							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
+							var hasElement = $(node).children('ul').length; //ul태그 여부 (하위 서브조직이 없을경우)
 							
 							if(hasElement == 0){	//상위조직에 하위조직이 없을 경우
 								$(node).append(
 									'<ul class="orgtree_super_sub">'+					
-									'<li>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="ssubCheck">'+
+									'<li style="margin-left:15px;"><input type="checkbox" class="ssubCheck">'+
 									' <a class="super_sub_org">'+
 									' <input id="tmpText" type="text" size="5" value="NewNode"/></a></li></ul>'
 								);
@@ -507,7 +507,7 @@ function orgButtonEvent(ctx)
 							
 							$(node).find('.orgtree_super_sub').children('li').show();
 							
-							if($(node).children('.s_orgFlag').size() == 0)
+							if($(node).children('.s_orgFlag').length == 0)
 							{
 								$(node).children('.no_s_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
 							}
@@ -575,7 +575,7 @@ function orgButtonEvent(ctx)
 						if(!($('#tmpText').is(':focus')))
 						{
 							var node = $(org_checkedNode('ssubCheck')).parent();
-							var hasElement = $(node).children('ul').size(); //ul태그 여부 (하위 서브조직이 없을경우)
+							var hasElement = $(node).children('ul').length; //ul태그 여부 (하위 서브조직이 없을경우)
 							
 							if(hasElement == 0)		//상위조직에 하위조직이 없을 경우
 							{
@@ -597,7 +597,7 @@ function orgButtonEvent(ctx)
 							
 							$(node).find('.orgtree_super_ssub').children('li').show();
 							
-							if($(node).children('.ss_orgFlag').size() == 0)
+							if($(node).children('.ss_orgFlag').length == 0)
 							{
 								$(node).children('.no_ss_orgFlag').attr('src',ctx+"/resources/image/treebtn2.png");
 							}
@@ -739,7 +739,7 @@ function org_checkTotalCount(){
 	var count=0;
 	var checkList =	$('#orgTree').find('input[type="checkbox"]');
 	
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -752,7 +752,7 @@ function org_checkCount(selectNodeClass){
 	var count=0;
 	var checkList =	$('.'+selectNodeClass);
 
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -764,7 +764,7 @@ function org_checkCount(selectNodeClass){
 function org_All_checkedNode(){
 	var node;
 	var checkList =	$('#orgTree').find('input[type="checkbox"]');
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 		}
@@ -776,7 +776,7 @@ function org_All_checkedNode(){
 function org_checkedNode(ClassName){
 	var node;
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 		}
@@ -788,7 +788,7 @@ function org_checkedNode(ClassName){
 function org_CheckedIdList(ClassName){
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			list.push($(checkList[i]).val());
 		}
@@ -800,7 +800,7 @@ function org_CheckedIdList(ClassName){
 function org_searchNode(parentNode, id){
 	var node;
 	var list =	$(parentNode).find('input[type="checkbox"]');
-	for(var i=0; i<$(list).size(); i++){
+	for(var i=0; i<$(list).length; i++){
 		if($(list[i]).val() == id){
 			node = list[i];
 		}
@@ -812,7 +812,7 @@ function org_searchNode(parentNode, id){
 function org_searchTextNode(parentNode, name){
 	var node;
 	var list =	$(parentNode).find('a');
-	for(var i=0; i<$(list).size(); i++){
+	for(var i=0; i<$(list).length; i++){
 		if($(list[i]).text() == name){
 			node = list[i];
 		}
@@ -822,7 +822,7 @@ function org_searchTextNode(parentNode, name){
 
 //삭제할 노드의 css수정
 function org_deleteAction(list){
-	for(var i=0; i<$(list).size(); i++){
+	for(var i=0; i<$(list).length; i++){
 		var node = org_searchNode($('#orgTree'), list[i]);
 		$(node).next().css('text-decoration','line-through');
 		$(node).parent().find('a').css('text-decoration','line-through');

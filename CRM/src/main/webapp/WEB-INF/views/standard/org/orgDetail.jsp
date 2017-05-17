@@ -10,7 +10,19 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/org/orgDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>	
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+
+<script>
+   $(function() {
+      $('table').tablesort();
+   });            
+</script>	
 </head>
 <body>   
     <div id="css_tabs">
@@ -27,8 +39,13 @@
 		 <div class="tabBody">
 			<form id="orgInsertForm" method="post">
 				<input type="hidden" id="org_insert_mode" name="org_flag"/>
+				<div class="bt_position_detail">
+					<input type="button" class="tiny ui orange button" value="저장" id="orgSubmitBtn"/>
+					<input type="button" class="tiny ui button" value="편집" id="orgUpdateBtn"/>
+					<input type="reset" class="tiny ui button" value="취소" id="orgResetBtn"/>
+				</div>
 				<table class=table>
-					<tbody id="tbody1">
+					<tbody id="tbody1" class="ui sortable celled table">
 						<tr class="orgDetail">
 							<th><span style="color: red;">*조직ID</span></th>
 							<td><input type="text" name="org_id" id="org_id" class="int" disabled="disabled"></input></td>
@@ -48,7 +65,7 @@
 							<th><span style="color: red;">*조직대표</span></th>
 							<td>							
 							<input type="text" class="int" name="user_id" id="user_id" disabled="disabled"/>
-							<input type="button" class="button search_btn" value="검색" id="oorg" onclick="OOrgName()"/>
+							<input type="button" class="tiny ui orange button" value="검색" id="oorg" onclick="OOrgName()"/>
 							</td>
 							<th>조직레벨</th>
 							<td>
@@ -83,7 +100,7 @@
 						</tr>
 						<tr class="orgDetail">
 							<th><span style="color: red;">*활성화여부</span></th>
-							<td style="padding : 10px 0px 0px 30px;">
+							<td style="padding : 10px 0px 0px 30px;" colspan="3">
 							<input type="radio" name="active_flg" checked="checked" id="active_flg_Y" value="Y" disabled="disabled"/>&nbsp;Y&nbsp;&nbsp;
 							<input type="radio" name="active_flg" id="active_flg_N" value="N" disabled="disabled"/>&nbsp;N</td>
 						</tr>
@@ -105,34 +122,31 @@
 						</tr>
 						</tbody>							
 					</table>
-				  </form>
-				  
-					<div class="bt_position_detail">
-						<input type="button" class="button functionBtn" value="추가" id="orgSubmitBtn"/>
-						<input type="button" class="button search_btn" value="편집" id="orgUpdateBtn"/>
-						<input type="reset" class="button search_btn" value="취소" id="orgResetBtn"/>
-					</div>				  
+				  </form>				  
 				</div>
 			
 				</div>
 				<div id="tabDiv2" class="tab2_content">
 			    <div class="bt_position">
-				<select id="searchKey" name="searchKey" class="selectField">
-					<option value="orgName">조직명</option>
-					<option value="userName">사용자명</option>
-				</select> <input id="title_text" type="text" name="searchValue" class="int_search"> &nbsp;
-				<input id="orgUserAuthSearch" type="button" class="org_btn" value="검색"/>
+			    	<div class="ui left icon input">
+						<select id="searchKey" name="searchKey" class="selectField">
+							<option value="orgName">조직명</option>
+							<option value="userName">사용자명</option>
+						</select> 
+						<input id="title_text" type="text" name="searchValue" class="int_search"> &nbsp;
+					</div>
+				<input id="orgUserAuthSearch" type="button" class="tiny ui orange button" value="검색"/>
 		        </div>
 			    <div class="bs-example_orglist" data-example-id="simple-table">
-				   <table id="mastertable">
+				   <table id="mastertable" class="ui sortable celled table">
 								<thead>
 									<tr>
-									    <th scope="row"></th>
-										<td style="width: 20%;">조직명</td>
-										<td style="width: 20%;">조직대표</td>
-										<td style="width: 20%;">사용자</td>
-										<td style="width: 20%;">연락처</td>
-										<td style="width: 20%;">이메일</td>
+										<th style="width: 20.1%;">조직명</th>
+										<th style="width: 20%;">조직대표</th>
+										<th style="width: 19.9%;">사용자</th>
+										<th style="width: 19.9%;">연락처</th>
+										<th style="width: 20.4%;border-right:none;">이메일</th>
+										<th style="width: 0%;border-left:none;"></th>
 									</tr>
 								</thead>
 								<tbody>

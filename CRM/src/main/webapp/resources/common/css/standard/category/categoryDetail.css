@@ -54,8 +54,8 @@ html{
 /*  실제 내용이 담긴 div 요소 스타일 지정 */
 #css_tabs .tab1_content{
     border:1px solid #ddd;
-    height:469px;
-    padding-top:20px;
+    height:490px;
+/*     padding-top:20px; */
 }
 
 .cate_nm_text{
@@ -158,26 +158,28 @@ fieldset[disabled] .btn {
 	line-height: 100px;
 }
 
-#cate_contents *{
+.cate_contents *{
 	vertical-align:middle;
 }
 
 #cateMasterDiv{
-	width:800px;
+	width:100%;
 }
 
 .bt_position_detail{
-	width:700px;
-	text-align: right;
-	margin-top:-200px;
+	float: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .cate_nm_th1{
 	width: 120px;
+	height: 30px;
 }
 
 .cate_nm_th2{
 	width: 120px;
+	height: 30px;
 }
 
 .cate_contents textarea{

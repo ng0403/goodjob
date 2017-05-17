@@ -186,8 +186,8 @@
 								<a style='text-decoration: none;' href="javascript:estDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>
 							<td><c:out value="${result.estim_lev_cd_nm}" /></td>
-							<td style='text-align: right;'><c:out value="${result.estim_qty}" /></td>
-							<td style='text-align: right;'><fmt:formatNumber value="${result.sales_price}" /></td>
+							<td style='text-align: right;padding-right:5px;'><c:out value="${result.estim_qty}" /></td>
+							<td style='text-align: right;padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
 							<td><c:out value="${result.estim_valid_d}" /></td>
 							<td><c:out value="${result.fst_reg_id}" /></td>
 							<td><c:out value="${result.fst_reg_dt}" /></td>

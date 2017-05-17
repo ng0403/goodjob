@@ -10,6 +10,13 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/menu/menuTree.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/menu/menuTree.css"/>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <title>리스트</title>
 <script type="text/javascript">
 $("#navisub11").show();
@@ -20,7 +27,9 @@ $("#navimenu").css("font-weight", "bold");
 	<input id="ctx" type="hidden" value="${ctx}"/>
 	<input id="menu_mode" type="hidden" value="waiting"/>
     <div id="title">
-		<div class="caption">■ 메뉴목록</div>
+		<div class="caption">
+			<h3 class="ui header" style="background: #fff;">■ 기준정보 > 메뉴관리</h3>
+		</div>
 	</div>
 	
 	<div id="menuTreeForm">
@@ -43,7 +52,7 @@ $("#navimenu").css("font-weight", "bold");
 					<c:if test="${!empty menu.menuVO}">
 						<ul class="menutree_sub">					
 						<c:forEach var="sub" items="${menu.menuVO}">
-							<li>
+							<li style="margin-left:15px;">
 								&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="subCheck" value="${sub.menu_id}"/>
 								<c:if test="${sub.act_yn == 'Y'}">
 									<a class="sub_menu">${sub.menu_nm}</a>
@@ -62,10 +71,10 @@ $("#navimenu").css("font-weight", "bold");
 	<p>
 	<br>
 	<!-- 버튼 -->
-	<div class="bt_position">
-		<button type="button" class="menutree_btn" id="menuAddBtn">추가</button>
-		<button type="button" class="menutree_btn" id="menuDelBtn">삭제</button>
-		<button type="button" class="menutree_btn" id="menuAllCancelBtn">선택취소</button>		
+	<div class="menu_bt_position">
+		<button type="button" class="tiny ui button" id="menuAddBtn">추가</button>
+		<button type="button" class="tiny ui orange button" id="menuDelBtn">삭제</button>
+		<button type="button" class="tiny ui button" id="menuAllCancelBtn">선택취소</button>		
 	</div>
 </body>
 </html>

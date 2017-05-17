@@ -181,7 +181,7 @@ $(function() {
 			
 				<table id= "estimatehead" style="width:100%; text-align: center; border-collapse: collapse; border:1px;" >
 					<tr>
-						<th style="width: 3%;padding:0px;text-align: center;" rowspan="2"><input type="checkbox" id="allSelect"></th>
+						<th style="width: 3%;padding:0px;text-align: center;display:none;" rowspan="2"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
 						<td style="width: 8%;">수량</td>
 						<td style="width: 27%;">판매가</td>
@@ -204,7 +204,7 @@ $(function() {
 							<c:when test="${not empty prodList}">
 								<c:forEach items="${prodList}" var="list">
 									<tr id="priceline" class="${list.prod_id}">
-										<th style="width: 3%;">
+										<th style="width: 3%;display:none;">
 											<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 											<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
 										<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>

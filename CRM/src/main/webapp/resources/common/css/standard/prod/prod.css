@@ -6,10 +6,10 @@ list_prod_id{
 	color: blue;
 }
 
-#act_list_table tr,
-#act_list_table tr td{
-	height:25px;
-}
+/* #act_list_table tr, */
+/* #act_list_table tr td{ */
+/* 	height:25px; */
+/* } */
 select{
 	margin: 0em !important;
     max-width: 100% !important;
@@ -50,7 +50,7 @@ select{
 .sprod_nm{
 	position:relative;
 	width:150px;
-	height:24px;
+/* 	height:24px; */
 	border:1px solid #bebebe;
 	color:#232323;
 	border-radius: 5px 5px 5px 5px;
