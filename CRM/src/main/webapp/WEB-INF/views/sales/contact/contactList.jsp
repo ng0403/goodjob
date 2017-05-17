@@ -93,7 +93,7 @@
 		</tr>
 		</thead>
 		<tbody id="call_list_tbody" class="tbody">
-		<c:forEach var="contactList" items="${contactList}">
+		<c:forEach  var="contactList" items="${contactList}">
  		<tr>
 			<td><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
 			<td style="width:20%; text-align: left; padding-left:5px;" >          <%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
