@@ -112,7 +112,7 @@
 			</div>
 			
 			<div id="tableline2">
-				<table class="tabtable" class="ui sortable celled table" style="border-collapse: collapse;"> 
+				<table class="tabtable" class="ui sortable celled table" style="border-collapse: collapse; border: 1px solid rgba(34, 36, 38, 0.1);"> 
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
