@@ -19,12 +19,7 @@
 </head>
  
 <body> 
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 
 <form role="form" name = "form_modify" method="post">
  <input type='hidden' id="CODE_TXT" name='CODE_TXT' value="${board_mng_list.CODE_TXT}"/> 
@@ -32,22 +27,23 @@
  <input type='hidden' id="REPLY_FLG" value="${board_mng_list.REPLY_FLG }"/>
  <input type='hidden' id="NOTICE_FLG" value="${board_mng_list.NOTICE_FLG }"/>
  <input type='hidden' id="FILE_ATTACH_FLG" value="${board_mng_list.FILE_ATTACH_FLG }"/>
- <input type='hidden' id="CODE_TXT" value="${board_mng_list.CODE_TXT }"/>
- 
+ <input type='hidden' id="CODE_TXT" value="${board_mng_list.CODE_TXT }"/> 
 </form>
  
-
-<div class="container" style="width:50%" >
-
-	<div id="board_mng_detail" >
-  
+<div id="title">
+		<div class="caption">
+		<h3 class="ui header" style="background: #fff;">■ 기준정보 > <a href="/boardmngInqr" style="font-size: 14pt; text-decoration:none; color: blue;">게시판 관리</a> > 게시판 관리 상세 </h3>
+		</div>
+	</div>
+ 
+	<div id="board_mng_detail" style="margin-top:60px"> 
   <form role="form" name="board_mng_form"> 
    <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng_list.BOARD_MNG_NO}"/> 
  	<table class="ui celled table">
  	<tbody class="detailtbody">
 	<tr> 
 	<th>게시판이름</th>
- <td><input type="text" class="form-control" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM}" style="width:50%" /></td> 
+ <td style="height:30px"><input type="text" class="int" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM}" style="width:50%" /></td> 
 	<th>게시판분류</th>
    <td> 
    <select class="form-control" id="sel1"> 
@@ -67,7 +63,7 @@
 	<tr>
 	<th>관리자</th> <td></td>
 	 <th>게시판코드</th>
-	  <td>
+	  <td style="height:30px">
 	  <div id="board_cd_div">${board_mng_list.BOARD_MNG_CD}
 	  </div>
 	  
@@ -77,7 +73,7 @@
 	<th>
 	댓글여부
 	</th>
-	<td>
+	<td style="height:30px">
 	<label class="radio-inline">
 	<input type="radio" class="radio_class" id="reply_flg_y" name="REPLY_FLG" value="Y" >Y
 	</label> <label class="radio-inline">
@@ -100,7 +96,7 @@
 	<th>
 	파일업로드
 	</th>
-	<td>
+	<td style="height:30px">
 	<label class="radio-inline" >
 	<input type="radio" class="radio_class" id="file_attach_flg_y" name="FILE_ATTACH_FLG" value="Y">Y
 	</label>
@@ -127,15 +123,14 @@
 	
 	<div id = "button_div">
 	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui orange button" value="편집" onclick="modify_fbtn();"/>
-	<input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onclick="go_list();"/>
+	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
 	</div>
 	
 	<div id = "button_div1">
 		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
 		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
 	</div>
-
-</div> 
+ 
 
 </body>
 </html>

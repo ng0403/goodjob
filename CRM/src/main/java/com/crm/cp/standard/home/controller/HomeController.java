@@ -17,12 +17,13 @@ import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.service.contrService;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.board.service.BNoticeService;
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.data_board.service.Data_boardService;
 import com.crm.cp.standard.home.service.HomeService;
 import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
-import com.crm.cp.standard.notice.service.NoticeService;
 import com.crm.cp.standard.schedule.service.ScheduleService;
 
 @Controller
@@ -32,7 +33,7 @@ public class HomeController {
 	ScheduleService scheduleService;
 	
 	@Autowired
-	NoticeService noticeService;
+	BNoticeService noticeService;
 	
 	@Autowired
 	Data_boardService data_boardService;
@@ -111,12 +112,14 @@ public class HomeController {
 		System.out.println("opptList" + opptList);
 		System.out.println("opptActList" + opptActList);
 		System.out.println("GET /Home : ");
+		List<BoardVO> boardVO = noticeService.noticeList(); 
 		
 		ModelAndView mov = new ModelAndView("home");
 		List<MenuVO> menuList = menuService.selectAll(session);
 		mov.addObject("menuList", menuList);
 		mov.addObject("opptList", opptList);
 		mov.addObject("opptActList", opptActList);
+		mov.addObject("boardVO", boardVO);
 		
 		return mov;
 		

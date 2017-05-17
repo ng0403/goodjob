@@ -72,7 +72,7 @@
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
  <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="tiny ui orange button">저장</button>
-  <input type="button" class="tiny ui orange button" id="board_list_fbtn" onClick="board_list();" value="목록"/>
+  <input type="button" class="tiny ui button" id="board_list_fbtn" onClick="board_list();" value="취소"/>
 </div>
 
 

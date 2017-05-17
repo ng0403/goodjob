@@ -36,6 +36,16 @@
 		) b
 		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
 	</select>
+	
+	<select id="noticeList" resultType="com.crm.cp.standard.board.vo.BoardVO">
+	 SELECT *
+        FROM 
+        (
+        SELECT * FROM TB_BOARD WHERE BOARD_MNG_NO = 'BMG1000001' ORDER BY CREATED DESC
+        ) 
+        WHERE ROWNUM = 1
+	
+	</select>
  
 
 </mapper>

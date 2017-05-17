@@ -95,7 +95,7 @@
 		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
-			<th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></th>
+			<td><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
 			<td style="width:20%; text-align: left; padding-left:5px;" >          <%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
 			<a href="#" onclick="contactDetail('${contactList.cont_id}')" style="color: black; cursor: pointer;" class="callClick">${contactList.cont_nm}</a></td>
   			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>

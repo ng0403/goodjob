@@ -59,7 +59,7 @@ function pipeLine(ctx){
 }
 
 function noticelistenToGoPage(ctx, noticeid){
-	
+	alert("hh");
 	location.href=ctx+"/noticedetail?noticeId="+noticeid;
 	
 }
@@ -72,9 +72,8 @@ function dboardlistenToGoPage(ctx, dboardid){
 
 function atagfunc(ctx){
 	
-	$('.noticetable').delegate('a', 'click', function(event){
-		
-		event.preventDefault();
+	/*$('.noticetable').delegate('a', 'click', function(event){
+ 		event.preventDefault();
 		var hrefdata = $(this).attr("href");
 		var notice =hrefdata.split("=");
 		var noticeid = notice[1];
@@ -96,7 +95,7 @@ function atagfunc(ctx){
 			
 		});
 		
-	});
+	});*/
 	
 	$('.dboardtable').delegate('a', 'click', function(event){
 		

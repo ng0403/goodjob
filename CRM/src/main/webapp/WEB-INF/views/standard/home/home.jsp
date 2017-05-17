@@ -193,20 +193,21 @@
 			<table id="goaltable" class="noticetable">
 				<thead>
 					<tr>
-						<td>글번호</td><td>제목</td><td>조회수</td><td>작성일</td><td>게시자</td>
+						<td>글번호</td><td>제목</td><td>게시자</td><td>작성일</td><td>조회수</td>
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${boardVO}" var="boardVO" begin="0" end="4"> 
 					<tr>
+					   <td>${boardVO.BOARD_NO}</td>
 						<td>
-							<a href="${ctx}/boardDetail?BOARD_NO=${notice.NOTICE_ID}" class="noticebtn" style="text-decoration: none;">${notice.TITLE}</a>
+							<a href="/boardDetail?BOARD_NO=${boardVO.BOARD_NO}" class="noticebtn" style="text-decoration: none;">${boardVO.TITLE}</a>
 						</td>
-						<td><fmt:formatDate value="${notice.STRD_D}" pattern="yyyy-MM-dd"/></td>
-						<td>${notice.CHK_NUM}</td>
-						<td><fmt:formatDate value="${notice.END_D}" pattern="yyyy-MM-dd"/></td>
-						<td>${notice.ORG_NM}</td>
-						<td>${notice.FST_REG_ID_NM}</td>
-					</tr>
+ 						<td>${boardVO.CREATED_BY}</td>
+						<td>${boardVO.CREATED}</td>
+						<td>${boardVO.VIEW_CNT}</td>
+ 					</tr>
+ 					</c:forEach>
 				</tbody>
 			</table>
 		</div>

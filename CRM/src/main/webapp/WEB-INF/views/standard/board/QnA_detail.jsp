@@ -65,7 +65,7 @@
  	<div id="btns"> <!-- 버튼 div  -->
 		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
 		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onClick="go_list();"/>
+		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="go_list();"/>
 	</div>
  	
 	<!-- 댓글div -->

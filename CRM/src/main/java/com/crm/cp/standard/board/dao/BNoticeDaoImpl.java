@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.standard.board.vo.BoardVO;
+
 @Repository
 public class BNoticeDaoImpl implements BNoticeDao {
 	
@@ -37,6 +39,11 @@ public class BNoticeDaoImpl implements BNoticeDao {
 		 List<Object> qwer = sqlSession.selectList("bnotice.selectAll", map);
 		 System.out.println("qwerqwer ?? " + qwer.toString());
 		return qwer ;
+	}
+
+	@Override
+	public List<BoardVO> noticeList() {
+ 		return sqlSession.selectList("bnotice.noticeList");
 	}
 	
 }

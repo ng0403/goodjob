@@ -70,10 +70,7 @@
 		 <label id="txt" >내  용</label>  
 		 
   	<div id="created"> 
- 		<%-- <label for="created_by">${boardlist.CREATED_BY}</label>   --%>
-  		<%--   <label for="created"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardlist.CREATED}" /></label>  --%>
- 		<%-- <label for="created"> ${boardlist.CREATED} </label>  --%>
-  		<label for="view_cnt">조회 : ${boardlist.VIEW_CNT}</label> 
+   		<label for="view_cnt">조회 : ${boardlist.VIEW_CNT}</label> 
   		<label> <a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM}</a></label>	 
  		<br/> 
  	</div> 
@@ -83,7 +80,7 @@
 	<div id="detail_btns"> <!-- 버튼 div  -->
 		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
 		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onClick="goboardList();"/>
+		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="goboardList();"/>
 	</div> 
 
 	<!-- 댓글div -->

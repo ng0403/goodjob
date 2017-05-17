@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crm.cp.standard.board.dao.BNoticeDao;
+import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.PagerVO;
 
 @Service
@@ -37,6 +38,11 @@ public class BNoticeServiceImpl implements BNoticeService {
 		public List<Object> list(Map map) {
 			System.out.println("boardList Service " + map.toString());
 	 		return noticeDao.list(map);
+		}
+
+		@Override
+		public List<BoardVO> noticeList() {
+ 			return noticeDao.noticeList();
 		}
 
 }
