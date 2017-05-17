@@ -38,9 +38,10 @@ $(function() {
 </head>   
 <body style="overflow: auto;">
 
-	<input type="hidden" id="ctx" value="${ctx}"/>
+	<input type="hidden" id="ctx" 		value="${ctx}"/>
+	<input type="hidden" id="flg" 		value="${flg}">
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
-	<input type="hidden" id="count" value="">
+	<input type="hidden" id="count" 	value="">
 	<div id="title">
 		<div class="caption">
 			<h3 class="ui header" style="background: #fff;">■ 고객 > 고객사</h3>

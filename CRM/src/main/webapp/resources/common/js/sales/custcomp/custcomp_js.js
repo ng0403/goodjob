@@ -199,14 +199,6 @@ function searchBtn(page){
 	var sch_comp_num = $("#sch_comp_num").val();
 	var sch_corp_num = $("#sch_corp_num").val();
 	
-	var sch_cust_nm0 = $("#sch_cust_nm0").val();
-	var sch_comp_num0 = $("#sch_comp_num0").val();
-	var sch_corp_num0 = $("#sch_corp_num0").val();
-	
-	var sch_cust_nm1 = $("#sch_cust_nm1").val();
-	var sch_comp_num1 = $("#sch_comp_num1").val();
-	var sch_corp_num1 = $("#sch_corp_num1").val();
-	
 	custCompList(page);
 }
 
