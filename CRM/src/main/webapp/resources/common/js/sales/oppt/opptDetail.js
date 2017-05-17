@@ -738,22 +738,7 @@ function viewSalesActive(opptId){
 				);
 			}
 		}
-		makeBlock();
 		opptProdChange();	
-	}
-	function makeBlock(){
-		for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
-			$('#opptPrdtbody').append(
-					'<tr id="priceline" class="empty">'+
-					'<th style="width: 3%;"></th>'+
-					'<td style="width: 32%;"></td>'+
-					'<td style="width: 8%;"></td>'+
-					'<td style="width: 27%;"></td>'+
-					'<td style="width: 15%;"></td>'+
-					'<td style="width: 15%;"></td>'+
-					'</tr>'
-					);
-		}
 	}
 	//상품 전체 선택
 	function prodallCheck(){

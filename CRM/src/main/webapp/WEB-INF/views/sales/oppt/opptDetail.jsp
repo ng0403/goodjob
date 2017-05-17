@@ -82,7 +82,7 @@ $(document).ready(function() {
 		</div>
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
-		<div class="bt_position_authuser" style="text-align: right;">
+		<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
 			<button id="estimateAdd" class="tiny ui orange button">견적 추가</button>
 			<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>

@@ -207,7 +207,7 @@ $(document).ready(function(){
 							<c:choose>
 								<c:when test="${not empty opptPrdt}">
 									<c:forEach items="${opptPrdt}" var="list">
-										<tr id="priceline" class="${list.prod_id}">
+										<tr id="priceline" class="${list.prod_id}" style="height: 6px !important;">
 											<th style="width: 3%;">
 												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>

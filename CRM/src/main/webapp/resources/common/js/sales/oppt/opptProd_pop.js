@@ -56,7 +56,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				opptProdAddId.push(prod_id);
 			}
 		$('#opptPrdtbody').append(
-				'<tr id="priceline" class='+prod_id+'>'+
+				'<tr id="priceline" class='+prod_id+' style="height: 6px;">'+
 				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
@@ -82,7 +82,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 			}
 			$('#opptPrdtbody').append(
 					
-					'<tr id="priceline" class='+prod_id+'>'+
+					'<tr id="priceline" class='+prod_id+'style="height: 6px;">'+
 					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
@@ -93,24 +93,9 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);
-//			makeBlock();
 		}
 	}
 	opptProdChange();
-}
-function makeBlock(){
-	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
-		$('#opptPrdtbody').append(
-				'<tr id="priceline" class="empty">'+
-				'<th style="width: 3%;"></th>'+
-				'<td style="width: 32%;"></td>'+
-				'<td style="width: 8%;"></td>'+
-				'<td style="width: 27%;"></td>'+
-				'<td style="width: 15%;"></td>'+
-				'<td style="width: 15%;"></td>'+
-				'</tr>'
-				);
-	}
 }
 //상품 목록의 input값 변동에 따른 실시간 update
 function opptProdChange(){	

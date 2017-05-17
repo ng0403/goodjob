@@ -49,13 +49,13 @@ function addForm(){
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
 				    str+="<input type='button' class='tiny ui orange button' id='searchCustomer"+count+"' value='고객' >";
-				    str+="<select name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important;'>";
+				    str+="<select name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important; height: 35px; background: #fff;'>";
 				    str+="<option value=''>"+'영업기회단계'+"</option>";
 				    $.each(result.otllist,function(i,list){
 				    	str+="<option value="+list.code+" >"+list.cd_nm+"</option>";
 				    	});
 				    str+="</select>";
-				    str+="<select name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='margin-left: 3px !important;'>";
+				    str+="<select name='spsblty_rate"+count+"' id='spsblty_rate_select"+count+"' style='margin-left: 3px !important; height: 35px; background: #fff;'>";
 				    str+="<option value=''>"+'가능성'+"</option>";
 				    str+="<option value='10'>"+'10'+"</option>";
 				    str+="<option value='20'>"+'20'+"</option>";
@@ -68,7 +68,7 @@ function addForm(){
 				    str+="<option value='90'>"+'90'+"</option>";
 				    str+="<option value='100'>"+'100'+"</option>";
 				    str+="</select>";
-				    str+="<label onclick='delForm(this);' class='tiny ui button'>"+'X'+"</label>";
+				    str+="<label onclick='delForm(this);' class='tiny ui button' style='margin-left: 3px !important;'>"+'X'+"</label>";
 				    
 					  var addedDiv = document.createElement("div"); // 폼 생성
 					    addedDiv.id = "added_"+count; // 폼 Div에 ID 부여 (삭제를 위해)
@@ -314,7 +314,6 @@ function opportunityList(page){
 		},
 		datatype : 'json',
 		success:function(result){
-			alert("검색완료");
 			//리스트 출력 시 버튼 상태 설정
 			$("#baseBtnDiv").css("display", "none");
 			$("#NewAddBtnDiv").css("display", "block");
