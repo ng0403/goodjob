@@ -2,17 +2,15 @@
 $("#navisub4").show();
 $("#navicustcomp").css("font-weight", "bold");
 
-
 var count = 0;
 var schAddFlg = 0;
 var ccllist;
-//var ctx = $("#ctx").val();
+
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
 	pocList(cust_id);
 	posList(cust_id);
-//	$("#search_div2, #search_div3").hide();
 	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
@@ -128,57 +126,43 @@ $(document).ready(function() {
 
 });
 
-
 //고객사 검색 조건 추가
 function addForm(){
 	if(count<2){
-//		$.ajax({
-//			type : 'post',
-//			url :'/ccllist',
-//			datatype : 'json',
-//			success:function(result){
-				var addedFormDiv = document.getElementById("search_div");
-				var str = "";
-				
-					str+="<br><div class='ui left icon input'>";
-					str+="<input type='text' placeholder='고객사명' style='margin-right: 7px;' class='inp_search' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<i class='users icon'></i>";
-				    str+="</div>";
-				    
-				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='사업자번호' style='margin-right: 7px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
-				    str+="<i class='suitcase icon'></i>";
-				    str+="</div>";
-				    
-				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='법인번호' style='margin-right: 7px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeydown='schCustComp(event);' onkeyup='removeChar(event);' style='ime-mode:disabled;'/>";
-				    str+="<i class='law icon'></i>";
-				    str+="</div>";
-				    
-				    str+="<div class='ui left icon input'>";
-				    str+="<input type='text' placeholder='영업담당자' style='margin-right: 7px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeydown='schCustComp(event);'/>";
-				    str+="<i class='user icon'></i>";
-				    str+="</div>";
-				    
-				    str+="<label  onclick='dellForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
-				    
-				    var addedDiv = document.createElement("div"); 	// 폼 생성
-				    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
-				    addedDiv.innerHTML  = str; 						// 폼 Div안에 HTML삽입
-				    addedFormDiv.appendChild(addedDiv); 			// 삽입할 DIV에 생성한 폼 삽입
-
-				    count++;
-//			},
-//			error:function(request){
-//				alert("error : " + request);
-//			}
-//		});
+		var addedFormDiv = document.getElementById("search_div");
+		var str = "";
+		
+			str+="<br><div class='ui left icon input'>";
+			str+="<input type='text' placeholder='고객사명' style='margin-right: 7px;' class='inp_search' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeypress='schCustComp(event);'/>";
+		    str+="<i class='users icon'></i>";
+		    str+="</div>";
+		    
+		    str+="<div class='ui left icon input'>";
+		    str+="<input type='text' placeholder='사업자번호' style='margin-right: 7px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeypress='schCustComp(event);' style='ime-mode:disabled;'/>";
+		    str+="<i class='suitcase icon'></i>";
+		    str+="</div>";
+		    
+		    str+="<div class='ui left icon input'>";
+		    str+="<input type='text' placeholder='법인번호' style='margin-right: 7px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeypress='schCustComp(event);' style='ime-mode:disabled;'/>";
+		    str+="<i class='law icon'></i>";
+		    str+="</div>";
+		    
+		    str+="<div class='ui left icon input'>";
+		    str+="<input type='text' placeholder='영업담당자' style='margin-right: 7px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeypress='schCustComp(event);'/>";
+		    str+="<i class='user icon'></i>";
+		    str+="</div>";
+		    
+		    str+="<label  onclick='dellForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
+		    
+		    var addedDiv = document.createElement("div"); 	// 폼 생성
+		    addedDiv.id = "added_"+count; 					// 폼 Div에 ID 부여 (삭제를 위해)
+		    addedDiv.innerHTML  = str; 						// 폼 Div안에 HTML삽입
+		    addedFormDiv.appendChild(addedDiv); 			// 삽입할 DIV에 생성한 폼 삽입
+	
+		    count++;
 	}else{
 		alert("검색 조건은 최대 3개 입니다.");
-
 	}
-	//    document.listForm.count.value=count;
-    // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
 
 //고객사 검색 조건 삭제
@@ -196,10 +180,10 @@ function schCustComp(event) {
 			alert("검색어를 입력하세요.")
 			$("#sch_cust_nm").focus();
 		} else {
-			schPaging(1);
+			event.preventDefault();
+			searchBtn(1);
 		}
 	}
-	event.stopPropagation();
 }
 
 // 전체 체크 해제
@@ -209,40 +193,70 @@ function chkCancel() {
 	});
 }
 
+//검색 버튼 클릭 시 
+function searchBtn(page){
+	var sch_cust_nm = $("#sch_cust_nm").val();
+	var sch_comp_num = $("#sch_comp_num").val();
+	var sch_corp_num = $("#sch_corp_num").val();
+	var sch_iuser_nm = $("#sch_iuser_nm").val();
+
+	custCompList(page);
+}
+
 //고객사 리스트 출력
 function custCompList(page){
-//	readDetail();
-//	alert(page);
 	var ctx = $("#ctx").val();
+
 	$.ajax({
 		type : 'post',
 		url : ctx + '/custCompAjax',
-		data : {pageNum : page, sch_cust_nm : $("#sch_cust_nm").val(), sch_comp_num : $("#sch_comp_num").val(), sch_corp_num : $("#sch_corp_num").val(), sch_iuser_nm : $("#sch_iuser_nm").val()},
-		datatype : 'json',
+		data : {	
+				    pageNum : page, 
+					sch_cust_nm : $("#sch_cust_nm").val(), 
+					sch_cust_nm0 : $("#sch_cust_nm0").val(), 
+					sch_cust_nm1 : $("#sch_cust_nm1").val(), 
+					sch_comp_num : $("#sch_comp_num").val(), 
+					sch_comp_num0 : $("#sch_comp_num0").val(), 
+					sch_comp_num1 : $("#sch_comp_num1").val(), 
+					sch_corp_num : $("#sch_corp_num").val(), 
+					sch_corp_num0 : $("#sch_corp_num0").val(), 
+					sch_corp_num1 : $("#sch_corp_num1").val(), 
+					sch_iuser_nm : $("#sch_iuser_nm").val(),
+					sch_iuser_nm0 : $("#sch_iuser_nm0").val(),
+					sch_iuser_nm1 : $("#sch_iuser_nm1").val()
+				},
+				datatype : 'json',
 		success:function(result){
-			//리스트 출력 시 버튼 상태 설정
-			$("#functionBtn").css("display", "block");
-			
-			$("#ccListTbody").children().remove();
-			$.each(result.ccVOList, function(i, cc){
-			
-				$("#ccListTbody").append("" +
-						"<tr id='"+cc.cust_id+"'>"+
-						"<th><input type=checkbox  id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
-						"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-						"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
-						"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-						"<td id=cust_nm>"+cc.comp_num+"</td>"+
-						"<td>"+cc.corp_num+"</td>"+
-						"<td>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
-						"<td>"+cc.sales_scale+"</td>"+
-						"<td>"+cc.emp_qty+"</td>"+
-						"<td>"+cc.indst+"</td>"+
-						"<td>"+cc.iuser_nm+"</td>"+
-						"<td>"+cc.fst_reg_dt+"</td>+"+
-						"</tr>"
-				);
-			});
+			if(result.ccVOListSize == 0){
+				alert("검색결과가 없습니다.");
+				location.href = ctx+'/custcomp';
+			}else{
+	//			alert("검색완료");
+	//			alert(sch_cust_nm);
+				//리스트 출력 시 버튼 상태 설정
+				$("#functionBtn").css("display", "block");
+				
+				$("#ccListTbody").children().remove();
+				$.each(result.ccVOList, function(i, cc){
+				
+					$("#ccListTbody").append("" +
+							"<tr id='"+cc.cust_id+"'>"+
+							"<th style='text-align: center;'><input type=checkbox   id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
+							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
+							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+							"<td id=cust_nm>"+cc.comp_num+"</td>"+
+							"<td>"+cc.corp_num+"</td>"+
+							"<td>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+							"<td>"+cc.sales_scale+"</td>"+
+							"<td>"+cc.emp_qty+"</td>"+
+							"<td>"+cc.indst+"</td>"+
+							"<td>"+cc.iuser_nm+"</td>"+
+							"<td>"+cc.fst_reg_dt+"</td>+"+
+							"</tr>"
+					);
+				});
+			}
 			//페이지 리스트 갯수
 			if(result.ccVOList.length < 10){
 				for(var j = 0; j < 10-result.ccVOList.length; j++){
@@ -284,8 +298,8 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	prevPage.addClass("icon item");
 	var prevI = $("<i>");
 	prevI.addClass("left chevron icon");
-	console.log(prevPageNum);
-	console.log(firstPageCount);
+//	console.log(prevPageNum);
+//	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
 		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
 	}
@@ -446,106 +460,6 @@ function ccTabFunc(cust_id, cust_nm) {
 function viewDetail(cust_id){
 	var ctx = $("#ctx").val();
 	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
-}
-
-// 조회 페이징
-function schPaging(ccPageNum) {
-	$(document).ready(function() {
-		var ctx = $("#ctx").val();
-		var sch_cust_nm = $("#sch_cust_nm").val();
-		var sch_comp_num = $("#sch_comp_num").val();
-		var sch_corp_num = $("#sch_corp_num").val();
-		var sch_iuser_nm = $("#sch_iuser_nm").val();
-		if(sch_cust_nm == '' && sch_comp_num == '' && sch_corp_num == '' && sch_iuser_nm == ''){
-			alert("검색어를 입력하세요");
-		} else{
-			var allData = {"ccPageNum": ccPageNum, "sch_cust_nm": sch_cust_nm, "sch_comp_num":sch_comp_num
-					, "sch_comp_num":sch_comp_num,"sch_corp_num":sch_corp_num,"sch_iuser_nm":sch_iuser_nm};
-			var tbody = $('#ccListTbody');
-			var tbodyContent = "";
-			
-			$.ajax({
-				url : ctx+'/custcompPaging.do',
-				type : 'POST',
-				data : allData,
-				dataType : "json",
-				success : function(data) {
-					if(data.result == 'standard/home/session_expire'){
-						location.href = ctx + '/sessionExpire';
-					} else {
-						if(data.ccVOListSize == 0){
-							alert("검색결과가 없습니다.");
-							location.href = ctx+'/custcomp';
-						}else{
-							tbody.children().remove();
-							
-							$("#sch_cust_nm").val(data.sch_cust_nm);
-							$("#sch_comp_num").val(data.sch_comp_num);
-							$("#sch_corp_num").val(data.sch_corp_num);
-							$("#sch_iuser_nm").val(data.sch_iuser_nm);
-							for (var i = 0; i < data.ccVOList.length; i++) {
-								tbodyContent = "<tr>"
-									+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
-									+"<td style='text-align: left; padding-left: 8px;'>"
-									+"<a href='#' style='color: blue;' class='cnClick' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\">"+data.ccVOList[i].cust_nm+"</a></td>"
-									+"	<td>"+data.ccVOList[i].comp_num+"</td>"
-									+"<td>"+data.ccVOList[i].corp_num+"</td>"
-									+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
-									+"<td>"+data.ccVOList[i].sales_scale+"</td>"
-									+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
-									+"<td>"+data.ccVOList[i].indst+"</td>"
-									+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
-									+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
-								tbody.append(tbodyContent);
-								$("#ccListCheck").prop("checked", false);
-							}
-							
-							if(data.ccVOList.length < 5){
-								for(var j = 0; j < 5-data.ccVOList.length; j++){
-									tbodyContent ="<tr style='height:30px;'>"
-										+"<th></th>"
-										+"<td></td><td></td><td></td><td></td>"
-										+"<td></td><td></td><td></td><td></td>"
-										+"<td></td></tr>";
-									tbody.append(tbodyContent);
-								}
-							}
-							var pageContent = "";
-							// 페이징 다시그리기
-							$("#pagingDiv").children().remove();
-							
-							if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-								+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-								+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-							} else if(data.ccPageNum == data.page.startPageNum){
-								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-								+"<a> ◀ </a><input type='text' id='ccPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-								+"<a href='#' onclick=schPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=schPaging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
-							} else if(data.ccPageNum == data.page.endPageNum){
-								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-								+"<a href='#' onclick=schPaging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
-								+"<input type='text' id='ccPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
-								+"<a> / "+data.page.endPageNum+"</a>"
-								+"<a> ▶ </a>";
-							} else {
-								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-								+"<a href='#' onclick=schPaging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
-								+"<input type='text' id='ccPageInput' value='"+data.ccPageNum+"' onkeypress=\"pageInput(event);\"/>"
-								+"<a href='#' onclick=schPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=schPaging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
-							}
-							$("#pagingDiv").append(pageContent);
-						}
-					}
-				},
-				error : function() {
-					alert("전송중 오류가 발생했습니다.");
-				}
-			});//ajax
-		}
-	});//document.ready
 }
 
 // 기업고객 상세보기 ajax 통신
@@ -967,5 +881,128 @@ function contList(cust_id) {
 			}
 		});
 	});
+}
+
+
+//조회 페이징
+function schPaging(ccPageNum) {
+	$(document).ready(function() {
+		var ctx = $("#ctx").val();
+		var sch_cust_nm   = $("#sch_cust_nm").val();
+		var sch_cust_nm0  = $("#sch_cust_nm0").val();
+		var sch_cust_nm1  = $("#sch_cust_nm1").val();
+		var sch_comp_num  = $("#sch_comp_num").val();
+		var sch_comp_num0 = $("#sch_comp_num0").val();
+		var sch_comp_num1 = $("#sch_comp_num1").val();
+		var sch_corp_num  = $("#sch_corp_num").val();
+		var sch_corp_num0 = $("#sch_corp_num0").val();
+		var sch_corp_num1 = $("#sch_corp_num1").val();
+		var sch_iuser_nm  = $("#sch_iuser_nm").val();
+		var sch_iuser_nm0 = $("#sch_iuser_nm0").val();
+		var sch_iuser_nm1 = $("#sch_iuser_nm1").val();
+		if(sch_cust_nm == '' && sch_comp_num == '' && sch_corp_num == '' && sch_iuser_nm == ''){
+			alert("검색어를 입력하세요");
+		} else{
+			var allData = {
+							"ccPageNum": ccPageNum, 
+							"sch_cust_nm": sch_cust_nm, "sch_cust_nm0": sch_cust_nm0, "sch_cust_nm1": sch_cust_nm1, 
+							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1, 
+							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1,
+							"sch_corp_num":sch_corp_num, "sch_corp_num0":sch_corp_num0, "sch_corp_num1":sch_corp_num1,
+							"sch_iuser_nm":sch_iuser_nm, "sch_iuser_nm0":sch_iuser_nm0, "sch_iuser_nm1":sch_iuser_nm1
+						  };
+			var tbody = $('#ccListTbody');
+			var tbodyContent = "";
+			
+			$.ajax({
+				url : ctx+'/custcompPaging',
+				type : 'POST',
+				data : allData,
+				dataType : "json",
+				success : function(data) {
+					if(data.result == 'standard/home/session_expire'){
+						location.href = ctx + '/sessionExpire';
+					} else {
+						if(data.ccVOListSize == 0){
+							alert("검색결과가 없습니다.");
+							location.href = ctx+'/custcomp';
+						}else{
+							tbody.children().remove();
+							
+							$("#sch_cust_nm").val(data.sch_cust_nm);
+							$("#sch_cust_nm0").val(data.sch_cust_nm0);
+							$("#sch_cust_nm1").val(data.sch_cust_nm1);
+							$("#sch_comp_num").val(data.sch_comp_num);
+							$("#sch_comp_num0").val(data.sch_comp_num0);
+							$("#sch_comp_num1").val(data.sch_comp_num1);
+							$("#sch_corp_num").val(data.sch_corp_num);
+							$("#sch_corp_num0").val(data.sch_corp_num0);
+							$("#sch_corp_num1").val(data.sch_corp_num1);
+							$("#sch_iuser_nm").val(data.sch_iuser_nm);
+							$("#sch_iuser_nm0").val(data.sch_iuser_nm0);
+							$("#sch_iuser_nm1").val(data.sch_iuser_nm1);
+							for (var i = 0; i < data.ccVOList.length; i++) {
+								tbodyContent = "<tr>"
+									+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
+									+"<td style='text-align: left; padding-left: 8px;'>"
+									+"<a href='#' style='color: blue;' class='cnClick' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\">"+data.ccVOList[i].cust_nm+"</a></td>"
+									+"	<td>"+data.ccVOList[i].comp_num+"</td>"
+									+"<td>"+data.ccVOList[i].corp_num+"</td>"
+									+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
+									+"<td>"+data.ccVOList[i].sales_scale+"</td>"
+									+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
+									+"<td>"+data.ccVOList[i].indst+"</td>"
+									+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
+									+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
+								tbody.append(tbodyContent);
+								$("#ccListCheck").prop("checked", false);
+							}
+							
+							if(data.ccVOList.length < 5){
+								for(var j = 0; j < 5-data.ccVOList.length; j++){
+									tbodyContent ="<tr style='height:30px;'>"
+										+"<th></th>"
+										+"<td></td><td></td><td></td><td></td>"
+										+"<td></td><td></td><td></td><td></td>"
+										+"<td></td></tr>";
+									tbody.append(tbodyContent);
+								}
+							}
+							var pageContent = "";
+							// 페이징 다시그리기
+							$("#pagingDiv").children().remove();
+							
+							if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
+								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+								+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
+								+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
+							} else if(data.ccPageNum == data.page.startPageNum){
+								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+								+"<a> ◀ </a><input type='text' id='ccPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
+								+"<a href='#' onclick=schPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
+								+"<a href='#' onclick=schPaging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
+							} else if(data.ccPageNum == data.page.endPageNum){
+								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+								+"<a href='#' onclick=schPaging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
+								+"<input type='text' id='ccPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
+								+"<a> / "+data.page.endPageNum+"</a>"
+								+"<a> ▶ </a>";
+							} else {
+								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
+								+"<a href='#' onclick=schPaging("+(data.ccPageNum-1)+") id='pNum'> ◀ </a>"
+								+"<input type='text' id='ccPageInput' value='"+data.ccPageNum+"' onkeypress=\"pageInput(event);\"/>"
+								+"<a href='#' onclick=schPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
+								+"<a href='#' onclick=schPaging("+(data.ccPageNum+1)+") id='pNum'> ▶ </a>";
+							}
+							$("#pagingDiv").append(pageContent);
+						}
+					}
+				},
+				error : function() {
+					alert("전송중 오류가 발생했습니다.");
+				}
+			});//ajax
+		}
+	});//document.ready
 }
 

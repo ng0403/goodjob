@@ -6,8 +6,8 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 
 <!-- 페이지 공통 js파일 -->
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script> --%>
@@ -54,15 +54,15 @@ $(function() {
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
-			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'>
+			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeypress="schCustComp(event);"  style='ime-mode:disabled;'>
 			<i class="suitcase icon"></i>
 		</div>	
 		<div class="ui left icon input">	
-			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'>
+			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeypress="schCustComp(event);" style='ime-mode:disabled;'>
 			<i class="law icon"></i>
 		</div>	
 		<div class="ui left icon input">	
-			<input type="text" placeholder="영업담당자" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);" >
+			<input type="text" placeholder="영업담당자" id="sch_iuser_nm" name="sch_iuser_nm" onkeypress="schCustComp(event);" >
 			<i class="user icon"></i>
 		</div>	
 			
@@ -77,7 +77,7 @@ $(function() {
 			
 			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 		
-		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="schPaging('${pageNum}');" />
+		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="searchBtn('${pageNum}');" />
 		
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
 <!-- 				<option value="all" style="text-align: center;">전체</option> -->
@@ -93,7 +93,7 @@ $(function() {
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline" class="tablewh">
-			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" style="height: 500px;">
+			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" >
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align:left; padding-left: 14px;"><input type="checkbox"  id='ccListCheck'/></th>
@@ -104,14 +104,14 @@ $(function() {
 						<th style="width: 10%" id="tblTh" >매출규모</th>
 						<th style="width: 8%"  id="tblTh" >직원수</th>
 						<th style="width: 14%" id="tblTh" >산업군</th>
-						<th style="width: 8%"  id="tblTh" >영업 담당자</th>
+<!-- 						<th style="width: 8%"  id="tblTh" >영업 담당자</th> -->
 						<th style="width: 15%" id="tblTh" >등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="ccListTbody" class="tbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
-							<th><input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"  onclick="chkCancel();"></th>
+							<th style="text-align: center;"><input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"   onclick="chkCancel();"></th>
 							<td id="ccListTableNmTd" style="text-align: left; padding-left: 14px;">
 								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');"  class="cnClick">${cc.cust_nm}</a>
 							</td>
@@ -121,7 +121,7 @@ $(function() {
 							<td style="text-align: center;">${cc.sales_scale}</td><!-- 매출규모 -->
 							<td style="text-align: right; padding-right: 8px;">${cc.emp_qty}</td><!-- 직원수 -->
 							<td style="text-align: center;">${cc.indst}</td><!-- 산업군 -->
-							<td style="text-align: center;">${cc.iuser_nm}</td><!-- 영업담당자 -->
+<%-- 							<td style="text-align: center;">${cc.iuser_nm}</td><!-- 영업담당자 --> --%>
 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>

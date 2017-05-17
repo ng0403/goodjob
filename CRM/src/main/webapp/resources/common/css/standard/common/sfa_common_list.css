@@ -134,3 +134,9 @@ table tbody tr th {
 	margin-right: 10px;
 	margin-bottom: 10px;
 }
+
+/* 테이블 크기 고정 */
+#tableline{
+	height: 500px;
+}
+
