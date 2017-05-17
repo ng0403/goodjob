@@ -28,7 +28,7 @@ function dateFormat(timestamp) {
 
 	 if(tbodylength < 10){
 			for(var i=0; i<10-tbodylength; i++){
-			tbodyContent='<tr style="height: 35.5px;"><th></th>'
+			tbodyContent='<tr style="height: 35.5px;"><td></td>'
 				+'<td style="width:10%;"></td>'
 				+'<td style="width:10%;"></td>'
 				+'<td style="width:10%;"></td>'
@@ -374,8 +374,7 @@ function contactPaging(contactPageNum) {
 		type : 'POST',
 		data : contactData,
 		success : function(data) {
-			alert("success");
-			if(data.contactListSize == 0){
+ 			if(data.contactListSize == 0){
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/contact';
 			}else{
@@ -389,7 +388,7 @@ function contactPaging(contactPageNum) {
 			
 			for (var i = 0; i < data.contactList.length; i++) {
 				
-				tbodyContent +='<tr><th style="width:20px;"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
+				tbodyContent +='<tr><td style="width:20px; text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></td>'
          			+"<td style='width:20%;'><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
 					+'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'; 
         			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
@@ -403,7 +402,7 @@ function contactPaging(contactPageNum) {
 			
 			if(data.contactList.length < 10){
 				for(var i=0; i<10-data.contactListSize; i++){
-						tbodyContent='<tr style="height: 35.5px;"><th></th>'
+						tbodyContent='<tr style="height: 35.5px;"><td></td>'
 							+'<td style="width:10%;"></td>'
 							+'<td style="width:10%;"></td>'
 							+'<td style="width:10%;"></td>'

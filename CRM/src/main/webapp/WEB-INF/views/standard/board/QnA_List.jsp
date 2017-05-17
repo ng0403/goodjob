@@ -9,10 +9,24 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>  
 <script src="${ctx}/resources/common/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script> 
+
+  
+ <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<script>
+$(function() {
+
+   $('table').tablesort();
+
+});   
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-
-
+<title>Insert title here</title> 
 
 <style>
 
@@ -35,17 +49,6 @@ label {
 <body>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <%-- <%@include file="../include/header.jsp"%> --%>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
- 
- <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
  
  
 <div class="main_div">
@@ -92,7 +95,7 @@ label {
 	<table class="ui sortable celled table">
 						<thead>
 						<tr style="text-align:center">
-							<th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
+							<td><input id="checkall" type="checkbox" onclick="checkAll();"/></td>
 							<th>번호</th>
 							<th>질문유형</th>
 							<th>답변상태</th>
@@ -105,7 +108,7 @@ label {
  					   <tbody class="qna_list" id="board_list_tbody">
  				 <c:forEach items="${boardlist}" var="boardVO"> 
 						    <tr class="open_list">
-								<td scope="row"><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
+								<td scope="row" style="text-align:center"><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
    								<td>${boardVO.BOARD_NO}</td>
    								<td>${boardVO.CD_NM}</td>
    								<td>${boardVO.ANSWER_FLG}</td>

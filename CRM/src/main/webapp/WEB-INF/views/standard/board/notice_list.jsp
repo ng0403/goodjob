@@ -13,20 +13,22 @@
 <script src="${ctx}/resources/common/js/standard/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+ 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
-<title>Insert title here</title>
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<script>
+$(function() {
 
+   $('table').tablesort();
+
+});   
+</script>
+
+
+<title>Insert title here</title> 
 </head>
 <body> 
    
@@ -75,7 +77,7 @@
                   <tbody class="board_list" id="board_list_tbody">
                      <c:forEach items="${boardlist}" var="boardVO">  
                         <tr class="open_list">
-                           <td scope="row" style='width:10%;'><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
+                           <td scope="row" style='width:10%; text-align:center'><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
                            <td style='width:10%;'>${boardVO.BOARD_NO}</td> 
                            <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</td>
                            <td style='width:10%;'>${boardVO.CREATED_BY} </td>

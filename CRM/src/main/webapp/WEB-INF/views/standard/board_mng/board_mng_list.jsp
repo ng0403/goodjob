@@ -22,7 +22,16 @@
 
  	<link rel="stylesheet" href="${ctx}/resources/common/css/common.css"
 		type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<script>
+$(function() {
+
+   $('table').tablesort();
+
+});  
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
