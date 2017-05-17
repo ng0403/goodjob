@@ -56,7 +56,7 @@
              <div class="table_div">
                <table  class="ui sortable celled table" >
                   <thead>
-                     <tr>
+                     <tr style="text-align:center">
                         <th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
                         <th>번호</th>
                         <th>제목</th>

@@ -11906,6 +11906,18 @@ img.ui.bordered.image {
 	border-radius: 5px 5px 5px 5px;
 }
 
+.int_email{
+	position: relative;
+	height: 17px;
+	border: 1px solid #bebebe;
+	font-size: 15px;
+	color: #333;
+	background: rgb(220, 220, 220);
+	width: 110px;
+	padding: 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
 /* input 우편번호 */
 .int_common {
 	position: relative;

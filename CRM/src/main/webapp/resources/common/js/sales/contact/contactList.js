@@ -133,7 +133,7 @@ function searchAcnkEvent(contactPageNum, keyword){
 				data: callData,
 				dataType:'json',
 				success: function(data){
- 					if(data.contactListSize == 0){
+  					if(data.contactListSize == 0){
 						alert("조회된 결과가 없습니다.");
 						location.href = ctx+'/contact';
 					} else {
@@ -160,6 +160,8 @@ function searchAcnkEvent(contactPageNum, keyword){
  							         			+'<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
 
 							tbody.append(tbodyContent);
+						    tbodyContent = "";
+
 						}
  						
 						if(data.contactListSize < 10){
@@ -355,7 +357,6 @@ function contactList(page){
 
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
-	alert('he');
  	var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
@@ -420,8 +421,7 @@ function contactPaging(contactPageNum) {
 			
 			$("#pageSpace").children().remove();
 			var ccPageNum = data.contactPageNum;
-			alert("ccPageNum" +ccPageNum); 
-			var startPageNum = data.page.startPageNum;
+ 			var startPageNum = data.page.startPageNum;
 			var endPageNum = data.page.endPageNum;
 			var firstPageCount = data.page.firstPageCount;
  			var totalPageCount = data.page.totalPageCount;
@@ -455,14 +455,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:replyPaging("+prevPageNum+")");
+		prevPage.attr("href","javascript:contactPaging("+prevPageNum+")");
 	}
 	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
 		ccPage.addClass("item");
-		ccPage.attr("href","javascript:replyPaging("+i+")");
+		ccPage.attr("href","javascript:contactPaging("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -478,7 +478,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var nextI = $("<i>");
 	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:replyPaging("+nextPageNum+")");
+		nextPage.attr("href","javascript:contactPaging("+nextPageNum+")");
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);

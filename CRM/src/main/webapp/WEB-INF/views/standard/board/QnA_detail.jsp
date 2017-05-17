@@ -62,23 +62,12 @@
  <textarea class="form-control" rows="10" id="content"  readonly="readonly" >${boardlist.CONTENT}</textarea>
 </div> 
  
-<c:choose>
-	<c:when test= "${sessionID eq 'admin'}">
-	<div id="btns"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="답변" onClick="board_modify();"/> 
-		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onClick="go_list();"/>
-	</div>
-	</c:when>
- 	<c:otherwise>
-	<div id="btns"> <!-- 버튼 div  -->
+ 	<div id="btns"> <!-- 버튼 div  -->
 		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
 		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
 		<input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onClick="go_list();"/>
 	</div>
-	</c:otherwise>
-	</c:choose>
-	
+ 	
 	<!-- 댓글div -->
 	<c:choose>
 	<c:when test= "${sessionID eq 'admin'}"> 
@@ -108,62 +97,6 @@
 	</div> 
 
 </div>
- 
-<div class="paging_div">
-	 
-		 <div id="pageSpace" class="pagination"> 
-		
-		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${replyPageNum}">
-			<c:choose>
-				<c:when test="${replyPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀◀</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.firstPageCount}">
-	        		<a href="javascript:replyPaging(${page.prevStepPage})" class="prev">◀◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${replyPageNum eq page.firstPageCount}">
-	        		<a class="prev">◀</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.firstPageCount}">
-	        		<a href="javascript:replyPaging(${page.prevPageNum})" class="prev">◀</a>
-	    		</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
-				<c:choose>
-					<c:when test="${i eq replyPageNum }">
-						<b>
-							<a  href="javascript:replyPaging('${i}');" id="pNum" class="choice">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:replyPaging('${i}');">${i}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${replyPageNum eq page.totalPageCount}">
-	       			<a class="next">▶</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.totalPageCount}">
-	       			<a href="javascript:replyPaging(${page.nextPageNum})" class="next">▶</a>
-	    		</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${replyPageNum eq page.totalPageCount}">
-	       			<a class="next">▶▶</a>
-	    		</c:when>
-				<c:when test="${replyPageNum ne page.totalPageCount}">
-	       			<a href="javascript:replyPaging(${page.nextStepPage})" class="next">▶▶</a>
-	    		</c:when>
-			</c:choose>
-   </div>
-		
-		<div class="right">
- 		</div> 
-	</div>  
  
 
 </body>

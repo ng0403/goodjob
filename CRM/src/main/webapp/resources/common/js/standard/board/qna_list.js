@@ -248,64 +248,46 @@ function boardPaging(boardPageNum) {
 			});
 }
 
-function paging(ccPageNum, startPageNum, endPageNum, firstPageCount,
-    totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage) {
+//페이징
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
 	var endPageNo = $("<input>");
-	endPageNo.attr({
-		"type" : "hidden",
-		"id" : "endPageNum",
-		"value" : endPageNum
-	});
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
 	var ccPageeNo = $("<input>");
-	ccPageeNo.attr({
-		"type" : "hidden",
-		"id" : "ccPageNum",
-		"value" : ccPageNum
-	});
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
 	$("#pageSpace").append(endPageNo).append(ccPageeNo);
-
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if (ccPageNum != firstPageCount) {
-		stepPrev.attr("href", "javascript:boardPaging('" + prevStepPage + "')");
-	}
-	$("#pageSpace").append(stepPrev);
+	
 	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
 	console.log(prevPageNum);
 	console.log(firstPageCount);
-	if (ccPageNum != firstPageCount) {
-		prevPage.attr("href", "javascript:boardPaging(" + prevPageNum + ")");
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:boardPaging("+prevPageNum+")");
 	}
+	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
-	for (var i = startPageNum; i <= endPageNum; i++) {
+	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
-		ccPage.attr("href", "javascript:boardPaging(" + i + ")");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:boardPaging("+i+")");
 		ccPage.html(i);
-		if (i == ccPageNum) {
+		if(i == ccPageNum){
 			var b = $("<b>");
-			ccPage.addClass("choice");
-			ccPage.attr("id", "pNum");
+			ccPage.attr("id","pNum");
 			b.append(ccPage);
 			$("#pageSpace").append(b);
-		} else {
+		}else{
 			$("#pageSpace").append(ccPage);
 		}
 	}
 	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
-	if (ccPageNum != totalPageCount) {
-		nextPage.attr("href", "javascript:boardPaging(" + nextPageNum + ")");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:boardPaging("+nextPageNum+")");
 	}
+	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if (ccPageNum != totalPageCount) {
-		stepNext.attr("href", "javascript:boardPaging(" + nextStepPage + ")");
-	}
-	$("#pageSpace").append(stepNext);
 }

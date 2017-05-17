@@ -89,7 +89,7 @@ label {
 
 	<table class="ui sortable celled table">
 						<thead>
-						<tr>
+						<tr style="text-align:center">
 							<th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
 							<th>번호</th>
 							<th>질문유형</th>

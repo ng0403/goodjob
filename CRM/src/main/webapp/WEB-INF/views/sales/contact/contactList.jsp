@@ -82,7 +82,7 @@
 	<div id="tableline">
 		<table id="goaltable" class="ui sortable celled table">
 		<thead>
-		<tr>
+		<tr style="text-align:center">
 			<th><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
 			<th style="width:20%;">이름</td>
   			<th style="width:20%;">회사명</td>

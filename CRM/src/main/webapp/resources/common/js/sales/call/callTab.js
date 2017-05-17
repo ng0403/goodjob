@@ -110,6 +110,7 @@ function callCancelBtn() {
 
 //개인추가 버튼 눌렀을 때
 function callCustBtn(){
+	alert("kkk11");
 		$("#contactbody input[type='text']").css("background-color", "white");
 		
 		$('#pos_nm').attr("disabled",true);

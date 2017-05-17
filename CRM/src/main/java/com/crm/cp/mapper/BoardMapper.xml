@@ -219,6 +219,11 @@
 		where BOARD_NO = #{BOARD_NO}
 	</update>
 	
+	<update id="ModifyQnA"> 
+		update tb_board set title = #{TITLE}, content = #{CONTENT},question_type_cd =#{QUESTION_TYPE_CD} ,updated_by = #{UPDATED_BY}
+		where BOARD_NO = #{BOARD_NO}
+	</update>
+	
 	<update id="AnswerFlg" parameterType="int">
 	update tb_board set answer_flg = 'Y'
 	where BOARD_NO = #{BOARD_NO}

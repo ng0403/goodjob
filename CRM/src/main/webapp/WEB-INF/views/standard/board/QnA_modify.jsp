@@ -9,7 +9,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+
+<script type="text/javascript">
+function codeSelect() {
+   	$("#QUESTION_TYPE_CD > option[value='${boardVO.QUESTION_TYPE_CD}']").attr("selected", "selected");
+  }
+</script>
+
+<body onload="codeSelect();">
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> 
@@ -43,6 +50,15 @@
  <input type="text" class="form-control" name="TITLE" value= "${boardVO.TITLE }"/>
  
 </div> 
+<label id="txt" >질문 유형</label> 
+ 	 <select class="form-control" id="QUESTION_TYPE_CD" name = "QUESTION_TYPE_CD">
+     <option value="0001">인적서비스</option>
+     <option value="0002">점포서비스</option>
+     <option value="0003">이벤트</option>
+     <option value="0004">제휴카드</option>
+     <option value="0005">쿠폰</option>
+     <option value="0006">제휴서비스</option>
+   </select>
 
  <div> <!-- 내용 div -->
  <label id="txt" >내  용</label> 

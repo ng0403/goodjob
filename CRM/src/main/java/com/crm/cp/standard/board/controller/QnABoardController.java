@@ -145,7 +145,7 @@ public class QnABoardController {
 		
 		
 		vo.setQUESTION_TITLE(QUESTION_TITLE);
-		System.out.println("modify Page Entering");
+		System.out.println("modify Page Entering" + vo.toString());
  		
 		ModelAndView mov = new ModelAndView("QnA_modify");
 		mov.addObject("boardVO", vo);

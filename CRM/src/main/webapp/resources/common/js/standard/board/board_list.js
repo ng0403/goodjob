@@ -149,7 +149,7 @@ function deleteAction() {
              success : function(result) {
                  if(result =="success")
                    {
-                	 boaradPaging();
+                	 boardPaging();
                    }
                 else{
                    alert("오류!");
@@ -176,8 +176,8 @@ function deleteAction() {
 
 //보드 리스트 그냥 페이징
 function boardPaging(boardPageNum) {
-   	var ctx = $("#ctx").val();
-  	 var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
+    var ctx = $("#ctx").val();
+    var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
  	var tbody = $('#board_list_tbody');
 	var tbodyContent = "";
   	var boardData = { "boardPageNum": boardPageNum, "BOARD_MNG_NO" : BOARD_MNG_NO
@@ -218,37 +218,23 @@ function boardPaging(boardPageNum) {
 				}		
 			}
 			
-			var pageContent = ""; 
-			 
- 
-			
 			var pageContent = "";
-			// 페이징 다시그리기
-			$("#pagingDiv").children().remove();
-			
-			if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/><input type='hidden' id='cpPageNum' value='"+data.cpPageNum+"'/>"
-				+"<a> ◀ </a><input type='text' id='cpPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-				+"<a> / "+data.page.endPageNum+"</a><a>▶ </a>";
-			} else if(data.cpPageNum == data.page.startPageNum){
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/><input type='hidden' id='cpPageNum' value='"+data.cpPageNum+"'/>"
-				+"<a> ◀ </a><input type='text' id='cpPageInput' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+(data.cpPageNum+1)+") id='pNum'> ▶ </a>";
-			} else if(data.cpPageNum == data.page.endPageNum){
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/><input type='hidden' id='cpPageNum' value='"+data.cpPageNum+"'/>"
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+(data.cpPageNum-1)+") id='pNum'> ◀ </a>"
-				+"<input type='text' id='cpPageInput' value='"+data.page.endPageNum+"' onkeypress=\"pageInput(event);\"/>"
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-				+"<a> ▶ </a>";
-			} else {
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/><input type='hidden' id='cpPageNum' value='"+data.cpPageNum+"'/>"
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+(data.cpPageNum-1)+") id='pNum'> ◀ </a>"
-				+"<input type='text' id='cpPageInput' value='"+data.cpPageNum+"' onkeypress=\"pageInput(event);\"/>"
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+data.page.endPageNum+") id='pNum'> / "+data.page.endPageNum+"</a>"
-				+"<a href='#' style='text-decoration: none;' onclick=boardPaging("+(data.cpPageNum+1)+") id='pNum'> ▶ </a>";
-			}
-			$("#pagingDiv").append(pageContent);
+
+			// 시작
+
+			$("#pageSpace").children().remove();
+			var ccPageNum = data.boardPageNum;
+			var startPageNum = data.page.startPageNum;
+			var endPageNum = data.page.endPageNum;
+			var firstPageCount = data.page.firstPageCount;
+			var totalPageCount = data.page.totalPageCount;
+			var prevPageNum = data.page.prevPageNum;
+			var nextPageNum = data.page.nextPageNum;
+			var prevStepPage = data.page.prevStepPage;
+			var nextStepPage = data.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount,
+					totalPageCount, prevPageNum, nextPageNum,
+					prevStepPage, nextStepPage);
 		},
 			
 		 
@@ -258,4 +244,48 @@ function boardPaging(boardPageNum) {
 	});
 } 
   
+
+//페이징
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var prevPage = $("<a>");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:boardPaging("+prevPageNum+")");
+	}
+	prevPage.append(prevI);
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:boardPaging("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:boardPaging("+nextPageNum+")");
+	}
+	nextPage.append(nextI);
+	$("#pageSpace").append(nextPage);
+}
  

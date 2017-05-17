@@ -110,11 +110,10 @@ function callCancelBtn() {
 
 //개인추가 버튼 눌렀을 때
 function callCustBtn(){
-	
+		alert("hi");
 		$("#contactbody input[type='text']").css("background-color", "white");
 		
-/* 		$('#company_nm').attr("disabled",false);
-*/ 		$("#company_nm").css("background-color", "#EAEAEA");
+ 		$("#company_nm").css("background-color", "#EAEAEA");
   		
 		$('#comp_list_bt').attr("disabled",false);
 		

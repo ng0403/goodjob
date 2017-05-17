@@ -58,7 +58,7 @@ public class QnABoardDaoImpl implements QnABoardDao {
 
 	@Override
 	public void modify(BoardVO vo) {
-		sqlSession.update("ModifyBoard" ,vo);
+		sqlSession.update("ModifyQnA" ,vo);
 		
 	}
 

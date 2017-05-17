@@ -45,7 +45,7 @@
 	 </div>
 		<!-- 개인고객 추가 저장/취소 버튼  -->
 		<div class="detailBtn">
-		<div id="baseBtnDiv" style="display: none;" class="bt_position_authuser">
+		<div id="baseBtnDiv1" style="display: none;" class="bt_position_authuser">
 			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="tiny ui orange button"/>
 			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 	    </div>
@@ -105,8 +105,8 @@
 						<td rowspan="2">
 						    <input type="hidden" id="hemail1"/>
 							<input type="hidden" id="hemail2"/>
-						    <input type="text" name="email1" id="email1" class="int_tel" value="${contactDetail.email1 }" readonly="readonly"/> @ 
-						    <input type="text" name="email2" id="email2" class="int" value="${contactDetail.email2 }" readonly="readonly"/>
+						    <input type="text" name="email1" id="email1" class="int_email" value="${contactDetail.email1 }" readonly="readonly"/> @ 
+						    <input type="text" name="email2" id="email2" class="int_email" value="${contactDetail.email2 }" readonly="readonly"/>
 						</td>	
 					</tr>
 					 

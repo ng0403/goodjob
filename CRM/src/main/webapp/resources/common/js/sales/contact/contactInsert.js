@@ -111,14 +111,13 @@ function callCancelBtn() {
 //개인추가 버튼 눌렀을 때
 function callCustBtn(){
 	
-		$("#contactbody input[type='text']").css("background-color", "white");
+  		$("#contactbody input[type='text']").css("background-color", "white");
 		
- 		$('#company_nm').attr("disabled",false);
- 		$("#company_nm").css("background-color", "#EAEAEA");
+  		$("#company_nm").css("background-color", "#EAEAEA");
   		
 		$('#comp_list_bt').attr("disabled",true);
 		
-		$('#company_nm').attr("readonly", false);
+		/*$('#company_nm').attr("readonly", false);*/
 		$('#cont_nm').attr("readonly", false);
 		$('#email1').attr("readonly", false);
 		$('#email2').attr("readonly", false);
@@ -172,10 +171,8 @@ function callCustBtn(){
 		$('#cust_addr').val("");*/
 		
 		// 버튼 활성화
-		$("#callCustKeyBtnDiv").css("display", "none");
-		$("#callCustBtnDiv").css("display", "none");
-		$("#callKeyBtnDiv").css("display", "none");
-		$("#custpsonAddBtnDiv").css("display", "block");
+ 		$("#baseBtnDiv").css("display", "none");
+ 		$("#baseBtnDiv1").css("visibility", "visible");
 }
 
 function callKeyAddBtn(){
