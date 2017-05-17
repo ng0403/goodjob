@@ -43,6 +43,21 @@ $(function(){
 	opptProdList(ctx);
 	
 });
+function makeBlock(){
+	alert("123");
+	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
+		$('#opptPrdtbody').append(
+				'<tr id="priceline" class="empty">'+
+				'<th style="width: 3%;"></th>'+
+				'<td style="width: 32%;"></td>'+
+				'<td style="width: 8%;"></td>'+
+				'<td style="width: 27%;"></td>'+
+				'<td style="width: 15%;"></td>'+
+				'<td style="width: 15%;"></td>'+
+				'</tr>'
+				);
+	}
+}
 
 /**
  * 숫자 콤마 제거(Server 전달 시 필요)
@@ -586,18 +601,18 @@ function estimList(opptId){
 		success:function(result){
 			var content ="";
 			if(result.length==0){
-				content = "<tr class='headerLock' style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
+				content = "<tr class='headerLock' style='height: 150px;'><td colspan='8'style='text-align: center;'>등록된 견적이 없습니다.</td></tr>";
 			}else{
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
-						'<th style="width: 3% !important;"><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
+						'<th style="width: 3% !important; text-align: center;"><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
 						'<td style="text-align: left; padding-left: 5px; width: 30% !important;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
-						'<td style="width: 11% !important;">'+data.estim_lev_cd+'</td>'+
-						'<td style="width: 10% !important;">'+data.estim_qty+'</td>'+
+						'<td style="width: 11% !important; text-align: center;">'+data.estim_lev_cd+'</td>'+
+						'<td style="width: 10% !important; text-align: center;">'+data.estim_qty+'</td>'+
 						'<td style="text-align: right; padding-right: 5px; width: 15% !important;">'+comma(data.sales_price)+'</td>'+
-						'<td style="width: 10% !important;">'+data.estim_valid_d+'</td>'+
-						'<td style="width: 9% !important;">'+data.fst_reg_id+'</td>'+
-						'<td style="width: 10% !important;">'+data.fst_reg_dt+'</td>'+
+						'<td style="width: 10% !important; text-align: center;">'+data.estim_valid_d+'</td>'+
+						'<td style="width: 9% !important; text-align: center;">'+data.fst_reg_id+'</td>'+
+						'<td style="width: 10% !important; text-align: center;">'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});
 			if(result.length < 5){
@@ -633,7 +648,7 @@ function viewSalesActive(opptId){
 		success:function(result){
 			var content = "";
 			if(result.actList.length==0){
-				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
+				content = "<tr style='height: 150px; text-align: center;'><td colspan='10' style='text-align: center;'>등록된 영업활동이 없습니다.</td></tr>";	
 			}
 			else{
 			$.each(result.actList,function(i,data){
@@ -641,21 +656,21 @@ function viewSalesActive(opptId){
 				end_d = data.end_d;
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
-				"<th rowspan='2' style='width: 3% !important;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
+				"<th rowspan='2' style='width: 3% !important; text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
 				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'>" +
-				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
-				"<td rowspan='2' style='width: 8% !important;'>"+data.sales_actvy_div_nm+"</td>"+
+				"<a style='text-decoration: none; text-align: center;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
+				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+
 				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2' style='width: 8% !important;'>"+data.sales_actvy_type_nm+"</td>"+
-				"<td style='width: 9% !important;'>"+start_d+"</td>"+
-				"<td style='width: 9% !important;'>"+data.strt_t+"</td>"+
-				"<td rowspan='2' style='width: 6% !important;'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2' style='width: 7% !important;'>"+data.fst_reg_id+"</td>"+
-				"<td rowspan='2' style='width: 10% !important;'>"+reg_dt+"</td>"+
+				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td style='width: 9% !important; text-align: center;'>"+start_d+"</td>"+
+				"<td style='width: 9% !important; text-align: center;'>"+data.strt_t+"</td>"+
+				"<td rowspan='2' style='width: 6% !important; text-align: center;'>"+data.sales_actvy_stat_nm+"</td>"+
+				"<td rowspan='2' style='width: 7% !important; text-align: center;'>"+data.fst_reg_id+"</td>"+
+				"<td rowspan='2' style='width: 10% !important; text-align: center;'>"+reg_dt+"</td>"+
 				"</tr>"+
 				"<tr>"+
-				"<td style='width: 9% !important;'>"+end_d+"</td>"+
-				"<td style='width: 9% !important;'>"+data.end_t+"</td>"+
+				"<td style='width: 9% !important; text-align: center;'>"+end_d+"</td>"+
+				"<td style='width: 9% !important; text-align: center;'>"+data.end_t+"</td>"+
 				"</tr>";	
 			});
 			
@@ -723,6 +738,8 @@ function viewSalesActive(opptId){
 			like = 1;
 		}else{
 			$("#opptPrdtbody tr").each(function(){
+				var chkProdCount =$("#opptPrdtbody tr").length;
+				alert(chkProdCount);
 				var old_prodId = $(this).attr("class");
 				if(prod_id == old_prodId){
 					var count = $(this).children().eq(2).children().val();
@@ -731,6 +748,7 @@ function viewSalesActive(opptId){
 				}
 			});
 			if(like==0){
+				
 				if(opptButtonStatus=='modify'){
 					opptProdAddId.push(prod_id);
 				}

@@ -200,9 +200,9 @@ $(document).ready(function(){
 					</table>
 				
 				
-				<div id="estimatediv" style="overflow: auto;">
+				<div id="estimatediv" >
 					<input type="hidden" id="eduCode" value="${eduCode}">
-					<table id="opptPrdttable" class="tabtable" style="text-align: center; height: 200px; ">
+					<table id="opptPrdttable" class="tabtable" style="text-align: center;">
 						<tbody id="opptPrdtbody">
 							<c:choose>
 								<c:when test="${not empty opptPrdt}">

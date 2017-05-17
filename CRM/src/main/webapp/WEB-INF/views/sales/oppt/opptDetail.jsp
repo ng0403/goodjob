@@ -58,24 +58,24 @@ $(document).ready(function() {
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 					<thead>
 						<tr class="headerLock">
-							<th rowspan="2" style="width: 3% !important;"><input type="checkbox"  id='actAllSelect'/></th>
-							<td rowspan="2" style="width: 20% !important;">영업활동명</td>
-							<td rowspan="2" style="width: 8% !important;">활동구분</td>
-							<td rowspan="2" style="width: 20% !important;">영업기회명</td>
-							<td rowspan="2" style="width: 8% !important;">활동유형</td>
-							<td style="width: 9% !important;">시작일자</td>
-							<td style="width: 9% !important;">시작시간</td>
-							<td rowspan="2" style="width: 6% !important;">상태</td>
-							<td rowspan="2" style="width: 7% !important;">등록자</td>
-							<td rowspan="2" style="width: 10% !important;">등록일시</td>
+							<th rowspan="2" style="width: 3% !important; text-align: center;"><input type="checkbox"  id='actAllSelect'/></th>
+							<td rowspan="2" style="width: 20% !important; text-align: center;">영업활동명</td>
+							<td rowspan="2" style="width: 8% !important; text-align: center;">활동구분</td>
+							<td rowspan="2" style="width: 20% !important; text-align: center;">영업기회명</td>
+							<td rowspan="2" style="width: 8% !important; text-align: center;">활동유형</td>
+							<td style="width: 9% !important; text-align: center;">시작일자</td>
+							<td style="width: 9% !important; text-align: center;">시작시간</td>
+							<td rowspan="2" style="width: 6% !important; text-align: center;">상태</td>
+							<td rowspan="2" style="width: 7% !important; text-align: center;">등록자</td>
+							<td rowspan="2" style="width: 10% !important; text-align: center;">등록일시</td>
 						</tr>
 						<tr>
-							<td style="width: 9% !important;">종료일자</td>
-							<td style="width: 9% !important;">종료시간</td>
+							<td style="width: 9% !important; text-align: center;">종료일자</td>
+							<td style="width: 9% !important; text-align: center;">종료시간</td>
 						</tr>
 					</thead>
 					<tbody id="activeList" class="detailtbody" >	
-							<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
+							<tr style='height: 150px; text-align: center;'><td colspan='10' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>
 					</tbody>
 					</table>
 			</div>
@@ -91,18 +91,18 @@ $(document).ready(function() {
 			<table id="goaltable" class="ui celled table" cellspacing="0" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
-						<th style="width: 3% !important;"><input type="checkbox"  id='estimAllSelect'/></th>
-						<td style="width: 30% !important;">견적명</td>
-						<td style="width: 11% !important;">견적단계</td>
-						<td style="width: 10% !important;">견적수량</td>
-						<td style="width: 15% !important;">견적금액</td>
-						<td style="width: 10% !important;">견적유효일자</td>
-						<td style="width: 9% !important;">등록자</td>
-						<td style="width: 10% !important;">등록일시</td>
+						<th style="width: 3% !important; text-align: center;"><input type="checkbox"  id='estimAllSelect'/></th>
+						<td style="width: 30% !important; text-align: center;">견적명</td>
+						<td style="width: 11% !important; text-align: center;">견적단계</td>
+						<td style="width: 10% !important; text-align: center;">견적수량</td>
+						<td style="width: 15% !important; text-align: center;">견적금액</td>
+						<td style="width: 10% !important; text-align: center;">견적유효일자</td>
+						<td style="width: 9% !important; text-align: center;">등록자</td>
+						<td style="width: 10% !important; text-align: center;">등록일시</td>
 					</tr>
 				</thead>
 				<tbody id="estimList"  class="detailtbody" >
-				<tr style='height: 150px;'><td colspan='8'>조회된 결과가 없습니다.</td></tr>		
+				<tr style='height: 150px; text-align: center;'><td colspan='8' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>		
 				</tbody>
 				</table>
 			</div>
