@@ -224,7 +224,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="detailBtn">
+		<div class="detailBtn" style="margin-top:10px">
 			<input type="button" class="tiny ui orange button" value="저장" id="activeButton"/>
 			<input type="button" class="tiny ui button" value="취소" id="activeAdd_cancel"/>
 		</div>

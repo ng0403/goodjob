@@ -193,13 +193,13 @@
 			<table id="goaltable" class="noticetable">
 				<thead>
 					<tr>
-						<td>제목</td><td>시작일자</td><td>조회수</td><td>종료일자</td><td>참고</td><td>게시자</td>
+						<td>글번호</td><td>제목</td><td>조회수</td><td>작성일</td><td>게시자</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							<a href="${ctx}/noticedetail?noticeId=${notice.NOTICE_ID}" class="noticebtn" style="text-decoration: none;">${notice.TITLE}</a>
+							<a href="${ctx}/boardDetail?BOARD_NO=${notice.NOTICE_ID}" class="noticebtn" style="text-decoration: none;">${notice.TITLE}</a>
 						</td>
 						<td><fmt:formatDate value="${notice.STRD_D}" pattern="yyyy-MM-dd"/></td>
 						<td>${notice.CHK_NUM}</td>

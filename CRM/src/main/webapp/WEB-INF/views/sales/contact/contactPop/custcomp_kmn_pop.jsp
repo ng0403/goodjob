@@ -74,13 +74,13 @@
 			</div>
 			
 			<c:if test="${flag == 0}">
-				<div class="detailBtn">
+				<div class="detailBtn" style="margin-top:10px">
 					<input type="button" class="tiny ui orange button" value="저장" id="keyman_add" onclick="keymanAdd();"/>
 					<input type="button" class="tiny ui button" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}">
-				<div class="detailBtn">
+				<div class="detailBtn" style="margin-top:10px">
 					<input type="button" class="tiny ui orange button" value="저장" id="keyman_mdfy" onclick="keymanMdfy('${kmVO.cust_id}','${kmVO.cont_id}');"/>
 					<input type="button" class="tiny ui button" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
 				</div>

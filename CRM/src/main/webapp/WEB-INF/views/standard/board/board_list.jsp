@@ -12,8 +12,13 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
-  <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
- <!-- 합쳐지고 최소화된 최신 CSS -->
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -31,23 +36,22 @@
    
   <div id="title">
 		<div class="caption">
-		<h3 class="ui header" style="background: #fff;"> ■ 게시판 > 리스트 </h3>
+		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > 게시판 </h3>
 		 
 		</div>
 </div>
  
    <!-- Q&A 리스트, 조회화면 -->
-   <div class="search_div">
-      <div class="search2_div">
-<!--           <form name="frm_QnA" id="frm_QnA" action="/board/search_boardInqr"   enctype="multipart/form-data"  method="post">
- -->   
-            <label >제  목</label>
+   <div class="search_div" id="search_div">
+       <div class="ui left icon input">
+			<input type="text" placeholder="제목"  id="keyword" name="keyword">
+			<i class="list icon"></i>
+		</div>	
+<!--              <label >제  목</label>
             <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
-   
+ -->   
              <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색">
-      <!--  </form>   -->
-      </div>
-   </div>
+     </div>
 
    <div class="list_div">
       <div class="list1_div" id ="list1_div">  
@@ -130,33 +134,11 @@
 		    		</c:when>
 				</c:choose>
 			</div>
-   
- 
+    
 </div>
  </div>
-<script type="text/javascript">
-
-/* $(document).ready(function() { 
-    
-     
-    var sessionID = "${SessionID}" 
-
-   if(sessionID == 'admin'){
-     }else{
-       alert("${SessionID}");
-         alert(" ** 접근권한이 없습니다. ** \n ** 관리자 권한으로 로그인하세요. **\n ** 로그인화면으로 이동합니다. **");
-//         location.href = "/logout";
-         location.href = "/";
-    }
-   
-})  */
-
  
- 
-   
-</script>
-
 
 </body>
 </html>
-<%-- <%@include file="../include/footer.jsp"%> --%>
+ 

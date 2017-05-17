@@ -32,7 +32,7 @@ $(document).ready(function() {
 			return;
 		}else {
 			/*window.open(ctx+'/contactopptPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');*/
-			window.open('/contactopptInsertPopup?cust_id='+cust_id+'&flag=0','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open('/contactopptInsertPopup?cust_id='+cust_id+'&flag=0','newwindow','width=713, height=574, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 
 		}
 	}); 

@@ -30,7 +30,7 @@
 
 <div id="title">
 		<div class="caption"> 
-	 <h3 class="ui header" style="background: #fff;"> ■ Q&A > <a href="/boardInqr?BOARD_MNG_NO=${board_mng}" style="font-size: 14pt; text-decoration:none; color: blue;">리스트</a> >  추가 </h3>
+	 <h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${board_mng}" style="font-size: 14pt; text-decoration:none; color: blue;">Q&A</a> > 추가 </h3>
 		</div>
 </div>
 

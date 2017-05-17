@@ -52,7 +52,7 @@ label {
 
 <div id="title">
 		<div class="caption">
-		<h3 class="ui header" style="background: #fff;"> ■ Q&A > 리스트 </h3>
+		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > Q&A </h3>
 		
 		</div>
 </div>
@@ -74,8 +74,10 @@ label {
  							<option value="Y">Y</option>
  							<option value="N">N</option>
  					</select>
-				 <label for="keyword">제목 :</label>
-				 <input type="text" id="keyword" name="keyword" class="inputTxt" >&nbsp; 
+       <div class="ui left icon input" style="margin-left:10px">
+			<input type="text" placeholder="제목"  id="keyword" name="keyword" ">
+			<i class="list icon"></i>
+		</div>	
 				 <input type="button" class="ui orange button" onclick="boardPaging(1);" value="조회">
 		 
 				</form> 

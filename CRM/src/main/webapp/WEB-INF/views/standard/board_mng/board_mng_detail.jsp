@@ -9,6 +9,11 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/boardmng/boardmng_detail.js"></script>  
 <link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -38,11 +43,12 @@
   
   <form role="form" name="board_mng_form"> 
    <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng_list.BOARD_MNG_NO}"/> 
- 	<table class="table">
+ 	<table class="ui celled table">
+ 	<tbody class="detailtbody">
 	<tr> 
-	<td>게시판이름</td>
+	<th>게시판이름</th>
  <td><input type="text" class="form-control" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM}" style="width:50%" /></td> 
-	<td>게시판분류</td>
+	<th>게시판분류</th>
    <td> 
    <select class="form-control" id="sel1"> 
     <c:forEach items="${codelist}" var="list">
@@ -59,12 +65,18 @@
    </td>
 	</tr>
 	<tr>
-	<td>관리자</td> <td></td> <td>게시판코드</td> <td><div id="board_cd_div">${board_mng_list.BOARD_MNG_CD}</div> </td>
+	<th>관리자</th> <td></td>
+	 <th>게시판코드</th>
+	  <td>
+	  <div id="board_cd_div">${board_mng_list.BOARD_MNG_CD}
+	  </div>
+	  
+	   </td>
 	</tr>
 	<tr>
-	<td>
+	<th>
 	댓글여부
-	</td>
+	</th>
 	<td>
 	<label class="radio-inline">
 	<input type="radio" class="radio_class" id="reply_flg_y" name="REPLY_FLG" value="Y" >Y
@@ -72,9 +84,9 @@
 	<input type="radio" class="radio_class" id="reply_flg_n" name="REPLY_FLG" value="N">N
 	</label>
 	</td>
-	<td>
+	<th>
 	게시판활성여부
-	</td>
+	</th>
 	<td>
 	<label class="radio-inline">
 	<input type="radio" class="radio_class" value="Y" id="active_flg_y" name="ACTIVE_FLG" value="Y">Y
@@ -85,9 +97,9 @@
 	</td>
 	</tr>
 	<tr>
-	<td>
+	<th>
 	파일업로드
-	</td>
+	</th>
 	<td>
 	<label class="radio-inline" >
 	<input type="radio" class="radio_class" id="file_attach_flg_y" name="FILE_ATTACH_FLG" value="Y">Y
@@ -96,9 +108,9 @@
 	<input type="radio" class="radio_class" id="file_attach_flg_n" name="FILE_ATTACH_FLG" value="N">N
 	</label>
 	 </td>
-	 <td>
+	 <th>
 	 공지활성화
-	 </td>
+	 </th>
 	 <td>
 	 <label  class="radio-inline">
 	 <input type="radio" class="radio_class" id="notice_flg_y" name="NOTICE_FLG" value="Y">Y
@@ -109,17 +121,18 @@
 	 </td>
 	</tr>
 	</table> 
+	</tbody>
 	</form>
 	</div>
 	
 	<div id = "button_div">
-	<input type="button" id="board_mng_modify_fbtn" class = "btn btn-primary btn-sm" value="편집" onclick="modify_fbtn();"/>
-	<input type="button" class="btn btn-primary btn-sm" id="board_list_fbtn" value="목록" onclick="go_list();"/>
+	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui orange button" value="편집" onclick="modify_fbtn();"/>
+	<input type="button" class="tiny ui orange button" id="board_list_fbtn" value="목록" onclick="go_list();"/>
 	</div>
 	
 	<div id = "button_div1">
-		<input type="button" class = "btn btn-primary btn-sm" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
-		<input type="button" class="btn btn-primary btn-sm" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
+		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
+		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
 	</div>
 
 </div> 

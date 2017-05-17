@@ -172,7 +172,7 @@ function callCustBtn(){
 		
 		// 버튼 활성화
  		$("#baseBtnDiv").css("display", "none");
- 		$("#baseBtnDiv1").css("visibility", "visible");
+ 		$("#baseBtnDiv1").css("display", "block");
 }
 
 function callKeyAddBtn(){

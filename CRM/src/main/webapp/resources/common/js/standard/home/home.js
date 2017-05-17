@@ -17,7 +17,7 @@ function HomeDetailPop(ctx){
 	});
 	
 	$('#notice_detail').click(function(event){
-		location.href = ctx + '/notice';
+		location.href = '/BNoticeInqr?BOARD_MNG_NO=BMG1000001';
 		/*event.preventDefault();
 		window.open(ctx+"/noticelistpop",'newwindow','width=600, height=350, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		*//*window.open(ctx+'/authmenuSearchList','searchNewPopup','width=400, height=400, left='+(event.screenX+200)+', top='+(event.screenY-90)+', toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');*/

@@ -36,8 +36,12 @@
 
 <div id="title">
 		<div class="caption">
-		<h3 class="ui header" style="background: #fff;">■ 게시판 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">리스트</a> >  수정 </h3>
- 		
+	    <c:if test="${boardVO.BOARD_MNG_NO =='BMG1000001'}">
+		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">공지사항</a> >  게시글 추가 </h3>
+		</c:if>
+		<c:if test="${boardVO.BOARD_MNG_NO == 'BMG1000002'}">
+	    <h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">일반 게시판</a> >  게시글 추가 </h3>
+		</c:if> 		
 		</div>
 </div>
  

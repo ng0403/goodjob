@@ -32,7 +32,7 @@
    
    <div id="title">
 		<div class="caption">
-		<h3 class="ui header" style="background: #fff;"> ■ 공지사항 > 리스트</h3> 
+		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > 공지사항</h3> 
 		</div>
 	</div>
  
@@ -41,9 +41,14 @@
       <div class="search2_div">
 <!--           <form name="frm_QnA" id="frm_QnA" action="/board/search_boardInqr"   enctype="multipart/form-data"  method="post">
  -->   
-            <label >제  목</label>
+        <div class="ui left icon input">
+			<input type="text" placeholder="제목"  id="keyword" name="keyword" ">
+			<i class="list icon"></i>
+		</div>	
+ 
+<!--             <label >제  목</label>
             <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
-   
+ -->   
              <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색">
       <!--  </form>   -->
       </div>
