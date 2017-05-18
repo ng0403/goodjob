@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script> -->
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <style type="text/css">
@@ -88,7 +88,7 @@ function ccActDetailSelect() {
 						<tr>
 							<th><span style="color:red">*시간시간</span></th>
 							<td>
-								<select name="strt_t" id="strt_t_h">
+								<select style="background:white"  name="strt_t" id="strt_t_h">
 						 			<option value="0" style="text-align: center;">선택</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -116,7 +116,7 @@ function ccActDetailSelect() {
 									<option value="24">24</option>									
 								</select>
 								시
-								<select name="strt_t" id="strt_t_m">
+								<select style="background:white"  name="strt_t" id="strt_t_m">
 								 <option value="0" style="text-align: center;">선택</option>
 											<option value="00">00</option>
 											<option value="10">10</option>
@@ -131,13 +131,13 @@ function ccActDetailSelect() {
 						<tr>
 							<th><span style="color:red">*종료일자</span></th>
 							<td>
-								<input type="text" id="end_d" name="end_d" class="int_act" value="${ccActVO.end_d}" readonly="readonly">
+								<input style="background:white"  type="text" id="end_d" name="end_d" class="int_act" value="${ccActVO.end_d}" readonly="readonly">
 							</td>
 						</tr>
 						<tr>
 							<th><span style="color:red">*종료시간</span></th>
 							<td>
-								<select name="ent_t" id="end_t_h">
+								<select style="background:white"  name="ent_t" id="end_t_h">
 								<option value="0" style="text-align: center;">선택</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -165,7 +165,7 @@ function ccActDetailSelect() {
 									<option value="24">24</option>									
 								</select>
 								시
-								<select name="end_t" id="end_t_m">
+								<select style="background:white"  name="end_t" id="end_t_m">
 									<option value="0" style="text-align: center;">선택</option>
 									<option value="00">00</option>
 									<option value="10">10</option>
@@ -180,7 +180,7 @@ function ccActDetailSelect() {
 						<tr>
 							<th><span style="color:red">*활동유형</span></th>
 							<td>
-							   <select name="sales_actvy_type_nm" id="sales_actvy_type_nm">
+							   <select style="background:white"  name="sales_actvy_type_nm" id="sales_actvy_type_nm">
 							      <option value="0" style="text-align: center;">선택</option>
 							      <c:forEach var="actTypeCd" items="${actTypeCd}">
 									  <option value="${actTypeCd.sales_actvy_type_cd}">${actTypeCd.sales_actvy_type_nm}</option>
@@ -191,7 +191,7 @@ function ccActDetailSelect() {
 						<tr>
 							<th><span style="color:red">*상태</span></th>
 							<td>
-							    <select name="sales_actvy_stat_nm" id="sales_actvy_stat_nm" class="act_tab_select">
+							    <select style="background:white"  name="sales_actvy_stat_nm" id="sales_actvy_stat_nm" class="act_tab_select">
 		                           	<option value="0" style="text-align: center;">선택</option>						    
 							      	<c:forEach var="actStatCd" items="${actStatCd}">
 										<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>

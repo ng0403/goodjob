@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
-	
-	//달력띄우기
+ 	//달력띄우기
+
 	$("#strt_d").datepicker({
-	    changeMonth: true, //콤보 박스에 월 보이기
+  	    changeMonth: true, //콤보 박스에 월 보이기
 	    changeYear: true, // 콤보 박스에 년도 보이기
 	    showOn: 'button', // 우측에 달력 icon 을 보인다.
 	    buttonImage: ctx +'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
@@ -13,6 +13,8 @@ $(document).ready(function() {
 	$('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
 	//날짜 형식을 0000-00-00으로 지정하기
 	$.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+ 
+	
 	//달력띄우기
 	$("#end_d").datepicker({
 		changeMonth: true, //콤보 박스에 월 보이기
@@ -25,7 +27,11 @@ $(document).ready(function() {
 	$('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
 	//날짜 형식을 0000-00-00으로 지정하기
 	$.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+	
+	
+	
 });
+ 
 
 //영업기회 팝업창 띄우기
 function ccOpptListPop(ctx){
@@ -167,6 +173,7 @@ function ccActClose(){
 		return;
 	}
 }
+
 // 팝업창 자동 크기조절
 function setWindowResize() {
 	var Dwidth = parseInt(document.body.scrollWidth);
@@ -183,3 +190,4 @@ function setWindowResize() {
 	window.resizeBy(Dwidth-divEl.offsetWidth, Dheight-divEl.offsetHeight);
 	document.body.removeChild(divEl);
 }
+ 

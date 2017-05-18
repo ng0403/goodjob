@@ -10,8 +10,7 @@ $(document).ready(function() {
 	keymanList();
 	opptList();
 	actListcontact();
-	
-	//달력띄우기
+  	//달력띄우기
 	$("#expt_fin_d").datepicker({
 	    changeMonth: true, //콤보 박스에 월 보이기
 	    changeYear: true, // 콤보 박스에 년도 보이기

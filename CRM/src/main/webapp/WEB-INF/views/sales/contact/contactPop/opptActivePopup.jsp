@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />	
 	
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>	
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+ --><script src="${ctx}/resources/common/Semantic/semantic.js"></script>	
 	
 	
  <!-- 	type="text/css" /> -->
@@ -52,7 +52,7 @@
 					<tr>
 						<th><span style="color:red">*영업활동명</span></th>																	
 						<td>
-							<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" value="${detail.sales_actvy_nm }" >
+							<input style="background:white" type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" value="${detail.sales_actvy_nm }" >
 						</td>
 					</tr>
 					<tr>  
@@ -93,14 +93,14 @@
 					<tr>
 						<th><span style="color:red">*시작일자</span></th>
 						<td>
-							<input type="text" id="strt_d" name="dstrt_d" class="int_act" value="${detail.strt_d}" readonly="readonly">
+							<input style="background:white" type="text" id="strt_d" name="dstrt_d" class="int_act" value="${detail.strt_d}" readonly="readonly">
 						</td>
 					</tr>
 					 <tr>
 					 	<th><span style="color:red">*시작시간</span></th>
 					 	<td>
 					 		<input type="hidden" id="strt_t" value="${detail.strt_t }">
-							<select name="strt_t" id="strt_t_h" class="start_hour">
+							<select style="background:white" name="strt_t" id="strt_t_h" class="start_hour">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach var="i" begin="1" end="24" step="1">
 									<c:choose>
@@ -115,7 +115,7 @@
 							</select>
 								시
 							<input type="hidden" id="hstrt_t_m">
-							<select name="strt_t" id="strt_t_m" class="start_minute">
+							<select style="background:white" name="strt_t" id="strt_t_m" class="start_minute">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach var="i" begin="0" end="50" step="10">
 									<c:choose>
@@ -134,14 +134,14 @@
 					<tr>
 						<th><span style="color:red">*종료일자</span></th>
 						<td>
-							<input type="text" id="end_d" name="dend_d" class="int_act"  value="${detail.end_d}" readonly="readonly">
+							<input style="background:white" type="text" id="end_d" name="dend_d" class="int_act"  value="${detail.end_d}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>
 						<th><span style="color:red">*종료시간</span></th>
 						<td>
 							<input type="hidden" id="end_t" value="${detail.end_t }">
-							<select name="ent_t" id="end_t_h" class="end_hour">
+							<select style="background:white" name="ent_t" id="end_t_h" class="end_hour">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach var="i" begin="1" end="24" step="1">
 									<c:choose>
@@ -156,7 +156,7 @@
 							</select>
 								시
 							<input type="hidden" id="hend_t_m">
-							<select name="end_t" id="end_t_m" class="end_minute">
+							<select style="background:white" name="end_t" id="end_t_m" class="end_minute">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach var="i" begin="0" end="50" step="10">
 									<c:choose>
@@ -175,7 +175,7 @@
 					<tr>
 						<th><span style="color:red">*활동유형</span></th>
 						<td>
-							<select name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="time">
+							<select style="background:white" name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="time">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach items="${actTypeCd}" var="list">
 									<c:choose>
@@ -200,7 +200,7 @@
 					<tr>
 						<th><span style="color:red">*상태</span></th>
 						<td>
-							<select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="time">
+							<select style="background:white" name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="time">
 								<option value="0" style="text-align: center;">==선택==</option>
 								<c:forEach items="${actStatCd}" var="list">
 									<c:choose>

@@ -11,7 +11,7 @@
  */
 
 $(function(){
-	var ctx = $('#ctx').val();
+ 	var ctx = $('#ctx').val();
 	activeCancel();
 	actButton(ctx);
 	startDatePicker(ctx);
@@ -182,7 +182,7 @@ function opptActiveDetail(){
 }
 //영업활동 pop에서 사용되는 datePicker
 function startDatePicker(ctx){
-	  $("#strt_d").datepicker({
+ 	  $("#strt_d").datepicker({
 	    	changeMonth: true, //콤보 박스에 월 보이기
 	    	changeYear: true, // 콤보 박스에 년도 보이기
 	    	showOn: 'button', // 우측에 달력 icon 을 보인다.
