@@ -8,6 +8,9 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/menu/menuPMenuNamePopup.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <title>상위메뉴 팝업창</title>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/menu/menuPMenuNamePopup.css" type="text/css" />
 </head>
@@ -15,32 +18,34 @@
 <input id="ctx" type="hidden" value="${ctx}"/>
 <div id="title">
 <br>
-<div class="caption">● 권한 검색창</div>
-<div class="bt_position_popup">
+<div class="caption">
+	<h3 class="ui header" style="background: #fff;">■ 권한 검색창</h3>
+</div>
+<div class="bt_position_popup" style="text-align: left; padding-top: 10px;">
 		<form name="searchForm" method="post" action="${ctx}/menuPmenuSearch">
 			<select name="keyfield">
 				<option value="p_m_name">메뉴명</option>
 				<option value="m_id">메뉴ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="btn btn-default">검색</button>
+			<button id="search_btn" type="submit" class="tiny tiny ui basic orange button">검색</button>
 			</form>
 		</div>
 	</div>	
    
-   <div class="bs-example" data-example-id="simple-table">
+   <div class="bs-example" data-example-id="simple-table" style="padding-top: 10px;">
 	<form name="delAllForm" id="delAllForm" method="post" action="" >	
-		<table id="mastertable">
+		<table id="mastertable" class="ui celled table">
 			<thead>
 				<tr>
 					<th><input id="allCheck" type="checkbox"/></th>
-					<td style="width:10%;">메뉴ID</td>
-					<td style="width:12%;">매뉴명</td>
-					<td style="width:15%;">매뉴URL</td>
-					<td style="width:12%;">활성화여부</td>
-					<td style="width:13%;">최초등록자</td>
-					<td style="width:12%;">최초등록일</td>
-					<td style="width:13%;">최종변경자</td>
-					<td style="width:15%;">최종변경일</td>
+					<th style="width:10%;">메뉴ID</th>
+					<th style="width:12%;">매뉴명</th>
+					<th style="width:15%;">매뉴URL</th>
+					<th style="width:12%;">활성화여부</th>
+					<th style="width:13%;">최초등록자</th>
+					<th style="width:12%;">최초등록일</th>
+					<th style="width:13%;">최종변경자</th>
+					<th style="width:15%;">최종변경일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,8 +72,8 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="btn btn-default" value="선택" id="choiceMenu"/>
-		<input type="button" class="btn btn-default" value="취소" id="restMenu"/>
+		<input type="button" class="tiny tiny ui orange button" value="선택" id="choiceMenu"/>
+		<input type="button" class="tiny tiny ui button" value="취소" id="restMenu"/>
 	</div>
 </body>
 </html>
