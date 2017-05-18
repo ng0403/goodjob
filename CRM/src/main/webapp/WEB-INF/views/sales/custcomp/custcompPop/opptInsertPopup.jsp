@@ -14,7 +14,7 @@
 
 <%-- <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
 <%-- <script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script> --%>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/opptInsertPop.js"></script>
@@ -29,26 +29,27 @@
 <body>
 
 	<div class="keymanview" style="width: 98%; padding-left: 10px;">
-	<c:if test="${popFlg eq 'add'}">
-		<div id="title">
-<!-- 			<div class="caption">● 영업기회 등록</div> -->
-			<h3 class="ui header" style="background: #fff; padding-top: 10px; padding-left: 10px;">■ 영업기회 등록</h3>
-			<input type="hidden" id="flg" name="flg" value="${popFlg}">
-			<input type="hidden" id="eduList" name="eduList" value="${eduList}">
-			<input type="hidden" id="eduCode" name="eduCode" value="${eduCode}">
-		</div>
-	</c:if>
-	<c:if test="${popFlg eq 'popDetail'}">
-		<div id="title">
-<!-- 			<div class="caption">● 영업기회 상세보기</div> -->
-			<h3 class="ui header" style="background: #fff; padding-top: 10px; padding-left: 10px;">■ 영업기회 상세보기</h3>
-			<input type="hidden" id="flg" name="flg" value="${popFlg}">
-			<input type="hidden" id="eduList" name="eduList" value="${eduList}">
-			<input type="hidden" id="eduCode" name="eduCode" value="${eduCode}">
-		</div>
-	</c:if>
-		<div class="bt_position_popup" >
-			<div class="bs-example" data-example-id="simple-table">
+		<c:if test="${popFlg eq 'add'}">
+			<div id="title">
+	<!-- 			<div class="caption">● 영업기회 등록</div> -->
+				<h3 class="ui header" style="background: #fff; padding-top: 10px; padding-left: 10px;">■ 영업기회 등록</h3>
+				<input type="hidden" id="flg" name="flg" value="${popFlg}">
+				<input type="hidden" id="eduList" name="eduList" value="${eduList}">
+				<input type="hidden" id="eduCode" name="eduCode" value="${eduCode}">
+			</div>
+		</c:if>
+		<c:if test="${popFlg eq 'popDetail'}">
+			<div id="title">
+	<!-- 			<div class="caption">● 영업기회 상세보기</div> -->
+				<h3 class="ui header" style="background: #fff; padding-top: 10px; padding-left: 10px;">■ 영업기회 상세보기</h3>
+				<input type="hidden" id="flg" name="flg" value="${popFlg}">
+				<input type="hidden" id="eduList" name="eduList" value="${eduList}">
+				<input type="hidden" id="eduCode" name="eduCode" value="${eduCode}">
+			</div>
+		</c:if>
+		
+		<div class="bt_position_popup" style="width: 35%; float: left; margin-left: 5px;">
+			<div class="bs-example" data-example-id="simple-table" >
 				<form action="opptPopForm" method="post">
 				<table id="operatingapopuptable" class="ui celled table"   style="margin-bottom: 15px;"  >
 					<tbody id="tbody1">
@@ -130,7 +131,7 @@
 								</td>
 							</tr>
 						</c:if>
-						
+					
 						
 						
 						<!-- 상세보기 -->
@@ -142,6 +143,8 @@
 									<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
 									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" class="inputText" style="ms-ime-mode: disabled; background-color: ">
 								</td>
+							</tr>
+							<tr>
 								<th>고객사</th>
 								<td>
 									<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
@@ -152,7 +155,7 @@
 									
 									<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" class="inputText" readonly="readonly" />
 								</td>
-							</tr>
+							</tr>	
 							<tr>
 								<th>상태</th>
 								<td>
@@ -169,7 +172,8 @@
 										</c:forEach>
 									</select>
 								</td>
-						
+							</tr>
+							<tr>
 								<th>영업단계</th>
 								<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
@@ -186,14 +190,14 @@
 							</tr>
 							<tr>
 								<th>예상마감일자</th>
-								<td colspan="8">
+								<td >
 									<input type="hidden" id="hexpt_fin_d">
 									<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="inputText">
 								</td>
 							</tr>	
 							<tr>
 								<th>가능성</th>
-								<td colspan="8">
+								<td >
 									<input type="hidden" id="hpsblty_rate">
 									<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt; background: #fff;">
 										<option value="0" style="text-align: center;">==선택==</option>
@@ -223,12 +227,14 @@
 				</table>
 				</form>
 			</div>
-			<hr style="border-bottom: 1px solid rgba(34, 36, 38, 0.1); "/>
+		</div>			
+		
+		<div style="width: 63%; float: left; margin-left: 10px;">
 			<div>
 				<table id= "estimatehead" class="ui celled table" style="margin-top: 10px;">
 							<tr ">
-								<th style="width: 3%;">V</th>
-								<th style="width: 32%;">품목명</td>
+								<th style="width: 4%;">V</th>
+								<th style="width: 33%;">품목명</td>
 								<th style="width: 8%;">수량</td>
 								<th style="width: 27%;">판매가</td>
 								<th style="width: 15%;">할인</td>
@@ -244,24 +250,24 @@
 							</tr>
 				</table>
 			</div> 
-			<div id = "estimatediv">
-					<table id="estimatetable">
+			<div id = "estimatediv" >
+					<table id="estimatetable" >
 						<tbody id="opptProdtbody">
 							<c:forEach items="${prodlist}" var="prodlist">
 								<tr id="priceline" class="${prodlist.prod_id}">
-									<th style="width: 3%;">
+									<th style="width: 5%;">
 										<input type="checkbox" name="prod_id" id="prod_id" value="${prodlist.prod_id}"> 
 										<input type="hidden" id="prod_price"  value="${prodlist.prod_price}" >
 									</th>
-										<td style="width: 32%;" id="prod_nm">${prodlist.prod_nm}</td>
+										<td style="width: 33%;" id="prod_nm">${prodlist.prod_nm}</td>
 										<td style="width: 8%;">
 											<input type=number class="inputText" style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value="${prodlist.prod_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' >
 										</td>
 										<td style="width: 27%;" >${list.prod_price}</td>
 										<td style="width: 15%;" >
-											<input type=number class="inputText" style="width: 50%;  text-align: center;" id="discount" name="discount" min="0" max="100" value="${prodlist.discount}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>
+											<input type=number class="inputText" style="width: 61%;  text-align: right; padding-right: 0px;" id="discount" name="discount" min="0" max="100" value="${prodlist.discount}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>
 						
-										<select id="unit" name="discount_unit_cd" style="width: 30%; background: #fff;">
+										<select id="unit" name="discount_unit_cd" style="width: 23%; background: #fff;">
 											<c:if test="${popFlg eq 'popDetail'}">
 												<option value="0" >선택</option>
 												<c:forEach items="${eduList}" var="list2">
@@ -284,12 +290,14 @@
 						</tbody>
 					</table>
 			</div>
-			
-			<div class="estimate_bt_position" style="padding-top: 10px;">
+		</div>	
+		<div >
+			<div class="estimate_bt_position" >
 			 
-					<input type="button" class="tiny ui orange button"  value="상품추가" id="prodListBtn" onclick="opptProdList()" />
+					<input type="button" class="tiny ui orange button"  value="상품추가" id="prodListBtn" onclick="opptProdList()" style="margin-top: 10px; margin-left: 15px; " />
 					<input type="button" class="tiny ui button" value="상품삭제" id="prodDelete"/>
 			</div>
+		</div>
 			
 <%-- 			<c:if test="${popFlg eq 'add'}"> --%>
 <!-- 				<div class="estimate_bt_position">  -->
@@ -304,24 +312,25 @@
 <!-- 				</div> -->
 <%-- 			</c:if> --%>
 
-			<hr style="border-bottom: 1px solid rgba(34, 36, 38, 0.1); margin-bottom: 10px;"/>
+			<div style="clear: both; margin-left: 5px;">
+				<c:if test="${popFlg eq 'add'}">
+					<div class="act_bt_position" >
+	<%-- 					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSaveBtn('${ctx}')"/> --%>
+						<input type="button" class="tiny ui orange button" value="등록" id="opptSaveButton" onclick="opptSave()"/>
+						<input type="button" class="tiny ui button" value="취소" id="opptAdd_cancel" />
+					</div>
+				</c:if>
+				<c:if test="${popFlg eq 'popDetail'}">
+					<div class="act_bt_position">
+						<input type="button" class="tiny ui orange button" value="편집" id="opptModfyButton" />
+						<input type="button" class="tiny ui orange button" value="저장" id="opptModfySaveBtn" onclick="opptMdfySave()" />
+						<input type="button" class="tiny ui button" value="취소" id="opptModfy_cancel" />
+					</div>
+				</c:if>
+			</div>
 			
-			<c:if test="${popFlg eq 'add'}">
-				<div class="act_bt_position">
-<%-- 					<input type="button" class="cust_oppt_btn" value="등록" id="opptSaveButton" onclick="opptSaveBtn('${ctx}')"/> --%>
-					<input type="button" class="tiny ui orange button" value="등록" id="opptSaveButton" onclick="opptSave()"/>
-					<input type="button" class="tiny ui button" value="취소" id="opptAdd_cancel" />
-				</div>
-			</c:if>
-			<c:if test="${popFlg eq 'popDetail'}">
-				<div class="act_bt_position">
-					<input type="button" class="tiny ui orange button" value="편집" id="opptModfyButton" />
-					<input type="button" class="tiny ui orange button" value="저장" id="opptModfySaveBtn" onclick="opptMdfySave()" />
-					<input type="button" class="tiny ui button" value="취소" id="opptModfy_cancel" />
-				</div>
-			</c:if>
 			
-		</div>
+		
 
 	</div>
 </body>

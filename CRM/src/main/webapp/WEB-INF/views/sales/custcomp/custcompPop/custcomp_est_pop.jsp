@@ -8,17 +8,17 @@
 
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_estpop_css.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/ccestimate.js"></script> --%>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custestimate.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <script type="text/javascript">
@@ -68,7 +68,7 @@ $(function() {
 	</div>
 
 	<div class="est_pop_list_div">
-		<table id="keymanpopuptable" class="ui celled table" style="width: 38%; float: left; margin-right: 10px;">
+		<table id="keymanpopuptable" class="ui celled table" style="width: 40%; float: left; margin-right: 10px;">
 			<tbody id="tbody1">
 				<tr>
 					<th>견적명</th>
@@ -132,7 +132,7 @@ $(function() {
 			</table>
 			</div>  -->
 			
-			<div id="estimatediv" style="width: 60%; float: left; margin-left: 5px;">
+			<div id="estimatediv" style="width: 56%; float: left; margin-left: 5px;">
 					<table id="estimatetable" class="ui celled table">
 						<thead>
 							<tr style="background-color: #eaeaea; text-align: center;">
@@ -200,7 +200,8 @@ $(function() {
 			<input type="button" class="tiny ui orange button" value="상품삭제" onclick="prodDelete();" style="margin-top: 10px; margin-left: 7px;"/>
 		</div>
 		
-		<c:if test="${flag == 0}">
+		
+			<c:if test="${flag == 0}">
 			<div class="estimate_bt_position2" style="padding-top: 10px; clear: both;">
 				<input type="button" class="tiny ui orange button" value="저장" id="est_add" onclick="custEstimAdd('${ctx}');"/>
 				<input type="button" class="tiny ui button" value="취소" id="estimate_cancel" onclick="window.close();"/>
@@ -212,6 +213,8 @@ $(function() {
 				<input type="button" class="tiny ui button" value="취소" id="estimate_cancel" onclick="window.close();"/>
 			</div>
 		</c:if>
+		
+		
 	</div>
 </div>
 </body>

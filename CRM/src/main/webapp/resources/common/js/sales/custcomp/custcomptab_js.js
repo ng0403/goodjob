@@ -201,7 +201,7 @@ function keymanDeatil(cust_id,cont_id) {
 function ccOpptDetail(sales_oppt_id){
 	var ctx = $("#ctx").val();
 	window.open(ctx+'/opptDetailPopup?sales_oppt_id='+sales_oppt_id+'&flag=1',
-				'newwindow','width=770, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				'newwindow','width=925, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동 상세정보 팝업
@@ -276,7 +276,7 @@ function estimateAdd(ctx){
 				var pageNum=$('#pageNum').val();
 				window.open(ctx+'/custEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+
 						'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0',
-						'newwindow','width=900, height=445, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+						'newwindow','width=925, height=485, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 			}
 		});
 }

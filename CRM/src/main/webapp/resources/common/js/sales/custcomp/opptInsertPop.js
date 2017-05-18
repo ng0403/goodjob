@@ -310,7 +310,7 @@ function opptProdList()
 //영업기회 탭에서 추가버튼 눌렀을 때.
 function opptInsertPop()
 {
-	window.open('/opptInsertPopup','newwindow','width=770, height=620, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptInsertPopup','newwindow','width=925, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //컴마 입력 함수
@@ -376,7 +376,7 @@ function actTabFunc(sales_actvy_id) {
 
 function opptTabDetail(sales_oppt_id)
 {
-	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=785, height=615, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=1000, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 
