@@ -7,6 +7,12 @@ $(function(){
 	$('#opptModfySaveBtn').hide();
 	
 	$('#opptModfyButton').click(function() {
+		
+		$("#operatingapopuptable input[type='text']").attr({
+			disabled:false,
+			style:'background-color:white'
+		});
+		
 		$('#opptModfyButton').hide();
 		$('#opptModfySaveBtn').show();
 		
@@ -310,7 +316,12 @@ function opptProdList()
 //영업기회 탭에서 추가버튼 눌렀을 때.
 function opptInsertPop()
 {
-	window.open('/opptInsertPopup','newwindow','width=925, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	$("#operatingapopuptable input[type='text']").attr({
+		disabled:false,
+		style:'background-color:white'
+	});
+	
+	window.open('/opptInsertPopup','newwindow','width=1045, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //컴마 입력 함수

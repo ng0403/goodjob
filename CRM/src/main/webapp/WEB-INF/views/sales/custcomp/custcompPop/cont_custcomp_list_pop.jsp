@@ -26,7 +26,7 @@
 					<option value="ct_id">고객ID</option>
 					<option value="ct_nm">고객명</option>
 				</select>
-				<input id="search_text" type="text" name="keyword" class="custcomp_list_txt"> &nbsp;
+				<input id="search_text" type="text" name="keyword" class="custcomp_list_txt" style="background: #fff;"> &nbsp;
 				<button id="search_btn" type="submit" class="custcomp_list_bt">검색</button>
 			</form>
 		</div>
@@ -45,7 +45,7 @@
 			<tbody>
 				<c:forEach var="contactList" items="${contactList}"> 
 				<tr onclick="contactNmSelect('${contactList.cont_id}','${contactList.cont_nm}')">
-					<td style="width:25%;" id="cont_id">${contactList.cont_id}</td>
+					<td style="width:25%; cursor: pointer;" id="cont_id">${contactList.cont_id}</td>
 					<td style="width:25%;" id="cont_nm">${contactList.cont_nm}</td>
 					<td style="width:25%;">${contactList.company_nm}</td>
 					<td style="width:25%;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>		

@@ -58,14 +58,14 @@
 							<tr>
 								<th>영업기회명</th>
 								<td> <!-- colspan="3" -->
-									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="inputText" >
+									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="inputText" style="background: #fff;">
 								</td>
 							</tr>
 							<tr>	
 								<th>고객사</th>
 								<td>
-									<input type="text" name="cust_nm" id="cust_nm" class="inputText" readonly="readonly">
-									<input type="button" class="tiny ui orange basic button" id="customerPop" value="고객" disabled="disabled" onclick="opptCustPopup('${ctx}');">
+									<input type="text" name="cust_nm" id="cust_nm" class="inputText" readonly="readonly" style="background: #fff;">
+									<input type="button" class="tiny ui orange basic button" id="customerPop" value="고객"   onclick="opptCustPopup('${ctx}');">
 								</td>
 							</tr>
 							<tr>
@@ -101,7 +101,7 @@
 								<th>예상마감일자</th>
 								<td  >
 									<input type="hidden" id="hexpt_fin_d">
-									<input type="text" name="expt_fin_d" id="expt_fin_d" class="inputText" >
+									<input type="text" name="expt_fin_d" id="expt_fin_d" class="inputText" style="background: #fff;" >
 								</td>
 							</tr>	
 							<tr>
@@ -127,7 +127,7 @@
 								<th>메모</th>
 								<td colspan="8" rowspan="2">
 									<input type="hidden" id="hmemo">
-									<textarea name="memo" id="memo" class="inputText" value="${detail.memo}" style="overflow: auto; resize: none; width: 98%;"></textarea>
+									<textarea name="memo" id="memo" class="inputText" value="${detail.memo}" style="overflow: auto; resize: none; width: 98%; background: #fff;"></textarea>
 								</td>
 							</tr>
 						</c:if>
@@ -160,7 +160,7 @@
 								<th>상태</th>
 								<td>
 									<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-									<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt; background: #fff;">
+									<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt; background: rgb(220, 220, 220);">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${osclist}" var="osclist">
 											<c:if test="${opDetail.sales_oppt_stat_cd == osclist.code}">
@@ -177,7 +177,7 @@
 								<th>영업단계</th>
 								<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
-										<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt; background: #fff;">
+										<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt; background: rgb(220, 220, 220);">
 											<option value="0" style="text-align: center;">==선택==</option>
 											<c:forEach items="${otllist}" var="otllist">
 												<option value="<c:out value="${otllist.code}" />"
@@ -199,7 +199,7 @@
 								<th>가능성</th>
 								<td >
 									<input type="hidden" id="hpsblty_rate">
-									<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt; background: #fff;">
+									<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt; background: rgb(220, 220, 220);">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<option <c:if test="${opDetail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
 										<option <c:if test="${opDetail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>

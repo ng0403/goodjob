@@ -49,7 +49,7 @@
 							<td>
 							    <input type="hidden" id="cont_id" name="cont_id" /> 
 							    <input type="hidden" id="cust_id" name="cust_id" value="${cust_id}"/> 
-								<input type="text" name="cont_nm" id="cont_nm" class="inputText" value="${kmVO.cust_nm}" autofocus="autofocus" />
+								<input type="text" name="cont_nm" id="cont_nm" class="inputText" value="${kmVO.cust_nm}" autofocus="autofocus" style="margin-right: 5px;"/>
 								<input type="button" value="연락처" id="contact" class="tiny ui orange basic button" onclick="javascript:contactListPopup('${ctx}');">
 							</td>
 							

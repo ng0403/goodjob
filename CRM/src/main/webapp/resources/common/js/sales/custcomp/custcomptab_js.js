@@ -20,6 +20,9 @@ $(document).ready(function() {
 	
 	// 키맨 추가 팝업
 	$('#keyman_pop_btn').click(function(){
+		
+		
+		
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			alert('고객을 선택해주세요.');

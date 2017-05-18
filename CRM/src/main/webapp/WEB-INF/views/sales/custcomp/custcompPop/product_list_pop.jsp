@@ -52,7 +52,7 @@
 			<tbody>
 				<c:forEach var="list" items="${prodList}"> 
 					<tr>
-						<td style="width:30%;" id="prod_id">${list.prod_id}</td>
+						<td style="width:30%; cursor: pointer;" id="prod_id">${list.prod_id}</td>
 						<td style="width:30%;" id="prod_nm">${list.prod_nm}</td>
 						<td style="width:30%;" id="prod_price">${list.prod_price}</td>
 					</tr>
