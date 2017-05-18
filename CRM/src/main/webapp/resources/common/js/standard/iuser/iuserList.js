@@ -125,6 +125,9 @@ function iuserListAdd(){
 		$('#modifysavebtn').css("display", "none");
 		$('#modifybtn').css("display", "none");
 		$('#modifysavebtn').css('display','none');
+		$('#orgPopup').attr("disabled", false);
+		$('#org_nm').attr("readonly", true);
+		$('user_type_nm').attr("readonly", true);
 	});
 }
 

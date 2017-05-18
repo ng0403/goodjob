@@ -358,7 +358,7 @@ function opportunityList(page){
 			
 				$("#listTable").append("" +
 						"<tr id='"+list.sales_oppt_id+"'>"+
-						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+						"<th style='text-align: center;'><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
 						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
 						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
 						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
@@ -464,7 +464,7 @@ function viewSalesActive(opptId){
 				reg_dt = data.fst_reg_dt;
 				//영업활동 리스트 추가
 				content +="<tr>"+
-				"<th rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
+				"<th rowspan='2' style='text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
 				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
 				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
 				"<td rowspan='2'>"+data.sales_actvy_div_nm+"</td>"+
@@ -484,7 +484,7 @@ function viewSalesActive(opptId){
 			
 			if(result.actList.length < 5){
 				for(var j = 0; j < 5-result.actList.length; j++){
-					content += "<th rowspan='2'></th>"+ 
+					content += "<th rowspan='2' style='text-align: center;'></th>"+ 
 					"<td rowspan='2'></td>"+
 					"<td rowspan='2'></td>"+
 					"<td rowspan='2'></td>"+

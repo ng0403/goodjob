@@ -79,7 +79,7 @@
 							<td>
 								<input type="text" name="org_nm" id="org_nm" class="inputText"> 
 								<input type="hidden" name="org_id" id="org_id" class="inputText"> 
-								<input type="button" name="orgSearch" id="orgSearch" value="찾기" class="tiny ui orange basic button" id="orgPopup">
+								<input type="button" name="orgSearch" id="orgSearch" value="찾기" class="tiny ui orange basic button" id="orgPopup" disabled="false">
 							</td>
 							<th>상태</th>
 							<td>

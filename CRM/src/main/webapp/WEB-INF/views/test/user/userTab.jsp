@@ -26,7 +26,9 @@
 		{
 			//$('#addsave_btn').CSS('display', "hidden");
 			$('#joinform').find('input[type="text"]').attr('disabled',false).attr('readonly', false);
+			$('#joinform').find('input[type="button"]').attr('disabled',false).attr('readonly', false);
 			//$('#modifysave_btn').css("visibility","hidden");
+			$('#orgSearch').attr("disabled", false);
 
 		}else{
 			$('#USER_ID').attr("readonly", true);

@@ -75,26 +75,25 @@
 		    </div>		
 			<div id="tableline">	 
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
-<!-- 				<table id="goaltable" class="tabtable"> -->
 				<thead>
 					<tr>
-						<th style="width: 3%"><input type="checkbox"  id='opptAllSelect'/></th>
-						<th style="width: 26%">영업기회명</th>
-						<th style="width: 10%">고객명</th>
-						<th style="width: 8%">영업단계</th>
-						<th style="width: 10%">예상매출액</th>
-						<th style="width: 10%">예상마감일자</th>
-						<th style="width: 5%">가능성</th>
-						<th style="width: 8%">상태</th>
-						<th style="width: 8%">등록자</th>
-						<th style="width: 12%">등록일시</th>
+						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='opptAllSelect'/></th>
+						<th style="width: 26%;">영업기회명</th>
+						<th style="width: 10%;">고객명</th>
+						<th style="width: 8%;">영업단계</th>
+						<th style="width: 10%;">예상매출액</th>
+						<th style="width: 10%;">예상마감일자</th>
+						<th style="width: 5%;">가능성</th>
+						<th style="width: 8%;">상태</th>
+						<th style="width: 8%;">등록자</th>
+						<th style="width: 12%;">등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="listTable" class="tbody">
 				<c:forEach items="${oplist}" var="list" begin="0" end="9">
 					<tr id="${list.sales_oppt_id}">
-						<td>
-							<input type="checkbox" id="list_sales_oppt_id" name="list_sales_oppt_id" value="${list.sales_oppt_id}" onclick="chkCancel();">
+						<td style="text-align: center;">
+							<input type="checkbox" id="list_sales_oppt_id" name="list_sales_oppt_id" style="text-align: center;" value="${list.sales_oppt_id}" onclick="chkCancel();" >
 							<input type="hidden" id="list_cust_id" value="${list.cust_id}">
 							<input type="hidden" id="list_sales_lev_cd" value="${list.sales_lev_cd}">
 							
