@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/custcomp_list_pop.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/custcomp_list_pop.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
@@ -18,12 +18,12 @@
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
-	<div id="title">
+	<div id="title" style="padding-left: 30px;padding-top: 10px;">
 		<div class="caption">
 			<h3 class="ui header" style="background: #fff; padding: 10px; width: 30%;">■ 고객사 리스트</h3>
 		</div>
 		
-		<div class="custcomp_list_search">
+		<div style="padding-left: 30px;padding-top: 10px;"> <!-- class="custcomp_list_search" -->
 			<form name="searchForm" method="post" action="${ctx}/custcompList">
 				<select name="keyfield" style="background: #fff;">
 					<option value="ct_id">고객ID</option>
@@ -34,12 +34,12 @@
 			</form>
 		</div>
 	
-		<div class="custcomp_list_div">
-			<table id="custcomp_list_table" class="ui celled table">
+		<div class="custcomp_list_div" style="padding: 30px;">
+			<table id="custcomp_list_table" class="ui celled table" >
 				<thead>
 					<tr>
-						<th>고객ID</th>
-						<th>고객명</th>
+						<th style="width: 87.4%;">고객ID</th>
+						<th style="width: 87.4%;">고객명</th>
 <!-- 					<td style="width:25%;">고객구분</td> -->
 <!-- 					<td style="width:25%;">기업상태</td> -->
 				</tr>

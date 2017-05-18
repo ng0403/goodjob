@@ -10,7 +10,7 @@ $(function(){
 //영업기회 팝업창 띄우기
 function actOpptListPopup(ctx){
 	$('#act_opp_nm').click(function(){
-		window.open(ctx+'/actOpptList','newwindow','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/actOpptList','newwindow','width=850, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
@@ -39,7 +39,7 @@ function actOpptNmSelect(ctx){
 //고객사리스트 팝업창 띄우기
 function custcompListPopup(ctx){
 	$('#customer').click(function(){
-		window.open(ctx+'/custcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/custcompList','newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
