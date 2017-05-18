@@ -20,11 +20,13 @@
 <div style="width: 98%; padding-left: 10px;">
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
-		<div class="caption">■ 고객사 리스트</div>
+		<div class="caption">
+			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 고객사 리스트</h3>
+		</div>
 		
 		<div class="custcomp_list_search">
 			<form name="searchForm" method="post" action="${ctx}/custcompList">
-				<select name="keyfield">
+				<select name="keyfield" style="background: #fff;">
 					<option value="ct_id">고객ID</option>
 					<option value="ct_nm">고객명</option>
 				</select>
