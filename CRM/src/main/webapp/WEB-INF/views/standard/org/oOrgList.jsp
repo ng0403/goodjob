@@ -50,7 +50,7 @@ $("#naviorg").css("font-weight", "bold");
 								<th style="width: 30.3%;">사용자명</th>
 								<th style="width: 40%;">직책</th>
 							</tr>
-								</thead>
+						</thead>
 								<tbody class="otbody">
 									<c:forEach var="orgUser" items="${orgOlist}">
 									<tr onMouseOver="style.backgroundColor='#ebe7e7'" onMouseOut="style.backgroundColor=''">

@@ -82,11 +82,10 @@ select{
     text-align: left;
 }
 
-.custcomp_list_div #custcomp_list_table thead tr th{
-  vertical-align: center;
-  border-bottom: 2px solid #dddddd;
-}
-
+.custcomp_list_div #custcomp_list_table thead tr th {
+    vertical-align: center;
+    border-bottom: 2px solid #dddddd;
+    width: 336px;
 
 /* .custcomp_list_search{ */
 /*      float:right; */
