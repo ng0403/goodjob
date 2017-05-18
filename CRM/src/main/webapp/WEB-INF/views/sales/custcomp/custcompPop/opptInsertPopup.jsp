@@ -7,13 +7,6 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <c:set var="popFlg" value="${popFlg}" />
 
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act_oppt_prod.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-
-<%-- <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
-<%-- <script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
@@ -22,6 +15,15 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act_oppt_prod.css" type="text/css" /> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" /> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+
+<%-- <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
+<%-- <script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>영업기회 등록</title>

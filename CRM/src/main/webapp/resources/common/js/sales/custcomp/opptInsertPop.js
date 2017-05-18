@@ -1,3 +1,4 @@
+
 $(function(){
 	var ctx = $('#ctx').val();
 	var cust_id = $("#nowCust_id").val();
@@ -7,11 +8,6 @@ $(function(){
 	$('#opptModfySaveBtn').hide();
 	
 	$('#opptModfyButton').click(function() {
-		
-		$("#operatingapopuptable input[type='text']").attr({
-			disabled:false,
-			style:'background-color:white'
-		});
 		
 		$('#opptModfyButton').hide();
 		$('#opptModfySaveBtn').show();
@@ -24,8 +20,6 @@ $(function(){
 		$('#psblty_rate').attr("disabled", false);
 		$('#memo').attr("readonly", false);
 	});
-	
-	  
 	
 	opptAllChck();
 	chkCancel();
@@ -321,7 +315,7 @@ function opptInsertPop()
 		style:'background-color:white'
 	});
 	
-	window.open('/opptInsertPopup','newwindow','width=1045, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptInsertPopup','newwindowpop','width=1045, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //컴마 입력 함수
@@ -370,7 +364,8 @@ function opptTabList(cust_id)
 //영업기회 상세정보 고객 리스트 팝업
 function opptCustPopup(ctx)
 {
-	window.open(ctx+'/opptCustPopup','newwindow','width=770, height=650, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	
+	window.open(ctx+'/opptCustPopup','newwindowOpptCust','width=770, height=650, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기
@@ -387,7 +382,7 @@ function actTabFunc(sales_actvy_id) {
 
 function opptTabDetail(sales_oppt_id)
 {
-	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=1000, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindows','width=1000, height=435, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 

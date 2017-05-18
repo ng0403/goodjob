@@ -2,6 +2,7 @@
 $(document).ready(function() {
 	
 	var ctx = $("#ctx").val();
+	var flg = $("#flg").val();
 	
 	custActiveAdd(ctx);
 	estimateAdd(ctx);
@@ -20,9 +21,7 @@ $(document).ready(function() {
 	
 	// 키맨 추가 팝업
 	$('#keyman_pop_btn').click(function(){
-		
-		
-		
+
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			alert('고객을 선택해주세요.');
@@ -116,11 +115,6 @@ $(document).ready(function() {
 //고객사별 담당사원 추가 팝업
 function addCustManager(ctx){
 	$('#poc_pop_btn').click(function(){
-		
-		$("input[type='text']").attr({
-			disabled:false,
-			style:'background-color:white'
-		});
 		
 		var custId = $('#nowCust_id').val();
 		if(custId == "" || custId == null ){
