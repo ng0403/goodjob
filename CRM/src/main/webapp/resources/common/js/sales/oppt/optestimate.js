@@ -104,7 +104,73 @@ function prodNmSelect(){
 		self.close();
 	});
 }
+//상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
+function opptInProd(prod_id,prod_nm,prod_price){
+	alert("그려주는곳");
 
+		var unit="";
+		var flg = $('#flg').val();
+		var data = $('#eduCode').val();
+		var tmp = data.replace("[", "");
+		var tmp2 = tmp.replace("]", "");
+		var arr = tmp2.split(',');
+		unit = '<option value=0>선택</option>';
+		for(var i=0; i<arr.length ; i=i+2){
+			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
+		}
+	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
+	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
+	
+	var like = 0;
+	if($("#estimatetbody tr").length == 0){
+			if($('#flg').val()=='add'){
+				
+				opptProdAddId.push(prod_id);
+			}
+		$('#estimatetbody').append(
+				'<tr id="priceline" class='+prod_id+' style="height: 6px;">'+
+				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
+				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
+				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
+				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
+				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
+				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
+		);
+		like = 1;
+	}else{
+		$("#estimatetbody tr").each(function(){	
+			
+			var old_prodId = $(this).attr("class");
+			if(prod_id == old_prodId){
+				var count = $(this).children().eq(2).children().val();
+				$(this).children().eq(2).children().val(parseInt(count)+parseInt(1));
+				like=1;
+			}
+		});
+		if(like==0){
+			if($('#flg').val()=='detail'){
+				opptProdAddId.push(prod_id);
+			}
+			$('#estimatetbody').append(
+					
+					'<tr id="priceline" class='+prod_id+'style="height: 6px;">'+
+					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
+					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
+					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
+					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
+					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
+					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
+					 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
+					'</tr>'
+			);
+			makeBlock();
+		}
+	}
+	opptProdChange();
+}
 function inputProd(prod_id,prod_nm,prod_price){
 		$("#estimatetbody .empty").remove();
 		

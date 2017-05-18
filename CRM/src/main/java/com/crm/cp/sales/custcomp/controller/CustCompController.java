@@ -1256,7 +1256,7 @@ public class CustCompController {
 	public ModelAndView prodList( HttpSession session,
 								  @RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
 								  @RequestParam(value = "keyword", defaultValue = "") String keyword) {
-		ModelAndView mov = new ModelAndView("/sales/cust/custcompPop/product_list_pop");
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/product_list_pop");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
@@ -1395,6 +1395,21 @@ public class CustCompController {
 		mov.addObject("contVO", contVO);
 		return mov;
 	}
+	@RequestMapping(value="/custEstProdList", method=RequestMethod.GET)
+	public ModelAndView estProdList(HttpSession session,
+			@RequestParam(value="keyfield", defaultValue="pt_id") String keyfield,
+			@RequestParam(value="keyword", defaultValue="") String keyword){
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/product_list_pop");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		List<ProdVO> prodList = estInter.prodList(map);
 	
+		
+		mov.addObject("prodList", prodList);
+	
+		return mov;
+	}
 	
 }
