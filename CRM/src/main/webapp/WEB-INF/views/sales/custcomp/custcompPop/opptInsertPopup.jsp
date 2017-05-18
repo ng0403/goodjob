@@ -10,6 +10,9 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
 
+
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/opptInsertPop.js"></script>
 

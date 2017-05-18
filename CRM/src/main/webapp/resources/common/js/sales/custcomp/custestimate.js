@@ -105,6 +105,7 @@ function prodNmSelect(){
 }
 
 function opptInProd(prod_id, prod_nm, prod_price){
+	alert("3333");
 		$("#estimatetbody .empty").remove();
 		
 		var data = $('#eduCode').val();

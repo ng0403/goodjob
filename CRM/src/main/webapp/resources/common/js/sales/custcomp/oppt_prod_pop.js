@@ -100,6 +100,7 @@ var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInProd(prod_id, prod_nm, prod_price)
 {
+	alert("2222");
 	$("#opptProdtbody .empty").remove();
 	//var unit ="";
 	//var flg  = $('#flg').val();
@@ -194,6 +195,7 @@ function makeBlock(){
 
 //상품 목록의 input값 변동에 따른 실시간 update
 function opptProdUpdate(){	
+	alert("222221");
 	var countSum = 0;
 	var salesPriceSum = 0;
 	var discountSum = 0;
