@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/custcomp_list_pop.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/custcomp_list_pop.css" type="text/css" /> --%>
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
@@ -34,8 +34,8 @@
 			</form>
 		</div>
 	
-		<div class="custcomp_list_div" style="margin-right: 0px;">
-			<table id="custcomp_list_table" class="ui celled table" >
+		<div class="custcomp_list_div">
+			<table id="custcomp_list_table" class="ui celled table">
 				<thead>
 					<tr>
 						<th>고객ID</th>
