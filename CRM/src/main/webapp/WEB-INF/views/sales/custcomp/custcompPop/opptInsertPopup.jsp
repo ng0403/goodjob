@@ -8,6 +8,7 @@
 <c:set var="popFlg" value="${popFlg}" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/opptInsertPop.js"></script>

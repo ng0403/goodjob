@@ -5,6 +5,7 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/act.js"></script>
@@ -14,7 +15,7 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
@@ -67,7 +68,7 @@
 					<tr>
 						<th>시작일자</th>
 						<td>
-							<input type="text" id="strt_d" name="dstrt_d" class="inputText" value="" readonly="readonly">
+							<input type="text" id="strt_d" name="dstrt_d" class="inputText" value="${ccActVO.strt_d}" readonly="readonly">
 						</td>
 					</tr>
 					 <tr>
@@ -116,7 +117,7 @@
 					<tr>
 						<th>종료일자</th>
 						<td>
-							<input type="text" id="end_d" name="dend_d" class="inputText"  value="" readonly="readonly">
+							<input type="text" id="end_d" name="end_d" class="inputText"  value="${ccActVO.end_d}" readonly="readonly">
 						</td>
 					</tr>
 					<tr>

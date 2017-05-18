@@ -15,6 +15,7 @@ $(function(){
 	activeCancel();
 	actButton(ctx);
 	startDatePicker(ctx);
+	endCalendarPopup(ctx);
 });
 
 //영업기회 팝업창 띄우기
@@ -70,31 +71,33 @@ function actButton(ctx){
 
 //영업활동 pop에서 사용되는 datePicker
 function startDatePicker(ctx){
-	  $("#strt_d").datepicker({
-	    	changeMonth: true, //콤보 박스에 월 보이기
-	    	changeYear: true, // 콤보 박스에 년도 보이기
-	    	showOn: 'button', // 우측에 달력 icon 을 보인다.
-	    	buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	    	buttonImageOnly: true //달력에 icon 사용하기
-	    }); 
-	    //마우스를 손가락 손가락 모양으로 하고 여백주기
-	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-	    //날짜 형식을 0000-00-00으로 지정하기
-	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-	    /*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
-	    $("#end_d").datepicker({
-	    	changeMonth: true, //콤보 박스에 월 보이기
-	    	changeYear: true, // 콤보 박스에 년도 보이기
-	    	showOn: 'button', // 우측에 달력 icon 을 보인다.
-	    	buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-	    	buttonImageOnly: true //달력에 icon 사용하기
-	    }); 
-	    //마우스를 손가락 손가락 모양으로 하고 여백주기
-	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-	    //날짜 형식을 0000-00-00으로 지정하기
-	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-	    /*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
+	$("#strt_d").datepicker({
+	     changeMonth: true, //콤보 박스에 월 보이기
+	     changeYear: true, // 콤보 박스에 년도 보이기
+	     showOn: 'button', // 우측에 달력 icon 을 보인다.
+	     buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	     buttonImageOnly: true //달력에 icon 사용하기
+	 }); 
+	  //마우스를 손가락 손가락 모양으로 하고 여백주기
+	 $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	//날짜 형식을 0000-00-00으로 지정하기
+	    
+}
 
+//종료일자 달력띄우기
+function endCalendarPopup(ctx){
+	$("#end_d").datepicker({
+	     changeMonth: true, //콤보 박스에 월 보이기
+	     changeYear: true, // 콤보 박스에 년도 보이기
+	     showOn: 'button', // 우측에 달력 icon 을 보인다.
+	     buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
+	     buttonImageOnly: true //달력에 icon 사용하기
+	 }); 
+	  //마우스를 손가락 손가락 모양으로 하고 여백주기
+	 $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
+	//날짜 형식을 0000-00-00으로 지정하기
+	 $.datepicker.setDefaults({dateFormat:'yy-mm-dd'}); 
+	/* $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
 }
 
 //영업활동 추가

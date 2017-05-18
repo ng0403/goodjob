@@ -1,5 +1,5 @@
 
-$(function(){
+$(document).ready(function(){
 	var ctx = $('#ctx').val();
 	var cust_id = $("#nowCust_id").val();
 	//var cust_nm1 = $('#cust_nm', opener.document).val();
@@ -9,6 +9,7 @@ $(function(){
 	
 	$('#opptModfyButton').click(function() {
 		
+		alert("여기");
 		$('#opptModfyButton').hide();
 		$('#opptModfySaveBtn').show();
 		
