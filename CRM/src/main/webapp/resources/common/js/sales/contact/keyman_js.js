@@ -149,7 +149,7 @@ function keymanListPopup(){
 function opptListPopup(){
  	$('#oppt').click(function(){
 		var cont_id = $("#cont_id",opener.document).val();
- 		window.open('/opptListPop?cont_id='+cont_id,'newwindow1','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+ 		window.open('/opptListPop?cont_id='+cont_id,'newwindow1','width=915, height=330, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

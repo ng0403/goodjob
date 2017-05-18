@@ -18,6 +18,10 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_pop.js"></script>
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
  
@@ -45,15 +49,16 @@
 		</div>
 	
 	<div class="comp_list_div">
-		<table id="comp_list_table">
+		<!-- <table id="comp_list_table"> -->
+		<table id = "comp_list_table1" class="ui sortable celled table">
 			<thead>
 				<tr>
- 					<td style="width:30%;">영업기회명</td>
-					<td style="width:10%;">영업단계</td>
-					<td style="width:10%;">예상마감일자</td>
-					<td style="width:10%;">가능성(%)</td>
-					<td style="width:10%;">상태</td>
-					<td style="width:10%;">등록자</td>
+ 					<th style="width:30%;">영업기회명</td>
+					<th style="width:10%;">영업단계</td>
+					<th style="width:10%;">예상마감일자</td>
+					<th style="width:10%;">가능성(%)</td>
+					<th style="width:10%;">상태</td>
+					<th style="width:10%;">등록자</td>
  					
  				</tr>
 			</thead>

@@ -22,9 +22,8 @@ function inputCompNm(compNm,compId){
 
 //회사명리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업
 function compNmSelect(ctx){
-	$('#comp_list_table tbody tr').click(function(){
-		
-		var compNm=$(this).find('#company_nm').text();
+	$('#custcomp_list_table tbody tr').click(function(){
+  		var compNm=$(this).find('#company_nm').text();
 		var compId=$(this).find('#company_id').text();
 
 		window.opener.inputCompNm(compNm,compId);

@@ -143,7 +143,7 @@ function searchAcnkEvent(contactPageNum, keyword){
 						$("#email").val(data.email);
 						$("#ph").val(data.ph);
  						for(var i=0; i<data.contactList.length; i++){
- 							tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
+ 							tbodyContent +='<tr><th  style="text-align:center" ><input type="checkbox"id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
  							/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
  							*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
  							*/        			+"<td><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
@@ -208,7 +208,6 @@ function contactSearchEnter(event) {
 			alert("검색어를 입력하세요.")
 			$("#call_name").focus();
 		} else {
-			alert("여기로옴");
 			searchAcnkEvent(1,'');
 		}
 	}

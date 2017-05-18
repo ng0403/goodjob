@@ -246,7 +246,8 @@ function opptMdfySave()
 //상품 리스트 조회
 function opptProdList()
 {
- 	window.open('/contactprodList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+  	window.open('/contactprodList','newwindow3','width=800, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+  	opptProdNmSelect();
 }
 
 //상품 목록의 input값 변동에 따른 실시간 update
@@ -353,8 +354,7 @@ opptProdChargeRealTime();
 
 //저장(수정) 버튼 클릭
 function opptEstimSave(){
-	alert("hi");
-	$('#opptEstimButton').click(function(){
+ 	$('#opptEstimButton').click(function(){
 		var ctx = $('#ctx').val();
 		var flg = $('#flg').val();
 		alert(flg);

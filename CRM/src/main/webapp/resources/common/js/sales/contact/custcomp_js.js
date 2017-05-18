@@ -928,7 +928,7 @@ function custcompDelete()
 //영업 기회 insert 이게 진짜.
 function contactopptSave()
 {
- 	var ctx = $("#ctx").val();
+  	var ctx = $("#ctx").val();
 	var sales_oppt_id = $("#hsales_oppt_id").val();
  	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
@@ -983,11 +983,11 @@ function contactopptSave()
 		alert("가능성을 선택해 주세요.");
 		return false;
 	}
-	else if($("#prod_nm").val() == "" || $("#prod_nm").val() == null)
+/*	else if($("#prod_nm").val() == "" || $("#prod_nm").val() == null)
 	{
 		alert("상품을 추가해 주세요.");
 		return false;
-	}
+	}*/
 	$("#opptProdtbody tr").each(function(){
 		cd  = $(this).children().eq(4).children().eq(1).val();
 		if(cd =='0'){

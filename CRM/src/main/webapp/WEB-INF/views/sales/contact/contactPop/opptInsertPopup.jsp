@@ -13,18 +13,18 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act_oppt_prod.css" type="text/css" />
- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript"src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptInsertPop.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/oppt_prod_pop.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomtab_js.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_js.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_pop_js.js"></script> 
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script>
+<script type="text/javascript"src="/resources/common/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/resources/common/js/sales/act/act_detail.js"></script>
+<script type="text/javascript" src="/resources/common/js/sales/contact/opptInsertPop.js"></script>
+<script type="text/javascript" src="/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
+<script type="text/javascript" src="/resources/common/js/sales/contact/custcomtab_js.js"></script>
+<script type="text/javascript" src="/resources/common/js/sales/contact/keyman_js.js"></script>
+<script type="text/javascript" src="/resources/common/js/sales/contact/keyman_pop_js.js"></script> 
+<script type="text/javascript" src="/resources/common/js/sales/contact/custcomp_js.js"></script>
  
 
 
@@ -227,7 +227,7 @@
 				</form>
 			</div>
 			<div>
-				<table id= "estimatehead">
+				<table id= "estimatehead" style="table-layout:fixed;">
 							<tr>
 								<th style="width: 3%;">V</th>
 								<td style="width: 32%;"><span style="color:red">*품목명</span></td>
