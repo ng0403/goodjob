@@ -551,11 +551,7 @@ function estimList(opptId){
 		}
 	});
 }
-//영업기회 검색창 고객 리스트 팝업
-//function searchCustcompListPopup1(ctx){
-//	var ctx = $("#ctx").val();
-//	var count;
-//}
+
 //영업기회 검색창 고객 리스트 팝업
 function searchCustcompListPopup(ctx){
 	var ctx = $("#ctx").val();
@@ -563,18 +559,18 @@ function searchCustcompListPopup(ctx){
 
 	$('#searchCustomer').click(function(){
 		var pop_flg='n';
-		window.open(ctx+'/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+		window.open(ctx+'/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});
 	
 }
 ////영업기회 검색창 고객 리스트 팝업
 	$(document).on("click", "#searchCustomer0", function(){
 		var pop_flg = '0';
-		window.open('/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+		window.open('/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 	$(document).on("click", "#searchCustomer1", function(){
 		var pop_flg = '1';
-		window.open('/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+		window.open('/opptSearchCustcompList?pop_flg='+pop_flg,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 
 //고객 이름 입력 함수
