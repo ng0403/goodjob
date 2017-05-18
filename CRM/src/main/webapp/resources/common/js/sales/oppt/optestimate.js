@@ -3,6 +3,7 @@
  */
 $(document).ready(function() {
 	 var ctx = $("#ctx").val();
+	 estimCancel();
 	$('#opptSelect').click(function(){
 		window.open(ctx+'/ccOpptPopList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	}); 
@@ -64,7 +65,12 @@ $(document).ready(function() {
 	$.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
 	$('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');
 }); 
-
+//취소 버튼 클릭
+function estimCancel(){
+	$("#estimate_cancel").click( function(){
+		self.close();
+	});
+}
 function inputOpptNm(sales_oppt_id,sales_oppt_nm){
 	$('#sales_oppt_id').val(sales_oppt_id);
 	$('#sales_oppt_nm').val(sales_oppt_nm);

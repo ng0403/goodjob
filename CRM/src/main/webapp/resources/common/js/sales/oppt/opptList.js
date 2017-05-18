@@ -256,7 +256,6 @@ function AddCustomerOpen(){
 
 //검색 버튼 클릭 시 
 function searchBtn(page){
-	alert("조회버튼 클릭");
 	var ssales_oppt_nm = $("#ssales_oppt_nm").val();
 	var ssales_oppt_nm0 = $("#ssales_oppt_nm0").val();
 	var ssales_oppt_nm1 = $("#ssales_oppt_nm1").val();

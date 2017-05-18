@@ -8,11 +8,9 @@
 <link rel="stylesheet"
 	href="${ctx}/resources/common/css/sales/oppt/custcomp_actpop_css.css"
 	type="text/css" />
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${ctx}/resources/common/css/sales/oppt/operating_activity_popup.css" --%>
-<!-- 	type="text/css" /> -->
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptAct_pop.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -192,7 +190,7 @@
 						</table>
 	</div>
 	<div class="act_bt_position">
-		<input type="button" class="cust_oppt_btn" value="저장" id="activeButton"/>
+		<input type="button" class="tiny ui orange button" value="저장" id="activeButton"/>
 		<input type="button" class="cust_oppt_btn" value="취소" id="activeAdd_cancel"/>
 	</div>
 	</div>
