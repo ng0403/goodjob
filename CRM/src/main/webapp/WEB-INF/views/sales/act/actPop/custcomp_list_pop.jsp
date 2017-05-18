@@ -38,7 +38,7 @@
 			<table id="custcomp_list_table" class="ui celled table" >
 				<thead>
 					<tr>
-						<th style="width: 87.4%;">고객ID</th>
+						<th style="width: 86.2%;">고객ID</th>
 						<th style="width: 87.4%;">고객명</th>
 <!-- 					<td style="width:25%;">고객구분</td> -->
 <!-- 					<td style="width:25%;">기업상태</td> -->

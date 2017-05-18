@@ -73,7 +73,7 @@ select{
 }
 
 .custcomp_list_div #custcomp_list_table tbody td{
-/* 	width: 25%; */
+	width: 25%;
 	padding: 8px;
     line-height: 1.428571429;
     vertical-align: top;
