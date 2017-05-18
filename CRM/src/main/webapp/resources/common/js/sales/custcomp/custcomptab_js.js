@@ -285,7 +285,7 @@ function estimateAdd(ctx){
 				var pageNum=$('#pageNum').val();
 				window.open(ctx+'/custEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+
 						'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0',
-						'newwindow','width=925, height=485, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+						'newwindow','width=970, height=485, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 			}
 		});
 }

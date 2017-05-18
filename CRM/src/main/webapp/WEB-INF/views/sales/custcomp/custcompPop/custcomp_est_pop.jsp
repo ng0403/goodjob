@@ -68,7 +68,7 @@ $(function() {
 	</div>
 
 	<div class="est_pop_list_div">
-		<table id="keymanpopuptable" class="ui celled table" style="width: 40%; float: left; margin-right: 10px;">
+		<table id="keymanpopuptable" class="ui celled table" style="width: 42%; float: left; margin-right: 10px;">
 			<tbody id="tbody1">
 				<tr>
 					<th>견적명</th>
@@ -87,7 +87,7 @@ $(function() {
 				<tr>
 					<th>견적단계</th>
 					<td>
-						<select id="estim_lev_cd" class="inputText" name="estim_lev_cd" style="background: #fff;">
+						<select id="estim_lev_cd" class="inputText" name="estim_lev_cd" style=" height: 30px;">
 							<option value="0" style="text-align: center;">==선택==</option>
 							<c:forEach items="${elcList}" var="list">
 								<option value="${list.code}">${list.cd_nm}</option>							

@@ -120,7 +120,7 @@ function cancel_Click(){
 //상품 목록 리스트 팝업
 function prodList(ctx){
 	$('#prodListBtn').click(function(){
-		window.open(ctx+'/estProdList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/estProdList','newwindow3','width=770, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
