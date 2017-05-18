@@ -62,29 +62,19 @@ label {
 
 <div class="search_div">
  <div class="search2_div">
-<!-- Q&A 리스트, 조회화면 -->
-	    <form name="frm_QnA" id="frm_QnA" action="/board/search_QnA"	enctype="multipart/form-data"  method="post">
-	 
-				<!-- <label for="user_id">질문유형 :</label> -->
-					<!--  <select id="qna_type" name="qna_type">
-					    <option value=""> -- 선택 -- </option>
- 							<option value="Y">Y</option>
- 							<option value="N">N</option>
- 					</select> -->
-						<label>답변	 :</label>
-					<select id="qna_answer" name="qna_answer">
+  						<label>답변	 :</label>
+					    <select id="qna_answer" name="qna_answer" onkeydown="boardSearchEnter(event);">
 					    <option value=""> -- 답변 -- </option>
  							<option value="Y">Y</option>
  							<option value="N">N</option>
  					</select>
        <div class="ui left icon input" style="margin-left:10px">
-			<input type="text" placeholder="제목"  id="keyword" name="keyword" ">
+			<input type="text" placeholder="제목"  id="keyword" name="keyword" onkeydown="boardSearchEnter(event);">
 			<i class="list icon"></i>
 		</div>	
 				 <input type="button" class="ui orange button" onclick="boardPaging(1);" value="조회">
 		 
-				</form> 
-				</div>
+ 				</div>
 </div> 
  
 <div class="list_div">

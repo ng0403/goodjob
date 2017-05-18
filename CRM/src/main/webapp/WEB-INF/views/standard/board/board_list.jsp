@@ -46,13 +46,13 @@ $(function() {
    <!-- Q&A 리스트, 조회화면 -->
    <div class="search_div" id="search_div">
        <div class="ui left icon input">
-			<input type="text" placeholder="제목"  id="keyword" name="keyword">
+			<input type="text" placeholder="제목"  id="keyword" name="keyword"  onkeydown="boardSearchEnter(event);">
 			<i class="list icon"></i>
 		</div>	
 <!--              <label >제  목</label>
             <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
  -->   
-             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색">
+             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색"">
      </div>
 
    <div class="list_div">

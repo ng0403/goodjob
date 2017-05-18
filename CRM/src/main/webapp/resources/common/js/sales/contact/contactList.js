@@ -208,6 +208,7 @@ function contactSearchEnter(event) {
 			alert("검색어를 입력하세요.")
 			$("#call_name").focus();
 		} else {
+			alert("여기로옴");
 			searchAcnkEvent(1,'');
 		}
 	}

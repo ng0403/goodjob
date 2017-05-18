@@ -291,3 +291,18 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
 }
+
+//검색 엔터키 기능
+function boardSearchEnter(event) {
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	
+ 	if (keycode == '13') {
+		if ($("#keyword").val() == '' && $("#qna_answer").val() == '') {
+			alert("검색어를 입력하세요.")
+			$("#keyword").focus();
+		} else {
+			boardPaging(1,'');
+		}
+	}
+	event.stopPropagation();
+}

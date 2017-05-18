@@ -44,7 +44,7 @@ $(function() {
 <!--           <form name="frm_QnA" id="frm_QnA" action="/board/search_boardInqr"   enctype="multipart/form-data"  method="post">
  -->   
         <div class="ui left icon input">
-			<input type="text" placeholder="제목"  id="keyword" name="keyword" ">
+			<input type="text" placeholder="제목"  id="keyword" name="keyword" onkeydown="boardSearchEnter(event);">
 			<i class="list icon"></i>
 		</div>	
  
