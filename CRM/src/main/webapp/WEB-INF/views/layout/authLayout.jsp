@@ -30,9 +30,9 @@ html,body{
 				<tiles:insertAttribute name="navi"></tiles:insertAttribute></div>
 	</div>
 	
+	<div class="sub_menu_bar">
+	</div>
 	<div class="bodyFrame"><!--  style="width:100%; height:80%; overflow: hidden;"> -->
-		<div class="sub_menu_bar">
-		</div>
 		<div class="left" style="width:20%;min-height: 100%; /* border:1px solid black; */float:left; padding-left: 20px; padding-right: 10px;">
 			<tiles:insertAttribute name="left"></tiles:insertAttribute></div>
 		<div class="right" style="width:63%;min-height: 100%; float: left;  padding-right: 10px;">

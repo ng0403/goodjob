@@ -5,12 +5,20 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
+
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" /> --%>
+
+
 <style type="text/css">
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
@@ -36,8 +44,8 @@
 	<div class="bt_position_popup">
    		<div class="bs-example" data-example-id="simple-table">
   
-	 		<table id="operatingapopuptable">  			
-				<tbody id="tbody1">
+	 		<table id="operatingapopuptable" class="ui celled table">  			
+				<tbody id="tbody1" >
 					<tr>  
 						<th>고객사</th>
 						<td>
@@ -93,8 +101,8 @@
 			</table>
 		</div>
 		<div class="act_bt_position">
-			<input type="button" class="cust_oppt_btn" value="저장" id="ccMngButton"/>
-			<input type="button" class="cust_oppt_btn" value="취소" id="activeAdd_cancel"/>
+			<input type="button" class="tiny ui orange button" value="저장" id="ccMngButton"/>
+			<input type="button" class="tiny ui button" value="취소" id="activeAdd_cancel"/>
 		</div>
 	</div>
 </div>

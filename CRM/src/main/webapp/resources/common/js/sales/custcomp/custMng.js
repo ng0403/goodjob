@@ -23,7 +23,7 @@ $(function(){
 //영업기회 상세정보 고객 리스트 팝업 (고객 버튼클릭 시)
 function iuserListPopup(ctx){
 	$('#Manager').click(function(){
-		window.open(ctx+'/custSaleActIuserList','newwindow2','width=760, height=360, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/custSaleActIuserList','newwindow2','width=770, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 //직원팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수

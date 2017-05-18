@@ -109,26 +109,26 @@ $(document).ready(function() {
 });
 //고객사별 담당사원 추가 팝업
 function addCustManager(ctx){
-$('#poc_pop_btn').click(function(){
-var custId = $('#nowCust_id').val();
-if(custId == "" || custId == null ){
-alert("고객사를 선택해주세요.");
-}else{
-var list_cust_id = $('#nowCust_id').val();
-var list_cust_nm = $('#nowCust_nm').val();
-
-window.open(ctx+'/custMngPopup?list_cust_id='+list_cust_id+
-'&list_cust_nm='+list_cust_nm,'newwindow1','width=510, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-}
-});
+	$('#poc_pop_btn').click(function(){
+		var custId = $('#nowCust_id').val();
+		if(custId == "" || custId == null ){
+			alert("고객사를 선택해주세요.");
+		}else{
+			var list_cust_id = $('#nowCust_id').val();
+			var list_cust_nm = $('#nowCust_nm').val();
+	
+			window.open(ctx+'/custMngPopup?list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,
+					'newwindow1','width=770, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		}
+	});
 }
 
 //고객명 클릭 시 detail값 가져오는 함수
 function ccMngDetail(cust_id,iuser_id,iuser_nm){
-var list_cust_nm = $('#nowCust_nm').val();
-window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+
-'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
-'newwindow1','width=510, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	var list_cust_nm = $('#nowCust_nm').val();
+	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+
+				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
+				'newwindow1','width=770, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 
 }
 
