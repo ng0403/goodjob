@@ -19,6 +19,7 @@ $(function() {
 
 function userFormInit(){
 	$('#joinform').find('input[type="text"]').attr('disabled',true);
+	$('#joinform').find('input[type="button"]').attr('disabled',true);
 	$('#modifybtn').attr('disabled', true);
 	$('#addsavebtn').attr('disabled', true);
 	$('#cancelbtn').attr('disabled', true);
@@ -40,8 +41,8 @@ function iuserCode(code){
 }
 
 function orgPop(ctx){
-  $('#orgPopup').click(function(){
-	 window.open(ctx+'/orgNamePopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no');
+  $('#orgSearch').click(function(){
+	 window.open(ctx+'/orgNamePopup','newwindow','width=775, height=350, toolbar=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no');
   }); 
 }
 
@@ -180,6 +181,7 @@ function modifyData(ctx){  //편집 버튼에 대한 내용 (버튼 활성화 �
 		$('#modifybtn').css("display", "none");
 //		$('#modifybtn').attr("disabled", true);
 		$('#submitbtn').attr('disabled',true);
+		$('#orgSearch').attr("disabled", false);
 	});
 }
 
