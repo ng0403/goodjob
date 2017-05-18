@@ -263,7 +263,7 @@
 										<td style="width: 8%;">
 											<input type=number class="inputText" style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value="${prodlist.prod_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' >
 										</td>
-										<td style="width: 27%;" >${list.prod_price}</td>
+										<td style="width: 27%;" >${list.prod_price}</td>  
 										<td style="width: 15%;" >
 											<input type=number class="inputText" style="width: 61%;  text-align: right; padding-right: 0px;" id="discount" name="discount" min="0" max="100" value="${prodlist.discount}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>
 						
