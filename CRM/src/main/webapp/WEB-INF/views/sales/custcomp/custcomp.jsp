@@ -78,7 +78,7 @@ $(function() {
 			
 			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 		
-		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="searchBtn('${pageNum}');" />
+		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="searchBtn('${ccPageNum}');" />
 		
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
 <!-- 				<option value="all" style="text-align: center;">전체</option> -->

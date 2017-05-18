@@ -22,10 +22,10 @@
 			</div>
 		</div>
 		
+		<div class="sub_menu_bar">
+
+		</div>
 		<div class="bodyFrame" >
-			<div class="sub_menu_bar">
-	
-			</div>
 			<div class="body2">
 				<div class="master2">
 					<tiles:insertAttribute name="master2"></tiles:insertAttribute>
