@@ -12,54 +12,6 @@ function cateDetail_init(){
 	cateDetailButtonEvent(ctx);
 }
 
-//from에 disable 설정
-function cateForm_disable(flag){
-	$('#cateInsertForm').children().each(function(){
-		if(flag == true){
-			$(this).prop('disabled',true);
-		}else{
-			$(this).prop('disabled',false);
-		}
-	});
-}
-
-//각 클래스명으로 체크된 갯수
-function cate_checkCount(selectNodeClass){
-	var count=0;
-	var checkList =	$('.'+selectNodeClass);
-	
-	for(var i=0; i<checkList.lenght; i++){
-		if($(checkList[i]).is(':checked')){
-			count++;
-		}
-	}	
-	return count;
-}
-
-//체크노드 찾기
-function cate_checkedNode(ClassName){
-	var node;
-	var checkList =	$('.'+ClassName);
-	for(var i=0; i<$(checkList).lenght; i++){
-		if($(checkList[i]).is(':checked')){
-			node = checkList[i];
-		}
-	}
-	return node;
-}
-
-//체크된 메뉴리스트
-function cate_checkNodeList(ClassName){
-	var list = new Array();
-	var checkList =	$('.'+ClassName);
-
-	for(var i=0; i<$(checkList).lenght; i++){
-		if($(checkList[i]).is(':checked')){
-			list.push(checkList[i]);
-		}
-	}	
-	return list;
-}
 
 function serializeObject(a)
 {
@@ -131,12 +83,15 @@ function cateDetailButtonEvent(ctx){
 			        		alert("올바르게 저장되지 않았습니다.");
 			        	}else{
 			        		alert("입력정보가 저장되었습니다.");
-			        		var list = cate_checkNodeList('subCheck');
-				        	if($(list).lenght == 0){
-				        		$(cate_checkedNode('masterCheck')).val(result.cate_id);
-				        	}else{
-				        		$(cate_checkedNode('subCheck')).val(result.cate_id);
-				        	}
+			        		alert("Category : " + $('#cate_nm').val());
+			        		
+//			        		var list = cate_checkNodeList('subCheck');
+//				        	
+//			        		if($(list).lenght == 0){
+//				        		$(cate_checkedNode('masterCheck')).val(result.cate_id);
+//				        	}else{
+//				        		$(cate_checkedNode('subCheck')).val(result.cate_id);
+//				        	}
 				        	
 				        	//저장후 입력한 노드에 대한 메뉴이름 목록에 재지정
 							if($('#up_cate_nm').is(':disabled')){
@@ -162,10 +117,14 @@ function cateDetailButtonEvent(ctx){
 			            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			        }
 				});
-			}else{
+			}
+			else
+			{
 				alert("빈 공간을 입력해주세요!!");
 			}
-		}else if($('#cate_mode').val() == 'update'){
+		}
+		else if($('#cate_mode').val() == 'update')
+		{
 			var node = $('#cateInsertForm').find('input[type="text"]:not(input[type="text"]:disabled)');
 			
 			//텍스트 입력 공백 확인

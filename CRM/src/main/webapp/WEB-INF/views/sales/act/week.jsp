@@ -10,13 +10,18 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jui/jui.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/animate.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/main.css" />
 <link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
 
 <script src="${pageContext.request.contextPath}/resources/SE/js/HuskyEZCreator.js" type="text/javascript" charset="utf-8"></script>
 <script src='${pageContext.request.contextPath}/resources/lib/jquery.min.js'></script>
@@ -39,7 +44,9 @@
 
 	<div>
 		<div id="title">
-			<div class="caption">■ 영업 > 영업활동</div>
+			<div class="caption">
+				<h3 class="ui header" style="background: #fff;">■ 영업 > 영업활동</h3>
+			</div>
 		</div>
 
 		<div id="dboardbody" class="jui" style="width: 1000px; margin: 0 auto;">
@@ -73,8 +80,9 @@
 					<!-- Schedule_View -->
 					<div id="main_View" style="display: block;">
 						<div class="group">
-							<a class="left btn btn-mini btn-gray-black" id="sview-refresh">
-								<span>새로고침</span>&nbsp;<i class="icon-refresh"></i>
+							<a class="tiny ui orange button" id="sview-refresh" style="height: 5px; padding: 5px; padding-top: 0px; padding-bottom: 8px;">
+								<span>새로고침</span>&nbsp;
+								<i class="icon-refresh"></i>
 							</a> (날짜의 빈공간을 클릭하면 영업활동을 추가 할 수 있습니다.)
 						</div>
 						<!-- 달력 Cell 생성해주는 부분	. -->

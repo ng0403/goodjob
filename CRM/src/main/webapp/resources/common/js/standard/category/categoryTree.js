@@ -64,12 +64,21 @@ function cateCheckEvent(ctx){
 //체크노드 찾기
 function cate_checkedNode(ClassName){
 	var node;
+	var count = 0;
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<$(checkList).lenght; i++){
+	
+	alert("Category " + ClassName);
+	alert("Category " + checkList);
+	
+	for(var i=0; i<$(checkList).lenght; i++)
+	{
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
+			count++;
 		}
 	}
+	alert("Category : " + count);
+	
 	return node;
 }
 

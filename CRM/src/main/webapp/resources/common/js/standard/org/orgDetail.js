@@ -115,7 +115,7 @@ function orgDetailButtonEvent(ctx){
 		
 		if($('#org_mode').val() == 'insert')
 		{
-			var flag=true;
+			var flag = true;
 			var org_flag = $('#org_insert_mode').val();
 			var node;
 			
@@ -123,12 +123,15 @@ function orgDetailButtonEvent(ctx){
 			{
 				node = $('.orgDetail').find('input[type="text"]');
 				/*node = $('.orgtypeDetail').find('input[type="text"]');*/
-			}else
+			}
+			else
 			{
 				node = $('.orgDetail').find('input[type="text"]');
 			}
 					
 			var obj = new Object();
+			var org_level = $('#code').val();
+			var org_name  = $('#org_name').val()
 			
 			//텍스트 입력 공백 확인
 			$(node).each(function(){
@@ -225,38 +228,49 @@ function orgDetailButtonEvent(ctx){
 			        	else
 			        	{
 			        		alert("입력정보가 저장되었습니다.");
-
-			        		detaildisabled();
+			        		//detaildisabled();
 			        	}
 			        	
-			        	var node = org_searchNode($('#orgTree'), 'NEW');
+			        	//var node = org_searchNode($('#orgTree'), 'NEW');
 						
-			        	if(org_flag == 'org_type')
-			        	{
-							$(node).val(result.org_type_id);
+			        	alert("2 " + org_level);
+			        	
+						if(org_level == '0001'){
+							$(org_checkedNode('masterCheck')).next().text(org_name);
 							
-							if($('#active_flg2_Y').is(':checked'))	//활성화여부가 Y일 경우
-							{
-								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
-							}
-							else
-							{
-								$(node).next().css('text-decoration','line-through');
-							}
+						}else{
+							alert("4 " + org_level);
+							$(org_checkedNode('subCheck')).next().text(org_name);
 						}
-			        	else
-			        	{
-							$(node).val(result.org_id);
-							
-							if($('#active_flg_Y').is(':checked'))	//활성화여부가 Y일 경우
-							{
-								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
-							}
-							else
-							{
-								$(node).next().css('text-decoration','line-through');
-							}
-						}
+						
+						$('#orgTree').find('input').prop('checked',false);
+			        	
+//			        	if(org_flag == 'org_type')
+//			        	{
+//							$(node).val(result.org_type_id);
+//							
+//							if($('#active_flg2_Y').is(':checked'))	//활성화여부가 Y일 경우
+//							{
+//								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
+//							}
+//							else
+//							{
+//								$(node).next().css('text-decoration','line-through');
+//							}
+//						}
+//			        	else
+//			        	{
+//							$(node).val(result.org_id);
+//							
+//							if($('#active_flg_Y').is(':checked'))	//활성화여부가 Y일 경우
+//							{
+//								$(node).next().css('text-decoration','none');	//글씨에 가운데 직선 삽입
+//							}
+//							else
+//							{
+//								$(node).next().css('text-decoration','line-through');
+//							}
+//						}
 			        },
 			        error: function(){
 			            alert("error");
@@ -267,7 +281,6 @@ function orgDetailButtonEvent(ctx){
 				
 				reset();
 				
-				$('#orgTree').find('input').prop('checked',false);
 				$('#orgSubmitBtn').hide();
 				$('#orgUpdateBtn').hide();
 				$('#orgResetBtn').show();

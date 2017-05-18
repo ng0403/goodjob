@@ -293,7 +293,9 @@ function orgAnckEvent(ctx)
 function orgButtonEvent(ctx)
 {
 	//추가버튼 누를시 이벤트
-	$('.bt_position').delegate('#orgAddBtn','click',function(){
+	// bt_position : 기존 class명
+	//$('.tiny ui button').delegate('#orgAddBtn','click',function(){
+	$('#orgAddBtn').click(function(){
 		var up_org_ud = $('.masterCheck').val();
 		var tmp=[];
 		
@@ -353,7 +355,11 @@ function orgButtonEvent(ctx)
 								$(this).parent().text('NewNode');
 							}
 							
-							$('#org_name').val($(this).val());
+							//$('#org_name').val($(this).val());
+							// 새로 추가한 부분.
+							$('#org_name').val($(org_checkedNode('masterCheck')).next().text());
+							
+							
 							$('.orgDetail').show();
 							$('.orgtypeDetail').hide();
 							$('#oorg').show();
@@ -369,8 +375,6 @@ function orgButtonEvent(ctx)
 							$('#org_type_id').val('ORT01');
 							$('#code').prop('disabled',true);
 							$('#code').val('0001');
-							
-							
 						}
 						else
 						{
@@ -775,12 +779,19 @@ function org_All_checkedNode(){
 //체크노드 찾기
 function org_checkedNode(ClassName){
 	var node;
+	var count = 0;
 	var checkList =	$('.'+ClassName);
+	
+	alert("ClassName " + ClassName);
+	
 	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
+			count++;
 		}
 	}
+	alert("org_checkedNode :" + count);
+	
 	return node;
 }
 
@@ -799,12 +810,14 @@ function org_CheckedIdList(ClassName){
 //체크노드 찾기
 function org_searchNode(parentNode, id){
 	var node;
+	
 	var list =	$(parentNode).find('input[type="checkbox"]');
 	for(var i=0; i<$(list).length; i++){
 		if($(list[i]).val() == id){
 			node = list[i];
 		}
 	}
+	
 	return node;
 }
 
@@ -821,12 +834,16 @@ function org_searchTextNode(parentNode, name){
 }
 
 //삭제할 노드의 css수정
-function org_deleteAction(list){
-	for(var i=0; i<$(list).length; i++){
+function org_deleteAction(list)
+{
+	alert("DELETE CSS 수정");
+	for(var i=0; i<$(list).length; i++)
+	{
 		var node = org_searchNode($('#orgTree'), list[i]);
+
 		$(node).next().css('text-decoration','line-through');
 		$(node).parent().find('a').css('text-decoration','line-through');
-		$(node).prop('checked',false);
+		$(node).prop('checked', false);
 	}
 }
 
