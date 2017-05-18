@@ -256,17 +256,62 @@ function AddCustomerOpen(){
 
 //검색 버튼 클릭 시 
 function searchBtn(page){
-	
+	alert("조회버튼 클릭");
 	var ssales_oppt_nm = $("#ssales_oppt_nm").val();
+	var ssales_oppt_nm0 = $("#ssales_oppt_nm0").val();
+	var ssales_oppt_nm1 = $("#ssales_oppt_nm1").val();
 	var scust_id = $("#scust_id").val();
-	var ssales_lev_cd_select =  $("#ssales_lev_cd_select").val();
-	var spsblty_rate_select = $("#spsblty_rate_select").val();
-	
-//	if(ssales_oppt_nm == '' && scust_id == '' && ssales_lev_cd_select == '' && spsblty_rate_select ==''){
-//		alert("검색어를 입력하세요");
-//		$("#ssales_oppt_nm").focust();
-//		return;
-//	}else{
+	var scust_id0 = $("#scust_id0").val();
+	var scust_id1 = $("#scust_id1").val();
+	var ssales_lev_cd = $("#ssales_lev_cd_select").val();
+	var ssales_lev_cd0 = $("#ssales_lev_cd_select0").val();
+	var ssales_lev_cd1 = $("#ssales_lev_cd_select1").val();
+	var spsblty_rate = $("#spsblty_rate_select").val();
+	var spsblty_rate0 = $("#spsblty_rate_select0").val();
+	var spsblty_rate1 = $("#spsblty_rate_select1").val();
+//	alert(ssales_oppt_nm);
+//	alert(ssales_oppt_nm0);
+//	alert(ssales_oppt_nm1);
+	if((ssales_oppt_nm == '' || ssales_oppt_nm == null) && ssales_oppt_nm0){
+		alert("영업기회명을 앞에서부터 채워주세요.");
+		return;
+	}if((ssales_oppt_nm == '' || ssales_oppt_nm == null) && ssales_oppt_nm1){
+		alert("영업기회명을 앞에서부터 채워주세요.");
+		return;
+	}if(ssales_oppt_nm0 == null && ssales_oppt_nm1){
+		alert("영업기회명을 앞에서부터 채워주세요.");
+		return;
+	}
+	if((scust_id == '' || scust_id == null)  && scust_id0){
+		alert("고객명을 앞에서부터 채워주세요.");
+		return;
+	}if((scust_id == '' || scust_id == null) && scust_id1){
+		alert("고객명을 앞에서부터 채워주세요.");
+		return;
+	}if(scust_id0 == null && scust_id1){
+		alert("고객명을 앞에서부터 채워주세요.");
+		return;
+	}
+	if((ssales_lev_cd == '' || ssales_lev_cd == null) && ssales_lev_cd0){
+		alert("영업기회단계를 앞에서부터 채워주세요.");
+		return;
+	}if((ssales_lev_cd == '' || ssales_lev_cd == null) && ssales_lev_cd1){
+		alert("영업기회단계를 앞에서부터 채워주세요.");
+		return;
+	}if(ssales_lev_cd0 == null && ssales_lev_cd1){
+		alert("영업기회단계를 앞에서부터 채워주세요.");
+		return;
+	}
+	if((spsblty_rate == '' || spsblty_rate == null) && spsblty_rate0){
+		alert("가능성을 앞에서부터 채워주세요.");
+		return;
+	}if((spsblty_rate == '' || spsblty_rate == null) && spsblty_rate1){
+		alert("가능성을 앞에서부터 채워주세요.");
+		return;
+	}if(spsblty_rate0 == null && spsblty_rate1){
+		alert("가능성을 앞에서부터 채워주세요.");
+		return;
+	}
 		opportunityList(page);
 //	}
 }
@@ -283,18 +328,7 @@ function uncomma(str) {
 //영업기회 리스트 출력
 function opportunityList(page){
 	var ctx = $("#ctx").val();
-//	alert($("#ssales_oppt_nm").val());
-//	alert($("#ssales_oppt_nm0").val());
-//	alert($("#ssales_oppt_nm1").val());
-//	alert($("#scust_id").val());
-//	alert($("#scust_id0").val());
-//	alert($("#scust_id1").val());
-//	alert($("#ssales_lev_cd_select").val());
-//	alert($("#ssales_lev_cd_select0").val());
-//	alert($("#ssales_lev_cd_select1").val());
-//	alert($("#spsblty_rate_select").val());
-//	alert($("#spsblty_rate_select0").val());
-//	alert($("#spsblty_rate_select1").val());
+	
 	$.ajax({
 		type : 'post',
 		url : ctx + '/opptajax',
