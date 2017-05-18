@@ -94,6 +94,17 @@ var opptProdAddId = [];   		//추가된 상품의 상품Id List
 var opptProdDeleteProdId = [];	//삭제된 상품의 상품Id List
 var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
 
+//숫자 사이 쉼표 추가
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+//숫자 사이 쉼표 삭제
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+}
+
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInProd(prod_id, prod_nm, prod_price)
