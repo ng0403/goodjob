@@ -23,11 +23,12 @@
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
+   
 </style>
 </head>
 <%-- <body onload='javscript:if(${flg == "detail"}) custActiveDetail();'> --%>
 <body>
-<div class="keymanview">
+<div class="keymanview" style="width: 98%; padding-left: 10px;">
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="custType" value="${iuserType}"/>
@@ -35,10 +36,12 @@
 	<input type="hidden" id="siuser_id" value="${siuser_id}"/>
 	<div id="title">
 		<c:if test="${flg == 'add' }">
-		<div class="caption">■ 고객사담당자 등록</div>
+<!-- 			<div class="caption">■ 고객사담당자 등록</div> -->
+			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 고객사담당자 등록</h3>
 		</c:if>
 		<c:if test="${flg == 'detail' }">
-		<div class="caption">■ 고객사담당자 상세정보</div>
+<!-- 			<div class="caption">■ 고객사담당자 상세정보</div> -->
+			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 고객사담당자 상세정보</h3>
 		</c:if>
 	</div>
 	<div class="bt_position_popup">
@@ -50,20 +53,20 @@
 						<th>고객사</th>
 						<td>
 							<c:if test="${flg == 'add' }">
-								<input type="text" name="cust_nm" id="cust_nm" class="int" value="${cust_nm}" readonly="readonly">
+								<input type="text" name="cust_nm" class="inputText" id="cust_nm"  value="${cust_nm}" readonly="readonly">
 								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
 							</c:if>
 							<c:if test="${flg == 'detail' }">
-								<input type="text" name="cust_nm" id="cust_nm" class="int" value="${detail.cust_nm}" readonly="readonly">
+								<input type="text" name="cust_nm" id="cust_nm"  class="inputText" value="${detail.cust_nm}" readonly="readonly">
 								<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
 							</c:if>
 					</tr>
 					<tr>  
 						<th>담당사원</th>
 						<td>
-							<input type="text" name="iuser_nm" id="iuser_nm" class="int" value="${detail.iuser_nm}" readonly="readonly">
+							<input type="text" name="iuser_nm" id="iuser_nm"  class="inputText" value="${detail.iuser_nm}" readonly="readonly">
 							<c:if test="${flg == 'add' }">
-							<input type="button" class="btn-success-tel" id="Manager"  value="직원검색" onclick="javascript:iuserListPopup('${ctx}');">
+								<input type="button" class="tiny ui orange basic button" id="Manager"  value="직원검색" onclick="javascript:iuserListPopup('${ctx}');">
 							</c:if>
 							<input type="hidden" name="iuser_id" id="iuser_id" value="${detail.iuser_id}">
 						</td>
@@ -71,7 +74,7 @@
 					<tr>
 						<th>역할명</th>
 						<td>
-						    <input type="text"   id="key_part" name="key_part" class="int" value="${detail.key_part}" > 
+						    <input type="text"   id="key_part" name="key_part"  class="inputText" value="${detail.key_part}" > 
 						</td>
 					</tr>
 					<tr>
@@ -100,7 +103,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="act_bt_position">
+		<div class="act_bt_position" style="padding-top: 10px;">
 			<input type="button" class="tiny ui orange button" value="저장" id="ccMngButton"/>
 			<input type="button" class="tiny ui button" value="취소" id="activeAdd_cancel"/>
 		</div>

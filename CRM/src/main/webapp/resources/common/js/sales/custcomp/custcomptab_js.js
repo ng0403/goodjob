@@ -25,7 +25,8 @@ $(document).ready(function() {
 			alert('고객을 선택해주세요.');
 			return;
 		}else {
-			window.open(ctx+'/keymanPopup?cust_id='+cust_id+'&flag=0','newwindow','width=450, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/keymanPopup?cust_id='+cust_id+'&flag=0',
+						'newwindow','width=770, height=385, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 	
@@ -36,7 +37,8 @@ $(document).ready(function() {
 			alert('고객을 선택해주세요.');
 			return;
 		}else {
-			window.open(ctx+'/actPopup?cust_id='+cust_id+'&flag=0','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/actPopup?cust_id='+cust_id+'&flag=0',
+						'newwindow','width=770, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 	
@@ -47,7 +49,8 @@ $(document).ready(function() {
 			alert('고객을 선택해주세요.');
 			return;
 		}else {
-			window.open(ctx+'/contPopup?cust_id='+cust_id+'&flag=0','newwindow','width=420, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/contPopup?cust_id='+cust_id+'&flag=0',
+					     'newwindow','width=770, height=460, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 	
@@ -118,7 +121,7 @@ function addCustManager(ctx){
 			var list_cust_nm = $('#nowCust_nm').val();
 	
 			window.open(ctx+'/custMngPopup?list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,
-					'newwindow1','width=770, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+					'newwindow1','width=770, height=304, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 }
@@ -128,7 +131,7 @@ function ccMngDetail(cust_id,iuser_id,iuser_nm){
 	var list_cust_nm = $('#nowCust_nm').val();
 	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+
 				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
-				'newwindow1','width=770, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				'newwindow1','width=770, height=304, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 
 }
 
@@ -175,38 +178,44 @@ function pocchkCancel(){
 //고객사 담당자 상세정보
 function pocDeatil(cust_id) {
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/pocDeatilPopup?cust_id='+cust_id+'&flag=1','newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/pocDeatilPopup?cust_id='+cust_id+'&flag=1',
+				'newwindow','width=770, height=385,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업 담당자 상세정보
 function posDeatil(sales_actvy_id, iuser_id) {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
-	window.open(ctx+'/custPosDetailPopup?sales_actvy_id='+sales_actvy_id+'&iuser_id='+iuser_id+'&cust_id='+cust_id+'&flag=1','newwindow','width=500, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/custPosDetailPopup?sales_actvy_id='+sales_actvy_id+'&iuser_id='+iuser_id+'&cust_id='+cust_id+'&flag=1',
+				'newwindow','width=770, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //키맨 상세정보 추가할 것
 function keymanDeatil(cust_id,cont_id) {
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/keymanDetailPopup?cust_id='+cust_id+'&flag=1'+'&cont_id=' + cont_id,'newwindow','width=450, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/keymanDetailPopup?cust_id='+cust_id+'&flag=1'+'&cont_id=' + cont_id,
+				'newwindow','width=770, height=385,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 영업기회 상세정보 팝업
 function ccOpptDetail(sales_oppt_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/opptDetailPopup?sales_oppt_id='+sales_oppt_id+'&flag=1','newwindow','width=450, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/opptDetailPopup?sales_oppt_id='+sales_oppt_id+'&flag=1',
+				'newwindow','width=770, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동 상세정보 팝업
 function ccActDetail(sales_actvy_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/custActiveDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1','newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/custActiveDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1',
+				'newwindow','width=770, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 견적 상세정보 팝업
 function ccEstDetail(estim_id){
 	var ctx = $("#ctx").val();
-	window.open(ctx+'/custEstimDetail?estim_id='+estim_id+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/custEstimDetail?estim_id='+estim_id+'&flag=1',
+				'newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //계약 상세정보 팝업

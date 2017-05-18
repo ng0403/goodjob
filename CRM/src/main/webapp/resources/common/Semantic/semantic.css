@@ -37112,3 +37112,10 @@ html.ios {
 /*******************************
          Site Overrides
 *******************************/
+
+.inputText{
+		    padding: 3px;
+	    	padding-bottom: 6px;
+	   		border-radius: 5px; 
+} 
+

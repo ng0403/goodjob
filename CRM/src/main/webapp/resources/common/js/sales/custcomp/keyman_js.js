@@ -9,7 +9,8 @@ function keymanListRefresh(cust_id) {
 //연락처 상세정보 고객 리스트 팝업
 function contactListPopup(ctx){
  	$('#contact').click(function(){
-		window.open('/contactListPop','newwindow1','width=620, height=410, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open('/contactListPop','newwindow1',
+				     'width=810, height=390, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

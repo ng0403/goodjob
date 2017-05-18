@@ -105,7 +105,7 @@ $(function() {
 						<th style="width: 10%" id="tblTh" >매출규모</th>
 						<th style="width: 8%"  id="tblTh" >직원수</th>
 						<th style="width: 14%" id="tblTh" >산업군</th>
-<!-- 						<th style="width: 8%"  id="tblTh" >영업 담당자</th> -->
+						<th style="width: 8%"  id="tblTh" >영업 담당자</th>
 						<th style="width: 15%" id="tblTh" >등록일시</th>
 					</tr>
 				</thead>
@@ -124,7 +124,7 @@ $(function() {
 							<td style="text-align: center;">${cc.sales_scale}</td><!-- 매출규모 -->
 							<td style="text-align: right; padding-right: 8px;">${cc.emp_qty}</td><!-- 직원수 -->
 							<td style="text-align: center;">${cc.indst}</td><!-- 산업군 -->
-<%-- 							<td style="text-align: center;">${cc.iuser_nm}</td><!-- 영업담당자 --> --%>
+							<td style="text-align: center;">${cc.iuser_nm}</td><!-- 영업담당자 -->
 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>
