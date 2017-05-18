@@ -6,8 +6,8 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
 <!-- 페이지 공통 js파일 -->
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script> --%>

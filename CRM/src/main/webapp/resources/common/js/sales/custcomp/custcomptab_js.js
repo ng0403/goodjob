@@ -204,7 +204,7 @@ function keymanDeatil(cust_id,cont_id) {
 function ccOpptDetail(sales_oppt_id){
 	var ctx = $("#ctx").val();
 	window.open(ctx+'/opptDetailPopup?sales_oppt_id='+sales_oppt_id+'&flag=1',
-				'newwindow','width=925, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				'newwindowDetail','width=925, height=550, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동 상세정보 팝업

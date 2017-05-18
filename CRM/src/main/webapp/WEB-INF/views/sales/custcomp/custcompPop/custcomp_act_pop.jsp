@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/act.js"></script>
 
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 
