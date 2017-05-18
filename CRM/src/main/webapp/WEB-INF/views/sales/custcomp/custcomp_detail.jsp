@@ -78,13 +78,13 @@
 									<div class="ui input focus">
 										<input type="hidden" id="cust_id" name="cust_id" value="${custcompDetail.cust_id}" />
 										<input type="hidden" id="hcust_nm" value="${custcompDetail.cust_nm}" />
-										<input type="text" name="cust_nm" id="cust_nm"  value="${custcompDetail.cust_nm}"  style="ms-ime-mode: disabled;" readonly="readonly" />
+										<input type="text" name="cust_nm" id="cust_nm"  value="${custcompDetail.cust_nm}"  style="ms-ime-mode: disabled; " readonly="readonly" />
 									</div>
 								</td>
 								<th style="color:red">*고객사구분</th>
 								<td>
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" /> 
-									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled">
+									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled" style="background: rgb(220, 220, 220);">
 											<option value="0" style="text-align: center;">==구분==</option>
 											<c:forEach var="CDC" items="${CDCCodeList}">
 												<option value="<c:out value="${CDC.cust_div_cd}" />"
@@ -156,7 +156,7 @@
 								<th>매출규모</th>
 								<td>
 									<input type="hidden" id="hsales_scale_cd"/>
-									<select id="sales_scale_cd" name="sales_scale_cd" disabled="disabled">
+									<select id="sales_scale_cd" name="sales_scale_cd" disabled="disabled" style="background: rgb(220, 220, 220);">
 										<option value="0" style="text-align: center;">==매출규모==</option>
 										<c:forEach var="SSC" items="${SSCCodeList}">
 											<option value="<c:out value="${SSC.sales_scale_cd}" />"
@@ -178,7 +178,7 @@
 								<th>산업군</th>
 								<td >
 									<input type="hidden" id="hindst_cd" />
-									<select id="indst_cd" name="indst_cd" disabled="disabled">
+									<select id="indst_cd" name="indst_cd" disabled="disabled" style="background: rgb(220, 220, 220);">
 										<option value="0" style="text-align: center;">==산업군==</option>
 										<c:forEach var="IDC" items="${IDCCodeList}">
 											<option value="<c:out value="${IDC.indst_cd}" />"

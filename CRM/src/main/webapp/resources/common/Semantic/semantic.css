@@ -11949,7 +11949,7 @@ img.ui.bordered.image {
 select {
 	font-size: 12px;
 /* 	background-color: #ffffff; */
-	background: rgb(220, 220, 220);
+/* 	background: rgb(220, 220, 220); */
 	color: #5F5F5F;
 	border: 1px solid #C0C4CB;
 	padding: 5px 5px;
@@ -37114,8 +37114,20 @@ html.ios {
 *******************************/
 
 .inputText{
-		    padding: 3px;
-	    	padding-bottom: 6px;
-	   		border-radius: 5px; 
+/* 	    padding: 3px; */
+/*     	padding-bottom: 6px; */
+/*    		border-radius: 5px;  */
+/*    		position: relative; */
+	height: 20px;
+	border: 1px solid #bebebe;
+	font-size: 15px;
+	color: #333;
+	background: rgb(220, 220, 220);
+	width: 60px;
+	height: 24px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding: 3px;
+	border-radius: 5px 5px 5px 5px;
 } 
 

@@ -113,6 +113,12 @@ $(document).ready(function() {
 //고객사별 담당사원 추가 팝업
 function addCustManager(ctx){
 	$('#poc_pop_btn').click(function(){
+		
+		$("input[type='text']").attr({
+			disabled:false,
+			style:'background-color:white'
+		});
+		
 		var custId = $('#nowCust_id').val();
 		if(custId == "" || custId == null ){
 			alert("고객사를 선택해주세요.");
@@ -121,7 +127,7 @@ function addCustManager(ctx){
 			var list_cust_nm = $('#nowCust_nm').val();
 	
 			window.open(ctx+'/custMngPopup?list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm,
-					'newwindow1','width=770, height=304, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+					'newwindow1','width=770, height=310, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}
 	});
 }
@@ -131,7 +137,7 @@ function ccMngDetail(cust_id,iuser_id,iuser_nm){
 	var list_cust_nm = $('#nowCust_nm').val();
 	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+
 				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
-				'newwindow1','width=770, height=304, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				'newwindow1','width=770, height=310, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 
 }
 
