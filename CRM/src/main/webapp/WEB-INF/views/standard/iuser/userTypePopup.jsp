@@ -45,11 +45,11 @@
 		<table id="mastertable" class="ui celled table">
 			<thead>
 				<tr>
-					<td style="width:20%;">코드그룹ID</td>
-					<td style="width:15%;">코드</td>
-					<td style="width:20%;">코드명</td>
-					<td style="width:20%;">코드순서번호</td>
-					<td style="width:25%;">코드상세내용</td>
+					<th style="width:20%;">코드그룹ID</th>
+					<th style="width:15%;">코드</th>
+					<th style="width:20%;">코드명</th>
+					<th style="width:20%;">코드순서번호</th>
+					<th style="width:25%;">코드상세내용</th>
 				</tr>
 			</thead>
 			<tbody>

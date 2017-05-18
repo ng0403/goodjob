@@ -31,7 +31,10 @@ $("#naviuser").css("font-weight", "bold");
 				<option value="u_id">사용자ID명</option>
 				<option value="u_name">사용자명</option>
 				<option value="o_name">조직명</option>
-			</select> <input id="title_text" type="text" name="keyword" class="int_search"> &nbsp;
+			</select> 
+			<div class="ui input focus">
+				<input id="title_text" type="text" name="keyword" class="int2" style="background-color:white"> &nbsp;
+			</div>
 			<button id="search_btn" type="submit" class="tiny tiny ui orange button">검색</button>
 			</form>
 		</div>
@@ -75,7 +78,7 @@ $("#naviuser").css("font-weight", "bold");
 	</div>
 
 		<!-- 기본 버튼 -->
-	<div class="bt_positionuserlist">
+	<div class="bt_positionuserlist" style="padding-bottom: 10px; ">
 		<input type="button" id="iuserListAddBtn" class="tiny tiny ui orange button" value="등록"/>
 <!-- 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/> -->
 		<input type="button" id="iuserDelBtn" class="tiny tiny ui orange button" value="삭제"/>
