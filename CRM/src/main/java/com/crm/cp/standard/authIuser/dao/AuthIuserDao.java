@@ -3,6 +3,8 @@ package com.crm.cp.standard.authIuser.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.standard.authIuser.vo.AuthIuserVO;
+
 public interface AuthIuserDao {
 
 	public int insert(String root, Object obj);
@@ -28,5 +30,9 @@ public interface AuthIuserDao {
 	public Object authUserDelete(String root, Object obj);
 
 	public Object checkUpdate(String root, Object obj);
+
+	public List<AuthIuserVO> userAuthList(String string, Map<String, Object> map);
+
+	public List<AuthIuserVO> authList(String string, Map<String, Object> map);
 
 }

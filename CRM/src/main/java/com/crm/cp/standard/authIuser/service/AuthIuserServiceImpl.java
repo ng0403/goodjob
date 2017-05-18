@@ -60,13 +60,14 @@ public class AuthIuserServiceImpl implements AuthIuserService{
 	@Override
 	public List<AuthIuserVO> userAuthList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		List<AuthIuserVO> userAuthList = dao.selectList("authIuser.authIuserDetail",map);
+		List<AuthIuserVO> userAuthList = dao.userAuthList("authIuser.userAuthList",map);
 		return userAuthList;
 	}
 
 	@Override
 	public List<AuthIuserVO> authList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		List<AuthIuserVO> authList = dao.authList("authIuser.authList",map);
+		return authList;
 	}
 }

@@ -21,7 +21,7 @@ $(function(){
 function AuthcheckCount(tabID) {
 	var count = 0;
 	var checkList = $('#'+tabID+' tbody').find('input[type="checkBox"]');
-	for (var i = 0; i < checkList.size(); i++) {
+	for (var i = 0; i < checkList.length; i++) {
 		if ($(checkList[i]).is(':checked')) {
 			count++;
 		}
@@ -436,7 +436,7 @@ function DeleteAuthUser(ctx){
 				if($(ckdata[i]).is(':checked')){
 					var obj = new Object();
 					obj.auth_id = $(ckdata[i]).val();
-					obj.id_nm = $(ckdata[i]).parent().next().next().next().next().text();
+//					obj.id_nm = $(ckdata[i]).parent().next().next().next().next().text();
 					data.push(obj);
 				}
 			}

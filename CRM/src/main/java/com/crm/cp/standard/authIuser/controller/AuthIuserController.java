@@ -57,6 +57,21 @@ public class AuthIuserController {
 		
 	}
 	
+	@RequestMapping(value = "/authListAjax", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> authListAjax(
+			@RequestBody AuthIuserVO vo, HttpSession session,
+			@RequestParam (value="iuser_id",required=false) String iuser_id) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("iuser_id", iuser_id);
+		
+		List<AuthIuserVO> authList = authIuserService.authList(map);
+		List<AuthIuserVO> userAuthList = authIuserService.userAuthList(map);
+		
+		map.put("authList", authList);
+		map.put("userAuthList", userAuthList);
+		return map;
+	}
+	
 	@RequestMapping(value="/searchAuthIuser_authId", method=RequestMethod.GET)
 	public ModelAndView AuthSearchList(HttpSession session){
 		List<Object> auth = authService.authList();
@@ -94,16 +109,26 @@ public class AuthIuserController {
 	
 	//권한수정
 	@RequestMapping(value = "/authIuserEdit", method = RequestMethod.POST)
-	public @ResponseBody Map<String,Object> authEdit(@RequestBody AuthIuserVO vo, HttpSession session) {
+	public @ResponseBody Map<String,Object> authEdit(
+			@RequestBody AuthIuserVO vo, HttpSession session,
+			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		vo.setFst_reg_id(session.getAttribute("user").toString());
-		int result = authIuserService.searchUserAuth(vo);
-		if(result == 0){
-			map.put("checkResult", false);
-			authIuserService.authUserEdit(vo);
-		}else{
-			map.put("checkResult", true);
+		
+		authIuserService.authUserDelete(vo);
+		if(auth_id_data.size() != 0){
+			for(int i=0; i<auth_id_data.size(); i++){
+				vo.setAuth_id(auth_id_data.get(i));
+				authIuserService.authUserInsert(vo);
+			}
 		}
+//		int result = authIuserService.searchUserAuth(vo);
+//		if(result == 0){
+//			map.put("checkResult", false);
+//			authIuserService.authUserEdit(vo);
+//		}else{
+//			map.put("checkResult", true);
+//		}
 		List<Object> userAuthList= authIuserService.authUserList();
 		map.put("userAuthList", userAuthList);
 		return map;
@@ -115,17 +140,24 @@ public class AuthIuserController {
 	}
 	
 	@RequestMapping(value="/authUserInsertData", method=RequestMethod.POST)
-	public @ResponseBody List<Object> authUserInsertData(@RequestBody AuthIuserVO authUser, HttpSession session){
+	public @ResponseBody List<Object> authUserInsertData(
+			@RequestBody AuthIuserVO authUser, HttpSession session,
+			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data){
 		authUser.setFst_reg_id(session.getAttribute("user").toString());
 		int result = authIuserService.searchUserAuth(authUser);
 		
-		if(result == 1){
-			return null;
-		}else{
-			authIuserService.authUserInsert(authUser);
-			List<Object> obj= authIuserService.authUserList();
-			return obj;
+		if(result >= 1){
+			authIuserService.authUserDelete(authUser);
 		}
+		if(auth_id_data.size() != 0){
+			for(int i=0; i<auth_id_data.size(); i++){
+				authUser.setAuth_id(auth_id_data.get(i));
+				authIuserService.authUserInsert(authUser);
+			}
+		}
+		
+		List<Object> obj= authIuserService.authUserList();
+		return obj;
 	}
 	
 	@RequestMapping(value="/authUserDelete", method=RequestMethod.POST)

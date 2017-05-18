@@ -27,11 +27,11 @@
 		<table class="ui celled table">  	
 			<tbody>
 				<tr>
-					<td></td>
-					<td >사용자ID</td>
-					<td>
-						<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${userAuthList.iuser_id}"/>
-						<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${userAuthList.id_nm}" disabled="disabled"/>
+					<td style="width:40%"></td>
+					<td style="width:20%">사용자ID</td>
+					<td style="width:40%">
+						<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${user_id}"/>
+						<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${user_nm}" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
@@ -47,42 +47,46 @@
 				<tr>
 					<th rowspan="5">
 						<table>
-							<tbody>
-								<tr>
-									<c:forEach var="authList" items="${authList}">
+							<tbody id="authList">
+								<c:forEach var="authList" items="${authList}">
+									<tr>
 										<td>
 											<input type="hidden" name="auth_id" value="${authList.auth_id }"/>
 											${authList.auth_nm}
 										</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</th>
 					<td></td>
 					<th rowspan="5">
 						<table>
-							<tbody>
-								<tr>
-									<c:forEach var="userAuthList" items="${userAuthList}">
+							<tbody id="userAuthList">
+								<c:forEach var="userAuthList" items="${userAuthList}">
+									<tr>
 										<td>
 											<input type="hidden" name="auth_id" value="${userAuthList.auth_id }"/>
 											${userAuthList.auth_nm}
 										</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</th>
 				</tr>
 				<tr>
-					<td></td>
+					<td>
+						<input type="button" id="userAuthGo" class="tiny ui button" value=">"/>
+					</td>
 				</tr>
 				<tr>
 					<td></td>
 				</tr>
 				<tr>
-					<td></td>
+					<td>
+						<input type="button" id="authGo" class="tiny ui button" value="<"/>
+					</td>
 				</tr>
 				<tr>
 					<td></td>
@@ -116,7 +120,7 @@
 </div>
 	<div class="auth_bt_position">
 		
-		<input type="button" class="tiny ui orange button" value="저장" id="uauth_confirm" disabled="disabled"/>
+		<input type="button" class="tiny ui orange button" value="저장" id="uauth_confirm"/>
 		<input type="button" class="tiny ui button" value="편집" id="uauth_modify"/>
 		<input type="button" class="tiny ui button" value="취소" id="uauth_cancel"/>
 	</div>

@@ -5,11 +5,12 @@ $(function(){
 	uauthModifyConfirm(ctx);
 	uauthCancel();
 	PopupEvent(ctx);
+	choiceAuth();
 });
 
 function uauthInit(){
-	$('#searchAuthIuser_authId').hide();
-	$('#searchAuthIuser_iuserId').hide();
+	$('#uauth_confirm').hide();
+//	$('#searchAuthIuser_iuserId').hide();
 }
 
 function uauthCancel(){
@@ -18,13 +19,70 @@ function uauthCancel(){
 	});
 }
 
+function choiceAuth(){
+	$("#userAuthList tr, #authList tr").click(function(){
+		$("#userAuthList tr td, #authList tr td").attr("style","background:white");
+		$(this).children().attr("style","background:#5CD1E5");
+	})
+}
+
+function userAuthGo(){
+	$("#userAuthGo").click(function(){
+		var auth_id = $("#authList tr").find("[style=background:#5CD1E5]").find("input[type=hidden]").val();
+		var auth_nm = $("#authList tr").find("[style=background:#5CD1E5]").text();
+		if(auth_id != null || auth_id != ''){
+			var tr = $("#authList tr").find("[style=background:#5CD1E5]").parent("tr");
+			tr.remove();
+		
+			var tr = $("<tr>");
+			var td = $("<td>");
+			var input = $("<input>");
+			input.attr("type","hidden");
+			input.attr("name","auth_id");
+			input.val(auth_id);
+			td.append(input);
+			td.text(auth_nm);
+			tr.append(td);
+			
+			$("#userAuthList").append(tr);
+		}else{
+			alert("추가할 권한을 선택 주세요");
+		}
+	})
+}
+
+function authGo(){
+	$("#authGo").click(function(){
+		var auth_id = $("#userAuthList tr").find("[style=background:#5CD1E5]").find("input[type=hidden]").val();
+		var auth_nm = $("#userAuthList tr").find("[style=background:#5CD1E5]").text();
+		if(auth_id != null || auth_id != ''){
+			var tr = $("#userAuthList tr").find("[style=background:#5CD1E5]").parent("tr");
+			tr.remove();
+		
+			var tr = $("<tr>");
+			var td = $("<td>");
+			var input = $("<input>");
+			input.attr("type","hidden");
+			input.attr("name","auth_id");
+			input.val(auth_id);
+			td.append(input);
+			td.text(auth_nm);
+			tr.append(td);
+			
+			$("#authList").append(tr);
+		}else{
+			alert("제거할 사용자권한을 선택 주세요");
+		}
+	})
+}
+
 function uauthModify(){
 	$('.auth_bt_position').delegate('#uauth_modify', 'click', function(event){
 		event.preventDefault();
-		$('#uauth_id').attr("disabled", false);
+//		$('#uauth_id').attr("disabled", false);
 		//$('#uu_user_id').attr("disabled", false);
-		$('#uauth_confirm').attr("disabled", false);
-		$('#searchAuthIuser_authId').show();
+		$('#uauth_confirm').show();
+//		$('#searchAuthIuser_authId').show();
 		//$('#searchAuthIuser_iuserId').show();
 	});
 }
@@ -34,11 +92,17 @@ function uauthModifyConfirm(ctx){
 	$('#uauth_confirm').click(function(event){
 		
 		event.preventDefault();
-
+		var authData = $("#userAuthList").find("input[type=hidden]");
+		var auth_id_data = new Array();
+		for(var i = 0; i < authData.length; i++){
+			var obj = new Object();
+			obj.auth_id = $(authData[i]).val();
+			auth_id_data.push(obj);
+		}
+		
 		var obj = {
-				auth_id : $('#uauth_id').val(),
-				iuser_id : $('#iuser_id').val(),
-				id_nm : $('#uu_user_id').val(),
+				auth_id_data : auth_id_data,
+				iuser_id :$('#iuser_id').val(),
 		}
 		
 		var jsonData = JSON.stringify(obj);
@@ -53,12 +117,8 @@ function uauthModifyConfirm(ctx){
 				data :  jsonData,	
 				contentType : 'application/json;charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 				success : function(data){
-					if(data.checkResult == true){
-						alert('중복되는 정보입니다.');
-					}else{
-						window.opener.editUserAuth(data.userAuthList);
-						self.close();
-					}
+					window.opener.editUserAuth(data.userAuthList);
+					self.close();
 				},error : function(e){
 					alert(e.responseText);
 				}
