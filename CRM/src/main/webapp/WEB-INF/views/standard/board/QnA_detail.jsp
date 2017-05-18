@@ -7,36 +7,21 @@
 <%-- <%@include file="../include/header.jsp"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-
-
- <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>  
+<head> 
+ <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>  
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/reply.js"></script>
 
+ <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> 
  
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-
- <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
-
+ 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-
-<form role="form" name = "form_modify" method="post">
- <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardlist.BOARD_NO}"> 
- <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value= "${boardlist.BOARD_MNG_NO}">
-</form>
-
+ 
 <div id="title">
 		<div class="caption">
 		<h3 class="ui header" style="background: #fff;">■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">Q&A</a> > 상세보기 </h3>
@@ -45,10 +30,22 @@
 </div>
 
 
+ <div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
+		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
+		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
+		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="go_list();"/>
+ </div> 
+
+	 
+<form role="form" name = "form_modify" method="post">
+ <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardlist.BOARD_NO}"> 
+ <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value= "${boardlist.BOARD_MNG_NO}">
+</form>
+
 <table class="ui sortable celled table" style="table-layout:fixed" >
 <tr>
  <th style="width:165px">제목</th> 
- <td colspan="6"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value="${boardlist.QUESTION_TITLE}"/></td>
+ <td colspan="6"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value="${boardlist.QUESTION_TITLE}" style="width:100%; height:35px"/></td>
 </tr>
 <tr>
 <th> 조회수</th>
@@ -56,7 +53,7 @@
 <th>작성자</th>
 <td>${boardlist.CREATED_BY}</td>
 <th> 작성일</th>
-<td>${boardlist.CREATED}</td>
+<td colspan="2">${boardlist.CREATED}</td>
 </tr>
 <tr>
 <th>내 용</th>
@@ -65,12 +62,6 @@
 </td> 
 </tr>
 </table>
- <div id="detail_btns"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
-		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
-		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="go_list();"/>
- </div> 
-	
 	
 <table class="ui sortable celled table" style="table-layout:fixed"> 
 <tr >

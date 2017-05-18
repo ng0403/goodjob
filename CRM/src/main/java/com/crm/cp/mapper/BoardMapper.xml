@@ -153,7 +153,7 @@
 	</select>
 
 	<select id="ReadFilePage" resultType="com.crm.cp.standard.board.vo.BoardVO">
-		SELECT A.TITLE, A.CONTENT, A.BOARD_MNG_NO, A.BOARD_NO, A.CREATED,
+		SELECT A.TITLE, A.CONTENT, A.BOARD_MNG_NO, A.BOARD_NO, A.CREATED, A.CREATED_BY,
 		A.VIEW_CNT, B.REPLY_FLG, A.QUESTION_TYPE_CD, C.FILE_CD, C.FILE_NM
 		FROM TB_BOARD A, TB_BOARD_MNG B, TB_FILE C
 		WHERE BOARD_NO = #{BOARD_NO} AND A.BOARD_MNG_NO = B.BOARD_MNG_NO AND
@@ -183,7 +183,7 @@
 	<select id="readBoardFile" resultType="com.crm.cp.standard.board.vo.BoardVO">
 
 		SELECT A.TITLE, A.CONTENT, A.BOARD_MNG_NO, A.BOARD_NO, A.CREATED,
-		A.VIEW_CNT, B.REPLY_FLG, A.QUESTION_TYPE_CD, C.FILE_NM
+		A.VIEW_CNT, B.REPLY_FLG, A.QUESTION_TYPE_CD, C.FILE_NM, C.FILE_CD
 		FROM TB_BOARD A, TB_BOARD_MNG B, TB_FILE C
 		WHERE BOARD_NO = #{BOARD_NO} AND A.BOARD_MNG_NO = B.BOARD_MNG_NO AND
 		C.FILE_CD = A.FILE_CD
@@ -215,7 +215,8 @@
 	</update>
 
 	<update id="ModifyBoard"> 
-		update tb_board set title = #{TITLE}, content = #{CONTENT}, updated_by = #{UPDATED_BY}
+		update tb_board set title = #{TITLE}, content = #{CONTENT}, updated_by = #{UPDATED_BY}, file_cd = (SELECT FILE_CD FROM TB_FILE
+		WHERE FILE_NM =#{FILE_NM})
 		where BOARD_NO = #{BOARD_NO}
 	</update>
 	
@@ -367,6 +368,16 @@
         ) 
         WHERE ROWNUM <![CDATA[<= 5 ]]> 
 	</select>
+	
+	<delete id = "file_remove" parameterType="java.lang.String">
+	delete from tb_file
+	where FILE_CD = #{FILE_CD}	
+	</delete>
+	
+	<update id = "file_removeMd" parameterType="java.lang.String">
+	update tb_board set FILE_CD = ''
+	where FILE_CD  = #{FILE_CD}
+	</update>
 
 
 </mapper>

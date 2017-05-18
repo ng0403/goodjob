@@ -7,10 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
- --%><script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
+ <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
  
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
@@ -34,14 +33,18 @@
 </div>
 
 
+	<div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
+		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="goboardList();"/> 
+	</div>
 
 
-	<form role="form" method="post" enctype="multipart/form-data">
+<form role="form" method="post" enctype="multipart/form-data">
    <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng}"/>    
 <table class="ui sortable celled table" style="table-layout:fixed" >
 <tr>
  <th style="width:165px">제목</th> 
- <td colspan="3"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" /></td>
+ <td colspan="3"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" style="width:100%; height:35px" /></td>
 </tr>
 <tr>
 <th colsapn="3">파일</th>
@@ -56,10 +59,6 @@
 </tr>
  </table>
  </form>   
-	<div id="btns"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
-		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="goboardList();"/> 
-	</div>
 
 
 

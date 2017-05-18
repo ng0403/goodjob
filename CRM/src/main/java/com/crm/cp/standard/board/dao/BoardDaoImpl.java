@@ -162,4 +162,17 @@ public class BoardDaoImpl implements BoardDao {
 				return sqlSession.selectList("board.fileboardList");
 			}
 
+			@Override
+			public void file_remove(String FILE_CD) {
+				
+				sqlSession.delete("board.file_remove", FILE_CD);
+				
+			}
+
+			@Override
+			public void file_removeMd(String FILE_CD) {
+				sqlSession.update("board.file_removeMd", FILE_CD);
+				
+			}
+
 }

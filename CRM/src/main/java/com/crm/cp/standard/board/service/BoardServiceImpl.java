@@ -154,5 +154,17 @@ public class BoardServiceImpl implements BoardService {
 			public List<BoardVO> fileboardList() {
  				return boardDao.fileboardList();
 			}
+
+			@Override
+			public void file_remove(String FILE_CD) {
+				
+				boardDao.file_remove(FILE_CD);
+			}
+
+			@Override
+			public void file_removeMd(String FILE_CD) {
+				boardDao.file_removeMd(FILE_CD);
+				
+			}
  
 }

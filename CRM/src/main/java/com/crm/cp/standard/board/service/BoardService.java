@@ -26,7 +26,8 @@ public interface BoardService {
 	  public void insert(BoardVO vo);
 	  public void removeBoard(String dc);
 	  public void removeDetail(int BOARD_NO);
-	  
+	  public void file_remove(String FILE_CD);
+	  public void file_removeMd(String FILE_CD);
 	  PagerVO getBoardListCount(Map<String, Object> map);
  	  
 	  public List<BoardVO> SearchList(Map<String, Object> map);

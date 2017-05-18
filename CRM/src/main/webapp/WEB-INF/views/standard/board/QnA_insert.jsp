@@ -7,16 +7,18 @@
 <html>
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
+ <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> 
  <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script> 
  
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body> 
 
 <div id="title">
 		<div class="caption"> 
@@ -26,7 +28,13 @@
 
 <form role="form" method="post" enctype="multipart/form-data">
 	 <input type='hidden' id ="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${board_mng}">	
- 
+  
+ 	<div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
+		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="go_list();"/> 
+	</div>
+  
+  
 <table class="ui sortable celled table" style="table-layout:fixed" >
 <tr>
  <th style="width:165px">제목</th> 
@@ -53,10 +61,6 @@
 </table>
 </form>
 
-	<div id="btns"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
-		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="go_list();"/> 
-	</div>
 
 
 <%-- <div class="container" >  <!-- 전체 div-->

@@ -1,7 +1,6 @@
   $(document).ready(function(){
-
-	 replyPaging(1); 
-})
+ 	 replyPaging(1); 
+ })
  
  
 //댓글 리스트 그냥 페이징
@@ -21,7 +20,7 @@ function replyPaging(replyPageNum) {
    				tbody.children().remove();
  			 for (var i = 0; i < data.reply_list.length; i++) { 
  				tbodyContent +='<tr><th style="width:165px">' + data.reply_list[i].created_BY + '</th>'
- 				+ '<td  style="text-align:left">' + data.reply_list[i].reply_CONTENT+ '<i style="float:right" class="trash icon" id = '+data.reply_list[i].reply_NO+' onclick="remove_reply(this.id);"></i></td></tr>';
+ 				+ '<td  style="text-align:left">' + data.reply_list[i].reply_CONTENT+ '<i style="float:right" class="large trash icon" id = '+data.reply_list[i].reply_NO+' onclick="remove_reply(this.id);"></i></td></tr>';
         		}
  			   tbody.append(tbodyContent);
   			if(data.reply_list.length < 5){

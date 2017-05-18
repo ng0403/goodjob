@@ -6,6 +6,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+ <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>   
+   
+ <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+ <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> 
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -17,12 +26,6 @@ function codeSelect() {
 </script>
 
 <body onload="codeSelect();">
-
- <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>   
-   
- <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
  
  
 <div id="title">
@@ -34,6 +37,12 @@ function codeSelect() {
  <form role="form" name="modifyForm" action="/board_modify" method="post">
 	 <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardVO.BOARD_NO}"> 
 	 <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${boardVO.BOARD_MNG_NO}">
+
+<div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
+  <button type="submit" id = "board_modify_fbtn" class="tiny ui orange button" onclick="board_modify_save();">저장</button>
+  <input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
+</div>
+
 
 <table class="ui sortable celled table" style="table-layout:fixed" >
 <tr>
@@ -61,10 +70,6 @@ function codeSelect() {
 </table>
 </form>
 
-<div id="btns"> <!-- 버튼 div  -->
-  <button type="submit" id = "board_modify_fbtn" class="tiny ui orange button" onclick="board_modify_save();">저장</button>
-  <input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
-</div>
 
 
 

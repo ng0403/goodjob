@@ -26,7 +26,9 @@ public interface BoardDao {
 	
 	public void removeBoard(String dc);
 	 public void removeDetail(int BOARD_NO);
-	 
+	public void file_remove(String FILE_CD); 
+	public void file_removeMd(String FILE_CD);
+	
 	int BoardListCount(String string, Map<String, Object> map);
  	
 	public void insertAttachData(BoardVO attach);

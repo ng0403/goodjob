@@ -17,14 +17,9 @@
  <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/reply.js"></script>  
  
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
  
- <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
-
+ 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -56,36 +51,44 @@
 		</c:if>		</div>
 </div>
 
-
-  <div class="detailBtn">
-		<div id="baseBtnDiv" class="bt_position_authuser"> 
- 		    
- </div> 
-
-
-<table class="ui sortable celled table" style="table-layout:fixed" >
-<tr>
- <th style="width:165px">제목</th> 
- <td colspan="3"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value="${boardlist.TITLE}"/></td>
-</tr>
-<tr>
-<th> 조회수</th>
-<td>${boardlist.VIEW_CNT}</td>
-<th>파일</th>
-<td><a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM}</td>
-</tr>
-<tr>
-<th>내 용</th>
-<td colspan="3">
-<textarea  rows="10" id="boardcontent"  readonly="readonly" style="width:100%" >${boardlist.CONTENT}</textarea>
-</td> 
-</tr>
-</table>
- <div id="detail_btns"> <!-- 버튼 div  -->
+  <div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
 		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
 		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
 		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="goboardList();"/>
  </div> 
+ 
+
+<table class="ui sortable celled table" style="table-layout:fixed" >
+<tr>
+ <th style="width:165px">제목</th> 
+ <td colspan="3"><input type="text" placeholder="제목" readonly="readonly"  id="TITLE" name="TITLE" value="${boardlist.TITLE}" style="width:100%; height:35px"/></td>
+</tr>
+<tr>
+<th> 조회수</th>
+<td>${boardlist.VIEW_CNT}</td>
+<th>작성자</th>
+<td>${boardlist.CREATED_BY}</td>
+<th>작성일</th>
+<td>${boardlist.CREATED}</td>
+</tr>
+<tr>
+<th>파일</th>
+<td colspan="5">
+   		<c:if test="${boardlist.FILE_NM == null}">
+   		</c:if>
+   		<c:if test="${boardlist.FILE_NM != null}">
+   		<a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM} 
+   		</c:if> 
+</td>
+
+</tr>
+<tr>
+<th>내 용</th>
+<td colspan="5">
+<textarea  rows="10" id="boardcontent"  readonly="readonly" style="width:100%" >${boardlist.CONTENT}</textarea>
+</td> 
+</tr>
+</table>
 	
 	
 <table class="ui sortable celled table" style="table-layout:fixed"> 

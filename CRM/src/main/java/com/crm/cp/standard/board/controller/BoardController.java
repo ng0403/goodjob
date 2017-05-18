@@ -103,8 +103,7 @@ import com.crm.cp.utils.PagerVO;
 		ModelAndView mov = new ModelAndView("board_detail");
  	    mov.addObject("sessionID",sessionID);
 		if(FILE_CD == null)
-		{
-		  
+		{ 
 			mov.addObject("boardlist", boardService.detail(BOARD_NO));
 		}
 		else
@@ -113,7 +112,7 @@ import com.crm.cp.utils.PagerVO;
 			mov.addObject("boardlist",  boardService.ReadFilePage(BOARD_NO));
 		}
 		 
-			
+		System.out.println("mov list? " + mov.toString());	
 		
 		return mov;
 		 
@@ -215,24 +214,78 @@ import com.crm.cp.utils.PagerVO;
 
 		if(FILE_CD != null){
 			mov.addObject("boardVO", boardService.readFileModify(BOARD_NO));
+			System.out.println("file has");
 		}
 		else{
-			mov.addObject("boardVO", boardService.read(BOARD_NO)); 
+			mov.addObject("boardVO", boardService.read(BOARD_NO));
+			System.out.println("file not has");
 		}
-	  
+		System.out.println("modivy vo? " + mov.toString());
 		return mov;
 		
 	}
 	
 	//보드 수정
 	@RequestMapping(value="/board_modify", method=RequestMethod.POST)
-	public String board_modify(BoardVO vo, HttpSession session)
+	public String board_modify(BoardVO vo, HttpSession session, MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach)
 	{
 		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
 
  		vo.setUPDATED_BY(sessionID);
 		System.out.println("modify  Entering" + vo);
+		
+		
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+	    MultipartFile multipartFile = null; 
+ 	      
+	     while(iterator.hasNext()){
+	        multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+	        System.out.println("multipartFile? " + multipartFile);
+	        if(multipartFile.isEmpty() == false){
+	        	
+ 	 		    attach.setFILE_NM(multipartFile.getOriginalFilename());
+ 	 		    String name = multipartFile.getOriginalFilename();
+ 	 		    
+ 	 		    System.out.println("file modify name? " + name.toString());
+ 	 		    StringTokenizer toke = new StringTokenizer(name, ".");
+ 	 		    String[] filename = new String[2];
+ 	 		    
+ 	 		    for(int i= 0; toke.hasMoreElements() ; i++)
+ 	 		    {
+  	 		     filename[i] = toke.nextToken(); 
+  	 		     System.out.println("modify filename ? " + filename[i].toString());
+   	 		    }
+ 	 		   
+ 	 		    attach.setFILE_NM(filename[0]);
+ 	 		    attach.setFILE_EXT(filename[1]);  
+ 	 		    
+ 	        }
+	    } 
+		
+	    if(attach.getFILE_NM() != null){ 
+		FileManager fileManager = new FileManager(); 
+		
+		List<MultipartFile> file = multi.getFiles("filedata");
+	
+		for(int i=0; i<file.size(); i++){
+			
+			String uploadpath = fileManager.doFileUpload(file.get(i), request);
+		
+			attach.setFILE_PATH(uploadpath);
+			System.out.println("modify file up load attach ? " + attach.toString());
+			boardService.insertAttachData(attach);
+		
+		}
+	 }
+	    String file_nm = attach.getFILE_NM();
+	    if(file_nm == null)
+	    {
+	    	attach.setFILE_NM("");
+	    }
+		
+		 
 		
 		boardService.modify(vo);
 		String BOARD_MNG_NO = vo.getBOARD_MNG_NO();
@@ -418,5 +471,27 @@ import com.crm.cp.utils.PagerVO;
 		return boardMap;
 	}
  	
+	@RequestMapping(value="/file_remove", method=RequestMethod.POST) 
+	 @ResponseBody
+	public ResponseEntity<String> file_remove(@RequestBody String FILE_CD){ 
+		
+		System.out.println("file_remove Entering" + FILE_CD);
+
+		ResponseEntity<String> entity = null;
+	    try {
+	      boardService.file_remove(FILE_CD);
+	      entity = new ResponseEntity("success", HttpStatus.OK);
+	      
+	      boardService.file_removeMd(FILE_CD);
+	      
+	      System.out.println("entity? "+ entity);
+	      System.out.println("file_remove entity" + entity);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      entity = new ResponseEntity( HttpStatus.BAD_REQUEST);
+	    }
+	    return entity; 
+	    
+	}
  
 }
