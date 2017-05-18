@@ -10,9 +10,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/board/boardCSS.css" type="text/css" /> 
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/board/boardCSS.css" type="text/css" /> 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-
+ --%>
 
  <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/reply.js"></script>  
@@ -49,15 +49,65 @@
 <div id="title">
 		<div class="caption">
 	    <c:if test="${boardlist.BOARD_MNG_NO =='BMG1000001'}">
-		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">공지사항</a> >  게시글 추가 </h3>
+		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">공지사항</a> >  게시글 상세 </h3>
 		</c:if>
 		<c:if test="${boardlist.BOARD_MNG_NO == 'BMG1000002'}">
-	    <h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">일반 게시판</a> >  게시글 추가 </h3>
+	    <h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardlist.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">일반 게시판</a> >  게시글 상세 </h3>
 		</c:if>		</div>
 </div>
 
 
-<div class="container"> <!-- 전체 div-->
+  <div class="detailBtn">
+		<div id="baseBtnDiv" class="bt_position_authuser"> 
+ 		    
+ </div> 
+
+
+<table class="ui sortable celled table" style="table-layout:fixed" >
+<tr>
+ <th style="width:165px">제목</th> 
+ <td colspan="3"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value="${boardlist.TITLE}"/></td>
+</tr>
+<tr>
+<th> 조회수</th>
+<td>${boardlist.VIEW_CNT}</td>
+<th>파일</th>
+<td><a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM}</td>
+</tr>
+<tr>
+<th>내 용</th>
+<td colspan="3">
+<textarea  rows="10" id="boardcontent"  readonly="readonly" style="width:100%" >${boardlist.CONTENT}</textarea>
+</td> 
+</tr>
+</table>
+ <div id="detail_btns"> <!-- 버튼 div  -->
+		<input type="button" id="board_modify_fbtn" class = "tiny ui orange button" value="편집" onClick="board_modify();"/> 
+		<input type="button" id="board_remove_fbtn" class="tiny ui orange button" value="삭제" onClick="board_detail_remove();"/>  
+		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="goboardList();"/>
+ </div> 
+	
+	
+<table class="ui sortable celled table" style="table-layout:fixed"> 
+<tr >
+<th style="width:165px">댓글 내용</th>
+<td>
+<textarea id = "reply_content" class="form-control" rows="2" id="content" style="width:100%" ></textarea>
+</td>
+<td style="width:100px; text-align:center">
+ <input type="button" id="reply_add_fbtn" class = "tiny ui orange button " value="저장" onclick="reply_add();"/>  
+</td>
+</tr> 
+
+</table>	
+	
+<table id = "reply_table" class="ui sortable celled table">
+<tbody class="reply_list" id="reply_list_tbody">
+</tbody>
+</table> 
+
+
+<%-- <div class="container"> <!-- 전체 div-->
 
 	<div> <!-- 제목 div-->
 		<label id="txt" >제  목</label>
@@ -109,7 +159,7 @@
 		</table> 
 	</div> 
 
-</div>	
+</div>	 --%>
     
 			<!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

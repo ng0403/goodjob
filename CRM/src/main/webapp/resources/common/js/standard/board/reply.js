@@ -20,14 +20,14 @@ function replyPaging(replyPageNum) {
 		success : function(data) {
    				tbody.children().remove();
  			 for (var i = 0; i < data.reply_list.length; i++) { 
- 				tbodyContent +='<tr><th class="col-sm-1">' + data.reply_list[i].created_BY + '</th>'
- 				+ '<th class="col-sm-10">' + data.reply_list[i].reply_CONTENT+ '<span style="float:right" class="glyphicon glyphicon-remove" id = '+data.reply_list[i].reply_NO+' onclick="remove_reply(this.id);"></span></th></tr>';
+ 				tbodyContent +='<tr><th style="width:165px">' + data.reply_list[i].created_BY + '</th>'
+ 				+ '<td  style="text-align:left">' + data.reply_list[i].reply_CONTENT+ '<i style="float:right" class="trash icon" id = '+data.reply_list[i].reply_NO+' onclick="remove_reply(this.id);"></i></td></tr>';
         		}
  			   tbody.append(tbodyContent);
   			if(data.reply_list.length < 5){
  				for(var i=0; i<5-data.replyListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:10%"></td>' 
- 						+'<td style="width:10%;"></td></tr>';
+					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:165px"></td>' 
+ 						+'<td></td></tr>';
 					tbody.append(tbodyContent);
 				}		
 			}

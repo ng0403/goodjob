@@ -82,6 +82,7 @@ public class QnABoardController {
 		
 		BoardVO vo = new BoardVO();
 		vo = qnaService.detail(BOARD_NO);
+		System.out.println("qna detail? " + vo.toString());
 		String QUESTION_TYPE_CD = vo.getQUESTION_TYPE_CD();
 		String TITLE = vo.getTITLE();
 		

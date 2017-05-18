@@ -222,7 +222,7 @@ function addForm(){
 				var addedFormDiv = document.getElementById("search_div");
 				var str = "";
 				str+="<br><div class='ui left icon input'>";
-				str+="<input type='text' placeholder='이름' style='margin-right: 3px;' class='inp_search' autofocus='autofocus' id='cont_nm"+count+"' name='cont_nm"+count+"' onkeydown='contactSearchEnter(event);'/>";
+				str+="<input type='text' placeholder='이름' style='margin-right: 3px;' class='inp_search'd id='cont_nm"+count+"' name='cont_nm"+count+"' onkeydown='contactSearchEnter(event);'/>";
 			    str+="<i class='user icon'></i>";
 			    str+="</div>";
 			    

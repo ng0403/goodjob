@@ -13,17 +13,8 @@
 
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/common.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/common.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
- <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
- 
+
+    
  <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -37,20 +28,46 @@
 <div id="title">
 		<div class="caption">
 	    <c:if test="${boardVO.BOARD_MNG_NO =='BMG1000001'}">
-		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">공지사항</a> >  게시글 추가 </h3>
+		<h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">공지사항</a> >  게시글 수정 </h3>
 		</c:if>
 		<c:if test="${boardVO.BOARD_MNG_NO == 'BMG1000002'}">
-	    <h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">일반 게시판</a> >  게시글 추가 </h3>
+	    <h3 class="ui header" style="background: #fff;"> ■ 영업정보 > <a href="/boardInqr?BOARD_MNG_NO=${boardVO.BOARD_MNG_NO}" style="font-size: 14pt; text-decoration:none; color: blue;">일반 게시판</a> >  게시글 수정 </h3>
 		</c:if> 		
 		</div>
 </div>
- 
 
-<div class="container"> <!-- 전체 div-->
 
-	<form role="form" name="modifyForm" action="/board_modify " method="post">
+
+ <form role="form" name="modifyForm" action="/board_modify " method="post"> 
+<table class="ui sortable celled table" style="table-layout:fixed" >
 	 <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardVO.BOARD_NO}"> 
-	 <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${boardVO.BOARD_MNG_NO}">  
+	 <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${boardVO.BOARD_MNG_NO}">   
+<tr>
+ <th style="width:165px">제목</th> 
+ <td colspan="3"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value= "${boardVO.TITLE}""/></td>
+</tr>
+<tr>
+<th> 조회수</th>
+<td>${boardVO.VIEW_CNT}</td>
+<th>파일</th>
+<td><a href="/file_down?FILE_CD=${boardVO.FILE_CD}"><i class="file icon"></i>${boardVO.FILE_NM}</td>
+</tr>
+<tr>
+<th>내 용</th>
+<td colspan="3">
+<textarea  rows="10" id="CONTENT" name="CONTENT" style="width:100%" >${boardVO.CONTENT}</textarea>
+</td> 
+</tr>
+</table>
+ </form>   
+ <div id="detail_btns"> <!-- 버튼 div  -->
+ <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="tiny ui orange button">저장</button>
+  <input type="button" class="tiny ui button" id="board_list_fbtn" onClick="board_list();" value="취소"/>
+ </div> 
+	 
+
+<%-- <div class="container"> <!-- 전체 div-->
+
 	<div> <!-- 제목 div-->
 		<label id="txt" >제  목</label>
 		<input type="text" class="inputTxt" name= "TITLE" id="TITLE" value= "${boardVO.TITLE}" />
@@ -68,7 +85,6 @@
 
 <div>   <!-- 댓글div -->
 </div>
- </form>
 <div id="btns"> <!-- 버튼 div  -->
 <!-- <input type="button" class = "btn btn-default" value="저장"/> -->
  <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="tiny ui orange button">저장</button>
@@ -102,7 +118,7 @@
       </div>
     </div>
   </div>
-</div>
+ --%></div>
  
  
  

@@ -146,7 +146,7 @@
 
 	<select id="ReadPage" resultType="com.crm.cp.standard.board.vo.BoardVO">
 		SELECT A.TITLE, A.CONTENT, A.BOARD_MNG_NO, A.BOARD_NO,
-		to_char(A.CREATED,'yy-mm-dd hh:mi') CREATED, A.VIEW_CNT, B.REPLY_FLG,
+		to_char(A.CREATED,'yy-mm-dd hh:mi') CREATED, A.CREATED_BY, A.VIEW_CNT, B.REPLY_FLG,
 		A.QUESTION_TYPE_CD, A.FILE_CD
 		FROM TB_BOARD A, TB_BOARD_MNG B
 		WHERE BOARD_NO = #{BOARD_NO} AND A.BOARD_MNG_NO = B.BOARD_MNG_NO

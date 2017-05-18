@@ -39,15 +39,15 @@
 	
 	<div class="search_div" id = "search_div">
 	<div class="ui left icon input">
-			<input type="text" placeholder="이름" autofocus="autofocus" id="cont_nm" name="cont_nm" onkeydown="contactSearchEnter(event);">
+			<input type="text" placeholder="이름" id="cont_nm" name="cont_nm" onkeydown="contactSearchEnter(event);">
 			<i class="user icon"></i>
 	</div>	
 		<div class="ui left icon input">
-			<input type="text" placeholder="이메일" autofocus="autofocus" id="email" name="email" onkeydown="contactSearchEnter(event);">
+			<input type="text" placeholder="이메일" id="email" name="email" onkeydown="contactSearchEnter(event);">
 			<i class="mail icon"></i>
 	</div>
 	<div class="ui left icon input">
-			<input type="text" placeholder="이동전화번호" autofocus="autofocus" id="ph" name="ph" onkeydown="contactSearchEnter(event);">
+			<input type="text" placeholder="이동전화번호" id="ph" name="ph" onkeydown="contactSearchEnter(event);">
 			<i class="mobile icon"></i>
 	</div>	
  	    	<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>		

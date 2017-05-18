@@ -64,7 +64,7 @@ function board_add_save() {
 	if($("#CONTENT").val() == null || $("#CONTENT").val() == "")
 		{
 		alert("내용을 입력해 주세요.");
-		return false;
+		return false;	
 		}
 	
 	var formObj = $("form[role='form']");
@@ -152,7 +152,7 @@ function deleteAction() {
 				success : function(result) {
 					if(result =="success")
 					{
-						boaradPaging();
+						boardPaging();
 					}
 				else{
 					alert("오류!");

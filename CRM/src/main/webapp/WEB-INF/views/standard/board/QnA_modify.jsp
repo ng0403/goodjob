@@ -18,17 +18,8 @@ function codeSelect() {
 
 <body onload="codeSelect();">
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> 
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>   
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
- 
+ <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script>   
+   
  <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -40,6 +31,45 @@ function codeSelect() {
 	 	</div>
 </div>
 
+ <form role="form" name="modifyForm" action="/board_modify" method="post">
+	 <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${boardVO.BOARD_NO}"> 
+	 <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${boardVO.BOARD_MNG_NO}">
+
+<table class="ui sortable celled table" style="table-layout:fixed" >
+<tr>
+ <th style="width:165px">제목</th> 
+ <td colspan="6"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value="${boardVO.QUESTION_TITLE}"/></td>
+</tr>
+<tr>
+<th> 질문유형</th>
+<td colspan="6">
+  	 <select class="form-control" id="QUESTION_TYPE_CD" name = "QUESTION_TYPE_CD" style="width:100%; height:40px">
+     <option value="0001">인적서비스</option>
+     <option value="0002">점포서비스</option>
+     <option value="0003">이벤트</option>
+     <option value="0004">제휴카드</option>
+     <option value="0005">쿠폰</option>
+     <option value="0006">제휴서비스</option>
+   </select>
+</td>
+ <tr>
+<th>내 용</th>
+<td colspan="6">
+<textarea  rows="10" id="CONTENT" name="CONTENT" style="width:100%" >${boardVO.CONTENT}</textarea>
+</td> 
+</tr>
+</table>
+</form>
+
+<div id="btns"> <!-- 버튼 div  -->
+  <button type="submit" id = "board_modify_fbtn" class="tiny ui orange button" onclick="board_modify_save();">저장</button>
+  <input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
+</div>
+
+
+
+
+<%-- 
 <div class="container"> <!-- 전체 div-->
 
 	<form role="form" name="modifyForm" action="/board_modify" method="post">
@@ -101,7 +131,7 @@ function codeSelect() {
       </div>
     </div>
   </div>
-</div>
+</div> --%>
  
 </body>
 </html>

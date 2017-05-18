@@ -7,19 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/common_pop.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
+ --%><script type="text/javascript" src="${ctx}/resources/common/js/standard/board/board_list.js"></script> 
 
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/mps/BoardCSS/boardCSS.css" type="text/css" />
-
+ 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -40,7 +33,37 @@
 		</div>
 </div>
 
-<div class="container" >  <!-- 전체 div-->
+
+
+
+	<form role="form" method="post" enctype="multipart/form-data">
+   <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng}"/>    
+<table class="ui sortable celled table" style="table-layout:fixed" >
+<tr>
+ <th style="width:165px">제목</th> 
+ <td colspan="3"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" /></td>
+</tr>
+<tr>
+<th colsapn="3">파일</th>
+	 <td><input type="file" multiple="multiple" name="filedata" id="filedata"></td> 
+
+</tr>
+<tr>
+<th>내 용</th>
+<td colspan="3">
+<textarea  rows="10" id="CONTENT" name="CONTENT" style="width:100%" ></textarea>
+</td> 
+</tr>
+ </table>
+ </form>   
+	<div id="btns"> <!-- 버튼 div  -->
+		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="goboardList();"/> 
+	</div>
+
+
+
+<%-- <div class="container" >  <!-- 전체 div-->
 
 	<form role="form" method="post" enctype="multipart/form-data">
 	     <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng}"/>  
@@ -65,7 +88,7 @@
 		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="goboardList();"/> 
 	</div>
 
-</div> 
+</div>  --%>
  
  
  
