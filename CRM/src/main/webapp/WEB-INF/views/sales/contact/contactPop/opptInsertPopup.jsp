@@ -60,7 +60,7 @@
 							<tr>
 								<th><span style="color:red">*영업기회명</span></th>
 								<td> <!-- colspan="3" -->
-									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" style="ms-ime-mode: disabled; background-color: ">
+									<input  style="background:white" type="text" name="sales_oppt_nm" id="sales_oppt_nm" class="int" style="ms-ime-mode: disabled; background-color: ">
 								</td>
 							</tr>
 							<tr>	
@@ -76,7 +76,7 @@
 								<th><span style="color:red">*상태</span></th>
 								<td>
 									<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-									<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" style="height: 24pt;">
+									<select  style="background:white" name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" style="height: 24pt;">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${osclist}" var="list">
 											<option value="<c:out value="${list.code}" />"
@@ -91,7 +91,7 @@
 								<th><span style="color:red">*영업단계</span></th>
 								<td>
 									<input type="hidden" id="hsales_lev_cd" value="0">
-										<select name="sales_lev_cd" id="sales_lev_cd" style="height: 24pt;">
+										<select  style="background:white" name="sales_lev_cd" id="sales_lev_cd" style="height: 24pt;">
 											<option value="0" style="text-align: center;">==선택==</option>
 											<c:forEach items="${otllist}" var="list">
 												<option value="<c:out value="${list.code}" />"
@@ -106,14 +106,14 @@
 								<th><span style="color:red">*예상마감일자</span></th>
 								<td>
 									<input type="hidden" id="hexpt_fin_d">
-									<input type="text" name="expt_fin_d" id="expt_fin_d" class="int">
+									<input  style="background:white" type="text" name="expt_fin_d" id="expt_fin_d" class="int">
 								</td>
 							</tr>	
 							<tr>
 								<th><span style="color:red">*가능성</span></th>
 								<td>
 									<input type="hidden" id="hpsblty_rate">
-									<select id="psblty_rate" name="psblty_rate" style="height: 24pt;">
+									<select  style="background:white" id="psblty_rate" name="psblty_rate" style="height: 24pt;">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<option <c:if test="${detail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
 										<option <c:if test="${detail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>
@@ -146,7 +146,7 @@
 								<td> <!-- colspan="3" -->
 									<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 									<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
-									<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int" style="ms-ime-mode: disabled; background-color: ">
+									<input style="background:white" type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int" style="ms-ime-mode: disabled; background-color: ">
 								</td>
 								<th><span style="color:red">*고객사</span></th>
 								<td>
@@ -161,7 +161,7 @@
 								<th><span style="color:red">*상태</span></th>
 								<td>
 									<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-									<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
+									<select style="background:white" name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24pt;">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${osclist}" var="osclist">
 											<c:if test="${opDetail.sales_oppt_stat_cd == osclist.code}">
@@ -177,7 +177,7 @@
 								<th><span style="color:red">*영업단계</span></th>
 								<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
-										<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
+										<select style="background:white"  name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24pt;">
 											<option value="0" style="text-align: center;">==선택==</option>
 											<c:forEach items="${otllist}" var="otllist">
 												<option value="<c:out value="${otllist.code}" />"
@@ -192,12 +192,12 @@
  								<th><span style="color:red">*예상마감일자</span></th>
 								<td>
 									<input type="hidden" id="hexpt_fin_d">
-									<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
+									<input style="background:white" type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
 								</td>
 								<th><span style="color:red">*가능성</span></th>
 								<td>
 									<input type="hidden" id="hpsblty_rate">
-									<select id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt;">
+									<select style="background:white"  id="psblty_rate" name="psblty_rate" disabled="disabled" style="height: 24pt;">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<option <c:if test="${opDetail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
 										<option <c:if test="${opDetail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>

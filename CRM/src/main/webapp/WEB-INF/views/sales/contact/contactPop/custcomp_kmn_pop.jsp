@@ -54,20 +54,20 @@
 						</tr>
  						<tr>
 							<th>역할</th>
-							<td><input type="text" name="key_part" id="key_part" class="int" value="${kmVO.key_part}"/></td>
+							<td><input  style="background:white" type="text" name="key_part" id="key_part" class="int" value="${kmVO.key_part}"/></td>
 						</tr>
 						<tr>
 							<th>직급</th>
-							<td><input type="text" name="key_pos" id="key_pos" class="int" value="${kmVO.key_pos}"/></td>
+							<td><input  style="background:white" type="text" name="key_pos" id="key_pos" class="int" value="${kmVO.key_pos}"/></td>
 						</tr>
 						<tr>
 							<th>직무</th>
-							<td><input type="text" name="key_job" id="key_job" class="int" value="${kmVO.key_job}"/></td>
+							<td><input style="background:white" type="text" name="key_job" id="key_job" class="int" value="${kmVO.key_job}"/></td>
 						</tr>
 						  
 						<tr>
 							<th>메모</th>
-							<td><textarea cols="10" rows="5" id="memo" name="memo" class="int_memo" style="resize:none; overflow: auto;">${kmVO.memo}</textarea></td>
+							<td><textarea cols="35" rows="10" id="memo" name="memo" class="int_memo" style="resize:none; overflow: auto;">${kmVO.memo}</textarea></td>
 						</tr>
 					</tbody>
 				</table>

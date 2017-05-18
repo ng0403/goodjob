@@ -61,14 +61,14 @@ function ccActDetailSelect() {
 							<th><span style="color:red">*영업활동명</span></th>
 							<td style="width: 130px;">
 								<input type="hidden" name="sales_actvy_id" id="sales_actvy_id" value="${ccActVO.sales_actvy_id}"/>
-								<input type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" style="ms-ime-mode: disabled;" value="${ccActVO.sales_actvy_nm}" autofocus="autofocus"/>
+								<input style="background:white"  type="text" name="sales_actvy_nm" id="sales_actvy_nm" class="int" style="ms-ime-mode: disabled;" value="${ccActVO.sales_actvy_nm}" autofocus="autofocus"/>
 							</td>
 						</tr>
 						<tr>
 							<th>고객사</th>
 							<td>
 								<input type="hidden" name="cust_id" id="cust_id" value="${ccActVO.cust_id}"> 
-								<input type="text" name="cust_nm" id="cust_nm" class="int_email" value="${ccActVO.cust_nm}" readonly="readonly">
+								<input style="background:white"  type="text" name="cust_nm" id="cust_nm" class="int_email" value="${ccActVO.cust_nm}" readonly="readonly">
 								 
 							</td>
 						</tr>

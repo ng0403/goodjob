@@ -273,7 +273,7 @@ function opptActiveDeletecontact() {
 //영업기회 저장
 function contactopptSave()
 {
-	alert("hi");
+	 
 	var ctx = $("#ctx").val();
 	var sales_oppt_id = $("#hsales_oppt_id").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();

@@ -151,7 +151,7 @@ function ccOpptDetailcontact(sales_oppt_id){
 function contactopptTabDetail(sales_oppt_id, ctx)
 { 
 	var ctx = $("#ctx").val();
- 	window.open('/contactopptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+ 	window.open('/contactopptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=1196, height=364, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동명을 클릭했을 때 상세정보
