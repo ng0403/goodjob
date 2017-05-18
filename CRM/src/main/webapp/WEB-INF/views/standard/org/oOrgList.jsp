@@ -65,8 +65,8 @@ $("#naviorg").css("font-weight", "bold");
 								</tbody>
 							</table>      
                  <div class="bt_position">
-					<input type="button" class="button search_btn" value="선택" id="oorgChoice"/>
-					<input type="button" class="button search_btn" value="취소" onclick="allChk(obj);"/>
+					<input type="button" class="tiny ui button" value="선택" id="oorgChoice"/>
+					<input type="button" class="tiny ui button" value="취소" onclick="allChk(obj);"/>
 				</div>      
                 <div style="clear:both"></div>
             </div>		
