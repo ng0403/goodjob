@@ -22,11 +22,11 @@ public class AuthIuserServiceImpl implements AuthIuserService{
 		return authUserList;
 	}
 
-	@Override
-	public Object authUserDetail(Object obj) {
-		Object authUserDetail = (Object)dao.selectOne("authIuser.authIuserDetail",obj);
-		return authUserDetail;
-	}
+//	@Override
+//	public Object authUserDetail(Object obj) {
+//		Object authUserDetail = (Object)dao.selectOne("authIuser.authIuserDetail",obj);
+//		return authUserDetail;
+//	}
 	
 	@Override
 	public List<Object> authUserListSearch(Map<String, Object> map) {
@@ -55,5 +55,18 @@ public class AuthIuserServiceImpl implements AuthIuserService{
 	@Override
 	public void authUserDelete(Object authUser) {
 		dao.authUserDelete("authIuser.authIuserDelete", authUser);
+	}
+
+	@Override
+	public List<AuthIuserVO> userAuthList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		List<AuthIuserVO> userAuthList = dao.selectList("authIuser.authIuserDetail",map);
+		return userAuthList;
+	}
+
+	@Override
+	public List<AuthIuserVO> authList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

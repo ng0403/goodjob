@@ -9,6 +9,9 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authUserViewPopup.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authUserViewPopup.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <title>사용자권한 상세정보</title>
 </head>
 <body>
@@ -16,43 +19,106 @@
 <input type="hidden" id="ctx" value="${ctx}">
 <div id="title">
 <br>
-<div class="caption">■ 사용자권한 상세정보</div>
+<div class="caption">
+	<h3 class="ui header" style="background: #fff;">■ 사용자권한 수정</h3>
+</div>
 <div class="bt_position_popup">
-   <div class="bs-example" data-example-id="simple-table">
-	 <table class="table">  	
-	      <tbody>	
+	<div class="bs-example" data-example-id="simple-table">
+		<table class="ui celled table">  	
+			<tbody>
 				<tr>
-					<th>권한 ID</th>
+					<td></td>
+					<td >사용자ID</td>
 					<td>
-						<input type="text" name="uauth_id" id="uauth_id" class="int" value="${authUser.auth_id}" disabled="disabled"/>
-						<input type="button" id="searchAuthIuser_authId" class="btn btn-default" value="검색"/>
+						<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${userAuthList.iuser_id}"/>
+						<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${userAuthList.id_nm}" disabled="disabled"/>
 					</td>
 				</tr>
 				<tr>
-					<th>사용자ID</th>
-					<td>
-						<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${authUser.iuser_id}"/>
-						<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${authUser.id_nm}" disabled="disabled"/>
-						<input type="button" id="searchAuthIuser_iuserId" class="btn btn-default" value="검색"/>
-					</td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 				<tr>
-					<th>생성자</th>
-					<td colspan="2"><input type="text" name="uc_user_id" id="uc_user_id" class="int" value="${authUser.fst_reg_id}" disabled="disabled"/></td>
+					<td>권한목록</td>
+					<td></td>
+					<td>보유권한</td>
 				</tr>
 				<tr>
-					<th>생성일</th>
-					<td><input type="text" name="ucdate" id="ucdate" class="int" value="${authUser.fst_reg_d}" disabled="disabled"/></td>
+					<th rowspan="5">
+						<table>
+							<tbody>
+								<tr>
+									<c:forEach var="authList" items="${authList}">
+										<td>
+											<input type="hidden" name="auth_id" value="${authList.auth_id }"/>
+											${authList.auth_nm}
+										</td>
+									</c:forEach>
+								</tr>
+							</tbody>
+						</table>
+					</th>
+					<td></td>
+					<th rowspan="5">
+						<table>
+							<tbody>
+								<tr>
+									<c:forEach var="userAuthList" items="${userAuthList}">
+										<td>
+											<input type="hidden" name="auth_id" value="${userAuthList.auth_id }"/>
+											${userAuthList.auth_nm}
+										</td>
+									</c:forEach>
+								</tr>
+							</tbody>
+						</table>
+					</th>
 				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+<!-- 				<tr> -->
+<!-- 					<th>권한 ID</th> -->
+<!-- 					<td> -->
+<%-- 						<input type="text" name="uauth_id" id="uauth_id" class="int" value="${authUser.auth_id}" disabled="disabled"/> --%>
+<!-- 						<input type="button" id="searchAuthIuser_authId" class="btn btn-default" value="검색"/> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>사용자ID</th> -->
+<!-- 					<td> -->
+<%-- 						<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${authUser.iuser_id}"/> --%>
+<%-- 						<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${authUser.id_nm}" disabled="disabled"/> --%>
+<!-- 						<input type="button" id="searchAuthIuser_iuserId" class="btn btn-default" value="검색"/> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>생성자</th> -->
+<%-- 					<td colspan="2"><input type="text" name="uc_user_id" id="uc_user_id" class="int" value="${authUser.fst_reg_id}" disabled="disabled"/></td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>생성일</th> -->
+<%-- 					<td><input type="text" name="ucdate" id="ucdate" class="int" value="${authUser.fst_reg_d}" disabled="disabled"/></td> --%>
+<!-- 				</tr> -->
 		   </tbody>	
 	   </table>
 	</div>
 </div>
 	<div class="auth_bt_position">
 		
-		<input type="button" class="auth_btn" value="저장" id="uauth_confirm" disabled="disabled"/>
-		<input type="button" class="auth_btn" value="편집" id="uauth_modify"/>
-		<input type="button" class="auth_btn" value="취소" id="uauth_cancel"/>
+		<input type="button" class="tiny ui orange button" value="저장" id="uauth_confirm" disabled="disabled"/>
+		<input type="button" class="tiny ui button" value="편집" id="uauth_modify"/>
+		<input type="button" class="tiny ui button" value="취소" id="uauth_cancel"/>
 	</div>
 </div>
 </div>

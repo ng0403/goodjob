@@ -317,7 +317,7 @@ function editUserAuth(data){
 		var args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data[i].iuser_id+'"></td>'
 			+'<td style="width: 15%;"><a href="#">'+data[i].id_nm+'</a></td>'
 			+'<td style="width: 15%;">'+data[i].iuser_nm+'</td>'
-			+'<td style="width: 30%;">'+data[i].auth_nm+'외 ' +data[i].count+ '</td>'
+			+'<td style="width: 30%;">'+data[i].auth_nm+ '</td>'
 			+'<td style="width: 16%;">'+data[i].fst_reg_id+'</td>'
 			+'<td style="width: 19%;">'+fst_reg_d+'</td></tr>'
 		$('#ausermastertable tbody').append(args);
@@ -409,9 +409,12 @@ function searchAuthUserClick(ctx){
 	$('#ausermastertable tbody').delegate('a', 'click', function(event){
 		event.preventDefault();
 		
-		var userId=$(this).parent().next().next().next().text();
-	
-		window.open(ctx+"/authUserViewPopup?authUser="+$(this).text()+"&userId="+userId,'newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		var userId=$(this).parent().children().children().val();
+		var userNm=$(this).parent().next().next().next().text();
+		console.log(userId);
+		console.log(userNm);
+		window.open(ctx+"/authUserViewPopup?userId="+userId+"&userNm="+userNm,'newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//		window.open(ctx+"/authUserViewPopup?authUser="+$(this).text()+"&userId="+userId,'newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

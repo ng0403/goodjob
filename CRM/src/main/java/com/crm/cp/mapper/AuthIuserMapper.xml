@@ -12,19 +12,41 @@
 	</sql>
 
 	<select id="authIuserSelect" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">
-		SELECT a.AUTH_ID, a.FST_REG_D, a.FST_REG_ID, b.ID_NM
+		SELECT  distinct b.ID_NM, b.IUSER_ID, b.IUSER_NM
+        	, LISTAGG(a.AUTH_ID,', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS auth_id
+        	, LISTAGG((SELECT DISTINCT AUTH_NM 
+                      FROM AUTHORIZATION
+                      WHERE AUTH_ID = a.AUTH_ID),', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS auth_nm
+        	, (SELECT DISTINCT FST_REG_ID FROM AUTHORIZATION_IUSER WHERE IUSER_ID = b.IUSER_ID) AS FST_REG_ID
+        	, TO_CHAR((SELECT FST_REG_D 
+                      FROM (SELECT DISTINCT FST_REG_D,IUSER_ID,
+                            row_number() over(partition by IUSER_ID order by FST_REG_D desc) rn 
+                            FROM AUTHORIZATION_IUSER ORDER BY FST_REG_D) 
+                            WHERE rn =1 AND IUSER_ID = b.IUSER_ID ),'YYYY-MM-DD HH24:MI:SS') AS FST_REG_D
 		FROM AUTHORIZATION_IUSER a, IUSER b
 		WHERE a.IUSER_ID = b.IUSER_ID
-		ORDER BY FST_REG_D DESC
+		GROUP BY b.IUSER_ID,b.IUSER_NM,b.ID_NM
+        ORDER BY FST_REG_D DESC
 	</select>
 	
 	<select id="authIuserSelectSearch" parameterType="map" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">
-		SELECT a.AUTH_ID, a.FST_REG_ID, a.FST_REG_D, b.ID_NM
+		SELECT  distinct b.ID_NM, b.IUSER_ID, b.IUSER_NM
+        	, LISTAGG(a.AUTH_ID,', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS auth_id
+        	, LISTAGG((SELECT DISTINCT AUTH_NM 
+                      FROM AUTHORIZATION
+                      WHERE AUTH_ID = a.AUTH_ID),', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS auth_nm
+        	, (SELECT DISTINCT FST_REG_ID FROM AUTHORIZATION_IUSER WHERE IUSER_ID = b.IUSER_ID) AS FST_REG_ID
+        	, TO_CHAR((SELECT FST_REG_D 
+                      FROM (SELECT DISTINCT FST_REG_D,IUSER_ID,
+                            row_number() over(partition by IUSER_ID order by FST_REG_D desc) rn 
+                            FROM AUTHORIZATION_IUSER ORDER BY FST_REG_D) 
+                            WHERE rn =1 AND IUSER_ID = b.IUSER_ID ),'YYYY-MM-DD HH24:MI:SS') AS FST_REG_D
 		FROM AUTHORIZATION_IUSER a, IUSER b
-		WHERE a.IUSER_ID = b.IUSER_ID 
+		WHERE a.IUSER_ID = b.IUSER_ID
 		<if test="keyword!=null and keyword!='' ">
 	        <include refid="where-authIuserList"/>
 	    </if>
+	    GROUP BY b.IUSER_ID,b.IUSER_NM,b.ID_NM
 		ORDER BY a.FST_REG_D DESC
 	</select>
 	
@@ -32,8 +54,7 @@
 		SELECT a.AUTH_ID, a.IUSER_ID, a.FST_REG_ID, a.FST_REG_D, b.ID_NM
 		FROM AUTHORIZATION_IUSER a, IUSER b
 		WHERE a.IUSER_ID = b.IUSER_ID
-   		AND b.ID_NM = #{id_nm}
-		AND a.AUTH_ID = #{auth_id}
+   		AND b.IUSER_ID = #{iuser_id}
 	</select>
 	
 	<select id="searchUserAuth" parameterType="com.crm.cp.standard.authIuser.vo.AuthIuserVO" resultType="int">

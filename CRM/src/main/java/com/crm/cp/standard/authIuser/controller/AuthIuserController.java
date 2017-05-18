@@ -35,15 +35,25 @@ public class AuthIuserController {
 	
 	@RequestMapping(value="/authUserViewPopup", method=RequestMethod.GET)
 	public ModelAndView AuthUserDetail(HttpSession session,
-			@RequestParam (value="authUser") String authId, 
-			@RequestParam (value="userId") String user_id){
+//			@RequestParam (value="authUser") String authId, 
+			@RequestParam (value="userId") String user_id,
+			@RequestParam (value="userNm") String user_nm){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("auth_id", authId);
-		map.put("id_nm", user_id);
+//		map.put("auth_id", authId);
+		map.put("iuser_id", user_id);
 		
-		Object obj = authIuserService.authUserDetail(map);
-		return new ModelAndView("/standard/authUser/authUserViewPopup","authUser",obj);
+		List<AuthIuserVO> authList = authIuserService.authList(map);
+		List<AuthIuserVO> userAuthList = authIuserService.userAuthList(map);
+		
+		ModelAndView mav = new ModelAndView("/standard/authUser/authUserViewPopup");
+		
+		mav.addObject("user_id", user_id);
+		mav.addObject("user_nm", user_nm);
+		mav.addObject("authList", authList);
+		mav.addObject("userAuthList", userAuthList);
+		
+		return mav;
 		
 	}
 	

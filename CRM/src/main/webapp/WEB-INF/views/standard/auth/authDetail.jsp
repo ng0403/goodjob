@@ -62,7 +62,7 @@
 							    </td>
 								<td style="width: 15%;"><a href="#">${authUser.id_nm}</a></td>
 								<td style="width: 15%;">${authUser.iuser_nm}</td>
-								<td style="width: 30%;">${authUser.auth_nm} 외 ${authUser.count}</td>
+								<td style="width: 30%;">${authUser.auth_nm}</td>
 								<td style="width: 16%;">${authUser.fst_reg_id}</td>
 								<td style="width: 19%;"><fmt:formatDate value="${authUser.fst_reg_d}" pattern="yyyy-MM-dd"/></td>
 							</tr>
