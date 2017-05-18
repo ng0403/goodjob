@@ -12,7 +12,18 @@ public class AuthIuserVO {
 	String fst_reg_id;
 	Date fst_reg_d;
 	String id_nm;
+	String iuser_nm;
+	String auth_nm;
+	String count;
 	
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
 	public AuthIuserVO(){ }
 
 	public AuthIuserVO(String auth_id, String fst_reg_id, Date fst_reg_d,
@@ -32,6 +43,22 @@ public class AuthIuserVO {
 		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_d = fst_reg_d;
 		this.id_nm = id_nm;
+	}
+
+	public String getIuser_nm() {
+		return iuser_nm;
+	}
+
+	public void setIuser_nm(String iuser_nm) {
+		this.iuser_nm = iuser_nm;
+	}
+
+	public String getAuth_nm() {
+		return auth_nm;
+	}
+
+	public void setAuth_nm(String auth_nm) {
+		this.auth_nm = auth_nm;
 	}
 
 	public String getAuth_id() {

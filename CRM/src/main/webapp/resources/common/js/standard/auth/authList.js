@@ -69,14 +69,14 @@ function searchAuthList(ctx){
 				$('#authtable tbody tr').remove();
 
 				for(var i=0; i<data.length;i++){
-					var args = "<tr><th scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
-					+"<td style='width:25%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
-					+"<td style='width:40%;'>"+data[i].auth_nm+"</td>";
+					var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
+					+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
+					+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
 					
 					if(data[i].act_yn=='Y'){
-						args+="<td style='width:35%;'>"+"활성화"+"</td></tr>";
+						args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
 					}else{
-						args+="<td style='width:35%;'>"+"비활성화"+"</td></tr>";
+						args+="<td style='width:30%;'>"+"비활성화"+"</td></tr>";
 					}
 					$('#authtable tbody').append(args);
 
@@ -96,7 +96,6 @@ function writeAuthPopup(ctx){
 	$('#writeauth').click(function(){
 		window.open(ctx+'/authwritePopup','newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
-
 }
 
 function pauthSendConfirm(pauth_id, pauth_name, pauth_flg){
@@ -122,14 +121,14 @@ function pauthSendConfirm(pauth_id, pauth_name, pauth_flg){
 		success : function(data){
 			$('#authtable tbody tr').remove();
 			for(var i=0; i<data.length;i++){
-				var args = "<tr><th scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
-				+"<td style='width:25%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
-				+"<td style='width:40%;'>"+data[i].auth_nm+"</td>";
+				var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
+				+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
+				+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
 				
 				if(data[i].act_yn=='Y'){
-					args+="<td style='width:35%;'>"+"활성화"+"</td></tr>";
+					args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
 				}else{
-					args+="<td style='width:35%;'>"+"비활성화"+"</td></tr>";
+					args+="<td style='width:30%;'>"+"비활성화"+"</td></tr>";
 				}
 				$('#authtable tbody').append(args);
 			}
@@ -182,12 +181,12 @@ function deleteAuthClick(ctx){
 					
 					$('#authtable tbody tr').remove();
 					for(var i=0; i<data.length;i++){
-						var args = "<tr><th scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
-						+"<td style='width:25%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
-						+"<td style='width:40%;'>"+data[i].auth_nm+"</td>";
+						var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
+						+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
+						+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
 						
 						if(data[i].act_yn=='Y'){
-							args+="<td style='width:35%;'>"+"활성화"+"</td></tr>";
+							args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
 						}else{
 							args+="<td style='width:35%;'>"+"비활성화"+"</td></tr>";
 						}
@@ -213,14 +212,14 @@ function editAuth(data){
 	
 	$('#authtable tbody tr').remove();
 	for(var i=0; i<data.length;i++){
-		var args = "<tr><th scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
-		+"<td style='width:25%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
-		+"<td style='width:40%;'>"+data[i].auth_nm+"</td>";
+		var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
+		+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
+		+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
 		
 		if(data[i].act_yn=='Y'){
-			args+="<td style='width:35%;'>"+"활성화"+"</td></tr>";
+			args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
 		}else{
-			args+="<td style='width:35%;'>"+"비활성화"+"</td></tr>";
+			args+="<td style='width:30%;'>"+"비활성화"+"</td></tr>";
 		}
 		$('#authtable tbody').append(args);
 	}
@@ -313,13 +312,14 @@ function dateFormat(timestamp) {
 function editUserAuth(data){
 	$('#ausermastertable tbody tr').remove();
 	for(var i=0; i<data.length;i++){
-		fst_reg_d = dateFormat(Number(data[i].fst_reg_d));
+		var fst_reg_d = dateFormat(Number(data[i].fst_reg_d));
 		
-		var args = '<tr><th><input type="checkbox" id="ckselect" value="'+data[i].auth_id+'"></th>'
-			+'<td style="width: 25%;"><a href="#">'+data[i].auth_id+'</a></td>'
-			+'<td style="width: 25%;">'+data[i].fst_reg_id+'</td>'
-			+'<td style="width: 25%;">'+fst_reg_d+'</td>'
-			+'<td style="width: 25%;">'+data[i].id_nm+'</td></tr>'
+		var args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data[i].iuser_id+'"></td>'
+			+'<td style="width: 15%;"><a href="#">'+data[i].id_nm+'</a></td>'
+			+'<td style="width: 15%;">'+data[i].iuser_nm+'</td>'
+			+'<td style="width: 30%;">'+data[i].auth_nm+'외 ' +data[i].count+ '</td>'
+			+'<td style="width: 16%;">'+data[i].fst_reg_id+'</td>'
+			+'<td style="width: 19%;">'+fst_reg_d+'</td></tr>'
 		$('#ausermastertable tbody').append(args);
 	}
 }

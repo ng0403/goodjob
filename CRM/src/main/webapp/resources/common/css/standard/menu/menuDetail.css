@@ -241,15 +241,15 @@ select{
 
 }
 
-/* .bs-example_menulist #mastertable tbody td{ */
+.bs-example_menulist #mastertable tbody td{
 /* 	width: 25%; */
-/* 	padding: 8px; */
-/*     line-height: 1.428571429; */
+	padding: 8px;
+    line-height: 1.428571429;
 /*     vertical-align: top; */
-/*     border-top: 1px solid #dddddd; */
-/*     padding-left:20px; */
-/*     text-align: left; */
-/* } */
+    border-top: 1px solid #dddddd;
+    padding-left:20px;
+    text-align: left;
+}
 
 /* .bs-example_menulist #mastertable thead tr th{ */
 /*   float: left; */

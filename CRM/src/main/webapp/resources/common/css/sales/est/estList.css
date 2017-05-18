@@ -153,11 +153,11 @@ select{
 	padding-right: 10px;
 }
 
-#pageSpace {
-	float: left;
-	margin-top: 10px;
+/* #pageSpace { */
+/* 	float: left; */
+/* 	margin-top: 10px; */
 /* 	padding-right: 10px; */
-}
+/* } */
 
 #estList tr{
 	height: 43px;

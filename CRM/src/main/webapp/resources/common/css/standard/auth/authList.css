@@ -7,14 +7,25 @@ html{
 }
 
 select{
-	 margin-left: 10px;
-  	 background-color:#ffffff;
- 	 color:#5F5F5F;
- 	 border:1px solid #C0C4CB;
- 	 padding:5px 5px;
- 	 border-radius:5px 5px 5px 5px;
- 	 width: auto;
- 	/*  margin-right: 30px; */
+	 margin: 0em !important;
+    max-width: 100% !important;
+    -webkit-box-flex: 1 !important;
+    -webkit-flex: 1 0 auto !important;
+    -ms-flex: 1 0 auto !important;
+    flex: 1 0 auto !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    text-align: left !important;
+    line-height: 1.21428571em !important;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+    padding: 0.67857143em 1em !important;
+    background: #FFFFFF !important;
+    border: 1px solid rgba(34, 36, 38, 0.15) !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+    border-radius: 0.28571429rem !important;
+    -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
+    box-shadow: none !important;
 }
 
 #title .caption{
@@ -47,26 +58,31 @@ select{
 }
 
 .bs-example #authtable{
+	float: left; 
 	width:100%;
-	border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid #dddddd;
+/* 	border-collapse: collapse; */
+/*     border-spacing: 0; */
+/*     border: 1px solid #dddddd; */
     
 }
 
 .bs-example #authtable thead{
-	float: left; width:100%;
+	float: left; width:100%; text-align: left;
 }
 
 .bs-example #authtable thead tr{
 	height:35px;
+	padding: 5px;
+
 }
 
-.bs-example #authtable thead td{
-	font-weight: bold;
-	vertical-align: bottom;
-    border-bottom: 2px solid #dddddd;
-    padding: 8px;
+.bs-example #authtable thead th{
+/* 	font-weight: bold; */
+/* 	vertical-align: bottom; */
+/*     border-bottom: 2px solid #dddddd; */
+/*     padding: 8px; */
+	padding-left:7px;
+	padding-right:7px;
 }
 
 .bs-example #authtable thead td,
@@ -106,18 +122,19 @@ select{
 
 .bs-example #authtable  tbody td{
 /* 	width: 25%; */
-	padding: 8px;
+	padding: 5px;
     line-height: 1.428571429;
-    vertical-align: top;
-    border-top: 1px solid #dddddd;
-    padding-left:20px;
+/*     vertical-align: top; */
+/*     border-top: 1px solid #dddddd; */
+    padding-left:7px;
+    padding-right:7px;
     text-align: left;
 }
 
-.bs-example #authtable  thead tr th{
-  vertical-align: center;
-  border-bottom: 2px solid #dddddd;
-}
+/* .bs-example #authtable  thead tr th{ */
+/*   vertical-align: center; */
+/*   border-bottom: 2px solid #dddddd; */
+/* } */
 
  /*조직리스트*/
  .bs-example_orglist{

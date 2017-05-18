@@ -28,9 +28,12 @@
 	   WHERE AUTH_ID = #{auth_id}
     </update> 
     
-    <insert id="authInsert" keyColumn="auth_id" parameterType="com.crm.cp.standard.auth.vo.AuthVO">
-	    INSERT INTO AUTHORIZATION(AUTH_NM, ACT_YN, FST_REG_ID, fin_mdfy_id)
-		VALUES(#{auth_nm},#{act_yn},#{fst_reg_id}, #{fin_mdfy_id})
+    <insert id="authInsert"  parameterType="com.crm.cp.standard.auth.vo.AuthVO">
+	    INSERT INTO AUTHORIZATION(AUTH_ID, AUTH_NM, ACT_YN, FST_REG_ID, fin_mdfy_id)
+		VALUES((SELECT /*+INDEX_DESC(AUTHORIZATION PK_AUTHORIZATION)*/
+			    DECODE(MAX(AUTH_ID),NULL,'AU00001',SUBSTR(MAX(AUTH_ID),1,2)||lpad((SUBSTR(MAX(AUTH_ID),3,5)+1),5,0))AUTH_ID
+			FROM AUTHORIZATION
+			WHERE ROWNUM=1),#{auth_nm},#{act_yn},#{fst_reg_id}, #{fin_mdfy_id})
     </insert>
     
     <select id="authDetail" parameterType="string" resultType="com.crm.cp.standard.auth.vo.AuthVO">

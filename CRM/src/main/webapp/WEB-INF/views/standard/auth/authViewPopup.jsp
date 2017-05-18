@@ -20,47 +20,46 @@
 <div class="bt_position_popup">
    <div class="bs-example" data-example-id="simple-table">
 	 <table class=table>  			
-							<tbody id="tbody1">
-								<tr>
-									<th>권한 ID</th>
-									<td><input type="text" name="dauth_id" id="dauth_id" class="int" value="${auth.auth_id}" disabled="disabled"/></td>
-								</tr>
-								<tr>
-									<th>권한명</th>
-									<td><input type="text" name="dauth_name" id="dauth_name" class="int" value="${auth.auth_nm}" disabled="disabled"/></td>
-								</tr>
-								<tr>
-									<th>활성화 여부</th>
-									<td>
-									<c:if test="${auth.act_yn=='Y'}">
-									<input type="radio" checked="checked" disabled="disabled" id="dauth_flg_Y" value='Y'/>활성화&nbsp;
-									<input type="radio" disabled="disabled" id="dauth_flg_N" value='N'/>비활성화
-									</c:if>
-									
-									<c:if test="${auth.act_yn=='N'}">
-									<input type="radio" disabled="disabled" id="dauth_flg_Y" value='Y'/>활성화&nbsp;
-									<input type="radio"  checked="checked" disabled="disabled" id="dauth_flg_N" value='N'/>비활성화
-									</c:if>
-									</td>
-								</tr>
-								<tr>
-									<th>생성자</th>
-									<td><input type="text" name="dc_user_id" id="dc_user_id" class="int" value="${auth.fst_reg_id}" disabled="disabled"/></td>
-								</tr>
-								<tr>
-									<th>생성일</th>
-									<td><input type="text" name="dcdate" id="dcdate" class="int" value="${auth.fst_reg_dt}" disabled="disabled"/></td>
-								</tr>
-								<tr>
-									<th>수정자</th>
-									<td><input type="text" name="du_user_id" id="du_user_id" class="int" value="${auth.fin_mdfy_id_nm}" disabled="disabled"/></td>
-								</tr>
-								<tr>
-									<th>수정일</th>
-									<td><input type="text" name="dudate" id="dudate" class="int" value="${auth.fin_mdfy_dt}" disabled="disabled"/></td>
-								</tr>
-							</tbody>
-						</table>
+			<tbody id="tbody1">
+				<tr>
+					<th>권한 ID</th>
+					<td><input type="text" name="dauth_id" id="dauth_id" class="int" value="${auth.auth_id}" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<th>권한명</th>
+					<td><input type="text" name="dauth_name" id="dauth_name" class="int" value="${auth.auth_nm}" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<th>활성화 여부</th>
+					<td>
+						<c:if test="${auth.act_yn=='Y'}">
+							<input type="radio" checked="checked" disabled="disabled" id="dauth_flg_Y" value='Y'/>활성화&nbsp;
+							<input type="radio" disabled="disabled" id="dauth_flg_N" value='N'/>비활성화
+						</c:if>
+						<c:if test="${auth.act_yn=='N'}">
+							<input type="radio" disabled="disabled" id="dauth_flg_Y" value='Y'/>활성화&nbsp;
+							<input type="radio"  checked="checked" disabled="disabled" id="dauth_flg_N" value='N'/>비활성화
+						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<th>생성자</th>
+					<td><input type="text" name="dc_user_id" id="dc_user_id" class="int" value="${auth.fst_reg_id}" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<th>생성일</th>
+					<td><input type="text" name="dcdate" id="dcdate" class="int" value="${auth.fst_reg_dt}" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<th>수정자</th>
+					<td><input type="text" name="du_user_id" id="du_user_id" class="int" value="${auth.fin_mdfy_id}" disabled="disabled"/></td>
+				</tr>
+				<tr>
+					<th>수정일</th>
+					<td><input type="text" name="dudate" id="dudate" class="int" value="${auth.fin_mdfy_dt}" disabled="disabled"/></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 	<div class="auth_bt_position">
