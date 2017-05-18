@@ -357,6 +357,16 @@
 		FROM CODE
 		WHERE CODE = #{QUESTION_TYPE_CD} AND CD_GRP_ID = 'QAT'
 	</select>
+	
+	
+	<select id="fileboardList" resultType="com.crm.cp.standard.board.vo.BoardVO">
+	 SELECT *
+        FROM 
+        (
+        SELECT * FROM TB_BOARD WHERE BOARD_MNG_NO = 'BMG1000002' AND ACTIVE_FLG ='Y' ORDER BY CREATED DESC
+        ) 
+        WHERE ROWNUM <![CDATA[<= 5 ]]> 
+	</select>
 
 
 </mapper>

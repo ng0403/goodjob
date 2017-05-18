@@ -97,7 +97,7 @@ function atagfunc(ctx){
 		
 	});*/
 	
-	$('.dboardtable').delegate('a', 'click', function(event){
+	/*$('.dboardtable').delegate('a', 'click', function(event){
 		
 		event.preventDefault();
 		var hrefdata = $(this).attr("href");
@@ -121,6 +121,6 @@ function atagfunc(ctx){
 			
 		});
 		
-	});
+	});*/
 	
 }

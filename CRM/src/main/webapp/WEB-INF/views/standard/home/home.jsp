@@ -197,7 +197,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${boardVO}" var="boardVO" begin="0" end="4"> 
+				<c:forEach items="${boardVO}" var="boardVO" begin="0" end="5"> 
 					<tr>
 					   <td>${boardVO.BOARD_NO}</td>
 						<td>
@@ -226,20 +226,21 @@
 			<table id="goaltable" class="dboardtable">
 				<thead>
 					<tr>
-						<td>자료분류</td><td>제목</td><td>조회수</td><td>게시일자</td><td>담당부서</td><td>게시자</td>
+						<td>글번호</td><td>제목</td><td>게시자</td><td>작성일</td><td>조회수</td>
 					</tr>
 				</thead>
 				<tbody>
+			<c:forEach items="${fBoardList}" var="fBoardList" begin="0" end="5">  
 					<tr>
-						<td>${data_board.CD_NM}</td>
+						<td>${fBoardList.BOARD_NO}</td>
 						<td>
-							<a href="${ctx}//dboarddetail?dboardId=${data_board.DATA_BOARD_ID}" class="dboardbtn" style="text-decoration: none;">${data_board.TITLE}</a>
+							<a href="/boardDetail?BOARD_NO=${fBoardList.BOARD_NO}" class="dboardbtn" style="text-decoration: none;">${fBoardList.TITLE}</a>
 						</td>
-						<td>${data_board.CHK_NUM}</td>
-						<td><fmt:formatDate value="${data_board.FST_REG_DT}" pattern="yyyy-MM-dd"/></td>
-						<td>${data_board.ORG_NM}</td>
-						<td>${data_board.FST_REG_ID_NM}</td>
-					</tr>
+						<td>${fBoardList.CREATED_BY}</td>
+						<td>${fBoardList.CREATED}</td>
+						<td>${fBoardList.VIEW_CNT}</td>
+ 					</tr>
+			</c:forEach>
 				</tbody>
 			</table>
 		</div>

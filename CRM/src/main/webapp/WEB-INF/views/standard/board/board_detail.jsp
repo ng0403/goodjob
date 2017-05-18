@@ -71,7 +71,11 @@
 		 
   	<div id="created"> 
    		<label for="view_cnt">조회 : ${boardlist.VIEW_CNT}</label> 
+   		<c:if test="${boardlist.FILE_NM == null}">
+   		</c:if>
+   		<c:if test="${boardlist.FILE_NM != null}">
   		<label> <a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM}</a></label>	 
+ 		</c:if>
  		<br/> 
  	</div> 
 		 <textarea  rows="10" id="boardcontent"  readonly="readonly" >${boardlist.CONTENT}</textarea>

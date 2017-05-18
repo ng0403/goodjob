@@ -149,5 +149,10 @@ public class BoardServiceImpl implements BoardService {
 				System.out.println("service map ? " + BOARD_NO);
 				  boardDao.AnswerFlg(BOARD_NO); 
 			}
+
+			@Override
+			public List<BoardVO> fileboardList() {
+ 				return boardDao.fileboardList();
+			}
  
 }

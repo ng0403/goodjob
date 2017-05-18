@@ -203,8 +203,8 @@ function searchAcnkEvent(contactPageNum, keyword){
 function contactSearchEnter(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	
-	if (keycode == '13') {
-		if ($("#call_name").val() == '' && $("#call_email").val() == '' && $("#call_tel").val() == '' && $("#call_iuser_nm").val() == '') {
+ 	if (keycode == '13') {
+		if ($("#cont_nm").val() == '' && $("#email").val() == '' && $("#ph").val() == '' ) {
 			alert("검색어를 입력하세요.")
 			$("#call_name").focus();
 		} else {

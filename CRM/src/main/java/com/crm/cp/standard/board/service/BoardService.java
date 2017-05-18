@@ -12,6 +12,9 @@ public interface BoardService {
 	  public List<Object> list(Map map);
 	  public List<BoardVO> ajaxlist();
 	  public List<BoardVO> QnAajaxlist();
+	  public List<BoardVO> fileboardList();
+	  
+	  
 
 	  public BoardVO detail(int BOARD_NO);
 	  public void viewadd(int BOARD_NO);

@@ -156,4 +156,10 @@ public class BoardDaoImpl implements BoardDao {
 				
 			}
 
+			@Override
+			public List<BoardVO> fileboardList() {
+				// TODO Auto-generated method stub
+				return sqlSession.selectList("board.fileboardList");
+			}
+
 }

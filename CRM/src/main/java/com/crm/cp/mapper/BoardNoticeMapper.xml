@@ -43,7 +43,7 @@
         (
         SELECT * FROM TB_BOARD WHERE BOARD_MNG_NO = 'BMG1000001' ORDER BY CREATED DESC
         ) 
-        WHERE ROWNUM = 1
+        WHERE ROWNUM <![CDATA[<= 5 ]]> 
 	
 	</select>
  
