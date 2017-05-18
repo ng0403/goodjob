@@ -6,16 +6,20 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_estpop_css.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_estpop_css.css" type="text/css" /> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/ccestimate.js"></script> --%>
+
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custestimate.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <script type="text/javascript">
 $(function() {
@@ -47,6 +51,8 @@ $(function() {
 </head>
 
 <body onload="setWindowResize();">
+<div style="width: 98%; padding-left: 10px;">
+
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="prodList" value="${prod}">
 	<input type="hidden" id="eduList" value="${eduList}">
@@ -57,73 +63,60 @@ $(function() {
  	
  	<br>
  	<div id="title">
-		<div class="caption">■ 견적 등록</div>
+<!-- 		<div class="caption">■ 견적 등록</div> -->
+		<h3 class="ui header" style="background: #fff; padding: 10px;">■ 견적 등록</h3>
 	</div>
 
 	<div class="est_pop_list_div">
-	
-			<table id="keymanpopuptable" style="border-collapse: collapse;">
-					<tbody id="tbody1">
-						<tr>
-							<th>견적명</th>
-							<td>
-								<input type="text" name="estim_nm" id="estim_nm" class="est_txt" value="${estim_nm}" autofocus="autofocus">
-								<input type="hidden" name="estim_id" id="estim_id" value="${estim_id}">
-							</td>
-						</tr>
-						<tr>
-							<th>고객명</th>
-							<td>
-								<input type="text" name="cust_nm" id="cust_nm" class="est_txt" readonly="readonly" value="${cust_nm}">
-								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
-							</td>
-						</tr>
-						<tr>
-							<th>견적단계</th>
-							<td>
-								<select id="estim_lev_cd" class="estim_lev_cd" name="estim_lev_cd">
-									<option value="0" style="text-align: center;">==선택==</option>
-									<c:forEach items="${elcList}" var="list">
-										<option value="${list.code}">${list.cd_nm}</option>							
-									</c:forEach>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>견적유효일자</th>
-							<td>
-							<input type="text" id="estim_valid_d" name="estim_valid_d" class="est_txt" value="${estim_valid_d}"/>	
-							</td>
-						</tr>
-						<tr>
-							<th>영업기회명</th>
-							<td>
-								<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
-								<input type="text" 	 name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="est_txt" value="${sales_oppt_nm}">
-								<input type="button" name="act_opp" 	  id="opptSelect"    class="btn-success-tel" value="영업기회" >
+		<table id="keymanpopuptable" class="ui celled table" style="width: 38%; float: left; margin-right: 10px;">
+			<tbody id="tbody1">
+				<tr>
+					<th>견적명</th>
+					<td>
+						<input type="text" name="estim_nm" id="estim_nm" class="inputText" value="${estim_nm}" autofocus="autofocus">
+						<input type="hidden" name="estim_id" id="estim_id" value="${estim_id}">
+					</td>
+				</tr>
+				<tr>
+					<th>고객명</th>
+					<td>
+						<input type="text" name="cust_nm" id="cust_nm" class="inputText" readonly="readonly" value="${cust_nm}">
+						<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
+					</td>
+				</tr>
+				<tr>
+					<th>견적단계</th>
+					<td>
+						<select id="estim_lev_cd" class="inputText" name="estim_lev_cd" style="background: #fff;">
+							<option value="0" style="text-align: center;">==선택==</option>
+							<c:forEach items="${elcList}" var="list">
+								<option value="${list.code}">${list.cd_nm}</option>							
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>견적유효일자</th>
+					<td>
+					<input type="text" id="estim_valid_d" name="estim_valid_d" class="inputText" value="${estim_valid_d}"/>	
+					</td>
+				</tr>
+				<tr>
+					<th>영업기회명</th>
+					<td>
+						<input type="hidden" name="sales_oppt_id" id="sales_oppt_id" value="${sales_oppt_id}">
+						<input type="text" 	 name="sales_oppt_nm" id="sales_oppt_nm" readonly="readonly" class="inputText" value="${sales_oppt_nm}">
+						<input type="button" name="act_opp" 	  id="opptSelect"   class="tiny ui orange basic button " value="영업기회" >
 <!-- 								<input type="button" id="actAddSaveBtn" class="act_bt" value="영업기회 등록" onclick="addOppt()"/> -->
-							</td>
-						</tr>
-						<tr>
-							<th>메모</th>
-							<td><textarea class="int_memo" id="memo" cols="23" rows="5">${memo}</textarea></td>
-						</tr>
-					</tbody>
-				</table>
+					</td>
+				</tr>
+				<tr>
+					<th>메모</th>
+					<td><textarea class="inputText" id="memo" cols="23" rows="5" style="width: 98%;">${memo}</textarea></td>
+				</tr>
+			</tbody>
+		</table>
 			
-			
-			<c:if test="${flag == 0}">
-			<div class="estimate_bt_position2">
-				<input type="button" class="est_list_bt" value="저장" id="est_add" onclick="custEstimAdd('${ctx}');"/>
-				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel" onclick="window.close();"/>
-			</div>
-		</c:if>
-		<c:if test="${flag == 1}">
-			<div class="estimate_bt_position2">
-				<input type="button" class="est_list_bt" value="저장" id="est_mdfy" onclick="custEstimUpdate('${ctx}');"/>
-				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel" onclick="window.close();"/>
-			</div>
-		</c:if>
 	</div>	
 			<div class="estProDiv">
 			<!-- <div>
@@ -139,23 +132,23 @@ $(function() {
 			</table>
 			</div>  -->
 			
-			<div id="estimatediv">
-					<table id="estimatetable" class="estimatetable" style="border-collapse: collapse;">
+			<div id="estimatediv" style="width: 60%; float: left; margin-left: 5px;">
+					<table id="estimatetable" class="ui celled table">
 						<thead>
 							<tr style="background-color: #eaeaea; text-align: center;">
 								<th style="width: 3%;"><input type="checkbox" id="prodallCheck"></th>
-								<td style="width: 32%;">품목명</td>
-								<td style="width: 8%;">수량</td>
-								<td style="width: 18%;">판매가</td>
-								<td style="width: 24%;">할인</td>
-								<td style="width: 15%;">공급가</td>
+								<th style="width: 32%;">품목명</td>
+								<th style="width: 8%;">수량</td>
+								<th style="width: 18%;">판매가</td>
+								<th style="width: 24%;">할인</td>
+								<th style="width: 15%;">공급가</td>
 							</tr>
 						</thead>
 						<tbody id="estimatetbody" class="estimatetbody">
 					 		<c:forEach items="${prod}" var="list">
 							<tr id="priceline" class="${list.prod_id}">
 								<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}"> 
-								<input type="hidden" id="prod_price"  value="${list.prod_price}" ></th>
+									<input type="hidden" id="prod_price"  value="${list.prod_price}" ></th>
 								<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>
 								<td style="width: 8%;"><input type="number" name="estim_qty" id="estim_qty" class="estim_qty" min="1" max="100" value="${list.estim_qty}"  onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' ></td>
 								<td style="width: 18%;" >${list.sales_price}</td>
@@ -202,10 +195,24 @@ $(function() {
 				</div>
 				
 		
-		<div class="estimate_bt_position"> 
-			<input type="button" class="est_list_bt"  value="상품추가" onclick="prodList('${ctx}');"/>
-			<input type="button" class="est_list_bt" value="상품삭제" onclick="prodDelete();"/>
+		<div class="estimate_bt_position" > 
+			<input type="button" class="tiny ui orange button"  value="상품추가" onclick="prodList('${ctx}');" style="margin-top: 10px; margin-left: 7px;"/>
+			<input type="button" class="tiny ui orange button" value="상품삭제" onclick="prodDelete();" style="margin-top: 10px; margin-left: 7px;"/>
 		</div>
+		
+		<c:if test="${flag == 0}">
+			<div class="estimate_bt_position2" style="padding-top: 10px; clear: both;">
+				<input type="button" class="tiny ui orange button" value="저장" id="est_add" onclick="custEstimAdd('${ctx}');"/>
+				<input type="button" class="tiny ui button" value="취소" id="estimate_cancel" onclick="window.close();"/>
+			</div>
+		</c:if>
+		<c:if test="${flag == 1}">
+			<div class="estimate_bt_position2" style=" margin-bottom: 10px;">
+				<input type="button" class="tiny ui orange button" value="저장" id="est_mdfy" onclick="custEstimUpdate('${ctx}');"/>
+				<input type="button" class="tiny ui button" value="취소" id="estimate_cancel" onclick="window.close();"/>
+			</div>
+		</c:if>
 	</div>
+</div>
 </body>
 </html>

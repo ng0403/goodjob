@@ -304,13 +304,13 @@ function opptMdfySave()
 //상품 리스트 조회
 function opptProdList()
 {
-	window.open('/prodList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/prodList','newwindow3','width=770, height=480, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업기회 탭에서 추가버튼 눌렀을 때.
 function opptInsertPop()
 {
-	window.open('/opptInsertPopup','newwindow','width=700, height=650, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptInsertPopup','newwindow','width=770, height=620, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //컴마 입력 함수
@@ -376,7 +376,7 @@ function actTabFunc(sales_actvy_id) {
 
 function opptTabDetail(sales_oppt_id)
 {
-	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=700, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/opptDetailPop?sales_oppt_id='+sales_oppt_id,'newwindow','width=785, height=615, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 

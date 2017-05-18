@@ -100,7 +100,7 @@ $(document).ready(function() {
 			$("input[id=posChkbox]").prop("checked", false);
 		}
 	});
-	// 고갹담당자 탭 리스트 체크박스 선택, 해제
+	// 고객담당자 탭 리스트 체크박스 선택, 해제
 	$("#pocListCheck").click(function(){
 		if($("#pocListCheck").prop("checked")){
 			$("input[id=pocChkbox]").prop("checked", true);
@@ -208,7 +208,7 @@ function ccOpptDetail(sales_oppt_id){
 function ccActDetail(sales_actvy_id){
 	var ctx = $("#ctx").val();
 	window.open(ctx+'/custActiveDetailPopup?sales_actvy_id='+sales_actvy_id+'&flag=1',
-				'newwindow','width=770, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				'newwindow','width=770, height=635, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 // 견적 상세정보 팝업
@@ -249,7 +249,8 @@ function custActiveAdd(ctx){
 		var list_cust_nm = $('#cust_nm').val();
 		
 		window.open(ctx+'/custActivePopup?list_sales_oppt_id='+list_sales_oppt_id+
-				'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&flag=1', 'newwindow','width=510, height=630, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+					'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&flag=1',
+					'newwindow','width=770, height=635, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		
 	});
 }
@@ -273,7 +274,9 @@ function estimateAdd(ctx){
 				var list_cust_nm = $('#hcust_nm').val();
 				var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
 				var pageNum=$('#pageNum').val();
-				window.open(ctx+'/custEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				window.open(ctx+'/custEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+
+						'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0',
+						'newwindow','width=900, height=445, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 			}
 		});
 }

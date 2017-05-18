@@ -24,7 +24,6 @@ if('${ccOpptPopList.size()}' == 0){
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
 		<div class="caption">■ 영업기회 리스트</div>
-		
 		<div class="act_oppt_list_div">
 			<table id="act_oppt_list_table">
 				<thead>
