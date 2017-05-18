@@ -29,8 +29,7 @@ function userFormInit(){
 
 function codePop(ctx){
 	$('#userTypePop').click(function(){ 
-		
-		window.open(ctx+'/userTypePopup','newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no');
+		window.open(ctx+'/userTypePopup','newwindow','width=805, height=230, toolbar=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no');
 	});
 }
 

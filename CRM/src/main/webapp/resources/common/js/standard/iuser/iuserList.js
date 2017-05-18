@@ -22,7 +22,7 @@ function allChk() {
 function checkCount() {
 	var count = 0;
 	var checkList = $('.ab');
-	for (var i = 0; i < checkList.size(); i++) {
+	for (var i = 0; i < checkList.length; i++) {
 		if ($(checkList[i]).is(':checked')) {
 			count++;
 		}

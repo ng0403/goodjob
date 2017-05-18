@@ -52,7 +52,9 @@ $(function() {
  	
  	<br>
  	<div id="title">
-		<div class="caption">■ 견적 등록</div>
+		<div class="caption">
+			<h3 class="ui header" style="background: #fff;">■ 견적 등록</h3>
+		</div>
 	</div>
 
 	<div class="est_pop_list_div">
