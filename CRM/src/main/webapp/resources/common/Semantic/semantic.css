@@ -4678,7 +4678,8 @@ input::selection {
 
 /* Tablet */
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 여기 수정했습니다 */
+@media only screen and (min-width: 300px) and (max-width: 991px) { 
   .ui.container {
     width: 723px;
     margin-left: auto !important;
@@ -18820,7 +18821,8 @@ ol.ui.horizontal.list li:before,
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 수정 */
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui.page.grid {
     width: auto;
     margin-left: 0em;
@@ -19264,8 +19266,8 @@ ol.ui.horizontal.list li:before,
 }
 
 /* Tablet Sizing Combinations */
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 수정 */
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui.grid > .row > [class*="one wide tablet"].column,
   .ui.grid > .column.row > [class*="one wide tablet"].column,
   .ui.grid > [class*="one wide tablet"].column,
@@ -20356,8 +20358,8 @@ ol.ui.horizontal.list li:before,
 }
 
 /* Tablet */
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 수정  */
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui[class*="tablet reversed"].grid,
   .ui[class*="tablet reversed"].grid > .row,
   .ui.grid > [class*="tablet reversed"].row {
@@ -20468,8 +20470,9 @@ ol.ui.horizontal.list li:before,
 --------------------*/
 
 /* Tablet Only */
+/* 수정 */
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui.doubling.grid {
     width: auto;
   }
@@ -20810,7 +20813,8 @@ ol.ui.horizontal.list li:before,
 
 /* Tablet Only Hide */
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 수정 */
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui[class*="mobile only"].grid.grid.grid:not(.tablet),
   .ui.grid.grid.grid > [class*="mobile only"].row:not(.tablet),
   .ui.grid.grid.grid > [class*="mobile only"].column:not(.tablet),
@@ -21347,7 +21351,8 @@ ol.ui.horizontal.list li:before,
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.menu:not(.secondary):not(.text):not(.tabular):not(.borderless) > .container > .item:not(.right):not(.borderless):first-child {
     border-left: 1px solid rgba(34, 36, 38, 0.1);
   }
@@ -26258,7 +26263,8 @@ a.ui.card:hover,
 
 /* Tablet Only */
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 수정 */
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui.two.doubling.cards {
     margin-left: 0em;
     margin-right: 0em;
@@ -27368,7 +27374,8 @@ a.ui.card:hover,
 
 /* Tablet Only */
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* 수정 */
+@media only screen and (min-width: 300px) and (max-width: 991px) {
   .ui.items > .item {
     margin: 1em 0em;
   }
@@ -29763,7 +29770,8 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.selection.dropdown .menu {
     max-height: 10.68571429rem;
   }
@@ -29967,7 +29975,8 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.search.dropdown .menu {
     max-height: 10.68571429rem;
   }
@@ -30500,7 +30509,8 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.scrolling.dropdown .menu,
   .ui.dropdown .scrolling.menu {
     max-height: 15.42857143rem;
@@ -31267,7 +31277,8 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.modal {
     width: 88%;
     margin: 0em 0em 0em -44%;
@@ -31536,7 +31547,8 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.small.modal {
     width: 70.4%;
     margin: 0em 0em 0em -35.2%;
@@ -31577,7 +31589,8 @@ select.ui.dropdown {
   }
 }
 
-@media only screen and (min-width: 768px) {
+/* 수정 */
+@media only screen and (min-width: 300px) {
   .ui.large.modal {
     width: 88%;
     margin: 0em 0em 0em -44%;
