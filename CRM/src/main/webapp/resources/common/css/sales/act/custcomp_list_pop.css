@@ -56,7 +56,7 @@ select{
 }
 
 .custcomp_list_div{
-	border:1px solid tranceparent;
+/* 	border:1px solid tranceparent; */
 	font-size: 13px;
 	width: 70%;	
 }  
