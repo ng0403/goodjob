@@ -247,7 +247,7 @@ function custCompList(page){
 							"<td>"+cc.sales_scale+"</td>"+
 							"<td>"+cc.emp_qty+"</td>"+
 							"<td>"+cc.indst+"</td>"+
-//							"<td>"+cc.iuser_nm+"</td>"+
+							"<td>"+cc.iuser_nm+"</td>"+
 							"<td>"+cc.fst_reg_dt+"</td>+"+
 							"</tr>"
 					);
@@ -260,7 +260,8 @@ function custCompList(page){
 							+"<th></th>"
 							+"<td></td><td></td><td></td><td></td>"
 							+"<td></td><td></td><td></td><td></td>"
-							+"</tr>");
+							+"<td></td></tr>"
+							);
 				}
 			}
 			$("#pageSpace").children().remove();	
