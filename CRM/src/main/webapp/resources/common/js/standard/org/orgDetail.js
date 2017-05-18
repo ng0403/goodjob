@@ -24,7 +24,7 @@ function TOrgName() {
 //조직대표 검색 팝업
 function OOrgName() {
 	var ctx = $('#ctx').val();
-	var p_org_id = window.open(ctx+"/oOrgList","조직대표",'width=420,height=500,resizable=no,status=no,location=no,menubar=no,toolbar=no');
+	var p_org_id = window.open(ctx+"/oOrgList","조직대표",'width=769,height=500,resizable=no,status=no,location=no,menubar=no,toolbar=no');
 
 }
 
