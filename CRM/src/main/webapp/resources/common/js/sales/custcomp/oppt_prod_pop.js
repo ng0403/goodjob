@@ -14,26 +14,28 @@
  */
 
 $(document).ready(function() {
- 	var ctx = $('#ctx').val();
+	opptProdNmSelect(ctx);
+
+	var ctx = $('#ctx').val();
 	var cust_id = $("#nowCust_id", opener.document).val();
 	var cust_nm = $("#nowCust_nm", opener.document).val();
 	
 	$('#cust_nm').val(cust_nm);
 	
-/*	$("#expt_fin_d").datepicker({
+	$("#expt_fin_d").datepicker({
 		changeMonth: true, //콤보 박스에 월 보이기
 	    changeYear: true, // 콤보 박스에 년도 보이기
 	    showOn: 'button', // 우측에 달력 icon 을 보인다.
 	    buttonImage: '/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
 	    buttonImageOnly: true //달력에 icon 사용하기
-	});*/
+	});
 	
 	//마우스를 손가락 손가락 모양으로 하고 여백주기
-   /* $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});*/
+    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
      
     //날짜 형식을 0000-00-00으로 지정하기
-/*    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-*/   /*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
+    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
+   /*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
 	
 	$("#opptProdtbody").bind('input', function(event) { 
 		var size = event.target.value;
@@ -93,17 +95,6 @@ $(document).ready(function() {
 var opptProdAddId = [];   		//추가된 상품의 상품Id List
 var opptProdDeleteProdId = [];	//삭제된 상품의 상품Id List
 var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
-
-//숫자 사이 쉼표 추가
-function comma(str) {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-}
-//숫자 사이 쉼표 삭제
-function uncomma(str) {
-    str = String(str);
-    return str.replace(/[^\d]+/g, '');
-}
 
 
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
@@ -347,11 +338,10 @@ function opptProdDelete(){
 	});
 }
 
-
-
-function opptProdNmSelect(){
- 	$('#oppt_product_list_table tbody tr').click(function(){
-		alert("enter");
+//상품테이블 클릭
+function opptProdNmSelect(ctx){
+	$('#oppt_product_list_table tbody tr').click(function(){
+		alert("11111");
 		var prod_id=$(this).find('#prod_id').text();
 		var prod_nm=$(this).find('#prod_nm').text();
 		var prod_price=$(this).find('#prod_price').text();
@@ -359,7 +349,6 @@ function opptProdNmSelect(){
 		window.opener.opptInProd(prod_id, prod_nm, prod_price);
 		self.close();
 	});
-
 }
 
 
