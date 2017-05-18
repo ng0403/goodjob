@@ -179,7 +179,7 @@
 <!-- 			</table> -->
 <!-- 		</div> -->
 <!-- 	  </div> -->
-	  <div id="left_home">
+	  <div id="left_home" style="height: 40%;">
 	   <div id="contract_title">
 	   		<div id="hometext">
 	   			■ 공지사항
@@ -212,7 +212,7 @@
 			</table>
 		</div>
 	  </div>
-	  <div id="right_home">
+	  <div id="right_home"  style="height: 40%;">
 	   <div id="contract_title">
 	   		<div id="hometext">
 	   			■ 자료실
