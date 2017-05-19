@@ -111,7 +111,7 @@ public class AuthIuserController {
 	@RequestMapping(value = "/authIuserEdit", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> authEdit(HttpSession session,
-			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data,
+			@RequestParam (value="auth_id_data[]",required=false) List<String> auth_id_data,
 			@RequestParam (value="iuser_id",required=false) String iuser_id) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		AuthIuserVO vo = new AuthIuserVO();
@@ -146,7 +146,7 @@ public class AuthIuserController {
 	@RequestMapping(value="/authUserInsertData", method=RequestMethod.POST)
 	@ResponseBody
 	public List<Object> authUserInsertData( HttpSession session,
-			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data,
+			@RequestParam (value="auth_id_data[]",required=false) List<String> auth_id_data,
 			@RequestParam (value="iuser_id",required=false) String iuser_id){
 		AuthIuserVO authUser = new AuthIuserVO();
 		authUser.setFst_reg_id(session.getAttribute("user").toString());
@@ -169,6 +169,7 @@ public class AuthIuserController {
 	
 	@RequestMapping(value="/authUserDelete", method=RequestMethod.POST)
 		public @ResponseBody List<Object> AuthUserDelete(@RequestBody List<Object> list){
+		System.out.println(list);
 		for (Object authUser : list) {
 			authIuserService.authUserDelete(authUser);
 		}

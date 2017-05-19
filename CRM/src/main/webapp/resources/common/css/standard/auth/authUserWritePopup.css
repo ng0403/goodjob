@@ -16,8 +16,8 @@ html{
   }
 
 .bs-example{
-	border-bottom: 1px solid #dddddd;
-	padding-bottom: 15px;
+/* 	border-bottom: 1px solid #dddddd; */
+	padding: 15px;
 }
 
 .table{

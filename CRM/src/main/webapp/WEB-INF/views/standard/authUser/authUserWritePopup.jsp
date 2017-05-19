@@ -24,65 +24,75 @@
 </div>
 <div class="bt_position_popup">
    <div class="bs-example" data-example-id="simple-table">
-		<table class="ui celled table">  	
-			<tbody>
-				<tr>
-					<td style="width:40%"></td>
-					<td style="width:20%">사용자ID</td>
-					<td style="width:40%">
-						<input type="hidden" name="iuser_id" id="iuser_id"/>
-						<input type="text" name="id_nm" id="uu_user_id" class="int"  readonly="readonly" />
-						<input type="button" id="searchAuthIuser_iuserId" class="tiny ui orange button" value="검색"/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>권한목록</td>
-					<td></td>
-					<td>보유권한</td>
-				</tr>
-				<tr>
-					<th rowspan="5">
-						<table>
-							<tbody id="wauthList">
-								
-							</tbody>
-						</table>
-					</th>
-					<td>
-						<input type="hidden" id="wauth_id" value=""/>
-						<input type="hidden" id="wauth_nm" value=""/>
-					</td>
-					<th rowspan="5">
-						<table>
-							<tbody id="wuserAuthList">
-								
-							</tbody>
-						</table>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" id="wuserAuthGo" class="tiny ui button" value=">"/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" id="wauthGo" class="tiny ui button" value="<"/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-			</tbody>	
-	   </table>
+		<table class="ui sortable celled table" >
+			<tr>
+				<td style="height:300px;">
+					<table class="ui celled table" style="border:none;">  	
+						<tbody>
+							<tr>
+								<td style="width:40%;border:none;"></td>
+								<td style="width:20%;text-align:right;border:none;">사용자ID</td>
+								<td style="width:40%;border:none;">
+									<input type="hidden" name="iuser_id" id="iuser_id"/>
+									<input type="text" name="id_nm" id="uu_user_id" class="int"  readonly="readonly" />
+									<input type="button" id="searchAuthIuser_iuserId" class="tiny ui orange button" value="검색"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;"></td>
+								<td style="border:none;"></td>
+								<td style="border:none;"></td>
+							</tr>
+							<tr>
+								<td style="border:none;">
+									<h4 class="ui header" style="background: #fff;">권한목록</h4>
+								</td>
+								<td style="border:none;"></td>
+								<td style="border:none;">
+									<h4 class="ui header" style="background: #fff;">보유권한</h4>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;height:100px;" rowspan="5">
+									<table>
+										<tbody id="wauthList">
+											
+										</tbody>
+									</table>
+								</td>
+								<td style="border:none;">
+									<input type="hidden" id="wauth_id" value=""/>
+									<input type="hidden" id="wauth_nm" value=""/>
+								</td>
+								<td style="border:none;height:100px;" rowspan="5">
+									<table>
+										<tbody id="wuserAuthList">
+											
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;">
+									<input type="button" id="wuserAuthGo" class="tiny ui button" value=">"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;"></td>
+							</tr>
+							<tr>
+								<td style="border:none;">
+									<input type="button" id="wauthGo" class="tiny ui button" value="<"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;"></td>
+							</tr>
+						</tbody>	
+				   </table>
+				</td>
+			</tr>
+		</table>
 <!-- 	 <table class="table">  			 -->
 <!-- 		<tbody> -->
 <!-- 			<tr> -->

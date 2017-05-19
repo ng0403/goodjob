@@ -425,7 +425,7 @@ function searchAuthUserClick(ctx){
 
 function writeAuthUserPopup(ctx){
 	$('#writeauthuser').click(function(){
-		window.open(ctx+'/authUserWritePopup','newwindow','width=400, height=200, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/authUserWritePopup','newwindow','width=900, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 
 }
@@ -440,7 +440,7 @@ function DeleteAuthUser(ctx){
 			for(var i=0; i<ckdata.length; i++){
 				if($(ckdata[i]).is(':checked')){
 					var obj = new Object();
-					obj.auth_id = $(ckdata[i]).val();
+					obj.iuser_id = $(ckdata[i]).val();
 //					obj.id_nm = $(ckdata[i]).parent().next().next().next().next().text();
 					data.push(obj);
 				}

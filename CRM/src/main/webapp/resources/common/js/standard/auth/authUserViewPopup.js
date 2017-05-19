@@ -22,7 +22,7 @@ function uauthCancel(){
 }
 
 function choiceAuth(){
-	$("#userAuthList tr, #authList tr").click(function(){
+	$(document).on("click","#userAuthList tr, #authList tr",function(){
 		$("#userAuthList tr td, #authList tr td").attr("style","background:white");
 		$(this).children().attr("style","background:#5CD1E5");
 		
@@ -109,7 +109,7 @@ function uauthModifyConfirm(ctx){
 		
 		event.preventDefault();
 		var authData = $("#userAuthList").find("input[name='auth_id']");
-		var auth_id_data = []();
+		var auth_id_data = [];
 		for(var i = 0; i < authData.length; i++){
 			var obj = $(authData[i]).val();
 			auth_id_data.push(obj);

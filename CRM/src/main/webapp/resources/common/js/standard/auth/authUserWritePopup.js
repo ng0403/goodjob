@@ -19,7 +19,7 @@ function PopupEvent(ctx){
 }
 
 function wchoiceAuth(){
-	$("#wuserAuthList tr, #wauthList tr").click(function(){
+	$(document).on("click","#wuserAuthList tr, #wauthList tr",function(){
 		$("#wuserAuthList tr td, #wauthList tr td").attr("style","background:white");
 		$(this).children().attr("style","background:#5CD1E5;");
 		
@@ -149,7 +149,7 @@ function authUserInsert(ctx){
 			return false;
 		}
 		var authData = $("#wuserAuthList").find("input[name='auth_id']");
-		var auth_id_data = []();
+		var auth_id_data = [];
 		for(var i = 0; i < authData.length; i++){
 			var obj = $(authData[i]).val();
 			auth_id_data.push(obj);
