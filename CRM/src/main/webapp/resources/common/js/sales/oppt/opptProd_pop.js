@@ -24,6 +24,7 @@ $(function(){
 	prodallCheck();
 	opptProdDelete();
 	opptProdNmSelect(ctx);
+	opptEstProdNmSelect(ctx);
 	opptProdChange();
 //	startCalendar(ctx);
 });	
@@ -269,22 +270,6 @@ function opptProdDelete(){
 	});
 }
 
-////달력띄우기
-//function startCalendar(ctx){
-//	 $("#estim_valid_d").datepicker({
-//	        changeMonth: true, //콤보 박스에 월 보이기
-//	        changeYear: true, // 콤보 박스에 년도 보이기
-//	        showOn: 'button', // 우측에 달력 icon 을 보인다.
-//	        buttonImage: ctx+'/resources/image/calendar.jpg',  // 우측 달력 icon 의 이미지 경로
-//	        buttonImageOnly: true //달력에 icon 사용하기
-//	    }); 
-//	     //마우스를 손가락 손가락 모양으로 하고 여백주기
-//	    $('img.ui-datepicker-trigger').css({'cursor':'pointer', 'margin-left':'5px', 'margin-bottom':'-6px'});
-//	   //날짜 형식을 0000-00-00으로 지정하기
-//	    $.datepicker.setDefaults({dateFormat:'yy-mm-dd'});
-//	/*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
-//
-//}
 //상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업
 function opptProdNmSelect(ctx){
 	$('#oppt_product_list_table tbody tr').click(function(){
@@ -293,6 +278,17 @@ function opptProdNmSelect(ctx){
 		var prod_price=$(this).find('#prod_price').text();
 		
 		window.opener.opptInputProd(prod_id,prod_nm,prod_price);
+		self.close();
+	});
+}
+//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업
+function opptEstProdNmSelect(ctx){
+	$('#oppt_est_product_list_table tbody tr').click(function(){
+		var prod_id=$(this).find('#prod_id').text();
+		var prod_nm=$(this).find('#prod_nm').text();
+		var prod_price=$(this).find('#prod_price').text();
+		
+		window.opener.opptInputEstProd(prod_id,prod_nm,prod_price);
 		self.close();
 	});
 }

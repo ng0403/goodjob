@@ -89,7 +89,7 @@ var prodAddId =[]; // 상품 추가ID List
 
 // 상품 추가
 function prodList(ctx){
-	window.open(ctx+'/estProdList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/opptEstProdList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 function prodNmSelect(){
@@ -105,7 +105,7 @@ function prodNmSelect(){
 	});
 }
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
-function opptInProd(prod_id,prod_nm,prod_price){
+function opptInputProd(prod_id,prod_nm,prod_price){
 	alert("그려주는곳");
 
 		var unit="";
@@ -127,7 +127,7 @@ function opptInProd(prod_id,prod_nm,prod_price){
 				
 				opptProdAddId.push(prod_id);
 			}
-		$('#estimatetbody').append(
+		$('#opptPrdtbody').append(
 				'<tr id="priceline" class='+prod_id+' style="height: 6px;">'+
 				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
@@ -140,7 +140,7 @@ function opptInProd(prod_id,prod_nm,prod_price){
 		);
 		like = 1;
 	}else{
-		$("#estimatetbody tr").each(function(){	
+		$("#opptPrdtbody tr").each(function(){	
 			
 			var old_prodId = $(this).attr("class");
 			if(prod_id == old_prodId){
@@ -171,7 +171,10 @@ function opptInProd(prod_id,prod_nm,prod_price){
 	}
 	opptProdChange();
 }
-function inputProd(prod_id,prod_nm,prod_price){
+
+//영업기회 상세페이지 견적 상품 추가 그려주는 곳
+function opptInputEstProd(prod_id,prod_nm,prod_price){
+
 		$("#estimatetbody .empty").remove();
 		
 		var data = $('#eduCode').val();

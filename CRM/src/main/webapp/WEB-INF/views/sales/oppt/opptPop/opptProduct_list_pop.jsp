@@ -9,6 +9,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/prod_list_pop.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>

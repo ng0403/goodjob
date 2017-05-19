@@ -77,13 +77,13 @@ var opptProdAddId =[];
 //상품 목록 리스트 팝업
 function opptProdList(ctx){
 	$('#opptProdListBtn').click(function(){
-		window.open(ctx+'/opptPrdtOpen','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/opptPrdtOpen','newwindow3','width=770, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 //영업기회 검색창 고객 리스트 팝업
 function searchCustcompListPopup(ctx){
 	$('#searchCustomer').click(function(){
-		window.open(ctx+'/opptSearchCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
+		window.open(ctx+'/opptSearchCustcompList','newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');		
 	});  
 }
 /////////////////////////////////////
@@ -92,7 +92,7 @@ function custcompListPopup(ctx){
 
 	$('#customer').click(function(){
 		var pop_flg='d';
-		window.open(ctx+'/opptCustcompList?pop_flg='+pop_flg,'newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/opptCustcompList?pop_flg='+pop_flg,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 //고객팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수
@@ -113,11 +113,11 @@ function opptAddBtn() {
 	$("#opptDetail #sales_oppt_nm").focus();
 	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
-		style:'background-color:white'
+		style:'background-color:white; height: 30px;'
 	}).val('');
 	$("#opptDetail select").attr({
 		disabled:false,
-		style:'background-color:white'
+		style:'background-color:white; height: 30px;'
 	});
 	// 버튼 활성화
 	$("#opptDetail #cust_nm,#opptDetail #expt_fin_d").attr("readonly",true);

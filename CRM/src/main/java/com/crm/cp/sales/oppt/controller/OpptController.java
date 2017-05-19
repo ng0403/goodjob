@@ -758,5 +758,22 @@ public class OpptController {
 
 	}
 	
+	//영업기회 상세페이지 견적 탭 견적추가 상품 추가 상품 리스트 출력
+	@RequestMapping(value="/opptEstProdList", method=RequestMethod.GET)
+	public ModelAndView estProdList(HttpSession session,
+			@RequestParam(value="keyfield", defaultValue="pt_id") String keyfield,
+			@RequestParam(value="keyword", defaultValue="") String keyword){
+		ModelAndView mov = new ModelAndView("/sales/oppt/opptPop/product_list_pop");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		List<ProdVO> prodList = estInter.prodList(map);
+	
+		
+		mov.addObject("prodList", prodList);
+	
+		return mov;
+	}
 	
 }

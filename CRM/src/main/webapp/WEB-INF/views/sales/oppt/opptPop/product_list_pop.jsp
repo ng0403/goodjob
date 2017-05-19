@@ -31,7 +31,7 @@
 	
 	
 	<div class="product_list_div">
-		<table id="oppt_product_list_table">
+		<table id="oppt_est_product_list_table">
 			<thead>
 				<tr>
 					<td style="width:30%;">상품ID</td>
