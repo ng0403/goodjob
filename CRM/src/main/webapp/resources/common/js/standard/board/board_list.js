@@ -7,7 +7,7 @@
  	 var tbodylength = $('#board_list_tbody tr').length;
 	 	var tbody = $('#board_list_tbody');
 		
-		if(tbodylength < 10){
+		/*if(tbodylength < 10){
 				for(var i=0; i<10-tbodylength; i++){
  				tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:10%"></td>'
 						+'<td style="width:10%;"></td>'
@@ -17,7 +17,7 @@
 						+'<td style="width:10%;"></td></tr>';
 				tbody.append(tbodyContent);
 			}		
-		}
+		}*/
  })
  
 //13자리 날짜 변환 함수
@@ -197,17 +197,28 @@ function boardPaging(boardPageNum, a) {
 				tbody.children().remove();
 			
 			for (var i = 0; i < data.boardList.length; i++) { 
- 				tbodyContent +='<tr><td scope="row" style="width:10%; text-align:center"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+data.boardList[i].board_NO+'"></td>'
- 				    +'<td style=width:10%">' + data.boardList[i].board_NO + '</td>' 
-         			+"<td style=width:40%;><a href='#' onclick=boardDetail('"+data.boardList[i].board_NO+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.boardList[i].title +"</a></td>"
-					+'<td style="width:10%;">' + data.boardList[i].created_BY +'</td>'
-         		    +'<td style="width:20%;">'+dateFormat(data.boardList[i].created)+'</td>'
-        	        +'<td style="width:10%;">'+data.boardList[i].view_CNT+'</td></tr>' ;
+ 				
+ 				    if(data.boardList[i].file_CD == null){
+ 				    	tbodyContent +='<tr><td scope="row" style="width:10%; text-align:center"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+data.boardList[i].board_NO+'"></td>'
+ 	 				    +'<td style=width:10%">' + data.boardList[i].board_NO + '</td>'
+ 	         			+"<td style=width:40%;><a href='#' onclick=boardDetail('"+data.boardList[i].board_NO+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.boardList[i].title +"</a></td>"
+ 	         			+'<td style="width:10%;">' + data.boardList[i].created_BY +'</td>'
+ 	         		    +'<td style="width:20%;">'+dateFormat(data.boardList[i].created)+'</td>'
+ 	        	        +'<td style="width:10%;">'+data.boardList[i].view_CNT+'</td></tr>' ; 
+ 				    }
+ 				    else{
+ 				    	tbodyContent +='<tr><td scope="row" style="width:10%; text-align:center"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+data.boardList[i].board_NO+'"></td>'
+ 	 				    +'<td style=width:10%">' + data.boardList[i].board_NO + '</td>'
+ 	 				    +"<td style=width:40%;><a href='#' onclick=boardDetail('"+data.boardList[i].board_NO+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.boardList[i].title +"</a> <i class='file icon'></i></td>" 	
+ 	         			+'<td style="width:10%;">' + data.boardList[i].created_BY +'</td>'
+ 	         		    +'<td style="width:20%;">'+dateFormat(data.boardList[i].created)+'</td>'
+ 	        	        +'<td style="width:10%;">'+data.boardList[i].view_CNT+'</td></tr>' ; 
+ 				    }
         		}
  			   tbody.append(tbodyContent);
  			}
 			
-			if(data.boardList.length < 10){
+			/*if(data.boardList.length < 10){
  				for(var i=0; i<10-data.boardListSize; i++){
 					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:10%"></td>'
  						+'<td style="width:10%;"></td>'
@@ -217,7 +228,7 @@ function boardPaging(boardPageNum, a) {
  						+'<td style="width:10%;"></td></tr>';
 					tbody.append(tbodyContent);
 				}		
-			}
+			}*/
 			
 			var pageContent = "";
 

@@ -21,8 +21,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<Object> list(Map map) {	
-		 System.out.println("board Dao List ? " + map.toString());
-		 List<Object> qwer = sqlSession.selectList("BoardList", map);
+ 		 List<Object> qwer = sqlSession.selectList("BoardList", map);
 		 System.out.println("qwerqwer ?? " + qwer.toString());
 		return qwer ;
 	}

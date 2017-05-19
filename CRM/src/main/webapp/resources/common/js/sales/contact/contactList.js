@@ -26,7 +26,7 @@ function dateFormat(timestamp) {
 	 var tbodylength = $('#call_list_tbody tr').length;
 	 var tbody = $('#call_list_tbody');
 
-	 if(tbodylength < 10){
+	/* if(tbodylength < 10){
 			for(var i=0; i<10-tbodylength; i++){
 			tbodyContent='<tr style="height: 35.5px;"><td></td>'
 				+'<td style="width:10%;"></td>'
@@ -37,7 +37,7 @@ function dateFormat(timestamp) {
 				+'<td style="width:15%;"></td></tr>';
 			tbody.append(tbodyContent);
 		}		
-	}
+	}*/
 		
  })
 
@@ -164,7 +164,7 @@ function searchAcnkEvent(contactPageNum, keyword){
 
 						}
  						
-						if(data.contactListSize < 10){
+						/*if(data.contactListSize < 10){
    							for(var i=0; i<10-data.contactListSize; i++){
    								tbodyContent='<tr style="height: 35.5px;"><th></th>'
    									+'<td style="width:10%;"></td>'
@@ -175,7 +175,7 @@ function searchAcnkEvent(contactPageNum, keyword){
    									+'<td style="width:15%;"></td></tr>';
 								tbody.append(tbodyContent);
 							}
-						}    
+						}    */
 						
 						$("#pageSpace").children().remove();
 						var ccPageNum = data.ccPageNum;
@@ -400,7 +400,7 @@ function contactPaging(contactPageNum) {
 			   tbody.append(tbodyContent);
 			}
 			
-			if(data.contactList.length < 10){
+			/*if(data.contactList.length < 10){
 				for(var i=0; i<10-data.contactListSize; i++){
 						tbodyContent='<tr style="height: 35.5px;"><td></td>'
 							+'<td style="width:10%;"></td>'
@@ -411,7 +411,7 @@ function contactPaging(contactPageNum) {
 							+'<td style="width:15%;"></td></tr>';
 					tbody.append(tbodyContent);
 				}	
-			}
+			}*/
 			
 			var pageContent = "";
 			

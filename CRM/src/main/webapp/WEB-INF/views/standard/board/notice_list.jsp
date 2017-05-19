@@ -60,7 +60,7 @@ $(function() {
       <div class="list1_div" id ="list1_div">  
           <form name="delAllForm" id ="delAllForm" method="post" action="/board/board_remove">  
            <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/>  
-            <div class="table_div">
+            <div id="tableline">
                <table  class="ui sortable celled table" >
                   <thead>
                      <tr style="text-align:center">

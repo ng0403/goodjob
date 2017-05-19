@@ -13,7 +13,7 @@
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/keyman_pop_js.js"></script>
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/opptAct_pop.js"></script>
- 
+ <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
  
  <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
@@ -54,7 +54,7 @@
 				<input type="button" id="deletekeymanbtn" class="tiny ui orange button" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
-			<div id="tableline2">
+			<div id="tableline">
 				<table class="tabtable"> 
 					<thead>
 						<tr>
@@ -80,7 +80,7 @@
 				<input type="button" id="opptDel" class="tiny ui orange button" value="삭제" onclick="ccOpptDel()"/>
 			</div>
 			
-			<div id="tableline2">
+			<div id="tableline">
 				<table id="opptTable" class="tabtable">
 					<thead>
 						<tr  class="headerLock">

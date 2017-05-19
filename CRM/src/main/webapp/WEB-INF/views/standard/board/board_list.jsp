@@ -49,17 +49,12 @@ $(function() {
 			<input type="text" placeholder="제목"  id="keyword" name="keyword"  onkeydown="boardSearchEnter(event);">
 			<i class="list icon"></i>
 		</div>	
-<!--              <label >제  목</label>
-            <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
- -->   
-             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색"">
+              <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색"">
      </div>
 
-   <div class="list_div">
-      <div class="list1_div" id ="list1_div">  
-          <form name="delAllForm" id ="delAllForm" method="post" action="/board_remove">  
+           <form name="delAllForm" id ="delAllForm" method="post" action="/board_remove">  
            <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/> 
-             <div class="table_div">
+             <div id="tableline">
                <table  class="ui sortable celled table" >
                   <thead>
                      <tr style="text-align:center">
@@ -78,7 +73,14 @@ $(function() {
                         <tr class="open_list">
                            <td scope="row" style='width:10%; text-align:center'><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
                            <td style='width:10%;'>${boardVO.BOARD_NO}</td> 
-                           <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE} </td>                           
+                           <td style='width:40%;'>
+                           <c:if test="${boardVO.FILE_CD == null}">
+                           <a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</a>
+                           </c:if>
+                           <c:if test="${boardVO.FILE_CD != null}">
+                           <a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</a>    <i class="file icon"></i>
+                           </c:if>
+                           </td>                           
                            <td style='width:10%;'>${boardVO.CREATED_BY} </td>
                            <td style='width:20%;'><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.CREATED}" /></td>
                            <td style='width:10%;'>${boardVO.VIEW_CNT}</td>   
@@ -88,12 +90,12 @@ $(function() {
                </table>
             </div>
        </form>
-    </div>   
- <div class="bottom_div">
+       
+  <div class="bottom_div">
        <div class="functionBtn_div">
          <input type="button" id = "board_add_fbtn"  class = "tiny ui orange button" value="추가" onclick="board_add();"/> 
            <input type="button" id ="board_remove_fbtn" class="tiny ui orange button" value="삭제"  onclick="deleteAction() "/>
-      </div> 
+ </div> 
     
    <!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">
@@ -138,8 +140,7 @@ $(function() {
 			</div>
     
 </div>
- </div>
- 
+  
 
 </body>
 </html>

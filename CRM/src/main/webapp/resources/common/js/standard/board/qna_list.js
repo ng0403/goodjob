@@ -4,7 +4,7 @@ $(function() {
 	var tbodylength = $('#board_list_tbody tr').length;
 	var tbody = $('#board_list_tbody'); 
 	
-	if (tbodylength < 10) {
+	/*if (tbodylength < 10) {
 		for (var i = 0; i < 10 - tbodylength; i++) {
 			tbodyContent = '<tr style="height: 35.5px;"><td scope="row"></td>'
 					+ '<td></td>'
@@ -16,7 +16,7 @@ $(function() {
 					+ '<td></td></tr>';
 			tbody.append(tbodyContent);
 		}
-	}
+	}*/
 });
 
 
@@ -197,7 +197,7 @@ function boardPaging(boardPageNum) {
 
 						for (var i = 0; i < data.boardList.length; i++) {
 							tbodyContent +=  
-								    '<tr><td scope="row"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+ data.boardList[i].BOARD_NO+ '"></td>'
+								    '<tr style="text-align:center"><td scope="row"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+ data.boardList[i].BOARD_NO+ '"></td>'
 									+ '<td>'+ data.boardList[i].BOARD_NO+ '</td>'
 								    + '<td>'+ data.boardList[i].CD_NM+ '</td>'
 								    + '<td>'+ data.boardList[i].ANSWER_FLG+ '</td>'
@@ -209,7 +209,7 @@ function boardPaging(boardPageNum) {
 						tbody.append(tbodyContent);
 					}
 
-					if (data.boardList.length < 10) {
+					/*if (data.boardList.length < 10) {
 						for (var i = 0; i < 10 - data.boardListSize; i++) {
 							tbodyContent = '<tr style="height: 35.5px;"><td scope="row"></td>'
 									+ '<td></td>'
@@ -221,7 +221,7 @@ function boardPaging(boardPageNum) {
 									+ '<td></td></tr>';
 							tbody.append(tbodyContent);
 						}
-					}
+					}*/
 
 					var pageContent = "";
 

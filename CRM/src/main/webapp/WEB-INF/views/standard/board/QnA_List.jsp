@@ -10,7 +10,7 @@
 <script src="${ctx}/resources/common/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/board/qna_list.js"></script> 
 
-  
+  <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
  <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -77,15 +77,14 @@ label {
  				</div>
 </div> 
  
-<div class="list_div">
- <div class="list1_div" id="list1_div">
+ <div id="tableline">
  <form name="delAllForm" id ="delAllForm" method="post" action="/board/board_remove"> 
  <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/>   
 
 	<table class="ui sortable celled table">
 						<thead>
 						<tr style="text-align:center">
-							<td><input id="checkall" type="checkbox" onclick="checkAll();"/></td>
+							<th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
 							<th>번호</th>
 							<th>질문유형</th>
 							<th>답변상태</th>
@@ -166,8 +165,6 @@ label {
 					
 </div>
  
-
-</div>
 
 <!-- 페이징 전용 폼 -->
 			<form  action="${ctx}/board/QnAInqr" id="boardlistPagingForm" method="post">
