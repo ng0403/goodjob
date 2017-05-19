@@ -415,7 +415,7 @@ function searchAuthUserClick(ctx){
 		event.preventDefault();
 		
 		var userId=$(this).parent().parent().children().children().val();
-		var userNm=$(this).parent().next().next().text();
+		var userNm=$(this).text();
 		console.log(userId);
 		console.log(userNm);
 		window.open(ctx+"/authUserViewPopup?userId="+userId+"&userNm="+userNm,'newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
