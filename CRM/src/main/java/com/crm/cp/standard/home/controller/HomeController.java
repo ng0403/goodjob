@@ -73,6 +73,7 @@ public class HomeController {
 		System.out.println("접속자의 ip 주소 : " + ip);
 		session.setAttribute("user", user.getId_nm());
 		System.out.println("POST /Home : ");
+		System.out.println("접속된 사용자 ID : " + user.getId_nm());
 		
 		return "redirect:/home";
 	}
