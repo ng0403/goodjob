@@ -5,6 +5,8 @@ $(function(){
 	uauthModifyConfirm(ctx);
 	uauthCancel();
 	PopupEvent(ctx);
+	userAuthGo();
+	authGo();
 	choiceAuth();
 });
 
@@ -23,13 +25,20 @@ function choiceAuth(){
 	$("#userAuthList tr, #authList tr").click(function(){
 		$("#userAuthList tr td, #authList tr td").attr("style","background:white");
 		$(this).children().attr("style","background:#5CD1E5");
+		
+		$("#auth_id").val($(this).children().children().val())
+		$("#auth_nm").val($(this).children().text());		
 	})
 }
 
 function userAuthGo(){
 	$("#userAuthGo").click(function(){
-		var auth_id = $("#authList tr").find("[style=background:#5CD1E5]").find("input[type=hidden]").val();
-		var auth_nm = $("#authList tr").find("[style=background:#5CD1E5]").text();
+//		var auth_id = $("#authList tr").find("[style=background:#5CD1E5]").find("input[type=hidden]").val();
+//		var auth_nm = $("#authList tr").find("[style=background:#5CD1E5]").text();
+		var auth_id = $("#auth_id").val();
+		var auth_nm = $("#auth_nm").val();
+		console.log(auth_id);
+		console.log(auth_nm);
 		if(auth_id != null || auth_id != ''){
 			var tr = $("#authList tr").find("[style=background:#5CD1E5]").parent("tr");
 			tr.remove();
@@ -134,6 +143,6 @@ function PopupEvent(ctx){
 	});
 	
 	$('#searchAuthIuser_iuserId').click(function(event){
-		window.open(ctx+'/searchAuthIuser_iuserId','newwindow1','width=1250, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/searchAuthIuser_iuserId','newwindow1','width=800, height=700, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
