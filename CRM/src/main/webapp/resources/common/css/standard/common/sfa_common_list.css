@@ -37,6 +37,7 @@ table tbody tr th {
     padding: 10px;
     border: 2px solid rgba(34, 36, 38, 0.1);
     border-radius: 5px;
+    height: 240px;
 }
 
 /* 리스트 th정렬 */

@@ -37149,3 +37149,9 @@ html.ios {
 #tableline{
 	height: 500px;
 }
+
+/* 검색부분 여백지정  */
+.search_div {
+	padding-top: 35px;
+    padding-bottom: 10px;;
+}

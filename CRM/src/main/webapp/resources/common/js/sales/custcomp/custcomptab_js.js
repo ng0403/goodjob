@@ -344,7 +344,7 @@ function custCompAddBtn() {
 	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
 	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
 	$("#iuser_nm").attr("readonly", true);
-//	$("#iuser_search").attr("disabled", false);
+	$("#iuser_search").attr("disabled", false);
 	
 	$("#baseBtnDiv").css("display", "none");
 	$("#addBtnDiv").css("display", "block");
@@ -379,6 +379,7 @@ function custCompMdfyBtn() {
 	$("#addr").attr("disabled", false);
 	$("#iuser_nm").attr("readonly", true);
 	$("#iuser_search").attr("disabled", false);
+
 	
 	//버튼 활성화
 	$("#baseBtnDiv").css("display", "none");

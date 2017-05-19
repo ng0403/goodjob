@@ -53,7 +53,7 @@
 			</div>
 			
 			<div id="tableline2">
-				<table class="ui celled table" > 
+				<table class="ui sortable celled table" > 
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='pocListCheck'/></th>
@@ -65,7 +65,7 @@
 						</tr>
 					</thead>
 					<tbody id= "pocTableTbody" class="tbody">
-						<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
+						<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -101,14 +101,15 @@
 <!-- 		</div> -->
 		
 		<!-- 탭 내용 : 키맨 리스트 -->
-		<div id="tabDiv2" class="ui celled table" style="width: 100%;">
+		<div id="tabDiv2"  style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="keyman_pop_btn"  class="tiny ui orange button" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="tiny ui orange button" value="삭제" onclick="keymanDelete();"/>
 			</div>
 			
 			<div id="tableline2">
-				<table class="tabtable" class="ui sortable celled table" style="border-collapse: collapse; border: 1px solid rgba(34, 36, 38, 0.1);"> 
+				<table class="ui sortable celled table" > 
+<!-- 				style="border-collapse: collapse; border: 1px solid rgba(34, 36, 38, 0.1);" -->
 					<thead>
 						<tr>
 							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
@@ -123,14 +124,14 @@
 						</tr>
 					</thead>
 					<tbody id="keymanTableTbody" class="tbody">
-							<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
+							<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		
 		<!-- 영업기회 리스트 -->
-		<div id="tabDiv3" class="ui celled table" style="width: 100%;">
+		<div id="tabDiv3"  style="width: 100%;">
 <!-- 			<div class="bt_position_authuser"> -->
 <!-- 				<input type="button" id="oppt_pop_btn" class="custcomp_btn" value="영업기회 추가" /> -->
 <%-- 				<input type="button" id="opptDel" class="custcomp_btn" value="삭제" onclick="ccOpptDel('${ctx}')"/> --%>
@@ -178,7 +179,7 @@
 								</tr>
 							</c:if>
 							<c:if test="${empty opptList}">
-								<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
+								<tr style='height: 75px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 							</c:if>
 						</c:forEach>
 					</tbody>
@@ -187,7 +188,7 @@
 		</div>
 			
 			<!-- 영업활동 리스트 -->
-		<div id="tabDiv4" class="ui celled table" style="width: 100%;">
+		<div id="tabDiv4"  style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_cust_nm" class="tiny ui orange button" value="영업활동 추가"/>
 				<input type="button" id="actDel"      class="tiny ui orange button" value="삭제" onclick="ccActDel('${ctx}');"/>
@@ -214,7 +215,7 @@
 						</tr>
 					</thead>
 					<tbody id="actTableTbody" class="tbody">
-						<tr style='height: 150px; text-align: center;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
+						<tr style='height: 75px; text-align: center;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -243,7 +244,7 @@
 						</tr>
 					</thead>
 					<tbody id="estTableTbody" class="tbody" >
-						<tr style='height: 150px; text-align: center;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
+						<tr style='height: 75px; text-align: center;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
 					</tbody>
 				</table>
 			</div>

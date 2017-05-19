@@ -84,7 +84,7 @@
 								<th style="color:red">*고객사구분</th>
 								<td>
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" /> 
-									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled" style="background: rgb(220, 220, 220);">
+									<select id="cust_div_cd" name="cust_div_cd" style="background: rgb(220, 220, 220);" disabled="disabled">
 											<option value="0" style="text-align: center;">==구분==</option>
 											<c:forEach var="CDC" items="${CDCCodeList}">
 												<option value="<c:out value="${CDC.cust_div_cd}" />"
@@ -133,7 +133,7 @@
 								<td>
 									<div class="ui input focus">
 										<input type="hidden" id="hhomepage_url" value="${custcompDetail.homepage_url}"/>
-										<a id="aHpUrl" target="_blank" title="클릭하면 해당 URL로 이동합니다."><input type="text" name="homepage_url" id="homepage_url" class="int" value="${custcompDetail.homepage_url}" maxlength="30"readonly="readonly" style="cursor: pointer; "/></a>
+										<a id="aHpUrl" target="_blank" title="클릭하면 해당 URL로 이동합니다."><input type="text" name="homepage_url" id="homepage_url" class="int" value="${custcompDetail.homepage_url}" maxlength="30" readonly="readonly" style=" cursor: pointer; "/></a>
 									</div>
 								</td>
 							</tr>
@@ -156,7 +156,7 @@
 								<th>매출규모</th>
 								<td>
 									<input type="hidden" id="hsales_scale_cd"/>
-									<select id="sales_scale_cd" name="sales_scale_cd" disabled="disabled" style="background: rgb(220, 220, 220);">
+									<select id="sales_scale_cd" name="sales_scale_cd"  style="background: rgb(220, 220, 220);" disabled="disabled">
 										<option value="0" style="text-align: center;">==매출규모==</option>
 										<c:forEach var="SSC" items="${SSCCodeList}">
 											<option value="<c:out value="${SSC.sales_scale_cd}" />"
@@ -178,7 +178,7 @@
 								<th>산업군</th>
 								<td >
 									<input type="hidden" id="hindst_cd" />
-									<select id="indst_cd" name="indst_cd" disabled="disabled" style="background: rgb(220, 220, 220);">
+									<select id="indst_cd" name="indst_cd" style="background: rgb(220, 220, 220);"  disabled="disabled">
 										<option value="0" style="text-align: center;">==산업군==</option>
 										<c:forEach var="IDC" items="${IDCCodeList}">
 											<option value="<c:out value="${IDC.indst_cd}" />"
