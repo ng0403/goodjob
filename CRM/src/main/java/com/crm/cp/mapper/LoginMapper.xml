@@ -6,7 +6,7 @@
 	<select id="searchUser" parameterType="map" resultType="int">
 		SELECT count(*) as count
 		FROM IUSER
-		WHERE IUSER_ID=#{id_nm} and PWD=#{pwd}
+		WHERE ID_NM=#{id_nm} and PWD=#{pwd}
 	</select>
 	
 </mapper>
