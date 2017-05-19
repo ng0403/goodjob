@@ -74,6 +74,8 @@ html{
 	font-size:15px;
 	color:#333;
 	font-family: 'Nanum Gothic', Dotum, "돋움", Gulim, "굴림", Verdana, Arial, "Trebuchet MS";
+	width: 642px;
+	height: 324px;
 }
 
 .table .tbody .cate_txt{
