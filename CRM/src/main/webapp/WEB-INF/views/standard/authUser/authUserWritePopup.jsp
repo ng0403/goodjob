@@ -54,8 +54,8 @@
 						</table>
 					</th>
 					<td>
-						<input type="hidden" id="auth_id" value=""/>
-						<input type="hidden" id="auth_nm" value=""/>
+						<input type="hidden" id="wauth_id" value=""/>
+						<input type="hidden" id="wauth_nm" value=""/>
 					</td>
 					<th rowspan="5">
 						<table>

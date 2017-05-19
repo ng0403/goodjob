@@ -115,9 +115,9 @@ function authListOut(){
 				td.append(auth_nm);
 				tr.append(td);
 				
-				$('#authList').append(tr);
+				$('#wauthList').append(tr);
 			}
-			$('#userAuthList').html("");
+			$('#wuserAuthList').html("");
 			for(var i=0; i<data.userAuthList.length;i++){
 				var auth_id = data.userAuthList[i].auth_id;
 				var auth_nm = data.userAuthList[i].auth_nm;
@@ -132,7 +132,7 @@ function authListOut(){
 				td.append(auth_nm);
 				tr.append(td);
 				
-				$('#userAuthList').append(tr);
+				$('#wuserAuthList').append(tr);
 			}
 			
 		},error : function(e){
@@ -148,7 +148,7 @@ function authUserInsert(ctx){
 			alert("사용자 ID를 검색해주세요");
 			return false;
 		}
-		var authData = $("#userAuthList").find("input[name='auth_id']");
+		var authData = $("#wuserAuthList").find("input[name='auth_id']");
 		var auth_id_data = []();
 		for(var i = 0; i < authData.length; i++){
 			var obj = $(authData[i]).val();
