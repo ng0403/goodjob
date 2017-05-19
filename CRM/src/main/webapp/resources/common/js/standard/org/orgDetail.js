@@ -60,11 +60,11 @@ function userAuthTab_click(ctx){
 	        success: function(data){
 	        	$('#mastertable tbody tr').remove();
 	        	for(var i=0; i<data.length; i++){
-	        		list+='<tr><td style="width: 20%;">'+data[i].org_nm+'</td>'
-					+'<td style="width: 20%;">'+data[i].rep_emp_nm+'</td>'
-					+'<td style="width: 20%;">'+data[i].iuser_nm+'</td>'
+	        		list+='<tr><td style="width: 15%;">'+data[i].org_nm+'</td>'
+					+'<td style="width: 15%;">'+data[i].rep_emp_nm+'</td>'
+					+'<td style="width: 10%;">'+data[i].iuser_nm+'</td>'
 					+'<td style="width: 20%;">'+data[i].ph1+'-'+data[i].ph2+'-'+data[i].ph3+'</td>'
-					+'<td style="width: 20%;">'+data[i].email1+'@'+data[i].email2+'</td></tr>\n';
+					+'<td style="width: 40%;">'+data[i].email1+'@'+data[i].email2+'</td></tr>\n';
 	        	}
 	        	$('#mastertable tbody').append(list);
 	        },
@@ -410,6 +410,14 @@ function orgDetailButtonEvent(ctx){
 				$('#org_type_id').prop('disabled',true);
 				$('#code').prop('disabled',true);
 				
+				$('#phone_no1').css('background-color', 'white');
+				$('#phone_no2').css('background-color', 'white');
+				$('#phone_no3').css('background-color', 'white');
+				
+				$('#fax_no1').css('background-color', 'white');
+				$('#fax_no2').css('background-color', 'white');
+				$('#fax_no3').css('background-color', 'white');
+				
 			}
 			$('#org_mode').val('update');
 			$('#orgInsertForm').find('input[type="radio"]').prop('disabled',false);
@@ -466,7 +474,15 @@ function detaildisabled(){
 	$('#active_flg_N').prop('disabled',true);
 	$('#active_flg_Y').prop('disabled',true); 
 	$('#active_flg2_N').prop('disabled',true);
-	$('#active_flg2_Y').prop('disabled',true); 
+	$('#active_flg2_Y').prop('disabled',true);
+	
+	$('#phone_no1').css('background-color', '#DCDCDC');
+	$('#phone_no2').css('background-color', '#DCDCDC');
+	$('#phone_no3').css('background-color', '#DCDCDC');
+	
+	$('#fax_no1').css('background-color', '#DCDCDC');
+	$('#fax_no2').css('background-color', '#DCDCDC');
+	$('#fax_no3').css('background-color', '#DCDCDC');
 }
 
 

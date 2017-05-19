@@ -208,7 +208,7 @@ function opptEstimUpdate(ctx){
 //상품 리스트 조회
 function prodList(ctx){
 	$('#prodListBtn').click(function(){
-		window.open(ctx+'/opptProdList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/opptProdList','newwindow3','width=550, height=340, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)

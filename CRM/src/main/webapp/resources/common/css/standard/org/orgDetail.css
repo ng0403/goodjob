@@ -126,7 +126,7 @@ select{
     position:relative;
 	height:20px;
 	border:1px solid #bebebe;
-	color:#333;
+/* 	color:#333; */
 	width:40px;
 	height:24px;
 	border-radius: 5px 5px 5px 5px;
@@ -326,10 +326,10 @@ select{
 	width: 100%;
 	height: 408px;
 }
+
 .bs-example_orglist #mastertable tbody tr{
 	display: table;
 	width: 100%;
-
 }
 
 /* .bs-example_orglist #mastertable tbody td{ */
@@ -350,7 +350,7 @@ select{
 /*      margin-right:10px; */
 /*      color:#484848; */
 /*      font-weight: bold; */
-     float: right;
+     float: left;
      margin-bottom: 10px;
 } 
 

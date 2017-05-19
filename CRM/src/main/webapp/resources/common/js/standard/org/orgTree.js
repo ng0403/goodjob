@@ -375,6 +375,14 @@ function orgButtonEvent(ctx)
 							$('#org_type_id').val('ORT01');
 							$('#code').prop('disabled',true);
 							$('#code').val('0001');
+							
+							$('#phone_no1').css('background-color', 'white');
+							$('#phone_no2').css('background-color', 'white');
+							$('#phone_no3').css('background-color', 'white');
+							
+							$('#fax_no1').css('background-color', 'white');
+							$('#fax_no2').css('background-color', 'white');
+							$('#fax_no3').css('background-color', 'white');
 						}
 						else
 						{
@@ -782,15 +790,12 @@ function org_checkedNode(ClassName){
 	var count = 0;
 	var checkList =	$('.'+ClassName);
 	
-	alert("ClassName " + ClassName);
-	
 	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 			count++;
 		}
 	}
-	alert("org_checkedNode :" + count);
 	
 	return node;
 }
@@ -836,7 +841,6 @@ function org_searchTextNode(parentNode, name){
 //삭제할 노드의 css수정
 function org_deleteAction(list)
 {
-	alert("DELETE CSS 수정");
 	for(var i=0; i<$(list).length; i++)
 	{
 		var node = org_searchNode($('#orgTree'), list[i]);

@@ -17,6 +17,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custPosPop.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/sales/custcomp/custcomp_pop.css">
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -49,19 +50,19 @@
 		<table id="custcomp_iuser_list_table" class="ui celled table">
 			<thead>
 				<tr>
-					<th style="width:25%;">직원ID</td>
-					<th style="width:25%;">직원명</td>
-					<th style="width:25%;">연락처</td>
-					<th style="width:25%;">이메일</td>
+					<th style="width:138px;">직원ID</td>
+					<th style="width:173px;">직원명</td>
+					<th style="width:173px;">연락처</td>
+					<th style="width:224px;">이메일</td>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="iuserList" items="${iuserList}"> 
 				<tr>
-					<td style="width:25%; cursor: pointer;" id="iuser_id">${iuserList.iuser_id}</td>
+					<td style="width:20%; cursor: pointer;" id="iuser_id" >${iuserList.iuser_id}</td>
 					<td style="width:25%;" id="iuser_nm">${iuserList.iuser_nm}</td>
 					<td style="width:25%;" id="cell_ph">${iuserList.cell_ph1} - ${iuserList.cell_ph2} - ${iuserList.cell_ph3}</td>
-					<td style="width:25%;" id="email">${iuserList.email1}@${iuserList.email2}</td>
+					<td style="width:30%;" id="email">${iuserList.email1}@${iuserList.email2}</td>
 				</tr>
 			</c:forEach>
 			</tbody>

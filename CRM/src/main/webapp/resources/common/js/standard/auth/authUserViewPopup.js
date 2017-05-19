@@ -143,6 +143,6 @@ function PopupEvent(ctx){
 	});
 	
 	$('#searchAuthIuser_iuserId').click(function(event){
-		window.open(ctx+'/searchAuthIuser_iuserId','newwindow1','width=800, height=700, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/	','newwindow1','width=800, height=700, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }

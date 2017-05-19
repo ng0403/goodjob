@@ -1,5 +1,71 @@
 @CHARSET "UTF-8";
 
+
+/* 헤더 고정 스크롤 DIV 클래스명과 테이블 ID */
+.detailtbody #goaltable{
+	width:100%;
+	border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #DDD;
+}
+
+.detailtbody #goaltable thead{
+	float: left; 
+	width:100%;
+}
+
+.detailtbody #goaltable thead tr{
+	height:35px;
+}
+
+.detailtbody #goaltable thead td{
+	font-weight: bold;
+	vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+    padding: 8px;
+}
+
+#goaltable thead th,
+#goaltable thead td {
+	background-color: #F2F2F2;
+	font-weight: bold;
+}
+
+.detailtbody #goaltable tbody tr:hover{
+	background-color:#ebe7e7;
+}
+
+.detailtbody #goaltable tbody{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	float: left;
+	width: 100%;
+	height: 200px;
+}
+/* .detailtbody #goaltable tbody tr{ */
+/* 	display: table; */
+/* 	width: 100%; */
+
+/* } */
+
+/* .detailtbody #goaltable tbody td{ */
+/* 	width: 25%; */
+/* 	padding: 8px; */
+/*     line-height: 1.428571429; */
+/*     vertical-align: top; */
+/*     border-top: 1px solid #dddddd; */
+/*     padding-left:20px; */
+/*     text-align: left; */
+/* } */
+
+.detailtbody #goaltable thead tr th {
+    vertical-align: center;
+    border-bottom: 2px solid #dddddd;
+    width: 336px;
+}
+
+/*  */
+
 .userpadding {
 	padding-top: 50px;
 }

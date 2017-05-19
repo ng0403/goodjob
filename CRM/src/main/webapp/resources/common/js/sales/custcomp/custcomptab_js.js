@@ -8,6 +8,7 @@ $(document).ready(function() {
 	estimateAdd(ctx);
 	custPosAdd(ctx);
 	addCustManager(ctx);
+	custCompAddBtn();
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
@@ -329,23 +330,23 @@ function custCompAddBtn() {
 	
 	//focus, css, readonly, disabled false 상태로 변경
 	//값 초기화
-	$("#custcomptbody #cust_nm").focus();
-	$("#custcomptbody input[type='text'], textarea, input[type='date']").attr({
-		readonly:false,
-		style:'background-color:white'
-	}).val('');
-	$("#custcomptbody select").attr({
-		disabled:false,
-		style:'background-color:white'
-	});
+//	$("#custcomptbody #cust_nm").focus();
+//	$("#custcomptbody input[type='text'], textarea, input[type='date']").attr({
+//		readonly:false,
+//		style:'background-color:white'
+//	}).val('');
+//	$("#custcomptbody select").attr({
+//		disabled:false,
+//		style:'background-color:white'
+//	});
 	
 	// 버튼 활성화
-	$("#sales_scale_cd").children().eq(0).attr("selected", "selected").css("height", "24pt"); // 매출규모 코드 선택
-	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
-	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
-	$("#iuser_nm").attr("readonly", true);
-	$("#iuser_search").attr("disabled", false);
-	
+//	$("#sales_scale_cd").children().eq(0).attr("selected", "selected").css("height", "24pt"); // 매출규모 코드 선택
+//	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
+//	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
+//	$("#iuser_nm").attr("readonly", true);
+//	$("#iuser_search").attr("disabled", false);
+//	
 	$("#baseBtnDiv").css("display", "none");
 	$("#addBtnDiv").css("display", "block");
 	$("#mdfBtnDiv").css("display", "none");

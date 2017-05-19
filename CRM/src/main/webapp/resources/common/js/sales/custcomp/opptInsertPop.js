@@ -305,7 +305,7 @@ function opptMdfySave()
 //상품 리스트 조회
 function opptProdList()
 {
-	window.open('/prodList','newwindow3','width=770, height=480, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open('/prodList','newwindow3','width=770, height=340, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업기회 탭에서 추가버튼 눌렀을 때.
@@ -366,7 +366,7 @@ function opptTabList(cust_id)
 function opptCustPopup(ctx)
 {
 	
-	window.open(ctx+'/opptCustPopup','newwindowOpptCust','width=770, height=650, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/opptCustPopup','newwindowOpptCust','width=770, height=415, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기

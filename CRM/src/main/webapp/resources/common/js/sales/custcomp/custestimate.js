@@ -88,7 +88,7 @@ var prodAddId =[]; // 상품 추가ID List
 
 // 상품 추가
 function prodList(ctx){
-	window.open(ctx+'/custEstProdList','newwindow3','width=770, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/custEstProdList','newwindow3','width=770, height=340, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 function prodNmSelect(){
