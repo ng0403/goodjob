@@ -23,7 +23,7 @@ $(document).ready(function() {
 	
 	//영업담당자 추가 시 사원 팝업 리스트 
 	$('#custIuserSelect').click(function(){
-		window.open(ctx+'/custSaleActIuserList','newwindow2','width=760, height=360, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/custSaleActIuserList','newwindow2','width=770, height=345, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }); 
 

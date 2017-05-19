@@ -23,7 +23,7 @@ $(function(){
 //영업기회 상세정보 고객 리스트 팝업 (고객 버튼클릭 시)
 function iuserListPopup(ctx){
 	$('#Manager').click(function(){
-		window.open(ctx+'/custSaleActIuserList','newwindow2','width=770, height=260, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/custSaleActIuserList','newwindow2','width=770, height=345, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 //직원팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수
@@ -56,7 +56,7 @@ function CustCompMngButton(ctx){
 //영업기회 팝업창 띄우기
 function ccOpptListPop(ctx){
 //	window.open(ctx+'/ccOpptPopList?cust_id='+$('#cust_id').val(),'ccOpptListPopwindow','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-	window.open(ctx+'/custEstActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/custEstActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=940, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 //영업활동 추가 시 고객사명 보이기

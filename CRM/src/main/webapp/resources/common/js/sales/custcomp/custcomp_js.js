@@ -272,15 +272,15 @@ function custCompList(page){
 							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
 							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
 							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-							"<td id=cust_nm>"+cc.comp_num+"</td>"+
-							"<td>"+cc.corp_num+"</td>"+
-							"<td>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
-							"<td>"+cc.sales_scale+"</td>"+
-							"<td>"+cc.emp_qty+"</td>"+
-							"<td>"+cc.indst+"</td>"+
-							"<td>"+cc.iuser_nm+"</td>"+
-							"<td>"+cc.fst_reg_dt+"</td>+"+
-							"</tr>"
+							"<td id=cust_nm style='text-align: center'>"+cc.comp_num+"</td>"+
+							"<td style='text-align: center'>"+cc.corp_num+"</td>"+
+							"<td style='text-align: center'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+							"<td style='text-align: center'>"+cc.sales_scale+"</td>"+
+							"<td style='text-align: right; padding-right:8px'> "+cc.emp_qty+"</td>"+
+							"<td style='text-align: center'>"+cc.indst+"</td>"+
+//							"<td>"+cc.iuser_nm+"</td>"+
+							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>+"+
+							"</tr >"
 					);
 				});
 			}
@@ -1032,20 +1032,14 @@ function schPaging(ccPageNum) {
 		}if(sch_corp_num0 == null && sch_corp_num1){
 			alert("법인번호를 앞에서부터 채워주세요.");
 			return;
-	
-			
-			
-			
-			
-			
 		} else{
 			var allData = {
 							"ccPageNum": ccPageNum, 
 							"sch_cust_nm": sch_cust_nm, "sch_cust_nm0": sch_cust_nm0, "sch_cust_nm1": sch_cust_nm1, 
 							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1, 
 							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1,
-							"sch_corp_num":sch_corp_num, "sch_corp_num0":sch_corp_num0, "sch_corp_num1":sch_corp_num1,
-							"sch_iuser_nm":sch_iuser_nm, "sch_iuser_nm0":sch_iuser_nm0, "sch_iuser_nm1":sch_iuser_nm1
+							"sch_corp_num":sch_corp_num, "sch_corp_num0":sch_corp_num0, "sch_corp_num1":sch_corp_num1
+//							"sch_iuser_nm":sch_iuser_nm, "sch_iuser_nm0":sch_iuser_nm0, "sch_iuser_nm1":sch_iuser_nm1
 						  };
 			var tbody = $('#ccListTbody');
 			var tbodyContent = "";
@@ -1074,9 +1068,6 @@ function schPaging(ccPageNum) {
 							$("#sch_corp_num").val(data.sch_corp_num);
 							$("#sch_corp_num0").val(data.sch_corp_num0);
 							$("#sch_corp_num1").val(data.sch_corp_num1);
-							$("#sch_iuser_nm").val(data.sch_iuser_nm);
-							$("#sch_iuser_nm0").val(data.sch_iuser_nm0);
-							$("#sch_iuser_nm1").val(data.sch_iuser_nm1);
 							for (var i = 0; i < data.ccVOList.length; i++) {
 								tbodyContent = "<tr>"
 									+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
@@ -1088,7 +1079,7 @@ function schPaging(ccPageNum) {
 									+"<td>"+data.ccVOList[i].sales_scale+"</td>"
 									+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
 									+"<td>"+data.ccVOList[i].indst+"</td>"
-									+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
+//									+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
 									+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
 								tbody.append(tbodyContent);
 								$("#ccListCheck").prop("checked", false);
@@ -1100,7 +1091,8 @@ function schPaging(ccPageNum) {
 										+"<th></th>"
 										+"<td></td><td></td><td></td><td></td>"
 										+"<td></td><td></td><td></td><td></td>"
-										+"<td></td></tr>";
+//										+"<td></td>" 
+										+"</tr>";
 									tbody.append(tbodyContent);
 								}
 							}

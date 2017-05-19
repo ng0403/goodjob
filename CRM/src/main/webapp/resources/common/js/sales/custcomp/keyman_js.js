@@ -10,7 +10,7 @@ function keymanListRefresh(cust_id) {
 function contactListPopup(ctx){
  	$('#contact').click(function(){
 		window.open('/contactListPop','newwindow1',
-				     'width=810, height=390, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+				     'width=770, height=330, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

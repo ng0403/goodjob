@@ -81,7 +81,7 @@
 <!-- 			    <if test="sch_corp_num != null and sch_corp_num !=''"> -->
 <!-- 			     	and c.corp_num like '%'||#{sch_corp_num}||'%' -->
 <!-- 			    </if> -->
-	                order by c.cust_id asc
+	                order by c.fst_reg_dt desc
 <!-- 	                ) b -->
            		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}

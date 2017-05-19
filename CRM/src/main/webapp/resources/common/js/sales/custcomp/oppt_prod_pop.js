@@ -100,7 +100,6 @@ var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInProd(prod_id, prod_nm, prod_price)
 {
-	alert("2222");
 	$("#opptProdtbody .empty").remove();
 	//var unit ="";
 	//var flg  = $('#flg').val();
@@ -195,7 +194,6 @@ function makeBlock(){
 
 //상품 목록의 input값 변동에 따른 실시간 update
 function opptProdUpdate(){	
-	alert("222221");
 	var countSum = 0;
 	var salesPriceSum = 0;
 	var discountSum = 0;
@@ -343,7 +341,6 @@ function opptProdDelete(){
 //상품테이블 클릭
 function opptProdNmSelect(ctx){
 	$('#oppt_product_list_table tbody tr').click(function(){
-		alert("11111");
 		var prod_id=$(this).find('#prod_id').text();
 		var prod_nm=$(this).find('#prod_nm').text();
 		var prod_price=$(this).find('#prod_price').text();

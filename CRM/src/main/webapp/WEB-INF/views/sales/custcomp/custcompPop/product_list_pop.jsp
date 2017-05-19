@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -10,12 +9,13 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/prod_list_pop.css"> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/sales/custcomp/custcomp_pop_product.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -44,9 +44,9 @@
 		<table id="oppt_product_list_table" class="ui celled table">
 			<thead>
 				<tr>
-					<th style="width:30%;">상품ID</td>
-					<th style="width:30%;">상품명</td>
-					<th style="width:30%;">상품가격</td>
+					<th style="width:234px;">상품ID</td>
+					<th style="width:234px;">상품명</td>
+					<th style="width:251px;">상품가격</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,7 +54,7 @@
 					<tr>
 						<td style="width:30%; cursor: pointer;" id="prod_id">${list.prod_id}</td>
 						<td style="width:30%;" id="prod_nm">${list.prod_nm}</td>
-						<td style="width:30%;" id="prod_price">${list.prod_price}</td>
+						<td style="width:30%; text-align: right; padding-right: 10px;" id="prod_price">${list.prod_price}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
