@@ -37150,8 +37150,25 @@ html.ios {
 	height: 500px;
 }
 
+/* 네비부분 배경색 지정 */
+#title .caption {
+	margin-top: 15px;
+    margin-left: 10px;
+}
 /* 검색부분 여백지정  */
 .search_div {
 	padding-top: 35px;
     padding-bottom: 10px;;
+}
+
+/* 하단 버튼부분 여백지정 */
+.bottom_div {
+	width: 100%;
+	padding-top: 15px;
+}
+
+.functionBtn_div {
+	width: 45%;
+	padding-left: 10px;
+	float: left;
 }
