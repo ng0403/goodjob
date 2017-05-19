@@ -656,12 +656,12 @@ function pocList(cust_id) {
 				{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'>"+data[i].cust_nm+"</td>" +
-						"<td style='width:15%;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
-						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
-						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:17%;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:3%;  text-align: center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:10%; text-align: left; padding-left: 8px;  vertical-align: middle;'>"+data[i].cust_nm+"</td>" +
+						"<td style='width:15%; text-align: center;  vertical-align: middle;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
+						"<td style='width:15%; text-align: center;  vertical-align: middle;'>"+data[i].key_part+"</td>" +
+						"<td style='width:8%; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:17%; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
@@ -732,14 +732,14 @@ function keymanList(cust_id) {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+						"<td style='width:3%; text-align:center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
 						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
-						"<td style='width:15%;'>"+data[i].key_part+"</td>" +
-						"<td style='width:15%;'>"+data[i].key_pos+"</td>" +
-						"<td style='width:10%;'>"+data[i].key_job+"</td>" +
-						"<td style='width:12%;'>"+data[i].memo+"</td>" +
-						"<td style='width:10%;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:15%; text-align: center; vertical-align: middle; '>"+data[i].key_part+"</td>" +
+						"<td style='width:15%; text-align: center;vertical-align: middle;'>"+data[i].key_pos+"</td>" +
+						"<td style='width:10%; text-align: center;vertical-align: middle;'>"+data[i].key_job+"</td>" +
+						"<td style='width:12%; text-align: center;vertical-align: middle;'>"+data[i].memo+"</td>" +
+						"<td style='width:10%; text-align: center;vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:15%; text-align: center;vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}

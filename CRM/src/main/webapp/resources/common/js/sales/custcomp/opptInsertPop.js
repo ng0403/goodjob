@@ -347,7 +347,9 @@ function opptTabList(cust_id)
 						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
 						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
 						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+	//opptTabDetail('"+list.sales_oppt_id+"');'
-						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'>" +
+						"	<a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a>" +
+						"</td>"+
 						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
 						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 						"<td>"+list.sales_lev_cd_nm+"</td>"+
