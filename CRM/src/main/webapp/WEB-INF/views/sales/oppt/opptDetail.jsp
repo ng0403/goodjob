@@ -60,9 +60,9 @@ $(document).ready(function() {
 					<thead>
 						<tr class="headerLock">
 							<th rowspan="2" style="width: 3% !important; text-align: center;"><input type="checkbox"  id='actAllSelect'/></th>
-							<td rowspan="2" style="width: 20% !important; text-align: center;">영업활동명</td>
+							<td rowspan="2" style="width: 22.6% !important; text-align: center;">영업활동명</td>
 							<td rowspan="2" style="width: 8% !important; text-align: center;">활동구분</td>
-							<td rowspan="2" style="width: 20% !important; text-align: center;">영업기회명</td>
+							<td rowspan="2" style="width: 22% !important; text-align: center;">영업기회명</td>
 							<td rowspan="2" style="width: 8% !important; text-align: center;">활동유형</td>
 							<td style="width: 9% !important; text-align: center;">시작일자</td>
 							<td style="width: 9% !important; text-align: center;">시작시간</td>
@@ -93,13 +93,13 @@ $(document).ready(function() {
 				<thead>						
 					<tr class="headerLock">
 						<th style="width: 3% !important; text-align: center;"><input type="checkbox"  id='estimAllSelect'/></th>
-						<td style="width: 30% !important; text-align: center;">견적명</td>
+						<td style="width: 33.52% !important; text-align: center;">견적명</td>
 						<td style="width: 11% !important; text-align: center;">견적단계</td>
 						<td style="width: 10% !important; text-align: center;">견적수량</td>
 						<td style="width: 15% !important; text-align: center;">견적금액</td>
-						<td style="width: 10% !important; text-align: center;">견적유효일자</td>
+						<td style="width: 13% !important; text-align: center;">견적유효일자</td>
 						<td style="width: 9% !important; text-align: center;">등록자</td>
-						<td style="width: 10% !important; text-align: center;">등록일시</td>
+						<td style="width: 13% !important; text-align: center;">등록일시</td>
 					</tr>
 				</thead>
 				<tbody id="estimList"  class="detailtbody" >

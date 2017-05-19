@@ -607,13 +607,13 @@ function estimList(opptId){
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
 						'<th style="width: 3% !important; text-align: center;"><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
-						'<td style="text-align: left; padding-left: 5px; width: 30% !important;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
+						'<td style="text-align: left; padding-left: 5px; width: 33.8% !important;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
 						'<td style="width: 11% !important; text-align: center;">'+data.estim_lev_cd+'</td>'+
 						'<td style="width: 10% !important; text-align: center;">'+data.estim_qty+'</td>'+
 						'<td style="text-align: right; padding-right: 5px; width: 15% !important;">'+comma(data.sales_price)+'</td>'+
-						'<td style="width: 10% !important; text-align: center;">'+data.estim_valid_d+'</td>'+
+						'<td style="width: 13% !important; text-align: center;">'+data.estim_valid_d+'</td>'+
 						'<td style="width: 9% !important; text-align: center;">'+data.fst_reg_id+'</td>'+
-						'<td style="width: 10% !important; text-align: center;">'+data.fst_reg_dt+'</td>'+
+						'<td style="width: 13% !important; text-align: center;">'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});
 //			if(result.length < 5){
@@ -658,20 +658,20 @@ function viewSalesActive(opptId){
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
 				"<th rowspan='2' style='width: 3% !important; text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
-				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'>" +
+				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 23% !important;'>" +
 				"<a style='text-decoration: none; text-align: center;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
 				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_type_nm+"</td>"+
-				"<td style='width: 9% !important; text-align: center;'>"+start_d+"</td>"+
-				"<td style='width: 9% !important; text-align: center;'>"+data.strt_t+"</td>"+
+				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 22.4%;'>"+data.sales_oppt_nm+"</td>"+
+				"<td rowspan='2' style='width: 8.1% !important; text-align: center;'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td style='width: 9.1% !important; text-align: center;'>"+start_d+"</td>"+
+				"<td style='width: 9.1% !important; text-align: center;'>"+data.strt_t+"</td>"+
 				"<td rowspan='2' style='width: 6% !important; text-align: center;'>"+data.sales_actvy_stat_nm+"</td>"+
 				"<td rowspan='2' style='width: 7% !important; text-align: center;'>"+data.fst_reg_id+"</td>"+
 				"<td rowspan='2' style='width: 10% !important; text-align: center;'>"+reg_dt+"</td>"+
 				"</tr>"+
 				"<tr>"+
-				"<td style='width: 9% !important; text-align: center;'>"+end_d+"</td>"+
-				"<td style='width: 9% !important; text-align: center;'>"+data.end_t+"</td>"+
+				"<td style='width: 9.1% !important; text-align: center;'>"+end_d+"</td>"+
+				"<td style='width: 9.1% !important; text-align: center;'>"+data.end_t+"</td>"+
 				"</tr>";	
 			});
 			
