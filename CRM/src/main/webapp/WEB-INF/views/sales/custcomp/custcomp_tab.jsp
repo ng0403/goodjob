@@ -17,6 +17,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/common/tablist_th.css">
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
 
 <!-- 새로운 공통 css 파일 -->
@@ -53,15 +54,15 @@
 			</div>
 			
 			<div id="tableline2">
-				<table class="ui sortable celled table" > 
+				<table class="ui sortable celled table" id="tblTh" > 
 					<thead>
 						<tr>
-							<th style='width:3%;'><input type="checkbox"  id='pocListCheck'/></th>
-							<th style='width:20%;'>고객사명</th>
-							<th style='width:20%;'>사원명</th>
-							<th style='width:20%;'>역할명</th>
-							<th style='width:15%;'>등록자</th>
-							<th style='width:15%;'>등록일시</th>
+							<th style='width:46px;'><input type="checkbox"  id='pocListCheck'/></th>
+							<th style='width:180px;'>고객사명</th>
+							<th style='width:277px;'>사원명</th>
+							<th style='width:277px;'>역할명</th>
+							<th style='width:142px;'>등록자</th>
+							<th style='width:333px;'>등록일시</th>
 						</tr>
 					</thead>
 					<tbody id= "pocTableTbody" class="tbody">
@@ -108,22 +109,22 @@
 			</div>
 			
 			<div id="tableline2">
-				<table class="ui sortable celled table" > 
+				<table class="ui sortable celled table" id="tblTh"> 
 <!-- 				style="border-collapse: collapse; border: 1px solid rgba(34, 36, 38, 0.1);" -->
 					<thead>
 						<tr>
-							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
+							<th style='width:33px;'><input type="checkbox"  id='keymanListCheck'/></th>
 <!-- 							<th style='width:10%;'>고객사</th> -->
-							<th style='width:10%;'>키맨명</th>
-							<th style='width:15%;'>역할명</th>
-							<th style='width:15%;'>직급</th>
-							<th style='width:10%;'>직무</th>
-							<th style='width:12%;'>메모</th>
-							<th style='width:10%;'>등록자</th>
-							<th style='width:15%;'>등록일시</th>
+							<th style='width:133px;'>키맨명</th>
+							<th style='width:206px;'>역할명</th>
+							<th style='width:206px;'>직급</th>
+							<th style='width:134px;'>직무</th>
+							<th style='width:163px;'>메모</th>
+							<th style='width:133px;'>등록자</th>
+							<th style='width:225px;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id="keymanTableTbody" class="tbody">
+					<tbody id="keymanTableTbody" class="tbody" style="text-align: center;">
 							<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
@@ -148,7 +149,7 @@
 					<thead>
 						<tr>
 <!-- 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th> -->
-							<th style="width: 3%;"><input type="checkbox"  id='actOpptAllSelect'/></th>
+							<th style="width: 3%; text-align: center;"><input type="checkbox"  id='actOpptAllSelect'/></th>
 							<th style="width: 20%;">영업기회명</td>
 							<th style="width: 8%;">고객사</td>
 							<th style="width: 6%;">상태</td>
