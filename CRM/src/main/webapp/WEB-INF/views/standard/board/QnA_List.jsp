@@ -100,7 +100,7 @@ label {
 								<td scope="row" style="text-align:center"><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
    								<td>${boardVO.BOARD_NO}</td>
    								<td>${boardVO.CD_NM}</td>
-   								<td>${boardVO.ANSWER_FLG}</td>
+   								<td style="text-align:center">${boardVO.ANSWER_FLG}</td>
 								<td><a href="/QnA_detail?BOARD_NO=${boardVO.BOARD_NO}" style="color:black">${boardVO.TITLE}</a> </td>
 								<td>${boardVO.CREATED_BY} </td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
