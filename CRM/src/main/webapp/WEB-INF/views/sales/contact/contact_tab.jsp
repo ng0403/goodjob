@@ -110,7 +110,7 @@
 			</div>
 			
 			<div id="tableline2">
-				<table id="actTable" class="tabtable"  style="table-layout:fixed;">
+				<table id="actTable" class="tabtable"  style="table-layout:fixed; height:90%; width:90%">
 					<thead>
 						<tr class="headerLock">
 							<th style='width:3%;' rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
