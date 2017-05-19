@@ -58,7 +58,7 @@
 					<th style="width:23.4%">직급</th>
 					<th style="width:22.98%">직무</th>
 					<th style="width:30%">메모</th>
-					<th></th>
+					<th> </th>
  				</tr>
  		</thead>	
  				<tbody>
