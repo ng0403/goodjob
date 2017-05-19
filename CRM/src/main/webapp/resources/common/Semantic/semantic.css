@@ -37144,3 +37144,8 @@ html.ios {
 	border-radius: 5px 5px 5px 5px;
 } 
 
+
+/* 테이블 크기 고정 */
+#tableline{
+	height: 500px;
+}

@@ -143,6 +143,11 @@ table tbody tr th {
 	height: 500px;
 }
 
+/* 테이블 크기 고정 */
+.tableline{
+	height: 500px;
+}
+
 #tableline2 tr th, #tableline2 tr td {
 	text-align: center;
 }
