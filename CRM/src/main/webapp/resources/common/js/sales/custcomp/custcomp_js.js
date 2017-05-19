@@ -28,6 +28,7 @@ $(document).ready(function() {
 	//고객사 담당자 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
+		console.log(cust_id);
 		if(cust_id == ''){
 			var tbody = $('#pocTableTbody');
 			tbody.children().remove();
@@ -54,8 +55,9 @@ $(document).ready(function() {
 //	});
 	
 	// 키맨 리스트 가져오기
-	$("#tab3").click(function() {
+	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
+		console.log(cust_id);
 		if(cust_id == ''){
 			var tbody = $('#keymanTableTbody');
 			tbody.children().remove();
@@ -68,8 +70,9 @@ $(document).ready(function() {
 	});
 	
 	// 영업기회 리스트 가져오기
-	$("#tab4").click(function() {
+	$("#tab3").click(function() {
 		var cust_id = $("#nowCust_id").val();
+		console.log(cust_id);
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
@@ -82,9 +85,10 @@ $(document).ready(function() {
 	});
 	
 	// 영업활동 리스트 가져오기
-	$("#tab5").click(function() {
+	$("#tab4").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		if(cust_id == ''){
+		console.log(cust_id);
+		if(cust_id == '' && cust_id == null){
 			var tbody = $('#actTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
@@ -96,7 +100,7 @@ $(document).ready(function() {
 	});
 	
 	// 견적 리스트 가져오기
-	$("#tab6").click(function() {
+	$("#tab5").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		if(cust_id == ''){
 			var tbody = $('#estTableTbody');
@@ -649,7 +653,7 @@ function pocList(cust_id) {
 				tbody.children().remove();
 				//고객사 담당자 리스트 그리기
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 고객사 담당자가 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='9'>등록된 고객사 담당자가 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}
 				else
@@ -689,7 +693,7 @@ function posList(cust_id) {
 				tbody.children().remove();
 				//영업 담당자 리스트 그리기
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 영업 담당자가 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='9'>등록된 영업 담당자가 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					for (var i = 0; i < data.length; i++) {
@@ -727,7 +731,7 @@ function keymanList(cust_id) {
 				tbody.children().remove();
 				// 키맨 리스트 그리기
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 키맨이 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='9'>등록된 키맨이 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					for (var i = 0; i < data.length; i++) {
@@ -848,7 +852,7 @@ function actList(cust_id) {
 			success : function(data) {
 				tbody.children().remove();
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					// 영업활동 리스트 그리기
@@ -865,20 +869,24 @@ function actList(cust_id) {
 						if(end_t == null){
 							end_t = '';
 						}
-						tbodyContent = "<tr>"
+						tbodyContent = 
+							"<tr>"
 							+ "<td rowspan='2'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
-							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
+							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'  >" +
+									"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_div_nm+"</td>"
-							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'>"+data[i].sales_oppt_nm+"</td>"
+							+ "<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data[i].sales_oppt_nm+"</td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_type_nm+"</td>"
-							+ "<td style='height:12px; padding:5px;'>"+data[i].strt_d+"</td>"
-							+ "<td style='height:12px; padding:5px;'>"+strt_t+"</td>"
+							+ "<td>"+data[i].strt_d+"</td>"
+							+ "<td>"+strt_t+"</td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_stat_nm+"</td>"
 							+ "<td rowspan='2'>"+data[i].fst_reg_id+"</td>"
 							+ "<td rowspan='2'>"+data[i].fst_reg_dt+"</td>"
-							+ "</tr><tr>"
-							+ "<td style='height:12px; padding:5px;'>"+data[i].end_d+"</td>"
-							+ "<td style='height:12px; padding:5px;'>"+end_t+"</td></tr>";
+						+ "</tr>"
+						+ "<tr>"
+							+ "<td>"+data[i].end_d+"</td>"
+							+ "<td>"+end_t+"</td>" 
+						+ "</tr>";
 						tbody.append(tbodyContent);
 					}
 				}
@@ -904,7 +912,7 @@ function estList(cust_id) {
 			success : function(data) {
 				tbody.children().remove();
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					// 견적 리스트 그리기
@@ -946,7 +954,7 @@ function contList(cust_id) {
 			success : function(data) {
 				tbody.children().remove();
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 150px;'><td colspan='8'>등록된 계약이 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='8'>등록된 계약이 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}else{
 					// 계약 리스트 그리기

@@ -343,21 +343,23 @@ function opptTabList(cust_id)
 			$.each(result.opptList, function(i, list){
 				
 				$("#activeOpptList").append("" +
-						"<tr id='"+list.sales_oppt_id+"'>"+
-						"<th><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
-						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
-						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+	//opptTabDetail('"+list.sales_oppt_id+"');'
-						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'>" +
-						"	<a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a>" +
-						"</td>"+
-						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
-						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
-						"<td>"+list.sales_lev_cd_nm+"</td>"+
-						"<td>"+list.expt_fin_d+"</td>"+
-						"<td>"+list.psblty_rate+"</td>"+
-						"<td>"+list.fst_reg_id+"</td>"+
-						"<td>"+list.fst_reg_dt+"</td>+"+
-						"</tr>"
+					"<tr id='"+list.sales_oppt_id+"'>"+
+						"<td style='width:3%;text-align: center; vertical-align: middle; '>" +
+							"<input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+							"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
+							"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+">" +
+						"</td>"+	//opptTabDetail('"+list.sales_oppt_id+"');'
+							
+						"<td style='width:20%; text-align: left;vertical-align: middle; padding-left:5px;'class='oppt_nm_class' >" +
+						"	<a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+						"<td style='width: 8%;text-align: center; vertical-align: middle;' id=list_cust_nm>"+list.cust_nm+"</td>"+
+						"<td style='width: 6%;text-align: center; vertical-align: middle;'>"+list.sales_oppt_stat_cd_nm+"</td>"+
+						"<td style='width: 8%;text-align: center; vertical-align: middle;'>"+list.sales_lev_cd_nm+"</td>"+
+						"<td style='width: 10%;text-align: center; vertical-align: middle;'>"+list.expt_fin_d+"</td>"+
+						"<td style='width: 10%;text-align: center; vertical-align: middle;'>"+list.psblty_rate+"</td>"+
+						"<td style='width: 7%;text-align: center; vertical-align: middle;'>"+list.fst_reg_id+"</td>"+
+						"<td style='width: 15%;text-align: center; vertical-align: middle;'>"+list.fst_reg_dt+"</td>+"+
+					"</tr>"
 				);
 			});
 		}

@@ -41,7 +41,7 @@
 		<label for="tab1">고객사 담당자</label> 
 		<label for="tab2">키맨 </label> 
 		<label for="tab3">영업기회</label> 
-		<label for="tab4">영업활동</label> 
+		<label for="tab4" class="tab4">영업활동</label> 
 		<label for="tab5">견적</label>
 		
 <!-- 		<input id="tab2" type="radio" name="tab"  /> -->
@@ -149,15 +149,15 @@
 					<thead>
 						<tr>
 <!-- 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th> -->
-							<th style="width: 3%; text-align: center;"><input type="checkbox"  id='actOpptAllSelect'/></th>
-							<th style="width: 20%;">영업기회명</td>
-							<th style="width: 8%;">고객사</td>
-							<th style="width: 6%;">상태</td>
-							<th style="width: 8%;">영업단계</td>
-							<th style="width: 10%;">예상마감일자</td>
-							<th style="width: 7%;">가능성</td>
-							<th style="width: 8%;">등록자</td>
-							<th style="width: 15%;">등록일시</td>
+							<th style="width: 34px; text-align: center;"><input type="checkbox"  id='actOpptAllSelect'/></th>
+							<th style="width: 289px;">영업기회명</td>
+							<th style="width: 109px;">고객사</td>
+							<th style="width: 79px;">상태</td>
+							<th style="width: 109px;">영업단계</td>
+							<th style="width: 138px;">예상마감일자</td>
+							<th style="width: 140px;">가능성</td>
+							<th style="width: 94px;">등록자</td>
+							<th style="width: 230px;">등록일시</td>
 						</tr>
 					</thead>
 					<tbody id="activeOpptList" class="tbody">
@@ -167,16 +167,16 @@
 									<td>
 										<input type="checkbox"  id="actOpptAllSelect" name="sales_oppt_id" value="${opptList.sales_oppt_id}"/>
 									</td>
-										<td>
-											<a onclick="opptTabDetail('${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
-										</td>
-										<td>${opptList.cust_nm}</td>
-										<td>${opptList.sales_oppt_stat_cd_nm}</td>
-										<td>${opptList.sales_lev_cd_nm}</td>
-										<td>${opptList.expt_fin_d}</td>
-										<td>${opptList.psblty_rate}</td>
-										<td>${opptList.fst_reg_id}</td>
-										<td>${opptList.fst_reg_dt}</td>
+									<td>
+										<a onclick="opptTabDetail('${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
+									</td>
+									<td>${opptList.cust_nm}</td>
+									<td>${opptList.sales_oppt_stat_cd_nm}</td>
+									<td>${opptList.sales_lev_cd_nm}</td>
+									<td>${opptList.expt_fin_d}</td>
+									<td>${opptList.psblty_rate}</td>
+									<td>${opptList.fst_reg_id}</td>
+									<td>${opptList.fst_reg_dt}</td>
 								</tr>
 							</c:if>
 							<c:if test="${empty opptList}">
@@ -199,15 +199,15 @@
 				<table id="actTable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style='width:3%;' rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
+							<th style='width:3%;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
 							<th style='width:16%;' rowspan="2">영업활동명</th>
-							<th style='width:6%;' rowspan="2">활동구분</th>
+							<th style='width:6%;'  rowspan="2">활동구분</th>
 							<th style='width:27%;' rowspan="2">영업기회명</th>
-							<th style='width:6%;' rowspan="2">활동유형</th>
-							<th style='width:8%; height:12px; padding:5px;'>시작일자</th>
-							<th style='width:8%; height:12px; padding:5px;'>시작시간</th>
-							<th style='width:6%;' rowspan="2">상태</th>
-							<th style='width:5%;' rowspan="2">등록자</th>
+							<th style='width:6%;'  rowspan="2">활동유형</th>
+							<th style='width:8%;   height:12px; padding:5px;'>시작일자</th>
+							<th style='width:8%;   height:12px; padding:5px;'>시작시간</th>
+							<th style='width:6%;'  rowspan="2">상태</th>
+							<th style='width:5%;'  rowspan="2">등록자</th>
 							<th style='width:15%;' rowspan="2">등록일시</th>
 						</tr>
 						<tr>
