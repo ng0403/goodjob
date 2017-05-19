@@ -96,27 +96,27 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);
-			makeBlock();
+//			makeBlock();
 		}
 	}
 	opptProdChange();
 }
 
-function makeBlock(){
-	alert("123");
-	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
-		$('#opptPrdtbody').append(
-				'<tr id="priceline" class="empty">'+
-				'<th style="width: 3%;"></th>'+
-				'<td style="width: 32%;"></td>'+
-				'<td style="width: 8%;"></td>'+
-				'<td style="width: 27%;"></td>'+
-				'<td style="width: 15%;"></td>'+
-				'<td style="width: 15%;"></td>'+
-				'</tr>'
-				);
-	}
-}
+//function makeBlock(){
+//	alert("123");
+//	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
+//		$('#opptPrdtbody').append(
+//				'<tr id="priceline" class="empty">'+
+//				'<th style="width: 3%;"></th>'+
+//				'<td style="width: 32%;"></td>'+
+//				'<td style="width: 8%;"></td>'+
+//				'<td style="width: 27%;"></td>'+
+//				'<td style="width: 15%;"></td>'+
+//				'<td style="width: 15%;"></td>'+
+//				'</tr>'
+//				);
+//	}
+//}
 //상품 목록의 input값 변동에 따른 실시간 update
 function opptProdChange(){	
 	var countSum = 0;

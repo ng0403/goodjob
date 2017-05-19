@@ -43,21 +43,21 @@ $(function(){
 	opptProdList(ctx);
 	
 });
-function makeBlock(){
-	alert("123");
-	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
-		$('#opptPrdtbody').append(
-				'<tr id="priceline" class="empty">'+
-				'<th style="width: 3%;"></th>'+
-				'<td style="width: 32%;"></td>'+
-				'<td style="width: 8%;"></td>'+
-				'<td style="width: 27%;"></td>'+
-				'<td style="width: 15%;"></td>'+
-				'<td style="width: 15%;"></td>'+
-				'</tr>'
-				);
-	}
-}
+//function makeBlock(){
+//	alert("123");
+//	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
+//		$('#opptPrdtbody').append(
+//				'<tr id="priceline" class="empty">'+
+//				'<th style="width: 3%;"></th>'+
+//				'<td style="width: 32%;"></td>'+
+//				'<td style="width: 8%;"></td>'+
+//				'<td style="width: 27%;"></td>'+
+//				'<td style="width: 15%;"></td>'+
+//				'<td style="width: 15%;"></td>'+
+//				'</tr>'
+//				);
+//	}
+//}
 
 /**
  * 숫자 콤마 제거(Server 전달 시 필요)

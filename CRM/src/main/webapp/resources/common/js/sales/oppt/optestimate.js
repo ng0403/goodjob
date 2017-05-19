@@ -87,9 +87,9 @@ var prodDeleteProdId=[]; // 상품 삭제 상품 ID List
 var prodDeleteEstimId=[];  // 삭제에 대한 견적 ID List
 var prodAddId =[]; // 상품 추가ID List
 
-// 상품 추가
+// 영업기회 상세페이지 견적추가 상품 리스트 팝업 오픈
 function prodList(ctx){
-	window.open(ctx+'/opptEstProdList','newwindow3','width=550, height=560, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	window.open(ctx+'/opptEstProdList','newwindow3','width=780, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
 function prodNmSelect(){
