@@ -141,11 +141,12 @@ function opptMdfyBtn() {
 	$("#opptDetail #sales_oppt_nm").focus();
 	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
-		style:'background-color:white'
+		style:'background-color:white; height: 30px;'
 	});
 	$("#opptDetail select").attr({
 		disabled:false,
-		style:'background-color:white'
+		style:'background-color:white; height: 30px;'
+			
 	});
 	//버튼 활성화
 	$("#opptDetail #cust_nm,#opptDetail #expt_fin_d").attr("readonly",true);

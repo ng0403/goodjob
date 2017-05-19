@@ -69,7 +69,7 @@ public class HomeController {
 			ip = request.getRemoteAddr();
 			
 		}
-		
+		System.out.println(session.getId());
 		System.out.println("접속자의 ip 주소 : " + ip);
 		session.setAttribute("user", user.getId_nm());
 		System.out.println("POST /Home : ");

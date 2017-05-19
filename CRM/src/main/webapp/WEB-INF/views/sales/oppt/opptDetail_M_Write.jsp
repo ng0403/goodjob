@@ -111,7 +111,7 @@ $(document).ready(function(){
 							<th><span style="color: red;">*상태</span></th>
 							<td>
 								<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-								<select name="sales_oppt_stat_cd" class="int2" id="sales_oppt_stat_cd" disabled="disabled" style="height: 30pt;">
+								<select name="sales_oppt_stat_cd" class="int2" id="sales_oppt_stat_cd" disabled="disabled" style="height: 30px; background: rgb(220, 220, 220);">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
 										<option value="<c:out value="${list.code}" />"
@@ -125,7 +125,7 @@ $(document).ready(function(){
 							<th><span style="color: red;">*영업단계</span></th>
 							<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
-								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 30pt;">
+								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 30px; background: rgb(220, 220, 220);">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${otllist}" var="list">
 										<option value="<c:out value="${list.code}" />"
@@ -141,13 +141,13 @@ $(document).ready(function(){
 							<td>
 							<div class="ui input focus">
 								<input type="hidden" id="hexpt_fin_d">
-								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int2">
+								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int2" style="background: rgb(220, 220, 220);">
 							</div>
 							</td>
 							<th><span style="color: red;">*가능성</span></th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
-								<select id="psblty_rate" name="psblty_rate" style="height: 30pt;">
+								<select id="psblty_rate" name="psblty_rate" style="height: 30px; background: rgb(220, 220, 220);">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<option <c:if test="${detail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
 									<option <c:if test="${detail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>
@@ -167,7 +167,7 @@ $(document).ready(function(){
 							<td colspan="8" rowspan="2">
 							<div class="ui input focus">
 								<input type="hidden" id="hmemo">
-								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none;"></textarea>
+								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none; background: rgb(220, 220, 220);"></textarea>
 							</div>
 							</td>
 						</tr>
