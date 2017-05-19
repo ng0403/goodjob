@@ -21,7 +21,7 @@
 <input type="hidden" id="ctx" value="${ctx}"/>
 	<div class="caption">■ 홈</div></div>
 	
-	<div id="left_home" style="height: 40%;">
+	<div id="left_home" style="height: 45%;">
 	   <div id="contract_title">
 	   		<div id="hometext">
 	   			■ 금일영업활동
@@ -117,7 +117,7 @@
 <!-- 		</div> -->
 <!-- 	  </div> -->
 	  
-	  <div id="right_home" style="height: 40%;">
+	  <div id="right_home" style="height: 45%;">
 	   <div id="contract_title">
 		   <div id="hometext">
 		   		■ 영업기회
@@ -179,7 +179,7 @@
 <!-- 			</table> -->
 <!-- 		</div> -->
 <!-- 	  </div> -->
-	  <div id="left_home" style="height: 40%;">
+	  <div id="left_home" style="height: 45%;">
 	   <div id="contract_title">
 	   		<div id="hometext">
 	   			■ 공지사항
@@ -212,7 +212,7 @@
 			</table>
 		</div>
 	  </div>
-	  <div id="right_home"  style="height: 40%;">
+	  <div id="right_home"  style="height: 45%;">
 	   <div id="contract_title">
 	   		<div id="hometext">
 	   			■ 자료실

@@ -254,16 +254,16 @@ function custCompList(page){
 				});
 			}
 			//페이지 리스트 갯수
-			if(result.ccVOList.length < 10){
-				for(var j = 0; j < 10-result.ccVOList.length; j++){
-					$("#ccListTbody").append("<tr style='height:30px;'>"
-							+"<th></th>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td></tr>"
-							);
-				}
-			}
+//			if(result.ccVOList.length < 10){
+//				for(var j = 0; j < 10-result.ccVOList.length; j++){
+//					$("#ccListTbody").append("<tr style='height:30px;'>"
+//							+"<th></th>"
+//							+"<td></td><td></td><td></td><td></td>"
+//							+"<td></td><td></td><td></td><td></td>"
+//							+"<td></td></tr>"
+//							);
+//				}
+//			}
 			$("#pageSpace").children().remove();	
 			$("#pageSpace").children().remove();
 			var ccPageNum = result.ccPageNum;
@@ -281,6 +281,52 @@ function custCompList(page){
 			alert("error : " + request);
 		}
 	});
+}
+
+
+//검색 버튼 클릭 시 
+function searchBtn(page){
+	var sch_cust_nm = $("#sch_cust_nm").val();
+	var sch_cust_nm0 = $("#sch_cust_nm0").val();
+	var sch_cust_nm1 = $("#sch_cust_nm1").val(); 
+	var sch_comp_num = $("#sch_comp_num").val(); 
+	var sch_comp_num0 = $("#sch_comp_num0").val(); 
+	var sch_comp_num1 = $("#sch_comp_num1").val(); 
+	var sch_corp_num = $("#sch_corp_num").val();
+	var sch_corp_num0 = $("#sch_corp_num0").val(); 
+	var sch_corp_num1 = $("#sch_corp_num1").val();
+	
+	if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm0){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm1){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}if(sch_cust_nm0 == null && sch_cust_nm1){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}
+	if((sch_comp_num == '' || sch_comp_num == null)  && sch_comp_num0){
+		alert("사업자번호를 앞에서부터 채워주세요.");
+		return;
+	}if((sch_comp_num == '' || sch_comp_num == null) && sch_comp_num1){
+		alert("사업자번호를 앞에서부터 채워주세요.");
+		return;
+	}if(sch_comp_num0 == null && sch_comp_num1){
+		alert("사업자번호를 앞에서부터 채워주세요.");
+		return;
+	}
+	if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num0){
+		alert("법인번호를 앞에서부터 채워주세요.");
+		return;
+	}if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num1){
+		alert("법인번호를 앞에서부터 채워주세요.");
+		return;
+	}if(sch_corp_num0 == null && sch_corp_num1){
+		alert("법인번호를 앞에서부터 채워주세요.");
+		return;
+	}
+	custCompList(page);
 }
 
 //페이징
