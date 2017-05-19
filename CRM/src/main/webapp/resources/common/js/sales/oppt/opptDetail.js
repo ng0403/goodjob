@@ -702,7 +702,10 @@ function viewSalesActive(opptId){
 			alert("error : " + request.status);
 		}
 	});
-	
+	function btnDetail(){
+		$('#baseBtnDiv').css('display', 'block');
+		$('#NewAddBtnDiv').css('display', 'none');
+	}
 	//상품 입력 함수
 	function opptInputProd(prod_id,prod_nm,prod_price){
 			$("#opptPrdtbody .empty").remove();
