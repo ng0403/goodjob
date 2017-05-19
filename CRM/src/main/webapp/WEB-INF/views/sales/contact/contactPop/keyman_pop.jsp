@@ -25,9 +25,8 @@
 
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
-
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/contact/contact.css" type="text/css" />
+ 
 
 
 
@@ -54,11 +53,12 @@
 		<table id="keyman_list_table" style="table-layout:fixed;">
 		<thead>
 				<tr>
-					<th style="width:20%">고객ID</th>
-					<th style="width:20%">역할</th>
-					<th style="width:20%">직급</th>
-					<th style="width:10%">직무</th>
+					<th style="width:24%">고객ID</th>
+					<th style="width:23.2%">역할</th>
+					<th style="width:23.4%">직급</th>
+					<th style="width:22.98%">직무</th>
 					<th style="width:30%">메모</th>
+					<th></th>
  				</tr>
  		</thead>	
  				<tbody>

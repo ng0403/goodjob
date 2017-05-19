@@ -53,12 +53,12 @@
 		<table id = "comp_list_table1" class="ui sortable celled table">
 			<thead>
 				<tr>
- 					<th style="width:30%;">영업기회명</td>
-					<th style="width:10%;">영업단계</td>
-					<th style="width:10%;">예상마감일자</td>
-					<th style="width:10%;">가능성(%)</td>
-					<th style="width:10%;">상태</td>
-					<th style="width:10%;">등록자</td>
+ 					<th style="width:16.8%;">영업기회명</th	>
+					<th style="width:16.8%;">영업단계</th>
+					<th style="width:20.3%;">예상마감일자</th>
+					<th style="width:19.6%;">가능성(%)</th>
+					<th style="width:19.6%;">상태</th>
+					<th>등록자</th>
  					
  				</tr>
 			</thead>

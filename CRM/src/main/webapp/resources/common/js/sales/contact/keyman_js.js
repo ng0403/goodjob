@@ -133,7 +133,7 @@ $(document).ready(function() {
 //영업기회 상세정보 고객 리스트 팝업
 function custcompListPopup(ctx){
  	$('#customer').click(function(){
-		window.open(ctx+'/opptCustcompList','newwindow1','width=700, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/opptCustcompList','newwindow1','width=420, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
