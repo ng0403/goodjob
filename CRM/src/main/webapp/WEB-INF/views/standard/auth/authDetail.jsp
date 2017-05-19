@@ -36,9 +36,11 @@
 						<option value="ua_id">사용자ID</option>
 					</select> <input id="authuser_text" type="text" name="keyword" class="int_search"> &nbsp;
 				</div>
-			<button id="userAuthSearch" type="button" class="tiny ui orange button">검색</button>
-		</div>
+				<button id="userAuthSearch" type="button" class="tiny ui orange button">검색</button>
+			</div>
+			
 			<div id="title"></div>
+			
 			<div class="bs-example" data-example-id="simple-table">
 				
 				<table id="ausermastertable" class="ui sortable celled table">
@@ -74,9 +76,12 @@
 			<button type="button" class="tiny ui button" id="writeauthuser">등록</button>
 			<button type="button" class="tiny ui orange button" id="deleteauthuser">삭제</button>
 	    </div>
-		</div>
-		<div id="tabDiv2" class="tab2_content">
+	    
+	</div>
+		
+	<div id="tabDiv2" class="tab2_content">
 		<input type="hidden" id="ctx" value="${ctx}"/>
+		
 		<div class="bt_position">
 			<div class="ui left icon input">
 				<select id="keyfield">
@@ -87,43 +92,51 @@
 			</div>
 			<button id="menuAuthSearch" type="button" class="auth_btn">검색</button>
 		</div>
-	<div class="bs-example" data-example-id="simple-table">
-		<table id="menumastertable" class="ui sortable celled table">
-			<thead>
-				<tr>
-					<th style="width:5.1%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-					<th style="width:20.1%;">권한명</th>
-					<th style="width:25.1%;">권한 메뉴명</th>
-					<th style="width:9.9%;">디폴트여부</th>
-					<th style="width:9.8%;">조회여부</th>
-					<th style="width:9.8%;">입력여부</th>
-					<th style="width:9.8%;">수정여부</th>
-					<th style="width:11.5%;border-right:none;">삭제여부</th>
-					<th style="width: 0%;border-left:none;"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="auth" items="${authMenuList}"> 
-				<tr>
-					<td style="width:5%;"><input type="checkbox" id="ckselect" value="${auth.auth_id}"></td>
-					<td style="width:20%;"><a href="#">${auth.auth_nm}</a></td>
-					<td style="width:25%;"><input type="hidden" value="${auth.menu_id}"/>${auth.menu_nm}</td>
-					<td id="authmenuflg" style="width:10%;">${auth.deflt_yn}</td>
-					<td id="authmenuflg" style="width:10%;">${auth.retrv_yn}</td>
-					<td id="authmenuflg" style="width:10%;">${auth.creat_yn}</td>
-					<td id="authmenuflg" style="width:10%;">${auth.mdfy_yn}</td>
-					<td id="authmenuflg" style="width:10%;">${auth.del_yn}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+	
+		<div class="bs-example" data-example-id="simple-table">
+			<table id="menumastertable" class="ui sortable celled table">
+				<thead>
+					<tr>
+						<th style="width:5.1%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
+						<th style="width:20.1%;">권한명</th>
+						<th style="width:25.1%;">권한 메뉴명</th>
+						<th style="width:9.9%;">디폴트여부</th>
+						<th style="width:9.8%;">조회여부</th>
+						<th style="width:9.8%;">입력여부</th>
+						<th style="width:9.8%;">수정여부</th>
+						<th style="width:11.5%;border-right:none;">삭제여부</th>
+						<th style="width: 0%;border-left:none;"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="auth" items="${authMenuList}"> 
+					<tr>
+						<td style="width:5%;">
+							<input type="checkbox" id="ckselect" value="${auth.auth_id}">
+							<input type="hidden" id="auth_id" value="${auth.auth_id}">
+						</td>
+						<td style="width:20%;">
+							<a href="#">${auth.auth_nm}</a>
+						</td>
+						<td style="width:25%;">
+							<input type="hidden" id="menu_id" value="${auth.menu_id}"/>${auth.menu_nm}
+						</td>
+						<td id="authmenuflg" style="width:10%;">${auth.deflt_yn}</td>
+						<td id="authmenuflg" style="width:10%;">${auth.retrv_yn}</td>
+						<td id="authmenuflg" style="width:10%;">${auth.creat_yn}</td>
+						<td id="authmenuflg" style="width:10%;">${auth.mdfy_yn}</td>
+						<td id="authmenuflg" style="width:10%;">${auth.del_yn}</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	   
+	    <div class="auth_bt_position">
+			<button type="button" class="tiny ui button" id="writeauthmenu">등록</button>
+			<button type="button" class="tiny ui orange button" id="deleteauthmenu">삭제</button>
+		</div>
 	</div>
-	   <div class="auth_bt_position">
-		<button type="button" class="tiny ui button" id="writeauthmenu">등록</button>
-		<button type="button" class="tiny ui orange button" id="deleteauthmenu">삭제</button>
-	</div>
-   </div>
-
 </div>
 </body>
 </html>

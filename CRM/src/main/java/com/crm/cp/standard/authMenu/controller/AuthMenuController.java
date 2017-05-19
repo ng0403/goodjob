@@ -35,11 +35,18 @@ public class AuthMenuController {
 	@RequestMapping(value="/authMenuViewPopup", method=RequestMethod.GET)
 	public ModelAndView AuthDetail(HttpSession session, 
 			@RequestParam (value="auth_id") String auth_id, 
-			@RequestParam (value="menu_id") String menu_id){
+			@RequestParam (value="menu_id") String menu_id)
+	{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("auth_id", auth_id);
 		map.put("menu_id", menu_id);
+		
+		System.out.println("autd_id : " + auth_id);
+		System.out.println("menu_id : " + menu_id);
+		System.out.println("MAP : " + map);
+		
 		Object obj = authmenuService.authMenuDetail(map);
+		
 		return new ModelAndView("/standard/authMenu/authMenuViewPopup", "auth", obj);
 		
 	}

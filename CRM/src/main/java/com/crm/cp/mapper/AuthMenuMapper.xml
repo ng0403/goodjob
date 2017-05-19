@@ -42,9 +42,9 @@
        		   a.DEFLT_YN, a.RETRV_YN, a.CREAT_YN, a.MDFY_YN, a.DEL_YN
 		FROM AUTHORIZATION_MENU a, MENU b, AUTHORIZATION c
 		WHERE a.MENU_ID = b.MENU_ID
-		AND a.AUTH_ID = c.AUTH_ID
-		AND a.AUTH_ID = #{auth_id}
-		AND b.MENU_ID = #{menu_id}
+			AND a.AUTH_ID = c.AUTH_ID
+			AND a.AUTH_ID = #{auth_id}
+			AND b.MENU_ID = #{menu_id}
 		ORDER BY a.AUTH_ID, b.MENU_ID
     </select>
     

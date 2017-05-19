@@ -287,8 +287,10 @@ function searchAuthMenuClick(ctx){
 	$('#menumastertable tbody').delegate('a', 'click', function(event){
 		event.preventDefault();
 		
-		var menu_id=$(this).parent().next().next().children('input').val();
-		window.open(ctx+"/authMenuViewPopup?auth_id="+$(this).text()+"&menu_id="+menu_id,'newwindow','width=400, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		//var menu_id = $(this).parent().next().next().next().children('input').val();
+		var auth_id = $('#auth_id').val();
+		var menu_id = $('#menu_id').val();
+		window.open(ctx+"/authMenuViewPopup?auth_id="+auth_id+"&menu_id="+menu_id,'newwindow','width=400, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

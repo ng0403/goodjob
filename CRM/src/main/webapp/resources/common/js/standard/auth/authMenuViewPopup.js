@@ -103,5 +103,11 @@ function dmenuModifyConfirm(ctx){
 			}
 			
 		});
-	});	
+	});
+}
+
+/* 메뉴권한 상세보기 */
+function authMenuDetail(auth_id, menu_id)
+{
+	alert(auth_id + " " + menu_id);
 }
