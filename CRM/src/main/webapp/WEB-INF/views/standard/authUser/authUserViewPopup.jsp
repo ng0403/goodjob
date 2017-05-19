@@ -59,7 +59,10 @@
 							</tbody>
 						</table>
 					</th>
-					<td></td>
+					<td>
+						<input type="hidden" id="auth_id" value=""/>
+						<input type="hidden" id="auth_nm" value=""/>
+					</td>
 					<th rowspan="5">
 						<table>
 							<tbody id="userAuthList">

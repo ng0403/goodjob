@@ -48,15 +48,18 @@
 				<tr>
 					<th rowspan="5">
 						<table>
-							<tbody id="authList">
+							<tbody id="wauthList">
 								
 							</tbody>
 						</table>
 					</th>
-					<td></td>
+					<td>
+						<input type="hidden" id="auth_id" value=""/>
+						<input type="hidden" id="auth_nm" value=""/>
+					</td>
 					<th rowspan="5">
 						<table>
-							<tbody id="userAuthList">
+							<tbody id="wuserAuthList">
 								
 							</tbody>
 						</table>
@@ -64,7 +67,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="button" id="userAuthGo" class="tiny ui button" value=">"/>
+						<input type="button" id="wuserAuthGo" class="tiny ui button" value=">"/>
 					</td>
 				</tr>
 				<tr>
@@ -72,7 +75,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="button" id="authGo" class="tiny ui button" value="<"/>
+						<input type="button" id="wauthGo" class="tiny ui button" value="<"/>
 					</td>
 				</tr>
 				<tr>

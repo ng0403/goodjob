@@ -58,12 +58,12 @@ public class AuthIuserController {
 	}
 	
 	@RequestMapping(value = "/authListAjax", method = RequestMethod.POST)
-	public @ResponseBody Map<String,Object> authListAjax(
-			@RequestBody AuthIuserVO vo, HttpSession session,
+	@ResponseBody
+	public Map<String,Object> authListAjax(HttpSession session,
 			@RequestParam (value="iuser_id",required=false) String iuser_id) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("iuser_id", iuser_id);
-		
+//		System.out.println(vo.getAuth_id());
 		List<AuthIuserVO> authList = authIuserService.authList(map);
 		List<AuthIuserVO> userAuthList = authIuserService.userAuthList(map);
 		
@@ -109,15 +109,19 @@ public class AuthIuserController {
 	
 	//권한수정
 	@RequestMapping(value = "/authIuserEdit", method = RequestMethod.POST)
-	public @ResponseBody Map<String,Object> authEdit(
-			@RequestBody AuthIuserVO vo, HttpSession session,
-			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data) {
+	@ResponseBody
+	public Map<String,Object> authEdit(HttpSession session,
+			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data,
+			@RequestParam (value="iuser_id",required=false) String iuser_id) {
 		Map<String,Object> map = new HashMap<String, Object>();
+		AuthIuserVO vo = new AuthIuserVO();
 		vo.setFst_reg_id(session.getAttribute("user").toString());
+		vo.setIuser_id(iuser_id);
 		
 		authIuserService.authUserDelete(vo);
 		if(auth_id_data.size() != 0){
 			for(int i=0; i<auth_id_data.size(); i++){
+				System.out.println(auth_id_data.get(i));
 				vo.setAuth_id(auth_id_data.get(i));
 				authIuserService.authUserInsert(vo);
 			}
@@ -140,10 +144,13 @@ public class AuthIuserController {
 	}
 	
 	@RequestMapping(value="/authUserInsertData", method=RequestMethod.POST)
-	public @ResponseBody List<Object> authUserInsertData(
-			@RequestBody AuthIuserVO authUser, HttpSession session,
-			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data){
+	@ResponseBody
+	public List<Object> authUserInsertData( HttpSession session,
+			@RequestParam (value="auth_id_data",required=false) List<String> auth_id_data,
+			@RequestParam (value="iuser_id",required=false) String iuser_id){
+		AuthIuserVO authUser = new AuthIuserVO();
 		authUser.setFst_reg_id(session.getAttribute("user").toString());
+		authUser.setIuser_id(iuser_id);
 		int result = authIuserService.searchUserAuth(authUser);
 		
 		if(result >= 1){

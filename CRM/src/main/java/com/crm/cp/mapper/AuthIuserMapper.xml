@@ -51,22 +51,18 @@
 	</select>
 	
 	<select id="authList" parameterType="map" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">
-		SELECT a.AUTH_ID, b.AUTH_NM
-		FROM AUTHORIZATION_IUSER a, AUTHORIZATION b
-		WHERE a.AUTH_ID = b.AUTH_ID
-		<if test="iuser_id != null and iuser_id != ''">
-			AND a.IUSER_ID != #{iuser_id}
-		</if>
+		SELECT AUTH_ID, AUTH_NM FROM AUTHORIZATION
+		MINUS
+		SELECT A.AUTH_ID, (SELECT AUTH_NM FROM AUTHORIZATION WHERE AUTH_ID=A.AUTH_ID)AUTH_NM
+		FROM AUTHORIZATION_IUSER a
+		WHERE IUSER_ID =  #{iuser_id}
    		
 	</select>
 	
 	<select id="userAuthList" parameterType="map" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">
-		SELECT a.AUTH_ID, b.AUTH_NM
-		FROM AUTHORIZATION_IUSER a, AUTHORIZATION b
-		WHERE a.AUTH_ID = b.AUTH_ID
-		<if test="iuser_id != null and iuser_id != ''">
-   			AND a.IUSER_ID = #{iuser_id}
-   		</if>
+		SELECT A.AUTH_ID, (SELECT AUTH_NM FROM AUTHORIZATION WHERE AUTH_ID=A.AUTH_ID)AUTH_NM
+		FROM AUTHORIZATION_IUSER a
+		WHERE IUSER_ID =  #{iuser_id}
 	</select>
 	
 	<select id="authIuserDetail" parameterType="map" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">
@@ -85,7 +81,6 @@
 	<insert id="userInsert" keyColumn="auth_id" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		INSERT INTO AUTHORIZATION_IUSER(AUTH_ID, FST_REG_ID, IUSER_ID)
 		VALUES(#{auth_id}, #{fst_reg_id}, #{iuser_id})
-		)
 	</insert>
 	
 	<update id="authIuserEdit" parameterType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">
