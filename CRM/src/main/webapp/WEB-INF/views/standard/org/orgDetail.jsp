@@ -75,13 +75,13 @@
 						<tr class="orgDetail">				
 							<th><span style="color: red;">*전화번호</span></th>
 							<td>
-								<input type="text" name="phone_no1" id="phone_no1" class="int_tel" maxlength="4" disabled="disabled"/>&nbsp;-
+								<input type="text" name="phone_no1" id="phone_no1" class="int_tel" maxlength="3" disabled="disabled"/>&nbsp;-
 								<input type="text" name="phone_no2" id="phone_no2" class="int_tel" maxlength="4" disabled="disabled"/>&nbsp;-
 								<input type="text" name="phone_no3" id="phone_no3" class="int_tel" maxlength="4" disabled="disabled"/>
 							</td>
 							<th>팩스번호</th>
 							<td>
-								<input type="text" name="fax_no1" id="fax_no1" class="int_tel" maxlength="4" disabled="disabled"/>&nbsp;-
+								<input type="text" name="fax_no1" id="fax_no1" class="int_tel" maxlength="3" disabled="disabled"/>&nbsp;-
 								<input type="text" name="fax_no2" id="fax_no2" class="int_tel" maxlength="4" disabled="disabled"/>&nbsp;-
 								<input type="text" name="fax_no3" id="fax_no3" class="int_tel" maxlength="4" disabled="disabled"/>
 							</td>							
@@ -93,7 +93,7 @@
 							&nbsp;-&nbsp;							
 								<input type="text" name="zip_no2" id="post2" class="int_zip" disabled="disabled" /></input>	
 								<input type="hidden" id="zip_cd_sri_num" name="zip_cd_sri_num" disabled="disabled"/>	
-								<input type="button" class="button search_btn" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
+								<input type="button" class="tiny ui button" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
 								<input type="text" name="addr_detail1" id="addr" class="int_zipadd1" disabled="disabled"/>
 								<input type="text" name="addr_detail2" id="addr_detail" class="int_zipadd2" disabled="disabled"/>
 							</td>
@@ -110,7 +110,7 @@
 								<input type="hidden" class="int" name="p_org_id" id="p_org_id" disabled="disabled"/>
 							</td>
 							<th>조직타입명</th>
-							<td><input type="text" name="org_type_name" id="org_type_name" class="int" disabled="disabled"></input></td>
+							<td><input type="text" name="org_type_name" id="org_type_name" class="inputText" disabled="disabled"></input></td>
 						</tr>
 						<tr class="orgtypeDetail">
 							<th><span style="color: red;">*활성화여부</span></th>
@@ -133,7 +133,7 @@
 							<option value="orgName">조직명</option>
 							<option value="userName">사용자명</option>
 						</select> 
-						<input id="title_text" type="text" name="searchValue" class="int_search"> &nbsp;
+						<input id="title_text" type="text" name="searchValue" class="inputText"> &nbsp;
 					</div>
 				<input id="orgUserAuthSearch" type="button" class="tiny ui orange button" value="검색"/>
 		        </div>
@@ -141,11 +141,11 @@
 				   <table id="mastertable" class="ui sortable celled table">
 								<thead>
 									<tr>
-										<th style="width: 20.1%;">조직명</th>
-										<th style="width: 20%;">조직대표</th>
-										<th style="width: 19.9%;">사용자</th>
+										<th style="width: 15.2%;">조직명</th>
+										<th style="width: 15%;">조직대표</th>
+										<th style="width: 9.8%;">사용자</th>
 										<th style="width: 19.9%;">연락처</th>
-										<th style="width: 20.4%;border-right:none;">이메일</th>
+										<th style="width: 41%;border-right:none;">이메일</th>
 										<th style="width: 0%;border-left:none;"></th>
 									</tr>
 								</thead>

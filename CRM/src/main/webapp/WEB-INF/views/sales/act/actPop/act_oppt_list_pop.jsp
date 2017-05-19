@@ -17,7 +17,7 @@
 <title>영업기회 리스트</title>
 </head>
 <body>
-<div style="width: 98%; padding-left: 10px;">
+<!-- <div style="width: 98%; padding-left: 10px;"> -->
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
 		<div class="caption">
@@ -68,6 +68,6 @@
 		</table>
 	</div>
 	</div>
-</div>
+<!-- </div> -->
 </body>
 </html>

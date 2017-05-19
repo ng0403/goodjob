@@ -47,7 +47,7 @@ $("#naviorg").css("font-weight", "bold");
 									<input id="allCheck" type="checkbox"/>
 								</th>
 								<th style="width: 30.3%;">아이디</th>
-								<th style="width: 30.3%;">사용자명</th>
+								<th style="width: 30.2%;">사용자명</th>
 								<th style="width: 40%;">직책</th>
 							</tr>
 						</thead>
