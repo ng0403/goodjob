@@ -8,7 +8,12 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authMenuWritePopup.js"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+<link rel="stylesheet" href="${ctx}/resources/common/Semantic/semantic.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authMenuWritePopup.css" type="text/css" />
+
+
 <title>권한 등록</title>
 </head>
 <body>
@@ -16,27 +21,29 @@
 <input type="hidden" id="ctx" value="${ctx}">
 <div id="title">
 <br>
-<div class="caption">■ 권한메뉴 등록</div>
-<div class="bt_position_popup">
-   <div class="bs-example" data-example-id="simple-table">
-	 <table class="table">  			
+	<div class="caption">
+		<h3 class="ui header" style="background: #fff; padding: 10px;">■ 권한메뉴 등록</h3>
+	</div>
+	<div class="bt_position_popup">
+		<div class="bs-example" data-example-id="simple-table">
+	 		<table class="ui celled table">  			
 					<tbody id="tbody1">
 						<tr>
 							<th>메뉴ID</th>
 							<td>
-								<input type="text" name="menu_id" id="menu_id" class="auth_menu_txt" readonly="readonly"/>
-								<input type="button" id="searchAuthIuser_MenuId" class="auth_btn" value="검색"/>
+								<input type="text" name="menu_id" id="menu_id" class="inputText" readonly="readonly"/>
+								<input type="button" id="searchAuthIuser_MenuId" class="tiny ui orange basic button" value="검색"/>
 							</td>
 						</tr>
 						<tr>
 							<th>메뉴명</th>
-							<td><input type="text" name="menu_nm" id="menu_nm" class="auth_menu_txt" disabled="disabled"/></td>
+							<td><input type="text" name="menu_nm" id="menu_nm" class="inputText" disabled="disabled"/></td>
 						</tr>
 						<tr>
 							<th>권한ID</th>
 							<td>
-								<input type="text" name="auth_id" id="uauth_id" class="auth_menu_txt" readonly="readonly"/>
-								<input type="button" id="searchAuthMenu_authId" class="auth_btn" value="검색"/>
+								<input type="text" name="auth_id" id="uauth_id" class="inputText" readonly="readonly"/>
+								<input type="button" id="searchAuthMenu_authId" class="tiny ui orange basic button" value="검색"/>
 							</td>
 						</tr>
 						<tr>
@@ -79,8 +86,8 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="auth_btn" value="등록" id="authMenu_confirm"/>
-		<input type="button" class="auth_btn" value="취소" id="authMenu_cancel"/>
+		<input type="button" class="tiny ui orange button" value="등록" id="authMenu_confirm"/>
+		<input type="button" class="tiny ui button" value="취소" id="authMenu_cancel"/>
 	</div>
 </div>
 </div>

@@ -8,27 +8,28 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authPopup.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authPopup.js"></script>
-<link rel="stylesheet"
-	href="${ctx}/resources/common/css/body.css"
-	type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/body.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/Semantic/semantic.css" type="text/css" />
 
-<link rel="stylesheet"
-	href="${ctx}/resources/common/css/bootstrap.css"
-	type="text/css" />
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authPopup.js"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 <title>권한 등록</title>
 </head>
 <body>
 <div id="title">
 <br>
-<div class="caption">■ 권한 등록</div>
-<div class="bt_position_popup">
-   <div class="bs-example" data-example-id="simple-table">
-	 <table class="table">  			
+	<div class="caption">
+		<h3 class="ui header" style="background: #fff; padding: 10px;">■ 권한 등록</h3>
+	</div>
+	<div class="bt_position_popup">
+		<div class="bs-example" data-example-id="simple-table">
+	 		<table class="ui celled table">  			
 							<tbody id="tbody1">
 								<tr>
 									<th>권한명</th>
-									<td><input type="text" name="pauth_name" id="pauth_name" class="int"/></td>
+									<td><input type="text" name="pauth_name" id="pauth_name" class="inputText"/></td>
 								</tr>
 								<tr>
 									<th>활성화 여부</th>
@@ -40,8 +41,8 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="auth_btn" value="등록" id="pauth_confirm"/>
-		<input type="button" class="auth_btn" value="취소" id="pauth_cancel"/>
+		<input type="button" class="tiny ui orange button" value="등록" id="pauth_confirm"/>
+		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel"/>
 	</div>
 </div>
 </div>
