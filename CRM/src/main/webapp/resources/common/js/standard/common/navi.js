@@ -1,6 +1,7 @@
 	var num=0;
 
 	$(function() {
+		
 		init();
 		/*asideDate(num);*/
 		naviOutput();
