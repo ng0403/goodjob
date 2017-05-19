@@ -6,8 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail2.css" type="text/css" /> --%>
+<!-- 영업기회 디테일 페이지 상품 테이블 적용 CSS -->
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/estimate_popup.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
@@ -86,19 +87,19 @@ $(document).ready(function(){
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->
-							<div class="ui input focus">
+							<div class="ui input focus" style="width: 95%;">
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
-								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; background-color: ">
+								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; width: 100%;">
 							</div>
 							</td>
 							<th><span style="color: red;">*고객사</span></th>
 							<td>
-							<div class="ui input focus">
+							<div class="ui input focus" >
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
 <%-- 								<input type="hidden" id="hlead_id" value="${opDetail.lead_id}"> --%>
-								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int">
+								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int2">
 								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
 																
 							</div>
@@ -109,7 +110,7 @@ $(document).ready(function(){
 							<th><span style="color: red;">*상태</span></th>
 							<td>
 								<input type="hidden" id="hsales_oppt_stat_cd" value="0">
-								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 24px;">
+								<select name="sales_oppt_stat_cd" id="sales_oppt_stat_cd" disabled="disabled" style="height: 30px;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach items="${osclist}" var="list">
 										<option value="<c:out value="${list.code}" />"
@@ -123,7 +124,7 @@ $(document).ready(function(){
 							<th><span style="color: red;">*영업단계</span></th>
 							<td>
 								<input type="hidden" id="hsales_lev_cd" value="0">
-								<select name="sales_lev_cd" id="sales_lev_cd" disabled="disabled" style="height: 24px;">
+								<select name="sales_lev_cd" class="int2" id="sales_lev_cd" disabled="disabled" style="height: 30px;">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach items="${otllist}" var="list">
 										<option value="<c:out value="${list.code}" />"
@@ -139,13 +140,13 @@ $(document).ready(function(){
 							<td>
 							<div>
 								<input type="hidden" id="hexpt_fin_d">
-								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int">
+								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int2">
 							</div>
 							</td>
 							<th><span style="color: red;">*가능성</span></th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
-								<select id="psblty_rate" name="psblty_rate" style="height: 24px;">
+								<select id="psblty_rate" name="psblty_rate" style="height: 30px;">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<option <c:if test="${opDetail.psblty_rate == 10 }">selected="selected"</c:if>>10</option>
 									<option <c:if test="${opDetail.psblty_rate == 20 }">selected="selected"</c:if>>20</option>
@@ -183,7 +184,7 @@ $(document).ready(function(){
 				
 					<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
 						<tr class="headerLock">
-							<th rowspan="2" style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+							<th rowspan="2" style="width: 3%; text-align: center;"><input type="checkbox" id="allSelect"></th>
 							<td style="width: 32%;">품목명</td>
 							<td style="width: 8%;">수량</td>
 							<td style="width: 27%;">판매가</td>
@@ -208,7 +209,7 @@ $(document).ready(function(){
 								<c:when test="${not empty opptPrdt}">
 									<c:forEach items="${opptPrdt}" var="list">
 										<tr id="priceline" class="${list.prod_id}" style="height: 6px !important;">
-											<th style="width: 3%;">
+											<th style="width: 3%; text-align: center;">
 												<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 												<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
 											<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>

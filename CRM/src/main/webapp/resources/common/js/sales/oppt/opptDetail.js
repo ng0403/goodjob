@@ -615,20 +615,20 @@ function estimList(opptId){
 						'<td style="width: 10% !important; text-align: center;">'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});
-			if(result.length < 5){
-				for(var j = 0; j < 5-result.length; j++){
-					content += "<tr class='headerLock'>"
-						+ "<th style='width: 3% !important;'></th>"
-						+ "<td style='width: 30% !important;'></td>" 
-						+ "<td style='width: 11% !important;'></td>"
-						+ "<td style='width: 10% !important;'></td>"
-						+ "<td style='width: 15% !important;'></td>"
-						+ "<td style='width: 10% !important;'></td>"
-						+ "<td style='width: 9% !important;'></td>"
-						+ "<td style='width: 10% !important;'></td>"
-						+ "</tr>";
-				}
-			}	
+//			if(result.length < 5){
+//				for(var j = 0; j < 5-result.length; j++){
+//					content += "<tr class='headerLock'>"
+//						+ "<th style='width: 3% !important;'></th>"
+//						+ "<td style='width: 30% !important;'></td>" 
+//						+ "<td style='width: 11% !important;'></td>"
+//						+ "<td style='width: 10% !important;'></td>"
+//						+ "<td style='width: 15% !important;'></td>"
+//						+ "<td style='width: 10% !important;'></td>"
+//						+ "<td style='width: 9% !important;'></td>"
+//						+ "<td style='width: 10% !important;'></td>"
+//						+ "</tr>";
+//				}
+//			}	
 			}	
 			$('#estimList').append(content);
 		},
@@ -674,26 +674,26 @@ function viewSalesActive(opptId){
 				"</tr>";	
 			});
 			
-			if(result.actList.length < 5){
-				for(var j = 0; j < 5-result.actList.length; j++){
-					content += "<tr>"+
-								"<th rowspan='2' style='width: 3% !important;'></th>"+ 
-								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'></td>"+
-								"<td rowspan='2' style='width: 8% !important;'></td>"+
-								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'></td>"+
-								"<td rowspan='2' style='width: 8% !important;'></td>"+
-								"<td style='width: 9% !important;'></td>"+
-								"<td style='width: 9% !important;'></td>"+
-								"<td rowspan='2' style='width: 6% !important;'></td>"+
-								"<td rowspan='2' style='width: 7% !important;'></td>"+
-								"<td rowspan='2' style='width: 10% !important;'></td>"+
-								"</tr>"+
-								"<tr>"+
-								"<td style='width: 9% !important;'></td>"+
-								"<td style='width: 9% !important;'></td>"+
-								"</tr>";
-					}
-				}
+//			if(result.actList.length < 5){
+//				for(var j = 0; j < 5-result.actList.length; j++){
+//					content += "<tr>"+
+//								"<th rowspan='2' style='width: 3% !important;'></th>"+ 
+//								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'></td>"+
+//								"<td rowspan='2' style='width: 8% !important;'></td>"+
+//								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'></td>"+
+//								"<td rowspan='2' style='width: 8% !important;'></td>"+
+//								"<td style='width: 9% !important;'></td>"+
+//								"<td style='width: 9% !important;'></td>"+
+//								"<td rowspan='2' style='width: 6% !important;'></td>"+
+//								"<td rowspan='2' style='width: 7% !important;'></td>"+
+//								"<td rowspan='2' style='width: 10% !important;'></td>"+
+//								"</tr>"+
+//								"<tr>"+
+//								"<td style='width: 9% !important;'></td>"+
+//								"<td style='width: 9% !important;'></td>"+
+//								"</tr>";
+//					}
+//				}
 			}	
 			$("#activeList").append(content);
 		},
@@ -723,7 +723,7 @@ function viewSalesActive(opptId){
 			}
 			$('#opptPrdtbody').append(
 					'<tr id="priceline" class='+prod_id+' name="prt">'+
-					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
+					'<th style="width: 3%; text-align: center;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
@@ -754,7 +754,7 @@ function viewSalesActive(opptId){
 				}
 				$('#opptPrdtbody').append(
 						'<tr id="priceline" class='+prod_id+' name="prt">'+
-						'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
+						'<th style="width: 3%; text-align: center;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
 						'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 						'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 						'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			

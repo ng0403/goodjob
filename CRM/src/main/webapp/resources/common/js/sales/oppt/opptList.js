@@ -374,15 +374,15 @@ function opportunityList(page){
 				);
 			});
 			//페이지 리스트 갯수
-			if(result.oplist.length < 10){
-				for(var j = 0; j < 10-result.oplist.length; j++){
-					$("#listTable").append("<tr style='height:30px;'>"
-							+"<th></th>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td></tr>");
-				}
-			}
+//			if(result.oplist.length < 10){
+//				for(var j = 0; j < 10-result.oplist.length; j++){
+//					$("#listTable").append("<tr style='height:30px;'>"
+//							+"<th></th>"
+//							+"<td></td><td></td><td></td><td></td>"
+//							+"<td></td><td></td><td></td><td></td>"
+//							+"<td></td></tr>");
+//				}
+//			}
 			$("#pageSpace").children().remove();	
 			$("#pageSpace").children().remove();
 			var ccPageNum = result.ccPageNum;
@@ -482,26 +482,26 @@ function viewSalesActive(opptId){
 				"</tr>";	
 			});
 			
-			if(result.actList.length < 5){
-				for(var j = 0; j < 5-result.actList.length; j++){
-					content += "<th rowspan='2' style='text-align: center;'></th>"+ 
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td></td>"+
-					"<td></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"<td rowspan='2'></td>"+
-					"</tr>"+
-					"<tr>"+
-					"<td></td>"+
-					"<td></td>"+
-					"</tr>";
-					
-					}
-				}
+//			if(result.actList.length < 5){
+//				for(var j = 0; j < 5-result.actList.length; j++){
+//					content += "<th rowspan='2' style='text-align: center;'></th>"+ 
+//					"<td rowspan='2'></td>"+
+//					"<td rowspan='2'></td>"+
+//					"<td rowspan='2'></td>"+
+//					"<td rowspan='2'></td>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"<td rowspan='2'></td>"+
+//					"<td rowspan='2'></td>"+
+//					"<td rowspan='2'></td>"+
+//					"</tr>"+
+//					"<tr>"+
+//					"<td></td>"+
+//					"<td></td>"+
+//					"</tr>";
+//					
+//					}
+//				}
 			}	
 			$("#activeList").append(content);
 		},
@@ -535,14 +535,14 @@ function estimList(opptId){
 						'<td>'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});
-			if(result.length < 5){
-				for(var j = 0; j < 5-result.length; j++){
-					content += "<tr>"
-						+ "<th></th>"
-						+ "<td></td><td></td><td></td>"
-						+ "<td></td><td></td><td></td><td></td></tr>";
-				}
-			}	
+//			if(result.length < 5){
+//				for(var j = 0; j < 5-result.length; j++){
+//					content += "<tr>"
+//						+ "<th></th>"
+//						+ "<td></td><td></td><td></td>"
+//						+ "<td></td><td></td><td></td><td></td></tr>";
+//				}
+//			}	
 			}	
 			$('#estimList').append(content);
 		},
