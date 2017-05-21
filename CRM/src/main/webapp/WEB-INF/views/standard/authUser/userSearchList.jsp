@@ -61,10 +61,10 @@ $(function() {
 					<th style="width:10%;">사용자명</td>
 					<th style="width:10%;">조직명</td>
 					<th style="width:20%;">이메일</td>
-					<th style="width:20%;">연락처</td>
-					<th style="width:10%;">권한</td>
-					<th style="width:10%;">사용자구분</td>
-					<th style="width:10%;">상태</td>
+<!-- 					<th style="width:20%;">연락처</td> -->
+<!-- 					<th style="width:10%;">권한</td> -->
+<!-- 					<th style="width:10%;">사용자구분</td> -->
+<!-- 					<th style="width:10%;">상태</td> -->
 				</tr>
 			</thead>
 			<tbody>
@@ -75,20 +75,20 @@ $(function() {
 					<td style="width:10%;">${list.iuser_nm}</td>
 					<td style="width:10%;">${list.org_nm}</td>
 					<td style="width:20%;">${list.email1}@${list.email2}</td>
-					<td style="width:20%; text-align:center">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td>
-					<td style="width:10%; text-align:center">
-					<c:if test="${empty list.auth_nm}">
-						권한없음
-					</c:if>
-					<c:if test="${not empty list.auth_nm}">
-						${list.auth_nm}
-					</c:if>
-					</td>
-					<td style="width:10%; text-align:center ">${list.cd_nm}</td>
-					<td style="width:10%; text-align:center">
-					<c:if test="${list.act_yn=='Y'}">활성화</c:if>
-					<c:if test="${list.act_yn=='N'}">비활성화</c:if>
-					</td>
+<%-- 					<td style="width:20%; text-align:center">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td> --%>
+<!-- 					<td style="width:10%; text-align:center"> -->
+<%-- 					<c:if test="${empty list.auth_nm}"> --%>
+<!-- 						권한없음 -->
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${not empty list.auth_nm}"> --%>
+<%-- 						${list.auth_nm} --%>
+<%-- 					</c:if> --%>
+<!-- 					</td> -->
+<%-- 					<td style="width:10%; text-align:center ">${list.cd_nm}</td> --%>
+<!-- 					<td style="width:10%; text-align:center"> -->
+<%-- 					<c:if test="${list.act_yn=='Y'}">활성화</c:if> --%>
+<%-- 					<c:if test="${list.act_yn=='N'}">비활성화</c:if> --%>
+<!-- 					</td> -->
 				</tr>
 				</c:forEach>
 			</tbody>

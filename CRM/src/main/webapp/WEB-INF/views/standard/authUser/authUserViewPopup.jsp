@@ -24,76 +24,83 @@
 </div>
 <div class="bt_position_popup">
 	<div class="bs-example" data-example-id="simple-table">
-		<table class="ui celled table">  	
-			<tbody>
-				<tr>
-					<td style="width:40%"></td>
-					<td style="width:20%">사용자ID</td>
-					<td style="width:40%">
-						<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${user_id}"/>
-						<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${user_nm}" disabled="disabled"/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>권한목록</td>
-					<td></td>
-					<td>보유권한</td>
-				</tr>
-				<tr>
-					<th rowspan="5">
-						<table>
-							<tbody id="authList">
-								<c:forEach var="authList" items="${authList}">
-									<tr>
-										<td>
-											<input type="hidden" name="auth_id" value="${authList.auth_id }"/>
-											${authList.auth_nm}
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</th>
-					<td>
-						<input type="hidden" id="auth_id" value=""/>
-						<input type="hidden" id="auth_nm" value=""/>
-					</td>
-					<th rowspan="5">
-						<table>
-							<tbody id="userAuthList">
-								<c:forEach var="userAuthList" items="${userAuthList}">
-									<tr>
-										<td>
-											<input type="hidden" name="auth_id" value="${userAuthList.auth_id }"/>
-											${userAuthList.auth_nm}
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" id="userAuthGo" class="tiny ui button" value=">"/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" id="authGo" class="tiny ui button" value="<"/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-				</tr>
+		<table class="ui sortable celled table" >
+			<tr>
+				<th style="height:300px;">
+					<table class="ui celled table" style="border:none;">  	
+						<tbody>
+							<tr>
+								<td style="width:40%;border:none;"></td>
+								<td style="width:20%;text-align:right;border:none;"">사용자ID</td>
+								<td style="width:40%;border:none;">
+									<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${user_id}"/>
+									<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${user_nm}" disabled="disabled"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;"></td>
+								<td style="border:none;"></td>
+								<td style="border:none;"></td>
+							</tr>
+							<tr>
+								<td style="border:none;">
+									<h4 class="ui header" style="background: #fff;">권한목록</h4>
+								</td>
+								<td style="border:none;"></td>
+								<td style="border:none;">
+									<h4 class="ui header" style="background: #fff;">보유권한</h4>
+								</td>
+							</tr>
+							<tr>
+								<th style="border:none;height:150px;" rowspan="5">
+									<table>
+										<tbody id="authList" style="height:150px;">
+											<c:forEach var="authList" items="${authList}">
+												<tr>
+													<td>
+														<input type="hidden" name="auth_id" value="${authList.auth_id }"/>
+														${authList.auth_nm}
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</th>
+								<td style="border:none;height:30px;">
+									<input type="hidden" id="auth_id" value=""/>
+									<input type="hidden" id="auth_nm" value=""/>
+								</td>
+								<th style="border:none;height:150px;" rowspan="5">
+									<table>
+										<tbody id="userAuthList" style="height:150px;">
+											<c:forEach var="userAuthList" items="${userAuthList}">
+												<tr>
+													<td>
+														<input type="hidden" name="auth_id" value="${userAuthList.auth_id }"/>
+														${userAuthList.auth_nm}
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</th>
+							</tr>
+							<tr>
+								<td style="border:none;height:30px;text-align: center;">
+									<input type="button" id="userAuthGo" class="tiny ui button" value=">"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;height:30px;"></td>
+							</tr>
+							<tr>
+								<td style="border:none;height:30px;text-align: center;">
+									<input type="button" id="authGo" class="tiny ui button" value="<"/>
+								</td>
+							</tr>
+							<tr>
+								<td style="border:none;height:30px;"></td>
+							</tr>
 <!-- 				<tr> -->
 <!-- 					<th>권한 ID</th> -->
 <!-- 					<td> -->
@@ -117,8 +124,11 @@
 <!-- 					<th>생성일</th> -->
 <%-- 					<td><input type="text" name="ucdate" id="ucdate" class="int" value="${authUser.fst_reg_d}" disabled="disabled"/></td> --%>
 <!-- 				</tr> -->
-		   </tbody>	
-	   </table>
+					   </tbody>	
+				   </table>
+				</th>
+			</tr>
+		</table>
 	</div>
 </div>
 	<div class="auth_bt_position">

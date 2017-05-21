@@ -26,7 +26,7 @@
    <div class="bs-example" data-example-id="simple-table">
 		<table class="ui sortable celled table" >
 			<tr>
-				<td style="height:300px;">
+				<th style="height:300px;">
 					<table class="ui celled table" style="border:none;">  	
 						<tbody>
 							<tr>
@@ -53,44 +53,44 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="border:none;height:100px;" rowspan="5">
+								<td style="border:none;height:150px;" rowspan="5">
 									<table>
-										<tbody id="wauthList">
+										<tbody id="wauthList" style="height:150px;">
 											
 										</tbody>
 									</table>
 								</td>
-								<td style="border:none;">
+								<td style="border:none;height:30px;">
 									<input type="hidden" id="wauth_id" value=""/>
 									<input type="hidden" id="wauth_nm" value=""/>
 								</td>
-								<td style="border:none;height:100px;" rowspan="5">
+								<td style="border:none;height:150px;" rowspan="5">
 									<table>
-										<tbody id="wuserAuthList">
+										<tbody id="wuserAuthList" style="height:150px;">
 											
 										</tbody>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<td style="border:none;">
+								<td style="border:none;height:30px;text-align: center;">
 									<input type="button" id="wuserAuthGo" class="tiny ui button" value=">"/>
 								</td>
 							</tr>
 							<tr>
-								<td style="border:none;"></td>
+								<td style="border:none;height:30px;"></td>
 							</tr>
 							<tr>
-								<td style="border:none;">
+								<td style="border:none;height:30px;text-align: center;">
 									<input type="button" id="wauthGo" class="tiny ui button" value="<"/>
 								</td>
 							</tr>
 							<tr>
-								<td style="border:none;"></td>
+								<td style="border:none;height:30px;"></td>
 							</tr>
 						</tbody>	
 				   </table>
-				</td>
+				</th>
 			</tr>
 		</table>
 <!-- 	 <table class="table">  			 -->
