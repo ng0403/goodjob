@@ -52,7 +52,7 @@
 #css_tabs .tab1_content, #css_tabs .tab2_content, #css_tabs .tab3_content,
 	#css_tabs .tab4_content, #css_tabs .tab5_content, #css_tabs .tab6_content
 	{
-	border: 1px solid #ddd;
+	border-top: 1px solid #ddd;
 	height: 250px;
 }
 
