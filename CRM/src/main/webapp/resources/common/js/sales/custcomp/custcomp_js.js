@@ -470,10 +470,6 @@ function custcompInsertForm() {
 	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
 	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
 	
-	$("#baseBtnDiv").css("display", "none");
-	$("#addBtnDiv").css("display", "block");
-	$("#mdfBtnDiv").css("display", "none");
-	
 	location.href = ctx + '/custcompDetail';
 }
 
@@ -535,12 +531,17 @@ function custCompDel(ctx){
 //탭 이동
 function ccTabFunc(cust_id, cust_nm) {
 	$("#nowCust_id").val(cust_id);
+	
 	viewDetail(cust_id);
 	
 	$(document).ready(function() {
 		$("#nowCust_id").val(cust_id); // 현재 cust_id 저장
 		$("#nowCust_nm").val(cust_nm); // 현재 cust_nm 저장
 			
+		$("#baseBtnDiv").css("display", "block");
+		$("#addBtnDiv").css("display", "none");
+		$("#mdfBtnDiv").css("display", "none");
+		
 		if($("#tab1").is(":checked")){ 
 			if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
 		} 

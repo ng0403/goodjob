@@ -58,12 +58,6 @@
 	<div id="custcomp_tab_detail">
 		<form id="custCompForm" method="post">
 			<div class="detailBtn">
-				<c:if test="${flg == 1 }">
-					<div id="baseBtnDiv" class="bt_position_authuser">
-						<input type="button" id="mdfBtn"       value="편집" class="tiny ui orange button" onclick="custCompMdfyBtn();" /> 
-						<input type="button" id="addCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />
-					</div>
-				</c:if>
 
 				<c:if test="${flg == 0 }">
 					<div id="addBtnDiv" style="display: none;"
@@ -74,6 +68,10 @@
 				</c:if>
 
 				<c:if test="${flg == 1 }">
+					<div id="baseBtnDiv" class="bt_position_authuser">
+						<input type="button" id="mdfBtn"       value="편집" class="tiny ui orange button" onclick="custCompMdfyBtn();" /> 
+						<input type="button" id="addCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />
+					</div>
 					<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
 						<input type="button" id="mdfSaveBtn"   value="저장" class="tiny ui orange button" onclick="mdfyCustComp('${ctx}');" />
 						<input type="button" id="mdfCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />

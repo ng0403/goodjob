@@ -43,9 +43,9 @@
 		<table id="cust_oppt_list_table" class="ui celled table" style="margin-bottom: 10px;">
 			<thead>
 				<tr>
-					<th style="width:107px;">영업기회ID</td>
-					<th style="width:179px;">영업기회명</td>
-					<th style="width:81px;">영업단계</td>
+					<th style="width:95px;">영업기회ID</td>
+					<th style="width:177px;">영업기회명</td>
+					<th style="width:82px;">영업단계</td>
 					<th style="width:130px;">예상매출액</td>
 					<th style="width:101px;">예상마감일자</td>
 					<th style="width:72px;">가능성(%)</td>

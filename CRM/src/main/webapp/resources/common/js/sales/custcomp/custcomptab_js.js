@@ -347,8 +347,8 @@ function custCompAddBtn() {
 //	$("#iuser_nm").attr("readonly", true);
 //	$("#iuser_search").attr("disabled", false);
 //	
-	$("#baseBtnDiv").css("display", "none");
-	$("#addBtnDiv").css("display", "block");
+	$("#baseBtnDiv").css("display", "block");
+	$("#addBtnDiv").css("display", "none");
 	$("#mdfBtnDiv").css("display", "none");
 }
 
