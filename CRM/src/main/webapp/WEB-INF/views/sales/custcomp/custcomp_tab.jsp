@@ -65,8 +65,8 @@
 							<th style='width:271px;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id= "pocTableTbody" class="tbody">
-						<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
+					<tbody id= "pocTableTbody" class="tbody" >
+						<tr style='height: 75px;'><td colspan='9' style="width: 1320px;">조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
 			</div>
@@ -200,15 +200,15 @@
 					<thead>
 						<tr>
 							<th style='width:30px;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
-							<th style='width:293px;' rowspan="2">영업활동명</th>
-							<th style='width:101px;'  rowspan="2">활동구분</th>
-							<th style='width:136px;' rowspan="2">영업기회명</th>
-							<th style='width:126px;'  rowspan="2">활동유형</th>
-							<th style='width:106px;   height:12px; padding:5px;'>시작일자</th>
+							<th style='width:270px;' rowspan="2">영업활동명</th>
+							<th style='width:99px;'  rowspan="2">활동구분</th>
+							<th style='width:165px;' rowspan="2">영업기회명</th>
+							<th style='width:112px;'  rowspan="2">활동유형</th>
+							<th style='width:105px;   height:12px; padding:5px;'>시작일자</th>
 							<th style='width:63px;   height:12px; padding:5px;'>시작시간</th>
-							<th style='width:100px;'  rowspan="2">상태</th>
-							<th style='width:104px;'  rowspan="2">등록자</th>
-							<th style='width:135px;' rowspan="2">등록일시</th>
+							<th style='width:98px;'  rowspan="2">상태</th>
+							<th style='width:101px;'  rowspan="2">등록자</th>
+							<th style='width:151px;' rowspan="2">등록일시</th>
 						</tr>
 						<tr>
 							<th style='width:80px; height:12px; padding:5px;'>종료일자</th>
@@ -244,7 +244,7 @@
 							<th style="width: 201px;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="estTableTbody" class="tbody" style="height: 156px;">
+					<tbody id="estTableTbody" class="tbody" style="height: 156px; width: 100%;">
 						<tr style='height: 75px; text-align: center;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
 					</tbody>
 				</table>
