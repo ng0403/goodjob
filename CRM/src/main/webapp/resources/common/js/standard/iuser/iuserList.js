@@ -92,8 +92,13 @@ function userDetailClick(ctx) {
 //				$('#auth_name').val(data.auth_id);
 //				$('#auth_name').attr("disabled", true);
 				$('#tabDiv1 input').attr("disabled", true);
-				$('#addsavebtn').attr("disabled", true);
+//				$('#addsavebtn').attr("disabled", true);
 				$('#modifybtn').attr("disabled", false);
+				$('#cancelbtn').attr("disabled", false);
+				$('#modifybtn').css('display','inline-block');
+//				$('#modifysavebtn').css('display','none');
+				$('#cancelbtn').css('display','inline-block');
+				$('#addsavebtn').css('display','none');
 				//권한 가져오기
 			},
 			error : function(e) {

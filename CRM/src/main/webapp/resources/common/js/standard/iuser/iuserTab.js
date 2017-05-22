@@ -289,7 +289,10 @@ function addsaveUser(ctx){ // 사용자추가 ajax부분
 		});
 		$('#addsavebtn').css('display','inline-block');
 		$('#modifysavebtn').css('display','none');
-		$('#modifybtn').attr("disabled", true);
+		$('#cancelbtn').css('display','none');
+		$('#addsavebtn').css('display','none');
+		$('#modifybtn').css('display','none');
+		$('#addsavebtn').attr("disabled", true);
 	});
 }
 
