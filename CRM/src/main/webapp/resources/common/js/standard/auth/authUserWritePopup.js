@@ -14,7 +14,7 @@ function PopupEvent(ctx){
 	});
 	
 	$('#searchAuthIuser_iuserId').click(function(event){
-		window.open(ctx+'/searchAuthIuser_iuserId','newwindow1','width=1250, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/searchAuthIuser_iuserId','newwindow1','width=800, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

@@ -56,11 +56,12 @@ $(function() {
 		<table id="mastertable" class="ui sortable celled table" >
 			<thead>
 				<tr style="text-align:center">
-					<th><input id="allCheck" type="checkbox"/></th>
-					<th style="width:10%;">사용자ID</td>
-					<th style="width:10%;">사용자명</td>
-					<th style="width:10%;">조직명</td>
-					<th style="width:20%;">이메일</td>
+					<th style="width:73px;"><!-- <input id="allCheck" type="checkbox"/> --></th>
+					<th style="width:167px;">사용자ID</th>
+					<th style="width:146px;">사용자명</th>
+					<th style="width:148px;">조직명</th>
+					<th style="width:245px;border-right:none;">이메일</th>
+					<th style="width:15px;border-left:none;"></th>
 <!-- 					<th style="width:20%;">연락처</td> -->
 <!-- 					<th style="width:10%;">권한</td> -->
 <!-- 					<th style="width:10%;">사용자구분</td> -->
@@ -70,11 +71,11 @@ $(function() {
 			<tbody>
 				<c:forEach var="list" items="${user}">
 				<tr onMouseOver="this.style.backgroundColor='#ebe7e7'" onMouseOut="this.style.backgroundColor=''">
-					<th scope="row" style="text-align:center"><input type="checkbox" class="authCheck" id="ak" name="authCheck" value="${list.iuser_id}"></th>
-					<td style="width:10%;">${list.id_nm}</td>
-					<td style="width:10%;">${list.iuser_nm}</td>
-					<td style="width:10%;">${list.org_nm}</td>
-					<td style="width:20%;">${list.email1}@${list.email2}</td>
+					<th scope="row" style="text-align:center;width:70px;"><input type="checkbox" class="authCheck" id="ak" name="authCheck" value="${list.iuser_id}"></th>
+					<td style="width:161px;">${list.id_nm}</td>
+					<td style="width:150px;">${list.iuser_nm}</td>
+					<td style="width:150px;">${list.org_nm}</td>
+					<td style="width:234px;">${list.email1}@${list.email2}</td>
 <%-- 					<td style="width:20%; text-align:center">${list.cell_ph1}-${list.cell_ph2}-${list.cell_ph3}</td> --%>
 <!-- 					<td style="width:10%; text-align:center"> -->
 <%-- 					<c:if test="${empty list.auth_nm}"> --%>

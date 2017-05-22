@@ -418,14 +418,14 @@ function searchAuthUserClick(ctx){
 		var userNm=$(this).text();
 		console.log(userId);
 		console.log(userNm);
-		window.open(ctx+"/authUserViewPopup?userId="+userId+"&userNm="+userNm,'newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+"/authUserViewPopup?userId="+userId+"&userNm="+userNm,'newwindow','width=900, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 //		window.open(ctx+"/authUserViewPopup?authUser="+$(this).text()+"&userId="+userId,'newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
 function writeAuthUserPopup(ctx){
 	$('#writeauthuser').click(function(){
-		window.open(ctx+'/authUserWritePopup','newwindow','width=900, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/authUserWritePopup','newwindow','width=900, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 
 }

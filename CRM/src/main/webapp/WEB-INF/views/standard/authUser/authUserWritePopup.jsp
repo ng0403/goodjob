@@ -30,63 +30,63 @@
 					<table class="ui celled table" style="border:none;">  	
 						<tbody>
 							<tr>
-								<td style="width:40%;border:none;"></td>
-								<td style="width:20%;text-align:right;border:none;">사용자ID</td>
-								<td style="width:40%;border:none;">
+								<th style="width:40%;border:none;"></th>
+								<th style="width:20%;text-align:right;border:none;">사용자ID</th>
+								<th style="width:40%;border:none;text-align:left;">
 									<input type="hidden" name="iuser_id" id="iuser_id"/>
-									<input type="text" name="id_nm" id="uu_user_id" class="int"  readonly="readonly" />
+									<input type="text" name="id_nm" id="uu_user_id" class="int"  readonly="readonly"  style="width:70%;"/>
 									<input type="button" id="searchAuthIuser_iuserId" class="tiny ui orange button" value="검색"/>
-								</td>
+								</th>
 							</tr>
 							<tr>
-								<td style="border:none;"></td>
-								<td style="border:none;"></td>
-								<td style="border:none;"></td>
+								<th style="border:none;"></th>
+								<th style="border:none;"></th>
+								<th style="border:none;"></th>
 							</tr>
 							<tr>
-								<td style="border:none;">
-									<h4 class="ui header" style="background: #fff;">권한목록</h4>
-								</td>
-								<td style="border:none;"></td>
-								<td style="border:none;">
-									<h4 class="ui header" style="background: #fff;">보유권한</h4>
-								</td>
+								<th style="border:none;">
+									<h4 class="ui header">권한목록</h4>
+								</th>
+								<th style="border:none;"></th>
+								<th style="border:none;">
+									<h4 class="ui header">보유권한</h4>
+								</th>
 							</tr>
 							<tr>
-								<td style="border:none;height:150px;" rowspan="5">
+								<td style="border:none;height:150px;vertical-align: text-top;" rowspan="5">
 									<table>
-										<tbody id="wauthList" style="height:150px;">
+										<tbody id="wauthList" style="height:150px;overflow: auto;">
 											
 										</tbody>
 									</table>
 								</td>
-								<td style="border:none;height:30px;">
+								<th style="border:none;height:30px;">
 									<input type="hidden" id="wauth_id" value=""/>
 									<input type="hidden" id="wauth_nm" value=""/>
-								</td>
-								<td style="border:none;height:150px;" rowspan="5">
+								</th>
+								<td style="border:none;height:150px;vertical-align: text-top;" rowspan="5">
 									<table>
-										<tbody id="wuserAuthList" style="height:150px;">
+										<tbody id="wuserAuthList" style="height:150px;overflow: auto;">
 											
 										</tbody>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;text-align: center;">
+								<th style="border:none;height:30px;text-align: center;">
 									<input type="button" id="wuserAuthGo" class="tiny ui button" value=">"/>
-								</td>
+								</th>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;"></td>
+								<th style="border:none;height:30px;"></th>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;text-align: center;">
+								<th style="border:none;border:none;height:30px;text-align: center;">
 									<input type="button" id="wauthGo" class="tiny ui button" value="<"/>
-								</td>
+								</th>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;"></td>
+								<th style="border:none;height:30px;"></th>
 							</tr>
 						</tbody>	
 				   </table>

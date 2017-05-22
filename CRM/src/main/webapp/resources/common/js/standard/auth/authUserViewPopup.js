@@ -92,7 +92,7 @@ function authGo(){
 }
 
 function uauthModify(){
-	$('.auth_bt_position').delegate('#uauth_modify', 'click', function(event){
+	$('.bt_position').delegate('#uauth_modify', 'click', function(event){
 		event.preventDefault();
 //		$('#uauth_id').attr("disabled", false);
 		//$('#uu_user_id').attr("disabled", false);

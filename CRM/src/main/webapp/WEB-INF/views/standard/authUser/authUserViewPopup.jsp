@@ -8,7 +8,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authUserViewPopup.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authUserViewPopup.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authUserWritePopup.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -30,31 +30,31 @@
 					<table class="ui celled table" style="border:none;">  	
 						<tbody>
 							<tr>
-								<td style="width:40%;border:none;"></td>
-								<td style="width:20%;text-align:right;border:none;"">사용자ID</td>
-								<td style="width:40%;border:none;">
+								<th style="width:40%;border:none;"></th>
+								<th style="width:20%;text-align:right;border:none;">사용자ID</th>
+								<th style="width:40%;border:none;text-align:left;">
 									<input type="hidden" name="uu_user_id" id="iuser_id" class="int" value="${user_id}"/>
-									<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${user_nm}" disabled="disabled"/>
-								</td>
+									<input type="text" name="uu_user_id" id="uu_user_id" class="int" value="${user_nm}" disabled="disabled" style="width:100%;"/>
+								</th>
 							</tr>
 							<tr>
-								<td style="border:none;"></td>
-								<td style="border:none;"></td>
-								<td style="border:none;"></td>
+								<th style="border:none;"></th>
+								<th style="border:none;"></th>
+								<th style="border:none;"></th>
 							</tr>
 							<tr>
-								<td style="border:none;">
-									<h4 class="ui header" style="background: #fff;">권한목록</h4>
-								</td>
-								<td style="border:none;"></td>
-								<td style="border:none;">
-									<h4 class="ui header" style="background: #fff;">보유권한</h4>
-								</td>
+								<th style="border:none;">
+									<h4 class="ui header">권한목록</h4>
+								</th>
+								<th style="border:none;"></th>
+								<th style="border:none;">
+									<h4 class="ui header">보유권한</h4>
+								</th>
 							</tr>
 							<tr>
-								<th style="border:none;height:150px;" rowspan="5">
+								<td style="border:none;height:150px;vertical-align: text-top;" rowspan="5">
 									<table>
-										<tbody id="authList" style="height:150px;">
+										<tbody id="authList" style="height:150px;overflow: auto;">
 											<c:forEach var="authList" items="${authList}">
 												<tr>
 													<td>
@@ -65,14 +65,14 @@
 											</c:forEach>
 										</tbody>
 									</table>
-								</th>
-								<td style="border:none;height:30px;">
+								</td>
+								<th style="border:none;height:30px;">
 									<input type="hidden" id="auth_id" value=""/>
 									<input type="hidden" id="auth_nm" value=""/>
-								</td>
-								<th style="border:none;height:150px;" rowspan="5">
+								</th>
+								<td style="border:none;height:150px;vertical-align: text-top;" rowspan="5">
 									<table>
-										<tbody id="userAuthList" style="height:150px;">
+										<tbody id="userAuthList" style="height:150px;overflow: auto;">
 											<c:forEach var="userAuthList" items="${userAuthList}">
 												<tr>
 													<td>
@@ -83,23 +83,23 @@
 											</c:forEach>
 										</tbody>
 									</table>
+								</td>
+							</tr>
+							<tr>
+								<th style="border:none;height:30px;text-align: center;">
+									<input type="button" id="userAuthGo" class="tiny ui button" value=">"/>
 								</th>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;text-align: center;">
-									<input type="button" id="userAuthGo" class="tiny ui button" value=">"/>
-								</td>
+								<th style="border:none;height:30px;"></th>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;"></td>
-							</tr>
-							<tr>
-								<td style="border:none;height:30px;text-align: center;">
+								<th style="border:none;height:30px;text-align: center;">
 									<input type="button" id="authGo" class="tiny ui button" value="<"/>
-								</td>
+								</th>
 							</tr>
 							<tr>
-								<td style="border:none;height:30px;"></td>
+								<th style="border:none;height:30px;"></th>
 							</tr>
 <!-- 				<tr> -->
 <!-- 					<th>권한 ID</th> -->
@@ -131,7 +131,7 @@
 		</table>
 	</div>
 </div>
-	<div class="auth_bt_position">
+	<div class="bt_position">
 		
 		<input type="button" class="tiny ui orange button" value="저장" id="uauth_confirm"/>
 		<input type="button" class="tiny ui button" value="편집" id="uauth_modify"/>

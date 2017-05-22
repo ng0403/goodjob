@@ -41,6 +41,11 @@ function checkEvent(){
 			$(subcheckboxs).prop('checked',false);
 		}
 	});
+	
+	$(".authCheck").click(function(){
+		$(".authCheck").prop("checked",false);
+		$(this).prop("checked",true);
+	})
 }
 
 //버튼 이벤트
@@ -72,5 +77,6 @@ var ctx = $('#ctx').val();
 	$('#restAuth').click(function(){
 		var checkboxs = $('#mastertable').find('input[type="checkbox"]'); 
 		$(checkboxs).prop('checked',false);
+		self.close();
 	});
 }
