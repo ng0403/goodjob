@@ -30,7 +30,7 @@
 					<option value="ct_id">고객ID</option>
 					<option value="ct_nm">고객명</option>
 				</select>
-				<input id="search_text" type="text" name="keyword" class="custcomp_list_txt" style="background: #fff;"> &nbsp;
+				<input id="search_text" type="text" name="keyword" class="custcomp_list_txt" style=" background: #fff;"> &nbsp;
 				<button id="search_btn" type="submit" class="custcomp_list_bt">검색</button>
 			</form>
 		</div>

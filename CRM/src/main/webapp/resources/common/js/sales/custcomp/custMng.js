@@ -44,10 +44,10 @@ function CustCompMngButton(ctx){
 	$('#ccMngButton').click(function(){
 		var flg = $('#flg').val();
 		if(flg=='add'){
-			alert("flag : " + flg);
+			//alert("flag : " + flg);
 			ccMngAdd(ctx);
 		}else if(flg=='detail'){
-			alert("flag : " + flg);
+			//alert("flag : " + flg);
 			ccMngUpdate(ctx);
 		}
 	});
@@ -95,10 +95,10 @@ function actButton(ctx){
 	$('#activeButton').click(function(){
 		var flg = $('#flg').val();
 		if(flg=='add'){
-			alert("flag : " + flg);
+			//alert("flag : " + flg);
 			activeAdd(ctx);
 		}else if(flg=='detail'){
-			alert("flag : " + flg);
+			//alert("flag : " + flg);
 			activeUpdate(ctx);
 		}
 	});

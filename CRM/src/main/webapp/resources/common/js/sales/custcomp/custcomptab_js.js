@@ -347,9 +347,9 @@ function custCompAddBtn() {
 //	$("#iuser_nm").attr("readonly", true);
 //	$("#iuser_search").attr("disabled", false);
 //	
-	$("#baseBtnDiv").css("display", "block");
-	$("#addBtnDiv").css("display", "none");
-	$("#mdfBtnDiv").css("display", "none");
+//	$("#baseBtnDiv").css("display", "block");
+//	$("#addBtnDiv").css("display", "none");
+//	$("#mdfBtnDiv").css("display", "none");
 }
 
 // 편집 버튼 기능
@@ -484,6 +484,7 @@ function addCustComp(ctx){
 		$('#custCompForm') 
 		.attr('action','custcompAdd')
 		.submit();
+		alert("정상적으로 저장되었습니다.");
 		
 	});
 }	
@@ -518,7 +519,7 @@ function mdfyCustComp(ctx){
 		$('#custCompForm') 
 		.attr('action','custcompModify')
 		.submit();
-		
+		alert("정상적으로 저장되었습니다.");
 	});
 }
 

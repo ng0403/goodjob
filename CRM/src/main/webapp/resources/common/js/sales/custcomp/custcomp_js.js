@@ -450,7 +450,8 @@ function checkCount(){
 };
 
 //고객사 추가
-function custcompInsertForm() {
+function custcompInsert() {
+	
 	var ctx = $("#ctx").val();
 		
 	//focus, css, readonly, disabled false 상태로 변경
@@ -469,6 +470,15 @@ function custcompInsertForm() {
 	$("#sales_scale_cd").children().eq(0).attr("selected", "selected").css("height", "24pt"); // 매출규모 코드 선택
 	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
 	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
+	
+	
+//	$("#baseBtnDiv").attr("disabled", false);
+//	$("#addSaveBtn").attr("disabled", true);
+//	$("#mdfBtnDiv").attr("disabled", false);
+
+//	$("#addSaveBtn").attr("disabled", true);
+//	$("#mdfBtn").attr("disabled", false);
+//	$("#mdfSaveBtn").attr("disabled", false);
 	
 	location.href = ctx + '/custcompDetail';
 }
