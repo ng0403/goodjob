@@ -13,6 +13,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -57,11 +58,10 @@
 	</div>
 	<div id="custcomp_tab_detail">
 		<form id="custCompForm" method="post">
-			<div class="detailBtn">
+			<div class="detailBtn">   
 
 				<c:if test="${flg == 0 }">
-					<div id="addBtnDiv" style="display: none;"
-						class="bt_position_authuser">
+					<div id="addBtnDiv" class="bt_position_authuser">
 						<input type="button" id="addSaveBtn"   value="저장" class="tiny ui orange button" onclick="addCustComp('${ctx}');" />
 						<input type="button" id="addCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />
 					</div>
@@ -202,7 +202,7 @@
 
 									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num" value="${custcompDetail.zip_cd_sri_num}" />
 									<input type="text"   name="cust_zip_cd"    id="cust_zip_cd"class="int_common" value="${custcompDetail.cust_zip_cd}"maxlength="5" style="background: #fff;" />
-									<!-- 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/> -->
+<!-- 									<input type="button" name="zip_cd_search" value="검색" class="tiny tiny ui button" id="addr" style="margin-left: 5px;" onclick="orgTreeAddr_pop();"/> -->
 										&nbsp;
 									<input type="text" name="cust_addr"     id="cust_addr"     class="int_ad" value="${custcompDetail.cust_addr}"     style="background: #fff;" />
 									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr" class="int_ad" value="${custcompDetail.cust_dtl_addr}" style="background: #fff;" />
@@ -214,7 +214,7 @@
 
 									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num" value="${custcompDetail.zip_cd_sri_num}" />
 									<input type="text" name="cust_zip_cd" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}"maxlength="5" readonly="readonly" />
-									<!-- 									<input type="button" name="zip_cd_search" value="우편번호" class="custcomp_post_btn" id="addr" disabled="disabled"/> -->
+<!-- 									<input type="button" name="zip_cd_search" value="검색" class="tiny tiny ui button" id="addr" disabled="disabled" style="margin-left: 5px;" onclick="orgTreeAddr_pop();"/> -->
 										&nbsp;
 									<input type="text" name="cust_addr" id="cust_addr"class="int_ad" value="${custcompDetail.cust_addr}"readonly="readonly" />
 									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr"class="int_ad" value="${custcompDetail.cust_dtl_addr}"readonly="readonly" />

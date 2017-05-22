@@ -74,7 +74,7 @@
 					<tr>
 						<th>역할명</th>
 						<td>
-						    <input type="text"   id="key_part" name="key_part"  class="inputText" value="${detail.key_part}" style="width: 30%;" > 
+						    <input type="text"   id="key_part" name="key_part"  class="inputText" value="${detail.key_part}" style="width: 30%; background: #fff;" > 
 						</td>
 					</tr>
 					<tr>

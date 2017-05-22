@@ -9,7 +9,7 @@ $(document).ready(function(){
 	
 	$('#opptModfyButton').click(function() {
 		
-		alert("여기");
+		//alert("여기");
 		$('#opptModfyButton').hide();
 		$('#opptModfySaveBtn').show();
 		

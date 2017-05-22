@@ -135,7 +135,7 @@ $(function() {
 		
 		<div class="bottom_div">
 			<div class="functionBtn_div">	
-				<input type="button" value="추가" class="tiny tiny ui orange button" onclick="custcompInsertForm();" />
+				<input type="button" value="추가" class="tiny tiny ui orange button" id="addBtn" onclick="custcompInsert();" />
 				<input type="button" value="삭제" class="tiny tiny ui orange button" onclick="custcompDelete()" />
 <!-- 				<input type="button" value="엑셀" class="tiny ui orange button" id="exportBtn"   onclick=""  />	 -->
 			</div>
