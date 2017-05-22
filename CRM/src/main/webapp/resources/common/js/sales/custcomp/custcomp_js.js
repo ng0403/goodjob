@@ -33,7 +33,7 @@ $(document).ready(function() {
 			var tbody = $('#pocTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
 			pocList(cust_id);
@@ -62,7 +62,7 @@ $(document).ready(function() {
 			var tbody = $('#keymanTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
 			keymanList(cust_id);
@@ -77,7 +77,7 @@ $(document).ready(function() {
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
 			opptTabList(cust_id);
@@ -92,7 +92,7 @@ $(document).ready(function() {
 			var tbody = $('#actTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 150px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>";
+			tbodyContent = "<tr style='height: 75px;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
 			actList(cust_id);
@@ -106,7 +106,7 @@ $(document).ready(function() {
 			var tbody = $('#estTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
 			estList(cust_id);
@@ -660,12 +660,12 @@ function pocList(cust_id) {
 				{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;  text-align: center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;  vertical-align: middle;'>"+data[i].cust_nm+"</td>" +
-						"<td style='width:15%; text-align: center;  vertical-align: middle;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
-						"<td style='width:15%; text-align: center;  vertical-align: middle;'>"+data[i].key_part+"</td>" +
-						"<td style='width:8%; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:17%; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:31px;  text-align: center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:168px; text-align: left; padding-left: 8px;  vertical-align: middle;'>"+data[i].cust_nm+"</td>" +
+						"<td style='width:271px; text-align: center;  vertical-align: middle;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
+						"<td style='width:271px; text-align: center;  vertical-align: middle;'>"+data[i].key_part+"</td>" +
+						"<td style='width:226px; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:250px; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
@@ -738,12 +738,12 @@ function keymanList(cust_id) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%; text-align:center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
 						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
-						"<td style='width:15%; text-align: center; vertical-align: middle; '>"+data[i].key_part+"</td>" +
-						"<td style='width:15%; text-align: center;vertical-align: middle;'>"+data[i].key_pos+"</td>" +
-						"<td style='width:10%; text-align: center;vertical-align: middle;'>"+data[i].key_job+"</td>" +
-						"<td style='width:12%; text-align: center;vertical-align: middle;'>"+data[i].memo+"</td>" +
-						"<td style='width:10%; text-align: center;vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:15%; text-align: center;vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:12%; text-align:center; vertical-align: middle; '>"+data[i].key_part+"</td>" +
+						"<td style='width:12%; text-align:center;vertical-align: middle;'>"+data[i].key_pos+"</td>" +
+						"<td style='width:10%; text-align:center;vertical-align: middle;'>"+data[i].key_job+"</td>" +
+						"<td style='width:16%; text-align:center;vertical-align: middle;'>"+data[i].memo+"</td>" +
+						"<td style='width:10%; text-align:center;vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
+						"<td style='width:11%; text-align:center;vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
@@ -871,21 +871,22 @@ function actList(cust_id) {
 						}
 						tbodyContent = 
 							"<tr>"
-							+ "<td rowspan='2'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
-							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'  >" +
+							+ "<td rowspan='2' style='width:25px; text-align:center; vertical-align: middle; '>" 
+							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
+							+ "<td rowspan='2' style='width:286px; text-align: left; padding-left: 8px; vertical-align: middle;'  >" +
 									"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
-							+ "<td rowspan='2'>"+data[i].sales_actvy_div_nm+"</td>"
-							+ "<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data[i].sales_oppt_nm+"</td>"
-							+ "<td rowspan='2'>"+data[i].sales_actvy_type_nm+"</td>"
-							+ "<td>"+data[i].strt_d+"</td>"
-							+ "<td>"+strt_t+"</td>"
-							+ "<td rowspan='2'>"+data[i].sales_actvy_stat_nm+"</td>"
-							+ "<td rowspan='2'>"+data[i].fst_reg_id+"</td>"
-							+ "<td rowspan='2'>"+data[i].fst_reg_dt+"</td>"
+							+ "<td rowspan='2' style='width:95px; text-align:center; vertical-align: middle; '>"+data[i].sales_actvy_div_nm+"</td>"
+							+ "<td rowspan='2' style='width:133px; text-align: center; vertical-align: middle;  padding-left: 5px;'>"+data[i].sales_oppt_nm+"</td>"
+							+ "<td rowspan='2' style='width:120px; text-align:center; vertical-align: middle; '>"+data[i].sales_actvy_type_nm+"</td>"
+							+ "<td style='width:100px; text-align:center; vertical-align: middle; '>"+data[i].strt_d+"</td>"
+							+ "<td style='width:74px; text-align:center; vertical-align: middle; '>"+strt_t+"</td>"
+							+ "<td rowspan='2' style='width:95px; text-align:center; vertical-align: middle; '>"+data[i].sales_actvy_stat_nm+"</td>"
+							+ "<td rowspan='2' style='width:97px; text-align:center; vertical-align: middle; '>"+data[i].fst_reg_id+"</td>"
+							+ "<td rowspan='2' style='width:129px; text-align:center; vertical-align: middle; '>"+data[i].fst_reg_dt+"</td>"
 						+ "</tr>"
 						+ "<tr>"
-							+ "<td>"+data[i].end_d+"</td>"
-							+ "<td>"+end_t+"</td>" 
+							+ "<td style='text-align:center;'>"+data[i].end_d+"</td>"
+							+ "<td style='text-align:center;'>"+end_t+"</td>" 
 						+ "</tr>";
 						tbody.append(tbodyContent);
 					}
@@ -919,15 +920,15 @@ function estList(cust_id) {
 					for (var i = 0; i < data.length; i++) {
 					//	var sales_price = comma(data[i].sales_price);
 						tbodyContent = "<tr>"
-							+ "<th><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
-							+ "<td style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
-							+ "<td>"+data[i].estim_lev_cd_nm+"</td>"
-							+ "<td>"+data[i].estim_qty+"</td>"
-							+ "<td>"+data[i].sales_price+"</td>"
-							+ "<td>"+data[i].estim_valid_d+"</td>"
-							+ "<td>"+data[i].memo+"</td>"
-							+ "<td>"+data[i].fst_reg_id+"</td>"
-							+ "<td>"+data[i].fst_reg_dt+"</td>"
+							+ "<td style='width: 25px; text-align:center; vertical-align: middle;' ><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
+							+ "<td style='width: 300px; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
+							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].estim_lev_cd_nm+"</td>"
+							+ "<td style='width: 76px; text-align:center; vertical-align: middle;'>"+data[i].estim_qty+"</td>"
+							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].sales_price+"</td>"
+							+ "<td style='width: 137px;; text-align:center; vertical-align: middle;'>"+data[i].estim_valid_d+"</td>"
+							+ "<td style='width: 186px;; text-align:center; vertical-align: middle;'>"+data[i].memo+"</td>"
+							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].fst_reg_id+"</td>"
+							+ "<td style='width: 186px; text-align:center; vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>"
 							+ "</tr>";
 						tbody.append(tbodyContent);
 					}

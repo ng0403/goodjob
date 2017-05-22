@@ -57,12 +57,12 @@
 				<table class="ui sortable celled table" id="tblTh" > 
 					<thead>
 						<tr>
-							<th style='width:46px;'><input type="checkbox"  id='pocListCheck'/></th>
-							<th style='width:180px;'>고객사명</th>
-							<th style='width:277px;'>사원명</th>
-							<th style='width:277px;'>역할명</th>
-							<th style='width:142px;'>등록자</th>
-							<th style='width:333px;'>등록일시</th>
+							<th style='width:36px;'><input type="checkbox"  id='pocListCheck'/></th>
+							<th style='width:172px;'>고객사명</th>
+							<th style='width:273px;'>사원명</th>
+							<th style='width:273px;'>역할명</th>
+							<th style='width:230px;'>등록자</th>
+							<th style='width:271px;'>등록일시</th>
 						</tr>
 					</thead>
 					<tbody id= "pocTableTbody" class="tbody">
@@ -113,18 +113,18 @@
 <!-- 				style="border-collapse: collapse; border: 1px solid rgba(34, 36, 38, 0.1);" -->
 					<thead>
 						<tr>
-							<th style='width:33px;'><input type="checkbox"  id='keymanListCheck'/></th>
+							<th style='width:36px;'><input type="checkbox"  id='keymanListCheck'/></th>
 <!-- 							<th style='width:10%;'>고객사</th> -->
-							<th style='width:133px;'>키맨명</th>
-							<th style='width:206px;'>역할명</th>
-							<th style='width:206px;'>직급</th>
-							<th style='width:134px;'>직무</th>
-							<th style='width:163px;'>메모</th>
-							<th style='width:133px;'>등록자</th>
-							<th style='width:225px;'>등록일시</th>
+							<th style='width:144px;'>키맨명</th>
+							<th style='width:175px;'>역할명</th>
+							<th style='width:175px;'>직급</th>
+							<th style='width:144px;'>직무</th>
+							<th style='width:238px;'>메모</th>
+							<th style='width:144px;'>등록자</th>
+							<th style='width:177px;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id="keymanTableTbody" class="tbody" style="text-align: center;">
+					<tbody id="keymanTableTbody" class="tbody" style="text-align: center; height: 156px; ">
 							<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
@@ -149,15 +149,15 @@
 					<thead>
 						<tr>
 <!-- 							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th> -->
-							<th style="width: 34px; text-align: center;"><input type="checkbox"  id='actOpptAllSelect'/></th>
-							<th style="width: 289px;">영업기회명</td>
-							<th style="width: 109px;">고객사</td>
-							<th style="width: 79px;">상태</td>
-							<th style="width: 109px;">영업단계</td>
-							<th style="width: 138px;">예상마감일자</td>
-							<th style="width: 140px;">가능성</td>
-							<th style="width: 94px;">등록자</td>
-							<th style="width: 230px;">등록일시</td>
+							<th style="width: 26px; text-align: center;"><input type="checkbox"  id='actOpptAllSelect'/></th>
+							<th style="width: 283px;">영업기회명</td>
+							<th style="width: 162px;">고객사</td>
+							<th style="width: 117px;">상태</td>
+							<th style="width: 136px;">영업단계</td>
+							<th style="width: 117px;">예상마감일자</td>
+							<th style="width: 112px;">가능성</td>
+							<th style="width: 114px;">등록자</td>
+							<th style="width: 155px;">등록일시</td>
 						</tr>
 					</thead>
 					<tbody id="activeOpptList" class="tbody">
@@ -199,23 +199,23 @@
 				<table id="actTable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style='width:3%;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
-							<th style='width:16%;' rowspan="2">영업활동명</th>
-							<th style='width:6%;'  rowspan="2">활동구분</th>
-							<th style='width:27%;' rowspan="2">영업기회명</th>
-							<th style='width:6%;'  rowspan="2">활동유형</th>
-							<th style='width:8%;   height:12px; padding:5px;'>시작일자</th>
-							<th style='width:8%;   height:12px; padding:5px;'>시작시간</th>
-							<th style='width:6%;'  rowspan="2">상태</th>
-							<th style='width:5%;'  rowspan="2">등록자</th>
-							<th style='width:15%;' rowspan="2">등록일시</th>
+							<th style='width:30px;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
+							<th style='width:293px;' rowspan="2">영업활동명</th>
+							<th style='width:101px;'  rowspan="2">활동구분</th>
+							<th style='width:136px;' rowspan="2">영업기회명</th>
+							<th style='width:126px;'  rowspan="2">활동유형</th>
+							<th style='width:106px;   height:12px; padding:5px;'>시작일자</th>
+							<th style='width:63px;   height:12px; padding:5px;'>시작시간</th>
+							<th style='width:100px;'  rowspan="2">상태</th>
+							<th style='width:104px;'  rowspan="2">등록자</th>
+							<th style='width:135px;' rowspan="2">등록일시</th>
 						</tr>
 						<tr>
-							<th style='width:8%; height:12px; padding:5px;'>종료일자</th>
-							<th style='width:8%; height:12px; padding:5px;'>종료시간</th>
+							<th style='width:80px; height:12px; padding:5px;'>종료일자</th>
+							<th style='width:80px; height:12px; padding:5px;'>종료시간</th>
 						</tr>
 					</thead>
-					<tbody id="actTableTbody" class="tbody">
+					<tbody id="actTableTbody" class="tbody" style="height: 139px; overflow: auto;">
 						<tr style='height: 75px; text-align: center;'><td colspan='10'>조회된 결과가 없습니다.</td></tr>
 					</tbody>
 				</table>
@@ -233,18 +233,18 @@
 				<table id="goaltable" class="ui sortable celled table">
 					<thead>						
 						<tr>
-							<th style="width: 3%;"><input type="checkbox"  id='ccEstListCheck'/></th>
-							<th style="width: 25%;">견적명</td>
-							<th style="width: 10%;">견적단계</td>
-							<th style="width: 7%;">견적수량</td>
-							<th style="width: 10%;">견적금액</td>
-							<th style="width: 12%;">견적유효일자</td>
-							<th style="width: 11%;">메모</td>
-							<th style="width: 11%;">등록자</td>
-							<th style="width: 11%;">등록일시</td>
+							<th style="width: 30px;"><input type="checkbox"  id='ccEstListCheck'/></th>
+							<th style="width: 287px;">견적명</td>
+							<th style="width: 99px;">견적단계</td>
+							<th style="width: 79px;">견적수량</td>
+							<th style="width: 105px;">견적금액</td>
+							<th style="width: 137px;">견적유효일자</td>
+							<th style="width: 182px;">메모</td>
+							<th style="width: 102px;">등록자</td>
+							<th style="width: 201px;">등록일시</td>
 						</tr>
 					</thead>
-					<tbody id="estTableTbody" class="tbody" >
+					<tbody id="estTableTbody" class="tbody" style="height: 156px;">
 						<tr style='height: 75px; text-align: center;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>		
 					</tbody>
 				</table>

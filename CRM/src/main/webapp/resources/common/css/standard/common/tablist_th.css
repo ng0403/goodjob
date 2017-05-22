@@ -59,7 +59,7 @@
 #tableline2 #goaltable tbody tr, 
 #tableline2 #actTable tbody tr
 {
-	display: table;
+/* 	display: table; */
 	width: 100%;
 }
 
