@@ -27,7 +27,7 @@
 				<option value="p_m_name">메뉴명</option>
 				<option value="m_id">메뉴ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="tiny tiny ui basic orange button">검색</button>
+			<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
 			</form>
 		</div>
 	</div>	

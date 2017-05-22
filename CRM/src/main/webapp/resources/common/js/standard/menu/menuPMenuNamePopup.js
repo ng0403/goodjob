@@ -76,5 +76,6 @@ var ctx = $('#ctx').val();
 	$('#restMenu').click(function(){
 		var checkboxs = $('#mastertable').find('input[type="checkbox"]'); 
 		$(checkboxs).prop('checked',false);
+		self.close();
 	});
 }

@@ -20,11 +20,11 @@ function authMenuCancel(){
 
 function PopupEvent(ctx){
 	$('#searchAuthMenu_authId').click(function(event){
-		window.open(ctx+'/searchAuthIuser_authId','newwindow1','width=750, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/searchAuthIuser_authId','newwindow1','width=650, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 	
 	$('#searchAuthIuser_MenuId').click(function(event){
-		window.open(ctx+'/authmenuSearchList','newwindow1','width=1250, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/authmenuSearchList','newwindow1','width=800, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

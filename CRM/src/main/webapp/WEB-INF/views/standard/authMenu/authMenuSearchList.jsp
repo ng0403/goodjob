@@ -43,21 +43,22 @@
 			<table id="mastertable" class="ui celled table">
 				<thead>
 					<tr>
-						<th><input id="allCheck" type="checkbox"/></th>
-						<td style="width:10%;">메뉴ID</td>
-						<td style="width:20%;">매뉴이름</td>
-						<td style="width:25%;">메뉴URL</td>
-						<td style="width:15%;">메뉴레벨</td>
-						<td style="width:15%;">상위메뉴명</td>
-						<td style="width:15%;">활성화여부</td>
+						<th style="width:4.7%;"><!-- <input id="allCheck" type="checkbox"/> --></th>
+						<td style="width:12.7%;">메뉴ID</td>
+						<td style="width:13.7%;">매뉴이름</td>
+						<td style="width:27.3%;">메뉴URL</td>
+						<td style="width:13.9%;">메뉴레벨</td>
+						<td style="width:13.4%;">상위메뉴명</td>
+						<td style="width:16%;border-right:none;">활성화여부</td>
+						<td style="border-left:none;"></td>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="menu" items="${menu}">
 					<tr onMouseOver="this.style.backgroundColor='#ebe7e7'" onMouseOut="this.style.backgroundColor=''">
-						<th scope="row"><input type="checkbox" class="authCheck" id="ak" name="authCheck" value="${menu.menu_id}"></th>
+						<th style="width:5%;" scope="row"><input type="checkbox" class="authCheck" id="ak" name="authCheck" value="${menu.menu_id}"></th>
 						<td style="width:10%;">${menu.menu_id}</td>
-						<td style="width:20%;">${menu.menu_nm}</td>
+						<td style="width:15%;">${menu.menu_nm}</td>
 						<td style="width:25%;">${menu.menu_url}</td>
 						<td style="width:15%;">${menu.menu_lev}</td>
 						<td style="width:15%;">

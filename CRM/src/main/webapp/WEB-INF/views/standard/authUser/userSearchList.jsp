@@ -56,11 +56,11 @@ $(function() {
 		<table id="mastertable" class="ui sortable celled table" >
 			<thead>
 				<tr style="text-align:center">
-					<th style="width:73px;"><!-- <input id="allCheck" type="checkbox"/> --></th>
-					<th style="width:167px;">사용자ID</th>
-					<th style="width:146px;">사용자명</th>
-					<th style="width:148px;">조직명</th>
-					<th style="width:245px;border-right:none;">이메일</th>
+					<th style="width:74px;"><!-- <input id="allCheck" type="checkbox"/> --></th>
+					<th style="width:166px;">사용자ID</th>
+					<th style="width:149px;">사용자명</th>
+					<th style="width:149px;">조직명</th>
+					<th style="width:240px;border-right:none;">이메일</th>
 					<th style="width:15px;border-left:none;"></th>
 <!-- 					<th style="width:20%;">연락처</td> -->
 <!-- 					<th style="width:10%;">권한</td> -->
@@ -98,7 +98,7 @@ $(function() {
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="선택" id="choiceAuth"/>
+		<input type="button" class="tiny ui button" value="선택" id="choiceAuth"/>
 		<input type="button" class="tiny ui button" value="취소" id="restAuth"/>
 	</div>
 </body>

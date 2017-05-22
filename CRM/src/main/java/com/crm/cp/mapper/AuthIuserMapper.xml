@@ -4,7 +4,7 @@
 
 	<sql id="where-authIuserList">
 	  <if test="keyfield=='au_id'">
-	      AND a.AUTH_ID LIKE '%' || #{keyword} || '%'
+	      AND c.AUTH_NM LIKE '%' || #{keyword} || '%'
 	  </if>
 	  <if test="keyfield=='ua_id'">
 	      AND b.ID_NM LIKE '%' || #{keyword} || '%'
@@ -34,20 +34,21 @@
         	, LISTAGG(a.AUTH_ID,', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS auth_id
         	, LISTAGG((SELECT DISTINCT AUTH_NM 
                       FROM AUTHORIZATION
-                      WHERE AUTH_ID = a.AUTH_ID),', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS auth_nm
+                      WHERE AUTH_ID = a.AUTH_ID),', ') WITHIN GROUP (ORDER BY a.AUTH_ID) AS AUTH_NM
         	, (SELECT DISTINCT FST_REG_ID FROM AUTHORIZATION_IUSER WHERE IUSER_ID = b.IUSER_ID) AS FST_REG_ID
         	, TO_CHAR((SELECT FST_REG_D 
                       FROM (SELECT DISTINCT FST_REG_D,IUSER_ID,
                             row_number() over(partition by IUSER_ID order by FST_REG_D desc) rn 
                             FROM AUTHORIZATION_IUSER ORDER BY FST_REG_D) 
                             WHERE rn =1 AND IUSER_ID = b.IUSER_ID ),'YYYY-MM-DD HH24:MI:SS') AS FST_REG_D
-		FROM AUTHORIZATION_IUSER a, IUSER b
+		FROM AUTHORIZATION_IUSER a, IUSER b, AUTHORIZATION c
 		WHERE a.IUSER_ID = b.IUSER_ID
+		AND a.AUTH_ID = c.AUTH_ID
 		<if test="keyword!=null and keyword!='' ">
 	        <include refid="where-authIuserList"/>
 	    </if>
 	    GROUP BY b.IUSER_ID,b.IUSER_NM,b.ID_NM
-		ORDER BY a.FST_REG_D DESC
+		ORDER BY FST_REG_D DESC
 	</select>
 	
 	<select id="authList" parameterType="map" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">

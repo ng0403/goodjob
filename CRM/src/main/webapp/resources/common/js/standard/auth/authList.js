@@ -94,7 +94,7 @@ function searchAuthList(ctx){
 
 function writeAuthPopup(ctx){
 	$('#writeauth').click(function(){
-		window.open(ctx+'/authwritePopup','newwindow','width=400, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/authwritePopup','newwindow','width=800, height=300, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
@@ -204,7 +204,7 @@ function deleteAuthClick(ctx){
 function searchAuthClick(ctx){
 	$('#authtable tbody').delegate('a', 'click', function(event){
 		event.preventDefault();
-		window.open(ctx+"/authViewPopup?auth="+$(this).text(),'newwindow','width=400, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+"/authViewPopup?auth="+$(this).text(),'newwindow','width=800, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
@@ -293,7 +293,7 @@ function searchAuthMenuClick(ctx){
 		console.log(auth_id);
 		console.log(menu_id);
 
-		window.open(ctx+"/authMenuViewPopup?auth_id="+auth_id+"&menu_id="+menu_id,'newwindow','width=400, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+"/authMenuViewPopup?auth_id="+auth_id+"&menu_id="+menu_id,'newwindow','width=800, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 
@@ -334,10 +334,9 @@ function editAuthMenu(data){
 $('#menumastertable tbody tr').remove();
 	for(var i=0; i<data.length; i++){
 		var args = '<tr>'
-			+'<th><input type="checkbox" id="ckselect" value="'+data[i].auth_id+'"></th>'
-			+'<td style="width:10%;"><a href="#">'+data[i].auth_id+'</a></td>'
-			+'<td style="width:20%;">'+data[i].auth_nm+'</td>'
-			+'<td style="width:20%;"><input type="hidden" value="'+data[i].menu_id+'"/>'+data[i].menu_nm+'</td>'
+			+'<td style="width:5%;"><input type="checkbox" id="ckselect" value="'+data[i].auth_id+'"><input type="hidden" id="auth_id" value="'+data[i].auth_id+'"></td>'
+			+'<td style="width:20%;"><a href="#">'+data[i].auth_nm+'</a></td>'
+			+'<td style="width:25%;"><input type="hidden" value="'+data[i].menu_id+'"/>'+data[i].menu_nm+'</td>'
 			+'<td id="authmenuflg" style="width:10%;">'+data[i].deflt_yn+'</td>'
 			+'<td id="authmenuflg" style="width:10%;">'+data[i].retrv_yn+'</td>'
 			+'<td id="authmenuflg" style="width:10%;">'+data[i].creat_yn+'</td>'
@@ -366,7 +365,7 @@ function insertAuthMenu(data){
 
 function writeAuthMenuPopup(ctx){
 	$('#writeauthmenu').click(function(){
-		window.open(ctx+'/authmenuwritePopup','newwindow','width=400, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/authmenuwritePopup','newwindow','width=800, height=500, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 
 }

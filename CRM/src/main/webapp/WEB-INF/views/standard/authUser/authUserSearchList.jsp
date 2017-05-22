@@ -10,6 +10,9 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authUserSearchList.js"></script>
 <title>권한 팝업창</title>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authUserSearchList.css" type="text/css" />
+
+<link rel="stylesheet" href="${ctx}/resources/common/Semantic/semantic.css" type="text/css" />
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 </head>
 <body>
 <input id="ctx" type="hidden" value="${ctx}"/>
@@ -22,7 +25,7 @@
 				<option value="a_name">권한이름</option>
 				<option value="a_id">권한ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="auth_id_search">검색</button>
+			<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
 			</form>
 		</div>
 	</div>	
@@ -30,30 +33,31 @@
    <div class="bs-example" data-example-id="simple-table">
 	<form name="delAllForm" id="delAllForm" method="post">	
 		<table id="mastertable">
-			<thead>
+			<thead style="padding-left:3.5px;">
 				<tr>
-					<th><input id="allCheck" type="checkbox"/></th>
-					<td style="width:10%;">권한ID</td>
+					<th style="width:3%;"><!-- <input id="allCheck" type="checkbox"/> --></th>
+					<td style="width:11%;">권한ID</td>
 					<td style="width:15%;">권한이름</td>
-					<td style="width:15%;">활성화여부</td>
-					<td style="width:15%;">최초등록자</td>
-					<td style="width:15%;">최초등록일</td>
-					<td style="width:15%;">최종변경자</td>
-					<td style="width:15%;">최종변경일</td>
+					<td style="width:14.5%;">활성화여부</td>
+					<td style="width:14%;">최초등록자</td>
+					<td style="width:14.1%;">최초등록일</td>
+					<td style="width:14.2%;">최종변경자</td>
+					<td style="width:21%;">최종변경일</td>
+					<td></td>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="auth" items="${auth}">
 				<tr onMouseOver="this.style.backgroundColor='#ebe7e7'" onMouseOut="this.style.backgroundColor=''">
-					<th scope="row"><input type="checkbox" class="authCheck" id="ak" name="authCheck" value="${auth.auth_id}"></th>
-					<td style="width:10%;">${auth.auth_id}</td>
+					<th style="width:3%;" scope="row"><input type="checkbox" class="authCheck" id="ak" name="authCheck" value="${auth.auth_id}"></th>
+					<td style="width:11%;">${auth.auth_id}</td>
 					<td style="width:15%;">${auth.auth_nm}</td>
 					<td style="width:15%;">${auth.act_yn}</td>
-					<td style="width:15%;">${auth.fst_reg_id}</td>
-					<td style="width:15%;">
+					<td style="width:14%;">${auth.fst_reg_id}</td>
+					<td style="width:14%;">
 						<fmt:formatDate value="${auth.fst_reg_dt}" pattern="yyyy-MM-dd"/>
 					</td>
-					<td style="width:15%;">${auth.fin_mdfy_id}</td>
+					<td style="width:14%;">${auth.fin_mdfy_id}</td>
 					<td style="width:15%;">
 						<fmt:formatDate value="${auth.fin_mdfy_dt}" pattern="yyyy-MM-dd"/>
 					</td>
@@ -65,8 +69,8 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="auth_id_bt" value="선택" id="choiceAuth"/>
-		<input type="button" class="auth_id_bt" value="취소" id="restAuth"/>
+		<input type="button" class="tiny ui button" value="선택" id="choiceAuth"/>
+		<input type="button" class="tiny ui button" value="취소" id="restAuth"/>
 	</div>
 </body>
 </html>

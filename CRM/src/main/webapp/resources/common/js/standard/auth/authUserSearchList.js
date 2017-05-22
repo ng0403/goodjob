@@ -69,5 +69,6 @@ var ctx = $('#ctx').val();
 	$('#restAuth').click(function(){
 		var checkboxs = $('#mastertable').find('input[type="checkbox"]'); 
 		$(checkboxs).prop('checked',false);
+		self.close();
 	});
 }

@@ -32,7 +32,7 @@
 			<div class="bt_position">
 				<div class="ui left icon input">
 					<select name="keyfield">
-						<option value="au_id">권한ID</option>
+						<option value="au_id">권한명</option>
 						<option value="ua_id">사용자ID</option>
 					</select> <input id="authuser_text" type="text" name="keyword" class="int_search"> &nbsp;
 				</div>
