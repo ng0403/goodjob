@@ -65,7 +65,7 @@
 							<th><span style="color: red;">*조직대표</span></th>
 							<td>							
 							<input type="text" class="int" name="user_id" id="user_id" disabled="disabled"/>
-							<input type="button" class="tiny ui orange button" value="검색" id="oorg" onclick="OOrgName()"/>
+							<input type="button" class="tiny ui orange basic button" value="검색" id="oorg" onclick="OOrgName()"/>
 							</td>
 							<th>조직레벨</th>
 							<td>
@@ -93,7 +93,7 @@
 							&nbsp;-&nbsp;							
 								<input type="text" name="zip_no2" id="post2" class="int_zip" disabled="disabled" /></input>	
 								<input type="hidden" id="zip_cd_sri_num" name="zip_cd_sri_num" disabled="disabled"/>	
-								<input type="button" class="tiny ui button" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
+								<input type="button" class="tiny ui orange basic button" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
 								<input type="text" name="addr_detail1" id="addr" class="int_zipadd1" disabled="disabled"/>
 								<input type="text" name="addr_detail2" id="addr_detail" class="int_zipadd2" disabled="disabled"/>
 							</td>
