@@ -83,6 +83,7 @@ select{
 #mastertable thead td {
 	background-color: #F9FAFB;
 	font-weight: bold;
+	text-align: center;
 }
 
 .bs-example_orglist #mastertable tbody tr:hover{

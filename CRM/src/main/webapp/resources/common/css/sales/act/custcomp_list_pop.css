@@ -27,7 +27,7 @@ select{
   }
 
 .custcomp_list_div #custcomp_list_table{
-	width:100%;
+	width:640px;
 	border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #DDD;

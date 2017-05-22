@@ -63,7 +63,7 @@ select{
 }
 
 .bs-example #mastertable thead{
-	float: left; 
+	float: left;
 	width:100%;
 }
 
@@ -77,6 +77,13 @@ select{
 	vertical-align: bottom;
     padding: 8px;
 }
+
+.bs-example #mastertable thead tr th{
+  vertical-align: center;
+  border-bottom: 2px solid #dddddd;
+  
+}
+  
 
 .bs-example #mastertable tbody tr:hover{
 	background-color:#ebe7e7;
@@ -106,11 +113,7 @@ select{
     text-align: left;
 }
 
-.bs-example #mastertable thead tr th{
-  vertical-align: center;
-  border-bottom: 2px solid #dddddd;
-}
-  
+
 .int{
     position:relative;
 	width:65%;
