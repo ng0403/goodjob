@@ -83,7 +83,6 @@ function cateDetailButtonEvent(ctx){
 			        		alert("올바르게 저장되지 않았습니다.");
 			        	}else{
 			        		alert("입력정보가 저장되었습니다.");
-			        		alert("Category : " + $('#cate_nm').val());
 			        		
 //			        		var list = cate_checkNodeList('subCheck');
 //				        	

@@ -10,7 +10,7 @@ $(function(){
 //상품 팝업창 띄우기
 function prodCateListPopup(ctx){
 	$('#prod_cate').click(function(){
-		window.open(ctx+'/prodCateList ','newwindow','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		window.open(ctx+'/prodCateList ','newwindow','width=1100, height=430, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }
 

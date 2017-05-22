@@ -81,7 +81,7 @@
 
 /*  실제 내용이 담긴 div 요소 스타일 지정 */
 #css_tabs .tab1_content, #css_tabs .tab2_content, #css_tabs .tab3_content, #css_tabs .tab4_content, #css_tabs .tab5_content, #css_tabs .tab6_content {
-    border:1px solid #ddd;
+    border-top:1px solid #ddd;
     height:100%;
  
 }

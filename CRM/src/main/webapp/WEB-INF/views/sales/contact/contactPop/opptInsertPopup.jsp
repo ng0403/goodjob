@@ -68,7 +68,7 @@
 								<td>
 									<input type="text" name="cust_nm" id="cust_nm" class="int" readonly="readonly">
 									<input type="hidden" name="cust_id" id="cust_id" class="int">
- 								<input type="button" value="고객사" id="customer" class="tiny ui orange button" onclick="javascript:keymanListPopup();">
+ 								<input type="button" value="고객사" id="customer" class="tiny ui orange basic button" onclick="javascript:keymanListPopup();">
 								
 								</td>
 							</tr>

@@ -54,19 +54,19 @@
 				<input type="button" id="deletekeymanbtn" class="tiny ui orange button" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
-			<div id="tableline">
-				<table class="tabtable"> 
+			<div id="tableline2" class="keyman_div_list">
+				<table class="tabtable" id="keyman_table_list"> 
 					<thead>
 						<tr>
-							<th style='width:3%;'><input type="checkbox"  id='keymanListCheck'/></th>
-							<th style='width:10%;'>고객사명</th>
-							<th style='width:7%;'>직급</th>
- 							<th style='width:20%;'>메모</th>
-							<th style='width:10%;'>등록자</th>
-							<th style='width:15%;'>등록일시</th>
+							<th style='width:54px; text-align:center'><input type="checkbox"  id='keymanListCheck'/></th>
+							<th style='width:210px;'>고객사명</th>
+							<th style='width:142px;'>직급</th>
+ 							<th style='width:435px;'>메모</th>
+							<th style='width:210px;'>등록자</th>
+							<th style='width:340px;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id="keymanTableTbody">
+					<tbody id="keymanTableTbody" style="height:150px">
 								
 					</tbody>
 				</table>
@@ -74,28 +74,28 @@
 		</div>
 			
 			<!-- 영업기회 리스트 -->
-		<div id="tabDiv2" class="tab2_content" style="width: 100%;">
+		<div id="tabDiv2" class="tab2_content" style="table-layout:fixed;">
 			<div class="bt_position_authuser">
 				<input type="button" id="oppt_pop_btn" class="tiny ui orange button" value="추가" />
 				<input type="button" id="opptDel" class="tiny ui orange button" value="삭제" onclick="ccOpptDel()"/>
 			</div>
 			
-			<div id="tableline">
+			<div id="tableline2" class="oppt_div_list">
 				<table id="opptTable" class="tabtable">
 					<thead>
 						<tr  class="headerLock">
-							<th style='width:3%;'><input type="checkbox"  id='ccOpptListCheck'/></th>
-							<th style='width:30%;'>영업기회명</th>
-							<th style='width:8%;'>영업단계</th>
-							<th style='width:12%;'>예상매출액</th>
-							<th style='width:12%;'>예상마감일자</th>
-							<th style='width:7%;'>가능성(%)</th>
-							<th style='width:7%;'>상태</th>
-							<th style='width:8%;'>등록자</th>
-							<th style='width:15%;'>등록일시</th>
+							<th style='width:33px;'><input type="checkbox"  id='ccOpptListCheck'/></th>
+							<th style='width:458px'>영업기회명</th>
+							<th style='width:110px;;'>영업단계</th>
+							<th style='width:172px;'>예상매출액</th>
+							<th style='width:171px;'>예상마감일자</th>
+							<th style='width:93px;'>가능성(%)</th>
+							<th style='width:94px;'>상태</th>
+							<th style='width:108px;'>등록자</th>
+							<th style='width:208px;'>등록일시</th>
 						</tr>
 					</thead>
-					<tbody id="opptTableTbody">
+					<tbody id="opptTableTbody" style="height:150px">
 							
 					</tbody>
 				</table>
@@ -110,7 +110,7 @@
 			</div>
 			
 			<div id="tableline2">
-				<table id="actTable" class="tabtable"  style="table-layout:fixed; height:90%; width:90%">
+				<table id="actTable" class="tabtable" style="table-layout:fixed;" >
 					<thead>
 						<tr class="headerLock">
 							<th style='width:3%;' rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
@@ -129,7 +129,7 @@
 							<th style='width:8%; height:12px; padding:5px;'>종료시간</th>
 						</tr>
 					</thead>
-					<tbody id="actTableTbody">
+					<tbody id="actTableTbody" style="height:150px">
 						
 					</tbody>
 				</table>
