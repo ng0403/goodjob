@@ -35,8 +35,8 @@ table tbody tr th {
 
 #tableline2 {
     padding: 10px;
-    border: 2px solid rgba(34, 36, 38, 0.1);
-    border-radius: 5px;
+    border-top: 1px solid rgba(34, 36, 38, 0.1);
+/*     border-radius: 5px; */
     height: 240px;
 }
 

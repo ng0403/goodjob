@@ -199,7 +199,7 @@ svg {
 	width:100%;
 	border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid #DDD;
+    border-top: 1px solid #DDD;
 }
 
 .keyman_div_list #keyman_table_list thead{

@@ -606,7 +606,7 @@ function estimList(opptId){
 			}else{
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
-						'<th style="width: 3% !important; text-align: center;"><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
+						'<td style="width: 3% !important; text-align: center;"><input type=checkbox name=estim_id value='+data.estim_id+'></td>'+
 						'<td style="text-align: left; padding-left: 5px; width: 33.8% !important;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
 						'<td style="width: 11% !important; text-align: center;">'+data.estim_lev_cd+'</td>'+
 						'<td style="width: 10% !important; text-align: center;">'+data.estim_qty+'</td>'+
@@ -657,7 +657,7 @@ function viewSalesActive(opptId){
 				end_d = data.end_d;
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
-				"<th rowspan='2' style='width: 3% !important; text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
+				"<td rowspan='2' style='width: 3% !important; text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
 				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 23% !important;'>" +
 				"<a style='text-decoration: none; text-align: center;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
 				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+

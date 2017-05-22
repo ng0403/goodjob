@@ -60,15 +60,15 @@ $(document).ready(function() {
 					<thead>
 						<tr class="headerLock">
 							<th rowspan="2" style="width: 3% !important; text-align: center;"><input type="checkbox"  id='actAllSelect'/></th>
-							<td rowspan="2" style="width: 22.6% !important; text-align: center;">영업활동명</td>
-							<td rowspan="2" style="width: 8% !important; text-align: center;">활동구분</td>
-							<td rowspan="2" style="width: 22% !important; text-align: center;">영업기회명</td>
-							<td rowspan="2" style="width: 8% !important; text-align: center;">활동유형</td>
-							<td style="width: 9% !important; text-align: center;">시작일자</td>
-							<td style="width: 9% !important; text-align: center;">시작시간</td>
-							<td rowspan="2" style="width: 6% !important; text-align: center;">상태</td>
-							<td rowspan="2" style="width: 7% !important; text-align: center;">등록자</td>
-							<td rowspan="2" style="width: 10% !important; text-align: center;">등록일시</td>
+							<th rowspan="2" style="width: 22.6% !important; text-align: center;">영업활동명</th>
+							<th rowspan="2" style="width: 8% !important; text-align: center;">활동구분</th>
+							<th rowspan="2" style="width: 22% !important; text-align: center;">영업기회명</th>
+							<th rowspan="2" style="width: 8% !important; text-align: center;">활동유형</th>
+							<th style="width: 9% !important; text-align: center;">시작일자</th>
+							<th style="width: 9% !important; text-align: center;">시작시간</th>
+							<th rowspan="2" style="width: 6% !important; text-align: center;">상태</th>
+							<th rowspan="2" style="width: 7% !important; text-align: center;">등록자</th>
+							<th rowspan="2" style="width: 10% !important; text-align: center;">등록일시</th>
 						</tr>
 						<tr>
 							<td style="width: 9% !important; text-align: center;">종료일자</td>
@@ -93,17 +93,17 @@ $(document).ready(function() {
 				<thead>						
 					<tr class="headerLock">
 						<th style="width: 3% !important; text-align: center;"><input type="checkbox"  id='estimAllSelect'/></th>
-						<td style="width: 33.52% !important; text-align: center;">견적명</td>
-						<td style="width: 11% !important; text-align: center;">견적단계</td>
-						<td style="width: 10% !important; text-align: center;">견적수량</td>
-						<td style="width: 15% !important; text-align: center;">견적금액</td>
-						<td style="width: 13% !important; text-align: center;">견적유효일자</td>
-						<td style="width: 9% !important; text-align: center;">등록자</td>
-						<td style="width: 13% !important; text-align: center;">등록일시</td>
+						<th style="width: 33.52% !important; text-align: center;">견적명</th>
+						<th style="width: 11% !important; text-align: center;">견적단계</th>
+						<th style="width: 10% !important; text-align: center;">견적수량</th>
+						<th style="width: 15% !important; text-align: center;">견적금액</th>
+						<th style="width: 13% !important; text-align: center;">견적유효일자</th>
+						<th style="width: 9% !important; text-align: center;">등록자</th>
+						<th style="width: 13% !important; text-align: center;">등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="estimList"  class="detailtbody" >
-				<tr style='height: 150px; text-align: center;'><td colspan='8' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>		
+					<tr style='height: 150px; text-align: center;'><td colspan='8' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>		
 				</tbody>
 				</table>
 			</div>
