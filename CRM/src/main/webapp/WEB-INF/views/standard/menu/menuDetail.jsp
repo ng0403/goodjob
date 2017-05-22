@@ -107,19 +107,18 @@
 				<table id="mastertable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style="width: 10.2%;">메뉴ID</th>
-							<th style="width: 14.2%;">메뉴명</th>
-							<th style="width: 10%;">권한ID</th>
-							<th style="width: 14.1%;">권한명</th>
-							<th style="width: 5%;">생성</th>
-							<th style="width: 4.9%;">조회</th>
-							<th style="width: 4.9%;">수정</th>
-							<th style="width: 4.9%;">삭제</th>
-							<th style="width: 9.9%;">디폴트</th>
-							<th style="width: 9.8%;">최초등록자</th>
-							<th style="width: 12%;border-right:none;">최초등록일</th>
-							<th style="width: 0%;border-left:none;"></th>
-						</tr>
+							<th style="width:189px;">메뉴ID</th>
+							<th style="width:217px;">메뉴명</th>
+							<th style="width:132px;">권한ID</th>
+							<th style="width:221px;">권한명</th>
+							<th style="width:33px;">생성</th>
+							<th style="width:34px;">조회</th>
+							<th style="width:32px;">수정</th>
+							<th style="width:32px;">삭제</th>
+							<th style="width:127px;">디폴트</th>
+							<th style="width:91px;">최초등록자</th>
+							<th style="width:183px;border-right:none;">최초등록일</th>
+ 						</tr>
 					</thead>
 					<tbody id="authMenuBody">
 					</tbody>

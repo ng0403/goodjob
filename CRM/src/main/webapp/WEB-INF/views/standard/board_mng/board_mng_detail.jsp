@@ -36,6 +36,18 @@
 		</div>
 	</div>
  
+		<div id = "baseBtnDiv" class="bt_position_authuser">
+	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui orange button" value="편집" onclick="modify_fbtn();"/>
+	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
+	</div>
+	
+	<div id = "button_div1" class="bt_position_authuser">
+		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
+		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
+	</div>
+	
+	
+ 
 	<div id="board_mng_detail" style="margin-top:60px"> 
   <form role="form" name="board_mng_form"> 
    <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng_list.BOARD_MNG_NO}"/> 
@@ -120,17 +132,7 @@
 	</tbody>
 	</form>
 	</div>
-	
-	<div id = "button_div">
-	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui orange button" value="편집" onclick="modify_fbtn();"/>
-	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
-	</div>
-	
-	<div id = "button_div1">
-		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
-		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
-	</div>
- 
+	 
 
 </body>
 </html>
