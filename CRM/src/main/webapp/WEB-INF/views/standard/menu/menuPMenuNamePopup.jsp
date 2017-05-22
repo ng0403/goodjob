@@ -23,11 +23,13 @@
 </div>
 <div class="bt_position_popup" style="text-align: left; padding-top: 10px;">
 		<form name="searchForm" method="post" action="${ctx}/menuPmenuSearch">
+			<div class="ui left icon input">
 			<select name="keyfield">
 				<option value="p_m_name">메뉴명</option>
 				<option value="m_id">메뉴ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
+			</div>
+			<input type="submit" id="search_btn" type="submit" class="tiny ui orange button" value="검색">
 			</form>
 		</div>
 	</div>	
@@ -37,33 +39,34 @@
 		<table id="mastertable" class="ui celled table">
 			<thead>
 				<tr>
-					<th><input id="allCheck" type="checkbox"/></th>
-					<th style="width:10%;">메뉴ID</th>
-					<th style="width:12%;">매뉴명</th>
-					<th style="width:15%;">매뉴URL</th>
-					<th style="width:12%;">활성화여부</th>
-					<th style="width:13%;">최초등록자</th>
-					<th style="width:12%;">최초등록일</th>
-					<th style="width:13%;">최종변경자</th>
-					<th style="width:15%;">최종변경일</th>
+					<th style="width:5%;"><!-- <input id="allCheck" type="checkbox"/> --></th>
+					<th style="width:28%;">메뉴ID</th>
+					<th style="width:27%;">매뉴명</th>
+					<th style="width:20%;">매뉴URL</th>
+					<th style="width:20%;">활성화여부</th>
+					<th></th>
+<!-- 					<th style="width:13%;">최초등록자</th> -->
+<!-- 					<th style="width:12%;">최초등록일</th> -->
+<!-- 					<th style="width:13%;">최종변경자</th> -->
+<!-- 					<th style="width:15%;">최종변경일</th> -->
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="menuList" items="${menuList}">
 				<tr onMouseOver="this.style.backgroundColor='#ebe7e7'" onMouseOut="this.style.backgroundColor=''">
-					<th scope="row"><input type="checkbox" class="menuCheck" id="ak" name="menuCheck" value="${menuList.menu_id}"></th>
-					<td style="width:10%;" id="menu_id">${menuList.menu_id}</td>
-					<td style="width:13%;" id="menu_name">${menuList.menu_nm}</td>
-					<td style="width:17%;">${menuList.menu_url}</td>
-					<td style="width:10%;">${menuList.act_yn}</td>
-					<td style="width:12%;">${menuList.fst_reg_id}</td>
-					<td style="width:14%;">
-						<fmt:formatDate value="${menuList.fst_reg_dt}" pattern="yyyy-MM-dd"/>
-					</td>
-					<td style="width:12%;">${menuList.fin_mdfy_id}</td>
-					<td style="width:15%;">
-						<fmt:formatDate value="${menuList.fin_mdfy_dt}" pattern="yyyy-MM-dd"/>
-					</td>
+					<th style="width:5%;"scope="row"><input type="checkbox" class="menuCheck" id="ak" name="menuCheck" value="${menuList.menu_id}"></th>
+					<td style="width:28%;" id="menu_id">${menuList.menu_id}</td>
+					<td style="width:27%;" id="menu_name">${menuList.menu_nm}</td>
+					<td style="width:20%;">${menuList.menu_url}</td>
+					<td style="width:20%;">${menuList.act_yn}</td>
+<%-- 					<td style="width:12%;">${menuList.fst_reg_id}</td> --%>
+<!-- 					<td style="width:14%;"> -->
+<%-- 						<fmt:formatDate value="${menuList.fst_reg_dt}" pattern="yyyy-MM-dd"/> --%>
+<!-- 					</td> -->
+<%-- 					<td style="width:12%;">${menuList.fin_mdfy_id}</td> --%>
+<!-- 					<td style="width:15%;"> -->
+<%-- 						<fmt:formatDate value="${menuList.fin_mdfy_dt}" pattern="yyyy-MM-dd"/> --%>
+<!-- 					</td> -->
 				</tr>
 				</c:forEach>
 			</tbody>

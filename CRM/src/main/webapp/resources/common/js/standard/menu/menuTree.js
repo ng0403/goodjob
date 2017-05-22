@@ -108,7 +108,7 @@ function authId_Popup(ctx) {
 //권한메뉴 팝업
 function pMenuName_Popup(ctx) {
 	window.open(ctx+"/menu_pMenuName", "상위메뉴",	
-			'width=1175,height=500,resizable=no,status=no,location=no,menubar=no,toolbar=no');
+			'width=880,height=500,resizable=no,status=no,location=no,menubar=no,toolbar=no');
 }
 
 //메뉴이름 여부 확인
