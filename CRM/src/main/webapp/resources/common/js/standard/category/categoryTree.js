@@ -67,8 +67,6 @@ function cate_checkedNode(ClassName){
 	var count = 0;
 	var checkList =	$('.'+ClassName);
 	
-	alert("Category " + ClassName);
-	alert("Category " + checkList);
 	
 	for(var i=0; i<$(checkList).lenght; i++)
 	{
@@ -77,7 +75,6 @@ function cate_checkedNode(ClassName){
 			count++;
 		}
 	}
-	alert("Category : " + count);
 	
 	return node;
 }
