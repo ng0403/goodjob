@@ -105,6 +105,7 @@
 			    <if test="sch_corp_num != null and sch_corp_num !=''">
 			     	and c.corp_num like '%'||#{sch_corp_num}||'%'
 			    </if>
+		  order by c.fst_reg_dt desc
 	</select>
 	
 	<!-- 기업고객 상세정보 -->
