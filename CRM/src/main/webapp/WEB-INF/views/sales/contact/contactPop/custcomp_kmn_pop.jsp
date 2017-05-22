@@ -46,7 +46,7 @@
 						<tr>
 							<th><span style="color:red">*고객사</span></th>
 							<td><input type="text" name="cust_nm" id="cust_nm" class="int" value="${kmVO.cust_nm}" autofocus="autofocus" readonly="readonly"/>
-							<input type="button" value="고객" id="customer" class="tiny ui orange button" onclick="javascript:custcompListPopup('${ctx}');">
+							<input type="button" value="고객" id="customer" class="tiny ui orange basic button" onclick="javascript:custcompListPopup('${ctx}');">
 							</td>
 							 <input type="hidden" id="cust_id" name="cust_id" class="int" />  
 							

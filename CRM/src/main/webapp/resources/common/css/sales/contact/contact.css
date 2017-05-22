@@ -187,3 +187,208 @@ svg {
     border-bottom: 2px solid #dddddd;
     width: 336px;
 }
+
+
+
+
+
+
+
+/* 키맨 tab div Class */
+.keyman_div_list #keyman_table_list{
+	width:100%;
+	border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #DDD;
+}
+
+.keyman_div_list #keyman_table_list thead{
+	float: left; 
+	width:100%;
+}
+
+.keyman_div_list #keyman_table_list thead tr{
+	height:35px;
+}
+
+.keyman_div_list #keyman_table_list thead td{
+	font-weight: bold;
+	vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+    padding: 8px;
+}
+
+#keyman_table_list thead th,
+#keyman_table_list thead td {
+	background-color: #F9FAFB;
+	font-weight: bold;
+}
+
+.keyman_div_list #keyman_table_list tbody tr:hover{
+	background-color:#ebe7e7;
+}
+
+.keyman_div_list #keyman_table_list tbody{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	float: left;
+	width: 100%;
+	height: 190px;
+}
+.keyman_div_list #keyman_table_list tbody tr{
+	display: table;
+	width: 100%;
+}
+
+.keyman_div_list #keyman_table_list tbody td{
+	width: 25%;
+	padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+/*     padding-left:20px; */
+    text-align: left;
+}
+
+.keyman_div_list #keyman_table_list thead tr th {
+    vertical-align: center;
+    border-bottom: 2px solid #dddddd;
+    width: 336px;
+}
+
+
+
+
+
+
+
+
+/* 영업기회 tab div Class */
+.oppt_div_list #opptTable{
+	width:100%;
+	border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #DDD;
+}
+
+.oppt_div_list #opptTable thead{
+	float: left; 
+	width:100%;
+}
+
+.oppt_div_list #opptTable thead tr{
+	height:35px;
+}
+
+.oppt_div_list #opptTable thead td{
+	font-weight: bold;
+	vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+    padding: 8px;
+}
+
+#opptTable thead th,
+#opptTable thead td {
+	background-color: #F9FAFB;
+	font-weight: bold;
+}
+
+.oppt_div_list #opptTable tbody tr:hover{
+	background-color:#ebe7e7;
+}
+
+.oppt_div_list #opptTable tbody{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	float: left;
+	width: 100%;
+	height: 190px;
+}
+.oppt_div_list #opptTable tbody tr{
+	display: table;
+	width: 100%;
+}
+
+.oppt_div_list #opptTable tbody td{
+	width: 25%;
+	padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+/*     padding-left:20px; */
+    text-align: left;
+}
+
+.oppt_div_list #opptTable thead tr th {
+    vertical-align: center;
+    border-bottom: 2px solid #dddddd;
+    width: 336px;
+}
+
+
+
+
+
+
+/* 영업활동 tab div Class */
+.act_div_list #actTable{
+	width:100%;
+	border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #DDD;
+}
+
+.act_div_list #actTable thead{
+	float: left; 
+	width:100%;
+}
+
+.act_div_list #actTable thead tr{
+	height:35px;
+}
+
+.act_div_list #actTable thead td{
+	font-weight: bold;
+	vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+    padding: 8px;
+}
+
+#opptTable thead th,
+#opptTable thead td {
+	background-color: #F9FAFB;
+	font-weight: bold;
+}
+
+.act_div_list #actTable tbody tr:hover{
+	background-color:#ebe7e7;
+}
+
+.act_div_list #actTable tbody{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	float: left;
+	width: 100%;
+	height: 190px;
+}
+.act_div_list #opptTable tbody tr{
+	display: table;
+	width: 100%;
+}
+
+.act_div_list #opptTable tbody td{
+	width: 25%;
+	padding: 8px;
+    line-height: 1.428571429;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+/*     padding-left:20px; */
+    text-align: left;
+}
+
+.act_div_list #actTable thead tr th {
+    vertical-align: center;
+    border-bottom: 2px solid #dddddd;
+    width: 336px;
+}
+

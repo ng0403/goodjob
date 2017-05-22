@@ -50,25 +50,24 @@
 	
 	<div class="comp_list_div">
 		<!-- <table id="comp_list_table"> -->
-		<table id="keyman_list_table" style="table-layout:fixed;">
+		<table id="keyman_list_table">
 		<thead>
 				<tr>
-					<th style="width:24%">고객ID</th>
-					<th style="width:23.2%">역할</th>
-					<th style="width:23.4%">직급</th>
-					<th style="width:22.98%">직무</th>
-					<th style="width:30%">메모</th>
-					<th> </th>
- 				</tr>
+					<th style="width:160px">고객ID</th>
+					<th style="width:160px">역할</th>
+					<th style="width:160px">직급</th>
+					<th style="width:160px">직무</th>
+					<th style="width:200px">메모</th>
+ 	 				</tr>
  		</thead>	
  				<tbody>
 				<c:forEach var="kmVOList" items="${kmVOList}"> 
 				<tr onclick="keyNmSelect('${kmVOList.cust_id}')">
-					<td id="cust_id">${kmVOList.cust_id}</td>
-					<td id="cust_nm">${kmVOList.key_part}</td>
-					<td>${kmVOList.key_pos}</td>
-					<td>${kmVOList.key_job}</td>
-					<td>${kmVOList.memo}</td>
+					<td style="width:120px" id="cust_id">${kmVOList.cust_id}</td>
+					<td style="width:167px" id="cust_nm">${kmVOList.key_part}</td>
+					<td style="width:167px">${kmVOList.key_pos}</td>
+					<td style="width:185px">${kmVOList.key_job}</td>
+					<td style="width:173px">${kmVOList.memo}</td>
  				</tr>
 			</c:forEach>
 			</tbody>

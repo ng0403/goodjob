@@ -579,7 +579,7 @@ function keymanList() {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+						"<td style='width:3%; text-align:center'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
 						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:black;' class='cnClick'>"+data[i].cust_nm+"</td>" +
 						"<td style='width:7%;'>"+data[i].key_pos+"</td>" +
  						"<td style='width:20%;'>"+data[i].memo+"</td>" +
@@ -628,7 +628,7 @@ function opptList() {
 						var expt_sales_amt = comma(data[i].expt_sales_amt);
 						
 						tbodyContent = "<tr>" +
-						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
+						"<td style='width:3%; text-align:center'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
 						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"contactopptTabDetail('"+data[i].sales_oppt_id+"');\" style='color:black;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
 						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
 						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
@@ -723,7 +723,7 @@ function actListcontact() {
 							end_t = '';
 						}*/
  						tbodyContent = "<tr>"
-							+ "<td rowspan='2'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
+							+ "<td rowspan='2' style='text-align:center'><input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:black;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td rowspan='2'>"+data[i].sales_actvy_div_nm+"</td>"
 							+ "<td rowspan='2' style='text-align: left; padding-left: 8px;'>"+data[i].sales_oppt_nm+"</td>"
