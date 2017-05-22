@@ -58,7 +58,7 @@
 	</div>
 	<div id="custcomp_tab_detail">
 		<form id="custCompForm" method="post">
-			<div class="detailBtn">
+			<div class="detailBtn">   
 
 				<c:if test="${flg == 0 }">
 					<div id="addBtnDiv" class="bt_position_authuser">
