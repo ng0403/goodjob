@@ -291,6 +291,9 @@ public class ActController {
 		List<Object> actOpptList = actService.actOpptList();
 		ModelAndView mov = new ModelAndView("/sales/act/actPop/act_oppt_list_pop");
 		
+		System.out.println("LIST : " + actOpptList);
+		System.out.println("LIST : " + actOpptList.toString());
+		
 		mov.addObject("actOpptList", actOpptList);
 	
 		return mov;
