@@ -71,6 +71,7 @@ public class ProdVO {
 	public void setProd_seq(String prod_seq) {
 		this.prod_seq = prod_seq;
 	}
+
 	public String getImg_seq() {
 		return img_seq;
 	}

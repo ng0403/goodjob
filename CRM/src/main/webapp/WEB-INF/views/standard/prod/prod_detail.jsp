@@ -135,7 +135,7 @@ function prodInserts(){
 									</textarea>
 								</div>
 							</td>
-							<th >url</th>
+							<th style="height:30px;">url</th>
 							<td id="url">
 								<div class="ui input focus">
 									<input type="text" id="prod_url" name="prod_url" class="end_text" value="${prodDto.prod_url}" disabled>
@@ -143,23 +143,23 @@ function prodInserts(){
 							</td>					
 						</tr>
 						<tr>																			
-							<th>이미지</th>
+							<th><!-- 이미지 --></th>
 							<td id="image">
-								<input type="hidden" name="attach_img_id" id="attach_img_id" value="${imgList.attach_id }">
+								<%-- <input type="hidden" name="attach_img_id" id="attach_img_id" value="${imgList.attach_id }">
 								<input type="hidden" id="prod_img_nm" value="${imgList.prod_img_nm }">
 								<input type="button" id="image_change" class="act_bt" value="이미지 변경" style="display: none;"/>
 								
-								<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>
+								<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled> --%>
 							</td>												
 						</tr>
 						<tr>													
-					        <th>카달로그</th>
+					        <th><!-- 카달로그 --></th>
 							<td id="catal">
-								<input type="hidden" name="attach_catal_id" id="attach_catal_id" value="${catalList.attach_id }">
+								<%-- <input type="hidden" name="attach_catal_id" id="attach_catal_id" value="${catalList.attach_id }">
 								<input type="hidden" id="prod_catal_nm" value="${catalList.prod_catal_nm }">	
 								<input type="button" id="catal_change" class="act_bt" value="카탈로그 변경" style="display: none;"/>
 					        
-								<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>
+								<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled> --%>
 					        </td>												
 						</tr>			
 					</tbody>

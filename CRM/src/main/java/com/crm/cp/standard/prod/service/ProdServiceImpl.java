@@ -24,24 +24,43 @@ public class ProdServiceImpl implements ProdService{
 		String imgFilename = dto.getProd_img_save_loc();
 		String catalFilename = dto.getProd_catal_save_loc();
 		if(imgFilename != null){
-			result += prodDao.imgFileUpdateData(dto);
-			if(result >= 2){
-				result += prodDao.prodImgFileDelete(dto);
-				if(result >= 3){
+			if(dto.getAttach_img_id() != null){
+				result += prodDao.imgFileUpdateData(dto);
+				if(result >= 2){
+					result += prodDao.prodImgFileDelete(dto);
+					if(result >= 3){
+						result += prodDao.prodImgFileInsert(dto);
+						result = 1;
+					}
+				}
+			}else if(dto.getAttach_img_id() == null){
+				result += prodDao.imgFileInsert(dto);
+				if(result >= 2){
+					System.out.println(dto.getImg_seq());
 					result += prodDao.prodImgFileInsert(dto);
 					result = 1;
 				}
 			}
+			
 		}
 		if(catalFilename != null){
-			result += prodDao.catalFileUpdateData(dto);
-			if(result >= 2){
-				result += prodDao.prodCatalFileDelete(dto);
-				if(result >= 3){
+			if(dto.getAttach_catal_id() != null){
+				result += prodDao.catalFileUpdateData(dto);
+				if(result >= 2){
+					result += prodDao.prodCatalFileDelete(dto);
+					if(result >= 3){
+						result += prodDao.prodCatalFileInsert(dto);
+						result = 0;
+					}
+				}
+			}else if(dto.getAttach_catal_id() == null){
+				result += prodDao.catalFileInsert(dto);
+				if(result >= 2){
 					result += prodDao.prodCatalFileInsert(dto);
 					result = 0;
 				}
 			}
+			
 		}
 	}
 	
@@ -77,6 +96,7 @@ public class ProdServiceImpl implements ProdService{
 		if(imgFilename != null){
 			result += prodDao.imgFileInsert(dto);
 			if(result >= 2){
+				System.out.println(dto.getImg_seq());
 				result += prodDao.prodImgFileInsert(dto);
 				result = 1;
 			}

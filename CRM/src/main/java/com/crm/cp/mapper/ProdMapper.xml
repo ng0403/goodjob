@@ -287,13 +287,13 @@
 			FST_REG_ID,
 			FIN_MDFY_ID
 		)VALUES(
-			<if test="prod_seq != null and imq_seq != null">
+			<if test="prod_seq != null and prod_seq != '' and img_seq != null and img_seq != ''">
 				#{prod_seq},
 				#{img_seq},
 			</if>
-			<if test="prod_id != null and attach_imq_id != null">
+			<if test="prod_id != null and prod_id != '' and attach_img_id != null and attach_img_id != ''">
 				#{prod_id},
-				#{attach_imq_id},
+				#{attach_img_id},
 			</if>
 			'0001',
 			#{fst_reg_id},
@@ -309,11 +309,11 @@
 			FST_REG_ID,
 			FIN_MDFY_ID
 		)VALUES(
-			<if test="prod_seq != null and imq_seq != null">
+			<if test="prod_seq != null and prod_seq != '' and catal_seq != null and catal_seq != ''">
 				#{prod_seq},
 				#{catal_seq},
 			</if>
-			<if test="prod_id != null and attach_catal_id != null">
+			<if test="prod_id != null and prod_id != '' and attach_catal_id != null and attach_catal_id != ''">
 				#{prod_id},
 				#{attach_catal_id},
 			</if>

@@ -118,7 +118,7 @@ public class ProdDaoImpl implements ProdDao{
 	@Override
 	public int imgFileUpdateData(ProdVO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("prod.prodCatalFileUpdateData", dto);
+		return sqlSession.update("prod.prodImgFileUpdateData", dto);
 	}
 
 	@Override

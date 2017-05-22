@@ -447,8 +447,8 @@ function prodAddFormLoad(){
 	$("#prod_div_cd_view").prop("hidden",true);
 
 	$('.prod_file').remove();
-	$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
-	$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
+//	$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
+//	$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
 
 	
 	$("#prod_img").prop("disabled",false);
@@ -607,8 +607,8 @@ function prodFormblock(){
 	$("#prod_catal").prop("disabled",true);
 	$("#prod_div_cd_view").prop("hidden",false);
 	$('.prod_file').remove();
-	$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
-	$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
+//	$('#image').prepend('<input type="file" name="prod_img" id="prod_img" class="prod_file" disabled>');	
+//	$('#catal').prepend('<input type="file" name="prod_catal" id="prod_catal" class="prod_file" disabled>');
 	$("#image_change").css('display','none');
 	$("#catal_change").css('display','none');
 }
