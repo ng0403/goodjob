@@ -90,7 +90,7 @@
 			</when>
 		</choose>
 		
-		order by a.fst_reg_id desc
+		order by a.fin_mdfy_dt desc
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
 

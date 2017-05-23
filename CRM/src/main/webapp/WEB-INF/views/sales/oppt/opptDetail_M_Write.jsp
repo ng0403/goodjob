@@ -45,11 +45,6 @@ $(document).ready(function(){
 });
 
 </script>
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">

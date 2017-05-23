@@ -387,7 +387,10 @@ public class OpptController {
 	int opptAdd(HttpSession session, OpptVO add
 			, @RequestParam(value="est_list[]",required=false) List<String> est_list
 			, String total_sup_price) {
-		System.out.println("est_list : " + est_list);
+		if(est_list != null)
+		{
+			System.out.println("est_list : " + est_list);
+		}
 		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
@@ -400,23 +403,25 @@ public class OpptController {
 		//영업기회단계이력 추가 함수
 		int result2 = service.addOpptStep(add);
 		
-		//상품 배열 데이터 추가 (Mapper에 넘겨야 할 값들...)
-		for(int i=0 ; i< est_list.size(); i++){
-			OpptVO vo = new OpptVO();
-			vo.setSales_oppt_id("");
-			vo.setProd_id(est_list.get(i));
-			vo.setProd_nm(est_list.get(++i));
-			vo.setEstim_qty(est_list.get(++i));
-			vo.setSales_price(est_list.get(++i));
-			vo.setDiscount(est_list.get(++i));
-			vo.setSup_price(est_list.get(++i));
-			vo.setDiscount_unit_cd(est_list.get(++i));
-			vo.setOppt_seq(add.getOppt_seq());
-			estList.add(vo);
+		if(est_list != null){
+			//상품 배열 데이터 추가 (Mapper에 넘겨야 할 값들...)
+			for(int i=0 ; i< est_list.size(); i++){
+				OpptVO vo = new OpptVO();
+				vo.setSales_oppt_id("");
+				vo.setProd_id(est_list.get(i));
+				vo.setProd_nm(est_list.get(++i));
+				vo.setEstim_qty(est_list.get(++i));
+				vo.setSales_price(est_list.get(++i));
+				vo.setDiscount(est_list.get(++i));
+				vo.setSup_price(est_list.get(++i));
+				vo.setDiscount_unit_cd(est_list.get(++i));
+				vo.setOppt_seq(add.getOppt_seq());
+				estList.add(vo);
+			}
+			//영업기회상품 테이블 추가 함수
+			int result1 = service.opptPrdtAdd(estList);
+			System.out.println("영업기회 상품 추가 result : " + result1);
 		}
-		//영업기회상품 테이블 추가 함수
-		int result1 = service.opptPrdtAdd(estList);
-		System.out.println("영업기회 상품 추가 result : " + result1);
 		
 		System.out.println("영업기회 추가 result : " + result);
 		System.out.println("영업기회 단계 이력 추가 result : " + result2);

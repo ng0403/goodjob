@@ -257,10 +257,10 @@ function opptAdd(){
 		alert("할인 단위를 선택해 주세요.");
 		return false;
 	}
-	if(est_list.length==0){
-		alert("상품을 추가해 주세요");
-		return false;
-	}
+//	if(est_list.length==0){
+//		alert("상품을 추가해 주세요");
+//		return false;
+//	}
 	$.ajax({
 		type : 'post',
 		url : 'opptAdd',
