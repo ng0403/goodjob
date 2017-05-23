@@ -90,9 +90,9 @@
 			</when>
 		</choose>
 		
-		order by a.fin_mdfy_dt desc
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
+		order by d.fin_mdfy_dt desc
 
 	</select>
 	<!-- 홈화면 영업기회 리스트 -->
