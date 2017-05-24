@@ -96,8 +96,11 @@
 </td> 
 </tr>
 </table>
-	
-	
+
+<c:if test="${boardmnglist.REPLY_FLG =='N'}">
+</c:if>
+<c:if test="${boardmnglist.REPLY_FLG == 'Y'}">	
+<div id = "reply_div">	
 <table class="ui sortable celled table" style="table-layout:fixed"> 
 <tr >
 <th style="width:165px">댓글 내용</th>
@@ -115,7 +118,8 @@
 <tbody class="reply_list" id="reply_list_tbody">
 </tbody>
 </table> 
-
+</div>
+</c:if>
 
 <%-- <div class="container"> <!-- 전체 div-->
 

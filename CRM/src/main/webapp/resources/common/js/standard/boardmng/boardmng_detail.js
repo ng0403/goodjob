@@ -31,17 +31,16 @@ function modify_fbtn() {
 	$("#sel1").attr("disabled", false);
 	$(".radio_class").prop('disabled', false);
 
-	$("#button_div").hide();
-	$("#button_div1").show();
+	$("#baseBtnDiv").hide();
+	$("#baseBtnDiv2").show();
 
 }
 
 //편집 취소
-function modify_cancel(){
-	
+function modify_cancel(){ 
 	 fn_lock();
-	 $("#button_div1").hide();
-	 $("#button_div").show(); 
+	 $("#baseBtnDiv2").hide();
+	 $("#baseBtnDiv").show(); 
 
 }
 

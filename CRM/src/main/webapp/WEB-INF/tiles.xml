@@ -60,10 +60,18 @@
 			value="/WEB-INF/views/standard/board/QnA_insert.jsp" />
 	</definition>
 	
-	<definition name="board_mng_list" extends="onebodyLayout">
+<!-- 	<definition name="board_mng_list" extends="onebodyLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/standard/board_mng/board_mng_list.jsp" />
+	</definition> -->
+	
+	<definition name="board_mng_list" extends="twobodyLayout">
+		<put-attribute name="master"
+			value="/WEB-INF/views/standard/board_mng/board_mng_list.jsp" />
+		<put-attribute name="detail"
+			value="/WEB-INF/views/standard/board_mng/board_mng_detail.jsp" /> 
 	</definition>
+	
 	
 	<definition name="board_mng_add" extends="onebodyLayout">
 		<put-attribute name="body"

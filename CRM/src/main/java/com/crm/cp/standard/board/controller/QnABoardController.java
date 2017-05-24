@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.standard.board.service.BoardService;
 import com.crm.cp.standard.board.service.QnABoardService;
 import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.utils.PagerVO;
@@ -27,6 +27,8 @@ public class QnABoardController {
 	
 	@Autowired
 	QnABoardService qnaService; 
+	@Autowired
+	BoardService boardService;
 	
 /*	@Autowired	
 	SessionAuthService sessionAuthService;
@@ -85,6 +87,7 @@ public class QnABoardController {
 		System.out.println("qna detail? " + vo.toString());
 		String QUESTION_TYPE_CD = vo.getQUESTION_TYPE_CD();
 		String TITLE = vo.getTITLE();
+		String BOARD_MNG_NO = vo.getBOARD_MNG_NO();
 		
 		BoardVO vo1 = new BoardVO();
 		vo1 = (BoardVO) qnaService.CODE(QUESTION_TYPE_CD);
@@ -99,7 +102,7 @@ public class QnABoardController {
  		ModelAndView mov = new ModelAndView("QnA_detail");
  		mov.addObject("boardlist", vo);
  		mov.addObject("sessionID", sessionID);
- 		
+ 		mov.addObject("boardmnglist", boardService.checkBoardMngNo(BOARD_MNG_NO));
  		return mov;
 		 
 	}
