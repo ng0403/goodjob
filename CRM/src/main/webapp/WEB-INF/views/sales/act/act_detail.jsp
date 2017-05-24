@@ -31,7 +31,7 @@
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
-	<input type="hidden" id="nowSales_actvy_id"/>
+	<input type="hidden" id="act_flg" value="${act_flg}">
 	
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
@@ -367,8 +367,8 @@
 				
 			<c:if test="${flg == 0}">
 				<div id="actAddBtnDiv" class="act_tab_bt_div">
-					<input type="button" id="actAddSaveBtn" value="추가" onclick="actInsert('${ctx}');" class="tiny ui orange button"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt();"/>
+					<input type="button" id="actAddSaveBtn" value="추가" onclick="actInsert('${ctx}','${act_flg}');" class="tiny ui orange button"/>
+					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
 				</div>
 			</c:if>
 			
@@ -376,11 +376,11 @@
 				<div id="actBaseBtnDiv" class="act_tab_bt_div">
 					<input type="button" id="actMdfBtn" value="편집" class="tiny ui button"/>
 					<input type="button" id="actDelBtn" value="삭제" class="tiny ui orange button" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt();"/>
+					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
 				</div>
 				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
-					<input type="button" id="actMdfSaveBtn" value="추가" onclick="actModify('${ctx}');" class="tiny ui orange button"/>
-					<input type="button" id="actMdfCancelBtn" value="취소" class="tiny ui button" onclick="actMdfyCancelBt();"/>
+					<input type="button" id="actMdfSaveBtn" value="추가" onclick="actModify('${ctx}', '${act_flg}');" class="tiny ui orange button"/>
+					<input type="button" id="actMdfCancelBtn" value="취소" class="tiny ui button" onclick="actMdfyCancelBt('${act_flg}');"/>
 				</div>
 			</c:if>
 		</form>	

@@ -53,7 +53,6 @@ public class ActController {
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody ModelAndView ActSchList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
 	{
-		int act_flg = 1;
 		Map<String, Object> actMap = new HashMap<String, Object>();
 		actMap.put("actPageNum", actPageNum);
 		
@@ -73,7 +72,6 @@ public class ActController {
 		mov.addObject("actList", actList);
 		mov.addObject("actDivCd", actDivCd);
 		mov.addObject("actStatCd", actStatCd);
-		mov.addObject("act_flg", act_flg);
 		
 		return mov;
 	}
@@ -82,7 +80,7 @@ public class ActController {
 	@RequestMapping(value="/actSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
 	{
-		int act_flg = 0;
+		int act_flg = 1;
 		
 		Map<String, Object> actMap = new HashMap<String, Object>();
 		actMap.put("actPageNum", actPageNum);
@@ -133,11 +131,12 @@ public class ActController {
 	
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView actDetail(String sales_actvy_id) 
+	public ModelAndView actDetail(String sales_actvy_id, String act_flg) 
 	{
 		int flg;
 		
 		System.out.println("Detail : " + sales_actvy_id);
+		System.out.println("act_flg : " + act_flg);
 
 		if(sales_actvy_id != null)
 		{
@@ -167,6 +166,7 @@ public class ActController {
 			//mov.addObject("opptList", ottpList);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
+			mov.addObject("act_flg", act_flg);
 			mov.addObject("flg", flg);
 			
 			return mov;
@@ -182,6 +182,7 @@ public class ActController {
 			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("act_flg", act_flg);
 			mov.addObject("flg", flg);
 			
 			return mov;

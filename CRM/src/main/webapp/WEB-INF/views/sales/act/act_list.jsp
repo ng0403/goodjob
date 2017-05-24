@@ -12,10 +12,12 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 	
 <title>영업활동</title>
 </head>
@@ -56,88 +58,93 @@
 <!-- 	    </div> -->
 	    <div id="functionBtn">
 	    	<input type="button" class="act_bt" style="float: right;" value="삭제" onclick="actDelete()" />
-	    	<input type="button" class="act_bt" value="추가" style="float: right;" onclick="actInsertForm();" />
+	    	<input type="button" class="act_bt" value="추가" style="float: right;" onclick="actInsertForm('${act_flg}');" />
 <!-- 	    	<button type="button" class="act_bt" style="float: right;" id="actDelBtn" onclick="actDelete()">삭제</button> -->
 	    </div>
 
-		<form name="delForm" id="delForm" method="post" action="${ctx}/actDelete">
-			<div>
-				<table id="dboardtable">
-					<thead>
+		<div>
+			<table id="dboardtable">
+				<thead>
+					<tr>
+						<th rowspan="2" style="width: 2%;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
+						<td rowspan="2" style="width: 15%;">영업활동명</td>
+						<td rowspan="2" style="width: 23%;">영업기회명</td>
+						<td rowspan="2" style="width: 10%;">활동유형</td>
+						<td style="width: 10%;">시작일자</td>
+						<td style="width: 10%;">시작시간</td>
+						<td rowspan="2" style="width: 5%;">상태</td>
+					</tr>
+					<tr>
+						<td style="width: 10%;">종료일자</td>
+						<td style="width: 10%;">종료시간</td>
+					</tr>
+				</thead>
+				<tbody id="act_list_tbody" class="act_list_tbody">
+					<c:forEach items="${actList}" var="actList">
 						<tr>
-							<th rowspan="2" style="width: 2%;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
-							<td rowspan="2" style="width: 15%;">영업활동명</td>
-<!-- 							<td rowspan="2" style="width: 10%;">활동구분</td> -->
-							<td rowspan="2" style="width: 23%;">영업기회명</td>
-							<td rowspan="2" style="width: 10%;">활동유형</td>
-							<td style="width: 10%;">시작일자</td>
-							<td style="width: 10%;">시작시간</td>
-							<td rowspan="2" style="width: 5%;">상태</td>
-<!-- 							<td rowspan="2" style="width: 5%;">등록자</td> -->
-<!-- 							<td rowspan="2" style="width: 10%;">등록일시</td> -->
+							<th rowspan="2">
+								<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
+							</th>
+							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">
+								<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
+								<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a>
+							</td>
+							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_oppt_tag">${actList.sales_oppt_nm}</td>
+							<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.sales_actvy_type_cd}</td>
+							<td style="text-align: center;" class="act_starth_tag">${actList.strt_d}</td>
+							<td style="text-align: center;" class="act_startm_tag">${actList.strt_t}</td>
+							<td style="text-align: center;" rowspan="2" class="act_stat_tag">${actList.sales_actvy_stat_cd}</td>
 						</tr>
 						<tr>
-							<td style="width: 10%;">종료일자</td>
-							<td style="width: 10%;">종료시간</td>
+							<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>
+							<%-- <fmt:formatDate value="${actList.end_d}" pattern="yyyy-MM-dd"/> --%>
+							<td style="text-align: center;" class="act_endm_tag">${actList.end_t}</td>
 						</tr>
-					</thead>
-					<tbody id="act_list_tbody" class="act_list_tbody">
-						<c:forEach items="${actList}" var="actList">
-							<tr>
-								<th rowspan="2">
-									<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
-								</th>
-								<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">
-									<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
-									<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a>
-								</td>
-<%-- 								<td style="text-align: center;" rowspan="2" class="act_div_tag">${actList.sales_actvy_div_cd}</td> --%>
-								<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_oppt_tag">${actList.sales_oppt_nm}</td>
-								<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.sales_actvy_type_cd}</td>
-								<td style="text-align: center;" class="act_starth_tag">${actList.strt_d}</td>
-								<td style="text-align: center;" class="act_startm_tag">${actList.strt_t}</td>
-								<td style="text-align: center;" rowspan="2" class="act_stat_tag">${actList.sales_actvy_stat_cd}</td>
-<%-- 								<td style="text-align: center;" rowspan="2" class="act_reg_tag">${actList.fst_reg_id}</td> --%>
-<%-- 								<td style="text-align: center;" rowspan="2" class="act_dt_tag">${actList.fst_reg_dt}</td> --%>
-							</tr>
-							<tr>
-								<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>
-								<%-- <fmt:formatDate value="${actList.end_d}" pattern="yyyy-MM-dd"/> --%>
-								<td style="text-align: center;" class="act_endm_tag">${actList.end_t}</td>
-							</tr>
-
 						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</form>
-		
-	</div>
-	<!-- 페이징 처리 -->
-		<div id="directbtndiv">
-			<input type="hidden" id="endPageNum" value="${page.endPageNum}" /> 
-			<input type="hidden" id="actPageNum" value="${actPageNum}" />
-			<c:choose>
-				<c:when test="${actPageNum == page.startPageNum}">
-					<a>◀ </a>
-					<input type="text" id="actPageInput" class="act_page_txt" value="${page.startPageNum}" onkeypress="pageInputAct(event);" />
-					<a href="#" onclick="actPaging('${page.endPageNum}')" style='text-decoration: none; color: blue;'>/${page.endPageNum}</a>
-					<a href="#" onclick="actPaging('${actPageNum+1}')" style='text-decoration: none; color: blue;'>▶</a>
-				</c:when>
-				<c:when test="${actPageNum == page.endPageNum}">
-					<a href="#" onclick="actPaging('${actPageNum-1}')" style="text-decoration: none; color: blue;">◀ </a>
-					<input type="text" id="actPageInput" class="act_page_txt" value="${page.endPageNum}" onkeypress="pageInputAct(event);" />
-					<a href="#" onclick="actPaging('${page.endPageNum}')"style='text-decoration: none; color: blue;'>/${page.endPageNum}</a>
-					<a>▶</a>
-				</c:when>
-				<c:otherwise>
-					<a href="#" onclick="actPaging('${actPageNum-1}')" style="text-decoration: none; color: blue;">◀</a>
-					<input type="text" id="actPageInput" class="act_page_txt" value="${actPageNum}" onkeypress="pageInputAct(event);" />
-					<a href="#" onclick="actPaging('${page.endPageNum}')" style='text-decoration: none; color: blue;'> /${page.endPageNum}</a>
-					<a href="#" onclick="actPaging('${actPageNum+1}')" style="text-decoration: none; color: blue;">▶</a>
-				</c:otherwise>
-			</c:choose>
-			<!-- 페이징 처리 -->
+				</tbody>
+			</table>
 		</div>
+		<!-- 페이징 처리 -->
+		<div id="pageSpace" class="ui right floated pagination menu">
+			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+			<input type="hidden" id="actPageNum" value="${actPageNum}">
+			<c:choose>
+				<c:when test="${actPageNum eq page.firstPageCount}">
+						<a class="icon item">
+	       					<i class="left chevron icon"></i>
+	       				</a>	
+	    		</c:when>
+				<c:when test="${actPageNum ne page.firstPageCount}">
+	       			<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+	       				<i class="left chevron icon"></i>
+	       			</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+				<c:choose>
+					<c:when test="${i eq ccPageNum }">
+						<b>
+							<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${actPageNum eq page.totalPageCount}">
+					<a class="icon item">
+	      				<i class="right chevron icon"></i>
+	       			</a>	
+	    		</c:when>
+				<c:when test="${actPageNum ne page.totalPageCount}">
+	      			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+	      				<i class="right chevron icon"></i>
+	       			</a>
+	    		</c:when>
+			</c:choose>
+		</div>
+	</div>
 </body>
 </html>

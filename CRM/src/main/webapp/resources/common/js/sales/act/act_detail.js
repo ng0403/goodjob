@@ -84,7 +84,7 @@ function actMdfyBtn(){
 }
 
 // 달력 상세보기에서 추가에서 취소버튼 클릭했을 때
-function actAddCancelBt()
+function actAddCancelBt(act_flg)
 {
 	$(document).ready(function() {
 		var ynChk = confirm("정말 취소하시겠습니까?");
@@ -92,13 +92,21 @@ function actAddCancelBt()
 	
 		if(ynChk == true)
 		{
-			location.href = ctx + '/act';
+			if(act_flg == 1)
+			{
+				location.href = ctx + '/actSaleList';
+			}
+			else
+			{
+				location.href = ctx + '/act';
+			}
+			
 		}
 	});
 }
 
 //당력 상세보기에서 취소버튼 클릭했을 때 상세정보 보여주기
-function actMdfyCancelBt()
+function actMdfyCancelBt(act_flg)
 {
 	// 취소 버튼 기능
 	$(document).ready(function() {
@@ -108,8 +116,14 @@ function actMdfyCancelBt()
 		
 		if(ynChk)
 		{
-			location.href = '/act';
-			
+			if(act_flg == 1)
+			{
+				location.href = ctx + '/actSaleList';
+			}
+			else
+			{
+				location.href = ctx + '/act';
+			}
 			//location.href = '/actDetail?sales_actvy_id=' + salesId;
 		}
 	});
@@ -249,8 +263,6 @@ function endCalendar(ctx){
 //영업활동명을 클릭했을 때 상세정보
 function actDetail(sales_actvy_id, act_flg) 
 {
-	console.log(act_flg);
-	
 	var ctx = $("#ctx").val();
 	var at_select = $("#sales_actvy_type_nm");
 	var at_select_option = "";
@@ -259,7 +271,7 @@ function actDetail(sales_actvy_id, act_flg)
 	var astat_select = $("#sales_actvy_stat_nm");
 	var astat_select_option = "";
 	
-	location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id;
+	location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id + "&act_flg="+act_flg;
 	
 }
 
@@ -609,7 +621,8 @@ function actInsertClick(){
 /**
  * 영업활동 달력 등록 
  * */
-function actInsert(ctx) {
+function actInsert(ctx, act_flg) 
+{
 	$(document).ready(function() {
 
 		if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
@@ -697,7 +710,14 @@ function actInsert(ctx) {
 				{
 					alert("영업활동이 등록되었습니다.");
 					
-					location.href = '/act';
+					if(act_flg == 1)
+					{
+						location.href = 'actSaleList';
+					}
+					else
+					{
+						location.href = '/act';
+					}
 				}
 				else
 				{
@@ -716,7 +736,7 @@ function actInsert(ctx) {
 /**
  * 영업활동 달력 수정 버트 클릭 시
  * */
-function actModify(ctx)
+function actModify(ctx, act_flg)
 {
 	if($('#actdiv_1').is(':checked')) {
 		var sales_actvy_div_nm1=$('#actdiv_1').val();
@@ -764,7 +784,14 @@ function actModify(ctx)
 			{
 				alert("정상 수정되었습니다.");
 				
-				location.href = '/act';
+				if(act_flg == 1)
+				{
+					location.href = 'actSaleList';
+				}
+				else
+				{
+					location.href = '/act';
+				}
 			}
 			else
 			{

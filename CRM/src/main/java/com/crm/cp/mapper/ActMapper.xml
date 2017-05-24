@@ -288,7 +288,7 @@
 		  SET SALES_ACTVY_NM = #{sales_actvy_nm}, SALES_ACTVY_TYPE_CD = #{sales_actvy_type_cd}, 
 		  	  SALES_OPPT_ID = #{sales_oppt_id}, CUST_ID = #{cust_id}, SALES_ACTVY_STAT_CD = #{sales_actvy_stat_cd}, 
 		  	  STRT_D = TO_DATE(#{strt_d}, 'yyyy-MM-dd'), STRT_T = #{strt_t}, END_D = TO_DATE(#{end_d}, 'yyyy-MM-dd'), END_T = #{end_t}, 
-		  	  SALES_ACTVY_LOC = #{sales_actvy_loc}, SALES_ACTVY_PERSON = #{sales_actvy_person}", SALES_ACTVY_CONTENT = #{sales_actvy_content}, 
+		  	  SALES_ACTVY_LOC = #{sales_actvy_loc}, SALES_ACTVY_PERSON = #{sales_actvy_person}, SALES_ACTVY_CONTENT = #{sales_actvy_content}, 
 		  	  SALES_ACTVY_REASON = #{sales_actvy_reason}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>

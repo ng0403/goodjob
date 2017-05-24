@@ -53,10 +53,10 @@ function checkCount(){
 };
 
 // Insert
-function actInsertForm() {
+function actInsertForm(act_flg) {
 	var ctx = $("#ctx").val();
 	
-	location.href = ctx + '/actDetail';
+	location.href = ctx + '/actDetail?act_flg=' + act_flg;
 }
 
 function actDelete()
