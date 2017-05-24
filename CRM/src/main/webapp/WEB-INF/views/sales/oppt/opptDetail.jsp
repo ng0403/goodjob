@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
@@ -21,10 +22,12 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var opptId =$('#hsales_oppt_id').val();
+	var opptNm =$('#hsales_oppt_nm').val();
 	var custId =$('#hcust_id').val();
+	var custNm =$('#hcust_nm').val();
 	$('#salesId').val(opptId);
 	viewSalesActive(opptId);
-	estimList(opptId);
+// 	estimList(opptId);
 });
 
 </script>
@@ -51,7 +54,7 @@ $(document).ready(function() {
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
-				<button id="act_opp_nm" class="tiny ui orange button">영업활동 추가</button>
+				<button id="act_opp_nm" class="tiny ui orange button" onclick="actInsertForm('oppt', '${opptId}', '${opptNm}', '${custId}', '${custNm}');">영업활동 추가</button>
 				<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
