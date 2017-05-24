@@ -29,11 +29,13 @@ $(document).ready(function() {
 	var vn_year = vn_date_today.getYear(); 
 	var vn_hour = vn_date_today.getHours(); 
 	var vn_min = vn_date_today.getMinutes(); 
-	alert(vn_date_today);
-	alert(vn_year);
-	alert(vn_hour);
-	alert(vn_min);
+	
+// 	alert(vn_date_today);
+// 	alert(vn_year);
+// 	alert(vn_hour);
+// 	alert(vn_min);
 	$('#salesId').val(opptId);
+	
 	viewSalesActive(opptId);
 // 	estimList(opptId);
 });
@@ -62,7 +64,8 @@ $(document).ready(function() {
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
-				<button id="act_opp_nm" class="tiny ui orange button" onclick="actInsertForm2('oppt', '${opptId}', '${opptNm}', '${custId}', '${custNm}');">영업활동 추가</button>
+				<!-- actInsertForm2 함수에 값을 넘겨줄 때 detail 정보에 들어 있는 값으로 넘겨줘야한다. -->
+				<button id="act_opp_nm" class="tiny ui orange button" onclick="actInsertForm2('oppt', '${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}');">영업활동 추가</button>
 				<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			

@@ -34,19 +34,19 @@ function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm)
 	
 	if(act_flg == "oppt")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + id + "&sales_oppt_nm=" + nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 	}
 	else if(act_flg == "oppt_ed")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + id + "&sales_oppt_nm=" + nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 	}
 	else if(act_flg == "cust")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + id + "&cust_nm=" + nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 	}
 	else if(act_flg == "cust_ed")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + id + "&cust_nm=" + nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 	}
 }
 

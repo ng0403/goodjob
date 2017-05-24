@@ -317,102 +317,6 @@ function pageInputAct(event)
 	event.stopPropagation();
 }
 
-/**
- * 페이징 수정.
- * */
-//영업활동 페이징
-function actPaging(actPageNum) {
-	var ctx = $("#ctx").val();
-	var tbody = $('#act_list_tbody');
-	var tbodyContent = "";
-	var act_search_txt  = $("#act_search_txt").val();
-	
-	var actData = { "actPageNum": actPageNum, 
-					"act_search_txt" : act_search_txt
-				  };
-	
-	$.ajax({
-		url : ctx+'/actPaging',
-		type : 'POST',
-		data : actData,
-		success : function(data) {
-
-			if(data.actListSize == 0){
-				alert("검색결과가 없습니다.");
-				location.href = ctx+'/act';
-			}else{
-				tbody.children().remove();
-			
-			for (var i = 0; i < data.actList.length; i++) 
-			{
-				tbodyContent = "<tr>"
-									+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
-									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
-									+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
-									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>";
-//									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
-									
-								    if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == ""){
-								    	tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
-									}else{
-										tbodyContent +="<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'>"+data.actList[i].sales_oppt_nm+"</td>";
-									}
-								    
-								    tbodyContent +="<td rowspan='2' style='width:10%; text-align: center;' class='act_type_tag'>"+data.actList[i].sales_actvy_type_cd+"</td>"
-									+"<td style='width:10%; text-align: center;' class='act_starth_tag'>"+data.actList[i].strt_d+"</td>";
-									
-								    if(data.actList[i].strt_t == 'null' || data.actList[i].strt_t == null || data.actList[i].strt_t == "" || data.actList[i].strt_t == "0"){
-								    	tbodyContent += "<td class='act_startm_tag' style='width:10%; text-align: center;'></td>";
-									}else{
-										tbodyContent +="<td class='act_startm_tag' style='width:10%; text-align: center;'>"+data.actList[i].strt_t+"</td>";
-									}
-									
-								    tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%; text-align: center;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
-									+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id+"</td>"
-				                    +"<td rowspan='2' class='act_dt_tag' style='width:10%; text-align: center;'>"+data.actList[i].fst_reg_dt+"</td></tr>"
-				                    +"<tr>"
-				                    +"<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
-				                    
-				                    if(data.actList[i].end_t == 'null' || data.actList[i].end_t == null || data.actList[i].end_t == "" || data.actList[i].end_t == "0"){
-								    	tbodyContent += "<td class='act_endm_tag' style='width:10%; text-align: center;'></td>";
-									}else{
-										tbodyContent +="<td class='act_endm_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_t+"</td>";
-									}
-			   tbody.append(tbodyContent);
-			}
-			
-			if(data.actList.length < 5)
-			{
-				for(var j = 0; j < 5-data.actList.length; j++)
-				{
-					tbodyContent ="<tr style='height:36px;'>"
-						+"<th></th>"
-						+"<td></td><td></td><td></td><td></td>"
-						+"<td></td><td></td><td></td><td></td>"
-						+/*"<td></td></tr>"*/
-						+"<tr>"
-						+"<td></td></tr>";
-					tbody.append(tbodyContent);
-				}
-			}
-			
-			// directbtndiv
-			var pageContent = "";
-			
-			// 페이징 다시그리기
-			$("#pageSpace").children().remove();
-			
-			
-
-			$("#pageSpace").append(pageContent);
-		  }
-		},
-		error : function(request,status,error) {
-	          alert("페이징code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    }
-	});
-}
-
 /*
  * 현재 사용하고 있는 페이징.
  * */
@@ -536,6 +440,9 @@ function schActPaging(page)
 		});
 }
 
+/*
+ * Paging
+ * */
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage)
 {
 	var endPageNo = $("<input>");
@@ -962,3 +869,98 @@ function searchActDiv(){
 //});
 
 
+///**
+// * 페이징 수정.
+// * */
+////영업활동 페이징
+//function actPaging(actPageNum) {
+//	var ctx = $("#ctx").val();
+//	var tbody = $('#act_list_tbody');
+//	var tbodyContent = "";
+//	var act_search_txt  = $("#act_search_txt").val();
+//	
+//	var actData = { "actPageNum": actPageNum, 
+//					"act_search_txt" : act_search_txt
+//				  };
+//	
+//	$.ajax({
+//		url : ctx+'/actPaging',
+//		type : 'POST',
+//		data : actData,
+//		success : function(data) {
+//
+//			if(data.actListSize == 0){
+//				alert("검색결과가 없습니다.");
+//				location.href = ctx+'/act';
+//			}else{
+//				tbody.children().remove();
+//			
+//			for (var i = 0; i < data.actList.length; i++) 
+//			{
+//				tbodyContent = "<tr>"
+//									+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
+//									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
+//									+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
+//									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>";
+////									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
+//									
+//								    if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == ""){
+//								    	tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
+//									}else{
+//										tbodyContent +="<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'>"+data.actList[i].sales_oppt_nm+"</td>";
+//									}
+//								    
+//								    tbodyContent +="<td rowspan='2' style='width:10%; text-align: center;' class='act_type_tag'>"+data.actList[i].sales_actvy_type_cd+"</td>"
+//									+"<td style='width:10%; text-align: center;' class='act_starth_tag'>"+data.actList[i].strt_d+"</td>";
+//									
+//								    if(data.actList[i].strt_t == 'null' || data.actList[i].strt_t == null || data.actList[i].strt_t == "" || data.actList[i].strt_t == "0"){
+//								    	tbodyContent += "<td class='act_startm_tag' style='width:10%; text-align: center;'></td>";
+//									}else{
+//										tbodyContent +="<td class='act_startm_tag' style='width:10%; text-align: center;'>"+data.actList[i].strt_t+"</td>";
+//									}
+//									
+//								    tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%; text-align: center;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
+//									+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id+"</td>"
+//				                    +"<td rowspan='2' class='act_dt_tag' style='width:10%; text-align: center;'>"+data.actList[i].fst_reg_dt+"</td></tr>"
+//				                    +"<tr>"
+//				                    +"<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
+//				                    
+//				                    if(data.actList[i].end_t == 'null' || data.actList[i].end_t == null || data.actList[i].end_t == "" || data.actList[i].end_t == "0"){
+//								    	tbodyContent += "<td class='act_endm_tag' style='width:10%; text-align: center;'></td>";
+//									}else{
+//										tbodyContent +="<td class='act_endm_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_t+"</td>";
+//									}
+//			   tbody.append(tbodyContent);
+//			}
+//			
+//			if(data.actList.length < 5)
+//			{
+//				for(var j = 0; j < 5-data.actList.length; j++)
+//				{
+//					tbodyContent ="<tr style='height:36px;'>"
+//						+"<th></th>"
+//						+"<td></td><td></td><td></td><td></td>"
+//						+"<td></td><td></td><td></td><td></td>"
+//						+/*"<td></td></tr>"*/
+//						+"<tr>"
+//						+"<td></td></tr>";
+//					tbody.append(tbodyContent);
+//				}
+//			}
+//			
+//			// directbtndiv
+//			var pageContent = "";
+//			
+//			// 페이징 다시그리기
+//			$("#pageSpace").children().remove();
+//			
+//			
+//
+//			$("#pageSpace").append(pageContent);
+//		  }
+//		},
+//		error : function(request,status,error) {
+//	          alert("페이징code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//	    }
+//	});
+//}

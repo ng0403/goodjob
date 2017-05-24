@@ -174,6 +174,11 @@ public class ActController {
 			
 			ModelAndView mov = new ModelAndView("actSaleDetail");
 			
+			System.out.println("OPPT : " + sales_oppt_id);
+			System.out.println("OPPT : " + sales_oppt_nm);
+			System.out.println("CUST : " + cust_id);
+			System.out.println("CUST : " + cust_nm);
+			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
 			mov.addObject("sales_oppt_id", sales_oppt_id);
