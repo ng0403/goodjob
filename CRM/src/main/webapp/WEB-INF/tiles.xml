@@ -220,15 +220,22 @@
 	</definition>
 
 	<!-- 영업활동 -->
-	<definition name="actSaleList" extends="onebodyLayout">
+	<definition name="actSaleSch" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/week.jsp" />
+	</definition>
+	
+	<definition name="actSaleList" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_list.jsp" />
 	</definition>
 
 	<definition name="actSaleDetail" extends="onebodyLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/sales/act/act_detail.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
 	</definition>
 
+	<definition name="actSaleAdd" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
+	</definition>
+	
 	<!-- 영업기회 tab화면 테스트를 위한 twobody -->
 	<!-- <definition name="actSaleDetail" extends="twobodyLayout"> -->
 	<!-- <put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" 
@@ -236,11 +243,6 @@
 	<!-- <put-attribute name="detail" value="/WEB-INF/views/sales/act/act_tab.jsp" 
 		/> -->
 	<!-- </definition> -->
-
-	<definition name="actSaleAdd" extends="onebodyLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/sales/act/act_detail.jsp" />
-	</definition>
 
 	<!-- 가망고객 -->
 	<definition name="lead" extends="twobodyLayout">

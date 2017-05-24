@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="act">
-    
-    <!--영업활동 리스트 검색 
-	<sql id="where-act_oppt_list">
-	  <if test="keyfield=='oppt_id'">
-	      AND SO.SALES_OPPT_ID LIKE '%' || #{keyword} || '%'
-	  </if>
-	  <if test="keyfield=='oppt_nm'">
-	      AND SO.SALES_OPPT_NM LIKE '%' || #{keyword} || '%'
-	  </if>
-	</sql>
-	 -->
+
     <!-- 영업활동 전체 리스트 -->
 	<select id="actList" parameterType="java.util.Map" resultType="com.crm.cp.sales.act.vo.ActVO">
 		SELECT SAL.* 
@@ -32,6 +22,10 @@
 							,SUBSTR(SA.END_T, 1, 2) END_T_H
 							,SUBSTR(SA.END_T, 4, 5) END_T_M
 							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_CD
+							,SALES_ACTVY_LOC
+							,SALES_ACTVY_PERSON	
+							,SALES_ACTVY_CONTENT
+							,SALES_ACTVY_REASON
 							,SA.FST_REG_ID ,SA.FIN_MDFY_ID
 							,TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') FST_REG_DT
 							,SO.SALES_OPPT_NM
@@ -79,6 +73,10 @@
 							,SUBSTR(SA.END_T, 1, 2) END_T_H
 							,SUBSTR(SA.END_T, 4, 5) END_T_M
 							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_CD
+							,SALES_ACTVY_LOC
+							,SALES_ACTVY_PERSON
+							,SALES_ACTVY_CONTENT
+							,SALES_ACTVY_REASON
 							,SA.FST_REG_ID ,SA.FIN_MDFY_ID
 							,TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') FST_REG_DT
 							,SO.SALES_OPPT_NM
@@ -91,6 +89,8 @@
 					) P
 				) SAL
 	</select>
+	
+	<!--Home 화면 -->
 	<select id="homeActList" parameterType="java.util.Map" resultType="java.util.Map">
 			select a.sales_actvy_nm
 				,  TO_CHAR (a.strt_d , 'YYYY-MM-DD') strt_d
@@ -132,32 +132,35 @@
 	    SELECT CODE sales_actvy_stat_cd, CD_NM sales_actvy_stat_nm FROM CODE WHERE CD_GRP_ID='ASC'
 	</select>
 	
-	<!-- 영업기회 리스트 검색 -->
-	<sql id="where-act_oppt_list">
-	  <if test="keyfield=='oppt_id'">
-	      AND S.SALES_OPPT_ID LIKE '%' || #{keyword} || '%'
-	  </if>
-	  <if test="keyfield=='oppt_nm'">
-	      AND S.SALES_OPPT_NM LIKE '%' || #{keyword} || '%'
-	  </if>
-	</sql>
-	
 	<!-- 영업기회팝업 리스트 -->
 	<select id="actOpptList" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
 		SELECT 
 			S.SALES_OPPT_ID, S.SALES_OPPT_NM,
 			(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OTL' AND C.CODE = S.SALES_LEV_CD) SALES_LEV_CD,
-  			(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = S.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD,
-  			S.EXPT_SALES_AMT, S.EXPT_FIN_D, S.PSBLTY_RATE, S.FST_REG_ID
+  			(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = S.SALES_OPPT_STAT_CD ) SALES_OPPT_STAT_CD,
+  			S.EXPT_SALES_AMT, 
+  			S.EXPT_FIN_D, 
+  			S.PSBLTY_RATE 
 		FROM 
 			SALES_OPPORTUNITY S, CUSTOMER C
 		WHERE 
-			S.CUST_ID = C.CUST_ID AND S.ACT_YN = 'Y'
+			S.CUST_ID = C.CUST_ID AND S.ACT_YN = 'Y' AND S.SALES_OPPT_STAT_CD = '0001'
 		<if test="keyword!=null and keyword!='' ">
 	        <include refid="where-act_oppt_list"/>
 	    </if>
 	    ORDER BY SALES_OPPT_ID
 	</select>
+	
+	<!-- 영업기회 리스트 검색 -->
+	<sql id="where-act_oppt_list">
+		<if test="keyfield=='oppt_id'">
+			AND S.SALES_OPPT_ID LIKE '%' || #{keyword} || '%'
+		</if>
+	  	<if test="keyfield=='oppt_nm'">
+	    	AND S.SALES_OPPT_NM LIKE '%' || #{keyword} || '%'
+	  	</if>
+	</sql>
+	
 	
 	<!-- 고객팝업 리스트 -->
 	<select id="customerList" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
@@ -200,17 +203,20 @@
 				,SUBSTR(SA.STRT_T, 1, 2) STRT_T_H
 				,SUBSTR(SA.STRT_T, 4, 5) STRT_T_M
 				,TO_CHAR(SA.END_D ,'YYYY-MM-DD') END_D
-				, SA.END_T
+				,SA.END_T
 				,SUBSTR(SA.END_T, 1, 2) END_T_H
 				,SUBSTR(SA.END_T, 4, 5) END_T_M
-				,SALES_ACTVY_STAT_CD
+				,SA.SALES_ACTVY_STAT_CD
+				,SA.SALES_ACTVY_LOC
+				,SA.SALES_ACTVY_PERSON
+				,SA.SALES_ACTVY_CONTENT
+				,SA.SALES_ACTVY_REASON
 			    ,SA.FST_REG_ID ,SA.FIN_MDFY_ID
 			    ,TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') FST_REG_DT
 			    ,SO.SALES_OPPT_ID
 			    ,SO.SALES_OPPT_NM
 			    ,C.CUST_ID
 	            ,C.CUST_NM
-	            ,SA.MEMO
 	      FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, CUSTOMER C
 		  WHERE SA.SALES_ACTVY_ID = #{sales_actvy_id}
 	      	AND SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
@@ -228,13 +234,16 @@
 				,SUBSTR(SA.STRT_T, 1, 2) STRT_T_H
 				,SUBSTR(SA.STRT_T, 4, 5) STRT_T_M
 				,TO_CHAR(SA.END_D ,'YYYY-MM-DD') END_D
-				, SA.END_T
+				,SA.SA.END_T
 				,SUBSTR(SA.END_T, 1, 2) END_T_H
 				,SUBSTR(SA.END_T, 4, 5) END_T_M
-				,SALES_ACTVY_STAT_CD
+				,SA.SALES_ACTVY_STAT_CD
+				,SA.SALES_ACTVY_LOC
+				,SA.SALES_ACTVY_PERSON
+				,SA.SALES_ACTVY_CONTENT
+				,SA.SALES_ACTVY_REASON
 			    ,SA.FST_REG_ID ,SA.FIN_MDFY_ID
 			    ,TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') FST_REG_DT
-	            ,SA.MEMO
 	      FROM SALES_ACTIVITY SA
 		  WHERE SA.SALES_ACTVY_ID = #{sales_actvy_id}
 		  	AND SA.ACT_YN = 'Y'
@@ -256,7 +265,8 @@
 	<update id="actInsert" parameterType="com.crm.cp.sales.act.vo.ActVO">
 	    INSERT INTO SALES_ACTIVITY(
   			SALES_ACTVY_ID, SALES_ACTVY_NM, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID,
-  			SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, MEMO, FST_REG_ID)
+  			SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, SALES_ACTVY_LOC, 
+  			SALES_ACTVY_PERSON, SALES_ACTVY_CONTENT, SALES_ACTVY_REASON, FST_REG_ID)
 
 		VALUES(
 				(SELECT /*+INDEX_DESC(SALES_ACTIVITY PK_SALES_ACTIVITY)*/
@@ -267,7 +277,8 @@
         		 	ROWNUM=1),
         		 #{sales_actvy_nm}, #{sales_actvy_type_cd}, #{sales_oppt_id},
 		   		 #{cust_id}, #{sales_actvy_stat_cd}, TO_DATE(#{strt_d},'yyyy-MM-dd'), #{strt_t},
-		   		 TO_DATE(#{end_d},'yyyy-MM-dd'), #{end_t}, #{memo}, #{fst_reg_id}
+		   		 TO_DATE(#{end_d},'yyyy-MM-dd'), #{end_t}, #{sales_actvy_loc}, #{sales_actvy_person},
+		   		 #{sales_actvy_content}, #{sales_actvy_reason}, #{fst_reg_id}
 		     )
 	</update>
 	
@@ -277,7 +288,8 @@
 		  SET SALES_ACTVY_NM = #{sales_actvy_nm}, SALES_ACTVY_TYPE_CD = #{sales_actvy_type_cd}, 
 		  	  SALES_OPPT_ID = #{sales_oppt_id}, CUST_ID = #{cust_id}, SALES_ACTVY_STAT_CD = #{sales_actvy_stat_cd}, 
 		  	  STRT_D = TO_DATE(#{strt_d}, 'yyyy-MM-dd'), STRT_T = #{strt_t}, END_D = TO_DATE(#{end_d}, 'yyyy-MM-dd'), END_T = #{end_t}, 
-		  	  MEMO = #{memo}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
+		  	  SALES_ACTVY_LOC = #{sales_actvy_loc}, SALES_ACTVY_PERSON = #{sales_actvy_person}", SALES_ACTVY_CONTENT = #{sales_actvy_content}, 
+		  	  SALES_ACTVY_REASON = #{sales_actvy_reason}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
 	
