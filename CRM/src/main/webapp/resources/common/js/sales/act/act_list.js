@@ -59,6 +59,23 @@ function actInsertForm(act_flg) {
 	location.href = ctx + '/actDetail?act_flg=' + act_flg;
 }
 
+// Insert
+function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm) {
+	var ctx = $("#ctx").val();
+	
+	if(act_flg == "oppt")
+	{
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + id + "&sales_oppt_nm=" + nm;
+	}else if(act_flg == "oppt_ed")
+	{
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + id + "&sales_oppt_nm=" + nm;
+	}
+	else
+	{
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + id + "&cust_nm=" + nm;
+	}
+}
+
 function actDelete()
 {
 	var form = $('#delForm');

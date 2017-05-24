@@ -32,6 +32,10 @@
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="act_flg" value="${act_flg}">
+	<input type="hidden" id="hsales_oppt_id" value="${sales_oppt_id}">
+	<input type="hidden" id="hsales_oppt_nm" value="${sales_oppt_nm}">
+	<input type="hidden" id="hcust_id" value="${cust_id}">
+	<input type="hidden" id="hcust_nm" value="${cust_nm}">
 	
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
@@ -64,13 +68,11 @@
 							<th>고객사</th>
 							<td>
 								<c:if test="${flg eq '1'}">
-									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
 								    <input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" style="display: none;" disabled="disabled">
 								</c:if>
 								<c:if test="${flg eq '0'}">
-									<input type="hidden" id="hcust_id">
 								    <input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    <input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
 								    <input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
@@ -81,7 +83,6 @@
 							<th>영업기회명</th>
 							<td>
 								<c:if test="${flg eq '1'}">
-									<input type="hidden" id="hsales_oppt_id">
 									<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 	<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly"> 
 							    	<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" style="display: none;" disabled="disabled">

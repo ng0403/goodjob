@@ -271,8 +271,15 @@ function actDetail(sales_actvy_id, act_flg)
 	var astat_select = $("#sales_actvy_stat_nm");
 	var astat_select_option = "";
 	
-	location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id + "&act_flg="+act_flg;
+	var sales_oppt_id = $('#hsales_oppt_id').val();
+	var sales_oppt_nm = $('#hsales_oppt_nm').val();
+	var cust_id = $('#hcust_id').val();
+	var cust_nm = $('#hcust_nm').val();
 	
+		location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id + 
+										'&sales_oppt_id=' + sales_oppt_id + "&sales_oppt_nm=" + sales_oppt_nm + 	// 영업기회
+										'&cust_id=' + cust_id + "&cust_id=" + cust_id +								// 고객사
+										"&act_flg="+act_flg;														// flg
 }
 
 //페이지 입력 이동
@@ -674,11 +681,10 @@ function actInsert(ctx, act_flg)
 		var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 		var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
 		
-		alert("sales_actvy_loc : " + $('#sales_actvy_loc').val());
-		console.log($('#sales_actvy_loc').val());
-		console.log($('#sales_actvy_person').val());
-		console.log($('#sales_actvy_content').val());
-		console.log($('#sales_actvy_reason').val());
+		var sales_oppt_id = $('#hsales_oppt_id').val();
+		var sales_oppt_nm = $('#hsales_oppt_nm').val();
+		var cust_id = $('#hcust_id').val();
+		var cust_nm = $('#hcust_nm').val();
 		
 		$.ajax({
 			type : 'POST',
@@ -712,7 +718,15 @@ function actInsert(ctx, act_flg)
 					
 					if(act_flg == 1)
 					{
-						location.href = 'actSaleList';
+						location.href = '/actSaleList';
+					}
+					else if(act_flg == 'oppt')
+					{
+						location.href = '/opptDetail?opptId=' + sales_oppt_id;
+					}
+					else if(act_flg == 'cust')
+					{
+						location.href = '/custcompDetail?cust_id=' + cust_id;
 					}
 					else
 					{
@@ -738,12 +752,6 @@ function actInsert(ctx, act_flg)
  * */
 function actModify(ctx, act_flg)
 {
-	if($('#actdiv_1').is(':checked')) {
-		var sales_actvy_div_nm1=$('#actdiv_1').val();
-	} else {
-		var sales_actvy_div_nm1=$('#actdiv_2').val();		
-	}	
-	
 	if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
 	{
 		alert("영업활동명을 입력해 주세요");
@@ -786,7 +794,15 @@ function actModify(ctx, act_flg)
 				
 				if(act_flg == 1)
 				{
-					location.href = 'actSaleList';
+					location.href = '/actSaleList';
+				}
+				else if(act_flg == 'oppt')
+				{
+					location.href = '/opptDetail?opptId=' + sales_oppt_id;
+				}
+				else if(act_flg == 'cust')
+				{
+					location.href = '/custcompDetail?cust_id=' + cust_id;
 				}
 				else
 				{

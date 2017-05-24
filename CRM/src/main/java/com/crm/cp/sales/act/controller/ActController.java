@@ -131,14 +131,14 @@ public class ActController {
 	
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView actDetail(String sales_actvy_id, String act_flg) 
+	public ModelAndView actDetail(String sales_actvy_id, String act_flg, String sales_oppt_id, String sales_oppt_nm, String cust_id, String cust_nm)
 	{
 		int flg;
 		
 		System.out.println("Detail : " + sales_actvy_id);
 		System.out.println("act_flg : " + act_flg);
 
-		if(sales_actvy_id != null)
+		if(sales_actvy_id != null)	// 상세보기
 		{
 			System.out.println("Detail - if : " + sales_actvy_id);
 			
@@ -151,9 +151,6 @@ public class ActController {
 	
 			ActVO actVO = actService.actDetail(sales_actvy_id);
 			
-			String cust_id = actVO.getCust_id();
-			
-			//List<OpptVO> ottpList = actService.opptList(cust_id);
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
 			
@@ -163,9 +160,12 @@ public class ActController {
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
-			//mov.addObject("opptList", ottpList);
 			mov.addObject("htime", htime);
 			mov.addObject("mtime", mtime);
+			mov.addObject("sales_oppt_id", sales_oppt_id);
+			mov.addObject("sales_oppt_nm", sales_oppt_nm);
+			mov.addObject("cust_id", cust_id);
+			mov.addObject("cust_nm", cust_nm);
 			mov.addObject("act_flg", act_flg);
 			mov.addObject("flg", flg);
 			
@@ -182,6 +182,10 @@ public class ActController {
 			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("sales_oppt_id", sales_oppt_id);
+			mov.addObject("sales_oppt_nm", sales_oppt_nm);
+			mov.addObject("cust_id", cust_id);
+			mov.addObject("cust_nm", cust_nm);
 			mov.addObject("act_flg", act_flg);
 			mov.addObject("flg", flg);
 			
