@@ -26,6 +26,7 @@ select X.*
  		 CREATED,
  		 DECODE(ACTIVE_FLG , 'Y' , '활성화', 'N', '비활성화') AS ACTIVE_FLGSTRING
 		 FROM tb_board_mng
+		 order by CREATED
 ) A
 	  ) X
  <![CDATA[
@@ -40,17 +41,15 @@ select X.*
  WHERE BOARD_MNG_NO = #{BOARD_MNG_NO} AND A.BOARD_MNG_CD = B.CODE AND B.CD_GRP_ID='BOG'
  </select>
  
-  <update id="Modify" >
- 
- update tb_board_mng set BOARD_NM = #{BOARD_NM}, FILE_ATTACH_FLG =  #{FILE_ATTACH_FLG}, REPLY_FLG =  #{REPLY_FLG},
- ACTIVE_FLG =  #{ACTIVE_FLG}, NOTICE_FLG =  #{NOTICE_FLG}
+  <update id="Modify" > 
+ update tb_board_mng set BOARD_NM = #{BOARD_NM}, FILE_ATTACH_FLG =  #{FILE_ATTACH_FLG}, REPLY_FLG =  #{REPLY_FLG}
  where BOARD_MNG_NO = #{BOARD_MNG_NO}
  
  </update>
  
  <insert id ="Add">
  
-insert into tb_board_mng (board_mng_no, board_mng_cd, board_nm, reply_flg, file_attach_flg, notice_flg, active_flg, created_by)
+insert into tb_board_mng (board_mng_no, board_mng_cd, board_nm, reply_flg, file_attach_flg, created_by)
 values (
   (
     SELECT /*+INDEX_DESC(TB_BOARD_MNG TB_BOARD_MNG_PK)*/
@@ -66,9 +65,7 @@ values (
    #{BOARD_NM},
    #{REPLY_FLG},
    #{FILE_ATTACH_FLG}, 
-   #{NOTICE_FLG},
-   #{ACTIVE_FLG},
-    'ADMIN' 
+   #{CREATED_BY}
 )
  
  </insert>

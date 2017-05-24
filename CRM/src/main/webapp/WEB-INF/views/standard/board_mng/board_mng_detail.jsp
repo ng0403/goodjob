@@ -44,7 +44,7 @@
 	</div>
 	
 	<div id = "baseBtnDiv2" class="bt_position_authuser" style="display:none">
-		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
+		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="updateBoardMng();"/>
 		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
 	</div>
 	</div>
@@ -59,7 +59,7 @@
 	<th>게시판이름</th>
  <td style="height:30px"><input type="text" class="int" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM}" style="width:50%" /></td> 
 	<th>게시판분류</th>
-   <td> 
+   <td id="board_cate"> 
    <select class="form-control" id="sel1" onchange= "fn_SelectBox(this.value);"> 
     <c:forEach items="${codelist}" var="list">
  		 <c:choose>
@@ -77,7 +77,7 @@
 	<tr>
 	<th>관리자</th> <td></td>
 	 <th>게시판코드</th>
-	  <td style="height:30px"> 
+	  <td style="height:30px;"> 
  	  <input type="text" class="form-control" id="BOARD_MNG_CD" name="BOARD_MNG_CD" value="${board_mng_list.BOARD_MNG_CD}" style="width:50%;" readonly="readonly" /> 
  	   </td>
 	</tr>

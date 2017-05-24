@@ -98,7 +98,7 @@
  		<tr>
 			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
 			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
-			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
+			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' style="color:black" onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>

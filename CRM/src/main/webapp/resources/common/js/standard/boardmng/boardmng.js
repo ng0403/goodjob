@@ -1,9 +1,6 @@
  $(function(){
 	var ctx = $('#ctx').val();
-	
-	var tbodylength = $('#board_list_tbody tr').length;
-	var tbody = $('#board_list_tbody');  
-	 
+ 
 	
    });
  
@@ -130,7 +127,7 @@ function boaradPaging(boardPageNum) {
 				tbody.children().remove();
 			
 			for (var i = 0; i < data.boardList.length; i++) { 
- 				tbodyContent +='<tr><td scope="row"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+data.boardList[i].BOARD_MNG_NO+'"></td>'
+ 				tbodyContent +='<tr><td scope="row" style="text-align:center"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+data.boardList[i].BOARD_MNG_NO+'"></td>'
  				    +'<td>' + data.boardList[i].BOARD_MNG_NO + '</td>' 
  				    +'<td>' + data.boardList[i].BOARD_MNG_CD + '</td>'
 					+'<td><a href="/board_mng_detail?BOARD_MNG_NO=' +data.boardList[i].BOARD_MNG_NO+ '"style="color: black; cursor: pointer;" class="callClick">'+ data.boardList[i].BOARD_NM+'</a></td>'
@@ -166,3 +163,259 @@ function boaradPaging(boardPageNum) {
 	});
 } 
   
+
+//게시판관리 상세보기 ajax
+function boardmngDetailClick(a) {
+ 
+		event.preventDefault();
+ 		var BOARD_MNG_NO = a;
+ 		var board_cate = $("#board_cate");
+ 		var board_content = "";
+ 		
+		$.ajax({
+			url : '/boardMngDetail',
+			data : BOARD_MNG_NO, //보낼 데이터값
+			dataType : 'json',
+			type : "POST", //
+			contentType : "application/json",
+			success : function(data) {
+  				$('#BOARD_NM').val(data.boardMngvo.board_NM);
+    			$('#BOARD_MNG_NO').val(data.boardMngvo.board_MNG_NO);
+  			if(data.boardMngvo.file_ATTACH_FLG == 'Y')
+ 			 {
+    			    $('#file_attach_flg_y').prop('checked',true);
+   			 }
+ 			else{
+    			    $('#file_attach_flg_n').prop('checked',true);
+   			}
+  			
+  			if(data.boardMngvo.reply_FLG == 'Y')
+ 				{
+    			    $('#reply_flg_y').prop('checked',true);
+   				}
+ 			else{
+   	  			 $('#reply_flg_n').prop('checked',true);
+   			}
+  			
+  			 
+  			$("#sel1").val(data.boardMngvo.board_MNG_CD);
+   			
+  			    $('#BOARD_MNG_CD').val(data.boardMngvo.board_MNG_CD);  
+				 
+ 				 
+ 			}, 
+			error : function(e) {
+				alert("오류발생");
+			}
+		});
+	 	/*$('#board_list_tbody').delegate('a', 'click', function(event) {
+
+	});*/
+}
+
+
+
+//게시판 관리 수정
+function updateBoardMng() {
+	     var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
+  		 var BOARD_NM = $("#BOARD_NM").val();
+ 		 var BOARD_MNG_CD = $("#sel1").val();
+ 		 var FILE_ATTACH_FLG;
+ 		 var REPLY_FLG;
+ 		 
+ 		 if($('#file_attach_flg_y').is(':checked'))
+ 			 {
+ 			 FILE_ATTACH_FLG = 'Y';
+ 			 }
+ 		 else{
+ 			 FILE_ATTACH_FLG = 'N';
+ 		 }
+ 		 if($('#reply_flg_y').is(':checked'))
+ 			 {
+ 			 REPLY_FLG = 'Y';
+ 			 }
+ 		 else{
+ 			 REPLY_FLG = 'N';
+ 		 }
+ 		 var boardMngjsonData = {
+ 				"BOARD_MNG_NO":BOARD_MNG_NO, "BOARD_NM" : BOARD_NM, "BOARD_MNG_CD" : BOARD_MNG_CD, "FILE_ATTACH_FLG" : FILE_ATTACH_FLG, "REPLY_FLG" : REPLY_FLG
+ 		 }
+ 		 
+ 		 if(BOARD_NM == null || BOARD_NM == "")
+ 			 {
+ 			 alert("게시판 이름을 입력해 주세요.");
+ 			 return false;
+ 			 }
+ 		 if(BOARD_MNG_CD == null || BOARD_MNG_CD == "")
+ 			 {
+ 			 alert("게시판 코드를 입력해 주세요.");
+ 			 return false;
+ 			 }
+ 		 
+		 
+		 $.ajax({
+				url : 'boardmngupdate',
+				data : boardMngjsonData, //보낼 데이터값
+				dataType : 'json',
+				type : "POST", //
+ 				success : function(data) { 
+					alert(data.mdfyResult);
+	  			    $('#cont_nm').val("");  
+					$('#company_nm').val("");
+					$('#ph1').val("");
+					$('#ph2').val("");
+					$('#ph3').val("");
+					
+					$('#cell_ph1').val("");	
+					$('#cell_ph2').val("");
+					$('#cell_ph3').val("");
+					
+					$('#email1').val("");
+					$('#email2').val("");
+					boaradPaging();
+	 			},
+	 			
+				error : function(e) {
+					alert("오류발생");
+				}
+			});	 
+		 
+}
+ 
+
+//연락처 추가 버튼
+function boardMngAddp(){
+ 	
+	$("#BOARD_NM").attr("readonly", false);
+	$("#BOARD_MNG_CD").attr("disabled", false);
+	$("#sel1").attr("disabled", false);
+	$(".radio_class").prop('disabled', false);
+  
+	$('#BOARD_NM').css("background-color", "white");
+	$('#BOARD_MNG_CD').css("background-color", "white"); 
+ 	
+	$("#btn_1").css("display", "none");
+	$("#btn_2").css("display", "block");
+	
+	
+	 
+	$('#BOARD_NM').val("");
+	$('#BOARD_MNG_CD').val("");
+	 
+}
+
+
+//연락처 추가 저장.
+function contactInsert() { 
+  	 var BOARD_NM = $("#BOARD_NM").val();
+	 var BOARD_MNG_CD = $("#sel1").val();
+	 var FILE_ATTACH_FLG;
+	 var REPLY_FLG;
+	 
+	 if($('#file_attach_flg_y').is(':checked'))
+		 {
+		 FILE_ATTACH_FLG = 'Y';
+		 }
+	 else{
+		 FILE_ATTACH_FLG = 'N';
+	 }
+	 if($('#reply_flg_y').is(':checked'))
+		 {
+		 REPLY_FLG = 'Y';
+		 }
+	 else{
+		 REPLY_FLG = 'N';
+	 }
+	 
+	 if(BOARD_NM == null || BOARD_NM == "")
+		 {
+		 alert("게시판 이름을 입력해 주세요.");
+		 return false;
+		 }
+	 if(BOARD_MNG_CD == null || BOARD_MNG_CD == "")
+		 {
+		 alert("게시판 코드를 입력해 주세요.");
+		 return false;
+		 }
+		 
+		 
+	
+	 var boardMngjsonData = {
+				 "BOARD_NM" : BOARD_NM, "BOARD_MNG_CD" : BOARD_MNG_CD, "FILE_ATTACH_FLG" : FILE_ATTACH_FLG, "REPLY_FLG" : REPLY_FLG
+		 }
+		 
+		 $.ajax({
+				url : 'boardMngInsert',
+				data : boardMngjsonData, //보낼 데이터값
+				dataType : 'json',
+				type : "POST", //
+ 				success : function(data) { 
+ 	  			    $('#cont_nm').val("");  
+					$('#company_nm').val("");
+					$('#ph1').val("");
+					$('#ph2').val("");
+					$('#ph3').val("");
+					
+					$('#cell_ph1').val("");	
+					$('#cell_ph2').val("");
+					$('#cell_ph3').val("");
+					
+					$('#email1').val("");
+					$('#email2').val("");
+					boaradPaging();
+	 			},
+	 			
+				error : function(e) {
+					alert("오류발생");
+				}
+			});	  
+}
+
+
+
+
+
+
+//페이징
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+ 	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var prevPage = $("<a>");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:contactPaging("+prevPageNum+")");
+	}
+	prevPage.append(prevI);
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:contactPaging("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:contactPaging("+nextPageNum+")");
+	}
+	nextPage.append(nextI);
+	$("#pageSpace").append(nextPage);
+}

@@ -63,7 +63,8 @@ public class FileManager {
 	
 	public String doFileUpload(MultipartFile file, HttpServletRequest request){
 		
-		String filePath = "downloads\\";
+		/*String filePath = "downloads\\";*/
+		String filePath = "C:\\users\\core\\desktop\\file\\";
 		String folderPath = "";
 		String random = "";
 
@@ -80,8 +81,9 @@ public class FileManager {
 			// construct the complete absolute path of the file
 			folderPath = appPath +"\\"+ filePath;
 			
-			String uploadFilePath = appPath +"\\"+ filePath + randomtext + file.getOriginalFilename();
-			
+			/*String uploadFilePath = appPath +"\\"+ filePath + randomtext + file.getOriginalFilename();*/
+			String uploadFilePath = filePath + randomtext + file.getOriginalFilename();
+			System.out.println("파일 경로" +uploadFilePath.toString());
 			File folderFile = new File(folderPath);	
 			File uploadFile = new File(uploadFilePath);
 			

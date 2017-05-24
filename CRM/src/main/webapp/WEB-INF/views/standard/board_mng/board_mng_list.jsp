@@ -51,8 +51,8 @@ $(function() {
 					action="/board/board_remove">
 					<table class="ui sortable celled table">
 						<thead>
-							<tr>
-								<th><input id="checkall" type="checkbox"
+							<tr style="text-align:center">
+								<th ><input id="checkall" type="checkbox"
 									onclick="checkAll();" /></th>
 								<th>게시판관리번호</th>
 								<th>게시판구분</th>
@@ -64,16 +64,19 @@ $(function() {
 						<tbody id="board_list_tbody">
 							<c:forEach items="${boardmnglist}" var="boardMngVO">
 								<tr>
-									<td scope="row"><input type="checkbox" id="del_code"
+									<td scope="row" style=" text-align:center"><input type="checkbox" id="del_code"
 										name="del_code" value="${boardMngVO.BOARD_MNG_NO}"></td>
-									<td>${boardMngVO.BOARD_MNG_NO}</td>
-									<td>${boardMngVO.BOARD_MNG_CD}</td>
-									<td><a
-										href="/board_mng_detail?BOARD_MNG_NO=${boardMngVO.BOARD_MNG_NO}"
-										style="color: black">${boardMngVO.BOARD_NM}</a></td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+									<td style=" text-align:center">${boardMngVO.BOARD_MNG_NO}</td>
+									<td style=" text-align:center">${boardMngVO.BOARD_MNG_CD}</td>
+									<td>
+									<%-- <a href="/board_mng_detail?BOARD_MNG_NO=${boardMngVO.BOARD_MNG_NO}"
+										style="color: black">${boardMngVO.BOARD_NM}</a> --%>
+									<a href="" style="color:black" onclick="boardmngDetailClick('${boardMngVO.BOARD_MNG_NO}')">${boardMngVO.BOARD_NM}</a>	
+										
+								   </td>
+									<td style=" text-align:center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 											value="${boardMngVO.CREATED}" /></td>
-									<td><c:if test="${boardMngVO.ACTIVE_FLG eq 'Y'}">활성화</c:if>
+									<td style=" text-align:center"><c:if test="${boardMngVO.ACTIVE_FLG eq 'Y'}">활성화</c:if>
 										<c:if test="${boardMngVO.ACTIVE_FLG eq 'N'}">비활성화</c:if></td>
 								</tr>
 							</c:forEach>
@@ -83,11 +86,17 @@ $(function() {
 
 			</div>
 			 <div class="bottom_div">
-     	<div class="functionBtn_div">
+     	<div class="functionBtn_div" id="btn_1">
 					<input type="button" id="board_add_fbtn"
-						class="tiny ui orange button" value="추가" onclick="board_add();" />
+						class="tiny ui orange button" value="추가" onclick="boardMngAddp();" />
 					<input type="button" id="board_remove_fbtn"
 						class="tiny ui orange button" value="삭제" onclick="deleteAction() " />
+				</div>
+				
+				<div class="functionBtn_div" id="btn_2" style="display:none">
+				<input type="button" id="board_add_save" class="tiny ui orange button" value="저장" onclick="contactInsert();"/>
+				<input type="button" id="board_remove_fbtn"	class="tiny ui orange button" value="삭제" onclick="deleteAction() " />
+				
 				</div>
   
 				<!-- 페이징 처리 -->

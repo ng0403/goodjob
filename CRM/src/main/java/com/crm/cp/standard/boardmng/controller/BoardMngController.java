@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
 import com.crm.cp.standard.boardmng.service.BoardMngService;
 import com.crm.cp.standard.boardmng.vo.BoardMngVO;
@@ -42,20 +43,21 @@ public class BoardMngController {
 			page.setEndRow(0);
 		}
  		List<Object> boardmnglist = boardmngService.list(map); 
- 		
+		List<BoardMngVO> codelist = boardmngService.codelist();
+ 
 		ModelAndView mov = new ModelAndView("board_mng_list");
 		mov.addObject("boardmnglist", boardmnglist);
 		mov.addObject("page",  page);
 		mov.addObject("pageNum",  pageNum); 
-
+		mov.addObject("codelist", codelist);
+		
+		System.out.println(mov.toString());
 		return mov; 
 		
 	}
 	
-	@RequestMapping(value="/board_mng_detail", method=RequestMethod.GET)
-	public ModelAndView board_mng_detail(@RequestParam("BOARD_MNG_NO")String BOARD_MNG_NO , HttpSession session ){
-		
-		 
+	/*@RequestMapping(value="/board_mng_detail", method=RequestMethod.GET)
+	public ModelAndView board_mng_detail(@RequestParam("BOARD_MNG_NO")String BOARD_MNG_NO , HttpSession session ){ 
 		//		접속된 사용자 아이디 
 		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
@@ -75,9 +77,27 @@ public class BoardMngController {
  		mov.addObject("codelist", codelist);
 	 
  		return mov;
-	}
+	}*/
 	
-	@RequestMapping(value="/board_mng_modify", method=RequestMethod.GET)
+	
+	
+	// 게시판 관리 상세정보
+		  @RequestMapping(value = "boardMngDetail", method = RequestMethod.POST)
+		  public @ResponseBody Map<String, Object> companyCutomerDetail(@RequestBody String BOARD_MNG_NO) {
+		 
+			System.out.println("ajax detail BOARDMNG" + BOARD_MNG_NO);
+			  
+			BoardMngVO boardMngVo =  boardmngService.detail(BOARD_MNG_NO); 
+			System.out.println("boardMngVo " + boardMngVo.toString());
+
+			Map<String, Object> boardMap = new HashMap<String, Object>();
+			boardMap.put("boardMngvo", boardMngVo); 
+			  
+			 return boardMap;
+		  
+		  }
+	
+	/*@RequestMapping(value="/board_mng_modify", method=RequestMethod.GET)
 	public void board_mng_modify(){ 
 		System.out.println("modify page entering");
 	}
@@ -91,9 +111,26 @@ public class BoardMngController {
 		boardmngService.modify(vo);
 		System.out.println("modify success" + vo.toString());
 		return "redirect:/boardmngInqr";
-	}
+	}*/
+		  
+		  @RequestMapping(value = "/boardmngupdate", method = RequestMethod.POST)
+			public @ResponseBody Map<String, Object> boardmngupdate(HttpSession session, BoardMngVO boardMngVo) {
+				System.out.println("boardmngupdate entering" + boardMngVo.toString());
+				Map<String, Object> rstMap = new HashMap<String, Object>();
+				
+				if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+					rstMap.put("mdfyResult", "standard/home/session_expire");
+				} else {
+					boardMngVo.setUPDATED_BY(session.getAttribute("user").toString());
+		 		    boardmngService.modify(boardMngVo); 
+					rstMap.put("mdfyResult", "success");
+				}  
+				return rstMap;
+			}	  
+		  
+		  
 	
-	@RequestMapping(value="/board_mng_add" ,method=RequestMethod.GET)
+	/*@RequestMapping(value="/board_mng_add" ,method=RequestMethod.GET)
 	public ModelAndView board_mng_add() {
 		
 		List<BoardMngVO> codelist = boardmngService.codelist();
@@ -105,8 +142,7 @@ public class BoardMngController {
 		return mov;
 		
 	}
-	
-	
+		
 	@RequestMapping(value="/board_mng_add" ,method=RequestMethod.POST)
 	public String board_mng_add_post(BoardMngVO vo) {
 		
@@ -116,6 +152,25 @@ public class BoardMngController {
 		return "redirect:/boardmngInqr";
 		
 	}
+	
+	*/
+		  
+    //게시판 관리 추가.
+	@RequestMapping(value = "/boardMngInsert", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> boardMngInsert(HttpSession session, BoardMngVO boardMngVO) {
+		System.out.println("cont insert entering" + boardMngVO.toString());
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+			rstMap.put("mdfyResult", "standard/home/session_expire");
+		} else {
+			boardMngVO.setUPDATED_BY(session.getAttribute("user").toString());
+			boardMngVO.setCREATED_BY(session.getAttribute("user").toString());
+ 			boardmngService.add(boardMngVO); 
+			rstMap.put("mdfyResult", "success");
+		}  
+		return rstMap;
+	}
+
 	
 	
 	@RequestMapping(value="/board_mng_remove" ,method=RequestMethod.POST)
