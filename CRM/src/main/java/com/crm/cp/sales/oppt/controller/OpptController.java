@@ -364,6 +364,7 @@ public class OpptController {
 		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
 		//영업기회단계이력추가
 		int result2 = service.addOpptStep(detail);
+		if(est_list != null){
 		for(int i=0 ; i< est_list.size(); i++){
 			OpptVO vo = new OpptVO();
 			vo.setSales_oppt_id(detail.getSales_oppt_id());
@@ -380,6 +381,7 @@ public class OpptController {
 		//영업기회-상품리스트 추가
 		int result1 = service.opptPrdtAdd(estList);
 		System.out.println("영업기회상품 편집추가 result : " + result1);
+		}
 		
 		System.out.println("영업기회단계리스트수정추가 result : " + result2);
 		Map<String, Object> opptMap = new HashMap<String, Object>();

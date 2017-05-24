@@ -279,7 +279,17 @@ function opptAdd(){
 		datatype : 'json',
 		success:function(result){
 			alert("영업기회가 추가되었습니다.");
-			location.href = ctx + "/oppt";
+			
+			if(act_flg == null )
+			{
+				alert("영업기회 페이지로 이동합니다.");
+				location.href = ctx + "/oppt";
+			}
+			else if(act_flg == 'cust')
+			{
+				alert("영업기회 페이지로 이동합니다.");
+				location.href = ctx +'/custcompDetail?cust_id=' + cust_id;
+			}
 		},
 		error:function(request){
 			alert("error : " + request.status);
@@ -356,10 +366,10 @@ function opptModify(){
 		alert("할인 단위를 선택해 주세요.");
 		return false;
 	}
-	if(est_list.length==0){
-		alert("상품을 추가해 주세요");
-		return false;
-	}
+//	if(est_list.length==0){
+//		alert("상품을 추가해 주세요");
+//		return false;
+//	}
 	
 	var ctx = $("#ctx").val();
 	$.ajax({
@@ -646,7 +656,7 @@ function viewSalesActive(opptId){
 				content +="<tr>"+
 				"<td rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
 				"<td rowspan='2'>" +
-				"<a style='text-decoration: none; text-align: center;' href=javascript:actDetail('"+data.sales_actvy_id+","+oppt_ed+"')>"+data.sales_actvy_nm+"</a></td>"+
+				"<a style='text-decoration: none; text-align: center;' href=javascript:actDetail('"+data.sales_actvy_id+","+'oppt_ed'+"')>"+data.sales_actvy_nm+"</a></td>"+
 //				"<a style='text-decoration: none; text-align: center;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
 //				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+
 				"<td rowspan='2'>"+data.sales_oppt_nm+"</td>"+
