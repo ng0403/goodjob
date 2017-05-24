@@ -675,6 +675,10 @@ public class CustCompController {
 		map.put("cont_id", cont_id);
 		
 		KeymanVO kmVO = ccService.keymanDetail(map);
+		
+		kmVO.setCell_ph(kmVO.getCell_ph1() + "-" + kmVO.getCell_ph2() + "-" + kmVO.getCell_ph3());
+		kmVO.setEmail(kmVO.getEmail1() + "@" + kmVO.getEmail2());
+		
 		System.out.println("key man who ? " +  kmVO.toString());
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_kmn_pop");
 		mov.addObject("kmVO", kmVO);

@@ -703,11 +703,11 @@ function keymanList(cust_id) {
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
-						"<td style='width:12%;'>"+data[i].key_part+"</td>" +
-						"<td style='width:12%;'>"+data[i].key_pos+"</td>" +
-						"<td style='width:13%;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
-						"<td style='width:13%;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
+						"<td style='width:10%;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"','"+data[i].cont_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
+						"<td id='key_part' style='width:12%;'>"+data[i].key_part+"</td>" +
+						"<td id='key_pos' style='width:12%;'>"+data[i].key_pos+"</td>" +
+						"<td id='cell_ph' style='width:13%;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
+						"<td id='email' style='width:13%;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}

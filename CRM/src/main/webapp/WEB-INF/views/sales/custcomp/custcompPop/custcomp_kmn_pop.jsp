@@ -44,7 +44,7 @@
 							<td>
 							    <input type="hidden" id="cont_id" name="cont_id" /> 
 							    <input type="hidden" id="cust_id" name="cust_id" value="${cust_id}"/> 
-								<input type="text" name="cont_nm" id="cont_nm" class="inputText" value="${kmVO.cust_nm}" autofocus="autofocus" style="margin-right: 5px;"/>
+								<input type="text" name="cont_nm" id="cont_nm" class="inputText" value="${kmVO.cont_nm}" style="margin-right: 5px;" readonly="readonly"/>
 								<input type="button" value="연락처" id="contact" class="tiny ui blue basic button" onclick="javascript:contactListPopup('${ctx}');">
 							</td>
 							
@@ -60,13 +60,13 @@
 						<tr>
 							<th>연락처</th>
 							<td>
-								<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${kmVO.cell_ph}"  onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+								<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${kmVO.cell_ph}"  onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' readonly="readonly" style='ime-mode:disabled; width: 250px;' />
 							</td>	
 						</tr>
 						<tr>
 							<th>이메일</th>
 							<td>
-								<input type="text" name="email" id="email" class="inputText" value="${kmVO.email}"   onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+								<input type="text" name="email" id="email" class="inputText" value="${kmVO.email}"   onkeyup='removeChar(event);' readonly="readonly" style='ime-mode:disabled; width: 250px;' />
 							</td>	
 						</tr>
 					</tbody>
