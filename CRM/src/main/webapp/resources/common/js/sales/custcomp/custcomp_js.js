@@ -754,7 +754,7 @@ function keymanList(cust_id) {
 			error : function() {
 				alert("전송중 오류가 발생했습니다.");
 			}
-		});
+		}); 
 	});
 }
 // 영업기회 List ajax 통신
