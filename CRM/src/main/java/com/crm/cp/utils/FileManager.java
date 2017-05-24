@@ -26,7 +26,8 @@ public class FileManager {
 	public FileManager(){}
 	
 	public boolean doFileDownload(String file_name, String pathname, HttpServletResponse response) {
-		String filePath = "downloads\\";
+		/*String filePath = "downloads\\";*/
+		String filePath = "C:\\users\\core\\desktop\\file\\";
 		String fullpathname = pathname +filePath+ file_name;
 		
 		String viewfilename = file_name.substring(10, file_name.length());
