@@ -306,9 +306,17 @@
 	</definition>
 
 	<!-- 연락처 -->
-	<definition name="contact" extends="onebodyLayout">
+<!-- 	<definition name="contact" extends="onebodyLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/sales/contact/contactList.jsp" />
+	</definition> -->
+
+	<definition name="contact" extends="twobodyLayout">
+		<put-attribute name="master"
+			value="/WEB-INF/views/sales/contact/contactList.jsp" />
+	    <put-attribute name="detail"
+			value="/WEB-INF/views/sales/contact/contactTab.jsp" />
+			
 	</definition>
 
 

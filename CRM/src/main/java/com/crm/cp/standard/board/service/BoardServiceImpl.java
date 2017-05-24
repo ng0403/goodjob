@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.dao.BoardDao;
 import com.crm.cp.standard.board.vo.BoardVO;
+import com.crm.cp.standard.boardmng.vo.BoardMngVO;
 import com.crm.cp.utils.PagerVO;
  
 @Service
@@ -165,6 +166,12 @@ public class BoardServiceImpl implements BoardService {
 			public void file_removeMd(String FILE_CD) {
 				boardDao.file_removeMd(FILE_CD);
 				
+			}
+
+			@Override
+			public BoardMngVO checkBoardMngNo(String BOARD_MNG_NO) {
+ 				
+				return boardDao.checkBoardMngNo(BOARD_MNG_NO);
 			}
  
 }

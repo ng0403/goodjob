@@ -3,8 +3,8 @@ package com.crm.cp.standard.board.service;
 import java.util.List;
 import java.util.Map;
 
-import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
+import com.crm.cp.standard.boardmng.vo.BoardMngVO;
 import com.crm.cp.utils.PagerVO;
   
 public interface BoardService {
@@ -13,7 +13,7 @@ public interface BoardService {
 	  public List<BoardVO> ajaxlist();
 	  public List<BoardVO> QnAajaxlist();
 	  public List<BoardVO> fileboardList();
-	  
+	  public BoardMngVO checkBoardMngNo(String BOARD_MNG_NO);
 	  
 
 	  public BoardVO detail(int BOARD_NO);

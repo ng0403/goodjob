@@ -3,7 +3,7 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
- });
+  });
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
 
@@ -357,7 +357,8 @@ function contactList(page){
 
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
- 	var ctx = $("#ctx").val();
+	alert("hihihi");
+  	var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
 	var cont_nm = $("#cont_nm").val();
@@ -389,8 +390,8 @@ function contactPaging(contactPageNum) {
 			for (var i = 0; i < data.contactList.length; i++) {
 				
 				tbodyContent +='<tr><td style="width:20px; text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></td>'
-         			+"<td style='width:20%;'><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
-					+'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'; 
+				    +'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'  
+				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
         			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
@@ -441,7 +442,7 @@ function contactPaging(contactPageNum) {
 
 //페이징
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
-	var endPageNo = $("<input>");
+ 	var endPageNo = $("<input>");
 	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
 	var ccPageeNo = $("<input>");
 	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
@@ -501,9 +502,8 @@ function callCustKeyDelete() {
 			contentType : 'application/json',
 			success : function(data){
 				alert(data.deleteResult);
-				
-				location.href=ctx+'/contact';
-			},
+				contactPaging();
+ 			},
 			error : function(data){
 				alert(data.deleteResult);
 				history.back();
@@ -513,3 +513,262 @@ function callCustKeyDelete() {
 		return;
 	}
 }
+
+
+
+//연락처 상세보기
+function contactDetailClick(a) {
+	$('#call_list_tbody').delegate('a', 'click', function(event) {
+		event.preventDefault();
+		var ctx = $('#ctx').val();
+		var cont_id = a;
+ 		
+		$.ajax({
+			url : '/contactDetail',
+			data : cont_id, //보낼 데이터값
+			dataType : 'json',
+			type : "POST", //
+			contentType : "application/json",
+			success : function(data) {
+				
+				$('#cont_id').val(data.cont_id);
+  			    $('#cont_nm').val(data.cont_nm);  
+				$('#company_nm').val(data.company_nm);
+				$('#ph1').val(data.ph1);
+				$('#ph2').val(data.ph2);
+				$('#ph3').val(data.ph3);
+				
+				$('#cell_ph1').val(data.ph1);	
+				$('#cell_ph2').val(data.ph2);
+				$('#cell_ph3').val(data.ph3);
+				
+				$('#email1').val(data.email1);
+				$('#email2').val(data.email2); 
+ 			},
+ 			
+			error : function(e) {
+				alert("오류발생");
+			}
+		});
+	});
+}
+
+
+
+//연락처 수정
+function updateCont() {
+	 
+ 		 var cont_id = $("#cont_id").val();
+ 		 var cont_nm = $("#cont_nm").val();
+ 		 var company_nm = $("#company_nm").val();
+		 var ph1 = $("#ph1").val();
+		 var ph2 = $("#ph2").val();
+		 var ph3 = $("#ph3").val();
+		 var cell_ph1 = $("#cell_ph1").val();
+		 var cell_ph2 = $("#cell_ph2").val();
+		 var cell_ph3 = $("#cell_ph3").val();
+		 var email1 = $("#email1").val();
+		 var email2 = $("#email2").val();
+		 
+		 var contactjsonData = {
+			"cont_id" : cont_id ,"cont_nm" : cont_nm, "company_nm" : company_nm, "ph1" : ph1, "ph2" : ph2, "ph3" : ph3
+			, "cell_ph1" : cell_ph1, "cell_ph2" : cell_ph2 , "cell_ph3" : cell_ph3, "email1" : email1, "email2" : email2
+		 }
+		 
+		 $.ajax({
+				url : 'contactUpdate',
+				data : contactjsonData, //보낼 데이터값
+				dataType : 'json',
+				type : "POST", //
+ 				success : function(data) { 
+					alert(data.mdfyResult);
+	  			    $('#cont_nm').val("");  
+					$('#company_nm').val("");
+					$('#ph1').val("");
+					$('#ph2').val("");
+					$('#ph3').val("");
+					
+					$('#cell_ph1').val("");	
+					$('#cell_ph2').val("");
+					$('#cell_ph3').val("");
+					
+					$('#email1').val("");
+					$('#email2').val("");
+					contactPaging();
+	 			},
+	 			
+				error : function(e) {
+					alert("오류발생");
+				}
+			});	  
+		 
+}
+
+
+//연락처 추가 버튼
+function contactAddp(){
+ 	
+	$('#company_nm').attr("readonly", false);
+	$('#cont_nm').attr("readonly", false);
+	$('#email1').attr("readonly", false);
+	$('#email2').attr("readonly", false);
+	$('#cell_ph1').attr("readonly", false);
+	$('#cell_ph2').attr("readonly", false);
+	$('#cell_ph3').attr("readonly", false);
+	$('#ph1').attr("readonly", false);
+	$('#ph2').attr("readonly", false);
+	$('#ph3').attr("readonly", false);
+		
+	$('#cont_nm').attr("disabled",false);
+	$('#email1').attr("disabled",false);
+	$('#email2').attr("disabled",false);
+	$('#cell_phone1').attr("disabled",false);
+	$('#cell_phone2').attr("disabled",false);
+	$('#cell_phone3').attr("disabled",false);
+	$('#ph_phone1').attr("disabled",false);
+	$('#ph_phone2').attr("disabled",false);
+	$('#ph_phone3').attr("disabled",false);
+
+	
+	$('#company_nm').css("background-color", "white");
+	$('#cont_nm').css("background-color", "white"); 
+ 	$('#email1').css("background-color", "white"); 
+	$('#email2').css("background-color", "white"); 
+	$('#cell_ph1').css("background-color", "white"); 
+	$('#cell_ph2').css("background-color", "white"); 
+	$('#cell_ph3').css("background-color", "white"); 
+	$('#ph1').css("background-color", "white"); 
+	$('#ph2').css("background-color", "white"); 
+	$('#ph3').css("background-color", "white"); 
+	
+	$("#btn_1").css("display", "none");
+	$("#btn_2").css("display", "block");
+	
+	
+	 
+	$('#company_nm').val("");
+	$('#cont_nm').val("");
+	$('#email1').val("");
+	$('#email2').val("");
+	$('#cell_ph1').val("");
+	$('#cell_ph2').val("");
+	$('#cell_ph3').val("");
+	$('#ph1').val("");
+	$('#ph2').val("");
+	$('#ph3').val(""); 
+}
+
+
+//연락처 추가 저장.
+function contactInsert() { 
+	
+	 var cont_id = $("#cont_id").val();
+	 var cont_nm = $("#cont_nm").val();
+	 var company_nm = $("#company_nm").val();
+	 var ph1 = $("#ph1").val();
+	 var ph2 = $("#ph2").val();
+	 var ph3 = $("#ph3").val();
+	 var cell_ph1 = $("#cell_ph1").val();
+	 var cell_ph2 = $("#cell_ph2").val();
+	 var cell_ph3 = $("#cell_ph3").val();
+	 var email1 = $("#email1").val();
+	 var email2 = $("#email2").val();
+	 
+	 
+	 if(cont_nm == null || cont_nm =="")
+		 {
+		 alert("이름을 입력해 주세요.");
+		 return false;
+		 }
+	 if(company_nm == null || company_nm =="")
+		 {
+		 alert("회사명을 입력해 주세요.");
+		 return false;
+		 }
+	 if(ph1 == null || ph1 ==""){
+	   alert("전화번호를 입력해 주세요.");
+	   return false;
+	 }
+	 if(ph2 == null || ph2 ==""){
+		 alert("전화번호를 입력해 주세요.");
+		 return false;
+	 }
+	 if(ph3 == null || ph3 == "" ){
+		 alert("전화번호를 입력해 주세요.");
+		 return false;
+	 }
+		 
+		 
+		 
+	
+	var contactjsonData = {
+			"cont_id" : cont_id ,"cont_nm" : cont_nm, "company_nm" : company_nm, "ph1" : ph1, "ph2" : ph2, "ph3" : ph3
+			, "cell_ph1" : cell_ph1, "cell_ph2" : cell_ph2 , "cell_ph3" : cell_ph3, "email1" : email1, "email2" : email2
+		 }
+		 
+		 $.ajax({
+				url : 'contactInsert',
+				data : contactjsonData, //보낼 데이터값
+				dataType : 'json',
+				type : "POST", //
+ 				success : function(data) { 
+					alert(data.mdfyResult);
+	  			    $('#cont_nm').val("");  
+					$('#company_nm').val("");
+					$('#ph1').val("");
+					$('#ph2').val("");
+					$('#ph3').val("");
+					
+					$('#cell_ph1').val("");	
+					$('#cell_ph2').val("");
+					$('#cell_ph3').val("");
+					
+					$('#email1').val("");
+					$('#email2').val("");
+					contactPaging();
+	 			},
+	 			
+				error : function(e) {
+					alert("오류발생");
+				}
+			});	  
+}
+
+
+//취소버튼
+function callAddCancelBtn(){
+ 	$(document).ready(function() {
+	var ynChk = confirm("정말 취소하시겠습니까?");
+	if(ynChk){
+		
+		$('#company_nm').css("background-color", "#EAEAEA");
+		$('#cont_nm').css("background-color", "#EAEAEA"); 
+	 	$('#email1').css("background-color", "#EAEAEA"); 
+		$('#email2').css("background-color", "#EAEAEA"); 
+		$('#cell_ph1').css("background-color", "#EAEAEA"); 
+		$('#cell_ph2').css("background-color", "#EAEAEA"); 
+		$('#cell_ph3').css("background-color", "#EAEAEA"); 
+		$('#ph1').css("background-color", "#EAEAEA"); 
+		$('#ph2').css("background-color", "#EAEAEA"); 
+		$('#ph3').css("background-color", "#EAEAEA"); 
+		
+		
+		$('#company_nm').attr("readonly", true);
+		$('#cont_nm').attr("readonly", true);
+		$('#email1').attr("readonly", true);
+		$('#email2').attr("readonly", true);
+		$('#cell_ph1').attr("readonly", true);
+		$('#cell_ph2').attr("readonly", true);
+		$('#cell_ph3').attr("readonly", true);
+		$('#ph1').attr("readonly", true);
+		$('#ph2').attr("readonly", true);
+		$('#ph3').attr("readonly", true);
+		
+		
+		
+		contactPaging();
+	}
+	
+	});
+}
+

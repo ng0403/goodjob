@@ -97,6 +97,11 @@ import com.crm.cp.utils.PagerVO;
  
 		BoardVO vo = boardService.detail(BOARD_NO);
 		System.out.println("vovo?" + vo);
+		
+		String BOARD_MNG_NO = vo.getBOARD_MNG_NO();
+		
+	 
+		
 		String FILE_CD = vo.getFILE_CD(); 
 		
 		boardService.viewadd(BOARD_NO);
@@ -111,7 +116,7 @@ import com.crm.cp.utils.PagerVO;
 			 
 			mov.addObject("boardlist",  boardService.ReadFilePage(BOARD_NO));
 		}
-		 
+		mov.addObject("boardmnglist",boardService.checkBoardMngNo(BOARD_MNG_NO));
 		System.out.println("mov list? " + mov.toString());	
 		
 		return mov;
@@ -126,6 +131,7 @@ import com.crm.cp.utils.PagerVO;
  		  System.out.println(BOARD_MNG_NO);
 		  ModelAndView mov = new ModelAndView("board_insert");
 		  mov.addObject("board_mng" ,BOARD_MNG_NO);
+		  mov.addObject("boardmnglist", boardService.checkBoardMngNo(BOARD_MNG_NO));
 		  System.out.println("insert mov??" + mov.toString());
 
  		  return mov; 
@@ -220,6 +226,9 @@ import com.crm.cp.utils.PagerVO;
 			mov.addObject("boardVO", boardService.read(BOARD_NO));
 			System.out.println("file not has");
 		}
+		String 	BOARD_MNG_NO = vo.getBOARD_MNG_NO();
+		mov.addObject("boardmnglist",boardService.checkBoardMngNo(BOARD_MNG_NO)); 
+		
 		System.out.println("modivy vo? " + mov.toString());
 		return mov;
 		

@@ -53,6 +53,11 @@
  <th>파일</th>
 <td colspan="3"> 
 <div id="file_div">
+	<c:choose>
+		<c:when test="${boardmnglist.FILE_ATTACH_FLG == 'N'}"> 
+		   
+		</c:when>
+	   <c:when test="${boardmnglist.FILE_ATTACH_FLG == 'Y'}"> 
    		<c:if test="${boardVO.FILE_NM == null}">
    		<input type="file" multiple="multiple" name="filedata" id="filedata">
    		</c:if>
@@ -60,6 +65,8 @@
    		<a href="/file_down?FILE_CD=${boardVO.FILE_CD}"><i class="file icon"></i>${boardVO.FILE_NM}</a> 
    		<i class="large trash icon" onclick="deleteFile('${boardVO.FILE_CD}');"></i>
    		</c:if>
+   		</c:when>
+   		</c:choose>
 </div>
 </td>
 <tr>

@@ -40,7 +40,7 @@
 	
 	<div class="search_div" id = "search_div">
 	<div class="ui left icon input">
-			<input type="text" placeholder="이름" id="cont_nm" name="cont_nm" onkeydown="contactSearchEnter(event);">
+			<input type="text" placeholder="이름" id="cont_nm1" name="cont_nm" onkeydown="contactSearchEnter(event);">
 			<i class="user icon"></i>
 	</div>	
 		<div class="ui left icon input">
@@ -80,27 +80,26 @@
 		  </table>
 	</div>
 	
-	<div id="tableline">
+	<div>
 		<table id="goaltable" class="ui sortable celled table">
 		<thead>
 		<tr style="text-align:center">
 			<th style="width:3%"><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
-			<th style="width:20%;">이름</td>
-  			<th style="width:20%;">회사명</td>
-			<th style="width:20%;">이메일</td>
-			<th style="width:10%;">전화번호</td>
-			<th style="width:10%;">이동전화번호</td>
- 			<th style="width:10%;">등록일시</td>
+			<th style="width:20%;">회사명</th> 
+			<th style="width:20%;">이름</th>
+			<th style="width:20%;">이메일</th>
+			<th style="width:10%;">전화번호</th>
+			<th style="width:10%;">이동전화번호</th>
+ 			<th style="width:10%;">등록일시</th>
 		</tr>
 		</thead>
 		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
-			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
-			<td style="width:20%; text-align: left; padding-left:5px;" >          <%-- <input type="hidden" value="${callList.call_id}"><input type="hidden" value="${callList.cust_div_nm}"> --%>
-			<a href="#" onclick="contactDetail('${contactList.cont_id}')" style="cursor: pointer;" class="callClick">${contactList.cont_nm}</a></td>
-  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
-			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
+			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
+			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
+			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
+ 			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>
  			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
@@ -110,11 +109,15 @@
 		</table>
 		</div>
 		<div class="bottom_div">
-	       <div class="functionBtn_div">
-			<input type="button" class="tiny ui orange button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+	       <div class="functionBtn_div" id="btn_1">
+	        <input type="button" class="tiny ui orange button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
 			<input type="button" class="tiny ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
-	       </div> 
-	
+	    </div> 
+	     <div class="functionBtn_div" id="btn_2" style="display:none">
+	 	    <input type="button" id="contactsave" value="저장" class="tiny ui orange button" onclick="contactInsert();"/>
+			<input type="button" class="tiny ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+	    </div> 
+	 
 	     <div id="pageSpace" class="ui right floated pagination menu">
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 				<input type="hidden" id="ccPageNum" value="${ccPageNum}">

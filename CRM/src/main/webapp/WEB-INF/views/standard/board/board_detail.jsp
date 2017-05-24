@@ -74,11 +74,18 @@
 <tr>
 <th>파일</th>
 <td colspan="5">
-   		<c:if test="${boardlist.FILE_NM == null}">
+ <c:choose>
+ 	<c:when  test="${boardmnglist.FILE_ATTACH_FLG == 'N'}">
+ 	   
+    </c:when>
+    <c:when test="${boardmnglist.FILE_ATTACH_FLG == 'Y'}">
+    		<c:if test="${boardlist.FILE_NM == null}">
    		</c:if>
    		<c:if test="${boardlist.FILE_NM != null}">
    		<a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM} 
    		</c:if> 
+   	</c:when>
+</c:choose> 	
 </td>
 
 </tr>

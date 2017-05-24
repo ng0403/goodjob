@@ -14,19 +14,19 @@
  <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
+ --%><script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
  
 <title>Insert title here</title>
 </head>
 <body>
-<div id="title">
+<!-- <div id="title">
 		<div class="caption">
 		<h3 class="ui header" style="background: #fff;">■ 고객 > <a href="/contact" style="font-size: 14pt; text-decoration:none; color: blue;">연락처</a> > 연락처 상세 </h3>
 		</div>
 	</div>
-
+ -->
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="nowCall_id"/>
 	<input type="hidden" id="hCust_div_nm"/>
@@ -46,7 +46,7 @@
 		<!-- 개인고객 추가 저장/취소 버튼  -->
 		<div class="detailBtn">
 		<div id="baseBtnDiv1" style="display: none;" class="bt_position_authuser">
-			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="tiny ui orange button"/>
+ 			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="tiny ui orange button"/>
 			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 	    </div>
 	  </div>
@@ -58,9 +58,9 @@
 						<th><span style="color:red">*이름</span></th>
 						<td>
 						<div class="ui input focus">
-						<input type="hidden" name="cont_id" id="cont_id" value="${contactDetail.cont_id}" />
+						<input type="hidden" name="cont_id" id="cont_id"/>
 						<input type="hidden" id="hcall_nm"/>
-						<input type="text" name="cont_nm" id="cont_nm" class="int" value="${contactDetail.cont_nm}" readonly="readonly"/>
+						<input type="text" name="cont_nm" id="cont_nm" class="int" readonly="readonly" />
 						</div>
 						</td>
 		
@@ -73,8 +73,8 @@
 						<td>
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
-						    <input type="text" name="company_nm" id="company_nm" class="int" value="${contactDetail.company_nm }" readonly="readonly"/> 
-						    <input type="button" name="compSearch" value="회사" class="tiny ui orange button" id="comp_list_bt" disabled="disabled" />
+						    <input type="text" name="company_nm" id="company_nm" class="int" readonly="readonly" /> 
+						    <input type="button" name="compSearch" value="회사" class="tiny ui orange button" id="comp_list_bt" />
 						</td>
 						
 						</tr>
