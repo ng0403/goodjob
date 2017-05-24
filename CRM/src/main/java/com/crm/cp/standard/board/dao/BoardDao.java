@@ -5,8 +5,8 @@ package com.crm.cp.standard.board.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
+import com.crm.cp.standard.boardmng.vo.BoardMngVO;
 
 public interface BoardDao {
 	
@@ -14,6 +14,9 @@ public interface BoardDao {
 	public List<Object> list(Map map);
 	public List<BoardVO> ajaxlist();
 	public List<BoardVO> QnAajaxlist();
+	public BoardMngVO checkBoardMngNo(String BOARD_MNG_NO);
+	
+	
 	public BoardVO detail(int BOARD_NO);
 	public void viewadd(int BOARD_NO);
 	public BoardVO read(int BOARD_NO);  

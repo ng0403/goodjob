@@ -74,11 +74,18 @@
 <tr>
 <th>파일</th>
 <td colspan="5">
-   		<c:if test="${boardlist.FILE_NM == null}">
+ <c:choose>
+ 	<c:when  test="${boardmnglist.FILE_ATTACH_FLG == 'N'}">
+ 	   
+    </c:when>
+    <c:when test="${boardmnglist.FILE_ATTACH_FLG == 'Y'}">
+    		<c:if test="${boardlist.FILE_NM == null}">
    		</c:if>
    		<c:if test="${boardlist.FILE_NM != null}">
    		<a href="/file_down?FILE_CD=${boardlist.FILE_CD}"><i class="file icon"></i>${boardlist.FILE_NM} 
    		</c:if> 
+   	</c:when>
+</c:choose> 	
 </td>
 
 </tr>
@@ -89,8 +96,11 @@
 </td> 
 </tr>
 </table>
-	
-	
+
+<c:if test="${boardmnglist.REPLY_FLG =='N'}">
+</c:if>
+<c:if test="${boardmnglist.REPLY_FLG == 'Y'}">	
+<div id = "reply_div">	
 <table class="ui sortable celled table" style="table-layout:fixed"> 
 <tr >
 <th style="width:165px">댓글 내용</th>
@@ -108,7 +118,8 @@
 <tbody class="reply_list" id="reply_list_tbody">
 </tbody>
 </table> 
-
+</div>
+</c:if>
 
 <%-- <div class="container"> <!-- 전체 div-->
 

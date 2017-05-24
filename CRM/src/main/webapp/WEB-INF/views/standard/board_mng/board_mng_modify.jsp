@@ -24,6 +24,7 @@
  <input type='hidden' id="BOARD_NO" name='BOARD_NO' value="${board_mng_list.BOARD_MNG_NO}"> 
 </form>
  
+ <div class="detailBtn">
 
 <div class="container" style="width:90%">
 
@@ -33,7 +34,7 @@
 	<td>게시판이름</td> <td>${board_mng_list.BOARD_NM}</td> <td>게시판분류</td> <td></td>
 	</tr>
 	<tr>
-	<td>관리자</td> <td></td> <td>게시판코드</td> <td>${board_mng_list.BOARD_MNG_CD} </td>
+	<td>관리자</td> <td></td> <td>게시판코드11</td> <td>${board_mng_list.BOARD_MNG_CD} </td>
 	</tr>
 	<tr>
 	<td>댓글여부</td><td><label class="radio-inline"><input type="radio" name="reply_flg">Y</label> <label class="radio-inline"><input type="radio" name="reply_flg">N</label></td><td>게시판활성여부</td><td><label class="radio-inline"><input type="radio" name="active_flg">Y</label> <label class="radio-inline"><input type="radio" name="active_flg">N</label></td>
@@ -51,9 +52,8 @@
 </div>
 
 
-<script>
- 
- 
+<script> 
+
 $("#board_list_fbtn").on("click", function(){  
     	location.href = "/board_mng/boardmngInqr";
  	})

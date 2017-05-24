@@ -21,6 +21,8 @@
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="act_flg" value="${act_flg}">
+	
 	<%-- <form action="${ctx}/act" method="get" id="listForm"> --%>
 	<div id="title">
 		<div class="caption">■ 영업활동</div>
@@ -65,14 +67,14 @@
 						<tr>
 							<th rowspan="2" style="width: 2%;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
 							<td rowspan="2" style="width: 15%;">영업활동명</td>
-							<td rowspan="2" style="width: 10%;">활동구분</td>
+<!-- 							<td rowspan="2" style="width: 10%;">활동구분</td> -->
 							<td rowspan="2" style="width: 23%;">영업기회명</td>
 							<td rowspan="2" style="width: 10%;">활동유형</td>
 							<td style="width: 10%;">시작일자</td>
 							<td style="width: 10%;">시작시간</td>
 							<td rowspan="2" style="width: 5%;">상태</td>
-							<td rowspan="2" style="width: 5%;">등록자</td>
-							<td rowspan="2" style="width: 10%;">등록일시</td>
+<!-- 							<td rowspan="2" style="width: 5%;">등록자</td> -->
+<!-- 							<td rowspan="2" style="width: 10%;">등록일시</td> -->
 						</tr>
 						<tr>
 							<td style="width: 10%;">종료일자</td>
@@ -85,18 +87,18 @@
 								<th rowspan="2">
 									<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
 								</th>
-								<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}')">
+								<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">
 									<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
 									<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a>
 								</td>
-								<td style="text-align: center;" rowspan="2" class="act_div_tag">${actList.sales_actvy_div_cd}</td>
+<%-- 								<td style="text-align: center;" rowspan="2" class="act_div_tag">${actList.sales_actvy_div_cd}</td> --%>
 								<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_oppt_tag">${actList.sales_oppt_nm}</td>
 								<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.sales_actvy_type_cd}</td>
 								<td style="text-align: center;" class="act_starth_tag">${actList.strt_d}</td>
 								<td style="text-align: center;" class="act_startm_tag">${actList.strt_t}</td>
 								<td style="text-align: center;" rowspan="2" class="act_stat_tag">${actList.sales_actvy_stat_cd}</td>
-								<td style="text-align: center;" rowspan="2" class="act_reg_tag">${actList.fst_reg_id_nm}</td>
-								<td style="text-align: center;" rowspan="2" class="act_dt_tag">${actList.fst_reg_dt}</td>
+<%-- 								<td style="text-align: center;" rowspan="2" class="act_reg_tag">${actList.fst_reg_id}</td> --%>
+<%-- 								<td style="text-align: center;" rowspan="2" class="act_dt_tag">${actList.fst_reg_dt}</td> --%>
 							</tr>
 							<tr>
 								<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>

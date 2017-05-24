@@ -378,6 +378,11 @@
 	update tb_board set FILE_CD = ''
 	where FILE_CD  = #{FILE_CD}
 	</update>
+	
+	<select id ="checkBoardMngNo" parameterType="java.lang.String" resultType="com.crm.cp.standard.boardmng.vo.BoardMngVO">
+	select * from TB_BOARD_MNG
+	WHERE BOARD_MNG_NO = #{BOARD_MNG_NO}
+	</select>
 
 
 </mapper>

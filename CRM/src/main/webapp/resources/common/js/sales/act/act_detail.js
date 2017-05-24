@@ -83,18 +83,36 @@ function actMdfyBtn(){
 	});
 }
 
-//추가에서 취소버튼 클릭했을 때
-function actAddCancelBt(){
+// 달력 상세보기에서 추가에서 취소버튼 클릭했을 때
+function actAddCancelBt()
+{
 	$(document).ready(function() {
-	var ynChk = confirm("정말 취소하시겠습니까?");
-	var ctx = $("#ctx").val();
+		var ynChk = confirm("정말 취소하시겠습니까?");
+		var ctx = $("#ctx").val();
 	
-	if(ynChk == true)
-	{
-		window.opener.location.href = ctx + '/act';
-		self.close();
-	}
-  });
+		if(ynChk == true)
+		{
+			location.href = ctx + '/act';
+		}
+	});
+}
+
+//당력 상세보기에서 취소버튼 클릭했을 때 상세정보 보여주기
+function actMdfyCancelBt()
+{
+	// 취소 버튼 기능
+	$(document).ready(function() {
+		
+		var ynChk = confirm("수정을 취소하시겠습니까?");
+		var salesId = $("#sales_actvy_id").val()
+		
+		if(ynChk)
+		{
+			location.href = '/act';
+			
+			//location.href = '/actDetail?sales_actvy_id=' + salesId;
+		}
+	});
 }
 
 //추가하고 나서 처음으로 리셋
@@ -141,24 +159,6 @@ function actAddReset(){
 		$('#end_t_m').val("0");
 		$('#memo').val("");
   });
-}
-
-//취소버튼 클릭했을 때 상세정보 보여주기
-function actMdfyCancelBt(){
-	// 취소 버튼 기능
-	$(document).ready(function() {
-		
-		var ynChk = confirm("수정을 취소하시겠습니까?");
-		var salesId = $("#sales_actvy_id").val()
-		
-		if(ynChk)
-		{
-			window.opener.location.href = '/act';
-			self.close();
-			
-			//location.href = '/actDetail?sales_actvy_id=' + salesId;
-		}
-	});
 }
 
 //날짜 13자리를 yyyy-mm-dd형식으로 변환해주는 함수
@@ -247,7 +247,10 @@ function endCalendar(ctx){
 }
 
 //영업활동명을 클릭했을 때 상세정보
-function actDetail(sales_actvy_id) {		
+function actDetail(sales_actvy_id, act_flg) 
+{
+	console.log(act_flg);
+	
 	var ctx = $("#ctx").val();
 	var at_select = $("#sales_actvy_type_nm");
 	var at_select_option = "";
@@ -261,23 +264,32 @@ function actDetail(sales_actvy_id) {
 }
 
 //페이지 입력 이동
-function pageInputAct(event) {
+function pageInputAct(event) 
+{
 	var keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
+		if (keycode == '13') 
+		{
 			var actPageNum = $("#actPageInput").val();
 			var endPageNum = $("#endPageNum").val();
 			var ssales_actvy_nm = $("#ssales_actvy_nm").val();
-			var ssales_actvy_div_cd = $("#ssales_actvy_div_cd").val();
+//			var ssales_actvy_div_cd = $("#ssales_actvy_div_cd").val();
 			var sact_oppt_nm = $("#sact_oppt_nm").val();
 			var sstart_day   = $("#sstart_day").val();
 			var ssales_actvy_stat_cd = $("#ssales_actvy_stat_cd").val();
-			if (parseInt(actPageNum) > parseInt(endPageNum) || parseInt(actPageNum) < 1) {
+			
+			if (parseInt(actPageNum) > parseInt(endPageNum) || parseInt(actPageNum) < 1) 
+			{
 				alert("페이지 정보를 다시 입력하세요.")
 				$("#actPageInput").val("1");
-			} else {
-				if(ssales_actvy_nm == '' && ssales_actvy_div_cd == '0' && sact_oppt_nm == '' && sstart_day == ''&& ssales_actvy_stat_cd == '0'){
+			} 
+			else 
+			{
+				if(ssales_actvy_nm == '' && ssales_actvy_div_cd == '0' && sact_oppt_nm == '' && sstart_day == ''&& ssales_actvy_stat_cd == '0')
+				{
 					actPaging(actPageNum);
-				} else {
+				} 
+				else 
+				{
 					actPaging(actPageNum);
 				}
 				
@@ -294,11 +306,9 @@ function actPaging(actPageNum) {
 	var ctx = $("#ctx").val();
 	var tbody = $('#act_list_tbody');
 	var tbodyContent = "";
-	var act_search_div_id = $("#act_search_div_id").val();
 	var act_search_txt  = $("#act_search_txt").val();
 	
 	var actData = { "actPageNum": actPageNum, 
-					"act_search_div_id": act_search_div_id, 
 					"act_search_txt" : act_search_txt
 				  };
 	
@@ -326,8 +336,8 @@ function actPaging(actPageNum) {
 									+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
 									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
 									+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
-									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>"
-									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
+									+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>";
+//									+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
 									
 								    if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == ""){
 								    	tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
@@ -345,7 +355,7 @@ function actPaging(actPageNum) {
 									}
 									
 								    tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%; text-align: center;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
-									+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id_nm+"</td>"
+									+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id+"</td>"
 				                    +"<td rowspan='2' class='act_dt_tag' style='width:10%; text-align: center;'>"+data.actList[i].fst_reg_dt+"</td></tr>"
 				                    +"<tr>"
 				                    +"<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
@@ -453,7 +463,6 @@ function schActPaging(actPageNum) {
 			/*	sstart_day = dateFormat_D(Number(data.sstart_day));*/
 				
 				$("#sact_oppt_nm").val(data.sact_oppt_nm);
-				$("#ssales_actvy_div_cd").val(data.ssales_actvy_div_cd);
 				$("#ssales_actvy_nm").val(data.ssales_actvy_nm);
 				$("#sstart_day").val(data.sstart_day);
 				$("#ssales_actvy_stat_cd").val(data.ssales_actvy_stat_cd);
@@ -469,8 +478,8 @@ function schActPaging(actPageNum) {
 						+"<th rowspan='2' style='width:2%;'><input type='checkbox'></th>"
 						+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actTabFunc('"+data.actList[i].sales_actvy_id+"')>"
 						+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
-						+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>"
-						+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>"; 
+						+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>";
+//						+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>"; 
 					
 					if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == ""){
 						tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
@@ -488,7 +497,7 @@ function schActPaging(actPageNum) {
 					}
 					
 					tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
-					+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id_nm+"</td>"
+					+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id+"</td>"
 					+"<td rowspan='2' class='act_dt_tag' style='width:10%; text-align: center;'>"+data.actList[i].fst_reg_dt+"</td></tr>"
 					+"<tr>"
 					+"<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
@@ -597,22 +606,12 @@ function actInsertClick(){
 
 }
 
-//영업활동 등록
+/**
+ * 영업활동 달력 등록 
+ * */
 function actInsert(ctx) {
 	$(document).ready(function() {
-//		var actTbody = $('#act_list_tbody');
-//		var actListContent = "";
-//		var strt_t_h = $('#strt_t_h').val();
-//		var strt_t_m = $('#strt_t_m').val();
-//		var end_t_h = $('#end_t_h').val();
-//		var end_t_m = $('#end_t_m').val();
-//		
-		if($('#actdiv_1').is(':checked')) {
-			var sales_actvy_div_nm1=$('#actdiv_1').val();
-		} else {
-			var sales_actvy_div_nm1=$('#actdiv_2').val();		
-		}	
-		
+
 		if($('#sales_actvy_nm').val() == "" || $('#sales_actvy_nm').val() == null)
 		{
 			alert("영업활동명을 입력해 주세요");
@@ -643,19 +642,39 @@ function actInsert(ctx) {
 			alert("분을 선택해 주세요");
 			return false;
 		}
-
+		else if($('#sales_actvy_loc').val() == "" || $('#sales_actvy_loc').val() == null)
+		{
+			alert("영업활동장소를 입력해 주세요");
+			return false;
+		}
+		else if($('#sales_actvy_person').val() == "" || $('#sales_actvy_person').val() == null)
+		{
+			alert("영업활동대상자를 입력해 주세요");
+			return false;
+		}
+		else if($('#sales_actvy_content').val() == "" || $('#sales_actvy_content').val() == null)
+		{
+			alert("영업활동내용을 입력해 주세요");
+			return false;
+		}
+		
 		var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 		var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
+		
+		alert("sales_actvy_loc : " + $('#sales_actvy_loc').val());
+		console.log($('#sales_actvy_loc').val());
+		console.log($('#sales_actvy_person').val());
+		console.log($('#sales_actvy_content').val());
+		console.log($('#sales_actvy_reason').val());
 		
 		$.ajax({
 			type : 'POST',
 			url : '/actInsert',
 			data : {
 				sales_actvy_nm : $('#sales_actvy_nm').val(),
-				sales_actvy_div_cd : sales_actvy_div_nm1,
-				sales_actvy_type_cd : $('#sales_actvy_type_cd').val(),
 				sales_oppt_id : $('#sales_oppt_id').val(),
 				cust_id : $('#cust_id').val(),
+				sales_actvy_type_cd : $('#sales_actvy_type_cd').val(),
 				sales_actvy_stat_cd : $('#sales_actvy_stat_cd').val(),
 				strt_d : $('#strt_d').val(),
 				strt_t : strt_t,
@@ -665,7 +684,10 @@ function actInsert(ctx) {
 				end_t : end_t,
 				end_t_h : $('#end_t_h').val(),
 				end_t_m : $('#end_t_m').val(),
-		        memo : $('#memo').val()
+				sales_actvy_loc : $('#sales_actvy_loc').val(),
+				sales_actvy_person : $('#sales_actvy_person').val(),
+				sales_actvy_content : $('#sales_actvy_content').val(),
+				sales_actvy_reason  : $('#sales_actvy_reason').val()
 			},
 			dataType : "json",
 			success : function(data) {
@@ -675,8 +697,7 @@ function actInsert(ctx) {
 				{
 					alert("영업활동이 등록되었습니다.");
 					
-					window.opener.location.href = '/act';
-					self.close();
+					location.href = '/act';
 				}
 				else
 				{
@@ -693,7 +714,7 @@ function actInsert(ctx) {
 }
 
 /**
- * 영업활동 수정 버트 클릭 시
+ * 영업활동 달력 수정 버트 클릭 시
  * */
 function actModify(ctx)
 {
@@ -708,46 +729,6 @@ function actModify(ctx)
 		alert("영업활동명을 입력해 주세요");
 		return false;
 	}
-//	else if($('#sales_actvy_type_cd').val() == "0" || $('#sales_actvy_type_cd').val() == null)
-//	{
-//		alert("활동유형을 선택해 주세요");
-//		return false;			
-//	}
-//	else if($('#sales_actvy_stat_cd').val() == "0"|| $('#sales_actvy_stat_cd').val() == null)
-//	{
-//		alert("상태를 선택해 주세요");
-//		return false;
-//	}
-//	else if($('#strt_d').val() == "" || $('#strt_d').val() == null)
-//	{
-//		alert("시작일자를 선택해 주세요");
-//		return false;
-//	}
-//	else if($('#strt_t_h').val() == "0" || $('#strt_t_h').val() == null)
-//	{
-//		alert("시를 선택해 주세요");
-//		return false;
-//	}
-//	else if($('#strt_t_m').val() == "0" || $('#strt_t_m').val() == null)
-//	{
-//		alert("분을 선택해 주세요");
-//		return false;
-//	}
-//	else if($('#end_d').val() == "" || $('#end_d').val() == null)
-//	{
-//		alert("종료일자를 선택해 주세요");
-//		return false;
-//	}
-//	else if($('#end_t_h').val() == "0" || $('#end_t_h').val() == null)
-//	{
-//		alert("시를 선택해 주세요");
-//		return false;
-//	}
-//	else if($('#end_t_m').val() =="0" || $('#end_t_m').val() == null)
-//	{
-//		alert("분을 선택해 주세요");
-//		return false;
-//	}
 
 	var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 	var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
@@ -758,7 +739,6 @@ function actModify(ctx)
 		data : {
 			sales_actvy_id : $('#sales_actvy_id').val(),
 			sales_actvy_nm : $('#sales_actvy_nm').val(),
-			sales_actvy_div_cd : sales_actvy_div_nm1,
 			sales_actvy_type_cd : $('#sales_actvy_type_cd').val(),
 			sales_oppt_id : $('#sales_oppt_id').val(),
 			cust_id : $('#cust_id').val(),
@@ -771,7 +751,10 @@ function actModify(ctx)
 			end_t : end_t,
 			end_t_h : $('#end_t_h').val(),
 			end_t_m : $('#end_t_m').val(),
-	        memo : $('#memo').val()
+			sales_actvy_loc : $('#sales_actvy_loc').val(),
+			sales_actvy_person : $('#sales_actvy_person').val(),
+			sales_actvy_content : $('#sales_actvy_content').val(),
+			sales_actvy_reason  : $('#sales_actvy_reason').val()
 		},
 		dataType : "json",
 		success : function(data) {
@@ -781,8 +764,7 @@ function actModify(ctx)
 			{
 				alert("정상 수정되었습니다.");
 				
-				window.opener.location.href = '/act';
-				self.close();
+				location.href = '/act';
 			}
 			else
 			{
@@ -797,7 +779,7 @@ function actModify(ctx)
 }
 
 /**
- * 영업활동 삭제 버튼 클릭 시
+ * 영업활동 달력 삭제 버튼 클릭 시
  * */
 function actDelBt(sales_actvy_id)
 {
@@ -817,8 +799,7 @@ function actDelBt(sales_actvy_id)
 			{
 				alert("해당 영업활동이 삭제되었습니다.");
 				
-				window.opener.location.href = '/act';
-				self.close();
+				location.href = '/act';
 			}
 			else
 			{

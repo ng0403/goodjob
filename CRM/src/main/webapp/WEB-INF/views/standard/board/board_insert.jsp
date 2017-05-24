@@ -48,8 +48,15 @@
 </tr>
 <tr>
 <th colsapn="3">파일</th>
-	 <td><input type="file" multiple="multiple" name="filedata" id="filedata"></td> 
-
+	 <td>
+	 <c:if test="${boardmnglist.FILE_ATTACH_FLG == 'N'}">
+	 </c:if>
+	 <c:if test="${boardmnglist.FILE_ATTACH_FLG == 'Y'}">
+	 <input type="file" multiple="multiple" name="filedata" id="filedata">
+	 </c:if>
+	 
+	 
+	 </td>  
 </tr>
 <tr>
 <th>내 용</th>

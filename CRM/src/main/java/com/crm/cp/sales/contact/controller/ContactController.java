@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.util.SystemOutLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,7 +64,7 @@ public class ContactController {
 
 		Map<String, Object> contactMap = new HashMap<String, Object>();
 		contactMap.put("contactPageNum", contactPageNum);
-
+		
 		PagerVO page = contactService.ContactListCount(contactMap);
 		System.out.println("page " + page.toString());
 		contactMap.put("page", page);
@@ -85,14 +84,20 @@ public class ContactController {
 	
 	 
 	// 연락처 상세정보
-	/*
-	 * @RequestMapping(value = "contactDetail", method = RequestMethod.POST)
-	 * public @ResponseBody ContactVO companyCutomerDetail(String cont_id) {
-	 * System.out.println("ajax detail contact "); ContactVO contactVO =
-	 * contactService.contactDetail(cont_id); return contactVO; }
-	 */
+	
+	  @RequestMapping(value = "contactDetail", method = RequestMethod.POST)
+	  public @ResponseBody ContactVO companyCutomerDetail(@RequestBody String cont_id) {
+	 
+		  System.out.println("ajax detail contact" + cont_id );
+		  
+		  ContactVO contactVO =  contactService.contactDetail(cont_id); 
+		  System.out.println("contactVO " + contactVO.toString());
+	  return contactVO;
+	  
+	  }
+	 
 
-	@RequestMapping(value = "/contact_detail", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/contact_detail", method = RequestMethod.GET)
 	public ModelAndView companyCutomerDetail(HttpSession session, @RequestParam("cont_id") String cont_id) {
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
@@ -105,9 +110,9 @@ public class ContactController {
 		ModelAndView mov = new ModelAndView("contactDetail");
 		mov.addObject("contactDetail", contactVO);
 		return mov;
-	}
+	}*/
 
-	@RequestMapping(value = "/contactUpdate", method = { RequestMethod.GET, RequestMethod.POST })
+	/*@RequestMapping(value = "/contactUpdate", method = { RequestMethod.GET, RequestMethod.POST })
 	public String ContactUpdate(HttpSession session, ContactVO contactVO) {
 
 		System.out.println("cont update entering");
@@ -124,9 +129,40 @@ public class ContactController {
 		contactService.contactUpdate(contactVO);
 
 		return "redirect:/contact";
+	}*/
+	
+	@RequestMapping(value = "/contactUpdate", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> contactUpdate(HttpSession session, ContactVO contactVO) {
+		System.out.println("cont update entering" + contactVO.toString());
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+			rstMap.put("mdfyResult", "standard/home/session_expire");
+		} else {
+			contactVO.setFin_mdfy_id(session.getAttribute("user").toString());
+ 			String contactRstRst = contactService.contactUpdate(contactVO); 
+			rstMap.put("mdfyResult", contactRstRst);
+		}  
+		return rstMap;
 	}
+	
+	@RequestMapping(value = "/contactInsert", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> contactInsert(HttpSession session, ContactVO contactVO) {
+		System.out.println("cont insert entering" + contactVO.toString());
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+			rstMap.put("mdfyResult", "standard/home/session_expire");
+		} else {
+			contactVO.setFin_mdfy_id(session.getAttribute("user").toString());
+			contactVO.setFst_reg_id(session.getAttribute("user").toString());
+ 			int contactRstRst = contactService.contactInsert(contactVO); 
+			rstMap.put("mdfyResult", contactRstRst);
+		}  
+		return rstMap;
+	}
+	
+	
 
-	@RequestMapping(value = "/contactInsert", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/contactInsert", method = RequestMethod.GET)
 	public void cont_add(HttpSession session, ContactVO contactVO) {
 		System.out.println("add continsert");
 		contactVO.setFst_reg_id(session.getAttribute("user").toString());
@@ -144,7 +180,7 @@ public class ContactController {
 		contactService.contactInsert(contactVO);
 
 		return "redirect:/contact";
-	}
+	}*/
 
 	// 전체리스트 출력 페이징/검색
 	@RequestMapping(value = "/contactPaging", method = RequestMethod.POST)
@@ -810,8 +846,7 @@ public class ContactController {
 			
 			List<ProdVO> prodList = opptService.prodList(map);
 			mov.addObject("prodList", prodList);
-
-			return mov;
+ 			return mov;
 		}
 	
 

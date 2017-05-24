@@ -46,7 +46,6 @@
                <th style="width:14.8%;">예상마감일자</th>
                <th style="width:9.9%;">가능성(%)</th>
                <th style="width:9.9%;">상태</th>
-               <th>등록자</th>
             </tr>
          </thead>
          <tbody class="tbody">
@@ -59,7 +58,6 @@
                <td style="width:15%;">${actOpptList.expt_fin_d}</td>
                <td style="width:10%;">${actOpptList.psblty_rate}</td>
                <td style="width:10%;">${actOpptList.sales_oppt_stat_cd}</td>
-               <td>${actOpptList.fst_reg_id}</td>
             </tr>
          </c:forEach>
          </tbody>

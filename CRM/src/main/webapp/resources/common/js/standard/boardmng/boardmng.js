@@ -2,20 +2,8 @@
 	var ctx = $('#ctx').val();
 	
 	var tbodylength = $('#board_list_tbody tr').length;
-	var tbody = $('#board_list_tbody'); 
-	
-	if(tbodylength < 10){
-			for(var i=0; i<10-tbodylength; i++){
-			tbodyContent='<tr style="height: 35.5px;"><td scope="row"></td>'
-					+'<td></td>'
-				+'<td></td>'
-				+'<td></td>'
-				+'<td></td>'
-				+'<td></td>' 
-					+'<td"></td></tr>';
-			tbody.append(tbodyContent);
-		}		
-	}
+	var tbody = $('#board_list_tbody');  
+	 
 	
    });
  
@@ -50,7 +38,7 @@ function board_add(){
 
 //게시판 추가에서 SELECT_BOX 클릭시.
 function fn_SelectBox(e){
-	 var CODE = e; 
+ 	 var CODE = e; 
    $("[id$='BOARD_MNG_CD']").val(CODE); 
 	  
 }
@@ -153,18 +141,7 @@ function boaradPaging(boardPageNum) {
  			   tbody.append(tbodyContent);
  			}
 			
-			if(data.boardList.length < 10){
- 				for(var i=0; i<10-data.boardListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;"><td scope="row"></td>'
- 						+'<td></td>'
-						+'<td></td>'
-						+'<td></td>'
-						+'<td></td>'
-						+'<td></td>' 
- 						+'<td"></td></tr>';
-					tbody.append(tbodyContent);
-				}		
-			}
+			 
 			
 			var pageContent = ""; 
 			
@@ -188,58 +165,4 @@ function boaradPaging(boardPageNum) {
 		}
 	});
 } 
- 
-
-function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
-	var endPageNo = $("<input>");
-	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
-	var ccPageeNo = $("<input>");
-	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
-	$("#pageSpace").append(endPageNo).append(ccPageeNo);
-	
-	var stepPrev = $("<a>");
-	stepPrev.addClass("prev");
-	stepPrev.html("◀◀");
-	if(ccPageNum != firstPageCount){
-		stepPrev.attr("href","javascript:boardPaging("+prevStepPage+")");
-	}
-	$("#pageSpace").append(stepPrev);
-	var prevPage = $("<a>");
-	prevPage.addClass("prev");
-	prevPage.html("◀");
-	console.log(prevPageNum);
-	console.log(firstPageCount);
-	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:boardPaging("+prevPageNum+")");
-	}
-	$("#pageSpace").append(prevPage);
-	for(var i = startPageNum; i <= endPageNum; i++){
-		var ccPage = $("<a>");
-		ccPage.attr("href","javascript:boardPaging("+i+")");
-		ccPage.html(i);
-		if(i == ccPageNum){
-			var b = $("<b>");
-			ccPage.addClass("choice");
-			ccPage.attr("id","pNum");
-			b.append(ccPage);
-			$("#pageSpace").append(b);
-		}else{
-			$("#pageSpace").append(ccPage);
-		}
-	}
-	var nextPage = $("<a>");
-	nextPage.addClass("next");
-	nextPage.html("▶");
-	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:boardPaging("+nextPageNum+")");
-	}
-	$("#pageSpace").append(nextPage);
-	var stepNext = $("<a>");
-	stepNext.addClass("next");
-	stepNext.html("▶▶");
-	if(ccPageNum != totalPageCount){
-		stepNext.attr("href","javascript:boardPaging("+nextStepPage+")");
-	}
-	$("#pageSpace").append(stepNext);
-}
-
+  

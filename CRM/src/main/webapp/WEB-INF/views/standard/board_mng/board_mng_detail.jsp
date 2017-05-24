@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -30,25 +31,26 @@
  <input type='hidden' id="CODE_TXT" value="${board_mng_list.CODE_TXT }"/> 
 </form>
  
-<div id="title">
+<!-- <div id="title">
 		<div class="caption">
 		<h3 class="ui header" style="background: #fff;">■ 기준정보 > <a href="/boardmngInqr" style="font-size: 14pt; text-decoration:none; color: blue;">게시판 관리</a> > 게시판 관리 상세 </h3>
 		</div>
-	</div>
- 
-		<div id = "baseBtnDiv" class="bt_position_authuser">
+</div> -->
+	
+ 	<div class="detailBtn"> 
+	<div id = "baseBtnDiv" class="bt_position_authuser">
 	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui orange button" value="편집" onclick="modify_fbtn();"/>
 	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
 	</div>
 	
-	<div id = "button_div1" class="bt_position_authuser">
+	<div id = "baseBtnDiv2" class="bt_position_authuser" style="display:none">
 		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="modify_save();"/>
 		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
 	</div>
-	
+	</div>
 	
  
-	<div id="board_mng_detail" style="margin-top:60px"> 
+	<div id="board_mng_detail"  > 
   <form role="form" name="board_mng_form"> 
    <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${board_mng_list.BOARD_MNG_NO}"/> 
  	<table class="ui celled table">
@@ -58,7 +60,7 @@
  <td style="height:30px"><input type="text" class="int" id="BOARD_NM" name="BOARD_NM"  value="${board_mng_list.BOARD_NM}" style="width:50%" /></td> 
 	<th>게시판분류</th>
    <td> 
-   <select class="form-control" id="sel1"> 
+   <select class="form-control" id="sel1" onchange= "fn_SelectBox(this.value);"> 
     <c:forEach items="${codelist}" var="list">
  		 <c:choose>
 			 <c:when test="${board_mng_list.BOARD_MNG_CD eq list.CODE}">
@@ -75,11 +77,9 @@
 	<tr>
 	<th>관리자</th> <td></td>
 	 <th>게시판코드</th>
-	  <td style="height:30px">
-	  <div id="board_cd_div">${board_mng_list.BOARD_MNG_CD}
-	  </div>
-	  
-	   </td>
+	  <td style="height:30px"> 
+ 	  <input type="text" class="form-control" id="BOARD_MNG_CD" name="BOARD_MNG_CD" value="${board_mng_list.BOARD_MNG_CD}" style="width:50%;" readonly="readonly" /> 
+ 	   </td>
 	</tr>
 	<tr>
 	<th>
@@ -92,20 +92,7 @@
 	<input type="radio" class="radio_class" id="reply_flg_n" name="REPLY_FLG" value="N">N
 	</label>
 	</td>
-	<th>
-	게시판활성여부
-	</th>
-	<td>
-	<label class="radio-inline">
-	<input type="radio" class="radio_class" value="Y" id="active_flg_y" name="ACTIVE_FLG" value="Y">Y
-	</label> 
-	<label class="radio-inline">
-	<input type="radio" class="radio_class" value="N" id="active_flg_n"  name="ACTIVE_FLG" value="N">N
-	</label>
-	</td>
-	</tr>
-	<tr>
-	<th>
+	 <th>
 	파일업로드
 	</th>
 	<td style="height:30px">
@@ -116,18 +103,10 @@
 	<input type="radio" class="radio_class" id="file_attach_flg_n" name="FILE_ATTACH_FLG" value="N">N
 	</label>
 	 </td>
-	 <th>
-	 공지활성화
-	 </th>
-	 <td>
-	 <label  class="radio-inline">
-	 <input type="radio" class="radio_class" id="notice_flg_y" name="NOTICE_FLG" value="Y">Y
-	 </label> 
-	 <label class="radio-inline">
-	 <input type="radio" class="radio_class" id="notice_flg_n" name="NOTICE_FLG" value="N">N
-	 </label>
-	 </td>
 	</tr>
+	<tr>
+	
+	 
 	</table> 
 	</tbody>
 	</form>

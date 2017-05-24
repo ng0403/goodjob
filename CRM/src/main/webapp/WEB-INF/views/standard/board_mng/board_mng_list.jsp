@@ -45,8 +45,8 @@ $(function() {
 	 </div> 
 </div>
 
-		<div class="list_div" style="margin-top:60px">
-			<div class="list1_div" id="list1_div">
+		<div class="list_div">
+			<div id="list1_div">
 				<form name="delAllForm" id="delAllForm" method="post"
 					action="/board/board_remove">
 					<table class="ui sortable celled table">

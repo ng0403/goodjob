@@ -110,14 +110,14 @@ function callCancelBtn() {
 
 //개인추가 버튼 눌렀을 때
 function callCustBtn(){
-	
-  		$("#contactbody input[type='text']").css("background-color", "white");
+   		$("#contactbody input[type='text']").css("background-color", "white");
 		
   		$("#company_nm").css("background-color", "#EAEAEA");
   		
 		$('#comp_list_bt').attr("disabled",true);
 		
 		/*$('#company_nm').attr("readonly", false);*/
+		$('#company_nm').attr("readonly", false);
 		$('#cont_nm').attr("readonly", false);
 		$('#email1').attr("readonly", false);
 		$('#email2').attr("readonly", false);
@@ -127,9 +127,8 @@ function callCustBtn(){
 		$('#ph1').attr("readonly", false);
 		$('#ph2').attr("readonly", false);
 		$('#ph3').attr("readonly", false);
-		$('#iuser_nm').attr("readonly", true);
-		
-		$('#call_nm').attr("disabled",false);
+ 		
+		$('#cont_nm').attr("disabled",false);
 		$('#email1').attr("disabled",false);
 		$('#email2').attr("disabled",false);
 		$('#cell_phone1').attr("disabled",false);
@@ -138,17 +137,7 @@ function callCustBtn(){
 		$('#ph_phone1').attr("disabled",false);
 		$('#ph_phone2').attr("disabled",false);
 		$('#ph_phone3').attr("disabled",false);
-		$('#stat_cd').attr("disabled",false);
-		$('#cust_info_yn').attr("disabled",false);
-		$('#mkt_app_yn').attr("disabled",false);
-		$('#cust_zip_cd1').attr("disabled",false);
-		$('#cust_zip_cd2').attr("disabled",false);
-		$('#cust_zip_addr').attr("disabled",false);
-		$('#cust_addr').attr("disabled",false);
-		$('#addr').attr("disabled",false);
-		$('#iuser_nm').attr("disabled",false);
-		$('#iuser_search').attr("disabled",false);
-		
+ 
 		//내용초기화
 		/*$('#call_nm').val("");
 		$('#pos_nm').val("");
@@ -208,8 +197,7 @@ function callKeyAddBtn(){
 		$('#call_nm').attr("disabled",false);
 		$('#pos_nm').attr("disabled",false);
 		$('#comp_nm').attr("disabled",false);
-		$('#comp_list_bt').attr("disabled",false);
-		$('#email1').attr("disabled",false);
+ 		$('#email1').attr("disabled",false);
 		$('#email2').attr("disabled",false);
 		$('#cell_phone1').attr("disabled",false);
 		$('#cell_phone2').attr("disabled",false);
@@ -246,16 +234,7 @@ function callKeyAddBtn(){
 		$("#keymanAddBtnDiv").css("display", "block");
 }
 
-//취소버튼
-function callAddCancelBtn(){
- 	$(document).ready(function() {
-	var ynChk = confirm("정말 취소하시겠습니까?");
-	if(ynChk){
-		location.href = "/contact";
-	}
-	
-	});
-}
+
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기
 function callTabFunc(cont_id) {
 
@@ -563,20 +542,7 @@ function callCustKeyMdiBtn(){
 }
 
 
-function updateCont() {
-	 
-	alert("수정 되었습니다.");
-	  var formObj = $("form[role='form']");
 
-		 formObj.attr("action", "/contactUpdate");
-		 formObj.attr("method", "post");
-		 formObj.submit();    
-}
-
-function contactAddp(){
-	
-	location.href="/contactInsert";
-}
 
  
 //개인고객 수정

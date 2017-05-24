@@ -49,10 +49,11 @@ public class ActController {
 	@Autowired
 	OpptService opptService;
 	
-	//전체리스트 출력
+	//전체리스트 달력 출력
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	public @ResponseBody ModelAndView ActSchList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
 	{
+		int act_flg = 1;
 		Map<String, Object> actMap = new HashMap<String, Object>();
 		actMap.put("actPageNum", actPageNum);
 		
@@ -64,7 +65,7 @@ public class ActController {
 		List<ActVO> actDivCd = actService.actDivCdList();
 		List<ActVO> actStatCd = actService.actStatCdList();
 
-		ModelAndView mov = new ModelAndView("actSaleList");
+		ModelAndView mov = new ModelAndView("actSaleSch");
 		
 		mov.addObject("menuList", menuList);
 		mov.addObject("actPageNum", actPageNum);
@@ -72,6 +73,37 @@ public class ActController {
 		mov.addObject("actList", actList);
 		mov.addObject("actDivCd", actDivCd);
 		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("act_flg", act_flg);
+		
+		return mov;
+	}
+	
+	// 영업활동 관리 전체리스트 출력
+	@RequestMapping(value="/actSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	{
+		int act_flg = 0;
+		
+		Map<String, Object> actMap = new HashMap<String, Object>();
+		actMap.put("actPageNum", actPageNum);
+		
+		PagerVO page = actService.getActListCount(actMap);
+		actMap.put("page", page);
+
+		List<ActVO> actList = actService.actAllList(actMap);
+		List<MenuVO> menuList = menuService.selectAll(session);
+		List<ActVO> actDivCd = actService.actDivCdList();
+		List<ActVO> actStatCd = actService.actStatCdList();
+		
+		ModelAndView mov = new ModelAndView("actSaleList");
+			
+		mov.addObject("menuList", menuList);
+		mov.addObject("actPageNum", actPageNum);
+		mov.addObject("page", page);
+		mov.addObject("actList", actList);
+		mov.addObject("actDivCd", actDivCd);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("act_flg", act_flg);
 		
 		return mov;
 	}
@@ -126,8 +158,8 @@ public class ActController {
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
 			
-			
-			ModelAndView mov = new ModelAndView("/sales/act/act_detail");
+			ModelAndView mov = new ModelAndView("actSaleDetail");
+			//ModelAndView mov = new ModelAndView("/sales/act/act_detail");
 			
 			mov.addObject("actDetail", actVO);
 			mov.addObject("actStatCd", actStatCd);
@@ -146,7 +178,7 @@ public class ActController {
 			List<ActVO> actTypeCd = actService.actTypeCdList();
 			List<ActVO> actStatCd = actService.actStatCdList();
 			
-			ModelAndView mov = new ModelAndView("/sales/act/act_detail");
+			ModelAndView mov = new ModelAndView("actSaleDetail");
 			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
@@ -166,15 +198,8 @@ public class ActController {
 		
 		System.out.println("actInsert : " + actvo.toString());
 		
-		if(actvo.getSales_actvy_div_cd().equals("0001"))
-		{
-			result = actService.actInsert(actvo);
-		}
-		if(actvo.getSales_actvy_div_cd().equals("0002"))
-		{
-			result = actService.actInsert(actvo);
-		}
-		
+		result = actService.actInsert(actvo);
+
 		System.out.println("result : " + result);
 		
 		return result;

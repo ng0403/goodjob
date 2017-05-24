@@ -116,7 +116,7 @@ function replyPaging(replyPageNum) {
 			contentType: false,
 			data:  JSON.stringify({"board_NO":BOARD_NO, "reply_CONTENT":REPLY_CONTENT, "created_BY":CREATED_BY, "board_MNG_NO":BOARD_MNG_NO}),
 			success:function(result){
-				alert("succsss");
+				$("#reply_content").val(""); 
 				replyPaging(1);
 	   			 $("#reply_content").blur(); 
 

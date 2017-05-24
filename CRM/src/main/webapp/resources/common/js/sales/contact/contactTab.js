@@ -248,14 +248,6 @@ function callKeyAddBtn(){
 		$("#keymanAddBtnDiv").css("display", "block");
 }
 
-//취소버튼
-function callAddCancelBtn(){
- 	$(document).ready(function() {
-	var ynChk = confirm("정말 취소하시겠습니까?");
-	location.href = "/contact";
-	
-	});
-}
 
 //상세정보가 클릭돼있을 때 상세정보함수 불러오기
 function callTabFunc(cont_id) {
@@ -563,7 +555,7 @@ function callCustKeyMdiBtn(){
 }
 
 
-function updateCont() {
+/*function updateCont() {
 	 
 	alert("수정 되었습니다.");
 	  var formObj = $("form[role='form']");
@@ -571,14 +563,10 @@ function updateCont() {
 		 formObj.attr("action", "/contactUpdate");
 		 formObj.attr("method", "post");
 		 formObj.submit();    
-}
+}*/
 
-function contactAddp(){
-	
-	location.href="/contactInsert";
-}
-
-function contactInsert() {
+ 
+/*function contactInsert() {
  	if($("#cont_nm").val() == null || $("#cont_nm").val() == ""){
 		alert("이름을 입력해 주세요.");
 		return false;
@@ -613,7 +601,7 @@ return false;
 	 formObj.submit();  
  
 } 
-
+*/
  
 //개인고객 수정
 function callCustEdit() {

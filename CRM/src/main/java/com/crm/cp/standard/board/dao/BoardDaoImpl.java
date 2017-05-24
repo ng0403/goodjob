@@ -7,8 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.board.vo.BoardVO;
+import com.crm.cp.standard.boardmng.vo.BoardMngVO;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -172,6 +172,12 @@ public class BoardDaoImpl implements BoardDao {
 			public void file_removeMd(String FILE_CD) {
 				sqlSession.update("board.file_removeMd", FILE_CD);
 				
+			}
+
+			@Override
+			public BoardMngVO checkBoardMngNo(String BOARD_MNG_NO) {
+				//  
+				return sqlSession.selectOne("board.checkBoardMngNo", BOARD_MNG_NO);
 			}
 
 }

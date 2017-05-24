@@ -316,16 +316,16 @@
 							</td>
 						</tr>
 						<tr>
-							<th colspan="4" style="text-align: center;">메모</th>
+							<th colspan="4" style="text-align: center;">영업활동 내역</th>
 						</tr>
 						<tr>
 							<th>영업활동장소</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<input type="text" class="inputText">
+							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc">
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<input type="text" class="inputText">
+							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" value="${actDetail.sales_actvy_loc}">
 							    </c:if>
 							</td>
 						</tr>
@@ -333,10 +333,10 @@
 							<th>영업활동대상자</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<input type="text" class="inputText">
+							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person">
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<input type="text" class="inputText">
+							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person"  value="${actDetail.sales_actvy_person}">
 							    </c:if>
 							</td>
 						</tr>
@@ -344,14 +344,10 @@
 							<th>영업활동내용</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<textarea style="width: 745px; height: 100px;">
-							    	
-							    	</textarea>
+							    	<textarea style="width: 745px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" ></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="width: 745px; height: 100px;">
-							    	
-							    	</textarea>
+							    	<textarea style="width: 745px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" >${actDetail.sales_actvy_content}</textarea>
 							    </c:if>
 							</td>
 						</tr>
@@ -359,14 +355,10 @@
 							<th>비고</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<textarea style="width: 745px; height: 50px;">
-							    	
-							    	</textarea>
+							    	<textarea style="width: 745px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason"></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="width: 745px; height: 50px;">
-							    	
-							    	</textarea>
+							    	<textarea style="width: 745px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason">${actDetail.sales_actvy_reason}</textarea>
 							    </c:if>
 							</td>
 						</tr>

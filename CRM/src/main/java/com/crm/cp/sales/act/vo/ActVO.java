@@ -10,8 +10,6 @@ public class ActVO {
 	String sales_oppt_id;       //영업기회ID
 	String cust_id;             //고객ID  
 	String sales_actvy_nm;      //영업활동명
-	String sales_actvy_div_cd;  //영업활동구분코드
-	String sales_actvy_div_nm;  //영업활동구분
 	String sales_actvy_type_cd; //영업활동유형코드 
 	String sales_actvy_type_nm; //영업활동유형명
 	String strt_d;              //시작일자
@@ -24,10 +22,13 @@ public class ActVO {
 	String end_t_m;
 	String sales_actvy_stat_cd; //영업활동상태코드
 	String sales_actvy_stat_nm; //영업활동상태명
-	String memo;                //메모
-	String fst_reg_id;       //등록자명
+	String sales_actvy_loc;		//영업활동장소
+	String sales_actvy_person;	//엽업활동대상자
+	String sales_actvy_content;	//영업활동내용
+	String sales_actvy_reason;	//비고
+	String fst_reg_id;       	//등록자명
 	String fst_reg_dt;          //등록일자 
-	String fin_mdfy_id;      //수정자명
+	String fin_mdfy_id;      	//수정자명
 	String fin_mdfy_dt;         //수정일자
 	String act_yn;              //활성화여부
 	
@@ -45,12 +46,14 @@ public class ActVO {
 	public ActVO(){}
 
 	public ActVO(String sales_actvy_id, String sales_oppt_id, String cust_id,
-			String sales_actvy_nm, String sales_actvy_div_cd, String sales_actvy_div_nm,
+			String sales_actvy_nm, 
 			String sales_actvy_type_cd, String sales_actvy_type_nm,
 			String strt_d, String strt_t, String strt_t_h, String strt_t_m,
 			String end_d, String end_t, String end_t_h, String end_t_m,
 			String sales_actvy_stat_cd, String sales_actvy_stat_nm,
-			String memo, String fst_reg_id, String fst_reg_dt,
+			String sales_actvy_loc, String sales_actvy_person,
+			String sales_actvy_content, String sales_actvy_reason, 
+			String fst_reg_id, String fst_reg_dt,
 			String fin_mdfy_id, String fin_mdfy_dt, String act_yn,
 			String cd_grp_id, String cd_nm, String code, String sales_oppt_nm, String cust_nm) {
 		super();
@@ -58,8 +61,6 @@ public class ActVO {
 		this.sales_oppt_id = sales_oppt_id;
 		this.cust_id = cust_id;
 		this.sales_actvy_nm = sales_actvy_nm;
-		this.sales_actvy_div_cd = sales_actvy_div_cd;
-		this.sales_actvy_div_nm = sales_actvy_div_nm;
 		this.sales_actvy_type_cd = sales_actvy_type_cd;
 		this.sales_actvy_type_nm = sales_actvy_type_nm;
 		this.strt_d = strt_d;
@@ -72,7 +73,10 @@ public class ActVO {
 		this.end_t_m = end_t_m;
 		this.sales_actvy_stat_cd = sales_actvy_stat_cd;
 		this.sales_actvy_stat_nm = sales_actvy_stat_nm;
-		this.memo = memo;
+		this.sales_actvy_loc = sales_actvy_loc;
+		this.sales_actvy_person = sales_actvy_person;
+		this.sales_actvy_content = sales_actvy_content;
+		this.sales_actvy_reason = sales_actvy_reason;
 		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_dt = fst_reg_dt;
 		this.fin_mdfy_id = fin_mdfy_id;
@@ -115,14 +119,6 @@ public class ActVO {
 
 	public void setSales_actvy_nm(String sales_actvy_nm) {
 		this.sales_actvy_nm = sales_actvy_nm;
-	}
-
-	public String getSales_actvy_div_nm() {
-		return sales_actvy_div_nm;
-	}
-
-	public void setSales_actvy_div_nm(String sales_actvy_div_nm) {
-		this.sales_actvy_div_nm = sales_actvy_div_nm;
 	}
 
 	public String getSales_actvy_type_cd() {
@@ -187,14 +183,6 @@ public class ActVO {
 
 	public void setSales_actvy_stat_nm(String sales_actvy_stat_nm) {
 		this.sales_actvy_stat_nm = sales_actvy_stat_nm;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
 	}
 
 	public String getFst_reg_id() {
@@ -269,14 +257,6 @@ public class ActVO {
 		this.sales_oppt_nm = sales_oppt_nm;
 	}
 
-	public String getSales_actvy_div_cd() {
-		return sales_actvy_div_cd;
-	}
-
-	public void setSales_actvy_div_cd(String sales_actvy_div_cd) {
-		this.sales_actvy_div_cd = sales_actvy_div_cd;
-	}
-
 	public String getCust_nm() {
 		return cust_nm;
 	}
@@ -316,20 +296,53 @@ public class ActVO {
 	public void setEnd_t_m(String end_t_m) {
 		this.end_t_m = end_t_m;
 	}
+	
+	public String getSales_actvy_loc() {
+		return sales_actvy_loc;
+	}
 
+	public void setSales_actvy_loc(String sales_actvy_loc) {
+		this.sales_actvy_loc = sales_actvy_loc;
+	}
+
+	public String getSales_actvy_person() {
+		return sales_actvy_person;
+	}
+
+	public void setSales_actvy_person(String sales_actvy_person) {
+		this.sales_actvy_person = sales_actvy_person;
+	}
+
+	public String getSales_actvy_content() {
+		return sales_actvy_content;
+	}
+
+	public void setSales_actvy_content(String sales_actvy_content) {
+		this.sales_actvy_content = sales_actvy_content;
+	}
+
+	public String getSales_actvy_reason() {
+		return sales_actvy_reason;
+	}
+
+	public void setSales_actvy_reason(String sales_actvy_reason) {
+		this.sales_actvy_reason = sales_actvy_reason;
+	}
+	
 	@Override
 	public String toString() {
 		return "ActVO [sales_actvy_id=" + sales_actvy_id + ", sales_oppt_id="
 				+ sales_oppt_id + ", cust_id=" + cust_id + ", sales_actvy_nm="
-				+ sales_actvy_nm + ", sales_actvy_div_cd=" + sales_actvy_div_cd
-				+ ", sales_actvy_div_nm=" + sales_actvy_div_nm
+				+ sales_actvy_nm
 				+ ", sales_actvy_type_cd=" + sales_actvy_type_cd
 				+ ", sales_actvy_type_nm=" + sales_actvy_type_nm + ", strt_d="
 				+ strt_d + ", strt_t=" + strt_t + ", strt_t_h=" + strt_t_h + ", strt_t_m="+ strt_t_m 
 				+ ", end_d=" + end_d + ", end_t=" + end_t +  ", end_t_h=" + end_t_h + ", end_t_m=" + end_t_m
 				+ ", sales_actvy_stat_cd="
-				+ sales_actvy_stat_cd + ", sales_actvy_stat_nm="
-				+ sales_actvy_stat_nm + ", memo=" + memo + ", fst_reg_id="
+				+ sales_actvy_stat_cd + ", sales_actvy_stat_nm="+ sales_actvy_stat_nm 
+				+ ", sales_actvy_loc=" +sales_actvy_loc + ", sales_actvy_person=" + sales_actvy_person
+				+ ", sales_actvy_content=" + sales_actvy_content + ", sales_actvy_reason=" + sales_actvy_reason
+				+ ", fst_reg_id="
 				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt
 				+ ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
 				+ fin_mdfy_dt + ", act_yn=" + act_yn + ", cd_grp_id="
