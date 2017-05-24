@@ -606,30 +606,17 @@ function estimList(opptId){
 			}else{
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
-						'<td style="width: 3% !important; text-align: center;"><input type=checkbox name=estim_id value='+data.estim_id+'></td>'+
-						'<td style="text-align: left; padding-left: 5px; width: 33.8% !important;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
-						'<td style="width: 11% !important; text-align: center;">'+data.estim_lev_cd+'</td>'+
-						'<td style="width: 10% !important; text-align: center;">'+data.estim_qty+'</td>'+
-						'<td style="text-align: right; padding-right: 5px; width: 15% !important;">'+comma(data.sales_price)+'</td>'+
-						'<td style="width: 13% !important; text-align: center;">'+data.estim_valid_d+'</td>'+
-						'<td style="width: 9% !important; text-align: center;">'+data.fst_reg_id+'</td>'+
-						'<td style="width: 13% !important; text-align: center;">'+data.fst_reg_dt+'</td>'+
+						'<td><input type=checkbox name=estim_id value='+data.estim_id+'></td>'+
+						'<td><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
+						'<td>'+data.estim_lev_cd+'</td>'+
+						'<td>'+data.estim_qty+'</td>'+
+						'<td>'+comma(data.sales_price)+'</td>'+
+						'<td>'+data.estim_valid_d+'</td>'+
+						'<td>'+data.fst_reg_id+'</td>'+
+						'<td>'+data.fst_reg_dt+'</td>'+
 						'</tr>';
 			});
-//			if(result.length < 5){
-//				for(var j = 0; j < 5-result.length; j++){
-//					content += "<tr class='headerLock'>"
-//						+ "<th style='width: 3% !important;'></th>"
-//						+ "<td style='width: 30% !important;'></td>" 
-//						+ "<td style='width: 11% !important;'></td>"
-//						+ "<td style='width: 10% !important;'></td>"
-//						+ "<td style='width: 15% !important;'></td>"
-//						+ "<td style='width: 10% !important;'></td>"
-//						+ "<td style='width: 9% !important;'></td>"
-//						+ "<td style='width: 10% !important;'></td>"
-//						+ "</tr>";
-//				}
-//			}	
+
 			}	
 			$('#estimList').append(content);
 		},
@@ -649,7 +636,7 @@ function viewSalesActive(opptId){
 		success:function(result){
 			var content = "";
 			if(result.actList.length==0){
-				content = "<tr style='height: 150px; text-align: center;'><td colspan='10' style='text-align: center;'>등록된 영업활동이 없습니다.</td></tr>";	
+				content = "<tr style='height: 150px; text-align: center;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
 			}
 			else{
 			$.each(result.actList,function(i,data){
@@ -657,44 +644,24 @@ function viewSalesActive(opptId){
 				end_d = data.end_d;
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
-				"<td rowspan='2' style='width: 3% !important; text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
-				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 23% !important;'>" +
+				"<td rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
+				"<td rowspan='2'>" +
 				"<a style='text-decoration: none; text-align: center;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
-				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 22.4%;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2' style='width: 8.1% !important; text-align: center;'>"+data.sales_actvy_type_nm+"</td>"+
-				"<td style='width: 9.1% !important; text-align: center;'>"+start_d+"</td>"+
-				"<td style='width: 9.1% !important; text-align: center;'>"+data.strt_t+"</td>"+
-				"<td rowspan='2' style='width: 6% !important; text-align: center;'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2' style='width: 7% !important; text-align: center;'>"+data.fst_reg_id+"</td>"+
-				"<td rowspan='2' style='width: 10% !important; text-align: center;'>"+reg_dt+"</td>"+
+//				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+
+				"<td rowspan='2'>"+data.sales_oppt_nm+"</td>"+
+				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
+				"<td>"+start_d+"</td>"+
+				"<td>"+data.strt_t+"</td>"+
+				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
+				"<td rowspan='2'>"+data.fst_reg_id+"</td>"+
+				"<td rowspan='2'>"+reg_dt+"</td>"+
 				"</tr>"+
 				"<tr>"+
-				"<td style='width: 9.1% !important; text-align: center;'>"+end_d+"</td>"+
-				"<td style='width: 9.1% !important; text-align: center;'>"+data.end_t+"</td>"+
+				"<td>"+end_d+"</td>"+
+				"<td>"+data.end_t+"</td>"+
 				"</tr>";	
 			});
 			
-//			if(result.actList.length < 5){
-//				for(var j = 0; j < 5-result.actList.length; j++){
-//					content += "<tr>"+
-//								"<th rowspan='2' style='width: 3% !important;'></th>"+ 
-//								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20% !important;'></td>"+
-//								"<td rowspan='2' style='width: 8% !important;'></td>"+
-//								"<td rowspan='2' style='text-align: left; padding-left: 5px; width: 20%;'></td>"+
-//								"<td rowspan='2' style='width: 8% !important;'></td>"+
-//								"<td style='width: 9% !important;'></td>"+
-//								"<td style='width: 9% !important;'></td>"+
-//								"<td rowspan='2' style='width: 6% !important;'></td>"+
-//								"<td rowspan='2' style='width: 7% !important;'></td>"+
-//								"<td rowspan='2' style='width: 10% !important;'></td>"+
-//								"</tr>"+
-//								"<tr>"+
-//								"<td style='width: 9% !important;'></td>"+
-//								"<td style='width: 9% !important;'></td>"+
-//								"</tr>";
-//					}
-//				}
 			}	
 			$("#activeList").append(content);
 		},

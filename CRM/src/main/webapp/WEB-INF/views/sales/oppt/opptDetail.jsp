@@ -59,20 +59,20 @@ $(document).ready(function() {
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 					<thead>
 						<tr class="headerLock">
-							<th rowspan="2" style="width: 3% !important; text-align: center;"><input type="checkbox"  id='actAllSelect'/></th>
-							<th rowspan="2" style="width: 22.6% !important; text-align: center;">영업활동명</th>
-							<th rowspan="2" style="width: 8% !important; text-align: center;">활동구분</th>
-							<th rowspan="2" style="width: 22% !important; text-align: center;">영업기회명</th>
-							<th rowspan="2" style="width: 8% !important; text-align: center;">활동유형</th>
-							<th style="width: 9% !important; text-align: center;">시작일자</th>
-							<th style="width: 9% !important; text-align: center;">시작시간</th>
-							<th rowspan="2" style="width: 6% !important; text-align: center;">상태</th>
-							<th rowspan="2" style="width: 7% !important; text-align: center;">등록자</th>
-							<th rowspan="2" style="width: 10% !important; text-align: center;">등록일시</th>
+							<th rowspan="2"><input type="checkbox"  id='actAllSelect'/></th>
+							<th rowspan="2">영업활동명</th>
+<!-- 							<th rowspan="2" style="width: 8% !important; text-align: center;">활동구분</th> -->
+							<th rowspan="2">영업기회명</th>
+							<th rowspan="2">활동유형</th>
+							<th>시작일자</th>
+							<th>시작시간</th>
+							<th rowspan="2">상태</th>
+							<th rowspan="2">등록자</th>
+							<th rowspan="2">등록일시</th>
 						</tr>
 						<tr>
-							<td style="width: 9% !important; text-align: center;">종료일자</td>
-							<td style="width: 9% !important; text-align: center;">종료시간</td>
+							<td>종료일자</td>
+							<td>종료시간</td>
 						</tr>
 					</thead>
 					<tbody id="activeList" class="detailtbody" >	
@@ -92,14 +92,14 @@ $(document).ready(function() {
 			<table id="goaltable" class="ui celled table" cellspacing="0" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
-						<th style="width: 3% !important; text-align: center;"><input type="checkbox"  id='estimAllSelect'/></th>
-						<th style="width: 33.52% !important; text-align: center;">견적명</th>
-						<th style="width: 11% !important; text-align: center;">견적단계</th>
-						<th style="width: 10% !important; text-align: center;">견적수량</th>
-						<th style="width: 15% !important; text-align: center;">견적금액</th>
-						<th style="width: 13% !important; text-align: center;">견적유효일자</th>
-						<th style="width: 9% !important; text-align: center;">등록자</th>
-						<th style="width: 13% !important; text-align: center;">등록일시</th>
+						<th><input type="checkbox"  id='estimAllSelect'/></th>
+						<th>견적명</th>
+						<th>견적단계</th>
+						<th>견적수량</th>
+						<th>견적금액</th>
+						<th>견적유효일자</th>
+						<th>등록자</th>
+						<th>등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="estimList"  class="detailtbody" >

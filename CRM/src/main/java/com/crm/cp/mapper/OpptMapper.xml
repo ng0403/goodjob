@@ -219,10 +219,6 @@
 		SELECT SAL.* FROM
 		(SELECT P.*, ROWNUM RNUM FROM (SELECT SA.SALES_ACTVY_NM
 		, SO.SALES_OPPT_ID
-		,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ADC' AND C.code =
-		SA.SALES_ACTVY_DIV_CD)SALES_ACTVY_DIV_NM
-		, (SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code =
-		SA.SALES_ACTVY_TYPE_CD)SALES_ACTVY_TYPE_NM
 		,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D,SA.STRT_T, TO_CHAR(SA.END_D,'YYYY-MM-DD') END_D, SA.END_T
 		, (SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code =
 		SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_NM
@@ -379,7 +375,7 @@
 	<!-- 영업활동 추가 -->
 	<update id="actInsert" parameterType="com.crm.cp.sales.act.vo.ActVO">
 		INSERT INTO SALES_ACTIVITY(
-		SALES_ACTVY_ID,SALES_ACTVY_NM, SALES_ACTVY_DIV_CD, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
+		SALES_ACTVY_ID,SALES_ACTVY_NM, SALES_ACTVY_TYPE_CD, SALES_OPPT_ID, CUST_ID
 		,SALES_ACTVY_STAT_CD, STRT_D, STRT_T, END_D, END_T, MEMO,
 		FST_REG_ID,FIN_MDFY_ID)
 		VALUES(
@@ -389,7 +385,7 @@
                    SALES_ACTIVITY
               WHERE 
                   ROWNUM=1)
-		,#{sales_actvy_nm},#{sales_actvy_div_cd},#{sales_actvy_type_cd},#{sales_oppt_id},
+		,#{sales_actvy_nm},#{sales_actvy_type_cd},#{sales_oppt_id},
 		#{cust_id},#{sales_actvy_stat_cd},TO_DATE(#{strt_d},'yyyy-MM-dd'),#{strt_t},TO_DATE(#{end_d},'yyyy-MM-dd'),#{end_t},#{memo},#{fst_reg_id},#{fin_mdfy_id})
 	</update>
 	
@@ -669,7 +665,6 @@
 	<select id="actDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 		SELECT SA.SALES_ACTVY_ID 
 	            ,SA.SALES_ACTVY_NM 
-			    ,SALES_ACTVY_DIV_CD
 				,SALES_ACTVY_TYPE_CD
 				,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D 
 				,SA.STRT_T 
@@ -692,7 +687,6 @@
 	<update id="opptActiveUpdate" parameterType="com.crm.cp.sales.act.vo.ActVO">
 	      UPDATE SALES_ACTIVITY 
 		  SET SALES_ACTVY_NM =#{sales_actvy_nm}
-		  , SALES_ACTVY_DIV_CD=#{sales_actvy_div_cd}
 		  , SALES_ACTVY_TYPE_CD=#{sales_actvy_type_cd}
 		  , SALES_OPPT_ID=#{sales_oppt_id}
 		  , CUST_ID=#{cust_id} 
