@@ -25,6 +25,14 @@ $(document).ready(function() {
 	var opptNm =$('#hsales_oppt_nm').val();
 	var custId =$('#hcust_id').val();
 	var custNm =$('#hcust_nm').val();
+	var vn_date_today = new Date(); 
+	var vn_year = vn_date_today.getYear(); 
+	var vn_hour = vn_date_today.getHours(); 
+	var vn_min = vn_date_today.getMinutes(); 
+	alert(vn_date_today);
+	alert(vn_year);
+	alert(vn_hour);
+	alert(vn_min);
 	$('#salesId').val(opptId);
 	viewSalesActive(opptId);
 // 	estimList(opptId);
@@ -54,7 +62,7 @@ $(document).ready(function() {
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 			<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
-				<button id="act_opp_nm" class="tiny ui orange button" onclick="actInsertForm('oppt', '${opptId}', '${opptNm}', '${custId}', '${custNm}');">영업활동 추가</button>
+				<button id="act_opp_nm" class="tiny ui orange button" onclick="actInsertForm2('oppt', '${opptId}', '${opptNm}', '${custId}', '${custNm}');">영업활동 추가</button>
 				<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
