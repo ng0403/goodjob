@@ -15,14 +15,15 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 	
 <title>영업활동</title>
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="actPageNum" value="${actPageNum}">
 	<input type="hidden" id="act_flg" value="${act_flg}">
 	
 	<%-- <form action="${ctx}/act" method="get" id="listForm"> --%>
@@ -57,7 +58,7 @@
 			
 <!-- 	    </div> -->
 	    <div id="functionBtn">
-	    	<input type="button" class="act_bt" style="float: right;" value="삭제" onclick="actDelete()" />
+	    	<input type="button" id="act_del_btn" class="act_bt" style="float: right;" value="삭제" />
 	    	<input type="button" class="act_bt" value="추가" style="float: right;" onclick="actInsertForm('${act_flg}');" />
 <!-- 	    	<button type="button" class="act_bt" style="float: right;" id="actDelBtn" onclick="actDelete()">삭제</button> -->
 	    </div>
@@ -66,7 +67,7 @@
 			<table id="dboardtable">
 				<thead>
 					<tr>
-						<th rowspan="2" style="width: 2%;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
+						<th rowspan="2" style="width: 2%; text-align: center;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
 						<td rowspan="2" style="width: 15%;">영업활동명</td>
 						<td rowspan="2" style="width: 23%;">영업기회명</td>
 						<td rowspan="2" style="width: 10%;">활동유형</td>
@@ -82,9 +83,9 @@
 				<tbody id="act_list_tbody" class="act_list_tbody">
 					<c:forEach items="${actList}" var="actList">
 						<tr>
-							<th rowspan="2">
+							<td rowspan="2">
 								<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
-							</th>
+							</td>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">
 								<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
 								<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a>
@@ -97,13 +98,13 @@
 						</tr>
 						<tr>
 							<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>
-							<%-- <fmt:formatDate value="${actList.end_d}" pattern="yyyy-MM-dd"/> --%>
 							<td style="text-align: center;" class="act_endm_tag">${actList.end_t}</td>
 						</tr>
 						</c:forEach>
 				</tbody>
 			</table>
 		</div>
+		
 		<!-- 페이징 처리 -->
 		<div id="pageSpace" class="ui right floated pagination menu">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>

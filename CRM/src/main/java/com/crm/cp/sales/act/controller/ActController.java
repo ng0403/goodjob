@@ -49,7 +49,7 @@ public class ActController {
 	@Autowired
 	OpptService opptService;
 	
-	//전체리스트 달력 출력
+	// 달력 출력
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody ModelAndView ActSchList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
 	{
@@ -74,6 +74,23 @@ public class ActController {
 		mov.addObject("actStatCd", actStatCd);
 		
 		return mov;
+	}
+	
+	// 달력 리스트 출력
+	@RequestMapping(value="/actSchedule" , method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody Map<String,Object> ActSchedule(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum) throws ParseException
+	{
+		System.out.println("Schedule Test");
+		
+		Map<String, Object> test = new HashMap<String, Object>();
+		
+		List<Object> actSchList = actService.actSchList();
+		
+		System.out.println("actSchList : " + actSchList);
+		
+		test.put("actSchList", actSchList);
+			
+		return test;
 	}
 	
 	// 영업활동 관리 전체리스트 출력
@@ -104,29 +121,6 @@ public class ActController {
 		mov.addObject("act_flg", act_flg);
 		
 		return mov;
-	}
-	
-	//전체리스트 출력 페이징/검색 
-	@RequestMapping(value="/actSchedule" , method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody Map<String,Object> ActSchedule(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum) throws ParseException
-	{
-		System.out.println("Schedule Test");
-		
-		Map<String, Object> test = new HashMap<String, Object>();
-		
-		List<Object> actSchList = actService.actSchList();
-		//List<MenuVO> menuList = menuService.selectAll(session);
-		//List<ActVO> actDivCd = actService.actDivCdList();
-		//List<ActVO> actStatCd = actService.actStatCdList();
-		
-		System.out.println("actSchList : " + actSchList);
-		
-		test.put("actSchList", actSchList);
-		//test.put("menuList", menuList);
-		//test.put("actDivCd", actDivCd);
-		//test.put("actStatCd", actStatCd);
-
-		return test;
 	}
 	
 	// 영업활동 상세정보
@@ -212,33 +206,6 @@ public class ActController {
 //		return "redirect:/act";
 	}
 	
-	//영업활동등록
-//	@RequestMapping(value = "/actInsert", method = RequestMethod.POST)
-//	public int actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
-//	{
-//		actvo.setFst_reg_id(session.getAttribute("user").toString());
-//		actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
-//		actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
-//		int result = 0;
-//		
-//		System.out.println("actInsert : " + actvo.toString());
-//		
-//		if(actvo.getSales_actvy_div_cd().equals("0001"))
-//		{
-//			result = actService.actInsert(actvo);
-//		}
-//		if(actvo.getSales_actvy_div_cd().equals("0002"))
-//		{
-//			result = actService.actInsert(actvo);
-//		}
-//		
-//		System.out.println("result : " + result);
-//		
-//		return result;
-//		
-////		return "redirect:/act";
-//	}
-
 	//영업활동 수정	
 	@RequestMapping(value="/actEdit", method= RequestMethod.POST)
 	public @ResponseBody int actEdit(ActVO actvo, HttpSession session)
@@ -256,12 +223,17 @@ public class ActController {
 	
 	//영업활동 삭제	
 	@RequestMapping(value = "/actDelete", method = RequestMethod.POST)
-	public @ResponseBody int actDelete(ActVO actvo) throws IOException
+	public @ResponseBody int actDelete(HttpSession session,
+			@RequestParam(value = "actDeleteIdList[]") List<String> actDeleteIdList,
+			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) throws IOException
 	{
 		int result = 0;
-		System.out.println("actDelete - sales_actvy_id : " + actvo.toString());
+		System.out.println("actDelete - sales_actvy_id : " + actDeleteIdList.toString());
 		
-		result = actService.actDelete(actvo.getSales_actvy_id());
+		for(int i=0; i<actDeleteIdList.size(); i++)
+		{
+			result += actService.actDelete(actDeleteIdList.get(i));
+		}
 		
 		return result;
 	}
@@ -379,7 +351,6 @@ public class ActController {
 	}
 
 	
-	
 	// 상세정보에서의 고객 리스트
 	@RequestMapping(value = "/opptCustPopup", method = RequestMethod.GET)
 	public ModelAndView opptCustcompList(HttpSession session, 
@@ -402,3 +373,31 @@ public class ActController {
 	}
 	
 }
+
+//영업활동등록
+//@RequestMapping(value = "/actInsert", method = RequestMethod.POST)
+//public int actInsert(@ModelAttribute ActVO actvo, HttpSession session, HttpServletRequest request)
+//{
+//	actvo.setFst_reg_id(session.getAttribute("user").toString());
+//	actvo.setStrt_t(actvo.getStrt_t_h() + ":" + actvo.getStrt_t_m());
+//	actvo.setEnd_t(actvo.getEnd_t_h() + ":" + actvo.getEnd_t_m());
+//	int result = 0;
+//	
+//	System.out.println("actInsert : " + actvo.toString());
+//	
+//	if(actvo.getSales_actvy_div_cd().equals("0001"))
+//	{
+//		result = actService.actInsert(actvo);
+//	}
+//	if(actvo.getSales_actvy_div_cd().equals("0002"))
+//	{
+//		result = actService.actInsert(actvo);
+//	}
+//	
+//	System.out.println("result : " + result);
+//	
+//	return result;
+//	
+////	return "redirect:/act";
+//}
+

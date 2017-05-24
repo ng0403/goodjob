@@ -336,9 +336,6 @@ function actPaging(actPageNum) {
 		type : 'POST',
 		data : actData,
 		success : function(data) {
-//			var start_d  = null;
-//			var end_d = null;
-//			var reg_dt = null;
 
 			if(data.actListSize == 0){
 				alert("검색결과가 없습니다.");
@@ -346,11 +343,8 @@ function actPaging(actPageNum) {
 			}else{
 				tbody.children().remove();
 			
-			for (var i = 0; i < data.actList.length; i++) {
-				/*start_d = dateFormat_D(Number(data.actList[i].strt_d));
-				end_d = dateFormat_D(Number(data.actList[i].end_d));
-				reg_dt = dateFormat(Number(data.actList[i].fst_reg_dt));*/
-				
+			for (var i = 0; i < data.actList.length; i++) 
+			{
 				tbodyContent = "<tr>"
 									+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
 									+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
@@ -387,8 +381,10 @@ function actPaging(actPageNum) {
 			   tbody.append(tbodyContent);
 			}
 			
-			if(data.actList.length < 5){
-				for(var j = 0; j < 5-data.actList.length; j++){
+			if(data.actList.length < 5)
+			{
+				for(var j = 0; j < 5-data.actList.length; j++)
+				{
 					tbodyContent ="<tr style='height:36px;'>"
 						+"<th></th>"
 						+"<td></td><td></td><td></td><td></td>"
@@ -402,43 +398,13 @@ function actPaging(actPageNum) {
 			
 			// directbtndiv
 			var pageContent = "";
+			
 			// 페이징 다시그리기
-			$("#directbtndiv").children().remove();
+			$("#pageSpace").children().remove();
+			
+			
 
-			if(data.page.startPageNum == 1 && data.page.endPageNum == 1)
-			{
-				pageContent = "<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>" 
-				+"<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				+"<a> ◀ </a><input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>" 
-				+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-			}
-			else if(data.actPageNum == data.page.startPageNum)
-			{
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
-								+"<a> ◀ </a> <input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>" 
-								+"<a href='#' onclick=actPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=actPaging("+(data.actPageNum+1)+") id='pNum' style='text-decoration: none; color: blue;'> ▶ </a>";
-			} 
-			else if(data.actPageNum == data.page.endPageNum)
-			{
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
-				                +"<a href='#' onclick=actPaging("+(data.actPageNum-1)+") id='pNum' style='text-decoration: none; color: blue;'> ◀ </a>"
-								+"<input type='text' id='actPageInput' class='act_page_txt' value='"+data.page.endPageNum+"' onkeypress=\"pageInputAct(event);\"/>"
-								+"<a href='#' onclick=actPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
-								+"<a> ▶ </a>";
-			} 
-			else 
-			{
-				pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-				                +"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
-								+"<a href='#' onclick=actPaging("+(data.actPageNum-1)+") id='pNum' style='text-decoration: none; color: blue;'> ◀ </a>"
-								+"<input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>"
-								+"<a href='#' onclick=actPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
-								+"<a href='#' onclick=actPaging("+(data.actPageNum+1)+") id='pNum' style='text-decoration: none; color: blue;'> ▶ </a>";
-			}
-			$("#directbtndiv").append(pageContent);
+			$("#pageSpace").append(pageContent);
 		  }
 		},
 		error : function(request,status,error) {
@@ -447,15 +413,19 @@ function actPaging(actPageNum) {
 	});
 }
 
-//영업활동 조회 페이징
-function schActPaging(actPageNum) {
+/*
+ * 현재 사용하고 있는 페이징.
+ * */
+function schActPaging(page) 
+{
 	var ctx   = $("#ctx").val();
 	var tbody = $('#act_list_tbody');
 	var act_search_div_id = $("#act_search_div_id").val();
 	var act_search_txt    = $("#act_search_txt").val();
 	var tbodyContent = "";
 	
-	var actData = { "actPageNum": actPageNum, 
+	var actData = { 
+			"actPageNum": page, 
 			"act_search_div_id": act_search_div_id, 
 			"act_search_txt" : act_search_txt
 	};
@@ -465,121 +435,170 @@ function schActPaging(actPageNum) {
 		type : 'POST',
 		data : actData,
 		success : function(data) {
-			/*
-			var start_d  = null;
-			var end_d = null;
-			var reg_dt = null;
-			var sstart_day  = null;*/
-			
-			if(data.actListSize == 0){
+			if(data.actListSize == 0)
+			{
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/act';
 			}
 			else
 			{
 				tbody.children().remove();
-				
-			/*	sstart_day = dateFormat_D(Number(data.sstart_day));*/
-				
+			
 				$("#sact_oppt_nm").val(data.sact_oppt_nm);
 				$("#ssales_actvy_nm").val(data.ssales_actvy_nm);
 				$("#sstart_day").val(data.sstart_day);
 				$("#ssales_actvy_stat_cd").val(data.ssales_actvy_stat_cd);
-				
+			
 				tbody.children().remove();
-				
-				for (var i = 0; i < data.actList.length; i++) {
-					/*start_d = dateFormat_D(Number(data.actList[i].strt_d));
-					end_d = dateFormat_D(Number(data.actList[i].end_d));
-					reg_dt = dateFormat(Number(data.actList[i].fst_reg_dt));*/
-					
+			
+				for(var i = 0; i < data.actList.length; i++) 
+				{
 					tbodyContent = "<tr>"
-						+"<th rowspan='2' style='width:2%;'><input type='checkbox'></th>"
-						+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actTabFunc('"+data.actList[i].sales_actvy_id+"')>"
+						+"<th rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></th>"
+						+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' onclick=actDetail('"+data.actList[i].sales_actvy_id+"')>"
 						+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"
 						+"<a id='act_id_a' style='color: blue; cursor: pointer;' class='actClick'>"+data.actList[i].sales_actvy_nm+"</a></td>";
-//						+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>"; 
+//						+"<td rowspan='2' style='width:10%; text-align: center;' class='act_div_tag'>"+data.actList[i].sales_actvy_div_cd+"</td>";
 					
-					if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == ""){
-						tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
-					}else{
-						tbodyContent +="<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'>"+data.actList[i].sales_oppt_nm+"</td>";
+				    	if(data.actList[i].sales_oppt_nm == 'null' || data.actList[i].sales_oppt_nm == null || data.actList[i].sales_oppt_nm == "")
+				    	{
+				    		tbodyContent += "<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'></td>";
+				    	}
+				    	else
+				    	{
+				    		tbodyContent +="<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'>"+data.actList[i].sales_oppt_nm+"</td>";
+				    	}
+				    	
+				    	tbodyContent +="<td rowspan='2' style='width:10%; text-align: center;' class='act_type_tag'>"+data.actList[i].sales_actvy_type_cd+"</td>"
+				    	+"<td style='width:10%; text-align: center;' class='act_starth_tag'>"+data.actList[i].strt_d+"</td>";
+				    	
+				    	if(data.actList[i].strt_t == 'null' || data.actList[i].strt_t == null || data.actList[i].strt_t == "" || data.actList[i].strt_t == "0")
+				    	{
+				    		tbodyContent += "<td class='act_startm_tag' style='width:10%; text-align: center;'></td>";
+				    	}
+				    	else
+				    	{
+				    		tbodyContent +="<td class='act_startm_tag' style='width:10%; text-align: center;'>"+data.actList[i].strt_t+"</td>";
+				    	}
+				    	
+					    tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%; text-align: center;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
+//					    +"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id+"</td>"
+//	                    +"<td rowspan='2' class='act_dt_tag' style='width:10%; text-align: center;'>"+data.actList[i].fst_reg_dt+"</td></tr>"
+	                    +"<tr>"
+	                    +"<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
+	                    
+					    if(data.actList[i].end_t == 'null' || data.actList[i].end_t == null || data.actList[i].end_t == "" || data.actList[i].end_t == "0")
+					    {
+					    	tbodyContent += "<td class='act_endm_tag' style='width:10%; text-align: center;'></td>";
+					    }
+					    else
+					    {
+					    	tbodyContent +="<td class='act_endm_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_t+"</td>";
+					    }
+					    tbody.append(tbodyContent);
+					}
+						
+					if (data.actList.length < 5) 
+					{
+						for (var j = 0; j < 5 - data.actList.length; j++)
+						{
+							tbodyContent = "<tr style='height:36px;'>"
+								+ "<td></td>"
+								+ "<td></td><td></td><td></td>"
+								+ "<td></td><td></td>"
+								+ /* "<td></td></tr>" */
+								+"<tr>" + "<td></td></tr>";
+							tbody.append(tbodyContent);
+						}
 					}
 					
-					tbodyContent +="<td rowspan='2' style='width:10%; text-align: center;' class='act_type_tag'>"+data.actList[i].sales_actvy_type_cd+"</td>"
-					+"<td style='width:10%; text-align: center;' class='act_starth_tag'>"+data.actList[i].strt_d+"</td>";
+					var pageContent = "";
+
+					// 페이징 다시그리기
+					$("#pageSpace").children().remove();
 					
-					if(data.actList[i].strt_t == 'null' || data.actList[i].strt_t == null || data.actList[i].strt_t == "" || data.actList[i].strt_t == "0"){
-						tbodyContent += "<td class='act_startm_tag' style='width:10%; text-align: center;'></td>";
-					}else{
-						tbodyContent +="<td class='act_startm_tag' style='width:10%; text-align: center;'>"+data.actList[i].strt_t+"</td>";
-					}
+					var actPageNum = data.ccPageNum;
+					var startPageNum = data.page.startPageNum;
+					var endPageNum = data.page.endPageNum;
+					var firstPageCount = data.page.firstPageCount;
+					var totalPageCount = data.page.totalPageCount;
+					var prevPageNum = data.page.prevPageNum;
+					var nextPageNum = data.page.nextPageNum;
+					var prevStepPage = data.page.prevStepPage;
+					var nextStepPage = data.page.nextStepPage;
 					
-					tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
-					+"<td rowspan='2' class='act_reg_tag' style='width:5%; text-align: center;'>"+data.actList[i].fst_reg_id+"</td>"
-					+"<td rowspan='2' class='act_dt_tag' style='width:10%; text-align: center;'>"+data.actList[i].fst_reg_dt+"</td></tr>"
-					+"<tr>"
-					+"<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
-					
-					if(data.actList[i].end_t == 'null' || data.actList[i].end_t == null || data.actList[i].end_t == "" || data.actList[i].end_t == "0"){
-						tbodyContent += "<td class='act_endm_tag' style='width:10%; text-align: center;'></td>";
-					}else{
-						tbodyContent +="<td class='act_endm_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_t+"</td>";
-					}
-					tbody.append(tbodyContent);
+					paging(actPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
 				}
-				
-				if(data.actList.length < 5){
-					for(var j = 0; j < 5-data.actList.length; j++){
-						tbodyContent ="<tr style='height:32px;'>"
-							+"<th></th>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td><td></td><td></td><td></td>"
-							+/*"<td></td></tr>"*/
-							+"<tr>"
-							+"<td></td></tr>";
-						tbody.append(tbodyContent);
-					}
-				}
-				
-				
-				var pageContent = "";
-				// 페이징 다시그리기
-				$("#act_page_div").children().remove();
-				
-				if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
-					pageContent = "<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>" 
-					+"<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<a> ◀ </a><input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>" 
-					+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";
-				} else if(data.actPageNum == data.page.startPageNum){
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
-					+"<a> ◀ </a> <input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>" 
-					+"<a href='#' onclick=schActPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
-					+"<a href='#' onclick=schActPaging("+(data.actPageNum+1)+") id='pNum' style='text-decoration: none; color: blue;'> ▶ </a>";
-				} else if(data.actPageNum == data.page.endPageNum){
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
-					+"<a href='#' onclick=schActPaging("+(data.actPageNum-1)+") id='pNum' style='text-decoration: none; color: blue;'> ◀ </a>"
-					+"<input type='text' id='actPageInput' class='act_page_txt' value='"+data.page.endPageNum+"' onkeypress=\"pageInputAct(event);\"/>"
-					+"<a href='#' onclick=schActPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
-					+"<a> ▶ </a>";
-				} else {
-					pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
-					+"<input type='hidden' id='actPageNum' value='"+data.actPageNum+"'/>"
-					+"<a href='#' onclick=schActPaging("+(data.actPageNum-1)+") id='pNum' style='text-decoration: none; color: blue;'> ◀ </a>"
-					+"<input type='text' id='actPageInput' class='act_page_txt' value='"+data.actPageNum+"' onkeypress=\"pageInputAct(event);\"/>"
-					+"<a href='#' onclick=schActPaging("+data.page.endPageNum+") id='pNum' style='text-decoration: none; color: blue;'> / "+data.page.endPageNum+"</a>"
-					+"<a href='#' onclick=schActPaging("+(data.actPageNum+1)+") id='pNum' style='text-decoration: none; color: blue;'> ▶ </a>";
-				}
-				$("#act_page_div").append(pageContent);
-			}
-		},
-		error : function(request,status,error) {
-	          alert("조회페이징code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	      }
-	});
+			},
+			error : function(request, status, error) {
+				alert("페이징code:" + request.status + "\n" + "message:"+ request.responseText + "\n" + "error:" + error);
+			}	
+		});
+}
+
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage)
+{
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var prevPage = $("<a>");
+	prevPage.addClass("icon item");
+	
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
+	
+	console.log(prevPageNum);
+	console.log(firstPageCount);
+	
+	if(ccPageNum != firstPageCount)
+	{
+		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
+	}
+	
+	prevPage.append(prevI);
+	
+	$("#pageSpace").append(prevPage);
+	
+	for(var i = startPageNum; i <= endPageNum; i++)
+	{
+		var ccPage = $("<a>");
+		
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:custCompList("+i+")");
+		ccPage.html(i);
+		
+		if(i == ccPageNum)
+		{
+			var b = $("<b>");
+			
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}
+		else
+		{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	
+	var nextPage = $("<a>");
+	nextPage.addClass("icon item");
+	
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
+	
+	if(ccPageNum != totalPageCount)
+	{
+		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
+	}
+	
+	nextPage.append(nextI);
+	$("#pageSpace").append(nextPage);
 }
 
 //검색 엔터키 기능
