@@ -21,14 +21,10 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
-<!-- 새로운 공통 css 파일 -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> --%>
-<!-- 기존 css 파일 -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<!-- 기존 css 파일 -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_tab_css.css" type="text/css" /> --%>
+<!-- 테이블 th고정 자바스크립트 -->
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script>
+<!-- 테이블 th고정 CSS -->
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" /> --%>
 
 <title>기존고객 상세정보</title>
 
@@ -42,14 +38,16 @@
 		<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
 			<div class="caption">
-				<h3 class="ui header" style="background: #fff;">■ 고객사 추가</h3>
+				<h3 class="ui header" style="background: #fff;">
+					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사</a>
+					>  고객사 추가
+				</h3>
 			</div>
 		</c:if>
 		<c:if test="${flg == 1 }">
 			<div class="caption">
 				<h3 class="ui header" style="background: #fff;">
-					■ 고객 > <a href="/custcomp"
-						style="font-size: 14pt; text-decoration: none; color: blue;">고객사</a>
+					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사</a>
 					> 상세정보
 				</h3>
 
@@ -62,18 +60,18 @@
 
 				<c:if test="${flg == 0 }">
 					<div id="addBtnDiv" class="bt_position_authuser">
-						<input type="button" id="addSaveBtn"   value="저장" class="tiny ui orange button" onclick="addCustComp('${ctx}');" />
+						<input type="button" id="addSaveBtn"   value="저장" class="tiny ui blue button" onclick="addCustComp('${ctx}');" />
 						<input type="button" id="addCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />
 					</div>
 				</c:if>
 
 				<c:if test="${flg == 1 }">
 					<div id="baseBtnDiv" class="bt_position_authuser">
-						<input type="button" id="mdfBtn"       value="편집" class="tiny ui orange button" onclick="custCompMdfyBtn();" /> 
+						<input type="button" id="mdfBtn"       value="편집" class="tiny ui blue button" onclick="custCompMdfyBtn();" /> 
 						<input type="button" id="addCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />
 					</div>
 					<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-						<input type="button" id="mdfSaveBtn"   value="저장" class="tiny ui orange button" onclick="mdfyCustComp('${ctx}');" />
+						<input type="button" id="mdfSaveBtn"   value="저장" class="tiny ui blue button" onclick="mdfyCustComp('${ctx}');" />
 						<input type="button" id="mdfCancelBtn" value="취소" class="tiny ui button"        onclick="custCompCancelBtn();" />
 					</div>
 				</c:if>

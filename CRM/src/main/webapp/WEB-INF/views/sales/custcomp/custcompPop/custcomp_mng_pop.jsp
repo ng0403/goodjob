@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -15,8 +16,6 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
-<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" /> --%>
 
 
 <style type="text/css">
@@ -26,7 +25,6 @@
    
 </style>
 </head>
-<%-- <body onload='javscript:if(${flg == "detail"}) custActiveDetail();'> --%>
 <body>
 <div class="keymanview" style="width: 98%; padding-left: 10px;">
 	<input type="hidden" id="ctx" value="${ctx}">
@@ -37,11 +35,11 @@
 	<div id="title">
 		<c:if test="${flg == 'add' }">
 <!-- 			<div class="caption">■ 고객사담당자 등록</div> -->
-			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 고객사담당자 등록</h3>
+			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 영업담당자 등록</h3>
 		</c:if>
 		<c:if test="${flg == 'detail' }">
 <!-- 			<div class="caption">■ 고객사담당자 상세정보</div> -->
-			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 고객사담당자 상세정보</h3>
+			<h3 class="ui header" style="background: #fff; padding: 10px;">■ 영업담당자 상세정보</h3>
 		</c:if>
 	</div>
 	<div class="bt_position_popup">
@@ -50,25 +48,25 @@
 	 		<table id="operatingapopuptable" class="ui celled table">  			
 				<tbody id="tbody1" >
 					<tr>  
-						<th>고객사</th>
-						<td>
-							<c:if test="${flg == 'add' }">
-								<input type="text" name="cust_nm" class="inputText" id="cust_nm"  value="${cust_nm}" disabled="disabled"  style="background: rgb(220, 220, 220); width: 30%;">
-								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}">
-							</c:if>
-							<c:if test="${flg == 'detail' }">
-								<input type="text" name="cust_nm" id="cust_nm"  class="inputText" value="${detail.cust_nm}"disabled="disabled" style="background: rgb(220, 220, 220); width: 30%;">
-								<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
-							</c:if>
-					</tr>
-					<tr>  
-						<th>담당사원</th>
+						<th>사원명</th>
 						<td>
 							<input type="text" name="iuser_nm" id="iuser_nm"  class="inputText" value="${detail.iuser_nm}" disabled="disabled" style="  width: 30%;">
 							<c:if test="${flg == 'add' }">
-								<input type="button" class="tiny ui orange basic button" id="Manager"  value="직원검색" onclick="javascript:iuserListPopup('${ctx}');" style="margin-left: 5px;">
+								<input type="button" class="tiny ui blue basic button" id="Manager"  value="직원검색" onclick="javascript:iuserListPopup('${ctx}');" style="margin-left: 5px;">
 							</c:if>
 							<input type="hidden" name="iuser_id" id="iuser_id" value="${detail.iuser_id}">
+						</td>
+					</tr>
+					
+					<tr>
+						<th>부서명</th>
+							<td>
+								<c:if test="${flg == 'add' }">
+								<input type="text" name="org_nm" id="org_nm" class="inputText" value="${custcompDetail.org_nm}" maxlength="3" onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+							</c:if>
+							<c:if test="${flg == 'detail' }">
+								<input type="text" name="org_nm" id="org_nm" class="inputText" value="${detail.org_nm}" onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' readonly="readonly"/>
+							</c:if>
 						</td>
 					</tr>
 					<tr>
@@ -81,10 +79,10 @@
 						<th>연락처</th>
 						<td>
 						<c:if test="${flg == 'add' }">
-							<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${custcompDetail.cel_ph}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+							<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${custcompDetail.cell_ph}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
 						</c:if>
 						<c:if test="${flg == 'detail' }">
-							<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${detail.cell_ph1} - ${detail.cell_ph2} - ${detail.cell_ph3}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' readonly="readonly"/>
+							<input type="text" name="comp_ph" id="comp_ph" class="inputText" value="${detail.cell_ph1} - ${detail.cell_ph2} - ${detail.cell_ph3}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' readonly="readonly"/>
 						</c:if>
 						</td>	
 					</tr>
@@ -104,7 +102,7 @@
 			</table>
 		</div>
 		<div class="act_bt_position" style="padding-top: 10px;">
-			<input type="button" class="tiny ui orange button" value="저장" id="ccMngButton"/>
+			<input type="button" class="tiny ui blue button" value="저장" id="ccMngButton"/>
 			<input type="button" class="tiny ui button" value="취소" id="activeAdd_cancel"/>
 		</div>
 	</div>

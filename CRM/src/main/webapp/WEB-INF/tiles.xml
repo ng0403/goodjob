@@ -60,10 +60,18 @@
 			value="/WEB-INF/views/standard/board/QnA_insert.jsp" />
 	</definition>
 	
-	<definition name="board_mng_list" extends="onebodyLayout">
+<!-- 	<definition name="board_mng_list" extends="onebodyLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/standard/board_mng/board_mng_list.jsp" />
+	</definition> -->
+	
+	<definition name="board_mng_list" extends="twobodyLayout">
+		<put-attribute name="master"
+			value="/WEB-INF/views/standard/board_mng/board_mng_list.jsp" />
+		<put-attribute name="detail"
+			value="/WEB-INF/views/standard/board_mng/board_mng_detail.jsp" /> 
 	</definition>
+	
 	
 	<definition name="board_mng_add" extends="onebodyLayout">
 		<put-attribute name="body"
@@ -220,15 +228,22 @@
 	</definition>
 
 	<!-- 영업활동 -->
-	<definition name="actSaleList" extends="onebodyLayout">
+	<definition name="actSaleSch" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/week.jsp" />
+	</definition>
+	
+	<definition name="actSaleList" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_list.jsp" />
 	</definition>
 
 	<definition name="actSaleDetail" extends="onebodyLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/sales/act/act_detail.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
 	</definition>
 
+	<definition name="actSaleAdd" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
+	</definition>
+	
 	<!-- 영업기회 tab화면 테스트를 위한 twobody -->
 	<!-- <definition name="actSaleDetail" extends="twobodyLayout"> -->
 	<!-- <put-attribute name="master" value="/WEB-INF/views/sales/act/act_detail.jsp" 
@@ -236,11 +251,6 @@
 	<!-- <put-attribute name="detail" value="/WEB-INF/views/sales/act/act_tab.jsp" 
 		/> -->
 	<!-- </definition> -->
-
-	<definition name="actSaleAdd" extends="onebodyLayout">
-		<put-attribute name="body"
-			value="/WEB-INF/views/sales/act/act_detail.jsp" />
-	</definition>
 
 	<!-- 가망고객 -->
 	<definition name="lead" extends="twobodyLayout">
@@ -306,9 +316,17 @@
 	</definition>
 
 	<!-- 연락처 -->
-	<definition name="contact" extends="onebodyLayout">
+<!-- 	<definition name="contact" extends="onebodyLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/sales/contact/contactList.jsp" />
+	</definition> -->
+
+	<definition name="contact" extends="twobodyLayout">
+		<put-attribute name="master"
+			value="/WEB-INF/views/sales/contact/contactList.jsp" />
+	    <put-attribute name="detail"
+			value="/WEB-INF/views/sales/contact/contactTab.jsp" />
+			
 	</definition>
 
 
@@ -332,6 +350,8 @@
 		<put-attribute name="master"  value="/WEB-INF/views/sales/custcomp/custcomp_detail.jsp" />
 		<put-attribute name="detail"  value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" />
 	</definition>
+	
+	
 	
 	<!-- 바디3개 -->
 <!-- 	<definition name="threebodyLayout" template="/WEB-INF/views/layout/threebody_layout.jsp"> -->

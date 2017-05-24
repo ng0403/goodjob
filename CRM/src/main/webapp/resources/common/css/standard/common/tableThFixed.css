@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+body{
+  color:#34495E;
+}
+
+.container{
+  width:90%;
+  margin:auto;
+}
+
+table{
+  border-collapse:collapse;
+  width:100%;
+}
+
+.thFixedtbl{
+  border:2px solid #273152;
+}
+
+.thFixedtbl thead{
+  background:#273152;
+}
+
+thead{
+  color:white;
+   width: 100%;
+ }
+
+ th,td{ 	
+   text-align:center; 
+   padding:5px 0; 
+ } 
+ 
+td{ 	
+   border: 1px solid #273152;
+}
+tbody tr:nth-child(even){
+/*   background:#ECF0F1; */
+}
+
+tbody tr:hover{
+background:#BDC3C7;
+  color:#FFFFFF;
+  width:100%;
+}
+
+.fixed{
+  top:0;
+  position:fixed;
+  width: auto;
+  display:none; 
+  border:none;
+}
+
+.up{
+  cursor:pointer;
+}

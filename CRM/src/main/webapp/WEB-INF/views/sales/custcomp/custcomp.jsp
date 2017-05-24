@@ -9,25 +9,17 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
-<!-- 페이지 공통 js파일 -->
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/listSort.js"></script> --%>
 <!-- 고객사 부분 js파일 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 
-<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
 <!-- 새로운 공통 css 파일 -->
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-<!-- 기존 공통 css 파일 -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-<!-- 고객사부분 css파일 -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_css.css" type="text/css" /> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/table.js"></script> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/table.css" type="text/css" /> --%>
 
 <title>고객사</title>
 <script>
@@ -45,8 +37,7 @@ $(function() {
 	<input type="hidden" id="count" 	value="">
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 고객 > 고객사</h3>
-<%-- 			>  <a href="${ctx}/custcomp" class="cnClick" style="color: blue;">기존고객</a> --%>
+			<label id="listLabel" class="ui header">■ 고객 > 고객사</label> 
 		</div>
 	</div>
 
@@ -63,34 +54,10 @@ $(function() {
 			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeypress="schCustComp(event);" style='ime-mode:disabled;'>
 			<i class="law icon"></i>
 		</div>	
-<!-- 		<div class="ui left icon input">	 -->
-<!-- 			<input type="text" placeholder="영업담당자" id="sch_iuser_nm" name="sch_iuser_nm" onkeypress="schCustComp(event);" > -->
-<!-- 			<i class="user icon"></i> -->
-<!-- 		</div>	 -->
-			
-<!-- 			<label for="sch_cust_nm" class="tel_label_list">고객사명</label> -->
-<!-- 				<input type="text" class="inp_search" autofocus="autofocus" id="sch_cust_nm" name="sch_cust_nm" onkeydown="schCustComp(event);"/>  -->
-<!-- 			<label for="sch_comp_num" class="tel_label_list">사업자번호</label>  -->
-<!-- 				<input type="text" class="inp_search" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
-<!-- 			<label for="sch_corp_num" class="tel_label_list">법인번호</label>  -->
-<!-- 				<input type="text" class="inp_search" id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeydown="schCustComp(event);" onkeyup='removeChar(event);' style='ime-mode:disabled;'/>  -->
-<!-- 			<label for="sch_iuser_nm" class="tel_label_list">영업담당자</label>  -->
-<!-- 				<input type="text" class="inp_search" id="sch_iuser_nm" name="sch_iuser_nm" onkeydown="schCustComp(event);"/> -->
-			
+		
 			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
+		<input type="button" id="custcomp_search" class="tiny ui blue button" value="조회" onclick="searchBtn('${ccPageNum}');" />
 		
-		<input type="button" id="custcomp_search" class="tiny ui orange button" value="조회" onclick="searchBtn('${ccPageNum}');" />
-		
-<!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="tab_select" onkeydown="custcompSearchEnter(event);"> -->
-<!-- 				<option value="all" style="text-align: center;">전체</option> -->
-<!-- 				<option value="cust_nm" style="text-align: center;">고객사명</option> -->
-<!-- 				<option value="comp_num" style="text-align: center;">사업자번호</option> -->
-<!-- 				<option value="corp_num" style="text-align: center;">법인번호</option> -->
-<!-- 				<option value="iuser_nm" style="text-align: center;">영업담당자</option> -->
-<!-- 			</select> -->
-			
-<!-- 			<input type="text" id="seachInput" name="seachCustcompSaleInput" placeholder="검색어를 입력해주세요"> -->
-<!-- 			<input type="button" id="search_btn" value="조회" class="custcomp_bt" onclick="schCustcompPaging(1);"/> -->
 	</div>
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
@@ -135,9 +102,9 @@ $(function() {
 		
 		<div class="bottom_div">
 			<div class="functionBtn_div">	
-				<input type="button" value="추가" class="tiny tiny ui orange button" id="addBtn" onclick="custcompInsert();" />
-				<input type="button" value="삭제" class="tiny tiny ui orange button" onclick="custcompDelete()" />
-<!-- 				<input type="button" value="엑셀" class="tiny ui orange button" id="exportBtn"   onclick=""  />	 -->
+				<input type="button" value="추가" class="tiny tiny ui blue button" id="addBtn" onclick="custcompInsert();" />
+				<input type="button" value="삭제" class="tiny tiny ui blue button" onclick="custcompDelete()" />
+<!-- 				<input type="button" value="엑셀" class="tiny ui blue button" id="exportBtn"   onclick=""  />	 -->
 			</div>
 			
 			<!-- 페이징 처리 -->

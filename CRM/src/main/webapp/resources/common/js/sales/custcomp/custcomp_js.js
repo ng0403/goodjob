@@ -9,6 +9,7 @@ var ccllist;
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
+	keymanList(cust_id);
 	pocList(cust_id);
 	posList(cust_id);
 	
@@ -22,21 +23,6 @@ $(document).ready(function() {
 		} else {
 			// 해당화면에 모든 checkbox들의 체크를 해제시킨다.
 			$("input[type=checkbox]").prop("checked", false);
-		}
-	});
-	
-	//고객사 담당자 리스트 가져오기
-	$("#tab1").click(function() {
-		var cust_id = $("#nowCust_id").val();
-		console.log(cust_id);
-		if(cust_id == ''){
-			var tbody = $('#pocTableTbody');
-			tbody.children().remove();
-			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-			tbody.append(tbodyContent);
-		} else {
-			pocList(cust_id);
 		}
 	});
 	
@@ -55,7 +41,7 @@ $(document).ready(function() {
 //	});
 	
 	// 키맨 리스트 가져오기
-	$("#tab2").click(function() {
+	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		console.log(cust_id);
 		if(cust_id == ''){
@@ -70,7 +56,7 @@ $(document).ready(function() {
 	});
 	
 	// 영업기회 리스트 가져오기
-	$("#tab3").click(function() {
+	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		console.log(cust_id);
 		if(cust_id == ''){
@@ -85,7 +71,7 @@ $(document).ready(function() {
 	});
 	
 	// 영업활동 리스트 가져오기
-	$("#tab4").click(function() {
+	$("#tab3").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		console.log(cust_id);
 		if(cust_id == '' && cust_id == null){
@@ -99,19 +85,34 @@ $(document).ready(function() {
 		}
 	});
 	
-	// 견적 리스트 가져오기
-	$("#tab5").click(function() {
+	//고객사 담당자 리스트 가져오기
+	$("#tab4").click(function() {
 		var cust_id = $("#nowCust_id").val();
+		console.log(cust_id);
 		if(cust_id == ''){
-			var tbody = $('#estTableTbody');
+			var tbody = $('#pocTableTbody');
 			tbody.children().remove();
 			var tbodyContent = "";
 			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
 			tbody.append(tbodyContent);
 		} else {
-			estList(cust_id);
+			pocList(cust_id);
 		}
 	});
+	
+	// 견적 리스트 가져오기
+//	$("#tab5").click(function() {
+//		var cust_id = $("#nowCust_id").val();
+//		if(cust_id == ''){
+//			var tbody = $('#estTableTbody');
+//			tbody.children().remove();
+//			var tbodyContent = "";
+//			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+//			tbody.append(tbodyContent);
+//		} else {
+//			estList(cust_id);
+//		}
+//	});
 	
 	// 계약 리스트 가져오기
 //	$("#tab6").click(function() {
@@ -262,8 +263,6 @@ function custCompList(page){
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/custcomp';
 			}else{
-	//			alert("검색완료");
-	//			alert(sch_cust_nm);
 				//리스트 출력 시 버튼 상태 설정
 				$("#functionBtn").css("display", "block");
 				
@@ -380,8 +379,6 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	prevPage.addClass("icon item");
 	var prevI = $("<i>");
 	prevI.addClass("left chevron icon");
-//	console.log(prevPageNum);
-//	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
 		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
 	}
@@ -453,7 +450,11 @@ function checkCount(){
 function custcompInsert() {
 	
 	var ctx = $("#ctx").val();
-		
+	
+	$("#css_tabs").attr({
+		readonly:false,
+	});
+	
 	//focus, css, readonly, disabled false 상태로 변경
 	//값 초기화
 	$("#custcomptbody #cust_nm").focus();
@@ -469,16 +470,6 @@ function custcompInsert() {
 	// 버튼 활성화
 	$("#sales_scale_cd").children().eq(0).attr("selected", "selected").css("height", "24pt"); // 매출규모 코드 선택
 	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
-	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
-	
-	
-//	$("#baseBtnDiv").attr("disabled", false);
-//	$("#addSaveBtn").attr("disabled", true);
-//	$("#mdfBtnDiv").attr("disabled", false);
-
-//	$("#addSaveBtn").attr("disabled", true);
-//	$("#mdfBtn").attr("disabled", false);
-//	$("#mdfSaveBtn").attr("disabled", false);
 	
 	location.href = ctx + '/custcompDetail';
 }
@@ -553,20 +544,21 @@ function ccTabFunc(cust_id, cust_nm) {
 		$("#mdfBtnDiv").css("display", "none");
 		
 		if($("#tab1").is(":checked")){ 
+			if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
+		} 
+		else if($("#tab2").is(":checked")){ 
+			//if(cust_id != '')	posList(cust_id);	 // 영업 담당자 불러오기
+			if(cust_id != '')	opptTabList(cust_id);   // 영업기회 불러오기
+		} 
+		else if($("#tab3").is(":checked")){		
+			if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
+		} 
+		else if($("#tab4").is(":checked")){
 			if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
 		} 
-//		else if($("#tab2").is(":checked")){ 
-//			if(cust_id != '')	posList(cust_id);	 // 영업 담당자 불러오기
-//		} 
-		  else if($("#tab3").is(":checked")){		
-			if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
-		} else if($("#tab4").is(":checked")){
-			if(cust_id != '')	opptTabList(cust_id);   // 영업기회 불러오기
-		} else if($("#tab5").is(":checked")){
-			if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
-		} else if($("#tab6").is(":checked")){
-			if(cust_id != '')	estList(cust_id);    // 견적 불러오기
-		}
+		else if($("#tab5").is(":checked")){
+			//if(cust_id != '')	estList(cust_id);    // 견적 불러오기
+		} 
 	});
 }
 
@@ -649,7 +641,7 @@ function comma(str) {
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
-//고객사 담당사원 List ajax 통신
+//영업 담당사원 List ajax 통신(고객사담당자에서 바뀐 이름)
 function pocList(cust_id) {
 	$(document).ready(function() {
 		var ctx = $("#ctx").val();
@@ -664,19 +656,20 @@ function pocList(cust_id) {
 				tbody.children().remove();
 				//고객사 담당자 리스트 그리기
 				if(data.length == 0){
-					tbodyContent = "<tr style='height: 75px;'><td colspan='9' style='width: 1320px; text-align: center;  vertical-align: middle;'>등록된 고객사 담당자가 없습니다.</td></tr>";
+					tbodyContent = "<tr style='height: 75px;'><td colspan='9' style='width: 1320px;'>등록된 고객사 담당자가 없습니다.</td></tr>";
 					tbody.append(tbodyContent);
 				}
 				else
 				{
 					for (var i = 0; i < data.length; i++) {
+//						alert(data[i].email2);
 						tbodyContent = "<tr>" +
-						"<td style='width:31px;  text-align: center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-						"<td style='width:168px; text-align: left; padding-left: 8px;  vertical-align: middle;'>"+data[i].cust_nm+"</td>" +
-						"<td style='width:271px; text-align: center;  vertical-align: middle;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
-						"<td style='width:271px; text-align: center;  vertical-align: middle;'>"+data[i].key_part+"</td>" +
-						"<td style='width:226px; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:250px; text-align: center;  vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:31px;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].org_nm+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
+						"<td style='width:168px;'>"+data[i].org_nm+"</td>" +
+						"<td style='width:271px;'>"+data[i].key_part+"</td>" +
+						"<td style='width:226px;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
+						"<td style='width:250px;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}
@@ -747,14 +740,12 @@ function keymanList(cust_id) {
 				}else{
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
-						"<td style='width:3%; text-align:center; vertical-align: middle;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
-						"<td style='width:12%; text-align:center; vertical-align: middle; '>"+data[i].key_part+"</td>" +
-						"<td style='width:12%; text-align:center;vertical-align: middle;'>"+data[i].key_pos+"</td>" +
-						"<td style='width:10%; text-align:center;vertical-align: middle;'>"+data[i].key_job+"</td>" +
-						"<td style='width:16%; text-align:center;vertical-align: middle;'>"+data[i].memo+"</td>" +
-						"<td style='width:10%; text-align:center;vertical-align: middle;'>"+data[i].fst_reg_id+"</td>" +
-						"<td style='width:11%; text-align:center;vertical-align: middle;'>"+data[i].fst_reg_dt+"</td>" +
+						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
+						"<td style='width:10%;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
+						"<td style='width:12%;'>"+data[i].key_part+"</td>" +
+						"<td style='width:12%;'>"+data[i].key_pos+"</td>" +
+						"<td style='width:13%;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
+						"<td style='width:13%;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
 						"</tr>";
 						tbody.append(tbodyContent);
 					}

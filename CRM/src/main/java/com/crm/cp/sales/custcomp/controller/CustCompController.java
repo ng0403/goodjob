@@ -335,7 +335,7 @@ public class CustCompController {
 	}
 	
 	//고객별 고객사 담당자// 
-	//고객사 당담자 리스트
+	//영업 당담자 리스트(고객사담당자에서 바뀐 이름)
 	@RequestMapping(value = "/ccPocList", method = RequestMethod.POST)
 	public @ResponseBody List<PocVO> pocList(String cust_id) {
 		
@@ -346,7 +346,7 @@ public class CustCompController {
 	}
 	
 	//고객별 영업 담당자 //
-	//영업 담당자 리스트
+	//영업 담당자 리스트 //사용하지 않음
 	@RequestMapping(value = "/ccPosList", method = RequestMethod.POST)
 	public @ResponseBody List<PosVO> posList(String cust_id) {
 
@@ -484,7 +484,7 @@ public class CustCompController {
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_mng_pop");
 		
 		
-		System.out.println("영어활동 추가 탭 list_cust_id : " +list_cust_id );
+		System.out.println("영업활동 추가 탭 list_cust_id : " +list_cust_id );
 		System.out.println("list_cust_nm : " +list_cust_nm );
 		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
 		
@@ -496,12 +496,12 @@ public class CustCompController {
 		
 	}
 		
-		// 고객사별 담당자 추가 팝업창
+	// 고객사별 담당자 추가 팝업창
 	@RequestMapping(value = "/custMngDetailPopup", method = RequestMethod.GET)
 	public ModelAndView custMngDetailPopup(HttpSession session,
-			@RequestParam Map<String, String> map,
-			String list_cust_id, String list_cust_nm,
-			String list_iuser_id, String list_iuser_nm) {
+											@RequestParam Map<String, String> map,
+											String list_cust_id, String list_cust_nm,
+											String list_iuser_id, String list_iuser_nm) {
 		
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_mng_pop");
 		map.put("cust_id", list_cust_id);
@@ -642,7 +642,6 @@ public class CustCompController {
 		return rstMap;
 		
 	}
-	
 	
 	
 	

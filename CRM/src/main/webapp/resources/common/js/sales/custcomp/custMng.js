@@ -27,13 +27,14 @@ function iuserListPopup(ctx){
 	});
 }
 //직원팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수
-function inputiuserNm(iuserId,iuserNm,iuserType, iuserCellPh, iuserEmail){	
+function inputiuserNm(iuserId,iuserNm,iuserType, iuserOrgNm, iuserCellPh, iuserEmail){	
 	if(iuserType == 'search'){
 		$('#siuser_nm').val(iuserNm);
 		$('#siuser_id').val(iuserId);
 	}else if(iuserType == 'normal'){
 		$('#iuser_nm').val(iuserNm);
 		$('#iuser_id').val(iuserId);
+		$('#org_nm').val(iuserOrgNm);
 		$('#cell_ph').val(iuserCellPh);
 		$('#email').val(iuserEmail);
 	}
@@ -181,19 +182,20 @@ function startDatePicker(ctx){
 //고객사 담당사원 추가
 function ccMngAdd(ctx){
 		var iuser_nm = $('#iuser_nm').val();
+		var org_nm = $('#org_nm').val();
 		var iuser_id = $('#iuser_id').val();
 		var cust_id = $('#cust_id').val();
 		var cust_nm = $('#cust_nm').val();
 		var key_part = $('#key_part').val();
 		
 
-		if(cust_nm==""||cust_nm==null){
-			alert("고객사를 입력해 주세요");
-			return false;
-		}else if(iuser_nm==""|| iuser_nm ==null){
-			alert("담당직원을 입력해 주세요");
-			return false;
-		}       
+//		if(cust_nm==""||cust_nm==null){
+//			alert("고객사를 입력해 주세요");
+//			return false;
+//		}else if(iuser_nm==""|| iuser_nm ==null){
+//			alert("담당직원을 입력해 주세요");
+//			return false;
+//		}       
 		$.ajax({
 			type : 'post',
 			data : {
@@ -214,10 +216,6 @@ function ccMngAdd(ctx){
 		});
 }
 	
-
-
-
-
 //영업활동 편집
 function ccMngUpdate(ctx){
 	var iuser_nm = $('#iuser_nm').val();
@@ -227,13 +225,13 @@ function ccMngUpdate(ctx){
 	var key_part = $('#key_part').val();
 	
 
-	if(cust_nm==""||cust_nm==null){
-		alert("고객사를 입력해 주세요");
-		return false;
-	}else if(iuser_nm==""|| iuser_nm ==null){
-		alert("담당직원을 입력해 주세요");
-		return false;
-	}
+//	if(cust_nm==""||cust_nm==null){
+//		alert("고객사를 입력해 주세요");
+//		return false;
+//	}else if(iuser_nm==""|| iuser_nm ==null){
+//		alert("담당직원을 입력해 주세요");
+//		return false;
+//	}
 		       
 	$.ajax({
 		type : 'post',

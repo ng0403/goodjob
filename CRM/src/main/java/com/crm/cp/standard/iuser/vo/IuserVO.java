@@ -27,6 +27,7 @@ public class IuserVO {
 	String iuser_dtl_addr;
 	String iuser_div_cd;
 	String fst_reg_id;
+	
 	public String getFst_reg_id() {
 		return fst_reg_id;
 	}

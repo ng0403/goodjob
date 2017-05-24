@@ -40,6 +40,10 @@ table tbody tr th {
     height: 240px;
 }
 
+#listLabel {
+	background: #fff;
+}
+
 /* 리스트 th정렬 */
 #tblTh {
 	text-align: center;

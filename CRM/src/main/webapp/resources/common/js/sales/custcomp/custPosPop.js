@@ -6,7 +6,6 @@ $(function(){
 	
 });
 
-
 $(document).ready(function() {
 	 var ctx = $("#ctx").val();
 	 var iuserType = $('#iuserType').val();
@@ -63,13 +62,14 @@ function actButton(ctx){
 
 
 //사원 팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수
-function inputiuserNm(iuserId, iuserNm, iuserType, iuserCellPh, iuserEmail){	
+function inputiuserNm(iuserId,iuserNm,iuserType, iuserOrgNm, iuserCellPh, iuserEmail){	
 	if(iuserType == 'search'){
 		$('#siuser_nm').val(iuserNm);
 		$('#siuser_id').val(iuserId);
 	}else if(iuserType == 'normal'){
 		$('#iuser_nm').val(iuserNm);
 		$('#iuser_id').val(iuserId);
+		$('#org_nm').val(iuserOrgNm);
 		$('#cell_ph').val(iuserCellPh);
 		$('#email').val(iuserEmail);
 	}
@@ -84,9 +84,10 @@ function custIuserSelect(ctx){
 		var iuserType = $('#iuserType').val();
 		var iuserNm=$(this).find('#iuser_nm').text();
 		var iuserId=$(this).find('#iuser_id').text();
+		var iuserOrgNm=$(this).find('#org_nm').text();
 		var iuserCellPh=$(this).find('#cell_ph').text();
 		var iuserEmail=$(this).find('#email').text();
-		window.opener.inputiuserNm(iuserId,iuserNm,iuserType, iuserCellPh, iuserEmail);
+		window.opener.inputiuserNm(iuserId,iuserNm,iuserType, iuserOrgNm, iuserCellPh, iuserEmail);
 		self.close();
 	});
 }

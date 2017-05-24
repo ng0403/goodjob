@@ -33,16 +33,14 @@
 			</c:if>
 		 	<c:if test="${flag == 1}">
 <!-- 				<div class="caption">● 키맨 정보</div> -->
-				<h3 class="ui header" style="background: #fff; padding: 10px;">■ 키맨 정보</h3>
+				<h3 class="ui header" style="background: #fff; padding: 10px;">■ 키맨 상세보기</h3>
 			</c:if>
 		</div>
 		<br>
 		<div class="bt_position_popup" style="margin-top: -17px;">
 		   
 		   <div class="bs-example" data-example-id="simple-table">
-<%-- 		   		<input type="hidden" id="cont_id" value="${cont_id}"/>
- --%><%-- 		   		<input type="hidden" id="cont_id" name="cont_id" value="${kmVO.cont_id}"/>
- --%>			 <table id="keymanpopuptable" class="ui celled table">  			
+			 <table id="keymanpopuptable" class="ui celled table">  			
 					<tbody id="tbody">
 						<tr>
 							<th>연락처명</th>
@@ -50,12 +48,12 @@
 							    <input type="hidden" id="cont_id" name="cont_id" /> 
 							    <input type="hidden" id="cust_id" name="cust_id" value="${cust_id}"/> 
 								<input type="text" name="cont_nm" id="cont_nm" class="inputText" value="${kmVO.cust_nm}" autofocus="autofocus" style="margin-right: 5px;"/>
-								<input type="button" value="연락처" id="contact" class="tiny ui orange basic button" onclick="javascript:contactListPopup('${ctx}');">
+								<input type="button" value="연락처" id="contact" class="tiny ui blue basic button" onclick="javascript:contactListPopup('${ctx}');">
 							</td>
 							
 						</tr>
  						<tr>
-							<th>역할</th>
+							<th>역할명</th>
 							<td><input type="text" name="key_part" id="key_part" class="inputText" value="${kmVO.key_part}" /></td>
 						</tr>
 						<tr>
@@ -63,13 +61,13 @@
 							<td><input type="text" name="key_pos" id="key_pos" class="inputText" value="${kmVO.key_pos}" /></td>
 						</tr>
 						<tr>
-							<th>직무</th>
-							<td><input type="text" name="key_job" id="key_job" class="inputText" value="${kmVO.key_job}" /></td>
+							<th>연락처</th>
+							<td><input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${kmVO.cell_ph}" /></td>
 						</tr>
 						  
 						<tr>
-							<th>메모</th>
-							<td><textarea cols="10" rows="5" id="memo" name="memo" class="inputText" style="resize:none; overflow: auto; width: 99%;" >${kmVO.memo}</textarea></td>
+							<th>이메일</th>
+							<td><input type="text" name="email" id="email" class="inputText" value="${kmVO.email}" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -77,13 +75,13 @@
 			
 			<c:if test="${flag == 0}">
 				<div class="keyman_bt_position" style="padding-top: 10px;">
-					<input type="button" class="tiny ui orange button" value="저장" id="keyman_add" onclick="keymanAdd();"/>
+					<input type="button" class="tiny ui blue button" value="저장" id="keyman_add" onclick="keymanAdd();"/>
 					<input type="button" class="tiny ui button" value="취소" id="keyman_cancel" onclick="keymancancle();"/>
 				</div>
 			</c:if>
 			<c:if test="${flag == 1}" >
 				<div class="keyman_bt_position" style="padding-top: 10px;">
-					<input type="button" class="tiny ui orange button" value="저장" id="keyman_mdfy" onclick="keymanMdfy1('${kmVO.cust_id}','${kmVO.cont_id}');"/>
+					<input type="button" class="tiny ui blue button" value="저장" id="keyman_mdfy" onclick="keymanMdfy1('${kmVO.cust_id}','${kmVO.cont_id}');"/>
 					<input type="button" class="tiny ui button" value="취소" id="keyman_cancel"  onclick="keymancancle();"/>
 				</div>
 			</c:if>

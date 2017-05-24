@@ -1,6 +1,12 @@
 /**
  * 키맨추가 관련 js파일
  */
+
+$(function(){
+	var ctx = $('#ctx').val();
+	contactListPopup(ctx);
+});
+
 function keymanListRefresh(cust_id) {
  	window.opener.keymanList(cust_id);
 	self.close();
@@ -126,9 +132,6 @@ function keymanDelete() {
 		return;
 	}
 }
-
-
-
 
 //전체 체크 해제
 function kmchkCancel() {

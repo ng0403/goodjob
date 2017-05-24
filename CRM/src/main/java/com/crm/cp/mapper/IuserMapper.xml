@@ -149,16 +149,16 @@
 				    CUST_ID,
 				    IUSER_ID,
 				    KEY_PART,
-				    FST_REG_ID,
-				    FIN_MDFY_ID
+				    FST_REG_dt,
+				    FIN_MDFY_dt
 				  )
 				  VALUES
 				  (
 				    #{cust_id},
 				    #{iuser_id},
 				    #{key_part},
-				    #{fst_reg_id},
-				    #{fin_mdfy_id}
+				    #{fst_reg_dt},
+				    #{fin_mdfy_dt}
 				  )
 	</update>
 	<select id="ccMngList" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
@@ -178,31 +178,33 @@
 	        and a.CUST_ID=#{cust_id}
 	</select>
 	<select id="ccMngDetail" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
-		SELECT a.CUST_ID,
-			b.CUST_NM,
-			a.IUSER_ID,
-       		c.IUSER_NM,
-			a.KEY_PART,
-			c.EMAIL1,
-			c.EMAIL2,
-			c.CELL_PH1,
-			c.CELL_PH2,
-			c.CELL_PH3,
-			a.FST_REG_ID,
-			a.FST_REG_DT,
-			a.FIN_MDFY_ID,
-			a.FIN_MDFY_DT
-		FROM PARTNER_OF_CLIENT a, CUSTOMER b, IUSER c
-	    where 1=1
-	    	and a.CUST_ID=b.CUST_ID
-       		and a.IUSER_ID=c.IUSER_ID
-			AND a.CUST_ID=#{cust_id}
-			and a.iuser_id=#{iuser_id}
+		 	SELECT a.CUST_ID,
+					b.CUST_NM,
+					a.IUSER_ID,
+		      		c.IUSER_NM,
+		      		org.org_nm,
+					a.KEY_PART,
+					c.EMAIL1,
+					c.EMAIL2,
+					c.CELL_PH1,
+					c.CELL_PH2,
+					c.CELL_PH3,
+					a.FST_REG_ID,
+					a.FST_REG_DT,
+					a.FIN_MDFY_ID,
+					a.FIN_MDFY_DT
+			FROM PARTNER_OF_CLIENT a, CUSTOMER b, IUSER c,  ORGANIZATION org
+		    where 1=1
+				and a.CUST_ID=b.CUST_ID
+		        and a.IUSER_ID=c.IUSER_ID
+		        and c.org_id = org.org_id  
+				and a.CUST_ID=#{cust_id}
+				and a.iuser_id=#{iuser_id}
 	</select>
 	<update id="ccMngUpdate" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		update PARTNER_OF_CLIENT
 		set KEY_PART=#{key_part},
-		    FIN_MDFY_ID=#{fin_mdfy_id}
+		    FIN_MDFY_DT= sysdate
 		where cust_id=#{cust_id}
 			and iuser_id=#{iuser_id}
 	</update>
