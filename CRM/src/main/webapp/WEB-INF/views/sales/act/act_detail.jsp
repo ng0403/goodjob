@@ -61,8 +61,6 @@
 								</c:if>
 							    
 							</td>
-						</tr>
-						<tr>
 							<th>고객사</th>
 							<td>
 								<c:if test="${flg eq '1'}">
@@ -95,60 +93,6 @@
 								</c:if>
 							    	
 							</td>
-						</tr>
-						<tr>
-							<th><span style="color: red;">*상태</span></th>
-							<td>
-								<c:if test="${flg eq '1'}">
-								    <input type="hidden" id="hsales_actvy_stat_cd">
-<%-- 								    <input type="hidden" id="sales_actvy_stat_cd" name="sales_actvy_stat_cd" value="${actStatCd.sales_actvy_stat_cd}"> --%>
-								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select" disabled="disabled">
-								    	<option value="0" style="text-align: center;">==상태==</option>						    
-								      	<c:forEach var="actStatCd" items="${actStatCd}">
-								      		<c:if test="${actDetail.sales_actvy_stat_cd == actStatCd.sales_actvy_stat_cd}">
-								      			<option selected="selected" value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-								      		</c:if>
-								      		<c:if test="${actDetail.sales_actvy_stat_cd != actStatCd.sales_actvy_stat_cd}">
-								      			<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-								      		</c:if>
-										</c:forEach>
-			     				  	</select>
-			     				  	
-			     			  	</c:if>
-			     			  	<c:if test="${flg eq '0'}">
-			     			  		<input type="hidden" id="hsales_actvy_stat_cd">
-								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select">
-								    	<option value="0" style="text-align: center;">==상태==</option>						    
-								      	<c:forEach var="actStatCd" items="${actStatCd}">
-											<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
-										</c:forEach>
-			     				  	</select>
-			     			  	</c:if>
-			     			  	
-							</td>
-						</tr>
-						<tr>
-							<th><span style="color: red;">*활동구분</span></th>
-							<td>
-							    <input type="hidden" id="hsales_actvy_div_cd">
-							    
-								<c:if test="${actDetail.sales_actvy_div_cd eq '0001'}">
-<%-- 									<input type="hidden" id="sales_actvy_div_cd" name="sales_actvy_div_cd" value="${actDeatil.sales_actvy_div_cd}"> --%>
-									<input type="radio" id = "actdiv_1" name="sales_actvy_div_nm" checked="checked" value="0001" onclick="actDivCheck()" disabled="disabled"/>할일&nbsp; 
-									<input type="radio" id = "actdiv_2" name="sales_actvy_div_nm" value="0002" onclick="actDivCheck()" disabled="disabled"/>영업기회
-								</c:if>
-								<c:if test="${actDetail.sales_actvy_div_cd eq '0002'}">
-<%-- 									<input type="hidden" id="sales_actvy_div_cd" name="sales_actvy_div_cd" value="${actDeatil.sales_actvy_div_cd}"> --%>
-									<input type="radio" id = "actdiv_1" name="sales_actvy_div_nm" value="0001" onclick="actDivCheck()" disabled="disabled"/>할일&nbsp; 
-									<input type="radio" id = "actdiv_2" name="sales_actvy_div_nm" checked="checked" value="0002" onclick="actDivCheck()" disabled="disabled"/>영업기회
-								</c:if>
-								<c:if test="${flg eq '0'}">
-							 	    <input type="radio" id = "actdiv_1" name="sales_actvy_div_cd" value="0001" onclick="actDivCheck()"/>할일&nbsp; 
-									<input type="radio" id = "actdiv_2" name="sales_actvy_div_cd" value="0002" onclick="actDivCheck()"/>영업기회
-								</c:if>
-							</td>
-						</tr>
-						<tr>
 							<th><span style="color: red;">*활동유형</span></th>
 							<td>
 								<c:if test="${flg eq '1'}">
@@ -260,8 +204,6 @@
 							</c:if>
 								
 							</td>
-						</tr>
-						<tr>
 							<th>종료일자 / 시간</th>
 							<td>
 								<c:if test="${flg eq '1'}">
@@ -343,14 +285,88 @@
 							</td>
 						</tr>
 						<tr>
-							<th rowspan="2">메모</th>
-							<td rowspan="2" colspan="3">
-							    <input type="hidden" id="hmemo">
-							    <c:if test="${flg eq '1'}">
-							    	<textarea rows="5" cols="59" name="memo" id="memo" class="act_memo" readonly="readonly"></textarea>
-							    </c:if>
+							<th><span style="color: red;">*상태</span></th>
+							<td>
+								<c:if test="${flg eq '1'}">
+								    <input type="hidden" id="hsales_actvy_stat_cd">
+<%-- 								    <input type="hidden" id="sales_actvy_stat_cd" name="sales_actvy_stat_cd" value="${actStatCd.sales_actvy_stat_cd}"> --%>
+								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select" disabled="disabled">
+								    	<option value="0" style="text-align: center;">==상태==</option>						    
+								      	<c:forEach var="actStatCd" items="${actStatCd}">
+								      		<c:if test="${actDetail.sales_actvy_stat_cd == actStatCd.sales_actvy_stat_cd}">
+								      			<option selected="selected" value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+								      		</c:if>
+								      		<c:if test="${actDetail.sales_actvy_stat_cd != actStatCd.sales_actvy_stat_cd}">
+								      			<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+								      		</c:if>
+										</c:forEach>
+			     				  	</select>
+			     				  	
+			     			  	</c:if>
+			     			  	<c:if test="${flg eq '0'}">
+			     			  		<input type="hidden" id="hsales_actvy_stat_cd">
+								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select">
+								    	<option value="0" style="text-align: center;">==상태==</option>						    
+								      	<c:forEach var="actStatCd" items="${actStatCd}">
+											<option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option>
+										</c:forEach>
+			     				  	</select>
+			     			  	</c:if>
+			     			  	
+							</td>
+						</tr>
+						<tr>
+							<th colspan="4" style="text-align: center;">메모</th>
+						</tr>
+						<tr>
+							<th>영업활동장소</th>
+							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<textarea rows="5" cols="59" name="memo" id="memo" class="act_memo" style="background-color: white;"></textarea>
+							    	<input type="text" class="inputText">
+							    </c:if>
+							    <c:if test="${flg eq '1'}">
+							    	<input type="text" class="inputText">
+							    </c:if>
+							</td>
+						</tr>
+						<tr>
+							<th>영업활동대상자</th>
+							<td colspan="3">
+							    <c:if test="${flg eq '0'}">
+							    	<input type="text" class="inputText">
+							    </c:if>
+							    <c:if test="${flg eq '1'}">
+							    	<input type="text" class="inputText">
+							    </c:if>
+							</td>
+						</tr>
+						<tr>
+							<th>영업활동내용</th>
+							<td colspan="3">
+							    <c:if test="${flg eq '0'}">
+							    	<textarea style="width: 745px; height: 100px;">
+							    	
+							    	</textarea>
+							    </c:if>
+							    <c:if test="${flg eq '1'}">
+							    	<textarea style="width: 745px; height: 100px;">
+							    	
+							    	</textarea>
+							    </c:if>
+							</td>
+						</tr>
+						<tr>
+							<th>비고</th>
+							<td colspan="3">
+							    <c:if test="${flg eq '0'}">
+							    	<textarea style="width: 745px; height: 50px;">
+							    	
+							    	</textarea>
+							    </c:if>
+							    <c:if test="${flg eq '1'}">
+							    	<textarea style="width: 745px; height: 50px;">
+							    	
+							    	</textarea>
 							    </c:if>
 							</td>
 						</tr>
