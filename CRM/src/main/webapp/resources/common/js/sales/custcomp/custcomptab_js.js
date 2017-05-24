@@ -158,7 +158,6 @@ function custMngDelete() {
 			type : 'POST',
 			data :  {ccMngDelList :ccMngDelList},
 			dataType : 'json',
-//			contentType : 'application/json',
 			success : function(data){
 				if(data.deleteResult == 'standard/home/session_expire'){
 					location.href = ctx + '/sessionExpire';
@@ -168,7 +167,6 @@ function custMngDelete() {
 			},
 			error : function(request){
 				alert(request.status);
-//				history.back();
 			}
 		});
 	} else {
@@ -193,6 +191,35 @@ function posDeatil(sales_actvy_id, iuser_id) {
 	window.open(ctx+'/custPosDetailPopup?sales_actvy_id='+sales_actvy_id+'&iuser_id='+iuser_id+'&cust_id='+cust_id+'&flag=1',
 				'newwindow','width=770, height=460,, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
+
+//연락처 리스트 tr를 클릭했을 때 텍스트를 넣어주는 것
+function contactNmSelect(ctx){
+	
+	$('#keymanTableTbody tbody tr').click(function(){
+//		alert($('#cell_ph').text());
+		
+		var cont_id = $('#cont_id').text();
+		var cont_nm = $('#cont_nm').text();
+		var cell_ph = $('#cell_ph').text();
+		var email   = $('#email').text();
+		
+		window.opener.inputcontactNm(cont_id, cont_nm, cell_ph, email);
+		self.close();
+	});
+}
+
+//연락처 리스트 부모창에서 받아온 정보 입력 추가할 것.
+function inputcontactNm(cont_id, cont_nm, cell_ph, email){ 
+//	alert(cell_ph);
+	
+ 	$('#cont_id').val(cont_id);
+	$('#cont_nm').val(cont_nm);
+	$('#cell_ph').val(cell_ph);
+	$('#email').val(email);
+	$('#act_oppt_nm').attr('disabled',false).attr('readonly', false);
+}
+
+
 
 //키맨 상세정보 추가할 것
 function keymanDeatil(cust_id,cont_id) {

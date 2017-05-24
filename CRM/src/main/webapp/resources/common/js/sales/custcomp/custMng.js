@@ -16,6 +16,7 @@ $(function(){
 	CustCompMngButton(ctx);
 	startDatePicker(ctx);
 	iuserListPopup(ctx);	//직원 검색 버튼 (사용)
+	pocList(cust_id);
 });
 
 
@@ -45,10 +46,10 @@ function CustCompMngButton(ctx){
 	$('#ccMngButton').click(function(){
 		var flg = $('#flg').val();
 		if(flg=='add'){
-			//alert("flag : " + flg);
+			alert("flag : " + flg);
 			ccMngAdd(ctx);
 		}else if(flg=='detail'){
-			//alert("flag : " + flg);
+			alert("flag : " + flg);
 			ccMngUpdate(ctx);
 		}
 	});
@@ -133,58 +134,13 @@ function startDatePicker(ctx){
 	    /*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
 
 }
-//고객사 담당사원 리스트 조회
-//function pocList(custId){
-//	$("#pocTableTbody").children().remove();	
-//	$.ajax({  
-//		type : 'GET',
-//		url : 'ccMngList',
-//		data : {custId : custId},
-//		dataType : 'json', 
-//		success:function(result){
-//			var content = "";
-//			if(result.ccMngList.length==0){
-//				content = "<tr style='height: 150px;'><td colspan='10'>등록된 고객사 담당사원이 없습니다.</td></tr>";	
-//			}
-//			else{
-//			$.each(result.ccMngList,function(i,data){
-//				content +="<tr>"+
-//				"<th><input type='checkbox' value="+data.iuser_id+" name='iuser_id'></th>"+ 
-//				"<td>"+data.cust_nm+"</td>"+
-//				"<td style='text-align: left; padding-left: 5px;'>" +
-//				"<a style='text-decoration: none;'>"+data.iuser_nm+"</a></td>"+
-//				"<td>"+data.key_part+"</td>"+
-//				"<td>"+data.fst_reg_id+"</td>"+
-//				"<td>"+data.fin_reg_dt+"</td>"+
-//				"</tr>"
-//			});
-//			
-//			if(result.ccMngList.length < 5){
-//				for(var j = 0; j < 5-result.ccMngList.length; j++){
-//					content += "<th></th>"+ 
-//					"<td></td>"+
-//					"<td></td>"+
-//					"<td></td>"+
-//					"<td></td>"+
-//					"<td></td>"+
-//					"</tr>";
-//					
-//					}
-//				}
-//			}	
-//			$("#pocTableTbody").append(content);
-//		},
-//		error:function(request){
-//			alert("error : " + request.status);
-//		}
-//	});
-//}
 //고객사 담당사원 추가
 function ccMngAdd(ctx){
-		var iuser_nm = $('#iuser_nm').val();
+
+	var iuser_nm = $('#iuser_nm').val();
 		var org_nm = $('#org_nm').val();
 		var iuser_id = $('#iuser_id').val();
-		var cust_id = $('#cust_id').val();
+		var cust_id = $('#nowCust_id', opener.document).val();
 		var cust_nm = $('#cust_nm').val();
 		var key_part = $('#key_part').val();
 		
@@ -216,11 +172,12 @@ function ccMngAdd(ctx){
 		});
 }
 	
-//영업활동 편집
+//영업담당자 수정
 function ccMngUpdate(ctx){
 	var iuser_nm = $('#iuser_nm').val();
 	var iuser_id = $('#iuser_id').val();
-	var cust_id = $('#cust_id').val();
+	var org_nm = $('#org_nm').val();
+	var cust_id = $('#nowCust_id', opener.document).val();
 	var cust_nm = $('#cust_nm').val();
 	var key_part = $('#key_part').val();
 	
@@ -238,6 +195,7 @@ function ccMngUpdate(ctx){
 		data : {
 			iuser_id : iuser_id,
 			cust_id : cust_id,
+			org_nm : org_nm,
 			key_part : key_part
 		},
 		datatype : 'json',

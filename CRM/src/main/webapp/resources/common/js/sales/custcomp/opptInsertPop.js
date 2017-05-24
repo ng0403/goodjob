@@ -352,13 +352,11 @@ function opptTabList(cust_id)
 							
 						"<td style='width:280px; text-align: left;vertical-align: middle; padding-left:5px;'class='oppt_nm_class' >" +
 						"	<a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
-						"<td style='width: 156px;text-align: center; vertical-align: middle;' id=list_cust_nm>"+list.cust_nm+"</td>"+
-						"<td style='width: 111px;text-align: center; vertical-align: middle;'>"+list.sales_oppt_stat_cd_nm+"</td>"+
-						"<td style='width: 130px;text-align: center; vertical-align: middle;'>"+list.sales_lev_cd_nm+"</td>"+
-						"<td style='width: 112px;text-align: center; vertical-align: middle;'>"+list.expt_fin_d+"</td>"+
-						"<td style='width: 105px;text-align: center; vertical-align: middle;'>"+list.psblty_rate+"</td>"+
-						"<td style='width: 109px;text-align: center; vertical-align: middle;'>"+list.fst_reg_id+"</td>"+
-						"<td style='width: 131px;text-align: center; vertical-align: middle;'>"+list.fst_reg_dt+"</td>+"+
+						"<td style='width: 111px;'>"+list.sales_oppt_stat_cd_nm+"</td>"+
+						"<td style='width: 130px;'>"+list.sales_lev_cd_nm+"</td>"+
+						"<td style='width: 131px;'>"+list.fst_reg_dt+"</td>+"+
+						"<td style='width: 112px;'>"+list.expt_fin_d+"</td>"+
+						"<td style='width: 105px;'>"+list.psblty_rate+"%"+"</td>"+
 					"</tr>"
 				);
 			});

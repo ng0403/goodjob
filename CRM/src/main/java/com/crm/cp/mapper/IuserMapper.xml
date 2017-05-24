@@ -143,8 +143,7 @@
     </update>
     
     <update id="ccMngAdd" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
-		INSERT
-				INTO PARTNER_OF_CLIENT
+		INSERT INTO PARTNER_OF_CLIENT
 				  (
 				    CUST_ID,
 				    IUSER_ID,
@@ -154,11 +153,11 @@
 				  )
 				  VALUES
 				  (
-				    #{cust_id},
-				    #{iuser_id},
-				    #{key_part},
-				    #{fst_reg_dt},
-				    #{fin_mdfy_dt}
+				    #{cust_id, jdbcType=VARCHAR},
+				    #{iuser_id, jdbcType=VARCHAR},
+				    #{key_part, jdbcType=VARCHAR},
+				    sysdate,
+				    sysdate
 				  )
 	</update>
 	<select id="ccMngList" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
@@ -203,10 +202,10 @@
 	</select>
 	<update id="ccMngUpdate" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		update PARTNER_OF_CLIENT
-		set KEY_PART=#{key_part},
-		    FIN_MDFY_DT= sysdate
-		where cust_id=#{cust_id}
-			and iuser_id=#{iuser_id}
+		set KEY_PART=#{key_part, jdbcType=VARCHAR}
+		   
+		where cust_id=#{cust_id, jdbcType=VARCHAR}
+			and iuser_id=#{iuser_id, jdbcType=VARCHAR}
 	</update>
 	<delete id="ccMngDelete" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		delete from PARTNER_OF_CLIENT

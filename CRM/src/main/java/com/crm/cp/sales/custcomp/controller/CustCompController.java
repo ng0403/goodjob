@@ -544,6 +544,7 @@ public class CustCompController {
 		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
 		
 		// 고객사 담당직원 수정
+		System.out.println("영업담당자 수정");
 		int result = iuserService.ccMngUpdate(iuserVo);
 		System.out.println("result : " + result);
 		// return 1;
@@ -756,7 +757,7 @@ public class CustCompController {
 		List<Object> contactList = ccService.contactList();
 		System.out.println("연락처 리스트 팝업창 " + contactList.toString());
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/contact_list_pop");
-
+		
 		mov.addObject("contactList", contactList);
 
 		return mov;

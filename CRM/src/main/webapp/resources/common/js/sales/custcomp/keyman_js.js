@@ -5,6 +5,7 @@
 $(function(){
 	var ctx = $('#ctx').val();
 	contactListPopup(ctx);
+	contactNmSelect(ctx);
 });
 
 function keymanListRefresh(cust_id) {
@@ -20,16 +21,30 @@ function contactListPopup(ctx){
 	});
 }
 
-//연락처 리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업 추가할 것
-function contactNmSelect(cont_id,cont_nm){
- 	window.opener.inputcontactNm(cont_id,cont_nm);
-	self.close();
+//연락처 리스트 tr를 클릭했을 때 텍스트를 넣어주는 것
+function contactNmSelect(ctx){
+	
+	$('#custcomp_list_table tbody tr').click(function(){
+//		alert($('#cell_ph').text());
+		
+		var cont_id = $('#cont_id').text();
+		var cont_nm = $('#cont_nm').text();
+		var cell_ph = $('#cell_ph').text();
+		var email   = $('#email').text();
+		
+		window.opener.inputcontactNm(cont_id, cont_nm, cell_ph, email);
+		self.close();
+	});
 }
 
 //연락처 리스트 부모창에서 받아온 정보 입력 추가할 것.
-function inputcontactNm(cont_id,cont_nm){ 
+function inputcontactNm(cont_id, cont_nm, cell_ph, email){ 
+//	alert(cell_ph);
+	
  	$('#cont_id').val(cont_id);
 	$('#cont_nm').val(cont_nm);
+	$('#cell_ph').val(cell_ph);
+	$('#email').val(email);
 	$('#act_oppt_nm').attr('disabled',false).attr('readonly', false);
 }
 

@@ -1,3 +1,31 @@
+/**
+ * 함수목록
+ * addForm() 											: 고객사리스트 검색조건 추가
+ * dellForm(obj) 										: 고객사리스트 검색조건 삭제
+ * schCustComp(event) 									: 검색 엔터키 기능
+ * searchBtn(page) 										: 검색버튼 클릭
+ * chkCancel() 											: 전체 체크 해제
+ * custcompAllCheck() 									: 고객사 전체 선택
+ * chkCancel() 											: 전체 체크에서 체크해지 된 경우
+ * custcompChkCancel() 									: 전체 체크 해제
+ * checkCount() 										: 체크박스 개수
+ * ccTabFunc(cust_id, cust_nm) 							: 탭 이동
+ * custcompInsert() 									: 고객사 추가
+ * custcompDelete() 									: 고객사 삭제
+ * custCompDel(ctx) 									: 기업고객 삭제
+ * viewDetail(cust_id) 									: 고객사 상세보기
+ * ccDetail(cust_id)				 					: 기업고객 상세보기 Ajax
+ * keymanList(cust_id) 									: 키맨 리스트 Ajax
+ * actList(cust_id) 									: 영업활동 리스트 Ajax
+ * pocList(cust_id) 									: 영업담당자 리스트 Ajax
+ * custCompList(page) 									: 고객사 리스트 출력 Ajax
+ * estList(cust_id) 									: 견적 리스트 Ajax
+ * contList(cust_id) 									: 계약 리스트 Ajax
+ * dateFormat(timestamp) 								: 날짜 13자리를 yyyy-mm-dd형식으로 변환
+ * paging() 											: 페이징
+ * schPaging(ccPageNum) 								: 조회 페이징
+ */
+
 // 서브메뉴 유지
 $("#navisub4").show();
 $("#navicustcomp").css("font-weight", "bold");
@@ -25,20 +53,6 @@ $(document).ready(function() {
 			$("input[type=checkbox]").prop("checked", false);
 		}
 	});
-	
-	//영업 담당자 리스트 가져오기
-//	$("#tab2").click(function() {
-//		var cust_id = $("#nowCust_id").val();
-//		if(cust_id == ''){
-//			var tbody = $('#posTableTbody');
-//			tbody.children().remove();
-//			var tbodyContent = "";
-//			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-//			tbody.append(tbodyContent);
-//		} else {
-//			posList(cust_id);
-//		}
-//	});
 	
 	// 키맨 리스트 가져오기
 	$("#tab1").click(function() {
@@ -99,36 +113,6 @@ $(document).ready(function() {
 			pocList(cust_id);
 		}
 	});
-	
-	// 견적 리스트 가져오기
-//	$("#tab5").click(function() {
-//		var cust_id = $("#nowCust_id").val();
-//		if(cust_id == ''){
-//			var tbody = $('#estTableTbody');
-//			tbody.children().remove();
-//			var tbodyContent = "";
-//			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-//			tbody.append(tbodyContent);
-//		} else {
-//			estList(cust_id);
-//		}
-//	});
-	
-	// 계약 리스트 가져오기
-//	$("#tab6").click(function() {
-//		var cust_id = $("#nowCust_id").val();
-//		if(cust_id == ''){
-//			var tbody = $('#contTableTbody');
-//			tbody.children().remove();
-//			var tbodyContent = "";
-//			tbodyContent = "<tr style='height: 150px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-//			tbody.append(tbodyContent);
-//		} else {
-//			contList(cust_id);
-//		}
-//	});
-	
-
 });
 
 //고객사 검색 조건 추가
@@ -136,27 +120,18 @@ function addForm(){
 	if(count<2){
 		var addedFormDiv = document.getElementById("search_div");
 		var str = "";
-		
 			str+="<br><div class='ui left icon input'>";
 			str+="<input type='text' placeholder='고객사명' style='margin-right: 7px;' class='inp_search' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeypress='schCustComp(event);'/>";
 		    str+="<i class='users icon'></i>";
 		    str+="</div>";
-		    
 		    str+="<div class='ui left icon input'>";
 		    str+="<input type='text' placeholder='사업자번호' style='margin-right: 7px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeypress='schCustComp(event);' style='ime-mode:disabled;'/>";
 		    str+="<i class='suitcase icon'></i>";
 		    str+="</div>";
-		    
 		    str+="<div class='ui left icon input'>";
 		    str+="<input type='text' placeholder='법인번호' style='margin-right: 7px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeypress='schCustComp(event);' style='ime-mode:disabled;'/>";
 		    str+="<i class='law icon'></i>";
 		    str+="</div>";
-		    
-//		    str+="<div class='ui left icon input'>";
-//		    str+="<input type='text' placeholder='영업담당자' style='margin-right: 7px;' class='inp_search' id='sch_iuser_nm"+count+"' name='sch_iuser_nm"+count+"' onkeypress='schCustComp(event);'/>";
-//		    str+="<i class='user icon'></i>";
-//		    str+="</div>";
-		    
 		    str+="<label  onclick='dellForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
 		    
 		    var addedDiv = document.createElement("div"); 	// 폼 생성
@@ -229,19 +204,9 @@ function chkCancel() {
 	});
 }
 
-//검색 버튼 클릭 시 
-//function searchBtn(page){
-//	var sch_cust_nm = $("#sch_cust_nm").val();
-//	var sch_comp_num = $("#sch_comp_num").val();
-//	var sch_corp_num = $("#sch_corp_num").val();
-//	
-//	custCompList(page);
-//}
-
 //고객사 리스트 출력
 function custCompList(page){
 	var ctx = $("#ctx").val();
-
 	$.ajax({
 		type : 'post',
 		url : ctx + '/custCompAjax',
@@ -281,7 +246,6 @@ function custCompList(page){
 							"<td style='text-align: center'>"+cc.sales_scale+"</td>"+
 							"<td style='text-align: right; padding-right:8px'> "+cc.emp_qty+"</td>"+
 							"<td style='text-align: center'>"+cc.indst+"</td>"+
-//							"<td>"+cc.iuser_nm+"</td>"+
 							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>+"+
 							"</tr >"
 					);
@@ -475,8 +439,7 @@ function custcompInsert() {
 }
 
 //고객사 삭제
-function custcompDelete()
-{
+function custcompDelete() {
 	var form = $('#delForm');
 	
 	if (checkCount() == 0)  {
@@ -563,7 +526,7 @@ function ccTabFunc(cust_id, cust_nm) {
 }
 
 // 고객사 상세보기
-function viewDetail(cust_id){
+function viewDetail(cust_id) {
 	var ctx = $("#ctx").val();
 	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
 }
@@ -662,7 +625,6 @@ function pocList(cust_id) {
 				else
 				{
 					for (var i = 0; i < data.length; i++) {
-//						alert(data[i].email2);
 						tbodyContent = "<tr>" +
 						"<td style='width:31px;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
 						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].org_nm+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
@@ -757,56 +719,6 @@ function keymanList(cust_id) {
 		}); 
 	});
 }
-// 영업기회 List ajax 통신
-//function opptList(cust_id) {
-//	$(document).ready(function() {
-//		var ctx = $("#ctx").val();
-//		var tbody = $('#opptTableTbody');
-//		var tbodyContent = "";
-//		$.ajax({
-//			url : ctx+'/ccOpptList',
-//			type : 'POST',
-//			data : "cust_id="+cust_id,
-//			dataType : "json",
-//			success : function(data) {
-//				tbody.children().remove();
-//				if(data.length == 0){
-//					tbodyContent = "<tr style='height: 150px;'><td colspan='9'>등록된 영업기회가 없습니다.</td></tr>";
-//					tbody.append(tbodyContent);
-//				}else{
-//					// 영업기회 리스트 그리기
-//					for (var i = 0; i < data.length; i++) {
-//						var expt_sales_amt = comma(data[i].expt_sales_amt);
-//						
-//						tbodyContent = "<tr>" +
-//						"<td style='width:3%;'><input type='checkbox' value='"+data[i].sales_oppt_id+"' id='chk_oppt_id' onclick=\"opptChkCancel();\"></td>" +
-//						"<td style='width:30%; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccOpptDetail('"+data[i].sales_oppt_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_oppt_nm+"</a></td>" +
-//						"<td style='width:8%;'>"+data[i].sales_lev_cd_nm+"</td>" +
-//						"<td style='width:12%; text-align: right; padding-right: 8px;'>"+expt_sales_amt+"</td>" +
-//						"<td style='width:12%;'>"+data[i].expt_fin_d+"</td>" +
-//						"<td style='width:7%;'>"+data[i].psblty_rate+"</td>" +
-//						"<td style='width:7%;'>"+data[i].sales_oppt_stat_cd_nm+"</td>" +
-//						"<td style='width:8%;'>"+data[i].fst_reg_id+"</td>" +
-//						"<td style='width:15%;'>"+data[i].fst_reg_dt+"</td>" +
-//						"</tr>";
-//						tbody.append(tbodyContent);
-//					}
-//					if(data.length < 5){
-//						for(var j = 0; j < 5-data.length; j++){
-//							tbodyContent = "<tr style='height: 25px;'><td style='width:3%;'></td><td style='width:30%;'></td>" +
-//							"<td style='width:8%;'></td><td style='width:12%;'></td><td style='width:12%;'></td>" +
-//							"<td style='width:7%;'></td><td style='width:7%;'></td><td style='width:8%;'></td><td style='width:15%;'></td></tr>";
-//							tbody.append(tbodyContent);
-//						}
-//					}
-//				}
-//			},
-//			error : function() {
-//				alert("전송중 오류가 발생했습니다.");
-//			}
-//		});
-//	});
-//}
 
 //날짜 13자리를 yyyy-mm-dd형식으로 변환해주는 함수
 function dateFormat(timestamp) {
@@ -859,9 +771,6 @@ function actList(cust_id) {
 				}else{
 					// 영업활동 리스트 그리기
 					for (var i = 0; i < data.length; i++) {
-					/*	var strt_d = dateFormat(Number(data[i].strt_d));
-						var end_d = dateFormat(Number(data[i].end_d));
-						var fst_reg_dt = dateFormatTime(Number(data[i].fst_reg_dt));*/
 						var strt_t = data[i].strt_t;
 						var end_t = data[i].end_t;
 						
@@ -873,18 +782,15 @@ function actList(cust_id) {
 						}
 						tbodyContent = 
 							"<tr>"
-							+ "<td rowspan='2' style='width:24px; text-align:center; vertical-align: middle; '>" 
+							+ "<td rowspan='2' style='width:24px;'>" 
 							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
-							+ "<td rowspan='2' style='width:264px; text-align: left; padding-left: 8px; vertical-align: middle;'  >" +
-									"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
-							+ "<td rowspan='2' style='width:93px; text-align:center; vertical-align: middle; '>"+data[i].sales_actvy_div_nm+"</td>"
-							+ "<td rowspan='2' style='width:162px; text-align: center; vertical-align: middle;  padding-left: 5px;'>"+data[i].sales_oppt_nm+"</td>"
-							+ "<td rowspan='2' style='width:106px; text-align:center; vertical-align: middle; '>"+data[i].sales_actvy_type_nm+"</td>"
-							+ "<td style='width:99px; text-align:center; vertical-align: middle; '>"+data[i].strt_d+"</td>"
-							+ "<td style='width:74px; text-align:center; vertical-align: middle; '>"+strt_t+"</td>"
-							+ "<td rowspan='2' style='width:92px; text-align:center; vertical-align: middle; '>"+data[i].sales_actvy_stat_nm+"</td>"
-							+ "<td rowspan='2' style='width:95px; text-align:center; vertical-align: middle; '>"+data[i].fst_reg_id+"</td>"
-							+ "<td rowspan='2' style='width:145px; text-align:center; vertical-align: middle; '>"+data[i].fst_reg_dt+"</td>"
+							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
+							+ 		"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
+							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
+							+ "<td style='width:74px;'>"+strt_t+"</td>"
+							+ "<td rowspan='2' style='width:162px;'>"+data[i].sales_oppt_nm+"</td>"
+							+ "<td rowspan='2' style='width:106px;'>"+data[i].sales_actvy_type_nm+"</td>"
+							+ "<td rowspan='2' style='width:92px;'>"+data[i].sales_actvy_stat_nm+"</td>"
 						+ "</tr>"
 						+ "<tr>"
 							+ "<td style='text-align:center;'>"+data[i].end_d+"</td>"
@@ -1007,13 +913,7 @@ function schPaging(ccPageNum) {
 		var sch_corp_num  = $("#sch_corp_num").val();
 		var sch_corp_num0 = $("#sch_corp_num0").val();
 		var sch_corp_num1 = $("#sch_corp_num1").val();
-//		var sch_iuser_nm  = $("#sch_iuser_nm").val();
-//		var sch_iuser_nm0 = $("#sch_iuser_nm0").val();
-//		var sch_iuser_nm1 = $("#sch_iuser_nm1").val();
-		
-//		if(sch_cust_nm == '' && sch_comp_num == '' && sch_corp_num == ''){
-//			alert("검색어를 입력하세요");
-//		}
+
 		if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm0){
 			alert("고객사명을 앞에서부터 채워주세요.");
 			return;
@@ -1050,7 +950,6 @@ function schPaging(ccPageNum) {
 							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1, 
 							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1,
 							"sch_corp_num":sch_corp_num, "sch_corp_num0":sch_corp_num0, "sch_corp_num1":sch_corp_num1
-//							"sch_iuser_nm":sch_iuser_nm, "sch_iuser_nm0":sch_iuser_nm0, "sch_iuser_nm1":sch_iuser_nm1
 						  };
 			var tbody = $('#ccListTbody');
 			var tbodyContent = "";
@@ -1090,7 +989,6 @@ function schPaging(ccPageNum) {
 									+"<td>"+data.ccVOList[i].sales_scale+"</td>"
 									+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
 									+"<td>"+data.ccVOList[i].indst+"</td>"
-//									+"<td>"+data.ccVOList[i].iuser_nm+"</td>"
 									+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
 								tbody.append(tbodyContent);
 								$("#ccListCheck").prop("checked", false);
@@ -1102,7 +1000,6 @@ function schPaging(ccPageNum) {
 										+"<th></th>"
 										+"<td></td><td></td><td></td><td></td>"
 										+"<td></td><td></td><td></td><td></td>"
-//										+"<td></td>" 
 										+"</tr>";
 									tbody.append(tbodyContent);
 								}

@@ -11,9 +11,9 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/cont/contJs.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/cont/cont_pop.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/sales/custcomp/custcomp_pop_contact.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
@@ -44,23 +44,20 @@
 		<table id="custcomp_list_table" class="ui celled table" style="overflow: auto;">
 			<thead>
 				<tr>
-					<th style="width:107px;">연락처 ID</td>
-					<th style="width:106px;">연락처명</td>
-					<th style="width:143px;">회사명</td>
-					<th style="width:143px;">연락처</td>
-					<th style="width:237px;">이메일</td>
+					<th style="width:127px;">연락처 ID</td>
+					<th style="width:126px;">연락처명</td>
+					<th style="width:173px;">연락처</td>
+					<th style="width:282px;">이메일</td>
 				</tr>
 			</thead>
 			<tbody class="tbody">
 				<c:forEach var="contactList" items="${contactList}"> 
-				<tr onclick="contactNmSelect('${contactList.cont_id}','${contactList.cont_nm}')">
-					<td style="width:15%; cursor: pointer;" id="cont_id">${contactList.cont_id}</td>
-					<td style="width:15%;" id="cont_nm">${contactList.cont_nm}</td>
-					<td style="width:20%;">${contactList.company_nm}</td>
-					<td style="width:20%;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>		
-					<td style="width:30%;">${contactList.email1}@${contactList.email2}</td>		
-					
-				</tr>
+					<tr>
+						<td id="cont_id" style="width:15%; cursor: pointer;">${contactList.cont_id}</td>
+						<td id="cont_nm" style="width:15%;" >${contactList.cont_nm}</td>
+						<td id="cell_ph" style="width:20%;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>		
+						<td id="email" style="width:30%;">${contactList.email1}@${contactList.email2}</td>		
+					</tr>
 			</c:forEach>
 			</tbody>
 		</table>

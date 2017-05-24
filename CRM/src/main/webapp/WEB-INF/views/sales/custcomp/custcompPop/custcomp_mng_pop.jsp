@@ -102,8 +102,8 @@
 			</table>
 		</div>
 		<div class="act_bt_position" style="padding-top: 10px;">
-			<input type="button" class="tiny ui blue button" value="저장" id="ccMngButton"/>
-			<input type="button" class="tiny ui button" value="취소" id="activeAdd_cancel"/>
+			<input type="button" id="ccMngButton"      class="tiny ui blue button" value="저장" />
+			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
 		</div>
 	</div>
 </div>

@@ -9,9 +9,6 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/keyman_js.js"></script>
 
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_kmnpop_css.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
-
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -62,12 +59,15 @@
 						</tr>
 						<tr>
 							<th>연락처</th>
-							<td><input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${kmVO.cell_ph}" /></td>
+							<td>
+								<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${kmVO.cell_ph}"  onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+							</td>	
 						</tr>
-						  
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" name="email" id="email" class="inputText" value="${kmVO.email}" /></td>
+							<td>
+								<input type="text" name="email" id="email" class="inputText" value="${kmVO.email}"   onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+							</td>	
 						</tr>
 					</tbody>
 				</table>

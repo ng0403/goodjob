@@ -160,13 +160,6 @@
 	</select>
 	
 	<!-- 기업고객 추가 -->
-<!-- 	<insert id="custInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO"> -->
-<!-- 		 INSERT INTO CUSTOMER (CUST_ID, CUST_NM, CUST_ZIP_CD,  CUST_ADDR, IUSER_ID, CUST_DIV_CD,  FST_REG_ID_NM, FST_REG_DT, FIN_MDFY_ID_NM, FIN_MDFY_DT, ACT_YN)  -->
-<!-- 	     VALUES(CUST_SEQ.nextVal, #{cust_nm}, #{cust_zip_cd}, #{cust_addr}, #{iuser_id}, '0002', #{fst_reg_id_nm}, sysdate, #{fin_mdfy_id_nm}, sysdate, 'Y') -->
-<!-- 	     <selectKey keyProperty="custcomp_idx" resultType="Integer" order="AFTER"> -->
-<!--          	select cust_seq.currval from dual -->
-<!--       	</selectKey> -->
-<!-- 	</insert> -->
 	<update  id="custcompInsert" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		INSERT INTO CUSTOMER (
   			CUST_ID, CUST_NM, CUST_DIV_CD,  COMP_NUM,  CORP_NUM,  REP_PH1,  REP_PH2,  REP_PH3,  HOMEPAGE_URL,  CUST_ZIP_CD,   CUST_ADDR,   CUST_DTL_ADDR,
@@ -199,10 +192,6 @@
   			'Y'
 		)
 	</update>
-<!-- 	<insert id="custCompInput" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO"> -->
-<!-- 		 INSERT INTO CUSTOMER_COMPANY (CUST_ID, COMP_NUM, CORP_NUM, SALES_SCALE_CD, HOMEPAGE_URL, INDST_CD, EMP_QTY, REP_PH1, REP_PH2, REP_PH3, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT) -->
-<!-- 	     VALUES (concat('CU',lpad(to_char(#{custcomp_idx}),5,'0')), #{comp_num}, #{corp_num}, #{sales_scale_cd}, #{homepage_url}, #{indst_cd}, #{emp_qty}, #{rep_ph1}, #{rep_ph2}, #{rep_ph3}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate) -->
-<!-- 	</insert> -->
 	
 	<!-- 기업고객 수정 -->
 	<update id="custcompEdit" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
@@ -226,13 +215,6 @@
 		  
 	   where cust_id = #{cust_id}
 	</update>
-	
-<!-- 	<update id="custCompUpdate" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO"> -->
-<!-- 		update CUSTOMER_COMPANY  -->
-<!-- 		set COMP_NUM = #{comp_num}, CORP_NUM = #{corp_num}, SALES_SCALE_CD = #{sales_scale_cd}, HOMEPAGE_URL = #{homepage_url},  -->
-<!-- 			INDST_CD = #{indst_cd}, EMP_QTY = #{emp_qty}, REP_PH1 = #{rep_ph1}, REP_PH2 = #{rep_ph2}, REP_PH3 = #{rep_ph3}, FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate -->
-<!-- 		where cust_id = #{cust_id} -->
-<!-- 	</update> -->
 	
 	<!-- 기업고객 삭제 -->
 	<update id="custcompDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
@@ -460,24 +442,26 @@
  	<!-- 키맨 상세정보 -->
 	<select id="kmDetail" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
 		  SELECT 
-			  	k.CUST_ID,
+        		k.CUST_ID,
 				k.CONT_ID,
-	          	con.cont_nm,
+	      		con.cont_nm,
 				k.KEY_PART,
 				k.KEY_POS, 
 				con.cell_ph1,
-	          	con.cell_ph2,
-	          	con.cell_ph3,
-	          	con.email1,
-	          	con.email2,
+        		con.cell_ph2,
+	      		con.cell_ph3,
+	      		con.email1,
+	      		con.email2,
 				k.FST_REG_ID,
 				k.FST_REG_DT,
 				k.FIN_MDFY_ID,
 				k.FIN_MDFY_DT
-		 FROM KEYMAN k, customer c
-	     WHERE k.cust_ID = #{cust_id} 
-	    	and k.cont_id = #{cont_id} 
-	    	and k.cust_id = c.cust_id
+		 FROM KEYMAN k, customer c, CONTACT con
+	     WHERE 1=1 
+        	and k.cust_id = c.cust_id
+        	and k.cont_id = con.cont_id 
+       		and k.cust_ID = #{cust_id}
+       		and k.cont_id = #{cont_id}
 	</select>
 	
 	<!-- 키맨 삭제 -->

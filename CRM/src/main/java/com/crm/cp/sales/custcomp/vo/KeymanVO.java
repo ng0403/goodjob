@@ -15,14 +15,28 @@ public class KeymanVO {
 	private String  fin_mdfy_id; 			// 최종변경자
 	private String  fin_mdfy_dt; 			// 최종변경일시
 	
+	
+	private String  cell_ph;				// 이동전화번호1 + 2 + 3
 	private String  cell_ph1;				// 이동전화번호1
 	private String  cell_ph2;				// 이동전화번호2
 	private String  cell_ph3;				// 이동전화번호3
+	private String  email;					// 이메일 + 도메인
 	private String  email1;					// 이메일
 	private String  email2;					// 이메일 도메인
 	
 	
-	
+	public String getCell_ph() {
+		return cell_ph;
+	}
+	public void setCell_ph(String cell_ph) {
+		this.cell_ph = cell_ph;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getCell_ph1() {
 		return cell_ph1;
 	}
@@ -131,13 +145,24 @@ public class KeymanVO {
 	public void setFin_mdfy_dt(String fin_mdfy_dt) {
 		this.fin_mdfy_dt = fin_mdfy_dt;
 	}
-	
 	@Override
 	public String toString() {
 		return "KeymanVO [cust_id=" + cust_id + ", cust_nm=" + cust_nm + ", cont_id=" + cont_id + ", cont_nm=" + cont_nm
 				+ ", cdept_nm=" + cdept_nm + ", key_part=" + key_part + ", key_pos=" + key_pos + ", key_job=" + key_job
 				+ ", memo=" + memo + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
-				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + "]";
+				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", cell_ph=" + cell_ph + ", cell_ph1=" + cell_ph1
+				+ ", cell_ph2=" + cell_ph2 + ", cell_ph3=" + cell_ph3 + ", email=" + email + ", email1=" + email1
+				+ ", email2=" + email2 + ", getCell_ph()=" + getCell_ph() + ", getEmail()=" + getEmail()
+				+ ", getCell_ph1()=" + getCell_ph1() + ", getCell_ph2()=" + getCell_ph2() + ", getCell_ph3()="
+				+ getCell_ph3() + ", getEmail1()=" + getEmail1() + ", getEmail2()=" + getEmail2() + ", getCust_id()="
+				+ getCust_id() + ", getCust_nm()=" + getCust_nm() + ", getCont_id()=" + getCont_id() + ", getCont_nm()="
+				+ getCont_nm() + ", getCdept_nm()=" + getCdept_nm() + ", getKey_part()=" + getKey_part()
+				+ ", getKey_pos()=" + getKey_pos() + ", getKey_job()=" + getKey_job() + ", getMemo()=" + getMemo()
+				+ ", getFst_reg_id()=" + getFst_reg_id() + ", getFst_reg_dt()=" + getFst_reg_dt()
+				+ ", getFin_mdfy_id()=" + getFin_mdfy_id() + ", getFin_mdfy_dt()=" + getFin_mdfy_dt() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+	
+	
 	
 }

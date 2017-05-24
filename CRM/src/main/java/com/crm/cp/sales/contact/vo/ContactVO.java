@@ -10,9 +10,11 @@ public class ContactVO {
 	public String ph1;
 	public String ph2;
 	public String ph3;
+	public String cell_ph;
 	public String cell_ph1;
 	public String cell_ph2;
 	public String cell_ph3;
+	public String email;
 	public String email1;
 	public String email2;
 	public String itrt_cd;
@@ -200,6 +202,26 @@ public class ContactVO {
 
 	public void setAct_yn(String act_yn) {
 		this.act_yn = act_yn;
+	}
+
+
+	public String getCell_ph() {
+		return cell_ph;
+	}
+
+
+	public void setCell_ph(String cell_ph) {
+		this.cell_ph = cell_ph;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
