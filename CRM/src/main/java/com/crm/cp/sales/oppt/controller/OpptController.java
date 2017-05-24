@@ -107,7 +107,10 @@ public class OpptController {
 	@RequestMapping(value = "/opptDetail", method = RequestMethod.GET)
 	ModelAndView listDetail(HttpSession session
 			, @RequestParam Map<String, String> map
-			, String opptId) 
+			, String opptId
+			, String cust_id
+			, String cust_nm
+			, String flag) 
 	{
 		System.out.println("opptId : " + opptId);
 		
@@ -150,6 +153,9 @@ public class OpptController {
 			mov.addObject("elclist", elclist);
 			mov.addObject("osclist", osclist);
 			mov.addObject("otllist", otllist);
+			mov.addObject("cust_id", cust_id);
+			mov.addObject("cust_nm", cust_nm);
+			mov.addObject("cust_nm", flag);
 			mov.addObject("menuList", menuList);
 			mov.addObject("addFlag", addFlag);
 			mov.addObject("flg", "add");
@@ -201,6 +207,9 @@ public class OpptController {
 			mov.addObject("eduCode", eduCode);
 			mov.addObject("opptPrdt", opptPrdt);
 			mov.addObject("otllist", otllist);
+			mov.addObject("cust_id", cust_id);
+			mov.addObject("cust_nm", cust_nm);
+			mov.addObject("cust_nm", flag);
 			mov.addObject("menuList", menuList);
 			mov.addObject("actList", actList);
 			mov.addObject("addFlag", addFlag);

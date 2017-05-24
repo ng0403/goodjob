@@ -51,6 +51,8 @@ $(document).ready(function(){
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
+	<!-- 다른 페이지에서 넘어올 때 사용되는 flag -->
+	<input type="hidden" id="flag" value="${flag}">
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 <%-- 		<c:if test="${addFlag == 0 }"> --%>

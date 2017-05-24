@@ -47,6 +47,7 @@ $(document).ready(function(){
 </script>
 <body>
 	<input type="hidden" id="salesId" value="${opDetail.sales_oppt_id}" >
+	<input type="hidden" id="flag" value="${flag}" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	<div id="title">
@@ -96,8 +97,8 @@ $(document).ready(function(){
 							<div class="ui input focus">
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
-								<input type="text" name="cust_nm" id="cust_nm" value="${opDetail.cust_nm}" readonly="readonly" class="int2">
-								<input type="hidden" name="cust_id" id="cust_id" value="${opDetail.cust_id}"/>
+								<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="int2">
+								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}"/>
 							</div>
 								<input type="button" class="tiny ui orange basic button" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
