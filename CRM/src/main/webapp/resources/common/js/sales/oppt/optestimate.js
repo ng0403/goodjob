@@ -357,6 +357,7 @@ function prodDelete(){
 	}
 }
 
+//영업기회상세 견적탭 견적추가 함수
 function opptEstimAdd(ctx){
 	var pageNum = $('#pageNum').val();
 	var prod_id = [];
@@ -430,7 +431,7 @@ function opptEstimAdd(ctx){
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
 			window.opener.estimList(sales_oppt_id);
-			window.opener.opportunityList(pageNum);
+//			window.opener.opportunityList(pageNum);
 			self.close();
 		},
 		error:function(request){

@@ -38,7 +38,7 @@ $(document).ready(function() {
 	$('#salesId').val(opptId);
 	
 	viewSalesActive(opptId);
-// 	estimList(opptId);
+	estimList(opptId);
 });
 
 </script>
