@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/common/tablist_th.css"> --%>
@@ -29,6 +30,10 @@
 
 </head>
 <body  >
+	<input type="hidden" id="custId" value="" >
+	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="flg" value="${flg}">
+	
 	<c:if test="${flg == 1 }">
 	<div id="css_tabs" style="float: left; padding-top: 30px;">
 		<!-- 라디오 버튼 -->
@@ -72,7 +77,8 @@
 		<!-- 영업기회 리스트 -->
 		<div id="tabDiv2"  style="width: 100%;">
 			<div class="bt_position_authuser" style="float: right;">
-				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/>
+<%-- 				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/> --%>
+				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="AddCustomerOpen('cust', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');"/>
 				<input type="button" id="actAddCancelBtn" class="tiny ui blue button" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
@@ -118,7 +124,7 @@
 		<!-- 영업활동 리스트 -->
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가"/>
+				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가" />
 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="ccActDel('${ctx}');"/>
 			</div>
 			

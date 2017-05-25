@@ -72,7 +72,7 @@ $(document).ready(function() {
 	// 영업기회 리스트 가져오기
 	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		console.log(cust_id);
+//		console.log(cust_id);
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
