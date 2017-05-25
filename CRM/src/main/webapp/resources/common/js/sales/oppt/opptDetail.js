@@ -400,7 +400,7 @@ function opptModify(){
 				alert("영업기회 페이지로 이동합니다.");
 				location.href = ctx + "/oppt";
 			}
-			else if(act_flg == 'cust')
+			else if(act_flg == 'cust_ed')
 			{
 				alert("영업기회 페이지로 이동합니다.");
 				location.href = ctx +'/custcompDetail?cust_id=' + cust_id;
