@@ -56,7 +56,7 @@ $(document).ready(function(){
 			<div class="caption">
 		<c:choose>
 			<c:when test="${flag == 'cust' }">
-				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/cust" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
+				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
 			</c:when>
 			<c:otherwise>
 				<h3 class="ui header" style="background: #fff;">■ 영업 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
