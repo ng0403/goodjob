@@ -106,8 +106,6 @@ function prodNmSelect(){
 }
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInputProd(prod_id,prod_nm,prod_price){
-	alert("그려주는곳");
-
 		var unit="";
 		var flg = $('#flg').val();
 		var data = $('#eduCode').val();

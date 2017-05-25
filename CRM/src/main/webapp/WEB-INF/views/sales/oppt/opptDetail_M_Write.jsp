@@ -54,12 +54,14 @@ $(document).ready(function(){
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${addFlag == 0 }">
 			<div class="caption">
-		<c:if test="${flag == 'cust' }">
-			<h3 class="ui header" style="background: #fff;">■ 영업 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
-		</c:if>
-		<c:if test="${flag == 'cust' }">
-			<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/cust" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
-		</c:if>
+		<c:choose>
+			<c:when test="${flag == 'cust' }">
+				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/cust" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
+			</c:when>
+			<c:otherwise>
+				<h3 class="ui header" style="background: #fff;">■ 영업 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회 추가</h3>
+			</c:otherwise>
+		</c:choose>
 			</div>
 		</c:if>
 <%-- 		<c:if test="${addFlag == 1 }"> --%>
