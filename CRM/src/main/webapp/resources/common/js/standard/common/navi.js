@@ -54,10 +54,12 @@
 		
 		$(document).on( 'click','.navibtn',function(event) {
 			var navibtn=$(this).text();
+			var session_ID=$(this).attr("id");
 			var allmenu = $('.sub_menu_bar').find('.hide1');
 			allmenu.remove();
 			if($(this).attr('href')=='#'){
 				//event.preventDefault();
+				sessionStorage.setItem("session_menu",session_ID);
 				var submenu = $(this).next("ul").html();
 //				console.log(submenu);
 				if ($(this).next("ul").find(".subbtn").length >= 1) {
@@ -84,30 +86,34 @@
 		$.post("navi", function(data){
 			$("#test").html("");
 			var count = 1;
-			//console.log(data.menuList.menu.VO.menu_nm);
+			var session_ID = 1;
 			$(data.menuList).each(function(){
-				//console.log(data.menuList);
 				var menu_nm = this.menu_nm;
 				var menu_url = this.menu_url;
 				var menuVO = this.menuVO;
 
-				menuNaviOutput(menu_nm, menu_url, menuVO, count);
+				menuNaviOutput(menu_nm, menu_url, menuVO, count, session_ID);
 				count++;
+				session_ID++;
 			})
 			count = 1;
+			session_ID = 1;
+			var session_menu = sessionStorage.getItem("session_menu");
+			$("#"+session_menu).trigger("click");
 		}).fail(function(){
 			alert("로그인 세션이 만료되었습니다. 다시 로그인해주세요.")
 			location.href = '/home';
 		})
 	}
 	
-	function menuNaviOutput(menu_nm, menu_url, menuVO, count){
+	function menuNaviOutput(menu_nm, menu_url, menuVO, count, session_ID){
 		
 		var menuT_li = $("<li>");
 		menuT_li.addClass("menuNavi");
 		
 		var menuT_a = $("<a>");
 		menuT_a.addClass("navibtn");
+		menuT_a.attr("id",session_ID);
 	
 		if(menuVO == null||menuVO == ''){
 			menuT_a.attr("href", menu_url);

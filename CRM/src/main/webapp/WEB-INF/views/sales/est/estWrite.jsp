@@ -12,6 +12,7 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
@@ -19,6 +20,7 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 	<link rel="stylesheet"
 	href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 <script type="text/javascript"
@@ -70,77 +72,94 @@ $(function() {
 		<!-- <label for="tab1">견적등록</label> -->
 		<div id="title">
 			<div class="caption">
-				<h3 class="ui header" style="background: #fff;">
-					■ 영업 > 
-					<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적</a>
+				<label id="listLabel" class="ui header">■ 견적 >
+					<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적관리</a>
 					 > 견적추가
-				</h3>
+				</label>
 			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">	
 			<div id="addBtnDiv" class="bt_position_authuser">
-				<input type="button" id="addSaveBtn" value="저장" class="btn-success-tel" onclick="save_Click();" class="custcomp_btn"/>
-				<input type="button" id="addCancelBtn" value="취소" class="btn-success-tel" onclick="cancel_Click();"/>
+				<input type="button" id="addSaveBtn" value="저장" class="tiny ui blue button" onclick="save_Click();" class="custcomp_btn"/>
+				<input type="button" id="addCancelBtn" value="취소" class="tiny ui button" onclick="cancel_Click();"/>
 			</div>		
 			<div id="ccustomerdiv">
 			<input type="hidden" id="inputCust" value="false"/>
 			
 			<table id="contactable">
-				<tbody id="estDetail">
-					
-							
-					
+				<tbody id="estDetail" class="ui celled table">
 					<tr>
 						<th class="txtr">견적명</th>
 						<td>
+							<div class="ui input focus">
 							<input type="text" name="estim_nm_detail" id="estim_nm"
 								readonly="readonly" class="int2"></input>	
-							<input type="hidden" id="estim_id" value=""></td>
-						<th class="txtr">고객사</th>
-						<td><input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" ></input> 
-							<input type="hidden" name="cust_id_w" id="cust_id" value="" /> 
-							<input type="hidden" name="lead_id" id="lead_id" value="" /> 
-							<input type="button" class="btn-success-tel" id="customer" value="고객"
-							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
+							<input type="hidden" id="estim_id" value="">
+							</div>
 						</td>
+						<th class="txtr">고객사</th>
+						<td>
+							<div class="ui input focus">
+								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" ></input> 
+								<input type="hidden" name="cust_id_w" id="cust_id" value="" /> 
+								<input type="hidden" name="lead_id" id="lead_id" value="" /> 
+								<input type="button" class="btn-success-tel" id="customer" value="고객"
+								onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
+							</div>
+						</td>
+					</tr>
 					<tr>
 						<th class="txtr">영업기회명</th>
-						<td><input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id"> 
-							<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" >
-							<input type="button" name="act_opp" value="영업기회"
-							class="btn-success-tel" id="opptSelect"  disabled="disabled">
+						<td>
+							<div class="ui input focus">
+								<input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id"> 
+								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" >
+								<input type="button" name="act_opp" value="영업기회"
+								class="btn-success-tel" id="opptSelect"  disabled="disabled">
+							</div>
+						</td>
 						<th class="txtr">견적유효일자</th>
-						<td><label for="start_day" class="oppt_txt_nm"></label>
-							<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
-							class="int" readonly="readonly" <%-- value="${estim_valid_d}" --%>></input>
+						<td>
+							<div class="ui input focus">
+								<label for="start_day" class="oppt_txt_nm"></label>
+								<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
+								class="int" readonly="readonly" <%-- value="${estim_valid_d}" --%>></input>
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<th class="txtr">견적단계</th>
 						<td colspan="3">
-							<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled">
-								<option value="" style="text-align: center;" >선택</option>
-								<c:forEach items="${elclist}" var="elclist">
-									<option value="${elclist.code}">${elclist.cd_nm}</option>
-								</c:forEach>
-							</select>
+							<div class="ui input focus">
+								<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled">
+									<option value="" style="text-align: center;" >선택</option>
+									<c:forEach items="${elclist}" var="elclist">
+										<option value="${elclist.code}">${elclist.cd_nm}</option>
+									</c:forEach>
+								</select>
+							</div>
 						</td>
 					</tr>
  					<tr>
-						<th class="txtr">참고사항</th> 
-						<td colspan="2"><input type="text" name="memo_w" id="memo" style="width: 90%;" readonly=readonly
- 							class="int_detail_ad">
+						<th class="txtr">비고</th> 
+						<td colspan="3">
+							<div class="ui input focus">
+								<textarea rows="5" cols="40" name="memo" id="memo" readonly=readonly
+		 							class="int3">${detail.memo}</textarea>
+<!-- 								<input type="text" name="memo" id="memo" readonly=readonly -->
+<%-- 	 							class="int3" style="width: 100%;" value="${detail.memo}"> --%>
+	 						</div>
  						</td>
- 						<td>
- 							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/>
-							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/>
- 						</td> 
 					</tr>
 				</table>
-				<table id= "estimatehead" style="margin-left: 22px; text-align: center; border-collapse: collapse;" >
+				<div class="bt_position">
+					<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="tiny ui button" value="상품삭제" id="prodDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui blue button" value="상품추가" id="prodListBtn"/> 
+				</div>
+				<table id= "estimatehead" class="ui celled table"  style="margin-left: 22px; text-align: center; border-collapse: collapse;border:1px; margin-bottom:0px;" >
 					<tr>
-						<th style="width: 3%;"><input type="checkbox" id="allSelect"></th>
+						<th style="width: 3%;padding:0px;text-align: center;display:none;"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
 						<td style="width: 8%;">수량</td>
 						<td style="width: 27%;">판매가</td>
@@ -156,9 +175,9 @@ $(function() {
 						<td id="supplyPriceSum">0</td>
 					</tr>
 				</table>
-				<div id="estimatediv" style="margin-left: 22px;">
+				<div id="estimatediv" style="margin-left: 22px;margin-top:0px;">
 					<input type="hidden" id="eduCode" value="${eduCode}">
-					<table id="estimatetable" class="tabtable" style="text-align: center;">
+					<table id="estimatetable" class="ui celled table" style="text-align: center;margin-top:0px;"">
 						<tbody id="estimatetbody">
 
 						</tbody>

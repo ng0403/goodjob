@@ -27,6 +27,8 @@
 	src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
 <script>
    $(function() {
       $('table').tablesort();
@@ -49,13 +51,19 @@
 	</form>
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 영업 > 견적</h3>
+			<label id="listLabel" class="ui header">■ 견적 > 견적관리 > 견적목록</label>
 		</div>
 	</div>
 		<div class="search_div" id="search_div1">
 			<div class="ui left icon input">
 				<input type="text" placeholder="견적명" name="estim_nm" id="sestim_nm" value="${estim_nm}" onkeypress="estSearchInput(event);"> 
 		    	<i class="file text outline icon"></i>
+		    </div>
+		    <div class="ui left icon input">
+				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm" value="${cust_nm}" onkeypress="estSearchInput(event);">
+				<input type="hidden" id="cust_id" name="cust_id" value="">
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
+		    	<i class="building outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
 				<select name="estim_lev_cd" id="sestim_lev_cd">
@@ -68,6 +76,8 @@
 			<div class="ui left icon input">
 		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_1" value="${sales_price_1}" onkeypress="estSearchInput(event);">
 				<i class="won icon"></i>
+			</div>
+			<div class="ui left icon input">
 				<select name="sales_price_2" id="ssales_price_2">
 					<option value="">선택</option>
 					<option value="1">원</option>
@@ -79,7 +89,7 @@
 		    	<i class="checked calendar icon"></i>
 		    </div>
 		    <label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
-		    <button type="submit" class="tiny ui orange button" id="searchlist" onclick="searchBtn('${ccPageNum}');">조회</button> 
+		    <button type="submit" class="tiny ui blue button" id="searchlist" onclick="searchBtn('${ccPageNum}');">조회</button> 
 <!-- 			<label for="scompNam" class="tel_label_list">견적명</label> -->
 <%-- 			<input type="text" class="tel_search" name="estim_nm" id="sestim_nm" value="${estim_nm}" autofocus="autofocus" onkeypress="estSearchInput(event);">  --%>
 <!-- 		    <label for="inputPassword1" class="tel_label_list">견적단계</label> -->
@@ -102,10 +112,16 @@
 <!-- 		    <label id="schAddBtn" onclick="addForm();">+</label> -->
 <!-- 		    <button type="submit" class="btn-success-tel" id="searchlist" onclick="searchBtn(1);">조회</button>  -->
 		</div>
-		<div id="search_div2" style="padding-bottom: 15px;">
+		<div id="search_div2" style="padding-bottom: 10px;">
 			<div class="ui left icon input">
 				<input type="text" placeholder="견적명" name="estim_nm1" id="sestim_nm1" value="${estim_nm}" onkeypress="estSearchInput(event);"/> 
 		    	<i class="file text outline icon"></i>
+		    </div>
+		    <div class="ui left icon input">
+				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm1" value="${cust_nm}" onkeypress="estSearchInput(event);">
+				<input type="hidden" id="cust_id1" name="cust_id" value="">
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
+		    	<i class="building outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
 				<select name="estim_lev_cd1" id="sestim_lev_cd1">
@@ -118,6 +134,8 @@
 			<div class="ui left icon input">
 		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_11" value="${sales_price_1}" onkeypress="estSearchInput(event);"/>
 				<i class="won icon"></i>
+			</div>
+			<div class="ui left icon input">
 				<select name="sales_price_2" id="ssales_price_21">
 					<option value="">선택</option>
 					<option value="1">원</option>
@@ -130,10 +148,16 @@
 		    </div>
 		    <label id="schAddBtn1" class="tiny ui button" onclick=delForm(this.id);>-</label>
 		</div>
-		<div id="search_div3" style="padding-bottom: 15px;">
+		<div id="search_div3" style="padding-bottom: 10px;">
 			<div class="ui left icon input">
 				<input type="text" placeholder="견적명" name="estim_nm2" id="sestim_nm2" value="${estim_nm}" onkeypress="estSearchInput(event);"/> 
 		    	<i class="file text outline icon"></i>
+		    </div>
+		    <div class="ui left icon input">
+				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm2" value="${cust_nm}" onkeypress="estSearchInput(event);">
+				<input type="hidden" id="cust_id2" name="cust_id" value="">
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
+		    	<i class="building outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
 				<select name="estim_lev_cd2" id="sestim_lev_cd2">
@@ -146,6 +170,8 @@
 			<div class="ui left icon input">
 		    	<input type="text" placeholder="견적금액" name="sales_price_1" id="ssales_price_12" value="${sales_price_1}" onkeypress="estSearchInput(event);"/>
 				<i class="won icon"></i>
+			</div>
+			<div class="ui left icon input">
 				<select name="sales_price_2" id="ssales_price_22">
 					<option value="">선택</option>
 					<option value="1">원</option>
@@ -159,83 +185,86 @@
 		   <label id="schAddBtn2" class="tiny ui button" onclick=delForm(this.id);>-</label>
 		</div>
 <!-- </form> -->
-<!-- 		<div id="contact_button_position"> -->
-<!-- 			<input type="button" id="addBtn" value="추가" class="btn-success-tel" onclick="estAddBtn();"/> -->
-<!-- 			<input type="button" id="estimDeleteBtn" class="btn-success-tel" value="삭제">	 -->
-<!-- 		</div> -->
 	    
 	    <div id="tableline">
 			<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-<!-- 						<th style="width: 3%;"><input type="checkbox" id="estimAllSelect" ></th> -->
-						<th style="width: 26%;" id="tblTh">견적명</th>
-						<th style="width: 11%;" id="tblTh">견적단계</th>
-						<th style="width: 11%;" id="tblTh">견적수량</th>
+						<th style="width: 3%;text-align: center;"><input type="checkbox" id="estimAllSelect" ></th>
+						<th style="width: 27%;" id="tblTh">견적명</th>
+						<th style="width: 15%;" id="tblTh">고객사명</th>
+						<th style="width: 10%;" id="tblTh">견적단계</th>
+						<th style="width: 10%;" id="tblTh">견적수량</th>
 						<th style="width: 15%;" id="tblTh">견적금액</th>
-						<th style="width: 14%;" id="tblTh">견적유효일자</th>
-						<th style="width: 9%;" id="tblTh">등록자</th>
-						<th style="width: 14%;" id="tblTh">등록일시</th>
+						<th style="width: 15%;" id="tblTh">견적유효일자</th>
+<!-- 						<th style="width: 9%;" id="tblTh">등록자</th> -->
+<!-- 						<th style="width: 14%;" id="tblTh">등록일시</th> -->
 					</tr>
 				</thead>
 				<tbody id="estList">
 					<c:forEach var="result" items="${list}" >
 						<tr>
-<%-- 							<th><input type="checkbox" value="${result.estim_id}" onclick="javascript:chkCancel();"></th> --%>
+							<td style="text-align: center;"><input type="checkbox" value="${result.estim_id}" onclick="javascript:chkCancel();"></td>
 							<td style='text-align: left; padding-left:5px;'>
 								<a style='text-decoration: none;' href="javascript:estDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>
+							<td style='text-align: left;'></td>
 							<td><c:out value="${result.estim_lev_cd_nm}" /></td>
 							<td style='text-align: right;padding-right:5px;'><c:out value="${result.estim_qty}" /></td>
 							<td style='text-align: right;padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
-							<td><c:out value="${result.estim_valid_d}" /></td>
-							<td><c:out value="${result.fst_reg_id}" /></td>
-							<td><c:out value="${result.fst_reg_dt}" /></td>
+							<td style='text-align: center;'><c:out value="${result.estim_valid_d}" /></td>
+<%-- 							<td><c:out value="${result.fst_reg_id}" /></td> --%>
+<%-- 							<td><c:out value="${result.fst_reg_dt}" /></td> --%>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 <!-- 페이징 처리 -->
-		<div id="pageSpace" class="ui right floated pagination menu">
-			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
-			<c:choose>
-				<c:when test="${ccPageNum eq page.firstPageCount}">
-						<a class="icon item">
-		       				<i class="left chevron icon"></i>
-		       			</a>	
-		    	</c:when>
-				<c:when test="${ccPageNum ne page.firstPageCount}">
-		       		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
-		       			<i class="left chevron icon"></i>
-		       		</a>
-		    	</c:when>
-			</c:choose>
-			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+		<div class="bottom_div">
+			<div class="functionBtn_div">
+				<input type="button" id="addBtn" value="추가" class="tiny ui button" onclick="estAddBtn();"/>
+				<input type="button" id="estimDeleteBtn" class="tiny ui blue button" value="삭제">	
+			</div>
+			<div id="pageSpace" class="ui right floated pagination menu">
+				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
-						<c:when test="${i eq ccPageNum }">
-						<b>
-							<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
-						</b>
-					</c:when>
-					<c:otherwise>
-						<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
-					</c:otherwise>
+					<c:when test="${ccPageNum eq page.firstPageCount}">
+							<a class="icon item">
+			       				<i class="left chevron icon"></i>
+			       			</a>	
+			    	</c:when>
+					<c:when test="${ccPageNum ne page.firstPageCount}">
+			       		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+			       			<i class="left chevron icon"></i>
+			       		</a>
+			    	</c:when>
 				</c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${ccPageNum eq page.totalPageCount}">
-						<a class="icon item">
-		       				<i class="right chevron icon"></i>
-		       			</a>	
-		    	</c:when>
-				<c:when test="${ccPageNum ne page.totalPageCount}">
-		      			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
-		      				<i class="right chevron icon"></i>
-		       			</a>
-		    	</c:when>
-			</c:choose>
+				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+					<c:choose>
+							<c:when test="${i eq ccPageNum }">
+							<b>
+								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+							</b>
+						</c:when>
+						<c:otherwise>
+							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${ccPageNum eq page.totalPageCount}">
+							<a class="icon item">
+			       				<i class="right chevron icon"></i>
+			       			</a>	
+			    	</c:when>
+					<c:when test="${ccPageNum ne page.totalPageCount}">
+			      			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+			      				<i class="right chevron icon"></i>
+			       			</a>
+			    	</c:when>
+				</c:choose>
 <%-- 				<c:choose> --%>
 <%-- 					<c:when test="${ccPageNum eq page.totalPageCount}"> --%>
 <!-- 		       			<a class="next">▶▶</a> -->
@@ -311,7 +340,7 @@
 <%-- 					<a href="javascript:list('${ccPageNum+1}');" id="pNum"> ▶ </a> --%>
 <%-- 				</c:otherwise> --%>
 <%-- 			</c:choose> --%>
+			</div>
 		</div>
-	<!-- 페이징 처리 -->
 </body>
 </html>

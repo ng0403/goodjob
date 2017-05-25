@@ -120,15 +120,14 @@ function list(page){
 				for(var i=0 ;  i < 10-result.list.length ; i++){
 					$("#estList").append("" +
 							 "<td>"+
-//								"<th></th>"+
-								"<td>"+
-								"</td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"<td></td>"+
 								"<td></td>"+
+								"<td></td>"+
+//								"<td></td>"+
 							"</tr>");
 			   }
 			}

@@ -292,6 +292,7 @@
 		from code
 		where
 		CD_GRP_ID='ELC'
+		AND ACT_YN='Y'
 	</select>
 
 <!-- 	견적 상세정보 -->
@@ -329,6 +330,7 @@
 		CODE 
 		from code 
 		WHERE CD_GRP_ID = 'EDU'
+		AND ACT_YN='Y'
 	</select>
 	
 	<sql id="where-custcomp_list">

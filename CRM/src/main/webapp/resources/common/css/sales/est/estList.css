@@ -18,7 +18,7 @@ select{
     text-align: left !important;
     line-height: 1.21428571em !important;
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
-    padding: 0.67857143em 1em !important;
+/*     padding: 0.67857143em 1em !important; */
     background: #FFFFFF !important;
     border: 1px solid rgba(34, 36, 38, 0.15) !important;
     color: rgba(0, 0, 0, 0.87) !important;
@@ -26,6 +26,7 @@ select{
     -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
     transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
     box-shadow: none !important;
+    height:29px;
 }
 .search_div{
 	font-weight: bold;

@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <!-- 	<link rel="stylesheet" -->
 <%-- 	href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" /> --%>
 <script type="text/javascript"
@@ -32,6 +32,9 @@
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/sales/est/estDetail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+
 <title>Insert title here</title>
 </head>
 <style type="text/css">
@@ -64,10 +67,10 @@ $(function() {
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<div id="title">
 			<div class="caption">
-				<h3 class="ui header" style="background: #fff;">■ 영업 > 
-					<a href="/estInqr" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">견적</a>
+				<label id="listLabel" class="ui header">■ 견적 > 
+					<a href="/estInqr" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">견적관리</a>
 					 > 상세정보
-				</h3>
+				</label>
 			</div>
 		</div>
 		<!-- <label>상세정보</label> -->
@@ -75,118 +78,122 @@ $(function() {
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv" class="bt_position_authuser">
-<!--			<input type="button" id="mdfBtn" value="편집" class="btn-success-tel" onclick="estMdfyBtn();"/> -->
+				<input type="button" id="mdfBtn" value="편집" class="tiny ui blue button" onclick="estMdfyBtn();"/>
 				<input type="button" id="listLocaBtn" class="tiny ui button" value="목록" class="tiny ui button" onclick="cancel_Click();"/>
 			</div>
-<!-- 		<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
-<%-- 			<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
-<!-- 			<input type="button" id="addCancelBtn" value="취소" class="custcomp_btn" onclick="cancel_Click();"/> -->
-<!-- 		</div> -->
-<!--			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser"> -->
-<%--				<input type="button" id="mdfSaveBtn" class="btn-success-tel" value="저장" onclick="save_Click('${ctx}');" class="custcomp_btn"/> --%>
-<!--				<input type="button" id="mdfCancelBtn" class="btn-success-tel" value="목록" class="custcomp_btn" onclick="cancel_Click();"/> -->
-<!--			</div> -->
+			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
+				<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="tiny ui blue button"/>
+				<input type="button" id="addCancelBtn" value="취소" class="tiny ui button" onclick="cancel_Click();"/>
+			</div>
+			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
+				<input type="button" id="mdfSaveBtn" class="tiny ui blue button" value="저장" onclick="save_Click('${ctx}');"/>
+				<input type="button" id="mdfCancelBtn" class="tiny ui button" value="목록" onclick="cancel_Click();"/>
+			</div>
 			<div id="ccustomerdiv">
-			<input type="hidden" id="inputCust" value="false"/>
-				
-			<table id="contactable" class="ui celled table">
-				<tbody id="estDetail" class="detailtbody">
-					<tr>
-						<th>견적명</th>
-						<td>
-							<div class="ui input focus">
-							<input type="text" name="estim_nm_detail" id="estim_nm"
-							readonly="readonly" class="int2" value="${detail.estim_nm }">
-							 <input type="hidden" id="estim_id" value="${detail.estim_id }">
-							</div> 
-						</td>
-						<th>고객사</th>
-						<td>
-							<div class="ui input focus">
-								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" value="${detail.cust_nm }" >
-								<input type="hidden"
-								name="cust_id" id="cust_id" value="${detail.cust_id }" /> 
-<!-- 							<input type="hidden" name="lead_id" id="lead_id" value="" />  -->
-<!-- 							<input type="button" class="btn-success-tel" id="customer" value="고객" -->
-<%-- 							onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled"> --%>
-							</div>
-						</td>
-					<tr>
-						<th>영업기회명</th>
-						<td>
-							<div class="ui input focus">
-								<input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id }"> 
-								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" value="${detail.sales_oppt_nm }">
-<!-- 							<input type="button" name="act_opp" value="영업기회" -->
-<!-- 							class="btn-success-tel" id="opptSelect"  disabled="disabled"> -->
-							</div>
-						</td>
-						<th>견적유효일자</th>
-						<td>
-							<div class="ui input focus">
-								<label for="start_day" class="oppt_txt_nm"></label>
-								<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
-								class="int" readonly="readonly" value="${detail.estim_valid_d }">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>견적단계</th>
-						<td colspan="3">
-<!-- 							<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled"> -->
-<!-- 								<option value="" style="text-align: center;" >선택</option> -->
-<%-- 								<c:forEach items="${elclist}" var="elclist"> --%>
-<%-- 									<c:choose> --%>
-<%-- 										<c:when test="${detail.estim_lev_cd eq elclist.code }"> --%>
-<%-- 											<option value="${elclist.code}" selected="selected">${elclist.cd_nm}</option> --%>
-<%-- 										</c:when> --%>
-<%-- 										<c:otherwise> --%>
-<%-- 											<option value="${elclist.code}">${elclist.cd_nm}</option> --%>
-<%-- 										</c:otherwise> --%>
-<%-- 									</c:choose> --%>
-<%-- 								</c:forEach> --%>
-<!-- 							</select> -->
-							<div class="ui input focus">
-							<c:choose>
-								<c:when test="${detail.estim_lev_cd != '' }">
-									<c:forEach items="${elclist}" var="elclist">
-										<c:if test="${detail.estim_lev_cd eq elclist.code }">
-											<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="${elclist.cd_nm }">
-										</c:if>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="">
-								</c:otherwise>
-							</c:choose>
-							</div>
-						</td>
-					</tr>
- 					<tr>
-						<th>참고사항</th> 
-						<td colspan="3">
-							<div class="ui input focus">
-							<input type="text" name="memo" id="memo" readonly=readonly
- 							class="int3" style="width: 100%;" value="${detail.memo}">
- 							</div>
- 						</td>
-<!--  						<td> -->
-<!--  							<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="btn-success-tel" value="상품삭제" id="prodDelete"/> -->
-<!-- 							<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="btn-success-tel" value="상품추가" id="prodListBtn"/> -->
-<!--  						</td>  -->
-					</tr>
-				</tbody>
-			</table>
+				<input type="hidden" id="inputCust" value="false"/>
+					
+				<table id="contactable" class="ui celled table">
+					<tbody id="estDetail" class="detailtbody">
+						<tr>
+							<th>견적명</th>
+							<td>
+								<div class="ui input focus">
+								<input type="text" name="estim_nm_detail" id="estim_nm"
+								readonly="readonly" class="int2" value="${detail.estim_nm }">
+								 <input type="hidden" id="estim_id" value="${detail.estim_id }">
+								</div> 
+							</td>
+							<th>고객사</th>
+							<td>
+								<div class="ui input focus">
+									<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" value="${detail.cust_nm }" >
+									<input type="hidden"
+									name="cust_id" id="cust_id" value="${detail.cust_id }" /> 
+	<!-- 							<input type="hidden" name="lead_id" id="lead_id" value="" />  -->
+									<input type="button" class="tiny ui blue basic button" id="customer" value="고객"
+									onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>영업기회명</th>
+							<td>
+								<div class="ui input focus">
+									<input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id }"> 
+									<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" value="${detail.sales_oppt_nm }">
+									<input type="button" name="act_opp" value="영업기회"
+									class="tiny ui blue basic button" id="opptSelect"  disabled="disabled">
+								</div>
+							</td>
+							<th>견적유효일자</th>
+							<td>
+								<div class="ui input focus">
+									<label for="start_day" class="oppt_txt_nm"></label>
+									<input type="text" name="estim_valid_d_detail" id="estim_valid_d_detail"
+									class="int" readonly="readonly" value="${detail.estim_valid_d }">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>견적단계</th>
+							<td colspan="3">
+								<div class="ui input focus">
+									<select name="estim_lev_cd_detail" id="estim_lev_cd_detail" disabled="disabled">
+										<option value="" style="text-align: center;" >선택</option>
+										<c:forEach items="${elclist}" var="elclist">
+											<c:choose>
+												<c:when test="${detail.estim_lev_cd eq elclist.code }">
+													<option value="${elclist.code}" selected="selected">${elclist.cd_nm}</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${elclist.code}">${elclist.cd_nm}</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</select>
+								</div>
+<!-- 								<div class="ui input focus"> -->
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${detail.estim_lev_cd != '' }"> --%>
+<%-- 										<c:forEach items="${elclist}" var="elclist"> --%>
+<%-- 											<c:if test="${detail.estim_lev_cd eq elclist.code }"> --%>
+<%-- 												<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value="${elclist.cd_nm }"> --%>
+<%-- 											</c:if> --%>
+<%-- 										</c:forEach> --%>
+<%-- 									</c:when> --%>
+<%-- 									<c:otherwise> --%>
+<!-- 										<input type="text" name="estim_lev_cd_detail" id="estim_lev_cd_detail"  readonly="readonly" class="int3" value=""> -->
+<%-- 									</c:otherwise> --%>
+<%-- 								</c:choose> --%>
+<!-- 								</div> -->
+							</td>
+						</tr>
+	 					<tr>
+							<th>비고</th> 
+							<td colspan="3">
+								<div class="ui input focus">
+									<textarea rows="5" cols="40" name="memo" id="memo" readonly=readonly
+		 							class="int3">${detail.memo}</textarea>
+<!-- 								<input type="text" name="memo" id="memo" readonly=readonly -->
+<%-- 	 							class="int3" style="width: 100%;" value="${detail.memo}"> --%>
+	 							</div>
+	 						</td> 
+						</tr>
+					</tbody>
+				</table>
 			
-			
-				<table id= "estimatehead" style="width:100%; text-align: center; border-collapse: collapse; border:1px;" >
+				<div class="bt_position">
+	 				<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui button" value="상품삭제" id="prodDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui blue button" value="상품추가" id="prodListBtn"/>
+	 			</div>			
+				<table id= "estimatehead" class="ui celled table" style="width:100%; text-align: center; border-collapse: collapse; border:1px; margin-bottom:0px;" >
 					<tr>
 						<th style="width: 3%;padding:0px;text-align: center;display:none;" rowspan="2"><input type="checkbox" id="allSelect"></th>
-						<td style="width: 32%;">품목명</td>
-						<td style="width: 8%;">수량</td>
-						<td style="width: 27%;">판매가</td>
-						<td style="width: 15%;">할인</td>
-						<td style="width: 15%;">공급가</td>
+						<th style="width: 32%;text-align: center;">품목명</th>
+						<th style="width: 8%;text-align: center;">수량</th>
+						<th style="width: 27%;text-align: center;">판매가</th>
+						<th style="width: 15%;text-align: center;">할인</th>
+						<th style="width: 15%;text-align: center;">공급가</th>
 					</tr>
 					<tr id="totalprice">
 						<td style="width: 32%;">계:</td>
@@ -196,9 +203,9 @@ $(function() {
 						<td style="width: 15%;" id="supplyPriceSum">0</td>
 					</tr>
 				</table>
-				<div id="estimatediv" style="width:100%;">
+				<div id="estimatediv" style="width:100%;margin-top:0px;">
 				<input type="hidden" id="eduCode" value="${eduCode}">
-				<table id="estimatetable" class="tabtable" style="text-align: center;border:1px;">
+				<table id="estimatetable" class="ui celled table" style="text-align: center;margin-top:0px;">
 					<tbody id="estimatetbody">
 						<c:choose>
 							<c:when test="${not empty prodList}">
