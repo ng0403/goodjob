@@ -303,7 +303,6 @@
 		      cust.cust_id,
 		      cust.cust_nm,
 		      pos.key_part,
-		      sa.memo,
 			  pos.fst_reg_id,
 			  TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
 		from SALES_ACTIVITY sa, 
@@ -509,7 +508,13 @@
 	
 	<!-- 영업기회 고객정보 가져오기 -->
 	<select id="ccOpptCustDetail" parameterType="String" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
-		SELECT c.CUST_NM, l.LEAD_ID FROM CUSTOMER c, LEAD l WHERE c.CUST_ID = l.CUST_ID and c.CUST_ID = #{cust_id} and c.ACT_YN = 'Y'
+		SELECT 
+			c.CUST_NM, 
+			l.LEAD_ID 
+		FROM CUSTOMER c, LEAD l 
+		WHERE c.CUST_ID = l.CUST_ID 
+			and c.CUST_ID = #{cust_id} 
+			and c.ACT_YN = 'Y'
 	</select>
 	
 	<!-- 영업기회 상세정보 가져오기 -->
@@ -566,7 +571,6 @@
 	<select id="ccActList" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 	 	SELECT SA.SALES_ACTVY_ID sales_actvy_id
 	 			, SA.SALES_ACTVY_NM sales_actvy_nm
-    		  
     		    , (SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) sales_actvy_type_nm
     		    , TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') strt_d
     		    , SA.STRT_T strt_t
@@ -622,7 +626,6 @@
 		    STRT_D, 
 		    STRT_T,
 		    END_D, END_T, 
-		    MEMO,
 			FST_REG_ID,
 		    FIN_MDFY_ID
 		  )
@@ -641,7 +644,7 @@
 		      TO_DATE(#{strt_d},'yyyy-MM-dd'),
 		      #{strt_t},
 		      TO_DATE(#{end_d},'yyyy-MM-dd'),
-		      #{end_t},#{memo},
+		      #{end_t},
 		      #{fst_reg_id, jdbcType=VARCHAR},
 		      #{fin_mdfy_id, jdbcType=VARCHAR}
 		    )
@@ -660,7 +663,6 @@
 	          , STRT_D= TO_DATE(#{strt_d},'yyyy-MM-dd')
 	          , STRT_T=#{strt_t}, END_D= TO_DATE(#{end_d},'yyyy-MM-dd')
 	          , END_T=#{end_t}
-	          , MEMO=#{memo}
 	          , FIN_MDFY_DT=sysdate
 	          , FIN_MDFY_ID=#{fin_mdfy_id}
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}

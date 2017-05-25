@@ -87,7 +87,6 @@ $(document).ready(function() {
 	// 영업활동 리스트 가져오기
 	$("#tab3").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		console.log(cust_id);
 		if(cust_id == '' && cust_id == null){
 			var tbody = $('#actTableTbody');
 			tbody.children().remove();
@@ -785,7 +784,8 @@ function actList(cust_id) {
 							+ "<td rowspan='2' style='width:24px;'>" 
 							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
-							+ 		"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
+//							+ 		"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
+							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"')>"+data[i].sales_actvy_nm+"</a></td>"+
 							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
 							+ "<td style='width:74px;'>"+strt_t+"</td>"
 							+ "<td rowspan='2' style='width:162px;'>"+data[i].sales_oppt_nm+"</td>"

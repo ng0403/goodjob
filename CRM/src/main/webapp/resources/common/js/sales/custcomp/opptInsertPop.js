@@ -351,7 +351,7 @@ function opptTabList(cust_id)
 						"</td>"+	//opptTabDetail('"+list.sales_oppt_id+"');'
 							
 						"<td style='width:280px; text-align: left;vertical-align: middle; padding-left:5px;'class='oppt_nm_class' >" +
-						"	<a onclick=\"opptTabDetail('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
+						"	<a href=javascript:viewDetail2('"+'cust_ed'+"','"+list.sales_oppt_id+"','"+list.cust_id+"') id='list_sales_oppt_nm'  style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
 						"<td style='width: 111px;'>"+list.sales_oppt_stat_cd_nm+"</td>"+
 						"<td style='width: 130px;'>"+list.sales_lev_cd_nm+"</td>"+
 						"<td style='width: 131px;'>"+list.fst_reg_dt+"</td>+"+

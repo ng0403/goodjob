@@ -18,6 +18,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
@@ -105,7 +106,7 @@
 										<input type="checkbox"  id="actOpptAllSelect" name="sales_oppt_id" value="${opptList.sales_oppt_id}"/>
 									</td>
 									<td>
-										<a onclick="opptTabDetail('${opptList.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
+										<a onclick="AddCustomerOpen('cust_ed', '${opptList.cust_id}', '${opptList.cust_nm}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${opptList.sales_oppt_nm}</a>
 									</td>
 									<td>${opptList.sales_oppt_stat_cd_nm}</td>
 									<td>${opptList.sales_lev_cd_nm}</td>
