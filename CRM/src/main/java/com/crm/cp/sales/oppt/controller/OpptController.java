@@ -122,6 +122,9 @@ public class OpptController {
 		
 		if(opptId == null){
 			System.out.println("신규추가컨트롤러");
+			System.out.println("flag : "+flag );
+			System.out.println("cust_id : "+cust_id);
+			System.out.println("cust_nm : "+cust_nm);
 
 			addFlag = 0;
 			ModelAndView mov = new ModelAndView("openAdd");
@@ -155,7 +158,7 @@ public class OpptController {
 			mov.addObject("otllist", otllist);
 			mov.addObject("cust_id", cust_id);
 			mov.addObject("cust_nm", cust_nm);
-			mov.addObject("cust_nm", flag);
+			mov.addObject("flag", flag);
 			mov.addObject("menuList", menuList);
 			mov.addObject("addFlag", addFlag);
 			mov.addObject("flg", "add");
