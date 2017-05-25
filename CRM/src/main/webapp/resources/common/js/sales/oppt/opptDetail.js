@@ -655,11 +655,10 @@ function viewSalesActive(opptId){
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
 				"<td rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
-				"<td rowspan='2'>" +
-				"<a style='text-decoration: none; text-align: center;' href=javascript:actDetail('"+data.sales_actvy_id+"','"+'oppt_ed'+"')>"+data.sales_actvy_nm+"</a></td>"+
+				"<td rowspan='2'><a style='text-decoration: none; text-align: center;' href=javascript:actDetail('"+data.sales_actvy_id+"','"+'oppt_ed'+"')>"+data.sales_actvy_nm+"</a></td>"+
 //				"<a style='text-decoration: none; text-align: center;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
 //				"<td rowspan='2' style='width: 8% !important; text-align: center;'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2'>"+data.sales_oppt_nm+"</td>"+
+//				"<td rowspan='2'>"+data.sales_oppt_nm+"</td>"+
 				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
 				"<td>"+start_d+"</td>"+
 				"<td>"+data.strt_t+"</td>"+

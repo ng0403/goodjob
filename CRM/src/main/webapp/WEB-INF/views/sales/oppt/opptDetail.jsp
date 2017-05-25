@@ -77,7 +77,7 @@ $(document).ready(function() {
 							<th rowspan="2"><input type="checkbox"  id='actAllSelect'/></th>
 							<th rowspan="2">영업활동명</th>
 <!-- 							<th rowspan="2" style="width: 8% !important; text-align: center;">활동구분</th> -->
-							<th rowspan="2">영업기회명</th>
+<!-- 							<th rowspan="2">영업기회명</th> -->
 							<th rowspan="2">활동유형</th>
 							<th>시작일자</th>
 							<th>시작시간</th>
