@@ -126,8 +126,7 @@
 		<!-- 영업활동 리스트 -->
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');" />
-<%-- 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="ccActDel('${ctx}');"/> --%>
+				<input type="button" id="actCust_nm" class="tiny ui blue button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');" />
 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" />
 			</div>
 			
