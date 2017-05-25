@@ -736,4 +736,21 @@
 		and SALES_OPPT_ID=#{sales_oppt_id}
 	</select>
 	
+	<select id ="selectCompany" parameterType="String" resultType="integer">
+	select COUNT(*) from CUSTOMER
+	WHERE 1=1 AND CUST_NM = #{COMPONY_NM} 
+	</select>
+	
+	<select id ="getCustid" parameterType="String" resultType="com.crm.cp.sales.contact.vo.ContactVO" >
+	select cust_id
+	from customer
+	where cust_nm = #{COMPANY_NM}
+	</select>
+	
+	<select id="getContid" parameterType="com.crm.cp.sales.contact.vo.ContactVO" resultType="com.crm.cp.sales.contact.vo.ContactVO">
+	select cont_id
+	from contact
+	where company_nm = #{company_nm} and cont_nm = #{cont_nm} and ph1 = #{ph1} and ph2 = #{ph2} and ph3 = #{ph3}
+	</select>
+	
 </mapper>

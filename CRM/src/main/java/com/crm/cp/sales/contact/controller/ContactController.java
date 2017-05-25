@@ -21,6 +21,7 @@ import com.crm.cp.sales.act.service.ActService;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.contact.service.ContactService;
 import com.crm.cp.sales.contact.vo.ContactVO;
+import com.crm.cp.sales.custcomp.service.CustCompService;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
 import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
@@ -45,6 +46,8 @@ public class ContactController {
 	EstService estInter;
 	@Autowired
 	OpptService opptService;
+	@Resource
+	CustCompService ccService;
 	
 	// 연락처 전체 리스트
 	@RequestMapping(value = "contact", method = RequestMethod.GET)
@@ -148,6 +151,9 @@ public class ContactController {
 	@RequestMapping(value = "/contactInsert", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> contactInsert(HttpSession session, ContactVO contactVO) {
 		System.out.println("cont insert entering" + contactVO.toString());
+		
+	
+		
 		Map<String, Object> rstMap = new HashMap<String, Object>();
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			rstMap.put("mdfyResult", "standard/home/session_expire");
@@ -156,6 +162,39 @@ public class ContactController {
 			contactVO.setFst_reg_id(session.getAttribute("user").toString());
  			int contactRstRst = contactService.contactInsert(contactVO); 
 			rstMap.put("mdfyResult", contactRstRst);
+			
+			String COMPANY_NM = contactVO.getCompany_nm();
+			
+			int companycount = contactService.selectCompany(COMPANY_NM); // 회사명 유효성 검사
+			
+			if(companycount == 1)
+			{
+				
+				KeymanVO kVO = new KeymanVO();
+				
+				ContactVO custidvo = new ContactVO(); 
+				ContactVO contidvo = new ContactVO();
+				
+ 				contidvo = contactService.getContid(contactVO);
+				
+				
+				custidvo = contactService.getCustid(COMPANY_NM);
+				
+				System.out.println("contidvo? " + contidvo.toString());
+				System.out.println("custidvo? " + custidvo.toString());
+				
+				kVO.setCont_id(contidvo.getCont_id());
+				kVO.setCust_id(custidvo.getCust_id());
+				kVO.setFst_reg_id(session.getAttribute("user").toString());
+				kVO.setKey_job("");
+				kVO.setKey_part("");
+				kVO.setKey_pos("");
+				kVO.setMemo("");
+				System.out.println("kvo list? " + kVO.toString());
+				
+ 				ccService.insertKeyman(kVO);
+			} 
+			 
 		}  
 		return rstMap;
 	}
@@ -181,6 +220,7 @@ public class ContactController {
 
 		return "redirect:/contact";
 	}*/
+ 
 
 	// 전체리스트 출력 페이징/검색
 	@RequestMapping(value = "/contactPaging", method = RequestMethod.POST)

@@ -47,6 +47,8 @@ public class AuthController {
 		List<Object> authIuserList = authIuserService.authUserList();
 		List<Object> authMenuList = authMenuService.authMenuList();
 		
+		System.out.println("authlist c??? " + authList.toString());
+		System.out.println("authIuserList ? " + authIuserList.toString());
 		ModelAndView mov = new ModelAndView ("auth", "authList", authList);
 		mov.addObject("menuList", menuList);
 		mov.addObject("authIuserList", authIuserList);

@@ -307,6 +307,12 @@
 		<put-attribute name="right"
 			value="/WEB-INF/views/standard/auth/authDetail.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="code" extends="authLayout">
+		<put-attribute name="right"
+			value="/WEB-INF/views/standard/code/codeDetail.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/standard/code/codeList.jsp"></put-attribute>	
+	</definition>
 
 	<definition name="opptDetail" extends="twobodyLayout">
 		<put-attribute name="master"

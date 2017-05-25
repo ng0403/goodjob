@@ -17,6 +17,7 @@ public interface ContactService {
     List<ContactVO> getList(Map<String,String> map); //기업의 전체 리스트가져오기
  // 페이지 정보 얻어오기
  	PagerVO ContactListCount1(Map<String, String> contactMap);
+ 	int selectCompany(String COMPANY_NM);
  	
 	public ContactVO contactDetail(String cont_id);
 	String contactUpdate(ContactVO contactVO);
@@ -49,4 +50,8 @@ public interface ContactService {
 	int opptAdd(OpptVO add);	//영업기회 추가
     List<OpptVO> opptPrdtDetail(String sales_oppt_id);                    	//영업기회별 상품 상세정보
 
+    
+    ContactVO getContid(ContactVO contactVO);
+    ContactVO getCustid(String COMPANY_NM);
+    
 }

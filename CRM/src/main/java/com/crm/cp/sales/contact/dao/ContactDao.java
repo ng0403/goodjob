@@ -16,7 +16,7 @@ public interface ContactDao {
 	List<ContactVO> getList(Map<String,String> map);
 	// 전체 리스트 개수 가져오기
 	int contactListCount1(Map<String, String> contactMap);
-
+	int selectCompany(String COMPANY_NM);
 	public int contactListCount(Map<String, Object> contactMap);
 	public ContactVO contactDetail(String cont_id);
 	int contactUpdate(ContactVO contactVO);
@@ -50,5 +50,7 @@ public interface ContactDao {
 	 List<OpptVO> opptPrdtDetail(String sales_oppt_id);	//영업기회별 상품 상세정보 출력
 
 
+	 ContactVO getContid(ContactVO contactVO);
+	 ContactVO getCustid(String COMPANY_NM);
 
 }

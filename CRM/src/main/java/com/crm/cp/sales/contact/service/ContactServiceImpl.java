@@ -349,4 +349,22 @@ public class ContactServiceImpl implements ContactService {
 			System.out.println("영업기회별 상품 상세정보 opptId : " + sales_oppt_id);
 			return contactDao.opptPrdtDetail(sales_oppt_id);
 		}
+
+		@Override
+		public int selectCompany(String COMPANY_NM) {
+			
+			return contactDao.selectCompany(COMPANY_NM);
+			
+		}
+
+		@Override
+		public ContactVO getContid(ContactVO contactVO) {
+ 			return contactDao.getContid(contactVO);
+		}
+
+		@Override
+		public ContactVO getCustid(String COMPANY_NM) {
+			// TODO Auto-generated method stub
+			return contactDao.getCustid(COMPANY_NM);
+		}
 }

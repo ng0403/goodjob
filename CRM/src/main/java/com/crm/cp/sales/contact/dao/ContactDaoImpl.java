@@ -414,4 +414,25 @@ public class ContactDaoImpl implements ContactDao {
 					return result;
 				}
 
+				@Override
+				public int selectCompany(String COMPANY_NM) {
+					
+					return sqlSession.selectOne("selectCompany", COMPANY_NM);
+					
+				}
+
+				@Override
+				public ContactVO getContid(ContactVO contactVO) {
+					// TODO Auto-generated method stub
+					return sqlSession.selectOne("getContid", contactVO);
+				}
+
+				@Override
+				public ContactVO getCustid(String COMPANY_NM) {
+					// TODO Auto-generated method stub
+					return sqlSession.selectOne("getCustid", COMPANY_NM);
+				}
+				
+				
+
 }

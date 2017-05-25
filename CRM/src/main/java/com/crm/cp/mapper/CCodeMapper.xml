@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ccode">
+
+<select id="codegrpList" resultType="com.crm.cp.standard.code.vo.CodeVO">
+select * 
+from code_group
+</select>
+
+<select id ="codeList" parameterType="String" resultType="com.crm.cp.standard.code.vo.CodeVO">
+select *
+from code
+where cd_grp_id = #{cd_grp_id}
+</select> 
+
+
+<insert id="cdgrpInsert" parameterType="com.crm.cp.standard.code.vo.CodeVO">
+INSERT INTO CODE_GROUP(CD_GRP_ID, CD_GRP_NM, FST_REG_ID, FIN_MDFY_ID, ACT_YN)
+VALUES(#{cd_grp_id}, #{cd_grp_nm}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn})
+</insert>
+
+
+ <update id="cdgrpDelete" parameterType="string">
+	   UPDATE CODE_GROUP
+	   SET ACT_YN = 'N', fin_mdfy_id = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
+	   WHERE cd_grp_id = #{cd_grp_id}
+    </update> 
+
+</mapper>

@@ -159,7 +159,7 @@ import com.crm.cp.utils.PagerVO;
 	        	
  	 		    attach.setFILE_NM(multipartFile.getOriginalFilename());
  	 		    String name = multipartFile.getOriginalFilename();
- 	 		     
+ 	 		    System.out.println("name??" + name); 
  	 		    StringTokenizer toke = new StringTokenizer(name, ".");
  	 		    String[] filename = new String[2];
  	 		    
