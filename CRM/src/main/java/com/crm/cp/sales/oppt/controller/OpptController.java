@@ -89,6 +89,55 @@ public class OpptController {
 		mov.addObject("searchInfo", map);
 		return mov;
 	}
+	// 영업기회 리스트
+	@RequestMapping(value = "/DelList", method = RequestMethod.GET)
+	ModelAndView Dellist(HttpSession session,
+			@RequestParam Map<String, String> map,
+			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
+		ModelAndView mov = new ModelAndView("oppt");
+		
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = service.opptOscList();
+		
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = service.opptOtlList();
+		
+		// 메뉴리스트 가져오기
+		List<MenuVO> menuList = menuService.selectAll(session);
+		
+		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+		map.put("ssales_oppt_nm0", map.get("ssales_oppt_nm0"));
+		map.put("ssales_oppt_nm1", map.get("ssales_oppt_nm1"));
+		map.put("scust_nm", map.get("scust_nm"));
+		map.put("scust_nm0", map.get("scust_nm0"));
+		map.put("scust_nm1", map.get("scust_nm1"));
+		map.put("ssales_lev_cd", map.get("ssales_lev_cd"));
+		map.put("ssales_lev_cd0", map.get("ssales_lev_cd0"));
+		map.put("ssales_lev_cd1", map.get("ssales_lev_cd1"));
+		map.put("psblty_rate", map.get("psblty_rate"));
+		map.put("psblty_rate0", map.get("psblty_rate0"));
+		map.put("psblty_rate1", map.get("psblty_rate1"));
+		
+		map.put("pageNum", pageNum + "");
+		PagerVO page = service.opptPageCount(map);
+		map.put("startRow", page.getStartRow() + "");
+		map.put("endRow", page.getEndRow() + "");
+		
+		//영업기회 리스트 가져오기
+		List<OpptVO> list = service.DelopptList(map);
+		
+		System.out.println("page : " + page);
+		mov.addObject("oplist", list);
+		mov.addObject("osclist", osclist);
+		mov.addObject("otllist", otllist);
+		mov.addObject("page", page);
+		mov.addObject("menuList", menuList);
+		mov.addObject("searchInfo", map);
+		return mov;
+	}
 	
 	// 영업기회상태 차트 리스트
 	@RequestMapping(value="/opptChartStatus", method={RequestMethod.GET,RequestMethod.POST})

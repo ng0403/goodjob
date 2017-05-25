@@ -29,6 +29,13 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("검색어 Map : " + map);
 		return dao.opptList(map); 
 	}
+	
+	//영업기회 삭제된 데이터 리스트 출력(사용)
+	@Override
+	public List<OpptVO> DelopptList(Map<String, String> map) {
+		System.out.println("검색어 Map : " + map);
+		return dao.DelopptList(map); 
+	}
 	//홈화면 영업기회 리스트 출력
 	@Override
 	public List<OpptVO> opptList() {
@@ -274,6 +281,7 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회삭제 result : " + result);
 		return result;
 	}
+
 
 
 }

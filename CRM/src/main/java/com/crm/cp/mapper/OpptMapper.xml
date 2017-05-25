@@ -95,6 +95,98 @@
 		order by d.fin_mdfy_dt desc
 
 	</select>
+	<!-- 영업기회 리스트 -->
+	<select id="Dellist" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="java.util.Map">
+		select d.*,r
+		from
+		(
+		select
+		rownum r
+		, a.sales_oppt_id
+		, a.cust_id
+		, c.cust_nm
+		, a.sales_oppt_nm
+		, (select cd_nm from code where cd_grp_id='OTL' and
+		code=a.sales_lev_cd) sales_lev_cd_nm
+		, a.sales_lev_cd
+		, a.sales_oppt_stat_cd
+		, case when ((select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id))) is null then 0
+		else (select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id)) end as expt_sales_amt 
+		, to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d
+		, a.psblty_rate
+		, (select cd_nm from code where cd_grp_id='OSC' and	code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
+		, a.memo
+		, a.fst_reg_id
+		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
+		, a.fin_mdfy_id
+		, a.fin_mdfy_dt
+		, a.act_yn
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='D'
+		<choose>
+			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 != null and ssales_oppt_nm0 != '' and ssales_oppt_nm1 != null and ssales_oppt_nm1 != ''">
+				and (a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+				or a.sales_oppt_nm like '%'||#{ssales_oppt_nm0}||'%'
+				or a.sales_oppt_nm like '%'||#{ssales_oppt_nm1}||'%')
+			</when>
+			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 != null and ssales_oppt_nm0 != ''">
+				and (a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+				or a.sales_oppt_nm like '%'||#{ssales_oppt_nm0}||'%')
+			</when>
+			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
+				and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+			</when>
+		</choose>
+		<choose>
+			<when test="scust_id !=null and scust_id !='' and scust_id0 != null and scust_id0 != '' and scust_id1 != null and scust_id1 != ''">
+				and (a.cust_id = #{scust_id}
+				or a.cust_id = #{scust_id0}
+				or a.cust_id = #{scust_id1})
+			</when>
+			<when test="scust_id !=null and scust_id !='' and scust_id0 != null and scust_id0 != ''">
+				and (a.cust_id = #{scust_id}
+				or a.cust_id = #{scust_id0})
+			</when>
+			<when test="scust_id !=null and scust_id !='' ">
+				and a.cust_id = #{scust_id}
+			</when>
+		</choose>
+		<choose>
+			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' and ssales_lev_cd0 != null and ssales_lev_cd0 != '' and ssales_lev_cd1 != null and ssales_lev_cd1 != ''">
+				and (a.sales_lev_cd = #{ssales_lev_cd}
+				or a.sales_lev_cd = #{ssales_lev_cd0}
+				or a.sales_lev_cd = #{ssales_lev_cd1})
+			</when>
+			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' and ssales_lev_cd0 != null and ssales_lev_cd0 != ''">
+				and (a.sales_lev_cd = #{ssales_lev_cd}
+				or a.sales_lev_cd = #{ssales_lev_cd0})
+			</when>
+			<when test="ssales_lev_cd !=null and ssales_lev_cd !='' ">
+				and a.sales_lev_cd = #{ssales_lev_cd}
+			</when>
+		</choose>
+		<choose>
+			<when test="spsblty_rate !=null and spsblty_rate !='' and spsblty_rate0 != null and spsblty_rate0 != '' and spsblty_rate1 != null and spsblty_rate1 != ''">
+				and (a.psblty_rate = #{spsblty_rate}
+				or a.psblty_rate = #{spsblty_rate0}
+				or a.psblty_rate = #{spsblty_rate1})
+			</when>
+			<when test="spsblty_rate !=null and spsblty_rate !='' and spsblty_rate0 != null and spsblty_rate0 != ''">
+				and (a.psblty_rate = #{spsblty_rate}
+				or a.psblty_rate = #{spsblty_rate0})
+			</when>
+			<when test="spsblty_rate !=null and spsblty_rate !='' ">
+				and a.psblty_rate = #{spsblty_rate}
+			</when>
+		</choose>
+		
+		)d
+		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
+		order by d.fin_mdfy_dt desc
+
+	</select>
 	<!-- 홈화면 영업기회 리스트 -->
 	<select id="list_for_home" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="java.util.Map">
 		select d.*,r

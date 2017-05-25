@@ -17,6 +17,8 @@ public interface OpptService {
 	
 	//영업기회 리스트 조회
 	List<OpptVO> opptList(Map<String,String> map);
+	//영업기회 삭제 데이터 리스트 조회
+	List<OpptVO> DelopptList(Map<String, String> map);
 	//영업기회 리스트 조회
 	List<OpptVO> opptList();
 	
@@ -116,5 +118,6 @@ public interface OpptService {
 	int opptPrdtAdd(List<OpptVO> estList);
 	//영업기회상품 삭제
 	int opptPrdtDel(String sales_oppt_id);
+	
 	
 }

@@ -28,6 +28,12 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("리스트 검색조건 DaoImpl map : " + map);
 		return sqlsession.selectList("oppt.list", map);
 	}
+	//영업기회 삭제된 데이터 리스트 출력(사용)
+	@Override
+	public List<OpptVO> DelopptList(Map<String, String> map) {
+		System.out.println("삭제된 데이터 리스트 검색조건 DaoImpl map : " + map);
+		return sqlsession.selectList("oppt.Dellist", map);
+	}
 	//홈화면 리스트 출력
 	@Override
 	public List<OpptVO> opptList() {

@@ -17,7 +17,7 @@
 </head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
-<script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptDelList.js"></script>
 <script type="text/javascript">
 </script>
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
@@ -35,7 +35,7 @@
 	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 영업기회 > 영업기회관리</h3>
+			<h3 class="ui header" style="background: #fff;">■ 영업기회 > 영업기회관리 삭제된 데이터</h3>
 		</div>
 	</div>
 		   <div class="search_div" id="search_div" >
@@ -77,16 +77,18 @@
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='opptAllSelect'/></th>
-						<th style="width: 26%;">영업기회명</th>
-						<th style="width: 10%;">고객명</th>
-						<th style="width: 8%;">영업단계</th>
-						<th style="width: 10%;">예상매출액</th>
-						<th style="width: 10%;">예상마감일자</th>
-						<th style="width: 5%;">가능성</th>
-						<th style="width: 8%;">상태</th>
-						<th style="width: 8%;">등록자</th>
-						<th style="width: 12%;">등록일시</th>
+						<th><input type="checkbox"  id='opptAllSelect'/></th>
+						<th>영업기회명</th>
+						<th>고객명</th>
+						<th>영업단계</th>
+						<th>예상매출액</th>
+						<th>예상마감일자</th>
+						<th>가능성</th>
+						<th>상태</th>
+						<th>최종수정자</th>
+						<th>최종수정일시</th>
+						<th>등록자</th>
+						<th>등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="listTable" class="tbody">
@@ -108,6 +110,8 @@
 						<td>${list.expt_fin_d}</td>
 						<td>${list.psblty_rate}</td>
 						<td>${list.sales_oppt_stat_cd_nm}</td>
+						<td>${list.fin_reg_id}</td>
+						<td>${list.fin_reg_dt}</td>
 						<td>${list.fst_reg_id}</td>
 						<td>${list.fst_reg_dt}</td>
 					</tr>
@@ -119,8 +123,6 @@
 			<div class="functionBtn_div">
 		    	<input type="button" class="tiny tiny ui orange button" value="추가" onclick="AddCustomerOpen();">
 				<input type="button" class="tiny tiny ui orange button" value="삭제" onclick="opptDelete();" >
-		    	<input type="button" class="tiny tiny ui orange button" value="삭제된 데이터" onclick="DelListOpen();">
-				
 			</div>
 			<!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

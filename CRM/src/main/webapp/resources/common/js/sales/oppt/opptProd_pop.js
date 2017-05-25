@@ -256,6 +256,7 @@ function opptProdDelete(){
 				var estimId = $('#estim_id').val();
 				$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
 					var classVal =  $(this).val();
+					alert(classVal);
 					$("."+classVal).remove();
 					
 					if($('#flg').val()=='detail'){
