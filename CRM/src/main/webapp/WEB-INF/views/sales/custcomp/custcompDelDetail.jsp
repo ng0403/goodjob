@@ -47,8 +47,10 @@
 		<c:if test="${flg == 1 }">
 			<div class="caption">
 				<h3 class="ui header" style="background: #fff;">
-					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a>
-					> 상세정보
+					■ 고객 > 
+					<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a>
+					<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;"> 삭제된 데이터</a> 
+					> 삭제된 데이터 관리
 				</h3>
 
 			</div>
@@ -119,11 +121,7 @@
 											</option>
 										</c:forEach>
 									</select>
-								</c:if> <!-- 									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled"> -->
-								<!-- 										<option value="0" style="text-align: center;">==선택==</option> -->
-								<%-- 										<option <c:if test="${custcompDetail.cust_div_cd == '0001' }">selected="selected"</c:if>>가망</option> --%>
-								<%-- 										<option <c:if test="${custcompDetail.cust_div_cd == '0002' }">selected="selected"</c:if>>기존</option> --%>
-								<!-- 									</select> --> <%-- 									<input type="text" name="cust_div_cd" id="cust_div_cd" class="int" value="${custcompDetail.cust_div_cd}" style="ms-ime-mode: disabled;" readonly="readonly"/> --%>
+								</c:if> 
 							</td>
 
 						</tr>
@@ -278,69 +276,6 @@
 										</c:forEach>
 									</select>
 								</c:if></td>
-							<!-- 								<th>영업담당자</th> -->
-							<!-- 								<td> -->
-							<%-- 									<c:if test="${flg == 0 }"> --%>
-							<!-- 										<input type="hidden" name="hiuser_id_nm" id="hiuser_id_nm"/> -->
-							<!-- 										<input type="hidden" name="iuser_id_nm"  id="iuser_id_nm"/> -->
-							<!-- 										<input type="hidden" name="hiuser_nm"    id="hiuser_nm"/> -->
-							<%-- 										<input type="text"   name="iuser_nm"     id="iuser_nm" class="int_ad" value="${custcompDetail.iuser_nm}" style="background: #fff;"  /> --%>
-							<!-- <!-- 										<input type="button" name="iuser_search" id="iuser_search" value="직원" class="tiny ui orange basic button" /> -->
-							
-							<%-- 										<input type="button" name="Manager"      id="Manager"  class="tiny ui orange basic button" value="직원검색" onclick="javascript:iuserListPopup('${ctx}');" style="margin-left: 5px;"> --%>
-							<%-- 									</c:if>  --%>
-							<%-- 									<c:if test="${flg == 1 }"> --%>
-							<!-- 										<input type="hidden" name="hiuser_id_nm" id="hiuser_id_nm"/> -->
-							<!-- 										<input type="hidden" name="iuser_id_nm" id="iuser_id_nm"/> -->
-							<!-- 										<input type="hidden" name="hiuser_nm" id="hiuser_nm"/> -->
-							<%-- 										<input type="text" name="iuser_nm" id="iuser_nm" class="int_ad" value="${custcompDetail.iuser_nm}" readonly="readonly" /> --%>
-							<!-- <!-- 										<input type="button" name="iuser_search" id="iuser_search" value="직원" class="tiny ui orange basic button" disabled="disabled"/> -->
-
-							<%-- 										<input type="button" name="Manager"      id="Manager"  class="tiny ui orange basic button" value="직원검색" onclick="javascript:iuserListPopup('${ctx}');" disabled="disabled" style="margin-left: 5px;"> --%>
-							<%-- 									</c:if> --%>
-							<!-- 								</td> -->
-						</tr>
-						<!-- 								<th>기업업종</th> -->
-						<!-- 								<td> -->
-						<!-- 									<input type="hidden" id="hindst_cd"/> -->
-						<%-- 										<input type="text" name="indst_cd1" id="indst_cd1" class="int" value="${custcompDetail.indst}" maxlength="50"readonly="readonly" /> --%>
-						<!-- 								</td> -->
-						<!-- 								<th>기업업태</th> -->
-						<!-- 								<td> -->
-						<!-- 									<input type="hidden" id="hbiz_status"/> -->
-						<!-- 									<select id="biz_status" name="biz_status" disabled="disabled"> -->
-						<!-- 										<option value="0" style="text-align: center;">==기업업태==</option> -->
-						<%-- 										<c:forEach var="IDC" items="${IDCCodeList}"> --%>
-						<%-- 											<option value="<c:out value="${IDC.biz_status}" />" --%>
-						<%-- 												 <c:if test="${custcompDetail.biz_status == IDC.biz_status }">selected="selected"</c:if>> --%>
-						<%-- 												 ${IDC.biz_status} --%>
-						<!-- 											</option> -->
-						<%-- 										</c:forEach> --%>
-						<!-- 									</select> -->
-
-						<%-- 									<input type="text" name="biz_status" id="biz_status" class="int" value="${custcompDetail.biz_status}"  maxlength="50" readonly="readonly" /> --%>
-						<!-- 								</td> -->
-						<!-- 							</tr> -->
-
-						<!-- 							<tr> -->
-						<!-- 								<th>산업군</th> -->
-						<!-- 									<td> -->
-						<!-- 										<input type="hidden" id="hindst_cd" /> -->
-						<!-- 										<select id="indst_cd" name="indst_cd" disabled="disabled"> -->
-						<!-- 											<option value="0" style="text-align: center;">==산업군==</option> -->
-						<%-- 											<c:forEach var="IDC" items="${IDCCodeList}"> --%>
-						<%-- 												<option value="<c:out value="${IDC.indst_cd}" />" --%>
-						<%-- 													 <c:if test="${custcompDetail.indst_cd == IDC.indst_cd }">selected="selected"</c:if>> --%>
-						<%-- 													 ${IDC.indst} --%>
-						<!-- 												</option> -->
-						<%-- 											</c:forEach> --%>
-						<!-- 										</select> -->
-						<!-- 									</td> -->
-						<!-- 								<th>주요제품</th> -->
-						<!-- 								<td> -->
-						<!-- 									<input type="hidden" id="main_prod"/> -->
-						<!-- 									<input type="text" name="main_prod" id="main_prod" class="int" maxlength="50"readonly="readonly" /> -->
-						<!-- 								</td> -->
 					</tbody>
 				</table>
 			</div>

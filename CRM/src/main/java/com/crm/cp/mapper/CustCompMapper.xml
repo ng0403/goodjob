@@ -72,23 +72,20 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-<!-- 				<if test="sch_cust_nm != null and sch_cust_nm !=''"> -->
-<!-- 			     	and c.cust_nm like '%'||#{sch_cust_nm}||'%' -->
-<!-- 			    </if> -->
-<!-- 			    <if test="sch_comp_num != null and sch_comp_num !=''"> -->
-<!-- 			     	and c.comp_num like '%'||#{sch_comp_num}||'%' -->
-<!-- 			    </if>  -->
-<!-- 			    <if test="sch_corp_num != null and sch_corp_num !=''"> -->
-<!-- 			     	and c.corp_num like '%'||#{sch_corp_num}||'%' -->
-<!-- 			    </if> -->
 	                order by c.fst_reg_dt desc
-<!-- 	                ) b -->
            		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
  
-<!-- 	select * from CUSTOMER -->
 	</select>
-
+	
+	<!-- 고객사 삭제된 데이터 리스트 -->
+	<select id="custcompDelList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		select 
+			* 
+		from customer
+		where 1=1
+		  and act_yn = 'N'
+	</select>
 	<!-- 리스트 개수 -->
 	<select id="ccListTotalCount" parameterType="java.util.Map" resultType="int">
 	select nvl(count(c.cust_id), 0) 
@@ -133,7 +130,7 @@
 		    and c.cust_div_cd = '0001'
 		    and c.act_yn = 'Y'
 	</select>
-
+	
 	<!-- 기업고객 상세정보 -->
 	<select id="custcompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select c.cust_id cust_id
@@ -157,6 +154,34 @@
        where c.cust_id = #{cust_id}
 		  and c.cust_div_cd = '0001'
 		  and c.act_yn = 'Y'
+	</select>
+	
+	<select id="custcompDelDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		select 
+<!-- 			  c.cust_id cust_id -->
+<!-- 		      , c.cust_nm cust_nm -->
+<!-- 		      , c.cust_div_cd cust_div_cd -->
+<!-- 		      , c.comp_num comp_num -->
+<!--  		      , c.corp_num corp_num -->
+<!--  		      , c.rep_ph1 rep_ph1 -->
+<!-- 		      , c.rep_ph2 rep_ph2 -->
+<!-- 		      , c.rep_ph3 rep_ph3 -->
+<!-- 		      , c.homepage_url homepage_url -->
+<!-- 		      , c.cust_zip_cd cust_zip_cd -->
+<!-- 		      , c.cust_addr cust_addr -->
+<!-- 		      , c.cust_dtl_addr cust_dtl_addr -->
+<!-- 		      , c.sales_scale_cd sales_scale_cd -->
+<!-- 		      , c.emp_qty emp_qty -->
+<!-- 		      , c.indst_cd indst_cd -->
+<!-- 		      , c.biz_status biz_status -->
+<!-- 		      , c.main_prod main_prod -->
+			
+			*
+			
+		 from customer c
+       	 where c.cust_id = #{cust_id}
+		  	and c.cust_div_cd = '0001'
+		  	and c.act_yn = 'N'
 	</select>
 	
 	<!-- 기업고객 추가 -->

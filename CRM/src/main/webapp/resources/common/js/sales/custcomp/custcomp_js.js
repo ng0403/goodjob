@@ -14,7 +14,7 @@
  * custcompDelete() 									: 고객사 삭제
  * custCompDel(ctx) 									: 기업고객 삭제
  * viewDetail(cust_id) 									: 고객사 상세보기
- * ccDetail(cust_id)				 					: 기업고객 상세보기 Ajax
+ * ccDetail(cust_id)				 					: 고객사 상세보기 Ajax
  * keymanList(cust_id) 									: 키맨 리스트 Ajax
  * actList(cust_id) 									: 영업활동 리스트 Ajax
  * pocList(cust_id) 									: 영업담당자 리스트 Ajax
@@ -40,6 +40,8 @@ $(document).ready(function() {
 	keymanList(cust_id);
 	pocList(cust_id);
 	posList(cust_id);
+	custcompDelList(page);
+	ccDelDetail(cust_id);
 	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
@@ -281,6 +283,67 @@ function custCompList(page){
 }
 
 
+//고객사 삭제된 데이터 리스트 출력
+function custcompDelList(page){
+	var ctx = $("#ctx").val();
+	$.ajax({
+		type : 'post',
+		url : ctx + '/custcompDelListAjax',
+		data : {	
+				    pageNum : page, 
+					sch_cust_nm : $("#sch_cust_nm").val(), 
+					sch_comp_num : $("#sch_comp_num").val(), 
+					sch_corp_num : $("#sch_corp_num").val(), 
+				},
+				datatype : 'json',
+		success:function(result){
+			if(result.ccVOListSize == 0){
+				alert("검색결과가 없습니다.");
+				location.href = ctx+'/custcomp';
+			}else{
+				//리스트 출력 시 버튼 상태 설정
+				$("#functionBtn").css("display", "block");
+				
+				$("#ccDelListTbody").children().remove();
+				$.each(result.ccVOList, function(i, cc){
+				
+					$("#ccDelListTbody").append("" +
+							"<tr id='"+cc.cust_id+"'>"+
+							"<th style='text-align: center;'><input type=checkbox   id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
+							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
+							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccDelDetail('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+							"<td id=cust_nm style='text-align: center'>"+cc.comp_num+"</td>"+
+							"<td style='text-align: center'>"+cc.corp_num+"</td>"+
+							"<td style='text-align: center'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+							"<td style='text-align: center'>"+cc.sales_scale+"</td>"+
+							"<td style='text-align: right; padding-right:8px'> "+cc.emp_qty+"</td>"+
+							"<td style='text-align: center'>"+cc.indst+"</td>"+
+							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>+"+
+							"</tr >"
+					);
+				});
+			}
+			$("#pageSpace").children().remove();	
+			$("#pageSpace").children().remove();
+			var ccPageNum = result.ccPageNum;
+			var startPageNum = result.page.startPageNum;
+			var endPageNum = result.page.endPageNum;
+			var firstPageCount = result.page.firstPageCount;
+			var totalPageCount = result.page.totalPageCount;
+			var prevPageNum = result.page.prevPageNum;
+			var nextPageNum = result.page.nextPageNum;
+			var prevStepPage = result.page.prevStepPage;
+			var nextStepPage = result.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+		},
+		error:function(request){
+			alert("error : " + request);
+		}
+	});
+}
+
+
 //검색 버튼 클릭 시 
 function searchBtn(page){
 
@@ -437,6 +500,12 @@ function custcompInsert() {
 	location.href = ctx + '/custcompDetail';
 }
 
+//고객사 삭제된 데이터 리스트
+function custcompDelListbtn() {
+	var ctx = $("#ctx").val();
+	location.href = ctx + '/custcompDelList';
+}
+
 //고객사 삭제
 function custcompDelete() {
 	var form = $('#delForm');
@@ -530,7 +599,13 @@ function viewDetail(cust_id) {
 	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
 }
 
-// 기업고객 상세보기 ajax 통신
+//고객사 삭제된 데이터 상세보기
+function ccDelDetail(cust_id) {
+	var ctx = $("#ctx").val();
+	location.href = ctx+'/custcompDelDetail?cust_id=' + cust_id;
+}
+
+// 고객사 상세보기 ajax 통신
 function ccDetail(cust_id) {
 	$(document).ready(function() {
 		var ctx = $("#ctx").val();
@@ -784,7 +859,6 @@ function actList(cust_id) {
 							+ "<td rowspan='2' style='width:24px;'>" 
 							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
-//							+ 		"<a href='#' onclick=\"ccActDetail('"+data[i].sales_actvy_id+"');\" style='color:blue;' class='cnClick'>"+data[i].sales_actvy_nm+"</a></td>"
 							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"')>"+data[i].sales_actvy_nm+"</a></td>"+
 							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
 							+ "<td style='width:74px;'>"+strt_t+"</td>"

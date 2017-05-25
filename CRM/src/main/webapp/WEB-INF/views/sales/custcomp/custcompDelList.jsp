@@ -37,7 +37,9 @@ $(function() {
 	<input type="hidden" id="count" 	value="">
 	<div id="title">
 		<div class="caption">
-			<label id="listLabel" class="ui header">■ 고객 > 고객사관리</label> 
+			<label id="listLabel" class="ui header">■ 고객 > 
+				<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a>
+				> 삭제된 데이터</label> 
 		</div>
 	</div>
 
@@ -66,25 +68,27 @@ $(function() {
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='ccListCheck'/></th>
-						<th style="width: 16%" id="tblTh" > 기업명</th>
+						<th style="width: 14%" id="tblTh" > 기업명</th>
 						<th style="width: 8%"  id="tblTh" >사업자번호</th>
 						<th style="width: 8%"  id="tblTh" >법인번호</th>
 						<th style="width: 10%" id="tblTh" >대표전화번호</th>
-						<th style="width: 10%" id="tblTh" >매출규모</th>
-						<th style="width: 8%"  id="tblTh" >직원수</th>
-						<th style="width: 14%" id="tblTh" >산업군</th>
-<!-- 						<th style="width: 8%"  id="tblTh" >영업 담당자</th> -->
-						<th style="width: 15%" id="tblTh" >등록일시</th>
+						<th style="width: 8%" id="tblTh" >매출규모</th>
+						<th style="width: 5%"  id="tblTh" >직원수</th>
+						<th style="width: 8%" id="tblTh" >산업군</th>
+						<th style="width: 8%" id="tblTh" >최종 수정자</th>
+						<th style="width: 10%" id="tblTh" >최종 수정일시</th>
+						<th style="width: 8%" id="tblTh" >등록자</th>
+						<th style="width: 10%" id="tblTh" >등록일시</th>
 					</tr>
 				</thead>
-				<tbody id="ccListTbody" class="tbody">
+				<tbody id="ccDelListTbody" class="tbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
 							<td style="text-align: center;">
 								<input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"   onclick="chkCancel();">
 							</td>
 							<td id="ccListTableNmTd" style="text-align: left; padding-left: 14px;">
-								<a href="#" onclick="ccTabFunc('${cc.cust_id}', '${cc.cust_nm}');"  class="cnClick">${cc.cust_nm}</a>
+								<a href="#" onclick="ccDelDetail('${cc.cust_id}', '${cc.cust_nm}');"  class="cnClick">${cc.cust_nm}</a>
 							</td>
 							<td style="text-align: center;">${cc.comp_num}</td><!-- 사업자번호 -->
 							<td style="text-align: center;">${cc.corp_num}</td><!-- 법인번호 -->
@@ -92,7 +96,9 @@ $(function() {
 							<td style="text-align: center;">${cc.sales_scale}</td><!-- 매출규모 -->
 							<td style="text-align: right; padding-right: 8px;">${cc.emp_qty}</td><!-- 직원수 -->
 							<td style="text-align: center;">${cc.indst}</td><!-- 산업군 -->
-<%-- 							<td style="text-align: center;">${cc.iuser_nm}</td><!-- 영업담당자 --> --%>
+							<td style="text-align: center;">${cc.fin_mdfy_id}</td><!-- 최종 수정자 -->
+							<td style="text-align: center;">${cc.fin_mdfy_dt}</td><!-- 최종 수정일시 -->
+							<td style="text-align: center;">${cc.fst_reg_id}</td><!-- 등록자 -->
 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
 						</tr>
 					</c:forEach>
@@ -100,55 +106,46 @@ $(function() {
 			</table>
 		</div>
 		
-		<div class="bottom_div">
-			<div class="functionBtn_div">	
-				<input type="button" value="추가" class="tiny ui blue button" id="addBtn" onclick="custcompInsert();" />
-				<input type="button" value="삭제" class="tiny ui blue button" onclick="custcompDelete()" />
-				<input type="button" value="삭제된 데이터" class="tiny ui blue button" onclick="custcompDelListbtn()" />
-<!-- 				<input type="button" value="엑셀" class="tiny ui blue button" id="exportBtn"   onclick=""  />	 -->
-			</div>
-			
-			<!-- 페이징 처리 -->
-			<div id="pageSpace" class="ui right floated pagination menu">
-				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+		<!-- 페이징 처리 -->
+		<div id="pageSpace" class="ui right floated pagination menu">
+			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+			<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+			<c:choose>
+				<c:when test="${ccPageNum eq page.firstPageCount}">
+					<a class="icon item">
+        				<i class="left chevron icon"></i>
+        			</a>	
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.firstPageCount}">
+	        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+	        			<i class="left chevron icon"></i>
+	        		</a>
+	    		</c:when>
+			</c:choose>
+			<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
 				<c:choose>
-					<c:when test="${ccPageNum eq page.firstPageCount}">
-						<a class="icon item">
-	        				<i class="left chevron icon"></i>
-	        			</a>	
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
-		        			<i class="left chevron icon"></i>
-		        		</a>
-		    		</c:when>
+					<c:when test="${i eq ccPageNum }">
+						<b>
+							<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+						</b>
+					</c:when>
+					<c:otherwise>
+						<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+					</c:otherwise>
 				</c:choose>
-				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
-					<c:choose>
-						<c:when test="${i eq ccPageNum }">
-							<b>
-								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
-							</b>
-						</c:when>
-						<c:otherwise>
-							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${ccPageNum eq page.totalPageCount}">
-						<a class="icon item">
-	        				<i class="right chevron icon"></i>
-	        			</a>	
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
-		       				<i class="right chevron icon"></i>
-		       			</a>
-		    		</c:when>
-				</c:choose>
-			</div>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+					<a class="icon item">
+        				<i class="right chevron icon"></i>
+        			</a>	
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+	       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+	       				<i class="right chevron icon"></i>
+	       			</a>
+	    		</c:when>
+			</c:choose>
 		</div>
 	</form>
 </body>

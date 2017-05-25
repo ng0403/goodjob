@@ -45,7 +45,7 @@ public class CustCompController {
 
 	@Resource
 	CustCompService ccService;
-	
+
 	@Autowired
 	MenuService menuService;
 	
@@ -61,8 +61,7 @@ public class CustCompController {
 	@Resource
 	IuserService iuserService;	//사원 서비스
 	
-
-	// 기존고객 리스트(MaV)
+	// 고객사 리스트(MaV)
 	@RequestMapping(value = "/custcomp", method = RequestMethod.GET)
 	public ModelAndView custCompList(HttpSession session, @RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
 		ModelAndView mov = null;
@@ -76,7 +75,7 @@ public class CustCompController {
 			
 			pMap.put("ccPageNum", ccPageNum);
 			
-			// 기업고객 리스트 전체 개수 조회(페이징에 사용)
+			// 고객사 리스트 전체 개수 조회(페이징에 사용)
 			PagerVO page = ccService.getCCListCount(pMap);
 			
 			pMap.put("page", page);
@@ -106,8 +105,7 @@ public class CustCompController {
 		return mov;
 	}
 
-
-	// 기존고객 리스트(ajax)
+	// 고객사 리스트(ajax)
 	@RequestMapping(value = "custCompAjax", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> custCompPList(
 							HttpSession session,
@@ -155,27 +153,20 @@ public class CustCompController {
 			System.out.println("page :  "+ page);
 			
 			List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 기업고객 리스트
+			List<CustCompVO> ccDelVOList = ccService.getCCDelList(pMap); // 기업고객 리스트
 			System.out.println("dddd " + ccVOList.toString());
+			System.out.println("삭제데이터 " + ccDelVOList.toString());
 			pMap.put("ccVOList", ccVOList);
+			pMap.put("ccVOList", ccDelVOList);
 			pMap.put("ccVOListSize", ccVOList.size());
 		}
 		return pMap;
 	}
 	
-	
-	// 기업고객 상세정보
-//	@RequestMapping(value = "custCompDetail.do", method = {RequestMethod.GET, RequestMethod.POST})
-//	public @ResponseBody CustCompVO companyCutomerDetail(String cust_id) {
-//		CustCompVO ccVO = ccService.getCCDetail(cust_id);
-//
-//		return ccVO;
-//	}
-	
-	//기존고객 상세정보
+	//고객사 상세정보
 	@RequestMapping(value="/custcompDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView cutomerDetail(HttpSession session
-						, @RequestParam Map<String, String> map
-						, String cust_id) {
+	public ModelAndView cutomerDetail(HttpSession session, @RequestParam Map<String, String> map
+										, String cust_id) {
 		
 		System.out.println("cust_id : " + cust_id);
 		
@@ -235,31 +226,11 @@ public class CustCompController {
 		}
 	}
 	
-	
-//	// 기업고객 추가
-//	@RequestMapping(value = "custCompInsert.do", method = RequestMethod.POST)
-//	public @ResponseBody Map<String, String> companyCutomerInput(HttpSession session, CustCompVO ccVO) {
-//		Map<String, String> rstMap = new HashMap<String, String>();
-//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-//			rstMap.put("inputResult", "standard/home/session_expire");
-//		} else {
-//			ccVO.setFst_reg_id_nm(session.getAttribute("user").toString());
-//			ccVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
-//			String inputResult = ccService.insertCustComp(ccVO);
-//			rstMap.put("inputResult", inputResult);
-//		}
-//		return rstMap;
-//	}
-	
-	//기존고객 추가
+	//고객사 추가
 	@RequestMapping(value = "/custcompAdd",  method = RequestMethod.POST)
 	public String custcompAdd(@ModelAttribute CustCompVO ccVO, HttpSession session, HttpServletRequest request) {
 		
 		ccVO.setFst_reg_id(session.getAttribute("user").toString());
-		
-//		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
-		//int result = ccService.custcompAdd(ccVO);
-		//System.out.println("result : " + result);
 		
 		System.out.println(ccVO.toString());
 		ccService.custcompInsert(ccVO);
@@ -267,24 +238,7 @@ public class CustCompController {
 		return "redirect:/custcomp";
 	}
 	
-	// 기업고객 수정
-//	@RequestMapping(value = "custCompUpdate.do", method = RequestMethod.POST)
-//	public @ResponseBody Map<String, Object> companyCutomerUpdate(HttpSession session, CustCompVO ccVO, String ccPageNum) {
-//		Map<String, Object> rstMap = new HashMap<String, Object>();
-//		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
-//			rstMap.put("updateResult", "standard/home/session_expire");
-//		} else {
-//			ccVO.setFin_mdfy_id_nm(session.getAttribute("user").toString());
-//			String updateResult = ccService.updateCustComp(ccVO);
-//			ccVO = ccService.getCCDetail(ccVO.getCust_id());
-//			rstMap.put("updateResult", updateResult);
-//			rstMap.put("ccVO", ccVO);
-//			rstMap.put("ccPageNum", ccPageNum);
-//		}
-//		return rstMap;
-//	}
-	
-	//기존고객 수정 ajax
+	//고객사 수정 ajax
 	@RequestMapping(value = "/custcompModify", method = RequestMethod.POST)
 	public String  custcompModify(@ModelAttribute CustCompVO ccVO, HttpSession session) {
 		System.out.println("Detail Edit Controller");
@@ -305,6 +259,152 @@ public class CustCompController {
 			ccService.custcompDelete(cust_id);
 		}
 		return "redirect:/custcomp";
+	}
+	
+	// 고객사 리스트(MaV)
+	@RequestMapping(value = "/custcompDelList", method = RequestMethod.GET)
+	public ModelAndView custCompDelList(HttpSession session, @RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
+		ModelAndView mov = null;
+		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+			mov = new ModelAndView("standard/home/session_expire");
+		} else {
+			
+			mov = new ModelAndView("custcompDel");
+
+			Map<String, Object> pMap = new HashMap<String, Object>();
+			
+			pMap.put("ccPageNum", ccPageNum);
+			
+			// 고객사 리스트 전체 개수 조회(페이징에 사용)
+			PagerVO page = ccService.getCCListCount(pMap);
+			
+			pMap.put("page", page);
+			
+			pMap.put("startRow", page.getStartPageNum() + "");
+			pMap.put("endRow", page.getEndPageNum() + "");
+			
+			List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 기업고객 리스트
+			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
+			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
+			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사 구분 코드 가져오기
+			
+			System.out.println("ccVOList : " + ccVOList);
+			System.out.println("page :  "+ page);
+			List<MenuVO> menuList = menuService.selectAll(session);
+			mov.addObject("ccPageNum", ccPageNum);
+			mov.addObject("menuList", menuList);
+			mov.addObject("ccVOList", ccVOList);
+			mov.addObject("SSCCodeList", SSCCodeList);
+			mov.addObject("IDCCodeList", IDCCodeList);
+			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("CDCCodeList", CDCCodeList);
+			mov.addObject("page", page);
+			
+		}
+		return mov;
+	}
+	
+	// 고객사 삭제된 데이터 리스트(ajax)
+	@RequestMapping(value = "custcompDelListAjax", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> custCompDelList(
+							HttpSession session,
+							@RequestParam(value = "pageNum", defaultValue = "1") int ccPageNum,
+							@RequestParam Map<String, String> map,
+							@RequestParam (value = "sch_cust_nm" , required = false) String sch_cust_nm,
+							@RequestParam (value = "sch_comp_num" , required = false) String sch_comp_num,
+							@RequestParam (value = "sch_corp_num" , required = false) String sch_corp_num ) {
+		
+ 		Map<String, Object> pMap = new HashMap<String, Object>();
+		
+		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
+			pMap.put("result", "standard/home/session_expire");
+		} else {
+			pMap.put("result", "Y");
+			pMap.put("sch_cust_nm", sch_cust_nm);
+			pMap.put("sch_comp_num", sch_comp_num);
+			pMap.put("sch_corp_num", sch_corp_num);
+			pMap.put("ccPageNum", ccPageNum);
+//			
+			// 고객사 리스트 전체 개수 조회(페이징에 사용)
+			PagerVO page = ccService.getCCListCount(pMap);
+			pMap.put("startRow", page.getStartPageNum() + "");
+			pMap.put("endRow", page.getEndPageNum() + "");
+			pMap.put("page", page);
+			System.out.println("page :  "+ page);
+			
+			List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사 삭제된 리스트
+			System.out.println("dddd " + ccVOList.toString());
+			pMap.put("ccVOList", ccVOList);
+			pMap.put("ccVOListSize", ccVOList.size());
+		}
+		return pMap;
+	}
+
+	//고객사 삭제된 데이터 상세정보
+	@RequestMapping(value="/custcompDelDetail", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView cutomerDelDetail(HttpSession session, @RequestParam Map<String, String> map
+										, String cust_id) {
+		
+		System.out.println("cust_id : " + cust_id);
+		
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
+
+		int flg;
+		if(cust_id == null) {
+			flg = 0;
+			
+			ModelAndView mov = new ModelAndView("custcompDelDetail");
+
+			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
+			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
+			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사구분 코드 가져오기
+			
+			System.out.println("삭제된 데이터 flg : " + flg);
+			
+			mov.addObject("SSCCodeList", SSCCodeList);
+			mov.addObject("IDCCodeList", IDCCodeList);
+			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("CDCCodeList", CDCCodeList);
+			mov.addObject("flg", flg);
+			
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			
+			return mov;
+			
+		} else {
+			
+			ModelAndView mov = new ModelAndView("custcompDelDetail");
+			flg = 1;
+			
+			map.put("cust_id", cust_id);
+			
+			CustCompVO ccVO = ccService.custcompDelDetail(cust_id);
+
+			mov.addObject("custcompDetail", ccVO);
+			
+			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
+			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
+			List<CustCompVO> CCSCodeList = ccService.selectCCS(); // 기업 상태 코드 가져오기
+			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사구분 코드 가져오기
+			
+			System.out.println("삭제된 데이터 flg : " + flg);
+			System.out.println(ccVO.toString());
+			
+			mov.addObject("SSCCodeList", SSCCodeList);
+			mov.addObject("IDCCodeList", IDCCodeList);
+			mov.addObject("CCSCodeList", CCSCodeList);
+			mov.addObject("CDCCodeList", CDCCodeList);
+			mov.addObject("flg", flg);
+				
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			return mov;
+		}
 	}
 	
 	// 직원검색 팝업
@@ -424,23 +524,6 @@ public class CustCompController {
 		return mov;
 
 	}
-	
-	// 영업담당자 상세정보 입력
-//	@ResponseBody
-//	@RequestMapping(value = "/custtSaleActDetail", method = RequestMethod.GET)
-//	public Map<String, Object> custtSaleActDetail(HttpSession session, String sales_actvy_id) {
-//		
-//		Map<String, Object> map = new HashMap<String, Object>(0);
-//
-//		PosVO detail = ccService.posDetail(sales_actvy_id);
-//
-//		map.put("detail", detail);
-//		map.put("cust_id", detail.getCust_id());
-//		map.put("cust_nm", detail.getCust_nm());
-//		map.put("flg", "detail");
-//
-//		return map;
-//	}
 	
 	// 영업담당자 추가
 	@RequestMapping(value = "/custPosAdd", method = RequestMethod.POST)
@@ -644,8 +727,6 @@ public class CustCompController {
 		
 	}
 	
-	
-	
 	//고객별 키맨//
 	// 키맨 리스트
 	@RequestMapping(value = "ccKeymanList", method = RequestMethod.POST)
@@ -839,7 +920,6 @@ public class CustCompController {
 			vo.setSales_oppt_id("");
 			vo.setProd_id(est_list.get(i));
 			vo.setProd_nm(est_list.get(++i));
-			//vo.setProd_price(est_list.get(++i));
 			vo.setEstim_qty(est_list.get(++i));	// 수량 개수
 			vo.setSales_price(est_list.get(++i));			
 			vo.setSup_price(est_list.get(++i));

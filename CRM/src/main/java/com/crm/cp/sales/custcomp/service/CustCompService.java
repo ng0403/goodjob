@@ -103,4 +103,7 @@ public interface CustCompService {
 
 	String custSaleActDelete(PosVO pos);										// 영업담당자 삭제
 
+	List<CustCompVO> getCCDelList(Map<String, Object> pMap);					// 고객사 삭제된 데이터 리스트
+	CustCompVO custcompDelDetail(String cust_id);								// 고객사 삭제된 데이터 상세보기
+
 }

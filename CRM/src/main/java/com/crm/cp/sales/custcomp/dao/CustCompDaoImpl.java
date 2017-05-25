@@ -751,5 +751,32 @@ public class CustCompDaoImpl implements CustCompDao {
 		}
 		return deleteResult;
 	}
+	
+	// 고객사 삭제된 데이터 리스트
+	@Override
+	public List<CustCompVO> getCCDelList(Map<String, Object> pMap) {
+		System.out.println("custcompDelList");
+		List<CustCompVO> ccListVO = null;
+		try {
+			System.out.println("DAOImple : " + pMap.get("page"));
+			ccListVO = sqlSession.selectList("custcomp.custcompDelList", pMap);
+			System.out.println("custcompDelList: " + ccListVO.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ccListVO;
+	}
+
+	// 고객사 삭제된 데이터 상세보기
+	@Override
+	public CustCompVO selectDelDetail(String cust_id) {
+		CustCompVO ccVO = null;
+		try {
+			ccVO = sqlSession.selectOne("custcomp.custcompDelDetail", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ccVO;
+	}
 
 }

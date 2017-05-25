@@ -584,5 +584,24 @@ public class CustCompServiceImpl implements CustCompService {
 		return resultStr;
 	}
 
+	//고객사 삭제된 데이터 리스트
+	@Override
+	public List<CustCompVO> getCCDelList(Map<String, Object> pMap) {
+		List<CustCompVO> ccVOList = ccDao.getCCDelList(pMap);
+		return ccVOList;
+	}
+
+	//고객사 삭제된 데이터 상세보기
+	@Override
+	public CustCompVO custcompDelDetail(String cust_id) {
+		// 상세정보
+		CustCompVO ccVO = ccDao.selectDelDetail(cust_id);
+		String zip_cd = ccVO.getCust_zip_cd();
+		ccVO.setCust_zip_cd1(zip_cd.substring(0, 2));
+		ccVO.setCust_zip_cd2(zip_cd.substring(3, 5));
+
+		return ccVO;
+	}
+
 
 }
