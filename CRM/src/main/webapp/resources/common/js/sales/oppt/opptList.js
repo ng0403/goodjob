@@ -84,25 +84,14 @@ function addForm(){
 		});
 	}else{
 		alert("검색 조건은 최대 3개 입니다.");
-//	}
 	}
 
-//    document.listForm.count.value=count;
-    // 다음 페이지에 몇개의 폼을 넘기는지 전달하기 위해 히든 폼에 카운트 저장
 }
 //영업기회 검색 조건 삭제
 function delForm(obj){
     var addedFormDiv = document.getElementById("search_div");
     addedFormDiv.removeChild(obj.parentNode); // 폼 삭제 
     --count;
-//
-//    if(count >=1){ // 현재 폼이 두개 이상이면
-//               var addedDiv = document.getElementById("added_"+(--count));
-//               // 마지막으로 생성된 폼의 ID를 통해 Div객체를 가져옴
-//               addedFormDiv.removeChild(addedDiv); // 폼 삭제 
-//    }else{ // 마지막 폼만 남아있다면
-//               document.baseForm.reset(); // 폼 내용 삭제
-//    }
 }
 
 function tabClick(){
@@ -147,7 +136,7 @@ function tabClick(){
     });
 }
 
-
+//영업기회 전체 체크
 function opptAllCheck(){
 	$("#opptAllSelect").click( function(){
 		var chk = $(this).is(":checked"); //checked 된 경우 true, 아닌 경우 false
@@ -246,6 +235,15 @@ function divideDetail(opptId){
 function viewDetail(opptId){
 	var ctx = $("#ctx").val();
 	location.href = ctx+'/opptDetail?opptId='+opptId;
+}
+//영업기회 상세정보 출력 송영화(고객에서 연결되는 부분)
+function viewDetail2(flag, opptId, cust_id){
+	var ctx = $("#ctx").val();
+	alert(flag);
+	alert(opptId);
+	alert(cust_id);
+	
+	location.href = ctx+'/opptDetail?opptId='+opptId +'&flag=' + flag +'&cust_id=' + cust_id;
 }
 
 //영업기회 추가 페이지 이동 

@@ -212,7 +212,7 @@ public class OpptController {
 			mov.addObject("otllist", otllist);
 			mov.addObject("cust_id", cust_id);
 			mov.addObject("cust_nm", cust_nm);
-			mov.addObject("cust_nm", flag);
+			mov.addObject("flag", flag);
 			mov.addObject("menuList", menuList);
 			mov.addObject("actList", actList);
 			mov.addObject("addFlag", addFlag);
