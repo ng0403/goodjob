@@ -10,6 +10,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
@@ -17,6 +18,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 	
 <title>영업활동</title>
@@ -32,19 +34,48 @@
 	</div>
     
 	<div id="dboardbody">
-		<div class="search_div">
-			<select class="act_tab_select" name="act_search_div_id" id="act_search_div_id" >
-				<option value="0" style="text-align: center;">==선택==</option>
-				<option value="ssales_actvy_nm">영업활동명</option>
-				<option value="sact_oppt_nm">영업기회명</option>
-				<option value="sstart_day">시작일자</option>
-			</select>
-			<input type="text" class="act_txt_search" name="act_search_txt" id="act_search_txt" autofocus="autofocus" onkeydown="actSearchEnter(event);">
-            
-            
-            <input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/>
+		<div class="search_div" id="search_div" >
+			<!-- 시작일자 검색 -->
+			<div class="ui left icon input">
+				<input type="text" placeholder="시작일자" id="ssale_actvy_strt" class="ssale_actvy_strt" style="width: 100px;" readonly="readonly"> 
+			</div>
+			&nbsp;&nbsp;
+			<div class="ui left icon input">
+				<select class="ssales_actvy_type_cd" name="sactvy_type" id="sactvy_type_select" style="height: 35px; background: #fff;">
+					<option value="">활동유형</option>
+					<c:forEach var="actTypeCd" items="${actTypeCd}">
+						<option value="${actTypeCd.sales_actvy_type_cd}">${actTypeCd.sales_actvy_type_nm}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="ui left icon input">
+				<input type="text" placeholder="영업활동명" id="ssales_actvy_nm" class="ssales_actvy_nm">
+			</div>
+			<div class="ui left icon input">
+				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}">
+			</div>
+			<input type="button" class="tiny ui orange basic button" id="searchSalesOppt" value="영업기회">
+			<div class="ui left icon input">
+					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}">
+				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
+			</div>	
+			<input type="button" class="tiny ui orange basic button" id="searchCustomer" value="고객">
+				  	
+			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
+			
+			<input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
 		</div>
-	
+		
+<!-- 		<div class="search_div"> -->
+<!-- 			<select class="act_tab_select" name="act_search_div_id" id="act_search_div_id" > -->
+<!-- 				<option value="0" style="text-align: center;">==선택==</option> -->
+<!-- 				<option value="ssales_actvy_nm">영업활동명</option> -->
+<!-- 				<option value="sact_oppt_nm">영업기회명</option> -->
+<!-- 				<option value="sstart_day">시작일자</option> -->
+<!-- 			</select> -->
+<!-- 			<input type="text" class="act_txt_search" name="act_search_txt" id="act_search_txt" autofocus="autofocus" onkeydown="actSearchEnter(event);"> -->
+<!--             <input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/> -->
+<!-- 		</div> -->
 <!-- 		<div class="search_div"> -->
 <!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);"> -->
 <!-- 				<option value="0" style="text-align: center;">전체</option> -->
