@@ -201,12 +201,23 @@
 			value="/WEB-INF/views/standard/prod/prod_detail.jsp" />
 	</definition>
 
-	<!-- 기업고객 -->
+	<!-- 고객사 리스트 -->
 	<definition name="custcomp" extends="onebodyLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/sales/custcomp/custcomp.jsp" />
 	</definition>
-
+	
+	<!-- 고객사 삭제된 데이터 리스트 -->
+	<definition name="custcompDel" extends="onebodyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/sales/custcomp/custcompDelList.jsp" />
+	</definition>
+	
+	<!-- 고객사 삭제된 데이터 리스트 상세페이지 -->
+	<definition name="custcompDelDetail" extends="onebodyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/sales/custcomp/custcompDelDetail.jsp" />
+	</definition>
 
 	<!-- 기업고객 -->
 	<!-- <definition name="custcompDetail" extends="onebodyLayout"> -->
@@ -361,26 +372,10 @@
 		/> -->
 	<!-- </definition> -->
 
-	<!-- 기존고객 -->
+	<!-- 고객사 상세보기 -->
 	<definition name="custcompDetail" extends="twobodyLayout">
 		<put-attribute name="master"  value="/WEB-INF/views/sales/custcomp/custcomp_detail.jsp" />
 		<put-attribute name="detail"  value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" />
 	</definition>
-	
-	
-	
-	<!-- 바디3개 -->
-<!-- 	<definition name="threebodyLayout" template="/WEB-INF/views/layout/threebody_layout.jsp"> -->
-<!-- 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" /> -->
-<!-- 		<put-attribute name="navi" value="/WEB-INF/views/common/navi.jsp" /> -->
-<!-- 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" /> -->
-<!-- 	</definition> -->
-	
-	<!-- 영업기회 상세보기 --> 
-<!-- 	<definition name="opptDetail3" extends="threebodyLayout">  -->
-<!--  		<put-attribute name="master2" value="/WEB-INF/views/sales/oppt/opptDetail_M.jsp" />  -->
-<!--  		<put-attribute name="middle" value="/WEB-INF/views/sales/oppt/opptDetail_G.jsp" />  -->
-<!-- 		<put-attribute name="detail2" value="/WEB-INF/views/sales/oppt/opptDetail.jsp" /> -->
-<!-- 	</definition> -->
 	
 </tiles-definitions>
