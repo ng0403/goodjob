@@ -30,8 +30,21 @@ var ctx = $("#ctx").val();
 
 //영업기회 검색 조건 추가
 function addForm(){
+	//검색조건추가조건 이거보시오
 	if(count<2){
-		
+		if($("#scust_id1").length > 0)
+			{
+			count = 0;
+			}
+		if($("#scust_id0").length > 0)
+			{
+				count=1;
+				}
+		if(($("#scust_id1").length > 0) && ($("#scust_id0").length > 0))
+			{
+			alert("검색 조건은 최대 3개 입니다.");
+			return;
+			}
 		$.ajax({
 			type : 'post',
 			url :'/otllist',
