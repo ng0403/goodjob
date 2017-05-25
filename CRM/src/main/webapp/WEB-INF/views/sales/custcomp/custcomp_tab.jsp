@@ -125,7 +125,8 @@
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
 				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가" />
-				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="ccActDel('${ctx}');"/>
+<%-- 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="ccActDel('${ctx}');"/> --%>
+				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="actInsertForm2('cust', '${custcompDetail.sales_oppt_id}', '${custcompDetail.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');"/>
 			</div>
 			
 			<div id="tableline2">
