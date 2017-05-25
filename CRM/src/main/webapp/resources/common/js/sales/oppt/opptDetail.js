@@ -189,6 +189,7 @@ function opptCancelBtn(addFlag) {
 //영업기회추가 저장 함수
 function opptAdd(){
 	var ctx = $("#ctx").val();
+	var act_flag = $("#flag").val();
 	var sales_oppt_id = $("#salesId").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
@@ -300,6 +301,7 @@ function opptAdd(){
 //영업기회 상세정보 수정 함수
 function opptModify(){
 	var sales_oppt_id = $("#salesId").val();
+	var act_flag = $("#flag").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
 	var sales_lev_cd_nm = $("#sales_lev_cd option:selected").text();

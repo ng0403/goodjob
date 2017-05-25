@@ -51,6 +51,7 @@ $(document).ready(function() {
 	<input type="hidden" id="salesId" value="" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
+	<input type="hidden" id="flag" value="${flag}">
 	
 	<div id="css_tabs" style="padding-bottom: 10px; margin-top: 14%;">
 		<!-- 라디오 버튼 -->
