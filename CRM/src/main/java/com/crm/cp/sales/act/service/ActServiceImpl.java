@@ -34,11 +34,11 @@ public class ActServiceImpl implements ActService{
 	public PagerVO getActListCount(Map<String, Object> actMap) {
 		int actPageNum = (Integer) actMap.get("actPageNum");
 		// 현재 페이지 얻어오기
-		PagerVO page = new PagerVO(actPageNum, 0, 5, 5);
+		PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
 		// 전체 글의 갯수 구하기
 		int totalRowCount = actDao.getActListCount(actMap);
 				
-		page = new PagerVO(actPageNum, totalRowCount, 5, 5);
+		page = new PagerVO(actPageNum, totalRowCount, 10, 10);
 	
 		return page;
 	}

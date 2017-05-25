@@ -32,6 +32,143 @@ public class ActVO {
 	String fin_mdfy_dt;         //수정일자
 	String act_yn;              //활성화여부
 	
+	//검색
+	String ssale_actvy_strt; 
+	String ssale_actvy_strt0;
+	String ssale_actvy_strt1;
+	String sactvy_type_select;
+	String sactvy_type_select0;
+	String sactvy_type_select1;
+	String ssales_actvy_nm;
+	String ssales_actvy_nm0;
+	String ssales_actvy_nm1;
+	String ssales_oppt_nm; 
+	String ssales_oppt_nm0;
+	String ssales_oppt_nm1;
+	String scust_id;
+	String scust_id0;
+	String scust_id1;
+	
+	public String getSsale_actvy_strt() {
+		return ssale_actvy_strt;
+	}
+
+	public void setSsale_actvy_strt(String ssale_actvy_strt) {
+		this.ssale_actvy_strt = ssale_actvy_strt;
+	}
+
+	public String getSsale_actvy_strt0() {
+		return ssale_actvy_strt0;
+	}
+
+	public void setSsale_actvy_strt0(String ssale_actvy_strt0) {
+		this.ssale_actvy_strt0 = ssale_actvy_strt0;
+	}
+
+	public String getSsale_actvy_strt1() {
+		return ssale_actvy_strt1;
+	}
+
+	public void setSsale_actvy_strt1(String ssale_actvy_strt1) {
+		this.ssale_actvy_strt1 = ssale_actvy_strt1;
+	}
+
+	public String getSactvy_type_select() {
+		return sactvy_type_select;
+	}
+
+	public void setSactvy_type_select(String sactvy_type_select) {
+		this.sactvy_type_select = sactvy_type_select;
+	}
+
+	public String getSactvy_type_select0() {
+		return sactvy_type_select0;
+	}
+
+	public void setSactvy_type_select0(String sactvy_type_select0) {
+		this.sactvy_type_select0 = sactvy_type_select0;
+	}
+
+	public String getSactvy_type_select1() {
+		return sactvy_type_select1;
+	}
+
+	public void setSactvy_type_select1(String sactvy_type_select1) {
+		this.sactvy_type_select1 = sactvy_type_select1;
+	}
+
+	public String getSsales_actvy_nm() {
+		return ssales_actvy_nm;
+	}
+
+	public void setSsales_actvy_nm(String ssales_actvy_nm) {
+		this.ssales_actvy_nm = ssales_actvy_nm;
+	}
+
+	public String getSsales_actvy_nm0() {
+		return ssales_actvy_nm0;
+	}
+
+	public void setSsales_actvy_nm0(String ssales_actvy_nm0) {
+		this.ssales_actvy_nm0 = ssales_actvy_nm0;
+	}
+
+	public String getSsales_actvy_nm1() {
+		return ssales_actvy_nm1;
+	}
+
+	public void setSsales_actvy_nm1(String ssales_actvy_nm1) {
+		this.ssales_actvy_nm1 = ssales_actvy_nm1;
+	}
+
+	public String getSsales_oppt_nm() {
+		return ssales_oppt_nm;
+	}
+
+	public void setSsales_oppt_nm(String ssales_oppt_nm) {
+		this.ssales_oppt_nm = ssales_oppt_nm;
+	}
+
+	public String getSsales_oppt_nm0() {
+		return ssales_oppt_nm0;
+	}
+
+	public void setSsales_oppt_nm0(String ssales_oppt_nm0) {
+		this.ssales_oppt_nm0 = ssales_oppt_nm0;
+	}
+
+	public String getSsales_oppt_nm1() {
+		return ssales_oppt_nm1;
+	}
+
+	public void setSsales_oppt_nm1(String ssales_oppt_nm1) {
+		this.ssales_oppt_nm1 = ssales_oppt_nm1;
+	}
+
+	public String getScust_id() {
+		return scust_id;
+	}
+
+	public void setScust_id(String scust_id) {
+		this.scust_id = scust_id;
+	}
+
+	public String getScust_id0() {
+		return scust_id0;
+	}
+
+	public void setScust_id0(String scust_id0) {
+		this.scust_id0 = scust_id0;
+	}
+
+	public String getScust_id1() {
+		return scust_id1;
+	}
+
+	public void setScust_id1(String scust_id1) {
+		this.scust_id1 = scust_id1;
+	}
+
 	//코드테이블
 	String cd_grp_id;  //코드그룹ID 
 	String cd_nm;      //코드명  

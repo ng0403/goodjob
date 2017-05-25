@@ -153,23 +153,23 @@
 							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" style="display: none;" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'oppt'}">	<!-- 영업기회 -->
-										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
-							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly"> 
+										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
+							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly"> 
 							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" style="display: none;" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'oppt_ed'}">	<!-- 영업기회 -->
-										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
-							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly"> 
+										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
+							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly"> 
 							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" style="display: none;" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust'}">	<!-- 고객사 -->
-										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
-							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly"> 
+										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
+							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly"> 
 							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" style="display: none;" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust_ed'}">	<!-- 고객사 -->
-										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
-							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly"> 
+										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
+							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly"> 
 							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" style="display: none;" disabled="disabled">
 									</c:if>
 								</c:if>

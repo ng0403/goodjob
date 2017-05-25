@@ -18,7 +18,7 @@ public class ActDaoImpl implements ActDao{
     SqlSession sqlSession;
 
 	public List<ActVO> actList(Map<String, Object> actMap) {
-		
+		System.out.println("DAO : " + actMap);
 		return sqlSession.selectList("act.actList",actMap);
 	}
 	

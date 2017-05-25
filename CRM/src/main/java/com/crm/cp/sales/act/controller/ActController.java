@@ -195,6 +195,21 @@ public class ActController {
 		}
 	}
 	
+	@RequestMapping(value = "/actTypeCode", method = RequestMethod.POST)
+	@ResponseBody Map<String, Object> actTypeCode(@RequestParam Map<String, String> map) 
+	{
+		System.out.println("actTypeCode Controller enter ");
+		
+		List<ActVO> actTypeCd = actService.actTypeCdList();
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("actTypeCd", actTypeCd);
+		
+		System.out.println("actTypeCode : " + result);
+		
+		return result;
+	}	
+	
 	@RequestMapping(value = "/actInsert", method = RequestMethod.POST)
 	public @ResponseBody int actInsert(ActVO actvo, HttpSession session, HttpServletRequest request)
 	{
@@ -249,35 +264,35 @@ public class ActController {
 	//전체리스트 출력 페이징/검색 
 	@RequestMapping(value="/actPaging" , method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> ActListSearch(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum,
-			String act_search_div_id, String act_search_txt) throws ParseException{
-		
-		/*SimpleDateFormat simpledate = new SimpleDateFormat();
-		simpledate.applyLocalizedPattern("yyyy-MM-dd");
-		java.util.Date date = simpledate.parse(sstart_day);*/
-	
-		Map<String,Object> actMap = new HashMap<String,Object>();
-		
-		if(act_search_div_id.equals("") || act_search_div_id.equals(null))
-		{
-			System.out.println("mapping actPaging : " + act_search_div_id);
-		}
-		else
-		{
-			if(act_search_div_id.equals("ssales_actvy_nm"))
-			{
-				actMap.put("ssales_actvy_nm", act_search_txt);
-			}
-			if(act_search_div_id.equals("sact_oppt_nm"))
-			{
-				actMap.put("sact_oppt_nm", act_search_txt);
-			}
-			if(act_search_div_id.equals("sstart_day"))
-			{
-				actMap.put("sstart_day", act_search_txt);
-			}
-		}
+			String ssale_actvy_strt, String ssale_actvy_strt0, String ssale_actvy_strt1,
+			String sactvy_type_select, String sactvy_type_select0, String sactvy_type_select1,
+			String ssales_actvy_nm, String ssales_actvy_nm0, String ssales_actvy_nm1,
+			String ssales_oppt_nm, String ssales_oppt_nm0, String ssales_oppt_nm1,
+			String scust_id, String scust_id0, String scust_id1) throws ParseException{
+
+		Map<String,Object> actMap = new HashMap<String, Object>();
 		
 		actMap.put("actPageNum", actPageNum);
+		
+		actMap.put("ssale_actvy_strt", ssale_actvy_strt);
+		actMap.put("ssale_actvy_strt0", ssale_actvy_strt0);
+		actMap.put("ssale_actvy_strt1", ssale_actvy_strt1);
+		
+		actMap.put("sactvy_type_select", sactvy_type_select);
+		actMap.put("sactvy_type_select0", sactvy_type_select0);
+		actMap.put("sactvy_type_select1", sactvy_type_select1);
+		
+		actMap.put("ssales_actvy_nm", ssales_actvy_nm);
+		actMap.put("ssales_actvy_nm0", ssales_actvy_nm0);
+		actMap.put("ssales_actvy_nm1", ssales_actvy_nm1);
+		
+		actMap.put("ssales_oppt_nm", ssales_oppt_nm);
+		actMap.put("ssales_oppt_nm0", ssales_oppt_nm0);
+		actMap.put("ssales_oppt_nm1", ssales_oppt_nm1);
+
+		actMap.put("scust_id", scust_id);
+		actMap.put("scust_id0", scust_id0);
+		actMap.put("scust_id1", scust_id1);
 		
 		System.out.println("MAP : " + actMap);
 		

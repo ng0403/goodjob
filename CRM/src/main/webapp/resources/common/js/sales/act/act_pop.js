@@ -16,9 +16,13 @@ function actOpptListPopup(ctx){
 
 function inputOpptNm(opptNm,opptId,estimId){
 	
+	// Detail
 	$('#sales_oppt_nm').val(opptNm);
 	$('#sales_oppt_id').val(opptId);
 	$('#estim_id').val(estimId);
+	
+	// List
+	$('#ssales_oppt_nm').val(opptNm);
 }
 
 //영업기회리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업
@@ -43,10 +47,15 @@ function custcompListPopup(ctx){
 	});
 }
 
-function inputCustNm(custNm,custId){
-	
+function inputCustNm(custNm,custId)
+{
+	// Detail
 	$('#cust_nm').val(custNm);
 	$('#cust_id').val(custId);
+	
+	// List
+	$('#scust_nm').val(custNm);
+	$('#scust_id').val(custId);
 }
 
 //고객사리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업

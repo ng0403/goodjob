@@ -402,9 +402,9 @@ function schActPaging(page)
 					    tbody.append(tbodyContent);
 					}
 						
-					if (data.actList.length < 5) 
+					if (data.actList.length < 10) 
 					{
-						for (var j = 0; j < 5 - data.actList.length; j++)
+						for (var j = 0; j < 10 - data.actList.length; j++)
 						{
 							tbodyContent = "<tr style='height:36px;'>"
 								+ "<td></td>"
@@ -464,7 +464,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	
 	if(ccPageNum != firstPageCount)
 	{
-		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
+		prevPage.attr("href","javascript:searchActSaleList("+prevPageNum+")");
 	}
 	
 	prevPage.append(prevI);
@@ -476,7 +476,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 		var ccPage = $("<a>");
 		
 		ccPage.addClass("item");
-		ccPage.attr("href","javascript:custCompList("+i+")");
+		ccPage.attr("href","javascript:searchActSaleList("+i+")");
 		ccPage.html(i);
 		
 		if(i == ccPageNum)
@@ -501,7 +501,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	
 	if(ccPageNum != totalPageCount)
 	{
-		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
+		nextPage.attr("href","javascript:searchActSaleList("+nextPageNum+")");
 	}
 	
 	nextPage.append(nextI);

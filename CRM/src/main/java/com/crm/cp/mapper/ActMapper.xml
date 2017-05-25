@@ -11,7 +11,8 @@
 				FROM 
 					(
 						SELECT 
-							SA.SALES_ACTVY_NM, SA.SALES_ACTVY_ID 
+							SA.SALES_ACTVY_NM, SA.SALES_ACTVY_ID
+							,(SELECT CU.CUST_ID FROM CUSTOMER CU WHERE CU.CUST_ID = SA.CUST_ID) CUST_ID
 							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) SALES_ACTVY_TYPE_CD
 							,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D 
 							,SA.STRT_T
@@ -34,18 +35,148 @@
 						WHERE 
 							SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
 							AND SA.ACT_YN = 'Y'
-						<if test="ssales_actvy_nm !=null and ssales_actvy_nm !=''">
-							AND SA.SALES_ACTVY_NM like '%'||#{ssales_actvy_nm}||'%'
-						</if>
-						<if test="sact_oppt_nm !=null and sact_oppt_nm !=''">
-							AND SO.SALES_OPPT_NM like '%'||#{sact_oppt_nm}||'%'
-						</if>
-						<if test="sstart_day !=null and sstart_day !=''">
-							AND SA.STRT_D=TO_DATE(#{sstart_day},'yyyy-MM-dd')
-						</if>
-   			 		    <if test="ssales_actvy_stat_cd !=null and ssales_actvy_stat_cd !=''">
-							AND SALES_ACTVY_STAT_CD like '%'||#{ssales_actvy_stat_cd}||'%' 
-						</if>
+						<choose>
+							<when test="ssale_actvy_strt !=null and ssale_actvy_strt !='' and ssale_actvy_strt0 !=null and ssale_actvy_strt0 !='' and ssale_actvy_strt1 !=null and ssale_actvy_strt1 !=''">
+								AND   (SA.STRT_D = #{ssale_actvy_strt}
+									OR SA.STRT_D = #{ssale_actvy_strt0}
+									OR SA.STRT_D = #{ssale_actvy_strt1})
+							</when>
+							<when test="ssale_actvy_strt !=null and ssale_actvy_strt !='' and ssale_actvy_strt0 !=null and ssale_actvy_strt0 !=''">
+								AND   (SA.STRT_D = #{ssale_actvy_strt}
+									OR SA.STRT_D = #{ssale_actvy_strt0})
+							</when>
+							<when test="ssale_actvy_strt !=null and ssale_actvy_strt !='' and ssale_actvy_strt1 !=null and ssale_actvy_strt1 !=''">
+								AND   (SA.STRT_D = #{ssale_actvy_strt}
+									OR SA.STRT_D = #{ssale_actvy_strt1})
+							</when>
+							<when test="ssale_actvy_strt0 !=null and ssale_actvy_strt0 !='' and ssale_actvy_strt1 !=null and ssale_actvy_strt1 !=''">
+								AND   (SA.STRT_D = #{ssale_actvy_strt0}
+									OR SA.STRT_D = #{ssale_actvy_strt1})
+							</when>
+							<when test="ssale_actvy_strt !=null and ssale_actvy_strt !=''">
+								AND   SA.STRT_D = #{ssale_actvy_strt}
+							</when>
+							<when test="ssale_actvy_strt0 !=null and ssale_actvy_strt0 !=''">
+								AND   SA.STRT_D = #{ssale_actvy_strt0}
+							</when>
+							<when test="ssale_actvy_strt1 !=null and ssale_actvy_strt1 !=''">
+								AND   SA.STRT_D = #{ssale_actvy_strt1}
+							</when>
+						</choose>
+						<choose>
+							<when test="sactvy_type_select !=null and sactvy_type_select !='' and sactvy_type_select0 !=null and sactvy_type_select0 !='' and sactvy_type_select1 !=null and sactvy_type_select1 !=''">
+								AND   (SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select}
+									OR SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select0}
+									OR SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select1})
+							</when>
+							<when test="sactvy_type_select !=null and sactvy_type_select !='' and sactvy_type_select0 !=null and sactvy_type_select0 !=''">
+								AND   (SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select}
+									OR SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select0})
+							</when>
+							<when test="sactvy_type_select !=null and sactvy_type_select !='' and sactvy_type_select1 !=null and sactvy_type_select1 !=''">
+								AND   (SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select}
+									OR SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select1})
+							</when>
+							<when test="sactvy_type_select0 !=null and sactvy_type_select0 !='' and sactvy_type_select1 !=null and sactvy_type_select1 !=''">
+								AND   (SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select0}
+									OR SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select1})
+							</when>
+							<when test="sactvy_type_select !=null and sactvy_type_select !=''">
+								AND    SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select}
+							</when>
+							<when test="sactvy_type_select0 !=null and sactvy_type_select0 !=''">
+								AND    SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select0}
+							</when>
+							<when test="sactvy_type_select1 !=null and sactvy_type_select1 !=''">
+								AND    SA.SALES_ACTVY_TYPE_CD = #{sactvy_type_select1}
+							</when>
+						</choose>
+						<choose>
+							<when test="ssales_actvy_nm !=null and ssales_actvy_nm !='' and ssales_actvy_nm0 !=null and ssales_actvy_nm0 !='' and ssales_actvy_nm1 !=null and ssales_actvy_nm1 !=''">
+								AND   (SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm}  || '%'
+									OR SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm0} || '%'
+									OR SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm1} || '%')
+							</when>
+							<when test="ssales_actvy_nm !=null and ssales_actvy_nm !='' and ssales_actvy_nm0 !=null and ssales_actvy_nm0 !=''">
+								AND   (SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm}  || '%'
+									OR SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm0} || '%')
+							</when>
+							<when test="ssales_actvy_nm !=null and ssales_actvy_nm !='' and ssales_actvy_nm1 !=null and ssales_actvy_nm1 !=''">
+								AND   (SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm}  || '%'
+									OR SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm1} || '%')
+							</when>
+							<when test="ssales_actvy_nm0 !=null and ssales_actvy_nm0 !='' and ssales_actvy_nm1 !=null and ssales_actvy_nm1 !=''">
+								AND   (SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm0} || '%'
+									OR SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm1} || '%')
+							</when>
+							<when test="ssales_actvy_nm !=null and ssales_actvy_nm !=''">
+								AND    SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm}  || '%'
+							</when>
+							<when test="ssales_actvy_nm0 !=null and ssales_actvy_nm0 !=''">
+								AND    SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm0} || '%'
+							</when>
+							<when test="ssales_actvy_nm1 !=null and ssales_actvy_nm1 !=''">
+								AND    SA.SALES_ACTVY_NM like '%' || #{ssales_actvy_nm1} || '%'
+							</when>
+						</choose>
+						<choose>
+							<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 !=null and ssales_oppt_nm0 !='' and ssales_oppt_nm1 !=null and ssales_oppt_nm1 !=''">
+								AND   (SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm}  || '%'
+									OR SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm0} || '%'
+									OR SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm1} || '%')
+							</when>
+							<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 !=null and ssales_oppt_nm0 !=''">
+								AND   (SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm}  || '%'
+									OR SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm0} || '%')
+							</when>
+							<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm1 !=null and ssales_oppt_nm1 !=''">
+								AND   (SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm}  || '%'
+									OR SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm1} || '%')
+							</when>
+							<when test="ssales_oppt_nm0 !=null and ssales_oppt_nm0 !='' and ssales_oppt_nm1 !=null and ssales_oppt_nm1 !=''">
+								AND   (SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm0} || '%'
+									OR SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm1} || '%')
+							</when>
+							<when test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
+								AND    SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm} || '%'
+							</when>
+							<when test="ssales_oppt_nm0 !=null and ssales_oppt_nm0 !=''">
+								AND   SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm0} || '%'
+							</when>
+							<when test="ssales_oppt_nm1 !=null and ssales_oppt_nm1 !=''">
+								AND   SO.SALES_OPPT_NM like '%' || #{ssales_oppt_nm1} || '%'
+							</when>
+						</choose>
+						<choose>
+							<when test="scust_id !=null and scust_id !='' and scust_id0 !=null and scust_id0 !='' and scust_id1 !=null and scust_id1 !=''">
+								AND   (SA.CUST_ID like '%'||#{scust_id}||'%' 
+									OR SA.CUST_ID like '%'||#{scust_id0}||'%' 
+									OR SA.CUST_ID like '%'||#{scust_id1}||'%')
+							</when>
+							<when test="scust_id !=null and scust_id !='' and scust_id0 !=null and scust_id0 !=''">
+								AND   (SA.CUST_ID like '%'||#{scust_id}||'%' 
+									OR SA.CUST_ID like '%'||#{scust_id0}||'%')
+							</when>
+							<when test="scust_id !=null and scust_id !='' and scust_id1 !=null and scust_id1 !=''">
+								AND   (SA.CUST_ID like '%'||#{scust_id}||'%' 
+									OR SA.CUST_ID like '%'||#{scust_id1}||'%')
+							</when>
+							<when test="scust_id0 !=null and scust_id0 !='' and scust_id1 !=null and scust_id1 !=''">
+								AND   (SA.CUST_ID like '%'||#{scust_id0}||'%' 
+									OR SA.CUST_ID like '%'||#{scust_id1}||'%')
+							</when>
+							<when test="scust_id !=null and scust_id !=''">
+								AND    SA.CUST_ID like '%'||#{scust_id}||'%' 
+							</when>
+							<when test="scust_id0 !=null and scust_id0 !=''">
+								AND    SA.CUST_ID like '%'||#{scust_id0}||'%' 
+							</when>
+							<when test="scust_id1 !=null and scust_id1 !=''">
+								AND    SA.CUST_ID like '%'||#{scust_id1}||'%'
+							</when>
+						</choose>
+
+
 						ORDER BY SA.FST_REG_DT DESC
 					) P
 				) SAL

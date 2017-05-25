@@ -9,16 +9,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 	
 <title>영업활동</title>
@@ -41,7 +43,7 @@
 			</div>
 			&nbsp;&nbsp;
 			<div class="ui left icon input">
-				<select class="ssales_actvy_type_cd" name="sactvy_type" id="sactvy_type_select" style="height: 35px; background: #fff;">
+				<select class="ssales_actvy_type_cd" name="sactvy_type_select" id="sactvy_type_select" style="height: 35px; background: #fff;">
 					<option value="">활동유형</option>
 					<c:forEach var="actTypeCd" items="${actTypeCd}">
 						<option value="${actTypeCd.sales_actvy_type_cd}">${actTypeCd.sales_actvy_type_nm}</option>
@@ -52,46 +54,23 @@
 				<input type="text" placeholder="영업활동명" id="ssales_actvy_nm" class="ssales_actvy_nm">
 			</div>
 			<div class="ui left icon input">
-				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}">
+				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}" readonly="readonly">
 			</div>
-			<input type="button" class="tiny ui orange basic button" id="searchSalesOppt" value="영업기회">
+			<input type="button" class="tiny ui orange basic button" id="act_opp_nm" value="영업기회">
 			<div class="ui left icon input">
-					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}">
+					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}" readonly="readonly">
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			</div>	
-			<input type="button" class="tiny ui orange basic button" id="searchCustomer" value="고객">
+			<input type="button" class="tiny ui orange basic button" id="customer" value="고객">
 				  	
-			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
+			<label id="schActAddBtn" class="tiny ui button" onclick="addSearchActForm();">+</label>
 			
 			<input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
 		</div>
-		
-<!-- 		<div class="search_div"> -->
-<!-- 			<select class="act_tab_select" name="act_search_div_id" id="act_search_div_id" > -->
-<!-- 				<option value="0" style="text-align: center;">==선택==</option> -->
-<!-- 				<option value="ssales_actvy_nm">영업활동명</option> -->
-<!-- 				<option value="sact_oppt_nm">영업기회명</option> -->
-<!-- 				<option value="sstart_day">시작일자</option> -->
-<!-- 			</select> -->
-<!-- 			<input type="text" class="act_txt_search" name="act_search_txt" id="act_search_txt" autofocus="autofocus" onkeydown="actSearchEnter(event);"> -->
-<!--             <input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/> -->
-<!-- 		</div> -->
-<!-- 		<div class="search_div"> -->
-<!-- 			<select name="ssales_actvy_stat_cd" id="ssales_actvy_stat_cd" class="act_tab_select" onkeydown="actSearchEnter(event);"> -->
-<!-- 				<option value="0" style="text-align: center;">전체</option> -->
-<%-- 					<c:forEach var="actStatCd" items="${actStatCd}"> --%>
-<%-- 						 <option value="${actStatCd.sales_actvy_stat_cd}">${actStatCd.sales_actvy_stat_nm}</option> --%>
-<%-- 				    </c:forEach> --%>
-<!-- 			</select> -->
-<!-- 			<input type="text" id="seachActSaleInput" name="seachActSaleInput" placeholder="검색어를 입력해주세요"> -->
-<!-- 			<input type="button" id="search_btn" value="조회" class="act_bt" onclick="schActPaging(1);"/> -->
 			
-			
-<!-- 	    </div> -->
 	    <div id="functionBtn">
 	    	<input type="button" id="act_del_btn" class="act_bt" style="float: right;" value="삭제" />
 	    	<input type="button" class="act_bt" value="추가" style="float: right;" onclick="actInsertForm('${act_flg}');" />
-<!-- 	    	<button type="button" class="act_bt" style="float: right;" id="actDelBtn" onclick="actDelete()">삭제</button> -->
 	    </div>
 
 		<div>
@@ -117,9 +96,9 @@
 							<td rowspan="2">
 								<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
 							</td>
-							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">
+							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag">
 								<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
-								<a style="color: blue; cursor: pointer;" class="actClick">${actList.sales_actvy_nm}</a>
+								<a style="color: blue; cursor: pointer;" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">${actList.sales_actvy_nm}</a> <!-- class="actClick"  -->
 							</td>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_oppt_tag">${actList.sales_oppt_nm}</td>
 							<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.sales_actvy_type_cd}</td>
@@ -147,7 +126,7 @@
 	       				</a>	
 	    		</c:when>
 				<c:when test="${actPageNum ne page.firstPageCount}">
-	       			<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+	       			<a href="javascript:searchActSaleList(${page.prevPageNum})" class="icon item">
 	       				<i class="left chevron icon"></i>
 	       			</a>
 	    		</c:when>
@@ -156,11 +135,11 @@
 				<c:choose>
 					<c:when test="${i eq ccPageNum }">
 						<b>
-							<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+							<a  href="javascript:searchActSaleList('${i}');" id="pNum" class="item">${i}</a>
 						</b>
 					</c:when>
 					<c:otherwise>
-						<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+						<a  href="javascript:searchActSaleList('${i}');" class="item" >${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -171,7 +150,7 @@
 	       			</a>	
 	    		</c:when>
 				<c:when test="${actPageNum ne page.totalPageCount}">
-	      			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+	      			<a href="javascript:searchActSaleList(${page.nextPageNum})" class="icon item">
 	      				<i class="right chevron icon"></i>
 	       			</a>
 	    		</c:when>
