@@ -31,6 +31,8 @@
 </head>
 <body  >
 	<input type="hidden" id="custId" value="" >
+	<input type="hidden" id="sales_oppt_id" value="" >
+	<input type="hidden" id="sales_oppt_nm" value="" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	
@@ -124,9 +126,9 @@
 		<!-- 영업활동 리스트 -->
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가" />
+				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');" />
 <%-- 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="ccActDel('${ctx}');"/> --%>
-				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="actInsertForm2('cust', '${custcompDetail.sales_oppt_id}', '${custcompDetail.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');"/>
+				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" />
 			</div>
 			
 			<div id="tableline2">
