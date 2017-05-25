@@ -244,10 +244,10 @@ function divideDetail(opptId){
 }
 
 
-//영업기회 상세정보 출력
+//영업기회 삭제된 데이터 상세정보 출력
 function viewDetail(opptId){
 	var ctx = $("#ctx").val();
-	location.href = ctx+'/opptDetail?opptId='+opptId;
+	location.href = ctx+'/opptDelDetail?opptId='+opptId;
 }
 //영업기회 상세정보 출력 송영화(고객에서 연결되는 부분)
 function viewDetail2(flag, opptId, cust_id){

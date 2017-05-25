@@ -24,7 +24,8 @@ public interface OpptService {
 	
 	//영업기회 상세정보 조회
 	OpptVO opptDetail(String opptId);
-	
+	//영업기회 삭제된 데이터 상세정보 조회
+	OpptVO opptDelDetail(String opptId);
 	//영업기회 상태코드 가져오기
 	List<OpptVO> opptOscList();
 	
@@ -40,6 +41,9 @@ public interface OpptService {
 	//영업기회 수정
 	int opptModify(OpptVO detail);
 	
+	//영업기회 복원
+	int opptDelModify(OpptVO detail);
+
 	//영업기회 추가
 	int opptAdd(OpptVO add);
 	//영업기회 단계 리스트 추가
@@ -118,6 +122,10 @@ public interface OpptService {
 	int opptPrdtAdd(List<OpptVO> estList);
 	//영업기회상품 삭제
 	int opptPrdtDel(String sales_oppt_id);
+//영업기회완전 삭제
+	int opptDelDelete(String sales_oppt_id);
+
+
 	
 	
 }

@@ -17,9 +17,9 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptDelDetail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
-<script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
+<script src="${ctx}/resources/common/js/sales/oppt/opptDelList.js"></script>
 </head>
 
 <style type="text/css">
@@ -60,33 +60,23 @@ $(document).ready(function(){
 <%-- 		</c:if> --%>
 		<c:if test="${addFlag == 1 }">
 			<div class="caption">
-				<c:choose>
-			<c:when test="${flag == 'cust' }">
-				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3>
-			</c:when>
-			<c:otherwise>
-				<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3>
-			</c:otherwise>
-		</c:choose>
+				<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 삭제된 데이터 상세정보</h3>
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${flag == 'cust' }"> --%>
+<!-- 						<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3> -->
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<!-- 						<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3> -->
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
 			</div>
 		</c:if>
 	</div>
 <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
 		<div id="tabDiv1" class="tab1_content" style="text-align: right; ">
 			<div id="baseBtnDiv"  class="bt_position_authuser">
-				<input type="button" id="modifybtn" class="tiny ui orange button"  onclick="opptMdfyBtn();" value="편집" />
-				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
-			</div>
-			<div id="NewAddBtnDiv" style="display: none; " class="bt_position_authuser">
-				<input type="button" id="submitbtn" style="display: none;" class="tiny ui orange button" onclick="opptAddBtn();" value="추가" />
-				<input type="button" id="cancelbtn" style="display: none;" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
-			</div>
-			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="addsavebtn" class="tiny ui orange button" onclick="opptAdd();" value="저장" />
-				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
-			</div>
-			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="modifysavebtn" class="tiny ui orange button" value="저장" onclick="opptModify();"/>
+				<input type="button" id="rollbackbtn" class="tiny ui orange button"  onclick="opptDelModify();" value="복원" />
+				<input type="button" id="deletebtn" class="tiny ui orange button"  onclick="opptDelDelBtn();" value="삭제" />
 				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
 			</div>
 			

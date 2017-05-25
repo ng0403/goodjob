@@ -124,7 +124,7 @@
 		from sales_opportunity a, customer c
 		where 1=1 
 		and a.cust_id=c.cust_id 
-		and a.act_yn='D'
+		and a.act_yn='N'
 		<choose>
 			<when test="ssales_oppt_nm !=null and ssales_oppt_nm !='' and ssales_oppt_nm0 != null and ssales_oppt_nm0 != '' and ssales_oppt_nm1 != null and ssales_oppt_nm1 != ''">
 				and (a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
@@ -250,6 +250,35 @@
 		and a.act_yn='Y'
 		and a.sales_oppt_id=#{opptId}
 	</select>
+	<!-- 영업기회 상세정보 -->
+	<select id="Deldetail" resultType="com.crm.cp.sales.oppt.vo.OpptVO"
+		parameterType="String">
+		select
+		a.sales_oppt_id
+		, a.cust_id
+		, c.cust_nm
+		, a.sales_oppt_nm
+		, (select cd_nm from code where cd_grp_id='OTL' and
+		code=a.sales_lev_cd) sales_lev_cd_nm
+		, a.sales_lev_cd
+		, a.sales_oppt_stat_cd
+		, a.expt_sales_amt
+		, to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d
+		, a.psblty_rate
+		, (select cd_nm from code where cd_grp_id='OSC' and
+		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
+		, a.memo
+		, a.fst_reg_id
+		, a.fst_reg_dt
+		, a.fin_mdfy_id
+		, a.fin_mdfy_dt
+		, a.act_yn
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='N'
+		and a.sales_oppt_id=#{opptId}
+	</select>
 
 	<!-- 영업기회 상태코드 가져오기 -->
 	<select id="osclist" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
@@ -338,6 +367,15 @@
 		sales_oppt_stat_cd= #{sales_oppt_stat_cd},
 		memo= #{memo},
 		expt_fin_d = TO_DATE(#{expt_fin_d},'yyyy-MM-dd'),
+		fin_mdfy_id = #{fin_mdfy_id}
+		where sales_oppt_id = #{sales_oppt_id}
+	</update>
+	<!-- 영업기회 복원 -->
+	<update id="DelRollBack" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		update
+		sales_opportunity
+		set
+		act_yn = 'Y',
 		fin_mdfy_id = #{fin_mdfy_id}
 		where sales_oppt_id = #{sales_oppt_id}
 	</update>
@@ -736,11 +774,18 @@
 			WHERE ROWNUM=1)
 		)
 	</update>
-	
+	<!-- 영업기회 상품 삭제 -->
 	<delete id="opptPrdtDel" parameterType="String">
 	DELETE
 	FROM PROD_OF_SALES_OPPT
 	WHERE SALES_OPPT_ID  = #{sales_oppt_id}
+	</delete>
+
+	<!-- 영업기회 완전 삭제 -->
+	<delete id="opptDelDelete" parameterType="String">
+	DELETE
+		FROM SALES_OPPORTUNITY
+		WHERE SALES_OPPT_ID  = #{sales_oppt_id}
 	</delete>
 	
 	<update id="estimateDelete" parameterType="String">

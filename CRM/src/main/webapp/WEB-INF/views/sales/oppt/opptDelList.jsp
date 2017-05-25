@@ -110,8 +110,8 @@
 						<td>${list.expt_fin_d}</td>
 						<td>${list.psblty_rate}</td>
 						<td>${list.sales_oppt_stat_cd_nm}</td>
-						<td>${list.fin_reg_id}</td>
-						<td>${list.fin_reg_dt}</td>
+						<td>${list.fin_mdfy_id}</td>
+						<td>${list.fin_mdfy_dt}</td>
 						<td>${list.fst_reg_id}</td>
 						<td>${list.fst_reg_dt}</td>
 					</tr>
@@ -121,8 +121,8 @@
 		</div>
 		<div class="bottom_div">
 			<div class="functionBtn_div">
-		    	<input type="button" class="tiny tiny ui orange button" value="추가" onclick="AddCustomerOpen();">
-				<input type="button" class="tiny tiny ui orange button" value="삭제" onclick="opptDelete();" >
+<!-- 		    	<input type="button" class="tiny tiny ui orange button" value="추가" onclick="AddCustomerOpen();"> -->
+<!-- 				<input type="button" class="tiny tiny ui orange button" value="삭제" onclick="opptDelete();" > -->
 			</div>
 			<!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

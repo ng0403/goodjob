@@ -50,6 +50,14 @@ public class OpptServiceImpl implements OpptService {
 		OpptVO detail = dao.opptDetail(opptId);
 		return detail;
 	}
+
+	//영업기회 삭제 데이터 상세정보(사용)
+	@Override
+	public OpptVO opptDelDetail(String opptId) {
+		// TODO Auto-generated method stub
+		OpptVO detail = dao.opptDelDetail(opptId);
+		return detail;
+	}
 	// 영업기회 상태 코드 가져오기(사용)
 	@Override
 	public List<OpptVO> opptOscList() {
@@ -79,11 +87,17 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("actList Map :  "+ map );
 		return dao.actList(map);
 	}
-
+//영업기회 데이터 수정
 	@Override
 	public int opptModify(OpptVO detail) {
 		// TODO Auto-generated method stub
 		return dao.opptModify(detail);
+	}
+	//영업기회 데이터 복원
+	@Override
+	public int opptDelModify(OpptVO detail) {
+		// TODO Auto-generated method stub
+		return dao.opptDelModify(detail);
 	}
 //영업기회 추가(사용)
 	@Override
@@ -281,6 +295,19 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회삭제 result : " + result);
 		return result;
 	}
+
+	//영업기회 완전삭제 
+	@Override
+	public int opptDelDelete(String sales_oppt_id) {
+		// TODO Auto-generated method stub
+		System.out.println("영업기회삭제 sales_oppt_id : " + sales_oppt_id);
+		int result = dao.opptDelDelete(sales_oppt_id);
+		System.out.println("영업기회삭제 result : " + result);
+		return result;
+	}
+
+
+
 
 
 

@@ -46,6 +46,11 @@ public class OpptDaoImpl implements OpptDao {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("oppt.detail", opptId);
 	}
+	@Override
+	public OpptVO opptDelDetail(String opptId) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("oppt.Deldetail", opptId);
+	}
 	// 영업기회 상태 코드 가져오기(사용)
 	@Override
 	public List<OpptVO> opptOscList() {
@@ -71,13 +76,19 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("actList Dao Impl Map :  "+ map );
 		return sqlsession.selectList("oppt.actList", map);
 	}
-
+//영업기회 수정
 	@Override
 	public int opptModify(OpptVO detail) {
 		// TODO Auto-generated method stub
 		return sqlsession.update("oppt.modify", detail);
 	}
-
+	
+//영업기회 복원
+	@Override
+	public int opptDelModify(OpptVO detail) {
+		// TODO Auto-generated method stub
+		return sqlsession.update("oppt.DelRollBack", detail);
+	}
 	//영업기회 추가(사용)
 	@Override
 	public int opptAdd(OpptVO add) {
@@ -371,5 +382,15 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("영업기회상품 삭제 result : " + result);
 		return result;
 	}
+	//영업기회완전삭제
+	@Override
+	public int opptDelDelete(String sales_oppt_id) {
+		System.out.println("영업기회상품 삭제 sales_oppt_id : " + sales_oppt_id);
+		int result = sqlsession.delete("oppt.opptDelDelete", sales_oppt_id);
+		System.out.println("영업기회상품 삭제 result : " + result);
+		return result;
+	}
+
+
 
 }

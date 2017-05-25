@@ -97,7 +97,7 @@ public class OpptController {
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
-		ModelAndView mov = new ModelAndView("oppt");
+		ModelAndView mov = new ModelAndView("opptDel");
 		
 		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = service.opptOscList();
@@ -271,6 +271,77 @@ public class OpptController {
 			return mov;
 		}
 	}
+	// 영업기회 상세정보페이지
+	@RequestMapping(value = "/opptDelDetail", method = RequestMethod.GET)
+	ModelAndView listDelDetail(HttpSession session
+			, @RequestParam Map<String, String> map
+			, String opptId
+			, String cust_id
+			, String cust_nm
+			, String flag) 
+	{
+		System.out.println("opptId : " + opptId);
+		
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
+		
+		int addFlag = 0;
+		
+			System.out.println("상세정보컨트롤러");
+			ModelAndView mov = new ModelAndView("opptDelDetail"); 
+			addFlag = 1;
+			
+			map.put("opptId", opptId);
+			OpptVO detail = service.opptDelDetail(opptId);
+			//영업기회상세정보페이지-상품리스트 가져오기
+			List<OpptVO> opptPrdt = service.opptPrdtDetail(opptId);
+			System.out.println("opptPrdt : " + opptPrdt);
+			System.out.println("detail : " + detail);
+			List<ActVO> actList = service.actList(map);
+			System.out.println("actList : " + actList);
+			mov.addObject("actList", actList);
+			
+			// 영업기회 상태 코드 가져오기
+			List<OpptVO> osclist = service.opptOscList();
+			// 영업단계 코드 가져오기
+			List<OpptVO> otllist = service.opptOtlList();
+			//메뉴리스트 가져오기
+			List<MenuVO> menuList = menuService.selectAll(session);
+			//견적단계코드 가져오기
+			List<EstVO> elclist = estInter.elcList();
+			//견적할인단위코드 가져오기
+			List<EstVO> eduList = estInter.eduList();
+			List<String> eduCode = new ArrayList<String>(0);
+			for(EstVO est: eduList){
+				eduCode.add(est.getCode());
+				eduCode.add(est.getCd_nm());
+			}
+			
+			map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+			map.put("scust_nm", map.get("scust_nm"));
+			
+			//상세정보 출력
+			mov.addObject("flg", "");
+			mov.addObject("opDetail", detail);
+			mov.addObject("osclist", osclist);
+			mov.addObject("eduList", eduList);
+			mov.addObject("elclist", elclist);
+			mov.addObject("eduCode", eduCode);
+			mov.addObject("opptPrdt", opptPrdt);
+			mov.addObject("otllist", otllist);
+			mov.addObject("cust_id", cust_id);
+			mov.addObject("cust_nm", cust_nm);
+			mov.addObject("flag", flag);
+			mov.addObject("menuList", menuList);
+			mov.addObject("actList", actList);
+			mov.addObject("addFlag", addFlag);
+			System.out.println("Add Flag  " + addFlag);
+			// 검색어, 페이지번호 전달
+			mov.addObject("searchInfo", map);
+			return mov;
+		}
+	
 	//영업기회-상품추가 팝업 open controller
 		@RequestMapping(value = "/opptPrdtOpen", method = RequestMethod.GET)
 		public ModelAndView opptPrdtOpen(
@@ -368,6 +439,26 @@ public class OpptController {
 		}
 		return result;
 	}
+//	영업기회삭제
+	@RequestMapping(value = "/opptDelDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public int opptDelDelete(HttpSession session,
+//			@RequestParam(value = "opptidList[]") List<String> opptidList,
+			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum
+			, String sales_oppt_id) {
+		System.out.println("영업기회 완전 삭제 컨트롤러 삭제될 영업기회 ID : " + sales_oppt_id);
+		int result = 0;
+		// 모든 checked된 견적에 대해 삭제
+//		for (int i = 0; i < opptidList.size(); i++) {
+//			int delOppt = service.opptPrdtDel(opptidList.get(i));
+//			System.out.println("영업기회상품 삭제 결과 : " + delOppt);
+//			//영업기회 삭제 
+//			result += service.opptDelete(opptidList.get(i));
+//		}
+		result += service.opptDelDelete(sales_oppt_id);
+		System.out.println("삭제결과 : " + result);
+		return result;
+	}
 
 	// 영업활동 tab list ajax
 	@RequestMapping(value = "/opptSalesActiveList", method = RequestMethod.GET)
@@ -436,6 +527,40 @@ public class OpptController {
 		}
 		
 		System.out.println("영업기회단계리스트수정추가 result : " + result2);
+		Map<String, Object> opptMap = new HashMap<String, Object>();
+		opptMap.put("opptVO", opptVO);
+		opptMap.put("pageNum", pageNum);
+		mov.addObject("opptVO", opptVO);
+		mov.addObject("pageNum", pageNum);
+		return mov;
+	}
+	// 영업기회수정 함수 컨트롤러 (ajax)
+	@RequestMapping(value = "/opptDelModify", method = RequestMethod.POST)
+	@ResponseBody ModelAndView opptDelModify(HttpSession session, OpptVO detail, int pageNum
+			, @RequestParam(value="est_list[]",required=false) List<String> est_list
+			, String total_sup_price
+			, String sales_oppt_id) {
+		System.out.println("삭제된 영업기회 데이터 복원 컨트롤러");
+		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+		
+		detail.setFin_mdfy_id(session.getAttribute("user").toString());
+		detail.setAct_yn("Y");
+		detail.setSales_oppt_id(sales_oppt_id);
+		System.out.println("복구될 영업기회 ID : " + detail.getSales_oppt_id());
+		
+		System.out.println(total_sup_price);
+		System.out.println("detail : " + detail);
+		
+		int result = service.opptDelModify(detail);
+		System.out.println("Detail Edit Result : " + result);
+		
+		ModelAndView mov = new ModelAndView("oppt");
+		//영업기회 상세정보
+		OpptVO opptVO = service.opptDetail(detail.getSales_oppt_id());
+//		//영업기회단계이력추가
+//		int result2 = service.addOpptStep(detail);
+//		
+//		System.out.println("영업기회단계리스트수정추가 result : " + result2);
 		Map<String, Object> opptMap = new HashMap<String, Object>();
 		opptMap.put("opptVO", opptVO);
 		opptMap.put("pageNum", pageNum);
