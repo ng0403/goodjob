@@ -256,9 +256,17 @@
 	<definition name="actSaleList" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_list.jsp" />
 	</definition>
+	
+	<definition name="delActSaleList" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/del_act_list.jsp" />
+	</definition>
 
 	<definition name="actSaleDetail" extends="onebodyLayout">
 		<put-attribute name="body" value="/WEB-INF/views/sales/act/act_detail.jsp" />
+	</definition>
+	
+	<definition name="delActSaleDetail" extends="onebodyLayout">
+		<put-attribute name="body" value="/WEB-INF/views/sales/act/del_act_detail.jsp" />
 	</definition>
 
 	<definition name="actSaleAdd" extends="onebodyLayout">

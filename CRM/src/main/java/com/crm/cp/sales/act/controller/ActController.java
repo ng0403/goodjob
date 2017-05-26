@@ -126,6 +126,39 @@ public class ActController {
 		return mov;
 	}
 	
+	// 영업활동 관리 전체리스트 출력
+		@RequestMapping(value="/delActSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
+		public @ResponseBody ModelAndView delActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+		{
+			int act_flg = 1;
+			
+			Map<String, Object> actMap = new HashMap<String, Object>();
+			actMap.put("actPageNum", actPageNum);
+			
+			PagerVO page = actService.getActListCount(actMap);
+			actMap.put("page", page);
+
+			List<ActVO> actList = actService.actAllList(actMap);
+			List<MenuVO> menuList = menuService.selectAll(session);
+			List<ActVO> actTypeCd = actService.actTypeCdList();
+			List<ActVO> actStatCd = actService.actStatCdList();
+			
+			ModelAndView mov = new ModelAndView("actSaleList");
+			
+			System.out.println("actList : " + actList);
+			System.out.println("actTypeCd : " + actTypeCd);
+			
+			mov.addObject("menuList", menuList);
+			mov.addObject("actPageNum", actPageNum);
+			mov.addObject("page", page);
+			mov.addObject("actList", actList);
+			mov.addObject("actTypeCd", actTypeCd);
+			mov.addObject("actStatCd", actStatCd);
+			mov.addObject("act_flg", act_flg);
+			
+			return mov;
+		}
+	
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView actDetail(String sales_actvy_id, String act_flg, String sales_oppt_id, String sales_oppt_nm, String cust_id, String cust_nm)

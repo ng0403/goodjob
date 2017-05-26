@@ -310,7 +310,7 @@ function addSearchActForm()
 				    str+="<input type='text' placeholder='시작일자' id='ssale_actvy_strt"+count+"' name='ssale_actvy_strt"+count+"'class='ssale_actvy_strt' style='width: 100px;' readonly='readonly'>";
 				    str+="</div>";
 				    
-				    str+="&nbsp;&nbsp;&nbsp;<div class='ui left icon input'>";	// 유형선택
+				    str+="&nbsp;&nbsp;&nbsp;&nbsp;<div class='ui left icon input'>";	// 유형선택
 				    str+="<select class='ssales_actvy_type_cd' name='sactvy_type_select"+count+"' id='sactvy_type_select"+count+"' style='height: 35px; background: #fff;'>";
 				    str+="<option value=''>"+'활동유형'+"</option>";
 				   
@@ -455,6 +455,14 @@ function actDeleteBtn(ctx)
 			}
 		}
 	});
+}
+
+/**
+ * 삭제된 페이지로 이동
+ * */
+function delActListOpen()
+{
+	
 }
 
 
