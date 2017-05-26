@@ -8,7 +8,7 @@
  * opptDelete(); 					:	영업기회 삭제
  * divide(opptId);					:	영업기회명 클릭시 호출 리스트 분류
  * viewDetail(opptId)				:	영업기회 상세정보 조회
- * searchBtn(page)					:	조회 버튼 클릭에 대한 검색어 입력 여부 확인
+ * searchDelBtn(page)					:	조회 버튼 클릭에 대한 검색어 입력 여부 확인
  * opportunityDelList(page)			:	영업기회 리스트 조회
  * estimList(opptId)				:	견적 리스트 조회
  * dateFormat(timestamp)			:	날짜 포맷 변환 함수
@@ -187,7 +187,7 @@ function opptSearchInput(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 		if (keycode == '13') {
 			event.preventDefault();
-			searchBtn(1);
+			searchDelBtn(1);
 		}
 }
 
@@ -268,21 +268,9 @@ function AddCustomerOpen(flag, cust_id, cust_nm){
 	var opptId = opptId;
 	location.href = ctx+'/opptDetail?flag=' + flag + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 }
-//고객사에서 영업기회추가 페이지 이동 (송영화 네가 타야되는건 여기다..영업기회가 있는 경우)
-//function AddCustomerOpen(flag, opptId, cust_id, cust_nm){
-//	alert("parameter 4ea");
-//	var ctx = $("#ctx").val();
-//	var cust_id = cust_id;
-//	var cust_nm = cust_nm;
-//	var opptId = opptId;
-//	alert(cust_id);
-//	alert(cust_nm);
-//	alert(opptId);
-//	location.href = ctx+'/opptDetail?flag=' + flag + "&opptId=" + opptId+ "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
-//}
 
 //검색 버튼 클릭 시 
-function searchBtn(page){
+function searchDelBtn(page){
 	var ssales_oppt_nm = $("#ssales_oppt_nm").val();
 	var ssales_oppt_nm0 = $("#ssales_oppt_nm0").val();
 	var ssales_oppt_nm1 = $("#ssales_oppt_nm1").val();
@@ -295,9 +283,6 @@ function searchBtn(page){
 	var spsblty_rate = $("#spsblty_rate_select").val();
 	var spsblty_rate0 = $("#spsblty_rate_select0").val();
 	var spsblty_rate1 = $("#spsblty_rate_select1").val();
-//	alert(ssales_oppt_nm);
-//	alert(ssales_oppt_nm0);
-//	alert(ssales_oppt_nm1);
 	if((ssales_oppt_nm == '' || ssales_oppt_nm == null) && ssales_oppt_nm0){
 		alert("영업기회명을 앞에서부터 채워주세요.");
 		return;
@@ -339,7 +324,6 @@ function searchBtn(page){
 		return;
 	}
 		opportunityDelList(page);
-//	}
 }
 //컴마 입력 함수
 function comma(str) {
@@ -385,9 +369,6 @@ function opportunityDelList(page){
 			
 				$("#listTable").append("" +
 						"<tr id='"+list.sales_oppt_id+"'>"+
-//						"<th style='text-align: center;'><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
-//						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
-//						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
 						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
 						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
 						"<td>"+list.sales_lev_cd_nm+"</td>"+
@@ -402,16 +383,6 @@ function opportunityDelList(page){
 						"</tr>"
 				);
 			});
-			//페이지 리스트 갯수
-//			if(result.oplist.length < 10){
-//				for(var j = 0; j < 10-result.oplist.length; j++){
-//					$("#listTable").append("<tr style='height:30px;'>"
-//							+"<th></th>"
-//							+"<td></td><td></td><td></td><td></td>"
-//							+"<td></td><td></td><td></td><td></td>"
-//							+"<td></td></tr>");
-//				}
-//			}
 			$("#pageSpace").children().remove();	
 			$("#pageSpace").children().remove();
 			var ccPageNum = result.ccPageNum;

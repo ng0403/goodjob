@@ -408,6 +408,7 @@ public class OpptController {
 	@ResponseBody
 	Map<String, Object> listDelajax(@RequestParam Map<String, String> map,
 			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+		System.out.println("영업기회 삭제된 데이터 리스트 Ajax 출력 컨트롤러");
 		
 		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = service.opptOscList();
