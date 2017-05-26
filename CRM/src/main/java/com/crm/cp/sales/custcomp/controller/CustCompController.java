@@ -91,9 +91,9 @@ public class CustCompController {
 			
 			System.out.println("ccVOList : " + ccVOList);
 			System.out.println("page :  "+ page);
-			List<MenuVO> menuList = menuService.selectAll(session);
+//			List<MenuVO> menuList = menuService.selectAll(session);
 			mov.addObject("ccPageNum", ccPageNum);
-			mov.addObject("menuList", menuList);
+//			mov.addObject("menuList", menuList);
 			mov.addObject("ccVOList", ccVOList);
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);
@@ -295,9 +295,9 @@ public class CustCompController {
 			
 			System.out.println("ccVOList : " + ccVOList);
 			System.out.println("page :  "+ page);
-			List<MenuVO> menuList = menuService.selectAll(session);
+//			List<MenuVO> menuList = menuService.selectAll(session);
 			mov.addObject("ccPageNum", ccPageNum);
-			mov.addObject("menuList", menuList);
+//			mov.addObject("menuList", menuList);
 			mov.addObject("ccVOList", ccVOList);
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);

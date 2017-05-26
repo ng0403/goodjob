@@ -92,6 +92,7 @@ nav ul {
 		padding: 0;
 		position: absolute; 
 /* 		top: 100%; */
+    	list-style: none;
 	}
 		.sub_menu_bar ul li {
 			float: none; 
