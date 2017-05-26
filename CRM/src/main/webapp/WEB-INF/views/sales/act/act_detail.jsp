@@ -137,32 +137,32 @@
 									<c:if test="${act_flg eq null}">	<!-- 달력 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
 									</c:if>
 									<c:if test="${act_flg eq '1'}">		<!-- 영업활동관리 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
 									</c:if>
 									<c:if test="${act_flg eq 'oppt'}">	<!-- 영업기회 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
 									</c:if>
 								    <c:if test="${act_flg eq 'oppt_ed'}">	<!-- 영업기회 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
 									</c:if>
 									<c:if test="${act_flg eq 'cust'}">	<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
 									</c:if>
 									<c:if test="${act_flg eq 'cust_ed'}">	<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
 									</c:if>
 								</c:if>
 							</td>
@@ -206,32 +206,32 @@
 									<c:if test="${act_flg eq null}">	<!-- 달력 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly" style="background-color: white;"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" >
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" >
 									</c:if>
 									<c:if test="${act_flg eq '1'}">		<!-- 영업활동관리 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly" style="background-color: white;"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" >
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" >
 									</c:if>
 									<c:if test="${act_flg eq 'oppt'}">	<!-- 영업기회 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly" style="background-color: white;"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" >
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" >
 									</c:if>
 									<c:if test="${act_flg eq 'oppt_ed'}">	<!-- 영업기회 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly" style="background-color: white;"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" >
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" >
 									</c:if>
 									<c:if test="${act_flg eq 'cust'}">	<!-- 고객사 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly" style="background-color: white;"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" >
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" >
 									</c:if>
 									<c:if test="${act_flg eq 'cust_ed'}">	<!-- 고객사 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${sales_oppt_nm}" class="inputText" readonly="readonly" style="background-color: white;"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui orange basic button" id="act_opp_nm" >
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" >
 									</c:if>
 								</c:if>
 							    	
@@ -273,7 +273,7 @@
 								<input type="hidden" id="hstrt_d">
 								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="inputText" readonly="readonly">
 								<input type="hidden" id="hstrt_t_h">
-								
+								<br>
 								<select name="strt_t_h" id="strt_t_h" class="start_hour" disabled="disabled">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach var="htime" items="${htime}" step="1">
@@ -304,7 +304,7 @@
 							<c:if test="${flg eq '0'}">
 								<input type="hidden" id="hstrt_d">
 								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="inputText" readonly="readonly" style="background-color: white;">
-								<input type="hidden" id="hstrt_t_h">
+								<input type="hidden" id="hstrt_t_h"><br>
 								<select name="strt_t_h" id="strt_t_h" class="start_hour">
 									<option value="0" style="text-align: center;">==선택==</option>
 										<option value="01">1</option>
@@ -353,7 +353,7 @@
 									<input type="hidden" id="hend_d">
 									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="inputText" readonly="readonly">
 									<input type="hidden" id="hend_t_h">
-									
+									<br>
 									<select name="end_t_h" id="end_t_h" class="end_hour" disabled="disabled">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach var="htime" items="${htime}" step="1">
@@ -383,7 +383,7 @@
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="hend_d">
 									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="inputText" readonly="readonly" style="background-color: white;">
-									<input type="hidden" id="hend_t_h">
+									<input type="hidden" id="hend_t_h"><br>
 									<select name="end_t_h" id="end_t_h" class="end_hour">
 										<option value="0" style="text-align: center;">==선택==</option>
 											<option value="01">1</option>
@@ -510,7 +510,7 @@
 				
 			<c:if test="${flg == 0}">
 				<div id="actAddBtnDiv" class="act_tab_bt_div">
-					<input type="button" id="actAddSaveBtn" value="추가" onclick="actInsert('${ctx}','${act_flg}');" class="tiny ui orange button"/>
+					<input type="button" id="actAddSaveBtn" value="추가" onclick="actInsert('${ctx}','${act_flg}');" class="tiny ui blue button"/>
 					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
 				</div>
 			</c:if>
@@ -518,11 +518,11 @@
 			<c:if test="${flg == 1}">
 				<div id="actBaseBtnDiv" class="act_tab_bt_div">
 					<input type="button" id="actMdfBtn" value="편집" class="tiny ui button"/>
-					<input type="button" id="actDelBtn" value="삭제" class="tiny ui orange button" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
+					<input type="button" id="actDelBtn" value="삭제" class="tiny ui blue button" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
 					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
 				</div>
 				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
-					<input type="button" id="actMdfSaveBtn" value="추가" onclick="actModify('${ctx}', '${act_flg}');" class="tiny ui orange button"/>
+					<input type="button" id="actMdfSaveBtn" value="추가" onclick="actModify('${ctx}', '${act_flg}');" class="tiny ui blue button"/>
 					<input type="button" id="actMdfCancelBtn" value="취소" class="tiny ui button" onclick="actMdfyCancelBt('${act_flg}');"/>
 				</div>
 			</c:if>

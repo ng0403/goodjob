@@ -478,6 +478,8 @@
 	      SELECT DISTINCT
 				 CT.CUST_ID
 				,CT.CUST_NM
+				,CT.CUST_DIV_CD
+				,CT.STAT_CD
 		  FROM CUSTOMER CT
 		  WHERE CT.ACT_YN='Y'
 		  <if test="keyword!=null and keyword!='' ">

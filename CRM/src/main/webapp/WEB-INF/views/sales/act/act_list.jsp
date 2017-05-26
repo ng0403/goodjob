@@ -68,7 +68,7 @@
 				  	
 			<label id="schActAddBtn" class="tiny ui button" onclick="addSearchActForm();">+</label>
 			
-			<input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
+			<input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchActBtn('${actPageNum}');" style="text-align: right;" value="조회">
 		</div>
 			
 		<div>
