@@ -28,6 +28,8 @@ public class CodeVO {
 		this.fin_mdfy_id = fin_mdfy_id;
 	}
 	
+	 
+	
 	@Override
 	public String toString() {
 		return "CodeVO [cd_grp_id=" + cd_grp_id + ", cd_grp_nm=" + cd_grp_nm + ", code=" + code + ", cd_nm=" + cd_nm

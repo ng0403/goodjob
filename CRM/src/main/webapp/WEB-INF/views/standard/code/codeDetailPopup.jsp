@@ -27,31 +27,42 @@
 	<div class="caption">
 		<h3 class="ui header" style="background: #fff; padding: 10px;">■ 코드 그룹 등록</h3>
 	</div>
+	<input type="hidden" id="code" name="code" value="${codeDetail.code}"/>
 	<div class="bt_position_popup">
 		<div class="bs-example" data-example-id="simple-table">
 	 		<table class="ui celled table">  			
 							<tbody id="tbody1">
 								<tr>
 									<th>코드 그룹명</th>
-									<td><input type="text" name="cd_grp_id" id="cd_grp_id" value="${cd_grp_id}" class="inputText" readonly="readonly"/></td>
+									<td><input type="text" name="cd_grp_id" id="cd_grp_id" value="${codeDetail.cd_grp_id}" class="inputText" readonly="readonly"/></td>
  									<th>코드명</th>
-									<td><input type="text" name="cd_nm" id="cd_nm" class="inputText"/></td>
+									<td><input type="text" name="cd_nm" id="cd_nm" class="inputText" value="${codeDetail.cd_nm}"/></td>
+						
 								</tr>
 								<tr>
 								<th>코드 상세정보</th>
-									<td><input type="text" name="cd_dtl_cont" id="cd_dtl_cont" class="inputText"/></td>								
+									<td><input type="text" name="cd_dtl_cont" id="cd_dtl_cont" class="inputText" value="${codeDetail.cd_dtl_cont}"/></td>								
 								
 									<th>활성화 여부</th>
-									<td><input type="radio" id="active_flg_Y" value="Y" checked="checked"/>활성화&nbsp;
-										<input type="radio" id="active_flg_N" value="N"/>비활성화</td>
+									<td>
+									<c:if test="${codeDetail.act_yn == 'Y'}">
+										<input type="radio" id="act_yn_y" name="act_yn" value="Y" checked="checked"/>활성화&nbsp;
+										<input type="radio" id="act_yn_n" name="act_yn" value="N" />비활성화
+										
+									</c:if>
+									<c:if test="${codeDetail.act_yn == 'N'}">		
+										<input type="radio" id="act_yn_y" name="act_yn" value="Y"/>활성화&nbsp;
+										<input type="radio" id="act_yn_n" name="act_yn" value="N" checked="checked"/>비활성화 
+								    </c:if>
+								   </td>
 								</tr>
 							</tbody>
 						</table>
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_confirm"/>
-		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" />
+		<input type="button" class="tiny ui orange button" value="등록" id="codeUpdate_btn" onclick="codeUpdate();"/>
+		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel"/>
 	</div>
 </div>
 </div>

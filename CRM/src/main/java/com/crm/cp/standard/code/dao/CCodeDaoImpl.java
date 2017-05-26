@@ -1,11 +1,13 @@
 package com.crm.cp.standard.code.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.code.vo.CodeVO;
 
 @Repository
@@ -39,11 +41,61 @@ public class CCodeDaoImpl implements CCodeDao {
 		
 	}
 
+	//코드 그룹 삭제
 	@Override
 	public void cdgrpDelete(CodeVO codevo) {
 		
 		sqlSession.update("cdgrpDelete", codevo); 
 
 	}
+
+	//코드 추가
+	@Override
+	public void codeInsert(CodeVO codevo) {
+		
+		sqlSession.insert("codeInsert", codevo);
+		
+	}
+
+	//코드 삭제
+	@Override
+	public void codeDelete(Object code) {
+		
+		sqlSession.update("codeDelete", code); 
+
+	}
+
+	@Override
+	public CodeVO codeDetail(Map map) {
+ 		return sqlSession.selectOne("codeDetail", map);
+	}
+	
+	@Override
+	public CodeVO cdgrpDetail(String cdgrp) {
+ 		return sqlSession.selectOne("cdgrpDetail", cdgrp);
+	}
+
+	//코드 수정
+			@Override
+			public int codeModify(CodeVO codeVO) {
+				int codeUpdate = 0;
+				try {
+					codeUpdate = sqlSession.update("codeModify", codeVO);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return codeUpdate;
+			}
+			//코드그룹 수정
+			@Override
+			public int cdgrpModify(CodeVO codeVO) {
+				int cdgrpUpdate = 0;
+				try {
+					cdgrpUpdate = sqlSession.update("cdgrpModify", codeVO);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return cdgrpUpdate;
+			}
 
 }

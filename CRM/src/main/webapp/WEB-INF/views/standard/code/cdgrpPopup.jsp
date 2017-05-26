@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/Semantic/semantic.css" type="text/css" />
 
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/auth/authPopup.js"></script> --%>
-<script src="${ctx}/resources/common/js/standard/code/codeList.js"></script>
+<script src="${ctx}/resources/common/js/standard/code/codeGroupList.js"></script>
 
 
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
@@ -47,8 +47,8 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_confirm"/>
-		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel"/>
+		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_confirm" />
+		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick="closebtn();"/>
 	</div>
 </div>
 </div>

@@ -26,5 +26,60 @@ VALUES(#{cd_grp_id}, #{cd_grp_nm}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn})
 	   SET ACT_YN = 'N', fin_mdfy_id = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
 	   WHERE cd_grp_id = #{cd_grp_id}
     </update> 
+    
+  <update id="codeDelete" parameterType="java.util.Map">
+	   UPDATE CODE
+	   SET ACT_YN = 'N', FIN_MDFY_DT = sysdate
+	   WHERE code = #{code}
+    </update>    
+    
+    
+<insert id="codeInsert" parameterType="com.crm.cp.standard.code.vo.CodeVO">
+INSERT INTO CODE(CD_GRP_ID, CODE, CD_NM, CD_SEQ_NUM, CD_DTL_CONT, FST_REG_ID, FIN_MDFY_ID, ACT_YN)
+VALUES(#{cd_grp_id},
+		 (SELECT /*+INDEX_DESC(code code_index)*/
+             DECODE(MAX(code),NULL,'0001',lpad((MAX(code)+1),4,0))code
+         FROM code
+         WHERE cd_grp_id = 'OLC'
+         and ROWNUM=1),
+         #{cd_nm},
+         (SELECT /*+INDEX_DESC(code cd_seq_num_index)*/
+             DECODE(MAX(cd_seq_num),NULL,1,(MAX(cd_seq_num)+1))cd_seq_num
+         FROM code
+         WHERE cd_grp_id = 'EMP'
+         and ROWNUM=1),
+         #{cd_dtl_cont},
+         #{fst_reg_id},
+         #{fin_mdfy_id},
+         #{act_yn}
+         
+            )
+
+</insert>    
+
+
+<select id = "codeDetail" parameterType= "map"  resultType="com.crm.cp.standard.code.vo.CodeVO">
+select code, cd_grp_id, cd_nm, act_yn, cd_dtl_cont
+from code
+where code=#{code} and cd_grp_id = #{cd_grp_id}
+</select>
+
+<select id ="cdgrpDetail" parameterType="String" resultType="com.crm.cp.standard.code.vo.CodeVO">
+select cd_grp_id, cd_grp_nm, act_yn
+from code_group
+where cd_grp_id = #{cd_grp_id} 
+</select>
+
+
+<update id="codeModify" parameterType="com.crm.cp.standard.code.vo.CodeVO">
+update code set cd_nm = #{cd_nm}, cd_dtl_cont = #{cd_dtl_cont}, act_yn = #{act_yn}
+where code=#{code} and cd_grp_id = #{cd_grp_id} 
+</update>
+
+
+<update id="cdgrpModify" parameterType="com.crm.cp.standard.code.vo.CodeVO">
+update code_group set cd_grp_nm = #{cd_grp_nm}, cd_grp_id = #{cd_grp_id}, act_yn = #{act_yn}, fin_mdfy_id = #{fin_mdfy_id}
+where cd_grp_id=#{cd_grp_id} 
+</update>
 
 </mapper>

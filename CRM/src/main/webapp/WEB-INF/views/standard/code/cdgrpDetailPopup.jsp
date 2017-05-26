@@ -32,26 +32,32 @@
 	 		<table class="ui celled table">  			
 							<tbody id="tbody1">
 								<tr>
-									<th>코드 그룹명</th>
-									<td><input type="text" name="cd_grp_id" id="cd_grp_id" value="${cd_grp_id}" class="inputText" readonly="readonly"/></td>
- 									<th>코드명</th>
-									<td><input type="text" name="cd_nm" id="cd_nm" class="inputText"/></td>
+									<th>코드그룹 ID</th>
+									<td><input type="text" name="cd_grp_id" id="cd_grp_id" class="inputText" value="${cdgrpDetail.cd_grp_id}"/></td>
+									<th>코드그룹 명</th>
+									<td><input type="text" name="cd_grp_nm" id="cd_grp_nm" class="inputText" value="${cdgrpDetail.cd_grp_nm}"/></td>								
 								</tr>
 								<tr>
-								<th>코드 상세정보</th>
-									<td><input type="text" name="cd_dtl_cont" id="cd_dtl_cont" class="inputText"/></td>								
-								
 									<th>활성화 여부</th>
-									<td><input type="radio" id="active_flg_Y" value="Y" checked="checked"/>활성화&nbsp;
-										<input type="radio" id="active_flg_N" value="N"/>비활성화</td>
+									<td>
+									<c:if test="${cdgrpDetail.act_yn == 'Y'}">
+										<input type="radio" id="act_yn_y" name="act_yn" value="Y" checked="checked"/>활성화&nbsp;
+										<input type="radio" id="act_yn_n" name="act_yn" value="N" />비활성화
+										
+									</c:if>
+									<c:if test="${cdgrpDetail.act_yn == 'N'}">		
+										<input type="radio" id="act_yn_y" name="act_yn" value="Y"/>활성화&nbsp;
+										<input type="radio" id="act_yn_n" name="act_yn" value="N" checked="checked"/>비활성화 
+								    </c:if> 
+										</td>
 								</tr>
 							</tbody>
 						</table>
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_confirm"/>
-		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" />
+		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_mdfy_btn" onclick="cdgrpModify();"/>
+		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick=""/>
 	</div>
 </div>
 </div>
