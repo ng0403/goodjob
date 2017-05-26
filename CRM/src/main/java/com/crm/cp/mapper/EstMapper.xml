@@ -363,10 +363,11 @@
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
-		from sales_opportunity a, lead b, customer c
-		where b.cust_id=c.cust_id and a.act_yn='Y'
+		from sales_opportunity a, customer c
+		where a.act_yn='Y'
+		and a.cust_id = c.cust_id
    	    and a.sales_lev_cd in('0002','0003')
-   	    and b.cust_id=#{cust_id}
+   	    and a.cust_id=#{cust_id}
    	 	<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>

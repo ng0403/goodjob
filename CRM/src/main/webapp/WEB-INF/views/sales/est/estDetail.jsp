@@ -172,8 +172,7 @@ $(function() {
 							<th>비고</th> 
 							<td colspan="3">
 								<div class="ui input focus">
-									<textarea rows="5" cols="40" name="memo" id="memo" readonly=readonly
-		 							class="int3">${detail.memo}</textarea>
+									<textarea rows="6" cols="100" name="memo" id="memo" readonly="readonly" style="border:1px solid #85B7D9;border-radius: 0.28571429rem;">${detail.memo}</textarea>
 <!-- 								<input type="text" name="memo" id="memo" readonly=readonly -->
 <%-- 	 							class="int3" style="width: 100%;" value="${detail.memo}"> --%>
 	 							</div>
@@ -188,7 +187,7 @@ $(function() {
 	 			</div>			
 				<table id= "estimatehead" class="ui celled table" style="width:100%; text-align: center; border-collapse: collapse; border:1px; margin-bottom:0px;" >
 					<tr>
-						<th style="width: 3%;padding:0px;text-align: center;display:none;" rowspan="2"><input type="checkbox" id="allSelect"></th>
+						<th style="width: 3%;padding:0px;text-align: center;" rowspan="2"><input type="checkbox" id="allSelect"></th>
 						<th style="width: 32%;text-align: center;">품목명</th>
 						<th style="width: 8%;text-align: center;">수량</th>
 						<th style="width: 27%;text-align: center;">판매가</th>
@@ -211,7 +210,7 @@ $(function() {
 							<c:when test="${not empty prodList}">
 								<c:forEach items="${prodList}" var="list">
 									<tr id="priceline" class="${list.prod_id}">
-										<th style="width: 3%;display:none;">
+										<th style="width: 3%;text-align: center;">
 											<input type="checkbox" name="prod_id" id="prod_id" value="${list.prod_id}" onclick="prodChkCancel();">
 											<input type="hidden" id="prod_price"  value="${list.prod_price}"></th>
 										<td style="width: 32%;" id="prod_nm">${list.prod_nm}</td>

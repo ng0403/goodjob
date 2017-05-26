@@ -17,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
@@ -87,8 +86,8 @@ $(function() {
 			<div id="ccustomerdiv">
 			<input type="hidden" id="inputCust" value="false"/>
 			
-			<table id="contactable">
-				<tbody id="estDetail" class="ui celled table">
+			<table id="contactable" class="ui celled table">
+				<tbody id="estDetail" class="detailtbody">
 					<tr>
 						<th class="txtr">견적명</th>
 						<td>
@@ -104,7 +103,7 @@ $(function() {
 								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" ></input> 
 								<input type="hidden" name="cust_id_w" id="cust_id" value="" /> 
 								<input type="hidden" name="lead_id" id="lead_id" value="" /> 
-								<input type="button" class="btn-success-tel" id="customer" value="고객"
+								<input type="button" class="tiny ui blue basic button" id="customer" value="고객"
 								onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
 							</div>
 						</td>
@@ -116,7 +115,7 @@ $(function() {
 								<input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id"> 
 								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" >
 								<input type="button" name="act_opp" value="영업기회"
-								class="btn-success-tel" id="opptSelect"  disabled="disabled">
+								class="tiny ui blue basic button" id="opptSelect"  disabled="disabled">
 							</div>
 						</td>
 						<th class="txtr">견적유효일자</th>
@@ -145,21 +144,19 @@ $(function() {
 						<th class="txtr">비고</th> 
 						<td colspan="3">
 							<div class="ui input focus">
-								<textarea rows="5" cols="40" name="memo" id="memo" readonly=readonly
-		 							class="int3">${detail.memo}</textarea>
-<!-- 								<input type="text" name="memo" id="memo" readonly=readonly -->
-<%-- 	 							class="int3" style="width: 100%;" value="${detail.memo}"> --%>
+								<textarea rows="6" cols="100" name="memo" id="memo" style="border:1px solid #85B7D9;border-radius: 0.28571429rem;"></textarea>
+<%-- 								<input type="text" name="memo" id="memo" readonly='readonly' class="int3" style="width: 100%;" value="${detail.memo}"> --%>
 	 						</div>
  						</td>
 					</tr>
 				</table>
 				<div class="bt_position">
-					<input type="button" disabled="disabled" style="float: right; margin-right: 50px;" class="tiny ui button" value="상품삭제" id="prodDelete"/>
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui blue button" value="상품추가" id="prodListBtn"/> 
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui button" value="상품삭제" id="prodDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui blue button" value="상품추가" id="prodListBtn"/> 
 				</div>
 				<table id= "estimatehead" class="ui celled table"  style="margin-left: 22px; text-align: center; border-collapse: collapse;border:1px; margin-bottom:0px;" >
 					<tr>
-						<th style="width: 3%;padding:0px;text-align: center;display:none;"><input type="checkbox" id="allSelect"></th>
+						<th style="width: 3%;padding:0px;text-align: center;"  rowspan="2"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
 						<td style="width: 8%;">수량</td>
 						<td style="width: 27%;">판매가</td>
@@ -167,12 +164,11 @@ $(function() {
 						<td style="width: 15%;">공급가</td>
 					</tr>
 					<tr id="totalprice">
-						<th></th>
-						<td>계:</td>
-						<td id="countSum">0</td>
-						<td id="salesPriceSum" >0</td>
-						<td id="discountSum">0</td>
-						<td id="supplyPriceSum">0</td>
+						<td style="width: 32%;">계:</td>
+						<td style="width: 8%;" id="countSum">0</td>
+						<td style="width: 27%;" id="salesPriceSum" >0</td>
+						<td style="width: 15%;" id="discountSum">0</td>
+						<td style="width: 15%;" id="supplyPriceSum">0</td>
 					</tr>
 				</table>
 				<div id="estimatediv" style="margin-left: 22px;margin-top:0px;">

@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/oppt_prod_pop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/est/estProd_pop.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
@@ -43,7 +43,7 @@
 	
 	
 	<div class="product_list_div">
-		<table id="oppt_product_list_table" class="ui celled table">
+		<table id="product_list_table" class="ui celled table">
 			<thead>
 				<tr>
 					<th style="width:30%;">상품ID</td>

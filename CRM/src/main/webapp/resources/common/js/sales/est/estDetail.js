@@ -36,7 +36,7 @@ $(function(){
 	prodallCheck();
 	prodDelete();
 	prodChacgeRealTime();
-//	startCalendar(ctx);
+	startCalendar(ctx);
 	prodChange();
 	addOperating();
 	actAllCheck();
@@ -145,7 +145,7 @@ function inputProd(prod_id,prod_nm,prod_price){
 		}
 		$('#estimatetbody').append(
 				'<tr id="priceline" class='+prod_id+' name="prt">'+
-				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
+				'<th style="width: 3%;text-align: center;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
@@ -173,7 +173,7 @@ function inputProd(prod_id,prod_nm,prod_price){
 			}
 			$('#estimatetbody').append(
 					'<tr id="priceline" class='+prod_id+' name="prt">'+
-					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
+					'<th style="width: 3%;text-align: center;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+' onclick="prodChkCancel();">'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;"  name="estim_qty" id="estim_qty" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
