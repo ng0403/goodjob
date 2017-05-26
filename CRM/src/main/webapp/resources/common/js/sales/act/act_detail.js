@@ -94,11 +94,11 @@ function actAddCancelBt(act_flg)
 		{
 			if(act_flg == 1)
 			{
-				location.href = ctx + '/actSaleList';
+				location.href = '/actSaleList';
 			}
 			else
 			{
-				location.href = ctx + '/act';
+				location.href = '/act';
 			}
 			
 		}
@@ -118,11 +118,11 @@ function actMdfyCancelBt(act_flg)
 		{
 			if(act_flg == 1)
 			{
-				location.href = ctx + '/actSaleList';
+				location.href = '/actSaleList';
 			}
 			else
 			{
-				location.href = ctx + '/act';
+				location.href = '/act';
 			}
 			//location.href = '/actDetail?sales_actvy_id=' + salesId;
 		}

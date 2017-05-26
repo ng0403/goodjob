@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/Semantic/semantic.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> --%>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>	
@@ -239,7 +239,6 @@
 							<th><span style="color: red;">*활동유형</span></th>
 							<td>
 								<c:if test="${flg eq '1'}">
-<%-- 									<input type="hidden" id="sales_actvy_type_cd" name="sales_actvy_type_cd" value="${actTypeCd.sales_actvy_type_cd}"> --%>
 									<select name="sales_actvy_type_cd" id="sales_actvy_type_cd" class="act_tab_select" disabled="disabled">
 										<option value="0" style="text-align: center;">=활동유형=</option>
 										<c:forEach var="actTypeCd" items="${actTypeCd}">
@@ -432,7 +431,6 @@
 							<td>
 								<c:if test="${flg eq '1'}">
 								    <input type="hidden" id="hsales_actvy_stat_cd">
-<%-- 								    <input type="hidden" id="sales_actvy_stat_cd" name="sales_actvy_stat_cd" value="${actStatCd.sales_actvy_stat_cd}"> --%>
 								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select" disabled="disabled">
 								    	<option value="0" style="text-align: center;">==상태==</option>						    
 								      	<c:forEach var="actStatCd" items="${actStatCd}">
@@ -468,7 +466,7 @@
 							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc">
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" value="${actDetail.sales_actvy_loc}">
+							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" style="background: white;" value="${actDetail.sales_actvy_loc}">
 							    </c:if>
 							</td>
 						</tr>
@@ -479,7 +477,7 @@
 							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person">
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person"  value="${actDetail.sales_actvy_person}">
+							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person" style="background: white;" value="${actDetail.sales_actvy_person}">
 							    </c:if>
 							</td>
 						</tr>
@@ -487,10 +485,10 @@
 							<th>영업활동내용</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<textarea style="width: 745px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" ></textarea>
+							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" ></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="width: 745px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" >${actDetail.sales_actvy_content}</textarea>
+							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" >${actDetail.sales_actvy_content}</textarea>
 							    </c:if>
 							</td>
 						</tr>
@@ -498,10 +496,10 @@
 							<th>비고</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<textarea style="width: 745px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason"></textarea>
+							    	<textarea style="width: 1150px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason"></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="width: 745px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason">${actDetail.sales_actvy_reason}</textarea>
+							    	<textarea style="width: 1150px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason">${actDetail.sales_actvy_reason}</textarea>
 							    </c:if>
 							</td>
 						</tr>
