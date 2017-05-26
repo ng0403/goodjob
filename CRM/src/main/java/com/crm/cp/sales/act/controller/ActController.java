@@ -127,37 +127,37 @@ public class ActController {
 	}
 	
 	// 영업활동 관리 전체리스트 출력
-		@RequestMapping(value="/delActSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
-		public @ResponseBody ModelAndView delActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
-		{
-			int act_flg = 1;
-			
-			Map<String, Object> actMap = new HashMap<String, Object>();
-			actMap.put("actPageNum", actPageNum);
-			
-			PagerVO page = actService.getActListCount(actMap);
-			actMap.put("page", page);
+	@RequestMapping(value="/delActSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody ModelAndView delActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	{
+		int act_flg = 1;
+		
+		Map<String, Object> actMap = new HashMap<String, Object>();
+		actMap.put("actPageNum", actPageNum);
+		
+		PagerVO page = actService.getActListCount(actMap);
+		actMap.put("page", page);
 
-			List<ActVO> actList = actService.actAllList(actMap);
-			List<MenuVO> menuList = menuService.selectAll(session);
-			List<ActVO> actTypeCd = actService.actTypeCdList();
-			List<ActVO> actStatCd = actService.actStatCdList();
+		List<ActVO> delActList = actService.delActAllList(actMap);
+		List<MenuVO> menuList = menuService.selectAll(session);
+		List<ActVO> actTypeCd = actService.actTypeCdList();
+		List<ActVO> actStatCd = actService.actStatCdList();
 			
-			ModelAndView mov = new ModelAndView("actSaleList");
+		ModelAndView mov = new ModelAndView("delActSaleList");
 			
-			System.out.println("actList : " + actList);
-			System.out.println("actTypeCd : " + actTypeCd);
+		System.out.println("actList : " + delActList);
+		System.out.println("actTypeCd : " + actTypeCd);
 			
-			mov.addObject("menuList", menuList);
-			mov.addObject("actPageNum", actPageNum);
-			mov.addObject("page", page);
-			mov.addObject("actList", actList);
-			mov.addObject("actTypeCd", actTypeCd);
-			mov.addObject("actStatCd", actStatCd);
-			mov.addObject("act_flg", act_flg);
-			
-			return mov;
-		}
+		mov.addObject("menuList", menuList);
+		mov.addObject("actPageNum", actPageNum);
+		mov.addObject("page", page);
+		mov.addObject("actList", delActList);
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("act_flg", act_flg);
+		
+		return mov;
+	}
 	
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
@@ -227,6 +227,37 @@ public class ActController {
 			return mov;
 		}
 	}
+
+	// 영업활동 상세정보
+	@RequestMapping(value="delActDetail", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView delActDetail(String sales_actvy_id)
+	{
+		int flg;
+		
+		System.out.println("Detail : " + sales_actvy_id);
+
+		String[] htime = {"01", "02", "03", "04", "05", "06",
+				 		  "07", "08", "09", "10", "11", "12",
+				 		  "13", "14", "15", "16", "17", "18",
+				 		  "19", "20", "21", "22", "23", "24"};
+		String[] mtime = {"00", "10", "20", "30", "40", "50"};
+	
+		ActVO actVO = actService.delActDetail(sales_actvy_id);
+				
+		List<ActVO> actTypeCd = actService.actTypeCdList();
+		List<ActVO> actStatCd = actService.actStatCdList();
+			
+		ModelAndView mov = new ModelAndView("delActSaleDetail");
+				
+		mov.addObject("actDetail", actVO);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("htime", htime);
+		mov.addObject("mtime", mtime);
+		
+		return mov;
+	
+	}	
 	
 	@RequestMapping(value = "/actTypeCode", method = RequestMethod.POST)
 	@ResponseBody Map<String, Object> actTypeCode(@RequestParam Map<String, String> map) 
@@ -277,6 +308,21 @@ public class ActController {
         return result;
 	}
 	
+	//삭제된 영업활동 복원
+	@RequestMapping(value="/delActRestore", method= RequestMethod.POST)
+	public @ResponseBody int delActRestore(ActVO actvo, HttpSession session)
+	{
+		int result = 0;
+		
+		System.out.println("delActRestore : " + actvo.toString());
+		
+		actvo.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		result = actService.delActRestore(actvo);
+		
+        return result;
+	}	
+	
 	//영업활동 삭제	
 	@RequestMapping(value = "/actDelete", method = RequestMethod.POST)
 	public @ResponseBody int actDelete(HttpSession session,
@@ -290,6 +336,17 @@ public class ActController {
 		{
 			result += actService.actDelete(actDeleteIdList.get(i));
 		}
+		
+		return result;
+	}
+	
+	//삭제된 영업활동 삭제
+	@RequestMapping(value = "/delActDelete", method = RequestMethod.POST)
+	public @ResponseBody int delActDelete(HttpSession session, ActVO actvo) throws IOException
+	{
+		int result = 0;
+			
+		result = actService.delActDelete(actvo);
 		
 		return result;
 	}

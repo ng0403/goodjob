@@ -30,11 +30,12 @@
 	<input type="hidden" id="actPageNum" value="${actPageNum}">
 	<input type="hidden" id="act_flg" value="${act_flg}">
 	
-	<%-- <form action="${ctx}/act" method="get" id="listForm"> --%>
 	<div id="title">
-		<div class="caption">■ 영업활동</div>
+		<div class="caption">
+			<h3 class="ui header" style="background: #fff;">■ 영업활동 > 영업활동관리</h3>
+		</div>
 	</div>
-    
+	
 	<div id="dboardbody">
 		<div class="search_div" id="search_div" >
 			<!-- 시작일자 검색 -->
@@ -155,7 +156,7 @@
 		<div id="functionBtn_div">
 	    	<input type="button" class="tiny ui button" value="추가" onclick="actInsertForm('${act_flg}');" />
 	    	<input type="button" class="tiny tiny ui orange button" value="삭제" id="act_del_btn" />
-	    	<input type="button" class="tiny ui button" value="삭제된 데이터" onclick="delActListOpen()">
+	    	<input type="button" class="tiny tiny ui orange button" value="삭제된 데이터" onclick="delActListOpen()">
 	    </div>
 	</div>
 </body>

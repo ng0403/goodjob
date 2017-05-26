@@ -10,6 +10,7 @@ import com.crm.cp.utils.PagerVO;
 public interface ActService {
 
 	List<ActVO> actAllList(Map<String, Object> actMap);
+	List<ActVO> delActAllList(Map<String, Object> actMap);
 	List<Object> actSchList();
 
 	PagerVO getActListCount(Map<String, Object> actMap);
@@ -29,6 +30,8 @@ public interface ActService {
 	List<Object> custcompList(Map<String, Object> map);
 
 	ActVO actDetail(String sales_actvy_id);
+	
+	ActVO delActDetail(String sales_actvy_id);
 
 	Object actOneSelectId(String sales_actvy_id);
 	
@@ -36,7 +39,11 @@ public interface ActService {
 
 	int actEdit(ActVO actvo);
 	
+	int delActRestore(ActVO actvo);
+	
 	int actDelete(String sales_actvy_id);
+	
+	int delActDelete(ActVO actvo);
 
 	/**
 	 * 영화씨가 봐야할 곳.
@@ -50,6 +57,8 @@ public interface ActService {
 	int opptTabModify(OpptVO detail);
 	
 	int opptTabPrdtModfy(List<OpptVO> opptList);
+	
+	
 
 	/*PagerVO getActListCount(Map<String, Object> actMap);*/
 

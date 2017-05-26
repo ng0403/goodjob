@@ -25,6 +25,12 @@ public class ActServiceImpl implements ActService{
 	}
 	
 	@Override
+	public List<ActVO> delActAllList(Map<String, Object> actMap) {
+		// TODO Auto-generated method stub
+		return actDao.delActAllList(actMap);
+	}
+	
+	@Override
 	public List<Object> actSchList() {
 		// TODO Auto-generated method stub
 		return actDao.actSchList();
@@ -83,6 +89,12 @@ public class ActServiceImpl implements ActService{
 		ActVO actVO = actDao.actDetail(sales_actvy_id);
 		return actVO;
 	}
+	
+	@Override
+	public ActVO delActDetail(String sales_actvy_id) {
+		ActVO actVO = actDao.delActDetail(sales_actvy_id);
+		return actVO;
+	}
 
 	@Override
 	public int actInsert(ActVO actvo) {
@@ -101,9 +113,23 @@ public class ActServiceImpl implements ActService{
 	}
 	
 	@Override
+	public int delActRestore(ActVO actvo) {
+		// TODO Auto-generated method stub
+		return actDao.delActRestore(actvo);
+	}
+	
+	@Override
 	public int actDelete(String sales_actvy_id) {
 		return actDao.actDelete(sales_actvy_id);
 	}
+	
+	@Override
+	public int delActDelete(ActVO actvo) {
+		// TODO Auto-generated method stub
+		return actDao.delActDelete(actvo);
+	}
+	
+	
 	
 	/*영화씨가 봐야할 부분.*/
 	/**

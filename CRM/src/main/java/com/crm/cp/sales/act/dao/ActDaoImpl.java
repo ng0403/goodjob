@@ -23,6 +23,12 @@ public class ActDaoImpl implements ActDao{
 	}
 	
 	@Override
+	public List<ActVO> delActAllList(Map<String, Object> actMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("act.delActList",actMap);
+	}
+	
+	@Override
 	public List<Object> actSchList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("act.actSchList");
@@ -89,7 +95,15 @@ public class ActDaoImpl implements ActDao{
 		{
 			actVO = sqlSession.selectOne("act.actDetail", sales_actvy_id);
 		}
+		return actVO;
+	}
+	
+	@Override
+	public ActVO delActDetail(String sales_actvy_id) {
+		ActVO actVO = null;		
+		List<ActVO> tmp = sqlSession.selectList("act.actListTemp", sales_actvy_id);
 		
+		actVO = sqlSession.selectOne("act.delActDetail", sales_actvy_id);
 		
 		return actVO;
 	}
@@ -111,10 +125,26 @@ public class ActDaoImpl implements ActDao{
 	}
 	
 	@Override
+	public int delActRestore(ActVO actvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("act.delActRestore", actvo);
+	}
+	
+	@Override
 	public int actDelete(String sales_actvy_id) {
 		return sqlSession.update("act.actDelete", sales_actvy_id);
 		
 	}
+	
+	@Override
+	public int delActDelete(ActVO actvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("act.delActDelete", actvo);
+	}
+	
+	
+	
+	
 	
 	/*영화씨가 봐야할 부분.*/
 	/**
@@ -161,7 +191,7 @@ public class ActDaoImpl implements ActDao{
 		//opptTabDelete
 		return sqlSession.update("act.opptTabModfy", detail);
 	}
-
+	
 	@Override
 	public int opptTabPrdtModfy(List<OpptVO> opptList) {
 		// TODO Auto-generated method stub
@@ -181,6 +211,7 @@ public class ActDaoImpl implements ActDao{
 		
 		return result;
 	}
+
 
 
 /*	@Override

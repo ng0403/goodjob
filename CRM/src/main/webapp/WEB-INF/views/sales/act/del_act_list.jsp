@@ -12,7 +12,6 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
@@ -20,6 +19,7 @@
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/del_act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 	
@@ -32,7 +32,9 @@
 	
 	<%-- <form action="${ctx}/act" method="get" id="listForm"> --%>
 	<div id="title">
-		<div class="caption">■ 영업활동</div>
+		<div class="caption">
+			<h3 class="ui header" style="background: #fff;">■ 영업활동 > 영업활동관리 삭제된 데이터</h3>
+		</div>
 	</div>
     
 	<div id="dboardbody">
@@ -93,7 +95,7 @@
 							</td>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag">
 								<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
-								<a style="color: blue; cursor: pointer;" onclick="actDetail('${actList.sales_actvy_id}','${act_flg}')">${actList.sales_actvy_nm}</a> <!-- class="actClick"  -->
+								<a style="color: blue; cursor: pointer;" onclick="delActDetail('${actList.sales_actvy_id}')">${actList.sales_actvy_nm}</a> <!-- class="actClick"  -->
 							</td>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_oppt_tag">${actList.sales_oppt_nm}</td>
 							<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.sales_actvy_type_cd}</td>
@@ -151,12 +153,6 @@
 	    		</c:when>
 			</c:choose>
 		</div>
-		
-		<div id="functionBtn_div">
-	    	<input type="button" class="tiny ui button" value="추가" onclick="actInsertForm('${act_flg}');" />
-	    	<input type="button" class="tiny tiny ui orange button" value="삭제" id="act_del_btn" />
-	    	<input type="button" class="tiny ui button" value="삭제된 데이터" onclick="delActListOpen()">
-	    </div>
 	</div>
 </body>
 </html>

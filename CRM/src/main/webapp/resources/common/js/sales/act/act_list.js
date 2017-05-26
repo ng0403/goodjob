@@ -439,10 +439,8 @@ function actDeleteBtn(ctx)
 					datatype : 'json',
 					data : { actDeleteIdList : actDeleteIdList},
 					success : function(result){
-						
-						alert(result+'건의 영업활동이 삭제되었습니다.');
-						
-						schActPaging($('#actPageNum').val());
+						alert("해당 영업활동을 삭제했습니다.");
+						searchActSaleList($('#actPageNum').val());
 					},
 					error:function(request){
 						alert("error : " + request);
@@ -462,10 +460,10 @@ function actDeleteBtn(ctx)
  * */
 function delActListOpen()
 {
+	var ctx = $('#ctx').val();
 	
+	location.href = ctx + '/delActSaleList';
 }
-
-
 
 //모두체크
 //function actAllChk()
