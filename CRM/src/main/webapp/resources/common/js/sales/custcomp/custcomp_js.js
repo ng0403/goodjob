@@ -5,8 +5,8 @@
  * schCustComp(event) 									: 검색 엔터키 기능
  * searchBtn(page) 										: 검색버튼 클릭
  * chkCancel() 											: 전체 체크 해제
- * custcompAllCheck() 									: 고객사 전체 선택
  * chkCancel() 											: 전체 체크에서 체크해지 된 경우
+ * custcompAllCheck() 									: 고객사 전체 선택
  * custcompChkCancel() 									: 전체 체크 해제
  * checkCount() 										: 체크박스 개수
  * ccTabFunc(cust_id, cust_nm) 							: 탭 이동
@@ -37,6 +37,7 @@ var ccllist;
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
+	chkCancel();
 	keymanList(cust_id);
 	pocList(cust_id);
 	posList(cust_id);
@@ -438,18 +439,35 @@ function custcompInsert() {
 
 //고객사 삭제
 function custcompDelete() {
-	var form = $('#delForm');
+	var ctx = $("#ctx").val();
+	if($("input[name=custcomp_del]:checked").length==0){
+		alert("삭제할 고객사를 선택해 주세요.");
+		return false;
+	}
+	if(confirm("삭제 하시겠습니까? ")){
+	var custcompList = [];
+	var pageNum = $("#pageNum").val();
+	$("input[name=custcomp_del]:checked").each(function(){
+		custcompList.push($(this).val());
+	});
 	
-	if (checkCount() == 0)  {
-		alert("삭제할 항목을 선택해주세요.");
-	} else  {
-		var delYN = confirm("정말 삭제하시겠습니까??");
-
-		if(!delYN){
-			return false;
+	$.ajax({
+		type : 'get',
+		url : 'custcompDelete',
+		data : {
+				 custcompList : custcompList,
+				 pageNum : pageNum
+			},
+		dataType : 'json',
+		success : function(result){
+			alert("고객사가 삭제되었습니다.");
+			location.href = ctx + "/custcomp";
+		},
+		error : function(request){
+			alert("error : " + request);
 		}
-		form.submit();
-	}	
+	});
+	}
 }
 
 // 기업고객 삭제

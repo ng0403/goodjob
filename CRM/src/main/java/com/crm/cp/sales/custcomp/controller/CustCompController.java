@@ -252,13 +252,17 @@ public class CustCompController {
 	}
 	
 	// 고객사 삭제
-	@RequestMapping(value = "/custcompDelete", method = RequestMethod.POST)
-	public String custcompDelete(String[] custcomp_del) throws IOException {
-		
-		for (String cust_id : custcomp_del) {
-			ccService.custcompDelete(cust_id);
+	@RequestMapping(value = "/custcompDelete", method = RequestMethod.GET)
+	@ResponseBody public int custcompDelete(HttpSession session,
+								@RequestParam(value = "custcompList[]") List<String> custcompList,
+								@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) {
+		int result = 0;
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < custcompList.size(); i++) {
+			
+			result += ccService.custcompDelete(custcompList.get(i));
 		}
-		return "redirect:/custcomp";
+		return result;
 	}
 	
 	// 고객사 리스트(MaV)
@@ -312,8 +316,17 @@ public class CustCompController {
 							@RequestParam(value = "pageNum", defaultValue = "1") int ccPageNum,
 							@RequestParam Map<String, String> map,
 							@RequestParam (value = "sch_cust_nm" , required = false) String sch_cust_nm,
+							@RequestParam (value = "sch_cust_nm0" , required = false) String sch_cust_nm0,
+							@RequestParam (value = "sch_cust_nm1" , required = false) String sch_cust_nm1,
 							@RequestParam (value = "sch_comp_num" , required = false) String sch_comp_num,
-							@RequestParam (value = "sch_corp_num" , required = false) String sch_corp_num ) {
+							@RequestParam (value = "sch_comp_num0" , required = false) String sch_comp_num0,
+							@RequestParam (value = "sch_comp_num1" , required = false) String sch_comp_num1,
+							@RequestParam (value = "sch_corp_num" , required = false) String sch_corp_num,
+							@RequestParam (value = "sch_corp_num0" , required = false) String sch_corp_num0,
+							@RequestParam (value = "sch_corp_num1" , required = false) String sch_corp_num1,
+							@RequestParam (value = "sch_iuser_nm" , required = false) String sch_iuser_nm,
+							@RequestParam (value = "sch_iuser_nm0" , required = false) String sch_iuser_nm0,
+							@RequestParam (value = "sch_iuser_nm1" , required = false) String sch_iuser_nm1) {
 		
  		Map<String, Object> pMap = new HashMap<String, Object>();
 		
@@ -322,8 +335,17 @@ public class CustCompController {
 		} else {
 			pMap.put("result", "Y");
 			pMap.put("sch_cust_nm", sch_cust_nm);
+			pMap.put("sch_cust_nm0", sch_cust_nm0);
+			pMap.put("sch_cust_nm1", sch_cust_nm1);
 			pMap.put("sch_comp_num", sch_comp_num);
+			pMap.put("sch_comp_num0", sch_comp_num0);
+			pMap.put("sch_comp_num1", sch_comp_num1);
 			pMap.put("sch_corp_num", sch_corp_num);
+			pMap.put("sch_corp_num0", sch_corp_num0);
+			pMap.put("sch_corp_num1", sch_corp_num1);
+			pMap.put("sch_iuser_nm", sch_iuser_nm);
+			pMap.put("sch_iuser_nm0", sch_iuser_nm0);
+			pMap.put("sch_iuser_nm1", sch_iuser_nm1);
 			pMap.put("ccPageNum", ccPageNum);
 //			
 			// 고객사 리스트 전체 개수 조회(페이징에 사용)
@@ -337,6 +359,7 @@ public class CustCompController {
 			System.out.println("dddd " + ccVOList.toString());
 			pMap.put("ccVOList", ccVOList);
 			pMap.put("ccVOListSize", ccVOList.size());
+			
 		}
 		return pMap;
 	}

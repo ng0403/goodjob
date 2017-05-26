@@ -67,26 +67,22 @@ $(function() {
 			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" >
 				<thead>
 					<tr>
-						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='ccListCheck'/></th>
 						<th style="width: 14%" id="tblTh" > 기업명</th>
 						<th style="width: 8%"  id="tblTh" >사업자번호</th>
 						<th style="width: 8%"  id="tblTh" >법인번호</th>
-						<th style="width: 10%" id="tblTh" >대표전화번호</th>
+						<th style="width: 8%" id="tblTh" >대표전화번호</th>
 						<th style="width: 8%" id="tblTh" >매출규모</th>
 						<th style="width: 5%"  id="tblTh" >직원수</th>
-						<th style="width: 8%" id="tblTh" >산업군</th>
-						<th style="width: 8%" id="tblTh" >최종 수정자</th>
+						<th style="width: 10%" id="tblTh" >산업군</th>
+						<th style="width: 7%" id="tblTh" >최종 수정자</th>
 						<th style="width: 10%" id="tblTh" >최종 수정일시</th>
-						<th style="width: 8%" id="tblTh" >등록자</th>
+						<th style="width: 7%" id="tblTh" >등록자</th>
 						<th style="width: 10%" id="tblTh" >등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="ccDelListTbody" class="tbody">
 					<c:forEach var="cc" items="${ccVOList}">
 						<tr>
-							<td style="text-align: center;">
-								<input type="checkbox" id="custcomp_del" name="custcomp_del" class="cust_check" value="${cc.cust_id}"   onclick="chkCancel();">
-							</td>
 							<td id="ccListTableNmTd" style="text-align: left; padding-left: 14px;">
 								<a href="#" onclick="ccDelDetail('${cc.cust_id}', '${cc.cust_nm}');"  class="cnClick">${cc.cust_nm}</a>
 							</td>

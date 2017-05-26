@@ -63,9 +63,6 @@ function custcompDelList(page) {
 				
 					$("#ccDelListTbody").append("" +
 							"<tr id='"+cc.cust_id+"'>"+
-							"<th style='text-align: center;'><input type=checkbox   id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
-							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
 							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccDelDetail('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
 							"<td id=cust_nm style='text-align: center'>"+cc.comp_num+"</td>"+
 							"<td style='text-align: center'>"+cc.corp_num+"</td>"+
@@ -360,13 +357,13 @@ function custCompList(page){
 //검색 버튼 클릭 시 
 function searchBtn(page){
 
-	var sch_cust_nm = $("#sch_cust_nm").val();
-	var sch_cust_nm0 = $("#sch_cust_nm0").val();
-	var sch_cust_nm1 = $("#sch_cust_nm1").val(); 
-	var sch_comp_num = $("#sch_comp_num").val(); 
+	var sch_cust_nm =   $("#sch_cust_nm").val();
+	var sch_cust_nm0 =  $("#sch_cust_nm0").val();
+	var sch_cust_nm1 =  $("#sch_cust_nm1").val(); 
+	var sch_comp_num =  $("#sch_comp_num").val(); 
 	var sch_comp_num0 = $("#sch_comp_num0").val(); 
 	var sch_comp_num1 = $("#sch_comp_num1").val(); 
-	var sch_corp_num = $("#sch_corp_num").val();
+	var sch_corp_num =  $("#sch_corp_num").val();
 	var sch_corp_num0 = $("#sch_corp_num0").val(); 
 	var sch_corp_num1 = $("#sch_corp_num1").val();
 	

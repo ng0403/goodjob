@@ -152,10 +152,12 @@ public class CustCompDaoImpl implements CustCompDao {
 	public void custcompEdit(CustCompVO ccVO) {
 		sqlSession.update("custcomp.custcompEdit", ccVO);
 	}
-
+	
+	// 고객사 삭제
 	@Override
-	public void custcompDelete(String cust_id) {
-		sqlSession.update("custcomp.custcompDelete", cust_id);
+	public int custcompDelete(String cust_id) {
+		
+		return sqlSession.update("custcomp.custcompDelete", cust_id);
 		
 	}
 	

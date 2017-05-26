@@ -17,7 +17,6 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script>
 <!-- 테이블 th고정 CSS -->
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" />
-<!-- 시맨틱 UI CSS 추가 -->
 <title>고객사 리스트</title>
 </head>
 <body class="body">
