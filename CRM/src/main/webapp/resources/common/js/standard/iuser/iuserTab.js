@@ -19,6 +19,7 @@ $(function() {
 
 function userFormInit(){
 	$('#joinform').find('input[type="text"]').attr('disabled',true);
+	$('#joinform').find('input[type="password"]').attr('disabled',true);
 	$('#joinform').find('input[type="button"]').attr('disabled',true);
 	$('#modifybtn').attr('disabled', true);
 	$('#addsavebtn').attr('disabled', true);
@@ -168,11 +169,15 @@ function formData(ctx){
 	});
 }
 
+//편집버튼 클릭 시
 function modifyData(ctx){  //편집 버튼에 대한 내용 (버튼 활성화 비활성화)
 	$('.bt_position_authuser').delegate('#modifybtn','click', function(event){
 		event.preventDefault();
 		
 		$('#tabDiv1 input').attr("disabled", false);
+		$('#tabDiv1 input[type="text"]').css("background", "rgb(255, 255, 255)");
+		$('#tabDiv1 input[type="password"]').css("background", "rgb(255, 255, 255)");
+//		$('#tabDiv1 input[type="button"]').css("background", "rgb(255, 255, 255)");
 		$('#user_id').attr("disabled", true);
 		$('#auth_name').attr("disabled", false);
 		

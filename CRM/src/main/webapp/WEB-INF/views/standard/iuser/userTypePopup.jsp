@@ -35,7 +35,7 @@
 				<option value="c_name">코드명</option>
 				<option value="c_id">코드</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="tiny tiny ui orange button">검색</button>
+			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
 			</form>
 		</div>
 	</div>	

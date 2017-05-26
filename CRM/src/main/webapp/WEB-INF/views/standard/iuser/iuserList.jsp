@@ -35,7 +35,7 @@ $("#naviuser").css("font-weight", "bold");
 			<div class="ui input focus">
 				<input id="title_text" type="text" name="keyword" class="int2" style="background-color:white"> &nbsp;
 			</div>
-			<button id="search_btn" type="submit" class="tiny tiny ui orange button">검색</button>
+			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
 			</form>
 		</div>
 	</div>
@@ -79,9 +79,9 @@ $("#naviuser").css("font-weight", "bold");
 
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist" style="padding-bottom: 10px; ">
-		<input type="button" id="iuserListAddBtn" class="tiny tiny ui orange button" value="등록"/>
+		<input type="button" id="iuserListAddBtn" class="tiny ui blue button" value="등록"/>
 <!-- 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/> -->
-		<input type="button" id="iuserDelBtn" class="tiny tiny ui orange button" value="삭제"/>
+		<input type="button" id="iuserDelBtn" class="tiny ui blue button" value="삭제"/>
 	</div>
 </body>
 </html>

@@ -133,6 +133,9 @@ function iuserListAdd(){
 		$('#orgPopup').attr("disabled", false);
 		$('#org_nm').attr("readonly", true);
 		$('user_type_nm').attr("readonly", true);
+		$('#tabDiv1 input[type="text"]').css("background", "rgb(255, 255, 255)");
+		$('#tabDiv1 input[type="password"]').css("background", "rgb(255, 255, 255)");
+//		$('#tabDiv1 input[type="button"]').css("background", "rgb(255, 255, 255)");
 	});
 }
 

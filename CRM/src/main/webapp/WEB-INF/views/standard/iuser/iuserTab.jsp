@@ -46,11 +46,11 @@
 							<th>사용자명</th>
 							<td><input type="text" name="iuser_nm" id="iuser_nm" class="inputText"></input></td>
 							<th>패스워드</th>
-							<td><input type="text" name="pwd" id="pwd" class="inputText"></input></td>
+							<td><input type="password" name="pwd" id="pwd" class="inputText"></input></td>
 							<th>구분</th>
 							<td><input type="text" name="iuser_div_nm" id="user_type_nm" class="inputText"> 
 								<input type="hidden" name="iuser_div_cd" id="user_type_cd" class="inputText"> 
-							    <input type="button" name="codeSearch" value="찾기" class="tiny ui orange basic button" id="userTypePop">
+							    <input type="button" name="codeSearch" value="찾기" class="tiny ui blue basic button" id="userTypePop">
 							</td>
 						</tr>	
 						<tr>
@@ -79,7 +79,7 @@
 							<td>
 								<input type="text" name="org_nm" id="org_nm" class="inputText"> 
 								<input type="hidden" name="org_id" id="org_id" class="inputText"> 
-								<input type="button" name="orgSearch" id="orgSearch" value="찾기" class="tiny ui orange basic button" id="orgPopup" disabled="false">
+								<input type="button" name="orgSearch" id="orgSearch" value="찾기" class="tiny ui blue basic button" id="orgPopup" disabled="false">
 							</td>
 							<th>상태</th>
 							<td>
@@ -90,10 +90,10 @@
 				</table>
 				<div class="bt_position_authuser">
 <!-- 					<input type="button" id="submitbtn" class="iuser_tab_bt" value="추가"/> -->
-					<input type="button" id="modifybtn" class="tiny tiny ui orange button" value="편집"/>
+					<input type="button" id="modifybtn" class="tiny ui blue button" value="편집" style="background: #2185D0;" />
+					<input type="button" id="addsavebtn" class="tiny ui blue button" value="저장" style="background: #2185D0;"/>
 					<input type="reset" id="cancelbtn" class="tiny ui button" value="취소"/>
-					<input type="button" id="addsavebtn" class="tiny tiny ui orange button" value="저장"/>
-					<input type="button" id="modifysavebtn" class="tiny tiny ui orange button" style="display:none;" value="저장"/>
+					<input type="button" id="modifysavebtn" class="tiny ui blue button" style="display:none;" value="저장" style="background: #2185D0;"/>
 				</div>
 			</form>
 		</div>

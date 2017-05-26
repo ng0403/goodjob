@@ -117,7 +117,10 @@
 			ID_NM, IUSER_NM, PWD, EMAIL1, EMAIL2, CELL_PH1, CELL_PH2, CELL_PH3, PH1, PH2, PH3,
 			COMP_PH1, COMP_PH2, COMP_PH3, IUSER_DIV_CD, ORG_ID, ACT_YN, FST_REG_ID, FIN_MDFY_ID)
 		VALUES(
-			#{iuser_id},#{id_nm}, #{iuser_nm}, #{pwd}, #{email1}, #{email2}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3},
+			(SELECT /*+INDEX_DESC(IUSER PK_IUSER)*/
+             DECODE(MAX(IUSER_ID),NULL,'IU00001',SUBSTR(MAX(IUSER_ID),1,2)||lpad((SUBSTR(MAX(IUSER_ID),3,5)+1),5,0))IUSER_ID
+         FROM IUSER
+         WHERE ROWNUM=1),#{id_nm}, #{iuser_nm}, #{pwd}, #{email1}, #{email2}, #{cell_ph1}, #{cell_ph2}, #{cell_ph3},
 			#{ph1}, #{ph2}, #{ph3}, #{comp_ph1}, #{comp_ph2}, #{comp_ph3}, #{iuser_div_cd},
 			#{org_id}, #{act_yn}, #{fst_reg_id}, #{fst_reg_id})
 	</update>
