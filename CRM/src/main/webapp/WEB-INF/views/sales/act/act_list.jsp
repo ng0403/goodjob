@@ -17,11 +17,13 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 	
 <title>영업활동</title>
 </head>
@@ -57,16 +59,16 @@
 			<div class="ui left icon input">
 				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}" readonly="readonly">
 			</div>
-			<input type="button" class="tiny ui orange basic button" id="act_opp_nm" value="영업기회">
+			<input type="button" class="tiny ui blue basic button" id="act_opp_nm" value="영업기회">
 			<div class="ui left icon input">
 					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}" readonly="readonly">
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			</div>	
-			<input type="button" class="tiny ui orange basic button" id="customer" value="고객">
+			<input type="button" class="tiny ui blue basic button" id="customer" value="고객">
 				  	
 			<label id="schActAddBtn" class="tiny ui button" onclick="addSearchActForm();">+</label>
 			
-			<input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
+			<input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
 		</div>
 			
 		<div>
@@ -74,19 +76,19 @@
 				<thead>
 					<tr>
 						<th rowspan="2" style="width: 2%; text-align: center;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
-						<td rowspan="2" style="width: 15%;">영업활동명</td>
-						<td rowspan="2" style="width: 23%;">영업기회명</td>
-						<td rowspan="2" style="width: 10%;">활동유형</td>
-						<td style="width: 10%;">시작일자</td>
-						<td style="width: 10%;">시작시간</td>
-						<td rowspan="2" style="width: 5%;">상태</td>
+						<th rowspan="2" style="width: 15%;">영업활동명</th>
+						<th rowspan="2" style="width: 23%;">영업기회명</th>
+						<th rowspan="2" style="width: 10%;">활동유형</th>
+						<th style="width: 10%;">시작일자</th>
+						<th style="width: 10%;">시작시간</th>
+						<th rowspan="2" style="width: 5%;">상태</th>
 					</tr>
 					<tr>
-						<td style="width: 10%;">종료일자</td>
-						<td style="width: 10%;">종료시간</td>
+						<th style="width: 10%;">종료일자</th>
+						<th style="width: 10%;">종료시간</th>
 					</tr>
 				</thead>
-				<tbody id="act_list_tbody" class="act_list_tbody">
+				<tbody id="act_list_tbody" class="tbody">
 					<c:forEach items="${actList}" var="actList">
 						<tr>
 							<td rowspan="2">
@@ -155,8 +157,8 @@
 		
 		<div id="functionBtn_div">
 	    	<input type="button" class="tiny ui button" value="추가" onclick="actInsertForm('${act_flg}');" />
-	    	<input type="button" class="tiny tiny ui orange button" value="삭제" id="act_del_btn" />
-	    	<input type="button" class="tiny tiny ui orange button" value="삭제된 데이터" onclick="delActListOpen()">
+	    	<input type="button" class="tiny ui blue button" value="삭제" id="act_del_btn" />
+	    	<input type="button" class="tiny ui blue button" value="삭제된 데이터" onclick="delActListOpen()">
 	    </div>
 	</div>
 </body>

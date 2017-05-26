@@ -95,9 +95,14 @@ select{
 #dboardtable {
 	width:100%;
 	margin-top: 10px;
-	border-top: 2px solid #C0C4CB;
-	border-bottom: 2px solid #C0C4CB;
+	text-align: center;
+/* 	border-top: 2px solid #C0C4CB; */
+/* 	border-bottom: none; */
 	border-collapse: collapse;
+}
+
+#dboardtable thead th{
+	border-bottom: none;
 }
 
 #dboardtable thead tr{
@@ -113,7 +118,7 @@ select{
 
 #dboardtable tbody td{
 	color: black;
-	border: 1px solid #DDDDDD;
+/* 	border: 1px solid #DDDDDD; */
 	padding:0.5px;
 }
 

@@ -177,6 +177,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/sales/est/estList.jsp" />
 	</definition>
+	
+	<definition name="delEstList" extends="onebodyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/sales/est/delEstList.jsp" />
+	</definition>
 
 	<definition name="estAdd" extends="onebodyLayout">
 		<put-attribute name="body"
@@ -187,6 +192,11 @@
 	<definition name="estDetail" extends="onebodyLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/views/sales/est/estDetail.jsp" />
+	</definition>
+
+	<definition name="delEstDetail" extends="onebodyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/sales/est/delEstDetail.jsp" />
 	</definition>
 
 	<!-- 상품 -->

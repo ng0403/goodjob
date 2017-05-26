@@ -229,5 +229,33 @@ public class EstServiceImpl implements EstService {
 		return estDaoi.estHistoryList(map);
 	}
 
+	// 삭제 데이터 관리해주는 부분.
+	@Override
+	public List<EstVO> getDelList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		List<EstVO> list = estDaoi.getDelList(map);
+
+		return list;
+	}
+
+	@Override
+	public List<EstVO> delEstDetail(String estim_id) {
+		// TODO Auto-generated method stub
+		List<EstVO> detail = estDaoi.delEstDetail(estim_id);
+		return detail;
+	}
+
+	@Override
+	public int delEstDelete(EstVO evo) {
+		// TODO Auto-generated method stub
+		return estDaoi.delEstDelete(evo);
+	}
+
+	@Override
+	public int delEstRestore(EstVO est) {
+		// TODO Auto-generated method stub
+		return estDaoi.delEstRestore(est);
+	}
+
 
 }

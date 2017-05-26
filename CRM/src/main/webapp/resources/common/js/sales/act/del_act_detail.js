@@ -2,10 +2,6 @@ $(function(){
 	var ctx = $('#ctx').val();
 	var sales_actvy_id = $("#nowSales_actvy_id").val();
 	
-	startCalendar(ctx);
-	endCalendar(ctx);
-	actAddBtn();
-	actMdfyBtn();
 });
 
 

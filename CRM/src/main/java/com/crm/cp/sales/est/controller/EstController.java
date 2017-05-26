@@ -731,7 +731,6 @@ public class EstController {
 		
 			return mov;
 		}
-	
 		
 	@RequestMapping(value = "/estDelete", method = RequestMethod.GET)
 	@ResponseBody
@@ -746,7 +745,118 @@ public class EstController {
 			return result;
 		}
 
+	/**
+	 * 삭제된 견적 데이터 관련 컨트롤
+	 * */
+	//전체 리스트가져오기
+	@RequestMapping(value = "/delEstInqr", method = RequestMethod.GET)
+	public ModelAndView delEstimeteList(HttpSession session,
+		@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
+		@RequestParam Map<String, String> map,
+		@RequestParam (value = "sales_price_1" , required = false) String sales_price_1,
+		@RequestParam (value = "sales_price_2" , required = false) String sales_price_2,
+		@RequestParam (value = "estim_nm" , required = false) String estim_nm,
+		@RequestParam (value = "estim_lev_cd" , required = false) String estim_lev_cd,
+		@RequestParam (value = "estim_valid_d" , required = false) String estim_valid_d) 
+	{
+
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
+		// 페이지 정보를 얻어옴
+		//한글 검색 인코더 변환
+		map.put("estim_nm", Encoder.isoToUtf(map.get("estim_nm")));
+		map.put("pageNum", ccPageNum+"");
+		
+		PagerVO page = estInter.getCCListCount(map);
+		map.put("startRow", page.getStartRow()+"");
+		map.put("endRow", page.getEndRow()+"");
+		
+		if( (sales_price_1 != ""  && sales_price_2 !="") && (sales_price_1 != null  && sales_price_2 != null)){
+			map.put("sales_price", Integer.parseInt(sales_price_1)  * Integer.parseInt(sales_price_2) + "");
+		}
+		if(estim_nm != null){
+			map.put("estim_nm", estim_nm + "");
+		}
+		if(estim_lev_cd != null ){
+			map.put("estim_lev_cd", estim_lev_cd + "");
+		}
+		if(estim_valid_d != null ){
+			map.put("estim_valid_d", estim_valid_d  + "");
+		}
+		
+		List<EstVO> list = estInter.getDelList(map);
+		List<EstVO> elclist = estInter.elcList();
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		
+		for(EstVO est: eduList)
+		{
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
+		
+		ModelAndView mov = new ModelAndView("delEstList");
+		
+		mov.addObject("list", list);
+		mov.addObject("page", page);
+		mov.addObject("ccPageNum", ccPageNum);
+		mov.addObject("elclist", elclist);
+		mov.addObject("eduCode", eduCode);
+		
+		return mov;
+	}	
 	
+	//견적 상세정보 ajax
+	@RequestMapping(value="/delEstDetail", method=RequestMethod.GET)
+	public ModelAndView delEstDetail(HttpSession session, @ModelAttribute EstVO evo)
+	{
+		String estim_id = evo.getEstim_id();
+		System.out.println(estim_id);
+		
+		List<EstVO> prod = estInter.delEstDetail(estim_id);
+		List<EstVO> elclist = estInter.elcList();
+		
+		//List<MenuVO> menuList = menuService.selectAll(session);
+		List<EstVO> eduList = estInter.eduList();
+		List<String> eduCode = new ArrayList<String>(0);
+		
+		for(EstVO est: eduList){
+			eduCode.add(est.getCode());
+			eduCode.add(est.getCd_nm());
+		}
 	
+		EstVO detail = prod.get(prod.size()-1);
+		prod.remove(prod.size()-1);
+		
+		ModelAndView mov = new ModelAndView("delEstDetail");
+		
+		mov.addObject("detail", detail);
+		mov.addObject("prodList", prod);
+		mov.addObject("eduList", eduList);
+		mov.addObject("elclist", elclist);
+		mov.addObject("eduCode", eduCode);
+		System.out.println(detail);
+		return mov;
+	}
 	
+	@RequestMapping(value="/delEstRestore", method=RequestMethod.POST)
+	@ResponseBody public int delEstimUpdate(HttpSession session, EstVO est){
+		
+		System.out.println(est.toString());
+		
+		int result = estInter.delEstRestore(est);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/delEstDelete", method = RequestMethod.GET)
+	@ResponseBody public int delEsttDelete(HttpSession session, EstVO evo) 
+	{
+		int result = 0;
+				
+		result = estInter.delEstDelete(evo);
+			
+		return result;
+	}
 }

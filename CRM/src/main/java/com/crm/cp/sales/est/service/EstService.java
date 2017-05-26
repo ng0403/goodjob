@@ -71,4 +71,13 @@ public interface EstService {
 
 	List<OpptVO> estHistoryList(Map<String, String> map);
 
+	// 삭제 데이터 관리 해주는 부분.
+	List<EstVO> getDelList(Map<String, String> map);
+
+	List<EstVO> delEstDetail(String estim_id);
+
+	int delEstDelete(EstVO evo);
+
+	int delEstRestore(EstVO est);
+
 }

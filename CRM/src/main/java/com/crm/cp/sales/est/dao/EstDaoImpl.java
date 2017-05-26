@@ -252,5 +252,49 @@ public class EstDaoImpl implements EstDao{
 		return sqlSession.selectList("estimate.estHistoryList", map);
 	}
 
+	@Override
+	public List<EstVO> getDelList(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		List<EstVO> list = null;
+		
+		try {
+			list = sqlSession.selectList("estimate.dellist", map); //select id
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<EstVO> delEstDetail(String estim_id) {
+		// TODO Auto-generated method stub
+		EstVO detail = sqlSession.selectOne("estimate.delEstDetail", estim_id);
+		 List<EstVO> prod = sqlSession.selectList("estimate.delEstProdList", estim_id);
+		 prod.add(detail);
+		 
+		 return prod;
+	}
 	
+	@Override
+	public int delEstRestore(EstVO est) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		
+		System.out.println("DAO : " + est);
+		result = sqlSession.update("estimate.delEstimateRestore", est);
+
+		return result;
+	}
+
+	@Override
+	public int delEstDelete(EstVO evo) {
+		// TODO Auto-generated method stub
+		int result = 0; 
+		
+		result = sqlSession.update("estimate.delEstimateDelete", evo);
+
+		return result;
+	}
+
 }
