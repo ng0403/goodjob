@@ -119,10 +119,7 @@ public class CustCompController {
 							@RequestParam (value = "sch_comp_num1" , required = false) String sch_comp_num1,
 							@RequestParam (value = "sch_corp_num" , required = false) String sch_corp_num,
 							@RequestParam (value = "sch_corp_num0" , required = false) String sch_corp_num0,
-							@RequestParam (value = "sch_corp_num1" , required = false) String sch_corp_num1,
-							@RequestParam (value = "sch_iuser_nm" , required = false) String sch_iuser_nm,
-							@RequestParam (value = "sch_iuser_nm0" , required = false) String sch_iuser_nm0,
-							@RequestParam (value = "sch_iuser_nm1" , required = false) String sch_iuser_nm1 ) {
+							@RequestParam (value = "sch_corp_num1" , required = false) String sch_corp_num1 ) {
 		
 		System.out.println("111" + ccPageNum);
  		Map<String, Object> pMap = new HashMap<String, Object>();
@@ -140,9 +137,6 @@ public class CustCompController {
 			pMap.put("sch_corp_num", sch_corp_num);
 			pMap.put("sch_corp_num0", sch_corp_num0);
 			pMap.put("sch_corp_num1", sch_corp_num1);
-			pMap.put("sch_iuser_nm", sch_iuser_nm);
-			pMap.put("sch_iuser_nm0", sch_iuser_nm0);
-			pMap.put("sch_iuser_nm1", sch_iuser_nm1);
 			pMap.put("ccPageNum", ccPageNum);
 			
 			// 기업고객 리스트 전체 개수 조회(페이징에 사용)
@@ -323,10 +317,7 @@ public class CustCompController {
 							@RequestParam (value = "sch_comp_num1" , required = false) String sch_comp_num1,
 							@RequestParam (value = "sch_corp_num" , required = false) String sch_corp_num,
 							@RequestParam (value = "sch_corp_num0" , required = false) String sch_corp_num0,
-							@RequestParam (value = "sch_corp_num1" , required = false) String sch_corp_num1,
-							@RequestParam (value = "sch_iuser_nm" , required = false) String sch_iuser_nm,
-							@RequestParam (value = "sch_iuser_nm0" , required = false) String sch_iuser_nm0,
-							@RequestParam (value = "sch_iuser_nm1" , required = false) String sch_iuser_nm1) {
+							@RequestParam (value = "sch_corp_num1" , required = false) String sch_corp_num1 ) {
 		
  		Map<String, Object> pMap = new HashMap<String, Object>();
 		
@@ -343,9 +334,6 @@ public class CustCompController {
 			pMap.put("sch_corp_num", sch_corp_num);
 			pMap.put("sch_corp_num0", sch_corp_num0);
 			pMap.put("sch_corp_num1", sch_corp_num1);
-			pMap.put("sch_iuser_nm", sch_iuser_nm);
-			pMap.put("sch_iuser_nm0", sch_iuser_nm0);
-			pMap.put("sch_iuser_nm1", sch_iuser_nm1);
 			pMap.put("ccPageNum", ccPageNum);
 //			
 			// 고객사 리스트 전체 개수 조회(페이징에 사용)

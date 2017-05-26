@@ -33,8 +33,7 @@
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
-	custcompDelList(page);
-	ccDelDetail(cust_id);
+	//ccDelDetail(cust_id);
 });	
 
 //고객사 삭제된 데이터 리스트 출력
@@ -191,6 +190,19 @@ $(document).ready(function() {
 //고객사 검색 조건 추가
 function addForm(){
 	if(count<2){
+		if($("#cust_nm").length > 0)
+			{
+			count = 0;
+			}
+		if($("#cust_nm0").length > 0)
+			{
+				count=1;
+				}
+		if(($("#cust_nm1").length > 0) && ($("#cust_nm0").length > 0))
+			{
+			alert("검색 조건은 최대 3개 입니다.");
+			return;
+			}
 		var addedFormDiv = document.getElementById("search_div");
 		var str = "";
 			str+="<br><div class='ui left icon input'>";
@@ -225,49 +237,58 @@ function dellForm(obj){
         --count;
 }   
 
-//검색 엔터키 기능
-function schCustComp(event) {
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if (keycode == '13') {
-		if ($("#sch_cust_nm").val() == '' && $("#sch_comp_num").val() == '' && $("#sch_corp_num").val() == '') {
-			alert("검색어를 입력하세요.");
-			$("#sch_cust_nm").focus();
-		}
-		if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm0){
-			alert("고객사명을 앞에서부터 채워주세요.");
-			$("#sch_cust_nm").focus();
-			return;
-		}if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm1){
-			alert("고객사명을 앞에서부터 채워주세요.");
-			return;
-		}if(sch_cust_nm0 == null && sch_cust_nm1){
-			alert("고객사명을 앞에서부터 채워주세요.");
-			return;
-		}
-		if((sch_comp_num == '' || sch_comp_num == null)  && sch_comp_num0){
-			alert("사업자번호를 앞에서부터 채워주세요.");
-			return;
-		}if((sch_comp_num == '' || sch_comp_num == null) && sch_comp_num1){
-			alert("사업자번호를 앞에서부터 채워주세요.");
-			return;
-		}if(sch_comp_num0 == null && sch_comp_num1){
-			alert("사업자번호를 앞에서부터 채워주세요.");
-			return;
-		}
-		if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num0){
-			alert("법인번호를 앞에서부터 채워주세요.");
-			return;
-		}if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num1){
-			alert("법인번호를 앞에서부터 채워주세요.");
-			return;
-		}if(sch_corp_num0 == null && sch_corp_num1){
-			alert("법인번호를 앞에서부터 채워주세요.");
-			return;
-		} else {
-			event.preventDefault();
-			searchBtn(1);
-		}
+//검색 버튼 클릭 시 
+//function searchBtn(page){
+function schCustComp(event){
+
+	var sch_cust_nm = $("#sch_cust_nm").val();
+	var sch_cust_nm0 = $("#sch_cust_nm0").val();
+	var sch_cust_nm1 = $("#sch_cust_nm1").val(); 
+	
+	var sch_comp_num = $("#sch_comp_num").val(); 
+	var sch_comp_num0 = $("#sch_comp_num0").val(); 
+	var sch_comp_num1 = $("#sch_comp_num1").val(); 
+	
+	var sch_corp_num = $("#sch_corp_num").val();
+	var sch_corp_num0 = $("#sch_corp_num0").val(); 
+	var sch_corp_num1 = $("#sch_corp_num1").val();
+	
+	if ($("#sch_cust_nm").val() == '' && $("#sch_comp_num").val() == '' && $("#sch_corp_num").val() == '') {
+		alert("검색어를 입력하세요.");
+		$("#sch_cust_nm").focus();
 	}
+	
+	if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm0){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm1){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}if(sch_cust_nm0 == null && sch_cust_nm1){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}
+	if((sch_comp_num == '' || sch_comp_num == null) && sch_comp_num0){
+		alert("사업자번호를 앞에서부터 채워주세요.");
+		return;
+	}if((sch_comp_num == '' || sch_comp_num == null) && sch_comp_num1){
+		alert("사업자번호를 앞에서부터 채워주세요.");
+		return;
+	}if(sch_comp_num0 == null && sch_comp_num1){
+		alert("사업자번호를 앞에서부터 채워주세요.");
+		return;
+	}
+	if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num0){
+		alert("법인번호를 앞에서부터 채워주세요.");
+		return;
+	}if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num1){
+		alert("법인번호를 앞에서부터 채워주세요.");
+		return;
+	}if(sch_corp_num0 == null && sch_corp_num1){
+		alert("법인번호를 앞에서부터 채워주세요.");
+		return;
+	}
+	custcompDelList(page);
 }
 
 // 전체 체크 해제
@@ -299,7 +320,7 @@ function custCompList(page){
 		success:function(result){
 			if(result.ccVOListSize == 0){
 				alert("검색결과가 없습니다.");
-				location.href = ctx+'/custcomp';
+				location.href = ctx+'/custcompDelList';
 			}else{
 				//리스트 출력 시 버튼 상태 설정
 				$("#functionBtn").css("display", "block");
@@ -400,7 +421,8 @@ function searchBtn(page){
 		alert("법인번호를 앞에서부터 채워주세요.");
 		return;
 	}
-	custCompList(page);
+	
+	custcompDelList(page);
 }
 
 //페이징
@@ -416,14 +438,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var prevI = $("<i>");
 	prevI.addClass("left chevron icon");
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:custCompList("+prevPageNum+")");
+		prevPage.attr("href","javascript:custcompDelList("+prevPageNum+")");
 	}
 	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
 		ccPage.addClass("item");
-		ccPage.attr("href","javascript:custCompList("+i+")");
+		ccPage.attr("href","javascript:custcompDelList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -439,7 +461,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var nextI = $("<i>");
 	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:custCompList("+nextPageNum+")");
+		nextPage.attr("href","javascript:custcompDelList("+nextPageNum+")");
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);

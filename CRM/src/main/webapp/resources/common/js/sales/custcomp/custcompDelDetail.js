@@ -9,14 +9,14 @@ $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var flg = $("#flg").val();
 	
-	custActiveAdd(ctx);
-	estimateAdd(ctx);
-	custPosAdd(ctx);
-	addCustManager(ctx);
-	custCompAddBtn();
-	custcompDelModify();
-	custcompDelDelBtn();
-	custcompCancelBtn(addFlag);
+//	custActiveAdd(ctx);
+//	estimateAdd(ctx);
+//	custPosAdd(ctx);
+//	addCustManager(ctx);
+//	custCompAddBtn();
+//	custcompDelModify();
+//	custcompDelDelBtn();
+//	custcompCancelBtn(addFlag);
 	
 });
 
