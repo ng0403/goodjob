@@ -602,6 +602,24 @@ public class CustCompServiceImpl implements CustCompService {
 
 		return ccVO;
 	}
+	
+	// 고객사 삭제된 데이터 복원(수정)
+	@Override
+	public void custcompDelEdit(CustCompVO ccVO) {
+		ccDao.custcompDelEdit(ccVO);
+		
+	}
+
+	// 고객사 삭제된 데이터 완전삭제
+	@Override
+	public int custcompDelDelete(String cust_id) {
+		
+		int result = ccDao.custcompDelDelete(cust_id);
+		
+		System.out.println("고객사삭제 result : " + result);
+		
+		return result;
+	}
 
 
 }

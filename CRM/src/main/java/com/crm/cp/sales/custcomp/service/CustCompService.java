@@ -105,5 +105,7 @@ public interface CustCompService {
 
 	List<CustCompVO> getCCDelList(Map<String, Object> pMap);					// 고객사 삭제된 데이터 리스트
 	CustCompVO custcompDelDetail(String cust_id);								// 고객사 삭제된 데이터 상세보기
+	void custcompDelEdit(CustCompVO ccVO);										// 고객사 삭제된 데이터 복원(수정)
+	int custcompDelDelete(String cust_id);										// 고객사 삭제된 데이터 완전삭제
 
 }

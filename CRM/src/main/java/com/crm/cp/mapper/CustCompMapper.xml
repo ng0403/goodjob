@@ -241,12 +241,28 @@
 	   where cust_id = #{cust_id}
 	</update>
 	
+	<!-- 고객사 삭제된 데이터 복원(수정) -->
+	<update id="custcompDelEdit" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		update CUSTOMER
+		set
+			act_yn = 'Y',
+			fin_mdfy_id = #{fin_mdfy_id}
+		where cust_id = #{cust_id}
+	</update>
+
 	<!-- 기업고객 삭제 -->
 	<update id="custcompDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		update CUSTOMER 
 		set act_yn = 'N'
 		where cust_id = #{cust_id}
 	</update>
+	
+	<!-- 기업고객 삭제 -->
+	<delete id="custcompDelDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		delete 
+		from customer 
+		where cust_id = #{cust_id}
+	</delete>
 	
 	<!-- 산업군 코드 리스트 -->
 	<select id="getIDC" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">

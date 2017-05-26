@@ -1,5 +1,9 @@
 /**
  * 함수목록
+ * custcompDelListbtn() 								: 삭제된 데이터 리스트
+ * custcompDelList(page)								: 삭제된 데이터 리스트
+ * ccDelDetail(cust_id)									: 삭제된 데이터 상세보기
+ *
  * addForm() 											: 고객사리스트 검색조건 추가
  * dellForm(obj) 										: 고객사리스트 검색조건 삭제
  * schCustComp(event) 									: 검색 엔터키 기능
@@ -24,7 +28,80 @@
  * dateFormat(timestamp) 								: 날짜 13자리를 yyyy-mm-dd형식으로 변환
  * paging() 											: 페이징
  * schPaging(ccPageNum) 								: 조회 페이징
- */
+**/
+
+$(document).ready(function() {
+	var ctx = $("#ctx").val();
+	var cust_id = $("#nowCust_id").val();
+	custcompDelList(page);
+	ccDelDetail(cust_id);
+});	
+
+//고객사 삭제된 데이터 리스트 출력
+function custcompDelList(page) {
+	var ctx = $("#ctx").val();
+	$.ajax({
+		type : 'post',
+		url : ctx + '/custcompDelListAjax',
+		data : {	
+				    pageNum : page, 
+					sch_cust_nm : $("#sch_cust_nm").val(), 
+					sch_comp_num : $("#sch_comp_num").val(), 
+					sch_corp_num : $("#sch_corp_num").val(), 
+				},
+				datatype : 'json',
+		success:function(result){
+			if(result.ccVOListSize == 0){
+				alert("검색결과가 없습니다.");
+				location.href = ctx+'/custcomp';
+			}else{
+				//리스트 출력 시 버튼 상태 설정
+				$("#functionBtn").css("display", "block");
+				
+				$("#ccDelListTbody").children().remove();
+				$.each(result.ccVOList, function(i, cc){
+				
+					$("#ccDelListTbody").append("" +
+							"<tr id='"+cc.cust_id+"'>"+
+							"<th style='text-align: center;'><input type=checkbox   id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
+							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
+							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccDelDetail('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+							"<td id=cust_nm style='text-align: center'>"+cc.comp_num+"</td>"+
+							"<td style='text-align: center'>"+cc.corp_num+"</td>"+
+							"<td style='text-align: center'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+							"<td style='text-align: center'>"+cc.sales_scale+"</td>"+
+							"<td style='text-align: right; padding-right:8px'> "+cc.emp_qty+"</td>"+
+							"<td style='text-align: center'>"+cc.indst+"</td>"+
+							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>+"+
+							"</tr >"
+					);
+				});
+			}
+			$("#pageSpace").children().remove();	
+			$("#pageSpace").children().remove();
+			var ccPageNum = result.ccPageNum;
+			var startPageNum = result.page.startPageNum;
+			var endPageNum = result.page.endPageNum;
+			var firstPageCount = result.page.firstPageCount;
+			var totalPageCount = result.page.totalPageCount;
+			var prevPageNum = result.page.prevPageNum;
+			var nextPageNum = result.page.nextPageNum;
+			var prevStepPage = result.page.prevStepPage;
+			var nextStepPage = result.page.nextStepPage;
+			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+		},
+		error:function(request){
+			alert("error : " + request);
+		}
+	});
+}
+
+//고객사 삭제된 데이터 상세보기
+function ccDelDetail(cust_id) {
+	var ctx = $("#ctx").val();
+	location.href = ctx+'/custcompDelDetail?cust_id=' + cust_id;
+}
 
 // 서브메뉴 유지
 $("#navisub4").show();
@@ -1045,4 +1122,5 @@ function schPaging(ccPageNum) {
 		}
 	});//document.ready
 }
+
 

@@ -136,7 +136,6 @@ function ccMngDetail(cust_id,iuser_id,org_nm,iuser_nm){
 	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+'&org_nm='+org_nm+
 				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
 				'newwindow1','width=770, height=310, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-
 }
 
 //키맨 삭제

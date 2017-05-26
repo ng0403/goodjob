@@ -251,7 +251,7 @@ public class CustCompController {
         return "redirect:/custcomp";
 	}
 	
-	// 기존고객 삭제
+	// 고객사 삭제
 	@RequestMapping(value = "/custcompDelete", method = RequestMethod.POST)
 	public String custcompDelete(String[] custcomp_del) throws IOException {
 		
@@ -405,6 +405,51 @@ public class CustCompController {
 			mov.addObject("searchInfo", map);
 			return mov;
 		}
+	}
+	
+	//고객사 삭제된 데이터 복원 ajax
+	@RequestMapping(value = "/custcompDelModify", method = RequestMethod.POST)
+	@ResponseBody ModelAndView custcompDelModify(@ModelAttribute CustCompVO ccVO, HttpSession session, 
+													@RequestParam Map<String, String> map,
+													@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+													String cust_id) {
+		
+		System.out.println("DelDetail Edit Controller : 고객사 삭제된 데이터 복원");
+		
+		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		ccVO.setAct_yn("Y");
+		ccVO.setCust_id(cust_id);
+		System.out.println("복원된 고객사ID : " + ccVO.getCust_id());
+		
+		System.out.println(ccVO);
+		ccService.custcompDelEdit(ccVO);
+		
+		ModelAndView mov = new ModelAndView("custcomp");
+		
+		//고객사 상세정보
+		ccVO = ccService.custcompDetail(ccVO.getCust_id());
+
+		Map<String, Object> ccMap = new HashMap<String, Object>();
+		ccMap.put("ccVO", ccVO);
+		ccMap.put("pageNum", pageNum);
+		mov.addObject("ccVO", ccVO);
+		mov.addObject("pageNum", pageNum);
+		
+		return mov;
+		
+	}
+	
+	// 고객사 삭제된 데이터 완전 삭제
+	@RequestMapping(value = "/custcompDelDelete", method = RequestMethod.POST)
+	@ResponseBody public int custcompDelDelete(HttpSession session,
+													@RequestParam(value = "pageNum", defaultValue = "1") String pageNum
+													, String cust_id) {
+		
+		System.out.println("데이터 완전삭제 고객사 ID : " + cust_id );
+		int result = 0;
+		result += ccService.custcompDelDelete(cust_id);
+		System.out.println("삭제결과 : " + result);
+		return result;
 	}
 	
 	// 직원검색 팝업

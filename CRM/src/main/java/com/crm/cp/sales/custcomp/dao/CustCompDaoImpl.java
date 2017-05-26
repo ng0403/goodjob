@@ -779,4 +779,18 @@ public class CustCompDaoImpl implements CustCompDao {
 		return ccVO;
 	}
 
+	// 고객사 삭제된 데이터 복원(수정)
+	@Override
+	public void custcompDelEdit(CustCompVO ccVO) {
+		sqlSession.update("custcomp.custcompDelEdit", ccVO);
+	}
+
+	// 고객사 삭제된 데이터 완전삭제
+	@Override
+	public int custcompDelDelete(String cust_id) {
+		System.out.println("고객사 완전삭제 : " + cust_id);
+		int result = sqlSession.update("custcomp.custcompDelDelete", cust_id);
+		return result;
+	}
+
 }
