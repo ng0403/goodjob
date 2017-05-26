@@ -63,7 +63,7 @@ $(function() {
 		<div id="title">
 			<div class="caption">
 				<label id="listLabel" class="ui header">■ 견적 > 
-					<a href="/delEstInqr" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">견적관리</a>
+					<a href="/delEstInqr" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">견적관리 삭제된 데이터</a>
 					 > 견적관리 삭제된 데이터 상세정보
 				</label>
 			</div>

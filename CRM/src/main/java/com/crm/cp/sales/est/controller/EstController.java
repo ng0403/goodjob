@@ -850,7 +850,7 @@ public class EstController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/delEstDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/delEstDelete", method = RequestMethod.POST)
 	@ResponseBody public int delEsttDelete(HttpSession session, EstVO evo) 
 	{
 		int result = 0;

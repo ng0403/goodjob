@@ -51,7 +51,7 @@
 	</form>
 	<div id="title">
 		<div class="caption">
-			<label id="listLabel" class="ui header">■ 견적 > 견적관리 > 견적목록</label>
+			<label id="listLabel" class="ui header">■ 견적 > 견적관리</label>
 		</div>
 	</div>
 		<div class="search_div" id="search_div1">
