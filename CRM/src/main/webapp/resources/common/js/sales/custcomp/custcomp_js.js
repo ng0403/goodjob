@@ -13,6 +13,7 @@
  * custcompInsert() 									: 고객사 추가
  * custcompDelete() 									: 고객사 삭제
  * custCompDel(ctx) 									: 기업고객 삭제
+ * custcompDelListbtn()									: 고객사 삭제된 데이터
  * viewDetail(cust_id) 									: 고객사 상세보기
  * ccDetail(cust_id)				 					: 고객사 상세보기 Ajax
  * keymanList(cust_id) 									: 키맨 리스트 Ajax

@@ -636,7 +636,7 @@ public class CustCompDaoImpl implements CustCompDao {
 	public List<CustCompVO> getEmpList(Map<String, Object> iuserMap) {
 		List<CustCompVO> empVOList = null;
 		try {
-			empVOList = sqlSession.selectList("empList", iuserMap);
+			empVOList = sqlSession.selectList("custcomp.empList", iuserMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

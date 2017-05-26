@@ -847,7 +847,9 @@
 						      , i.COMP_PH3
                   , o.ORG_NM
 					   FROM IUSER i, EMPLOYEE e, ORGANIZATION o
-				     WHERE i.IUSER_ID = e.IUSER_ID
+				     WHERE 1=1
+             			and i.iuser_id != 'IU00001'
+				     	AND i.IUSER_ID = e.IUSER_ID
              			AND i.ORG_ID = o.ORG_ID
 						AND i.iuser_nm LIKE '%'||#{iuser_nm}||'%'
 	                ) b

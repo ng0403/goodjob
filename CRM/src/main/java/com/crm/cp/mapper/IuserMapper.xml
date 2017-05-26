@@ -51,6 +51,7 @@
     	AND u.ORG_ID = oz.ORG_ID(+)
 		AND u.IUSER_DIV_CD = c.CODE
 		AND c.CD_GRP_ID = 'USR'
+		AND u.iuser_id != 'IU00001'
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if> 

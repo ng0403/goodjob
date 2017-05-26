@@ -1,4 +1,37 @@
-
+/**
+ * 함수목록
+ * ccMngDetail(cust_id,iuser_id,org_nm,iuser_nm) 	: 고객명 클릭 시 detail값 
+ * pocDeatil(cust_id) 								: 고객사담당자 상세정보
+ * addCustManager(ctx) 								: 고객사별 담당사원 추가 팝업
+ * custMngDelete() 									: 키맨 삭제
+ * keymanDeatil(cust_id,cont_id, cont_nm) 			: 키맨 상세정보 
+ * keymanDelete()									: 키맨 삭제
+ * opptChkCancel() 									: 영업기회 전체 선택해제
+ * ccOpptDetail(sales_oppt_id) 						: 영업기회 상세정보 
+ * ccOpptDel(ctx) 									: 영업기회 삭제
+ * actChkCancel()  									: 영업활동 전체선택 해제
+ * ccActDetail(sales_actvy_id) 						: 영업활동 상세정보
+ * custActiveAdd(ctx) 								: 영업활동 추가 팝업
+ * ccActDel(ctx) 		 							: 영업활동 삭제
+ * estChkCancel() 									: 견적 전체선택 해제
+ * ccEstDetail(estim_id) 							: 견적 상세정보
+ * estimateAdd(ctx) 								: 견적 추가 팝업
+ * ccEstDel(ctx) 									: 견적 삭제
+ * contChkCancel()  								: 계약 전체선택 해제
+ * ccContDetail(contr_id) 							: 계약 상세정보
+ * ccContDel(ctx) 									: 계약 삭제
+ * posSalechkCancel() 								: 영업담당자 전체선택 해제
+ * posDeatil(sales_actvy_id, iuser_id) 				: 영업담당자 상세정보
+ * custPosAdd(ctx) 									: 영업담당자 추가 팝업
+ * posDelete() 										: 영업담당자 삭제
+ * addCustComp(ctx) 								: 기업고객 추가
+ * mdfyCustComp(ctx) 								: 기업고객 수정
+ * custCompMdfyBtn() 								: 편집버튼
+ * custCompCancelBtn() 								: 취소버튼
+ * onlyNumber(event) 								: 숫자만 입력받는 함수
+ * readDetail() 									: 입력창 비활성화
+ * 
+**/
 $(document).ready(function() {
 	
 	var ctx = $("#ctx").val();
@@ -8,7 +41,7 @@ $(document).ready(function() {
 	estimateAdd(ctx);
 	custPosAdd(ctx);
 	addCustManager(ctx);
-	custCompAddBtn();
+//	custCompAddBtn();
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
@@ -84,7 +117,6 @@ $(document).ready(function() {
 			$("input[id=chk_cust_id]").prop("checked", false);
 		}
 	});
-	
 	
 	// 기업고객 계약 탭 리스트 체크박스 선택, 해제
 	$("#ccContListCheck").click(function(){
@@ -323,32 +355,6 @@ function custCompBackBtn() {
 	history.back(-1);
 }
 
-// 추가 버튼 기능
-function custCompAddBtn() {
-	
-	//focus, css, readonly, disabled false 상태로 변경
-	//값 초기화
-//	$("#custcomptbody #cust_nm").focus();
-//	$("#custcomptbody input[type='text'], textarea, input[type='date']").attr({
-//		readonly:false,
-//		style:'background-color:white'
-//	}).val('');
-//	$("#custcomptbody select").attr({
-//		disabled:false,
-//		style:'background-color:white'
-//	});
-	
-	// 버튼 활성화
-//	$("#sales_scale_cd").children().eq(0).attr("selected", "selected").css("height", "24pt"); // 매출규모 코드 선택
-//	$("#indst_cd").children().eq(0).attr("selected", "selected"); // 산업군 코드 선택
-//	//$("#stat_cd").children().eq(0).attr("selected", "selected"); // 기업 상태 코드 선택
-//	$("#iuser_nm").attr("readonly", true);
-//	$("#iuser_search").attr("disabled", false);
-//	
-//	$("#baseBtnDiv").css("display", "block");
-//	$("#addBtnDiv").css("display", "none");
-//	$("#mdfBtnDiv").css("display", "none");
-}
 
 // 편집 버튼 기능
 function custCompMdfyBtn() {
