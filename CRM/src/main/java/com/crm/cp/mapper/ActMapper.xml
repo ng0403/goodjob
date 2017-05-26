@@ -462,6 +462,26 @@
 	    ORDER BY SALES_OPPT_ID
 	</select>
 	
+	<!-- 영업기회팝업 리스트 -->
+	<select id="actOpptCustList" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		SELECT 
+			S.SALES_OPPT_ID, S.SALES_OPPT_NM,
+			(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OTL' AND C.CODE = S.SALES_LEV_CD) SALES_LEV_CD,
+  			(SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = S.SALES_OPPT_STAT_CD ) SALES_OPPT_STAT_CD,
+  			S.EXPT_SALES_AMT, 
+  			S.EXPT_FIN_D, 
+  			S.PSBLTY_RATE 
+		FROM 
+			SALES_OPPORTUNITY S
+		WHERE 
+			S.ACT_YN = 'Y' AND S.SALES_OPPT_STAT_CD = '0001'
+		<if test="cust_id != null and cust_id != ''">
+			AND S.CUST_ID = #{cust_id}
+		</if>
+		
+	    ORDER BY SALES_OPPT_ID
+	</select>
+	
 	<!-- 영업기회 리스트 검색 -->
 	<sql id="where-act_oppt_list">
 		<if test="keyfield=='oppt_id'">

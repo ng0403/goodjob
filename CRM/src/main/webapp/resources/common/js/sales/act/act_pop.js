@@ -56,6 +56,8 @@ function inputCustNm(custNm,custId)
 	// List
 	$('#scust_nm').val(custNm);
 	$('#scust_id').val(custId);
+	
+	$('#inputCust').val('true');
 }
 
 //고객사리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업

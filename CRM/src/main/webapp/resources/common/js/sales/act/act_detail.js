@@ -834,6 +834,23 @@ function searchActDiv(){
 	}
 }
 
+//영업기회 리스트 팝업
+function actOpptListPopup(ctx){
+	$('#act_opp_nm').click(function(){
+		
+		if($('#inputCust').val()=='true')
+		{
+			var cust_id = $('#cust_id').val();
+			window.open(ctx+'/actOpptList?cust_id='+cust_id,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		}
+		else
+		{
+			alert('고객을 먼저 선택해주세요.');
+			return;
+		}
+	});
+}
+
 
 // 수정 버튼 눌렀을 시 ajax부분 (기존)
 //$(document).ready(function() {

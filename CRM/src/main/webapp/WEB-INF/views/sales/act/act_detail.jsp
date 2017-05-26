@@ -36,6 +36,7 @@
 	<input type="hidden" id="hsales_oppt_nm" value="${sales_oppt_nm}">
 	<input type="hidden" id="hcust_id" value="${cust_id}">
 	<input type="hidden" id="hcust_nm" value="${cust_nm}">
+	<input type="hidden" id="inputCust" value="false"/>
 	
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
@@ -147,22 +148,22 @@
 									<c:if test="${act_flg eq 'oppt'}">	<!-- 영업기회 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" style="display: none;" disabled="disabled">
 									</c:if>
 								    <c:if test="${act_flg eq 'oppt_ed'}">	<!-- 영업기회 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" style="display: none;" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust'}">	<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" style="display: none;" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust_ed'}">	<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" style="display: none;" disabled="disabled">
 									</c:if>
 								</c:if>
 							</td>

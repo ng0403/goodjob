@@ -65,8 +65,8 @@ public class ActServiceImpl implements ActService{
 	}
 	
 	@Override
-	public List<Object> actOpptList() {
-		return actDao.actOpptList();
+	public List<OpptVO> actOpptList( OpptVO opptvo) {
+		return actDao.actOpptList(opptvo);
 	}
 	
 	@Override

@@ -62,8 +62,8 @@ public class ActDaoImpl implements ActDao{
 	}
 	
 	@Override
-	public List<Object> actOpptList() {
-		return sqlSession.selectList("act.actOpptList");
+	public List<OpptVO> actOpptList(OpptVO oppt) {
+		return sqlSession.selectList("act.actOpptCustList", oppt);
 	}
 	
 	@Override

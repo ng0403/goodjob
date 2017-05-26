@@ -21,7 +21,7 @@ public interface ActDao {
 
 	List<ActVO> actDivCdList();
 	
-	List<Object> actOpptList();
+	List<OpptVO> actOpptList(OpptVO opptvo);
 	
 	List<Object> actOpptList(Map<String, Object> map);
 

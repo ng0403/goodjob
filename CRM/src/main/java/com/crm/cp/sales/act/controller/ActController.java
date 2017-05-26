@@ -400,10 +400,13 @@ public class ActController {
 	}
 
 	//영업기회리스트 팝업창 
-	@RequestMapping(value="/actOpptList" , method=RequestMethod.GET)
-	public ModelAndView ActOpptList(HttpSession session)
+	@RequestMapping(value="/actOpptList" , method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView ActOpptList(HttpSession session, OpptVO opptvo, String cust_id)
 	{
-		List<Object> actOpptList = actService.actOpptList();
+		System.out.println("ActOpptList : " + cust_id);
+		opptvo.setCust_id(cust_id);
+		
+		List<OpptVO> actOpptList = actService.actOpptList(opptvo);
 		ModelAndView mov = new ModelAndView("/sales/act/actPop/act_oppt_list_pop");
 		
 		System.out.println("LIST : " + actOpptList);
