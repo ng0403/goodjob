@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="/WEB-INF/views/sales/oppt/opptPublic.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/sales/oppt/opptPublic.jsp" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +71,7 @@
 
 					<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 			
-			    <input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
 			<div id="tableline">	 
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
@@ -121,8 +121,8 @@
 		</div>
 		<div class="bottom_div">
 			<div class="functionBtn_div">
-<!-- 		    	<input type="button" class="tiny tiny ui orange button" value="추가" onclick="AddCustomerOpen();"> -->
-<!-- 				<input type="button" class="tiny tiny ui orange button" value="삭제" onclick="opptDelete();" > -->
+<!-- 		    	<input type="button" class="tiny ui blue button" value="추가" onclick="AddCustomerOpen();"> -->
+<!-- 				<input type="button" class="tiny ui blue button" value="삭제" onclick="opptDelete();" > -->
 			</div>
 			<!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

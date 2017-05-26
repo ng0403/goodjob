@@ -56,8 +56,8 @@ $(document).ready(function(){
 	<div id="salesOpptPrdtdiv">
 				<input type="hidden" id="inputCust" value="false"/>
 				<div class="detailBtn" style="padding: 5px;">
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품삭제" id="opptProdDelete"/>
-					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui orange button" value="상품추가" id="opptProdListBtn"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui blue button" value="상품삭제" id="opptProdDelete"/>
+					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;" class="tiny ui blue button" value="상품추가" id="opptProdListBtn"/>
 				</div>
 
 				<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >

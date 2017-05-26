@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="/WEB-INF/views/sales/oppt/opptPublic.jsp" %>
+<%-- <%@ include file="/WEB-INF/views/sales/oppt/opptPublic.jsp" %> --%>
 
 <!DOCTYPE html>
 <html>
@@ -13,20 +13,17 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" /> --%>
-<title>개인 고객</title>
-</head>
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
-<script type="text/javascript">
-</script>
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
-
+<title>개인 고객</title>
 <script>
-   $(function() {
-      $('table').tablesort();
-   });            
+$(function() {
+	$('table').tablesort();
+});		   	
 </script>
+</head>
 <body>
 <form action="" method="get" id="listForm" >
 	<input type="hidden" id="ctx" value="${ctx}"/>
@@ -71,10 +68,10 @@
 
 					<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 			
-			    <input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
 		    </div>		
 			<div id="tableline">	 
-				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
+				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='opptAllSelect'/></th>
@@ -117,9 +114,9 @@
 		</div>
 		<div class="bottom_div">
 			<div class="functionBtn_div">
-		    	<input type="button" class="tiny tiny ui orange button" value="추가" onclick="AddCustomerOpen();">
-				<input type="button" class="tiny tiny ui orange button" value="삭제" onclick="opptDelete();" >
-		    	<input type="button" class="tiny tiny ui orange button" value="삭제된 데이터" onclick="DelListOpen();">
+		    	<input type="button" class="tiny ui blue button" value="추가" onclick="AddCustomerOpen();">
+				<input type="button" class="tiny ui blue button" value="삭제" onclick="opptDelete();" >
+		    	<input type="button" class="tiny ui blue button" value="삭제된 데이터" onclick="DelListOpen();">
 				
 			</div>
 			<!-- 페이징 처리 -->

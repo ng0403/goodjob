@@ -35,7 +35,7 @@
 					<option value="ct_nm">고객명</option>
 				</select>
 				<input id="search_text" type="text" name="keyword" class="comp_list_txt"> &nbsp;
-				<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
+				<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
 			</form>
 	</div>
 	<div class="custcomp_list_div" style="padding-top: 30px;">

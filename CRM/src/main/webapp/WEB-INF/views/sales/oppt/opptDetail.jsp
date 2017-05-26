@@ -7,17 +7,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
-<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
-<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
+
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+
+<link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" />
 </head>
 
 <script type="text/javascript">
@@ -31,10 +37,6 @@ $(document).ready(function() {
 	var vn_hour = vn_date_today.getHours(); 
 	var vn_min = vn_date_today.getMinutes(); 
 	
-// 	alert(vn_date_today);
-// 	alert(vn_year);
-// 	alert(vn_hour);
-// 	alert(vn_min);
 	$('#salesId').val(opptId);
 	
 	viewSalesActive(opptId);
@@ -64,34 +66,30 @@ $(document).ready(function() {
 		<label for="tab2">견적</label> 
 
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
-			<div id="tabDiv1" class="tab1_content">
-			<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
+			<div id="tabDiv1" class="tab1_content" style="width: 100%;">
+			<div class="bt_position_authuser">
 				<!-- actInsertForm2 함수에 값을 넘겨줄 때 detail 정보에 들어 있는 값으로 넘겨줘야한다. -->
-				<button id="act_opp_nm" class="tiny ui orange button" onclick="actInsertForm2('oppt', '${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}');">영업활동 추가</button>
-				<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptActiveDelete();">삭제</button>
+				<button id="act_opp_nm" class="tiny ui blue button" onclick="actInsertForm2('oppt', '${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}');">영업활동 추가</button>
+				<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
-			<div id="tableline" class="detailtbody" >
-				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
+			<div id="tableline">
+				<table id="goaltable" class="ui sortable celled table">
 					<thead>
-						<tr class="headerLock">
-							<th rowspan="2"><input type="checkbox"  id='actAllSelect'/></th>
-							<th rowspan="2">영업활동명</th>
-<!-- 							<th rowspan="2" style="width: 8% !important; text-align: center;">활동구분</th> -->
-<!-- 							<th rowspan="2">영업기회명</th> -->
-							<th rowspan="2">활동유형</th>
-							<th>시작일자</th>
-							<th>시작시간</th>
-							<th rowspan="2">상태</th>
-							<th rowspan="2">등록자</th>
-							<th rowspan="2">등록일시</th>
+						<tr>
+							<th style='width:30px;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
+							<th style='width:270px;' rowspan="2">영업활동명</th>
+							<th style='width:105px;   height:12px; padding:5px;'>시작일자</th>
+							<th style='width:63px;   height:12px; padding:5px;'>시작시간</th>
+							<th style='width:112px;'  rowspan="2">활동유형</th>
+							<th style='width:98px;'  rowspan="2">상태</th>
 						</tr>
 						<tr>
-							<td>종료일자</td>
-							<td>종료시간</td>
+							<th style='width:80px; height:12px; padding:5px;'>종료일자</th>
+							<th style='width:80px; height:12px; padding:5px;'>종료시간</th>
 						</tr>
 					</thead>
-					<tbody id="activeList" class="detailtbody" >	
+					<tbody id="activeList" class="tbody" style="height: 139px; overflow: auto;">
 							<tr style='height: 150px; text-align: center;'><td colspan='10' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>
 					</tbody>
 					</table>
@@ -100,12 +98,12 @@ $(document).ready(function() {
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
 		<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
-			<button id="estimateAdd" class="tiny ui orange button">견적 추가</button>
-			<button id="addkeymancancel" class="tiny ui orange button" onclick="javascript:opptEstimDelete();">삭제</button>
+			<button id="estimateAdd" class="tiny ui blue button">견적 추가</button>
+			<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
 		<div id="tableline" class="detailtbody" >
-			<table id="goaltable" class="ui celled table" cellspacing="0" style="height: 192px;">
+			<table id="goaltable" class="ui sortable celled table" cellspacing="0" style="height: 192px;">
 				<thead>						
 					<tr class="headerLock">
 						<th><input type="checkbox"  id='estimAllSelect'/></th>
@@ -118,7 +116,7 @@ $(document).ready(function() {
 						<th>등록일시</th>
 					</tr>
 				</thead>
-				<tbody id="estimList"  class="detailtbody" >
+				<tbody id="estimList"  class="tbody" style="height: 139px; overflow: auto;">
 					<tr style='height: 150px; text-align: center;'><td colspan='8' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>		
 				</tbody>
 				</table>

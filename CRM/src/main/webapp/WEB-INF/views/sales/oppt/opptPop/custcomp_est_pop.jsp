@@ -7,12 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_estpop_css.css" type="text/css" />
-<link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
-<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
+
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
+
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script type="text/javascript">
 $(function() {
@@ -40,6 +44,7 @@ $(function() {
 }); 
 </script>
 
+<!-- 영업기회 상세 견적탭 견적추가 클릭! -->
 <title>견적 등록</title>
 </head>
 
@@ -108,14 +113,14 @@ $(function() {
 			
 			<c:if test="${flag == 0}">
 			<div class="estimate_bt_position2">
-				<input type="button" class="tiny ui orange button" value="저장" id="est_add" onclick="opptEstimAdd('${ctx}');"/>
-				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel"/>
+				<input type="button" class="tiny ui blue button" value="저장" id="est_add" onclick="opptEstimAdd('${ctx}');"/>
+				<input type="button" class="tiny ui button" value="취소" id="estimate_cancel"/>
 			</div>
 		</c:if>
 		<c:if test="${flag == 1}">
 			<div class="estimate_bt_position2">
-				<input type="button" class="tiny ui orange button" value="저장" id="est_mdfy" onclick="opptEstimUpdate('${ctx}');"/>
-				<input type="button" class="est_list_bt" value="취소" id="estimate_cancel"/>
+				<input type="button" class="tiny ui blue button" value="저장" id="est_mdfy" onclick="opptEstimUpdate('${ctx}');"/>
+				<input type="button" class="tiny ui button" value="취소" id="estimate_cancel"/>
 			</div>
 		</c:if>
 	</div>	
@@ -197,8 +202,8 @@ $(function() {
 				
 		
 		<div class="estimate_bt_position"> 
-			<input type="button" class="tiny ui orange button"  value="상품추가" onclick="prodList('${ctx}');"/>
-			<input type="button" class="est_list_bt" value="상품삭제" onclick="prodDelete();"/>
+			<input type="button" class="tiny ui blue button"  value="상품추가" onclick="prodList('${ctx}');"/>
+			<input type="button" class="tiny ui button" value="상품삭제" onclick="prodDelete();"/>
 		</div>
 	</div>
 </body>
