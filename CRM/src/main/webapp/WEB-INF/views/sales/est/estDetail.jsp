@@ -9,22 +9,16 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estimate_popup.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/oppt/opptDetail.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" />
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-<!-- 	<link rel="stylesheet" -->
-<%-- 	href="${ctx}/resources/common/css/sales/oppt/tab_example.css" type="text/css" /> --%>
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript"
@@ -32,8 +26,6 @@
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/sales/est/estDetail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
-
-
 
 <title>Insert title here</title>
 </head>
@@ -44,15 +36,15 @@
 </style>
 <script type="text/javascript">
 $(function() {
-// 	 $("#estimatediv").mCustomScrollbar({  
-//         theme:"rounded-dark",
-//         autoHideScrollbar: false,
-//         scrollbarPosition: "outside",
-//         scrollButtons:{
-//           enable:true
-//         },
-//         axis:"y"
-//       });
+	 $("#estimatediv").mCustomScrollbar({
+        theme:"rounded-dark",
+        autoHideScrollbar: false,
+        scrollbarPosition: "outside",
+        scrollButtons:{
+          enable:true
+        },
+        axis:"y"
+      });
 });  
 </script>
 <body>
@@ -109,7 +101,6 @@ $(function() {
 									<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" value="${detail.cust_nm }" >
 									<input type="hidden"
 									name="cust_id" id="cust_id" value="${detail.cust_id }" /> 
-	<!-- 							<input type="hidden" name="lead_id" id="lead_id" value="" />  -->
 									<input type="button" class="tiny ui blue basic button" id="customer" value="고객"
 									onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
 								</div>

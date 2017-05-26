@@ -9,13 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estDetail.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/est/estList.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	 --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/est/estList.js"></script>
@@ -45,7 +40,6 @@
 </head>
 <body style="overflow: auto;">
 	<input type="hidden" id="ctx" value="${ctx}">
-<%-- <form action="${ctx}/est" method="get" id="listForm"> --%>
 	<form id="estim_detail">
 		<input type="hidden" id="estim_id" name="estim_id">
 	</form>
