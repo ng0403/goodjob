@@ -107,7 +107,7 @@ $(document).ready(function(){
 								<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="int2">
 								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}"/>
 							</div>
-								<input type="button" class="tiny ui orange basic button" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
+								<input type="button" class="tiny ui blue basic button" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
 						<tr>

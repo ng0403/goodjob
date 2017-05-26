@@ -52,7 +52,7 @@
 						<td class="tbody_tr_td" id="cust_id">${custcompList.cust_id}</td>
 						<td class="tbody_tr_td" id="cust_nm">${custcompList.cust_nm}</td>
 						<td class="tbody_tr_td">${custcompList.cust_div_cd}</td>
-						<td class="tbody_tr_td">${custcompList.stat_cd}</td>		
+						<td class="tbody_tr_td">${custcompList.biz_status}</td>		
 					</tr>
 					</c:forEach>
 				</tbody>
