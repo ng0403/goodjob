@@ -154,7 +154,7 @@ $(function() {
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui button" value="상품삭제" id="prodDelete"/>
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui blue button" value="상품추가" id="prodListBtn"/> 
 				</div>
-				<table id= "estimatehead" class="ui celled table"  style="margin-left: 22px; text-align: center; border-collapse: collapse;border:1px; margin-bottom:0px;" >
+				<table id= "estimatehead" class="ui celled table"  style="width:100%; text-align: center; border-collapse: collapse;border:1px; margin-bottom:0px;" >
 					<tr>
 						<th style="width: 3%;padding:0px;text-align: center;"  rowspan="2"><input type="checkbox" id="allSelect"></th>
 						<td style="width: 32%;">품목명</td>
