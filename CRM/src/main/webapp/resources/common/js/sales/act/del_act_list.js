@@ -25,7 +25,6 @@ function actSaleListMakeBlock()
 					 + "<td rowspan='2'></td>"
 					 + "<td rowspan='2'></td>"
 					 + "<td rowspan='2'></td>"
-					 + "<td rowspan='2'></td>"
 					 + "<td></td><td></td>"
 					 + "<td rowspan='2'></td>"
 					 +"<tr>" + "<td></td><td></td></tr>";
@@ -165,7 +164,7 @@ function searchActBtn(page)
 }
 
 //영업활동 리스트 출력
-function searchActSaleList(pageNum)
+function searchActSaleList(page)
 {
 	var ctx = $("#ctx").val();
 	var act_flg = $('#act_flg').val();
@@ -173,12 +172,12 @@ function searchActSaleList(pageNum)
 	var act_search_div_id = $("#act_search_div_id").val();
 	var act_search_txt    = $("#act_search_txt").val();
 	var tbodyContent = "";
-
+	
 	$.ajax({
 		url : ctx+'/actPaging',
 		type : 'POST',
 		data : {
-			pageNum : pageNum,
+			pageNum : page,
 			ssale_actvy_strt   : $('#ssale_actvy_strt').val(),
 			ssale_actvy_strt0  : $('#ssale_actvy_strt0').val(),
 			ssale_actvy_strt1  : $('#ssale_actvy_strt1').val(),

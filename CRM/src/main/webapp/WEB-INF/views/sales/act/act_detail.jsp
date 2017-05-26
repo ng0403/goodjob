@@ -41,7 +41,7 @@
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
 			<c:if test="${act_flg eq null}">
-				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 19px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 등록</div>
+				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 등록</div>
 			</c:if>
 			<c:if test="${act_flg == '1'}">
 				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 등록</div>
