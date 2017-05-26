@@ -77,7 +77,7 @@
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th><input type="checkbox"  id='opptAllSelect'/></th>
+<!-- 						<th><input type="checkbox"  id='opptAllSelect'/></th> -->
 						<th>영업기회명</th>
 						<th>고객명</th>
 						<th>영업단계</th>
@@ -94,12 +94,12 @@
 				<tbody id="listTable" class="tbody">
 				<c:forEach items="${oplist}" var="list" begin="0" end="9">
 					<tr id="${list.sales_oppt_id}">
-						<td style="text-align: center;">
-							<input type="checkbox" id="list_sales_oppt_id" name="list_sales_oppt_id" style="text-align: center;" value="${list.sales_oppt_id}" onclick="chkCancel();" >
-							<input type="hidden" id="list_cust_id" value="${list.cust_id}">
-							<input type="hidden" id="list_sales_lev_cd" value="${list.sales_lev_cd}">
+<!-- 						<td style="text-align: center;"> -->
+<%-- 							<input type="checkbox" id="list_sales_oppt_id" name="list_sales_oppt_id" style="text-align: center;" value="${list.sales_oppt_id}" onclick="chkCancel();" > --%>
+<%-- 							<input type="hidden" id="list_cust_id" value="${list.cust_id}"> --%>
+<%-- 							<input type="hidden" id="list_sales_lev_cd" value="${list.sales_lev_cd}"> --%>
 							
-						</td>
+<!-- 						</td> -->
 						<td class="oppt_nm_class" style="text-align: left; padding-left:5px;" >
 							<a onclick="divide('${list.sales_oppt_id}');" id="list_sales_oppt_nm" href="#" style="text-decoration: none;" >${list.sales_oppt_nm}</a>
 						</td>
@@ -135,7 +135,7 @@
 		        		</a>
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:opportunityList(${page.prevPageNum})" class="icon item">
+		        		<a href="javascript:opportunityDelList(${page.prevPageNum})" class="icon item">
 		        			<i class="left chevron icon"></i>
 		        		</a>
 		    		</c:when>
@@ -144,11 +144,11 @@
 					<c:choose>
 						<c:when test="${i eq ccPageNum }">
 							<b>
-								<a  href="javascript:opportunityList('${i}');" id="pNum" class="item">${i}</a>
+								<a  href="javascript:opportunityDelList('${i}');" id="pNum" class="item">${i}</a>
 							</b>
 						</c:when>
 						<c:otherwise>
-							<a  href="javascript:opportunityList('${i}');" class="item">${i}</a>
+							<a  href="javascript:opportunityDelList('${i}');" class="item">${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -159,7 +159,7 @@
 		        		</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:opportunityList(${page.nextPageNum})"  class="icon item" >
+		       			<a href="javascript:opportunityDelList(${page.nextPageNum})"  class="icon item" >
 		       				<i class="right chevron icon"></i>
 		       			</a>
 		    		</c:when>

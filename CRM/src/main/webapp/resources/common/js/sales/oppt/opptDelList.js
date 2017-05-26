@@ -9,7 +9,7 @@
  * divide(opptId);					:	영업기회명 클릭시 호출 리스트 분류
  * viewDetail(opptId)				:	영업기회 상세정보 조회
  * searchBtn(page)					:	조회 버튼 클릭에 대한 검색어 입력 여부 확인
- * opportunityList(page)			:	영업기회 리스트 조회
+ * opportunityDelList(page)			:	영업기회 리스트 조회
  * estimList(opptId)				:	견적 리스트 조회
  * dateFormat(timestamp)			:	날짜 포맷 변환 함수
  * searchCustcompListPopup(ctx)		:	영업기회 고객 검색 팝업 open.
@@ -177,7 +177,7 @@ function opptPageInput(event){
 					alert("페이지 정보를 다시 입력하세요.")
 					$("#ccPageInput").val("1");
 				} else {
-					opportunityList(ccPageNum);
+					opportunityDelList(ccPageNum);
 				}
 			}
 }
@@ -338,7 +338,7 @@ function searchBtn(page){
 		alert("가능성을 앞에서부터 채워주세요.");
 		return;
 	}
-		opportunityList(page);
+		opportunityDelList(page);
 //	}
 }
 //컴마 입력 함수
@@ -352,12 +352,12 @@ function uncomma(str) {
     return str.replace(/[^\d]+/g, '');
 }
 //영업기회 리스트 출력
-function opportunityList(page){
+function opportunityDelList(page){
 	var ctx = $("#ctx").val();
 	
 	$.ajax({
 		type : 'post',
-		url : ctx + '/opptajax',
+		url : ctx + '/opptDelajax',
 		data : {pageNum : page
 			, ssales_oppt_nm : $("#ssales_oppt_nm").val()
 			, ssales_oppt_nm0 : $("#ssales_oppt_nm0").val()
@@ -385,9 +385,9 @@ function opportunityList(page){
 			
 				$("#listTable").append("" +
 						"<tr id='"+list.sales_oppt_id+"'>"+
-						"<th style='text-align: center;'><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
-						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
-						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
+//						"<th style='text-align: center;'><input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
+//						"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
+//						"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+"></th>"+
 						"<td class='oppt_nm_class' style='text-align: left; padding-left:5px;'><a onclick=\"divide('"+list.sales_oppt_id+"');\" id=list_sales_oppt_nm href='#' style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
 						"<td id=list_cust_nm>"+list.cust_nm+"</td>"+
 						"<td>"+list.sales_lev_cd_nm+"</td>"+
@@ -395,6 +395,8 @@ function opportunityList(page){
 						"<td>"+list.expt_fin_d+"</td>"+
 						"<td>"+list.psblty_rate+"</td>"+
 						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
+						"<td>"+list.fin_mdfy_id+"</td>"+
+						"<td>"+list.fin_mdfy_dt+"</td>+"+
 						"<td>"+list.fst_reg_id+"</td>"+
 						"<td>"+list.fst_reg_dt+"</td>+"+
 						"</tr>"
@@ -443,14 +445,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:opportunityList("+prevPageNum+")");
+		prevPage.attr("href","javascript:opportunityDelList("+prevPageNum+")");
 	}
 	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
 		ccPage.addClass("item");
-		ccPage.attr("href","javascript:opportunityList("+i+")");
+		ccPage.attr("href","javascript:opportunityDelList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -466,117 +468,10 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var nextI = $("<i>");
 	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:opportunityList("+nextPageNum+")");
+		nextPage.attr("href","javascript:opportunityDelList("+nextPageNum+")");
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-}
-//영업활동 리스트 조회
-function viewSalesActive(opptId){
-	$("#activeList").children().remove();	
-	$.ajax({  
-		type : 'GET',
-		url : 'opptSalesActiveList',
-		data : {opptId : opptId},
-		dataType : 'json', 
-		success:function(result){
-			var content = "";
-			if(result.actList.length==0){
-				content = "<tr style='height: 150px;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
-			}
-			else{
-			$.each(result.actList,function(i,data){
-				start_d = data.strt_d;
-				end_d = data.end_d;
-				reg_dt = data.fst_reg_dt;
-				//영업활동 리스트 추가
-				content +="<tr>"+
-				"<th rowspan='2' style='text-align: center;'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></th>"+ 
-				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>" +
-				"<a style='text-decoration: none;' href=javascript:opptActiveDetailPopup('"+data.sales_actvy_id+"')>"+data.sales_actvy_nm+"</a></td>"+
-				"<td rowspan='2'>"+data.sales_actvy_div_nm+"</td>"+
-				"<td rowspan='2' style='text-align: left; padding-left: 5px;'>"+data.sales_oppt_nm+"</td>"+
-				"<td rowspan='2'>"+data.sales_actvy_type_nm+"</td>"+
-				"<td>"+start_d+"</td>"+
-				"<td>"+data.strt_t+"</td>"+
-				"<td rowspan='2'>"+data.sales_actvy_stat_nm+"</td>"+
-				"<td rowspan='2'>"+data.fst_reg_id+"</td>"+
-				"<td rowspan='2'>"+reg_dt+"</td>"+
-				"</tr>"+
-				"<tr>"+
-				"<td>"+end_d+"</td>"+
-				"<td>"+data.end_t+"</td>"+
-				"</tr>";	
-			});
-			
-//			if(result.actList.length < 5){
-//				for(var j = 0; j < 5-result.actList.length; j++){
-//					content += "<th rowspan='2' style='text-align: center;'></th>"+ 
-//					"<td rowspan='2'></td>"+
-//					"<td rowspan='2'></td>"+
-//					"<td rowspan='2'></td>"+
-//					"<td rowspan='2'></td>"+
-//					"<td></td>"+
-//					"<td></td>"+
-//					"<td rowspan='2'></td>"+
-//					"<td rowspan='2'></td>"+
-//					"<td rowspan='2'></td>"+
-//					"</tr>"+
-//					"<tr>"+
-//					"<td></td>"+
-//					"<td></td>"+
-//					"</tr>";
-//					
-//					}
-//				}
-			}	
-			$("#activeList").append(content);
-		},
-		error:function(request){
-			alert("error : " + request.status);
-		}
-	});
-}	
-//견적 리스트 조회
-function estimList(opptId){
-	$('#estimList').children().remove();
-	$.ajax({
-		type : 'get',
-		url : 'estimList',
-		data : { sales_oppt_id : opptId },
-		dataType : 'json',
-		success:function(result){
-			var content ="";
-			if(result.length==0){
-				content = "<tr style='height: 150px;'><td colspan='8'>등록된 견적이 없습니다.</td></tr>";
-			}else{
-			$.each(result,function(i,data){
-				content += '<tr>'+	
-						'<th><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
-						'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
-						'<td>'+data.estim_lev_cd+'</td>'+
-						'<td>'+data.estim_qty+'</td>'+
-						'<td style="text-align: right; padding-right: 5px;">'+comma(data.sales_price)+'</td>'+
-						'<td>'+data.estim_valid_d+'</td>'+
-						'<td>'+data.fst_reg_id+'</td>'+
-						'<td>'+data.fst_reg_dt+'</td>'+
-						'</tr>';
-			});
-//			if(result.length < 5){
-//				for(var j = 0; j < 5-result.length; j++){
-//					content += "<tr>"
-//						+ "<th></th>"
-//						+ "<td></td><td></td><td></td>"
-//						+ "<td></td><td></td><td></td><td></td></tr>";
-//				}
-//			}	
-			}	
-			$('#estimList').append(content);
-		},
-		error:function(request){
-			alert('error :' + request.status);
-		}
-	});
 }
 
 //영업기회 검색창 고객 리스트 팝업

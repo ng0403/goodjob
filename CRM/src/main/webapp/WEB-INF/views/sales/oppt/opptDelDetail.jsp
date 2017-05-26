@@ -77,12 +77,12 @@ $(document).ready(function(){
 			<div id="baseBtnDiv"  class="bt_position_authuser">
 				<input type="button" id="rollbackbtn" class="tiny ui orange button"  onclick="opptDelModify();" value="복원" />
 				<input type="button" id="deletebtn" class="tiny ui orange button"  onclick="opptDelDelBtn();" value="삭제" />
-				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptCancelBtn(${addFlag});" value="취소" />
+				<input type="button" id="cancelbtn" class="tiny ui button" onclick="opptDelCancelBtn(${addFlag});" value="취소" />
 			</div>
 			
 			<div id="ccustomerdiv" style="padding-top: 10px;">
 				<table id="ccustomertable_M" class="ui celled table">
-					<tbody id="opptDetail" class="tbody">
+					<tbody id="opptDelDetail" class="tbody">
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->

@@ -403,6 +403,49 @@ public class OpptController {
 
 		return result;
 	}
+	// 영업기회 삭제된 데이터 리스트 ajax
+	@RequestMapping(value = "/opptDelajax", method = RequestMethod.POST)
+	@ResponseBody
+	Map<String, Object> listDelajax(@RequestParam Map<String, String> map,
+			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+		
+		// 영업기회 상태 코드 가져오기
+		List<OpptVO> osclist = service.opptOscList();
+		
+		// 영업단계 코드 가져오기
+		List<OpptVO> otllist = service.opptOtlList();
+		
+		System.out.println(map.get("ssales_lev_cd"));
+		// 한글 검색 인코더 변환
+		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
+		map.put("ssales_oppt_nm0", map.get("ssales_oppt_nm0"));
+		map.put("ssales_oppt_nm1", map.get("ssales_oppt_nm1"));
+		map.put("scust_nm", map.get("scust_nm"));
+		map.put("scust_nm0", map.get("scust_nm0"));
+		map.put("scust_nm1", map.get("scust_nm1"));
+		map.put("ssales_lev_cd", map.get("ssales_lev_cd"));
+		map.put("ssales_lev_cd0", map.get("ssales_lev_cd0"));
+		map.put("ssales_lev_cd1", map.get("ssales_lev_cd1"));
+		map.put("spsblty_rate", map.get("spsblty_rate"));
+		map.put("spsblty_rate0", map.get("spsblty_rate0"));
+		map.put("spsblty_rate1", map.get("spsblty_rate1"));
+		map.put("pageNum", pageNum + "");
+		PagerVO page = service.opptPageCount(map);
+		map.put("startRow", page.getStartRow() + "");
+		map.put("endRow", page.getEndRow() + "");
+		//영업기회 리스트 출력
+		List<OpptVO> list = service.DelopptList(map);
+		System.out.println("검색결과 list :"+ list);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("oplist", list);
+		result.put("osclist", osclist);
+		result.put("otllist", otllist);
+		result.put("page", page);
+		result.put("searchInfo", map);
+		
+		return result;
+	}
 	// otllist list ajax
 	@RequestMapping(value = "/otllist", method = RequestMethod.POST)
 	@ResponseBody
