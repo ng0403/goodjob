@@ -22,6 +22,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/common/tablist_th.css"> --%>
 
 <!-- 테이블 th고정 자바스크립트 -->
@@ -30,6 +31,20 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" /> --%>
 
 </head>
+<script type="text/javascript">
+$(function() {
+	 $("#keymanTableTbody, #activeOpptList, #actTableTbody, #pocTableTbody").mCustomScrollbar({  
+        theme:"rounded-dark",
+        autoHideScrollbar: false,
+        scrollbarPosition: "outside",
+        scrollButtons:{
+          enable:true
+        },
+        axis:"y"
+      });
+	 activeDetail();
+});  
+</script>
 <body  >
 	<input type="hidden" id="custId" value="" >
 	<input type="hidden" id="sales_oppt_id" value="" >
