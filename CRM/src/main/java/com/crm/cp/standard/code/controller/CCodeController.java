@@ -46,9 +46,24 @@ CCodeService codeService;
 	
 	//코드 그룹검색
 	@RequestMapping(value = "/cdgrp", method= RequestMethod.POST)
-	public @ResponseBody List<Object> authSelect(@RequestBody Map<String,Object> JSON){
-		System.out.println("코드 검색 enter" + JSON);
+	public @ResponseBody List<Object> cdgrpSelect(@RequestBody Map<String,Object> JSON){
+		System.out.println("코드 그룹 검색 enter" + JSON);
 		List<Object> obj= codeService.codegrpList(JSON);
+		
+		System.out.println("결과값 " + obj.toString());
+
+		return obj;
+	}
+	
+
+	//코드 검색
+	@RequestMapping(value = "/codesrc", method= RequestMethod.POST)
+	public @ResponseBody List<Object> codeSelect(@RequestBody Map<String,Object> JSON){
+		System.out.println("코드 검색 enter" + JSON);
+		
+		List<Object> obj= codeService.codeList(JSON);
+		
+		System.out.println("결과값 " + obj.toString());
 
 		return obj;
 	}

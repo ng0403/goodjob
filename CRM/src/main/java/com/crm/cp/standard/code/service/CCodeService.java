@@ -10,6 +10,9 @@ public interface CCodeService {
 	
 	public List<CodeVO> codeList(String cd_grp_id); // 코드 리스트
 	
+	public List<Object> codeList(Map<String, Object> map); // 코드 검색
+
+	
 	public List<Object> codegrpList(); // 코드그룹 리스튼
 	
 	public List<Object> codegrpList(Map<String, Object> map); //코드 그룹 검색

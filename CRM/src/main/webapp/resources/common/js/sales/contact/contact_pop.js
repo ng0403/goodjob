@@ -8,11 +8,21 @@ $(function(){
 });
 
 //회사명리스트 팝업창 띄우기
-function compListPopup(ctx){
+/*function compListPopup(ctx){
 	$('#comp_list_bt').click(function(){
+		alert("안녕");
 		window.open(ctx+'/compList','newwindow','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
+}*/
+
+function compListPopup(ctx){
+
+	$('#comp_list_bt').click(function(){
+		var pop_flg='d';
+		window.open(ctx+'/opptCustcompList?pop_flg='+pop_flg,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
 }
+
 
 function inputCompNm(compNm,compId){
 	

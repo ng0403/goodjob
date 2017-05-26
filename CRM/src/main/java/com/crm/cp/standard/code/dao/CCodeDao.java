@@ -11,6 +11,9 @@ public interface CCodeDao {
 	public List<Object> codegrpList(Map<String, Object> map);//코드 그룹 검색
 	
 	List<CodeVO> codeList(String cd_grp_id); // 코드 리스트
+	public List<Object> codeList(Map<String, Object> map); // 코드 검색
+
+	
 	public void cdgrpInsert(CodeVO codevo); // 코드 그룹 등록
 	public void cdgrpDelete(CodeVO codevo);//코드그룹 삭제
 	public void codeInsert(CodeVO codevo); //코드 추가

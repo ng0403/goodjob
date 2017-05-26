@@ -4,8 +4,7 @@ $(function(){
 	/*searchAuthList(ctx);*/
 	writecdgrpPopup(ctx);
 	deletecdgrpClick(ctx);
-	searchAuthUserList(ctx);
-	searchAuthMenuList(ctx);
+ 	searchAuthMenuList(ctx);
 	
 	searchAuthMenuClick(ctx);
 	writeAuthMenuPopup(ctx);
@@ -15,7 +14,8 @@ $(function(){
 	/*writeAuthUserPopup(ctx);*/
 	Deletecode(ctx);
 	
-	
+	searchCodeList(ctx); //코드 검색
+	searchcdgrpList(ctx); //코드그룹 검색
 	codeWriteConfirm(); //코드 등록 함수
 	cdgrpWriteConfirm(); // 코드그룹 등록 함수
  });
@@ -73,34 +73,7 @@ function editAuth(data){
 	}
 }
 
-function searchAuthUserList(ctx){
-	$('#userAuthSearch').click(function(event){
-		event.preventDefault();
-		var obj = {
-				keyfield : $('#tabDiv1').find('select').val(),
-				keyword : $('#authuser_text').val()
-		}
-		
-		var jsonData = JSON.stringify(obj);
-		jQuery.ajaxSettings.traditional = true;
-		
-		$.ajax({
-			
-			url : ctx+'/authUser',					//보낼 URL
-			dataType : 'json',						//응답 받을 데이터 형식
-			type : 'POST',								//서버 요청 방식
-			data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
-			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
-			success : function(data){
-				editUserAuth(data);
-			},error : function(){
-				alert("실패");
-			}
-			
-		});
 
-	});
-}
 
 function searchAuthMenuList(ctx){
 	$('#menuAuthSearch').click(function(){
@@ -271,7 +244,7 @@ function searchcdgrpList(ctx){
 				keyword : $('#title_text').val()
 		}
 		
-		var jsonData = JSON.stringify(authdata);
+		var jsonData = JSON.stringify(cdgrpdata);
 		jQuery.ajaxSettings.traditional = true;
 		
 		$.ajax({
@@ -283,20 +256,18 @@ function searchcdgrpList(ctx){
 			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			success : function(data){
 				alert("성공");
-				$('#authtable tbody tr').remove();
-
+				$('#codetable tbody tr').remove();
 				for(var i=0; i<data.length;i++){
-					var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
-					+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
-					+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
+					var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].cd_grp_id+"'></th>"
+					+"<td style='width:30%;' id='authclick'><a href='#' onclick='codeList('data[i].cd_grp_id');'>"+data[i].cd_grp_id+"</a></td>"
+					+"<td style='width:31%;'>"+data[i].cd_grp_nm+"</td>";
 					
 					if(data[i].act_yn=='Y'){
 						args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
 					}else{
 						args+="<td style='width:30%;'>"+"비활성화"+"</td></tr>";
 					}
-					$('#authtable tbody').append(args);
-
+					$('#codetable tbody').append(args);
 				}
 				
 			}, error : function(data){
@@ -307,6 +278,50 @@ function searchcdgrpList(ctx){
 		
 	});
 	
+}
+
+//코드 검색
+function searchCodeList(ctx){
+	alert("코드 검색 enter");
+	$('#userAuthSearch').click(function(event){
+		event.preventDefault();
+		var obj = {
+				keyfield : $('#selectOption1').val(),
+				keyword : $('#authuser_text').val()
+		}
+		
+		var jsonData = JSON.stringify(obj);
+		jQuery.ajaxSettings.traditional = true;
+		
+		$.ajax({
+			
+			url : ctx+'/codesrc',					//보낼 URL
+			dataType : 'json',						//응답 받을 데이터 형식
+			type : 'POST',								//서버 요청 방식
+			data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
+			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
+			success : function(data){
+				$('#codemastertable tbody tr').remove();
+			 	var args;
+				for(var i=0; i<data.length;i++){
+					var fst_reg_d = dateFormat(Number(data[i].fst_reg_d));
+					args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data[i].code+'"></td>'
+					    +'<td style="width: 15%;">'+data.cd_grp_id+'</td>' 
+						+"<td style='width: 15%;'><a href='#' onclick=\"codeDetail('"+data[i].code+"','"+data.cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.cd_grp_id +"'>"+data.code+"</a></td>"
+						+'<td style="width: 15%;">'+data.cd_nm+'</td>'
+						+'<td style="width: 30%;">'+data.cd_dtl_cont+ '</td>'
+						+'<td style="width: 16%;">'+data.fst_reg_id +'</td>'
+						+'<td style="width: 19%;">'+ data.fst_reg_dt +'</td></tr>'
+						$('#codemastertable tbody').append(args);
+				}                            
+			   	$("#grp_id").val(data.cd_grp_id);
+			},error : function(){
+				alert("실패");
+			}
+			
+		});
+
+	});
 }
 
 

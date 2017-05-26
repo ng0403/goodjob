@@ -21,6 +21,15 @@ public class CCodeServiceImpl implements CCodeService {
 	public List<CodeVO> codeList(String cd_grp_id) {
  		return codeDao.codeList(cd_grp_id);
 	}
+	
+	//코드 검색
+	@Override
+	public List<Object> codeList(Map<String, Object> map) {
+		
+		 return codeDao.codeList(map);
+		
+	}
+	
 
 	//코드그룹 리스트
 	@Override
@@ -28,6 +37,8 @@ public class CCodeServiceImpl implements CCodeService {
 		// TODO Auto-generated method stub
 		return codeDao.codegrpList();
 	}
+	
+
 	
 	//코드 그룹 검색
 	@Override

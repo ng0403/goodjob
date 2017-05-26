@@ -53,7 +53,7 @@
 				
 		<div class="call_tab_div">
 			<table id="contactable">
-				<tbody id="contactbody" class="detailtbody">
+				<tbody id="contactbody" class="ui celled table">
 					<tr>
 						<th><span style="color:red">*이름</span></th>
 						<td>
@@ -69,12 +69,15 @@
 						   <input type="text" name="cust_div_nm" id="cust_div_nm" class="int"/>
 						</td> -->
 						 
-						<th><span style="color:red">*회사명</span></th>
+						<th>
+						<span style="color:red">*회사명</span></th>
 						<td>
+						    <div class="ui input focus"> 
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" readonly="readonly" /> 
 						    <input type="button" name="compSearch" value="회사" class="tiny ui blue basic button" id="comp_list_bt" />
+							</div>
 						</td>
 						
 						</tr>

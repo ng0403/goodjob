@@ -26,7 +26,7 @@ public class CCodeDaoImpl implements CCodeDao {
  		
 		return sqlSession.selectList("codegrpList");
 	}
-	
+
 	//코드 그룹 검색
 		@Override
 		public List<Object> codegrpList(Map<String, Object> map) {
@@ -36,12 +36,23 @@ public class CCodeDaoImpl implements CCodeDao {
 		}
 		
 	
-
+//코드 리스트
 	@Override
 	public List<CodeVO> codeList(String cd_grp_id) {
 		
 		return sqlSession.selectList("codeList", cd_grp_id);
 	}
+	
+	
+	//코드 검색
+			@Override
+			public List<Object> codeList(Map<String, Object> map) {
+				
+				 return sqlSession.selectList("codeSelect", map);
+				
+			}
+	
+	 
 
 	//코드 그룹 등록
 	@Override

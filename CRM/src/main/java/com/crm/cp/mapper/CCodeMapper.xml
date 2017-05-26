@@ -4,11 +4,15 @@
 <mapper namespace="ccode">
 
 	<sql id="where-list">
-	  <if test="keyfield=='a_id'">
-	      WHERE cd_grp_id LIKE '%' || #{cd_grp_id} || '%'
+	  <if test="keyfield=='cd_grp_id'">
+	      WHERE cd_grp_id LIKE '%' || #{keyword} || '%'
 	  </if>
-	  <if test="keyfield=='a_name'">
-	      WHERE cd_grp_nm LIKE '%' || #{cd_grp_nm} || '%'
+	  <if test="keyfield=='cd_grp_nm'">
+	      WHERE cd_grp_nm LIKE '%' || #{keyword} || '%'
+	  </if>
+	   
+	  <if test="keyfield=='code_nm'">
+	      WHERE code_nm LIKE '%' || #{keyword} || '%'
 	  </if>
 	</sql>
     
@@ -21,7 +25,14 @@
       ORDER BY cd_grp_nm
     </select>
 
-
+    <select id="codeSelect" parameterType="com.crm.cp.standard.code.vo.CodeVO" resultType="com.crm.cp.standard.code.vo.CodeVO">
+      SELECT *
+      FROM code
+      <if test="keyword!=null and keyword!='' ">
+	        <include refid="where-list"/>
+	  </if>
+      ORDER BY code_nm
+    </select>
 
 
 <select id="codegrpList" resultType="com.crm.cp.standard.code.vo.CodeVO">
