@@ -9,16 +9,18 @@
   margin:auto;
 }
 
-.thFixedtbl{
+.thFixedtbl, .ccthFixedtbl{
   border-collapse:collapse;
   width:100%;
 }
+
+
 
 .thFixedtbl{
   border:2px solid #273152;
 }
 
-.thFixedtbl .thead{
+.thFixedtbl .thead , .ccthFixedtbl .thead {
   background:#273152;
 }
 
@@ -31,6 +33,11 @@
   text-align:center;
   padding:5px 0;
 }
+
+.codeTbody_tr_td {
+	text-align:center;
+}
+
 
 .tbody .up:nth-child(even){
   background:#ECF0F1;

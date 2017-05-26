@@ -10,11 +10,11 @@
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
  --%>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<%-- <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> --%>
 <!-- 테이블 th고정 자바스크립트 -->
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script> --%>
 <!-- 테이블 th고정 CSS -->
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" /> --%>
 
 <script>
    $(function() {
