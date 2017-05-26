@@ -51,7 +51,7 @@ $(function() {
 <!--             <label >제  목</label>
             <input type="text" id="keyword" name="keyword" class="inputTxt" onkeypress="pageInputRep(event, boardListInqr);" > &nbsp; 
  -->   
-             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색">
+             <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui blue button" value="검색">
       <!--  </form>   -->
       </div>
    </div>
@@ -93,8 +93,8 @@ $(function() {
  
  <div class="bottom_div">
        <div class="functionBtn_div">
-         <input type="button" id = "board_add_fbtn"  class = "tiny ui orange button" value="추가" onclick="board_add();"/> 
-           <input type="button" id ="board_remove_fbtn" class="tiny ui orange button" value="삭제"  onclick="deleteAction() "/>
+         <input type="button" id = "board_add_fbtn"  class = "tiny ui blue button" value="추가" onclick="board_add();"/> 
+           <input type="button" id ="board_remove_fbtn" class="tiny ui blue button" value="삭제"  onclick="deleteAction() "/>
       </div> 
    <!-- 페이징 처리 -->
 			<div id="pageSpace" class="ui right floated pagination menu">

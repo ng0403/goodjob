@@ -52,7 +52,7 @@
 			<i class="mobile icon"></i>
 	</div>	
  	    	<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>		
-	 <button id="search_btn" type="submit" class="tiny ui orange button" onclick="searchAcnkEvent(1,'');">조회</button> 
+	 <button id="search_btn" type="submit" class="tiny ui blue button" onclick="searchAcnkEvent(1,'');">조회</button> 
 	    
 	</div>
 	
@@ -110,12 +110,12 @@
 		</div>
 		<div class="bottom_div">
 	       <div class="functionBtn_div" id="btn_1">
-	        <input type="button" class="tiny ui orange button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
-			<input type="button" class="tiny ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+	        <input type="button" class="tiny ui blue button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
 	    </div> 
 	     <div class="functionBtn_div" id="btn_2" style="display:none">
-	 	    <input type="button" id="contactsave" value="저장" class="tiny ui orange button" onclick="contactInsert();"/>
-			<input type="button" class="tiny ui orange button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+	 	    <input type="button" id="contactsave" value="저장" class="tiny ui blue button" onclick="contactInsert();"/>
+			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
 	    </div> 
 	 
 	     <div id="pageSpace" class="ui right floated pagination menu">

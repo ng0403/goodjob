@@ -72,7 +72,7 @@ label {
 			<input type="text" placeholder="제목"  id="keyword" name="keyword" onkeydown="boardSearchEnter(event);">
 			<i class="list icon"></i>
 		</div>	
-				 <input type="button" class="ui orange button" onclick="boardPaging(1);" value="조회">
+				 <input type="button" class="tiny ui blue button" onclick="boardPaging(1);" value="조회">
 		 
  				</div>
 </div> 
@@ -116,8 +116,8 @@ label {
 		 <div class="bottom_div">
 		 
 		 <div class="functionBtn_div">
-		 <input type="button" id = "board_add_fbtn" class = "tiny ui orange button" value="추가" onclick="board_add();"/>
-		  <input type="button" id ="board_remove_fbtn" class="tiny ui orange button" value="삭제"  onclick="deleteAction() "/>	 
+		 <input type="button" id = "board_add_fbtn" class = "tiny ui blue button" value="추가" onclick="board_add();"/>
+		  <input type="button" id ="board_remove_fbtn" class="tiny ui blue button" value="삭제"  onclick="deleteAction() "/>	 
 		</div>
 		
 		 <!-- 페이징 처리 -->

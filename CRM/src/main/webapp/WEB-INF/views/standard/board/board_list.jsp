@@ -49,7 +49,7 @@ $(function() {
 			<input type="text" placeholder="제목"  id="keyword" name="keyword"  onkeydown="boardSearchEnter(event);">
 			<i class="list icon"></i>
 		</div>	
-              <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui orange button" value="검색"">
+              <input type="button" onclick="boardPaging(1);" value="조회" id="board_inqr_fbtn" class="tiny ui blue button" value="검색"">
      </div>
 
            <form name="delAllForm" id ="delAllForm" method="post" action="/board_remove">  
@@ -93,8 +93,8 @@ $(function() {
        
   <div class="bottom_div">
        <div class="functionBtn_div">
-         <input type="button" id = "board_add_fbtn"  class = "tiny ui orange button" value="추가" onclick="board_add();"/> 
-           <input type="button" id ="board_remove_fbtn" class="tiny ui orange button" value="삭제"  onclick="deleteAction() "/>
+         <input type="button" id = "board_add_fbtn"  class = "tiny ui blue button" value="추가" onclick="board_add();"/> 
+           <input type="button" id ="board_remove_fbtn" class="tiny ui blue button" value="삭제"  onclick="deleteAction() "/>
  </div> 
     
    <!-- 페이징 처리 -->

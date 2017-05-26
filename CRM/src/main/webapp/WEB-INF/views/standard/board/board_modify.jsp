@@ -37,7 +37,7 @@
 </div>
 
  <div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
- <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="tiny ui orange button">저장</button>
+ <button type="submit" id = "board_modify_fbtn" onClick="board_save();" class="tiny ui blue button">저장</button>
   <input type="button" class="tiny ui button" id="board_list_fbtn" onClick="board_list();" value="취소"/>
  </div> 
  

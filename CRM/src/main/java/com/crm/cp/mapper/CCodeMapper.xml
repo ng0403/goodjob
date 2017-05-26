@@ -3,6 +3,27 @@
 
 <mapper namespace="ccode">
 
+	<sql id="where-list">
+	  <if test="keyfield=='a_id'">
+	      WHERE cd_grp_id LIKE '%' || #{cd_grp_id} || '%'
+	  </if>
+	  <if test="keyfield=='a_name'">
+	      WHERE cd_grp_nm LIKE '%' || #{cd_grp_nm} || '%'
+	  </if>
+	</sql>
+    
+    <select id="cdgrpSelect" parameterType="com.crm.cp.standard.code.vo.CodeVO" resultType="com.crm.cp.standard.code.vo.CodeVO">
+      SELECT *
+      FROM code_group
+      <if test="keyword!=null and keyword!='' ">
+	        <include refid="where-list"/>
+	  </if>
+      ORDER BY cd_grp_nm
+    </select>
+
+
+
+
 <select id="codegrpList" resultType="com.crm.cp.standard.code.vo.CodeVO">
 select * 
 from code_group

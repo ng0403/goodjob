@@ -34,7 +34,7 @@
 
 
 	<div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
-		 <input type="button" id ="board_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_add_save();"/>
+		 <input type="button" id ="board_add_fbtn" class = "tiny ui blue button" value="저장" onclick="board_add_save();"/>
 		 <input type="button" id="board_list_fbtn" class="tiny ui button" value="취소" onclick="goboardList();"/> 
 	</div>
 

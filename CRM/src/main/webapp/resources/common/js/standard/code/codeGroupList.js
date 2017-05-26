@@ -1,7 +1,7 @@
 $(function(){
 	var ctx = $('#ctx').val();
 	allchk(ctx);
-	searchAuthList(ctx);
+	/*searchAuthList(ctx);*/
 	writecdgrpPopup(ctx);
 	deletecdgrpClick(ctx);
 	searchAuthUserList(ctx);
@@ -276,13 +276,13 @@ function searchcdgrpList(ctx){
 		
 		$.ajax({
 			
-			url : ctx+'/auth',					//보낼 URL
+			url : ctx+'/cdgrp',					//보낼 URL
 			dataType : 'json',						//응답 받을 데이터 형식
 			type : 'POST',								//서버 요청 방식
 			data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
 			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			success : function(data){
-				
+				alert("성공");
 				$('#authtable tbody tr').remove();
 
 				for(var i=0; i<data.length;i++){

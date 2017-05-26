@@ -12,6 +12,9 @@ public interface CCodeService {
 	
 	public List<Object> codegrpList(); // 코드그룹 리스튼
 	
+	public List<Object> codegrpList(Map<String, Object> map); //코드 그룹 검색
+
+	
 	public void cdgrpInsert(CodeVO codevo); // 코드그룹 등록
 
 	public void cdgrpDelete(CodeVO codevo);//코드그룹 삭제

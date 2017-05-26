@@ -29,6 +29,15 @@ public class CCodeServiceImpl implements CCodeService {
 		return codeDao.codegrpList();
 	}
 	
+	//코드 그룹 검색
+	@Override
+	public List<Object> codegrpList(Map<String, Object> map) {
+		
+		 return codeDao.codegrpList(map);
+		
+	}
+	
+	
 	//코드 그룹 등록
 	@Override
 	public void cdgrpInsert(CodeVO codevo) {

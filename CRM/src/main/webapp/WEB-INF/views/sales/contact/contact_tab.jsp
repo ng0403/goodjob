@@ -50,8 +50,8 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn" class="tiny ui orange button" value="추가" />
-				<input type="button" id="deletekeymanbtn" class="tiny ui orange button" value="삭제" onclick="keymanDelete1();"/>
+				<input type="button" id="keyman_pop_btn" class="tiny ui blue button" value="추가" />
+				<input type="button" id="deletekeymanbtn" class="tiny ui blue button" value="삭제" onclick="keymanDelete1();"/>
 			</div>
 			
 			<div id="tableline2" class="keyman_div_list">

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.standard.code.service.CCodeService;
 import com.crm.cp.standard.code.vo.CodeVO;
  
@@ -43,6 +42,15 @@ CCodeService codeService;
 		System.out.println("mov??? " + mov.toString());
  		return mov;
 		
+	}
+	
+	//코드 그룹검색
+	@RequestMapping(value = "/cdgrp", method= RequestMethod.POST)
+	public @ResponseBody List<Object> authSelect(@RequestBody Map<String,Object> JSON){
+		System.out.println("코드 검색 enter" + JSON);
+		List<Object> obj= codeService.codegrpList(JSON);
+
+		return obj;
 	}
 	
 	//코드 리스트

@@ -26,6 +26,16 @@ public class CCodeDaoImpl implements CCodeDao {
  		
 		return sqlSession.selectList("codegrpList");
 	}
+	
+	//코드 그룹 검색
+		@Override
+		public List<Object> codegrpList(Map<String, Object> map) {
+			
+			 return sqlSession.selectList("cdgrpSelect", map);
+			
+		}
+		
+	
 
 	@Override
 	public List<CodeVO> codeList(String cd_grp_id) {

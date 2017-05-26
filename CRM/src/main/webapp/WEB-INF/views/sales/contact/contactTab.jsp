@@ -38,7 +38,7 @@
         <!-- 개인고객 -->
         <div class="detailBtn">
 		<div id="baseBtnDiv" class="bt_position_authuser"> 
-		    <input type="button" id="custpsonBtn" value="편집" class="tiny ui orange button" onclick="callCustBtn();"/>
+		    <input type="button" id="custpsonBtn" value="편집" class="tiny ui blue button" onclick="callCustBtn();"/>
 		    <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 		    
  		</div> 
@@ -46,7 +46,7 @@
 		<!-- 개인고객 추가 저장/취소 버튼  -->
 		<div class="detailBtn">
 		<div id="baseBtnDiv1" style="display: none;" class="bt_position_authuser">
- 			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="tiny ui orange button"/>
+ 			<input type="button" id="custpsonAddSaveBtn" value="저장"  onclick="updateCont()" class="tiny ui blue button"/>
 			<input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 	    </div>
 	  </div>
@@ -74,7 +74,7 @@
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" readonly="readonly" /> 
-						    <input type="button" name="compSearch" value="회사" class="tiny ui orange button" id="comp_list_bt" />
+						    <input type="button" name="compSearch" value="회사" class="tiny ui blue basic button" id="comp_list_bt" />
 						</td>
 						
 						</tr>

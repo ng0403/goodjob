@@ -39,7 +39,7 @@ function codeSelect() {
 	 <input type='hidden' id="BOARD_MNG_NO" name="BOARD_MNG_NO" value="${boardVO.BOARD_MNG_NO}">
 
 <div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
-  <button type="submit" id = "board_modify_fbtn" class="tiny ui orange button" onclick="board_modify_save();">저장</button>
+  <button type="submit" id = "board_modify_fbtn" class="tiny ui button" onclick="board_modify_save();">저장</button>
   <input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
 </div>
 
