@@ -52,7 +52,7 @@
 				</select>
 			</div>
 			<div class="ui left icon input">
-				<input type="text" placeholder="영업활동명" id="ssales_actvy_nm" class="ssales_actvy_nm">
+				<input type="text" placeholder="영업활동명" id="ssales_actvy_nm">
 			</div>
 			<div class="ui left icon input">
 				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}" readonly="readonly">
@@ -70,7 +70,7 @@
 		</div>
 			
 		<div>
-			<table id="dboardtable">
+			<table id="dboardtable" class="ui celled table">
 				<thead>
 					<tr>
 						<th rowspan="2" style="width: 2%; text-align: center;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>

@@ -353,7 +353,7 @@ public class ActController {
 	
 	//전체리스트 출력 페이징/검색 
 	@RequestMapping(value="/actPaging" , method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> ActListSearch(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum,
+	public @ResponseBody Map<String,Object> ActListSearch(HttpSession session, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
 			String ssale_actvy_strt, String ssale_actvy_strt0, String ssale_actvy_strt1,
 			String sactvy_type_select, String sactvy_type_select0, String sactvy_type_select1,
 			String ssales_actvy_nm, String ssales_actvy_nm0, String ssales_actvy_nm1,
@@ -362,7 +362,7 @@ public class ActController {
 
 		Map<String,Object> actMap = new HashMap<String, Object>();
 		
-		actMap.put("actPageNum", actPageNum);
+		actMap.put("actPageNum", pageNum);
 		
 		actMap.put("ssale_actvy_strt", ssale_actvy_strt);
 		actMap.put("ssale_actvy_strt0", ssale_actvy_strt0);

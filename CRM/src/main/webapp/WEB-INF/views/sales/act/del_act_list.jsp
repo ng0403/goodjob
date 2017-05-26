@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/act/del_act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/del_act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
@@ -74,7 +74,6 @@
 			<table id="dboardtable">
 				<thead>
 					<tr>
-						<th rowspan="2" style="width: 2%; text-align: center;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
 						<td rowspan="2" style="width: 15%;">영업활동명</td>
 						<td rowspan="2" style="width: 23%;">영업기회명</td>
 						<td rowspan="2" style="width: 10%;">활동유형</td>
@@ -90,9 +89,6 @@
 				<tbody id="act_list_tbody" class="act_list_tbody">
 					<c:forEach items="${actList}" var="actList">
 						<tr>
-							<td rowspan="2">
-								<input type="checkbox" class="act_chek" name="act_del" value="${actList.sales_actvy_id}" onclick="actChkCancel();">
-							</td>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag">
 								<input type="hidden" value="${actList.sales_actvy_id}" id="hi_act_id">
 								<a style="color: blue; cursor: pointer;" onclick="delActDetail('${actList.sales_actvy_id}')">${actList.sales_actvy_nm}</a> <!-- class="actClick"  -->
