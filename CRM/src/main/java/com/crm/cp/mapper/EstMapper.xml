@@ -34,8 +34,8 @@
 					      	and c.estim_id = aa.estim_id
       					group by aa.estim_id),0) estim_qty   
 					, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
-					, aa.fst_reg_id
-					, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT 
+<!-- 					, aa.fst_reg_id -->
+<!-- 					, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT  -->
 					from ESTIMATE aa,
 						SALES_OPPORTUNITY_ESTIMATE bb
 					where aa.estim_id = bb.estim_id

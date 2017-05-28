@@ -165,12 +165,14 @@
 			<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th style="width: 27%;" id="tblTh">견적명</th>
+						<th style="width: 30%;" id="tblTh">견적명</th>
 						<th style="width: 15%;" id="tblTh">고객사명</th>
 						<th style="width: 10%;" id="tblTh">견적단계</th>
-						<th style="width: 10%;" id="tblTh">견적수량</th>
-						<th style="width: 15%;" id="tblTh">견적금액</th>
-						<th style="width: 15%;" id="tblTh">견적유효일자</th>
+						<th style="width: 5%;" id="tblTh">견적수량</th>
+						<th style="width: 10%;" id="tblTh">견적금액</th>
+						<th style="width: 10%;" id="tblTh">견적유효일자</th>
+						<th style="width: 10%;" id="tblTh">등록자</th>
+						<th style="width: 10%;" id="tblTh">등록일시</th>
 					</tr>
 				</thead>
 				<tbody id="estList">
@@ -184,6 +186,8 @@
 							<td style='text-align: right;padding-right:5px;'><c:out value="${result.estim_qty}" /></td>
 							<td style='text-align: right;padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
 							<td style='text-align: center;'><c:out value="${result.estim_valid_d}" /></td>
+							<td><c:out value="${result.fst_reg_id}" /></td>
+							<td><c:out value="${result.fst_reg_dt}" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
