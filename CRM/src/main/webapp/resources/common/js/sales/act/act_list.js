@@ -248,7 +248,7 @@ function searchActSaleList(pageNum)
 					    	tbodyContent += "<td class='act_endh_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_d+"</td>";
 					    }
 	                    
-					    if(data.actList[i].end_t == 'null' || data.actList[i].end_t == null || data.actList[i].end_t == "" || data.actList[i].end_t == "0")
+					    if(data.actList[i].end_t == 'null' || data.actList[i].end_t == null || data.actList[i].end_t == "" || data.actList[i].end_t == "0:0")
 					    {
 					    	tbodyContent += "<td class='act_endm_tag' style='width:10%; text-align: center;'></td>";
 					    }

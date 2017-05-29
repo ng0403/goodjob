@@ -630,6 +630,16 @@ function actInsert(ctx, act_flg)
 		var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 		var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
 		
+		if(end_t == '0:0')
+		{
+			var end_t = null;
+		}
+		else
+		{
+			var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
+		}
+		alert(end_t);
+		
 		var sales_oppt_id = $('#hsales_oppt_id').val();
 		var sales_oppt_nm = $('#hsales_oppt_nm').val();
 		var cust_id = $('#hcust_id').val();

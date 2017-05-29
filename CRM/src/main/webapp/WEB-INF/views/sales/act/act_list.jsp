@@ -107,7 +107,13 @@
 						</tr>
 						<tr>
 							<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>
-							<td style="text-align: center;" class="act_endm_tag">${actList.end_t}</td>
+							<c:if test="${actList.end_t eq '0:0'}">
+								<td style="text-align: center;" class="act_endm_tag"></td>
+							</c:if>
+							<c:if test="${actList.end_t != '0:0'}">
+								<td style="text-align: center;" class="act_endm_tag">${actList.end_t}</td>
+							</c:if>
+							
 						</tr>
 						</c:forEach>
 				</tbody>
