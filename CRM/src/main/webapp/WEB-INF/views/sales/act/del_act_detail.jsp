@@ -35,7 +35,7 @@
 	
 	<div id="title">
 		<label id="listLabel" class="ui header" style="background: white;">
-			■ 영업활동 > <a href="/delActSaleList" style="font-size: 20px; text-decoration:none; color: blue;">영업활동관리 삭제된 데이터</a> > 삭제된 영업활동 상세정보
+			■ 영업활동 > 영업활동관리 > <a href="/delActSaleList" style="font-size: 20px; text-decoration:none; color: blue;">삭제된 데이터</a> > 삭제된 영업활동 상세정보
 		</label>
 <!-- 		<div class="caption">■ 영업활동 > <a href="/delActSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리 삭제된 데이터</a> > 삭제된 영업활동 상세정보</div> -->
 	</div>

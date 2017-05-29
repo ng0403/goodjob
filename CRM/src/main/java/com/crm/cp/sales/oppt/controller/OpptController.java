@@ -476,8 +476,9 @@ public class OpptController {
 		int result = 0;
 		// 모든 checked된 견적에 대해 삭제
 		for (int i = 0; i < opptidList.size(); i++) {
-			int delOppt = service.opptPrdtDel(opptidList.get(i));
-			System.out.println("영업기회상품 삭제 결과 : " + delOppt);
+//			그냥 삭제시 영업기회 act_yn만 n으로 바꿔준다.
+//			int delOppt = service.opptPrdtDel(opptidList.get(i));
+//			System.out.println("영업기회상품 삭제 결과 : " + delOppt);
 			//영업기회 삭제 
 			result += service.opptDelete(opptidList.get(i));
 		}
@@ -499,8 +500,17 @@ public class OpptController {
 //			//영업기회 삭제 
 //			result += service.opptDelete(opptidList.get(i));
 //		}
+		
 		result += service.opptDelDelete(sales_oppt_id);
 		System.out.println("삭제결과 : " + result);
+		
+		if(result == 1)
+		{
+			// 완전 삭제 시 상품도 완전 삭제한다.
+			int delOppt = service.opptPrdtDel(sales_oppt_id);
+			System.out.println("영업기회상품 삭제 결과 : " + delOppt);
+		}
+		
 		return result;
 	}
 

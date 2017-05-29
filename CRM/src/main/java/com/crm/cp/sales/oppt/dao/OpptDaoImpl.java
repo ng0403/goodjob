@@ -87,7 +87,18 @@ public class OpptDaoImpl implements OpptDao {
 	@Override
 	public int opptDelModify(OpptVO detail) {
 		// TODO Auto-generated method stub
-		return sqlsession.update("oppt.DelRollBack", detail);
+		int result = sqlsession.update("oppt.DelRollBack", detail);
+		
+		if(result == 1)
+		{
+			// 영업활동 복원
+			sqlsession.update("oppt.opptActDelRollBack", detail);
+			
+			// 견적 복원
+			sqlsession.update("oppt.opptEstDelRollBack", detail);
+		}
+		
+		return result;
 	}
 	//영업기회 추가(사용)
 	@Override
@@ -227,7 +238,15 @@ public class OpptDaoImpl implements OpptDao {
 	@Override
 	public int opptDelete(String opptId) {
 		// TODO Auto-generated method stub
-		return sqlsession.update("oppt.opptDelete", opptId);
+		int result = sqlsession.update("oppt.opptDelete", opptId); 
+		
+		if(result == 1)
+		{
+			sqlsession.update("oppt.opptActDel", opptId);
+			sqlsession.update("oppt.opptEstDel", opptId);
+		}
+		
+		return result;
 	}
 
 	//영업기회별 활동 상세정보

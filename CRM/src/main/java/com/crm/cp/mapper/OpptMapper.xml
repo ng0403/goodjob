@@ -370,14 +370,28 @@
 		fin_mdfy_id = #{fin_mdfy_id}
 		where sales_oppt_id = #{sales_oppt_id}
 	</update>
+	
 	<!-- 영업기회 복원 -->
 	<update id="DelRollBack" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
-		update
-		sales_opportunity
-		set
-		act_yn = 'Y',
-		fin_mdfy_id = #{fin_mdfy_id}
+		update	sales_opportunity
+		set act_yn = 'Y', fin_mdfy_id = #{fin_mdfy_id}
 		where sales_oppt_id = #{sales_oppt_id}
+	</update>
+	
+	<!-- 영업기회 act_yn을 n으로 했을 떄 영업활동도 Y으로 바꾼다. -->
+	<update id="opptActDelRollBack" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		UPDATE SALES_ACTIVITY
+		SET act_yn='Y', fin_mdfy_id = #{fin_mdfy_id}
+		WHERE sales_oppt_id=#{sales_oppt_id}
+	</update>
+	
+	<!-- 영업기회 act_yn을 n으로 했을 떄 견적도 Y으로 바꾼다. -->
+	<update id="opptEstDelRollBack" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		UPDATE ESTIMATE
+		SET act_yn='Y', fin_mdfy_id = #{fin_mdfy_id}
+		WHERE estim_id = (SELECT estim_id
+						  FROM SALES_OPPORTUNITY_ESTIMATE
+						  WHERE sales_oppt_id = #{sales_oppt_id})
 	</update>
 
 	<!-- 영업기회 추가 -->
@@ -800,6 +814,21 @@
 		where sales_oppt_id=#{opptId}
 	</update>
 	
+	<!-- 영업기회 act_yn을 n으로 했을 떄 영업활동도 n으로 바꾼다. -->
+	<update id="opptActDel" parameterType="String">
+		UPDATE SALES_ACTIVITY
+		SET act_yn='N'
+		WHERE sales_oppt_id=#{opptId}
+	</update>
+	
+	<!-- 영업기회 act_yn을 n으로 했을 떄 견적도 n으로 바꾼다. -->
+	<update id="opptEstDel" parameterType="String">
+		UPDATE ESTIMATE
+		SET act_yn='N'
+		WHERE estim_id = (SELECT estim_id
+						  FROM SALES_OPPORTUNITY_ESTIMATE
+						  WHERE sales_oppt_id = #{opptId})
+	</update>
 	
 	<select id="actDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 		SELECT SA.SALES_ACTVY_ID 

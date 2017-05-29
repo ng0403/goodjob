@@ -77,7 +77,7 @@ function opptDelModify(){
 	var pageNum = 1;
 	
 	var ctx = $("#ctx").val();
-	var ynChk = confirm("복원 시 상품 테이블은 유지되지 않습니다.");
+	var ynChk = confirm("복원하시겠습니까?");
 	if(ynChk){	
 		$.ajax({
 			type : 'post',
