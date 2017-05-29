@@ -57,7 +57,7 @@ public interface EstService {
 
 	int estUpdate(Map<String, Object> map);
 
-	int estDelete(String estim_id);
+	int estDelete(EstVO est);
 
 	PagerVO actCount(Map<String, String> map);
 

@@ -403,307 +403,304 @@ public class EstController {
 //		return map2;
 //	}
 	
-	@RequestMapping(value = "/estimHistory", method = RequestMethod.GET)
-	@ResponseBody
-	Map<String, Object> estimHistory(
-			@RequestParam Map<String, String> map) {
-
-//		map.put("opptPageNum", opptPageNum);
-//		PagerVO page = estInter.opptCount(map);
-//		map.put("startRow", page.getStartRow() + "");
-//		map.put("endRow", page.getEndRow() + "");
-		List<OpptVO> estHistory = estInter.estHistoryList(map);
-		Map<String, Object> map2 = new HashMap<String, Object>();
-		System.out.println(map);
-//		map2.put("page", page);
-//		map2.put("opptPageNum", opptPageNum);
-		map2.put("estHistory", estHistory);
-
-		System.out.println(map2);
-		return map2;
-	}
+//	@RequestMapping(value = "/estimHistory", method = RequestMethod.GET)
+//	@ResponseBody
+//	Map<String, Object> estimHistory(
+//			@RequestParam Map<String, String> map) {
+//
+//		List<OpptVO> estHistory = estInter.estHistoryList(map);
+//		Map<String, Object> map2 = new HashMap<String, Object>();
+//		System.out.println(map);
+//
+//		map2.put("estHistory", estHistory);
+//
+//		System.out.println(map2);
+//		return map2;
+//	}
 	
 	// 영업활동 tab list ajax
-	@RequestMapping(value = "/estimSalesActiveList", method = RequestMethod.GET)
-	@ResponseBody
-	Map<String, Object> actList(
-			@RequestParam Map<String, String> map,
-			@RequestParam(value = "actPageNum", defaultValue = "1") String actPageNum) {
-
-		map.put("actPageNum", actPageNum);
-		PagerVO page = estInter.actCount(map);
-		map.put("startRow", page.getStartRow() + "");
-		map.put("endRow", page.getEndRow() + "");
-		List<ActVO> actList = estInter.actList(map);
-		Map<String, Object> map2 = new HashMap<String, Object>();
-
-		map2.put("page", page);
-		map2.put("actPageNum", actPageNum);
-		map2.put("actList", actList);
-
-		return map2;
-	}
+//	@RequestMapping(value = "/estimSalesActiveList", method = RequestMethod.GET)
+//	@ResponseBody
+//	Map<String, Object> actList(
+//			@RequestParam Map<String, String> map,
+//			@RequestParam(value = "actPageNum", defaultValue = "1") String actPageNum) {
+//
+//		map.put("actPageNum", actPageNum);
+//		PagerVO page = estInter.actCount(map);
+//		map.put("startRow", page.getStartRow() + "");
+//		map.put("endRow", page.getEndRow() + "");
+//		List<ActVO> actList = estInter.actList(map);
+//		Map<String, Object> map2 = new HashMap<String, Object>();
+//
+//		map2.put("page", page);
+//		map2.put("actPageNum", actPageNum);
+//		map2.put("actList", actList);
+//
+//		return map2;
+//	}
 	// 영업기회 탭에서 insert POPUP
-	@RequestMapping(value = "/estHistoryPopup", method = RequestMethod.GET)
-	public ModelAndView estHistoryPop(HttpSession session, String estim_id) 
-			{
-		List<EstVO> elclist = estInter.elcList();
-		// 할인단위 코드 가져오기
-		List<EstVO> eduList = estInter.eduList();
-		List<String> eduCode = new ArrayList<String>(0);
-		for(EstVO est: eduList){
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
-		}
-
-		List<EstVO> prod = estInter.estDetail(estim_id);
-	
-		EstVO detail = prod.get(prod.size()-1);
-		prod.remove(prod.size()-1);
-		ModelAndView mov = new ModelAndView("/sales/est/estPop/estHistoryPopup");
-		
-		//mov.addObject("popFlg", "add");
-		mov.addObject("flg", "detail");
-
-		mov.addObject("detail", detail);
-		mov.addObject("prodList", prod);
-		mov.addObject("eduList", eduList);
-		mov.addObject("elclist", elclist);
-		mov.addObject("eduCode", eduCode);
+//	@RequestMapping(value = "/estHistoryPopup", method = RequestMethod.GET)
+//	public ModelAndView estHistoryPop(HttpSession session, String estim_id) 
+//			{
+//		List<EstVO> elclist = estInter.elcList();
+//		// 할인단위 코드 가져오기
+//		List<EstVO> eduList = estInter.eduList();
+//		List<String> eduCode = new ArrayList<String>(0);
+//		for(EstVO est: eduList){
+//			eduCode.add(est.getCode());
+//			eduCode.add(est.getCd_nm());
+//		}
+//
+//		List<EstVO> prod = estInter.estDetail(estim_id);
+//	
+//		EstVO detail = prod.get(prod.size()-1);
+//		prod.remove(prod.size()-1);
+//		ModelAndView mov = new ModelAndView("/sales/est/estPop/estHistoryPopup");
+//		
+//		//mov.addObject("popFlg", "add");
+//		mov.addObject("flg", "detail");
+//
+//		mov.addObject("detail", detail);
+//		mov.addObject("prodList", prod);
+//		mov.addObject("eduList", eduList);
+//		mov.addObject("elclist", elclist);
+//		mov.addObject("eduCode", eduCode);
 		
 //		mov.addObject("estim_id", estim_id);
 			
-		return mov;
-	}
+//		return mov;
+//	}
 	
 	
 	// 영업기회 탭에서 insert POPUP
-	@RequestMapping(value = "/opptAddEstPopup", method = RequestMethod.GET)
-	public ModelAndView opptAddPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_estim_id) 
-		{
-		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = opptService.opptOscList();
-		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = opptService.opptOtlList();
-		// 할인단위 코드 가져오기
-		List<EstVO> eduList = estInter.eduList();
-		List<String> eduCode = new ArrayList<String>(0);
-		for(EstVO est: eduList){
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
-		}
-		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
-		
-		//mov.addObject("popFlg", "add");
-		mov.addObject("flg", "add");
-		mov.addObject("osclist", osclist);
-		mov.addObject("otllist", otllist);
-		mov.addObject("eduList", eduList);
-		mov.addObject("eduCode", eduCode);
-		
-		mov.addObject("cust_id", list_cust_id);
-		mov.addObject("cust_nm", list_cust_nm);
-		mov.addObject("estim_id", list_estim_id);
-		
-		return mov;
-	}
+//	@RequestMapping(value = "/opptAddEstPopup", method = RequestMethod.GET)
+//	public ModelAndView opptAddPop(HttpSession session, String list_cust_id, String list_cust_nm, String list_estim_id) 
+//		{
+//		// 영업기회 상태 코드 가져오기
+//		List<OpptVO> osclist = opptService.opptOscList();
+//		// 영업단계 코드 가져오기
+//		List<OpptVO> otllist = opptService.opptOtlList();
+//		// 할인단위 코드 가져오기
+//		List<EstVO> eduList = estInter.eduList();
+//		List<String> eduCode = new ArrayList<String>(0);
+//		for(EstVO est: eduList){
+//			eduCode.add(est.getCode());
+//			eduCode.add(est.getCd_nm());
+//		}
+//		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
+//		
+//		//mov.addObject("popFlg", "add");
+//		mov.addObject("flg", "add");
+//		mov.addObject("osclist", osclist);
+//		mov.addObject("otllist", otllist);
+//		mov.addObject("eduList", eduList);
+//		mov.addObject("eduCode", eduCode);
+//		
+//		mov.addObject("cust_id", list_cust_id);
+//		mov.addObject("cust_nm", list_cust_nm);
+//		mov.addObject("estim_id", list_estim_id);
+//		
+//		return mov;
+//	}
 	
 	//  영업기회 탭에서 상세 POPUP
-	@RequestMapping(value = "/opptDetailEstPopup", method = RequestMethod.GET)
-	public ModelAndView opptDetailPopup(HttpSession session,
-			String salesOppt_id
-			, String sales_oppt_nm) {
-
-		System.out.println("영업활동 상세정보 팝업 actvyId" + salesOppt_id);
-		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
-		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
-		// 영업기회 상태 코드 가져오기
-		List<OpptVO> osclist = opptService.opptOscList();
-		// 영업단계 코드 가져오기
-		List<OpptVO> otllist = opptService.opptOtlList();
-		// 할인단위 코드 가져오기
-		List<EstVO> eduList = estInter.eduList();
-		List<String> eduCode = new ArrayList<String>(0);
-		for(EstVO est: eduList){
-			eduCode.add(est.getCode());
-			eduCode.add(est.getCd_nm());
-		}
-		OpptVO detail = opptService.opptDetail(salesOppt_id);
-		System.out.println("detail : " + detail);
-	
-		mov.addObject("osclist", osclist);
-		mov.addObject("otllist", otllist);
-		mov.addObject("eduList", eduList);
-		mov.addObject("eduCode", eduCode);
-		
-		mov.addObject("opDetail", detail);
-		mov.addObject("sales_oppt_id", salesOppt_id);
-		mov.addObject("sales_oppt_nm", sales_oppt_nm);
-		mov.addObject("flg", "detail");
-
-		return mov;
-	}
+//	@RequestMapping(value = "/opptDetailEstPopup", method = RequestMethod.GET)
+//	public ModelAndView opptDetailPopup(HttpSession session,
+//			String salesOppt_id
+//			, String sales_oppt_nm) {
+//
+//		System.out.println("영업활동 상세정보 팝업 actvyId" + salesOppt_id);
+//		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
+//		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptAddPopup");
+//		// 영업기회 상태 코드 가져오기
+//		List<OpptVO> osclist = opptService.opptOscList();
+//		// 영업단계 코드 가져오기
+//		List<OpptVO> otllist = opptService.opptOtlList();
+//		// 할인단위 코드 가져오기
+//		List<EstVO> eduList = estInter.eduList();
+//		List<String> eduCode = new ArrayList<String>(0);
+//		for(EstVO est: eduList){
+//			eduCode.add(est.getCode());
+//			eduCode.add(est.getCd_nm());
+//		}
+//		OpptVO detail = opptService.opptDetail(salesOppt_id);
+//		System.out.println("detail : " + detail);
+//	
+//		mov.addObject("osclist", osclist);
+//		mov.addObject("otllist", otllist);
+//		mov.addObject("eduList", eduList);
+//		mov.addObject("eduCode", eduCode);
+//		
+//		mov.addObject("opDetail", detail);
+//		mov.addObject("sales_oppt_id", salesOppt_id);
+//		mov.addObject("sales_oppt_nm", sales_oppt_nm);
+//		mov.addObject("flg", "detail");
+//
+//		return mov;
+//	}
 	
 	// 영업활동 추가 팝업창
-	@RequestMapping(value = "/opptActiveEstPopup", method = RequestMethod.GET)
-	public ModelAndView opptActivePopup(HttpSession session,
-			String list_cust_id, String list_cust_nm, String list_estim_id) {
-		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
-		// 영업활동 유형코드 가져오기
-		List<ActVO> actTypeCd = opptService.actTypeCdList();
-		// 영업활동 상태코드 가져오기
-		List<ActVO> actStatCd = opptService.actStatCdList();
-		// 영업활동 구분코드 가져오기
-		List<ActVO> actDivCd = opptService.actDivCdList();
-
-		mov.addObject("actTypeCd", actTypeCd);
-		mov.addObject("actStatCd", actStatCd);
-		mov.addObject("actDivCd", actDivCd);
-
-		mov.addObject("cust_id", list_cust_id);
-		mov.addObject("cust_nm", list_cust_nm);
-		mov.addObject("estim_id", list_estim_id);
-		mov.addObject("flg", "add");
-
-		return mov;
-
-	}
+//	@RequestMapping(value = "/opptActiveEstPopup", method = RequestMethod.GET)
+//	public ModelAndView opptActivePopup(HttpSession session,
+//			String list_cust_id, String list_cust_nm, String list_estim_id) {
+//		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
+//		// 영업활동 유형코드 가져오기
+//		List<ActVO> actTypeCd = opptService.actTypeCdList();
+//		// 영업활동 상태코드 가져오기
+//		List<ActVO> actStatCd = opptService.actStatCdList();
+//		// 영업활동 구분코드 가져오기
+//		List<ActVO> actDivCd = opptService.actDivCdList();
+//
+//		mov.addObject("actTypeCd", actTypeCd);
+//		mov.addObject("actStatCd", actStatCd);
+//		mov.addObject("actDivCd", actDivCd);
+//
+//		mov.addObject("cust_id", list_cust_id);
+//		mov.addObject("cust_nm", list_cust_nm);
+//		mov.addObject("estim_id", list_estim_id);
+//		mov.addObject("flg", "add");
+//
+//		return mov;
+//
+//	}
 	
 	// 영업활동 상세정보 팝업창
-	@RequestMapping(value = "/opptActiveDetailEstPopup", method = RequestMethod.GET)
-	public ModelAndView opptActiveDetailPopup(HttpSession session,
-			String actvyId
-			, String sales_oppt_nm) {
-
-		System.out.println("영업활동 상세정보 팝업 actvyId" + actvyId);
-		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
-		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
-		// 영업활동 유형코드 가져오기
-		List<ActVO> actTypeCd = opptService.actTypeCdList();
-		// 영업활동 상태코드 가져오기
-		List<ActVO> actStatCd = opptService.actStatCdList();
-		// 영업활동 구분코드 가져오기
-		List<ActVO> actDivCd = opptService.actDivCdList();
-		ActVO detail = opptService.actDetail(actvyId);
-		System.out.println("detail : " + detail);
-	
-		mov.addObject("actTypeCd", actTypeCd);
-		mov.addObject("actStatCd", actStatCd);
-		mov.addObject("actDivCd", actDivCd);
-		mov.addObject("detail", detail);
-		mov.addObject("sales_actvy_id", actvyId);
-		mov.addObject("sales_oppt_nm", sales_oppt_nm);
-		mov.addObject("flg", "detail");
-		return mov;
-	}
+//	@RequestMapping(value = "/opptActiveDetailEstPopup", method = RequestMethod.GET)
+//	public ModelAndView opptActiveDetailPopup(HttpSession session,
+//			String actvyId
+//			, String sales_oppt_nm) {
+//
+//		System.out.println("영업활동 상세정보 팝업 actvyId" + actvyId);
+//		System.out.println("영업활동 상세정보 팝업 sales_oppt_nm" + sales_oppt_nm);
+//		ModelAndView mov = new ModelAndView("/sales/est/estPop/opptActivePopup");
+//		// 영업활동 유형코드 가져오기
+//		List<ActVO> actTypeCd = opptService.actTypeCdList();
+//		// 영업활동 상태코드 가져오기
+//		List<ActVO> actStatCd = opptService.actStatCdList();
+//		// 영업활동 구분코드 가져오기
+//		List<ActVO> actDivCd = opptService.actDivCdList();
+//		ActVO detail = opptService.actDetail(actvyId);
+//		System.out.println("detail : " + detail);
+//	
+//		mov.addObject("actTypeCd", actTypeCd);
+//		mov.addObject("actStatCd", actStatCd);
+//		mov.addObject("actDivCd", actDivCd);
+//		mov.addObject("detail", detail);
+//		mov.addObject("sales_actvy_id", actvyId);
+//		mov.addObject("sales_oppt_nm", sales_oppt_nm);
+//		mov.addObject("flg", "detail");
+//		return mov;
+//	}
 	
 	//영업기회 tab 영업기회  추가
-	@RequestMapping(value = "/estimOpptAdd", method = RequestMethod.POST)
-	@ResponseBody int opptInsert(HttpSession session,OpptVO opptVo,
-			@RequestParam(value="est_list[]",required=false) List<String> est_list,
-			String total_sup_price) 
-	{
-		opptVo.setFst_reg_id(session.getAttribute("user").toString());
-		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
-		List<OpptVO> estList = new ArrayList<OpptVO>(0);
-		opptVo.setTotal_sup_price(total_sup_price);
-		
-		// 영업활동 추가
-		int result = opptService.opptAdd(opptVo);
-		
-		System.out.println(opptVo.getSales_oppt_id());
-		System.out.println(opptVo.getOppt_seq());
-		System.out.println(opptVo.getTotal_sup_price());
-		result += opptService.addOpptStep(opptVo);//영업기회단계리스트추가
-		for(int i=0 ; i< est_list.size(); i++){
-			OpptVO vo = new OpptVO();
-			vo.setSales_oppt_id("");
-			vo.setProd_id(est_list.get(i));
-			vo.setProd_nm(est_list.get(++i));
-			vo.setEstim_qty(est_list.get(++i));
-			vo.setSales_price(est_list.get(++i));
-			vo.setDiscount(est_list.get(++i));
-			vo.setSup_price(est_list.get(++i));
-			vo.setDiscount_unit_cd(est_list.get(++i));
-			vo.setOppt_seq(opptVo.getOppt_seq());
-			estList.add(vo);
-		}
-		result += opptService.opptPrdtAdd(estList);
-		if(result >= 3){
-			result += estInter.opptAdd(opptVo);
-		}
-		return result;
-	}
+//	@RequestMapping(value = "/estimOpptAdd", method = RequestMethod.POST)
+//	@ResponseBody int opptInsert(HttpSession session,OpptVO opptVo,
+//			@RequestParam(value="est_list[]",required=false) List<String> est_list,
+//			String total_sup_price) 
+//	{
+//		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+//		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+//		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+//		opptVo.setTotal_sup_price(total_sup_price);
+//		
+//		// 영업활동 추가
+//		int result = opptService.opptAdd(opptVo);
+//		
+//		System.out.println(opptVo.getSales_oppt_id());
+//		System.out.println(opptVo.getOppt_seq());
+//		System.out.println(opptVo.getTotal_sup_price());
+//		result += opptService.addOpptStep(opptVo);//영업기회단계리스트추가
+//		for(int i=0 ; i< est_list.size(); i++){
+//			OpptVO vo = new OpptVO();
+//			vo.setSales_oppt_id("");
+//			vo.setProd_id(est_list.get(i));
+//			vo.setProd_nm(est_list.get(++i));
+//			vo.setEstim_qty(est_list.get(++i));
+//			vo.setSales_price(est_list.get(++i));
+//			vo.setDiscount(est_list.get(++i));
+//			vo.setSup_price(est_list.get(++i));
+//			vo.setDiscount_unit_cd(est_list.get(++i));
+//			vo.setOppt_seq(opptVo.getOppt_seq());
+//			estList.add(vo);
+//		}
+//		result += opptService.opptPrdtAdd(estList);
+//		if(result >= 3){
+//			result += estInter.opptAdd(opptVo);
+//		}
+//		return result;
+//	}
 	
 	//영업기회 tab 영업기회  수정
-	@RequestMapping(value = "/estimOpptModfy", method = RequestMethod.POST)
-	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo
-			, @RequestParam(value="est_list[]",required=false) List<String> est_list
-			, String total_sup_price
-			, String sales_oppt_id) 
-	{
-		opptVo.setFst_reg_id(session.getAttribute("user").toString());
-		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
-		List<OpptVO> estList = new ArrayList<OpptVO>(0);
-		opptVo.setTotal_sup_price(total_sup_price);
-
-		System.out.println(opptVo.getSales_oppt_id());
-		// 영업활동 편집
-		int result = opptService.opptModify(opptVo);
-		result += opptService.addOpptStep(opptVo);
-		int delOppt = 0;
-		if(result == 2){
-			delOppt = opptService.opptPrdtDel(sales_oppt_id);
-		}
-		if(delOppt == 1){
-			for(int i=0 ; i< est_list.size(); i++){
-				OpptVO vo = new OpptVO();
-				vo.setSales_oppt_id(opptVo.getSales_oppt_id());
-				vo.setProd_id(est_list.get(i));
-				vo.setProd_nm(est_list.get(++i));
-				vo.setEstim_qty(est_list.get(++i));
-				vo.setSales_price(est_list.get(++i));
-				vo.setDiscount(est_list.get(++i));
-				vo.setSup_price(est_list.get(++i));
-				vo.setDiscount_unit_cd(est_list.get(++i));
-				//vo.setOppt_seq(opptVo.getOppt_seq());
-				estList.add(vo);
-			}
-			result += opptService.opptPrdtAdd(estList);
-		}		
-
-		return result;
-	}
+//	@RequestMapping(value = "/estimOpptModfy", method = RequestMethod.POST)
+//	@ResponseBody int opptModfy(HttpSession session, OpptVO opptVo
+//			, @RequestParam(value="est_list[]",required=false) List<String> est_list
+//			, String total_sup_price
+//			, String sales_oppt_id) 
+//	{
+//		opptVo.setFst_reg_id(session.getAttribute("user").toString());
+//		opptVo.setFin_mdfy_id(session.getAttribute("user").toString());
+//		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+//		opptVo.setTotal_sup_price(total_sup_price);
+//
+//		System.out.println(opptVo.getSales_oppt_id());
+//		// 영업활동 편집
+//		int result = opptService.opptModify(opptVo);
+//		result += opptService.addOpptStep(opptVo);
+//		int delOppt = 0;
+//		if(result == 2){
+//			delOppt = opptService.opptPrdtDel(sales_oppt_id);
+//		}
+//		if(delOppt == 1){
+//			for(int i=0 ; i< est_list.size(); i++){
+//				OpptVO vo = new OpptVO();
+//				vo.setSales_oppt_id(opptVo.getSales_oppt_id());
+//				vo.setProd_id(est_list.get(i));
+//				vo.setProd_nm(est_list.get(++i));
+//				vo.setEstim_qty(est_list.get(++i));
+//				vo.setSales_price(est_list.get(++i));
+//				vo.setDiscount(est_list.get(++i));
+//				vo.setSup_price(est_list.get(++i));
+//				vo.setDiscount_unit_cd(est_list.get(++i));
+//				//vo.setOppt_seq(opptVo.getOppt_seq());
+//				estList.add(vo);
+//			}
+//			result += opptService.opptPrdtAdd(estList);
+//		}		
+//
+//		return result;
+//	}
 	//상세정보에서의 영업기회 리스트 
-	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
-	public ModelAndView estActOpptList(HttpSession session,
-			@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
-			@RequestParam(value="keyword", defaultValue="") String keyword,
-			String cust_id){
-		System.out.println("cust_id : "+cust_id);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("keyfield", keyfield);
-		map.put("cust_id", cust_id);
-		map.put("keyword", keyword);
-		List<Object> estActOpptList = estInter.estActOpptList(map);
-		ModelAndView mov = new ModelAndView("/sales/est/estPop/act_oppt_list_pop");
-		
-		mov.addObject("actOpptList", estActOpptList);
-		
-		return mov;
-	}
+//	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
+//	public ModelAndView estActOpptList(HttpSession session,
+//			@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
+//			@RequestParam(value="keyword", defaultValue="") String keyword,
+//			String cust_id){
+//		System.out.println("cust_id : "+cust_id);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("keyfield", keyfield);
+//		map.put("cust_id", cust_id);
+//		map.put("keyword", keyword);
+//		List<Object> estActOpptList = estInter.estActOpptList(map);
+//		ModelAndView mov = new ModelAndView("/sales/est/estPop/act_oppt_list_pop");
+//		
+//		mov.addObject("actOpptList", estActOpptList);
+//		
+//		return mov;
+//	}
 
 		//상세정보에서의 고객 리스트 
 		@RequestMapping(value="/estCustcompList" , method=RequestMethod.GET)
 		public ModelAndView opptCustcompList(HttpSession session,
 				@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,/*이부분!!!!!!!!!!!!!!!!!!!!!!*/
-				@RequestParam(value="keyword", defaultValue="") String keyword
-				){
+				@RequestParam(value="keyword", defaultValue="") String keyword,
+				@RequestParam(value="flg", defaultValue="") String flg,
+				@RequestParam(value="act_yn", defaultValue="") String act_yn){
 				
 				Map<String, Object> map = new HashMap<String, Object>();
 			
 				map.put("keyfield", keyfield);
 				map.put("keyword", keyword);
+				map.put("act_yn", act_yn);
 				List<Object> custcompList = estInter.estCustComp(map);
 				ModelAndView mov = new ModelAndView("/sales/est/estPop/custcomp_list_pop");
 			
@@ -711,6 +708,7 @@ public class EstController {
 				
 				//javascript에서 상세정보에서의 고객 리스트인지 구분하기 위한 값 전달
 				mov.addObject("custType", "normal");
+				mov.addObject("flg", flg);
 		
 			return mov;
 		}
@@ -739,8 +737,13 @@ public class EstController {
 			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) {
 			int result = 0;
 			// 모든 checked된 견적에 대해 삭제
+			EstVO est = new EstVO();
+			String id = session.getAttribute("user").toString();
+			est.setFin_mdfy_id(id);
+			
 			for (int i = 0; i < estimDeleteIdList.size(); i++) {
-				result += estInter.estDelete(estimDeleteIdList.get(i));
+				est.setEstim_id(estimDeleteIdList.get(i));
+				result += estInter.estDelete(est);
 			}
 			return result;
 		}
@@ -844,6 +847,8 @@ public class EstController {
 	@ResponseBody public int delEstimUpdate(HttpSession session, EstVO est){
 		
 		System.out.println(est.toString());
+		String id = session.getAttribute("user").toString();
+		est.setFin_mdfy_id(id);
 		
 		int result = estInter.delEstRestore(est);
 		
@@ -854,7 +859,7 @@ public class EstController {
 	@ResponseBody public int delEsttDelete(HttpSession session, EstVO evo) 
 	{
 		int result = 0;
-				
+	
 		result = estInter.delEstDelete(evo);
 			
 		return result;

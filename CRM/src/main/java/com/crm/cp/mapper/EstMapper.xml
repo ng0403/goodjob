@@ -12,30 +12,31 @@
 		    	select e.*
 		   		from(
 					select aa.estim_nm,
-					aa.estim_lev_cd
-			     	, aa.estim_id
-					,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd_nm
-					,nvl(( select sum(c.sales_price) 
-						from SALES_OPPORTUNITY_ESTIMATE a
-							, estimate b
-							, estimate_list c
-			      		where b.estim_id = a.estim_id
-				      		and c.estim_id = b.estim_id
-				      		and c.act_yn = 'Y'
-				      		and c.estim_id = aa.estim_id
-			      		group by aa.estim_id),0) sales_price
-    				, nvl(( select sum(c.estim_qty) 
-    					from SALES_OPPORTUNITY_ESTIMATE a
-						, estimate b
-						, estimate_list c
-				    	where b.estim_id = a.estim_id
-					      	and c.estim_id = b.estim_id
-					      	and c.act_yn = 'Y'
-					      	and c.estim_id = aa.estim_id
+						aa.estim_lev_cd
+				     	, aa.estim_id
+						,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd_nm
+						,nvl(( select sum(c.sales_price) 
+							from SALES_OPPORTUNITY_ESTIMATE a
+								, estimate b
+								, estimate_list c
+				      		where b.estim_id = a.estim_id
+					      		and c.estim_id = b.estim_id
+					      		and c.act_yn = 'Y'
+					      		and c.estim_id = aa.estim_id
+				      		group by aa.estim_id),0) sales_price
+	    				, nvl(( select sum(c.estim_qty) 
+    						from SALES_OPPORTUNITY_ESTIMATE a
+								, estimate b
+								, estimate_list c
+				    		where b.estim_id = a.estim_id
+					      		and c.estim_id = b.estim_id
+					      		and c.act_yn = 'Y'
+					      		and c.estim_id = aa.estim_id
       					group by aa.estim_id),0) estim_qty   
 					, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
+					, (select cust_nm from customer where cust_id=aa.cust_id) cust_nm
 <!-- 					, aa.fst_reg_id -->
-<!-- 					, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT  -->
+					, to_char(aa.FIN_MDFY_DT,'yyyy-mm-dd hh:mm') FIN_MDFY_DT 
 					from ESTIMATE aa,
 						SALES_OPPORTUNITY_ESTIMATE bb
 					where aa.estim_id = bb.estim_id
@@ -58,6 +59,24 @@
 		</when>
 		<when test="estim_nm !=null and estim_nm !=''">
 		   and e.estim_nm like '%'||#{estim_nm}||'%'
+		</when>
+	</choose>
+	<choose>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(e.cust_nm like '%'||#{cust_nm}||'%'
+				or e.cust_nm like '%'||#{cust_nm1}||'%'
+				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
+		   and(e.cust_nm like '%'||#{cust_nm}||'%'
+				or e.cust_nm like '%'||#{cust_nm1}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(e.cust_nm like '%'||#{cust_nm}||'%'
+				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !=''">
+		   and e.cust_nm like '%'||#{cust_nm}||'%'
 		</when>
 	</choose>
 	<choose>
@@ -114,7 +133,7 @@
 			and e.ESTIM_VALID_D = #{estim_valid_d}
 		</when>
 	</choose>  
-	order by e.estim_id desc
+	order by e.FIN_MDFY_DT desc
   	)d)f
 		where r <![CDATA[ >= ]]>
 		#{startRow} and r <![CDATA[ <= ]]>
@@ -367,6 +386,7 @@
 		and a.cust_id = c.cust_id
    	    and a.sales_lev_cd in('0002','0003')
    	    and a.cust_id=#{cust_id}
+   	    and a.act_yn = 'Y'
    	 	<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
@@ -489,6 +509,10 @@
 		from 
 			customer c,SALES_OPPORTUNITY d
 		where d.sales_lev_cd in('0002','0003')
+			and c.cust_id=d.cust_id
+		<if test="act_yn != 'all'">
+			and c.act_yn='Y'
+		</if>
 		<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
@@ -513,6 +537,7 @@
 		set estim_nm=#{estim_nm},
 		estim_lev_cd=#{estim_lev_cd},
 		estim_valid_d=TO_DATE(#{estim_valid_d},'yyyy-MM-dd'),
+		fin_mdfy_id=#{fin_mdfy_id},
 		fin_mdfy_dt=sysdate,
 		memo=#{memo}
 		where 
@@ -529,187 +554,189 @@
 		where estim_id=#{estim_id}
 	</update>
 	
-	<update id="estimateDelete" parameterType="String">
+	<update id="estimateDelete" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		update estimate
-		set act_yn='N'
+		set act_yn='N',
+			fin_mdfy_dt=sysdate,
+			fin_mdfy_id=#{fin_mdfy_id}
 		where estim_id=#{estim_id}
 	</update>
 	
 	<!-- 영업활동 리스트 조회 -->
-	<select id="actList" parameterType="java.util.Map" resultType="com.crm.cp.sales.act.vo.ActVO">
-		SELECT SAL.* 
-		FROM
-			(SELECT P.*, ROWNUM RNUM 
-			FROM (SELECT SA.SALES_ACTVY_NM
-		                ,SO.SALES_OPPT_ID
-		                ,(SELECT C.cd_nm 
-		                FROM code C 
-		                WHERE C.cd_grp_id = 'ADC' 
-		                    AND C.code = SA.SALES_ACTVY_DIV_CD)SALES_ACTVY_DIV_NM
-		                ,(SELECT C.cd_nm 
-		                FROM code C 
-		                WHERE C.cd_grp_id = 'ATC' 
-		                    AND C.code = SA.SALES_ACTVY_TYPE_CD)SALES_ACTVY_TYPE_NM
-		                ,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D
-		                ,SA.STRT_T
-		                ,TO_CHAR(SA.END_D,'YYYY-MM-DD') END_D
-		                ,SA.END_T
-		                ,(SELECT C.cd_nm 
-		                FROM code C 
-		                WHERE C.cd_grp_id = 'ASC' 
-		                    AND C.code = SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_NM
-		                ,SA.FST_REG_ID
-		                ,SA.FIN_MDFY_ID
-		                ,TO_CHAR(SA.FST_REG_DT ,'YYYY-MM-DD') FST_REG_DT
-		                ,SA.SALES_ACTVY_ID
-		                ,SO.SALES_OPPT_NM
-				FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, SALES_OPPORTUNITY_ESTIMATE OE
-				WHERE
-				SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+)
-				AND SA.ACT_YN = 'Y'
-				AND SO.SALES_OPPT_ID=OE.SALES_OPPT_ID
-				AND OE.ESTIM_ID=#{estim_id}) P
-			)SAL
-	</select>
+<!-- 	<select id="actList" parameterType="java.util.Map" resultType="com.crm.cp.sales.act.vo.ActVO"> -->
+<!-- 		SELECT SAL.*  -->
+<!-- 		FROM -->
+<!-- 			(SELECT P.*, ROWNUM RNUM  -->
+<!-- 			FROM (SELECT SA.SALES_ACTVY_NM -->
+<!-- 		                ,SO.SALES_OPPT_ID -->
+<!-- 		                ,(SELECT C.cd_nm  -->
+<!-- 		                FROM code C  -->
+<!-- 		                WHERE C.cd_grp_id = 'ADC'  -->
+<!-- 		                    AND C.code = SA.SALES_ACTVY_DIV_CD)SALES_ACTVY_DIV_NM -->
+<!-- 		                ,(SELECT C.cd_nm  -->
+<!-- 		                FROM code C  -->
+<!-- 		                WHERE C.cd_grp_id = 'ATC'  -->
+<!-- 		                    AND C.code = SA.SALES_ACTVY_TYPE_CD)SALES_ACTVY_TYPE_NM -->
+<!-- 		                ,TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') STRT_D -->
+<!-- 		                ,SA.STRT_T -->
+<!-- 		                ,TO_CHAR(SA.END_D,'YYYY-MM-DD') END_D -->
+<!-- 		                ,SA.END_T -->
+<!-- 		                ,(SELECT C.cd_nm  -->
+<!-- 		                FROM code C  -->
+<!-- 		                WHERE C.cd_grp_id = 'ASC'  -->
+<!-- 		                    AND C.code = SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_NM -->
+<!-- 		                ,SA.FST_REG_ID -->
+<!-- 		                ,SA.FIN_MDFY_ID -->
+<!-- 		                ,TO_CHAR(SA.FST_REG_DT ,'YYYY-MM-DD') FST_REG_DT -->
+<!-- 		                ,SA.SALES_ACTVY_ID -->
+<!-- 		                ,SO.SALES_OPPT_NM -->
+<!-- 				FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, SALES_OPPORTUNITY_ESTIMATE OE -->
+<!-- 				WHERE -->
+<!-- 				SA.SALES_OPPT_ID=SO.SALES_OPPT_ID(+) -->
+<!-- 				AND SA.ACT_YN = 'Y' -->
+<!-- 				AND SO.SALES_OPPT_ID=OE.SALES_OPPT_ID -->
+<!-- 				AND OE.ESTIM_ID=#{estim_id}) P -->
+<!-- 			)SAL -->
+<!-- 	</select> -->
 	
 	<!-- 영업활동 리스트 row 개수 가져오기 -->
-	<select id="actCount" resultType="int" parameterType="String">
-		SELECT NVL(COUNT(SALES_ACTVY_ID), 0)
-		FROM SALES_ACTIVITY a, SALES_OPPORTUNITY_ESTIMATE o
-		WHERE 
-			ACT_YN = 'Y'
-   			AND a.SALES_OPPT_ID = o.SALES_OPPT_ID
-			AND o.estim_id = #{estim_id}
-	</select>
+<!-- 	<select id="actCount" resultType="int" parameterType="String"> -->
+<!-- 		SELECT NVL(COUNT(SALES_ACTVY_ID), 0) -->
+<!-- 		FROM SALES_ACTIVITY a, SALES_OPPORTUNITY_ESTIMATE o -->
+<!-- 		WHERE  -->
+<!-- 			ACT_YN = 'Y' -->
+<!--    			AND a.SALES_OPPT_ID = o.SALES_OPPT_ID -->
+<!-- 			AND o.estim_id = #{estim_id} -->
+<!-- 	</select> -->
 	
 	<!-- 영업기회 리스트 조회 -->
-	<select id="opptList" parameterType="java.util.Map" resultType="com.crm.cp.sales.oppt.vo.OpptVO">
-		SELECT 
-        	ROWNUM RNUM, 
-        	SO.SALES_OPPT_ID
-        	,SO.CUST_ID
-        	, C.CUST_NM
-        	,SO.SALES_OPPT_NM
-        	,(SELECT CD_NM 
-        	FROM CODE 
-        	WHERE CD_GRP_ID='OTL' 
-        	AND CODE = SO.SALES_LEV_CD) SALES_LEV_CD_NM
-        	,SO.SALES_LEV_CD
-        	,SO.SALES_OPPT_STAT_CD
-        	, TO_CHAR(SO.EXPT_FIN_D,'YYYY-MM-DD') EXPT_FIN_D
- 		    ,SO.PSBLTY_RATE
- 		    ,(SELECT CD_NM 
- 		    FROM CODE 
- 		    WHERE CD_GRP_ID='OSC' 
- 		    	AND CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD_NM
- 		    ,SO.MEMO
- 		    ,SO.FST_REG_ID
- 		    ,TO_CHAR(SO.FST_REG_DT ,'YYYY-MM-DD HH:MM') FST_REG_DT 
- 		    ,SO.FIN_MDFY_ID
- 		    ,SO.FIN_MDFY_DT
- 		    ,SO.ACT_YN
- 		    ,(SELECT EXPT_SALES_AMT  
-              FROM SALES_OPPT_STEP 
-              WHERE 1=1 
-                  AND ROWNUM = 1 
-                  AND FIN_MDFY_DT = ( SELECT MAX(FIN_MDFY_DT) 
-                               		FROM SALES_OPPT_STEP 
-                               		WHERE 1=1 AND SALES_OPPT_ID=SO.SALES_OPPT_ID))EXPT_SALES_AMT
-		FROM 
-			SALES_OPPORTUNITY SO, CUSTOMER C, SALES_OPPORTUNITY_ESTIMATE OE
-		WHERE 
-			1=1 
-			AND SO.CUST_ID = C.CUST_ID
-			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
-			AND SO.ACT_YN='Y'
-			AND OE.ESTIM_ID = #{estim_id}
-      	ORDER BY SO.SALES_OPPT_ID DESC
+<!-- 	<select id="opptList" parameterType="java.util.Map" resultType="com.crm.cp.sales.oppt.vo.OpptVO"> -->
+<!-- 		SELECT  -->
+<!--         	ROWNUM RNUM,  -->
+<!--         	SO.SALES_OPPT_ID -->
+<!--         	,SO.CUST_ID -->
+<!--         	, C.CUST_NM -->
+<!--         	,SO.SALES_OPPT_NM -->
+<!--         	,(SELECT CD_NM  -->
+<!--         	FROM CODE  -->
+<!--         	WHERE CD_GRP_ID='OTL'  -->
+<!--         	AND CODE = SO.SALES_LEV_CD) SALES_LEV_CD_NM -->
+<!--         	,SO.SALES_LEV_CD -->
+<!--         	,SO.SALES_OPPT_STAT_CD -->
+<!--         	, TO_CHAR(SO.EXPT_FIN_D,'YYYY-MM-DD') EXPT_FIN_D -->
+<!--  		    ,SO.PSBLTY_RATE -->
+<!--  		    ,(SELECT CD_NM  -->
+<!--  		    FROM CODE  -->
+<!--  		    WHERE CD_GRP_ID='OSC'  -->
+<!--  		    	AND CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD_NM -->
+<!--  		    ,SO.MEMO -->
+<!--  		    ,SO.FST_REG_ID -->
+<!--  		    ,TO_CHAR(SO.FST_REG_DT ,'YYYY-MM-DD HH:MM') FST_REG_DT  -->
+<!--  		    ,SO.FIN_MDFY_ID -->
+<!--  		    ,SO.FIN_MDFY_DT -->
+<!--  		    ,SO.ACT_YN -->
+<!--  		    ,(SELECT EXPT_SALES_AMT   -->
+<!--               FROM SALES_OPPT_STEP  -->
+<!--               WHERE 1=1  -->
+<!--                   AND ROWNUM = 1  -->
+<!--                   AND FIN_MDFY_DT = ( SELECT MAX(FIN_MDFY_DT)  -->
+<!--                                		FROM SALES_OPPT_STEP  -->
+<!--                                		WHERE 1=1 AND SALES_OPPT_ID=SO.SALES_OPPT_ID))EXPT_SALES_AMT -->
+<!-- 		FROM  -->
+<!-- 			SALES_OPPORTUNITY SO, CUSTOMER C, SALES_OPPORTUNITY_ESTIMATE OE -->
+<!-- 		WHERE  -->
+<!-- 			1=1  -->
+<!-- 			AND SO.CUST_ID = C.CUST_ID -->
+<!-- 			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID -->
+<!-- 			AND SO.ACT_YN='Y' -->
+<!-- 			AND OE.ESTIM_ID = #{estim_id} -->
+<!--       	ORDER BY SO.SALES_OPPT_ID DESC -->
 		
-	</select>
+<!-- 	</select> -->
 	
 	<!-- 영업기회 리스트 row 개수 가져오기 -->
-	<select id="opptCount" resultType="int" parameterType="String">
-		SELECT NVL(COUNT(SO.SALES_OPPT_ID), 0)
-		FROM SALES_OPPORTUNITY SO,  SALES_OPPORTUNITY_ESTIMATE OE
-		WHERE 
-			ACT_YN = 'Y'
-   			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID
-			AND OE.ESTIM_ID = #{estim_id}
-	</select>
+<!-- 	<select id="opptCount" resultType="int" parameterType="String"> -->
+<!-- 		SELECT NVL(COUNT(SO.SALES_OPPT_ID), 0) -->
+<!-- 		FROM SALES_OPPORTUNITY SO,  SALES_OPPORTUNITY_ESTIMATE OE -->
+<!-- 		WHERE  -->
+<!-- 			ACT_YN = 'Y' -->
+<!--    			AND SO.SALES_OPPT_ID = OE.SALES_OPPT_ID -->
+<!-- 			AND OE.ESTIM_ID = #{estim_id} -->
+<!-- 	</select> -->
 	<!-- 영업기회탭 영업기회 추가시  영업기회멸 견적 추가 -->
-	<insert id="opptSoeAdd" parameterType="com.crm.cp.sales.est.vo.EstVO">
-		insert into SALES_OPPORTUNITY_ESTIMATE(
-			estim_id,
-			sales_oppt_id,
-			serial_num,
-			fst_reg_id,
-			fst_reg_dt,
-			fin_mdfy_id,
-			fin_mdfy_dt
-		)
-		values(
-			#{estim_id},
-			#{oppt_seq},
-			(SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE SERIAL_NUM)*/
-			 DECODE(MAX(SERIAL_NUM),NULL,'OES0000001','OES'||lpad((SUBSTR(MAX(SERIAL_NUM),4,7)+1),7,0))SERIAL_NUM
-			FROM SALES_OPPORTUNITY_ESTIMATE
-			WHERE ROWNUM=1),
-			#{fst_reg_id},
-			sysdate,
-			#{fin_mdfy_id},
-			sysdate
-		)
-	</insert>
+<!-- 	<insert id="opptSoeAdd" parameterType="com.crm.cp.sales.est.vo.EstVO"> -->
+<!-- 		insert into SALES_OPPORTUNITY_ESTIMATE( -->
+<!-- 			estim_id, -->
+<!-- 			sales_oppt_id, -->
+<!-- 			serial_num, -->
+<!-- 			fst_reg_id, -->
+<!-- 			fst_reg_dt, -->
+<!-- 			fin_mdfy_id, -->
+<!-- 			fin_mdfy_dt -->
+<!-- 		) -->
+<!-- 		values( -->
+<!-- 			#{estim_id}, -->
+<!-- 			#{oppt_seq}, -->
+<!-- 			(SELECT /*+INDEX_DESC(SALES_OPPORTUNITY_ESTIMATE SERIAL_NUM)*/ -->
+<!-- 			 DECODE(MAX(SERIAL_NUM),NULL,'OES0000001','OES'||lpad((SUBSTR(MAX(SERIAL_NUM),4,7)+1),7,0))SERIAL_NUM -->
+<!-- 			FROM SALES_OPPORTUNITY_ESTIMATE -->
+<!-- 			WHERE ROWNUM=1), -->
+<!-- 			#{fst_reg_id}, -->
+<!-- 			sysdate, -->
+<!-- 			#{fin_mdfy_id}, -->
+<!-- 			sysdate -->
+<!-- 		) -->
+<!-- 	</insert> -->
 	
-	<select id="estHistoryList" resultType="com.crm.cp.sales.est.vo.EstVO"
-		parameterType="java.util.Map">
+<!-- 	<select id="estHistoryList" resultType="com.crm.cp.sales.est.vo.EstVO" -->
+<!-- 		parameterType="java.util.Map"> -->
 		
-		select f.*,r 
-		from(
-			select d.*,rownum r
-			from(
-		    	select e.*
-		   		from(
-					select 
-						bb.sales_oppt_id
-						,cc.sales_oppt_nm
-						,aa.estim_nm
-						,aa.estim_lev_cd
-				     	, aa.estim_id
-						,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd_nm
-						,nvl(( select sum(c.sales_price) 
-							from SALES_OPPORTUNITY_ESTIMATE a
-								, estimate b
-								, estimate_list c
-				      		where b.estim_id = a.estim_id
-					      		and c.estim_id = b.estim_id
-					      		and c.act_yn = 'Y'
-					      		and c.estim_id = aa.estim_id
-				      		group by aa.estim_id),0) sales_price
-	    				, nvl(( select sum(c.estim_qty) 
-	    					from SALES_OPPORTUNITY_ESTIMATE a
-							, estimate b
-							, estimate_list c
-					    	where b.estim_id = a.estim_id
-						      	and c.estim_id = b.estim_id
-						      	and c.act_yn = 'Y'
-						      	and c.estim_id = aa.estim_id
-	      					group by aa.estim_id),0) estim_qty   
-						, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
-						, aa.fst_reg_id
-						, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT 
-					from ESTIMATE aa,
-						SALES_OPPORTUNITY_ESTIMATE bb,
-						SALES_OPPORTUNITY cc
-					where aa.estim_id = bb.estim_id
-						and bb.sales_oppt_id = cc.sales_oppt_id
-						and cc.sales_oppt_id = #{sales_oppt_id}
-						and aa.ACT_YN='Y' 
-  				)e
-  			order by e.estim_id desc
-  			)d
-  		)f
-	</select>
+<!-- 		select f.*,r  -->
+<!-- 		from( -->
+<!-- 			select d.*,rownum r -->
+<!-- 			from( -->
+<!-- 		    	select e.* -->
+<!-- 		   		from( -->
+<!-- 					select  -->
+<!-- 						bb.sales_oppt_id -->
+<!-- 						,cc.sales_oppt_nm -->
+<!-- 						,aa.estim_nm -->
+<!-- 						,aa.estim_lev_cd -->
+<!-- 				     	, aa.estim_id -->
+<!-- 						,( SELECT c.cd_nm FROM CODE c where c.cd_grp_id='ELC' and c.code = aa.estim_lev_cd ) estim_lev_cd_nm -->
+<!-- 						,nvl(( select sum(c.sales_price)  -->
+<!-- 							from SALES_OPPORTUNITY_ESTIMATE a -->
+<!-- 								, estimate b -->
+<!-- 								, estimate_list c -->
+<!-- 				      		where b.estim_id = a.estim_id -->
+<!-- 					      		and c.estim_id = b.estim_id -->
+<!-- 					      		and c.act_yn = 'Y' -->
+<!-- 					      		and c.estim_id = aa.estim_id -->
+<!-- 				      		group by aa.estim_id),0) sales_price -->
+<!-- 	    				, nvl(( select sum(c.estim_qty)  -->
+<!-- 	    					from SALES_OPPORTUNITY_ESTIMATE a -->
+<!-- 							, estimate b -->
+<!-- 							, estimate_list c -->
+<!-- 					    	where b.estim_id = a.estim_id -->
+<!-- 						      	and c.estim_id = b.estim_id -->
+<!-- 						      	and c.act_yn = 'Y' -->
+<!-- 						      	and c.estim_id = aa.estim_id -->
+<!-- 	      					group by aa.estim_id),0) estim_qty    -->
+<!-- 						, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D -->
+<!-- 						, aa.fst_reg_id -->
+<!-- 						, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT  -->
+<!-- 					from ESTIMATE aa, -->
+<!-- 						SALES_OPPORTUNITY_ESTIMATE bb, -->
+<!-- 						SALES_OPPORTUNITY cc -->
+<!-- 					where aa.estim_id = bb.estim_id -->
+<!-- 						and bb.sales_oppt_id = cc.sales_oppt_id -->
+<!-- 						and cc.sales_oppt_id = #{sales_oppt_id} -->
+<!-- 						and aa.ACT_YN='Y'  -->
+<!--   				)e -->
+<!--   			order by e.estim_id desc -->
+<!--   			)d -->
+<!--   		)f -->
+<!-- 	</select> -->
 	
 	<!-- 
 		삭제된 데이터 관련 쿼리	
@@ -746,8 +773,9 @@
 					      	and c.estim_id = aa.estim_id
       					group by aa.estim_id),0) estim_qty   
 					, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
-					, aa.fst_reg_id
-					, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT 
+					, aa.fin_mdfy_id
+					, to_char(aa.FIN_MDFY_DT,'yyyy-mm-dd hh:mm') FIN_MDFY_DT
+					, (select cust_nm from customer where cust_id=aa.cust_id) cust_nm 
 					from ESTIMATE aa,
 						SALES_OPPORTUNITY_ESTIMATE bb
 					where aa.estim_id = bb.estim_id
@@ -770,6 +798,24 @@
 		</when>
 		<when test="estim_nm !=null and estim_nm !=''">
 		   and e.estim_nm like '%'||#{estim_nm}||'%'
+		</when>
+	</choose>
+	<choose>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(e.cust_nm like '%'||#{cust_nm}||'%'
+				or e.cust_nm like '%'||#{cust_nm1}||'%'
+				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
+		   and(e.cust_nm like '%'||#{cust_nm}||'%'
+				or e.cust_nm like '%'||#{cust_nm1}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(e.cust_nm like '%'||#{cust_nm}||'%'
+				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !=''">
+		   and e.cust_nm like '%'||#{cust_nm}||'%'
 		</when>
 	</choose>
 	<choose>
@@ -826,7 +872,7 @@
 			and e.ESTIM_VALID_D = #{estim_valid_d}
 		</when>
 	</choose>  
-	order by e.estim_id desc
+	order by e.fin_mdfy_dt desc
   	)d)f
 		where r <![CDATA[ >= ]]>
 		#{startRow} and r <![CDATA[ <= ]]>
@@ -869,7 +915,9 @@
 	
 	<update id="delEstimateRestore" parameterType="com.crm.cp.sales.est.vo.EstVO">
 		update estimate
-		set act_yn='Y'
+		set act_yn='Y',
+			fin_mdfy_dt=sysdate,
+			fin_mdfy_id=#{fin_mdfy_id}
 		where estim_id=#{estim_id}
 	</update>
 </mapper>

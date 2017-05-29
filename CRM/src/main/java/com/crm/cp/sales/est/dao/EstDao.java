@@ -43,7 +43,7 @@ public interface EstDao {
 
 		int estUpdate(Map<String, Object> map);
 
-		int estDelete(String estim_id);
+		int estDelete(EstVO est);
 
 		int actCount(String estim_id);
 

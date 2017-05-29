@@ -15,23 +15,52 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
-	estimListMakeBlock();
+//	estimListMakeBlock();
 	estimAllselect();
 	estimDeleteBtn(ctx);
 	startCalendar(ctx);
 	$("#search_div2, #search_div3").hide();
+	custcompListPopup(ctx);
 });
-function estimListMakeBlock(){
-	var blank = $("#estList tr").length;
-	if( blank < 10){
-		for(var j = 0; j < 10-blank; j++){
-			var block ="<tr style='height:43px;'>"
-				+"<td></td><td></td><td></td><td></td>"
-				+"<td></td><td></td><td></td></tr>";
-			$("#estList").append(block);
-		}
-	}
+//function estimListMakeBlock(){
+//	var blank = $("#estList tr").length;
+//	if( blank < 10){
+//		for(var j = 0; j < 10-blank; j++){
+//			var block ="<tr style='height:43px;'>"
+//				+"<td></td><td></td><td></td><td></td>"
+//				+"<td></td><td></td><td></td></tr>";
+//			$("#estList").append(block);
+//		}
+//	}
+//}
+
+//고객사 리스트 팝업
+function custcompListPopup(ctx){
+	$('#cust_list_pop').click(function(){
+		window.open(ctx+'/estCustcompList','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
+	$('#cust_list_pop1').click(function(){
+		window.open(ctx+'/estCustcompList?flg=1','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
+	$('#cust_list_pop2').click(function(){
+		window.open(ctx+'/estCustcompList?flg=2','newwindow','width=500, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+	});
 }
+
+//고객명 입력 함수
+function inputCustNm(custNm,custId){
+	$('#cust_nm').val(custNm);
+	$('#cust_id').val(custId);
+}
+function inputCustNm1(custNm,custId){
+	$('#cust_nm1').val(custNm);
+	$('#cust_id1').val(custId);
+}
+function inputCustNm2(custNm,custId){
+	$('#cust_nm2').val(custNm);
+	$('#cust_id2').val(custId);
+}
+
 //견적 추가 버튼 클릭 시
 function estAddBtn(){
 	location.href="/estAddForm"
@@ -107,30 +136,31 @@ function list(page){
 					"<td style='text-align: left; padding-left:5px;'>"+
 					"<a style='text-decoration: none;' href=javascript:estDetail('"+data.estim_id+"');>"+
 						data.estim_nm+"</a></td>"+
+					"<td>"+data.cust_nm+"</td>"+
 					"<td>"+data.estim_lev_cd_nm+"</td>"+
 					"<td style='text-align: right;padding-right:5px;'>"+data.estim_qty+"</td>"+
 					"<td style='text-align: right;padding-right:5px;'>"+comma(data.sales_price)+"</td>"+
-					"<td>"+data.estim_valid_d+"</td>"+
-					"<td>"+data.fst_reg_id+"</td>"+
-					"<td>"+data.fst_reg_dt+"</td>"+
+					"<td style='text-align: center;'>"+data.estim_valid_d+"</td>"+
+//					"<td>"+data.fst_reg_id+"</td>"+
+//					"<td>"+data.fst_reg_dt+"</td>"+
 				"</tr>"
 				);
 			});
-			if(result.list.length < 10){
-				for(var i=0 ;  i < 10-result.list.length ; i++){
-					$("#estList").append("" +
-							 "<td>"+
-								"<td></td>"+
-								"<td></td>"+
-								"<td></td>"+
-								"<td></td>"+
-								"<td></td>"+
-								"<td></td>"+
-								"<td></td>"+
+//			if(result.list.length < 10){
+//				for(var i=0 ;  i < 10-result.list.length ; i++){
+//					$("#estList").append("" +
+//							 "<td>"+
 //								"<td></td>"+
-							"</tr>");
-			   }
-			}
+//								"<td></td>"+
+//								"<td></td>"+
+//								"<td></td>"+
+//								"<td></td>"+
+//								"<td></td>"+
+//								"<td></td>"+
+//								"<td></td>"+
+//							"</tr>");
+//			   }
+//			}
 			$("#pageSpace").children().remove();
 			var ccPageNum = result.ccPageNum;
 			var startPageNum = result.page.startPageNum;
@@ -306,12 +336,13 @@ function delForm(message){
 //조회 버튼 클릭에 대한 검색어 입력 여부 확인
 function searchBtn(page){
 	var estim_nm = $("#sestim_nm").val();
+	var cust_id = $("#cust_id").val();
 	var estim_lev_cd = $("#sestim_lev_cd").val();
 	var sales_price_1 =  $("#ssales_price_1").val();
 	var sales_price_2 =  $("#ssales_price_2").val();
 	var estim_valid_d = $("#sestim_valid_d").val();
-	if(estim_nm == '' && estim_lev_cd == '' && sales_price_1 == '' && sales_price_2 == '' && estim_valid_d ==''){
-		alert("검색어를 입력하세요");
+	if(estim_nm == '' && cust_id == '' && estim_lev_cd == '' && sales_price_1 == '' && sales_price_2 == '' && estim_valid_d ==''){
+		alert("첫번째 검색조건을  입력하세요");
 		$("#sestim_nm").focus();
 		return;
 	}else{

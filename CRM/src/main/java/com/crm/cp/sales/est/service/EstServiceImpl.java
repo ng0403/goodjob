@@ -183,9 +183,9 @@ public class EstServiceImpl implements EstService {
 	}
 
 	@Override
-	public int estDelete(String estim_id) {
+	public int estDelete(EstVO est) {
 		// TODO Auto-generated method stub
-		return estDaoi.estDelete(estim_id);
+		return estDaoi.estDelete(est);
 	}
 
 	@Override

@@ -202,13 +202,13 @@ public class EstDaoImpl implements EstDao{
 	}
 
 	@Override
-	public int estDelete(String estim_id) {
+	public int estDelete(EstVO est) {
 		// TODO Auto-generated method stub
 		
 		int result = 0; 
 		
-		result += sqlSession.update("estimate.estimateDelete", estim_id);
-		sqlSession.update("estimate.estListDelete", estim_id);
+		result = sqlSession.update("estimate.estimateDelete", est);
+//		sqlSession.update("estimate.estListDelete", estim_id);
 		System.out.println("delete result : " + result);
 
 		return result;

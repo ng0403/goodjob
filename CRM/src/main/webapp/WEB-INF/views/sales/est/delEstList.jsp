@@ -47,7 +47,10 @@
 	</form>
 	<div id="title">
 		<div class="caption">
-			<label id="listLabel" class="ui header">■ 견적 > 견적관리 삭제된 데이터</label>
+			<label id="listLabel" class="ui header">■ 견적 >&nbsp;
+				<a href="/estInqr" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">견적관리</a>
+				&nbsp;> 삭제된 데이터
+			</label>
 		</div>
 	</div>
 		<div class="search_div" id="search_div1">
@@ -171,8 +174,8 @@
 						<th style="width: 5%;" id="tblTh">견적수량</th>
 						<th style="width: 10%;" id="tblTh">견적금액</th>
 						<th style="width: 10%;" id="tblTh">견적유효일자</th>
-						<th style="width: 10%;" id="tblTh">등록자</th>
-						<th style="width: 10%;" id="tblTh">등록일시</th>
+						<th style="width: 10%;" id="tblTh">최종수정자</th>
+						<th style="width: 10%;" id="tblTh">최종수정일자</th>
 					</tr>
 				</thead>
 				<tbody id="estList">
@@ -181,13 +184,13 @@
 							<td style='text-align: left; padding-left:5px;'>
 								<a style='text-decoration: none; color: blue;' href="javascript:delEstDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>
-							<td style='text-align: left;'></td>
+							<td style='text-align: left;'>${result.cust_nm}</td>
 							<td><c:out value="${result.estim_lev_cd_nm}" /></td>
 							<td style='text-align: right;padding-right:5px;'><c:out value="${result.estim_qty}" /></td>
 							<td style='text-align: right;padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
 							<td style='text-align: center;'><c:out value="${result.estim_valid_d}" /></td>
-							<td><c:out value="${result.fst_reg_id}" /></td>
-							<td><c:out value="${result.fst_reg_dt}" /></td>
+							<td><c:out value="${result.fin_mdfy_id}" /></td>
+							<td><c:out value="${result.fin_mdfy_dt}" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -71,15 +71,15 @@ $(function() {
 		<div id="tabDiv1" class="tab1_content">
 			<div id="baseBtnDiv" class="bt_position_authuser">
 				<input type="button" id="mdfBtn" value="편집" class="tiny ui blue button" onclick="estMdfyBtn();"/>
-				<input type="button" id="listLocaBtn" class="tiny ui button" value="목록" class="tiny ui button" onclick="cancel_Click();"/>
+				<input type="button" id="listLocaBtn" class="tiny ui button" value="취소" class="tiny ui button" onclick="cancel_Click();"/>
 			</div>
-			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser">
-				<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="tiny ui blue button"/>
-				<input type="button" id="addCancelBtn" value="취소" class="tiny ui button" onclick="cancel_Click();"/>
-			</div>
+<!-- 			<div id="addBtnDiv" style="display: none;" class="bt_position_authuser"> -->
+<%-- 				<input type="button" id="addSaveBtn" value="저장" onclick="save_Click('${ctx}');" class="tiny ui blue button"/> --%>
+<!-- 				<input type="button" id="addCancelBtn" value="취소" class="tiny ui button" onclick="cancel_Click();"/> -->
+<!-- 			</div> -->
 			<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">
 				<input type="button" id="mdfSaveBtn" class="tiny ui blue button" value="저장" onclick="save_Click('${ctx}');"/>
-				<input type="button" id="mdfCancelBtn" class="tiny ui button" value="목록" onclick="cancel_Click();"/>
+				<input type="button" id="mdfCancelBtn" class="tiny ui button" value="취소" onclick="cancel_Click();"/>
 			</div>
 			<div id="ccustomerdiv">
 				<input type="hidden" id="inputCust" value="false"/>

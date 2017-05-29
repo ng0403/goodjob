@@ -54,10 +54,10 @@
 		    	<i class="file text outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
-				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm" value="${cust_nm}" onkeypress="estSearchInput(event);">
+				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly">
 				<input type="hidden" id="cust_id" name="cust_id" value="">
-				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
 		    	<i class="building outline icon"></i>
+		    	<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
 		    </div>
 		    <div class="ui left icon input">
 				<select name="estim_lev_cd" id="sestim_lev_cd">
@@ -112,10 +112,10 @@
 		    	<i class="file text outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
-				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm1" value="${cust_nm}" onkeypress="estSearchInput(event);">
+				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm1" value="${cust_nm}" readonly="readonly">
 				<input type="hidden" id="cust_id1" name="cust_id" value="">
-				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
-		    	<i class="building outline icon"></i>
+				<i class="building outline icon"></i>
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop1" value="고객">
 		    </div>
 		    <div class="ui left icon input">
 				<select name="estim_lev_cd1" id="sestim_lev_cd1">
@@ -148,10 +148,10 @@
 		    	<i class="file text outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
-				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm2" value="${cust_nm}" onkeypress="estSearchInput(event);">
+				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm2" value="${cust_nm}" readonly="readonly">
 				<input type="hidden" id="cust_id2" name="cust_id" value="">
-				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
-		    	<i class="building outline icon"></i>
+				<i class="building outline icon"></i>
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop2" value="고객">
 		    </div>
 		    <div class="ui left icon input">
 				<select name="estim_lev_cd2" id="sestim_lev_cd2">
@@ -202,7 +202,7 @@
 							<td style='text-align: left; padding-left:5px;'>
 								<a style='text-decoration: none;' href="javascript:estDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>
-							<td style='text-align: left;'></td>
+							<td style='text-align: left;'>${result.cust_nm}</td>
 							<td><c:out value="${result.estim_lev_cd_nm}" /></td>
 							<td style='text-align: right;padding-right:5px;'><c:out value="${result.estim_qty}" /></td>
 							<td style='text-align: right;padding-right:5px;'><fmt:formatNumber value="${result.sales_price}" /></td>
