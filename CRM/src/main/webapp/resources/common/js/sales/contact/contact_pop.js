@@ -24,7 +24,7 @@ function compListPopup(ctx){
 }
 
 
-function inputCompNm(compNm,compId){
+function inputCompNm1(compNm,compId){
 	
 	$('#company_nm').val(compNm);
 	$('#company_id').val(compId);

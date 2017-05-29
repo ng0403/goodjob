@@ -100,9 +100,11 @@ function inputCustNm1(custId,custNm,custType,pop_flg){
 	if(custType == 'search'){
 		$('#scust_nm').val(custNm);
 		$('#scust_id').val(custId);
+		$('#company_nm').val(custNm);
 	}else if(custType == 'normal'){
 		$('#cust_nm').val(custNm);
 		$('#cust_id').val(custId);
+		$('#company_nm').val(custNm);
 	}
 }
 

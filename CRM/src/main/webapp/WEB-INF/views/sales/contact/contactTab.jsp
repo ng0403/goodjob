@@ -17,6 +17,7 @@
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
  --%><script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script> 
  
 <title>Insert title here</title>
 </head>
