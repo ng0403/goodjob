@@ -63,7 +63,7 @@ $(function() {
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='ccListCheck'/></th>
-						<th style="width: 16%" id="tblTh" > 기업명</th>
+						<th style="width: 16%" id="tblTh" > 고객사명</th>
 						<th style="width: 8%"  id="tblTh" >사업자번호</th>
 						<th style="width: 8%"  id="tblTh" >법인번호</th>
 						<th style="width: 10%" id="tblTh" >대표전화번호</th>

@@ -67,7 +67,7 @@ $(function() {
 			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" >
 				<thead>
 					<tr>
-						<th style="width: 14%" id="tblTh" > 기업명</th>
+						<th style="width: 14%" id="tblTh" > 고객사명</th>
 						<th style="width: 8%"  id="tblTh" >사업자번호</th>
 						<th style="width: 8%"  id="tblTh" >법인번호</th>
 						<th style="width: 8%" id="tblTh" >대표전화번호</th>

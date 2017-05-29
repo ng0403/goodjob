@@ -541,7 +541,7 @@
 	     	#{key_pos},   
 	     	#{fst_reg_id}, 
 	     	sysdate, 
-	     	'', 
+	     	'admin', 
 	     	sysdate
 	     )
 	</insert>

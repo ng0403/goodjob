@@ -33,17 +33,17 @@
 	<div id="title">
 		<!-- 신규추가를 눌렀을 경우 -->
 			<div class="caption">
-				<h3 class="ui header" style="background: #fff;">
-					■ 고객 > 
-					<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a> >
-					<a href="/custcompDelList" style="font-size: 14pt; text-decoration: none; color: blue;"> 삭제된 데이터</a> 
-					> 삭제된 데이터 상세정보
-				</h3>
+				<label id="listLabel" class="ui header">
+						■ 고객 > 
+						<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a> >
+						<a href="/custcompDelList" style="font-size: 14pt; text-decoration: none; color: blue;"> 삭제된 데이터</a> 
+						> 삭제된 데이터 상세정보
+				</label> 		
 			</div>
 	</div>
 	<div id="custcomp_tab_detail">
 		<form id="custCompForm" method="post">
-			<div class="detailBtn" style="text-align: right;">   
+			<div class="detailBtn" style="text-align: right; margin-bottom: 13px;">   
 				<input type="button" id="rollbackbtn" class="tiny ui blue button"  onclick="custcompDelModify();" value="복원" />
 				<input type="button" id="deletebtn"   class="tiny ui blue button"  onclick="custcompDelDelBtn();" value="삭제" />
 				<input type="button" id="cancelbtn"   class="tiny ui button" 	   onclick="custcompCancelBtn(${flg});" value="취소" />

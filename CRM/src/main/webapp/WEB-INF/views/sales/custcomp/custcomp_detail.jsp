@@ -37,10 +37,10 @@
 		<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
 			<div class="caption">
-				<h3 class="ui header" style="background: #fff;">
+				<label id="listLabel" class="ui header">
 					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a>
 					>  고객사 추가
-				</h3>
+				</label>
 			</div>
 		</c:if>
 		<c:if test="${flg == 1 }">
@@ -161,7 +161,7 @@
 									<input type="hidden" id="hrep_ph3" value="${custcompDetail.rep_ph3}" />
 									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" value="${custcompDetail.rep_ph1}" maxlength="3" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' /> - 
 									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' /> - 
-									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' />
+									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph3}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' />
 								</c:if> 
 								<c:if test="${flg == 1 }">
 									<input type="hidden" id="hrep_ph1" value="${custcompDetail.rep_ph1}" />
@@ -169,7 +169,7 @@
 									<input type="hidden" id="hrep_ph3" value="${custcompDetail.rep_ph3}" />
 									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" value="${custcompDetail.rep_ph1}" maxlength="3" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" /> - 
 									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" /> - 
-									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" />
+									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph3}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" />
 								</c:if></td>
 							<th>홈페이지</th>
 							<td>

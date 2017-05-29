@@ -173,7 +173,7 @@ public class CustCompController {
 		if(cust_id == null) {
 			flg = 0;
 			
-			ModelAndView mov = new ModelAndView("custcompDetail");
+			ModelAndView mov = new ModelAndView("custcompAdd");
 
 			List<CustCompVO> SSCCodeList = ccService.selectSSC(); // 매출규모 코드 가져오기
 			List<CustCompVO> IDCCodeList = ccService.selectIDC(); // 산업군 코드 가져오기
@@ -225,6 +225,7 @@ public class CustCompController {
 	public String custcompAdd(@ModelAttribute CustCompVO ccVO, HttpSession session, HttpServletRequest request) {
 		
 		ccVO.setFst_reg_id(session.getAttribute("user").toString());
+		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
 		
 		System.out.println(ccVO.toString());
 		ccService.custcompInsert(ccVO);

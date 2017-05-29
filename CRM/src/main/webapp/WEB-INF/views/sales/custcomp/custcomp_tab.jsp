@@ -28,7 +28,6 @@
 <%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script> --%>
 <!-- 테이블 th고정 CSS -->
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" /> --%>
-
 </head>
 
 <body  >
@@ -39,7 +38,7 @@
 	<input type="hidden" id="flg" value="${flg}">
 	
 	<c:if test="${flg == 1 }">
-	<div id="css_tabs" style="float: left; padding-top: 30px;">
+	<div id="css_tabs" style="float: left; padding-top: 30px; ">
 		<!-- 라디오 버튼 -->
 		<input id="tab1" type="radio" name="tab" checked="checked" />
 		<input id="tab2" type="radio" name="tab" />
@@ -136,13 +135,13 @@
 				<table id="actTable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style='width:30px;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
+							<th style='width:30px;'  rowspan="2">
+								<input type="checkbox"  id='ccActListCheck'/></th>
 							<th style='width:270px;' rowspan="2">영업활동명</th>
-							<th style='width:105px;   height:12px; padding:5px;'>시작일자</th>
+							<th style='width:105px;  height:12px; padding:5px;'>시작일자</th>
 							<th style='width:63px;   height:12px; padding:5px;'>시작시간</th>
-							<th style='width:112px;'  rowspan="2">영업유형</th>
-							<th style='width:99px;'  rowspan="2">영업구분</th>
-							<th style='width:98px;'  rowspan="2">상태</th>
+							<th style='width:112px;' rowspan="2">영업유형</th>
+							<th style='width:98px;'  rowspan="2">영업상태</th>
 						</tr>
 						<tr>
 							<th style='width:80px; height:12px; padding:5px;'>종료일자</th>

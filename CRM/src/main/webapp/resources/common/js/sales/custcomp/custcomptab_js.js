@@ -164,7 +164,9 @@ function addCustManager(ctx){
 
 //고객명 클릭 시 detail값 가져오는 함수
 function ccMngDetail(cust_id,iuser_id,org_nm,iuser_nm){
+	
 	var list_cust_nm = $('#nowCust_nm').val();
+	
 	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+'&org_nm='+org_nm+
 				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
 				'newwindow1','width=770, height=310, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
@@ -369,13 +371,6 @@ function custCompMdfyBtn() {
 		disabled:false,
 		style:'background-color:white'
 	});
-	
-	
-//	$("#custcomptbody #cust_nm, #custcomptbody #cust_div_cd").attr("readonly",false);
-	
-//	$("#cust_zip_cd").attr("readonly", true);
-//	$("#cust_addr").attr("readonly", true);
-//	$("#cust_dtl_addr").attr("readonly", true);
 	
 	//$("#sales_scale_cd").children().eq($("#hsales_scale_cd").val()).attr("selected", "selected"); // 매출규모 코드 선택
 	//$("#indst_cd").children().eq($("#hindst_cd").val()).attr("selected", "selected"); // 산업군 코드 선택

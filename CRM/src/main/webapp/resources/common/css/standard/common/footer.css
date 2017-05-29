@@ -26,13 +26,13 @@ Not required for template or sticky footer method.
   
 }
 
-.footertest {
-	display: table;
-}
+/* .footertest { */
+/* 	display: table; */
+/* } */
 
-.container {
-	display: table-cell; 
-	vertical-align: middle;
-}
+/* .container { */
+/* 	display: table-cell;  */
+/* 	vertical-align: middle; */
+/* } */
 
 

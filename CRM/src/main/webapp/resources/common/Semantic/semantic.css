@@ -23762,7 +23762,7 @@ Floated Menu / Item
   border-radius: 0.28571429rem;
   text-align: left;
   color: rgba(0, 0, 0, 0.87);
-  border-collapse: separate;
+/*   border-collapse: separate; */
   border-spacing: 0px;
 }
 
@@ -24947,6 +24947,7 @@ Floated Menu / Item
 }
 .ui.celled.table .detailtbody tr td {
 	width: 30%;
+	border: 1px solid rgba(34, 36, 38, 0.1);
 }
 
 

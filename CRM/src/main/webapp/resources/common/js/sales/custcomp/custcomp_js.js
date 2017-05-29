@@ -12,7 +12,6 @@
  * ccTabFunc(cust_id, cust_nm) 							: 탭 이동
  * custcompInsert() 									: 고객사 추가
  * custcompDelete() 									: 고객사 삭제
- * custCompDel(ctx) 									: 기업고객 삭제
  * custcompDelListbtn()									: 고객사 삭제된 데이터
  * viewDetail(cust_id) 									: 고객사 상세보기
  * ccDetail(cust_id)				 					: 고객사 상세보기 Ajax
@@ -38,6 +37,8 @@ var ccllist;
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
+	var page = $("#ccPageNum").val();
+	
 	chkCancel();
 	keymanList(cust_id);
 	pocList(cust_id);
@@ -228,6 +229,7 @@ function custCompList(page){
 			if(result.ccVOListSize == 0){
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/custcomp';
+				custCompList(page);
 			}else{
 				//리스트 출력 시 버튼 상태 설정
 				$("#functionBtn").css("display", "block");
@@ -252,17 +254,7 @@ function custCompList(page){
 					);
 				});
 			}
-			//페이지 리스트 갯수
-//			if(result.ccVOList.length < 10){
-//				for(var j = 0; j < 10-result.ccVOList.length; j++){
-//					$("#ccListTbody").append("<tr style='height:30px;'>"
-//							+"<th></th>"
-//							+"<td></td><td></td><td></td><td></td>"
-//							+"<td></td><td></td><td></td><td></td>"
-//							+"<td></td></tr>"
-//							);
-//				}
-//			}
+
 			$("#pageSpace").children().remove();	
 			$("#pageSpace").children().remove();
 			var ccPageNum = result.ccPageNum;
@@ -418,9 +410,8 @@ function checkCount(){
 function custcompInsert() {
 	
 	var ctx = $("#ctx").val();
-	
 	$("#css_tabs").attr({
-		readonly:false,
+		style : "display:none"
 	});
 	
 	//focus, css, readonly, disabled false 상태로 변경
@@ -431,7 +422,7 @@ function custcompInsert() {
 		style:'background-color:white'
 	}).val('');
 	$("#custcomptbody select").attr({
-		dis:false,
+		display:false,
 		style:'background-color:white'
 	});
 	
@@ -466,51 +457,14 @@ function custcompDelete() {
 		dataType : 'json',
 		success : function(result){
 			alert("고객사가 삭제되었습니다.");
-			location.href = ctx + "/custcomp";
+//			location.href = ctx + "/custcomp";
+			custCompList(pageNum);
 		},
 		error : function(request){
 			alert("error : " + request);
 		}
 	});
 	}
-}
-
-// 기업고객 삭제
-function custCompDel(ctx){
-	$(document).ready(function() {
-		var chked_val = [];
-		$(":checkbox[id='chk_cust_id']:checked").each(function(index, item){
-			chked_val[index] = item.value;
-		});
-		if(chked_val.length == 0){
-			alert("삭제할 항목을 선택해 주세요");
-		}else{
-			var delChk = confirm("정말 삭제 하시겠습니까?");
-			if(delChk){
-				$.ajax({
-					url : ctx+'/custCompDelete.do',
-					type : 'POST',
-					data :  JSON.stringify(chked_val),
-					dataType : 'json',
-					contentType : 'application/json',
-					success : function(data){
-						if(data.deleteResult == 'standard/home/session_expire'){
-							location.href = ctx + '/sessionExpire';
-						} else {
-							alert(data.deleteResult);
-							location.href = ctx + "/custcomp";
-						}
-					},
-					error : function(data){
-						alert(data.deleteResult);
-						history.back();
-					}
-				});
-			} else {
-				return;
-			}
-		}
-	});
 }
 
 //탭 이동
@@ -555,6 +509,7 @@ function custcompDelListbtn() {
 // 고객사 상세보기
 function viewDetail(cust_id) {
 	var ctx = $("#ctx").val();
+	
 	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
 }
 
@@ -812,17 +767,17 @@ function actList(cust_id) {
 							+ "<td rowspan='2' style='width:24px;'>" 
 							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
-							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"')>"+data[i].sales_actvy_nm+"</a></td>"+
+							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"')>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
-							+ "<td style='width:74px;'>"+strt_t+"</td>"
-							+ "<td rowspan='2' style='width:162px;'>"+data[i].sales_oppt_nm+"</td>"
+							+ "<td style='width:74px;'>"+data[i].end_d+"</td>"
 							+ "<td rowspan='2' style='width:106px;'>"+data[i].sales_actvy_type_nm+"</td>"
 							+ "<td rowspan='2' style='width:92px;'>"+data[i].sales_actvy_stat_nm+"</td>"
 						+ "</tr>"
 						+ "<tr>"
 							+ "<td style='text-align:center;'>"+data[i].end_d+"</td>"
-							+ "<td style='text-align:center;'>"+end_t+"</td>" 
-						+ "</tr>";
+							+ "<td style='text-align:center;'>"+data[i].end_t+"</td>" 
+						+ "</tr>"
+						;
 						tbody.append(tbodyContent);
 					}
 				}
@@ -992,7 +947,8 @@ function schPaging(ccPageNum) {
 					} else {
 						if(data.ccVOListSize == 0){
 							alert("검색결과가 없습니다.");
-							location.href = ctx+'/custcomp';
+//							location.href = ctx+'/custcomp';
+							custCompList(ccPageNum);
 						}else{
 							tbody.children().remove();
 							
