@@ -12,8 +12,14 @@ import com.crm.cp.utils.PagerVO;
 
 
 public interface ContactService {
-	public List<ContactVO> contactAllList(Map<String,Object> contactMap); 
+	public List<ContactVO> contactAllList(Map<String,Object> contactMap); //연락처 리스트.
+
+	public List<ContactVO> contactDeleteList(Map<String,Object> contactMap); //연락처 삭제된 리스트 
+
+	
 	public PagerVO ContactListCount(Map<String, Object> contactMap);
+	public PagerVO ContactDeleteListCount(Map<String, Object> contactMap);
+	
     List<ContactVO> getList(Map<String,String> map); //기업의 전체 리스트가져오기
  // 페이지 정보 얻어오기
  	PagerVO ContactListCount1(Map<String, String> contactMap);

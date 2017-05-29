@@ -62,7 +62,7 @@
 	<br>
 	<div class="bt_position">
 		<input type="button" class="tiny ui orange button" value="등록" id="codeUpdate_btn" onclick="codeUpdate();"/>
-		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel"/>
+		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick="closebtn();"/>
 	</div>
 </div>
 </div>

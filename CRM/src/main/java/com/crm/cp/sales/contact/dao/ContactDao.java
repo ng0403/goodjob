@@ -12,12 +12,21 @@ import com.crm.cp.utils.PagerVO;
 
 public interface ContactDao {
 
-	public List<ContactVO> contactAllList(Map<String, Object> actMap); 
+	public List<ContactVO> contactAllList(Map<String, Object> actMap); //연락처 리스트
+	
+	public List<ContactVO> contactDeleteList(Map<String, Object> actMap); //삭제된 리스트
+	
 	List<ContactVO> getList(Map<String,String> map);
 	// 전체 리스트 개수 가져오기
 	int contactListCount1(Map<String, String> contactMap);
 	int selectCompany(String COMPANY_NM);
+	
+	//연락처 리스트 갯수 구하기.
 	public int contactListCount(Map<String, Object> contactMap);
+	public int contactDeleteListCount(Map<String, Object> contactMap);
+	
+	
+	
 	public ContactVO contactDetail(String cont_id);
 	int contactUpdate(ContactVO contactVO);
 	int contactInsert(ContactVO contactVO);

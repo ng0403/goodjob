@@ -35,7 +35,12 @@ public class ContactServiceImpl implements ContactService {
 			return list;
 		} 
 		
-		
+		//삭제된 리스트 
+				@Override
+				public List<ContactVO> contactDeleteList(Map<String,Object> contactMap) {
+					return contactDao.contactDeleteList(contactMap);
+				}
+			 
 		
 	//전체리스트 개수 
 		@Override
@@ -52,6 +57,24 @@ public class ContactServiceImpl implements ContactService {
 		
 			return page;
 		}
+		
+		//연락처 삭제된 리스트 출력
+		@Override
+		public PagerVO ContactDeleteListCount(Map<String, Object> contactMap) {
+			System.out.println("Contact Delete List Count service " +  contactMap.toString());
+			int actPageNum = (Integer) contactMap.get("contactPageNum");
+			// 현재 페이지 얻어오기
+			PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+			// 전체 글의 갯수 구하기
+			System.out.println("actPage Num " + actPageNum);
+			int totalRowCount = contactDao.contactListCount(contactMap);
+			System.out.println("totalRowCount ? " + totalRowCount);		
+			page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+		
+			return page;
+		}
+		
+		
 		
 		// 페이지 정보 가져오기
 		@Override

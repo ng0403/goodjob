@@ -57,7 +57,7 @@
 	<br>
 	<div class="bt_position">
 		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_mdfy_btn" onclick="cdgrpModify();"/>
-		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick=""/>
+		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick="closebtn();"/>
 	</div>
 </div>
 </div>

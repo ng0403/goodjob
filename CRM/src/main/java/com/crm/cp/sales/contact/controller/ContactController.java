@@ -259,6 +259,33 @@ public class ContactController {
 
 		return contactMap;
 	}
+	
+	
+	// 전체리스트 출력 페이징/검색
+	@RequestMapping(value = "/contactDeletePaging", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> contactDeletePaging(HttpSession session,
+			@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum, String cont_nm,
+			String email, String ph) {
+		System.out.println("contact Delete paging entering");
+		Map<String, Object> contactMap = new HashMap<String, Object>(); 
+
+		contactMap.put("cont_nm", cont_nm);
+		contactMap.put("email", email);
+		contactMap.put("ph", ph);
+		contactMap.put("contactPageNum", contactPageNum);
+
+		PagerVO page = contactService.ContactDeleteListCount(contactMap);
+		contactMap.put("page", page);
+
+		List<ContactVO> contactList = contactService.contactDeleteList(contactMap);
+		contactMap.put("contactList", contactList);
+		contactMap.put("contactListSize", contactList.size());
+
+		return contactMap;
+	}
+	
+	
+	
 
 	// 연락처 리스트 초성검색 / 그냥검색 페이징
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.POST)

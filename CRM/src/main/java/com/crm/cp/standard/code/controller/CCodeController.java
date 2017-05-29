@@ -226,13 +226,15 @@ CCodeService codeService;
  			System.out.println("code update entering" + codeVo.toString());
  			
  			Map<String, Object> rstMap = new HashMap<String, Object>();
+ 			String cd_grp_id = codeVo.getCd_grp_id();
  			
+ 			System.out.println("cd grp id =  ? " + cd_grp_id);
  			if (session.getAttribute("user") == null) { // 로그인 페이지 이동
  				rstMap.put("mdfyResult", "standard/home/session_expire");
  			} else {
  				codeVo.setFin_mdfy_id(session.getAttribute("user").toString());
  	 			String contactRstRst = codeService.codeModify(codeVo); 
- 				rstMap.put("mdfyResult", contactRstRst);
+ 				rstMap.put("codelist", codeService.codeList(cd_grp_id));
  			}  
  			return rstMap;
  		}

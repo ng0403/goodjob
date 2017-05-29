@@ -9,21 +9,14 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authList.css" type="text/css" />
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/code/code	Detail.css" type="text/css" />
+
 <%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />  --%>
 
 <script src="${ctx}/resources/common/js/standard/code/codeGroupList.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
-
-<!-- 테이블 th고정 자바스크립트 -->
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script>
-<!-- 테이블 th고정 CSS -->
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" />
  
+
+  
 <title>리스트</title>
 <script type="text/javascript">
 $("#navisub11").show();
@@ -36,7 +29,7 @@ $("#naviauth").css("font-weight", "bold");
 	<input type="hidden" id="ctx" value="${ctx}">
 	
 	<div id="title" class="caption" style="padding-top: 13px ;">
-		<label class="label_header" style="font-size: 1.28571429em; font-weight: bold; color: rgba(0, 0, 0, 0.87); " >■ 기준정보 > 코드관리</label>
+		<label class="label_header" style="font-size: 1.28571429em; font-weight: bold; color: rgba(0, 0, 0, 0.87); " >■ 기준정보 > 코드 그룹관리</label>
 	</div>
 	
 	<div class="list_search" >
@@ -46,11 +39,11 @@ $("#naviauth").css("font-weight", "bold");
 					<option value="cd_grp_name">코드명</option>
 				</select> 
 			<input id="title_text" type="text" name="keyword" class="inputText" style="height: 23px;"> &nbsp;
-			<button id="search_btn" class="search_button">검색</button>
+			<button id="search_btn" class="tiny ui blue button">검색</button>
 		</form>
 	  </div>
 	
-	<div data-example-id="simple-table">
+	<div class="cdgrp_list" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
 	<form name="delAllForm" id="delAllForm" method="post">	
 		<table id="codetable" class="ccthFixedtbl" style="table-layout:fixed; " >
@@ -62,7 +55,7 @@ $("#naviauth").css("font-weight", "bold");
 					<th class="thead_th" style="width: 89px;">상태</th>
  				</tr>
 			</thead>
-			<tbody class="tbody" style="overflow-y: scroll; overflow-x: hidden; float: left; width: 405px; height: 481px; border: 2px solid #273152;">
+			<tbody class="tbody" style="height:564px">
 				<c:forEach var="codegrp" items="${codegrpList}">  
 				<tr onclick="codeList('${codegrp.cd_grp_id}');" class="up">
 					<td class="codeTbody_tr_td" scope="row" style="width: 74px;">
@@ -81,8 +74,8 @@ $("#naviauth").css("font-weight", "bold");
 	</div>
 		<!-- 기본 버튼 -->
 	<div class="auth_bt_position">
-		<button type="button" class="search_button" id="writecdgrp">등록</button>
-		<input type="button" class="search_button" value="삭제" id="deleteauth">
+		<button type="button" class="tiny ui blue basic button" id="writecdgrp" >등록</button>
+		<input type="button" class="tiny ui blue button" value="삭제" id="deleteauth">
 	</div>
 	</div>
 </body>

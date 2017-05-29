@@ -358,8 +358,7 @@ function contactList(page){
 
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
-	alert("hihihi");
-  	var ctx = $("#ctx").val();
+   	var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
 	var cont_nm = $("#cont_nm").val();
@@ -763,13 +762,82 @@ function callAddCancelBtn(){
 		$('#cell_ph3').attr("readonly", true);
 		$('#ph1').attr("readonly", true);
 		$('#ph2').attr("readonly", true);
-		$('#ph3').attr("readonly", true);
-		
-		
-		
+		$('#ph3').attr("readonly", true); 
 		contactPaging();
 	}
 	
 	});
+}
+
+
+//연락처 삭제된 데이터 보기.
+function contactDeleteList(contactPageNum){
+	
+	var tbody = $('#call_list_tbody');
+	var tbodyContent = "";
+	var cont_nm = $("#cont_nm").val();
+	var email = $("#email").val();
+	var ph = $("#ph").val();
+ 	var contactData = { "contactPageNum": contactPageNum, 
+			        "cont_nm": cont_nm, 
+			        "email":email, 
+			        "ph":ph,
+ 			        };
+	
+	$.ajax({
+		url : '/contactDeletePaging',
+		type : 'POST',
+		data : contactData,
+		success : function(data) {
+ 			if(data.contactListSize == 0){
+				alert("검색결과가 없습니다.");
+				location.href = ctx+'/contact';
+			}else{
+				tbody.children().remove();
+			
+				$("#cont_nm").val(data.cont_nm);
+				$("#email").val(data.email);
+				$("#ph").val(data.ph);
+ 				
+				tbody.children().remove();
+			
+			for (var i = 0; i < data.contactList.length; i++) {
+				
+				tbodyContent +='<tr><td style="width:20px; text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></td>'
+				    +'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'  
+				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
+        			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
+         			+'<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
+        		}
+				                   
+			   tbody.append(tbodyContent);
+			} 
+			
+			var pageContent = "";
+			
+			
+			//시작
+			
+			$("#pageSpace").children().remove();
+			var ccPageNum = data.contactPageNum;
+ 			var startPageNum = data.page.startPageNum;
+			var endPageNum = data.page.endPageNum;
+			var firstPageCount = data.page.firstPageCount;
+ 			var totalPageCount = data.page.totalPageCount;
+ 			var prevPageNum = data.page.prevPageNum;
+ 			var nextPageNum = data.page.nextPageNum;
+ 			var prevStepPage = data.page.prevStepPage;
+ 			var nextStepPage = data.page.nextStepPage;
+ 			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+			
+  
+		},
+		error : function() {
+			alert("제가 문제입니다 페이징");
+		}
+	});
+	
 }
 

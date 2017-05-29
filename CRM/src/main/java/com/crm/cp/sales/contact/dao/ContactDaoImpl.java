@@ -50,6 +50,21 @@ public class ContactDaoImpl implements ContactDao {
 			return totalCount;
 		}
 		
+		//삭제된 전체리스트 개수
+				@Override
+				public int contactDeleteListCount(Map<String, Object> contactMap) {
+					System.out.println("contact Delete Map Dao "  + contactMap.toString());
+					int totalCount = 0;
+					try {
+						totalCount = sqlSession.selectOne("contact.selectDeleteTotalCount", contactMap);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					return totalCount;
+				}	
+		
+		
 		//기업의 전체 리스트가져오기
 		@Override
 		public List<ContactVO> getList(Map<String,String> map) {
@@ -67,6 +82,14 @@ public class ContactDaoImpl implements ContactDao {
 		@Override
 		public List<ContactVO> contactAllList(Map<String, Object> contactMap) {
 			List<ContactVO> obj = sqlSession.selectList("contact.selectAll", contactMap);
+			return obj;
+		}
+		
+		
+		//삭제된 리스트 
+		@Override
+		public List<ContactVO> contactDeleteList(Map<String, Object> contactMap) {
+			List<ContactVO> obj = sqlSession.selectList("contact.selectDelete", contactMap);
 			return obj;
 		}
 		

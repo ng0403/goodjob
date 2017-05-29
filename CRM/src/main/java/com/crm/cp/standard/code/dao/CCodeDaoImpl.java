@@ -48,7 +48,7 @@ public class CCodeDaoImpl implements CCodeDao {
 			@Override
 			public List<Object> codeList(Map<String, Object> map) {
 				
-				 return sqlSession.selectList("codeSelect", map);
+				 return sqlSession.selectList("codeSelect1", map);
 				
 			}
 	

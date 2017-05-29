@@ -112,6 +112,7 @@
 	       <div class="functionBtn_div" id="btn_1">
 	        <input type="button" class="tiny ui blue button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
 			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+			<input type="button" class="tiny ui blue button" id="contact_Delete_list"  value="삭제된데이터" onclick="contactDeleteList('1');"/>			
 	    </div> 
 	     <div class="functionBtn_div" id="btn_2" style="display:none">
 	 	    <input type="button" id="contactsave" value="저장" class="tiny ui blue button" onclick="contactInsert();"/>
