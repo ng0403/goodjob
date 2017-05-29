@@ -68,7 +68,7 @@ $(function() {
 
 					<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 			
-			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchBtn('${ccPageNum}');" style="text-align: right;" value="조회">
 		    </div>		
 			<div id="tableline">	 
 				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">

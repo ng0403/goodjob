@@ -364,7 +364,7 @@ public class OpptController {
 	@RequestMapping(value = "/opptajax", method = RequestMethod.POST)
 	@ResponseBody
 	Map<String, Object> listajax(@RequestParam Map<String, String> map,
-			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum) {
 
 		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = service.opptOscList();

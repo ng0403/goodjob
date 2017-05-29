@@ -71,7 +71,7 @@
 
 					<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
 			
-			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchDelBtn('${pageNum}');" style="text-align: right;" value="조회">
+			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchDelBtn('${ccPageNum}');" style="text-align: right;" value="조회">
 		    </div>		
 			<div id="tableline">	 
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
