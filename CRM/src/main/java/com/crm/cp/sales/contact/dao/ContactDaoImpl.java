@@ -101,6 +101,13 @@ public class ContactDaoImpl implements ContactDao {
 			return contactVO;
 		}
 		
+		//연락처 복구
+		@Override
+		public void contactRecovery(ContactVO co){
+			
+		    sqlSession.update("contact.contactRecovery", co);
+ 		}
+		
 		
 		//연락처 수정
 		@Override

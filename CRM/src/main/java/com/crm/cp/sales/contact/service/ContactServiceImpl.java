@@ -95,6 +95,12 @@ public class ContactServiceImpl implements ContactService {
 		public ContactVO contactDetail(String cont_id) {
 			return contactDao.contactDetail(cont_id);
 		}
+		
+		//연락처 복구
+		@Override
+		public void contactRecovery(ContactVO co) {
+			 contactDao.contactRecovery(co);
+		}
  
 		
 		@Override

@@ -25,7 +25,11 @@ public interface ContactService {
  	PagerVO ContactListCount1(Map<String, String> contactMap);
  	int selectCompany(String COMPANY_NM);
  	
-	public ContactVO contactDetail(String cont_id);
+	public ContactVO contactDetail(String cont_id); //연락처 상세보기
+	public void contactRecovery(ContactVO co); //연락처 복구
+	
+	
+	
 	String contactUpdate(ContactVO contactVO);
 	int contactInsert(ContactVO contactVO);
 	public List<ContactVO> contactSearchAll(Map<String,Object> contactMap); 

@@ -85,9 +85,46 @@ public class ContactController {
 		return mov;
 	}
 	
-	 
-	// 연락처 상세정보
 	
+	
+	// 연락처 삭제된 리스트
+		@RequestMapping(value = "contactDeleteList", method = RequestMethod.GET)
+		public ModelAndView contactDeleteList(HttpSession session,
+				@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum) {
+			if (session.getAttribute("user") == null) {
+				return new ModelAndView("redirect:/");
+			}
+			System.out.println("contact Delete entering");
+			System.out.println("contactPageNum" + contactPageNum);
+
+			ModelAndView mov = null;
+			if (session.getAttribute("user") == null) {
+				mov = new ModelAndView("standard/home/session_expire");
+			}
+			System.out.println("step1");
+
+			Map<String, Object> contactMap = new HashMap<String, Object>();
+			contactMap.put("contactPageNum", contactPageNum);
+			
+			PagerVO page = contactService.ContactDeleteListCount(contactMap);
+			System.out.println("page " + page.toString());
+			contactMap.put("page", page);
+
+			List<ContactVO> contactList = contactService.contactDeleteList(contactMap);
+			System.out.println("contactList" + contactList.toString());
+
+			mov = new ModelAndView("contactDelete");
+			mov.addObject("contactList", contactList);
+			mov.addObject("contactPageNum", contactPageNum);
+			mov.addObject("page", page);
+
+			System.out.println("mov?????? " + mov.toString());
+
+			return mov;
+		}
+	
+	 
+	// 연락처 상세정보 
 	  @RequestMapping(value = "contactDetail", method = RequestMethod.POST)
 	  public @ResponseBody ContactVO companyCutomerDetail(@RequestBody String cont_id) {
 	 
@@ -95,9 +132,29 @@ public class ContactController {
 		  
 		  ContactVO contactVO =  contactService.contactDetail(cont_id); 
 		  System.out.println("contactVO " + contactVO.toString());
-	  return contactVO;
-	  
+	  return contactVO; 
 	  }
+	  
+	// 연락처 복원 
+		  @RequestMapping(value = "contactRecovery", method = RequestMethod.POST)
+		  public @ResponseBody Map<String, Object> contactRecovery(@RequestBody String cont_id, HttpSession session) {
+		 
+			  System.out.println("contact Recovery endtering " + cont_id );
+			   
+			  Map<String, Object> rstMap = new HashMap<String, Object>();
+				if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+					rstMap.put("mdfyResult", "standard/home/session_expire");
+				} else {
+					ContactVO co = new ContactVO();
+					co.setFin_mdfy_id(session.getAttribute("user").toString());
+					co.setCont_id(cont_id);
+					contactService.contactRecovery(co);
+					
+ 					rstMap.put("mdfyResult", "success");
+				}  
+				return rstMap;
+		 
+		  }
 	 
 
 	/*@RequestMapping(value = "/contact_detail", method = RequestMethod.GET)
@@ -259,33 +316,7 @@ public class ContactController {
 
 		return contactMap;
 	}
-	
-	
-	// 전체리스트 출력 페이징/검색
-	@RequestMapping(value = "/contactDeletePaging", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> contactDeletePaging(HttpSession session,
-			@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum, String cont_nm,
-			String email, String ph) {
-		System.out.println("contact Delete paging entering");
-		Map<String, Object> contactMap = new HashMap<String, Object>(); 
-
-		contactMap.put("cont_nm", cont_nm);
-		contactMap.put("email", email);
-		contactMap.put("ph", ph);
-		contactMap.put("contactPageNum", contactPageNum);
-
-		PagerVO page = contactService.ContactDeleteListCount(contactMap);
-		contactMap.put("page", page);
-
-		List<ContactVO> contactList = contactService.contactDeleteList(contactMap);
-		contactMap.put("contactList", contactList);
-		contactMap.put("contactListSize", contactList.size());
-
-		return contactMap;
-	}
-	
-	
-	
+	 
 
 	// 연락처 리스트 초성검색 / 그냥검색 페이징
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.POST)

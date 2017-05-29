@@ -33,10 +33,10 @@
 	<input type="hidden" id="ctx" value="${ctx}">
 	<div id="title">
 		<div class="caption">
-		<h3 class="ui header" style="background: #fff;">■ 고객 > 연락처</h3> 
+		<h3 class="ui header" style="background: #fff">■ 고객 > 
+						<a href="/contact" style="font-size: 14pt; text-decoration: none; color: blue;">연락처</a> > 삭제된 데이터 </h3>
 		</div>
-	</div>
- 
+	</div> 
 	
 	<div class="search_div" id = "search_div">
 	<div class="ui left icon input">
@@ -112,7 +112,7 @@
 	       <div class="functionBtn_div" id="btn_1">
 	        <input type="button" class="tiny ui blue button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
 			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
-			<input type="button" class="tiny ui blue button" id="contact_Delete_list"  value="삭제된데이터" onclick="contactDeleteList();"/>			
+			<input type="button" class="tiny ui blue button" id="contact_Delete_list"  value="삭제된데이터" onclick="contactDeleteList('1');"/>			
 	    </div> 
 	     <div class="functionBtn_div" id="btn_2" style="display:none">
 	 	    <input type="button" id="contactsave" value="저장" class="tiny ui blue button" onclick="contactInsert();"/>

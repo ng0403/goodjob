@@ -4,6 +4,7 @@
 $(function(){
 	var ctx = $('#ctx').val();
   });
+
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
 
@@ -20,27 +21,7 @@ function dateFormat(timestamp) {
 
 	return retVal
 }
-
-//처음 연락처 리스트 부족한 부분 공백 채워주기.
- $(document).ready(function(){
-	 var tbodylength = $('#call_list_tbody tr').length;
-	 var tbody = $('#call_list_tbody');
-
-	/* if(tbodylength < 10){
-			for(var i=0; i<10-tbodylength; i++){
-			tbodyContent='<tr style="height: 35.5px;"><td></td>'
-				+'<td style="width:10%;"></td>'
-				+'<td style="width:10%;"></td>'
-				+'<td style="width:10%;"></td>'
-				+'<td style="width:10%;"></td>'
-				+'<td style="width:10%;"></td>' 
-				+'<td style="width:15%;"></td></tr>';
-			tbody.append(tbodyContent);
-		}		
-	}*/
-		
- })
-
+ 
 
 //모두체크
 function callAllChk(){
@@ -269,7 +250,7 @@ function delForm(obj){
 
 //연락처 리스트 출력
 function contactList(page){
-	alert('hie');
+ 
   //	readDetail();
 	var ctx = $("#ctx").val();
 	$.ajax({
@@ -544,6 +525,11 @@ function contactDetailClick(a) {
 				
 				$('#email1').val(data.email1);
 				$('#email2').val(data.email2); 
+				
+				var js_func = "ContactRecovery('"+data.cont_id+"');";
+			    var clickEvent = new Function(js_func);
+ 
+				$("#contactRecov").attr('onclick', '').click(clickEvent);
  			},
  			
 			error : function(e) {
@@ -771,6 +757,33 @@ function callAddCancelBtn(){
 
 
 //연락처 삭제된 데이터 보기.
+
+function contactDeleteList() {
+ 	location.href = '/contactDeleteList';
+	
+}
+
+//연락처 복원
+function ContactRecovery(cont_id) {
+	alert(cont_id);
+	 
+	$.ajax({
+		url : '/contactRecovery',
+		type : 'POST',
+		data : cont_id,
+		dataType : 'json',
+		success : function(data) {
+ 			 alert('복원이 완료되었습니다.');
+ 			 contactDeleteList('1');
+  
+		},
+		error : function() {
+			alert("제가 문제입니다 페이징");
+		}
+	});
+	
+}
+
 function contactDeleteList(contactPageNum){
 	
 	var tbody = $('#call_list_tbody');
@@ -837,7 +850,6 @@ function contactDeleteList(contactPageNum){
 		error : function() {
 			alert("제가 문제입니다 페이징");
 		}
-	});
-	
-}
+	}); 
 
+}

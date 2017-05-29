@@ -249,6 +249,13 @@
 	</select>
 	
 	
+	<!-- 연락처 복원  -->
+	<select id="contactRecovery" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
+	update CONTACT SET ACT_YN ='Y', FIN_MDFY_ID= #{fin_mdfy_id}
+	WHERE CONT_ID = #{cont_id}
+	</select>
+	
+	
 	<!-- 연락처 수정 -->
 	<update id="contactUpdate" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
 		UPDATE CONTACT SET

@@ -27,7 +27,9 @@ public interface ContactDao {
 	
 	
 	
-	public ContactVO contactDetail(String cont_id);
+	public ContactVO contactDetail(String cont_id); //연락처 상세보기
+	public void contactRecovery(ContactVO co); // 연락처 복구
+	
 	int contactUpdate(ContactVO contactVO);
 	int contactInsert(ContactVO contactVO);
 	public List<ContactVO> contactSearchAll(Map<String, Object> actMap);
