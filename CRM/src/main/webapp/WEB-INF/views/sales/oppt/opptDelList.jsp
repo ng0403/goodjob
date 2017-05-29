@@ -35,7 +35,7 @@
 	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 영업기회 > 영업기회관리 삭제된 데이터</h3>
+			<label id="listLabel" class="ui header" style="background: #fff;" >■ 영업기회 > 영업기회관리 삭제된 데이터</label>
 		</div>
 	</div>
 		   <div class="search_div" id="search_div" >

@@ -63,13 +63,13 @@ $(document).ready(function(){
 			<div class="caption">
 				<c:choose>
 			<c:when test="${flag == 'cust' }">
-				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사관리</a> > 영업기회관리 상세정보</h3>
+				<label id="listLabel" class="ui header" style="background: #fff;" >■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사관리</a> > 영업기회관리 상세정보</label>
 			</c:when>
 			<c:when test="${flag == 'cust_ed' }">
-				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사관리</a> > 영업기회관리 상세정보</h3>
+				<label id="listLabel" class="ui header" style="background: #fff;" >■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사관리</a> > 영업기회관리 상세정보</label>
 			</c:when>
 			<c:otherwise>
-				<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3>
+				<label id="listLabel" class="ui header" style="background: #fff;" >■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</label>
 			</c:otherwise>
 		</c:choose>
 			</div>
