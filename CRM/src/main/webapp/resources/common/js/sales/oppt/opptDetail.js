@@ -288,7 +288,7 @@ function opptAdd(){
 			}
 			else if(act_flg == 'cust')
 			{
-				alert("영업기회 페이지로 이동합니다.");
+				alert("고객사관리 페이지로 이동합니다.");
 				location.href = ctx +'/custcompDetail?cust_id=' + cust_id;
 			}
 		},
