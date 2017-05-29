@@ -101,7 +101,7 @@ public class ContactController {
 			if (session.getAttribute("user") == null) {
 				mov = new ModelAndView("standard/home/session_expire");
 			}
-			System.out.println("step1");
+			System.out.println("step2");
 
 			Map<String, Object> contactMap = new HashMap<String, Object>();
 			contactMap.put("contactPageNum", contactPageNum);
@@ -146,8 +146,10 @@ public class ContactController {
 					rstMap.put("mdfyResult", "standard/home/session_expire");
 				} else {
 					ContactVO co = new ContactVO();
+					String a = cont_id.substring(0,10);
+					System.out.println("aaaa ? " + a);
 					co.setFin_mdfy_id(session.getAttribute("user").toString());
-					co.setCont_id(cont_id);
+					co.setCont_id(a);
 					contactService.contactRecovery(co);
 					
  					rstMap.put("mdfyResult", "success");
@@ -282,38 +284,34 @@ public class ContactController {
 	// 전체리스트 출력 페이징/검색
 	@RequestMapping(value = "/contactPaging", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> ActListSearch(HttpSession session,
-			@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum, String cont_nm,
+			@RequestParam(value = "contactPageNum", defaultValue = "1") int contactPageNum, String cont_nm, String act_yn,
 			String email, String ph) {
 		System.out.println("contact paging entering");
-		Map<String, Object> contactMap = new HashMap<String, Object>();
-
-		/*
-		 * if (session.getAttribute("user") == null) { //로그인 페이지 이동
-		 * callMap.put("result", "standard/home/session_expire"); } else {
-		 * callMap.put("call_name",call_name);
-		 * callMap.put("call_email",call_email); callMap.put("call_tel",
-		 * call_tel); callMap.put("call_iuser_nm", call_iuser_nm);
-		 * callMap.put("callPageNum", callPageNum);
-		 * 
-		 * PagerVO page = callService.CallListCount(callMap);
-		 * callMap.put("startRow", page.getStartRow()); callMap.put("endRow",
-		 * page.getEndRow()); callMap.put("page", page); List<CallVO> callList =
-		 * callService.callAllList(callMap); callMap.put("callList", callList);
-		 * callMap.put("callListSize", callList.size()); }
-		 */
+		Map<String, Object> contactMap = new HashMap<String, Object>(); 
 
 		contactMap.put("cont_nm", cont_nm);
 		contactMap.put("email", email);
 		contactMap.put("ph", ph);
 		contactMap.put("contactPageNum", contactPageNum);
 
+		if(act_yn.equals("Y")){
 		PagerVO page = contactService.ContactListCount(contactMap);
 		contactMap.put("page", page);
 
 		List<ContactVO> contactList = contactService.contactAllList(contactMap);
 		contactMap.put("contactList", contactList);
 		contactMap.put("contactListSize", contactList.size());
+		}
+		else{
+			PagerVO page = contactService.ContactDeleteListCount(contactMap);
+			contactMap.put("page", page);
 
+			List<ContactVO> contactList = contactService.contactDeleteList(contactMap);
+			contactMap.put("contactList", contactList);
+			contactMap.put("contactListSize", contactList.size());
+			
+		}
+		
 		return contactMap;
 	}
 	 
@@ -322,7 +320,7 @@ public class ContactController {
 	@RequestMapping(value = "/searchKeyword", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> searchKeyword(HttpSession session, String keyword,
 			@RequestParam(value = "contactPageNum", defaultValue = "1") 
-	int contactPageNum, String cont_nm, String email, String ph, String cont_nm0, String email0, String ph0, String cont_nm1, String email1, String ph1) {
+	int contactPageNum, String cont_nm, String email, String ph, String cont_nm0, String email0, String ph0, String cont_nm1, String email1, String ph1, String act_yn) {
 		System.out.println("초성검색 enter");
 		System.out.println("초성?" + keyword);
 		Map<String, Object> kwMap = new HashMap<String, Object>(); 
@@ -339,21 +337,40 @@ public class ContactController {
 		kwMap.put("email1", email1);
 		kwMap.put("ph1", ph1);
 		System.out.println("kwMap?? " + kwMap.toString());
+		System.out.println("act_yn? " + act_yn);
+		
+		
+		if(act_yn.equals("Y")){
+		System.out.println("Y enter");
 		PagerVO page = contactService.ContactListCount(kwMap);
 		System.out.println("page? " + page.toString());
-		kwMap.put("page", page);
-
+		kwMap.put("page", page); 
 		
 		List<ContactVO> contactList = contactService.contactSearchAll(kwMap);
 		kwMap.put("contactList", contactList);
 		System.out.println("contactList " + contactList.toString());
 		kwMap.put("contactListSize", contactList.size());
 		System.out.println("contactListSize " +contactList.size());
+		}
+		else{
+			System.out.println("N enter");
+			PagerVO page = contactService.ContactDeleteListCount(kwMap);
+			System.out.println("page? " + page.toString());
+			kwMap.put("page", page); 
+			
+			List<ContactVO> contactList = contactService.contactDeleteList(kwMap);
+			kwMap.put("contactList", contactList);
+			System.out.println("contactList " + contactList.toString());
+			kwMap.put("contactListSize", contactList.size());
+			System.out.println("contactListSize " +contactList.size());
+		}
 		return kwMap;
-	}
+	} 
+	
+	
 
-	// 연락처 삭제
-	@RequestMapping(value = "contactDelete", method = RequestMethod.POST)
+	
+	/*@RequestMapping(value = "contactDelete", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> contactDelete(HttpSession session, @RequestBody List<String> cont_idList) {
 		System.out.println("delete entering" + cont_idList.toString());
 
@@ -365,7 +382,29 @@ public class ContactController {
 			rstMap.put("deleteResult", deleteResult);
 		}
 		return rstMap;
+	}*/
+	
+	// 연락처 삭제
+	@RequestMapping(value = "/contactDelete", method = RequestMethod.GET)
+	@ResponseBody
+	public int opptDelete(HttpSession session,
+			@RequestParam(value = "contactidList[]") List<String> contactidList,
+			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) {
+		
+		System.out.println("연락처 삭제하러 왔습니다." + contactidList.toString());
+		
+		int result = 0;
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < contactidList.size(); i++) {
+			
+ 			result += contactService.contactDelete(contactidList.get(i));
+ 			System.out.println("result ? " + result);
+		}
+		return result;
 	}
+	
+	
+	
 
 	// 회사명리스트 팝업창
 	@RequestMapping(value = "/compList", method = RequestMethod.GET)
@@ -462,6 +501,13 @@ public class ContactController {
 		}
 		return rstMap;
 	}*/
+	
+	
+	
+	
+	
+	
+	
 	// 키맨 삭제
 		@RequestMapping(value = "delKeyman", method = RequestMethod.POST)
 		public @ResponseBody Map<String, Object> keymanDelete(HttpSession session, @RequestBody List<String> keyman_idList) {

@@ -28,6 +28,7 @@ public interface ContactService {
 	public ContactVO contactDetail(String cont_id); //연락처 상세보기
 	public void contactRecovery(ContactVO co); //연락처 복구
 	
+	int contactDelete(String opptId); // 연락처 삭제
 	
 	
 	String contactUpdate(ContactVO contactVO);

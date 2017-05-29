@@ -392,9 +392,8 @@
 	<update id="contactDelete" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
 		update CONTACT
 		set act_yn = 'N'
-		where cont_id = #{cont_id_list}
-	</update> 
-	
+		where cont_id = #{cont_id}
+	</update>  
 	
 	
 	<!-- 회사팝업리스트 -->

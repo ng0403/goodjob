@@ -48,13 +48,13 @@ public class ContactServiceImpl implements ContactService {
 			System.out.println("ContactListCount service " +  contactMap.toString());
 			int actPageNum = (Integer) contactMap.get("contactPageNum");
 			// 현재 페이지 얻어오기
-			PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+			PagerVO page = new PagerVO(actPageNum, 0, 6, 6);
 			// 전체 글의 갯수 구하기
 			System.out.println("actPage Num " + actPageNum);
 			int totalRowCount = contactDao.contactListCount(contactMap);
 			System.out.println("totalRowCount ? " + totalRowCount);		
-			page = new PagerVO(actPageNum, totalRowCount, 10, 10);
-		
+			page = new PagerVO(actPageNum, totalRowCount, 6, 6);
+			
 			return page;
 		}
 		
@@ -64,12 +64,12 @@ public class ContactServiceImpl implements ContactService {
 			System.out.println("Contact Delete List Count service " +  contactMap.toString());
 			int actPageNum = (Integer) contactMap.get("contactPageNum");
 			// 현재 페이지 얻어오기
-			PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+			PagerVO page = new PagerVO(actPageNum, 0, 6, 6);
 			// 전체 글의 갯수 구하기
 			System.out.println("actPage Num " + actPageNum);
-			int totalRowCount = contactDao.contactListCount(contactMap);
+			int totalRowCount = contactDao.ContactDeleteListCount(contactMap);
 			System.out.println("totalRowCount ? " + totalRowCount);		
-			page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+			page = new PagerVO(actPageNum, totalRowCount, 6, 6);
 		
 			return page;
 		}
@@ -156,7 +156,16 @@ public class ContactServiceImpl implements ContactService {
 				resultStr = "연락처 삭제가 실패 했습니다.";
 			}
 			return resultStr;
+		} 
+		
+		
+		//연락처 삭제 (사용)
+		@Override
+		public int contactDelete(String cont_id) {
+			// TODO Auto-generated method stub
+			return contactDao.contactDelete(cont_id);
 		}
+		
 	  
 		// 회사명리스트
 		@Override

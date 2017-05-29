@@ -82,7 +82,7 @@ function pageInputCall(event) {
 // 초성 검색 페이징
 function searchAcnkEvent(contactPageNum, keyword){
   		var ctx = $("#ctx").val();
-		var cont_nm = $("#cont_nm").val();
+		var cont_nm = $("#cont_nm1").val();
 		var email = $("#email").val();
 		var ph = $("#ph").val();
 		
@@ -92,13 +92,14 @@ function searchAcnkEvent(contactPageNum, keyword){
 		var cont_nm1 = $("#cont_nm1").val();
 		var email1 = $("#email1").val();
 		var ph1 = $("#ph1").val();
-		
- 		var callData = { "contactPageNum": contactPageNum, 
+		var act_yn = $("#act_yn").val();
+  		var callData = { "contactPageNum": contactPageNum, 
 				"keyword": keyword,
 		        "cont_nm": cont_nm, 
 		        "email":email, 
 		        "ph":ph,
-		        "cont_nm0" : cont_nm0, "email0" : email0, "ph0" : ph0, "cont_nm1" : cont_nm1, "email1" : email1, "ph1" : ph1
+		        "cont_nm0" : cont_nm0, "email0" : email0, "ph0" : ph0, "cont_nm1" : cont_nm1, "email1" : email1, "ph1" : ph1,
+		        "act_yn" :act_yn
  		        };
 		
 		if(keyword == '전체'){
@@ -124,13 +125,13 @@ function searchAcnkEvent(contactPageNum, keyword){
 						$("#email").val(data.email);
 						$("#ph").val(data.ph);
  						for(var i=0; i<data.contactList.length; i++){
- 							tbodyContent +='<tr><th  style="text-align:center" ><input type="checkbox"id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
+ 							tbodyContent +='<tr><th  style="text-align:center" ><input type="checkbox"id="call_chek" class="call_chek" name="contact_del" value="'+data.contactList[i].cont_id+'"></th>'
  							/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
  							*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
  							*/        			
  												+'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'
- 												+"<td><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
- 							 
+ 												+"<td><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
+ 																 
  							        		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
  							        				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
  												}else{
@@ -180,15 +181,16 @@ function searchAcnkEvent(contactPageNum, keyword){
 			});
 		}
 }
+ 
 
 //검색 엔터키 기능
 function contactSearchEnter(event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
 	
  	if (keycode == '13') {
-		if ($("#cont_nm").val() == '' && $("#email").val() == '' && $("#ph").val() == '' ) {
+		if ($("#cont_nm1").val() == '' && $("#email").val() == '' && $("#ph").val() == '' ) {
 			alert("검색어를 입력하세요.")
-			$("#call_name").focus();
+			$("#cont_nm1").focus();
 		} else {
 			searchAcnkEvent(1,'');
 		}
@@ -248,95 +250,7 @@ function delForm(obj){
         --count;
 } 
 
-//연락처 리스트 출력
-function contactList(page){
  
-  //	readDetail();
-	var ctx = $("#ctx").val();
-	$.ajax({
-		type : 'post',
-		url : ctx + '/contactajax',
-		data : {PageNum : page},
-		datatype : 'json',
-		success:function(data){
-			if(data.contactListSize == 0){
-				alert("검색결과가 없습니다.");
-				location.href = ctx+'/contact';
-			}else{
-				tbody.children().remove();
-			
-				$("#cont_nm").val(data.cont_nm);
-				$("#email").val(data.email);
-				$("#ph").val(data.ph);
- 				
-				tbody.children().remove();
-			
-			for (var i = 0; i < data.contactList.length; i++) {
-				
-				tbodyContent +='<tr><th><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></th>'
-/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
-*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
-*/        			+"<td><a href='#' onclick=contactDetail('"+data.contactList[i].cont_id+"'); style='color: blue; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>"
-					+'<td style="width:10%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>';
- 
-        		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
-        				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
-					}else{
-						tbodyContent +='
-					}*/
-        			tbodyContent+='<td style="width:15%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
-        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
-        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
-         			+'<td style="width:15%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
-        		}
-				                   
-			   tbody.append(tbodyContent);
-			}
- 			if(data.contactList.length < 10){
- 				for(var i=0; i<10-data.contactListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;"><th></th>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>'
-						+'<td style="width:10%;"></td>' 
-						+'<td style="width:15%;"></td></tr>';
-					tbody.append(tbodyContent);
-				}		
-			}
-			//페이지 리스트 갯수
-		/*	if(data.contactListSize < 10){
-				for(var j = 0; j < 10-result.oplist.length; j++){
-					$("#listTable").append("<tr style='height:30px;'>"
-							+"<th></th>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td><td></td><td></td><td></td>"
-							+"<td></td></tr>");
-				}
-			}*/
-			$("#pageSpace").children().remove();	
-			$("#pageSpace").children().remove();
-			var contactPageNum = data.contactPageNum;
-			var startPageNum = data.page.startPageNum;
-			var endPageNum = data.page.endPageNum;
-			var firstPageCount = data.page.firstPageCount;
-			var totalPageCount = data.page.totalPageCount;
-			var prevPageNum = data.page.prevPageNum;
-			var nextPageNum = data.page.nextPageNum;
-			var prevStepPage = data.page.prevStepPage;
-			var nextStepPage = data.page.nextStepPage;
-			paging(contactPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-		},
-		error:function(request){
-			alert("error : " + request);
-		}
-	});
-}
-
-
-
-
-
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
    	var ctx = $("#ctx").val();
@@ -345,10 +259,11 @@ function contactPaging(contactPageNum) {
 	var cont_nm = $("#cont_nm").val();
 	var email = $("#email").val();
 	var ph = $("#ph").val();
- 	var contactData = { "contactPageNum": contactPageNum, 
+	var act_yn = $("#act_yn").val();
+   	var contactData = { "contactPageNum": contactPageNum, 
 			        "cont_nm": cont_nm, 
 			        "email":email, 
-			        "ph":ph,
+			        "ph":ph, "act_yn" : act_yn
  			        };
 	
 	$.ajax({
@@ -370,7 +285,7 @@ function contactPaging(contactPageNum) {
 			
 			for (var i = 0; i < data.contactList.length; i++) {
 				
-				tbodyContent +='<tr><td style="width:20px; text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="call_del" value="'+data.contactList[i].cont_id+'"></td>'
+				tbodyContent +='<tr><td style="width:20px; text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="contact_del" value="'+data.contactList[i].cont_id+'"></td>'
 				    +'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'  
 				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
         			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
@@ -381,20 +296,7 @@ function contactPaging(contactPageNum) {
 				                   
 			   tbody.append(tbodyContent);
 			}
-			
-			/*if(data.contactList.length < 10){
-				for(var i=0; i<10-data.contactListSize; i++){
-						tbodyContent='<tr style="height: 35.5px;"><td></td>'
-							+'<td style="width:10%;"></td>'
-							+'<td style="width:10%;"></td>'
-							+'<td style="width:10%;"></td>'
-							+'<td style="width:10%;"></td>'
-							+'<td style="width:10%;"></td>' 
-							+'<td style="width:15%;"></td></tr>';
-					tbody.append(tbodyContent);
-				}	
-			}*/
-			
+	  
 			var pageContent = "";
 			
 			
@@ -463,36 +365,41 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
-}
+} 
+ 
 
-//개인고객 , 키맨 삭제
-function callCustKeyDelete() {
-	var chked_val = [];
-	$(":checkbox[id='call_chek']:checked").each(function(index, item){
-		chked_val[index] = item.value;
-	});
-	var delChk = confirm("정말 삭제 하시겠습니까?");
-	if(delChk){
-		var ctx = $("#ctx").val();
-
-		$.ajax({
-			url : ctx+'/contactDelete',
-			type : 'POST',
-			data :  JSON.stringify(chked_val),
-			dataType : 'json',
-			contentType : 'application/json',
-			success : function(data){
-				alert(data.deleteResult);
-				contactPaging();
- 			},
-			error : function(data){
-				alert(data.deleteResult);
-				history.back();
-			}
-		});
-	} else {
-		return;
+//연락처 삭제
+function contactDelete(){
+	var ctx = $("#ctx").val();
+	if($("input[name=contact_del]:checked").length==0){
+		alert("삭제할 영업기회를 선택해 주세요.");
+		return false;
 	}
+	if(confirm("삭제 하시겠습니까? ")){
+	var contactidList = [];
+	var pageNum = $("#pageNum").val();
+	$("input[name=contact_del]:checked").each(function(){
+ 		contactidList.push($(this).val());
+	});
+	
+	$.ajax({
+		type : 'get',
+		url : 'contactDelete',
+		data : {
+			contactidList : contactidList,
+				 pageNum : pageNum
+			},
+		dataType : 'json',
+		success : function(result){
+			alert("연락처가 삭제되었습니다.");
+			contactPaging('1');
+ 		},
+		error : function(request){
+			alert("error : " + request);
+		}
+	});
+	}
+	
 }
 
 
@@ -756,17 +663,15 @@ function callAddCancelBtn(){
 }
 
 
-//연락처 삭제된 데이터 보기.
-
+//연락처 삭제된 데이터 보기. 
 function contactDeleteList() {
- 	location.href = '/contactDeleteList';
-	
+  	location.href = '/contactDeleteList'; 
 }
+
 
 //연락처 복원
 function ContactRecovery(cont_id) {
-	alert(cont_id);
-	 
+ 	 
 	$.ajax({
 		url : '/contactRecovery',
 		type : 'POST',
@@ -784,7 +689,7 @@ function ContactRecovery(cont_id) {
 	
 }
 
-function contactDeleteList(contactPageNum){
+/*function contactDeleteList(contactPageNum){
 	
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
@@ -798,7 +703,7 @@ function contactDeleteList(contactPageNum){
  			        };
 	
 	$.ajax({
-		url : '/contactDeletePaging',
+		url : '/contactDeleteList',
 		type : 'POST',
 		data : contactData,
 		success : function(data) {
@@ -852,4 +757,4 @@ function contactDeleteList(contactPageNum){
 		}
 	}); 
 
-}
+}*/

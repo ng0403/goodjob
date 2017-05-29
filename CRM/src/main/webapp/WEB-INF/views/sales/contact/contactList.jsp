@@ -55,7 +55,7 @@
 	 <button id="search_btn" type="submit" class="tiny ui blue button" onclick="searchAcnkEvent(1,'');">조회</button> 
 	    
 	</div>
-	
+	<input type="hidden" id="act_yn" value="Y"/>
 	<div class="initialSerach">
 		<input type="hidden" id="acnk">
 		  <table id="initialtable">
@@ -80,8 +80,8 @@
 		  </table>
 	</div>
 	
-	<div>
-		<table id="goaltable" class="ui sortable celled table">
+	<div  style="height:300px">
+		<table id="goaltable" class="ui sortable celled table" style="">
 		<thead>
 		<tr style="text-align:center">
 			<th style="width:3%"><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
@@ -96,7 +96,7 @@
 		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
-			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
+			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="contact_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
 			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
 			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' style="color:black" onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
@@ -111,12 +111,12 @@
 		<div class="bottom_div">
 	       <div class="functionBtn_div" id="btn_1">
 	        <input type="button" class="tiny ui blue button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
-			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="contactDelete();">
 			<input type="button" class="tiny ui blue button" id="contact_Delete_list"  value="삭제된데이터" onclick="contactDeleteList();"/>			
 	    </div> 
 	     <div class="functionBtn_div" id="btn_2" style="display:none">
 	 	    <input type="button" id="contactsave" value="저장" class="tiny ui blue button" onclick="contactInsert();"/>
-			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="callCustKeyDelete();">
+			<input type="button" class="tiny ui blue button" id="call_delete" value="취소" onclick="callAddCancelBtn();">
 	    </div> 
 	 
 	     <div id="pageSpace" class="ui right floated pagination menu">

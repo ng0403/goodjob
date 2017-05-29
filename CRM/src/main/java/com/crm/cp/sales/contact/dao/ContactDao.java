@@ -23,17 +23,20 @@ public interface ContactDao {
 	
 	//연락처 리스트 갯수 구하기.
 	public int contactListCount(Map<String, Object> contactMap);
-	public int contactDeleteListCount(Map<String, Object> contactMap);
+	public int ContactDeleteListCount(Map<String, Object> contactMap);
 	
 	
 	
 	public ContactVO contactDetail(String cont_id); //연락처 상세보기
 	public void contactRecovery(ContactVO co); // 연락처 복구
 	
+	int contactDelete(String cont_id); // 연락처 삭제
+	
+	
 	int contactUpdate(ContactVO contactVO);
 	int contactInsert(ContactVO contactVO);
 	public List<ContactVO> contactSearchAll(Map<String, Object> actMap);
-	public int contactDelete(String ke);
+/*	public int contactDelete(String ke);*/
 	public List<Object> compList();
 	int insertKeyman(KeymanVO kVO); // 키맨 추가
 	List<KeymanVO> getKeymanList(String cont_id); // 키맨 리스트
