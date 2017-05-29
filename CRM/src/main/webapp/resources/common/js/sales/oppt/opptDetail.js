@@ -170,6 +170,10 @@ function opptMdfyBtn() {
 // 취소 버튼 기능
 function opptCancelBtn(addFlag) {
 	var addFlag = addFlag;
+	var flag = $("#flag").val();
+	var cust_id = $("#cust_id").val();
+	alert(flag);
+	alert(cust_id);
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화
@@ -180,6 +184,15 @@ function opptCancelBtn(addFlag) {
 		else if(addFlag == 1)	// 상세보기 화면일 경우
 		{
 			location.href = '/oppt';
+			
+		}
+		if(flag == 'cust')	// 추가할 때
+		{
+			location.href = '/custcompDetail?cust_id=' + cust_id;
+		}
+		else if(flag == 'cust_ed')	// 상세보기 화면일 경우
+		{
+			location.href = '/custcompDetail?cust_id=' + cust_id;
 			
 		}
 		

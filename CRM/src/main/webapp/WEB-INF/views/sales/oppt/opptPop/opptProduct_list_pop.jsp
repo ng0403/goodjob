@@ -23,12 +23,14 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
 <title>상품 리스트</title>
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title">
 		<div id="title" class="title">
+		<!-- 영업기회 상세페이지 상품추가 상품리스트 -->
 			<label class="label_header" >■ 상품 리스트</label>
 		</div> 
 		

@@ -19,6 +19,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script> --%>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 </head>
 
@@ -62,7 +63,10 @@ $(document).ready(function(){
 			<div class="caption">
 				<c:choose>
 			<c:when test="${flag == 'cust' }">
-				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3>
+				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사관리</a> > 영업기회관리 상세정보</h3>
+			</c:when>
+			<c:when test="${flag == 'cust_ed' }">
+				<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사관리</a> > 영업기회관리 상세정보</h3>
 			</c:when>
 			<c:otherwise>
 				<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3>

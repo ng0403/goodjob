@@ -24,6 +24,7 @@ $(function(){
 	prodallCheck();
 	opptProdDelete();
 	opptProdNmSelect(ctx);
+	opptDetailProdNmSelect(ctx);
 	opptEstProdNmSelect(ctx);
 	opptProdChange();
 //	startCalendar(ctx);
@@ -282,14 +283,39 @@ function opptProdNmSelect(ctx){
 		self.close();
 	});
 }
-//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업
+//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업 (영업기회 상세페이지 상품 리스트 추가 시)
+function opptDetailProdNmSelect(ctx){
+	$('#oppt_est_product_list_table tbody tr').click(function(){
+		var prod_id=$(this).find('#prod_id').text();
+		var prod_nm=$(this).find('#prod_nm').text();
+		var prod_price=$(this).find('#prod_price').text();
+		
+		window.opener.opptInputProd(prod_id,prod_nm,prod_price);
+//		window.opener.opptInputEstProd(prod_id,prod_nm,prod_price);
+		self.close();
+	});
+}
+//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업 (영업기회 상세페이지 상품 리스트 추가 시)
+function opptDetailProdNmSelect(ctx){
+	$('#oppt_Detail_product_list_table tbody tr').click(function(){
+		var prod_id=$(this).find('#prod_id').text();
+		var prod_nm=$(this).find('#prod_nm').text();
+		var prod_price=$(this).find('#prod_price').text();
+		
+//		window.opener.opptInputProd(prod_id,prod_nm,prod_price);
+		window.opener.opptInputEstProd(prod_id,prod_nm,prod_price);
+		self.close();
+	});
+}
+//상품리스트 tr를 클릭했을 때 상품명 텍스트를 넣어주는 작업 (영업기회 상세페이지 견적 탭 견적 추가  상품 리스트 추가 시)
 function opptEstProdNmSelect(ctx){
 	$('#oppt_est_product_list_table tbody tr').click(function(){
 		var prod_id=$(this).find('#prod_id').text();
 		var prod_nm=$(this).find('#prod_nm').text();
 		var prod_price=$(this).find('#prod_price').text();
 		
-		window.opener.opptInputEstProd(prod_id,prod_nm,prod_price);
+		window.opener.opptInputProd(prod_id,prod_nm,prod_price);
+//		window.opener.opptInputEstProd(prod_id,prod_nm,prod_price);
 		self.close();
 	});
 }

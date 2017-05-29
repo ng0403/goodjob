@@ -17,6 +17,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
 
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 

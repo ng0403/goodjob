@@ -46,7 +46,7 @@
 	
 	
 	<div> <!-- class="product_list_div"s -->
-		<table id="oppt_est_product_list_table"  class="thFixedtbl">
+		<table id="oppt_Detail_product_list_table"  class="thFixedtbl">
 			<thead class="thead">
 				<tr class="tr_table_fix_header">
 					<th class="thead_th">상품ID</th>
