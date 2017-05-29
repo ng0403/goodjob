@@ -30,7 +30,6 @@ $(document).ready(function(){
 	var custNm = $("#cust_nm").val();
 // 	alert(custNm);
 	var addFlag = ${addFlag};
-	$("#cust_id").val(custNm);
 	if(addFlag == 1)//상세정보를 눌렀을 경우
 	{
 		$('#baseBtnDiv').css('display', 'block');
