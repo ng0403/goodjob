@@ -326,7 +326,7 @@ function addSearchActForm()
 				    str+="<div class='ui left icon input'>";
 				    str+="<input type='text' placeholder='영업기회명'  style='width:180px;' onkeypress='opptSearchInput(event);' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' readonly='readonly'>";
 				    str+="</div>";
-				    str+="<input type='button' class='tiny ui orange basic button' id='act_opp_nm' value='영업기회'>";
+				    str+="<input type='button' class='tiny ui orange basic button' id='sact_opp_nm' value='영업기회'>";
 				    
 				    str+="<div class='ui left icon input'>";
 				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm"+count+"' name='scust_nm"+count+"' value='' style='margin-left: 3px;'>";

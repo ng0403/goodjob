@@ -1,16 +1,38 @@
 $(function(){
 	var ctx = $('#ctx').val();
+	
 	actOpptListPopup(ctx);
+	sactOpptListPopup(ctx)
 	custcompListPopup(ctx);
 	actOpptNmSelect(ctx);
 	custNmSelect(ctx);
 	
 });
 
-//영업기회 팝업창 띄우기
-function actOpptListPopup(ctx){
+//영업기회 리스트 팝업
+function actOpptListPopup(ctx)
+{
 	$('#act_opp_nm').click(function(){
-		window.open(ctx+'/actOpptList','newwindow','width=1100, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		var flg = $('#flg').val();
+		var act_flg = $('#act_flg').val();
+		var inputCust = $('#inputCust').val();
+		
+		// 화면마다 영업기회 popup 클릭 이벤트 값 변경
+		if(act_flg == 'oppt' || act_flg == 'oppt_ed' || act_flg == 'cust' || act_flg == 'cust_ed')
+		{
+			inputCust = 'true';
+		}
+		
+		if(inputCust == 'true')
+		{
+			var cust_id = $('#cust_id').val();
+			window.open(ctx+'/actOpptList?cust_id='+cust_id,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+		}
+		else
+		{
+			alert('고객을 먼저 선택해주세요.');
+			return;
+		}
 	});
 }
 
@@ -58,6 +80,7 @@ function inputCustNm(custNm,custId)
 	$('#scust_id').val(custId);
 	
 	$('#inputCust').val('true');
+	console.log($('#inputCust').val());
 }
 
 //고객사리스트 tr를 클릭했을 때 영업기회명 텍스트를 넣어주는 작업
@@ -71,5 +94,12 @@ function custNmSelect(ctx){
 		
 		self.close();
 		
+	});
+}
+
+//영업기회 팝업창 띄우기
+function sactOpptListPopup(ctx){
+	$('#sact_opp_nm').click(function(){
+		window.open(ctx+'/actOpptList','newwindow','width=1100, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	});
 }

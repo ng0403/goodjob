@@ -93,6 +93,11 @@ function delActBt(sales_actvy_id1)
 function delActCancelBt()
 {
 	var ctx = $("#ctx").val();
+	var ynChk = confirm("취소하시겠습니까?");
 	
-	location.href = ctx + '/delActSaleList'; 
+	if(ynChk)
+	{
+		alert("삭제된 페이지 리스트로 이동합니다.");
+		location.href = ctx + '/delActSaleList'; 
+	}
 }

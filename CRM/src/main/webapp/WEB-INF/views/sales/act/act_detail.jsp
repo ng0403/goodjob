@@ -45,39 +45,39 @@
 				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 등록</div>
 			</c:if>
 			<c:if test="${act_flg == '1'}">
-				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 등록</div>
+				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 영업활동 등록</div>
 			</c:if>
 			<c:if test="${act_flg == 'oppt'}">
-				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: black;">영업기회관리</a> > 영업활동 등록</div>
+				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 등록</div>
 			</c:if>
 			<c:if test="${act_flg == 'oppt_ed'}">
-				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: black;">영업기회관리</a> > 영업활동 등록</div>
+				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 등록</div>
 			</c:if>
 			<c:if test="${act_flg == 'cust'}">
-				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: black;">고객사관리</a> > 영업활동 등록</div>
+				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 등록</div>
 			</c:if>
 			<c:if test="${act_flg == 'cust_ed'}">
-				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: black;">고객사관리</a> > 영업활동 등록</div>
+				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 등록</div>
 			</c:if>
 		</c:if>
 		<c:if test="${flg == 1 }">
 			<c:if test="${act_flg eq null}">
-				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 상세정보</div>
+				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 영업활동 상세정보</div>
 			</c:if>
 			<c:if test="${act_flg == '1'}">
-				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 상세정보</div>
+				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 영업활동 상세정보</div>
 			</c:if>
 			<c:if test="${act_flg == 'oppt'}">
-				<div class="caption">■ 영업기회 > <a href="/opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: black;">영업기회관리</a> > 영업활동 상세정보</div>
+				<div class="caption">■ 영업기회 > <a href="/opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 상세정보</div>
 			</c:if>
 			<c:if test="${act_flg == 'oppt_ed'}">
-				<div class="caption">■ 영업기회 > <a href="/opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: black;">영업기회관리</a> > 영업활동 상세정보</div>
+				<div class="caption">■ 영업기회 > <a href="/opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 상세정보</div>
 			</c:if>
 			<c:if test="${act_flg == 'cust'}">
-				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: black;">고객사관리</a> > 영업활동 상세정보</div>
+				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 상세정보</div>
 			</c:if>
 			<c:if test="${act_flg == 'cust_ed'}">
-				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: black;">고객사관리</a> > 영업활동 상세정보</div>
+				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 상세정보</div>
 			</c:if>
 		</c:if>
 	</div>

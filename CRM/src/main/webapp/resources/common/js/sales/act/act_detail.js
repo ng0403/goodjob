@@ -89,12 +89,24 @@ function actAddCancelBt(act_flg)
 	$(document).ready(function() {
 		var ynChk = confirm("정말 취소하시겠습니까?");
 		var ctx = $("#ctx").val();
+		var sales_oppt_id = $('#hsales_oppt_id').val();
+		var cust_id = $('#hcust_id').val();
 	
 		if(ynChk == true)
 		{
 			if(act_flg == 1)
 			{
 				location.href = '/actSaleList';
+			}
+			else if(act_flg == 'oppt' || act_flg == 'oppt_ed')
+			{
+				console.log(sales_oppt_id);
+				location.href = 'opptDetail?opptId=' + sales_oppt_id;
+			}
+			else if(act_flg == 'cust' || act_flg == 'cust_ed')
+			{
+				console.log(cust_id);
+				location.href = 'custcompDetail?cust_id=' + cust_id;
 			}
 			else
 			{
@@ -112,7 +124,9 @@ function actMdfyCancelBt(act_flg)
 	$(document).ready(function() {
 		
 		var ynChk = confirm("수정을 취소하시겠습니까?");
-		var salesId = $("#sales_actvy_id").val()
+		var salesId = $("#sales_actvy_id").val();
+		var sales_oppt_id = $('#hsales_oppt_id').val();
+		var cust_id = $('#hcust_id').val();
 		
 		if(ynChk)
 		{
@@ -120,11 +134,20 @@ function actMdfyCancelBt(act_flg)
 			{
 				location.href = '/actSaleList';
 			}
+			else if(act_flg == 'oppt' || act_flg == 'oppt_ed')
+			{
+				console.log(sales_oppt_id);
+				location.href = 'opptDetail?opptId=' + sales_oppt_id;
+			}
+			else if(act_flg == 'cust' || act_flg == 'cust_ed')
+			{
+				console.log(cust_id);
+				location.href = 'custcompDetail?cust_id=' + cust_id;
+			}
 			else
 			{
 				location.href = '/act';
 			}
-			//location.href = '/actDetail?sales_actvy_id=' + salesId;
 		}
 	});
 }
@@ -276,10 +299,10 @@ function actDetail(sales_actvy_id, act_flg)
 	var cust_id = $('#hcust_id').val();
 	var cust_nm = $('#hcust_nm').val();
 	
-		location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id + 
-										'&sales_oppt_id=' + sales_oppt_id + "&sales_oppt_nm=" + sales_oppt_nm + 	// 영업기회
-										'&cust_id=' + cust_id + "&cust_id=" + cust_id +								// 고객사
-										"&act_flg="+act_flg;														// flg
+	location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id + 
+									'&sales_oppt_id=' + sales_oppt_id + "&sales_oppt_nm=" + sales_oppt_nm + 	// 영업기회
+									'&cust_id=' + cust_id + "&cust_id=" + cust_id +								// 고객사
+									"&act_flg="+act_flg;														// flg
 }
 
 //페이지 입력 이동
@@ -683,7 +706,12 @@ function actModify(ctx, act_flg)
 		alert("영업활동명을 입력해 주세요");
 		return false;
 	}
-
+	
+	var hsales_oppt_id = $('#hsales_oppt_id').val();
+	var hsales_oppt_nm = $('#hsales_oppt_nm').val();
+	var hcust_id = $('#cust_id').val();
+	var hcust_nm = $('#cust_nm').val();
+	
 	var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 	var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
 	
@@ -722,13 +750,13 @@ function actModify(ctx, act_flg)
 				{
 					location.href = '/actSaleList';
 				}
-				else if(act_flg == 'oppt')
+				else if(act_flg == 'oppt_ed')
 				{
-					location.href = '/opptDetail?opptId=' + sales_oppt_id;
+					location.href = '/opptDetail?opptId=' + hsales_oppt_id;
 				}
-				else if(act_flg == 'cust')
+				else if(act_flg == 'cust_ed')
 				{
-					location.href = '/custcompDetail?cust_id=' + cust_id;
+					location.href = '/custcompDetail?cust_id=' + hcust_id;
 				}
 				else
 				{
@@ -833,24 +861,6 @@ function searchActDiv(){
 		$('#sact_oppt_nm').attr("disabled",false);
 	}
 }
-
-//영업기회 리스트 팝업
-function actOpptListPopup(ctx){
-	$('#act_opp_nm').click(function(){
-		
-		if($('#inputCust').val()=='true')
-		{
-			var cust_id = $('#cust_id').val();
-			window.open(ctx+'/actOpptList?cust_id='+cust_id,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-		}
-		else
-		{
-			alert('고객을 먼저 선택해주세요.');
-			return;
-		}
-	});
-}
-
 
 // 수정 버튼 눌렀을 시 ajax부분 (기존)
 //$(document).ready(function() {

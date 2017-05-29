@@ -59,7 +59,7 @@
 			<div class="ui left icon input">
 				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}" readonly="readonly">
 			</div>
-			<input type="button" class="tiny ui blue basic button" id="act_opp_nm" value="영업기회">
+			<input type="button" class="tiny ui blue basic button" id="sact_opp_nm" value="영업기회">
 			<div class="ui left icon input">
 					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}" readonly="readonly">
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">

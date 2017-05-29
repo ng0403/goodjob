@@ -32,9 +32,7 @@
 	
 	<%-- <form action="${ctx}/act" method="get" id="listForm"> --%>
 	<div id="title">
-		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 영업활동 > 영업활동관리 삭제된 데이터</h3>
-		</div>
+		<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 삭제된 데이터 </div>
 	</div>
     
 	<div id="dboardbody">
@@ -58,12 +56,12 @@
 			<div class="ui left icon input">
 				<input type="text" placeholder="영업기회명"  style="width:180px;" onkeypress="opptSearchInput(event);" id="ssales_oppt_nm" name="ssales_oppt_nm" value="${ssales_oppt_nm}" readonly="readonly">
 			</div>
-			<input type="button" class="tiny ui orange basic button" id="act_opp_nm" value="영업기회">
+			<input type="button" class="tiny ui blue basic button" id="sact_opp_nm" value="영업기회">
 			<div class="ui left icon input">
 					<input type="text" placeholder="고객명"  id="scust_nm" name="scust_nm" value="${scust_nm}" readonly="readonly">
 				    <input type="hidden" id="scust_id" name="scust_id" value="${scust_id}">
 			</div>	
-			<input type="button" class="tiny ui orange basic button" id="customer" value="고객">
+			<input type="button" class="tiny ui blue basic button" id="customer" value="고객">
 				  	
 			<label id="schActAddBtn" class="tiny ui button" onclick="addSearchActForm();">+</label>
 			
