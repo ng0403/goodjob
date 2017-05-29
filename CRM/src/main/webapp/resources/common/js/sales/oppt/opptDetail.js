@@ -203,6 +203,7 @@ function opptCancelBtn(addFlag) {
 function opptAdd(){
 	var ctx = $("#ctx").val();
 	var act_flg = $("#flag").val();
+	alert(act_flg);
 	var sales_oppt_id = $("#salesId").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
@@ -294,7 +295,7 @@ function opptAdd(){
 		success:function(result){
 			alert("영업기회가 추가되었습니다.");
 			
-			if(act_flg == null )
+			if(!act_flg)
 			{
 				alert("영업기회 페이지로 이동합니다.");
 				location.href = ctx + "/oppt";
