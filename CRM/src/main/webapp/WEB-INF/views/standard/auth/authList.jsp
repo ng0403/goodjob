@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authList.css" type="text/css" />
+
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <script src="${ctx}/resources/common/js/standard/auth/authList.js"></script>
 
@@ -14,13 +15,20 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<%-- <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> --%>
+<script type="text/javascript"
+	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script type="text/javascript"
+	src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
+<style type="text/css">
+#authhead{
+	margin-bottom:0px;
+}
+#authdiv{
+	height:400px;
+}
+</style>
 <title>리스트</title>
 <script type="text/javascript">
 $("#navisub11").show();
@@ -48,17 +56,20 @@ $("#naviauth").css("font-weight", "bold");
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
 	<form name="delAllForm" id="delAllForm" method="post">	
-		<table id="authtable" class="ui sortable celled table">
+		<table id="authhead" class="ui celled table" style="width:95%">
 			<thead>
 				<tr>
-					<th style="width:9%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
-					<th style="width:30%;">권한ID</th>
-					<th style="width:30.8%;">권한명</th>
-					<th style="width:30.2%;border-right:none;">상태</th>
-					<th style="border-left:none;"></th>
+					<th style="width:9.3%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
+					<th style="width:29.5%;">권한ID</th>
+					<th style="width:30.2%;">권한명</th>
+					<th style="width:30.9%;border-right:none;">상태</th>
+					<th style="width:5%;border-left:none;"></th>
 				</tr>
 			</thead>
-			<tbody>
+		</table>
+		<div id="authdiv" style="width:95%;margin-top:0px;">
+		<table id="authtable" class="ui celled table">
+			<tbody id="authbody">
 				<c:forEach var="auth" items="${authList}"> 
 				<tr>
 					<td style="width:9%;" scope="row"><input type="checkbox" class="ab" id="checkauth" value="${auth.auth_id}"></td>
@@ -72,6 +83,7 @@ $("#naviauth").css("font-weight", "bold");
 			</c:forEach>
 			</tbody>
 		</table>
+		</div>
 		</form>
 	</div>
 		<!-- 기본 버튼 -->

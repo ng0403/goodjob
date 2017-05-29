@@ -9,14 +9,36 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
 
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
-
+<script type="text/javascript"
+	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<!-- <script type="text/javascript" -->
+<%-- 	src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script> --%>
 <script>
-   $(function() {
-      $('table').tablesort();
-   });
+// $(function() {
+// 	 $("#ausermasterdiv").mCustomScrollbar({
+//       theme:"rounded-dark",
+//       autoHideScrollbar: false,
+//       scrollbarPosition: "outside",
+//       scrollButtons:{
+//         enable:true
+//       },
+//       axis:"y"
+//     });
+// });  
 </script>
+<style type="text/css">
+#ausermasterhead{
+	margin-bottom:0px;
+}
+#ausermasterdiv{
+	height:364px;
+}
+</style>
 </head>
 <body>
 <div id="css_tabs">
@@ -43,18 +65,21 @@
 			
 			<div class="bs-example" data-example-id="simple-table">
 				
-				<table id="ausermastertable" class="ui sortable celled table">
+				<table id="ausermasterhead" class="ui celled table">
 					<thead>
 						<tr>
-							<th style="width: 5.1%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-							<th style="width: 14.8%;">사용자ID</th>
-							<th style="width: 14.8%;">사용자 이름</th>
-							<th style="width: 29.6%;">권한명</th>
-							<th style="width: 15.7%;">최종수정자</th>
-							<th style="width: 19.3%;border-right:none;">최종수정일</th>
-							<th style="width: 0%;border-left:none;"></th>
+							<th style="width: 5%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
+							<th style="width: 15%;">사용자ID</th>
+							<th style="width: 15%;">사용자 이름</th>
+							<th style="width: 30%;">권한명</th>
+							<th style="width: 16%;">최종수정자</th>
+							<th style="width: 19%;">최종수정일</th>
+<!-- 							<th style="width: 0%;border-left:none;"></th> -->
 						</tr>
 					</thead>
+				</table>
+				<div id="ausermasterdiv" style="width:100%;margin-top:0px;">
+				<table id="ausermastertable" class="ui celled table">
 					<tbody>
 						<c:forEach var="authUser" items="${authIuserList}">
 						
@@ -71,6 +96,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				</div>
 			</div>
 		<div class="auth_bt_position">
 			<button type="button" class="tiny ui button" id="writeauthuser">등록</button>
