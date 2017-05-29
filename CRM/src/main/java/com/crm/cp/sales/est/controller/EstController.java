@@ -771,7 +771,7 @@ public class EstController {
 		map.put("estim_nm", Encoder.isoToUtf(map.get("estim_nm")));
 		map.put("pageNum", ccPageNum+"");
 		
-		PagerVO page = estInter.getCCListCount(map);
+		PagerVO page = estInter.getDelCCListCount(map);
 		map.put("startRow", page.getStartRow()+"");
 		map.put("endRow", page.getEndRow()+"");
 		
@@ -808,7 +808,73 @@ public class EstController {
 		mov.addObject("eduCode", eduCode);
 		
 		return mov;
-	}	
+	}
+	
+	//전체 리스트가져오기
+		@RequestMapping(value = "/delEstListAjax", method = RequestMethod.GET)
+		@ResponseBody
+		public Map<String,Object> delEstListAjax(HttpSession session,
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
+			@RequestParam Map<String, String> map,
+			@RequestParam (value = "sales_price_1" , required = false) String sales_price_1,
+			@RequestParam (value = "sales_price_2" , required = false) String sales_price_2,
+			@RequestParam (value = "estim_nm" , required = false) String estim_nm,
+			@RequestParam (value = "estim_lev_cd" , required = false) String estim_lev_cd,
+			@RequestParam (value = "estim_valid_d" , required = false) String estim_valid_d,
+			@RequestParam (value = "sales_price_11" , required = false) String sales_price_11,
+			@RequestParam (value = "sales_price_21" , required = false) String sales_price_21,
+			@RequestParam (value = "estim_nm1" , required = false) String estim_nm1,
+			@RequestParam (value = "estim_lev_cd1" , required = false) String estim_lev_cd1,
+			@RequestParam (value = "estim_valid_d1" , required = false) String estim_valid_d1,
+			@RequestParam (value = "sales_price_12" , required = false) String sales_price_12,
+			@RequestParam (value = "sales_price_22" , required = false) String sales_price_22,
+			@RequestParam (value = "estim_nm2" , required = false) String estim_nm2,
+			@RequestParam (value = "estim_lev_cd2" , required = false) String estim_lev_cd2,
+			@RequestParam (value = "estim_valid_d2" , required = false) String estim_valid_d2) {
+				
+			Map<String,Object> result = new HashMap<String,Object>(0);
+			map.put("pageNum", ccPageNum+"");
+			System.out.println(ccPageNum);
+		
+			
+			System.out.println("sales_price_1 : " + sales_price_1);
+			System.out.println("sales_price_2 : " + sales_price_2);
+			if( (sales_price_1 != ""  && sales_price_2 !="") && (sales_price_1 != null  && sales_price_2 != null)){
+				map.put("sales_price", Integer.parseInt(sales_price_1)  * Integer.parseInt(sales_price_2) + "");
+				System.out.println("in");
+			}
+			if( (sales_price_11 != ""  && sales_price_21 !="") && (sales_price_11 != null  && sales_price_22 != null)){
+				map.put("sales_price1", Integer.parseInt(sales_price_11)  * Integer.parseInt(sales_price_21) + "");
+				System.out.println("in1");
+			}
+			if( (sales_price_12 != ""  && sales_price_22 !="") && (sales_price_11 != null  && sales_price_22 != null)){
+				map.put("sales_price2", Integer.parseInt(sales_price_12)  * Integer.parseInt(sales_price_22) + "");
+				System.out.println("in2");
+			}
+			
+			System.out.println("sales_price : " + map.get("sales_price"));
+			
+			
+			map.put("estim_nm", estim_nm + "");				
+			map.put("estim_lev_cd", estim_lev_cd + "");
+			map.put("estim_valid_d", estim_valid_d  + "");
+			map.put("estim_nm1", estim_nm1 + "");				
+			map.put("estim_lev_cd1", estim_lev_cd1 + "");
+			map.put("estim_valid_d1", estim_valid_d1  + "");
+			map.put("estim_nm2", estim_nm2 + "");				
+			map.put("estim_lev_cd2", estim_lev_cd2 + "");
+			map.put("estim_valid_d2", estim_valid_d2  + "");
+			PagerVO page = estInter.getDelCCListCount(map);
+			map.put("startRow", page.getStartRow()+"");
+			map.put("endRow", page.getEndRow()+"");
+			List<EstVO> list = estInter.getDelList(map);
+			result.put("list", list);
+			result.put("page", page);
+			result.put("ccPageNum", ccPageNum);
+			result.put("searchInfo", map);
+		
+			return result;
+		}
 	
 	//견적 상세정보 ajax
 	@RequestMapping(value="/delEstDetail", method=RequestMethod.GET)

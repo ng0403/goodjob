@@ -297,4 +297,17 @@ public class EstDaoImpl implements EstDao{
 		return result;
 	}
 
+	@Override
+	public int getDelCCListCount(Map<String, String> ccPageNum) {
+		// TODO Auto-generated method stub
+		int totalCount = 0;
+		try {
+			totalCount = sqlSession.selectOne("estimate.delpagecount",ccPageNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
+
 }

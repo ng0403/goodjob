@@ -257,5 +257,15 @@ public class EstServiceImpl implements EstService {
 		return estDaoi.delEstRestore(est);
 	}
 
+	@Override
+	public PagerVO getDelCCListCount(Map<String, String> ccPageNum) {
+		// TODO Auto-generated method stub
+		int totalRowCount = estDaoi.getDelCCListCount(ccPageNum);
+
+		PagerVO page = new PagerVO(Integer.parseInt(ccPageNum.get("pageNum")), totalRowCount, 10, 10);
+
+		return page;
+	}
+
 
 }

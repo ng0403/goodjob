@@ -218,6 +218,7 @@
       		and c.estim_id = aa.estim_id
       		group by aa.estim_id) sales_price
 		, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
+		, (select cust_nm from customer where cust_id=aa.cust_id) cust_nm
 	from 
 	ESTIMATE aa,
 	SALES_OPPORTUNITY_ESTIMATE bb
@@ -242,6 +243,24 @@
 		</when>
 		<when test="estim_nm !=null and estim_nm !=''">
 		   and d.estim_nm like '%'||#{estim_nm}||'%'
+		</when>
+	</choose>
+	<choose>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(d.cust_nm like '%'||#{cust_nm}||'%'
+				or d.cust_nm like '%'||#{cust_nm1}||'%'
+				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
+		   and(d.cust_nm like '%'||#{cust_nm}||'%'
+				or d.cust_nm like '%'||#{cust_nm1}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(d.cust_nm like '%'||#{cust_nm}||'%'
+				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !=''">
+		   and d.cust_nm like '%'||#{cust_nm}||'%'
 		</when>
 	</choose>
 	<choose>
@@ -878,6 +897,127 @@
 		#{startRow} and r <![CDATA[ <= ]]>
 		#{endRow}
 		
+	</select>
+	
+	<select id="delpagecount" resultType="int" parameterType="java.util.Map">
+		select count(g.estim_id) from(
+		select d.*,r
+		from(
+    	select rownum r,e.*
+   		from(
+		select aa.estim_nm,
+        aa.estim_lev_cd
+     	, aa.estim_id
+		,( select sum(c.sales_price) from
+      	SALES_OPPORTUNITY_ESTIMATE a
+		, estimate b
+		, estimate_list c
+      	where b.estim_id = a.estim_id
+      		and c.estim_id = b.estim_id
+      		and c.act_yn = 'Y'
+      		and c.estim_id = aa.estim_id
+      		group by aa.estim_id) sales_price
+		, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
+		, (select cust_nm from customer where cust_id=aa.cust_id) cust_nm
+	from 
+	ESTIMATE aa,
+	SALES_OPPORTUNITY_ESTIMATE bb
+	where aa.estim_id = bb.estim_id
+	and aa.ACT_YN='N' 
+  		)e
+	)d
+	where 1=1
+	<choose>
+		<when test="estim_nm !=null and estim_nm !='' and estim_nm1 !=null and estim_nm1 !='' and estim_nm2 !=null and estim_nm2 !=''">
+		   and(d.estim_nm like '%'||#{estim_nm}||'%'
+				or d.estim_nm like '%'||#{estim_nm1}||'%'
+				or d.estim_nm like '%'||#{estim_nm2}||'%')
+		</when>
+		<when test="estim_nm !=null and estim_nm !='' and estim_nm1 !=null and estim_nm1 !=''">
+		   and(d.estim_nm like '%'||#{estim_nm}||'%'
+				or d.estim_nm like '%'||#{estim_nm1}||'%')
+		</when>
+		<when test="estim_nm !=null and estim_nm !='' and estim_nm2 !=null and estim_nm2 !=''">
+		   and(d.estim_nm like '%'||#{estim_nm}||'%'
+				or d.estim_nm like '%'||#{estim_nm2}||'%')
+		</when>
+		<when test="estim_nm !=null and estim_nm !=''">
+		   and d.estim_nm like '%'||#{estim_nm}||'%'
+		</when>
+	</choose>
+	<choose>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(d.cust_nm like '%'||#{cust_nm}||'%'
+				or d.cust_nm like '%'||#{cust_nm1}||'%'
+				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
+		   and(d.cust_nm like '%'||#{cust_nm}||'%'
+				or d.cust_nm like '%'||#{cust_nm1}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
+		   and(d.cust_nm like '%'||#{cust_nm}||'%'
+				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		</when>
+		<when test="cust_nm !=null and cust_nm !=''">
+		   and d.cust_nm like '%'||#{cust_nm}||'%'
+		</when>
+	</choose>
+	<choose>
+		<when test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd1 !=null and estim_lev_cd1 !='' and estim_lev_cd2 !=null and estim_lev_cd2 !=''">
+			and(d.estim_lev_cd = #{estim_lev_cd}
+				or d.estim_lev_cd = #{estim_lev_cd1}
+				or d.estim_lev_cd = #{estim_lev_cd2})
+		</when>
+		<when test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd1 !=null and estim_lev_cd1 !=''">
+			and(d.estim_lev_cd = #{estim_lev_cd}
+				or d.estim_lev_cd = #{estim_lev_cd1})
+		</when>
+		<when test="estim_lev_cd !=null and estim_lev_cd !='' and estim_lev_cd2 !=null and estim_lev_cd2 !=''">
+			and(d.estim_lev_cd = #{estim_lev_cd}
+				or d.estim_lev_cd = #{estim_lev_cd2})
+		</when>
+		<when test="estim_lev_cd !=null and estim_lev_cd !=''">
+			and d.estim_lev_cd = #{estim_lev_cd}
+		</when>
+	</choose>
+	<choose>
+		<when test="sales_price !=null and sales_price !='' and sales_price1 !=null and sales_price1 !='' and sales_price2 !=null and sales_price2 !=''">
+			and(d.sales_price = #{sales_price}
+				or d.sales_price = #{sales_price1}
+				or d.sales_price = #{sales_price2})
+		</when>
+		<when test="sales_price !=null and sales_price !='' and sales_price1 !=null and sales_price1 !=''">
+			and(d.sales_price = #{sales_price}
+				or d.sales_price = #{sales_price1})
+		</when>
+		<when test="sales_price !=null and sales_price !='' and sales_price2 !=null and sales_price2 !=''">
+			and(d.sales_price = #{sales_price}
+				or d.sales_price = #{sales_price2})
+		</when>
+		<when test="sales_price !=null and sales_price !=''">
+			and d.sales_price = #{sales_price}
+		</when>
+	</choose>
+	<choose>
+		<when test="estim_valid_d !=null and estim_valid_d !='' and estim_valid_d1 !=null and estim_valid_d1 !='' and estim_valid_d2 !=null and estim_valid_d2 !=''">
+			and(d.ESTIM_VALID_D = #{estim_valid_d}
+				or d.ESTIM_VALID_D = #{estim_valid_d1}
+				or d.ESTIM_VALID_D = #{estim_valid_d2})
+		</when>
+		<when test="estim_valid_d !=null and estim_valid_d !='' and estim_valid_d1 !=null and estim_valid_d1 !=''">
+			and(d.ESTIM_VALID_D = #{estim_valid_d}
+				or d.ESTIM_VALID_D = #{estim_valid_d1})
+		</when>
+		<when test="estim_valid_d !=null and estim_valid_d !='' and estim_valid_d2 !=null and estim_valid_d2 !=''">
+			and(d.ESTIM_VALID_D = #{estim_valid_d}
+				or d.ESTIM_VALID_D = #{estim_valid_d2})
+		</when>
+		<when test="estim_valid_d !=null and estim_valid_d !=''">
+			and d.ESTIM_VALID_D = #{estim_valid_d}
+		</when>
+	</choose>	
+	 )g  
 	</select>
 	
 	<!-- 	견적 상세정보 -->

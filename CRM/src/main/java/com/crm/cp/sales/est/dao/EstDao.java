@@ -66,4 +66,6 @@ public interface EstDao {
 
 		int delEstRestore(EstVO est);
 
+		int getDelCCListCount(Map<String, String> ccPageNum);
+
 }

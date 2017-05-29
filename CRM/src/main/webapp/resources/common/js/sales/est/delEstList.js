@@ -20,6 +20,7 @@ $(function(){
 	estimDeleteBtn(ctx);
 	startCalendar(ctx);
 	$("#search_div2, #search_div3").hide();
+	custcompListPopup(ctx);
 });
 //function estimListMakeBlock(){
 //	var blank = $("#estList tr").length;
@@ -99,7 +100,7 @@ function list(page){
 	var estim_valid_d2 = $("#sestim_valid_d2").val();
 	$.ajax({
 		type : 'GET',
-		url : '/estListAjax',
+		url : '/delEstListAjax',
 		data : {
 			ccPageNum : page, 
 			estim_nm : estim_nm, 

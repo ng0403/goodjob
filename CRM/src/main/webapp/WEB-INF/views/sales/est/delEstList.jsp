@@ -98,7 +98,7 @@
 		    <div class="ui left icon input">
 				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm1" value="${cust_nm}" onkeypress="estSearchInput(event);">
 				<input type="hidden" id="cust_id1" name="cust_id" value="">
-				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop1" value="고객">
 		    	<i class="building outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
@@ -134,7 +134,7 @@
 		    <div class="ui left icon input">
 				<input type="text" placeholder="고객사명" name="cust_nm" id="cust_nm2" value="${cust_nm}" onkeypress="estSearchInput(event);">
 				<input type="hidden" id="cust_id2" name="cust_id" value="">
-				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop" value="고객">
+				<input type="button" style="padding-left:10px !important;" class="tiny ui blue basic button" id="cust_list_pop2" value="고객">
 		    	<i class="building outline icon"></i>
 		    </div>
 		    <div class="ui left icon input">
