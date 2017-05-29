@@ -174,8 +174,6 @@ function opptCancelBtn(addFlag) {
 	var addFlag = addFlag;
 	var flag = $("#flag").val();
 	var cust_id = $("#cust_id").val();
-	alert(flag);
-	alert(cust_id);
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화
@@ -743,7 +741,7 @@ function viewSalesActive(opptId){
 		}else{
 			$("#opptPrdtbody tr").each(function(){
 				var chkProdCount =$("#opptPrdtbody tr").length;
-				alert(chkProdCount);
+//				alert(chkProdCount);
 				var old_prodId = $(this).attr("class");
 				if(prod_id == old_prodId){
 					var count = $(this).children().eq(2).children().val();

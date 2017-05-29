@@ -18,7 +18,6 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
-
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
 </head>
 <style type="text/css">

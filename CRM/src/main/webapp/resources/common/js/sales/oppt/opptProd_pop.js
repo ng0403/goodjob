@@ -60,7 +60,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 			}
 		$('#opptPrdtbody').append(
 				'<tr id="priceline" class='+prod_id+' style="height: 6px;">'+
-				'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
+				'<th style="width: 3%; text-align: center;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 				'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
@@ -87,7 +87,7 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 			$('#opptPrdtbody').append(
 					
 					'<tr id="priceline" class='+prod_id+'style="height: 6px;">'+
-					'<th style="width: 3%;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
+					'<th style="width: 3%; text-align: center;"><input type="checkbox" name="prod_id" id="prod_id" value='+prod_id+'>'+ 
 					'<input type="hidden" id="prod_price" value='+prod_price+'>'+'</th>'+
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
@@ -257,7 +257,7 @@ function opptProdDelete(){
 				var estimId = $('#estim_id').val();
 				$("#opptPrdtbody input[type=checkbox]:checked").each( function(){
 					var classVal =  $(this).val();
-					alert(classVal);
+//					alert(classVal);
 					$("."+classVal).remove();
 					
 					if($('#flg').val()=='detail'){

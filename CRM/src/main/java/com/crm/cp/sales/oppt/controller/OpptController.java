@@ -483,7 +483,7 @@ public class OpptController {
 		}
 		return result;
 	}
-//	영업기회삭제
+//	영업기회완전삭제
 	@RequestMapping(value = "/opptDelDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public int opptDelDelete(HttpSession session,

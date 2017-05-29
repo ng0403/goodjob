@@ -557,7 +557,7 @@ function estimList(opptId){
 			}else{
 			$.each(result,function(i,data){
 				content += '<tr>'+	
-						'<th><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
+						'<th style=" text-align: center;"><input type=checkbox name=estim_id value='+data.estim_id+'></th>'+
 						'<td style="text-align: left; padding-left: 5px;"><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
 						'<td>'+data.estim_lev_cd+'</td>'+
 						'<td>'+data.estim_qty+'</td>'+
