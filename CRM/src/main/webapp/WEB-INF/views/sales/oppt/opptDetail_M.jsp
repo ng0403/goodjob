@@ -103,7 +103,7 @@ $(document).ready(function(){
 							<div class="ui input focus" style="width: 95%;">
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
-								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; width: 100%;">
+								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int2" style="ms-ime-mode: disabled; width: 100%; height: 17px;">
 							</div>
 							</td>
 							<th><span style="color: red;">*고객사</span></th>

@@ -113,7 +113,7 @@ function opptAddBtn() {
 	$("#opptDetail #sales_oppt_nm").focus();
 	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
-		style:'background-color:white; height: 30px;'
+		style:'background-color:white; height: 17px;'
 	}).val('');
 	$("#opptDetail select").attr({
 		disabled:false,
@@ -141,11 +141,11 @@ function opptMdfyBtn() {
 	$("#opptDetail #sales_oppt_nm").focus();
 	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
-		style:'background-color:white; height: 30px;'
+		style:'background-color:white; height: 17px;'
 	});
 	$("#opptDetail select").attr({
 		disabled:false,
-		style:'background-color:white; height: 30px;'
+		style:'background-color:white; height: 30px; '
 			
 	});
 	//버튼 활성화
