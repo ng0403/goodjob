@@ -68,7 +68,7 @@
 				  	
 			<label id="schActAddBtn" class="tiny ui button" onclick="addSearchActForm();">+</label>
 			
-			<input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
+			<input type="button"  class="tiny tiny ui blue button" id="searchlist" onclick="javascript:searchDelActBtn('${actPageNum}');" style="text-align: right;" value="조회">
 		</div>
 			
 		<div class="tableline">
@@ -77,10 +77,10 @@
 					<tr>
 						<td rowspan="2" style="width: 15%;">영업활동명</td>
 						<td rowspan="2" style="width: 23%;">영업기회명</td>
-						<td rowspan="2" style="width: 10%;">활동유형</td>
 						<td style="width: 10%;">시작일자</td>
 						<td style="width: 10%;">시작시간</td>
-						<td rowspan="2" style="width: 5%;">상태</td>
+						<td rowspan="2" style="width: 10%;">최종수정자</td>
+						<td rowspan="2" style="width: 10%;">최종수정일자</td>
 					</tr>
 					<tr>
 						<td style="width: 10%;">종료일자</td>
@@ -95,10 +95,10 @@
 								<a style="color: blue; cursor: pointer;" onclick="delActDetail('${actList.sales_actvy_id}')">${actList.sales_actvy_nm}</a> <!-- class="actClick"  -->
 							</td>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_oppt_tag">${actList.sales_oppt_nm}</td>
-							<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.sales_actvy_type_cd}</td>
 							<td style="text-align: center;" class="act_starth_tag">${actList.strt_d}</td>
 							<td style="text-align: center;" class="act_startm_tag">${actList.strt_t}</td>
-							<td style="text-align: center;" rowspan="2" class="act_stat_tag">${actList.sales_actvy_stat_cd}</td>
+							<td style="text-align: center;" rowspan="2" class="act_type_tag">${actList.fin_mdfy_id}</td>
+							<td style="text-align: center;" rowspan="2" class="act_stat_tag">${actList.fin_mdfy_dt}</td>
 						</tr>
 						<tr>
 							<td style="text-align: center;" class="act_endh_tag">${actList.end_d}</td>

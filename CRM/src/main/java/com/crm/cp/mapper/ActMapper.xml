@@ -209,7 +209,7 @@
 							,SALES_ACTVY_CONTENT
 							,SALES_ACTVY_REASON
 							,SA.FST_REG_ID ,SA.FIN_MDFY_ID
-							,TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') FST_REG_DT
+							,TO_CHAR(SA.FIN_MDFY_DT,'YYYY-MM-DD hh:mm') FIN_MDFY_DT
 							,SO.SALES_OPPT_NM
 						FROM 
 							SALES_ACTIVITY SA, SALES_OPPORTUNITY SO
@@ -358,7 +358,7 @@
 						</choose>
 
 
-						ORDER BY SA.FST_REG_DT DESC
+						ORDER BY SA.FIN_MDFY_DT DESC
 					) P
 				) SAL
         <![CDATA[WHERE SAL.RNUM>=#{page.startRow} and SAL.RNUM<=#{page.endRow}]]>
@@ -660,14 +660,14 @@
 	<!-- 삭제된 영업활동 복원 -->
 	<update id="delActRestore" parameterType="com.crm.cp.sales.act.vo.ActVO">
 	      UPDATE SALES_ACTIVITY 
-		  SET ACT_YN = 'Y'
+		  SET ACT_YN = 'Y', FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
 	
 	<!-- 영업활동 삭제 -->
-	<update id="actDelete" parameterType="String">
+	<update id="actDelete" parameterType="com.crm.cp.sales.act.vo.ActVO">
 	      UPDATE SALES_ACTIVITY
-	      SET ACT_YN = 'N'
+	      SET ACT_YN = 'N', FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
 	      WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
 	

@@ -119,8 +119,8 @@ public class ActServiceImpl implements ActService{
 	}
 	
 	@Override
-	public int actDelete(String sales_actvy_id) {
-		return actDao.actDelete(sales_actvy_id);
+	public int actDelete(ActVO actvo) {
+		return actDao.actDelete(actvo);
 	}
 	
 	@Override

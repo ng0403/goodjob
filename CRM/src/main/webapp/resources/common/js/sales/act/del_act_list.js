@@ -71,7 +71,7 @@ function sstartCalendar0(ctx, count)
 }
 
 //검색 버튼 클릭 시 
-function searchActBtn(page)
+function searchDelActBtn(page)
 {
 	// 영업활동 시작일자
 	var ssale_actvy_strt  = $("#ssale_actvy_strt").val();
@@ -160,21 +160,19 @@ function searchActBtn(page)
 		return;
 	}
 	
-	searchActSaleList(page);
+	searchDelActSaleList(page);
 }
 
 //영업활동 리스트 출력
-function searchActSaleList(page)
+function searchDelActSaleList(page)
 {
 	var ctx = $("#ctx").val();
 	var act_flg = $('#act_flg').val();
 	var tbody = $('#act_list_tbody');
-	var act_search_div_id = $("#act_search_div_id").val();
-	var act_search_txt    = $("#act_search_txt").val();
 	var tbodyContent = "";
-	
+
 	$.ajax({
-		url : ctx+'/actPaging',
+		url : '/delactPaging',
 		type : 'POST',
 		data : {
 			pageNum : page,
@@ -209,7 +207,7 @@ function searchActSaleList(page)
 				for(var i = 0; i < data.actList.length; i++) 
 				{
 					tbodyContent = "<tr>"
-						+"<td rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></td>"
+//						+"<td rowspan='2' style='width:2%;'><input type='checkbox' class='act_chek' name='act_del' value='"+data.actList[i].sales_actvy_id+"' onclick='actChkCancel();'></td>"
 						+"<td rowspan='2' style='width:15%; text-align: left; padding-left:5px;' class='act_nm_tag' >"
 						+"<input type='hidden' value="+data.actList[i].sales_actvy_id+" id='hi_act_id'>"					
 						+"<a id='act_id_a' style='color: blue; cursor: pointer;' onclick=actDetail('"+data.actList[i].sales_actvy_id+"','"+act_flg+"')>"+data.actList[i].sales_actvy_nm+"</a></td>";
@@ -223,8 +221,7 @@ function searchActSaleList(page)
 				    		tbodyContent +="<td class='act_oppt_tag' style='width:23%; text-align: left; padding-left:5px;' rowspan='2'>"+data.actList[i].sales_oppt_nm+"</td>";
 				    	}
 				    	
-				    	tbodyContent +="<td rowspan='2' style='width:10%; text-align: center;' class='act_type_tag'>"+data.actList[i].sales_actvy_type_cd+"</td>"
-				    	+"<td style='width:10%; text-align: center;' class='act_starth_tag'>"+data.actList[i].strt_d+"</td>";
+				    	tbodyContent +="<td style='width:10%; text-align: center;' class='act_starth_tag'>"+data.actList[i].strt_d+"</td>";
 				    	
 				    	if(data.actList[i].strt_t == 'null' || data.actList[i].strt_t == null || data.actList[i].strt_t == "" || data.actList[i].strt_t == "0")
 				    	{
@@ -235,8 +232,9 @@ function searchActSaleList(page)
 				    		tbodyContent +="<td class='act_startm_tag' style='width:10%; text-align: center;'>"+data.actList[i].strt_t+"</td>";
 				    	}
 				    	
-					    tbodyContent +="<td rowspan='2' class='act_stat_tag' style='width:5%; text-align: center;'>"+data.actList[i].sales_actvy_stat_cd+"</td>"
-	                    +"<tr>";
+					    tbodyContent +="<td rowspan='2' class='act_type_tag' style='width:5%; text-align: center;'>"+data.actList[i].fin_mdfy_id+"</td>"
+					    +"<td rowspan='2' class='act_stat_tag' style='width:5%; text-align: center;'>"+data.actList[i].fin_mdfy_dt+"</td>"
+	                    +"</tr><tr>";
 					    
 					    if(data.actList[i].end_d == 'null' || data.actList[i].end_d == null || data.actList[i].end_d == "" || data.actList[i].end_d == "0")
 					    {
@@ -253,7 +251,7 @@ function searchActSaleList(page)
 					    }
 					    else
 					    {
-					    	tbodyContent +="<td class='act_endm_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_t+"</td>";
+					    	tbodyContent +="<td class='act_endm_tag' style='width:10%; text-align: center;'>"+data.actList[i].end_t+"</td></tr>";
 					    }
 					    tbody.append(tbodyContent);
 					}
@@ -325,13 +323,13 @@ function addSearchActForm()
 				    str+="<div class='ui left icon input'>";
 				    str+="<input type='text' placeholder='영업기회명'  style='width:180px;' onkeypress='opptSearchInput(event);' id='ssales_oppt_nm"+count+"' name='ssales_oppt_nm"+count+"' readonly='readonly'>";
 				    str+="</div>";
-				    str+="<input type='button' class='tiny ui orange basic button' id='act_opp_nm' value='영업기회'>";
+				    str+="<input type='button' class='tiny ui blue basic button' id='act_opp_nm' value='영업기회'>";
 				    
 				    str+="<div class='ui left icon input'>";
 				    str+="<input type='text' placeholder='고객명' autofocus='autofocus' id='scust_nm"+count+"' name='scust_nm"+count+"' value='' style='margin-left: 3px;'>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
-				    str+="<input type='button' class='tiny ui orange basic button' id='customer' value='고객'>";
+				    str+="<input type='button' class='tiny ui blue basic button' id='customer' value='고객'>";
 				    
 				    str+="<label onclick='delSearchActForm(this);' class='tiny ui button' style='margin-left: 3px !important;'>"+'X'+"</label>";
 				    

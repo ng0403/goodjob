@@ -325,16 +325,19 @@ public class ActController {
 	
 	//영업활동 삭제	
 	@RequestMapping(value = "/actDelete", method = RequestMethod.POST)
-	public @ResponseBody int actDelete(HttpSession session,
+	public @ResponseBody int actDelete(HttpSession session, ActVO actvo,
 			@RequestParam(value = "actDeleteIdList[]") List<String> actDeleteIdList,
 			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) throws IOException
 	{
 		int result = 0;
+		actvo.setFin_mdfy_id(session.getAttribute("user").toString());
+		
 		System.out.println("actDelete - sales_actvy_id : " + actDeleteIdList.toString());
 		
 		for(int i=0; i<actDeleteIdList.size(); i++)
 		{
-			result += actService.actDelete(actDeleteIdList.get(i));
+			actvo.setSales_actvy_id(actDeleteIdList.get(i));
+			result += actService.actDelete(actvo);
 		}
 		
 		return result;
@@ -352,7 +355,7 @@ public class ActController {
 	}
 	
 	//전체리스트 출력 페이징/검색 
-	@RequestMapping(value="/actPaging" , method=RequestMethod.POST)
+	@RequestMapping(value="/actPaging" , method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody Map<String,Object> ActListSearch(HttpSession session, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
 			String ssale_actvy_strt, String ssale_actvy_strt0, String ssale_actvy_strt1,
 			String sactvy_type_select, String sactvy_type_select0, String sactvy_type_select1,
@@ -383,6 +386,54 @@ public class ActController {
 		actMap.put("scust_id", scust_id);
 		actMap.put("scust_id0", scust_id0);
 		actMap.put("scust_id1", scust_id1);
+		
+		System.out.println("MAP : " + actMap);
+		
+		PagerVO page = actService.getActListCount(actMap);
+		actMap.put("page", page);
+		
+		List<ActVO> actList = actService.actAllList(actMap);
+		
+		System.out.println("List : " + actList);
+		
+		actMap.put("actList", actList);
+		actMap.put("actListSize", actList.size());
+		
+		return actMap;
+	}
+	
+	//전체리스트 출력 페이징/검색 
+	@RequestMapping(value="/delactPaging" , method = {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody Map<String,Object> delActListSearch(HttpSession session, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			String ssale_actvy_strt, String ssale_actvy_strt0, String ssale_actvy_strt1,
+			String sactvy_type_select, String sactvy_type_select0, String sactvy_type_select1,
+			String ssales_actvy_nm, String ssales_actvy_nm0, String ssales_actvy_nm1,
+			String ssales_oppt_nm, String ssales_oppt_nm0, String ssales_oppt_nm1,
+			String scust_id, String scust_id0, String scust_id1) throws ParseException{
+		
+		Map<String,Object> actMap = new HashMap<String, Object>();
+		
+		actMap.put("actPageNum", pageNum);
+		
+//		actMap.put("ssale_actvy_strt", ssale_actvy_strt);
+//		actMap.put("ssale_actvy_strt0", ssale_actvy_strt0);
+//		actMap.put("ssale_actvy_strt1", ssale_actvy_strt1);
+//		
+//		actMap.put("sactvy_type_select", sactvy_type_select);
+//		actMap.put("sactvy_type_select0", sactvy_type_select0);
+//		actMap.put("sactvy_type_select1", sactvy_type_select1);
+		
+		actMap.put("ssales_actvy_nm", ssales_actvy_nm);
+		actMap.put("ssales_actvy_nm0", ssales_actvy_nm0);
+		actMap.put("ssales_actvy_nm1", ssales_actvy_nm1);
+		
+//		actMap.put("ssales_oppt_nm", ssales_oppt_nm);
+//		actMap.put("ssales_oppt_nm0", ssales_oppt_nm0);
+//		actMap.put("ssales_oppt_nm1", ssales_oppt_nm1);
+//		
+//		actMap.put("scust_id", scust_id);
+//		actMap.put("scust_id0", scust_id0);
+//		actMap.put("scust_id1", scust_id1);
 		
 		System.out.println("MAP : " + actMap);
 		

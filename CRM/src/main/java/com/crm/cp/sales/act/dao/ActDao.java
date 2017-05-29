@@ -41,7 +41,7 @@ public interface ActDao {
 	
 	int delActRestore(ActVO actvo);
 	
-	int actDelete(String sales_actvy_id);
+	int actDelete(ActVO actvo);
 	
 	int delActDelete(ActVO actvo);
 	

@@ -131,8 +131,8 @@ public class ActDaoImpl implements ActDao{
 	}
 	
 	@Override
-	public int actDelete(String sales_actvy_id) {
-		return sqlSession.update("act.actDelete", sales_actvy_id);
+	public int actDelete(ActVO actvo) {
+		return sqlSession.update("act.actDelete", actvo);
 		
 	}
 	
