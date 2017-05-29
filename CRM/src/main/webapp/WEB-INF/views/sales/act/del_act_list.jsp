@@ -16,12 +16,14 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/act/act02.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/del_act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/del_act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_pop.js"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
+
 	
 <title>영업활동</title>
 </head>
@@ -32,7 +34,8 @@
 	
 	<%-- <form action="${ctx}/act" method="get" id="listForm"> --%>
 	<div id="title">
-		<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 삭제된 데이터 </div>
+		<label id="listLabel" class="ui header">■ 영업활동 > <a href="/actSaleList" style="font-size: 20px; text-decoration:none; color: blue;">영업활동관리</a> > 삭제된 데이터</label>
+<!-- 		<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 삭제된 데이터 </div> -->
 	</div>
     
 	<div id="dboardbody">
@@ -68,8 +71,8 @@
 			<input type="button"  class="tiny tiny ui orange button" id="searchlist" onclick="javascript:searchActBtn('${pageNum}');" style="text-align: right;" value="조회">
 		</div>
 			
-		<div>
-			<table id="dboardtable">
+		<div class="tableline">
+			<table id="dboardtable" class="ui celled table">
 				<thead>
 					<tr>
 						<td rowspan="2" style="width: 15%;">영업활동명</td>
@@ -84,7 +87,7 @@
 						<td style="width: 10%;">종료시간</td>
 					</tr>
 				</thead>
-				<tbody id="act_list_tbody" class="act_list_tbody">
+				<tbody id="act_list_tbody" class="tbody">
 					<c:forEach items="${actList}" var="actList">
 						<tr>
 							<td style="text-align: left; padding-left: 5px;" rowspan="2" class="act_nm_tag">
@@ -105,8 +108,10 @@
 				</tbody>
 			</table>
 		</div>
-		
-		<!-- 페이징 처리 -->
+	</div>
+	
+	<div class="bottom_div">
+	<!-- 페이징 처리 -->
 		<div id="pageSpace" class="ui right floated pagination menu">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="actPageNum" value="${actPageNum}">

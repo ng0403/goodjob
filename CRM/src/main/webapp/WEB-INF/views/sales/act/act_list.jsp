@@ -34,7 +34,8 @@
 	
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 영업활동 > 영업활동관리</h3>
+			<label id="listLabel" class="ui header">■ 영업활동 > 영업활동관리</label>
+<!-- 			<h3 class="ui header" style="background: #fff;">■ 영업활동 > 영업활동관리</h3> -->
 		</div>
 	</div>
 	
@@ -71,7 +72,7 @@
 			<input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchActBtn('${actPageNum}');" style="text-align: right;" value="조회">
 		</div>
 			
-		<div>
+		<div class="tableline">
 			<table id="dboardtable" class="ui celled table">
 				<thead>
 					<tr>
@@ -112,8 +113,10 @@
 				</tbody>
 			</table>
 		</div>
-		
-		<!-- 페이징 처리 -->
+	</div>
+	
+	<div class="bottom_div">
+	<!-- 페이징 처리 -->
 		<div id="pageSpace" class="ui right floated pagination menu">
 			<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 			<input type="hidden" id="actPageNum" value="${actPageNum}">

@@ -4,7 +4,7 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
-	actSaleListMakeBlock();
+//	actSaleListMakeBlock();
 	actDeleteBtn(ctx);
 	sstartCalendar(ctx);
 });
@@ -13,26 +13,26 @@ var count = 0;
 var actTypeCode;
 
 // 테이블 빈공간 그려주는 부분
-function actSaleListMakeBlock()
-{
-	var blank = $("#act_list_tbody tr").length;
-	
-	if( blank/2 < 10)
-	{
-		for(var j = 0; j < 10-(blank/2); j++)
-		{
-			var block ="<tr>"
-					 + "<td rowspan='2'></td>"
-					 + "<td rowspan='2'></td>"
-					 + "<td rowspan='2'></td>"
-					 + "<td rowspan='2'></td>"
-					 + "<td></td><td></td>"
-					 + "<td rowspan='2'></td>"
-					 +"<tr>" + "<td></td><td></td></tr>";
-			$("#act_list_tbody").append(block);
-		}
-	}
-}
+//function actSaleListMakeBlock()
+//{
+//	var blank = $("#act_list_tbody tr").length;
+//	
+//	if( blank/2 < 10)
+//	{
+//		for(var j = 0; j < 10-(blank/2); j++)
+//		{
+//			var block ="<tr>"
+//					 + "<td rowspan='2'></td>"
+//					 + "<td rowspan='2'></td>"
+//					 + "<td rowspan='2'></td>"
+//					 + "<td rowspan='2'></td>"
+//					 + "<td></td><td></td>"
+//					 + "<td rowspan='2'></td>"
+//					 +"<tr>" + "<td></td><td></td></tr>";
+//			$("#act_list_tbody").append(block);
+//		}
+//	}
+//}
 
 
 //영업활동 리스트 검색부분 시작일자
@@ -203,7 +203,7 @@ function searchActSaleList(pageNum)
 			{
 				alert("검색결과가 없습니다.");
 				
-				actSaleListMakeBlock();
+//				actSaleListMakeBlock();
 			}
 			else
 			{
@@ -264,7 +264,7 @@ function searchActSaleList(pageNum)
 						for (var j = 0; j < 10 - data.actList.length; j++)
 						{
 							// 테이블 tr 빈공간 그려주는 부분.
-							actSaleListMakeBlock();
+//							actSaleListMakeBlock();
 						}
 					}
 					

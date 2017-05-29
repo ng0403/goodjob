@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" /> --%>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/Semantic/semantic.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>	
@@ -34,7 +34,10 @@
 	<input type="hidden" id="ctx" value="${ctx}">
 	
 	<div id="title">
-		<div class="caption">■ 영업활동 > <a href="/delActSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리 삭제된 데이터</a> > 삭제된 영업활동 상세정보</div>
+		<label id="listLabel" class="ui header" style="background: white;">
+			■ 영업활동 > <a href="/delActSaleList" style="font-size: 20px; text-decoration:none; color: blue;">영업활동관리 삭제된 데이터</a> > 삭제된 영업활동 상세정보
+		</label>
+<!-- 		<div class="caption">■ 영업활동 > <a href="/delActSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리 삭제된 데이터</a> > 삭제된 영업활동 상세정보</div> -->
 	</div>
 		<div id="actBaseBtnDiv" class="act_tab_bt_div" style="float: right;">
 			<input type="button" id="actrestoreBtn" value="복원" class="tiny ui orange button" onclick="restoreActBt('${actDetail.sales_actvy_id}')"/>
