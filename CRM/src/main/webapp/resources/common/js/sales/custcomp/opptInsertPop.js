@@ -2,6 +2,9 @@
 $(document).ready(function(){
 	var ctx = $('#ctx').val();
 	var cust_id = $("#nowCust_id").val();
+	opptTabList(cust_id);
+	
+	
 	//var cust_nm1 = $('#cust_nm', opener.document).val();
 	
 //	$('#cust_nm').val(cust_nm1);
@@ -332,37 +335,23 @@ function opptTabList(cust_id)
 	$.ajax({
 		type : 'post',
 		url : '/opptTabajax',
-//		data : {
-//			cust_id : cust_id
-//		},
-		data : "cust_id="+cust_id,
+		data : {
+			cust_id : cust_id
+		},
 		datatype : 'json',
 		success:function(result){
 			//리스트 출력 시 버튼 상태 설정
-//			$("#activeOpptList").children().remove();
 			$("#activeOpptList").children().remove();
-			
-			//고객사 영업기회탭 리스트 그리기
-			if(result.length == 0){
-				alert("리스트없음");
-				tbodyContent = "<tr style='height: 75px;'><td colspan='10' style='width: 1320px;'>등록된 영업기회가 없습니다.</td></tr>";
-				tbody.append(tbodyContent);
-			}
-			else {
-				
-				$.each(result.opptList, function(i, list){
+				if (result.opptList.length > 0 ) {
 					
-					for (var i = 0; i < result.length; i++) {
-						                                                                               
-						//$("#activeOpptList").append("" +
-						tbodyContent =
+					$.each(result.opptList, function(i, list){
+						$("#activeOpptList").append("" +
 								"<tr id='"+list.sales_oppt_id+"'>"+
 								"<td style='width:20px;text-align: center; vertical-align: middle; '>" +
 								"<input type=checkbox  id=list_sales_oppt_id name=list_sales_oppt_id value="+list.sales_oppt_id+">" +
 								"<input type=hidden id=list_cust_id value="+list.cust_id+">" +
 								"<input type=hidden id=list_sales_lev_cd value="+list.sales_lev_cd+">" +
 								"</td>"+	//opptTabDetail('"+list.sales_oppt_id+"');'
-								
 								"<td style='width:280px; text-align: left;vertical-align: middle; padding-left:5px;'class='oppt_nm_class' >" +
 								"	<a href=javascript:viewDetail2('"+'cust_ed'+"','"+list.sales_oppt_id+"','"+list.cust_id+"') id='list_sales_oppt_nm'  style='text-decoration: none;'>"+list.sales_oppt_nm+"</a></td>"+
 								"<td style='width: 111px;'>"+list.sales_oppt_stat_cd_nm+"</td>"+
@@ -370,17 +359,15 @@ function opptTabList(cust_id)
 								"<td style='width: 131px;'>"+list.fst_reg_dt+"</td>+"+
 								"<td style='width: 112px;'>"+list.expt_fin_d+"</td>"+
 								"<td style='width: 105px;'>"+list.psblty_rate+"%"+"</td>"+
-								"</tr>";
-								tbody.append(tbodyContent);
-						//);
-					}
-				});
+								"</tr>"
+						);
+					});
+				} else if (result.opptList.length == 0  ) {
+					$("#activeOpptList").append("" +
+							"<tr style='height: 75px;'><td colspan='10' style='width: 1320px;'>등록된 영업기회가 없습니다.</td></tr>"
+					);
+				}
 			}
-			
-		},
-		error : function() {
-			alert("전송중 오류가 발생했습니다.");
-		}
 	});
 }
 
