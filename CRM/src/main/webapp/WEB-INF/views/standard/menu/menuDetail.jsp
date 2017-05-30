@@ -16,11 +16,25 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
-
+<%-- <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> --%>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script>
    $(function() {
-      $('table').tablesort();
+	   var $menutable = $("table#mastertable");
+		var $menubodyCells = $menutable.find("tbody tr:first").children();
+		var menucolWidth;
+		
+		$(window).resize(function(){
+			// jquery 개체 안의 요소들의 딥합을 다른 집합으로 변경해서 옮긴다.
+			menucolWidth = $menubodyCells.map(function(){
+				return $(this).width();
+			}).get();
+			
+			//각 thead tr 반복
+			$menutable.find("head tr").children().each(function(i, v){
+				$(v).width(menucolWidth[i]);
+			})
+		}).resize();
    });            
 </script>
 </head>
@@ -107,17 +121,18 @@
 				<table id="mastertable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style="width:189px;">메뉴ID</th>
-							<th style="width:217px;">메뉴명</th>
-							<th style="width:132px;">권한ID</th>
-							<th style="width:221px;">권한명</th>
-							<th style="width:33px;">생성</th>
-							<th style="width:34px;">조회</th>
-							<th style="width:32px;">수정</th>
-							<th style="width:32px;">삭제</th>
-							<th style="width:127px;">디폴트</th>
-							<th style="width:91px;">최초등록자</th>
-							<th style="width:183px;border-right:none;">최초등록일</th>
+							<th style="width:15.3%;">메뉴ID</th>
+							<th style="width:15.1%;">메뉴명</th>
+							<th style="width:15%;">권한ID</th>
+							<th style="width:15%;">권한명</th>
+							<th style="width:6.9%;">생성</th>
+							<th style="width:6.9%;">조회</th>
+							<th style="width:6.9%;">수정</th>
+							<th style="width:6.9%;">삭제</th>
+							<th style="width:12.8%;border-right:none;">디폴트</th>
+<!-- 							<th style="width:12%;">최초등록자</th> -->
+<!-- 							<th style="width:14%;border-right:none;">최초등록일</th> -->
+							<th style="width:0%;border-left:none;"></th>
  						</tr>
 					</thead>
 					<tbody id="authMenuBody">

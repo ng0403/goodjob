@@ -19,7 +19,7 @@
 <div id="title">
 <br>
 <div class="caption">
-	<h3 class="ui header" style="background: #fff;">■ 권한 검색창</h3>
+	<h3 class="ui header" style="background: #fff;">■ 상위메뉴 검색창</h3>
 </div>
 <div class="bt_position_popup" style="text-align: left; padding-top: 10px;">
 		<form name="searchForm" method="post" action="${ctx}/menuPmenuSearch">

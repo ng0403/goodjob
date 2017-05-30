@@ -380,6 +380,10 @@ function estAdd(ctx){
 	var memo = $('#memo').val();
 	var discount_unit_cd = [];
 	var unit_check =0;
+	var hsales_oppt_id = $('#hsales_oppt_id').val();
+	var hsales_oppt_nm = $('#hsales_oppt_nm').val();
+	var hcust_id = $('#hcust_id').val();
+	var hcust_nm = $('#hcust_nm').val();
 	
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
@@ -472,8 +476,33 @@ function estAdd(ctx){
 		"id":"est_list",
 		"value":est_list
 	})
+	var $hsales_oppt_id= $("<input>");
+	$hsales_oppt_id.attr({
+		"type":"hidden",
+		"name":"hsales_oppt_id",
+		"value":hsales_oppt_id
+	})
+//	var $hsales_oppt_nm= $("<input>");
+//	$hsales_oppt_nm.attr({
+//		"type":"hidden",
+//		"name":"hsales_oppt_nm",
+//		"value":hsales_oppt_nm
+//	})
+//	var $hcust_id= $("<input>");
+//	$hcust_id.attr({
+//		"type":"hidden",
+//		"name":"hcust_id",
+//		"value":hcust_id
+//	})
+//	var $hcust_nm= $("<input>");
+//	$hcust_nm.attr({
+//		"type":"hidden",
+//		"name":"hcust_nm",
+//		"value":hcust_nm
+//	})
 	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
-
+	$form.append($hsales_oppt_id)/*.append($hsales_oppt_nm).append($hcust_id).append($hcust_nm)*/;
+	
 	$("body").append($form);
 	$form.submit();
 	
@@ -524,6 +553,7 @@ function estUpdate(ctx){
 	var unit_check=0;
 	var estimQtyCheck = [];
 	var discountCheck = [];
+	var hsales_oppt_id = $('#hsales_oppt_id').val();
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
 		$('#estim_nm').focus();
@@ -659,8 +689,15 @@ function estUpdate(ctx){
 		"name":"prodDeleteEstimId",
 		"value":prodDeleteEstimId
 	})
+	var $hsales_oppt_id= $("<input>");
+	$hsales_oppt_id.attr({
+		"type":"hidden",
+		"name":"hsales_oppt_id",
+		"value":hsales_oppt_id
+	})
 	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId).append($sales_oppt_id);
-
+	$form.append($hsales_oppt_id);
+	
 	$("body").append($form);
 	$form.submit();
 	

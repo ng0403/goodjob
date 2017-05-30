@@ -65,6 +65,9 @@ function inputCustNm2(custNm,custId){
 function estAddBtn(){
 	location.href="/estAddForm"
 }
+function estAddBtn2(oppt_id, oppt_nm, cust_id, cust_nm){
+	location.href ="/estAddForm?sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
+}
 //견적 전체 선택
 function estimAllselect(){
 	$("#estimAllSelect").click( function(){
@@ -456,13 +459,18 @@ function estimDeleteBtn(ctx){
 
 //견적 상세정보 출력
 function estDetail(estim_id){
-	$("#estim_id").val(estim_id);
-	$("#estim_detail").attr({
-		"action":"estDetail",
-		"method":"get"
-	})
-	$("#estim_detail").submit();
+	location.href ="/estDetail?estim_id="+estim_id;
+//	$("#estim_id").val(estim_id);
+//	$("#estim_detail").attr({
+//		"action":"estDetail",
+//		"method":"get"
+//	})
+//	$("#estim_detail").submit();
 }
+function estDetail2(estim_id, oppt_id){
+	location.href ="/estDetail?estim_id="+estim_id+"sales_oppt_id=" + oppt_id;
+}
+
 function startCalendar(ctx){
 	 $("#sestim_valid_d").datepicker({
 	        changeMonth: true, //콤보 박스에 월 보이기

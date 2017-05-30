@@ -40,7 +40,8 @@
 					from ESTIMATE aa,
 						SALES_OPPORTUNITY_ESTIMATE bb
 					where aa.estim_id = bb.estim_id
-						and aa.ACT_YN='Y' 
+						and aa.ACT_YN='Y'
+					order by aa.FIN_MDFY_DT desc 
   				)e
   	where 1=1
 	<choose>
@@ -133,7 +134,7 @@
 			and e.ESTIM_VALID_D = #{estim_valid_d}
 		</when>
 	</choose>  
-	order by e.FIN_MDFY_DT desc
+	
   	)d)f
 		where r <![CDATA[ >= ]]>
 		#{startRow} and r <![CDATA[ <= ]]>
@@ -799,6 +800,7 @@
 						SALES_OPPORTUNITY_ESTIMATE bb
 					where aa.estim_id = bb.estim_id
 						and aa.ACT_YN='N' 
+					order by aa.fin_mdfy_dt desc
   				)e
   	where 1=1
 	<choose>
@@ -891,7 +893,7 @@
 			and e.ESTIM_VALID_D = #{estim_valid_d}
 		</when>
 	</choose>  
-	order by e.fin_mdfy_dt desc
+	
   	)d)f
 		where r <![CDATA[ >= ]]>
 		#{startRow} and r <![CDATA[ <= ]]>
