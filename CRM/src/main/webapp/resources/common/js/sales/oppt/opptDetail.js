@@ -679,7 +679,7 @@ function viewSalesActive(opptId){
 				end_d = data.end_d;
 				reg_dt = data.fst_reg_dt;
 				content +="<tr>"+
-				"<td style='width:30px;'  rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
+				"<td style='width:15px; text-align: center;'  rowspan='2'><input type='checkbox' value="+data.sales_actvy_id+" name='sales_actvy_id'></td>"+ 
 				"<td style='width:270px;' rowspan='2'><a style='text-decoration: none; text-align: center;' href=javascript:actDetail('"+data.sales_actvy_id+"','"+'oppt_ed'+"')>"+data.sales_actvy_nm+"</a></td>"+
 				"<td style='width:105px;   height:12px; padding:5px;'>"+start_d+"</td>"+
 				"<td style='width:63px;   height:12px; padding:5px;'>"+data.strt_t+"</td>"+

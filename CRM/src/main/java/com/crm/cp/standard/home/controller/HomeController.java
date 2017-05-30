@@ -108,6 +108,7 @@ public class HomeController {
 		
 		System.out.println("접속자의 ip 주소 : " + ip);
 		String userId = session.getAttribute("user").toString();
+		//차트에서 사용하는 데이터 리스트
 		List<OpptVO> opptList = opptService.opptList();
 		List<ActVO> opptActList = homeService.opptActList();
 		System.out.println("opptList" + opptList);

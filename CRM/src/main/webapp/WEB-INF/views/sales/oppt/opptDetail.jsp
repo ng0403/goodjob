@@ -78,7 +78,7 @@ $(document).ready(function() {
 				<table id="goaltable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style='width:30px;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
+							<th style='width:15px; text-align: center;'  rowspan="2"><input type="checkbox"  id='ccActListCheck'/></th>
 							<th style='width:270px;' rowspan="2">영업활동명</th>
 							<th style='width:105px;   height:12px; padding:5px;'>시작일자</th>
 							<th style='width:63px;   height:12px; padding:5px;'>시작시간</th>
@@ -104,10 +104,10 @@ $(document).ready(function() {
 		</div>
 		
 		<div id="tableline" class="detailtbody" >
-			<table id="goaltable" class="ui sortable celled table" cellspacing="0" style="height: 192px;">
+			<table id="goaltable" class="ui sortable celled table">
 				<thead>						
 					<tr class="headerLock">
-						<th><input type="checkbox"  id='estimAllSelect'/></th>
+						<th style='width:15px; text-align: center;'><input type="checkbox"  id='estimAllSelect'/></th>
 						<th>견적명</th>
 						<th>견적단계</th>
 						<th>견적수량</th>
