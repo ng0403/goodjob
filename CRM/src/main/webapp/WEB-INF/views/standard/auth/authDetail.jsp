@@ -130,7 +130,7 @@ $(function(){
 					<option value="mmenu">메뉴명</option>
 				</select> <input id="authmenu_text" type="text" name="keyword" class="int_search"> &nbsp;
 			</div>
-			<button id="menuAuthSearch" type="button" class="tiny ui orange button">검색</button>
+			<button id="menuAuthSearch" type="button" class="tiny ui blue button">검색</button>
 		</div>
 	
 		<div class="bs-example" data-example-id="simple-table">

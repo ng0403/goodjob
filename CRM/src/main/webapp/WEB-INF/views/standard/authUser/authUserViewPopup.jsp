@@ -133,7 +133,7 @@
 </div>
 	<div class="bt_position">
 		
-		<input type="button" class="tiny ui orange button" value="저장" id="uauth_confirm"/>
+		<input type="button" class="tiny ui blue button" value="저장" id="uauth_confirm"/>
 		<input type="button" class="tiny ui button" value="편집" id="uauth_modify"/>
 		<input type="button" class="tiny ui button" value="취소" id="uauth_cancel"/>
 	</div>

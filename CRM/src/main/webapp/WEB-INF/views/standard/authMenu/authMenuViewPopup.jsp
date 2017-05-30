@@ -32,7 +32,7 @@
 							<th>권한 ID</th>
 							<td>
 								<input type="text" name="dauth_id" id="uauth_id" class="inputText" value="${auth.auth_id}" disabled="disabled" />
-								<input type="button" id="searchAuthIuser_authId" class="tiny ui orange button" value="검색"/>
+								<input type="button" id="searchAuthIuser_authId" class="tiny ui blue button" value="검색"/>
 							</td>
 						</tr>
 						<tr>
@@ -40,7 +40,7 @@
 							<td>
 								<input type="hidden" name="menu_id" id="menu_id" value="${auth.menu_id}"/>
 								<input type="text" name="menu_name" id="menu_nm" class="inputText" value="${auth.menu_nm}" disabled="disabled" />
-								<input type="button" id="searchAuthIuser_iuserId" class="tiny ui orange button" value="검색"/>
+								<input type="button" id="searchAuthIuser_iuserId" class="tiny ui blue button" value="검색"/>
 							</td>
 						</tr>
 						<tr>
@@ -129,7 +129,7 @@
 			</div>
 		</div>
 		<div class="auth_bt_position">
-			<input type="button" class="tiny ui orange button" value="저장" id="dmenu_confirm" disabled="disabled" />
+			<input type="button" class="tiny ui blue button" value="저장" id="dmenu_confirm" disabled="disabled" />
 			<input type="button" class="tiny ui button" value="편집" id="dmenu_modify"/>
 			<input type="button" class="tiny ui button" value="취소" id="dmenu_cancel" />
 		</div>

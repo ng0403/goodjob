@@ -35,7 +35,7 @@
 								<th style="width:40%;border:none;text-align:left;">
 									<input type="hidden" name="iuser_id" id="iuser_id"/>
 									<input type="text" name="id_nm" id="uu_user_id" class="int"  readonly="readonly"  style="width:70%;"/>
-									<input type="button" id="searchAuthIuser_iuserId" class="tiny ui orange button" value="검색"/>
+									<input type="button" id="searchAuthIuser_iuserId" class="tiny ui blue button" value="검색"/>
 								</th>
 							</tr>
 							<tr>
@@ -114,7 +114,7 @@
 <!-- 		</table> -->
 	</div>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="등록" id="authUserInsert"/>
+		<input type="button" class="tiny ui blue button" value="등록" id="authUserInsert"/>
 		<input type="button" class="tiny ui button" value="취소" id="authUserCancel"/>
 	</div>
 </div>

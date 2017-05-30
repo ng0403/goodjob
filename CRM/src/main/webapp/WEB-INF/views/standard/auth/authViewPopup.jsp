@@ -71,7 +71,7 @@
 </div>
 	<div class="auth_bt_position">
 		
-		<input type="button" class="tiny ui orange button" value="저장" id="dauth_confirm" disabled="disabled"/>
+		<input type="button" class="tiny ui blue button" value="저장" id="dauth_confirm" disabled="disabled"/>
 		<input type="button" class="tiny ui button" value="편집" id="dauth_modify"/>
 		<input type="button" class="tiny ui button" value="취소" id="dauth_cancel"/>
 	</div>

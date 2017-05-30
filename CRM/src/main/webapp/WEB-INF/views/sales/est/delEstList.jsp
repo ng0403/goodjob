@@ -124,7 +124,7 @@
 				<input type="text" placeholder="견적유효일자" name="estim_valid_d" id="sestim_valid_d1" readonly="readonly"/>
 		    	<i class="checked calendar icon"></i>
 		    </div>
-		    <label id="schAddBtn1" class="tiny ui button" onclick=delForm(this.id);>-</label>
+		    <label id="schAddBtn1" class="tiny ui button" onclick="delForm(this.id);">-</label>
 		</div>
 		<div id="search_div3" style="padding-bottom: 10px;">
 			<div class="ui left icon input">
@@ -160,7 +160,7 @@
 				<input type="text" placeholder="견적유효일자" name="estim_valid_d" id="sestim_valid_d2" readonly="readonly"/>
 		    	<i class="checked calendar icon"></i>
 		    </div>
-		   <label id="schAddBtn2" class="tiny ui button" onclick=delForm(this.id);>-</label>
+		   <label id="schAddBtn2" class="tiny ui button" onclick="delForm(this.id);">-</label>
 		</div>
 <!-- </form> -->
 	    
@@ -208,7 +208,7 @@
 			       			</a>	
 			    	</c:when>
 					<c:when test="${ccPageNum ne page.firstPageCount}">
-			       		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+			       		<a href="javascript:list(${page.prevPageNum})" class="icon item">
 			       			<i class="left chevron icon"></i>
 			       		</a>
 			    	</c:when>
@@ -217,11 +217,11 @@
 					<c:choose>
 							<c:when test="${i eq ccPageNum }">
 							<b>
-								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+								<a  href="javascript:list('${i}');" id="pNum" class="item">${i}</a>
 							</b>
 						</c:when>
 						<c:otherwise>
-							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+							<a  href="javascript:list('${i}');" class="item" >${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -232,7 +232,7 @@
 			       			</a>	
 			    	</c:when>
 					<c:when test="${ccPageNum ne page.totalPageCount}">
-			      			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+			      			<a href="javascript:list(${page.nextPageNum})" class="icon item">
 			      				<i class="right chevron icon"></i>
 			       			</a>
 			    	</c:when>

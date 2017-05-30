@@ -32,7 +32,7 @@
 			
 			<input id="title_text" class="inputText" type="text" name="keyword"> &nbsp;
 			
-			<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
+			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
 		</form>
 	</div>
 

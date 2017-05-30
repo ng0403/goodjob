@@ -25,7 +25,7 @@
 				<option value="a_name">권한이름</option>
 				<option value="a_id">권한ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="tiny ui orange button">검색</button>
+			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
 			</form>
 		</div>
 	</div>	

@@ -32,7 +32,7 @@
 							<th>메뉴ID</th>
 							<td>
 								<input type="text" name="menu_id" id="menu_id" class="inputText" readonly="readonly"/>
-								<input type="button" id="searchAuthIuser_MenuId" class="tiny ui orange basic button" value="검색"/>
+								<input type="button" id="searchAuthIuser_MenuId" class="tiny ui blue basic button" value="검색"/>
 							</td>
 						</tr>
 						<tr>
@@ -43,7 +43,7 @@
 							<th>권한ID</th>
 							<td>
 								<input type="text" name="auth_id" id="uauth_id" class="inputText" readonly="readonly"/>
-								<input type="button" id="searchAuthMenu_authId" class="tiny ui orange basic button" value="검색"/>
+								<input type="button" id="searchAuthMenu_authId" class="tiny ui blue basic button" value="검색"/>
 							</td>
 						</tr>
 						<tr>
@@ -86,7 +86,7 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="등록" id="authMenu_confirm"/>
+		<input type="button" class="tiny ui blue button" value="등록" id="authMenu_confirm"/>
 		<input type="button" class="tiny ui button" value="취소" id="authMenu_cancel"/>
 	</div>
 </div>

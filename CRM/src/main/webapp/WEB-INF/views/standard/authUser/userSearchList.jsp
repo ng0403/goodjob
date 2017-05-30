@@ -47,7 +47,7 @@ $(function() {
 			</select>
  			
 			 <input placeholder="내용을 입력해 주세요."  id="title_text" type="text" name="keyword" class="int_common" style="background:white"> &nbsp;
-			<button id="search_btn" type="submit" class="tiny ui orange button">조회</button>
+			<button id="search_btn" type="submit" class="tiny ui blue button">조회</button>
 			</form>
 		</div>
     
