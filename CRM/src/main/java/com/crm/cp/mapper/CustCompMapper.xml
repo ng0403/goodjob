@@ -27,6 +27,7 @@
           			   , c.rep_ph2 rep_ph2
           			   , c.rep_ph3 rep_ph3
           			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+          			   , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD hh:mm') fin_mdfy_dt
           			   , act_yn
           			from customer c		   
                     where 1=1
@@ -73,8 +74,8 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-           		) r
 	            order by c.fin_mdfy_dt desc
+           		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
  
 	</select>
@@ -150,8 +151,8 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-           		) r
 	                order by c.fin_mdfy_dt desc
+           		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
 	</select>
 	
@@ -213,7 +214,6 @@
           	, c.rep_ph3 rep_ph3
 	   from customer c
        where c.cust_id = #{cust_id}
-		    and c.cust_div_cd = '0001'
 		    and c.act_yn = 'Y'
 	</select>
 	

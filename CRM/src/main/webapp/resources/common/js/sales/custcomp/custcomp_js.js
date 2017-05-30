@@ -251,7 +251,7 @@ function custCompList(page){
 								"<td style='text-align:center; width:10%;'>"+cc.sales_scale+"</td>"+
 								"<td style='text-align:right;  width:8%; padding-right:8px '> "+cc.emp_qty+"</td>"+
 								"<td style='text-align:center; width:14%;'>"+cc.indst+"</td>"+
-								"<td style='text-align:center; width:15%;'>"+cc.fst_reg_dt+"</td>+"+
+//								"<td style='text-align:center; width:15%;'>"+cc.fst_reg_dt+"</td>+"+
 							"</tr >"
 					);
 				});
