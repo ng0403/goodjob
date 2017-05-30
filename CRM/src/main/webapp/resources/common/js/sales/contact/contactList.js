@@ -194,8 +194,7 @@ function searchAcnkEvent(contactPageNum, keyword){
    	  	  	  	 											tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
   	  	  	  	  											}
   												
- 											  tbodyContent+= '<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
-
+ 
 							tbody.append(tbodyContent);
 						    tbodyContent = "";
 
@@ -344,9 +343,8 @@ function contactPaging(contactPageNum) {
 				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
         			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
-        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
-         			+'<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
-        		}
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>';
+         		}
 				                   
 			   tbody.append(tbodyContent);
 			}
@@ -528,7 +526,9 @@ function updateCont() {
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
-					alert(data.mdfyResult);
+ 					alert("수정 되었습니다.");
+ 					
+ 					
 	  			    $('#cont_nm').val("");  
 					$('#company_nm').val("");
 					$('#ph1').val("");
@@ -541,8 +541,36 @@ function updateCont() {
 					
 					$('#email1').val("");
 					$('#email2').val("");
+					
+					$('#company_nm').css("background-color", "#EAEAEA");
+					$('#cont_nm').css("background-color", "#EAEAEA"); 
+				 	$('#email1').css("background-color", "#EAEAEA"); 
+					$('#email2').css("background-color", "#EAEAEA"); 
+					$('#cell_ph1').css("background-color", "#EAEAEA"); 
+					$('#cell_ph2').css("background-color", "#EAEAEA"); 
+					$('#cell_ph3').css("background-color", "#EAEAEA"); 
+					$('#ph1').css("background-color", "#EAEAEA"); 
+					$('#ph2').css("background-color", "#EAEAEA"); 
+					$('#ph3').css("background-color", "#EAEAEA"); 
+					
+					
+					$('#company_nm').attr("readonly", true);
+					$('#cont_nm').attr("readonly", true);
+					$('#email1').attr("readonly", true);
+					$('#email2').attr("readonly", true);
+					$('#cell_ph1').attr("readonly", true);
+					$('#cell_ph2').attr("readonly", true);
+					$('#cell_ph3').attr("readonly", true);
+					$('#ph1').attr("readonly", true);
+					$('#ph2').attr("readonly", true);
+					$('#ph3').attr("readonly", true); 
+					
+					$("#baseBtnDiv1").css("display", "none");
+					$("#baseBtnDiv").css("display", "block");
+					
+					
 					contactPaging();
-	 			},
+ 	 			},
 	 			
 				error : function(e) {
 					alert("오류발생");
@@ -696,7 +724,7 @@ function contactInsert() {
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
-					alert(data.mdfyResult);
+ 					alert("저장되었습니다.");
 	  			    $('#cont_nm').val("");  
 					$('#company_nm').val("");
 					$('#ph1').val("");
@@ -774,7 +802,7 @@ function ContactRecovery(cont_id) {
   
 		},
 		error : function() {
-			alert("제가 문제입니다 페이징");
+			alert("오류");
 		}
 	});
 	

@@ -121,8 +121,7 @@
 			<th style="width:20%;">이메일</th>
 			<th style="width:10%;">전화번호</th>
 			<th style="width:10%;">이동전화번호</th>
- 			<th style="width:10%;">등록일시</th>
-		</tr>
+ 		</tr>
 		</thead>
 		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
@@ -133,15 +132,14 @@
  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>
- 			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
-		</tr>
+ 		</tr>
 		</c:forEach>
 		</tbody>
 		</table>
 		</div>
 		<div class="bottom_div">
 	       <div class="functionBtn_div" id="btn_1">
-	        <input type="button" class="tiny ui blue button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
+	        <input type="button" class="tiny ui button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
 			<input type="button" class="tiny ui blue button" id="call_delete" value="삭제" onclick="contactDelete();">
 			<input type="button" class="tiny ui blue button" id="contact_Delete_list"  value="삭제된데이터" onclick="contactDeleteList();"/>			
 	    </div> 

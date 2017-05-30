@@ -93,7 +93,7 @@ $(function() {
        
   <div class="bottom_div">
        <div class="functionBtn_div">
-         <input type="button" id = "board_add_fbtn"  class = "tiny ui blue button" value="추가" onclick="board_add();"/> 
+         <input type="button" id = "board_add_fbtn"  class = "tiny ui button" value="추가" onclick="board_add();"/> 
            <input type="button" id ="board_remove_fbtn" class="tiny ui blue button" value="삭제"  onclick="deleteAction() "/>
  </div> 
     
