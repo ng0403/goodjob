@@ -98,20 +98,26 @@ $(document).ready(function(){
 						<tr>
 							<th><span style="color: red;">*영업기회명</span></th>
 							<td> <!-- colspan="3" -->
-							<div class="ui input focus" style="width: 95%;">
+<!-- 							<div class="ui input focus" style="width: 95%;"> -->
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
 								<input type="hidden" id="hsales_oppt_id" value="${opDetail.sales_oppt_id}">
-								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="int" style="ms-ime-mode: disabled; width: 100%; ">
-							</div>
+								<input type="text" name="sales_oppt_nm" value="${opDetail.sales_oppt_nm}" id="sales_oppt_nm" readonly="readonly" class="inputText" style="ms-ime-mode: disabled; width: 100%; ">
+<!-- 							</div> -->
 							</td>
 							<th><span style="color: red;">*고객사</span></th>
 							<td>
-							<div class="ui input focus">
+<!-- 							<div class="ui input focus"> -->
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
-								<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="int2"  >
+								<c:if test="${cust_nm eq 'undefined'}">
+									<input type="text" name="cust_nm" id="cust_nm" value="" readonly="readonly" class="inputText">
+								</c:if>
+								<c:if test="${cust_nm != 'undefined' and cust_nm != null}">
+									<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="inputText">
+								</c:if>
+<%-- 								<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="inputText"> --%>
 								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}"/>
-							</div>
+<!-- 							</div> -->
 								<input type="button" class="tiny ui blue basic button" id="customer" disabled="disabled" value="고객" onclick="javascript:custcompListPopup('${ctx}');">
 								</td>
 						</tr>
@@ -149,7 +155,7 @@ $(document).ready(function(){
 							<td>
 							<div class="ui input focus">
 								<input type="hidden" id="hexpt_fin_d">
-								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="int2" style="background: rgb(220, 220, 220);">
+								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="inputText" style="background: rgb(220, 220, 220);">
 							</div>
 							</td>
 							<th><span style="color: red;">*가능성</span></th>

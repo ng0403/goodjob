@@ -113,10 +113,12 @@ function opptAddBtn() {
 	//focus, css, readonly, disabled false 상태로 변경
 	//값 초기화
 	$("#opptDetail #sales_oppt_nm").focus();
+	
 	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
 		readonly:false,
-		style:'background-color:white; height: 17px;'
-	}).val('');
+		style:'background-color:white;'
+	});
+//	.val('');
 	$("#opptDetail select").attr({
 		disabled:false,
 		style:'background-color:white; height: 30px;'
