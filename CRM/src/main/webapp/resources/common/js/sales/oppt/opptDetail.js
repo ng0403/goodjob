@@ -203,7 +203,7 @@ function opptCancelBtn(addFlag) {
 function opptAdd(){
 	var ctx = $("#ctx").val();
 	var act_flg = $("#flag").val();
-	alert(act_flg);
+//	alert(act_flg);
 	var sales_oppt_id = $("#salesId").val();
 	var sales_oppt_nm = $("#sales_oppt_nm").val();
 	var sales_lev_cd = $("#sales_lev_cd").val();
