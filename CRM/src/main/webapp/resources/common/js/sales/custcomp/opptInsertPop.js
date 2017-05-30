@@ -353,7 +353,7 @@ function opptTabList(cust_id)
 				$.each(result.opptList, function(i, list){
 					
 					for (var i = 0; i < result.length; i++) {
-						
+						                                                                               
 						//$("#activeOpptList").append("" +
 						tbodyContent =
 								"<tr id='"+list.sales_oppt_id+"'>"+
