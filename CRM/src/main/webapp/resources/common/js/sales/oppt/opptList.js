@@ -359,11 +359,12 @@ function uncomma(str) {
 //영업기회 리스트 출력
 function opportunityList(page){
 	var ctx = $("#ctx").val();
-	
+	var pageNum = page;
 	$.ajax({
 		type : 'post',
 		url : ctx + '/opptajax',
-		data : {pageNum : page
+		data : {
+			ccPageNum : pageNum
 			, ssales_oppt_nm : $("#ssales_oppt_nm").val()
 			, ssales_oppt_nm0 : $("#ssales_oppt_nm0").val()
 			, ssales_oppt_nm1 : $("#ssales_oppt_nm1").val()
@@ -434,6 +435,7 @@ function opportunityList(page){
 	});
 }
 
+/*Paging 영역 동적 생성*/
 function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
 	var endPageNo = $("<input>");
 	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});

@@ -20,7 +20,8 @@
 		, a.sales_oppt_stat_cd
 		, case when ((select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id))) is null then 0
 		else (select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id)) end as expt_sales_amt 
-		, to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d
+		, case when (( to_char(a.expt_fin_d,'yyyy-mm-dd'))) is null then '-'
+		else ( to_char(a.expt_fin_d,'yyyy-mm-dd')) end as expt_fin_d
 		, a.psblty_rate
 		, (select cd_nm from code where cd_grp_id='OSC' and	code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
@@ -95,7 +96,7 @@
 		order by d.fin_mdfy_dt desc
 
 	</select>
-	<!-- 영업기회 리스트 -->
+	<!-- 삭제된 영업기회 리스트 -->
 	<select id="Dellist" resultType="com.crm.cp.sales.oppt.vo.OpptVO" parameterType="java.util.Map">
 		select d.*,r
 		from
@@ -112,7 +113,8 @@
 		, a.sales_oppt_stat_cd
 		, case when ((select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id))) is null then 0
 		else (select EXPT_SALES_AMT  from SALES_OPPT_STEP where 1=1 and rownum = 1 and fin_mdfy_dt = ( select max(fin_mdfy_dt) from SALES_OPPT_STEP where 1=1 and sales_oppt_id=a.sales_oppt_id)) end as expt_sales_amt 
-		, to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d
+		, case when ((to_char(a.expt_fin_d,'yyyy-mm-dd'))) is null then '-'
+		else ( to_char(a.expt_fin_d,'yyyy-mm-dd')) end as expt_fin_d
 		, a.psblty_rate
 		, (select cd_nm from code where cd_grp_id='OSC' and	code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
@@ -250,6 +252,7 @@
 		and a.act_yn='Y'
 		and a.sales_oppt_id=#{opptId}
 	</select>
+	
 	<!-- 영업기회 상세정보 -->
 	<select id="Deldetail" resultType="com.crm.cp.sales.oppt.vo.OpptVO"
 		parameterType="String">

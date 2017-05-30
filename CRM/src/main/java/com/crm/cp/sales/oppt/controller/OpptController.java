@@ -74,6 +74,7 @@ public class OpptController {
 
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
+		System.out.println("page 정보 : " + page);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 
@@ -373,6 +374,7 @@ public class OpptController {
 		List<OpptVO> otllist = service.opptOtlList();
 
 		System.out.println(map.get("ssales_lev_cd"));
+		System.out.println("입력된 pageNum : "+ pageNum);
 		// 한글 검색 인코더 변환
 		map.put("ssales_oppt_nm", map.get("ssales_oppt_nm"));
 		map.put("ssales_oppt_nm0", map.get("ssales_oppt_nm0"));

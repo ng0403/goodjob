@@ -295,7 +295,7 @@ function opptAdd(){
 		success:function(result){
 			alert("영업기회가 추가되었습니다.");
 			
-			if(!act_flg)
+			if(act_flg == "undefined")
 			{
 				alert("영업기회 페이지로 이동합니다.");
 				location.href = ctx + "/oppt";
