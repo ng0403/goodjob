@@ -354,12 +354,18 @@ public class EstController {
 		String id = session.getAttribute("user").toString();
 		est.setFin_mdfy_id(id);
 		est.setFst_reg_id(id);
+		
 		System.out.println("est : "+est.toString());
 		System.out.println("size : " + est_list);
 		System.out.println("size : " + est_list.size());
+		
 		List<EstVO> estList = new ArrayList<EstVO>(0);
 		estList.add(est);
+		
+		System.out.println("EST ADD : " + est.toString());
+		System.out.println("EST ADD : " + estList.toString());
 		System.out.println("est_list : " + est_list.get(0));
+		
 		for(int i=0 ; i< est_list.size(); i++){
 			EstVO vo = new EstVO();
 			vo.setProd_id(est_list.get(i));
@@ -670,23 +676,23 @@ public class EstController {
 //		return result;
 //	}
 	//상세정보에서의 영업기회 리스트 
-//	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
-//	public ModelAndView estActOpptList(HttpSession session,
-//			@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
-//			@RequestParam(value="keyword", defaultValue="") String keyword,
-//			String cust_id){
-//		System.out.println("cust_id : "+cust_id);
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("keyfield", keyfield);
-//		map.put("cust_id", cust_id);
-//		map.put("keyword", keyword);
-//		List<Object> estActOpptList = estInter.estActOpptList(map);
-//		ModelAndView mov = new ModelAndView("/sales/est/estPop/act_oppt_list_pop");
-//		
-//		mov.addObject("actOpptList", estActOpptList);
-//		
-//		return mov;
-//	}
+	@RequestMapping(value="/estActOpptList" , method=RequestMethod.GET)
+	public ModelAndView estActOpptList(HttpSession session,
+			@RequestParam(value="keyfield", defaultValue="ct_id") String keyfield,
+			@RequestParam(value="keyword", defaultValue="") String keyword,
+			String cust_id){
+		System.out.println("cust_id : "+cust_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("cust_id", cust_id);
+		map.put("keyword", keyword);
+		List<Object> estActOpptList = estInter.estActOpptList(map);
+		ModelAndView mov = new ModelAndView("/sales/est/estPop/act_oppt_list_pop");
+		
+		mov.addObject("actOpptList", estActOpptList);
+		
+		return mov;
+	}
 
 		//상세정보에서의 고객 리스트 
 		@RequestMapping(value="/estCustcompList" , method=RequestMethod.GET)

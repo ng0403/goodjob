@@ -533,7 +533,7 @@
 					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
 				</div>
 				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
-					<input type="button" id="actMdfSaveBtn" value="추가" onclick="actModify('${ctx}', '${act_flg}');" class="tiny ui blue button"/>
+					<input type="button" id="actMdfSaveBtn" value="수정" onclick="actModify('${ctx}', '${act_flg}');" class="tiny ui blue button"/>
 					<input type="button" id="actMdfCancelBtn" value="취소" class="tiny ui button" onclick="actMdfyCancelBt('${act_flg}');"/>
 				</div>
 			</c:if>

@@ -20,13 +20,13 @@
 </head>
 <body class="body">
    <input type="hidden" id="ctx" value="${ctx}"/>
-   <div id="title" class="title">
+   <div id="title">
       <div class="caption">
          <label class="label_header" >■ 영업기회 리스트</label>
 <!--          <h3 class="ui header" style="background: #fff; padding: 10px;">■ 영업기회 리스트</h3> -->
       </div>
       
-      <div class="act_oppt_search">
+      <div>	<!-- class="act_oppt_search" -->
          <form name="searchForm" method="post" action="${ctx}/actOpptList">
             <select name="keyfield" style="background: #fff;">
                 <option value="oppt_id">영업기회ID</option>

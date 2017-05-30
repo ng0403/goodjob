@@ -63,7 +63,7 @@ function inputCustNm(custNm,custId){
 function actOpptListPopup(ctx){
 	$('#opptSelect').click(function(){
 		if($('#inputCust').val()=='true'){
-		window.open(ctx+'/estActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+			window.open(ctx+'/estActOpptList?cust_id='+$('#cust_id').val()+'','newwindow2','width=850, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 		}else{
 			alert('고객을 먼저 선택해주세요.');
 			return;
@@ -380,6 +380,7 @@ function estAdd(ctx){
 	var memo = $('#memo').val();
 	var discount_unit_cd = [];
 	var unit_check =0;
+	
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
 		return false;
@@ -452,12 +453,12 @@ function estAdd(ctx){
 		"name":"estim_nm",
 		"value":estim_nm
 	})
-//	var $sales_oppt_id = $("<input>");
-//	$sales_oppt_id.attr({
-//		"type":"hidden",
-//		"name":"sales_oppt_id",
-//		"value":sales_oppt_id
-//	})
+	var $sales_oppt_id = $("<input>");
+	$sales_oppt_id.attr({
+		"type":"hidden",
+		"name":"sales_oppt_id",
+		"value":sales_oppt_id
+	})
 	var $memo = $("<input>");
 	$memo.attr({
 		"type":"hidden",
@@ -471,10 +472,11 @@ function estAdd(ctx){
 		"id":"est_list",
 		"value":est_list
 	})
-	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list);
+	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
 
 	$("body").append($form);
 	$form.submit();
+	
 	//$("#estAdd").submit();
 //	$.ajax({
 //		type : 'post',
@@ -615,12 +617,12 @@ function estUpdate(ctx){
 		"name":"estim_nm",
 		"value":estim_nm
 	})
-//	var $sales_oppt_id = $("<input>");
-//	$sales_oppt_id.attr({
-//		"type":"hidden",
-//		"name":"sales_oppt_id",
-//		"value":sales_oppt_id
-//	})
+	var $sales_oppt_id = $("<input>");
+	$sales_oppt_id.attr({
+		"type":"hidden",
+		"name":"sales_oppt_id",
+		"value":sales_oppt_id
+	})
 	var $memo = $("<input>");
 	$memo.attr({
 		"type":"hidden",
@@ -657,7 +659,7 @@ function estUpdate(ctx){
 		"name":"prodDeleteEstimId",
 		"value":prodDeleteEstimId
 	})
-	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId);
+	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId).append($sales_oppt_id);
 
 	$("body").append($form);
 	$form.submit();
