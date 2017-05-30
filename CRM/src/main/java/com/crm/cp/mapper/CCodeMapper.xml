@@ -36,15 +36,32 @@
 
 
 <select id="codegrpList" resultType="com.crm.cp.standard.code.vo.CodeVO">
-select * 
+select
+cd_grp_id,
+cd_grp_nm,
+fst_reg_id,
+fst_reg_dt,
+fin_mdfy_id,
+fin_mdfy_dt,
+act_yn
 from code_group
 where act_yn = 'Y'
 </select>
 
 <select id ="codeList" parameterType="String" resultType="com.crm.cp.standard.code.vo.CodeVO">
-select *
+select 
+cd_grp_id,
+code,
+cd_nm,
+cd_seq_num,
+cd_dtl_cont,
+fst_reg_id, 
+fst_reg_dt,  
+fin_mdfy_id,
+fin_mdfy_dt,
+act_yn
 from code
-where cd_grp_id = #{cd_grp_id} AND act_yn = 'Y'
+where cd_grp_id = #{cd_grp_id}
 
 </select> 
 
@@ -106,7 +123,7 @@ where cd_grp_id = #{cd_grp_id}
 
 
 <update id="codeModify" parameterType="com.crm.cp.standard.code.vo.CodeVO">
-update code set cd_nm = #{cd_nm}, cd_dtl_cont = #{cd_dtl_cont}, act_yn = #{act_yn}
+update code set cd_nm = #{cd_nm}, cd_dtl_cont = #{cd_dtl_cont}, act_yn = #{act_yn}, fin_mdfy_id = #{fin_mdfy_id}, fin_mdfy_dt = sysdate
 where code=#{code} and cd_grp_id = #{cd_grp_id} 
 </update>
 

@@ -22,20 +22,7 @@ public class ContactDaoImpl implements ContactDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	@Override
-	public int contactListCount1(Map<String, String> contactMap) {
-		int totalCount = 0;
-		System.out.println("ccccc dao " + contactMap.toString());
-		try {
-			totalCount = sqlSession.selectOne("contact.selectTotalCount1", contactMap);
-			System.out.println("total count? " + totalCount);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return totalCount;
-	}
-	
+ 	
 	//전체리스트 개수
 		@Override
 		public int contactListCount(Map<String, Object> contactMap) {
@@ -172,9 +159,9 @@ public class ContactDaoImpl implements ContactDao {
 		
 		//연락처 삭제 (사용)
 		@Override
-		public int contactDelete(String cont_id) {
+		public int contactDelete(ContactVO vo) {
 			// TODO Auto-generated method stub
-			return sqlSession.update("contact.contactDelete", cont_id);
+			return sqlSession.update("contact.contactDelete", vo);
 		}
 
 		

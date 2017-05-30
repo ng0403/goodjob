@@ -72,7 +72,7 @@
 						</td> -->
 						 
 						<th>
-						<span style="color:red">*회사명</span></th>
+						<span>회사명</span></th>
 						<td>
 						    <div class="ui input focus"> 
 						    <input type="hidden" id="hcomp_nm"/>

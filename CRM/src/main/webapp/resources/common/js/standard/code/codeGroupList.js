@@ -173,14 +173,13 @@ function editCode(data){
   	$('#codemastertable tbody tr').remove();
  	var args;
 	for(var i=0; i<data.codevo.length;i++){
-		var fst_reg_d = dateFormat(Number(data.codevo[i].fst_reg_d));
-		args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data.codevo[i].code+'"></td>'
+ 		args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data.codevo[i].code+'"></td>'
 		    +'<td style="width: 15%;">'+data.codevo[i].cd_grp_id+'</td>' 
 			+"<td style='width: 15%;'><a href='#' onclick=\"codeDetail('"+data.codevo[i].code+"','"+data.codevo[i].cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.codevo[i].cd_grp_id +"'>"+data.codevo[i].code+"</a></td>"
 			+'<td style="width: 15%;">'+data.codevo[i].cd_nm+'</td>'
 			+'<td style="width: 30%;">'+data.codevo[i].cd_dtl_cont+ '</td>'
-			+'<td style="width: 16%;">'+data.codevo[i].fst_reg_id +'</td>'
-			+'<td style="width: 19%;">'+ data.codevo[i].fst_reg_dt +'</td></tr>'
+			+'<td style="width: 16%;">'+data.codevo[i].fin_mdfy_id +'</td>'
+			+'<td style="width: 19%;">'+ dateFormat(data.codevo[i].fin_mdfy_dt) +'</td></tr>'
 			$('#codemastertable tbody').append(args);
 	}                            
    	$("#grp_id").val(data.cd_grp_id);
@@ -396,7 +395,7 @@ function codeSendConfirm(cd_grp_id, cd_nm, cd_dtl_cont, act_yn){
 				+'<td style="width: 15%;">'+data[i].cd_nm+'</td>'
 				+'<td style="width: 30%;">'+data[i].cd_dtl_cont+ '</td>'
 				+'<td style="width: 16%;">'+data[i].fst_reg_id +'</td>'
-				+'<td style="width: 19%;">'+ data[i].fst_reg_dt +'</td></tr>';
+				+'<td style="width: 19%;">'+ dateFormat(data[i].fst_reg_dt) +'</td></tr>';
 				
 				/*if(data[i].act_yn=='Y'){
 					args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
@@ -567,15 +566,14 @@ function codeUpdateConfirm(cd_nm, cd_dtl_cont, act_yn, code, cd_grp_id){
  					alert("수정 되었습니다.");
 					$('#codemastertable tbody tr').remove();
 				 	var args;
-					for(var i=0; i<data.codelist.length;i++){
-						var fst_reg_d = dateFormat(Number(data.codelist[i].fst_reg_d));
-						args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data.codelist[i].code+'"></td>'
+ 					for(var i=0; i<data.codelist.length;i++){
+   						args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data.codelist[i].code+'"></td>'
 						    +'<td style="width: 15%;">'+data.codelist[i].cd_grp_id+'</td>' 
-							+"<td style='width: 15%;'><a href='#' onclick=\"codeDetail('"+data.codelist[i].code+"','"+data.codelist[i].cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.codelist[i].cd_grp_id +"'>"+data.codevo[i].code+"</a></td>"
+							+"<td style='width: 15%;'><a href='#' onclick=\"codeDetail('"+data.codelist[i].code+"','"+data.codelist[i].cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.codelist[i].cd_grp_id +"'>"+data.codelist[i].code+"</a></td>"
 							+'<td style="width: 15%;">'+data.codelist[i].cd_nm+'</td>'
 							+'<td style="width: 30%;">'+data.codelist[i].cd_dtl_cont+ '</td>'
 							+'<td style="width: 16%;">'+data.codelist[i].fst_reg_id +'</td>'
-							+'<td style="width: 19%;">'+ data.codelist[i].fst_reg_dt +'</td></tr>'
+							+'<td style="width: 19%;">'+ dateFormat(data.codelist[i].fst_reg_dt) +'</td></tr>'
 							$('#codemastertable tbody').append(args);
 					}                            
 				   	$("#grp_id").val(data.cd_grp_id);

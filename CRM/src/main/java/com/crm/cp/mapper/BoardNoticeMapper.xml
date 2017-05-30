@@ -22,7 +22,21 @@
 		SELECT ROWNUM seq, a.*
 		from(
 		SELECT
-		*
+	    BOARD_NO, 
+	    BOARD_MNG_NO, 
+	    FILE_CD, 
+	    TITLE, 
+	    CONTENT, 
+	    VIEW_CNT, 
+	    QUESTION_TYPE_CD, 
+	    ANSWER_FLG, 
+	    ACTIVE_FLG, 
+	    DEL_FLG, 
+	    CREATED_BY, 
+	    TO_CHAR(CREATED, 'YYYY-MM-DD hh:mm') CREATED,  
+	    UPDATED_BY, 
+	    UPDATED
+
 		FROM tb_board
 		WHERE ACTIVE_FLG='Y' and BOARD_MNG_NO = 'BMG1000001'
 		<if test="title !=null and title !=''">

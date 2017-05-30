@@ -39,15 +39,15 @@
 								</tr>
 								<tr>
 									<th>활성화 여부</th>
-									<td><input type="radio" id="active_flg_Y" value="Y" checked="checked"/>활성화&nbsp;
-										<input type="radio" id="active_flg_N" value="N"/>비활성화</td>
+									<td><input type="radio" id="active_flg_Y" name="act_yn" value="Y" checked="checked"/>활성화&nbsp;
+										<input type="radio" id="active_flg_N" name ="act_yn" value="N"/>비활성화</td>
 								</tr>
 							</tbody>
 						</table>
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui orange button" value="등록" id="cd_grp_confirm" onclick="cd_grp_insert();" />
+		<input type="button" class="tiny ui blue button" value="등록" id="cd_grp_confirm" onclick="cd_grp_insert();" />
 		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick="closebtn();"/>
 	</div>
 </div>

@@ -17,24 +17,25 @@ public interface ContactService {
 	public List<ContactVO> contactDeleteList(Map<String,Object> contactMap); //연락처 삭제된 리스트 
 
 	
-	public PagerVO ContactListCount(Map<String, Object> contactMap);
-	public PagerVO ContactDeleteListCount(Map<String, Object> contactMap);
+	public PagerVO ContactListCount(Map<String, Object> contactMap); // 연락처 리스트갯수 
+	
+	public PagerVO ContactDeleteListCount(Map<String, Object> contactMap); // 연락처 삭제 리스트 갯수
 	
     List<ContactVO> getList(Map<String,String> map); //기업의 전체 리스트가져오기
- // 페이지 정보 얻어오기
- 	PagerVO ContactListCount1(Map<String, String> contactMap);
+     
  	int selectCompany(String COMPANY_NM);
  	
 	public ContactVO contactDetail(String cont_id); //연락처 상세보기
+	
 	public void contactRecovery(ContactVO co); //연락처 복구
 	
-	int contactDelete(String opptId); // 연락처 삭제
+	int contactDelete(ContactVO vo); // 연락처 삭제
 	
 	
 	String contactUpdate(ContactVO contactVO);
 	int contactInsert(ContactVO contactVO);
 	public List<ContactVO> contactSearchAll(Map<String,Object> contactMap); 
-	public String deleteContact(List<String> contact_idList);
+	/*public String deleteContact(List<String> contact_idList);*/
 	public List<Object> compList();
 	String insertKeyman(KeymanVO kVO); 	
 	List<KeymanVO> getKeymanList(String cust_id);
@@ -65,4 +66,7 @@ public interface ContactService {
     ContactVO getContid(ContactVO contactVO);
     ContactVO getCustid(String COMPANY_NM);
     
+    
+    
+     
 }

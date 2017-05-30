@@ -17,15 +17,11 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script> 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> 
-  
-
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
+ 
+ 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
+ 
  
 <title>연락처</title>
 </head>
@@ -84,25 +80,25 @@
 		<table id="goaltable" class="ui sortable celled table">
 		<thead>
 		<tr style="text-align:center">
-			<th style="width:3%"><input id="callCheck" type="checkbox" onclick="callAllChk(this);"/></th>
+			<th style="width:3%"><input id="callCheck" disabled type="checkbox" onclick="callAllChk(this);"/></th>
 			<th style="width:20%;">회사명</th> 
 			<th style="width:20%;">이름</th>
 			<th style="width:20%;">이메일</th>
 			<th style="width:10%;">전화번호</th>
 			<th style="width:10%;">이동전화번호</th>
- 			<th style="width:10%;">등록일시</th>
+ 			<th style="width:10%;">수정일시</th>
 		</tr>
 		</thead>
 		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
-			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="call_del" value="${contactList.cont_id}" onclick="callChkCancel();"></td>
+			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="call_del" disabled value="${contactList.cont_id}" onclick="callChkCancel();"></td>
 			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
 			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' style="color:black" onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>
- 			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fst_reg_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
+ 			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fin_mdfy_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
 		</tr>
 		</c:forEach>
 		</tbody>

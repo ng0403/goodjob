@@ -197,7 +197,7 @@ function boardPaging(boardPageNum) {
 
 						for (var i = 0; i < data.boardList.length; i++) {
 							tbodyContent +=  
-								    '<tr style="text-align:center"><td scope="row"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+ data.boardList[i].BOARD_NO+ '"></td>'
+								    '<tr><td scope="row"  style="text-align:center"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+ data.boardList[i].BOARD_NO+ '"></td>'
 									+ '<td>'+ data.boardList[i].BOARD_NO+ '</td>'
 								    + '<td>'+ data.boardList[i].CD_NM+ '</td>'
 								    + '<td style="text-align:center">'+ data.boardList[i].ANSWER_FLG+ '</td>'

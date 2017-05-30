@@ -235,6 +235,7 @@ CCodeService codeService;
  				codeVo.setFin_mdfy_id(session.getAttribute("user").toString());
  	 			String contactRstRst = codeService.codeModify(codeVo); 
  				rstMap.put("codelist", codeService.codeList(cd_grp_id));
+ 				System.out.println("코드 리스트 수정 ? " + rstMap.get("codelist").toString());
  			}  
  			return rstMap;
  		}

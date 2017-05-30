@@ -28,7 +28,6 @@
 		</if>
 	</select>
 
-
 	<!-- 전체리스트 -->
 	<select id="selectAll" parameterType="java.util.Map"
 		resultType="com.crm.cp.standard.board.vo.BoardVO">
@@ -37,7 +36,7 @@
 		SELECT ROWNUM seq, a.*
 		from(
 		SELECT
-		*
+		BOARD_NO, BOARD_MNG_NO, FILE_CD, TITLE, CONTENT, VIEW_CNT, QUESTION_TYPE_CD, ANSWER_FLG, ACTIVE_FLG, DEL_FLG, CREATED_BY, CREATED, UPDATED_BY, UPDATED
 		FROM tb_board
 		WHERE ACTIVE_FLG='Y' and BOARD_MNG_NO = #{BOARD_MNG_NO}
 		<if test="keyword !=null and keyword !=''">
@@ -216,12 +215,12 @@
 
 	<update id="ModifyBoard"> 
 		update tb_board set title = #{TITLE}, content = #{CONTENT}, updated_by = #{UPDATED_BY}, file_cd = (SELECT FILE_CD FROM TB_FILE
-		WHERE FILE_NM =#{FILE_NM})
+		WHERE FILE_NM =#{FILE_NM}), UPDATED = sysdate
 		where BOARD_NO = #{BOARD_NO}
 	</update>
 	
 	<update id="ModifyQnA"> 
-		update tb_board set title = #{TITLE}, content = #{CONTENT},question_type_cd =#{QUESTION_TYPE_CD} ,updated_by = #{UPDATED_BY}
+		update tb_board set title = #{TITLE}, content = #{CONTENT},question_type_cd =#{QUESTION_TYPE_CD} ,updated_by = #{UPDATED_BY}, updated = sysdate
 		where BOARD_NO = #{BOARD_NO}
 	</update>
 	

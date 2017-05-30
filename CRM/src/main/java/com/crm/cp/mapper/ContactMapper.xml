@@ -251,7 +251,7 @@
 	
 	<!-- 연락처 복원  -->
 	<select id="contactRecovery" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
-	update CONTACT SET ACT_YN ='Y', FIN_MDFY_ID= #{fin_mdfy_id}
+	update CONTACT SET ACT_YN ='Y', FIN_MDFY_ID= #{fin_mdfy_id}, fin_mdfy_dt = sysdate
 	WHERE CONT_ID = #{cont_id}
 	</select>
 	
@@ -332,7 +332,7 @@
 	</select>	
 	
 	
-<!-- 전체리스트  -->
+<!-- 삭제 전체리스트  -->
 	<select id="selectDelete" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
 			SELECT b.*
 		FROM (
@@ -381,17 +381,17 @@
 		 <if test="keyword!=null and keyword!=''">
 				        <include refid="where-list1"/>
 	     </if>
-			ORDER BY fst_reg_dt desc 
+			ORDER BY fin_mdfy_dt desc 
 			 ) a
 		 ) b
 		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
 	</select>		
 			
 			
-			
+	<!-- 연락처 삭제 -->		
 	<update id="contactDelete" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
 		update CONTACT
-		set act_yn = 'N'
+		set act_yn = 'N', fin_mdfy_id = #{fin_mdfy_id}, fin_mdfy_dt = sysdate
 		where cont_id = #{cont_id}
 	</update>  
 	

@@ -17,12 +17,10 @@ public interface ContactDao {
 	public List<ContactVO> contactDeleteList(Map<String, Object> actMap); //삭제된 리스트
 	
 	List<ContactVO> getList(Map<String,String> map);
-	// 전체 리스트 개수 가져오기
-	int contactListCount1(Map<String, String> contactMap);
-	int selectCompany(String COMPANY_NM);
+ 	int selectCompany(String COMPANY_NM);
 	
-	//연락처 리스트 갯수 구하기.
-	public int contactListCount(Map<String, Object> contactMap);
+
+	public int contactListCount(Map<String, Object> contactMap); 	//연락처 리스트 갯수 구하기.
 	public int ContactDeleteListCount(Map<String, Object> contactMap);
 	
 	
@@ -30,7 +28,7 @@ public interface ContactDao {
 	public ContactVO contactDetail(String cont_id); //연락처 상세보기
 	public void contactRecovery(ContactVO co); // 연락처 복구
 	
-	int contactDelete(String cont_id); // 연락처 삭제
+	int contactDelete(ContactVO vo); // 연락처 삭제
 	
 	
 	int contactUpdate(ContactVO contactVO);

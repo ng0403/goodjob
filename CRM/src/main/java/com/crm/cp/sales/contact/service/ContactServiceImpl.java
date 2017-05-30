@@ -73,21 +73,7 @@ public class ContactServiceImpl implements ContactService {
 		
 			return page;
 		}
-		
-		
-		
-		// 페이지 정보 가져오기
-		@Override
-		public PagerVO ContactListCount1(Map<String, String> PageNum) {
-			// 현재 페이지 얻어오기
-	/*		PageUtil page = new PageUtil(ccPageNum, 0, 5, 5);
-	*/
-			int totalRowCount = contactDao.contactListCount1(PageNum);
-			System.out.println("service ccc " + PageNum);
-			PagerVO page = new PagerVO(Integer.parseInt(PageNum.get("pageNum").trim()), totalRowCount, 10, 10);
-			System.out.println("service page ?"  +page.toString());
-			return page;
-		}
+	 
 	 
 		
 		//상세정보
@@ -135,7 +121,7 @@ public class ContactServiceImpl implements ContactService {
 	
 		
 		//연락처  삭제
-		@Override
+		/*@Override
 		public String deleteContact(List<String> contact_idList) {
 			System.out.println("contact_idList : " + contact_idList.get(0));
 			
@@ -156,14 +142,13 @@ public class ContactServiceImpl implements ContactService {
 				resultStr = "연락처 삭제가 실패 했습니다.";
 			}
 			return resultStr;
-		} 
+		} */
 		
 		
 		//연락처 삭제 (사용)
 		@Override
-		public int contactDelete(String cont_id) {
-			// TODO Auto-generated method stub
-			return contactDao.contactDelete(cont_id);
+		public int contactDelete(ContactVO vo) {
+ 			return contactDao.contactDelete(vo);
 		}
 		
 	  
@@ -405,4 +390,5 @@ public class ContactServiceImpl implements ContactService {
 			// TODO Auto-generated method stub
 			return contactDao.getCustid(COMPANY_NM);
 		}
+ 
 }

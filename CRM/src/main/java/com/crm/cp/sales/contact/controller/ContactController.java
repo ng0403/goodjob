@@ -101,8 +101,7 @@ public class ContactController {
 			if (session.getAttribute("user") == null) {
 				mov = new ModelAndView("standard/home/session_expire");
 			}
-			System.out.println("step2");
-
+ 
 			Map<String, Object> contactMap = new HashMap<String, Object>();
 			contactMap.put("contactPageNum", contactPageNum);
 			
@@ -193,6 +192,7 @@ public class ContactController {
 		return "redirect:/contact";
 	}*/
 	
+   //연락처 수정
 	@RequestMapping(value = "/contactUpdate", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> contactUpdate(HttpSession session, ContactVO contactVO) {
 		System.out.println("cont update entering" + contactVO.toString());
@@ -396,8 +396,13 @@ public class ContactController {
 		int result = 0;
 		// 모든 checked된 견적에 대해 삭제
 		for (int i = 0; i < contactidList.size(); i++) {
+			ContactVO vo = new ContactVO();
+			vo.setFin_mdfy_id(session.getAttribute("user").toString());
+			vo.setCont_id(contactidList.get(i));
 			
- 			result += contactService.contactDelete(contactidList.get(i));
+			System.out.println("삭제 정보는?" + vo.toString());
+ 			/*result += contactService.contactDelete(contactidList.get(i));*/
+			  result += contactService.contactDelete(vo);
  			System.out.println("result ? " + result);
 		}
 		return result;
