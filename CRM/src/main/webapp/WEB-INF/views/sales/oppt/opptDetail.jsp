@@ -56,7 +56,7 @@ $(document).ready(function() {
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="flag" value="${flag}">
 	
-	<div id="css_tabs" style="padding-bottom: 10px; margin-top: 14%;">
+	<div id="css_tabs" style="padding-bottom: 10px; margin-top: 17%; ">
 		<!-- 라디오 버튼 -->
 <!-- 		<input id="tab1" type="radio" name="tab" />  -->
 		<input id="tab1" type="radio" name="tab" checked="checked" /> 
@@ -74,7 +74,7 @@ $(document).ready(function() {
 				<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
-			<div id="tableline">
+			<div id="tableline" style="float: left;">
 				<table id="goaltable" class="ui sortable celled table">
 					<thead>
 						<tr>

@@ -73,8 +73,8 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-	                order by c.fin_mdfy_dt  desc
            		) r
+	            order by c.fin_mdfy_dt desc
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
  
 	</select>
@@ -150,8 +150,8 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-	                order by c.fin_mdfy_dt desc
            		) r
+	                order by c.fin_mdfy_dt desc
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
 	</select>
 	
@@ -266,7 +266,6 @@
 			
 		 from customer c
        	 where c.cust_id = #{cust_id}
-		  	and c.cust_div_cd = '0001'
 		  	and c.act_yn = 'N'
 	</select>
 	

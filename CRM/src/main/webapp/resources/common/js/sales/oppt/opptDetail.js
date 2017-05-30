@@ -411,7 +411,7 @@ function opptModify(){
 		success:function(result){
 			alert("수정되었습니다.");
 			
-			if(act_flg == null )
+			if(act_flg == "")
 			{
 				alert("영업기회 페이지로 이동합니다.");
 				location.href = ctx + "/oppt";

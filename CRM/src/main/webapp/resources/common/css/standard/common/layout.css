@@ -79,6 +79,8 @@ html,body{
 /* 	display: inline-block; */
 	padding-top: 10px;
 	margin: 0 auto;
+/* 	float: left; */
+/*     clear: both; */
 }
 
 
