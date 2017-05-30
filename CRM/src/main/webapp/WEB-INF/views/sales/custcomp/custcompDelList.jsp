@@ -47,20 +47,20 @@ $(function() {
 
 	<div class="search_div"  id="search_div" >
 		<div class="ui left icon input">
-			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" onkeypress="schCustComp(event);">
+			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" onkeypress="schDelCustComp(event);">
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
-			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeypress="schCustComp(event);"  style='ime-mode:disabled;'>
+			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeypress="schDelCustComp(event);"  style='ime-mode:disabled;'>
 			<i class="suitcase icon"></i>
 		</div>	
 		<div class="ui left icon input">	
-			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeypress="schCustComp(event);" style='ime-mode:disabled;'>
+			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
 			<i class="law icon"></i>
 		</div>	
 		
 			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
-		<input type="button" id="custcomp_search" class="tiny ui blue button" value="조회" onclick="searchBtn('${ccPageNum}');" />
+		<input type="button" id="custcomp_search" class="tiny ui blue button" value="조회" onclick="searchDelBtn('${ccPageNum}');" />
 		
 	</div>
 	

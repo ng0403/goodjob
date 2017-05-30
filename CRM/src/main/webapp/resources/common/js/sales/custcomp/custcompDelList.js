@@ -6,8 +6,8 @@
  *
  * addForm() 											: 리스트 검색조건 추가
  * dellForm(obj) 										: 리스트 검색조건 삭제
- * schCustComp(event) 									: 검색 엔터키 기능
- * searchBtn(page) 										: 검색버튼 클릭
+ * schDelCustComp(event) 									: 검색 엔터키 기능
+ * searchDelBtn((hBtn(page) 							: 검색버튼 클릭
  * chkCancel() 											: 전체 체크 해제
  * custcompAllCheck() 									: 고객사 전체 선택
  * chkCancel() 											: 전체 체크에서 체크해지 된 경우
@@ -22,7 +22,7 @@
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
-	//ccDelDetail(cust_id);
+	var page = $("#ccPageNum").val();
 });	
 
 //고객사 삭제된 데이터 리스트 출력
@@ -139,15 +139,15 @@ function addForm(){
 		var addedFormDiv = document.getElementById("search_div");
 		var str = "";
 			str+="<br><div class='ui left icon input'>";
-			str+="<input type='text' placeholder='고객사명' style='margin-right: 7px;' class='inp_search' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeypress='schCustComp(event);'/>";
+			str+="<input type='text' placeholder='고객사명' style='margin-right: 7px;' class='inp_search' id='sch_cust_nm"+count+"' name='sch_cust_nm"+count+"' onkeypress='schDelCustComp(event);'/>";
 		    str+="<i class='users icon'></i>";
 		    str+="</div>";
 		    str+="<div class='ui left icon input'>";
-		    str+="<input type='text' placeholder='사업자번호' style='margin-right: 7px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeypress='schCustComp(event);' style='ime-mode:disabled;'/>";
+		    str+="<input type='text' placeholder='사업자번호' style='margin-right: 7px;' class='inp_search' id='sch_comp_num"+count+"' name='sch_comp_num"+count+"'  maxlength='9' onkeypress='schDelCustComp(event);' style='ime-mode:disabled;'/>";
 		    str+="<i class='suitcase icon'></i>";
 		    str+="</div>";
 		    str+="<div class='ui left icon input'>";
-		    str+="<input type='text' placeholder='법인번호' style='margin-right: 7px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeypress='schCustComp(event);' style='ime-mode:disabled;'/>";
+		    str+="<input type='text' placeholder='법인번호' style='margin-right: 7px;' class='inp_search' id='sch_corp_num"+count+"' name='sch_corp_num"+count+"'  maxlength='9' onkeypress='schDelCustComp(event);' style='ime-mode:disabled;'/>";
 		    str+="<i class='law icon'></i>";
 		    str+="</div>";
 		    str+="<label  onclick='dellForm(this)' id='schDelBth' class='tiny ui button' >"+'-'+"</label>";
@@ -171,7 +171,7 @@ function dellForm(obj){
 }   
 
 //검색어 입력 후 엔터 
-function schCustComp(event){
+function schDelCustComp(event){
 
 	var sch_cust_nm = $("#sch_cust_nm").val();
 	var sch_cust_nm0 = $("#sch_cust_nm0").val();
@@ -232,7 +232,7 @@ function chkCancel() {
 
 
 //검색 버튼 클릭 시 
-function searchBtn(page){
+function searchDelBtn(page){
 
 	var sch_cust_nm =   $("#sch_cust_nm").val();
 	var sch_cust_nm0 =  $("#sch_cust_nm0").val();

@@ -107,10 +107,10 @@ $(document).ready(function() {
 		console.log(cust_id);
 		if(cust_id == ''){
 			var tbody = $('#pocTableTbody');
-			tbody.children().remove();
+				tbody.children().remove();
 			var tbodyContent = "";
-			tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-			tbody.append(tbodyContent);
+				tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+				tbody.append(tbodyContent);
 		} else {
 			pocList(cust_id);
 		}
@@ -240,17 +240,18 @@ function custCompList(page){
 				
 					$("#ccListTbody").append("" +
 							"<tr id='"+cc.cust_id+"'>"+
-							"<th style='text-align: center;'><input type=checkbox   id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
-							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
-							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-							"<td id=cust_nm style='text-align: center'>"+cc.comp_num+"</td>"+
-							"<td style='text-align: center'>"+cc.corp_num+"</td>"+
-							"<td style='text-align: center'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
-							"<td style='text-align: center'>"+cc.sales_scale+"</td>"+
-							"<td style='text-align: right; padding-right:8px'> "+cc.emp_qty+"</td>"+
-							"<td style='text-align: center'>"+cc.indst+"</td>"+
-							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>+"+
+								"<td style='text-align:center; width:3%;' >" +
+									"<input type=checkbox id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
+									"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+									"<input type=hidden id=cust_nm value="+cc.cust_nm+"></td>"+
+								"<td style='text-align: left;   width: 16%; padding-left:8px; ' id='ccListTableNmTd' ><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+								"<td style='text-align:center; width:8%' id=cust_nm >"+cc.comp_num+"</td>"+
+								"<td style='text-align:center; width:8%;'>"+cc.corp_num+"</td>"+
+								"<td style='text-align:center; width:10%;'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+								"<td style='text-align:center; width:10%;'>"+cc.sales_scale+"</td>"+
+								"<td style='text-align:right;  width:8%; padding-right:8px '> "+cc.emp_qty+"</td>"+
+								"<td style='text-align:center; width:14%;'>"+cc.indst+"</td>"+
+								"<td style='text-align:center; width:15%;'>"+cc.fst_reg_dt+"</td>+"+
 							"</tr >"
 					);
 				});
@@ -962,17 +963,20 @@ function schPaging(ccPageNum) {
 							$("#sch_corp_num0").val(data.sch_corp_num0);
 							$("#sch_corp_num1").val(data.sch_corp_num1);
 							for (var i = 0; i < data.ccVOList.length; i++) {
-								tbodyContent = "<tr>"
-									+"<th><input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></th>"
-									+"<td style='text-align: left; padding-left: 8px;'>"
-									+"<a href='#' style='color: blue;' class='cnClick' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\">"+data.ccVOList[i].cust_nm+"</a></td>"
-									+"	<td>"+data.ccVOList[i].comp_num+"</td>"
-									+"<td>"+data.ccVOList[i].corp_num+"</td>"
-									+"<td>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
-									+"<td>"+data.ccVOList[i].sales_scale+"</td>"
-									+"<td style='text-align: right; padding-right: 8px;'>"+data.ccVOList[i].emp_qty+"</td>"
-									+"<td>"+data.ccVOList[i].indst+"</td>"
-									+"<td>"+data.ccVOList[i].fst_reg_dt+"</td></tr>";
+								tbodyContent = 
+									"<tr>"
+										+"<td style='width: 3%;'>" +
+											"<input type='checkbox' id='chk_cust_id' value='"+data.ccVOList[i].cust_id+"' onclick='chkCancel();'></td>"
+										+"<td style='text-align: left; padding-left: 8px; width: 16%;'>"
+											+"<a href='#' style='color: blue;' class='cnClick' onclick=\"ccTabFunc('"+data.ccVOList[i].cust_id+"', '"+data.ccVOList[i].cust_nm+"');\">"+data.ccVOList[i].cust_nm+"</a></td>"
+										+"<td style='width: 8%;  text-align:center;'>"+data.ccVOList[i].comp_num+"</td>"
+										+"<td style='width: 8%;  text-align:center;'>"+data.ccVOList[i].corp_num+"</td>"
+										+"<td style='width: 10%; text-align:center;'>"+data.ccVOList[i].rep_ph1+"-"+data.ccVOList[i].rep_ph2+"-"+data.ccVOList[i].rep_ph3+"</td>"
+										+"<td style='width: 10%; text-align:center;'>"+data.ccVOList[i].sales_scale+"</td>"
+										+"<td style='text-align: right; padding-right: 8px; style='width: 8%;'>"+data.ccVOList[i].emp_qty+"</td>"
+										+"<td style='width: 14%;'>"+data.ccVOList[i].indst+"</td>"
+										+"<td style='width: 15%;'>"+data.ccVOList[i].fst_reg_dt+"</td>" 
+									+"</tr>";
 								tbody.append(tbodyContent);
 								$("#ccListCheck").prop("checked", false);
 							}
