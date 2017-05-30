@@ -128,5 +128,5 @@ select{
 }
 
 #dboardtable tbody tr:HOVER{
-	background-color: #ebe7e7;
+/* 	background-color: #ebe7e7; */
 }
