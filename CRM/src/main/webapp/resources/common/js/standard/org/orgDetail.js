@@ -233,7 +233,6 @@ function orgDetailButtonEvent(ctx){
 			        	
 			        	//var node = org_searchNode($('#orgTree'), 'NEW');
 						
-			        	alert("2 " + org_level);
 			        	
 						if(org_level == '0001'){
 							$(org_checkedNode('masterCheck')).next().text(org_name);
