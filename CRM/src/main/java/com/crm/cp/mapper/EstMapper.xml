@@ -63,20 +63,20 @@
 	</choose>
 	<choose>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(e.cust_nm like '%'||#{cust_nm}||'%'
-				or e.cust_nm like '%'||#{cust_nm1}||'%'
-				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(e.cust_nm = #{cust_nm}
+				or e.cust_nm = #{cust_nm1}
+				or e.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
-		   and(e.cust_nm like '%'||#{cust_nm}||'%'
-				or e.cust_nm like '%'||#{cust_nm1}||'%')
+		   and(e.cust_nm = #{cust_nm}
+				or e.cust_nm = #{cust_nm1})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(e.cust_nm like '%'||#{cust_nm}||'%'
-				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(e.cust_nm = #{cust_nm}
+				or e.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !=''">
-		   and e.cust_nm like '%'||#{cust_nm}||'%'
+		   and e.cust_nm = #{cust_nm}
 		</when>
 	</choose>
 	<choose>
@@ -247,20 +247,20 @@
 	</choose>
 	<choose>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(d.cust_nm like '%'||#{cust_nm}||'%'
-				or d.cust_nm like '%'||#{cust_nm1}||'%'
-				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(d.cust_nm = #{cust_nm}
+				or d.cust_nm = #{cust_nm1}
+				or d.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
-		   and(d.cust_nm like '%'||#{cust_nm}||'%'
-				or d.cust_nm like '%'||#{cust_nm1}||'%')
+		   and(d.cust_nm = #{cust_nm}
+				or d.cust_nm = #{cust_nm1})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(d.cust_nm like '%'||#{cust_nm}||'%'
-				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(d.cust_nm = #{cust_nm}
+				or d.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !=''">
-		   and d.cust_nm like '%'||#{cust_nm}||'%'
+		   and d.cust_nm = #{cust_nm}
 		</when>
 	</choose>
 	<choose>
@@ -821,20 +821,20 @@
 	</choose>
 	<choose>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(e.cust_nm like '%'||#{cust_nm}||'%'
-				or e.cust_nm like '%'||#{cust_nm1}||'%'
-				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(e.cust_nm = #{cust_nm}
+				or e.cust_nm = #{cust_nm1}
+				or e.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
-		   and(e.cust_nm like '%'||#{cust_nm}||'%'
-				or e.cust_nm like '%'||#{cust_nm1}||'%')
+		   and(e.cust_nm = #{cust_nm}
+				or e.cust_nm = #{cust_nm1})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(e.cust_nm like '%'||#{cust_nm}||'%'
-				or e.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(e.cust_nm = #{cust_nm}
+				or e.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !=''">
-		   and e.cust_nm like '%'||#{cust_nm}||'%'
+		   and e.cust_nm = #{cust_nm}
 		</when>
 	</choose>
 	<choose>
@@ -947,20 +947,20 @@
 	</choose>
 	<choose>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(d.cust_nm like '%'||#{cust_nm}||'%'
-				or d.cust_nm like '%'||#{cust_nm1}||'%'
-				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(d.cust_nm = #{cust_nm}
+				or d.cust_nm = #{cust_nm1}
+				or d.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm1 !=null and cust_nm1 !=''">
-		   and(d.cust_nm like '%'||#{cust_nm}||'%'
-				or d.cust_nm like '%'||#{cust_nm1}||'%')
+		   and(d.cust_nm = #{cust_nm}
+				or d.cust_nm = #{cust_nm1})
 		</when>
 		<when test="cust_nm !=null and cust_nm !='' and cust_nm2 !=null and cust_nm2 !=''">
-		   and(d.cust_nm like '%'||#{cust_nm}||'%'
-				or d.cust_nm like '%'||#{cust_nm2}||'%')
+		   and(d.cust_nm = #{cust_nm}
+				or d.cust_nm = #{cust_nm2})
 		</when>
 		<when test="cust_nm !=null and cust_nm !=''">
-		   and d.cust_nm like '%'||#{cust_nm}||'%'
+		   and d.cust_nm = #{cust_nm}
 		</when>
 	</choose>
 	<choose>

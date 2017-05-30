@@ -76,7 +76,7 @@ $(function(){
 						<option value="ua_id">사용자ID</option>
 					</select> <input id="authuser_text" type="text" name="keyword" class="int_search"> &nbsp;
 				</div>
-				<button id="userAuthSearch" type="button" class="tiny ui orange button">검색</button>
+				<button id="userAuthSearch" type="button" class="tiny ui blue button">검색</button>
 			</div>
 			
 			<div id="title"></div>
@@ -86,13 +86,13 @@ $(function(){
 				<table id="ausermastertable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style="width: 5%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-							<th style="width: 15%;">사용자ID</th>
-							<th style="width: 15%;">사용자 이름</th>
-							<th style="width: 30%;">권한명</th>
-							<th style="width: 16%;">최종수정자</th>
-							<th style="width: 19%;">최종수정일</th>
-							<th style="width: 0%;border-left:none;"></th>
+							<th style="width: 4.9%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
+							<th style="width: 14.8%;">사용자ID</th>
+							<th style="width: 14.8%;">사용자 이름</th>
+							<th style="width: 29.4%;">권한명</th>
+							<th style="width: 15.7%;">최종수정자</th>
+							<th style="width: 25%;">최종수정일</th>
+							<th style="width: 5%;border-left:none;"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -114,7 +114,7 @@ $(function(){
 			</div>
 		<div class="auth_bt_position">
 			<button type="button" class="tiny ui button" id="writeauthuser">등록</button>
-			<button type="button" class="tiny ui orange button" id="deleteauthuser">삭제</button>
+			<button type="button" class="tiny ui blue button" id="deleteauthuser">삭제</button>
 	    </div>
 	    
 	</div>
@@ -137,15 +137,15 @@ $(function(){
 			<table id="menumastertable" class="ui celled table">
 				<thead>
 					<tr>
-						<th style="width:5.1%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-						<th style="width:20.1%;">권한명</th>
-						<th style="width:25.1%;">권한 메뉴명</th>
+						<th style="width:4.9%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
+						<th style="width:19.7%;">권한명</th>
+						<th style="width:24.6%;">권한 메뉴명</th>
 						<th style="width:9.9%;">디폴트여부</th>
 						<th style="width:9.8%;">조회여부</th>
 						<th style="width:9.8%;">입력여부</th>
 						<th style="width:9.8%;">수정여부</th>
-						<th style="width:11.5%;border-right:none;">삭제여부</th>
-						<th style="width: 0%;border-left:none;"></th>
+						<th style="width:20%;">삭제여부</th>
+						<th style="width: 5%;border-left:none;"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -173,7 +173,7 @@ $(function(){
 	   		</div>
 	    <div class="auth_bt_position">
 			<button type="button" class="tiny ui button" id="writeauthmenu">등록</button>
-			<button type="button" class="tiny ui orange button" id="deleteauthmenu">삭제</button>
+			<button type="button" class="tiny ui blue button" id="deleteauthmenu">삭제</button>
 		</div>
 	</div>
 </div>

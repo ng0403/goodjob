@@ -70,7 +70,7 @@ $("#naviauth").css("font-weight", "bold");
 					<option value="a_name">권한명</option>
 				</select> <input id="title_text" type="text" name="keyword" class="int_search"> &nbsp;
 			</div>
-			<button id="search_btn" class="tiny ui orange button">검색</button>
+			<button id="search_btn" class="tiny ui blue button">검색</button>
 			</form>
 		</div>
 	</div>
@@ -80,10 +80,10 @@ $("#naviauth").css("font-weight", "bold");
 		<table id="authtable" class="ui sortable celled table">
 			<thead>
 				<tr>
-					<th style="width:9.3%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
-					<th style="width:29.5%;">권한ID</th>
-					<th style="width:30.2%;">권한명</th>
-					<th style="width:30.9%;border-right:none;">상태</th>
+					<th style="width:9.1%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
+					<th style="width:29.9%;">권한ID</th>
+					<th style="width:30.5%;">권한명</th>
+					<th style="width:30%;border-right:none;">상태</th>
 					<th style="width:5%;border-left:none;"></th>
 				</tr>
 			</thead>
@@ -106,7 +106,7 @@ $("#naviauth").css("font-weight", "bold");
 		<!-- 기본 버튼 -->
 	<div class="auth_bt_position">
 		<button type="button" class="tiny ui button" id="writeauth">등록</button>
-		<input type="button" class="tiny ui orange button" value="삭제" id="deleteauth">
+		<input type="button" class="tiny ui blue button" value="삭제" id="deleteauth">
 	</div>
 </body>
 </html>

@@ -84,16 +84,19 @@ function chkCancel(){
 //견적 리스트 조회
 function list(page){
 	var estim_nm = $("#sestim_nm").val();
+	var cust_nm = $('#cust_nm').val();
 	var estim_lev_cd = $("#sestim_lev_cd").val();
 	var sales_price_1 =  $("#ssales_price_1").val();
 	var sales_price_2 =  $("#ssales_price_2").val();
 	var estim_valid_d = $("#sestim_valid_d").val();
 	var estim_nm1 = $("#sestim_nm1").val();
+	var cust_nm1 = $('#cust_nm1').val();
 	var estim_lev_cd1 = $("#sestim_lev_cd1").val();
 	var sales_price_11 =  $("#ssales_price_11").val();
 	var sales_price_21 =  $("#ssales_price_21").val();
 	var estim_valid_d1 = $("#sestim_valid_d1").val();
 	var estim_nm2 = $("#sestim_nm2").val();
+	var cust_nm2 = $('#cust_nm2').val();
 	var estim_lev_cd2 = $("#sestim_lev_cd2").val();
 	var sales_price_12 =  $("#ssales_price_12").val();
 	var sales_price_22 =  $("#ssales_price_22").val();
@@ -104,16 +107,19 @@ function list(page){
 		data : {
 			ccPageNum : page, 
 			estim_nm : estim_nm, 
+			cust_nm : cust_nm,
 			estim_lev_cd : estim_lev_cd, 
 			sales_price_1 : sales_price_1, 
 			sales_price_2 : sales_price_2, 
 			estim_valid_d : estim_valid_d,
-			estim_nm1 : estim_nm1, 
+			estim_nm1 : estim_nm1,
+			cust_nm1 : cust_nm1,
 			estim_lev_cd1 : estim_lev_cd1, 
 			sales_price_11 : sales_price_11, 
 			sales_price_21 : sales_price_21, 
 			estim_valid_d1 : estim_valid_d1,
 			estim_nm2 : estim_nm2, 
+			cust_nm2 : cust_nm2,
 			estim_lev_cd2 : estim_lev_cd2, 
 			sales_price_12 : sales_price_12, 
 			sales_price_22 : sales_price_22, 
