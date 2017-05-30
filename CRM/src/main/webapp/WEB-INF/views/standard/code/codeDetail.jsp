@@ -30,13 +30,15 @@
 </script>
 </head>
 <body>
-
-	<div id="title" class="caption" style="padding-top: 13px ;">
-		<label class="label_header" style="font-size: 1.28571429em; font-weight: bold; color: rgba(0, 0, 0, 0.87); " >■ 기준정보 > 코드관리</label>
-	</div>
+<div id="css_tabs">
+	<input id="tab1" type="radio" name="tab" checked="checked" /> 
+	
+	  <label for="tab1">코드 관리</label>
+	
  
+ <div id="tabDiv1" class="tab1_content">
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
-	<div class="list_search" >
+	<div class="bt_position" >
  					<select name="keyfield"  id="selectOption1">
  						<option value="code_nm">코드명</option>
 					</select> <input id="authuser_text" type="text" name="keyword" class="int_search"> &nbsp;
@@ -58,7 +60,7 @@
 							<th style="width: 3%;border-left:none;"></th>
 						</tr>
 					</thead>
-					<tbody style="height:530px">
+					<tbody style="height:442px">
 					 
 					</tbody>
 				</table>
@@ -67,8 +69,8 @@
 			<button type="button" class="tiny ui blue basic button" id="writeauthuser" onclick="writecode();" >등록</button>
 			<button type="button" class="tiny ui blue button" id="deleteauthuser">삭제</button>
 	    </div>
- 
- 
+ </div>
+ </div>
  
 </body>
 </html>

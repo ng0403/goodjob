@@ -55,7 +55,7 @@
 	<div class="initialSerach">
 		<input type="hidden" id="acnk">
 		  <table id="initialtable">
-			  <tr style="height: 5%; text-align:center">
+			  <tr style="height: 5%; text-align:center" id="korean">
 			  	<td><a onclick="searchAcnkEvent(1, '전체');">전체</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, 'ㄱ');">ㄱ</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, 'ㄴ');">ㄴ</a></td>
@@ -72,6 +72,36 @@
 			  	<td><a onclick="searchAcnkEvent(1, 'ㅍ');">ㅍ</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, 'ㅎ');">ㅎ</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, '미분류');">미분류</a></td>
+			  </tr>
+			    <tr id="english" style="height: 5%; text-align:center">
+			  <td><a onclick="searchAcnkEvent(1, '전체');">전체</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'A');">A</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'B');">B</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'C');">C</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'D');">D</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'E');">E</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'F');">F</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'G');">G</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'H');">H</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'I');">I</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'J');">J</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'K');">K</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'L');">L</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'M');">M</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'N');">N</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'O');">O</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'P');">P</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'Q');">Q</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'R');">R</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'S');">S</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'T');">T</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'U');">U</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'V');">V</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'W');">W</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'X');">X</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'Y');">Y</a></td>
+			  	<td><a onclick="searchAcnkEvent(1, 'Z');">Z</a></td>
+			  	<td><a onclick="toggleKorean();">한글</a></td> 
 			  </tr>
 		  </table>
 	</div>

@@ -107,6 +107,136 @@
 			AND (case when cont_id is not null then substr(cont_nm, 1, 1) else substr(company_nm, 1, 1) end) NOT BETWEEN '가' AND '힣'
 	    	]]>
 		</if>
+		<if test='keyword.equals("A")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('a%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("B")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('b%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("C")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper(c%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("D")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('d%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("E")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('E%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("F")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('F%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("G")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('G%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("H")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('H%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("I")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('I%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("J")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('J%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("K")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('K%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("L")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('L%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("M")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('M%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("N")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('N%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("O")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('O%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("P")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('P%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("Q")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('Q%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("R")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('R%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("S")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('S%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("T")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('T%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("U")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('U%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("V")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('V%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("W")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('W%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("X")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('X%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("Y")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('Y%')
+	    	]]>
+	  	</if>
+	  	<if test='keyword.equals("Z")'>
+	  		<![CDATA[
+	  		 AND upper(cont_nm) like upper('Z%')
+	    	]]>
+	  	</if>
 	</sql>
  
 	<update id="contactInsert" parameterType="com.crm.cp.sales.contact.vo.ContactVO">

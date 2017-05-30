@@ -19,17 +19,17 @@
 $(function(){
 	var $codetable = $("table#codetable");
 	var $codebodyCells = $codetable.find("tbody tr:first").children();
-	var authcolWidth;
+	var codecolWidth;
 	
 	$(window).resize(function(){
 		// jquery 개체 안의 요소들의 딥합을 다른 집합으로 변경해서 옮긴다.
-		authcolWidth = $authbodyCells.map(function(){
+		codecolWidth = $codebodyCells.map(function(){
 			return $(this).width();
 		}).get();
 		
 		//각 thead tr 반복
-		$authtable.find("head tr").children().each(function(i, v){
-			$(v).width(authcolWidth[i]);
+		$codetable.find("head tr").children().each(function(i, v){
+			$(v).width(codecolWidth	[i]);
 		})
 	}).resize();
 	
@@ -51,13 +51,13 @@ $("#naviauth").css("font-weight", "bold");
 		<label class="label_header" style="font-size: 1.28571429em; font-weight: bold; color: rgba(0, 0, 0, 0.87); " >■ 기준정보 > 코드 그룹관리</label>
 	</div>
 	
-	<div class="list_search" >
+	<div class="list_search" style="margin-top:37px" >
 		<form name="searchForm" method="post" action="${ctx}/auth">
 				<select name="keyfield" id="selectOption" style="height: 32px;font-size: 8pt;">
 					<option value="cd_grp_id">코드ID</option>
 					<option value="cd_grp_name">코드명</option>
 				</select> 
-			<input id="title_text" type="text" name="keyword" class="inputText" style="height: 23px;"> &nbsp;
+			<input id="title_text" type="text" name="keyword" class="inputText" style="height: 23px; background-color:white"> &nbsp;
 			<button id="search_btn" class="tiny ui blue button">검색</button>
 		</form>
 	  </div>
@@ -65,7 +65,7 @@ $("#naviauth").css("font-weight", "bold");
 	<div class="cdgrp_list" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
 	<form name="delAllForm" id="delAllForm" method="post">	
-		<table id="codetable" class="ccthFixedtbl" style="table-layout:fixed; " >
+		<table id="codetable" class="ccthFixedtbl" style="table-layout:fixed; margin-top:14px" >
 			<thead class="thead">
 				<tr class="tr_table_fix_header" style="text-align:center">
 					<th class="thead_th" style="width: 9.1%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
@@ -75,13 +75,13 @@ $("#naviauth").css("font-weight", "bold");
 					<th style="width:3%;border-left:none;"></th>
  				</tr>
 			</thead>
-			<tbody class="tbody" style="height:564px">
+			<tbody class="tbody" style="height:444px">
 				<c:forEach var="codegrp" items="${codegrpList}">  
 				<tr onclick="codeList('${codegrp.cd_grp_id}');" class="up">
 					<td class="codeTbody_tr_td" scope="row" style="width: 9.3%; text-align:center">
 						<input type="checkbox" class="ab" id="checkauth" value="${codegrp.cd_grp_id}"></td>
-					<td class="codeTbody_tr_td" style="width: 30%;"><a href="#" onclick="cdgrpDetail('${codegrp.cd_grp_id}');" >${codegrp.cd_grp_id}</a></td>
-					<td class="codeTbody_tr_td" style="width: 30%;">${codegrp.cd_grp_nm}</td> 
+					<td class="codeTbody_tr_td" style="width: 29.8%;"><a href="#" onclick="cdgrpDetail('${codegrp.cd_grp_id}');" >${codegrp.cd_grp_id}</a></td>
+					<td class="codeTbody_tr_td" style="width: 29.3%;">${codegrp.cd_grp_nm}</td> 
  					<td class="codeTbody_tr_td" style="width: 30%;">
 						<c:if test="${codegrp.act_yn=='Y'}">활성화</c:if>
 						<c:if test="${codegrp.act_yn=='N'}">비활성화</c:if>

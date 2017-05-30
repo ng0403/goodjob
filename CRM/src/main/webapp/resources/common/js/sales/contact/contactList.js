@@ -2,9 +2,16 @@
 
 
 $(function(){
-	var ctx = $('#ctx').val();
+	var ctx = $('#ctx').val();	
   });
 
+$(document).ready(function(){
+	$("#english").hide();
+	if($("#act_yn").val() == 'Y')
+		{
+		$("#contactRecov").css("display", "none");
+ 		}
+});
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
 
@@ -724,6 +731,16 @@ function ContactRecovery(cont_id) {
 		}
 	});
 	
+}
+
+
+function toggleEnglish(){ 
+ $("#english").show();
+ $("#korean").hide();
+}
+function toggleKorean(){
+	 $("#english").hide(); 
+	 $("#korean").show();
 }
 
 /*function contactDeleteList(contactPageNum){
