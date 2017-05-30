@@ -70,7 +70,7 @@ $("#navicategory").css("font-weight", "bold");
 		<!-- 기본 버튼 -->
 	<div class="cata_bt_position">
 		<button type="button" class="tiny ui button" id="cateAddBtn">추가</button>
-		<button type="button" class="tiny ui orange button" id="cateDelBtn">삭제</button>
+		<button type="button" class="tiny ui blue button" id="cateDelBtn">삭제</button>
 		<button type="button" class="tiny ui button" id="cateAllCancelBtn">선택취소</button>
 	</div>
 </body>

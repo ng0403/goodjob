@@ -3,7 +3,7 @@ $(function(){
 	var flg = $('#flg').val();
 	if(flg == "add") prodAddFormLoad();
 	else if(flg == "detail") prodDetailFormLoad();
-	prodMakeBlock();
+//	prodMakeBlock();
 	prodAddBtn(ctx);
 	prodCancelBtn(ctx);
 //	prodUpdateBtn(ctx);
@@ -149,7 +149,7 @@ function prodSearch(prodPageNum) {
 						fst_reg_dt = dateFormat(Number(result.prodList[i].fst_reg_dt));
 						
 						tbodyContent = "<tr>"
-							+"<td><input type='checkbox'></td>"
+							+"<td style='text-align: center;'><input type='checkbox'></td>"
 							+"<td id='list_prod_id'><a class='list_prod_id'>"+result.prodList[i].prod_nm
 							+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 							+"</td>"
@@ -163,7 +163,7 @@ function prodSearch(prodPageNum) {
 						$('#prodListCheck').prop("checked",false);						
 					}
 					
-					prodMakeBlock();
+//					prodMakeBlock();
 					
 					var pageContent = "";
 					// 페이징 다시그리기
@@ -253,7 +253,7 @@ function prodPaging(prodPageNum) {
 					fst_reg_dt = dateFormat(Number(result.prodList[i].fst_reg_dt));
 					
 					tbodyContent = "<tr>"
-						+"<th><input type='checkbox'></th>"
+						+"<td style='text-align: center;'><input type='checkbox'></td>"
 						+"<td id='list_prod_id'><a class='list_prod_id'>"+result.prodList[i].prod_nm
 						+"<input type='hidden' class='list_prod_idh' name='"+result.prodList[i].prod_id+"' value='"+result.prodList[i].prod_id+"'/></a>"
 						+"</td>"
@@ -266,7 +266,7 @@ function prodPaging(prodPageNum) {
 					$('#prodListCheck').prop("checked",false);						
 				}
 				
-				prodMakeBlock();
+//				prodMakeBlock();
 				
 				//var pageContent = "";
 				// 페이징 다시그리기
@@ -288,18 +288,19 @@ function prodPaging(prodPageNum) {
 		});
 //	});
 }
-function prodMakeBlock(){
-	var blank = $("#prod_list tr").length;
-	if( blank < 10){
-		for(var j = 0; j < 10-blank; j++){
-			var block ="<tr style='height:43px;'>"
-				+"<th></th>"
-				+"<td></td><td></td><td></td><td></td>"
-				+"<td></td><td></td></tr>";
-			$("#prod_list").append(block);
-		}
-	}
-}
+
+//function prodMakeBlock(){
+//	var blank = $("#prod_list tr").length;
+//	if( blank < 10){
+//		for(var j = 0; j < 10-blank; j++){
+//			var block ="<tr style='height:43px;'>"
+//				+"<td></td>"
+//				+"<td></td><td></td><td></td><td></td>"
+//				+"<td></td><td></td></tr>";
+//			$("#prod_list").append(block);
+//		}
+//	}
+//}
 
 
 

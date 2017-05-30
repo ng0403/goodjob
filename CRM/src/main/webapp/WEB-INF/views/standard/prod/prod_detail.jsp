@@ -71,7 +71,7 @@ function prodInserts(){
 		
 			<form method="post" name="prodForm" id="prodForm" enctype="multipart/form-data">
 				<div class="act_tab_bt_div">
-					<input type="button" id="prodSaveBtn" class="tiny ui orange button" value="저장"/>
+					<input type="button" id="prodSaveBtn" class="tiny ui blue button" value="저장"/>
 					<input type="button" id="prodModifyBtn" class="tiny ui button" value="편집"/>
 					<input type="button" id="prodCancelBtn" class="tiny ui button" value="취소"/>
 					<!-- <input type="button" id="prodAddBtn" class="btn-success-tel" value="추가"/> -->
@@ -116,7 +116,7 @@ function prodInserts(){
 									<input type="hidden" name="cate_id" id="cate_id" class="oppt_txt_nm" value="${prodDto.cate_id}">
 								    <input type="text" name="cate_nm" id="cate_nm" class="oppt_txt_nm" value="${prodDto.cate_nm}" disabled>							     
 								</div>
-								<input type="button" name="prod_cate" value="카테고리" class="tiny ui orange button" id="prod_cate" disabled>
+								<input type="button" name="prod_cate" value="카테고리" class="tiny ui blue basic button" id="prod_cate" disabled>
 							</td>
 							<th><span style="color:red;">*판매가</span></th>
 							<td>

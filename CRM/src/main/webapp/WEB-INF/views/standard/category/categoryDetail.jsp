@@ -27,7 +27,7 @@
 	    
 	    <div id="cateMasterDiv">
 		    <div class="bt_position_detail">
-				<input type="button" class="tiny ui orange button" value="저장" id="cateSubmitBtn" />
+				<input type="button" class="tiny ui blue button" value="저장" id="cateSubmitBtn" />
 				<input type="button" class="tiny ui button" value="편집" id="cateUpdateBtn" />
 				<input type="reset" class="tiny ui button" value="취소" id="cateResetBtn" />
 			</div>
@@ -45,7 +45,7 @@
 						<td class="cate_text_td2">
 							<input type="hidden" name="up_cate_id" id="up_cate_id"/>
 							<input type="text" name="up_cate_nm" id="up_cate_nm" class="cate_nm_text"/>
-							<input type="button" value="검색" id="upCateSearch" class="tiny ui orange button"/>
+							<input type="button" value="검색" id="upCateSearch" class="tiny ui blue button"/>
 						</td>
 					</tr>
 					<tr class="cate_contents">

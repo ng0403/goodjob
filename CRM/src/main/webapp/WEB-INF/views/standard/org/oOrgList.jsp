@@ -35,7 +35,7 @@ $("#naviorg").css("font-weight", "bold");
 				<option value="id_nm">사용자ID</option>
 			</select>
 			<input type="text" name="searchValue" class="inputText" id="title_text" /> &nbsp;
-			<button type="submit" id="search_btn" class="tiny ui orange button">검 색</button>
+			<button type="submit" id="search_btn" class="tiny ui blue button">검 색</button>
 		</form>
 	</div>
 											

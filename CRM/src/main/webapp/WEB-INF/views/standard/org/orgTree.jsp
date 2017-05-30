@@ -132,7 +132,7 @@ $("#naviorg").css("font-weight", "bold");
 		<!-- 기본 버튼 -->
 	<div class="org_bt_position">
 		<button type="button" class="tiny ui button" id="orgAddBtn">추가</button>
-		<button type="button" class="tiny ui orange button" id="orgDelBtn">삭제</button>
+		<button type="button" class="tiny ui blue button" id="orgDelBtn">삭제</button>
 		<button type="button" class="tiny ui button" id="orgAllCancelBtn">선택취소</button>
 	</div>
 </body>

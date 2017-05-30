@@ -118,32 +118,32 @@
 									<c:if test="${act_flg eq null}">	<!-- 달력 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								   	 	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
-								    	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" disabled="disabled">
+								    	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq '1'}">		<!-- 영업활동관리 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								   	 	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
-								    	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" disabled="disabled">
+								    	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'oppt'}">		<!-- 영업활동관리 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								   	 	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
-								    	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" disabled="disabled">
+								    	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'oppt_ed'}">		<!-- 영업활동관리 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								   	 	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
-								    	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" disabled="disabled">
+								    	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust'}">		<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								   	 	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
-								    	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" disabled="disabled">
+								    	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust_ed'}">		<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${actDetail.cust_id}">
 								   	 	<input type="text" name="cust_nm" id="cust_nm" value="${actDetail.cust_nm}" class="inputText" readonly="readonly"> 
-								    	<input type="button" name="customer" value="고객" class="tiny ui orange basic button" id="customer" disabled="disabled">
+								    	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 								</c:if>
 								<c:if test="${flg eq '0'}">
@@ -476,10 +476,10 @@
 							<th>영업활동장소</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc">
+							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" style="background: white;">
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" style="background: white;" value="${actDetail.sales_actvy_loc}">
+							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" value="${actDetail.sales_actvy_loc}" readonly="readonly">
 							    </c:if>
 							</td>
 						</tr>
@@ -487,10 +487,10 @@
 							<th>영업활동대상자</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person">
+							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person" style="background: white;">
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person" style="background: white;" value="${actDetail.sales_actvy_person}">
+							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person" value="${actDetail.sales_actvy_person}" readonly="readonly">
 							    </c:if>
 							</td>
 						</tr>
@@ -498,10 +498,10 @@
 							<th>영업활동내용</th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
-							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" ></textarea>
+							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" style="background: white;"></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" >${actDetail.sales_actvy_content}</textarea>
+							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" readonly="readonly">${actDetail.sales_actvy_content}</textarea>
 							    </c:if>
 							</td>
 						</tr>
@@ -512,7 +512,7 @@
 							    	<textarea style="width: 1150px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason"></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="width: 1150px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason">${actDetail.sales_actvy_reason}</textarea>
+							    	<textarea style="width: 1150px; height: 50px;" id="sales_actvy_reason" name="sales_actvy_reason" readonly="readonly">${actDetail.sales_actvy_reason}</textarea>
 							    </c:if>
 							</td>
 						</tr>

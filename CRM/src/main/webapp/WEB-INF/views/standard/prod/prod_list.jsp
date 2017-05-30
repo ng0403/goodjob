@@ -53,7 +53,7 @@ $("#naviprod").css("font-weight", "bold");
 				</c:forEach>
 			</select>
 		</div>
-		<input type="button" id="prod_search"  class="tiny ui orange button" value="조회" onclick="prodSearch('${ccPageNum}');" />
+		<input type="button" id="prod_search"  class="tiny ui blue button" value="조회" onclick="prodSearch('${ccPageNum}');" />
 		
 <!-- 		<label for="prod_nm" class="prod_label_search">상품(서비스)명</label> -->
 <!-- 		<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm"> -->
@@ -68,11 +68,11 @@ $("#naviprod").css("font-weight", "bold");
 <!-- 		<input type="button" id="prod_search" class="btn-success-tel" value="조회" onclick="prodSearch(1);" /> -->
 <!-- 			    <button id="search_btn" type="submit" class="act_bt">조회</button>  -->
 	</div>	  	
-	<div id="act_list_div">
+	<div id="tableline">
 		<table id="act_list_table" class="ui sortable celled table" cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th><input type="checkbox"  id='prodListCheck'/></th>
+					<th style="text-align: center;"><input type="checkbox"  id='prodListCheck'/></th>
 					<th id="tblTh" >상품(서비스)명</th>
 					<th id="tblTh" >구분</th>
 					<th id="tblTh" >판매가</th>
@@ -84,11 +84,9 @@ $("#naviprod").css("font-weight", "bold");
 			<tbody id="prod_list">
 				<c:forEach items="${prodList}" var="prodList">
 					<tr>
-						<td><input type="checkbox" value="${prodList.prod_id}" onclick="javascript:chkCancel();"></td>
+						<td style="text-align: center;"><input type="checkbox" value="${prodList.prod_id}" onclick="javascript:chkCancel();"></td>
 						<td id="list_prod_id">
-							<a class="list_prod_id" style="color: inherit;" href="javascript:prodIdClick('${prodList.prod_id}');">
-								${prodList.prod_nm}
-							</a>
+							<a class="list_prod_id" style="color: blue;" href="javascript:prodIdClick('${prodList.prod_id}');">${prodList.prod_nm}</a>
 						</td>
 						<td>${prodList.cd_nm}</td>
 						<td style='text-align: right;'><fmt:formatNumber value="${prodList.prod_price}" /></td>
@@ -104,59 +102,53 @@ $("#naviprod").css("font-weight", "bold");
 	</div>
 	<div class="bottom_div">
 		<div class="functionBtn_div">
-			<input type="button" id="prodAddBtn" class="tiny ui orange button" value="추가"/>
-			<input type="button" id="prodDeleteBtn" class="tiny ui orange button" value="삭제">	
+			<input type="button" id="prodAddBtn" class="tiny ui blue button" value="추가"/>
+			<input type="button" id="prodDeleteBtn" class="tiny ui blue button" value="삭제">	
 		</div>
 				
 	<!-- 페이징 처리 --> 
-		<div id="pageSpace" class="ui right floated pagination menu">
-				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
-				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
-				<c:choose>
-					<c:when test="${ccPageNum eq page.firstPageCount}">
-						<a class="icon item">
-	        				<i class="left chevron icon"></i>
-	        			</a>	
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
-		        			<i class="left chevron icon"></i>
-		        		</a>
-		    		</c:when>
-				</c:choose>
-				<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
-					<c:choose>
-						<c:when test="${i eq ccPageNum }">
-							<b>
-								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
-							</b>
-						</c:when>
-						<c:otherwise>
-							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${ccPageNum eq page.totalPageCount}">
-							<a class="icon item">
-		        				<i class="right chevron icon"></i>
-		        			</a>	
-		    		</c:when>
-					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
-		       				<i class="right chevron icon"></i>
-		       			</a>
-		    		</c:when>
-				</c:choose>
-			</div>
+	<div id="pageSpace" class="ui right floated pagination menu">
+		<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
+		<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+		<c:choose>
+			<c:when test="${ccPageNum eq page.firstPageCount}">
+				<a class="icon item">
+	    			<i class="left chevron icon"></i>
+	        	</a>	
+		    </c:when>
+			<c:when test="${ccPageNum ne page.firstPageCount}">
+		  		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+		   			<i class="left chevron icon"></i>
+		   		</a>
+		  	</c:when>
+		</c:choose>
+		<c:forEach var="i" begin="${page.startPageNum }" end="${page.endPageNum}" step="1">
+			<c:choose>
+				<c:when test="${i eq ccPageNum }">
+				<b>
+					<a href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+				</b>
+				</c:when>
+				<c:otherwise>
+					<a href="javascript:custCompList('${i}');" class="item" >${i}</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+			<c:choose>
+				<c:when test="${ccPageNum eq page.totalPageCount}">
+					<a class="icon item">
+	       				<i class="right chevron icon"></i>
+        			</a>	
+	    		</c:when>
+				<c:when test="${ccPageNum ne page.totalPageCount}">
+		       		<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+		       			<i class="right chevron icon"></i>
+		      		</a>
+		    	</c:when>
+			</c:choose>
+		</div>
 	
 	<!-- 페이징 처리 -->	
 	</div>
-<!-- <div class="act_tab_bt_div">
-					<input type="button" id="prodSaveBtn" class="act_bt_flag" value="저장"/>
-					<input type="button" id="prodCancelBtn" class="act_bt" value="취소"/>
-					<input type="button" id="prodModifyBtn" class="act_bt" value="편집"/>
-					<input type="button" id="prodAddBtn" class="act_bt" value="추가"/>
-</div> -->
 </body>
 </html>
