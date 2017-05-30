@@ -390,5 +390,20 @@ public class ContactServiceImpl implements ContactService {
 			// TODO Auto-generated method stub
 			return contactDao.getCustid(COMPANY_NM);
 		}
+
+		@Override
+		public PagerVO ContactSearchCount(Map<String, Object> contactMap) {
+			System.out.println("ContactListCount service " +  contactMap.toString());
+			int actPageNum = (Integer) contactMap.get("contactPageNum");
+			// 현재 페이지 얻어오기
+			PagerVO page = new PagerVO(actPageNum, 0, 6, 6);
+			// 전체 글의 갯수 구하기
+			System.out.println("actPage Num " + actPageNum);
+			int totalRowCount = contactDao.contactSearchCount(contactMap);
+			System.out.println("totalRowCount ? " + totalRowCount);		
+			page = new PagerVO(actPageNum, totalRowCount, 6, 6);
+			
+			return page;
+		}
  
 }

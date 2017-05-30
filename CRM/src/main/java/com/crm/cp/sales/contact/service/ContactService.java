@@ -18,7 +18,7 @@ public interface ContactService {
 
 	
 	public PagerVO ContactListCount(Map<String, Object> contactMap); // 연락처 리스트갯수 
-	
+	public PagerVO ContactSearchCount(Map<String, Object> kwMap); // 검색 리스트 갯수 
 	public PagerVO ContactDeleteListCount(Map<String, Object> contactMap); // 연락처 삭제 리스트 갯수
 	
     List<ContactVO> getList(Map<String,String> map); //기업의 전체 리스트가져오기
@@ -65,6 +65,8 @@ public interface ContactService {
     
     ContactVO getContid(ContactVO contactVO);
     ContactVO getCustid(String COMPANY_NM);
+
+	
     
     
     

@@ -341,7 +341,7 @@ public class ContactController {
 		
 		if(act_yn.equals("Y")){
 		System.out.println("Y enter");
-		PagerVO page = contactService.ContactListCount(kwMap);
+		PagerVO page = contactService.ContactSearchCount(kwMap);
 		System.out.println("page? " + page.toString());
 		kwMap.put("page", page); 
 		

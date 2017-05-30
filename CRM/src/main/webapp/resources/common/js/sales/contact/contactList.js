@@ -89,8 +89,8 @@ function pageInputCall(event) {
 // 초성 검색 페이징
 function searchAcnkEvent(contactPageNum, keyword){
   		var ctx = $("#ctx").val();
-		var cont_nm = $("#cont_nm1").val();
-		var email = $("#email").val();
+		var cont_nm = $("#search_cont_nm").val();
+ 		var email = $("#email").val();
 		var ph = $("#ph").val();
 		
 		var cont_nm0 = $("#cont_nm0").val();
@@ -132,22 +132,69 @@ function searchAcnkEvent(contactPageNum, keyword){
 						$("#email").val(data.email);
 						$("#ph").val(data.ph);
  						for(var i=0; i<data.contactList.length; i++){
- 							tbodyContent +='<tr><th  style="text-align:center" ><input type="checkbox"id="call_chek" class="call_chek" name="contact_del" value="'+data.contactList[i].cont_id+'"></th>'
- 							/*        			+'<td style="width:10%; text-align: left; padding-left:5px;" onclick=callTabFunc("'+data.contactList[i].cont_id+'")><a style="color: blue; cursor: pointer;" class="callClick">'+data.callList[i].call_nm+'</a></td>'
- 							*//*        			+'<td style="width:10%; text-align: left; padding-left:5px;">'+data.callList[i].cont_nm+'</td>' 
- 							*/        			
- 												+'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'
- 												+"<td><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
- 																 
- 							        		/*	if(data.contactList[i].company_nm == 'null' || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
- 							        				tbodyContent += '<td style="width:10%; text-align: left; padding-left:5px;"></td>';
- 												}else{
- 													tbodyContent +='
- 												}*/
- 							        			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
- 							        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
- 							        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
- 							         			+'<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
+  							tbodyContent +='<tr><th  style="text-align:center" ><input type="checkbox"id="call_chek" class="call_chek" name="contact_del" value="'+data.contactList[i].cont_id+'"></th>';
+  											if(data.contactList[i].company_nm =="null" || data.contactList[i].company_nm == null || data.contactList[i].company_nm == ""){
+ 												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;"></td>';
+  							         		}
+ 											else{
+ 												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'; 
+ 											}
+ 							
+ 											tbodyContent+="<td><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
+ 											
+  											
+ 											if((data.contactList[i].email1 == null || data.contactList[i].email1 =="null" || data.contactList[i].email1 =="") && (data.contactList[i].email2 == null || data.contactList[i].email2 == "" || data.contactList[i].email2 =="null")){
+  												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">@</td>';
+
+  											}
+  											else if(data.contactList[i].email1 == null || data.contactList[i].email1 =="null" || data.contactList[i].email1 =="" ){
+  												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">@'+data.contactList[i].email2+'</td>';
+
+  											}
+ 											else if(data.contactList[i].email2 == null || data.contactList[i].email2 =="null" || data.contactList[i].email2 =="" ){
+  												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@</td>';
+ 											}
+ 											else if(data.contactList[i].email2 != "null" && data.contactList[i].email1 != "null"){
+  												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>';
+
+ 											} 
+  											
+  											if((data.contactList[i].ph1 == "null" || data.contactList[i].ph1 == "" || data.contactList[i].ph1 == null) && (data.contactList[i].ph2 == "" || data.contactList[i].ph =="null" || data.contactList[i].ph2 == null) && (data.contactList[i].ph3 == null || data.contactList[i].ph3 =="" || data.contactList[i].ph3 =="null"))
+  												{
+  											  tbodyContent+='<td style="width:10%; text-align: center;"></td>'
+
+  											}else if(data.contactList[i].ph1 == "null" || data.contactList[i].ph1 =="" || data.contactList[i].ph1 ==null)
+  												{
+  											 tbodyContent+='<td style="width:10%; text-align: center;">-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'	
+  											}else if(data.contactList[i].ph2 == "null" || data.contactList[i].ph2 =="" || data.contactList[i].ph2 ==null)
+												{
+  	  											 tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+ +'-'+data.contactList[i].ph3+'</td>'	
+  	  											}else if(data.contactList[i].ph2 == "null" || data.contactList[i].ph2 =="" || data.contactList[i].ph2 ==null)
+												{
+  	  	  											 tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-</td>'	
+  	  	  											}else{
+  	  	 											tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
+	
+  	  	  											} 
+  											
+  											if((data.contactList[i].cell_ph1 == "null" || data.contactList[i].cell_ph1 == "" || data.contactList[i].cell_ph1 == null) && (data.contactList[i].cell_ph2 == "" || data.contactList[i].cell_ph2 =="null" || data.contactList[i].cell_ph2 == null) && (data.contactList[i].cell_ph3 == null || data.contactList[i].cell_ph3 =="" || data.contactList[i].cell_ph3 =="null"))
+  	  												{
+   	  	  											  tbodyContent+='<td style="width:10%; text-align: center;"></td>'
+
+  	  	  											}else if(data.contactList[i].cell_ph1 == "null" || data.contactList[i].cell_ph1 =="" || data.contactList[i].cell_ph1 ==null)
+  	  	  												{
+   	  	  											 tbodyContent+='<td style="width:10%; text-align: center;">-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'	
+  	  	  											}else if(data.contactList[i].cell_ph2 == "null" || data.contactList[i].cell_ph2 =="" || data.contactList[i].cell_ph2 == null)
+  	  													{
+   	  	  	  											 tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+ +'-'+data.contactList[i].cell_ph3+'</td>'	
+  	  	  	  											}else if(data.contactList[i].cell_ph3 == "null" || data.contactList[i].cell_cell_ph3 =="" || data.contactList[i].cell_ph3 ==null)
+  	  													{
+   	  	  	  	  											 tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-</td>'	
+  	  	  	  	  											}else{
+   	  	  	  	 											tbodyContent+='<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>'
+  	  	  	  	  											}
+  												
+ 											  tbodyContent+= '<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fst_reg_dt)+'</td></tr>';
 
 							tbody.append(tbodyContent);
 						    tbodyContent = "";

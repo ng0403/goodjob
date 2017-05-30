@@ -108,134 +108,132 @@
 	    	]]>
 		</if>
 		<if test='keyword.equals("A")'>
-	  		<![CDATA[
+
 	  		 AND upper(cont_nm) like upper('a%')
-	    	]]>
+
 	  	</if>
 	  	<if test='keyword.equals("B")'>
-	  		<![CDATA[
+
 	  		 AND upper(cont_nm) like upper('b%')
-	    	]]>
+
 	  	</if>
 	  	<if test='keyword.equals("C")'>
-	  		<![CDATA[
+
 	  		 AND upper(cont_nm) like upper(c%')
-	    	]]>
+
 	  	</if>
 	  	<if test='keyword.equals("D")'>
-	  		<![CDATA[
+
 	  		 AND upper(cont_nm) like upper('d%')
-	    	]]>
+
 	  	</if>
 	  	<if test='keyword.equals("E")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('E%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('e%')
+
 	  	</if>
 	  	<if test='keyword.equals("F")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('F%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('f%')
+
 	  	</if>
 	  	<if test='keyword.equals("G")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('G%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('g%')
+
 	  	</if>
 	  	<if test='keyword.equals("H")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('H%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('h%')
+
 	  	</if>
 	  	<if test='keyword.equals("I")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('I%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('i%')
+
 	  	</if>
 	  	<if test='keyword.equals("J")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('J%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('j%')
+
 	  	</if>
 	  	<if test='keyword.equals("K")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('K%')
-	    	]]>
+	  		 AND upper(cont_nm) like upper('k%')
 	  	</if>
 	  	<if test='keyword.equals("L")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('L%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('l%')
+
 	  	</if>
 	  	<if test='keyword.equals("M")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('M%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('m%')
+
 	  	</if>
 	  	<if test='keyword.equals("N")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('N%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('n%')
+
 	  	</if>
 	  	<if test='keyword.equals("O")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('O%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('o%')
+
 	  	</if>
 	  	<if test='keyword.equals("P")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('P%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('p%')
+
 	  	</if>
 	  	<if test='keyword.equals("Q")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('Q%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('q%')
+
 	  	</if>
 	  	<if test='keyword.equals("R")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('R%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('r%')
+
 	  	</if>
 	  	<if test='keyword.equals("S")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('S%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('s%')
+
 	  	</if>
 	  	<if test='keyword.equals("T")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('T%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('t%')
+
 	  	</if>
 	  	<if test='keyword.equals("U")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('U%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('u%')
+
 	  	</if>
 	  	<if test='keyword.equals("V")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('V%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('v%')
+
 	  	</if>
 	  	<if test='keyword.equals("W")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('W%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('w%')
+
 	  	</if>
 	  	<if test='keyword.equals("X")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('X%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('x%')
+
 	  	</if>
 	  	<if test='keyword.equals("Y")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('Y%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('y%')
+
 	  	</if>
 	  	<if test='keyword.equals("Z")'>
-	  		<![CDATA[
-	  		 AND upper(cont_nm) like upper('Z%')
-	    	]]>
+
+	  		 AND upper(cont_nm) like upper('z%')
+
 	  	</if>
 	</sql>
  
@@ -280,32 +278,6 @@
  
 
  
-<!-- 전체리스트  -->
-<!-- 	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
-		 select cont_id, cont_nm, company_nm, ph1, ph2, ph3, cell_ph1, cell_ph2, cell_ph3, email1, email2, itrt_cd, fst_reg_id, fst_reg_dt, fin_mdfy_id, fin_mdfy_dt, act_yn
-		from contact 
-		where act_yn = 'Y'
-			where
-			      <if test="cont_nm !=null and cont_nm !=''">
-					 (case when cont_nm end) like '%'||#{contact_name}||'%'
-				  </if>
-				  <if test="cont_email !=null and cont_email !=''">
-					AND (case when email1 end) || '@' || (case when email2 end) like '%'||#{contact_email}||'%' 
-				  </if>
-				  <if test="contact_tel !=null and contact_tel !=''">
-					AND (case when CELL_PH1 end) || '-' || (case when CELL_PH2 end) || '-' || (case when CELL_PH3 end) like '%'||#{contact_tel}||'%'
-				  </if>
-				  <if test="company_nm !=null and company_nm !=''">
-					AND (case when company_nm else '' end) like '%'||#{company_nm}||'%'
-				  </if>
-				  <if test="keyword!=null and keyword!=''">
-				        <include refid="where-list1"/>
-				  </if>
-			ORDER BY fst_reg_dt desc 
-		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
-	
-	</select>
-	 -->
 	 <!-- 리스트 개수 -->
 	 <select id="selectTotalCount" parameterType="java.util.Map" resultType="integer">
 		SELECT COUNT(*)
@@ -325,6 +297,70 @@
 		</if> 
 	</select>
 	
+	<select id="selectSearchCount" parameterType="java.util.Map" resultType="integer">
+	SELECT COUNT(*)
+		FROM contact
+		where 1=1
+		<choose>
+		<when test="cont_nm !=null and cont_nm !='' and connt_nm0 !=null and connt_nm0 !='' and connt_nm1 !=null and connt_nm1 !=''">
+		and(cont_nm like '%'||#{cont_nm}||'%'
+				or cont_nm like '%'||#{cont_nm0}||'%'
+				or cont_nm like '%'||#{cont_nm1}||'%')
+		</when>
+		<when test="cont_nm !=null and cont_nm !='' and connt_nm0 !=null and connt_nm0 !=''"> 
+				and(cont_nm like '%'||#{cont_nm}||'%'
+				or cont_nm like '%'||#{cont_nm0}||'%')
+		
+		</when> 
+		<when test="cont_nm0 !=null and cont_nm0 !='' and connt_nm1 !=null and connt_nm1 !=''"> 
+				and(cont_nm like '%'||#{cont_nm0}||'%'
+				or cont_nm like '%'||#{cont_nm1}||'%')
+		</when> 
+		<when test="cont_nm !=null and cont_nm !=''"> 
+				and cont_nm like '%'||#{cont_nm}||'%'
+ 		</when> 
+	</choose>
+	<choose>
+		<when test="email !=null and email !='' and email0 !=null and email0 !='' and email1 !=null and email1 !=''">
+				and(email1 like '%'||#{email}||'%'
+				or email1 like '%'||#{email0}||'%'
+				or email1 like '%'||#{email1}||'%')
+ 		</when>  
+ 		
+ 		<when test="email !=null and email !='' and email0 !=null and email0 !=''"> 
+				and(email1 like '%'||#{email}||'%'
+				or email1 like '%'||#{email0}||'%')		
+		</when> 
+		<when test="email0 !=null and email0 !='' and email1 !=null and email1 !=''"> 
+				and(email1 like '%'||#{email0}||'%'
+				or email1 like '%'||#{email1}||'%')		
+		</when>  
+		<when test="email !=null and email !=''"> 
+				and email1 like '%'||#{email}||'%' 
+		</when> 
+	</choose> 
+	 
+	 <choose>
+		<when test="ph !=null and ph !='' and ph0 !=null and ph0 !='' and ph1 !=null and ph1 !=''">
+				and(ph1 like '%'||#{ph}||'%'
+				or ph1 like '%'||#{ph0}||'%'
+				or ph1 like '%'||#{ph1}||'%')
+ 		</when>  
+ 		
+ 		<when test="ph !=null and ph !='' and ph0 !=null and ph0 !=''"> 
+				and(ph1 like '%'||#{ph}||'%'
+				or ph1 like '%'||#{ph0}||'%')		
+		</when> 
+		<when test="ph0 !=null and ph0 !='' and ph1 !=null and ph1 !=''"> 
+				and(ph1 like '%'||#ph0}||'%'
+				or ph1 like '%'||#{ph1}||'%')		
+		</when>  
+		<when test="ph !=null and ph !=''"> 
+				and ph1 like '%'||#{ph}||'%' 
+		</when> 
+	</choose>  
+	
+	</select>
 	
 	
 	 <!-- 삭제된 리스트 개수 -->

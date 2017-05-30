@@ -40,7 +40,7 @@
 	
 	<div class="search_div" id = "search_div">
 	<div class="ui left icon input">
-			<input type="text" placeholder="이름" id="cont_nm1" name="cont_nm" onkeydown="contactSearchEnter(event);">
+			<input type="text" placeholder="이름" id="search_cont_nm" name="cont_nm" onkeydown="contactSearchEnter(event);">
 			<i class="user icon"></i>
 	</div>	
 		<div class="ui left icon input">

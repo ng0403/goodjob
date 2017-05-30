@@ -465,6 +465,21 @@ public class ContactDaoImpl implements ContactDao {
 					// TODO Auto-generated method stub
 					return sqlSession.selectOne("getCustid", COMPANY_NM);
 				}
+
+
+				@Override
+				public int contactSearchCount(Map<String, Object> contactMap) {
+					System.out.println("contact Map Dao "  + contactMap.toString());
+					int totalCount = 0;
+					try {
+						totalCount = sqlSession.selectOne("contact.selectSearchCount", contactMap);
+						 
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					return totalCount;
+				}
 				
 				
 

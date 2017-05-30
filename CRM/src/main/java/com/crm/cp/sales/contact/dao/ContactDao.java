@@ -21,7 +21,8 @@ public interface ContactDao {
 	
 
 	public int contactListCount(Map<String, Object> contactMap); 	//연락처 리스트 갯수 구하기.
-	public int ContactDeleteListCount(Map<String, Object> contactMap);
+	public int ContactDeleteListCount(Map<String, Object> contactMap); //연락처 삭제 리스트 갯수
+	public int contactSearchCount(Map<String, Object> contactMap); //검색 리스트 갯수
 	
 	
 	
@@ -64,5 +65,6 @@ public interface ContactDao {
 
 	 ContactVO getContid(ContactVO contactVO);
 	 ContactVO getCustid(String COMPANY_NM);
+
 
 }
