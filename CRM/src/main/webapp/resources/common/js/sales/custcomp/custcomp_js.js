@@ -229,7 +229,7 @@ function custCompList(page){
 			if(result.ccVOListSize == 0){
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/custcomp';
-				custCompList(page);
+//				custCompList(page);
 			}else{
 				//리스트 출력 시 버튼 상태 설정
 				$("#functionBtn").css("display", "block");
@@ -445,6 +445,7 @@ function custcompDelete() {
 	var pageNum = $("#pageNum").val();
 	$("input[name=custcomp_del]:checked").each(function(){
 		custcompList.push($(this).val());
+		custcompList.push($("#user").val());
 	});
 	
 	$.ajax({
@@ -457,8 +458,8 @@ function custcompDelete() {
 		dataType : 'json',
 		success : function(result){
 			alert("고객사가 삭제되었습니다.");
-//			location.href = ctx + "/custcomp";
-			custCompList(pageNum);
+			location.href = ctx + "/custcomp";
+//			custCompList(pageNum);
 		},
 		error : function(request){
 			alert("error : " + request);
@@ -947,8 +948,8 @@ function schPaging(ccPageNum) {
 					} else {
 						if(data.ccVOListSize == 0){
 							alert("검색결과가 없습니다.");
-//							location.href = ctx+'/custcomp';
-							custCompList(ccPageNum);
+							location.href = ctx+'/custcomp';
+//							custCompList(ccPageNum);
 						}else{
 							tbody.children().remove();
 							

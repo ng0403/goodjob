@@ -149,7 +149,7 @@ public class CustCompController {
 			List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 기업고객 리스트
 			List<CustCompVO> ccDelVOList = ccService.getCCDelList(pMap); // 기업고객 리스트
 			System.out.println("dddd " + ccVOList.toString());
-			System.out.println("삭제데이터 " + ccDelVOList.toString());
+//			System.out.println("삭제데이터 " + ccDelVOList.toString());
 			pMap.put("ccVOList", ccVOList);
 			pMap.put("ccVOList", ccDelVOList);
 			pMap.put("ccVOListSize", ccVOList.size());
@@ -206,7 +206,7 @@ public class CustCompController {
 			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사구분 코드 가져오기
 			
 			System.out.println("flg : " + flg);
-			System.out.println(ccVO.toString());
+//			System.out.println(ccVO.toString());
 			
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);
@@ -227,7 +227,9 @@ public class CustCompController {
 		ccVO.setFst_reg_id(session.getAttribute("user").toString());
 		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
 		
-		System.out.println(ccVO.toString());
+		System.out.println("입력된 유저ID : "+ccVO.getFst_reg_id());
+		System.out.println("수정된 유저ID : "+ccVO.getFin_mdfy_id());
+//		System.out.println(ccVO.toString());
 		ccService.custcompInsert(ccVO);
 		
 		return "redirect:/custcomp";
@@ -238,7 +240,11 @@ public class CustCompController {
 	public String  custcompModify(@ModelAttribute CustCompVO ccVO, HttpSession session) {
 		System.out.println("Detail Edit Controller");
 		
+		ccVO.setFst_reg_id(session.getAttribute("user").toString());
 		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		System.out.println("입력된 유저ID : "+ccVO.getFst_reg_id());
+		System.out.println("수정된 유저ID : "+ccVO.getFin_mdfy_id());
 		
 		System.out.println(ccVO);
 		ccService.custcompEdit(ccVO);
@@ -249,13 +255,23 @@ public class CustCompController {
 	// 고객사 삭제
 	@RequestMapping(value = "/custcompDelete", method = RequestMethod.GET)
 	@ResponseBody public int custcompDelete(HttpSession session,
-								@RequestParam(value = "custcompList[]") List<String> custcompList,
+								@RequestParam(value = "custcompList[]") List<String> custcompList, CustCompVO ccVO,
 								@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) {
+		
+		
+		ccVO.setFst_reg_id(session.getAttribute("user").toString());
+		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		System.out.println("입력된 유저ID : "+ccVO.getFst_reg_id());
+		System.out.println("수정된 유저ID : "+ccVO.getFin_mdfy_id());
+		System.out.println("custcompList.get(i) : "+ custcompList.toString());
+		
 		int result = 0;
 		// 모든 checked된 견적에 대해 삭제
 		for (int i = 0; i < custcompList.size(); i++) {
+			ccVO.setCust_id(custcompList.get(i));
 			
-			result += ccService.custcompDelete(custcompList.get(i));
+			result += ccService.custcompDelete(ccVO);
 		}
 		return result;
 	}
@@ -345,7 +361,6 @@ public class CustCompController {
 			System.out.println("page :  "+ page);
 			
 			List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사 삭제된 리스트
-			System.out.println("dddd " + ccVOList.toString());
 			pMap.put("ccVOList", ccVOList);
 			pMap.put("ccVOListSize", ccVOList.size());
 			
@@ -355,8 +370,14 @@ public class CustCompController {
 
 	//고객사 삭제된 데이터 상세정보
 	@RequestMapping(value="/custcompDelDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView cutomerDelDetail(HttpSession session, @RequestParam Map<String, String> map
+	public ModelAndView cutomerDelDetail(HttpSession session, @RequestParam Map<String, String> map, CustCompVO ccVO 
 										, String cust_id) {
+		
+		ccVO.setFst_reg_id(session.getAttribute("user").toString());
+		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		System.out.println("입력된 유저ID : "+ccVO.getFst_reg_id());
+		System.out.println("수정된 유저ID : "+ccVO.getFin_mdfy_id());
 		
 		System.out.println("cust_id : " + cust_id);
 		
@@ -395,7 +416,7 @@ public class CustCompController {
 			
 			map.put("cust_id", cust_id);
 			
-			CustCompVO ccVO = ccService.custcompDelDetail(cust_id);
+			ccVO = ccService.custcompDelDetail(cust_id);
 
 			mov.addObject("custcompDetail", ccVO);
 			
@@ -405,7 +426,7 @@ public class CustCompController {
 			List<CustCompVO> CDCCodeList = ccService.selectCDC(); // 고객사구분 코드 가져오기
 			
 			System.out.println("삭제된 데이터 flg : " + flg);
-			System.out.println(ccVO.toString());
+//			System.out.println(ccVO.toString());
 			
 			mov.addObject("SSCCodeList", SSCCodeList);
 			mov.addObject("IDCCodeList", IDCCodeList);
@@ -428,7 +449,12 @@ public class CustCompController {
 		
 		System.out.println("DelDetail Edit Controller : 고객사 삭제된 데이터 복원");
 		
+		ccVO.setFst_reg_id(session.getAttribute("user").toString());
 		ccVO.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		System.out.println("입력된 유저ID : "+ccVO.getFst_reg_id());
+		System.out.println("수정된 유저ID : "+ccVO.getFin_mdfy_id());
+		
 		ccVO.setAct_yn("Y");
 		ccVO.setCust_id(cust_id);
 		System.out.println("복원된 고객사ID : " + ccVO.getCust_id());
@@ -497,7 +523,7 @@ public class CustCompController {
 	public @ResponseBody List<PocVO> pocList(String cust_id) {
 		
 		List<PocVO> pocVOList = ccService.getPocList(cust_id);
-		System.out.println("pocVOList : " + pocVOList.toString());
+//		System.out.println("pocVOList : " + pocVOList.toString());
 		
 		return pocVOList;
 	}
@@ -508,7 +534,7 @@ public class CustCompController {
 	public @ResponseBody List<PosVO> posList(String cust_id) {
 
 		List<PosVO> posVOList = ccService.getPosList(cust_id);
-		System.out.println("posVOList : " + posVOList.toString());
+//		System.out.println("posVOList : " + posVOList.toString());
 		
 		return posVOList;
 	}
@@ -817,7 +843,7 @@ public class CustCompController {
 		kmVO.setCell_ph(kmVO.getCell_ph1() + "-" + kmVO.getCell_ph2() + "-" + kmVO.getCell_ph3());
 		kmVO.setEmail(kmVO.getEmail1() + "@" + kmVO.getEmail2());
 		
-		System.out.println("key man who ? " +  kmVO.toString());
+//		System.out.println("key man who ? " +  kmVO.toString());
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_kmn_pop");
 		mov.addObject("kmVO", kmVO);
 		mov.addObject("cont_id", kmVO.getCust_id());
@@ -829,7 +855,7 @@ public class CustCompController {
 	@RequestMapping(value = "/addKeymancustcomp", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> callAddKeyman(HttpSession session, KeymanVO kVO) {
 		
-		System.out.println("키맨 입성"  + kVO.toString());
+//		System.out.println("키맨 입성"  + kVO.toString());
 		
 		Map<String, Object> ccKeyMap = new HashMap<String, Object>();
 		if (session.getAttribute("user") == null) {		//로그인 페이지 이동
@@ -848,7 +874,7 @@ public class CustCompController {
 	// 키맨 수정
 	@RequestMapping(value = "/ccmdfyKeyman", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> mdfyKeyman(HttpSession session, KeymanVO kVO) {
-		System.out.println("mdfy keyman entering" + kVO.toString());
+//		System.out.println("mdfy keyman entering" + kVO.toString());
 		Map<String, Object> rstMap = new HashMap<String, Object>();
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			rstMap.put("mdfyResult", "standard/home/session_expire");
@@ -863,7 +889,7 @@ public class CustCompController {
 	// 키맨 삭제
 	@RequestMapping(value = "ccdelKeyman", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> keymanDelete(HttpSession session, @RequestBody List<String> keyman_idList) {
-		System.out.println("삭제 리스트??  " + keyman_idList.toString());
+//		System.out.println("삭제 리스트??  " + keyman_idList.toString());
 		
 		String cont_id = "";
 		String cust_id = "";
@@ -911,13 +937,13 @@ public class CustCompController {
 			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
 			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
 		
-		System.out.println("연락처 리스트 팝업 성공");
+//		System.out.println("연락처 리스트 팝업 성공");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
 
 		List<Object> contactList = ccService.contactList(map);
-		System.out.println("contactList  " + contactList.toString());
+//		System.out.println("contactList  " + contactList.toString());
 		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/contact_list_pop");
 
 		mov.addObject("custcompList", contactList);
@@ -971,7 +997,6 @@ public class CustCompController {
 		
 		for(int i=0 ; i< est_list.size(); i++)
 		{
-			System.out.println("for문 처음");
 			OpptVO vo = new OpptVO();
 			
 			vo.setSales_oppt_id("");
@@ -986,7 +1011,6 @@ public class CustCompController {
 			
 			estList.add(vo);
 			
-			System.out.println("for문 estList : " + estList);
 		}
 		
 		int result1 = opptService.opptPrdtAdd(estList);

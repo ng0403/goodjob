@@ -17,7 +17,6 @@
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-
 <title>고객사</title>
 <script>
 $(function() {
@@ -32,6 +31,7 @@ $(function() {
 	<input type="hidden" id="flg" 		value="${flg}">
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
 	<input type="hidden" id="count" 	value="">
+	<input type="hidden" id="user" 		value="${SessionID}">
 	<div id="title">
 		<div class="caption">
 			<label id="listLabel" class="ui header">■ 고객 > 고객사관리</label> 

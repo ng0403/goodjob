@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.request.SessionScope;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
@@ -28,13 +29,13 @@ public class CustCompDaoImpl implements CustCompDao {
 		this.sqlSession = sqlSession;
 	}
 	
-	// 기업고객 리스트 전체 개수 조회(페이징에 사용)
+	// 고객사 리스트 전체 개수 조회(페이징에 사용)
 	@Override
 	public int getCCListCount(Map<String, Object> pMap) {
 		 
 		int totalCount = 0;
 		try {
-			totalCount = sqlSession.selectOne("ccListTotalCount", pMap);
+			totalCount = sqlSession.selectOne("custcomp.ccListTotalCount", pMap);
 			System.out.println("daiooo " + pMap.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,14 +44,14 @@ public class CustCompDaoImpl implements CustCompDao {
 		return totalCount;
 	}
 
-	// 기업고객 리스트 가져오기
+	// 고객사 리스트 가져오기
 	@Override
 	public List<CustCompVO> getCCList(Map<String, Object> pMap) {
 		System.out.println("enter");
 		List<CustCompVO> ccListVO = null;
 		try {
 			System.out.println("DAOImple : " + pMap.get("page"));
-			ccListVO = sqlSession.selectList("custcompList", pMap);
+			ccListVO = sqlSession.selectList("custcomp.custcompList", pMap);
 			System.out.println("f" + ccListVO.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,7 +90,7 @@ public class CustCompDaoImpl implements CustCompDao {
 		return seq;
 	}
 	
-	// 기업고개 수정
+	// 기업고객 수정
 	@Override
 	public int updateCustComp(CustCompVO ccVO) {
 		int updateResultTemp = 0;
@@ -114,14 +115,15 @@ public class CustCompDaoImpl implements CustCompDao {
 		try {
 			for (int i = 0; i < cust_idList.size(); i++) {
 				deleteResultTemp = sqlSession.update("custDelete", cust_idList.get(i));
-				deleteResult += deleteResultTemp;
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return deleteResult;
 	}
 	
+	 // 고객사 상세보기
 	@Override
 	public CustCompVO custcompDetail(String nowCust_id) {
 		CustCompVO ccVO = null;
@@ -130,24 +132,27 @@ public class CustCompDaoImpl implements CustCompDao {
 	}
 	
 	
-	//기존고객
+	// 기업고객 추가 
 	@Override
 	public int custcompAdd(CustCompVO ccVO) {
 		int seq = sqlSession.insert("custcomp.custcompAdd", ccVO);
 		return seq;
 	}
 
+	// 기업고객 수정
 	@Override
 	public int custcompModify(CustCompVO ccVO) {
 		return sqlSession.update("custcomp.custUpdate", ccVO);
 	}
 
+	// 고객사 추가
 	@Override
 	public void custcompInsert(CustCompVO ccVO) {
 		sqlSession.insert("custcomp.custcompInsert", ccVO);
 		
 	}
 
+	// 고객사 수정
 	@Override
 	public void custcompEdit(CustCompVO ccVO) {
 		sqlSession.update("custcomp.custcompEdit", ccVO);
@@ -155,12 +160,19 @@ public class CustCompDaoImpl implements CustCompDao {
 	
 	// 고객사 삭제
 	@Override
-	public int custcompDelete(String cust_id) {
+	public int custcompDelete(CustCompVO ccVO) {
+		int result = 0;
+		result = sqlSession.update("custcomp.custcompDelete", ccVO);
 		
-		return sqlSession.update("custcomp.custcompDelete", cust_id);
+		if (result == 1) {
+			sqlSession.update("custcomp.custcompOpptDel", ccVO.getCust_id());
+			System.out.println("영업기회 삭제");
+			sqlSession.update("custcomp.custcompActDel", ccVO.getCust_id());
+			System.out.println("영업활동 삭제");
+		}
+		return result;
 		
 	}
-	
 
 	// 매출규모 코드
 	@Override
@@ -784,7 +796,11 @@ public class CustCompDaoImpl implements CustCompDao {
 	// 고객사 삭제된 데이터 복원(수정)
 	@Override
 	public void custcompDelEdit(CustCompVO ccVO) {
+		System.out.println("복원시 데이터 ccVO :" + ccVO);
 		sqlSession.update("custcomp.custcompDelEdit", ccVO);
+		sqlSession.update("custcomp.custcompOpptRb", ccVO);
+		sqlSession.update("custcomp.custcompActRb", ccVO);
+		
 	}
 
 	// 고객사 삭제된 데이터 완전삭제

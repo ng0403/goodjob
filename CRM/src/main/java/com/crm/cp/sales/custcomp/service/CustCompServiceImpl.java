@@ -132,9 +132,9 @@ public class CustCompServiceImpl implements CustCompService {
 
 	//기존고객 삭제
 	@Override
-	public int custcompDelete(String cust_id) {
+	public int custcompDelete(CustCompVO ccVO) {
 		
-		return ccDao.custcompDelete(cust_id);
+		return ccDao.custcompDelete(ccVO);
 	}
 
 	

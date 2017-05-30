@@ -72,7 +72,7 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-	                order by c.fst_reg_dt desc
+	                order by c.fin_mdfy_dt  desc
            		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
  
@@ -149,27 +149,50 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>
-	                order by c.fst_reg_dt desc
+	                order by c.fin_mdfy_dt desc
            		) r
        	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
 	</select>
-	<!-- 리스트 개수 -->
+	
+	<!-- 고객사 리스트 개수 -->
 	<select id="ccListTotalCount" parameterType="java.util.Map" resultType="int">
-	select nvl(count(c.cust_id), 0) 
-		from customer c
-    		where 1=1
-<!--                   and c.cust_div_cd = '0001' -->
-                  and c.act_yn = 'Y'
-				<if test="sch_cust_nm != null and sch_cust_nm !=''">
-			     	and c.cust_nm like '%'||#{sch_cust_nm}||'%'
-			    </if>
-			    <if test="sch_comp_num != null and sch_comp_num !=''">
-			     	and c.comp_num like '%'||#{sch_comp_num}||'%'
-			    </if> 
-			    <if test="sch_corp_num != null and sch_corp_num !=''">
-			     	and c.corp_num like '%'||#{sch_corp_num}||'%'
-			    </if>
-		  order by c.fst_reg_dt desc
+<!-- 	select nvl(count(c.cust_id), 0)  -->
+<!-- 		from customer c -->
+<!--     		where 1=1 -->
+<!--                   and c.act_yn = 'Y' -->
+<!-- 				<if test="sch_cust_nm != null and sch_cust_nm !=''"> -->
+<!-- 			     	and c.cust_nm like '%'||#{sch_cust_nm}||'%' -->
+<!-- 			    </if> -->
+<!-- 			    <if test="sch_comp_num != null and sch_comp_num !=''"> -->
+<!-- 			     	and c.comp_num like '%'||#{sch_comp_num}||'%' -->
+<!-- 			    </if>  -->
+<!-- 			    <if test="sch_corp_num != null and sch_corp_num !=''"> -->
+<!-- 			     	and c.corp_num like '%'||#{sch_corp_num}||'%' -->
+<!-- 			    </if> -->
+<!-- 		  order by c.fst_reg_dt desc -->
+	select nvl(count(cust_id), 0) 
+		from (select 
+		          rownum rnum
+		          , c.cust_id cust_id
+         			   , c.cust_nm cust_nm
+                      , c.cust_zip_cd cust_zip_cd
+                      , c.cust_addr cust_addr
+                      , c.cust_dtl_addr cust_dtl_addr 
+                      , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
+         			   , c.comp_num comp_num
+                      , c.corp_num corp_num
+         			   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale
+                      , c.homepage_url homepage_url
+         			   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst
+                      , c.biz_status biz_status 
+                      , c.main_prod main_prod 
+         			   , c.emp_qty emp_qty
+                      , c.rep_ph1 rep_ph1
+         			   , c.rep_ph2 rep_ph2
+         			   , c.rep_ph3 rep_ph3
+         			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+         			from customer c		   
+                   where 1=1)
 	</select>
 	
 	<!-- 기업고객 상세정보 -->
@@ -198,7 +221,7 @@
 		    and c.act_yn = 'Y'
 	</select>
 	
-	<!-- 기업고객 상세정보 -->
+	<!-- 고객사 상세정보 -->
 	<select id="custcompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select c.cust_id cust_id
 		      , c.cust_nm cust_nm
@@ -223,6 +246,7 @@
 		  and c.act_yn = 'Y'
 	</select>
 	
+	<!-- 고객사 삭제된 데이터 상세정보 -->
 	<select id="custcompDelDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select 
 <!-- 			  c.cust_id cust_id -->
@@ -251,7 +275,7 @@
 		  	and c.act_yn = 'N'
 	</select>
 	
-	<!-- 기업고객 추가 -->
+	<!-- 고객사 추가 -->
 	<update  id="custcompInsert" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		INSERT INTO CUSTOMER (
   			CUST_ID, CUST_NM, CUST_DIV_CD,  COMP_NUM,  CORP_NUM,  REP_PH1,  REP_PH2,  REP_PH3,  HOMEPAGE_URL,  CUST_ZIP_CD,   CUST_ADDR,   CUST_DTL_ADDR,
@@ -279,13 +303,13 @@
   			#{main_prod, jdbcType=VARCHAR},
   			'admin',
   			sysdate,
-  			'',
+  			#{fin_mdfy_id},
  			sysdate, 
   			'Y'
 		)
 	</update>
 	
-	<!-- 기업고객 수정 -->
+	<!-- 고객사 수정 -->
 	<update id="custcompEdit" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		update CUSTOMER 
 		set 
@@ -313,18 +337,61 @@
 		update CUSTOMER
 		set
 			act_yn = 'Y',
-			fin_mdfy_id = #{fin_mdfy_id}
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
 		where cust_id = #{cust_id}
 	</update>
 
-	<!-- 기업고객 삭제 -->
+	<!-- 고객사 삭제 -->
 	<update id="custcompDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		update CUSTOMER 
-		set act_yn = 'N'
+		set act_yn = 'N',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
 		where cust_id = #{cust_id}
 	</update>
 	
-	<!-- 기업고객 삭제 -->
+	<!-- 고객사 삭제시 영업기회 삭제 -->
+	<update id="custcompOpptDel" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		update SALES_OPPORTUNITY 
+		set 
+			act_yn = 'N',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
+		where cust_id = #{cust_id}
+	</update>
+	
+	<!-- 고객사 삭제시 영업활동 삭제 -->
+	<update id="custcompActDel" parameterType="com.crm.cp.sales.act.vo.ActVO">
+		update SALES_ACTIVITY 
+		set 
+			act_yn = 'N',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
+		where cust_id = #{cust_id}
+	</update>
+	
+	<!-- 고객사 삭제된 영업기회 복원 -->
+	<update id="custcompOpptRb" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		update SALES_OPPORTUNITY 
+		set 
+			act_yn = 'Y',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
+		where cust_id = #{cust_id}
+	</update>
+	
+	<!-- 고객사 삭제된 영업활동 복원 -->
+	<update id="custcompActRb" parameterType="com.crm.cp.sales.act.vo.ActVO">
+		update SALES_ACTIVITY 
+		set 
+			act_yn = 'Y',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
+		where cust_id = #{cust_id}
+	</update>
+	
+	<!-- 고객사 삭제된 데이터 완전 삭제 -->
 	<delete id="custcompDelDelete" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		delete 
 		from customer 

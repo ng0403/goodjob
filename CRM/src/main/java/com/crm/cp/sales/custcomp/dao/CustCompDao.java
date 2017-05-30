@@ -28,7 +28,7 @@ public interface CustCompDao {
 	int custcompModify(CustCompVO ccVO);
 	void custcompInsert(CustCompVO ccVO);
 	void custcompEdit(CustCompVO ccVO);
-	int custcompDelete(String cust_id);							// 고객사 삭제
+	int custcompDelete(CustCompVO ccVO);						// 고객사 삭제
 	
 	List<CustCompVO> selectIDC();								// 산업군 코드 가져오기
 	List<CustCompVO> selectSSC(); 								// 매출규모 코드 가져오기

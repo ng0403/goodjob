@@ -80,7 +80,7 @@ public interface CustCompService {
 	int custcompModify(CustCompVO ccVO);
 	void custcompInsert(CustCompVO ccVO);
 	void custcompEdit(CustCompVO ccVO);
-	int custcompDelete(String cust_id);											// 고객사 삭제
+	int custcompDelete(CustCompVO ccVO);										// 고객사 삭제
 
 	List<ActVO> actTypeCdList();												// 영업활동 유형코드
 	List<ActVO> actStatCdList();												// 영업활동 상태코드
