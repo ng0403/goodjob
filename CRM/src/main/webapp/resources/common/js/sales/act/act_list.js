@@ -393,9 +393,13 @@ function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm)
 {
 	var ctx = $("#ctx").val();
 	
+	var day  = getFormatDate();
+	var hour = getFormatHour();
+	var min  = getFormatMin();
+	
 	if(act_flg == "oppt")			// 영업기회 - 영업활동 탭에서 추가버튼 눌렀을 시
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&date=" + day + "&hour=" + hour + "&min=" + min;
 	}
 	else if(act_flg == "oppt_ed")	// 영업기회 - 영업활동 탭 리스트에서 영업활동을 클릭 했을 때
 	{
@@ -403,12 +407,47 @@ function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm)
 	}
 	else if(act_flg == "cust")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&date=" + day + "&hour=" + hour + "&min=" + min;
 	}
 	else if(act_flg == "cust_ed")
 	{
 		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 	}
+}
+
+/**
+ * 날짜 시간 구하는 함수
+ * */
+function getFormatDate(){
+	var date = new Date();
+	
+	var year = date.getFullYear();                 //yyyy
+	var month = (1 + date.getMonth());             //M
+	var day = date.getDate();  					   //d
+	
+	month = month >= 10 ? month : '0' + month;     // month 두자리로 저장
+	day = day >= 10 ? day : '0' + day;             //day 두자리로 저장
+	
+	return  year + '-' + month + '-' + day;
+	
+}
+
+function getFormatHour(){
+	var d = new Date();
+	
+	var hour = (d.getHours()); 				   //d
+	
+	return hour;
+}
+
+function getFormatMin(){
+	var d = new Date();
+	
+	var tmp = parseInt((d.getMinutes()/10));
+	var min = tmp + '0';
+	
+	return min;
+	
 }
 
 /**

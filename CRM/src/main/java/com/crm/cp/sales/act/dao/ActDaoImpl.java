@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.crm.cp.sales.act.vo.ActChartVO;
 import com.crm.cp.sales.act.vo.ActVO;
+import com.crm.cp.sales.oppt.vo.OpptChartVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -208,6 +210,15 @@ public class ActDaoImpl implements ActDao{
 		}
 		
 		System.out.println("result sum: " + result);
+		
+		return result;
+	}
+
+	@Override
+	public List<ActChartVO> C_act_status() {
+		// TODO Auto-generated method stub
+		List<ActChartVO> result = sqlSession.selectList("act.C_act_status");
+		System.out.println("영업활동 상태 차트 정보 DAO : " + result);
 		
 		return result;
 	}

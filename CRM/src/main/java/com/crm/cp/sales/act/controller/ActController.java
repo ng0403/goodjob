@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.service.ActService;
+import com.crm.cp.sales.act.vo.ActChartVO;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
+import com.crm.cp.sales.oppt.vo.OpptChartVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
@@ -75,7 +78,18 @@ public class ActController {
 		
 		return mov;
 	}
-	
+	// 영업활동상태 차트 리스트
+	@RequestMapping(value="/actChartStatus", method={RequestMethod.GET,RequestMethod.POST})
+	public @ResponseBody Map<String, Object> actChartStatus( ModelMap model, HttpServletRequest request)
+	{
+		//영업활동상태 차트 데이터
+		List<ActChartVO> C_act_status = actService.C_act_status();
+		System.out.println("C_act_status 차트 : " + C_act_status.toString());
+		model.addAttribute("C_act_status", C_act_status);
+
+		return model;
+	}
+		
 	// 달력 리스트 출력
 	@RequestMapping(value="/actSchedule" , method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody Map<String,Object> ActSchedule(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum) throws ParseException
@@ -161,24 +175,29 @@ public class ActController {
 	
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView actDetail(String sales_actvy_id, String act_flg, String sales_oppt_id, String sales_oppt_nm, String cust_id, String cust_nm)
+	public ModelAndView actDetail(String sales_actvy_id, String act_flg, 
+								  String sales_oppt_id, String sales_oppt_nm, 
+								  String cust_id, String cust_nm, 
+								  String date, String hour, String min)
 	{
 		int flg;
 		
 		System.out.println("Detail : " + sales_actvy_id);
 		System.out.println("act_flg : " + act_flg);
+		
+		String[] htime = {"01", "02", "03", "04", "05", "06",
+				 "07", "08", "09", "10", "11", "12",
+				 "13", "14", "15", "16", "17", "18",
+				 "19", "20", "21", "22", "23", "24"};
+		String[] mtime = {"00", "10", "20", "30", "40", "50"};
+
 
 		if(sales_actvy_id != null)	// 상세보기
 		{
 			System.out.println("Detail - if : " + sales_actvy_id);
 			
 			flg = 1;
-			String[] htime = {"01", "02", "03", "04", "05", "06",
-					 "07", "08", "09", "10", "11", "12",
-					 "13", "14", "15", "16", "17", "18",
-					 "19", "20", "21", "22", "23", "24"};
-			String[] mtime = {"00", "10", "20", "30", "40", "50"};
-	
+			
 			ActVO actVO = actService.actDetail(sales_actvy_id);
 			
 			List<ActVO> actTypeCd = actService.actTypeCdList();
@@ -222,6 +241,11 @@ public class ActController {
 			mov.addObject("cust_id", cust_id);
 			mov.addObject("cust_nm", cust_nm);
 			mov.addObject("act_flg", act_flg);
+			mov.addObject("htime", htime);
+			mov.addObject("mtime", mtime);
+			mov.addObject("date", date);
+			mov.addObject("hour", hour);
+			mov.addObject("min", min);
 			mov.addObject("flg", flg);
 			
 			return mov;

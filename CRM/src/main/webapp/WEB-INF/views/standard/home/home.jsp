@@ -13,6 +13,8 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/home/home.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
+<%-- <script src="${ctx}/resources/common/js/sales/act/actChart.js"></script> --%>
+<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
 
 <title>CRM SOLUTION</title>
 </head>
@@ -131,54 +133,28 @@
 <!-- 			<h1>영업기회 상태 현황</h1> -->
 				<svg id="myGraph" style="width: 450px; height: 215px;">
 				</svg>
-					<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script>
+<%-- 					<script src="${ctx}/resources/common/js/sales/oppt/opptChart.js"></script> --%>
 		</div> 
-<!-- 	   <div id="tableline"> -->
-<!-- 			<table id="goaltable"> -->
-<!-- 				<thead> -->
-<!-- 					<tr> -->
-<!-- 						<td>영업기회명</td><td>영업단계</td><td>예정일자</td><td>부서</td><td>담당자</td> -->
-<!-- 					</tr> -->
-<!-- 				</thead> -->
-<!-- 				<tbody> -->
-<%-- 				<c:forEach items="${opptList}" var="opptList" begin="0" end="4"> --%>
-<!-- 					<tr> -->
-<%-- 						<td>${opptList.sales_oppt_nm}</td> --%>
-<%-- 						<td>${opptList.sales_lev_cd_nm}</td> --%>
-<%-- 						<td>${opptList.expt_fin_d}</td> --%>
-<%-- 						<td>${opptList.org_nm}</td> --%>
-<%-- 						<td>${opptList.cust_id}</td> --%>
-<!-- 					</tr> -->
-<%-- 				</c:forEach> --%>
-<!-- 				</tbody> -->
-<!-- 			</table> -->
-<!-- 		</div> -->
 	  </div>
 	  
-<!-- 	  <div id="right_home"> -->
-<!-- 	   <div id="contract_title"> -->
-<!-- 	   ■ 일정/약속 -->
-<!-- 	   <input type="button" class="detailPopbtn" id="schedule_detail" value="상세보기"> -->
+	  <!-- 영업활동 차트 그려주기 -->
+<!-- 	  <div id="right_home" style="height: 45%;"> -->
+<!-- 	   <div id="act_contract_title"> -->
+<!-- 		   <div id="hometext"> -->
+<!-- 		   		■ 영업활동 -->
+<!-- 		   </div> -->
+<!-- 		   <div id="homebtn"> -->
+<!-- 		   		<input type="button" class="tiny ui button" id="act_sch_list" value="상세보기"> -->
+<!-- 		   </div> -->
 <!-- 	   </div> -->
-<!-- 	   <div id="tableline"> -->
-<!-- 			<table id="goaltable" class="scheduletable"> -->
-<!-- 				<thead> -->
-<!-- 					<tr> -->
-<!-- 						<td>약속유형</td><td>약속내용</td><td>일자</td><td>담당부서</td><td>담당자</td> -->
-<!-- 					</tr> -->
-<!-- 				</thead> -->
-<!-- 				<tbody> -->
-<!-- 					<tr> -->
-<%-- 						<td>${schedule.CD_NM}</td> --%>
-<%-- 						<td>${schedule.SCHEDULE_CONT}</td> --%>
-<%-- 						<td><fmt:formatDate value="${schedule.SCHEDULE_DT}" pattern="yyyy-MM-dd HH:mm"/></td> --%>
-<%-- 						<td>${schedule.ORG_NM}</td> --%>
-<%-- 						<td id="scheduleId">${schedule.FST_REG_ID_NM}</td> --%>
-<!-- 					</tr> -->
-<!-- 				</tbody> -->
-<!-- 			</table> -->
-<!-- 		</div> -->
+<!-- 	   		영업활동 상태 차트  -->
+<!-- 		<div id="chart_act_status" style="margin-left: 120px;">style="margin-top: 5%; margin-left: 19%;" -->
+<!-- 				<svg id="myActGraph" style="width: 450px; height: 215px;"> -->
+<!-- 				</svg> -->
+<%-- 					<script src="${ctx}/resources/common/js/sales/act/actChart.js"></script> --%>
+<!-- 		</div>  -->
 <!-- 	  </div> -->
+	  
 	  <div id="left_home" style="height: 45%;">
 	   <div id="contract_title">
 	   		<div id="hometext">

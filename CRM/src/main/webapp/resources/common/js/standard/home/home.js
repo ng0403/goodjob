@@ -5,6 +5,7 @@ $(function(){
 	contrResult(ctx);
 	pipeLine(ctx);
 	opptActResult(ctx);
+	opptActSchResult(ctx);
 });
 
 function HomeDetailPop(ctx){
@@ -42,6 +43,13 @@ function HomeDetailPop(ctx){
 function opptActResult(ctx){
 	$('#opptActBtn').click(function(event){
 		location.href = ctx + '/act';
+	});
+}
+
+//영업활동 상세보기 버튼
+function opptActSchResult(ctx){
+	$('#act_sch_list').click(function(event){
+		location.href = ctx + '/actSchedule';
 	});
 }
 function contrResult(ctx){

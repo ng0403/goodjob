@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.crm.cp.sales.act.dao.ActDao;
+import com.crm.cp.sales.act.vo.ActChartVO;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
@@ -161,6 +162,13 @@ public class ActServiceImpl implements ActService{
 	public int opptTabPrdtModfy(List<OpptVO> opptList) {
 		// TODO Auto-generated method stub
 		return actDao.opptTabPrdtModfy(opptList);
+	}
+
+	// Chart
+	@Override
+	public List<ActChartVO> C_act_status() {
+		// TODO Auto-generated method stub
+		return actDao.C_act_status();
 	}
 
 

@@ -315,45 +315,63 @@
 							</c:if>
 							<c:if test="${flg eq '0'}">
 								<input type="hidden" id="hstrt_d">
-								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="inputText" readonly="readonly" style="background-color: white;">
+								<input type="text" id="strt_d" name="strt_d" value="${date}" class="inputText" readonly="readonly" style="background-color: white;">
 								<input type="hidden" id="hstrt_t_h"><br>
 								<select name="strt_t_h" id="strt_t_h" class="start_hour">
 									<option value="0" style="text-align: center;">==선택==</option>
-										<option value="01">1</option>
-										<option value="02">2</option>
-										<option value="03">3</option>
-										<option value="04">4</option>
-										<option value="05">5</option>
-										<option value="06">6</option>
-										<option value="07">7</option>
-										<option value="08">8</option>
-										<option value="09">9</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-										<option value="21">21</option>
-										<option value="22">22</option>
-										<option value="23">23</option>
-										<option value="24">24</option>									
+									<c:forEach var="htime" items="${htime}" step="1">
+										<c:if test="${hour == htime}">
+											<option value="${htime}" selected="selected">${htime}</option>
+										</c:if>
+										<c:if test="${hour != htime}">
+											<option value="${htime}">${htime}</option>
+										</c:if>
+									</c:forEach>
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<!-- 										<option value="01">1</option> -->
+<!-- 										<option value="02">2</option> -->
+<!-- 										<option value="03">3</option> -->
+<!-- 										<option value="04">4</option> -->
+<!-- 										<option value="05">5</option> -->
+<!-- 										<option value="06">6</option> -->
+<!-- 										<option value="07">7</option> -->
+<!-- 										<option value="08">8</option> -->
+<!-- 										<option value="09">9</option> -->
+<!-- 										<option value="10">10</option> -->
+<!-- 										<option value="11">11</option> -->
+<!-- 										<option value="12">12</option> -->
+<!-- 										<option value="13">13</option> -->
+<!-- 										<option value="14">14</option> -->
+<!-- 										<option value="15">15</option> -->
+<!-- 										<option value="16">16</option> -->
+<!-- 										<option value="17">17</option> -->
+<!-- 										<option value="18">18</option> -->
+<!-- 										<option value="19">19</option> -->
+<!-- 										<option value="20">20</option> -->
+<!-- 										<option value="21">21</option> -->
+<!-- 										<option value="22">22</option> -->
+<!-- 										<option value="23">23</option> -->
+<!-- 										<option value="24">24</option>									 -->
 								</select>
 								시
 								<input type="hidden" id="hstrt_t_m">
 								<select name="strt_t_m" id="strt_t_m" class="start_minute">
 									<option value="0" style="text-align: center;">==선택==</option>
-										<option value="00">00</option>
-										<option value="10">10</option>
-										<option value="20">20</option>
-										<option value="30">30</option>
-										<option value="40">40</option>
-										<option value="50">50</option>						
+									<c:forEach var="mtime" items="${mtime}" step="1">
+										<c:if test="${min == mtime}">
+											<option value="${mtime}" selected="selected">${mtime}</option>
+										</c:if>
+										<c:if test="${min != mtime}">
+											<option value="${mtime}">${mtime}</option>
+										</c:if>
+									</c:forEach>
+<!-- 									<option value="0" style="text-align: center;">==선택==</option> -->
+<!-- 										<option value="00">00</option> -->
+<!-- 										<option value="10">10</option> -->
+<!-- 										<option value="20">20</option> -->
+<!-- 										<option value="30">30</option> -->
+<!-- 										<option value="40">40</option> -->
+<!-- 										<option value="50">50</option>						 -->
 								</select>
 								분
 							</c:if>
@@ -394,45 +412,61 @@
 								</c:if>
 								<c:if test="${flg eq '0'}">
 									<input type="hidden" id="hend_d">
-									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="inputText" readonly="readonly" style="background-color: white;">
+									<input type="text" id="end_d" name="end_d" value="${date}" class="inputText" readonly="readonly" style="background-color: white;">
 									<input type="hidden" id="hend_t_h"><br>
 									<select name="end_t_h" id="end_t_h" class="end_hour">
 										<option value="0" style="text-align: center;">==선택==</option>
-											<option value="01">1</option>
-											<option value="02">2</option>
-											<option value="03">3</option>
-											<option value="04">4</option>
-											<option value="05">5</option>
-											<option value="06">6</option>
-											<option value="07">7</option>
-											<option value="08">8</option>
-											<option value="09">9</option>
-											<option value="10">10</option>
-											<option value="11">11</option>
-											<option value="12">12</option>
-											<option value="13">13</option>
-											<option value="14">14</option>
-											<option value="15">15</option>
-											<option value="16">16</option>
-											<option value="17">17</option>
-											<option value="18">18</option>
-											<option value="19">19</option>
-											<option value="20">20</option>
-											<option value="21">21</option>
-											<option value="22">22</option>
-											<option value="23">23</option>
-											<option value="24">24</option>									
+											<c:forEach var="htime" items="${htime}" step="1">
+												<c:if test="${hour == htime}">
+													<option value="${htime}" selected="selected">${htime}</option>
+												</c:if>
+												<c:if test="${hour != htime}">
+													<option value="${htime}">${htime}</option>
+												</c:if>
+											</c:forEach>
+<!-- 											<option value="01">1</option> -->
+<!-- 											<option value="02">2</option> -->
+<!-- 											<option value="03">3</option> -->
+<!-- 											<option value="04">4</option> -->
+<!-- 											<option value="05">5</option> -->
+<!-- 											<option value="06">6</option> -->
+<!-- 											<option value="07">7</option> -->
+<!-- 											<option value="08">8</option> -->
+<!-- 											<option value="09">9</option> -->
+<!-- 											<option value="10">10</option> -->
+<!-- 											<option value="11">11</option> -->
+<!-- 											<option value="12">12</option> -->
+<!-- 											<option value="13">13</option> -->
+<!-- 											<option value="14">14</option> -->
+<!-- 											<option value="15">15</option> -->
+<!-- 											<option value="16">16</option> -->
+<!-- 											<option value="17">17</option> -->
+<!-- 											<option value="18">18</option> -->
+<!-- 											<option value="19">19</option> -->
+<!-- 											<option value="20">20</option> -->
+<!-- 											<option value="21">21</option> -->
+<!-- 											<option value="22">22</option> -->
+<!-- 											<option value="23">23</option> -->
+<!-- 											<option value="24">24</option>									 -->
 									</select>
 									시
 									<input type="hidden" id="hend_t_m">
 									<select name="end_t_m" id="end_t_m" class="end_minute">
 										<option value="0" style="text-align: center;">==선택==</option>
-											<option value="00">00</option>
-											<option value="10">10</option>
-											<option value="20">20</option>
-											<option value="30">30</option>
-											<option value="40">40</option>
-											<option value="50">50</option>	
+											<c:forEach var="mtime" items="${mtime}" step="1">
+												<c:if test="${min == mtime}">
+													<option value="${mtime}" selected="selected">${mtime}</option>
+												</c:if>
+												<c:if test="${min != mtime}">
+													<option value="${mtime}">${mtime}</option>
+												</c:if>
+											</c:forEach>
+<!-- 											<option value="00">00</option> -->
+<!-- 											<option value="10">10</option> -->
+<!-- 											<option value="20">20</option> -->
+<!-- 											<option value="30">30</option> -->
+<!-- 											<option value="40">40</option> -->
+<!-- 											<option value="50">50</option>	 -->
 									</select>
 									분
 								</c:if>

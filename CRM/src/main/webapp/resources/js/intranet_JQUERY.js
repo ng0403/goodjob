@@ -10,9 +10,41 @@
 //	actMdfyBtn();
 //});
 
+function getFormatDate(date){
+
+	var year = date.getFullYear();                 //yyyy
+	var month = (1 + date.getMonth());             //M
+	var day = date.getDate();  					   //d
+	
+	month = month >= 10 ? month : '0' + month;     // month 두자리로 저장
+	day = day >= 10 ? day : '0' + day;             //day 두자리로 저장
+
+	return  year + '-' + month + '-' + day;
+
+}
+
+function getFormatHour(){
+	var d = new Date();
+	
+	var hour = (d.getHours()); 				   //d
+	
+	return hour;
+}
+
+function getFormatMin(){
+	var d = new Date();
+	
+	var tmp = parseInt((d.getMinutes()/10));
+	var min = tmp + '0';
+	
+	return min;
+	
+}
+
+
 $(function(){
-	var ctx = $('#ctx').val();
 	var sales_actvy_id = $("#nowSales_actvy_id").val();
+	var ctx = $('#ctx').val();
 
 	$('#changePasswd').click(function(){
 		passwdModal.show();
@@ -76,8 +108,15 @@ $(function(){
 	     * 페이지 이동으로 변경.
 	     * */
 	    dayClick: function(date) {
+	    	
+	    	var d = new Date();
+	    	
+	    	d = getFormatDate(date);
+	    	var h = getFormatHour();
+	    	var m = getFormatMin();
+
 	    	//window.open(ctx + '/actDetail','newwindow2','width=930, height=645, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-	    	location.href = ctx + '/actDetail';
+	    	location.href = ctx + '/actDetail?date=' + d + "&hour=" + h + "&min=" + m;
 		
 	    },
 	    /**

@@ -763,6 +763,32 @@
 		WHERE sales_oppt_id = #{opptId}
 	</delete>
 	<!-- /삭제 -->
+	
+	<!-- 영업활동 차트 리스트 -->
+	<select id="C_act_status" resultType="com.crm.cp.sales.act.vo.ActChartVO" parameterType="java.util.Map">
+		select ing.ing as "진행중", defer.defer as "보류", schedule.sche as "예정", compl.cplt as "완료"
+		from (select count(*) as ing
+			        from SALES_ACTIVITY a
+					where 1=1 
+			        and a.SALES_ACTVY_STAT_CD = '0001'
+			        and a.act_yn='Y') ing, 
+			 (select count(*) defer
+			        from SALES_ACTIVITY a
+					where 1=1 
+			        and a.SALES_ACTVY_STAT_CD = '0002'
+              		and a.act_yn='Y') defer,
+			 (select count(*) as sche
+			        from SALES_ACTIVITY a
+					where 1=1 
+			        and a.SALES_ACTVY_STAT_CD = '0003'
+              		and a.act_yn='Y') schedule,
+			 (select count(*) as cplt
+			        from SALES_ACTIVITY a
+					where 1=1 
+			        and a.SALES_ACTVY_STAT_CD = '0004'
+              		and a.act_yn='Y') compl
+
+	</select>
 
 
 

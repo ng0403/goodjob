@@ -3,6 +3,7 @@ package com.crm.cp.sales.act.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.crm.cp.sales.act.vo.ActChartVO;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.utils.PagerVO;
@@ -57,6 +58,9 @@ public interface ActDao {
 	int opptTabModify(OpptVO detail);
 	
 	int opptTabPrdtModfy(List<OpptVO> opptList);
+	
+	// Chart
+	List<ActChartVO> C_act_status();
 	
 	
 	
