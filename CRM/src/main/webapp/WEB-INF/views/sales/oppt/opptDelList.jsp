@@ -35,7 +35,7 @@
 	<input type="hidden" id="count" value="">
 	<div id="title">
 		<div class="caption">
-			<label id="listLabel" class="ui header" style="background: #fff;" >■ 영업기회 > 영업기회관리 삭제된 데이터</label>
+			<label id="listLabel" class="ui header" style="background: #fff;" >■ <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회</a> > 영업기회관리 삭제된 데이터</label>
 		</div>
 	</div>
 		   <div class="search_div" id="search_div" >
@@ -87,8 +87,8 @@
 						<th>상태</th>
 						<th>최종수정자</th>
 						<th>최종수정일시</th>
-						<th>등록자</th>
-						<th>등록일시</th>
+<!-- 						<th>등록자</th> -->
+<!-- 						<th>등록일시</th> -->
 					</tr>
 				</thead>
 				<tbody id="listTable" class="tbody">
@@ -112,8 +112,8 @@
 						<td>${list.sales_oppt_stat_cd_nm}</td>
 						<td>${list.fin_mdfy_id}</td>
 						<td>${list.fin_mdfy_dt}</td>
-						<td>${list.fst_reg_id}</td>
-						<td>${list.fst_reg_dt}</td>
+<%-- 						<td>${list.fst_reg_id}</td> --%>
+<%-- 						<td>${list.fst_reg_dt}</td> --%>
 					</tr>
 				</c:forEach>
 				</tbody>

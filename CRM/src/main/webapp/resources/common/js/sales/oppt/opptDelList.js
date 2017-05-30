@@ -378,8 +378,8 @@ function opportunityDelList(page){
 						"<td>"+list.sales_oppt_stat_cd_nm+"</td>"+
 						"<td>"+list.fin_mdfy_id+"</td>"+
 						"<td>"+list.fin_mdfy_dt+"</td>+"+
-						"<td>"+list.fst_reg_id+"</td>"+
-						"<td>"+list.fst_reg_dt+"</td>+"+
+//						"<td>"+list.fst_reg_id+"</td>"+
+//						"<td>"+list.fst_reg_dt+"</td>+"+
 						"</tr>"
 				);
 			});

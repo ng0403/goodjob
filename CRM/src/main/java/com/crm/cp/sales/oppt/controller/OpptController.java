@@ -90,7 +90,7 @@ public class OpptController {
 		mov.addObject("searchInfo", map);
 		return mov;
 	}
-	// 영업기회 리스트
+	// 영업기회 삭제된 데이터 리스트
 	@RequestMapping(value = "/DelList", method = RequestMethod.GET)
 	ModelAndView Dellist(HttpSession session,
 			@RequestParam Map<String, String> map,
@@ -123,7 +123,7 @@ public class OpptController {
 		map.put("psblty_rate1", map.get("psblty_rate1"));
 		
 		map.put("pageNum", pageNum + "");
-		PagerVO page = service.opptPageCount(map);
+		PagerVO page = service.DeletedOpptPageCount(map);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		

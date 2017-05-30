@@ -35,6 +35,8 @@ public interface OpptService {
 	//영업기회 리스트 page정보 가져오기
 	PagerVO opptPageCount(Map<String, String> map);
 	
+	//삭제된 영업기회 리스트 page정보 가져오기
+	PagerVO DeletedOpptPageCount(Map<String, String> map);
 	//영업활동 리스트 조회
 	List<ActVO> actList(Map<String, String> map);
 	
@@ -124,6 +126,7 @@ public interface OpptService {
 	int opptPrdtDel(String sales_oppt_id);
 //영업기회완전 삭제
 	int opptDelDelete(String sales_oppt_id);
+	
 
 
 	

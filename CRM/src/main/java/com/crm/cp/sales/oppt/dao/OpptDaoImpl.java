@@ -63,11 +63,17 @@ public class OpptDaoImpl implements OpptDao {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("oppt.otllist");
 	}
-
+//페이지 갯수 
 	@Override
 	public int opptPageCount(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne("oppt.pagecount", map);
+	}
+//삭제된 영업기회 페이지 갯수 
+	@Override
+	public int DeletedOpptPageCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("oppt.deletepagecount", map);
 	}
 
 	@Override
@@ -409,7 +415,5 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("영업기회상품 삭제 result : " + result);
 		return result;
 	}
-
-
 
 }

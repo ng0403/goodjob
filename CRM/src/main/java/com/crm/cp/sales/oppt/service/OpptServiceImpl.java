@@ -80,6 +80,15 @@ public class OpptServiceImpl implements OpptService {
 		PagerVO page = new PagerVO(Integer.parseInt(map.get("pageNum")), totalRowCount, 10, 10);
 		return page;
 	}
+	//삭제된 페이지 표시 갯수
+	@Override
+	public PagerVO DeletedOpptPageCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		int totalRowCount = dao.DeletedOpptPageCount(map);		
+		PagerVO page = new PagerVO(Integer.parseInt(map.get("pageNum")), totalRowCount, 10, 10);
+		return page;
+	}
+
 
 	@Override
 	public List<ActVO> actList(Map<String, String> map) {
@@ -305,10 +314,5 @@ public class OpptServiceImpl implements OpptService {
 		System.out.println("영업기회삭제 result : " + result);
 		return result;
 	}
-
-
-
-
-
 
 }

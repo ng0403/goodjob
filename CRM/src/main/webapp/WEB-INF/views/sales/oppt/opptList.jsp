@@ -76,14 +76,14 @@ $(function() {
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='opptAllSelect'/></th>
 						<th style="width: 26%;">영업기회명</th>
-						<th style="width: 10%;">고객명</th>
+						<th style="width: 10%;">고객사명</th>
 						<th style="width: 8%;">영업단계</th>
 						<th style="width: 10%;">예상매출액</th>
 						<th style="width: 10%;">예상마감일자</th>
 						<th style="width: 5%;">가능성</th>
 						<th style="width: 8%;">상태</th>
-						<th style="width: 8%;">등록자</th>
-						<th style="width: 12%;">등록일시</th>
+<!-- 						<th style="width: 8%;">등록자</th> -->
+<!-- 						<th style="width: 12%;">등록일시</th> -->
 					</tr>
 				</thead>
 				<tbody id="listTable" class="tbody">
@@ -105,8 +105,8 @@ $(function() {
 						<td>${list.expt_fin_d}</td>
 						<td>${list.psblty_rate}</td>
 						<td>${list.sales_oppt_stat_cd_nm}</td>
-						<td>${list.fst_reg_id}</td>
-						<td>${list.fst_reg_dt}</td>
+<%-- 						<td>${list.fst_reg_id}</td> --%>
+<%-- 						<td>${list.fst_reg_dt}</td> --%>
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -114,7 +114,7 @@ $(function() {
 		</div>
 		<div class="bottom_div">
 			<div class="functionBtn_div">
-		    	<input type="button" class="tiny ui blue button" value="추가" onclick="AddCustomerOpen();">
+		    	<input type="button" class="tiny ui button" value="추가" onclick="AddCustomerOpen();">
 				<input type="button" class="tiny ui blue button" value="삭제" onclick="opptDelete();" >
 		    	<input type="button" class="tiny ui blue button" value="삭제된 데이터" onclick="DelListOpen();">
 				

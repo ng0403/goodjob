@@ -337,6 +337,40 @@
 		)d
 	
 	</select>
+	<!-- 영업기회 리스트 row 개수 가져오기 -->
+	<select id="deletepagecount" resultType="int" parameterType="java.util.Map">
+		select nvl(count(d.sales_oppt_id), 0)
+		from
+		(
+		select
+		a.sales_oppt_id
+		, a.cust_id
+		, c.cust_nm
+		, a.sales_oppt_nm
+		, a.sales_lev_cd
+		, a.psblty_rate
+		, a.act_yn
+		, (select cd_nm from code where cd_grp_id='OSC' and
+		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
+		from sales_opportunity a, customer c
+		where 1=1 
+		and a.cust_id=c.cust_id 
+		and a.act_yn='N'
+		<if test="ssales_oppt_nm !=null and ssales_oppt_nm !=''">
+			and a.sales_oppt_nm like '%'||#{ssales_oppt_nm}||'%'
+		</if>
+		<if test="scust_id !=null and scust_id !=''">
+			and a.cust_id = #{scust_id}
+		</if>
+		<if test="ssales_lev_cd !=null and ssales_lev_cd !=''">
+			and a.sales_lev_cd = #{ssales_lev_cd}
+		</if>
+		<if test="spsblty_rate !=null and spsblty_rate !=''">
+			and a.psblty_rate like '%'||#{spsblty_rate}||'%'
+		</if>
+		)d
+	
+	</select>
 
 	<!-- 영업활동 리스트 조회 -->
 	<select id="actList" parameterType="java.util.Map" resultType="com.crm.cp.sales.act.vo.ActVO">
