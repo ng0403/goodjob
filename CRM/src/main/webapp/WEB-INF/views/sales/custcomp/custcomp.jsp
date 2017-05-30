@@ -32,6 +32,7 @@ $(function() {
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
 	<input type="hidden" id="count" 	value="">
 	<input type="hidden" id="user" 		value="${SessionID}">
+	<input type="hidden" id="act_yn" 	value="Y">
 	<div id="title">
 		<div class="caption">
 			<label id="listLabel" class="ui header">■ 고객 > 고객사관리</label> 

@@ -17,8 +17,9 @@ import com.crm.cp.utils.PagerVO;
 
 public interface CustCompService {
 	
-	// 기업고객 리스트 전체 개수 조회(페이징에 사용)
-	PagerVO getCCListCount(Map<String, Object> pMap);
+	
+	PagerVO getCCListCount(Map<String, Object> pMap);							// 고객사 리스트 전체 개수 조회(페이징에 사용)
+	PagerVO getCCDelListCount(Map<String, Object> pMap);						// 고객사 삭제된 데이터 리스트 갯수 
 	
 	List<CustCompVO> getCCList(Map<String, Object> pMap); 						// 기존고객 리스트
 	CustCompVO getCCDetail(String cust_id); 									// 기존고객 상세정보 가져오기

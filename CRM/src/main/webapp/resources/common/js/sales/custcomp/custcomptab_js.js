@@ -41,7 +41,6 @@ $(document).ready(function() {
 	estimateAdd(ctx);
 	custPosAdd(ctx);
 	addCustManager(ctx);
-//	custCompAddBtn();
 	
 	// 우편번호 검색 팝업
 	$('#addr').click(function(){
@@ -510,10 +509,6 @@ function mdfyCustComp(ctx){
 		//var indst_cd1 = $("#indst_cd1").val();
 		var biz_status = $("#biz_status").val();
 		var indst_cd = $("#indst_cd option:selected").text();
-		
-		
-//		 var jsonData = JSON.stringify(obj);		//JSON Object 생성
-//		    jQuery.ajaxSettings.traditional = true;	//JSON Object 보낼시 설정
 		    
 		$('#custCompForm') 
 		.attr('action','custcompModify')

@@ -36,23 +36,34 @@ public class CustCompDaoImpl implements CustCompDao {
 		int totalCount = 0;
 		try {
 			totalCount = sqlSession.selectOne("custcomp.ccListTotalCount", pMap);
-			System.out.println("daiooo " + pMap.toString());
+			System.out.println("리스트 갯수 : " + pMap.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		return totalCount;
+	}
+	
+	// 고객사 삭제된 데이터 리스트 갯수 
+	@Override
+	public int getCCDelListCount(Map<String, Object> pMap) {
+		int totalCount = 0;
+		try {
+			totalCount = sqlSession.selectOne("custcomp.ccListTotalCount_N", pMap);
+			System.out.println("리스트 갯수 " + pMap.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return totalCount;
 	}
 
 	// 고객사 리스트 가져오기
 	@Override
 	public List<CustCompVO> getCCList(Map<String, Object> pMap) {
-		System.out.println("enter");
 		List<CustCompVO> ccListVO = null;
 		try {
-			System.out.println("DAOImple : " + pMap.get("page"));
+			System.out.println("고객사 리스트 DAOImple : " + pMap.get("page"));
 			ccListVO = sqlSession.selectList("custcomp.custcompList", pMap);
-			System.out.println("f" + ccListVO.toString());
+			System.out.println("고객사 리스트 ccListVO" + ccListVO.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,6 +138,7 @@ public class CustCompDaoImpl implements CustCompDao {
 	@Override
 	public CustCompVO custcompDetail(String nowCust_id) {
 		CustCompVO ccVO = null;
+		System.out.println("DAO : " + nowCust_id);
 		ccVO = sqlSession.selectOne("custcomp.custcompDetail", nowCust_id);
 		return ccVO;
 	}
@@ -310,7 +322,7 @@ public class CustCompDaoImpl implements CustCompDao {
 	public int mdfyKeyman(KeymanVO kVO) {
 		int rstKm = 0;
 		try {
-			rstKm = sqlSession.update("mdfyKeyman", kVO);
+			rstKm = sqlSession.update("mdyKeyman", kVO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -810,5 +822,5 @@ public class CustCompDaoImpl implements CustCompDao {
 		int result = sqlSession.update("custcomp.custcompDelDelete", cust_id);
 		return result;
 	}
-
+	
 }

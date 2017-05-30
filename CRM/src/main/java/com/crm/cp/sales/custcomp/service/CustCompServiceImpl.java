@@ -41,6 +41,19 @@ public class CustCompServiceImpl implements CustCompService {
 		return page;
 	}
 
+	// 고객사 삭제된 데이터 리스트 
+	@Override
+	public PagerVO getCCDelListCount(Map<String, Object> pMap) {
+		int ccPageNum = (Integer) pMap.get("ccPageNum");
+		// 현재 페이지 얻어오기
+		PagerVO page = new PagerVO(ccPageNum, 0, 10, 10);
+		// 전체 글의 갯수 구하기
+		int totalRowCount = ccDao.getCCDelListCount(pMap);
+		page = new PagerVO(ccPageNum, totalRowCount, 10, 10);
+
+		return page;
+	}
+	
 	// 기존고객 리스트
 	@Override
 	public List<CustCompVO> getCCList(Map<String, Object> pMap) {
@@ -621,6 +634,4 @@ public class CustCompServiceImpl implements CustCompService {
 		
 		return result;
 	}
-
-
 }

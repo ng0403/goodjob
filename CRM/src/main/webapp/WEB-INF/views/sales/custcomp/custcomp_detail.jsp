@@ -30,6 +30,7 @@
 </head>
 <body>
 <input type="hidden" id="ctx" value="${ctx}" />
+<input type="hidden" id="flg" value="${flg}" />
 <input type="hidden" id="nowCust_id" value="${custcompDetail.cust_id}" />
 <input type="hidden" id="nowCust_nm" value="${custcompDetail.cust_nm}" />
 

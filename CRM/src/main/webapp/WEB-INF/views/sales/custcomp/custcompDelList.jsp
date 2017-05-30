@@ -11,6 +11,7 @@
 
 <!-- 고객사 부분 js파일 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcompDelList.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcompDelDetail.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -35,6 +36,7 @@ $(function() {
 	<input type="hidden" id="flg" 		value="${flg}">
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
 	<input type="hidden" id="count" 	value="">
+	<input type="hidden" id="act_yn" 	value="N">
 	<div id="title">
 		<div class="caption">
 			<label id="listLabel" class="ui header">■ 고객 > 

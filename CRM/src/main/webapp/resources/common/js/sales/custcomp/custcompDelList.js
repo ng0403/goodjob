@@ -4,8 +4,8 @@
  * custcompDelList(page)								: 삭제된 데이터 리스트
  * ccDelDetail(cust_id)									: 삭제된 데이터 상세보기
  *
- * addForm() 											: 고객사리스트 검색조건 추가
- * dellForm(obj) 										: 고객사리스트 검색조건 삭제
+ * addForm() 											: 리스트 검색조건 추가
+ * dellForm(obj) 										: 리스트 검색조건 삭제
  * schCustComp(event) 									: 검색 엔터키 기능
  * searchBtn(page) 										: 검색버튼 클릭
  * chkCancel() 											: 전체 체크 해제
@@ -14,10 +14,6 @@
  * custcompChkCancel() 									: 전체 체크 해제
  * checkCount() 										: 체크박스 개수
  * ccTabFunc(cust_id, cust_nm) 							: 탭 이동
- * custcompInsert() 									: 고객사 추가
- * custcompDelete() 									: 고객사 삭제
- * custCompDel(ctx) 									: 기업고객 삭제
- * viewDetail(cust_id) 									: 고객사 상세보기
  * dateFormat(timestamp) 								: 날짜 13자리를 yyyy-mm-dd형식으로 변환
  * paging() 											: 페이징
  * schPaging(ccPageNum) 								: 조회 페이징
@@ -234,75 +230,6 @@ function chkCancel() {
 	});
 }
 
-//고객사 리스트 출력
-function custCompList(page){
-	var ctx = $("#ctx").val();
-	$.ajax({
-		type : 'post',
-		url : ctx + '/custCompAjax',
-		data : {	
-				    pageNum : page, 
-					sch_cust_nm : $("#sch_cust_nm").val(), 
-					sch_cust_nm0 : $("#sch_cust_nm0").val(), 
-					sch_cust_nm1 : $("#sch_cust_nm1").val(), 
-					sch_comp_num : $("#sch_comp_num").val(), 
-					sch_comp_num0 : $("#sch_comp_num0").val(), 
-					sch_comp_num1 : $("#sch_comp_num1").val(), 
-					sch_corp_num : $("#sch_corp_num").val(), 
-					sch_corp_num0 : $("#sch_corp_num0").val(), 
-					sch_corp_num1 : $("#sch_corp_num1").val() 
-				},
-				datatype : 'json',
-		success:function(result){
-			if(result.ccVOListSize == 0){
-				alert("검색결과가 없습니다.");
-				location.href = ctx+'/custcompDelList';
-			}else{
-				//리스트 출력 시 버튼 상태 설정
-				$("#functionBtn").css("display", "block");
-				
-				$("#ccListTbody").children().remove();
-				$.each(result.ccVOList, function(i, cc){
-				
-					$("#ccListTbody").append("" +
-							"<tr id='"+cc.cust_id+"'>"+
-							"<th style='text-align: center;'><input type=checkbox   id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
-							"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-							"<input type=hidden id=cust_nm value="+cc.cust_nm+"></th>"+
-							"<td id='ccListTableNmTd' style='text-align: left; padding-left:8px;'><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-							"<td id=cust_nm style='text-align: center'>"+cc.comp_num+"</td>"+
-							"<td style='text-align: center'>"+cc.corp_num+"</td>"+
-							"<td style='text-align: center'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
-							"<td style='text-align: center'>"+cc.sales_scale+"</td>"+
-							"<td style='text-align: right; padding-right:8px'> "+cc.emp_qty+"</td>"+
-							"<td style='text-align: center'>"+cc.indst+"</td>"+
-							"<td style='text-align: center'>"+cc.fin_mdfy_id+"</td>+"+
-							"<td style='text-align: center'>"+cc.fin_mdfy_dt+"</td>+"+
-							"<td style='text-align: center'>"+cc.fst_reg_id+"</td>+"+
-							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>+"+
-							"</tr >"
-							
-					);
-				});
-			}
-			$("#pageSpace").children().remove();	
-			$("#pageSpace").children().remove();
-			var ccPageNum = result.ccPageNum;
-			var startPageNum = result.page.startPageNum;
-			var endPageNum = result.page.endPageNum;
-			var firstPageCount = result.page.firstPageCount;
-			var totalPageCount = result.page.totalPageCount;
-			var prevPageNum = result.page.prevPageNum;
-			var nextPageNum = result.page.nextPageNum;
-			var prevStepPage = result.page.prevStepPage;
-			var nextStepPage = result.page.nextStepPage;
-			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-		},
-		error:function(request){
-			alert("error : " + request);
-		}
-	});
-}
 
 //검색 버튼 클릭 시 
 function searchBtn(page){
@@ -367,14 +294,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var prevI = $("<i>");
 	prevI.addClass("left chevron icon");
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:custcompDelList("+prevPageNum+")");
+		prevPage.attr("href","javascript:custcompList("+prevPageNum+")");
 	}
 	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
 		ccPage.addClass("item");
-		ccPage.attr("href","javascript:custcompDelList("+i+")");
+		ccPage.attr("href","javascript:custcompList("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -390,7 +317,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var nextI = $("<i>");
 	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:custcompDelList("+nextPageNum+")");
+		nextPage.attr("href","javascript:custcompList("+nextPageNum+")");
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);
@@ -401,9 +328,9 @@ function custcompAllCheck(){
 	$("#custcompSelect").click( function(){
 		var chk = $(this).is(":checked"); //checked 된 경우 true, 아닌 경우 false
 		if(chk){
-			$("#ccListTbody input[type=checkbox]").prop("checked",true);			
+			$("#ccDelListTbody input[type=checkbox]").prop("checked",true);			
 		}else{
-			$("#ccListTbody input[type=checkbox]").prop("checked",false);
+			$("#ccDelListTbody input[type=checkbox]").prop("checked",false);
 		}
 	});
 }
@@ -447,11 +374,11 @@ function custcompDelListbtn() {
 	location.href = ctx + '/custcompDelList';
 }
 
-// 고객사 상세보기
-function viewDetail(cust_id) {
-	var ctx = $("#ctx").val();
-	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
-}
+//// 고객사 상세보기
+//function viewDetail(cust_id) {
+//	var ctx = $("#ctx").val();
+//	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
+//}
 
 
 function comma(str) {
@@ -542,7 +469,7 @@ function schPaging(ccPageNum) {
 							"sch_comp_num":sch_comp_num, "sch_comp_num0":sch_comp_num0, "sch_comp_num1":sch_comp_num1,
 							"sch_corp_num":sch_corp_num, "sch_corp_num0":sch_corp_num0, "sch_corp_num1":sch_corp_num1
 						  };
-			var tbody = $('#ccListTbody');
+			var tbody = $('#ccDelListTbody');
 			var tbodyContent = "";
 			
 			$.ajax({

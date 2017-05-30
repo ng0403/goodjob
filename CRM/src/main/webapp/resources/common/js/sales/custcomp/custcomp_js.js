@@ -222,14 +222,15 @@ function custCompList(page){
 					sch_comp_num1 : $("#sch_comp_num1").val(), 
 					sch_corp_num : $("#sch_corp_num").val(), 
 					sch_corp_num0 : $("#sch_corp_num0").val(), 
-					sch_corp_num1 : $("#sch_corp_num1").val() 
+					sch_corp_num1 : $("#sch_corp_num1").val(), 
+					act_yn : $("#act_yn").val() 
+					 
 				},
 				datatype : 'json',
 		success:function(result){
 			if(result.ccVOListSize == 0){
 				alert("검색결과가 없습니다.");
 				location.href = ctx+'/custcomp';
-//				custCompList(page);
 			}else{
 				//리스트 출력 시 버튼 상태 설정
 				$("#functionBtn").css("display", "block");
@@ -459,7 +460,6 @@ function custcompDelete() {
 		success : function(result){
 			alert("고객사가 삭제되었습니다.");
 			location.href = ctx + "/custcomp";
-//			custCompList(pageNum);
 		},
 		error : function(request){
 			alert("error : " + request);
@@ -949,7 +949,6 @@ function schPaging(ccPageNum) {
 						if(data.ccVOListSize == 0){
 							alert("검색결과가 없습니다.");
 							location.href = ctx+'/custcomp';
-//							custCompList(ccPageNum);
 						}else{
 							tbody.children().remove();
 							
@@ -992,7 +991,7 @@ function schPaging(ccPageNum) {
 							// 페이징 다시그리기
 							$("#pagingDiv").children().remove();
 							
-							if(data.page.startPageNum == 1 && data.page.endPageNum == 1){
+							if(data.page.tartPageNum == 1 && data.page.endPageNum == 1){
 								pageContent = "<input type='hidden' id='endPageNum' value='"+data.page.endPageNum+"'/>"
 								+"<a> ◀ </a><input type='text' id='ccPageInput' readonly='readonly' value='"+data.page.startPageNum+"' onkeypress=\"pageInput(event);\"/>" 
 								+"<a> / "+data.page.endPageNum+"</a><a> ▶ </a>";

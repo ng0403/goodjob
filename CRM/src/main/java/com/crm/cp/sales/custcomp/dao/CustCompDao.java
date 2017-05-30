@@ -15,8 +15,9 @@ import com.crm.cp.standard.prod.vo.ProdVO;
 
 public interface CustCompDao {
 	
-	// 기업고객 리스트 전체 개수 조회(페이징에 사용)
-	int getCCListCount(Map<String, Object> pMap);
+	
+	int getCCListCount(Map<String, Object> pMap);				// 고객사 리스트 전체 개수 조회(페이징에 사용)
+	int getCCDelListCount(Map<String, Object> pMap);			// 고객사 삭제된 데이터 리스트 갯수 조회(페이징에 사용)
 	
 	List<CustCompVO> getCCList(Map<String, Object> pMap); 		// 기업고객 리스트 가져오기
 	CustCompVO selectDetail(String cust_id);			  		// 기업고객 상세정보 가져오기
@@ -104,5 +105,4 @@ public interface CustCompDao {
 	void custcompDelEdit(CustCompVO ccVO);						// 고객사 삭제된 데이터 복원(수정)
 	int custcompDelDelete(String cust_id);						// 고객사 삭제된 데이터 완전삭제
 
- 
 } 
