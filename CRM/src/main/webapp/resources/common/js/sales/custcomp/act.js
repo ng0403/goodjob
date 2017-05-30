@@ -32,7 +32,7 @@ function inputOpptNm(sales_oppt_id,sales_oppt_nm){
 
 //영업활동탭에서 영업기회 추가 시 영업기회명 보이기
 function inputOpptNm(opptNm,opptId){
-	alert("inputOpptNm: "+opptId+','+opptNm);
+//	alert("inputOpptNm: "+opptId+','+opptNm);
 	$('#sales_oppt_id').val(opptNm);
 	$('#sales_oppt_nm').val(opptId);
 }

@@ -39,7 +39,7 @@
 		<c:if test="${flg == 0 }">
 			<div class="caption">
 				<label id="listLabel" class="ui header">
-					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: black;">고객사관리</a>
+					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; ">고객사관리</a>
 					>  고객사 추가
 				</label>
 			</div>
@@ -47,7 +47,7 @@
 		<c:if test="${flg == 1 }">
 			<div class="caption">
 				<h3 class="ui header" style="background: #fff;">
-					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: black;">고객사관리</a>
+					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; ">고객사관리</a>
 					> 상세정보
 				</h3>
 

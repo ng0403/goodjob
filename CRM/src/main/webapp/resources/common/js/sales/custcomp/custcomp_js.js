@@ -245,11 +245,11 @@ function custCompList(page){
 									"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
 									"<input type=hidden id=cust_nm value="+cc.cust_nm+"></td>"+
 								"<td style='text-align: left;   width: 16%; padding-left:8px; ' id='ccListTableNmTd' ><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-								"<td style='text-align:center; width:8%' id=cust_nm >"+cc.comp_num+"</td>"+
-								"<td style='text-align:center; width:8%;'>"+cc.corp_num+"</td>"+
+								"<td style='text-align:center; width:12%' id=cust_nm >"+cc.comp_num+"</td>"+
+								"<td style='text-align:center; width:12%;'>"+cc.corp_num+"</td>"+
 								"<td style='text-align:center; width:10%;'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
 								"<td style='text-align:center; width:10%;'>"+cc.sales_scale+"</td>"+
-								"<td style='text-align:right;  width:8%; padding-right:8px '> "+cc.emp_qty+"</td>"+
+								"<td style='text-align:right;  width:10%; padding-right:8px '> "+cc.emp_qty+"</td>"+
 								"<td style='text-align:center; width:14%;'>"+cc.indst+"</td>"+
 //								"<td style='text-align:center; width:15%;'>"+cc.fst_reg_dt+"</td>+"+
 							"</tr >"

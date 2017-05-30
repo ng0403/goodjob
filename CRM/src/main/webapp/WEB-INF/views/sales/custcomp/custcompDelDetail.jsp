@@ -35,8 +35,8 @@
 			<div class="caption">
 				<label id="listLabel" class="ui header">
 						■ 고객 > 
-						<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: black;">고객사관리</a> >
-						<a href="/custcompDelList" style="font-size: 14pt; text-decoration: none; color: black;"> 삭제된 데이터</a> 
+						<a href="/custcomp" style="font-size: 14pt; text-decoration: none; ">고객사관리</a> >
+						<a href="/custcompDelList" style="font-size: 14pt; text-decoration: none; "> 삭제된 데이터</a> 
 						> 삭제된 데이터 상세정보
 				</label> 		
 			</div>

@@ -65,11 +65,11 @@ $(function() {
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='ccListCheck'/></th>
 						<th style="width: 16%" id="tblTh" > 고객사명</th>
-						<th style="width: 8%"  id="tblTh" >사업자번호</th>
-						<th style="width: 8%"  id="tblTh" >법인번호</th>
+						<th style="width: 12%"  id="tblTh" >사업자번호</th>
+						<th style="width: 12%"  id="tblTh" >법인번호</th>
 						<th style="width: 10%" id="tblTh" >대표전화번호</th>
 						<th style="width: 10%" id="tblTh" >매출규모</th>
-						<th style="width: 8%"  id="tblTh" >직원수</th>
+						<th style="width: 10%"  id="tblTh" >직원수</th>
 						<th style="width: 14%" id="tblTh" >산업군</th>
 <!-- 						<th style="width: 8%"  id="tblTh" >영업 담당자</th> -->
 <!-- 						<th style="width: 15%" id="tblTh" >등록일시</th> -->
@@ -100,7 +100,7 @@ $(function() {
 		
 		<div class="bottom_div">
 			<div class="functionBtn_div">	
-				<input type="button" value="추가" class="tiny ui blue button" id="addBtn" onclick="custcompInsert();" />
+				<input type="button" value="추가" class="tiny ui button" id="addBtn" onclick="custcompInsert();" />
 				<input type="button" value="삭제" class="tiny ui blue button" onclick="custcompDelete()" />
 				<input type="button" value="삭제된 데이터" class="tiny ui blue button" onclick="custcompDelListbtn()" />
 <!-- 				<input type="button" value="엑셀" class="tiny ui blue button" id="exportBtn"   onclick=""  />	 -->

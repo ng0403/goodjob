@@ -60,8 +60,8 @@ function custcompDelList(page) {
 							"<td style='text-align: center'>"+cc.indst+"</td>"+
 							"<td style='text-align: center'>"+cc.fin_mdfy_id+"</td>"+
 							"<td style='text-align: center'>"+cc.fin_mdfy_dt+"</td>+"+
-							"<td style='text-align: center'>"+cc.fst_reg_id+"</td>"+
-							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>"+
+//							"<td style='text-align: center'>"+cc.fst_reg_id+"</td>"+
+//							"<td style='text-align: center'>"+cc.fst_reg_dt+"</td>"+
 							"</tr >"
 					);
 				});

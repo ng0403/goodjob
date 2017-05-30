@@ -40,7 +40,7 @@ $(function() {
 	<div id="title">
 		<div class="caption">
 			<label id="listLabel" class="ui header">■ 고객 > 
-				<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: black;">고객사관리</a> >
+				<a href="/custcomp" style="font-size: 14pt; text-decoration: none; ">고객사관리</a> >
 				삭제된 데이터</label> 
 		</div>
 	</div>
@@ -78,8 +78,8 @@ $(function() {
 						<th style="width: 10%" id="tblTh" >산업군</th>
 						<th style="width: 7%" id="tblTh" >최종 수정자</th>
 						<th style="width: 10%" id="tblTh" >최종 수정일시</th>
-						<th style="width: 7%" id="tblTh" >등록자</th>
-						<th style="width: 10%" id="tblTh" >등록일시</th>
+<!-- 						<th style="width: 7%" id="tblTh" >등록자</th> -->
+<!-- 						<th style="width: 10%" id="tblTh" >등록일시</th> -->
 					</tr>
 				</thead>
 				<tbody id="ccDelListTbody" class="tbody">
@@ -96,8 +96,8 @@ $(function() {
 							<td style="text-align: center;">${cc.indst}</td><!-- 산업군 -->
 							<td style="text-align: center;">${cc.fin_mdfy_id}</td><!-- 최종 수정자 -->
 							<td style="text-align: center;">${cc.fin_mdfy_dt}</td><!-- 최종 수정일시 -->
-							<td style="text-align: center;">${cc.fst_reg_id}</td><!-- 등록자 -->
-							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 -->
+<%-- 							<td style="text-align: center;">${cc.fst_reg_id}</td><!-- 등록자 --> --%>
+<%-- 							<td style="text-align: center;">${cc.fst_reg_dt}</td><!-- 등록일시 --> --%>
 						</tr>
 					</c:forEach>
 				</tbody>
