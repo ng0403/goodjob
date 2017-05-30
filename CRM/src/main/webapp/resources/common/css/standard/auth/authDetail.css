@@ -102,14 +102,14 @@ html{
 .bs-example #ausermastertable{
 	width:100%;
 	border-collapse: collapse;
-    border-spacing: 0;
+/*     border-spacing: 0; */
     font-size: 13px;
     border: 1px solid #dddddd;
     
 }
 
 .bs-example #ausermastertable thead{
-	float: left; width:100%;
+	float: left; width:100%; text-align: center;
 }
 
 .bs-example #ausermastertable thead tr{
@@ -117,12 +117,13 @@ html{
 	background-color: #F2F2F2;
 }
 
-.bs-example #ausermastertable thead td{
+.bs-example #ausermastertable thead th{
 /* 	width: 25%; */
 	font-weight: bold;
-	vertical-align: bottom;
+/* 	vertical-align: bottom; */
     border-bottom: 2px solid #dddddd;
-    padding: 8px;
+    padding: 0px;
+    text-align: center;
 }
 
 .bs-example #ausermastertable tbody tr:hover{
@@ -134,9 +135,9 @@ html{
 }
 
 .bs-example #ausermastertable tbody{
-/* 	overflow-y:scroll; */
-/* 	overflow-x:hidden; */
-/* 	float: left; */
+	overflow-y:scroll;
+	overflow-x:hidden;
+	float: left;
 	width: 100%;
 	height: 364px;
 }
@@ -154,10 +155,10 @@ html{
     border-top: 1px solid #dddddd;
 }
 
-.bs-example #ausermastertable thead tr th{
-  vertical-align: center;
-  border-bottom: 2px solid #dddddd;
-}
+/* .bs-example #ausermastertable thead tr th{ */
+/*   vertical-align: center; */
+/*   border-bottom: 2px solid #dddddd; */
+/* } */
 
 /*메뉴권한리스트*/
 .bs-example #menumastertable{
@@ -169,7 +170,7 @@ html{
 }
 
 .bs-example #menumastertable thead{
-	float: left; width:100%;
+	float: left; width:100%;text-align: center;
 }
 
 .bs-example #menumastertable thead tr{
@@ -177,12 +178,13 @@ html{
 	background-color: #F2F2F2;
 }
 
-.bs-example #menumastertable thead td{
+.bs-example #menumastertable thead th{
 /* 	width: 25%; */
 	font-weight: bold;
 	vertical-align: bottom;
     border-bottom: 2px solid #dddddd;
-    padding: 8px;
+    padding: 0px;
+    text-align: center;
 }
 
 .bs-example #menumastertable tbody tr:hover{

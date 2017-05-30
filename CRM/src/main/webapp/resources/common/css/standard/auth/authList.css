@@ -58,7 +58,7 @@ select{
 }
 
 .bs-example #authtable{
-	float: left; 
+/* 	float: left;  */
 	width:100%;
 /* 	border-collapse: collapse; */
 /*     border-spacing: 0; */
@@ -67,7 +67,8 @@ select{
 }
 
 .bs-example #authtable thead{
-	float: left; width:100%; text-align: left;
+	float: left; 
+	width:100%; text-align: center;
 }
 
 .bs-example #authtable thead tr{
@@ -83,6 +84,7 @@ select{
 /*     padding: 8px; */
 	padding-left:7px;
 	padding-right:7px;
+	text-align: center;
 }
 
 .bs-example #authtable thead td,

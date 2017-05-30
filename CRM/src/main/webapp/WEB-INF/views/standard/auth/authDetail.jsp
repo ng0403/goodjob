@@ -9,27 +9,45 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery.mCustomScrollbar.css" type="text/css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css"> --%>
 
 <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
-<script type="text/javascript"
-	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
-<!-- <script type="text/javascript" -->
-<%-- 	src="${ctx}/resources/common/js/jquery-ui.js"></script> --%>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/jquery.mCustomScrollbar.concat.min.js"></script> --%>
-<script>
-// $(function() {
-// 	 $("#ausermasterdiv").mCustomScrollbar({
-//       theme:"rounded-dark",
-//       autoHideScrollbar: false,
-//       scrollbarPosition: "outside",
-//       scrollButtons:{
-//         enable:true
-//       },
-//       axis:"y"
-//     });
-// });  
+<script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	var $meauthtable = $("table#menumastertable");
+	var $meauthbodyCells = $meauthtable.find("tbody tr:first").children();
+	var meauthcolWidth;
+	
+	$(window).resize(function(){
+		// jquery 개체 안의 요소들의 딥합을 다른 집합으로 변경해서 옮긴다.
+		meauthcolWidth = $meauthbodyCells.map(function(){
+			return $(this).width();
+		}).get();
+		
+		//각 thead tr 반복
+		$meauthtable.find("head tr").children().each(function(i, v){
+			$(v).width(meauthcolWidth[i]);
+		})
+	}).resize();
+	
+	var $usauthtable = $("table#ausermastertable");
+	var $usauthbodyCells = $usauthtable.find("tbody tr:first").children();
+	var usauthcolWidth;
+	
+	$(window).resize(function(){
+		// jquery 개체 안의 요소들의 딥합을 다른 집합으로 변경해서 옮긴다.
+		usauthcolWidth = $usauthbodyCells.map(function(){
+			return $(this).width();
+		}).get();
+		
+		//각 thead tr 반복
+		$usauthtable.find("head tr").children().each(function(i, v){
+			$(v).width(usauthcolWidth[i]);
+		})
+	}).resize();
+}) 
 </script>
 <style type="text/css">
 #ausermasterhead{
@@ -65,7 +83,7 @@
 			
 			<div class="bs-example" data-example-id="simple-table">
 				
-				<table id="ausermasterhead" class="ui celled table">
+				<table id="ausermastertable" class="ui sortable celled table">
 					<thead>
 						<tr>
 							<th style="width: 5%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
@@ -74,12 +92,9 @@
 							<th style="width: 30%;">권한명</th>
 							<th style="width: 16%;">최종수정자</th>
 							<th style="width: 19%;">최종수정일</th>
-<!-- 							<th style="width: 0%;border-left:none;"></th> -->
+							<th style="width: 0%;border-left:none;"></th>
 						</tr>
 					</thead>
-				</table>
-				<div id="ausermasterdiv" style="width:100%;margin-top:0px;">
-				<table id="ausermastertable" class="ui celled table">
 					<tbody>
 						<c:forEach var="authUser" items="${authIuserList}">
 						
@@ -96,7 +111,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				</div>
 			</div>
 		<div class="auth_bt_position">
 			<button type="button" class="tiny ui button" id="writeauthuser">등록</button>
@@ -120,7 +134,7 @@
 		</div>
 	
 		<div class="bs-example" data-example-id="simple-table">
-			<table id="menumastertable" class="ui sortable celled table">
+			<table id="menumastertable" class="ui celled table">
 				<thead>
 					<tr>
 						<th style="width:5.1%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
@@ -156,8 +170,7 @@
 				</c:forEach>
 				</tbody>
 			</table>
-		</div>
-	   
+	   		</div>
 	    <div class="auth_bt_position">
 			<button type="button" class="tiny ui button" id="writeauthmenu">등록</button>
 			<button type="button" class="tiny ui orange button" id="deleteauthmenu">삭제</button>

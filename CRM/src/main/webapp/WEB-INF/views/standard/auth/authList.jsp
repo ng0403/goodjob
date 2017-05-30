@@ -20,7 +20,28 @@
 	src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 
+<script type="text/javascript">
+$(function(){
+	var $authtable = $("table#authtable");
+	var $authbodyCells = $authtable.find("tbody tr:first").children();
+	var authcolWidth;
+	
+	$(window).resize(function(){
+		// jquery 개체 안의 요소들의 딥합을 다른 집합으로 변경해서 옮긴다.
+		authcolWidth = $authbodyCells.map(function(){
+			return $(this).width();
+		}).get();
+		
+		//각 thead tr 반복
+		$authtable.find("head tr").children().each(function(i, v){
+			$(v).width(authcolWidth[i]);
+		})
+	}).resize();
+	
+})
+</script>
 <style type="text/css">
 #authhead{
 	margin-bottom:0px;
@@ -56,7 +77,7 @@ $("#naviauth").css("font-weight", "bold");
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
 	<form name="delAllForm" id="delAllForm" method="post">	
-		<table id="authhead" class="ui celled table" style="width:95%">
+		<table id="authtable" class="ui sortable celled table">
 			<thead>
 				<tr>
 					<th style="width:9.3%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
@@ -66,9 +87,6 @@ $("#naviauth").css("font-weight", "bold");
 					<th style="width:5%;border-left:none;"></th>
 				</tr>
 			</thead>
-		</table>
-		<div id="authdiv" style="width:95%;margin-top:0px;">
-		<table id="authtable" class="ui celled table">
 			<tbody id="authbody">
 				<c:forEach var="auth" items="${authList}"> 
 				<tr>
@@ -83,7 +101,6 @@ $("#naviauth").css("font-weight", "bold");
 			</c:forEach>
 			</tbody>
 		</table>
-		</div>
 		</form>
 	</div>
 		<!-- 기본 버튼 -->
