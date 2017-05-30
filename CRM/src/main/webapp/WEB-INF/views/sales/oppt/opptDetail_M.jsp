@@ -196,7 +196,7 @@ $(document).ready(function(){
 				<div style="height: 200px;">
 				
 					<table id= "estimatehead" style="text-align: center; border-collapse: collapse;" >
-						<tr class="headerLock">
+						<tr class="headerLock" style="height: 35px; background-color: rgb(228, 233, 251);">
 							<th rowspan="2" style="width: 3%; text-align: center;"><input type="checkbox" id="allSelect"></th>
 							<td style="width: 32%;">품목명</td>
 							<td style="width: 8%;">수량</td>
