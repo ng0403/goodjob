@@ -40,7 +40,7 @@ $(function() {
 	<div id="title">
 		<div class="caption">
 			<label id="listLabel" class="ui header">■ 고객 > 
-				<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: blue;">고객사관리</a> >
+				<a href="/custcomp" style="font-size: 14pt; text-decoration: none; color: black;">고객사관리</a> >
 				삭제된 데이터</label> 
 		</div>
 	</div>
