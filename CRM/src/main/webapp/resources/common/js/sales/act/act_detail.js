@@ -66,6 +66,13 @@ function actMdfyBtn(){
 		$("#end_t_m").attr("disabled",false);
 		$("#memo").attr("readonly", false);
 		
+		// 영업활동 내역
+		$('#sales_actvy_loc').attr("readonly", false);
+		$('#sales_actvy_person').attr("readonly", false);
+		$('#sales_actvy_content').attr("readonly", false);
+		$('#sales_actvy_reason').attr("readonly", false);
+		
+		
 		//할일을 클릭했을 때 영업기회명과 고객사 비활성화
 		if($('#actdiv_1').is(':checked')){
 			$("#sales_oppt_nm").css("background-color","#EAEAEA");
@@ -84,13 +91,13 @@ function actMdfyBtn(){
 }
 
 // 달력 상세보기에서 추가에서 취소버튼 클릭했을 때
-function actAddCancelBt(act_flg)
+function actAddCancelBt(act_flg, cust_id, sales_oppt_id)
 {
 	$(document).ready(function() {
 		var ynChk = confirm("정말 취소하시겠습니까?");
 		var ctx = $("#ctx").val();
-		var sales_oppt_id = $('#hsales_oppt_id').val();
-		var cust_id = $('#hcust_id').val();
+		var hsales_oppt_id = $('#hsales_oppt_id').val();
+		var hcust_id = $('#hcust_id').val();
 	
 		if(ynChk == true)
 		{
@@ -98,14 +105,22 @@ function actAddCancelBt(act_flg)
 			{
 				location.href = '/actSaleList';
 			}
-			else if(act_flg == 'oppt' || act_flg == 'oppt_ed')
+			else if(act_flg == 'oppt')
 			{
 				console.log(sales_oppt_id);
+				location.href = 'opptDetail?opptId=' + hsales_oppt_id;
+			}
+			else if(act_flg == 'oppt_ed')
+			{
 				location.href = 'opptDetail?opptId=' + sales_oppt_id;
 			}
-			else if(act_flg == 'cust' || act_flg == 'cust_ed')
+			else if(act_flg == 'cust')
 			{
 				console.log(cust_id);
+				location.href = 'custcompDetail?cust_id=' + hcust_id;
+			}
+			else if(act_flg == 'cust_ed')
+			{
 				location.href = 'custcompDetail?cust_id=' + cust_id;
 			}
 			else
@@ -118,15 +133,15 @@ function actAddCancelBt(act_flg)
 }
 
 //당력 상세보기에서 취소버튼 클릭했을 때 상세정보 보여주기
-function actMdfyCancelBt(act_flg)
+function actMdfyCancelBt(act_flg, cust_id, sales_oppt_id)
 {
 	// 취소 버튼 기능
 	$(document).ready(function() {
 		
 		var ynChk = confirm("수정을 취소하시겠습니까?");
 		var salesId = $("#sales_actvy_id").val();
-		var sales_oppt_id = $('#hsales_oppt_id').val();
-		var cust_id = $('#hcust_id').val();
+		var hsales_oppt_id = $('#hsales_oppt_id').val();
+		var hcust_id = $('#hcust_id').val();
 		
 		if(ynChk)
 		{
@@ -134,14 +149,20 @@ function actMdfyCancelBt(act_flg)
 			{
 				location.href = '/actSaleList';
 			}
-			else if(act_flg == 'oppt' || act_flg == 'oppt_ed')
+			else if(act_flg == 'oppt')
 			{
-				console.log(sales_oppt_id);
+				location.href = 'opptDetail?opptId=' + hsales_oppt_id;
+			}
+			else if(act_flg == 'oppt_ed')
+			{
 				location.href = 'opptDetail?opptId=' + sales_oppt_id;
 			}
-			else if(act_flg == 'cust' || act_flg == 'cust_ed')
+			else if(act_flg == 'cust')
 			{
-				console.log(cust_id);
+				location.href = 'custcompDetail?cust_id=' + hcust_id;
+			}
+			else if(act_flg == 'cust_ed')
+			{
 				location.href = 'custcompDetail?cust_id=' + cust_id;
 			}
 			else

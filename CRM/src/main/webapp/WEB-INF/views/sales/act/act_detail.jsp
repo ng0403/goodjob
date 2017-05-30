@@ -507,7 +507,7 @@
 							<th colspan="4" style="text-align: center;">영업활동 내역</th>
 						</tr>
 						<tr>
-							<th>영업활동장소</th>
+							<th><span style="color: red;">*영업활동장소</span></th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
 							    	<input type="text" class="inputText" id="sales_actvy_loc" name="sales_actvy_loc" style="background: white;">
@@ -518,7 +518,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>영업활동대상자</th>
+							<th><span style="color: red;">*영업활동대상자</span></th>
 							<td colspan="3">
 							    <c:if test="${flg eq '0'}">
 							    	<input type="text" class="inputText" id="sales_actvy_person" name="sales_actvy_person" style="background: white;">
@@ -563,12 +563,12 @@
 			<c:if test="${flg == 1}">
 				<div id="actBaseBtnDiv" class="act_tab_bt_div">
 					<input type="button" id="actMdfBtn" value="편집" class="tiny ui button"/>
-					<input type="button" id="actDelBtn" value="삭제" class="tiny ui blue button" onclick="actDelBt('${actDetail.sales_actvy_id}');"/>
-					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
+<%-- 					<input type="button" id="actDelBtn" value="삭제" class="tiny ui blue button" onclick="actDelBt('${actDetail.sales_actvy_id}');"/> --%>
+					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}', '${actDetail.cust_id}', '${actDetail.sales_oppt_id}');"/>
 				</div>
 				<div id="actMdfBtnDiv" style="display: none;" class="act_tab_bt_div">
 					<input type="button" id="actMdfSaveBtn" value="수정" onclick="actModify('${ctx}', '${act_flg}');" class="tiny ui blue button"/>
-					<input type="button" id="actMdfCancelBtn" value="취소" class="tiny ui button" onclick="actMdfyCancelBt('${act_flg}');"/>
+					<input type="button" id="actMdfCancelBtn" value="취소" class="tiny ui button" onclick="actMdfyCancelBt('${act_flg}', '${actDetail.cust_id}', '${actDetail.sales_oppt_id}');"/>
 				</div>
 			</c:if>
 		</form>	

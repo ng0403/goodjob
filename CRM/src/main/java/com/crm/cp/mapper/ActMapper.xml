@@ -177,7 +177,7 @@
 						</choose>
 
 
-						ORDER BY SA.FST_REG_DT DESC
+						ORDER BY SA.FIN_MDFY_DT DESC
 					) P
 				) SAL
         <![CDATA[WHERE SAL.RNUM>=#{page.startRow} and SAL.RNUM<=#{page.endRow}]]>
