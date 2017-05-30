@@ -552,6 +552,48 @@ function contactAddp(){
 }
 
 
+function contInsertCancel() {
+	
+	$('#company_nm').attr("readonly", true);
+	$('#cont_nm').attr("readonly", true);
+	$('#email1').attr("readonly", true);
+	$('#email2').attr("readonly", true);
+	$('#cell_ph1').attr("readonly", true);
+	$('#cell_ph2').attr("readonly", true);
+	$('#cell_ph3').attr("readonly", true);
+	$('#ph1').attr("readonly", true);
+	$('#ph2').attr("readonly", true);
+	$('#ph3').attr("readonly", true);
+		
+	 
+	$('#company_nm').css("background-color", "#EAEAEA");
+	$('#cont_nm').css("background-color", "#EAEAEA"); 
+ 	$('#email1').css("background-color", "#EAEAEA"); 
+	$('#email2').css("background-color", "#EAEAEA"); 
+	$('#cell_ph1').css("background-color", "#EAEAEA"); 
+	$('#cell_ph2').css("background-color", "#EAEAEA"); 
+	$('#cell_ph3').css("background-color", "#EAEAEA"); 
+	$('#ph1').css("background-color", "#EAEAEA"); 
+	$('#ph2').css("background-color", "#EAEAEA"); 
+	$('#ph3').css("background-color", "#EAEAEA"); 
+	
+	$("#btn_1").css("display", "block");
+	$("#btn_2").css("display", "none");
+	
+	
+	 
+	$('#company_nm').val("");
+	$('#cont_nm').val("");
+	$('#email1').val("");
+	$('#email2').val("");
+	$('#cell_ph1').val("");
+	$('#cell_ph2').val("");
+	$('#cell_ph3').val("");
+	$('#ph1').val("");
+	$('#ph2').val("");
+	$('#ph3').val(""); 
+}
+
 //연락처 추가 저장.
 function contactInsert() { 
 	
@@ -572,12 +614,7 @@ function contactInsert() {
 		 {
 		 alert("이름을 입력해 주세요.");
 		 return false;
-		 }
-	 if(company_nm == null || company_nm =="")
-		 {
-		 alert("회사명을 입력해 주세요.");
-		 return false;
-		 }
+		 } 
 	 if(ph1 == null || ph1 ==""){
 	   alert("전화번호를 입력해 주세요.");
 	   return false;

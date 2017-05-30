@@ -109,7 +109,7 @@
 		</if>
 	</sql>
  
-	<insert id="contactInsert" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
+	<update id="contactInsert" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
 		insert into contact
 		(
 		cont_id,
@@ -141,12 +141,12 @@
 		 #{cell_ph3},
 		 #{email1},
 		 #{email2},
-		 'admin',
+		 #{fst_reg_id},
 		 sysdate,
-		 'admin',
+		#{fin_mdfy_id},
 		 sysdate
 		 )
-	</insert>
+	</update>
  
 
  

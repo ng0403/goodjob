@@ -104,7 +104,7 @@
 	</div>
 	
 	<div>
-	<input type="button" id="board_mng_add_fbtn" class = "tiny ui orange button" value="저장" onclick="board_mng_add_save();"/>
+	<input type="button" id="board_mng_add_fbtn" class = "tiny ui blue button" value="저장" onclick="board_mng_add_save();"/>
      <input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
 	</div>
  

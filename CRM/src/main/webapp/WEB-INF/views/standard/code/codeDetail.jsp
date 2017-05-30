@@ -47,15 +47,15 @@
 				<input type="hidden" id='grp_id'>
 				<table id="codemastertable" class="ui sortable celled table">
 					<thead>
-						<tr>
-							<th style="width: 5.1%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-							<th>코드그룹 ID</th>
-							<th style="width: 14.8%;">코드 ID</th>
-							<th style="width: 14.8%;">코드 이름</th>
-							<th style="width: 29.6%;">권한명</th>
-							<th style="width: 15.7%;">최종수정자</th>
-							<th style="width: 19.3%;border-right:none;">최종수정일</th>
-							<th style="width: 0%;border-left:none;"></th>
+						<tr style="text-align:center">
+							<th style="width: 4.9%; text-align:center"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
+							<th style="width:14.6%">코드그룹 ID</th>
+							<th style="width: 14.6%;">코드 ID</th>
+							<th style="width: 14.6%;">코드 이름</th>
+							<th style="width: 16.4%;">권한명</th>
+							<th style="width: 15.8%;">최종수정자</th>
+							<th style="width: 29%;border-right:none;">최종수정일</th>
+							<th style="width: 3%;border-left:none;"></th>
 						</tr>
 					</thead>
 					<tbody style="height:530px">

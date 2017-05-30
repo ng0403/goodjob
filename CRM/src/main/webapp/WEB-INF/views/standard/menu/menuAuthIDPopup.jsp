@@ -27,7 +27,7 @@
 				<option value="a_name">권한이름</option>
 				<option value="a_id">권한ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
-			<button id="search_btn" type="submit" class="tiny tiny ui basic orange button">검색</button>
+			<button id="search_btn" type="submit" class="tiny tiny ui basic blue button">검색</button>
 			</form>
 		</div>
 	</div>	
@@ -70,7 +70,7 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny tiny ui orange button" value="선택" id="choiceAuth"/>
+		<input type="button" class="tiny tiny ui blue button" value="선택" id="choiceAuth"/>
 		<input type="button" class="tiny tiny ui button" value="취소" id="restAuth"/>
 	</div>
 </body>

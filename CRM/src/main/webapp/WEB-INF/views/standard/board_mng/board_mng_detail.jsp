@@ -39,12 +39,12 @@
 	
  	<div class="detailBtn"> 
 	<div id = "baseBtnDiv" class="bt_position_authuser">
-	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui orange button" value="편집" onclick="modify_fbtn();"/>
+	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui blue button" value="편집" onclick="modify_fbtn();"/>
 	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
 	</div>
 	
 	<div id = "baseBtnDiv2" class="bt_position_authuser" style="display:none">
-		<input type="button" class = "tiny ui orange button" id="board_mng_add_fbtn"  value="저장" onclick="updateBoardMng();"/>
+		<input type="button" class = "tiny ui blue button" id="board_mng_add_fbtn"  value="저장" onclick="updateBoardMng();"/>
 		<input type="button" class="tiny ui button" id="board_cancle_fbtn" value="취소" onclick="modify_cancel();"/>
 	</div>
 	</div>

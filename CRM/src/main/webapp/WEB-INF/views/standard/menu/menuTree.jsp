@@ -73,7 +73,7 @@ $("#navimenu").css("font-weight", "bold");
 	<!-- 버튼 -->
 	<div class="menu_bt_position">
 		<button type="button" class="tiny ui button" id="menuAddBtn">추가</button>
-		<button type="button" class="tiny ui orange button" id="menuDelBtn">삭제</button>
+		<button type="button" class="tiny ui blue button" id="menuDelBtn">삭제</button>
 		<button type="button" class="tiny ui button" id="menuAllCancelBtn">선택취소</button>		
 	</div>
 </body>

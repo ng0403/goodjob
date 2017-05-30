@@ -116,7 +116,7 @@
 	    </div> 
 	     <div class="functionBtn_div" id="btn_2" style="display:none">
 	 	    <input type="button" id="contactsave" value="저장" class="tiny ui blue button" onclick="contactInsert();"/>
-			<input type="button" class="tiny ui blue button" id="call_delete" value="취소" onclick="callAddCancelBtn();">
+			<input type="button" class="tiny ui blue button" id="call_delete" value="취소" onclick="contInsertCancel();">
 	    </div> 
 	 
 	     <div id="pageSpace" class="ui right floated pagination menu">

@@ -36,7 +36,7 @@
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
 		<div id="tabDiv1" class="tab1_content">
 			<div class="bt_position_detail">
-				<input type="button" class="tiny ui orange button" id="submit_menu" value="저장" />
+				<input type="button" class="tiny ui blue button" id="submit_menu" value="저장" />
 				<input type="button" class="tiny ui button" id="edit_menu" value="편집" />
 				<input type="button" class="tiny ui button" id="reset_menu" value="취소" />
 			</div>
@@ -50,7 +50,7 @@
 							<th>상위메뉴명</th>
 							<td style="text-align:left;"><input type="hidden" name="up_menu_id" id="p_menu_id" class="int"/>
 								<input type="text" name="up_menu_nm" id="p_menu_name" class="int"/>
-								<input type="button" id="search_pMenuName_btn" value="검색" class="tiny ui orange button"/>
+								<input type="button" id="search_pMenuName_btn" value="검색" class="tiny ui blue button"/>
 							</td>
 						</tr>
 						<tr>
@@ -75,7 +75,7 @@
 							<th><span stlye="color:red;">*권한ID</span></th>
 							<td style="text-align:left;">
 								<input type="text" id="auth_id" name="auth_id" class="int"/>
-								<input type="button" id="search_authID_btn" class="tiny ui orange button" value="검색">
+								<input type="button" id="search_authID_btn" class="tiny ui blue button" value="검색">
 							</td>
 							<th>조회여부</th>
 							<td style="text-align:left;">
@@ -100,7 +100,7 @@
 				</select> 
 				<input id="authMenuKeyword" type="text" name="keyword" class="int_search"> &nbsp;
 			</div>
-			<button id="authMenuSearch" class="tiny ui orange button">검색</button>
+			<button id="authMenuSearch" class="tiny ui blue button">검색</button>
 		</div>
 		 <div class="bs-example_menulist" data-example-id="simple-table">
 				<!-- <form name="userForm" id="userForm" method="post" > -->

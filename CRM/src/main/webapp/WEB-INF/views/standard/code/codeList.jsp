@@ -15,7 +15,26 @@
 
 <script src="${ctx}/resources/common/js/standard/code/codeGroupList.js"></script>
  
-
+<script type="text/javascript">
+$(function(){
+	var $codetable = $("table#codetable");
+	var $codebodyCells = $codetable.find("tbody tr:first").children();
+	var authcolWidth;
+	
+	$(window).resize(function(){
+		// jquery 개체 안의 요소들의 딥합을 다른 집합으로 변경해서 옮긴다.
+		authcolWidth = $authbodyCells.map(function(){
+			return $(this).width();
+		}).get();
+		
+		//각 thead tr 반복
+		$authtable.find("head tr").children().each(function(i, v){
+			$(v).width(authcolWidth[i]);
+		})
+	}).resize();
+	
+})
+</script>
   
 <title>리스트</title>
 <script type="text/javascript">
@@ -48,21 +67,22 @@ $("#naviauth").css("font-weight", "bold");
 	<form name="delAllForm" id="delAllForm" method="post">	
 		<table id="codetable" class="ccthFixedtbl" style="table-layout:fixed; " >
 			<thead class="thead">
-				<tr class="tr_table_fix_header">
-					<th class="thead_th" style="width: 74px;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
-					<th class="thead_th" style="width: 121px;">코드ID</th>
-					<th class="thead_th" style="width: 120px;">코드명</th>
-					<th class="thead_th" style="width: 89px;">상태</th>
+				<tr class="tr_table_fix_header" style="text-align:center">
+					<th class="thead_th" style="width: 9.1%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
+					<th class="thead_th" style="width: 29.1%;">코드ID</th>
+					<th class="thead_th" style="width: 30.29%%;">코드명</th>
+					<th class="thead_th" style="width: 30.4%;">상태</th>
+					<th style="width:3%;border-left:none;"></th>
  				</tr>
 			</thead>
 			<tbody class="tbody" style="height:564px">
 				<c:forEach var="codegrp" items="${codegrpList}">  
 				<tr onclick="codeList('${codegrp.cd_grp_id}');" class="up">
-					<td class="codeTbody_tr_td" scope="row" style="width: 74px;">
+					<td class="codeTbody_tr_td" scope="row" style="width: 9.3%; text-align:center">
 						<input type="checkbox" class="ab" id="checkauth" value="${codegrp.cd_grp_id}"></td>
-					<td class="codeTbody_tr_td" style="width: 121px;"><a href="#" onclick="cdgrpDetail('${codegrp.cd_grp_id}');" >${codegrp.cd_grp_id}</a></td>
-					<td class="codeTbody_tr_td" style="width: 120px;">${codegrp.cd_grp_nm}</td> 
- 					<td class="codeTbody_tr_td" style="width: 89px;">
+					<td class="codeTbody_tr_td" style="width: 30%;"><a href="#" onclick="cdgrpDetail('${codegrp.cd_grp_id}');" >${codegrp.cd_grp_id}</a></td>
+					<td class="codeTbody_tr_td" style="width: 30%;">${codegrp.cd_grp_nm}</td> 
+ 					<td class="codeTbody_tr_td" style="width: 30%;">
 						<c:if test="${codegrp.act_yn=='Y'}">활성화</c:if>
 						<c:if test="${codegrp.act_yn=='N'}">비활성화</c:if>
 					</td>

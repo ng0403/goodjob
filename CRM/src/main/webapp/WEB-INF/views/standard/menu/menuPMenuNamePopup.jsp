@@ -29,7 +29,7 @@
 				<option value="m_id">메뉴ID</option>
 			</select> <input id="title_text" type="text" name="keyword"> &nbsp;
 			</div>
-			<input type="submit" id="search_btn" type="submit" class="tiny ui orange button" value="검색">
+			<input type="submit" id="search_btn" type="submit" class="tiny ui blue button" value="검색">
 			</form>
 		</div>
 	</div>	
@@ -75,7 +75,7 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny tiny ui orange button" value="선택" id="choiceMenu"/>
+		<input type="button" class="tiny tiny ui blue button" value="선택" id="choiceMenu"/>
 		<input type="button" class="tiny tiny ui button" value="취소" id="restMenu"/>
 	</div>
 </body>

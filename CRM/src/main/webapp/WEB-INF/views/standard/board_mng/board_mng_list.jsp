@@ -88,14 +88,14 @@ $(function() {
 			 <div class="bottom_div">
      	<div class="functionBtn_div" id="btn_1">
 					<input type="button" id="board_add_fbtn"
-						class="tiny ui orange button" value="추가" onclick="boardMngAddp();" />
+						class="tiny ui blue button" value="추가" onclick="boardMngAddp();" />
 					<input type="button" id="board_remove_fbtn"
-						class="tiny ui orange button" value="삭제" onclick="deleteAction() " />
+						class="tiny ui blue button" value="삭제" onclick="deleteAction() " />
 				</div>
 				
 				<div class="functionBtn_div" id="btn_2" style="display:none">
-				<input type="button" id="board_add_save" class="tiny ui orange button" value="저장" onclick="contactInsert();"/>
-				<input type="button" id="board_remove_fbtn"	class="tiny ui orange button" value="삭제" onclick="deleteAction() " />
+				<input type="button" id="board_add_save" class="tiny ui blue button" value="저장" onclick="contactInsert();"/>
+				<input type="button" id="board_remove_fbtn"	class="tiny ui blue button" value="삭제" onclick="deleteAction() " />
 				
 				</div>
   

@@ -210,8 +210,7 @@ public class ContactController {
 	@RequestMapping(value = "/contactInsert", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> contactInsert(HttpSession session, ContactVO contactVO) {
 		System.out.println("cont insert entering" + contactVO.toString());
-		
-	
+		 
 		
 		Map<String, Object> rstMap = new HashMap<String, Object>();
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
