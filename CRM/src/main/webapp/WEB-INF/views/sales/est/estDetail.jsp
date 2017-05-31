@@ -66,7 +66,8 @@ $(function() {
 				</c:if>
 				<c:if test="${sales_oppt_id ne null }">
 					<label id="listLabel" class="ui header">■ 영업기회 >
-						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a>
+						<a href="oppt" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a> >
+						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리 상세정보</a>
 						 > 견적 상세정보
 					</label>
 				</c:if>
@@ -217,19 +218,22 @@ $(function() {
 										<td style="width: 27%;" >${list.sales_price}</td>
 										<td style="width: 15%;" >
 											<input type=number style="width: 50%; text-align: center;" readonly="readonly" id="discount" name="discount" min="0" max="100" value="${list.discount}" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">
-											<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled">
-												<option value="0">선택</option>
-												<c:forEach items="${eduList }" var="eduList">
-													<c:choose>
-														<c:when test="${list.discount_unit_cd eq eduList.code }">
-															<option value="${eduList.code}" selected="selected">${eduList.cd_nm}</option>
-														</c:when>
-														<c:otherwise>
-															<option value="${eduList.code}">${eduList.cd_nm}</option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</select>
+											<c:forEach items="${eduList }" var="eduList">
+												<input type=hidden id="unit" name="unit" value="${eduList.code}" disabled="disabled">${eduList.cd_nm}
+											</c:forEach>
+<!-- 											<select id="unit" name="discount_unit_cd" style="width: 25%;" disabled="disabled"> -->
+<!-- 												<option value="0">선택</option> -->
+<%-- 												<c:forEach items="${eduList }" var="eduList"> --%>
+<%-- 													<c:choose> --%>
+<%-- 														<c:when test="${list.discount_unit_cd eq eduList.code }"> --%>
+<%-- 															<option value="${eduList.code}" selected="selected">${eduList.cd_nm}</option> --%>
+<%-- 														</c:when> --%>
+<%-- 														<c:otherwise> --%>
+<%-- 															<option value="${eduList.code}">${eduList.cd_nm}</option> --%>
+<%-- 														</c:otherwise> --%>
+<%-- 													</c:choose> --%>
+<%-- 												</c:forEach> --%>
+<!-- 											</select> -->
 										</td>
 										<td style="width: 15%;" id="sup_price" >${list.sup_price}</td>
 									</tr>

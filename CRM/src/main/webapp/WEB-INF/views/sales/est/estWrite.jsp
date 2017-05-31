@@ -63,10 +63,11 @@ $(function() {
 				</c:if>
 				<c:if test="${sales_oppt_id ne null }">
 					<label id="listLabel" class="ui header">■ 영업기회 >
-						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a>
+						<a href="oppt" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a> >
+						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리 상세정보</a>
 						 > 견적 등록
 					</label>
-				</c:if>
+				</c:if> 
 			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->

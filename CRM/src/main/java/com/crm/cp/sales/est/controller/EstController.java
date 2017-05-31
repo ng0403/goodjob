@@ -235,7 +235,8 @@ public class EstController {
 			,@RequestParam(value="sales_oppt_id",required=false) String oppt_id
 			,@RequestParam(value="estim_id",required=false) String estim_id){
 //		String estim_id = evo.getEstim_id();
-		System.out.println(estim_id);
+//		System.out.println(estim_id);
+//		System.out.println(oppt_id);
 		List<EstVO> prod = estInter.estDetail(estim_id);
 		List<EstVO> elclist = estInter.elcList();
 		

@@ -468,7 +468,7 @@ function estDetail(estim_id){
 //	$("#estim_detail").submit();
 }
 function estDetail2(estim_id, oppt_id){
-	location.href ="/estDetail?estim_id="+estim_id+"sales_oppt_id=" + oppt_id;
+	location.href ="/estDetail?estim_id="+estim_id+"&sales_oppt_id=" + oppt_id;
 }
 
 function startCalendar(ctx){
