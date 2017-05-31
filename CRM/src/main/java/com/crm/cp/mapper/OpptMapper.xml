@@ -872,8 +872,10 @@
 	<!-- 영업기회별 견적 완전 삭제 -->
 	<delete id="opptestDeldelete" parameterType="String">
 	DELETE
-		FROM SALES_OPPORTUNITY_ESTIMATE
-		WHERE SALES_OPPT_ID  = #{sales_oppt_id}
+		FROM ESTIMATE
+		WHERE estim_id = (SELECT estim_id
+						  FROM SALES_OPPORTUNITY_ESTIMATE
+						  WHERE sales_oppt_id = #{sales_oppt_id})
 	</delete>
 	
 	<update id="estimateDelete" parameterType="String">
