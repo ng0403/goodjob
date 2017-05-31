@@ -417,7 +417,7 @@
 		where sales_oppt_id = #{sales_oppt_id}
 	</update>
 	
-	<!-- 영업기회 act_yn을 n으로 했을 떄 영업활동도 Y으로 바꾼다. -->
+	<!-- 영업기회 act_yn을 Y으로 했을 때 (복원 시) 영업활동도 Y으로 바꾼다. -->
 	<update id="opptActDelRollBack" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
 		UPDATE SALES_ACTIVITY
 		SET act_yn='Y'
@@ -426,10 +426,29 @@
 		WHERE sales_oppt_id=#{sales_oppt_id}
 	</update>
 	
-	<!-- 영업기회 act_yn을 n으로 했을 떄 견적도 Y으로 바꾼다. -->
+	<!-- 영업기회 act_yn을 Y으로 했을 때 (복원 시) 견적도 Y으로 바꾼다. -->
 	<update id="opptEstDelRollBack" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
 		UPDATE ESTIMATE
 		SET act_yn='Y'
+		, fin_mdfy_id = #{fin_mdfy_id}
+		, fin_mdfy_dt = sysdate
+		WHERE estim_id = (SELECT estim_id
+						  FROM SALES_OPPORTUNITY_ESTIMATE
+						  WHERE sales_oppt_id = #{sales_oppt_id})
+	</update>
+	<!-- 영업기회 act_yn을 N으로 했을 때 (삭제 시) 영업활동도 N으로 바꾼다. -->
+	<update id="opptActDel" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		UPDATE SALES_ACTIVITY
+		SET act_yn='N'
+		, fin_mdfy_id = #{fin_mdfy_id}
+		, fin_mdfy_dt = sysdate
+		WHERE sales_oppt_id=#{sales_oppt_id}
+	</update>
+	
+	<!-- 영업기회 act_yn을 N으로 했을 때 (삭제 시) 견적도 N으로 바꾼다. -->
+	<update id="opptEstDel" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
+		UPDATE ESTIMATE
+		SET act_yn='N'
 		, fin_mdfy_id = #{fin_mdfy_id}
 		, fin_mdfy_dt = sysdate
 		WHERE estim_id = (SELECT estim_id
@@ -844,6 +863,18 @@
 		FROM SALES_OPPORTUNITY
 		WHERE SALES_OPPT_ID  = #{sales_oppt_id}
 	</delete>
+	<!-- 영업기회별 영업활동 완전 삭제 -->
+	<delete id="opptactDeldelete" parameterType="String">
+	DELETE
+		FROM SALES_ACTIVITY
+		WHERE SALES_OPPT_ID  = #{sales_oppt_id}
+	</delete>
+	<!-- 영업기회별 견적 완전 삭제 -->
+	<delete id="opptestDeldelete" parameterType="String">
+	DELETE
+		FROM SALES_OPPORTUNITY_ESTIMATE
+		WHERE SALES_OPPT_ID  = #{sales_oppt_id}
+	</delete>
 	
 	<update id="estimateDelete" parameterType="String">
 		update estimate
@@ -857,21 +888,21 @@
 		where sales_oppt_id=#{opptId}
 	</update>
 	
-	<!-- 영업기회 act_yn을 n으로 했을 떄 영업활동도 n으로 바꾼다. -->
-	<update id="opptActDel" parameterType="String">
-		UPDATE SALES_ACTIVITY
-		SET act_yn='N'
-		WHERE sales_oppt_id=#{opptId}
-	</update>
+ 	<!-- 영업기회 act_yn을 n으로 했을 때 영업활동도 n으로 바꾼다. --> 
+<!-- 	<update id="opptActDel" parameterType="String"> -->
+<!-- 		UPDATE SALES_ACTIVITY -->
+<!-- 		SET act_yn='N' -->
+<!-- 		WHERE sales_oppt_id=#{opptId} -->
+<!-- 	</update> -->
 	
-	<!-- 영업기회 act_yn을 n으로 했을 떄 견적도 n으로 바꾼다. -->
-	<update id="opptEstDel" parameterType="String">
-		UPDATE ESTIMATE
-		SET act_yn='N'
-		WHERE estim_id = (SELECT estim_id
-						  FROM SALES_OPPORTUNITY_ESTIMATE
-						  WHERE sales_oppt_id = #{opptId})
-	</update>
+ 	<!-- 영업기회 act_yn을 n으로 했을 떄 견적도 n으로 바꾼다. --> 
+<!-- 	<update id="opptEstDel" parameterType="String"> -->
+<!-- 		UPDATE ESTIMATE -->
+<!-- 		SET act_yn='N' -->
+<!-- 		WHERE estim_id = (SELECT estim_id -->
+<!-- 						  FROM SALES_OPPORTUNITY_ESTIMATE -->
+<!-- 						  WHERE sales_oppt_id = #{opptId}) -->
+<!-- 	</update> -->
 	
 	<select id="actDetail" parameterType="String" resultType="com.crm.cp.sales.act.vo.ActVO">
 		SELECT SA.SALES_ACTVY_ID 

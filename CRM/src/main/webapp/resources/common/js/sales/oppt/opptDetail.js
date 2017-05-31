@@ -38,7 +38,7 @@ $(function(){
 	opptprdtAllCheck
 	searchCustcompListPopup(ctx);
 	custcompListPopup(ctx);	//고객 검색 버튼 (사용)
-	estimateAdd(ctx);
+//	estimateAdd(ctx);
 	startCalendar(ctx);
 	opptProdList(ctx);
 	
@@ -503,26 +503,26 @@ function addOperatingA(ctx){
 		}
 	});
 }
-//견적 추가 팝업
-function estimateAdd(ctx){
-	$('#estimateAdd').click(function(){
-		var hsales_lev_cd = $("#hsales_lev_cd").val();
-		var salesId = $('#salesId').val();
-		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
-		if(salesId == "" || salesId == null ){
-			alert("영업기회를 선택해주세요.");
-		}else if(sales_lev_cd == "0001" || sales_lev_cd == "0004"){
-			alert("영업단계가 \"제안\", \"견적\"일 때 견적 추가가 가능합니다.");
-		}else{
-		var list_sales_oppt_id = $('#salesId').val();
-		var list_cust_id = $('#hcust_id').val();//list_sales_oppt_id;
-		var list_cust_nm = $('#hcust_nm').val();
-		var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
-		var pageNum=$('#pageNum').val();
-		window.open(ctx+'/opptEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-			}
-		});
-}
+////견적 추가 팝업 (팝업 오픈시에 이용)
+//function estimateAdd(ctx){
+//	$('#estimateAdd').click(function(){
+//		var hsales_lev_cd = $("#hsales_lev_cd").val();
+//		var salesId = $('#salesId').val();
+//		var sales_lev_cd = $('#'+salesId+' #list_sales_lev_cd').val();
+//		if(salesId == "" || salesId == null ){
+//			alert("영업기회를 선택해주세요.");
+//		}else if(sales_lev_cd == "0001" || sales_lev_cd == "0004"){
+//			alert("영업단계가 \"제안\", \"견적\"일 때 견적 추가가 가능합니다.");
+//		}else{
+//		var list_sales_oppt_id = $('#salesId').val();
+//		var list_cust_id = $('#hcust_id').val();//list_sales_oppt_id;
+//		var list_cust_nm = $('#hcust_nm').val();
+//		var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
+//		var pageNum=$('#pageNum').val();
+//		window.open(ctx+'/opptEstimatepopup?list_sales_oppt_id='+list_sales_oppt_id+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&pageNum='+pageNum+'&flag=0','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//			}
+//		});
+//}
 //영업활동 상세정보 팝업
 function opptActiveDetailPopup(actvyId){
 	var popup;
@@ -531,15 +531,15 @@ function opptActiveDetailPopup(actvyId){
 			,'newwindow','width=500, height=600, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 }
 
-//영업기회별 견적 상세정보 팝업
-function opptEstimDetail(estimId){
-	var ctx = $('#ctx').val();
-	var list_sales_oppt_id = $('#salesId').val();
-	var list_cust_id = $('#hcust_id').val();
-	var list_cust_nm = $('#hcust_nm').val();
-	var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
-	window.open(ctx+'/opptEstimDetail?list_sales_oppt_id='+list_sales_oppt_id+'&estimId='+estimId+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-}
+////영업기회별 견적 상세정보 팝업 (팝업 오픈 시 이용)
+//function (estimId){
+//	var ctx = $('#ctx').val();
+//	var list_sales_oppt_id = $('#salesId').val();
+//	var list_cust_id = $('#hcust_id').val();
+//	var list_cust_nm = $('#hcust_nm').val();
+//	var list_sales_oppt_nm = $('#hsales_oppt_nm').val();
+//	window.open(ctx+'/opptEstimDetail?list_sales_oppt_id='+list_sales_oppt_id+'&estimId='+estimId+'&list_cust_id='+list_cust_id+'&list_cust_nm='+list_cust_nm+'&list_sales_oppt_nm='+list_sales_oppt_nm+'&flag=1','newwindow','width=900, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//}
 //영업활동 삭제
 function opptActiveDelete(){
 	var salesId = $('#salesId').val();
@@ -642,7 +642,7 @@ function estimList(opptId){
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
 						'<td><input type=checkbox name=estim_id value='+data.estim_id+'></td>'+
-						'<td><a style="text-decoration: none;" href=javascript:opptEstimDetail("'+data.estim_id+'");>'+data.estim_nm+'</a></td>'+
+						'<td><a style="text-decoration: none;" href=javascript:estDetail2("'+data.estim_id+'","'+opptId+'");>'+data.estim_nm+'</a></td>'+
 						'<td>'+data.estim_lev_cd+'</td>'+
 						'<td>'+data.estim_qty+'</td>'+
 						'<td>'+comma(data.sales_price)+'</td>'+

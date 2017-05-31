@@ -16,6 +16,7 @@
 
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/sales/est/estList.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/optestimate.js"></script>
 
@@ -99,7 +100,7 @@ $(document).ready(function() {
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
 		<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
-			<button id="estimateAdd" class="tiny ui blue button">견적 추가</button>
+			<button id="estimateAdd" class="tiny ui blue button" onclick="estAddBtn2('${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}');">견적 추가</button>
 			<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		
