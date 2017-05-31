@@ -39,7 +39,6 @@ $(document).ready(function() {
 	var cust_id = $("#nowCust_id").val();
 	var page = $("#ccPageNum").val();
 	
-	custTabValue();
 	chkCancel();
 	keymanList(cust_id);
 	pocList(cust_id);
@@ -61,7 +60,6 @@ $(document).ready(function() {
 	// 키맨 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		
 		custTabValue();
 		
 		if(cust_id == ''){
@@ -78,9 +76,8 @@ $(document).ready(function() {
 	// 영업기회 리스트 가져오기
 	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		
 		custTabValue();
-		
+
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
@@ -95,8 +92,10 @@ $(document).ready(function() {
 	// 영업활동 리스트 가져오기
 	$("#tab3").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		
 		custTabValue();	// tab value 가지고 오기
+		
+		console.log($('#tabValue').val());
+		console.log(cust_id);
 		
 		if(cust_id == '' && cust_id == null){
 			var tbody = $('#actTableTbody');
@@ -109,10 +108,9 @@ $(document).ready(function() {
 		}
 	});
 	
-	//고객사 담당자 리스트 가져오기
+	//영업 담당자 리스트 가져오기
 	$("#tab4").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		console.log(cust_id);
 		custTabValue();
 		
 		if(cust_id == ''){
@@ -125,19 +123,63 @@ $(document).ready(function() {
 			pocList(cust_id);
 		}
 	});
+	
+	custTabCheck(cust_id);
+
 });
 
 /**
- * 영화씨 고객사 탭 값 나오는 거 확인하는 함수.
+ * 고객사 탭 값 나오는 거 확인하는 함수.
  * */
 function custTabValue()
 {
 	var tab = $(':input[name=tab]:radio:checked').val();
-	var htab = $('#tabValue').val();
+	$('#tabValue').val(tab);
+}
+
+/**
+ * 라디오 버튼을 체크해주는 함수.
+ * */
+function custTabCheck(cust_id)
+{
+	var tabCheck = $('#tabValue').val();
 	
-	alert("custcomp_js.js custTabValue " + tab);
-	alert("custcomp_js.js custTabValue " + htab);
-	alert("custcomp_js.js custTabValue " + $('#tabValue').val(tab));
+	console.log(tabCheck);
+	console.log(cust_id);
+	
+	if(tabCheck != null || tabCheck != '')
+	{
+		$('input:radio[name="tab"]:input[value="'+tabCheck+'"]').attr("checked", true);
+		
+		tabCheckAjaxList(cust_id);
+	}
+	else	// tabValue가 null일 경우에 맨 앞쪽 tab을 자동으로 체크되게 끔 해준다.
+	{
+		$('input:radio[name="tab"]:input[value="key"]').attr("checked", true);
+		
+		tabCheckAjaxList(cust_id);
+	}
+}
+
+/**
+ * 체크된 TAB 리스트 다시 그려주기.
+ * */
+function tabCheckAjaxList(cust_id)
+{
+	
+	if($("#tab1").is(":checked")){ 
+		if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
+	} 
+	else if($("#tab2").is(":checked")){ 
+		//if(cust_id != '')	posList(cust_id);	 // 영업 담당자 불러오기
+		if(cust_id != '')	opptTabList(cust_id);   // 영업기회 불러오기
+	} 
+	else if($("#tab3").is(":checked")){		
+		if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
+	} 
+	else if($("#tab4").is(":checked")){
+		if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
+	} 
 }
 
 //고객사 검색 조건 추가
@@ -506,22 +548,8 @@ function ccTabFunc(cust_id, cust_nm) {
 		$("#addBtnDiv").css("display", "none");
 		$("#mdfBtnDiv").css("display", "none");
 		
-		if($("#tab1").is(":checked")){ 
-			if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
-		} 
-		else if($("#tab2").is(":checked")){ 
-			//if(cust_id != '')	posList(cust_id);	 // 영업 담당자 불러오기
-			if(cust_id != '')	opptTabList(cust_id);   // 영업기회 불러오기
-		} 
-		else if($("#tab3").is(":checked")){		
-			if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
-		} 
-		else if($("#tab4").is(":checked")){
-			if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
-		} 
-		else if($("#tab5").is(":checked")){
-			//if(cust_id != '')	estList(cust_id);    // 견적 불러오기
-		} 
+		// TTTTTTTT
+		tabCheckAjaxList(cust_id);
 	});
 }
 
@@ -765,6 +793,10 @@ function actList(cust_id) {
 		var ctx = $("#ctx").val();
 		var tbody = $('#actTableTbody');
 		var tbodyContent = "";
+		var tabValue = $("#tabValue").val();
+		
+		console.log(tabValue);
+		
 		$.ajax({
 			url : ctx+'/ccActList',
 			type : 'POST',
@@ -783,7 +815,7 @@ function actList(cust_id) {
 							+ "<td rowspan='2' style='width:24px;'>" 
 							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
-							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"')>"+data[i].sales_actvy_nm+"</a></td>"
+							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"','"+tabValue+"')>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
 							+ "<td style='width:74px;'>"+data[i].strt_t+"</td>"
 							+ "<td rowspan='2' style='width:106px;'>"+data[i].sales_actvy_type_nm+"</td>"

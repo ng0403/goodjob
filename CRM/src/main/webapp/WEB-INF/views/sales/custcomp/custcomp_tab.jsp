@@ -36,11 +36,12 @@
 	<input type="hidden" id="sales_oppt_nm" value="" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
-	<input type="hidden" id="tabValue" value="">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 
 	<c:if test="${flg == 1 }">
 	<div id="css_tabs" style="float: left; padding-top: 30px; ">
 		<!-- 라디오 버튼 -->
+		<!-- value를 지정해줘야 합니다. -->
 		<input id="tab1" type="radio" name="tab" value="key" checked="checked" />
 		<input id="tab2" type="radio" name="tab" value="oppt" />
 		<input id="tab3" type="radio" name="tab" value="act" />
@@ -128,7 +129,7 @@
 		<!-- 영업활동 리스트 -->
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="actCust_nm" class="tiny ui blue button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');" />
+				<input type="button" id="actCust_nm" class="tiny ui blue button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}', tabValue.value);" />
 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" />
 			</div>
 			

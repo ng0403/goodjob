@@ -99,6 +99,7 @@ function actAddCancelBt(act_flg, cust_id, sales_oppt_id)
 		var ctx = $("#ctx").val();
 		var hsales_oppt_id = $('#hsales_oppt_id').val();
 		var hcust_id = $('#hcust_id').val();
+		var tabValue = $("#tabValue").val();
 	
 		if(ynChk == true)
 		{
@@ -118,11 +119,11 @@ function actAddCancelBt(act_flg, cust_id, sales_oppt_id)
 			else if(act_flg == 'cust')
 			{
 				console.log(cust_id);
-				location.href = 'custcompDetail?cust_id=' + hcust_id;
+				location.href = 'custcompDetail?cust_id=' + hcust_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'cust_ed')
 			{
-				location.href = 'custcompDetail?cust_id=' + cust_id;
+				location.href = 'custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 			else
 			{
@@ -143,6 +144,7 @@ function actMdfyCancelBt(act_flg, cust_id, sales_oppt_id)
 		var salesId = $("#sales_actvy_id").val();
 		var hsales_oppt_id = $('#hsales_oppt_id').val();
 		var hcust_id = $('#hcust_id').val();
+		var tabValue = $('#tabValue').val();
 		
 		if(ynChk)
 		{
@@ -152,19 +154,19 @@ function actMdfyCancelBt(act_flg, cust_id, sales_oppt_id)
 			}
 			else if(act_flg == 'oppt')
 			{
-				location.href = 'opptDetail?opptId=' + hsales_oppt_id;
+				location.href = 'opptDetail?opptId=' + hsales_oppt_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'oppt_ed')
 			{
-				location.href = 'opptDetail?opptId=' + sales_oppt_id;
+				location.href = 'opptDetail?opptId=' + sales_oppt_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'cust')
 			{
-				location.href = 'custcompDetail?cust_id=' + hcust_id;
+				location.href = 'custcompDetail?cust_id=' + hcust_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'cust_ed')
 			{
-				location.href = 'custcompDetail?cust_id=' + cust_id;
+				location.href = 'custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 			else
 			{
@@ -306,7 +308,7 @@ function endCalendar(ctx){
 }
 
 //영업활동명을 클릭했을 때 상세정보
-function actDetail(sales_actvy_id, act_flg) 
+function actDetail(sales_actvy_id, act_flg, tabValue) 
 {
 	var ctx = $("#ctx").val();
 	var at_select = $("#sales_actvy_type_nm");
@@ -324,7 +326,7 @@ function actDetail(sales_actvy_id, act_flg)
 	location.href = ctx + '/actDetail?sales_actvy_id=' + sales_actvy_id + 
 									'&sales_oppt_id=' + sales_oppt_id + "&sales_oppt_nm=" + sales_oppt_nm + 	// 영업기회
 									'&cust_id=' + cust_id + "&cust_id=" + cust_id +								// 고객사
-									"&act_flg="+act_flg;														// flg
+									"&act_flg="+act_flg + "&tabValue=" + tabValue;														// flg
 }
 
 //페이지 입력 이동
@@ -648,7 +650,6 @@ function actInsert(ctx, act_flg)
 			alert("영업활동내용을 입력해 주세요");
 			return false;
 		}
-		
 		var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 		var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
 		
@@ -665,7 +666,8 @@ function actInsert(ctx, act_flg)
 		var sales_oppt_nm = $('#hsales_oppt_nm').val();
 		var cust_id = $('#hcust_id').val();
 		var cust_nm = $('#hcust_nm').val();
-		
+		var tabValue = $('#tabValue').val();
+
 		$.ajax({
 			type : 'POST',
 			url : '/actInsert',
@@ -706,7 +708,7 @@ function actInsert(ctx, act_flg)
 					}
 					else if(act_flg == 'cust')
 					{
-						location.href = '/custcompDetail?cust_id=' + cust_id;
+						location.href = '/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 					}
 					else
 					{
@@ -742,7 +744,7 @@ function actModify(ctx, act_flg)
 	var hsales_oppt_nm = $('#hsales_oppt_nm').val();
 	var hcust_id = $('#cust_id').val();
 	var hcust_nm = $('#cust_nm').val();
-	
+	var tabValue = $('#tabValue').val();
 	var strt_t = $('#strt_t_h').val()+":"+$('#strt_t_m').val();
 	var end_t = $('#end_t_h').val()+":"+$('#end_t_m').val();
 	
@@ -787,7 +789,7 @@ function actModify(ctx, act_flg)
 				}
 				else if(act_flg == 'cust_ed')
 				{
-					location.href = '/custcompDetail?cust_id=' + hcust_id;
+					location.href = '/custcompDetail?cust_id=' + hcust_id + '&tabValue=' + tabValue;
 				}
 				else
 				{

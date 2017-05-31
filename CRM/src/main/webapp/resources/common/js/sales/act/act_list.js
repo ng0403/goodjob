@@ -389,7 +389,7 @@ function actInsertForm(act_flg) {
 /**
  * 영업기회, 고객사 - 영업활동 탭에서 넘어 올 경우.
  * */
-function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm)
+function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm, tabValue)
 {
 	var ctx = $("#ctx").val();
 	
@@ -399,19 +399,19 @@ function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm)
 	
 	if(act_flg == "oppt")			// 영업기회 - 영업활동 탭에서 추가버튼 눌렀을 시
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&date=" + day + "&hour=" + hour + "&min=" + min;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&date=" + day + "&hour=" + hour + "&min=" + min + "&tabValue=" + tabValue;
 	}
 	else if(act_flg == "oppt_ed")	// 영업기회 - 영업활동 탭 리스트에서 영업활동을 클릭 했을 때
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&sales_oppt_id=" + oppt_id + "&sales_oppt_nm=" + oppt_nm + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&tabValue=" + tabValue;
 	}
 	else if(act_flg == "cust")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&date=" + day + "&hour=" + hour + "&min=" + min;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&date=" + day + "&hour=" + hour + "&min=" + min + "&tabValue=" + tabValue;
 	}
 	else if(act_flg == "cust_ed")
 	{
-		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
+		location.href = ctx + '/actDetail?act_flg=' + act_flg + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&tabValue=" + tabValue;
 	}
 }
 

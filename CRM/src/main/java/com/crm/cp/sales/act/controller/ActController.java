@@ -177,14 +177,14 @@ public class ActController {
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView actDetail(String sales_actvy_id, String act_flg, 
 								  String sales_oppt_id, String sales_oppt_nm, String otab_check,
-								  String cust_id, String cust_nm, String ctab_check, 
+								  String cust_id, String cust_nm, String tabValue, 
 								  String date, String hour, String min)
 	{
 		int flg;
 		
 		System.out.println("Detail : " + sales_actvy_id);
 		System.out.println("act_flg : " + act_flg);
-		System.err.println("ctab_check : " + ctab_check);
+		System.err.println("tabValue : " + tabValue);
 		
 		String[] htime = {"01", "02", "03", "04", "05", "06",
 				 "07", "08", "09", "10", "11", "12",
@@ -217,6 +217,7 @@ public class ActController {
 			mov.addObject("cust_id", cust_id);
 			mov.addObject("cust_nm", cust_nm);
 			mov.addObject("act_flg", act_flg);
+			mov.addObject("tabValue", tabValue);
 			mov.addObject("flg", flg);
 			
 			return mov;
@@ -247,6 +248,7 @@ public class ActController {
 			mov.addObject("date", date);
 			mov.addObject("hour", hour);
 			mov.addObject("min", min);
+			mov.addObject("tabValue", tabValue);
 			mov.addObject("flg", flg);
 			
 			return mov;

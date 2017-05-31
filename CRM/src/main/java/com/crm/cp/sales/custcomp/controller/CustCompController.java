@@ -173,9 +173,10 @@ public class CustCompController {
 	//고객사 상세정보
 	@RequestMapping(value="/custcompDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView cutomerDetail(HttpSession session, @RequestParam Map<String, String> map
-										, String cust_id) {
+										, String cust_id, String tabValue) {
 		
 		System.out.println("cust_id : " + cust_id);
+		System.out.println("tabValue : " + tabValue);
 		
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
@@ -200,6 +201,7 @@ public class CustCompController {
 			mov.addObject("CCSCodeList", CCSCodeList);
 			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("flg", flg);
+			mov.addObject("tabValue", tabValue);
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);
 			
@@ -226,7 +228,8 @@ public class CustCompController {
 			mov.addObject("CCSCodeList", CCSCodeList);
 			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("flg", flg);
-				
+			mov.addObject("tabValue", tabValue);
+			
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);
 			return mov;
