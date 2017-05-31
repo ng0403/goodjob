@@ -176,14 +176,15 @@ public class ActController {
 	// 영업활동 상세정보
 	@RequestMapping(value="actDetail", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView actDetail(String sales_actvy_id, String act_flg, 
-								  String sales_oppt_id, String sales_oppt_nm, 
-								  String cust_id, String cust_nm, 
+								  String sales_oppt_id, String sales_oppt_nm, String otab_check,
+								  String cust_id, String cust_nm, String ctab_check, 
 								  String date, String hour, String min)
 	{
 		int flg;
 		
 		System.out.println("Detail : " + sales_actvy_id);
 		System.out.println("act_flg : " + act_flg);
+		System.err.println("ctab_check : " + ctab_check);
 		
 		String[] htime = {"01", "02", "03", "04", "05", "06",
 				 "07", "08", "09", "10", "11", "12",

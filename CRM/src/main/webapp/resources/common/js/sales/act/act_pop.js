@@ -18,11 +18,11 @@ function actOpptListPopup(ctx)
 		var inputCust = $('#inputCust').val();
 		
 		// 화면마다 영업기회 popup 클릭 이벤트 값 변경
-		if(act_flg == 'oppt' || act_flg == 'oppt_ed' || act_flg == 'cust' || act_flg == 'cust_ed')
+		if(act_flg == 'oppt' || act_flg == 'oppt_ed' || act_flg == 'cust' || act_flg == 'cust_ed' || flg == 1)
 		{
 			inputCust = 'true';
 		}
-		
+	
 		if(inputCust == 'true')
 		{
 			var cust_id = $('#cust_id').val();

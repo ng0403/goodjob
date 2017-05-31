@@ -6,6 +6,7 @@ $(function(){
 	endCalendar(ctx);
 	actAddBtn();
 	actMdfyBtn();
+	custTabValue();
 });
 
 //추가버튼 클릭했을 때
@@ -55,6 +56,7 @@ function actMdfyBtn(){
 		$("#memo").css("background-color", "white");
 		
 		$('#sales_actvy_nm').attr("readonly", false);
+		$('#act_opp_nm').attr("disabled", false);
 		$("#act_tab_tbody input").attr("disabled", false);
 		$("#sales_actvy_type_cd").attr("disabled", false);
 		$("#actdiv_1").attr("disabled", false);
@@ -890,6 +892,17 @@ function searchActDiv(){
 	}else{
 		$('#sact_oppt_nm').attr("disabled",false);
 	}
+}
+
+
+/**
+ * 영화씨 고객사 탭 값 나오는 거 확인하는 함수.
+ * */
+function custTabValue()
+{
+	var tab = $(':input[name=tab]:radio:checked').val();
+	
+	alert("custTabValue " + tab);
 }
 
 // 수정 버튼 눌렀을 시 ajax부분 (기존)

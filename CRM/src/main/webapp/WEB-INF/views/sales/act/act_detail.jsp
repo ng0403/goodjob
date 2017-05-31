@@ -31,6 +31,7 @@
 </head>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="act_flg" value="${act_flg}">
 	<input type="hidden" id="hsales_oppt_id" value="${sales_oppt_id}">
 	<input type="hidden" id="hsales_oppt_nm" value="${sales_oppt_nm}">
@@ -160,7 +161,7 @@
 									<c:if test="${act_flg eq 'oppt'}">	<!-- 영업기회 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" style="display: none;" disabled="disabled">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 								    <c:if test="${act_flg eq 'oppt_ed'}">	<!-- 영업기회 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
@@ -170,7 +171,7 @@
 									<c:if test="${act_flg eq 'cust'}">	<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
 								    	<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" class="inputText" readonly="readonly" style="background-color: white;">
-								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" style="display: none;" disabled="disabled">
+								  	  	<input type="button" name="customer" value="고객" class="tiny ui blue basic button" id="customer" disabled="disabled">
 									</c:if>
 									<c:if test="${act_flg eq 'cust_ed'}">	<!-- 고객사 -->
 										<input type="hidden" id="cust_id" name="cust_id" value="${cust_id}">
@@ -212,7 +213,7 @@
 									<c:if test="${act_flg eq 'cust_ed'}">	<!-- 고객사 -->
 										<input type="hidden" id="sales_oppt_id" name="sales_oppt_id" value="${actDetail.sales_oppt_id}">
 							   	 		<input type="text" name="sales_oppt_nm" id="sales_oppt_nm" value="${actDetail.sales_oppt_nm}" class="inputText" readonly="readonly"> 
-							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm">
+							    		<input type="button" name="act_opp" value="영업기회" class="tiny ui blue basic button" id="act_opp_nm" disabled="disabled">
 									</c:if>
 								</c:if>
 								<c:if test="${flg eq '0'}">
