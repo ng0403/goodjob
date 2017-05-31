@@ -13,7 +13,6 @@ public class OrganizationVO {
 	String zip_cd;
 	String zip_cd_sri_num;
 	String addr_detail;
-	String org_addr_dtl;
 	String ph1;
 	String ph2;
 	String ph3;
@@ -36,19 +35,24 @@ public class OrganizationVO {
 	String email1;
 	String email2;
 	
+	String org_addr;
+	String org_addr_dtl;
+	String org_addr_info;
+	
 	public OrganizationVO() {
 		super();
 	}
 
 	public OrganizationVO(String org_id, String org_type_id,
 			String org_type_nm, String org_nm, String zip_cd,
-			String zip_cd_sri_num, String addr_detail, String org_addr_dtl,
+			String zip_cd_sri_num, String addr_detail, 
 			String ph1, String ph2, String ph3, String fax_ph1, String fax_ph2,
 			String fax_ph3, String up_org_id, String rep_emp_id,
 			String rep_emp_nm, String org_lev_cd, String fst_reg_id,
 			Date fst_reg_dt, String fin_mdfy_id, Date fin_mdfy_dt,
 			String act_yn, String cd_nm, String id_nm, String iuser_nm,
-			String iuser_id, String email1, String email2) {
+			String iuser_id, String email1, String email2,
+			String org_addr, String org_addr_dtl, String org_addr_info) {
 		super();
 		this.org_id = org_id;
 		this.org_type_id = org_type_id;
@@ -57,7 +61,6 @@ public class OrganizationVO {
 		this.zip_cd = zip_cd;
 		this.zip_cd_sri_num = zip_cd_sri_num;
 		this.addr_detail = addr_detail;
-		this.org_addr_dtl = org_addr_dtl;
 		this.ph1 = ph1;
 		this.ph2 = ph2;
 		this.ph3 = ph3;
@@ -79,9 +82,28 @@ public class OrganizationVO {
 		this.iuser_id = iuser_id;
 		this.email1 = email1;
 		this.email2 = email2;
+		this.org_addr = org_addr;
+		this.org_addr_dtl = org_addr_dtl;
+		this.org_addr_info = org_addr_info;
 	}
 
+	
 
+	public String getOrg_addr() {
+		return org_addr;
+	}
+
+	public void setOrg_addr(String org_addr) {
+		this.org_addr = org_addr;
+	}
+
+	public String getOrg_addr_info() {
+		return org_addr_info;
+	}
+
+	public void setOrg_addr_info(String org_addr_info) {
+		this.org_addr_info = org_addr_info;
+	}
 
 	public String getOrg_id() {
 		return org_id;

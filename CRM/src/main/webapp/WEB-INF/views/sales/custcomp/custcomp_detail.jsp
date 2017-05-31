@@ -211,7 +211,7 @@
 									<input type="text"   name="cust_zip_cd"    	  id="cust_zip_cd" 		 class="postcodify postcodify_postcode5"    	  value="${custcompDetail.cust_zip_cd}" maxlength="5" style="background: #fff; width: 65px; text-align: center;" />
 									
 									<!-- 주소검색 버튼                                팝업을 위해 ID값 추가 -->
-									<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui button" 	  value="검색"  style="margin-left: 5px;" /><!--  onclick="orgTreeAddr_pop();" -->
+									<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui blue basic button" 	  value="검색"  style="margin-left: 5px;" /><!--  onclick="orgTreeAddr_pop();" -->
 										&nbsp;
 									
 									<!-- 기본 도로명주소/ 상세주소 / 참고용 주소 : 예) 서울특별시 관악구 조원중앙로 7 / 코어빌딩3F / (조원동) -->
@@ -223,6 +223,7 @@
 									<input type="text" name="cust_dtl_addr"  id="cust_dtl_addr"  class="postcodify postcodify_details"    value="${custcompDetail.cust_dtl_addr}"  style="background: #fff; width: 230px; margin-left: 5px;margin-right: 5px" />
 									<!-- 참고용 주소 -->										 <!-- 참고용주소에 추가할 clss명 -->
 									<input type="text" name="cust_info_addr" id="cust_info_addr" class="postcodify postcodify_extra_info" value="${custcompDetail.cust_info_addr}" style="background: #fff; width: 100px; " />
+								
 								</c:if> 
 								
 								<c:if test="${flg == 1 }">

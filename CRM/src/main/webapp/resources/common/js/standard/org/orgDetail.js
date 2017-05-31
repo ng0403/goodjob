@@ -167,9 +167,11 @@ function orgDetailButtonEvent(ctx){
 					obj.fax_no1 = $('#fax_no1').val();
 					obj.fax_no2 = $('#fax_no2').val();
 					obj.fax_no3 = $('#fax_no3').val();
-					obj.zip_cd = $('#post1').val()+$('#post2').val();
+					obj.zip_cd = $('#post1').val();
+					obj.org_addr = $('#org_addr').val();
+					obj.org_addr_dtl = $('#org_addr_dtl').val();
+					obj.org_addr_info = $('#org_addr_info').val();
 					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
-					obj.org_addr_dtl = $('#addr_detail').val();
 					
 					if($('#active_flg_Y').is(':checked'))
 					{
@@ -197,9 +199,12 @@ function orgDetailButtonEvent(ctx){
 					obj.fax_no1 = $('#fax_no1').val();
 					obj.fax_no2 = $('#fax_no2').val();
 					obj.fax_no3 = $('#fax_no3').val();
-					obj.zip_cd = $('#post1').val()+$('#post2').val();
+					obj.zip_cd = $('#post1').val();
+					obj.zip_cd = $('#post1').val();
+					obj.org_addr = $('#org_addr').val();
+					obj.org_addr_dtl = $('#org_addr_dtl').val();
+					obj.org_addr_info = $('#org_addr_info').val();
 					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
-					obj.org_addr_dtl = $('#addr_detail').val();
 					
 					if($('#active_flg_Y').is(':checked'))
 					{
@@ -342,9 +347,11 @@ function orgDetailButtonEvent(ctx){
 					obj.fax_no1 = $('#fax_no1').val();
 					obj.fax_no2 = $('#fax_no2').val();
 					obj.fax_no3 = $('#fax_no3').val();
-					obj.zip_cd = $('#post1').val()+$('#post2').val();
+					obj.zip_cd = $('#post1').val();
+					obj.org_addr = $('#org_addr').val();
+					obj.org_addr_dtl = $('#org_addr_dtl').val();
+					obj.org_addr_info = $('#org_addr_info').val();
 					obj.zip_cd_sri_num = $('#zip_cd_sri_num').val();
-					obj.org_addr_dtl = $('#addr_detail').val();
 					
 					if($('#active_flg_Y').is(':checked'))
 					{
@@ -403,7 +410,8 @@ function orgDetailButtonEvent(ctx){
 			}else{
 				$('#orgInsertForm').find('input[type="text"]').prop('disabled',false);
 				$('#oorg').show();
-				$('#orgaddr').show();
+//				$('#orgaddr').show();
+				$('#postcodify_search').show();
 				$('#org_id').prop('disabled',true);
 				$('#p_org_id').prop('disabled',true);
 				$('#org_type_id').prop('disabled',true);

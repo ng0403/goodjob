@@ -116,6 +116,7 @@ function orgAnckEvent(ctx)
 			        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			        dataType:'json',
 			        success: function(result){
+			        	console.log(result);
 			        	$('#org_id').val(result.org_id);
 			        	$('#org_name').val(result.org_nm);
 			        	$('#org_name').val(result.org_nm);
@@ -129,13 +130,11 @@ function orgAnckEvent(ctx)
 			        	$('#fax_no1').val(result.fax_ph1);
 				        $('#fax_no2').val(result.fax_ph2);
 				        $('#fax_no3').val(result.fax_ph3);
-				        if(result.zip_cd != ""){
-				        	$('#post1').val(result.zip_cd.substring(0,3));
-				        	$('#post2').val(result.zip_cd.substring(3,6));
-			        	}
-				        $('#addr').val(result.addr_detail);
+				        $('#post1').val(result.zip_cd);
+				        $('#org_addr').val(result.zip_cd);
+				        $('#org_addr_dtl').val(result.org_addr_dtl);
+				        $('#org_addr_info').val(result.org_addr_info);
 				        $('#zip_cd_sri_num').val(result.zip_cd_sri_num);
-			        	$('#addr_detail').val(result.org_addr_dtl);
 			        	if(result.act_yn == 'Y'){
 			        		$('#active_flg_Y').prop('checked',true);
 			        	}else{
@@ -176,6 +175,7 @@ function orgAnckEvent(ctx)
 			        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			        dataType:'json',
 			        success: function(result){
+			        	console.log(result);
 			        	$('#org_id').val(result.org_id);
 			        	$('#org_name').val(result.org_nm);
 			        	$('#org_name').val(result.org_nm);
@@ -189,13 +189,10 @@ function orgAnckEvent(ctx)
 			        	$('#fax_no1').val(result.fax_ph1);
 				        $('#fax_no2').val(result.fax_ph2);
 				        $('#fax_no3').val(result.fax_ph3);
-				        if(result.zip_cd != ""){
-				        	$('#post1').val(result.zip_cd.substring(0,3));
-				        	$('#post2').val(result.zip_cd.substring(3,6));
-			        	}
-				        $('#addr').val(result.addr_detail);
-				        $('#zip_cd_sri_num').val(result.zip_cd_sri_num);
-			        	$('#addr_detail').val(result.org_addr_dtl);
+				        $('#post1').val(result.zip_cd);
+				        $('#org_addr').val(result.zip_cd);
+				        $('#org_addr_dtl').val(result.org_addr_dtl);
+				        $('#org_addr_info').val(result.org_addr_info);
 			        	if(result.act_yn == 'Y'){
 			        		$('#active_flg_Y').prop('checked',true);
 			        	}else{
@@ -236,6 +233,7 @@ function orgAnckEvent(ctx)
 			        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 			        dataType:'json',
 			        success: function(result){
+			        	console.log(result);
 			        	$('#org_id').val(result.org_id);
 			        	$('#org_name').val(result.org_nm);
 			        	$('#org_name').val(result.org_nm);
@@ -249,13 +247,10 @@ function orgAnckEvent(ctx)
 			        	$('#fax_no1').val(result.fax_ph1);
 				        $('#fax_no2').val(result.fax_ph2);
 				        $('#fax_no3').val(result.fax_ph3);
-				        if(result.zip_cd != ""){
-				        	$('#post1').val(result.zip_cd.substring(0,3));
-				        	$('#post2').val(result.zip_cd.substring(3,6));
-			        	}
-				        $('#addr').val(result.addr_detail);
-				        $('#zip_cd_sri_num').val(result.zip_cd_sri_num);
-			        	$('#addr_detail').val(result.org_addr_dtl);
+				        $('#post1').val(result.zip_cd);
+				        $('#org_addr').val(result.zip_cd);
+				        $('#org_addr_dtl').val(result.org_addr_dtl);
+				        $('#org_addr_info').val(result.org_addr_info);
 			        	if(result.act_yn == 'Y'){
 			        		$('#active_flg_Y').prop('checked',true);
 			        	}else{
@@ -363,7 +358,8 @@ function orgButtonEvent(ctx)
 							$('.orgDetail').show();
 							$('.orgtypeDetail').hide();
 							$('#oorg').show();
-							$('#orgaddr').show();
+//							$('#orgaddr').show();
+							$('#postcodify_search').show();
 							$('#orgSubmitBtn').show();
 							$('#orgUpdateBtn').hide();
 							$('#orgResetBtn').show();
@@ -479,7 +475,8 @@ function orgButtonEvent(ctx)
 									$('.orgDetail').show();
 									$('.orgtypeDetail').hide();
 									$('#oorg').show();
-									$('#orgaddr').show();
+//									$('#orgaddr').show();
+									$('#postcodify_search').show();
 									$('#orgSubmitBtn').show();
 									$('#orgUpdateBtn').hide();
 									$('#orgResetBtn').show();
@@ -570,7 +567,8 @@ function orgButtonEvent(ctx)
 									$('.orgDetail').show();
 									$('.orgtypeDetail').hide();
 									$('#oorg').show();
-									$('#orgaddr').show();
+//									$('#orgaddr').show();
+									$('#postcodify_search').show();
 									$('#orgSubmitBtn').show();
 									$('#orgUpdateBtn').hide();
 									$('#orgResetBtn').show();
@@ -661,7 +659,8 @@ function orgButtonEvent(ctx)
 									$('.orgDetail').show();
 									$('.orgtypeDetail').hide();
 									$('#oorg').show();
-									$('#orgaddr').show();
+//									$('#orgaddr').show();
+									$('#postcodify_search').show();
 									$('#orgSubmitBtn').show();
 									$('#orgUpdateBtn').hide();
 									$('#orgResetBtn').show();

@@ -82,11 +82,18 @@
 	</select>
 	
 	<select id="orgDetailOne" parameterType="map" resultType="com.crm.cp.standard.org.vo.OrganizationVO">
-		SELECT a.*, b.ADDR_DTL_CONT as ADDR_DETAIL, b.ZIP_CD_SRI_NUM
-		FROM ORGANIZATION a, PARCEL_ADDRESS b
+		
+		SELECT 
+		  	*
+		FROM ORGANIZATION 
 		WHERE ORG_ID = #{org_id}
-		AND a.ZIP_CD = b.ZIP_CD
-		AND a.ZIP_CD_SRI_NUM = b.ZIP_CD_SRI_NUM
+		
+<!-- 		SELECT a.*, b.ADDR_DTL_CONT as ADDR_DETAIL, b.ZIP_CD_SRI_NUM -->
+<!-- 		FROM ORGANIZATION a, PARCEL_ADDRESS b -->
+<!-- 		WHERE ORG_ID = #{org_id} -->
+<!-- 		AND a.ZIP_CD = b.ZIP_CD -->
+<!-- 		AND a.ZIP_CD_SRI_NUM = b.ZIP_CD_SRI_NUM -->
+		
 	</select>
 	
 	<select id="orgOlist" resultType="com.crm.cp.standard.org.vo.OrganizationVO">
@@ -151,7 +158,9 @@
 			ORG_LEV_CD,
 			ZIP_CD,
 			ZIP_CD_SRI_NUM,
+			ORG_ADDR,
 			ORG_ADDR_DTL,
+			ORG_ADDR_INFO,
 			PH1,
 			PH2,
 			PH3,
@@ -177,7 +186,9 @@
 			#{org_lev_cd},
 			#{zip_cd},
 			#{zip_cd_sri_num},
+			#{org_addr},
 			#{org_addr_dtl},
+			#{org_addr_info},
 			#{ph1},
 			#{ph2},
 			#{ph3},
@@ -200,7 +211,9 @@
 			ORG_LEV_CD,
 			ZIP_CD,
 			ZIP_CD_SRI_NUM,
+			ORG_ADDR,
 			ORG_ADDR_DTL,
+			ORG_ADDR_INFO,
 			PH1,
 			PH2,
 			PH3,
@@ -225,7 +238,9 @@
 			#{org_lev_cd},
 			#{zip_cd},
 			#{zip_cd_sri_num},
-			#{org_addr_dtl},
+			#{org_addr			, jdbcType=VARCHAR},
+			#{org_addr_dtl		, jdbcType=VARCHAR},
+			#{org_addr_info 	, jdbcType=VARCHAR},
 			#{ph1},
 			#{ph2},
 			#{ph3},
@@ -265,7 +280,9 @@
 			FAX_PH3 = #{fax_ph3},
 			ZIP_CD = #{zip_cd},
 			ZIP_CD_SRI_NUM = #{zip_cd_sri_num},
+			ORG_ADDR = #{org_addr},
 			ORG_ADDR_DTL = #{org_addr_dtl},
+			ORG_ADDR_INFO = #{org_addr_info},
 			ACT_YN = #{act_yn},
 			FIN_MDFY_ID = #{fin_mdfy_id},			
 			FIN_MDFY_DT = sysdate

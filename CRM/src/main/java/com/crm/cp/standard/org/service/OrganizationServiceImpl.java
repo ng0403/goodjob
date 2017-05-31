@@ -62,7 +62,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		dto.setFin_mdfy_id(session.getAttribute("user").toString());
 		Map<String,Object> result = new HashMap<String,Object>();
 		
-		System.out.println("insertOrg - dtoList : " + dto);
+		System.out.println("insertOrg - dtoList : " + data);
 		System.out.println("insertOrg - dto : " + dto.getFst_reg_id());
 		System.out.println("insertOrg - data : " + data.get("org_flag"));
 		
@@ -104,9 +104,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 				dto.setFax_ph1(data.get("fax_no1"));
 				dto.setFax_ph2(data.get("fax_no2"));
 				dto.setFax_ph3(data.get("fax_no3"));
-				dto.setZip_cd(data.get("zip_cd"));
 				dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
+				dto.setZip_cd(data.get("zip_cd"));
+				dto.setOrg_addr(data.get("org_addr"));
 				dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
+				dto.setOrg_addr_info(data.get("org_addr_info"));
 				dto.setAct_yn(data.get("act_yn"));
 			}
 			else
@@ -122,10 +124,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 				dto.setFax_ph1(data.get("fax_no1"));
 				dto.setFax_ph2(data.get("fax_no2"));
 				dto.setFax_ph3(data.get("fax_no3"));
-				dto.setZip_cd(data.get("zip_cd"));
 				dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
+				dto.setZip_cd(data.get("zip_cd"));
+				dto.setOrg_addr(data.get("org_addr"));
 				dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
+				dto.setOrg_addr_info(data.get("org_addr_info"));
 				dto.setAct_yn(data.get("act_yn"));
+
 			}
 			
 			
@@ -198,10 +203,13 @@ public class OrganizationServiceImpl implements OrganizationService {
 			dto.setFax_ph1(data.get("fax_no1"));
 			dto.setFax_ph2(data.get("fax_no2"));
 			dto.setFax_ph3(data.get("fax_no3"));
-			dto.setZip_cd(data.get("zip_cd"));
 			dto.setZip_cd_sri_num(data.get("zip_cd_sri_num"));
+			dto.setZip_cd(data.get("zip_cd"));
+			dto.setOrg_addr(data.get("org_addr"));
 			dto.setOrg_addr_dtl(data.get("org_addr_dtl"));
+			dto.setOrg_addr_info(data.get("org_addr_info"));
 			dto.setAct_yn(data.get("act_yn"));
+
 			result = dao.update("organization.update", dto);
 		}
 		return result;

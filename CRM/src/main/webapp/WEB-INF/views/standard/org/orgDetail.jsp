@@ -11,13 +11,24 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgTree.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<%-- <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> --%>
 
+<!-- 주소 API를 위한 부분 추가 시작 -->
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/search.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/popup.min.js"></script>
+<script> 
+	$(function() { 
+		//주소 검색버튼 ID값 
+		$("#postcodify_search").postcodifyPopUp(); 
+	}); 
+</script>
+<!-- 주소 API를 위한 부분 추가 끝 -->
 <script>
    $(function() {
       $('table').tablesort();
@@ -89,13 +100,26 @@
 						<tr class="orgDetail">						
 							<th><span style="color: red;">*주소</span></th>
 							<td colspan="3">
-								<input type="text" name="zip_no1" id="post1" class="int_zip" disabled="disabled"/>
-							&nbsp;-&nbsp;							
-								<input type="text" name="zip_no2" id="post2" class="int_zip" disabled="disabled" /></input>	
 								<input type="hidden" id="zip_cd_sri_num" name="zip_cd_sri_num" disabled="disabled"/>	
-								<input type="button" class="tiny ui blue basic button" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/>
-								<input type="text" name="addr_detail1" id="addr" class="int_zipadd1" disabled="disabled"/>
-								<input type="text" name="addr_detail2" id="addr_detail" class="int_zipadd2" disabled="disabled"/>
+<!-- 								<input type="text" name="zip_no1" id="post1" class="int_zip" disabled="disabled"/> -->
+<!-- 							&nbsp;-&nbsp;							 -->
+<!-- 								<input type="text" name="zip_no2" id="post2" class="int_zip" disabled="disabled" /></input>	 -->
+<!-- 								<input type="button" class="tiny ui blue basic button" value="검색" id="orgaddr" onclick="orgTreeAddr_pop();"/> -->
+<!-- 								<input type="text" name="addr_detail1" id="addr" class="int_zipadd1" disabled="disabled"/> -->
+<!-- 								<input type="text" name="addr_detail2" id="addr_detail" class="int_zipadd2" disabled="disabled"/> -->
+							
+							
+								<!-- 우편번호 												 css를위한부분 필요한class명추가    -->
+								<input type="text"   name="zip_no1"    	  id="post1" 		 class="postcodify postcodify_postcode5" maxlength="5" style="width: 65px; text-align: center;" disabled="disabled"/>
+								<!-- 주소검색 버튼                                팝업을 위해 ID값 추가 -->
+								<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui blue basic button" value="검색"  style="margin-left: 5px;" />
+									&nbsp;
+								<!-- 기본 도로명 주소 -->									 <!-- 기본주소에 추가할 clss명 -->
+								<input type="text" name="org_addr"      id="org_addr"      class="postcodify postcodify_address"    style="background: #fff; width: 330px;" disabled="disabled"/>
+								<!-- 상세주소 -->											 <!-- 상세주소에 추가할 clss명 -->
+								<input type="text" name="org_addr_dtl"  id="org_addr_dtl"  class="postcodify postcodify_details"    style="background: #fff; width: 230px; margin-left: 5px;margin-right: 5px" disabled="disabled"/>
+								<!-- 참고용 주소 -->										 <!-- 참고용주소에 추가할 clss명 -->
+								<input type="text" name="org_addr_info" id="org_addr_info" class="postcodify postcodify_extra_info" style="background: #fff; width: 100px;" disabled="disabled"/>
 							</td>
 						</tr>
 						<tr class="orgDetail">
