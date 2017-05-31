@@ -232,8 +232,8 @@
 									<input type="hidden" id="hcust_dtl_addr" value="${custcompDetail.cust_dtl_addr}" />
 									<input type="hidden" name="zip_cd_sri_num"    id="zip_cd_sri_num" 	 value="${custcompDetail.zip_cd_sri_num}" />
 									
-									<input type="text"   name="cust_zip_cd"    	  id="cust_zip_cd" 		 class="postcodify postcodify_postcode5"    	  value="${custcompDetail.cust_zip_cd}" maxlength="5" style="background: rgb(220, 220, 220); width: 65px; text-align: center;" />
-									<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui button" 	  value="검색"  style="margin-left: 5px;" /><!--  onclick="orgTreeAddr_pop();" -->
+									<input type="text"   name="cust_zip_cd"    	  id="cust_zip_cd" 		 class="postcodify postcodify_postcode5" value="${custcompDetail.cust_zip_cd}" maxlength="5" style="background: rgb(220, 220, 220); width: 65px; text-align: center;" />
+									<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui blue basic button" 	  value="검색"  style="margin-left: 5px;"disabled="disabled" /><!--  onclick="orgTreeAddr_pop();" -->
 										&nbsp;
 									<input type="text" name="cust_addr"      id="cust_addr"      class="postcodify postcodify_address"    value="${custcompDetail.cust_addr}"      style="background: rgb(220, 220, 220); width: 330px;" />
 									<input type="text" name="cust_dtl_addr"  id="cust_dtl_addr"  class="postcodify postcodify_details"    value="${custcompDetail.cust_dtl_addr}"  style="background: rgb(220, 220, 220); width: 230px; margin-left: 5px; margin-right: 5px" />

@@ -203,7 +203,6 @@
             , c.cust_addr cust_addr
             , c.cust_dtl_addr cust_dtl_addr 
             , c.cust_info_addr cust_info_addr
-            , c.cust_div_cd cust_div_cd
           	, c.comp_num comp_num
             , c.corp_num corp_num
           	, (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale_cd
@@ -224,7 +223,6 @@
 	<select id="custcompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select c.cust_id cust_id
 		      , c.cust_nm cust_nm
-		      , c.cust_div_cd cust_div_cd
 		      , c.comp_num comp_num
  		      , c.corp_num corp_num
  		      , c.rep_ph1 rep_ph1

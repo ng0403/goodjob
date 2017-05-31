@@ -610,9 +610,9 @@ public class CustCompServiceImpl implements CustCompService {
 	public CustCompVO custcompDelDetail(String cust_id) {
 		// 상세정보
 		CustCompVO ccVO = ccDao.selectDelDetail(cust_id);
-		String zip_cd = ccVO.getCust_zip_cd();
-		ccVO.setCust_zip_cd1(zip_cd.substring(0, 2));
-		ccVO.setCust_zip_cd2(zip_cd.substring(3, 5));
+//		String zip_cd = ccVO.getCust_zip_cd();
+//		ccVO.setCust_zip_cd1(zip_cd.substring(0, 2));
+//		ccVO.setCust_zip_cd2(zip_cd.substring(3, 5));
 
 		return ccVO;
 	}

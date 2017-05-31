@@ -379,6 +379,7 @@ function custCompMdfyBtn() {
 	$("#addr").attr("disabled", false);
 	$("#iuser_nm").attr("readonly", true);
 	$("#iuser_search").attr("disabled", false);
+	$("#postcodify_search").attr("disabled", false);
 
 	
 	//버튼 활성화
@@ -459,7 +460,7 @@ function ccCancel(){
 	});
 }
 
-// 기업고객 추가
+// 고객사 추가(저장버튼 클릭 시)
 function addCustComp(ctx){
 	
 	$(document).ready(function() {
@@ -475,16 +476,33 @@ function addCustComp(ctx){
 		var cust_zip_cd = $("#cust_zip_cd").val();
 		var cust_addr = $("#cust_addr").val();
 		var cust_dtl_addr = $("#cust_dtl_addr").val();
+		var cust_info_addr = $("#cust_info_addr").val();
 		var sales_scale_cd = $("#sales_scale_cd option:selected").text();
 		var emp_qty = $("#emp_qty").val();
 		var indst_cd1 = $("#indst_cd1").val();
 		var biz_status = $("#biz_status").val();
 		var indst_cd = $("#indst_cd option:selected").text();
 		
-		$('#custCompForm') 
-		.attr('action','custcompAdd')
-		.submit();
-		alert("정상적으로 저장되었습니다.");
+		
+		if (cust_nm == '' || cust_nm == null) {
+			alert("고객사명을 입력하세요.");
+			$("#cust_nm").focus();
+		} 
+		else if (cust_div_cd.val == '' || cust_div_cd.val == null || cust_div_cd.val == 0 ) 
+		{
+			alert("고객사구분을 입력하세요.");
+			$("#custcomptbody #cust_div_cd").focus();
+		} 
+		 else 
+		{
+			
+			$('#custCompForm') 
+			.attr('action','custcompAdd')
+			.submit();
+			alert("정상적으로 저장되었습니다.");
+		}
+		
+		
 		
 	});
 }	
@@ -506,6 +524,7 @@ function mdfyCustComp(ctx){
 		var cust_zip_cd = $("#cust_zip_cd").val();
 		var cust_addr = $("#cust_addr").val();
 		var cust_dtl_addr = $("#cust_dtl_addr").val();
+		var cust_info_addr = $("#cust_info_addr").val();
 		var sales_scale_cd = $("#sales_scale_cd option:selected").text();
 		var emp_qty = $("#emp_qty").val();
 		//var indst_cd1 = $("#indst_cd1").val();

@@ -156,3 +156,18 @@ table tbody tr th {
 #tableline2 tr th, #tableline2 tr td {
 	text-align: center;
 }
+
+
+/* 고객사부분 */
+#cust_zip_cd {
+	width: 65px;
+}
+#cust_addr {
+	width: 330px;
+}
+#cust_addr_dtl {
+	 width: 230px;
+}
+#cust_addr_info {
+	width: 100px;
+}
