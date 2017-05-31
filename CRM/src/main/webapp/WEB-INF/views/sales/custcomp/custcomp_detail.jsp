@@ -18,12 +18,19 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
-<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" />
 
-<!-- 테이블 th고정 자바스크립트 -->
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/tableThFixed.js"></script>
-<!-- 테이블 th고정 CSS -->
-<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/tableThFixed.css" type="text/css" /> --%>
+
+<!-- 주소 API를 위한 부분 추가 시작 -->
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/search.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/popup.min.js"></script>
+<script> 
+	$(function() { 
+		//주소 검색버튼 ID값 
+		$("#postcodify_search").postcodifyPopUp(); 
+	}); 
+</script>
+<!-- 주소 API를 위한 부분 추가 끝 -->
 
 <title>기존고객 상세정보</title>
 
@@ -99,7 +106,7 @@
 							<th style="color: red">*고객사구분</th>
 							<td><c:if test="${flg == 0 }">
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" />
-									<select id="cust_div_cd" name="cust_div_cd" style="background: #fff;">
+									<select id="cust_div_cd" name="cust_div_cd" style="background: #fff; border-color: #85B7D9;">
 										<option value="0" style="text-align: center;">==구분==</option>
 										<c:forEach var="CDC" items="${CDCCodeList}">
 											<option value="<c:out value="${CDC.cust_div_cd}" />"
@@ -110,7 +117,7 @@
 									</select>
 								</c:if> <c:if test="${flg == 1 }">
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" />
-									<select id="cust_div_cd" name="cust_div_cd" style="background: rgb(220, 220, 220);" disabled="disabled">
+									<select id="cust_div_cd" name="cust_div_cd" style="background: rgb(220, 220, 220); border-color: #85B7D9;" disabled="disabled">
 										<option value="0" style="text-align: center;">==구분==</option>
 										<c:forEach var="CDC" items="${CDCCodeList}">
 											<option value="<c:out value="${CDC.cust_div_cd}" />"
@@ -160,17 +167,17 @@
 									<input type="hidden" id="hrep_ph1" value="${custcompDetail.rep_ph1}" />
 									<input type="hidden" id="hrep_ph2" value="${custcompDetail.rep_ph2}" />
 									<input type="hidden" id="hrep_ph3" value="${custcompDetail.rep_ph3}" />
-									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" value="${custcompDetail.rep_ph1}" maxlength="3" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' /> - 
-									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' /> - 
-									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph3}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff;' />
+									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" value="${custcompDetail.rep_ph1}" maxlength="3" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff; border-color: #85B7D9;' /> - 
+									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff; border-color: #85B7D9;' /> - 
+									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph3}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);'style='ime-mode: disabled; background: #fff; border-color: #85B7D9;' />
 								</c:if> 
 								<c:if test="${flg == 1 }">
 									<input type="hidden" id="hrep_ph1" value="${custcompDetail.rep_ph1}" />
 									<input type="hidden" id="hrep_ph2" value="${custcompDetail.rep_ph2}" />
 									<input type="hidden" id="hrep_ph3" value="${custcompDetail.rep_ph3}" />
-									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" value="${custcompDetail.rep_ph1}" maxlength="3" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" /> - 
-									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" /> - 
-									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph3}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled;'readonly="readonly" />
+									<input type="text" name="rep_ph1" id="rep_ph1" class="int_tel" value="${custcompDetail.rep_ph1}" maxlength="3" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled; border-color: #85B7D9;'readonly="readonly" /> - 
+									<input type="text" name="rep_ph2" id="rep_ph2" class="int_tel" value="${custcompDetail.rep_ph2}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled; border-color: #85B7D9;'readonly="readonly" /> - 
+									<input type="text" name="rep_ph3" id="rep_ph3" class="int_tel" value="${custcompDetail.rep_ph3}" maxlength="4" onkeydown='return onlyNumber(event);'onkeyup='removeChar(event);' style='ime-mode: disabled; border-color: #85B7D9;'readonly="readonly" />
 								</c:if></td>
 							<th>홈페이지</th>
 							<td>
@@ -185,44 +192,60 @@
 									<div class="ui input focus">
 										<input type="hidden" id="hhomepage_url" value="${custcompDetail.homepage_url}" /> 
 											<a id="aHpUrl"target="_blank" title="클릭하면 해당 URL로 이동합니다.">
-												<input type="text" name="homepage_url" id="homepage_url" class="int"value="${custcompDetail.homepage_url}" maxlength="30"readonly="readonly" style="cursor: pointer;" />
+												<input type="text" name="homepage_url" id="homepage_url" class="int" value="${custcompDetail.homepage_url}" maxlength="30"readonly="readonly" style="cursor: pointer;" />
 											</a>
 									</div>
 								</c:if></td>
 						</tr>
 						<tr>
+							<!-- 주소API를 위해 살펴볼 부분 시작 -->
 							<th>주소지</th>
 							<td colspan="8">
 								<c:if test="${flg == 0 }">
-									<input type="hidden" id="hcust_zip_cd"   value="${custcompDetail.cust_zip_cd}" />
-									<input type="hidden" id="hcust_addr"     value="${custcompDetail.cust_addr}" />
-									<input type="hidden" id="hcust_dtl_addr" value="${custcompDetail.cust_dtl_addr}" />
-
-									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num" value="${custcompDetail.zip_cd_sri_num}" />
-									<input type="text"   name="cust_zip_cd"    id="cust_zip_cd"class="int_common" value="${custcompDetail.cust_zip_cd}"maxlength="5" style="background: #fff;" />
-<!-- 									<input type="button" name="zip_cd_search" value="검색" class="tiny tiny ui button" id="addr" style="margin-left: 5px;" onclick="orgTreeAddr_pop();"/> -->
+									<input type="hidden" id="hcust_zip_cd"   					  value="${custcompDetail.cust_zip_cd}" />
+									<input type="hidden" id="hcust_addr"     					  value="${custcompDetail.cust_addr}" />
+									<input type="hidden" id="hcust_dtl_addr"      				  value="${custcompDetail.cust_dtl_addr}" />
+									<input type="hidden"id="zip_cd_sri_num" name="zip_cd_sri_num" value="${custcompDetail.zip_cd_sri_num}" />
+									
+									<!-- 우편번호 															 css를위한부분 필요한class명추가    -->
+									<input type="text"   name="cust_zip_cd"    	  id="cust_zip_cd" 		 class="postcodify postcodify_postcode5"    	  value="${custcompDetail.cust_zip_cd}" maxlength="5" style="background: #fff; width: 65px; text-align: center;" />
+									
+									<!-- 주소검색 버튼                                팝업을 위해 ID값 추가 -->
+									<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui button" 	  value="검색"  style="margin-left: 5px;" /><!--  onclick="orgTreeAddr_pop();" -->
 										&nbsp;
-									<input type="text" name="cust_addr"     id="cust_addr"     class="int_ad" value="${custcompDetail.cust_addr}"     style="background: #fff;" />
-									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr" class="int_ad" value="${custcompDetail.cust_dtl_addr}" style="background: #fff;" />
+									
+									<!-- 기본 도로명주소/ 상세주소 / 참고용 주소 : 예) 서울특별시 관악구 조원중앙로 7 / 코어빌딩3F / (조원동) -->
+									<!-- 주소가 필요한 테이블에 컬럼 추가후 사용 : 예) CUSTOMER 테이블에 CUST_INFO_ADDR컬럼 추가함 -->
+									
+									<!-- 기본 도로명 주소 -->									 <!-- 기본주소에 추가할 clss명 -->
+									<input type="text" name="cust_addr"      id="cust_addr"      class="postcodify postcodify_address"    value="${custcompDetail.cust_addr}"      style="background: #fff; width: 330px;" />
+									<!-- 상세주소 -->											 <!-- 상세주소에 추가할 clss명 -->
+									<input type="text" name="cust_dtl_addr"  id="cust_dtl_addr"  class="postcodify postcodify_details"    value="${custcompDetail.cust_dtl_addr}"  style="background: #fff; width: 230px; margin-left: 5px;margin-right: 5px" />
+									<!-- 참고용 주소 -->										 <!-- 참고용주소에 추가할 clss명 -->
+									<input type="text" name="cust_info_addr" id="cust_info_addr" class="postcodify postcodify_extra_info" value="${custcompDetail.cust_info_addr}" style="background: #fff; width: 100px; " />
 								</c:if> 
+								
 								<c:if test="${flg == 1 }">
 									<input type="hidden" id="hcust_zip_cd"   value="${custcompDetail.cust_zip_cd}" />
 									<input type="hidden" id="hcust_addr"     value="${custcompDetail.cust_addr}" />
 									<input type="hidden" id="hcust_dtl_addr" value="${custcompDetail.cust_dtl_addr}" />
-
-									<input type="hidden" name="zip_cd_sri_num" id="zip_cd_sri_num" value="${custcompDetail.zip_cd_sri_num}" />
-									<input type="text" name="cust_zip_cd" id="cust_zip_cd" class="int_common" value="${custcompDetail.cust_zip_cd}"maxlength="5" readonly="readonly" />
-<!-- 									<input type="button" name="zip_cd_search" value="검색" class="tiny tiny ui button" id="addr" disabled="disabled" style="margin-left: 5px;" onclick="orgTreeAddr_pop();"/> -->
+									<input type="hidden" name="zip_cd_sri_num"    id="zip_cd_sri_num" 	 value="${custcompDetail.zip_cd_sri_num}" />
+									
+									<input type="text"   name="cust_zip_cd"    	  id="cust_zip_cd" 		 class="postcodify postcodify_postcode5"    	  value="${custcompDetail.cust_zip_cd}" maxlength="5" style="background: rgb(220, 220, 220); width: 65px; text-align: center;" />
+									<input type="button" name="postcodify_search" id="postcodify_search" class="tiny ui button" 	  value="검색"  style="margin-left: 5px;" /><!--  onclick="orgTreeAddr_pop();" -->
 										&nbsp;
-									<input type="text" name="cust_addr" id="cust_addr"class="int_ad" value="${custcompDetail.cust_addr}"readonly="readonly" />
-									<input type="text" name="cust_dtl_addr" id="cust_dtl_addr"class="int_ad" value="${custcompDetail.cust_dtl_addr}"readonly="readonly" />
-								</c:if></td>
+									<input type="text" name="cust_addr"      id="cust_addr"      class="postcodify postcodify_address"    value="${custcompDetail.cust_addr}"      style="background: rgb(220, 220, 220); width: 330px;" />
+									<input type="text" name="cust_dtl_addr"  id="cust_dtl_addr"  class="postcodify postcodify_details"    value="${custcompDetail.cust_dtl_addr}"  style="background: rgb(220, 220, 220); width: 230px; margin-left: 5px; margin-right: 5px" />
+									<input type="text" name="cust_info_addr" id="cust_info_addr" class="postcodify postcodify_extra_info" value="${custcompDetail.cust_info_addr}" style="background: rgb(220, 220, 220); width: 100px; " />
+								</c:if>
+							</td>
+							<!-- 주소API를 위해 살펴볼 부분 끝 -->	
 						</tr>
 						<tr>
 							<th>매출규모</th>
 							<td><c:if test="${flg == 0 }">
 									<input type="hidden" id="hsales_scale_cd" />
-									<select id="sales_scale_cd" name="sales_scale_cd"style="background: #fff;">
+									<select id="sales_scale_cd" name="sales_scale_cd"style="background: #fff; border-color: #85B7D9;">
 										<option value="0" style="text-align: center;">==매출규모==</option>
 										<c:forEach var="SSC" items="${SSCCodeList}">
 											<option value="<c:out value="${SSC.sales_scale_cd}" />"
@@ -232,7 +255,7 @@
 									</select>
 								</c:if> <c:if test="${flg == 1 }">
 									<input type="hidden" id="hsales_scale_cd" />
-									<select id="sales_scale_cd" name="sales_scale_cd" style="background: rgb(220, 220, 220);" disabled="disabled">
+									<select id="sales_scale_cd" name="sales_scale_cd" style="background: rgb(220, 220, 220); border-color: #85B7D9;" disabled="disabled">
 										<option value="0" style="text-align: center;">==매출규모==</option>
 										<c:forEach var="SSC" items="${SSCCodeList}">
 											<option value="<c:out value="${SSC.sales_scale_cd}" />"
@@ -259,7 +282,7 @@
 							<td colspan="8">
 							<c:if test="${flg == 0 }">
 									<input type="hidden" id="hindst_cd" />
-									<select id="indst_cd" name="indst_cd" style="background: #fff;">
+									<select id="indst_cd" name="indst_cd" style="background: #fff; border-color: #85B7D9;">
 										<option value="0" style="text-align: center;">==산업군==</option>
 										<c:forEach var="IDC" items="${IDCCodeList}">
 											<option value="<c:out value="${IDC.indst_cd}" />"
@@ -269,7 +292,7 @@
 									</select>
 								</c:if> <c:if test="${flg == 1 }">
 									<input type="hidden" id="hindst_cd" />
-									<select id="indst_cd" name="indst_cd"style="background: rgb(220, 220, 220);" disabled="disabled">
+									<select id="indst_cd" name="indst_cd"style="background: rgb(220, 220, 220); border-color: #85B7D9;" disabled="disabled">
 										<option value="0" style="text-align: center;">==산업군==</option>
 										<c:forEach var="IDC" items="${IDCCodeList}">
 											<option value="<c:out value="${IDC.indst_cd}" />"

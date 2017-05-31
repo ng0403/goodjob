@@ -11,6 +11,7 @@ public class CustCompVO {
 	private String  cust_zip_addr; 			// 우편 주소지
 	private String  cust_addr; 				// 주소지
 	private String  cust_dtl_addr; 			// 상세주소지
+	private String  cust_info_addr; 		// 참고주소지
 	private String  sales_scale; 			// 매출규모
 	private String  comp_num; 				// 사업자번호
 	private String  corp_num; 				// 법인번호
@@ -100,6 +101,12 @@ public class CustCompVO {
 	}
 	public void setCust_dtl_addr(String cust_dtl_addr) {
 		this.cust_dtl_addr = cust_dtl_addr;
+	}
+	public String getCust_info_addr() {
+		return cust_info_addr;
+	}
+	public void setCust_info_addr(String cust_info_addr) {
+		this.cust_info_addr = cust_info_addr;
 	}
 	public String getSales_scale() {
 		return sales_scale;
@@ -298,20 +305,21 @@ public class CustCompVO {
 		return "CustCompVO [cust_id=" + cust_id + ", cust_nm=" + cust_nm + ", cust_zip_cd=" + cust_zip_cd
 				+ ", cust_zip_cd1=" + cust_zip_cd1 + ", cust_zip_cd2=" + cust_zip_cd2 + ", zip_cd_sri_num="
 				+ zip_cd_sri_num + ", cust_zip_addr=" + cust_zip_addr + ", cust_addr=" + cust_addr + ", cust_dtl_addr="
-				+ cust_dtl_addr + ", sales_scale=" + sales_scale + ", comp_num=" + comp_num + ", corp_num=" + corp_num
-				+ ", sales_scale_cd=" + sales_scale_cd + ", homepage_url=" + homepage_url + ", indst_cd=" + indst_cd
-				+ ", indst=" + indst + ", biz_status=" + biz_status + ", stat_cd=" + stat_cd + ", stat=" + stat
-				+ ", main_prod=" + main_prod + ", emp_qty=" + emp_qty + ", rep_ph1=" + rep_ph1 + ", rep_ph2=" + rep_ph2
-				+ ", rep_ph3=" + rep_ph3 + ", comp_ph1=" + comp_ph1 + ", comp_ph2=" + comp_ph2 + ", comp_ph3="
-				+ comp_ph3 + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id="
-				+ fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn=" + act_yn + ", cust_div_cd=" + cust_div_cd
-				+ ", cust_div_nm=" + cust_div_nm + ", iuser_id_nm=" + iuser_id_nm + ", iuser_nm=" + iuser_nm
-				+ ", emp_cd_nm=" + emp_cd_nm + ", work_stat_cd1_nm=" + work_stat_cd1_nm + ", work_stat_cd_nm="
-				+ work_stat_cd_nm + ", org_nm=" + org_nm + ", estim_id=" + estim_id + ", getCust_id()=" + getCust_id()
-				+ ", getCust_nm()=" + getCust_nm() + ", getCust_zip_cd()=" + getCust_zip_cd() + ", getCust_zip_cd1()="
-				+ getCust_zip_cd1() + ", getCust_zip_cd2()=" + getCust_zip_cd2() + ", getZip_cd_sri_num()="
-				+ getZip_cd_sri_num() + ", getCust_zip_addr()=" + getCust_zip_addr() + ", getCust_addr()="
-				+ getCust_addr() + ", getCust_dtl_addr()=" + getCust_dtl_addr() + ", getSales_scale()="
+				+ cust_dtl_addr + ", cust_info_addr=" + cust_info_addr + ", sales_scale=" + sales_scale + ", comp_num="
+				+ comp_num + ", corp_num=" + corp_num + ", sales_scale_cd=" + sales_scale_cd + ", homepage_url="
+				+ homepage_url + ", indst_cd=" + indst_cd + ", indst=" + indst + ", biz_status=" + biz_status
+				+ ", stat_cd=" + stat_cd + ", stat=" + stat + ", main_prod=" + main_prod + ", emp_qty=" + emp_qty
+				+ ", rep_ph1=" + rep_ph1 + ", rep_ph2=" + rep_ph2 + ", rep_ph3=" + rep_ph3 + ", comp_ph1=" + comp_ph1
+				+ ", comp_ph2=" + comp_ph2 + ", comp_ph3=" + comp_ph3 + ", fst_reg_id=" + fst_reg_id + ", fst_reg_dt="
+				+ fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt + ", act_yn=" + act_yn
+				+ ", cust_div_cd=" + cust_div_cd + ", cust_div_nm=" + cust_div_nm + ", iuser_id_nm=" + iuser_id_nm
+				+ ", iuser_nm=" + iuser_nm + ", emp_cd_nm=" + emp_cd_nm + ", work_stat_cd1_nm=" + work_stat_cd1_nm
+				+ ", work_stat_cd_nm=" + work_stat_cd_nm + ", org_nm=" + org_nm + ", estim_id=" + estim_id
+				+ ", getCust_id()=" + getCust_id() + ", getCust_nm()=" + getCust_nm() + ", getCust_zip_cd()="
+				+ getCust_zip_cd() + ", getCust_zip_cd1()=" + getCust_zip_cd1() + ", getCust_zip_cd2()="
+				+ getCust_zip_cd2() + ", getZip_cd_sri_num()=" + getZip_cd_sri_num() + ", getCust_zip_addr()="
+				+ getCust_zip_addr() + ", getCust_addr()=" + getCust_addr() + ", getCust_dtl_addr()="
+				+ getCust_dtl_addr() + ", getCust_info_addr()=" + getCust_info_addr() + ", getSales_scale()="
 				+ getSales_scale() + ", getComp_num()=" + getComp_num() + ", getCorp_num()=" + getCorp_num()
 				+ ", getSales_scale_cd()=" + getSales_scale_cd() + ", getHomepage_url()=" + getHomepage_url()
 				+ ", getIndst_cd()=" + getIndst_cd() + ", getIndst()=" + getIndst() + ", getBiz_status()="
@@ -328,4 +336,5 @@ public class CustCompVO {
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
 	}
+	
 }

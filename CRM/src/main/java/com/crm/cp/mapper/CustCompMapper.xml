@@ -14,6 +14,7 @@
                        , c.cust_zip_cd cust_zip_cd
                        , c.cust_addr cust_addr
                        , c.cust_dtl_addr cust_dtl_addr 
+                       , c.cust_info_addr cust_info_addr 
                        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
           			   , c.comp_num comp_num
                        , c.corp_num corp_num
@@ -90,6 +91,7 @@
                        , c.cust_zip_cd cust_zip_cd
                        , c.cust_addr cust_addr
                        , c.cust_dtl_addr cust_dtl_addr 
+                       , c.cust_info_addr cust_info_addr 
                        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
           			   , c.comp_num comp_num
                        , c.corp_num corp_num
@@ -200,6 +202,7 @@
             , c.cust_zip_cd cust_zip_cd
             , c.cust_addr cust_addr
             , c.cust_dtl_addr cust_dtl_addr 
+            , c.cust_info_addr cust_info_addr
             , c.cust_div_cd cust_div_cd
           	, c.comp_num comp_num
             , c.corp_num corp_num
@@ -231,6 +234,7 @@
 		      , c.cust_zip_cd cust_zip_cd
 		      , c.cust_addr cust_addr
 		      , c.cust_dtl_addr cust_dtl_addr
+		      , c.cust_info_addr cust_info_addr
 		      , c.sales_scale_cd sales_scale_cd
 		      , c.emp_qty emp_qty
 		      , c.indst_cd indst_cd
@@ -256,6 +260,7 @@
 <!-- 		      , c.cust_zip_cd cust_zip_cd -->
 <!-- 		      , c.cust_addr cust_addr -->
 <!-- 		      , c.cust_dtl_addr cust_dtl_addr -->
+<!-- 		      , c.cust_info_addr cust_info_addr -->
 <!-- 		      , c.sales_scale_cd sales_scale_cd -->
 <!-- 		      , c.emp_qty emp_qty -->
 <!-- 		      , c.indst_cd indst_cd -->
@@ -271,30 +276,54 @@
 	
 	<!-- 고객사 추가 -->
 	<update  id="custcompInsert" parameterType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-		INSERT INTO CUSTOMER (
-  			CUST_ID, CUST_NM, CUST_DIV_CD,  COMP_NUM,  CORP_NUM,  REP_PH1,  REP_PH2,  REP_PH3,  HOMEPAGE_URL,  CUST_ZIP_CD,   CUST_ADDR,   CUST_DTL_ADDR,
-  			SALES_SCALE_CD,  EMP_QTY,  INDST_CD,  BIZ_STATUS,  MAIN_PROD,  FST_REG_ID,   FST_REG_DT,  FIN_MDFY_ID,   FIN_MDFY_DT,   ACT_YN ) 
+		INSERT INTO CUSTOMER
+		(
+  			CUST_ID, 
+  			CUST_NM, 
+  			CUST_DIV_CD,  
+  			COMP_NUM,  
+  			CORP_NUM,  
+  			REP_PH1,  
+  			REP_PH2,  
+  			REP_PH3,  
+  			HOMEPAGE_URL,  
+  			CUST_ZIP_CD,   
+  			CUST_ADDR,   
+  			CUST_DTL_ADDR, 
+  			cust_info_addr,
+  			SALES_SCALE_CD,  
+  			EMP_QTY,  
+  			INDST_CD,  
+  			BIZ_STATUS,  
+  			MAIN_PROD,  
+  			FST_REG_ID,   
+  			FST_REG_DT,  
+  			FIN_MDFY_ID,   
+  			FIN_MDFY_DT,   
+  			ACT_YN 
+  		) 
 		VALUES (
   			(SELECT 
 		     	DECODE(MAX(cust_id), NULL, 'CUS0000001', 'CUS' || lpad( (SUBSTR(MAX(cust_id), 4, 7) + 1), 7, 0))
 		     from CUSTOMER
 		     WHERE ROWNUM=1),
-  			#{cust_nm, jdbcType=VARCHAR}, 
-  			#{cust_div_cd, jdbcType=VARCHAR},
-  			#{comp_num, jdbcType=VARCHAR},
- 			#{corp_num, jdbcType=VARCHAR},
- 			#{rep_ph1, jdbcType=VARCHAR},
-  			#{rep_ph2, jdbcType=VARCHAR},
- 			#{rep_ph3, jdbcType=VARCHAR},
-  			#{homepage_url, jdbcType=VARCHAR},
-  			#{cust_zip_cd, jdbcType=VARCHAR},
-  			#{cust_addr, jdbcType=VARCHAR},
-  			#{cust_dtl_addr, jdbcType=VARCHAR},
+  			#{cust_nm, 		  jdbcType=VARCHAR}, 
+  			#{cust_div_cd, 	  jdbcType=VARCHAR},
+  			#{comp_num, 	  jdbcType=VARCHAR},
+ 			#{corp_num, 	  jdbcType=VARCHAR},
+ 			#{rep_ph1, 		  jdbcType=VARCHAR},
+  			#{rep_ph2, 		  jdbcType=VARCHAR},
+ 			#{rep_ph3, 		  jdbcType=VARCHAR},
+  			#{homepage_url,   jdbcType=VARCHAR},
+  			#{cust_zip_cd, 	  jdbcType=VARCHAR},
+  			#{cust_addr, 	  jdbcType=VARCHAR},
+  			#{cust_dtl_addr,  jdbcType=VARCHAR},
+  			#{cust_info_addr, jdbcType=VARCHAR},
   			#{sales_scale_cd, jdbcType=VARCHAR},
-  			#{emp_qty, jdbcType=VARCHAR},
-  			#{indst_cd, jdbcType=VARCHAR},
-  			#{biz_status, jdbcType=VARCHAR},
-  			#{main_prod, jdbcType=VARCHAR},
+  			#{emp_qty, 		  jdbcType=VARCHAR},
+  			#{indst_cd, 	  jdbcType=VARCHAR},
+  			#{biz_status, 	  jdbcType=VARCHAR},
+  			#{main_prod,	  jdbcType=VARCHAR},
   			'admin',
   			sysdate,
   			#{fin_mdfy_id},
@@ -318,6 +347,7 @@
 		  , cust_zip_cd = #{cust_zip_cd, jdbcType=VARCHAR}
 		  , cust_addr  = #{cust_addr, jdbcType=VARCHAR}
 		  , cust_dtl_addr = #{cust_dtl_addr, jdbcType=VARCHAR}
+		  , cust_info_addr = #{cust_info_addr, jdbcType=VARCHAR}
 		  , sales_scale_cd = #{sales_scale_cd, jdbcType=VARCHAR}
 		  , emp_qty = #{emp_qty, jdbcType=VARCHAR}
 		  , indst_cd = #{indst_cd, jdbcType=VARCHAR}
