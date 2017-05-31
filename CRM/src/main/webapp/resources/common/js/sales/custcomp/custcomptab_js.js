@@ -144,6 +144,7 @@ $(document).ready(function() {
 	});
 	
 });
+
 //고객사별 담당사원 추가 팝업
 function addCustManager(ctx){
 	$('#poc_pop_btn').click(function(){

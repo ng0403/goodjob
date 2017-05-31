@@ -36,14 +36,15 @@
 	<input type="hidden" id="sales_oppt_nm" value="" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
-	
+	<input type="hidden" id="tabValue" value="">
+
 	<c:if test="${flg == 1 }">
 	<div id="css_tabs" style="float: left; padding-top: 30px; ">
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" />
-		<input id="tab2" type="radio" name="tab" />
-		<input id="tab3" type="radio" name="tab" />
-		<input id="tab4" type="radio" name="tab" />
+		<input id="tab1" type="radio" name="tab" value="key" checked="checked" />
+		<input id="tab2" type="radio" name="tab" value="oppt" />
+		<input id="tab3" type="radio" name="tab" value="act" />
+		<input id="tab4" type="radio" name="tab" value="iuser" />
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->      
 		<label for="tab1">키맨 </label> 

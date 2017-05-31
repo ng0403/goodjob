@@ -6,7 +6,6 @@ $(function(){
 	endCalendar(ctx);
 	actAddBtn();
 	actMdfyBtn();
-	custTabValue();
 });
 
 //추가버튼 클릭했을 때
@@ -894,16 +893,6 @@ function searchActDiv(){
 	}
 }
 
-
-/**
- * 영화씨 고객사 탭 값 나오는 거 확인하는 함수.
- * */
-function custTabValue()
-{
-	var tab = $(':input[name=tab]:radio:checked').val();
-	
-	alert("custTabValue " + tab);
-}
 
 // 수정 버튼 눌렀을 시 ajax부분 (기존)
 //$(document).ready(function() {

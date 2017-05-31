@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomp_js.js"></script> --%>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custcomptab_js.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>

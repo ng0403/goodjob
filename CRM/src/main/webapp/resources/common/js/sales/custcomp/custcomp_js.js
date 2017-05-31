@@ -39,6 +39,7 @@ $(document).ready(function() {
 	var cust_id = $("#nowCust_id").val();
 	var page = $("#ccPageNum").val();
 	
+	custTabValue();
 	chkCancel();
 	keymanList(cust_id);
 	pocList(cust_id);
@@ -60,7 +61,9 @@ $(document).ready(function() {
 	// 키맨 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
-//		console.log(cust_id);
+		
+		custTabValue();
+		
 		if(cust_id == ''){
 			var tbody = $('#keymanTableTbody');
 			tbody.children().remove();
@@ -75,7 +78,9 @@ $(document).ready(function() {
 	// 영업기회 리스트 가져오기
 	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
-//		console.log(cust_id);
+		
+		custTabValue();
+		
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
@@ -90,6 +95,9 @@ $(document).ready(function() {
 	// 영업활동 리스트 가져오기
 	$("#tab3").click(function() {
 		var cust_id = $("#nowCust_id").val();
+		
+		custTabValue();	// tab value 가지고 오기
+		
 		if(cust_id == '' && cust_id == null){
 			var tbody = $('#actTableTbody');
 			tbody.children().remove();
@@ -105,6 +113,8 @@ $(document).ready(function() {
 	$("#tab4").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		console.log(cust_id);
+		custTabValue();
+		
 		if(cust_id == ''){
 			var tbody = $('#pocTableTbody');
 				tbody.children().remove();
@@ -116,6 +126,19 @@ $(document).ready(function() {
 		}
 	});
 });
+
+/**
+ * 영화씨 고객사 탭 값 나오는 거 확인하는 함수.
+ * */
+function custTabValue()
+{
+	var tab = $(':input[name=tab]:radio:checked').val();
+	var htab = $('#tabValue').val();
+	
+	alert("custcomp_js.js custTabValue " + tab);
+	alert("custcomp_js.js custTabValue " + htab);
+	alert("custcomp_js.js custTabValue " + $('#tabValue').val(tab));
+}
 
 //고객사 검색 조건 추가
 function addForm(){
