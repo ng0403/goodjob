@@ -19,6 +19,8 @@
 $(function(){
 	opptAllCheck(); //영업기회 all check 함수
 	searchCustcompListPopup();
+//	opptTabValue();
+	tabClick();
 //	searchCustcompListPopup0();
 //	searchCustcompListPopup1();
 });
@@ -108,10 +110,11 @@ function delForm(obj){
 }
 
 function tabClick(){
+	var opptId = $("#salesId").val();
 	
 	 //영업활동 탭 클릭
 	$("#tab1").click( function() {
-	  	var opptId = $("#salesId").val();
+		opptTabValue();
 	  	$("#tab1").attr("checked",true);
 	  	$("#tab2").attr("checked",false);
 //	  	$("#tab3").attr("checked",false);
@@ -136,9 +139,9 @@ function tabClick(){
 //      });
 	  //견적 탭 클릭
 	  $("#tab2").click( function() {
-		  	var opptId = $("#salesId").val();
+		  opptTabValue();
 		  	$("#tab1").attr("checked",false);
-		  	$("#tab2").attr("checked",false);
+		  	$("#tab2").attr("checked",true);
 //		  	$("#tab3").attr("checked",true);
 		  	
 		  	if(opptId !=""){
@@ -147,7 +150,9 @@ function tabClick(){
 //		  		readDetail();
 		  	}
     });
+	  opptTabCheck(opptId); 
 }
+
 
 //영업기회 전체 체크
 function opptAllCheck(){
@@ -160,7 +165,30 @@ function opptAllCheck(){
 		}
 	});
 }
-
+/**
+ * 라디오 버튼을 체크해주는 함수.
+ * */
+function opptTabCheck(opptId)
+{
+	var tabCheck = $('#tabValue').val();
+//	alert("페이지 다녀온 후 탭 밸류 : " + tabValue);
+	
+	console.log(tabCheck);
+	console.log(opptId);
+	
+	if(tabCheck != null || tabCheck != '')
+	{
+		$('input:radio[name="tab"]:input[value="'+tabCheck+'"]').attr("checked", true);
+		
+//		tabCheckAjaxList(cust_id);
+	}
+	else	// tabValue가 null일 경우에 맨 앞쪽 tab을 자동으로 체크되게 끔 해준다.
+	{
+		$('input:radio[name="tab"]:input[value="key"]').attr("checked", true);
+		
+//		tabCheckAjaxList(cust_id);
+	}
+}
 //all 체크일때 하나라도 체크해지가 된 경우 all checkbox 체크 해제
 function chkCancel(){
 	$("#opptAllSelect").prop("checked", false);

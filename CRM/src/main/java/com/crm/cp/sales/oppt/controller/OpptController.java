@@ -160,7 +160,8 @@ public class OpptController {
 			, String opptId
 			, String cust_id
 			, String cust_nm
-			, String flag) 
+			, String flag
+			, String tabValue) 
 	{
 		System.out.println("opptId : " + opptId);
 		
@@ -258,6 +259,7 @@ public class OpptController {
 			mov.addObject("eduList", eduList);
 			mov.addObject("elclist", elclist);
 			mov.addObject("eduCode", eduCode);
+			mov.addObject("tabValue", tabValue);
 			mov.addObject("opptPrdt", opptPrdt);
 			mov.addObject("otllist", otllist);
 			mov.addObject("cust_id", cust_id);

@@ -56,12 +56,13 @@ $(document).ready(function() {
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="flag" value="${flag}">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 	
 	<div id="css_tabs" style="padding-bottom: 10px; margin-top: 20%; ">
 		<!-- 라디오 버튼 -->
 <!-- 		<input id="tab1" type="radio" name="tab" />  -->
-		<input id="tab1" type="radio" name="tab" checked="checked" /> 
-		<input id="tab2" type="radio" name="tab" /> 
+		<input id="tab1" type="radio" name="tab" value="act" checked="checked" /> 
+		<input id="tab2" type="radio" name="tab" value="estimate" /> 
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<label for="tab1">영업활동 </label> 
@@ -71,7 +72,7 @@ $(document).ready(function() {
 			<div id="tabDiv1" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
 				<!-- actInsertForm2 함수에 값을 넘겨줄 때 detail 정보에 들어 있는 값으로 넘겨줘야한다. -->
-				<button id="act_opp_nm" class="tiny ui blue button" onclick="actInsertForm2('oppt', '${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}');">영업활동 추가</button>
+				<button id="act_opp_nm" class="tiny ui blue button" onclick="actInsertForm2('oppt', '${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}', tabValue.value);">영업활동 추가</button>
 				<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
@@ -100,7 +101,7 @@ $(document).ready(function() {
 		<!-- 영업기회별 견적 탭 -->
 		<div id="tabDiv2" class="tab2_content">
 		<div class="bt_position_authuser" style="text-align: right; padding-bottom: 10px; padding-top: 10px;">
-			<button id="estimateAdd" class="tiny ui blue button" onclick="estAddBtn2('${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}');">견적 추가</button>
+			<button id="estimateAdd" class="tiny ui blue button" onclick="estAddBtn2('${opDetail.sales_oppt_id}', '${opDetail.sales_oppt_nm}', '${opDetail.cust_id}', '${opDetail.cust_nm}', tabValue.value);">견적 추가</button>
 			<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptEstimDelete();">삭제</button>
 		</div>
 		

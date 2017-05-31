@@ -32,33 +32,43 @@
 $(function(){
 	var opptButtonStatus = "";
 	var ctx = $("#ctx").val();
-//	addOperatingA(ctx);
+	var tabValue = $("#tabValue").val();
 	actAllCheck();
 	estimAllCheck();
 	opptprdtAllCheck
 	searchCustcompListPopup(ctx);
 	custcompListPopup(ctx);	//고객 검색 버튼 (사용)
-//	estimateAdd(ctx);
 	startCalendar(ctx);
 	opptProdList(ctx);
+	opptTabValue(tabValue);
+	opptTabCheck(tabValue);
 	
 });
-//function makeBlock(){
-//	alert("123");
-//	for(var i=$("#opptPrdtbody tr").length; i <= 4; i++){
-//		$('#opptPrdtbody').append(
-//				'<tr id="priceline" class="empty">'+
-//				'<th style="width: 3%;"></th>'+
-//				'<td style="width: 32%;"></td>'+
-//				'<td style="width: 8%;"></td>'+
-//				'<td style="width: 27%;"></td>'+
-//				'<td style="width: 15%;"></td>'+
-//				'<td style="width: 15%;"></td>'+
-//				'</tr>'
-//				);
-//	}
-//}
-
+/**
+ * 영업기회 상세페이지 클릭된 탭 값 나오는 거 확인하는 함수.
+ * */
+function opptTabValue()
+{
+	var tab = $(':input[name=tab]:radio:checked').val();
+	$('#tabValue').val(tab);
+}
+function opptTabCheck(tabValue)
+{
+	var tabCheck = tabValue;
+	
+	console.log(tabCheck);
+	
+	if(tabCheck != null || tabCheck != '')
+	{
+		$('input:radio[name="tab"]:input[value="'+tabCheck+'"]').attr("checked", true);
+		
+	}
+	else	// tabValue가 null일 경우에 맨 앞쪽 tab을 자동으로 체크되게 끔 해준다.
+	{
+		$('input:radio[name="tab"]:input[value="key"]').attr("checked", true);
+		
+	}
+}
 /**
  * 숫자 콤마 제거(Server 전달 시 필요)
  * @param str
@@ -628,6 +638,8 @@ function uncomma(str) {
 }
 //견적 리스트 조회
 function estimList(opptId){
+	var tabValue=$('#tabValue').val();
+//	alert(tabValue);
 	$('#estimList').children().remove();
 	$.ajax({
 		type : 'get',
@@ -642,7 +654,7 @@ function estimList(opptId){
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
 						'<td><input type=checkbox name=estim_id value='+data.estim_id+'></td>'+
-						'<td><a style="text-decoration: none;" href=javascript:estDetail2("'+data.estim_id+'","'+opptId+'");>'+data.estim_nm+'</a></td>'+
+						'<td><a style="text-decoration: none;" href=javascript:estDetail2("'+data.estim_id+'","'+opptId+','+tabValue+');>'+data.estim_nm+'</a></td>'+
 						'<td>'+data.estim_lev_cd+'</td>'+
 						'<td>'+data.estim_qty+'</td>'+
 						'<td>'+comma(data.sales_price)+'</td>'+
