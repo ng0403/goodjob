@@ -128,7 +128,7 @@
  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>
- 			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fin_mdfy_dt}" type="time" pattern="yyyy-MM-dd HH:mm"/></td>
+ 			<td style="width:10%; text-align:center;"><fmt:formatDate value="${contactList.fin_mdfy_dt}" type="time" pattern="yyyy-MM-dd "/></td>
 		</tr>
 		</c:forEach>
 		</tbody>

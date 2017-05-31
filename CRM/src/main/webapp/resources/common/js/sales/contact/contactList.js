@@ -306,7 +306,7 @@ function delForm(obj){
  
 // 연락처 리스트 그냥 페이징
 function contactPaging(contactPageNum) {
-   	var ctx = $("#ctx").val();
+    var ctx = $("#ctx").val();
 	var tbody = $('#call_list_tbody');
 	var tbodyContent = "";
 	var cont_nm = $("#cont_nm").val();
@@ -344,7 +344,11 @@ function contactPaging(contactPageNum) {
         			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>';
-         		}
+        			if(data.contactList[i].act_yn == 'N'){
+        				tbodyContent+= '<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fin_mdfy_dt)+'</td>';
+ 
+        			}
+			}
 				                   
 			   tbody.append(tbodyContent);
 			}
@@ -775,9 +779,8 @@ function contactInsert() {
 					$('#ph2').attr("readonly", true);
 					$('#ph3').attr("readonly", true); 
 					
-					$("#baseBtnDiv1").css("display", "none");
-					$("#baseBtnDiv").css("display", "block");
-					
+					$("#btn_2").css("display", "none"); 
+					$("#btn_1").css("display", "block");
 					
 					contactPaging();
 	 			},
@@ -816,9 +819,23 @@ function callAddCancelBtn(){
 		$('#cell_ph3').attr("readonly", true);
 		$('#ph1').attr("readonly", true);
 		$('#ph2').attr("readonly", true);
-		$('#ph3').attr("readonly", true); 
-		contactPaging();
-	}
+		$('#ph3').attr("readonly", true);
+		
+		
+		 $('#cont_nm').val("");  
+			$('#company_nm').val("");
+			$('#ph1').val("");
+			$('#ph2').val("");
+			$('#ph3').val("");
+			
+			$('#cell_ph1').val("");	
+			$('#cell_ph2').val("");
+			$('#cell_ph3').val("");
+			
+			$('#email1').val("");
+			$('#email2').val("");
+		
+ 	}
 	
 	});
 }
