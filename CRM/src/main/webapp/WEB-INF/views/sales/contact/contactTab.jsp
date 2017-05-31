@@ -110,8 +110,8 @@
 						<td rowspan="2">
 						    <input type="hidden" id="hemail1"/>
 							<input type="hidden" id="hemail2"/>
-						    <input type="text" name="email1" id="email1" class="int_email" value="${contactDetail.email1 }" readonly="readonly"/> @ 
-						    <input type="text" name="email2" id="email2" class="int_email" value="${contactDetail.email2 }" readonly="readonly"/>
+						    <input type="text" name="email1" id="email1" class="int_email"  readonly="readonly"/> @ 
+						    <input type="text" name="email2" id="email2" class="int_email"  readonly="readonly"/>
 						</td>	
 					</tr>
 					 

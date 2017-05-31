@@ -91,13 +91,13 @@ VALUES(#{cd_grp_id},
 		 (SELECT /*+INDEX_DESC(code code_index)*/
              DECODE(MAX(code),NULL,'0001',lpad((MAX(code)+1),4,0))code
          FROM code
-         WHERE cd_grp_id = 'OLC'
+         WHERE cd_grp_id = #{cd_grp_id}
          and ROWNUM=1),
          #{cd_nm},
          (SELECT /*+INDEX_DESC(code cd_seq_num_index)*/
              DECODE(MAX(cd_seq_num),NULL,1,(MAX(cd_seq_num)+1))cd_seq_num
          FROM code
-         WHERE cd_grp_id = 'EMP'
+         WHERE cd_grp_id = #{cd_grp_id}
          and ROWNUM=1),
          #{cd_dtl_cont},
          #{fst_reg_id},

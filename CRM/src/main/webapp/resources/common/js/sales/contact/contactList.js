@@ -633,7 +633,7 @@ function contactAddp(){
 	$('#ph3').val(""); 
 }
 
-
+//연락처 저장 취소 버튼.
 function contInsertCancel() {
 	
 	$('#company_nm').attr("readonly", true);
@@ -690,18 +690,15 @@ function contactInsert() {
 	 var cell_ph3 = $("#cell_ph3").val();
 	 var email1 = $("#email1").val();
 	 var email2 = $("#email2").val();
-	 
-	 
+  
 	 if(cont_nm == null || cont_nm =="")
 		 {
 		 alert("이름을 입력해 주세요.");
 		 return false;
 		 } 
-	 if(ph1 == null || ph1 ==""){
-	   alert("전화번호를 입력해 주세요.");
-	   return false;
-	 }
-	 if(ph2 == null || ph2 ==""){
+	 
+	 if(ph1 != null || ph1 !=""){ 
+		 if(ph2 == null || ph2 ==""){
 		 alert("전화번호를 입력해 주세요.");
 		 return false;
 	 }
@@ -709,7 +706,24 @@ function contactInsert() {
 		 alert("전화번호를 입력해 주세요.");
 		 return false;
 	 }
-		 
+	}
+	 
+	 if($("#email1").val().length != 0) {
+ 		 if(email2 == null || email2 == ""){
+			 alert("이메일을 전부 입력해 주세요.");
+			 return false;
+		 }
+	}
+	 
+	 if($("#cell_ph1").val().length != 0){
+		 if(cell_ph2 == null || cell_ph2 == ""){
+			 alert("휴대폰 번호를 전부 입력해 주세요.");
+			 return false;
+		 }else if(cell_ph3 == null || cell_ph3 ==""){
+			 alert("휴대폰 번호를 전부 입력해 주세요.");
+			 return false;
+		 }
+	 }
 		 
 		 
 	
@@ -737,6 +751,34 @@ function contactInsert() {
 					
 					$('#email1').val("");
 					$('#email2').val("");
+					
+					$('#company_nm').css("background-color", "#EAEAEA");
+					$('#cont_nm').css("background-color", "#EAEAEA"); 
+				 	$('#email1').css("background-color", "#EAEAEA"); 
+					$('#email2').css("background-color", "#EAEAEA"); 
+					$('#cell_ph1').css("background-color", "#EAEAEA"); 
+					$('#cell_ph2').css("background-color", "#EAEAEA"); 
+					$('#cell_ph3').css("background-color", "#EAEAEA"); 
+					$('#ph1').css("background-color", "#EAEAEA"); 
+					$('#ph2').css("background-color", "#EAEAEA"); 
+					$('#ph3').css("background-color", "#EAEAEA"); 
+					
+					
+					$('#company_nm').attr("readonly", true);
+					$('#cont_nm').attr("readonly", true);
+					$('#email1').attr("readonly", true);
+					$('#email2').attr("readonly", true);
+					$('#cell_ph1').attr("readonly", true);
+					$('#cell_ph2').attr("readonly", true);
+					$('#cell_ph3').attr("readonly", true);
+					$('#ph1').attr("readonly", true);
+					$('#ph2').attr("readonly", true);
+					$('#ph3').attr("readonly", true); 
+					
+					$("#baseBtnDiv1").css("display", "none");
+					$("#baseBtnDiv").css("display", "block");
+					
+					
 					contactPaging();
 	 			},
 	 			

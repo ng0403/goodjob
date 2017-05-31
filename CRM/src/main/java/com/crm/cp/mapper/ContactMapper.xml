@@ -449,17 +449,28 @@
 			  from(
 		SELECT	  
 		   cont_id, cont_nm, 
-		   company_nm,
-		   ph1, ph2, ph3,
-		   cell_ph1, cell_ph2, cell_ph3,
-		   email1, email2,
+ 		   	case when (company_nm) is null then ' '
+		   	   else (company_nm) end as company_nm,
+		   ph1,
+		   ph2,
+		   ph3,
+		   case when (cell_ph1) is null then ' '
+		   	   else (cell_ph1) end as cell_ph1 ,
+		   case when (cell_ph2) is null then ' '
+		   	   else (cell_ph2) end as cell_ph2,
+		   case when (cell_ph3) is null then ' '
+		   	   else (cell_ph3) end as cell_ph3,
+		   case when (email1) is null then ' '
+		   	   else (email1) end as email1,
+		   case when (email2) is null then ' '
+		   	   else (email2) end as email2,
 		   fst_reg_id, 
 		   fst_reg_dt,
 		   fin_mdfy_id,
 		   fin_mdfy_dt,
 		   act_yn 
 		   from contact
-		   where act_yn='Y'
+		   where act_yn='Y' 	
 	   <if test="cont_nm !=null and cont_nm !=''">
 			AND cont_nm like '%'||#{cont_nm}||'%'
 		</if> 
