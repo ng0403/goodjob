@@ -26,8 +26,8 @@
                        , c.rep_ph1 rep_ph1
           			   , c.rep_ph2 rep_ph2
           			   , c.rep_ph3 rep_ph3
-          			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
-          			   , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD hh:mm') fin_mdfy_dt
+          			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD  hh24:mm ') fst_reg_dt
+          			   , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD  hh24:mm') fin_mdfy_dt
           			   , act_yn
           			from customer c		   
                     where 1=1
@@ -103,9 +103,9 @@
           			   , c.rep_ph2 rep_ph2
           			   , c.rep_ph3 rep_ph3
           			   , c.fin_mdfy_id
-          			   , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD hh:mm') fin_mdfy_dt
+          			   , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD hh24:mm') fin_mdfy_dt
           			   , c.fst_reg_id
-          			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+          			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh24:mm') fst_reg_dt
           			from customer c		   
                     where 1=1
                     and c.act_yn = 'N'   
@@ -322,7 +322,8 @@
 		  , emp_qty = #{emp_qty, jdbcType=VARCHAR}
 		  , indst_cd = #{indst_cd, jdbcType=VARCHAR}
 		  , biz_status = #{biz_status, jdbcType=VARCHAR}
-		  
+		  , fin_mdfy_id = #{fin_mdfy_id, jdbcType=VARCHAR}
+		  , fin_mdfy_dt = sysdate
 	   where cust_id = #{cust_id}
 	</update>
 	
@@ -365,6 +366,16 @@
 		where cust_id = #{cust_id}
 	</update>
 	
+	<!-- 고객사 삭제시 견적 삭제 -->
+	<update id="custcompEstDel" parameterType="com.crm.cp.sales.est.vo.EstVO">
+		update ESTIMATE
+		set 
+			act_yn = 'N',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
+		where cust_id = #{cust_id}
+	</update>
+	
 	<!-- 고객사 삭제된 영업기회 복원 -->
 	<update id="custcompOpptRb" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
 		update SALES_OPPORTUNITY 
@@ -378,6 +389,16 @@
 	<!-- 고객사 삭제된 영업활동 복원 -->
 	<update id="custcompActRb" parameterType="com.crm.cp.sales.act.vo.ActVO">
 		update SALES_ACTIVITY 
+		set 
+			act_yn = 'Y',
+			fin_mdfy_id = #{fin_mdfy_id},
+			fin_mdfy_dt = sysdate
+		where cust_id = #{cust_id}
+	</update>
+	
+	<!-- 고객사 삭제된 견적 복원 -->
+	<update id="custcompEstRb" parameterType="com.crm.cp.sales.est.vo.EstVO">
+		update ESTIMATE
 		set 
 			act_yn = 'Y',
 			fin_mdfy_id = #{fin_mdfy_id},
@@ -440,7 +461,7 @@
 		    and i.iuser_id = poc.iuser_id
 		    and i.org_id = org.org_id
 		    and cust.cust_id = #{cust_id} 
-		order by i.FST_REG_DT desc, i.FIN_MDFY_DT desc
+		order by i.FIN_MDFY_DT desc
 	</select>
 	
 	<!-- 영업 담당자 리스트(삭제) -->
@@ -453,7 +474,7 @@
 			
 			pos.key_part,
 			pos.fst_reg_id,
-			TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+			TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh24:mm') FST_REG_DT
 		from SALES_ACTIVITY sa, 
 			 PARTNER_OF_SALESACT pos, 
 			 customer cust
@@ -473,7 +494,7 @@
 		      cust.cust_nm,
 		      pos.key_part,
 			  pos.fst_reg_id,
-			  TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh:mm') FST_REG_DT
+			  TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh24:mm') FST_REG_DT
 		from SALES_ACTIVITY sa, 
 			 PARTNER_OF_SALESACT pos, 
 			 customer cust
@@ -521,7 +542,7 @@
 							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) SALES_ACTVY_TYPE_CD
 							,(SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD)SALES_ACTVY_STAT_CD
 							,SO.SALES_OPPT_NM
-	             				,CUST.CUST_ID
+	             			,CUST.CUST_ID
 						FROM 
 							SALES_ACTIVITY SA, SALES_OPPORTUNITY SO, CUSTOMER CUST
 						WHERE 
@@ -546,7 +567,9 @@
 	<update id="custSaleActUpdate" parameterType="com.crm.cp.sales.custcomp.vo.PosVO">
 	      update PARTNER_OF_SALESACT
 		  set   
-		        key_part = #{key_part, jdbcType=VARCHAR}
+		        key_part = #{key_part, jdbcType=VARCHAR},
+		        fin_mdfy_id = #{fin_mdfy_id},
+		        fin_mdfy_dt = sysdate
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id, jdbcType=VARCHAR}
 		  and iuser_id = #{iuser_id, jdbcType=VARCHAR}
 	</update>
@@ -664,15 +687,22 @@
 				so.sales_oppt_nm,
 				(select c.cd_nm from code c where c.cd_grp_id = 'OTL' and c.CODE = so.sales_lev_cd) sales_lev_cd_nm ,
 				so.expt_sales_amt,
-				TO_CHAR(so.expt_fin_d, 'YYYY-MM-DD') expt_fin_d,
+				
+				case when ((to_char(so.expt_fin_d,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(so.expt_fin_d,'yyyy-mm-dd')) end as  expt_fin_d,
+				
 				so.psblty_rate,
 				(select c.cd_nm from code c where c.cd_grp_id = 'OSC' and c.CODE = so.sales_oppt_stat_cd) sales_oppt_stat_cd_nm ,
+				
 				so.fst_reg_id,
-				TO_CHAR(so.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt  
+				
+				case when ((to_char(so.fst_reg_dt,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(so.fst_reg_dt,'yyyy-mm-dd')) end as  fst_reg_dt
+					
 		from sales_opportunity so 
-	  where cust_id = #{cust_id} 
+	  	where cust_id = #{cust_id} 
 	        and act_yn = 'Y'
-	   ORDER BY so.sales_oppt_id DESC
+	   ORDER BY so.fin_mdfy_dt DESC
 	</select>
 	
 	<!-- 영업기회 고객정보 가져오기 -->
@@ -741,13 +771,27 @@
 	 	SELECT SA.SALES_ACTVY_ID sales_actvy_id
 	 			, SA.SALES_ACTVY_NM sales_actvy_nm
     		    , (SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ATC' AND C.code = SA.SALES_ACTVY_TYPE_CD) sales_actvy_type_nm
-    		    , TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') strt_d
-    		    , SA.STRT_T strt_t
-    		    , TO_CHAR(SA.END_D ,'YYYY-MM-DD') end_d
-    		    , SA.END_T end_t
+	 			
+<!--     		    , TO_CHAR(SA.STRT_D ,'YYYY-MM-DD') strt_d -->
+<!--     		    , SA.STRT_T strt_t -->
+	 			, case when ((to_char(SA.STRT_D,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(SA.STRT_D,'yyyy-mm-dd')) end as  STRT_D
+				
+				, case when (SA.STRT_T) is null then '-'
+					else (SA.STRT_T) end as strt_t	
+				
+<!--     		    , TO_CHAR(SA.END_D ,'YYYY-MM-DD') end_d -->
+<!--     		    , SA.END_T end_t -->
+
+				, case when ((to_char(SA.END_D,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(SA.END_D,'yyyy-mm-dd')) end as  end_d	
+				
+				, case when (SA.END_T) is null then '-'
+					else (SA.END_T) end as  end_t		
+					
     		    , (SELECT C.cd_nm FROM code C WHERE C.cd_grp_id = 'ASC' AND C.code = SA.SALES_ACTVY_STAT_CD) sales_actvy_stat_nm
     		    , SA.FST_REG_ID fst_reg_id
-    		    , TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh:mm') fst_reg_dt
+    		    , TO_CHAR(SA.FST_REG_DT,'YYYY-MM-DD hh24:mm') fst_reg_dt
     		    , SO.SALES_OPPT_NM sales_oppt_nm
  	   FROM SALES_ACTIVITY SA, SALES_OPPORTUNITY SO
 	   WHERE SA.CUST_ID = #{cust_id}
@@ -858,9 +902,9 @@
 		      estList.estim_qty,
 		      estList.sales_price,
 		      est.memo,   
-		      TO_CHAR(est.estim_valid_d, 'YYYY-MM-DD hh:mm') estim_valid_d,
+		      TO_CHAR(est.estim_valid_d, 'YYYY-MM-DD hh24:mm') estim_valid_d,
 		      est.fst_reg_id,
-		      TO_CHAR(est.fst_reg_dt, 'YYYY-MM-DD hh:mm') fst_reg_dt
+		      TO_CHAR(est.fst_reg_dt, 'YYYY-MM-DD hh24:mm') fst_reg_dt
 		  from ESTIMATE est, ESTIMATE_LIST estList
 		  where cust_id = #{cust_id}
 		      and est.estim_id = estList.estim_id 
@@ -877,7 +921,7 @@
 				, cont.CONTR_AMT contr_amt
 				, TO_CHAR(cont.CONTR_D, 'YYYY-MM-DD') contr_d
 				, cont.FST_REG_ID fst_reg_id
-				, TO_CHAR(cont.FST_REG_DT, 'YYYY-MM-DD hh:mm') fst_reg_dt
+				, TO_CHAR(cont.FST_REG_DT, 'YYYY-MM-DD hh24:mm') fst_reg_dt
 		 FROM CONTRACT cont
    				, CUSTOMER cu
 	   WHERE cu.CUST_ID = cont.CUST_ID
@@ -929,7 +973,10 @@
 				, SO.SALES_OPPT_NM
 				, (SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OTL' AND C.CODE = SO.SALES_LEV_CD) SALES_LEV_CD
 				, SO.EXPT_SALES_AMT
-				, TO_CHAR(SO.EXPT_FIN_D, 'YYYY-MM-DD') EXPT_FIN_D
+				
+				, case when ((to_char(SO.EXPT_FIN_D,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(SO.EXPT_FIN_D,'yyyy-mm-dd')) end as  EXPT_FIN_D
+				
 				, SO.PSBLTY_RATE
 				, (SELECT C.CD_NM FROM CODE C WHERE C.CD_GRP_ID='OSC' AND C.CODE = SO.SALES_OPPT_STAT_CD) SALES_OPPT_STAT_CD
 				, SO.FST_REG_ID

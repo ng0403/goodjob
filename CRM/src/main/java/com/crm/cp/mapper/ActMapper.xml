@@ -690,19 +690,25 @@
         		rownum r, a.sales_oppt_id, a.cust_id, c.cust_nm, a.sales_oppt_nm, 
         		(select cd_nm from code where cd_grp_id='OTL' and code = a.sales_lev_cd) sales_lev_cd_nm, 
    		 	    a.sales_lev_cd, a.sales_oppt_stat_cd, a.expt_sales_amt, 
- 		 	    to_char(a.expt_fin_d,'yyyy-mm-dd') expt_fin_d, 
+   		 	    
+ 		 	    case when ((to_char(a.expt_fin_d,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(a.expt_fin_d,'yyyy-mm-dd')) end as  expt_fin_d ,
+ 		 	    
 				a.psblty_rate, 
 		        (select cd_nm from code where cd_grp_id='OSC' and code = a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm, 
 		        a.memo,
          		a.fst_reg_id, 
-				to_char(a.fst_reg_dt ,'yyyy-mm-dd') fst_reg_dt , 
+         		
+				  case when ((to_char(a.fst_reg_dt ,'yyyy-mm-dd'))) is null then '-'
+					else ( to_char(a.fst_reg_dt ,'yyyy-mm-dd')) end as  fst_reg_dt ,
+					
 		        a.fin_mdfy_id, 
 				a.fin_mdfy_dt, a.act_yn
 			from 
 				sales_opportunity a, customer c
 			where 
 				1=1 and a.cust_id = c.cust_id and a.act_yn='Y'
-      		order by a.sales_oppt_id desc
+      		order by a.FIN_MDFY_DT desc
 		)d
 		where d.cust_id = #{cust_id} and act_yn='Y'
 	</select>

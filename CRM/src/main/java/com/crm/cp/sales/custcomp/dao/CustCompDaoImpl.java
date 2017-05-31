@@ -181,6 +181,8 @@ public class CustCompDaoImpl implements CustCompDao {
 			System.out.println("영업기회 삭제");
 			sqlSession.update("custcomp.custcompActDel", ccVO.getCust_id());
 			System.out.println("영업활동 삭제");
+			sqlSession.update("custcomp.custcompEstDel", ccVO.getCust_id());
+			System.out.println("견적 삭제");
 		}
 		return result;
 		
@@ -812,6 +814,7 @@ public class CustCompDaoImpl implements CustCompDao {
 		sqlSession.update("custcomp.custcompDelEdit", ccVO);
 		sqlSession.update("custcomp.custcompOpptRb", ccVO);
 		sqlSession.update("custcomp.custcompActRb", ccVO);
+		sqlSession.update("custcomp.custcompEstRb", ccVO);
 		
 	}
 
