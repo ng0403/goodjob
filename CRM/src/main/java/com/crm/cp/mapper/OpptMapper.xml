@@ -431,11 +431,12 @@
 		SET act_yn='Y'
 		, fin_mdfy_id = #{fin_mdfy_id}
 		, fin_mdfy_dt = sysdate
-		WHERE estim_id = (SELECT estim_id
-						  FROM SALES_OPPORTUNITY_ESTIMATE
-						  WHERE sales_oppt_id =#{sales_oppt_id}
-			              and rownum = 1
-			              order by FIN_MDFY_DT desc)
+		WHERE estim_id in (select estim_id
+							from (SELECT estim_id
+									FROM SALES_OPPORTUNITY_ESTIMATE
+									WHERE sales_oppt_id = #{sales_oppt_id}
+							        order by FIN_MDFY_DT desc)
+							        where rownum = 1)
 	</update>
 	<!-- 영업기회 act_yn을 N으로 했을 때 (삭제 시) 영업활동도 N으로 바꾼다. -->
 	<update id="opptActDel" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
@@ -452,11 +453,12 @@
 		SET act_yn='N'
 		, fin_mdfy_id = #{fin_mdfy_id}
 		, fin_mdfy_dt = sysdate
-		WHERE estim_id = (SELECT estim_id
-						  FROM SALES_OPPORTUNITY_ESTIMATE
-						  WHERE sales_oppt_id =#{sales_oppt_id}
-			              and rownum = 1
-			              order by FIN_MDFY_DT desc)
+		WHERE estim_id in (select estim_id
+							from (SELECT estim_id
+									FROM SALES_OPPORTUNITY_ESTIMATE
+									WHERE sales_oppt_id =#{sales_oppt_id}
+							        order by FIN_MDFY_DT desc)
+							        where rownum = 1)
 	</update>
 
 	<!-- 영업기회 추가 -->
