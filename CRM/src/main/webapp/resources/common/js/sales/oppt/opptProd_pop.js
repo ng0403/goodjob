@@ -39,16 +39,16 @@ var opptProdDeleteOpptId = []; //삭제된 상품에 견적Id List
 //상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
 function opptInputProd(prod_id,prod_nm,prod_price){
 
-		var unit="";
+//		var unit="";
 		var flg = $('#flg').val();
 		var data = $('#eduCode').val();
 		var tmp = data.replace("[", "");
 		var tmp2 = tmp.replace("]", "");
 		var arr = tmp2.split(',');
-		unit = '<option value=0>선택</option>';
-		for(var i=0; i<arr.length ; i=i+2){
-			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
-		}
+//		unit = '<option value=0>선택</option>';
+//		for(var i=0; i<arr.length ; i=i+2){
+//			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
+//		}
 	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
 	
@@ -65,8 +65,10 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
 				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
-				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+				'<input type=hidden id="unit" name="unit" value="0002">'+
+				''+ '%'+ ''+'</td>'+
+//				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
 				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
 		);
 		like = 1;
@@ -92,8 +94,9 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
 					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
-					 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+					'<input type=hidden id="unit" name="unit" value="0002">'+
+					''+ '%'+ ''+'</td>'+
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);

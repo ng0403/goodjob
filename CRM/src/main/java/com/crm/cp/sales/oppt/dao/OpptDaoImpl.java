@@ -399,16 +399,16 @@ public class OpptDaoImpl implements OpptDao {
 		return result;
 	}
 	
-	//영업기회상품리스트 삭제(사용)
+	//영업기회별 "상품리스트" 삭제(사용)
 	@Override
 	public int opptPrdtDel(String sales_oppt_id) {
 		System.out.println("영업기회상품 삭제 sales_oppt_id : " + sales_oppt_id);
 		int result = sqlsession.delete("oppt.opptPrdtDel", sales_oppt_id);
 		System.out.println("영업기회상품 삭제 result : " + result);
-		if(result == 1){
-			sqlsession.delete("oppt.opptactdelete", sales_oppt_id);
-			sqlsession.delete("oppt.opptestdelete", sales_oppt_id);
-		}
+//		if(result == 1){
+//			sqlsession.delete("oppt.opptactdelete", sales_oppt_id);
+//			sqlsession.delete("oppt.opptestdelete", sales_oppt_id);
+//		}
 		return result;
 	}
 	//영업기회완전삭제

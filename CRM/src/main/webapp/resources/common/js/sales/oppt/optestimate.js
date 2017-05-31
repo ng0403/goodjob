@@ -104,7 +104,7 @@ function prodNmSelect(){
 		self.close();
 	});
 }
-//상품 입력 함수 (상품 리스트 tr 클릭 시 입력)
+//영업기회 상세페이지 상품 입력 함수 신규 추가 시 (상품 리스트 tr 클릭 시 입력)
 function opptInputProd(prod_id,prod_nm,prod_price){
 		var unit="";
 		var flg = $('#flg').val();
@@ -112,10 +112,10 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 		var tmp = data.replace("[", "");
 		var tmp2 = tmp.replace("]", "");
 		var arr = tmp2.split(',');
-		unit = '<option value=0>선택</option>';
-		for(var i=0; i<arr.length ; i=i+2){
-			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
-		}
+//		unit = '<option value=0>선택</option>';
+//		for(var i=0; i<arr.length ; i=i+2){
+//			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
+//		}
 	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
 	
@@ -132,8 +132,9 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" min="1" max="100" value=1 ></td>'+			
 				'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
-				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0><input type=hidden id="unit" name="unit" value="0002">'+
+				''+ '%'+ ''+'</td>'+
+//				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
 				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+ '</tr>'
 		);
 		like = 1;
@@ -159,8 +160,9 @@ function opptInputProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type=number style="width: 80%; text-align: center;" name="estim_qty" id="estim_qty" value=1  min="1" max="100"></td>'+			
 					'<td style="width: 27%;"  name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" name="discount" min="0" max="100" value=0>'+
-					 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+					'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+					'<input type=hidden id="unit" name="unit" value="0002">'+
+					''+ '%'+ ''+'</td>'+
 					'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);
@@ -180,10 +182,10 @@ function opptInputEstProd(prod_id,prod_nm,prod_price){
 		var tmp2 = tmp.replace("]", "");
 		
 		var arr = tmp2.split(',');
-		var unit = '<option value=0>선택</option>';
-		for(var i=0; i<arr.length ; i=i+2){
-			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
-		}
+//		var unit = '<option value=0>선택</option>';
+//		for(var i=0; i<arr.length ; i=i+2){
+//			unit += '<option value='+arr[i]+'>'+arr[i+1]+'</option>';
+//		}
 
 	$('#salesPriceSum').text( parseInt($('#salesPriceSum').text()) + parseInt(prod_price));
 	$('#countSum').text(parseInt($('#countSum').text())+parseInt(1));
@@ -200,10 +202,11 @@ function opptInputEstProd(prod_id,prod_nm,prod_price){
 				'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 				'<td style="width: 8%;"><input type="number" name="estim_qty" id="estim_qty" class="estim_qty" min="1" max="100" value=1  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 				'<td style="width: 18%;" name="prod_price">'+prod_price+'</td>'+
-				'<td style="width: 24%;" ><input type="number" id="discount" name="discount" class="discount" min="0" max="100" value=0 onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
-				 '<select id="unit" class="unit">'+
-				 unit+
-				 '</select>'+'</td>'+
+				'<td style="width: 15%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+				'<input type=hidden id="unit" name="unit" value="0002">'+
+				''+ '%'+ ''+'</td>'+
+//				 '<select id="unit" style="width: 30%;">'+ unit+ '</select>'+'</td>'+
+//				 '</select>'+'</td>'+
 				'<td style="width: 15%;" id="sup_price" name="sup_price">0</td>'+
 				'</tr>'
 		);
@@ -230,10 +233,9 @@ function opptInputEstProd(prod_id,prod_nm,prod_price){
 					'<td style="width: 32%;" id="prod_nm">'+prod_nm+'</td>'+
 					'<td style="width: 8%;"><input type="number"  class="estim_qty" name="estim_qty" id="estim_qty" value=1  min="1" max="100" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"></td>'+			
 					'<td style="width: 18%;" name="prod_price">'+prod_price+'</td>'+
-					'<td style="width: 24%;" ><input type="number" class="discount" id="discount" name="discount" min="0" max="100" value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
-					'<select id="unit" class="unit">'+
-					 unit+
-					 '</select>'+'</td>'+
+					'<td style="width: 24%;" ><input type=number style="width: 50%; text-align: right;" id="discount" class="discount" name="discount"  value=0  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)">'+
+					'<input type=hidden id="unit" name="unit" value="0002">'+
+					''+ '%'+ ''+'</td>'+
 					'<td id="sup_price" name="sup_price">0</td>'+
 					'</tr>'
 			);
