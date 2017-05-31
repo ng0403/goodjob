@@ -173,8 +173,8 @@ function opptTabCheck(opptId)
 	var tabCheck = $('#tabValue').val();
 //	alert("페이지 다녀온 후 탭 밸류 : " + tabValue);
 	
-	console.log(tabCheck);
-	console.log(opptId);
+//	console.log(tabCheck);
+//	console.log(opptId);
 	
 	if(tabCheck != null || tabCheck != '')
 	{
@@ -301,18 +301,6 @@ function AddCustomerOpen(flag, cust_id, cust_nm){
 	var opptId = opptId;
 	location.href = ctx+'/opptDetail?flag=' + flag + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
 }
-//고객사에서 영업기회추가 페이지 이동 (송영화 네가 타야되는건 여기다..영업기회가 있는 경우)
-//function AddCustomerOpen(flag, opptId, cust_id, cust_nm){
-//	alert("parameter 4ea");
-//	var ctx = $("#ctx").val();
-//	var cust_id = cust_id;
-//	var cust_nm = cust_nm;
-//	var opptId = opptId;
-//	alert(cust_id);
-//	alert(cust_nm);
-//	alert(opptId);
-//	location.href = ctx+'/opptDetail?flag=' + flag + "&opptId=" + opptId+ "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
-//}
 
 //검색 버튼 클릭 시 
 function searchBtn(page){

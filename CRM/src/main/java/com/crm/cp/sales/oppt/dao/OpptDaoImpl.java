@@ -242,14 +242,15 @@ public class OpptDaoImpl implements OpptDao {
 	}
 	//영업기회 삭제 (사용)
 	@Override
-	public int opptDelete(String opptId) {
+	public int opptDelete(OpptVO opptVO) {
+		System.out.println("opptDelete DAO Impl : " + opptVO);
 		// TODO Auto-generated method stub
-		int result = sqlsession.update("oppt.opptDelete", opptId); 
+		int result = sqlsession.update("oppt.opptDelete", opptVO); 
 		
 		if(result == 1)
 		{
-			sqlsession.update("oppt.opptActDel", opptId);
-			sqlsession.update("oppt.opptEstDel", opptId);
+			sqlsession.update("oppt.opptActDel", opptVO);
+			sqlsession.update("oppt.opptEstDel", opptVO);
 		}
 		
 		return result;

@@ -123,6 +123,7 @@ $(function() {
 			<div id="pageSpace" class="ui right floated pagination menu">
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
+			
 				<c:choose>
 					<c:when test="${ccPageNum eq page.firstPageCount}">
 		        		<a class="icon item">

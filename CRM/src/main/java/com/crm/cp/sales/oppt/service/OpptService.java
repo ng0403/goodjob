@@ -93,7 +93,7 @@ public interface OpptService {
 	//견적 삭제
 	int opptEstimDelete(String estim_id);
 
-	int opptDelete(String opptId);
+	int opptDelete(OpptVO opptVO);
 
 	ActVO actDetail(String actvyId);
 

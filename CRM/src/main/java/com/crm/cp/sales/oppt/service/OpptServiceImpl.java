@@ -211,9 +211,10 @@ public class OpptServiceImpl implements OpptService {
 	}
 	//영업기회 삭제 (사용)
 	@Override
-	public int opptDelete(String opptId) {
+	public int opptDelete(OpptVO opptVO) {
+		System.out.println("opptDelete DAO Impl : " + opptVO);
 		// TODO Auto-generated method stub
-		return dao.opptDelete(opptId);
+		return dao.opptDelete(opptVO);
 	}
 
 	@Override

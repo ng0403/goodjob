@@ -91,9 +91,9 @@
 			</when>
 		</choose>
 		
+		order by a.fin_mdfy_dt desc
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
-		order by d.fin_mdfy_dt desc
 
 	</select>
 	<!-- 삭제된 영업기회 리스트 -->
@@ -183,10 +183,9 @@
 				and a.psblty_rate = #{spsblty_rate}
 			</when>
 		</choose>
-		
+		order by a.fin_mdfy_dt desc
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
-		order by d.fin_mdfy_dt desc
 
 	</select>
 	<!-- 홈화면 영업기회 리스트 -->
@@ -434,7 +433,9 @@
 		, fin_mdfy_dt = sysdate
 		WHERE estim_id = (SELECT estim_id
 						  FROM SALES_OPPORTUNITY_ESTIMATE
-						  WHERE sales_oppt_id = #{sales_oppt_id})
+						  WHERE sales_oppt_id =#{sales_oppt_id}
+			              and rownum = 1
+			              order by FIN_MDFY_DT desc)
 	</update>
 	<!-- 영업기회 act_yn을 N으로 했을 때 (삭제 시) 영업활동도 N으로 바꾼다. -->
 	<update id="opptActDel" parameterType="com.crm.cp.sales.oppt.vo.OpptVO">
@@ -453,7 +454,9 @@
 		, fin_mdfy_dt = sysdate
 		WHERE estim_id = (SELECT estim_id
 						  FROM SALES_OPPORTUNITY_ESTIMATE
-						  WHERE sales_oppt_id = #{sales_oppt_id})
+						  WHERE sales_oppt_id =#{sales_oppt_id}
+			              and rownum = 1
+			              order by FIN_MDFY_DT desc)
 	</update>
 
 	<!-- 영업기회 추가 -->
@@ -887,7 +890,7 @@
 	<update id="opptDelete" parameterType="String">
 		update sales_opportunity
 		set act_yn='N'
-		where sales_oppt_id=#{opptId}
+		where sales_oppt_id=#{sales_oppt_id}
 	</update>
 	
  	<!-- 영업기회 act_yn을 n으로 했을 때 영업활동도 n으로 바꾼다. --> 

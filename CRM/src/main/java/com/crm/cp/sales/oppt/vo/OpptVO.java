@@ -22,6 +22,7 @@ public class OpptVO {
 	private String estim_id; // 견적ID
 	private String estim_nm; // 견적명
 	private String org_nm; // 부서명
+	private String opptId; // 부서명
 	private int idx; // index값
 
 	// 코드 정보
@@ -61,6 +62,14 @@ public class OpptVO {
 	
 	
 	
+
+	public String getOpptId() {
+		return opptId;
+	}
+
+	public void setOpptId(String opptId) {
+		this.opptId = opptId;
+	}
 
 	public String getExpt_sales_amt() {
 		return expt_sales_amt;

@@ -44,7 +44,7 @@ public class OpptController {
 	@RequestMapping(value = "/oppt", method = RequestMethod.GET)
 	ModelAndView list(HttpSession session,
 			@RequestParam Map<String, String> map,
-			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum) {
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
@@ -86,6 +86,7 @@ public class OpptController {
 		mov.addObject("osclist", osclist);
 		mov.addObject("otllist", otllist);
 		mov.addObject("page", page);
+		mov.addObject("ccPageNum", pageNum);
 		mov.addObject("menuList", menuList);
 		mov.addObject("searchInfo", map);
 		return mov;
@@ -392,6 +393,7 @@ public class OpptController {
 		map.put("spsblty_rate1", map.get("spsblty_rate1"));
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
+		System.out.println("page page :"+ page);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		//영업기회 리스트 출력
@@ -474,9 +476,10 @@ public class OpptController {
 //	영업기회삭제
 	@RequestMapping(value = "/opptDelete", method = RequestMethod.GET)
 	@ResponseBody
-	public int opptDelete(HttpSession session,
+	public int opptDelete(HttpSession session, OpptVO opptVO, 
 			@RequestParam(value = "opptidList[]") List<String> opptidList,
 			@RequestParam(value = "pageNum", defaultValue = "1") String pageNum) {
+		opptVO.setFin_mdfy_id(session.getAttribute("user").toString());
 		int result = 0;
 		// 모든 checked된 견적에 대해 삭제
 		for (int i = 0; i < opptidList.size(); i++) {
@@ -484,7 +487,8 @@ public class OpptController {
 //			int delOppt = service.opptPrdtDel(opptidList.get(i));
 //			System.out.println("영업기회상품 삭제 결과 : " + delOppt);
 			//영업기회 삭제 
-			result += service.opptDelete(opptidList.get(i));
+			opptVO.setSales_oppt_id(opptidList.get(i));
+			result += service.opptDelete(opptVO);
 		}
 		return result;
 	}
