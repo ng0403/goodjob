@@ -39,7 +39,7 @@
 	
  	<div class="detailBtn"> 
 	<div id = "baseBtnDiv" class="bt_position_authuser">
-	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui blue button" value="편집" onclick="modify_fbtn();"/>
+	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui button" value="편집" onclick="modify_fbtn();"/>
 	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
 	</div>
 	

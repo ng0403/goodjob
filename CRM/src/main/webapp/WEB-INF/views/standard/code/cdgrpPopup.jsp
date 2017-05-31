@@ -39,7 +39,7 @@
 								</tr>
 								<tr>
 									<th>활성화 여부</th>
-									<td><input type="radio" id="active_flg_Y" name="act_yn" value="Y" checked="checked"/>활성화&nbsp;
+									<td colspan="3"><input type="radio" id="active_flg_Y" name="act_yn" value="Y" checked="checked"/>활성화&nbsp;
 										<input type="radio" id="active_flg_N" name ="act_yn" value="N"/>비활성화</td>
 								</tr>
 							</tbody>

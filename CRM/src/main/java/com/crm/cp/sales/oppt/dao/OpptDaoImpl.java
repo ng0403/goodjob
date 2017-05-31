@@ -405,6 +405,10 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("영업기회상품 삭제 sales_oppt_id : " + sales_oppt_id);
 		int result = sqlsession.delete("oppt.opptPrdtDel", sales_oppt_id);
 		System.out.println("영업기회상품 삭제 result : " + result);
+		if(result == 1){
+			sqlsession.delete("oppt.opptactdelete", sales_oppt_id);
+			sqlsession.delete("oppt.opptestdelete", sales_oppt_id);
+		}
 		return result;
 	}
 	//영업기회완전삭제
@@ -413,6 +417,10 @@ public class OpptDaoImpl implements OpptDao {
 		System.out.println("영업기회상품 삭제 sales_oppt_id : " + sales_oppt_id);
 		int result = sqlsession.delete("oppt.opptDelDelete", sales_oppt_id);
 		System.out.println("영업기회상품 삭제 result : " + result);
+		if(result == 1){
+			sqlsession.delete("oppt.opptactDeldelete", sales_oppt_id);
+			sqlsession.delete("oppt.opptestDeldelete", sales_oppt_id);
+		}
 		return result;
 	}
 

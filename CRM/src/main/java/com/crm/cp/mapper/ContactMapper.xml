@@ -424,8 +424,7 @@
 	
 	<!-- 연락처 수정 -->
 	<update id="contactUpdate" parameterType="com.crm.cp.sales.contact.vo.ContactVO">
-		UPDATE CONTACT SET
-	       	   cont_id =  #{cont_id},
+		UPDATE CONTACT SET 
 	           cont_nm = #{cont_nm},   
 	           company_nm = #{company_nm},
 	           ph1 =  #{ph1},
@@ -491,7 +490,7 @@
 		 <if test="keyword!=null and keyword!=''">
 				        <include refid="where-list1"/>
 	     </if>
-			ORDER BY fst_reg_dt desc 
+			ORDER BY fin_mdfy_dt desc 
 			 ) a
 		 ) b
 		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>

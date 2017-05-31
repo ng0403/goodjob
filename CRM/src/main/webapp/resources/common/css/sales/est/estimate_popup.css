@@ -189,7 +189,7 @@
   
    #estimatetable tbody tr{
    height: 30px;
-  	font-family: monospace;
+/*   	font-family: monospace; */
   }
   
 #estimatetable thead > tr > th,

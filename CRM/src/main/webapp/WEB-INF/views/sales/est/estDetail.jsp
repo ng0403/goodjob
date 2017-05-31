@@ -47,6 +47,7 @@ $(function() {
 </script>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="hsales_oppt_id" value="${sales_oppt_id}">
 	<%-- <input type="hidden" id="listPageNum" value="${ctx}"> --%>
 	<!-- <div id="css_tabs"> -->
 	<div id="write_est">
@@ -57,10 +58,18 @@ $(function() {
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->
 		<div id="title">
 			<div class="caption">
-				<label id="listLabel" class="ui header">■ 견적 > 
-					<a href="/estInqr" style="font-size: 19px; text-decoration:none; color: black;  font: bold;">견적관리</a>
-					 > 상세정보
-				</label>
+				<c:if test="${sales_oppt_id eq null }">
+					<label id="listLabel" class="ui header">■ 견적 >
+						<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적관리</a>
+						 > 견적 상세정보
+					</label>
+				</c:if>
+				<c:if test="${sales_oppt_id ne null }">
+					<label id="listLabel" class="ui header">■ 영업기회 >
+						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a>
+						 > 견적 상세정보
+					</label>
+				</c:if>
 			</div>
 		</div>
 		<!-- <label>상세정보</label> -->
@@ -85,7 +94,7 @@ $(function() {
 				<table id="contactable" class="ui celled table">
 					<tbody id="estDetail" class="detailtbody">
 						<tr>
-							<th>견적명</th>
+							<th><span style="color:red">*견적명</span></th>
 							<td>
 								<div class="ui input focus">
 								<input type="text" name="estim_nm_detail" id="estim_nm"
@@ -93,7 +102,7 @@ $(function() {
 								 <input type="hidden" id="estim_id" value="${detail.estim_id }">
 								</div> 
 							</td>
-							<th>고객사</th>
+							<th><span style="color:red">*고객사</span></th>
 							<td>
 								<div class="ui input focus">
 									<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" value="${detail.cust_nm }" >
@@ -105,7 +114,7 @@ $(function() {
 							</td>
 						</tr>
 						<tr>
-							<th>영업기회명</th>
+							<th><span style="color:red">*영업기회명</span></th>
 							<td>
 								<div class="ui input focus">
 									<input type="hidden" id="sales_oppt_id" value="${detail.sales_oppt_id }"> 
@@ -175,7 +184,7 @@ $(function() {
 					<input type="button" disabled="disabled" style="float: right; margin-right: 10px;margin-bottom: 10px;" class="tiny ui blue button" value="상품추가" id="prodListBtn"/>
 	 			</div>			
 				<table id= "estimatehead" class="ui celled table" style="width:100%; text-align: center; border-collapse: collapse; border:1px; margin-bottom:0px;" >
-					<tr>
+					<tr style="height: 35px; background-color: rgb(228, 233, 251);">
 						<th style="width: 3%;padding:0px;text-align: center;" rowspan="2"><input type="checkbox" id="allSelect"></th>
 						<th style="width: 32%;text-align: center;">품목명</th>
 						<th style="width: 8%;text-align: center;">수량</th>

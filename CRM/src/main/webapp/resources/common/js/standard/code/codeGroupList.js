@@ -95,7 +95,7 @@ function searchcdgrpList(ctx){
 				}
 				
 			}, error : function(data){
-				alert(data);
+				alert("오류");
 			}
 			
 		});
@@ -222,8 +222,7 @@ function writecdgrpPopup(ctx){
 
 //코드 그룹 등록 ajax
 function cdgrpSendConfirm(cd_grp_id, cd_grp_nm, act_yn){
-	alert("코드 그룹 등록 ajax");
-	
+ 	
 	var ctx = $('#ctx').val();
 	
 	var cdgrpdata = {
@@ -344,7 +343,7 @@ function writecode(){
 
 //코드 등록
 function code_insert(){
- 	$('#active_flg_Y').click(function(){
+  	$('#active_flg_Y').click(function(){
 		$('#active_flg_N').prop("checked", false);
 	});
 	$('#active_flg_N').click(function(){
@@ -372,7 +371,6 @@ function code_insert(){
 
 //코드  등록 ajax
 function codeSendConfirm(cd_grp_id, cd_nm, cd_dtl_cont, act_yn){
-  	
 	var cdgrpdata = {
 			"cd_grp_id" : cd_grp_id,
 			"cd_nm" : cd_nm,
@@ -391,7 +389,7 @@ function codeSendConfirm(cd_grp_id, cd_nm, cd_dtl_cont, act_yn){
 			for(var i=0; i<data.length;i++){
 				var args = '<tr><td style="width: 5%; text-align:center"><input type="checkbox" id="ckselect" value="'+data[i].code+'"></td>'
 			    +'<td style="width: 15%;">'+data[i].cd_grp_id+'</td>' 
-				+"<td style='width: 15%;'><a href='#' id='cd_grd_id' value='"+ data[i].cd_grp_id +"'>"+data[i].code+"</a></td>"
+				+"<td style='width: 15%;'><a href='#' onclick=\"codeDetail('"+data[i].code+"','"+data.cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.cd_grp_id +"'>"+data.code+"</a></td>"
 				+'<td style="width: 15%;">'+data[i].cd_nm+'</td>'
 				+'<td style="width: 30%;">'+data[i].cd_dtl_cont+ '</td>'
 				+'<td style="width: 16%;">'+data[i].fst_reg_id +'</td>'
@@ -567,13 +565,13 @@ function codeUpdateConfirm(cd_nm, cd_dtl_cont, act_yn, code, cd_grp_id){
 					$('#codemastertable tbody tr').remove();
 				 	var args;
  					for(var i=0; i<data.codelist.length;i++){
-   						args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data.codelist[i].code+'"></td>'
-						    +'<td style="width: 15%;">'+data.codelist[i].cd_grp_id+'</td>' 
-							+"<td style='width: 15%;'><a href='#' onclick=\"codeDetail('"+data.codelist[i].code+"','"+data.codelist[i].cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.codelist[i].cd_grp_id +"'>"+data.codelist[i].code+"</a></td>"
-							+'<td style="width: 15%;">'+data.codelist[i].cd_nm+'</td>'
-							+'<td style="width: 30%;">'+data.codelist[i].cd_dtl_cont+ '</td>'
+   						args = '<tr><td style="width: 4.67%;"><input type="checkbox" id="ckselect" value="'+data.codelist[i].code+'"></td>'
+						    +'<td style="width: 14.7%;">'+data.codelist[i].cd_grp_id+'</td>' 
+							+"<td style='width: 14.7%;'><a href='#' onclick=\"codeDetail('"+data.codelist[i].code+"','"+data.codelist[i].cd_grp_id+"' );\" id='cd_grd_id' value='"+ data.codelist[i].cd_grp_id +"'>"+data.codelist[i].code+"</a></td>"
+							+'<td style="width: 14.7%;">'+data.codelist[i].cd_nm+'</td>'
+							+'<td style="width: 16.68%;">'+data.codelist[i].cd_dtl_cont+ '</td>'
 							+'<td style="width: 16%;">'+data.codelist[i].fst_reg_id +'</td>'
-							+'<td style="width: 19%;">'+ dateFormat(data.codelist[i].fst_reg_dt) +'</td></tr>'
+							+'<td style="width: 32%;">'+ dateFormat(data.codelist[i].fst_reg_dt) +'</td></tr>'
 							$('#codemastertable tbody').append(args);
 					}                            
 				   	$("#grp_id").val(data.cd_grp_id);
@@ -655,13 +653,13 @@ function codeSendConfirm(cd_grp_id, cd_nm, cd_dtl_cont, act_yn){
 			alert("등록 되었습니다.")
 			$('#codemastertable tbody tr').remove();
 			for(var i=0; i<data.length;i++){
-				var args = '<tr><td style="width: 5%;"><input type="checkbox" id="ckselect" value="'+data[i].code+'"></td>'
-			    +'<td style="width: 15%;">'+data[i].cd_grp_id+'</td>' 
-				+"<td style='width: 15%;'><a href='#' id='cd_grd_id' value='"+ data[i].cd_grp_id +"'>"+data[i].code+"</a></td>"
-				+'<td style="width: 15%;">'+data[i].cd_nm+'</td>'
-				+'<td style="width: 30%;">'+data[i].cd_dtl_cont+ '</td>'
+				var args = '<tr><td style="width: 4.67%;"><input type="checkbox" id="ckselect" value="'+data[i].code+'"></td>'
+			    +'<td style="width: 14.7%;">'+data[i].cd_grp_id+'</td>' 
+				+"<td style='width: 14.7%;'><a href='#' id='cd_grd_id' value='"+ data[i].cd_grp_id +"'>"+data[i].code+"</a></td>"
+				+'<td style="width: 14.7%;">'+data[i].cd_nm+'</td>'
+				+'<td style="width: 16.68%;">'+data[i].cd_dtl_cont+ '</td>'
 				+'<td style="width: 16%;">'+data[i].fst_reg_id +'</td>'
-				+'<td style="width: 19%;">'+ data[i].fst_reg_dt +'</td></tr>';
+				+'<td style="width: 32%;">'+ data[i].fst_reg_dt +'</td></tr>';
 				
 				/*if(data[i].act_yn=='Y'){
 					args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";

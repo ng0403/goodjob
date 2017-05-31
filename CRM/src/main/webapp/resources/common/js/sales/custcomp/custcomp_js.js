@@ -60,7 +60,7 @@ $(document).ready(function() {
 	// 키맨 리스트 가져오기
 	$("#tab1").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		console.log(cust_id);
+//		console.log(cust_id);
 		if(cust_id == ''){
 			var tbody = $('#keymanTableTbody');
 			tbody.children().remove();
@@ -755,15 +755,6 @@ function actList(cust_id) {
 				}else{
 					// 영업활동 리스트 그리기
 					for (var i = 0; i < data.length; i++) {
-						var strt_t = data[i].strt_t;
-						var end_t = data[i].end_t;
-						
-						if(strt_t == null){
-							strt_t = '';
-						}
-						if(end_t == null){
-							end_t = '';
-						}
 						tbodyContent = 
 							"<tr>"
 							+ "<td rowspan='2' style='width:24px;'>" 
@@ -771,7 +762,7 @@ function actList(cust_id) {
 							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
 							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"')>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
-							+ "<td style='width:74px;'>"+data[i].end_d+"</td>"
+							+ "<td style='width:74px;'>"+data[i].strt_t+"</td>"
 							+ "<td rowspan='2' style='width:106px;'>"+data[i].sales_actvy_type_nm+"</td>"
 							+ "<td rowspan='2' style='width:92px;'>"+data[i].sales_actvy_stat_nm+"</td>"
 						+ "</tr>"

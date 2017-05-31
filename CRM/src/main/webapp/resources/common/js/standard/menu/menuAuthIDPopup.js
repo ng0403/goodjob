@@ -8,7 +8,7 @@ function auth_checkCount(selectNodeClass){
 	var count=0;
 	var checkList =	$('.'+selectNodeClass);
 
-	for(var i=0; i<$(checkList).size(); i++){
+	for(var i=0; i<$(checkList).length; i++){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
@@ -20,7 +20,7 @@ function auth_checkCount(selectNodeClass){
 function auth_checkedNode(ClassName){
 	var node;
 	var checkList =	$('.'+ClassName);
-	for(var i=0; i<checkList.size(); i++){
+	for(var i=0; i<checkList.length; i++){
 		if($(checkList[i]).is(':checked')){
 			node = checkList[i];
 		}

@@ -56,6 +56,10 @@ public class EstVO {
 	private String estim_valid_d1;
 	private String estim_valid_d2;
 	
+	private String hsales_oppt_id;
+	private String hsales_oppt_nm;
+	private String hcust_id;
+	private String hcust_nm;
 	
 	public EstVO(String estim_id, String cust_id, String estim_nm,
 			String estim_lev_cd, String estim_lev_cd_nm, String estim_valid_d,
@@ -102,6 +106,39 @@ public class EstVO {
 		this.total_discount = total_discount;
 		this.total_sup_price = total_sup_price;
 	}
+	
+	public String getHsales_oppt_id() {
+		return hsales_oppt_id;
+	}
+
+	public void setHsales_oppt_id(String hsales_oppt_id) {
+		this.hsales_oppt_id = hsales_oppt_id;
+	}
+
+	public String getHsales_oppt_nm() {
+		return hsales_oppt_nm;
+	}
+
+	public void setHsales_oppt_nm(String hsales_oppt_nm) {
+		this.hsales_oppt_nm = hsales_oppt_nm;
+	}
+
+	public String getHcust_id() {
+		return hcust_id;
+	}
+
+	public void setHcust_id(String hcust_id) {
+		this.hcust_id = hcust_id;
+	}
+
+	public String getHcust_nm() {
+		return hcust_nm;
+	}
+
+	public void setHcust_nm(String hcust_nm) {
+		this.hcust_nm = hcust_nm;
+	}
+
 	public String getEstim_nm1() {
 		return estim_nm1;
 	}

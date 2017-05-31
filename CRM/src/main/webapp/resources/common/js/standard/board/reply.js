@@ -49,7 +49,7 @@ function replyPaging(replyPageNum) {
 		 
 		},
 		error : function() {
-			alert("제가 문제입니다 페이징");
+			alert("오류!");
 		}
 	});
 } 

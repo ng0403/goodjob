@@ -33,7 +33,7 @@
 							<tbody id="tbody1">
 								<tr>
 									<th>코드그룹 ID</th>
-									<td><input type="text" name="cd_grp_id" id="cd_grp_id" class="inputText" value="${cdgrpDetail.cd_grp_id}"/></td>
+									<td><input type="text" name="cd_grp_id" id="cd_grp_id" class="inputText" readonly="readonly" value="${cdgrpDetail.cd_grp_id}"/></td>
 									<th>코드그룹 명</th>
 									<td><input type="text" name="cd_grp_nm" id="cd_grp_nm" class="inputText" value="${cdgrpDetail.cd_grp_nm}"/></td>								
 								</tr>

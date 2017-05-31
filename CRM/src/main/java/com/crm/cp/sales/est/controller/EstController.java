@@ -231,8 +231,10 @@ public class EstController {
 
 	//견적 상세정보 ajax
 	@RequestMapping(value="/estDetail", method=RequestMethod.GET)
-	public ModelAndView detail(HttpSession session, @ModelAttribute EstVO evo){
-		String estim_id = evo.getEstim_id();
+	public ModelAndView detail(HttpSession session
+			,@RequestParam(value="sales_oppt_id",required=false) String oppt_id
+			,@RequestParam(value="estim_id",required=false) String estim_id){
+//		String estim_id = evo.getEstim_id();
 		System.out.println(estim_id);
 		List<EstVO> prod = estInter.estDetail(estim_id);
 		List<EstVO> elclist = estInter.elcList();
@@ -255,6 +257,8 @@ public class EstController {
 		mov.addObject("eduList", eduList);
 		mov.addObject("elclist", elclist);
 		mov.addObject("eduCode", eduCode);
+//		mov.addObject("estim_id", estim_id);
+		mov.addObject("sales_oppt_id", oppt_id);
 		System.out.println(detail);
 		return mov;
 	}
@@ -325,15 +329,25 @@ public class EstController {
 		map.put("prodDeleteEstimId", prodDeleteEstimId);
 		int result = estInter.estUpdate(map);
 		ModelAndView mov = new ModelAndView();
+		String sales_oppt_id = est.getHsales_oppt_id();
 		if(result > 1){
-			mov.setViewName("redirect:/estInqr");
+			System.out.println("hsales_oppt_id:"+sales_oppt_id);
+			if(sales_oppt_id == "" || sales_oppt_id == null){
+				mov.setViewName("redirect:/estInqr");
+			}else if(sales_oppt_id != "" || sales_oppt_id != null){
+				mov.setViewName("redirect:/opptDetail?opptId=" + est.getHsales_oppt_id());
+			}
 		}
 		return mov;
 			
 	}
 
 	@RequestMapping(value="/estAddForm", method=RequestMethod.GET)
-	public ModelAndView opptEstimWrite(HttpSession session){
+	public ModelAndView opptEstimWrite(HttpSession session
+			,@RequestParam(value="sales_oppt_id",required=false) String oppt_id
+			,@RequestParam(value="sales_oppt_nm",required=false) String oppt_nm
+			,@RequestParam(value="cust_id",required=false) String cust_id
+			,@RequestParam(value="cust_nm",required=false) String cust_nm){
 		String id = session.getAttribute("user").toString();
 		ModelAndView mov = new ModelAndView();
 		List<EstVO> elclist = estInter.elcList();
@@ -346,6 +360,10 @@ public class EstController {
 		mov.setViewName("estAdd");
 		mov.addObject("elclist", elclist);
 		mov.addObject("eduCode", eduCode);
+		mov.addObject("sales_oppt_id", oppt_id);
+		mov.addObject("sales_oppt_nm", oppt_nm);
+		mov.addObject("cust_id", cust_id);
+		mov.addObject("cust_nm", cust_nm);
 		return mov;
 	}
 	
@@ -384,8 +402,14 @@ public class EstController {
 		System.out.println(estList);
 		
 		int result = estInter.estAdd(estList);
+		String sales_oppt_id = est.getHsales_oppt_id();
 		if(result > 1){
-			mov.setViewName("redirect:/estInqr");
+			System.out.println("hsales_oppt_id:"+sales_oppt_id);
+			if(sales_oppt_id == "" || sales_oppt_id == null){
+				mov.setViewName("redirect:/estInqr");
+			}else if(sales_oppt_id != "" || sales_oppt_id != null){
+				mov.setViewName("redirect:/opptDetail?opptId=" + est.getHsales_oppt_id());
+			}
 		}
 		return mov;
 	}

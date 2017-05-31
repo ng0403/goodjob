@@ -47,13 +47,26 @@ $(function() {
 </script>
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
+	<input type="hidden" id="hsales_oppt_id" value="${sales_oppt_id}">
+	<input type="hidden" id="hsales_oppt_nm" value="${sales_oppt_nm}">
+	<input type="hidden" id="hcust_id" value="${cust_id}">
+	<input type="hidden" id="hcust_nm" value="${cust_nm}">
+	
 	<div id="write_est">
 		<div id="title">
 			<div class="caption">
-				<label id="listLabel" class="ui header">■ 견적 >
-					<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적관리</a>
-					 > 견적추가
-				</label>
+				<c:if test="${sales_oppt_id eq null }">
+					<label id="listLabel" class="ui header">■ 견적 >
+						<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적관리</a>
+						 > 견적 등록
+					</label>
+				</c:if>
+				<c:if test="${sales_oppt_id ne null }">
+					<label id="listLabel" class="ui header">■ 영업기회 >
+						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a>
+						 > 견적 등록
+					</label>
+				</c:if>
 			</div>
 		</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->
@@ -68,7 +81,7 @@ $(function() {
 			<table id="contactable" class="ui celled table">
 				<tbody id="estDetail" class="detailtbody">
 					<tr>
-						<th class="txtr">견적명</th>
+						<th class="txtr"><span style="color:red">*견적명</span></th>
 						<td>
 							<div class="ui input focus">
 							<input type="text" name="estim_nm_detail" id="estim_nm"
@@ -76,23 +89,23 @@ $(function() {
 							<input type="hidden" id="estim_id" value="">
 							</div>
 						</td>
-						<th class="txtr">고객사</th>
+						<th class="txtr"><span style="color:red">*고객사</span></th>
 						<td>
 							<div class="ui input focus">
-								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" ></input> 
-								<input type="hidden" name="cust_id_w" id="cust_id" value="" /> 
-								<input type="hidden" name="lead_id" id="lead_id" value="" /> 
+								<input type="text" name="cust_nm" id="cust_nm" readonly="readonly" class="int" value="${cust_nm}"></input> 
+								<input type="hidden" name="cust_id_w" id="cust_id" value="${cust_id}" /> 
+<!-- 								<input type="hidden" name="lead_id" id="lead_id" value="" />  -->
 								<input type="button" class="tiny ui blue basic button" id="customer" value="고객"
 								onclick="javascript:custcompListPopup('${ctx}');" disabled="disabled">
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<th class="txtr">영업기회명</th>
+						<th class="txtr"><span style="color:red">*영업기회명</span></th>
 						<td>
 							<div class="ui input focus">
-								<input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id"> 
-								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" >
+								<input type="hidden" name="sales_oppt_id_w" id="sales_oppt_id" value="${sales_oppt_id}"> 
+								<input type="text" name="sales_oppt_nm" id="sales_oppt_nm"  readonly="readonly" class="int3" value="${sales_oppt_nm}">
 								<input type="button" name="act_opp" value="영업기회"
 								class="tiny ui blue basic button" id="opptSelect"  disabled="disabled">
 							</div>
