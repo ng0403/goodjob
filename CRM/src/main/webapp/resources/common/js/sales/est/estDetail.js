@@ -385,6 +385,7 @@ function estAdd(ctx){
 	var hsales_oppt_nm = $('#hsales_oppt_nm').val();
 	var hcust_id = $('#hcust_id').val();
 	var hcust_nm = $('#hcust_nm').val();
+	var tabValue = $('#tabValue').val();
 	
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
@@ -483,18 +484,18 @@ function estAdd(ctx){
 		"name":"hsales_oppt_id",
 		"value":hsales_oppt_id
 	})
-//	var $hsales_oppt_nm= $("<input>");
-//	$hsales_oppt_nm.attr({
-//		"type":"hidden",
-//		"name":"hsales_oppt_nm",
-//		"value":hsales_oppt_nm
-//	})
-//	var $hcust_id= $("<input>");
-//	$hcust_id.attr({
-//		"type":"hidden",
-//		"name":"hcust_id",
-//		"value":hcust_id
-//	})
+	var $tabValue= $("<input>");
+	$tabValue.attr({
+		"type":"hidden",
+		"name":"tabValue",
+		"value":tabValue
+	})
+	var $hcust_id= $("<input>");
+	$hcust_id.attr({
+		"type":"hidden",
+		"name":"hcust_id",
+		"value":hcust_id
+	})
 //	var $hcust_nm= $("<input>");
 //	$hcust_nm.attr({
 //		"type":"hidden",
@@ -502,7 +503,7 @@ function estAdd(ctx){
 //		"value":hcust_nm
 //	})
 	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($sales_oppt_id).append($memo).append($est_list);
-	$form.append($hsales_oppt_id)/*.append($hsales_oppt_nm).append($hcust_id).append($hcust_nm)*/;
+	$form.append($hsales_oppt_id).append($hcust_id).append($tabValue)/*.append($hsales_oppt_nm).append($hcust_nm)*/;
 	
 	$("body").append($form);
 	$form.submit();
@@ -696,8 +697,20 @@ function estUpdate(ctx){
 		"name":"hsales_oppt_id",
 		"value":hsales_oppt_id
 	})
+	var $tabValue= $("<input>");
+	$tabValue.attr({
+		"type":"hidden",
+		"name":"tabValue",
+		"value":tabValue
+	})
+	var $hcust_id= $("<input>");
+	$hcust_id.attr({
+		"type":"hidden",
+		"name":"hcust_id",
+		"value":hcust_id
+	})
 	$form.append($estim_valid_d).append($estim_lev_cd).append($cust_id).append($estim_nm).append($memo).append($est_list).append($estim_id).append($prodAddId).append($prodDeleteProdId).append($prodDeleteEstimId).append($sales_oppt_id);
-	$form.append($hsales_oppt_id);
+	$form.append($hsales_oppt_id).append($hcust_id).append($tabValue);
 	
 	$("body").append($form);
 	$form.submit();

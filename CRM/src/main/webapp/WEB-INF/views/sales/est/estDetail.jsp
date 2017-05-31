@@ -48,6 +48,7 @@ $(function() {
 <body>
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="hsales_oppt_id" value="${sales_oppt_id}">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 	<%-- <input type="hidden" id="listPageNum" value="${ctx}"> --%>
 	<!-- <div id="css_tabs"> -->
 	<div id="write_est">

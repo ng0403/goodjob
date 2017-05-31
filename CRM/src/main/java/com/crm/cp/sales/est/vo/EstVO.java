@@ -61,6 +61,8 @@ public class EstVO {
 	private String hcust_id;
 	private String hcust_nm;
 	
+	private String tabValue;
+	
 	public EstVO(String estim_id, String cust_id, String estim_nm,
 			String estim_lev_cd, String estim_lev_cd_nm, String estim_valid_d,
 			String fst_reg_id, String fst_reg_dt, String fin_mdfy_id,
@@ -107,6 +109,14 @@ public class EstVO {
 		this.total_sup_price = total_sup_price;
 	}
 	
+	public String getTabValue() {
+		return tabValue;
+	}
+
+	public void setTabValue(String tabValue) {
+		this.tabValue = tabValue;
+	}
+
 	public String getHsales_oppt_id() {
 		return hsales_oppt_id;
 	}

@@ -233,7 +233,9 @@ public class EstController {
 	@RequestMapping(value="/estDetail", method=RequestMethod.GET)
 	public ModelAndView detail(HttpSession session
 			,@RequestParam(value="sales_oppt_id",required=false) String oppt_id
-			,@RequestParam(value="estim_id",required=false) String estim_id){
+			,@RequestParam(value="cust_id",required=false) String cust_id
+			,@RequestParam(value="estim_id",required=false) String estim_id
+			,@RequestParam(value="tabValue",required=false) String tabValue){
 //		String estim_id = evo.getEstim_id();
 //		System.out.println(estim_id);
 //		System.out.println(oppt_id);
@@ -260,6 +262,8 @@ public class EstController {
 		mov.addObject("eduCode", eduCode);
 //		mov.addObject("estim_id", estim_id);
 		mov.addObject("sales_oppt_id", oppt_id);
+		mov.addObject("cust_id", cust_id);
+		mov.addObject("tabValue", tabValue);
 		System.out.println(detail);
 		return mov;
 	}
@@ -331,12 +335,15 @@ public class EstController {
 		int result = estInter.estUpdate(map);
 		ModelAndView mov = new ModelAndView();
 		String sales_oppt_id = est.getHsales_oppt_id();
+		String cust_id = est.getHcust_id();
 		if(result > 1){
 			System.out.println("hsales_oppt_id:"+sales_oppt_id);
-			if(sales_oppt_id == "" || sales_oppt_id == null){
+			if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id == "" || cust_id == null)){
 				mov.setViewName("redirect:/estInqr");
-			}else if(sales_oppt_id != "" || sales_oppt_id != null){
-				mov.setViewName("redirect:/opptDetail?opptId=" + est.getHsales_oppt_id());
+			}else if((sales_oppt_id != "" || sales_oppt_id != null)&&(cust_id != "" || cust_id != null)){
+				mov.setViewName("redirect:/opptDetail?opptId=" + sales_oppt_id + "&tabValue=" + est.getTabValue());
+			}else if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id != "" || cust_id != null)){
+				mov.setViewName("redirect:/custcompDetail?cust_id=" + cust_id + "&tabValue=" + est.getTabValue());
 			}
 		}
 		return mov;
@@ -348,7 +355,8 @@ public class EstController {
 			,@RequestParam(value="sales_oppt_id",required=false) String oppt_id
 			,@RequestParam(value="sales_oppt_nm",required=false) String oppt_nm
 			,@RequestParam(value="cust_id",required=false) String cust_id
-			,@RequestParam(value="cust_nm",required=false) String cust_nm){
+			,@RequestParam(value="cust_nm",required=false) String cust_nm
+			,@RequestParam(value="tabValue",required=false) String tabValue){
 		String id = session.getAttribute("user").toString();
 		ModelAndView mov = new ModelAndView();
 		List<EstVO> elclist = estInter.elcList();
@@ -365,6 +373,7 @@ public class EstController {
 		mov.addObject("sales_oppt_nm", oppt_nm);
 		mov.addObject("cust_id", cust_id);
 		mov.addObject("cust_nm", cust_nm);
+		mov.addObject("tabValue", tabValue);
 		return mov;
 	}
 	
@@ -404,12 +413,15 @@ public class EstController {
 		
 		int result = estInter.estAdd(estList);
 		String sales_oppt_id = est.getHsales_oppt_id();
+		String cust_id = est.getHcust_id();
 		if(result > 1){
 			System.out.println("hsales_oppt_id:"+sales_oppt_id);
-			if(sales_oppt_id == "" || sales_oppt_id == null){
+			if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id == "" || cust_id == null)){
 				mov.setViewName("redirect:/estInqr");
-			}else if(sales_oppt_id != "" || sales_oppt_id != null){
-				mov.setViewName("redirect:/opptDetail?opptId=" + est.getHsales_oppt_id());
+			}else if((sales_oppt_id != "" || sales_oppt_id != null)&&(cust_id != "" || cust_id != null)){
+				mov.setViewName("redirect:/opptDetail?opptId=" + sales_oppt_id + "&tabValue=" + est.getTabValue());
+			}else if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id != "" || cust_id != null)){
+				mov.setViewName("redirect:/custcompDetail?cust_id=" + cust_id + "&tabValue=" + est.getTabValue());
 			}
 		}
 		return mov;

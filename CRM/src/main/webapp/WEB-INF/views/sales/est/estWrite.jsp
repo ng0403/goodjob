@@ -51,6 +51,7 @@ $(function() {
 	<input type="hidden" id="hsales_oppt_nm" value="${sales_oppt_nm}">
 	<input type="hidden" id="hcust_id" value="${cust_id}">
 	<input type="hidden" id="hcust_nm" value="${cust_nm}">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 	
 	<div id="write_est">
 		<div id="title">
