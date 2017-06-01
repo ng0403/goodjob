@@ -40,14 +40,14 @@ function opptEstimAdd(ctx){
 	var sales_oppt_id = $('#sales_oppt_id').val();
 	var estim_qty = [];
 	var prod_price = $('#prod_price').text();
-	alert("판매가 : " + prod_price);
+//	alert("판매가 : " + prod_price);
 	var sales_price = [];
 	var discount= [];
 	var sup_price = [];
 	var estim_valid_d = $('#estim_valid_d').val();
 	var estim_lev_cd = $('#estim_lev_cd').val();
 	var cust_id = $('#cust_id').val();
-	alert("고객아이디 확인 : " + cust_id);
+//	alert("고객아이디 확인 : " + cust_id);
 	var estim_nm = $('#estim_nm').val();
 	var est_list = [];
 	var memo = $('#memo').val();
@@ -111,7 +111,7 @@ function opptEstimAdd(ctx){
 		success:function(){
 			alert("정상적으로 등록되었습니다.");
 			window.opener.estimList(sales_oppt_id);
-			alert(pageNum);
+//			alert(pageNum);
 			window.opener.opportunityList(pageNum);
 			self.close();
 		},
