@@ -76,8 +76,12 @@ $(document).ready(function() {
 	// 영업기회 리스트 가져오기
 	$("#tab2").click(function() {
 		var cust_id = $("#nowCust_id").val();
-		custTabValue();
-
+		
+		custTabValue();	//tab value 가지고 오기
+		
+		console.log($('#tabValue').val());
+		console.log(cust_id);
+		
 		if(cust_id == ''){
 			var tbody = $('#opptTableTbody');
 			tbody.children().remove();
@@ -121,6 +125,22 @@ $(document).ready(function() {
 				tbody.append(tbodyContent);
 		} else {
 			pocList(cust_id);
+		}
+	});
+	
+	//견적 리스트 가져오기
+	$("#tab5").click(function() {
+		var cust_id = $("#nowCust_id").val();
+		custTabValue();
+		
+		if(cust_id == ''){
+			var tbody = $('#estTableTbody');
+				tbody.children().remove();
+			var tbodyContent = "";
+				tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+				tbody.append(tbodyContent);
+		} else {
+			estList(cust_id);
 		}
 	});
 	
@@ -179,7 +199,10 @@ function tabCheckAjaxList(cust_id)
 	} 
 	else if($("#tab4").is(":checked")){
 		if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
-	} 
+	}
+	else if($("#tab5").is(":checked")){
+		if(cust_id != '')	estList(cust_id);	 // 견적 불러오기
+	}
 }
 
 //고객사 검색 조건 추가
@@ -291,7 +314,6 @@ function custCompList(page){
 					sch_corp_num0 : $("#sch_corp_num0").val(), 
 					sch_corp_num1 : $("#sch_corp_num1").val(), 
 					act_yn : $("#act_yn").val() 
-					 
 				},
 				datatype : 'json',
 		success:function(result){
