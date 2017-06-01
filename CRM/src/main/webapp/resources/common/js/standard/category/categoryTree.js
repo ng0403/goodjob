@@ -18,20 +18,24 @@ function cate_totalCheckCount(){
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
-	}	
+	}
+	
 	return count;
 }
 
 //각 클래스명으로 체크된 갯수
-function cate_checkCount(selectNodeClass){
+function cate_checkCount(selectNodeClass)
+{
 	var count=0;
 	var checkList =	$('.'+selectNodeClass);
 
-	for(var i=0; i<checkList.lenght; i++){
+	for(var i=0; i<checkList.length; i++)
+	{
 		if($(checkList[i]).is(':checked')){
 			count++;
 		}
 	}	
+	
 	return count;
 }
 
@@ -66,8 +70,7 @@ function cate_checkedNode(ClassName){
 	var node;
 	var count = 0;
 	var checkList =	$('.'+ClassName);
-	
-	
+
 	for(var i=0; i<$(checkList).lenght; i++)
 	{
 		if($(checkList[i]).is(':checked')){
@@ -119,13 +122,14 @@ function cate_checkedCateIDList(ClassName)
 	var list = new Array();
 	var checkList =	$('.'+ClassName);
 	
-	for(var i=0; i<checkList.lenght; i++)
-	{
-		if($(checkList[i]).is(':checked'))
-		{
+	for(var i=0; i<checkList.length; i++){
+		if($(checkList[i]).is(':checked')){
 			list.push($(checkList[i]).val());
 		}
 	}
+	console.log(list);
+	console.log(checkList);
+	
 	return list;
 }
 
@@ -398,7 +402,7 @@ function cateButtonEvent(ctx)
 		//초기화면
 		if($('#cate_mode').val() == 'waiting')
 		{
-			if(cate_totalCheckCount() == 0)		//체크가 없는 경우
+			if(cate_checkCount('masterCheck') == 0)		//체크가 없는 경우 <cate_totalCheckCount>
 			{
 				alert('삭제할 대상을 선택해주세요.');
 			}
@@ -415,6 +419,21 @@ function cateButtonEvent(ctx)
 					data.master = master;
 					data.sub = sub;
 					
+//					var data = new Array();
+//					var masterList = cate_checkedCateIDList("masterCheck");
+//					var sub = cate_checkedCateIDList("subCheck");
+//					
+//					for(var i=0; i<$(masterList).length; i++)
+//					{
+//						var obj = new Object();
+//						obj.p_menu_id = masterList[i];
+//						
+//						var subList = menu_checkedSubMenuIDList(masterList[i]);
+//						obj.sub_menu_id = subList;
+//						
+//						data.push(obj);
+//					}
+					
 					var okFlag = cateDelete(ctx,data);
 					
 					if(okFlag == 1)
@@ -422,8 +441,11 @@ function cateButtonEvent(ctx)
 						alert('삭제되었습니다.');
 						var master = cate_checkNodeList('masterCheck');
 						
+						console.log(master);
+						
 						for(var i=0; i<$(master).lenght; i++)
 						{
+							console.log(master);
 							$(master[i]).next().css('text-decoration','line-through');
 							$(master[i]).prop('checked',false);
 						}
@@ -435,6 +457,34 @@ function cateButtonEvent(ctx)
 							$(sub[j]).prop('checked',false);
 							$(sub[j]).next().css('text-decoration','line-through');
 						}
+						
+//						for(var i=0; i<$(master).lenght; i++)
+//						{
+//							var sub = cate_checkNodeList('subCheck');
+//							
+//							if($(sub).length == 0){	//하위메뉴가 없을 경우
+//								var tmp = $(master[i]).next().text();
+//								
+//								$(master[i]).next().css('text-decoration','line-through');
+//								$(master[i]).prop('checked',false);
+//							}
+//							else {	//하위메뉴가 있을 경우
+//								for(var j=0; j<$(sub).length; j++)
+//								{
+//									$(sub[j]).prop('checked',false);
+//									$(sub[j]).next().css('text-decoration','line-through');
+//								}
+//								$(master[i]).prop('checked',false);
+//							}
+//							$(master[i]).next().css('text-decoration','line-through');
+//							$(master[i]).prop('checked',false);
+//						}
+						
+//						for(var j=0; j<$(sub).lenght; j++)
+//						{
+//							$(sub[j]).prop('checked',false);
+//							$(sub[j]).next().css('text-decoration','line-through');
+//						}
 					}
 					else
 					{

@@ -97,4 +97,12 @@ public class CategoryController {
 		int result = cateService.delete(data);
 		return result;
 	}
+	
+	@RequestMapping(value = "/cateDeleteT", method = RequestMethod.POST)
+	public @ResponseBody int cateDeleteT(String cate_id)
+	{
+		System.out.println(cate_id);
+		int result = 0;
+		return result;
+	}
 }
