@@ -42,6 +42,14 @@
 	  </if>
 	</sql>
 	
+	<!-- 영업기회 리스트 row 개수 가져오기 -->
+	<select id="iUserDelPageCount" resultType="int" parameterType="java.util.Map">
+		SELECT count(IUSER_ID)
+		FROM IUSER 
+		WHERE 1=1
+		AND ACT_YN = 'N'
+	</select>
+	
 <!-- 	사용자 리스트 출력 -->
 	<select id="userSelect" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
 	 	select u.IUSER_ID, u.ID_NM, u.IUSER_NM, oz.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, u.CELL_PH2, u.CELL_PH3, 

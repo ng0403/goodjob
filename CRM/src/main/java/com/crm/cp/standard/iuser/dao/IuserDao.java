@@ -42,4 +42,10 @@ public interface IuserDao {
 
 	public int custMngDelete(IuserVO iuserVo);
 
+	//삭제된 사용자 리스트 페이지 카운트
+	public int iuserDelPageCount(Map<String, String> map);
+
+	//삭제된 사용자 리스트
+	public List<IuserVO> iUserDelList(Map<String, String> map);
+
 }

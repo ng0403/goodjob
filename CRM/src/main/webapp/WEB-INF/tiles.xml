@@ -19,6 +19,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/standard/home/home.jsp"></put-attribute>
 	</definition>
+	<definition name="iUserDel" extends="onebodyLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/standard/iuser/iUserDelList.jsp"></put-attribute>
+	</definition>
 
 	<definition name="board_list" extends="onebodyLayout">
 		<put-attribute name="body"

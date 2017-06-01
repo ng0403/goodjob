@@ -7,7 +7,10 @@ $(function() {
 	iuserListEdit(ctx);
 	iuserDelete(ctx);
 });
-
+function deletedList(){
+	var ctx = $("#ctx").val();
+	location.href = ctx+'/iUserDelList';
+}
 // 1.모두 체크
 function allChk() {
 	var test3 = $('#mastertable tbody').find('input[type=checkbox]');

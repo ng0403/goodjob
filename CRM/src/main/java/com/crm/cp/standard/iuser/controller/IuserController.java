@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.crm.cp.sales.oppt.service.OpptService;
+import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.auth.service.AuthService;
 import com.crm.cp.standard.authIuser.service.AuthIuserService;
 import com.crm.cp.standard.iuser.service.IuserService;
 import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.menu.vo.MenuVO;
+import com.crm.cp.utils.PagerVO;
 
 @Controller
 public class IuserController {
@@ -61,6 +65,37 @@ public class IuserController {
 
 		return mov;
 	}
+	
+	// 영업기회 리스트
+		@RequestMapping(value = "/iUserDelList", method = RequestMethod.GET)
+		ModelAndView iUserDelList(HttpSession session,
+				@RequestParam Map<String, String> map,
+				@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum) {
+			if (session.getAttribute("user") == null) {
+				return new ModelAndView("redirect:/");
+			}
+			ModelAndView mov = new ModelAndView("oppt");
+
+			// 메뉴리스트 가져오기
+			List<MenuVO> menuList = menuService.selectAll(session);
+			
+			map.put("pageNum", pageNum + "");
+			PagerVO page = iuserService.iUserPageCount(map);
+			System.out.println("page 정보 : " + page);
+			map.put("startRow", page.getStartRow() + "");
+			map.put("endRow", page.getEndRow() + "");
+
+			//영업기회 리스트 가져오기
+			List<IuserVO> list = iuserService.iUserDelList(map);
+
+			System.out.println("page : " + page);
+			mov.addObject("page", page);
+			mov.addObject("list", list);
+			mov.addObject("ccPageNum", pageNum);
+			mov.addObject("menuList", menuList);
+			mov.addObject("searchInfo", map);
+			return mov;
+		}
 	
 	/**
 	 * 사용자권한 조회

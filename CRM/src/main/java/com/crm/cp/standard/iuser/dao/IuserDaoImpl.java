@@ -148,6 +148,20 @@ public class IuserDaoImpl implements IuserDao {
 		// TODO Auto-generated method stub
 		int result = sqlSession.delete("user.ccMngDelete", iuserVo);
 		return result;
+	}
+
+	//삭제된 사용자 카운트
+	@Override
+	public int iuserDelPageCount(Map<String, String> map) {
+		
+		return sqlSession.selectOne("user.iUserDelPageCount", map);
+	}
+
+	//삭제된 사용자 리스트
+	@Override
+	public List<IuserVO> iUserDelList(Map<String, String> map) {
+		System.out.println("삭제된 사용자 리스트 검색조건 DAO Impl: " + map);
+		return sqlSession.selectList("user.iUserDelList", map);
 	}	
 
 

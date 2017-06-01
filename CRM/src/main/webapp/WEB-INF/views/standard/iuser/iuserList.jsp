@@ -36,6 +36,7 @@ $("#naviuser").css("font-weight", "bold");
 				<input id="title_text" type="text" name="keyword" class="int2" style="background-color:white"> &nbsp;
 			</div>
 			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
+			<button id="del_search_btn" onclick="deletedList();" class="tiny ui button">비활성화 리스트</button>
 			</form>
 		</div>
 	</div>

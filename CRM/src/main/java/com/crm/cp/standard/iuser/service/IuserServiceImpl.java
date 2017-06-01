@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.crm.cp.standard.iuser.dao.IuserDao;
 import com.crm.cp.standard.iuser.vo.IuserVO;
+import com.crm.cp.utils.PagerVO;
 
 
 
@@ -161,5 +162,21 @@ public class IuserServiceImpl implements IuserService{
 	public int custMngDelete(IuserVO iuserVo) {
 		// TODO Auto-generated method stub
 		return dao.custMngDelete(iuserVo);
+	}
+
+	//사용자관리 삭제된 사용자 카운트
+	@Override
+	public PagerVO iUserPageCount(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		int totalRowCount = dao.iuserDelPageCount(map);
+		PagerVO page = new PagerVO(Integer.parseInt(map.get("pageNum")), totalRowCount, 10, 10);
+		return page;
+	}
+
+	//사용자관리 삭제된 사용자 리스트
+	@Override
+	public List<IuserVO> iUserDelList(Map<String, String> map) {
+		System.out.println("삭제된 사용자 리스트 검색어 : "+ map);
+		return dao.iUserDelList(map);
 	}
 }

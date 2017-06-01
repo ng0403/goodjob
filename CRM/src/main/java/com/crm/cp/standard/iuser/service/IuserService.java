@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.crm.cp.standard.iuser.vo.IuserVO;
+import com.crm.cp.utils.PagerVO;
 
 public interface IuserService {
 	
@@ -30,5 +31,9 @@ public interface IuserService {
 	public int ccMngUpdate(IuserVO iuserVo);
 	public IuserVO ccMngDetail(Map<String, String> map);
 	public int custMngDelete(IuserVO iuserVo);
+	//사용자관리 삭제된 데이터 리스트 페이지 카운트
+	public PagerVO iUserPageCount(Map<String, String> map);
+	//사용자관리 삭제된 데이터 리스트 출력
+	public List<IuserVO> iUserDelList(Map<String, String> map);
 	
 }
