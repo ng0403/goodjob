@@ -468,7 +468,7 @@ function addCustComp(ctx){
 	$(document).ready(function() {
 		
 		var cust_nm = $("#cust_nm").val();
-		var cust_div_cd = $("#cust_div_cd option:selected").text();
+		var cust_div_cd = $("#cust_div_cd option:selected").val();
 		var comp_num = $("#comp_num").val();
 		var corp_num = $("#corp_num").val();
 		var rep_ph1 = $("#rep_ph1").val();
@@ -495,11 +495,11 @@ function addCustComp(ctx){
 			alert("고객사명을 입력하세요.");
 			$("#cust_nm").focus();
 		} 
-//		else if (cust_div_cd.val == '' || cust_div_cd.val == null || cust_div_cd.val == 0 ) 
-//		{
-//			alert("고객사구분을 입력하세요.");
-//			$("#custcomptbody #cust_div_cd").focus();
-//		} 
+		else if (cust_div_cd == '' || cust_div_cd == null || cust_div_cd == 0 ) 
+		{
+			alert("고객사구분을 입력하세요.");
+			$("#custcomptbody #cust_div_cd").focus();
+		} 
 		 else if (compNum < 9 ) {
 			 alert("사업자번호의 자릿수가 부족합니다.");
 			 $("#custcomptbody #comp_num").focus();
