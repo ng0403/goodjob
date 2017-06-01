@@ -117,7 +117,7 @@ $("#naviprod").css("font-weight", "bold");
 	        	</a>	
 		    </c:when>
 			<c:when test="${ccPageNum ne page.firstPageCount}">
-		  		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+		  		<a href="javascript:prodSearch(${page.prevPageNum})" class="icon item">
 		   			<i class="left chevron icon"></i>
 		   		</a>
 		  	</c:when>
@@ -126,11 +126,11 @@ $("#naviprod").css("font-weight", "bold");
 			<c:choose>
 				<c:when test="${i eq ccPageNum }">
 				<b>
-					<a href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+					<a href="javascript:prodSearch('${i}');" id="pNum" class="item">${i}</a>
 				</b>
 				</c:when>
 				<c:otherwise>
-					<a href="javascript:custCompList('${i}');" class="item" >${i}</a>
+					<a href="javascript:prodSearch('${i}');" class="item" >${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -141,7 +141,7 @@ $("#naviprod").css("font-weight", "bold");
         			</a>	
 	    		</c:when>
 				<c:when test="${ccPageNum ne page.totalPageCount}">
-		       		<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+		       		<a href="javascript:prodSearch(${page.nextPageNum})" class="icon item">
 		       			<i class="right chevron icon"></i>
 		      		</a>
 		    	</c:when>
