@@ -43,6 +43,7 @@ function selectNode(id, className, value){
 	for(var i=0; i<selectList.length; i++){
 		if($(selectList[i]).val() == value){
 			node = selectList[i];
+
 		}
 	}
 	return node;
@@ -94,7 +95,20 @@ function menu_checkedSubMenuIDList(p_menu_id){
 		if($(subList[i]).is(':checked')){
 			list.push($(subList[i]).val());
 		}
-		
+	}
+	return list;
+}
+// 체크된 하위메뉴 노드 MenuId 찾기
+function menu_checkedSubMenuIDList2(){
+	var list = new Array();
+	var subList = menu_checkNodeList('subCheck');
+//	var subList = $(node).parent().find('.subCheck');
+	console.log(subList);
+	for(var i=0; i<$(subList).length; i++){
+		if($(subList[i]).is(':checked')){
+			list.push($(subList[i]).val());
+			console.log($(subList[i]).val());
+		}
 	}
 	return list;
 }
@@ -174,7 +188,7 @@ function menuDelete(ctx,list){
         dataType:'json',
         success: function(result){
         	okFlag = result;
-        	naviOutput();
+//        	naviOutput();
         },
         error: function(){
             alert("error");
@@ -201,26 +215,26 @@ function menuCheckEvent(ctx){
 	
 	//상위메뉴 체크
 	$('#menuTree').delegate('.masterCheck','click',function(){
-		if($(this).parent().children('.menuFlag').attr('src') === ctx+'/resources/image/treebtn2.png'){
+//		if($(this).parent().children('.menuFlag').attr('src') === ctx+'/resources/image/treebtn2.png'){
 			if($(this).is(':checked')){
 				$(this).parent().children('.menutree_sub').find('input').prop('checked',true);
 			}else{
 				$(this).parent().children('.menutree_sub').find('input').prop('checked',false);
 			}
-		}
+//		}
 	});
 	
 	//하위메뉴 체크
-	$('#menuTree').delegate('.subCheck','click',function(){
-		if($(this).is(':checked')){
-			$(this).parent().parent().parent().children('.masterCheck').prop('checked',true);
-		}else{
-			var subBoxChecked =$(this).parent().parent().find('input').is(':checked'); 
-			if(!subBoxChecked){
-				$(this).parent().parent().parent().children('.masterCheck').prop('checked',false);
-			}
-		}
-	});
+//	$('#menuTree').delegate('.subCheck','click',function(){
+//		if($(this).is(':checked')){
+//			$(this).parent().parent().parent().children('.masterCheck').prop('checked',true);
+//		}else{
+//			var subBoxChecked =$(this).parent().parent().find('input').is(':checked'); 
+//			if(!subBoxChecked){
+//				$(this).parent().parent().parent().children('.masterCheck').prop('checked',false);
+//			}
+//		}
+//	});
 }
 
 //메뉴상세 정보 적용
@@ -432,20 +446,30 @@ function menuButtonEvent(ctx){
 	$('#menuDelBtn').click(function(){
 		//초기화면
 		if($('#menu_mode').val() == 'waiting'){
-			if(menu_checkCount('masterCheck') == 0){	//체크가 없는 경우
+			if(menu_checkCount('masterCheck') == 0 && menu_checkCount('subCheck') == 0){	//체크가 없는 경우
 				alert('삭제할 대상을 선택해주세요.');
 			}else{
 				var result = confirm("선택한 항목을 삭제하시겠습니까?");
 				if(result){
 					var data = new Array();
 					var masterList = menu_checkedMenuIDList("masterCheck");
-					for(var i=0; i<$(masterList).length; i++){
-						var obj = new Object();
-						obj.p_menu_id = masterList[i];
-						var subList = menu_checkedSubMenuIDList(masterList[i]);
-						obj.sub_menu_id = subList;
-						data.push(obj);
+					if(masterList.length > 0){
+						for(var i=0; i<$(masterList).length; i++){
+							var obj = new Object();
+							obj.p_menu_id = masterList[i];
+							var subList = menu_checkedSubMenuIDList(masterList[i]);
+							obj.sub_menu_id = subList;
+							data.push(obj);
+						}
+					}else if(masterList.length == 0){
+						var subList = menu_checkedSubMenuIDList2();
+						for(var i=0; i<$(subList).length; i++){
+							var obj = new Object();
+							obj.p_menu_id = subList[i];
+							data.push(obj);
+						}
 					}
+					
 					var okFlag = menuDelete(ctx,data);
 					if(okFlag == 1){
 						alert('삭제되었습니다.');
@@ -463,6 +487,7 @@ function menuButtonEvent(ctx){
 									$(sub[j]).next().css('text-decoration','line-through');
 								}
 								$(master[i]).prop('checked',false);
+								$(master[i]).next().css('text-decoration','line-through');
 							}
 						}
 					}else{

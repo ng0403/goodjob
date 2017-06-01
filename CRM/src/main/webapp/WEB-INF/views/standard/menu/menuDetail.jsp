@@ -63,7 +63,7 @@
 								type="text" name="menu_nm" id="menu_name" class="int"/></td>
 							<th>상위메뉴명</th>
 							<td style="text-align:left;"><input type="hidden" name="up_menu_id" id="p_menu_id" class="int"/>
-								<input type="text" name="up_menu_nm" id="p_menu_name" class="int"/>
+								<input type="text" name="up_menu_nm" id="p_menu_name" class="int" readonly="readonly"/>
 								<input type="button" id="search_pMenuName_btn" value="검색" class="tiny ui blue button"/>
 							</td>
 						</tr>

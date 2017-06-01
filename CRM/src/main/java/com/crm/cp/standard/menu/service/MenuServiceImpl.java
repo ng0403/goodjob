@@ -137,12 +137,11 @@ public class MenuServiceImpl implements MenuService{
 			for (Object obj : list) {
 				Map<String,Object> map = (Map<String,Object>) obj;
 				List<String> sub = (List<String>) map.get("sub_menu_id");
-				if(sub.size() == 0){
-					Map<String, Object> masterMap = new HashMap<String, Object>();
-					masterMap.put("menu_id", map.get("p_menu_id"));
+				Map<String, Object> masterMap = new HashMap<String, Object>();
+				masterMap.put("menu_id", map.get("p_menu_id"));
 					//dao.delete("menu.deleteAuthMenu", masterMap);
-					dao.update("menu.deleteMenu", masterMap);
-				}else{
+				dao.update("menu.deleteMenu", masterMap);
+				if(sub != null){
 					for (String sub_menu_id : sub) {
 						Map<String, Object> subMap = new HashMap<String, Object>();
 						subMap.put("menu_id", sub_menu_id);
