@@ -32,7 +32,8 @@
 $(function(){
 	var opptButtonStatus = "";
 	var ctx = $("#ctx").val();
-	var tabValue = $("#tabValue").val();
+//	var tabValue = $("#tabValue").val();
+	
 	actAllCheck();
 	estimAllCheck();
 	opptprdtAllCheck
@@ -96,6 +97,7 @@ function opptTabValue()
 {
 	var tab = $(':input[name=tab]:radio:checked').val();
 	$('#tabValue').val(tab);
+	
 }
 function opptTabCheck(tabValue)
 {
@@ -243,6 +245,9 @@ function opptCancelBtn(addFlag) {
 	var flag = $("#flag").val();
 	var cust_id = $("#cust_id").val();
 	var tabValue = $("#tabValue").val();
+	
+	alert("1" + tabValue);
+	
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화

@@ -20,7 +20,7 @@ $(function(){
 	opptAllCheck(); //영업기회 all check 함수
 	searchCustcompListPopup();
 //	opptTabValue();
-	tabClick();
+	
 //	searchCustcompListPopup0();
 //	searchCustcompListPopup1();
 });
@@ -252,11 +252,16 @@ function DelListOpen(){
 	location.href = ctx+'/DelList';
 }
 //고객사에서 영업기회추가 페이지 이동 (송영화 네가 타야되는건 여기다..영업기회가 없는 경우)
-function AddCustomerOpen(flag, cust_id, cust_nm, tabValue){
+function AddCustomerOpen(flag, cust_id, cust_nm){
 	var ctx = $("#ctx").val();
+	var tabValue = $("#tabValue").val();
+	
 	var cust_id = cust_id;
 	var cust_nm = cust_nm;
 	var opptId = opptId;
+	
+	alert(tabValue);
+	
 	location.href = ctx+'/opptDetail?flag=' + flag + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&tabValue=" + tabValue;
 }
 

@@ -20,6 +20,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_list.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/act/act_detail.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script> --%>
 <script src="${ctx}/resources/common/js/sales/oppt/opptProd_pop.js"></script>
 
 <%-- <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/css/standard/common/tablist_th.css"> --%>
@@ -41,11 +42,11 @@
 	<c:if test="${flg == 1 }">
 	<div id="css_tabs" style="float: left; padding-top: 30px; ">
 		<!-- 라디오 버튼 -->
-		<input id="tab1" type="radio" name="tab" checked="checked" />
-		<input id="tab2" type="radio" name="tab" />
-		<input id="tab3" type="radio" name="tab" />
-		<input id="tab4" type="radio" name="tab" />
-		<input id="tab5" type="radio" name="tab" />
+		<input id="tab1" type="radio" name="tab" value="key" checked="checked" />
+		<input id="tab2" type="radio" name="tab" value="oppt" />
+		<input id="tab3" type="radio" name="tab" value="act" />
+		<input id="tab4" type="radio" name="tab" value="iuser" />
+		<input id="tab5" type="radio" name="tab" value="est"/>
 
 		<!-- 라벨 : 화면에 표시되는 탭 제목 -->      
 		<label for="tab1" class="tab1">키맨 </label> 
@@ -84,7 +85,7 @@
 		<div id="tabDiv2"  style="width: 100%;">
 			<div class="bt_position_authuser" style="float: right;">
 <%-- 				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/> --%>
-				<input type="button" id="actAddSaveBtn"   class="tiny ui button" value="영업기회 추가" onclick="AddCustomerOpen('cust', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}', tabValue.value);"/>
+				<input type="button" id="actAddSaveBtn"   class="tiny ui button" value="영업기회 추가" onclick="AddCustomerOpen('cust', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}');"/>
 				<input type="button" id="actAddCancelBtn" class="tiny ui blue button" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			

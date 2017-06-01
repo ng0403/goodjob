@@ -215,6 +215,7 @@ public class OpptController {
 			mov.addObject("addFlag", addFlag);
 			mov.addObject("flg", "add");
 			System.out.println("Add Flag  " + addFlag);
+			mov.addObject("tabValue", tabValue);
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);
 			return mov;
@@ -269,6 +270,7 @@ public class OpptController {
 			mov.addObject("menuList", menuList);
 			mov.addObject("actList", actList);
 			mov.addObject("addFlag", addFlag);
+			mov.addObject("tabValue", tabValue);
 			System.out.println("Add Flag  " + addFlag);
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);

@@ -389,9 +389,10 @@ function actInsertForm(act_flg) {
 /**
  * 영업기회, 고객사 - 영업활동 탭에서 넘어 올 경우.
  * */
-function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm, tabValue)
+function actInsertForm2(act_flg, oppt_id, oppt_nm, cust_id, cust_nm)
 {
 	var ctx = $("#ctx").val();
+	var tabValue = $("#tabValue").val();
 	
 	var day  = getFormatDate();
 	var hour = getFormatHour();
