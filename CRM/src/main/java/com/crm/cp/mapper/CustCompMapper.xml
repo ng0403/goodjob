@@ -162,6 +162,7 @@
 	<select id="custCompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select 
 			c.cust_id cust_id
+			, c.cust_div_cd
           	, c.cust_nm cust_nm
             , c.cust_zip_cd cust_zip_cd
             , c.cust_addr cust_addr
@@ -186,6 +187,7 @@
 	<!-- 고객사 상세정보 -->
 	<select id="custcompDetail" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
 		select c.cust_id cust_id
+			  ,	c.cust_div_cd
 		      , c.cust_nm cust_nm
 		      , c.comp_num comp_num
  		      , c.corp_num corp_num
@@ -669,8 +671,11 @@
 	
 	<!-- 연락처 리스트 -->
  	<select id="contactListPop" resultType="com.crm.cp.sales.contact.vo.ContactVO">
-	     select *
-		from contact
+	    select 
+		  		*
+		from contact 
+		where 1=1
+		order by cont_id asc 
 	</select>
 	
 	<!-- 영업기회 리스트 -->

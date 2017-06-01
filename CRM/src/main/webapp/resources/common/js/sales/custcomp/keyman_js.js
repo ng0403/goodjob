@@ -26,11 +26,11 @@ function contactNmSelect(ctx){
 	
 	$('#custcomp_list_table tbody tr').click(function(){
 //		alert($('#cell_ph').text());
-		
-		var cont_id = $('#cont_id').text();
-		var cont_nm = $('#cont_nm').text();
-		var cell_ph = $('#cell_ph').text();
-		var email   = $('#email').text();
+
+		var cont_id = $(this).find('#cont_id').text();
+		var cont_nm = $(this).find('#cont_nm').text();
+		var cell_ph = $(this).find('#cell_ph').text();
+		var email   = $(this).find('#email').text();
 		
 		window.opener.inputcontactNm(cont_id, cont_nm, cell_ph, email);
 		self.close();
