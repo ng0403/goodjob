@@ -340,10 +340,10 @@ public class EstController {
 			System.out.println("hsales_oppt_id:"+sales_oppt_id);
 			if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id == "" || cust_id == null)){
 				mov.setViewName("redirect:/estInqr");
-			}else if((sales_oppt_id != "" || sales_oppt_id != null)&&(cust_id != "" || cust_id != null)){
-				mov.setViewName("redirect:/opptDetail?opptId=" + sales_oppt_id + "&tabValue=" + est.getTabValue());
 			}else if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id != "" || cust_id != null)){
 				mov.setViewName("redirect:/custcompDetail?cust_id=" + cust_id + "&tabValue=" + est.getTabValue());
+			}else if((sales_oppt_id != "" || sales_oppt_id != null)&&(cust_id != "" || cust_id != null)){
+				mov.setViewName("redirect:/opptDetail?opptId=" + sales_oppt_id + "&tabValue=" + est.getTabValue());
 			}
 		}
 		return mov;
@@ -418,10 +418,10 @@ public class EstController {
 			System.out.println("hsales_oppt_id:"+sales_oppt_id);
 			if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id == "" || cust_id == null)){
 				mov.setViewName("redirect:/estInqr");
-			}else if((sales_oppt_id != "" || sales_oppt_id != null)&&(cust_id != "" || cust_id != null)){
-				mov.setViewName("redirect:/opptDetail?opptId=" + sales_oppt_id + "&tabValue=" + est.getTabValue());
 			}else if((sales_oppt_id == "" || sales_oppt_id == null)&&(cust_id != "" || cust_id != null)){
 				mov.setViewName("redirect:/custcompDetail?cust_id=" + cust_id + "&tabValue=" + est.getTabValue());
+			}else if((sales_oppt_id != "" || sales_oppt_id != null)&&(cust_id != "" || cust_id != null)){
+				mov.setViewName("redirect:/opptDetail?opptId=" + sales_oppt_id + "&tabValue=" + est.getTabValue());
 			}
 		}
 		return mov;

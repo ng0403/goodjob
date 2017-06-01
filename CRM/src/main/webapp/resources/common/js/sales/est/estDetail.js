@@ -126,10 +126,10 @@ function cancel_Click(){
 	var hcust_id = $('#hcust_id').val();
 	if((hsales_oppt_id == null || hsales_oppt_id == '')&&(hcust_id == null || hcust_id == '')){
 		location.href="/estInqr"
-	}else if((hsales_oppt_id != null || hsales_oppt_id != '')&&(hcust_id != null || hcust_id != '')){
-		location.href="/opptDetail?opptId="+ hsales_oppt_id;
 	}else if((hsales_oppt_id == null || hsales_oppt_id == '')&&(hcust_id != null || hcust_id != '')){
 		location.href="/custcompDetail?cust_id="+ hcust_id;
+	}else if((hsales_oppt_id != null || hsales_oppt_id != '')&&(hcust_id != null || hcust_id != '')){
+		location.href="/opptDetail?opptId="+ hsales_oppt_id;
 	}
 	
 }
