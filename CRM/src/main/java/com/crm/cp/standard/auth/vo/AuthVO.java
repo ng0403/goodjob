@@ -1,7 +1,5 @@
 package com.crm.cp.standard.auth.vo;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,9 +9,9 @@ public class AuthVO {
 	private String auth_nm;
 	private String act_yn;
 	private String fst_reg_id;
-	private Date fst_reg_dt;
+	private String fst_reg_dt;
 	private String fin_mdfy_id;
-	private Date fin_mdfy_dt;
+	private String fin_mdfy_dt;
 	private String menu_nm;
 
 	public AuthVO(){ }
@@ -25,8 +23,8 @@ public class AuthVO {
 	}
 	
 	public AuthVO(String auth_id, String auth_nm, String act_yn,
-			String fst_reg_id, Date fst_reg_dt, String fin_mdfy_id,
-			Date fin_mdfy_dt, String menu_nm) {
+			String fst_reg_id, String fst_reg_dt, String fin_mdfy_id,
+			String fin_mdfy_dt, String menu_nm) {
 		super();
 		this.auth_id = auth_id;
 		this.auth_nm = auth_nm;
@@ -70,11 +68,11 @@ public class AuthVO {
 		this.fst_reg_id = fst_reg_id;
 	}
 
-	public Date getFst_reg_dt() {
+	public String getFst_reg_dt() {
 		return fst_reg_dt;
 	}
 
-	public void setFst_reg_dt(Date fst_reg_dt) {
+	public void setFst_reg_dt(String fst_reg_dt) {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
@@ -86,11 +84,11 @@ public class AuthVO {
 		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
-	public Date getFin_mdfy_dt() {
+	public String getFin_mdfy_dt() {
 		return fin_mdfy_dt;
 	}
 
-	public void setFin_mdfy_dt(Date fin_mdfy_dt) {
+	public void setFin_mdfy_dt(String fin_mdfy_dt) {
 		this.fin_mdfy_dt = fin_mdfy_dt;
 	}
 
@@ -100,5 +98,12 @@ public class AuthVO {
 
 	public void setMenu_nm(String menu_nm) {
 		this.menu_nm = menu_nm;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthVO [auth_id=" + auth_id + ", auth_nm=" + auth_nm + ", act_yn=" + act_yn + ", fst_reg_id="
+				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
+				+ fin_mdfy_dt + ", menu_nm=" + menu_nm + "]";
 	}
 }//class END

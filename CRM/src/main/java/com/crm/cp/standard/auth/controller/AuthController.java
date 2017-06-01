@@ -68,6 +68,7 @@ public class AuthController {
 	@RequestMapping(value="/authViewPopup")
 	public ModelAndView authViewPopup(HttpSession session, @RequestParam(value="auth") String authId){
 		Object obj = authSerivce.authDetail(authId);
+		System.out.println("rnjsdjfkldjfdldsl : "+obj);
 		return new ModelAndView("/standard/auth/authViewPopup", "auth", obj);
 	}
 	
