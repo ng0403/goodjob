@@ -122,7 +122,16 @@ function cancel_Click(){
 	}else{
 		$("#mdfBtn").attr("disabled", false);		
 	}
-	location.href="/estInqr"
+	var hsales_oppt_id = $('#hsales_oppt_id').val();
+	var hcust_id = $('#hcust_id').val();
+	if((hsales_oppt_id == null || hsales_oppt_id == '')&&(hcust_id == null || hcust_id == '')){
+		location.href="/estInqr"
+	}else if((hsales_oppt_id != null || hsales_oppt_id != '')&&(hcust_id != null || hcust_id != '')){
+		location.href="/opptDetail?opptId="+ hsales_oppt_id;
+	}else if((hsales_oppt_id == null || hsales_oppt_id == '')&&(hcust_id != null || hcust_id != '')){
+		location.href="/custcompDetail?cust_id="+ hcust_id;
+	}
+	
 }
 //상품 목록 리스트 팝업
 function prodList(ctx){
