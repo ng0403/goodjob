@@ -53,6 +53,7 @@ $(document).ready(function(){
 	<input type="hidden" id="flg" value="${flg}">
 	<!-- 다른 페이지에서 넘어올 때 사용되는 flag -->
 	<input type="hidden" id="flag" value="${flag}">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 <%-- 		<c:if test="${addFlag == 0 }"> --%>

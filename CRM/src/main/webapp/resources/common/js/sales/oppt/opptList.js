@@ -278,9 +278,9 @@ function viewDetail(opptId){
 	location.href = ctx+'/opptDetail?opptId='+opptId;
 }
 //영업기회 상세정보 출력 송영화(고객에서 연결되는 부분)
-function viewDetail2(flag, opptId, cust_id){
+function viewDetail2(flag, opptId, cust_id, tabValue){
 	var ctx = $("#ctx").val();
-	location.href = ctx+'/opptDetail?opptId='+opptId +'&flag=' + flag +'&cust_id=' + cust_id;
+	location.href = ctx+'/opptDetail?opptId='+opptId +'&flag=' + flag +'&cust_id=' + cust_id+ "&tabValue=" + tabValue;
 }
 
 //영업기회 추가 페이지 이동 
@@ -294,12 +294,12 @@ function DelListOpen(){
 	location.href = ctx+'/DelList';
 }
 //고객사에서 영업기회추가 페이지 이동 (송영화 네가 타야되는건 여기다..영업기회가 없는 경우)
-function AddCustomerOpen(flag, cust_id, cust_nm){
+function AddCustomerOpen(flag, cust_id, cust_nm, tabValue){
 	var ctx = $("#ctx").val();
 	var cust_id = cust_id;
 	var cust_nm = cust_nm;
 	var opptId = opptId;
-	location.href = ctx+'/opptDetail?flag=' + flag + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm;
+	location.href = ctx+'/opptDetail?flag=' + flag + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&tabValue=" + tabValue;
 }
 
 //검색 버튼 클릭 시 
