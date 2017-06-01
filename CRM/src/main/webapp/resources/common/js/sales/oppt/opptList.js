@@ -63,7 +63,7 @@ function addForm(){
 				    str+="<i class='users icon'></i>";
 				    str+="<input type='hidden' class='tel_search' id='scust_id"+count+"' name='scust_id"+count+"' value=''>";
 				    str+="</div>";
-				    str+="<input type='button' class='tiny ui orange basic button' id='searchCustomer"+count+"' value='고객' >";
+				    str+="<input type='button' class='tiny ui blue basic button' id='searchCustomer"+count+"' value='고객' >";
 				    str+="<select name='ssales_lev_cd_select"+count+"' id='ssales_lev_cd_select"+count+"' style='margin-left: 3px !important; height: 35px; background: #fff;'>";
 				    str+="<option value=''>"+'영업기회단계'+"</option>";
 				    $.each(result.otllist,function(i,list){

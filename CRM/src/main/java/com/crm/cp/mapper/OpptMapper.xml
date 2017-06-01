@@ -26,7 +26,7 @@
 		, (select cd_nm from code where cd_grp_id='OSC' and	code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
 		, a.fst_reg_id
-		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
+		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mi') fst_reg_dt 
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
@@ -119,7 +119,7 @@
 		, (select cd_nm from code where cd_grp_id='OSC' and	code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
 		, a.fst_reg_id
-		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
+		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mi') fst_reg_dt 
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
@@ -210,7 +210,7 @@
 		code=a.sales_oppt_stat_cd) sales_oppt_stat_cd_nm
 		, a.memo
 		, a.fst_reg_id
-		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mm') fst_reg_dt 
+		, to_char(a.fst_reg_dt ,'yyyy-mm-dd hh:mi') fst_reg_dt 
 		, a.fin_mdfy_id
 		, a.fin_mdfy_dt
 		, a.act_yn
@@ -403,7 +403,8 @@
 		sales_oppt_stat_cd= #{sales_oppt_stat_cd},
 		memo= #{memo},
 		expt_fin_d = TO_DATE(#{expt_fin_d},'yyyy-MM-dd'),
-		fin_mdfy_id = #{fin_mdfy_id}
+		fin_mdfy_id = #{fin_mdfy_id},
+		fin_mdfy_dt = sysdate
 		where sales_oppt_id = #{sales_oppt_id}
 	</update>
 	
@@ -454,11 +455,9 @@
 		, fin_mdfy_id = #{fin_mdfy_id}
 		, fin_mdfy_dt = sysdate
 		WHERE estim_id in (select estim_id
-							from (SELECT estim_id
 									FROM SALES_OPPORTUNITY_ESTIMATE
 									WHERE sales_oppt_id =#{sales_oppt_id}
-							        order by FIN_MDFY_DT desc)
-							        where rownum = 1)
+							        )
 	</update>
 
 	<!-- 영업기회 추가 -->
@@ -699,7 +698,7 @@
       group by aa.estim_id) estim_qty   
 		, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
 		, aa.FST_REG_ID
-		, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mm') FST_REG_DT
+		, to_char(aa.FST_REG_DT,'yyyy-mm-dd hh:mi') FST_REG_DT
 	from 
 	ESTIMATE aa, 
 	SALES_OPPORTUNITY_ESTIMATE bb
