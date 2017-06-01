@@ -43,7 +43,6 @@ public class IuserServiceImpl implements IuserService{
 	public void removeIuser(String iuser_id) {
 		System.out.println("삭제될 대상 iuser_id : " + iuser_id);
 		dao.checkUpdate("user.iuserDelete", iuser_id);
-		
 	}
 
 	@Override
@@ -178,5 +177,13 @@ public class IuserServiceImpl implements IuserService{
 	public List<IuserVO> iUserDelList(Map<String, String> map) {
 		System.out.println("삭제된 사용자 리스트 검색어 : "+ map);
 		return dao.iUserDelList(map);
+	}
+
+	/*삭제된 데이터 완전삭제*/
+	@Override
+	public void removeDelIuser(String iuser_id) {
+		System.out.println("삭제될 대상 iuser_id : " + iuser_id);
+		dao.delete("user.iuserDelDelete", iuser_id);
+		
 	}
 }

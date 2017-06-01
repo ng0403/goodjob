@@ -35,5 +35,7 @@ public interface IuserService {
 	public PagerVO iUserPageCount(Map<String, String> map);
 	//사용자관리 삭제된 데이터 리스트 출력
 	public List<IuserVO> iUserDelList(Map<String, String> map);
+	/*삭제된 데이터 완전 삭제*/
+	public void removeDelIuser(String iuser_id);
 	
 }

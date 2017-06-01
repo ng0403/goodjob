@@ -60,6 +60,24 @@
 		AND u.IUSER_DIV_CD = c.CODE
 		AND c.CD_GRP_ID = 'USR'
 		AND u.iuser_id != 'IU00001'
+		AND u.act_yn = 'Y'
+      <if test="keyword!=null and keyword!='' ">
+	        <include refid="where-list"/>
+	  </if> 
+	  order by u.IUSER_ID
+	</select>
+	
+<!-- 	삭제된 사용자 리스트 출력 -->
+	<select id="iUserDelList" parameterType="map" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
+	 	select u.IUSER_ID, u.ID_NM, u.IUSER_NM, oz.ORG_NM, u.EMAIL1, u.EMAIL2, u.CELL_PH1, u.CELL_PH2, u.CELL_PH3, 
+        		u.ACT_YN, c.CD_NM
+		FROM iuser u, organization oz, CODE c
+		WHERE 1=1
+    	AND u.ORG_ID = oz.ORG_ID(+)
+		AND u.IUSER_DIV_CD = c.CODE
+		AND c.CD_GRP_ID = 'USR'
+		AND u.iuser_id != 'IU00001'
+		AND u.act_yn = 'N'
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if> 
@@ -228,5 +246,10 @@
 		delete from PARTNER_OF_CLIENT
 		where cust_id=#{cust_id}
 			and iuser_id=#{iuser_id}
+	</delete>
+	<!-- 삭제된 사용자 완전삭제 -->
+	<delete id="iuserDelDelete" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+		delete from IUSER
+		where iuser_nm=#{iuser_id}
 	</delete>
 </mapper>

@@ -74,7 +74,7 @@ public class IuserController {
 			if (session.getAttribute("user") == null) {
 				return new ModelAndView("redirect:/");
 			}
-			ModelAndView mov = new ModelAndView("oppt");
+			ModelAndView mov = new ModelAndView("iUserDel");
 
 			// 메뉴리스트 가져오기
 			List<MenuVO> menuList = menuService.selectAll(session);
@@ -88,6 +88,7 @@ public class IuserController {
 			//영업기회 리스트 가져오기
 			List<IuserVO> list = iuserService.iUserDelList(map);
 
+			System.out.println("list : " + list);
 			System.out.println("page : " + page);
 			mov.addObject("page", page);
 			mov.addObject("list", list);
@@ -188,6 +189,15 @@ public class IuserController {
 		for (String iuser_id : del_code) {
 			System.out.println("삭제될 데이터  : " + del_code);
 			iuserService.removeIuser(iuser_id);
+		}
+		return "redirect:/user";
+	}
+	@RequestMapping(value = "/iuserDelDelete", method = RequestMethod.POST)
+	public String iuserDelDelete(String[] del_code) throws IOException {
+		System.out.println("삭제될 데이터 반복문 들어가기전  : " + del_code);
+		for (String iuser_id : del_code) {
+			System.out.println("삭제될 데이터  : " + del_code);
+			iuserService.removeDelIuser(iuser_id);
 		}
 		return "redirect:/user";
 	}

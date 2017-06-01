@@ -12,7 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-<title>리스트</title>
+<title>사용자 관리</title>
 <script type="text/javascript">
 $("#navisub11").show();
 $("#naviuser").css("font-weight", "bold");
@@ -36,7 +36,7 @@ $("#naviuser").css("font-weight", "bold");
 				<input id="title_text" type="text" name="keyword" class="int2" style="background-color:white"> &nbsp;
 			</div>
 			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
-			<button id="del_search_btn" onclick="deletedList();" class="tiny ui button">비활성화 리스트</button>
+			<input type="button" id="del_search_btn" onclick="deletedList();" class="tiny ui button" value="비활성화 리스트">
 			</form>
 		</div>
 	</div>
