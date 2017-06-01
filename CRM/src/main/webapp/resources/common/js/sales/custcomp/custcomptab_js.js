@@ -390,6 +390,7 @@ function custCompMdfyBtn() {
 
 // 취소 버튼 기능
 function custCompCancelBtn() {
+	var ctx = $("#ctx").val();
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화
