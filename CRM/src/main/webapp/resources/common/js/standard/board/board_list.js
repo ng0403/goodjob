@@ -79,7 +79,9 @@ function board_modify(){
 //보드 상세 삭제
 function board_detail_remove() {
 	 var formObj1 = $("form[role='form1']");
-	 if(confirm("정보를 삭제 하시겠습니까?")){
+	 if(confirm("삭제 하시겠습니까?")){
+	 alert("게시판이 삭제 되었습니다.");
+	 alert("게시판 페이지로 이동합니다.");
 	 formObj1.attr("action", "/detail_remove");
 	 formObj1.attr("method", "post");
 	 formObj1.submit();
@@ -111,7 +113,9 @@ function board_detail_remove() {
 		 }
 	  
 	 var formObj = $("form[role='form']");
-     if(confirm("저장하시겠습니까?")){
+     if(confirm("저장 하시겠습니까?")){
+     alert("게시판이 저장 되었습니다.");
+     alert("게시판 페이지로 이동합니다.");
 	 formObj.attr("action", "/boardInsert");
 	 formObj.attr("method", "post");
 	 formObj.submit();  
@@ -133,7 +137,7 @@ function deleteAction() {
       return false;
    }
 
-   if (confirm("정보를 삭제 하시겠습니까?")) { 
+   if (confirm("삭제 하시겠습니까?")) { 
  
           $.ajax({
              url : '/board_remove',
@@ -150,7 +154,8 @@ function deleteAction() {
                  if(result =="success")
                    {
                 	 var delsize = $("input[name=del_code]:checked").length;
-                	alert(delsize + "개의 게시판이 삭제 되었습니다.");
+                	/*alert(delsize + "개의 게시판이 삭제 되었습니다.");*/
+                	 alert("게시판이 삭제 되었습니다.");
                 	 boardPaging();
                    }
                 else{

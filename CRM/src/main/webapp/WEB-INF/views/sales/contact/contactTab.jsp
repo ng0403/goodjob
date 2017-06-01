@@ -39,7 +39,7 @@
         <!-- 개인고객 -->
         <div class="detailBtn">
 		<div id="baseBtnDiv" class="bt_position_authuser">
-			<input type="button" id="contactRecov" value="복원" class="tiny ui blue button" />		 
+			<input type="button" id="contactRecov" value="복원" class="tiny ui blue button" />
 		    <input type="button" id="custpsonBtn" value="편집" class="tiny ui button" onclick="callCustBtn();"/>
 		    <input type="button" id="custpsonAddCancelBtn" value="취소" onclick="callAddCancelBtn()" class="tiny ui button"/>
 		    

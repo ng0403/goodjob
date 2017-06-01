@@ -405,5 +405,12 @@ public class ContactServiceImpl implements ContactService {
 			
 			return page;
 		}
+
+		@Override
+		public void removeAbsol(String cont_id) {
+			
+			contactDao.removeAbsol(cont_id);
+			
+		}
  
 }

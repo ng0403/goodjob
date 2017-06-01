@@ -69,6 +69,8 @@ function board_add_save() {
 	
 	var formObj = $("form[role='form']");
 	if(confirm("저장 하시겠습니까?")){
+	alert("게시판이 추가되었습니다.");
+	alert("게시판 페이지로 이동합니다.");
 	formObj.attr("action", "/QnA_insert");
 	formObj.attr("method", "post");
 	formObj.submit();
@@ -93,7 +95,9 @@ function board_modify() {
 // 편집 저장
 function board_modify_save() {
 	var formObj = $("form[role='form']");
-	if(confirm("저장하시겠습니까?")){
+	if(confirm("수정 하시겠습니까?")){
+		alert("수정되었습니다.");
+		alert("게시판 페이지로 이동합니다.");
 	$("form[name='modifyForm']").attr("action", "/QnA_modify").submit();
 	}
 	else{
@@ -104,7 +108,9 @@ function board_modify_save() {
 // 디테일 삭제
 function board_detail_remove() {
 	var formObj = $("form[role='form']");
-	if (confirm("정보를 삭제 하시겠습니까?")) {
+	if (confirm("삭제 하시겠습니까?")) {
+		alert("게시판이 삭제되었습니다.");
+		alert("게시판 페이지로 이동합니다.");
 		formObj.attr("action", "/detail_remove");
 		formObj.attr("method", "post");
 		formObj.submit();
@@ -136,7 +142,7 @@ function deleteAction() {
 		return false;
 	}
 
-	if (confirm("정보를 삭제 하시겠습니까?")) {
+	if (confirm("삭제 하시겠습니까?")) {
 
 			$.ajax({
 				url : '/board_remove',
@@ -153,7 +159,8 @@ function deleteAction() {
 					if(result =="success")
 					{
 	                	 var delsize = $("input[name=del_code]:checked").length;
-	                 	alert(delsize + "개의 게시판이 삭제 되었습니다.");
+	                 	/*alert(delsize + "개의 게시판이 삭제 되었습니다.");*/
+	                	 alert("게시판이 삭제되었습니다.");
 
 						boardPaging();
 					}

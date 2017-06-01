@@ -427,7 +427,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 function contactDelete(){
 	var ctx = $("#ctx").val();
 	if($("input[name=contact_del]:checked").length==0){
-		alert("삭제할 영업기회를 선택해 주세요.");
+		alert("삭제할 연락처를 선택해 주세요.");
 		return false;
 	}
 	if(confirm("삭제 하시겠습니까? ")){
@@ -447,7 +447,8 @@ function contactDelete(){
 		dataType : 'json',
 		success : function(result){
 			var delsize = $("input[name=contact_del]:checked").length;
-			alert(delsize + "개의 연락처가 삭제되었습니다.");
+			/*alert(delsize + "개의 연락처가 삭제되었습니다.");*/
+			alert("연락처가 삭제되었습니다.");
 			contactPaging('1');
  		},
 		error : function(request){
@@ -530,8 +531,7 @@ function updateCont() {
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
- 					alert("수정 되었습니다.");
- 					
+ 					alert("수정 되었습니다."); 
  					
 	  			    $('#cont_nm').val("");  
 					$('#company_nm').val("");
@@ -742,7 +742,7 @@ function contactInsert() {
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
- 					alert("저장되었습니다.");
+ 					alert("연락처가 추가되었습니다.");
 	  			    $('#cont_nm').val("");  
 					$('#company_nm').val("");
 					$('#ph1').val("");
@@ -854,21 +854,27 @@ function contactDeleteList() {
 
 //연락처 복원
 function ContactRecovery(cont_id) {
- 	 
+
+	if(confirm("복원 하시겠습니까?")){
+	 
 	$.ajax({
 		url : '/contactRecovery',
 		type : 'POST',
 		data : cont_id,
 		dataType : 'json',
 		success : function(data) {
- 			 alert('복원이 완료되었습니다.');
- 			 contactDeleteList('1');
-  
+ 	 			 /*contactDeleteList('1');*/
+ 				 alert('복원 되었습니다.');
+ 				 alert("연락처 페이지로 이동합니다. ");
+				  location.href = '/contact';
+ 		  
 		},
 		error : function() {
 			alert("오류");
 		}
 	});
+	
+	} 	
 	
 }
 
@@ -880,6 +886,12 @@ function toggleEnglish(){
 function toggleKorean(){
 	 $("#english").hide(); 
 	 $("#korean").show();
+}
+
+
+function removeAbsol(){
+	 var cont_id = $("#cont_id").val();
+	 	
 }
 
 /*function contactDeleteList(contactPageNum){

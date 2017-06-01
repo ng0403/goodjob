@@ -52,7 +52,7 @@
 </div>
 
   <div id="baseBtnDiv" class="bt_position_authuser"> <!-- 버튼 div  -->
-		<input type="button" id="board_modify_fbtn" class = "tiny ui blue button" value="수정" onClick="board_modify();"/> 
+		<input type="button" id="board_modify_fbtn" class = "tiny ui blue button" value="편집" onClick="board_modify();"/> 
 		<input type="button" id="board_remove_fbtn" class="tiny ui blue button" value="삭제" onClick="board_detail_remove();"/>  
 		<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onClick="goboardList();"/>
  </div> 
@@ -61,7 +61,7 @@
 <table class="ui sortable celled table" style="table-layout:fixed" >
 <tr>
  <th style="width:165px">제목</th> 
- <td colspan="3"><input type="text" placeholder="제목" readonly="readonly"  id="TITLE" name="TITLE" value="${boardlist.TITLE}" style="width:100%; height:35px"/></td>
+ <td colspan="5"><input type="text" placeholder="제목" readonly="readonly"  id="TITLE" name="TITLE" value="${boardlist.TITLE}" style="width:100%; height:35px"/></td>
 </tr>
 <tr>
 <th> 조회수</th>

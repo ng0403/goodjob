@@ -55,12 +55,12 @@ $(function() {
            <form name="delAllForm" id ="delAllForm" method="post" action="/board_remove">  
            <input type='hidden' id="BOARD_MNG_NO" name='BOARD_MNG_NO' value="${BOARD_MNG_NO}"/> 
              <div id="tableline">
-               <table  class="ui sortable celled table" >
+               <table  class="ui sortable celled table" style="table-layout:fixed;" >
                   <thead>
                      <tr style="text-align:center">
-                        <th><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
+                        <th style="width:5%"><input id="checkall" type="checkbox" onclick="checkAll();"/></th>
                         <th>번호</th>
-                        <th>제목</th>
+                        <th style="width:50%">제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>조회수</th> 

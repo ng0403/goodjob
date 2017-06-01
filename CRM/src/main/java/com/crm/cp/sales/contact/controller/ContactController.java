@@ -996,6 +996,18 @@ public class ContactController {
 			mov.addObject("prodList", prodList);
  			return mov;
 		}
+		
+		
+		//연락처 완전삭제
+		@RequestMapping(value="/contact_delete_absol", method=RequestMethod.POST) 
+		public void detailRemove(String cont_id){ 
+			
+			System.out.println("contact delete absolute" + cont_id);
+ 
+				contactService.removeAbsol(cont_id); 
+			 
+		}
+		
 	
 
 }

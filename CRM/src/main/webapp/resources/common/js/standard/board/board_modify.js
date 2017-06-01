@@ -19,7 +19,9 @@
   
 function board_save(){ 
  	   var formObj = $("form[role='form']");
- 	   	if(confirm("수정하시겠습니까?")){
+ 	   	if(confirm("수정 하시겠습니까?")){
+ 	   		alert("게시판이 수정되었습니다.");
+ 	   		alert("게시판 페이지로 이동합니다.");
 	 	$("form[name='modifyForm']").attr("action", "/board_modify").submit();
  	   	}else{
  	   		return false;
@@ -46,6 +48,7 @@ if(confirm("파일을 삭제 하시겠습니까?" + FILE_CD)){
         	file_div.children().remove();
              if(result =="success")
               {
+            	alert("파일이 삭제되었습니다.");
              	divContent += "<input type='file' multiple='multiple' name='filedata' id='filedata'> ";
              	file_div.append(divContent);
                 }

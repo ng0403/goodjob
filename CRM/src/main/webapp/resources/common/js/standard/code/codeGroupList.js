@@ -35,28 +35,8 @@ function allchk(ctx){
 
 	}
 }
- 
   
-
-//날짜 13자리를 yyyy-mm-dd형식으로 변환해주는 함수
-function dateFormat(timestamp) {
-
-	var date = new Date(timestamp);
-	var year = date.getFullYear();
-	var month = date.getMonth() + 1;
-	var day = date.getDate();
-	var hour = date.getHours();
-	var min = date.getMinutes();
-	var sec = date.getSeconds();
-
-	var retVal = year + "-" + (month < 10 ? "0" + month : month) + "-"
-			+ (day < 10 ? "0" + day : day);
-
-	return retVal
-}
  
-
-
 //코드 그룹 검색
 function searchcdgrpList(ctx){
 	
@@ -214,7 +194,7 @@ function writecdgrpPopup(ctx){
 			var act_yn = $('#active_flg_N').val();
 		}
 		
-		window.opener.cdgrpSendConfirm(cd_grp_id, cd_grp_nm, act_yn);
+ 		window.opener.cdgrpSendConfirm(cd_grp_id, cd_grp_nm, act_yn);
 		self.close();
  
 	
@@ -242,6 +222,7 @@ function cdgrpSendConfirm(cd_grp_id, cd_grp_nm, act_yn){
 				alert("중복된 코드 그룹 아이디가 있습니다.");
 				return false;
 				}
+			alert("코드 그룹이 추가되었습니다.");
  			$('#codetable tbody tr').remove();
 			for(var i=0; i<data.codegrpList.length;i++){
 				var args = "<tr onclick=\"codeList('"+data.codegrpList[i].cd_grp_id +"');\"><td style='width:9%; text-align:center' scope='row'><input type='checkbox' class='ab' name='cdgrpdel' id='checkauth' value='"+data.codegrpList[i].cd_grp_id+"'></th>"
@@ -255,8 +236,7 @@ function cdgrpSendConfirm(cd_grp_id, cd_grp_nm, act_yn){
 				}
 				$('#codetable tbody').append(args); 
 			}
-			alert("등록 되었습니다.");
-
+ 
 		},
 		error : function(data){
 			alert("오류" + data);
@@ -297,6 +277,7 @@ function deletecdgrpClick(ctx){
 
 		jQuery.ajaxSettings.traditional = true;
 		
+		if(confirm("삭제 하시겠습니까?")){
 		$.ajax(
 				{
 				url : ctx+'/cdgrpDelete',				//보낼 URL
@@ -306,7 +287,8 @@ function deletecdgrpClick(ctx){
 				contentType : 'application/json;charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 				success : function(data){
                	 var delsize = $("input[name=cdgrpdel]:checked").length;
-                alert(delsize + "개의 코드가 삭제 되었습니다.");
+               /* alert(delsize + "개의 코드가 삭제 되었습니다.");*/
+               	 alert("코드 그룹이 삭제 되었습니다.");
  
 					$('#codetable tbody tr').remove();
 				  
@@ -326,8 +308,9 @@ function deletecdgrpClick(ctx){
 				},error : function(data){
 					alert("에러");
 				}
-		
+			 
 				});
+		}
 	});
 }
 
@@ -392,7 +375,7 @@ function codeSendConfirm(cd_grp_id, cd_nm, cd_dtl_cont, act_yn){
 		type : 'POST',								//서버 요청 방식
 		data :  cdgrpdata,						//파라미터 { 'aaa' : 'bbb' }
 		success : function(data){
- 			alert("등록 되었습니다.");
+ 			alert("코드가 추가되었습니다.");
 			$('#codemastertable tbody tr').remove();
 			for(var i=0; i<data.length;i++){
 				var args = '<tr><td style="width: 5%; text-align:center"><input type="checkbox" id="ckselect" value="'+data[i].code+'"></td>'
@@ -441,7 +424,7 @@ function Deletecode(ctx){
 			}
 			var jsonData = JSON.stringify(data);
 			jQuery.ajaxSettings.traditional = true;
-
+			if(confirm("삭제 하시겠습니까?")){
 			$.ajax({		
 				url : ctx+'/codeDelete',					//보낼 URL
 				dataType : 'json',						//응답 받을 데이터 형식
@@ -450,7 +433,8 @@ function Deletecode(ctx){
 				contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
 				success : function(data){ 
 					var delsize = $("input[name=code_del]:checked").length;
-	                alert(delsize + "개의 코드가 삭제 되었습니다.");
+	               /* alert(delsize + "개의 코드가 삭제 되었습니다.");*/
+					alert("코드가 삭제되었습니다.");
   					$('#codemastertable tbody tr').remove();
 				 	var args;
 					for(var i=0; i<data.length;i++){
@@ -470,6 +454,7 @@ function Deletecode(ctx){
 				}
 
 			});
+			}
 		}
 		
 	});
@@ -519,7 +504,7 @@ function cdgrpUpdateConfirm(cd_grp_id, cd_grp_nm, act_yn){
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
- 					alert("수정 되었습니다.")
+ 					alert("코드 그룹이 수정 되었습니다.")
    				   $('#codetable tbody tr').remove();
 						for(var i=0; i<data.cdgrpList.length;i++){
 							var args = "<tr onclick=\"codeList('"+data.cdgrpList[i].cd_grp_id +"');\"><td style='width:9%; text-align:center' scope='row'><input type='checkbox' name='cdgrpdel' class='ab' id='checkauth' value='"+data.cdgrpList[i].cd_grp_id+"'></th>"
@@ -582,7 +567,7 @@ function codeUpdateConfirm(cd_nm, cd_dtl_cont, act_yn, code, cd_grp_id){
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
- 					alert("수정 되었습니다.");
+ 					alert("코드가 수정 되었습니다.");
 					$('#codemastertable tbody tr').remove();
 				 	var args;
  					for(var i=0; i<data.codelist.length;i++){
@@ -671,7 +656,7 @@ function codeSendConfirm(cd_grp_id, cd_nm, cd_dtl_cont, act_yn){
 		type : 'POST',								//서버 요청 방식
 		data :  cdgrpdata,						//파라미터 { 'aaa' : 'bbb' }
 		success : function(data){
-			alert("등록 되었습니다.")
+			alert("코드가 추가 되었습니다.")
 			$('#codemastertable tbody tr').remove();
 			for(var i=0; i<data.length;i++){
 				var args = '<tr><td style="width: 4.67%;"><input type="checkbox" id="ckselect" name="code_del" value="'+data[i].code+'"></td>'

@@ -480,6 +480,14 @@ public class ContactDaoImpl implements ContactDao {
 					
 					return totalCount;
 				}
+
+
+				@Override
+				public void removeAbsol(String cont_id) {
+					
+					sqlSession.delete("removeAbsol", cont_id);
+					
+				}
 				
 				
 

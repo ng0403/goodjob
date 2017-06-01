@@ -66,6 +66,8 @@ public interface ContactService {
     ContactVO getContid(ContactVO contactVO);
     ContactVO getCustid(String COMPANY_NM);
 
+	public void removeAbsol(String cont_id); // 연락처 완전삭제
+
 	
     
     
