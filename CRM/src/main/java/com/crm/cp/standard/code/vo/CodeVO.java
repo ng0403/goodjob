@@ -13,9 +13,9 @@ public class CodeVO {
 	String cd_seq_num;
 	String cd_dtl_cont;
 	String fst_reg_id;
-	Date fst_reg_dt;
+	String fst_reg_dt;
 	String fin_mdfy_id;
-	Date fin_mdfy_dt;
+	String fin_mdfy_dt;
 	String act_yn;
 	
 	public CodeVO() {
@@ -40,7 +40,7 @@ public class CodeVO {
 
 	public CodeVO(String cd_grp_id, String code, String cd_nm, String cd_grp_nm,
 			String cd_seq_num, String cd_dtl_cont, String fst_reg_id,
-			Date fst_reg_dt, String fst_mdfy_id, Date fst_mdfy_dt,
+			String fst_reg_dt, String fst_mdfy_id, String fst_mdfy_dt,
 			String act_yn) {
 		super();
 		this.cd_grp_id = cd_grp_id;
@@ -112,11 +112,11 @@ public class CodeVO {
 		this.fst_reg_id = fst_reg_id;
 	}
 
-	public Date getFst_reg_dt() {
+	public String getFst_reg_dt() {
 		return fst_reg_dt;
 	}
 
-	public void setFst_reg_dt(Date fst_reg_dt) {
+	public void setFst_reg_dt(String fst_reg_dt) {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
@@ -128,11 +128,11 @@ public class CodeVO {
 		this.fin_mdfy_id = fin_mdfy_id;
 	}
 
-	public Date getFin_mdfy_dt() {
+	public String getFin_mdfy_dt() {
 		return fin_mdfy_dt;
 	}
 
-	public void setFin_mdfy_dt(Date fin_mdfy_dt) {
+	public void setFin_mdfy_dt(String fin_mdfy_dt) {
 		this.fin_mdfy_dt = fin_mdfy_dt;
 	}
 

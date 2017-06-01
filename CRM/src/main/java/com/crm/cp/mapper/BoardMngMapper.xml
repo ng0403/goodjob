@@ -26,7 +26,7 @@ select X.*
  		 CREATED,
  		 DECODE(ACTIVE_FLG , 'Y' , '활성화', 'N', '비활성화') AS ACTIVE_FLGSTRING
 		 FROM tb_board_mng
-		 order by CREATED
+		 order by UPDATED DESC
 ) A
 	  ) X
  <![CDATA[

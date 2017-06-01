@@ -119,4 +119,10 @@ public class CCodeDaoImpl implements CCodeDao {
 				return cdgrpUpdate;
 			}
 
+			@Override
+			public int cdgrpChk(String cd_grp_id) {
+				
+ 				return sqlSession.selectOne("cdgrpChk", cd_grp_id);
+			}
+
 }

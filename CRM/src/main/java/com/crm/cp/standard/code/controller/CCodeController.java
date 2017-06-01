@@ -96,18 +96,33 @@ CCodeService codeService;
 	
 	//코드그룹 등록
 	@RequestMapping(value = "/cdgrpInsert", method = RequestMethod.POST)
-	public @ResponseBody List<Object> authInsert(CodeVO JSON, HttpSession session) {
+	public @ResponseBody Map<String, Object> authInsert(CodeVO JSON, HttpSession session) {
 		JSON.setFst_reg_id(session.getAttribute("user").toString());
 		JSON.setFin_mdfy_id(session.getAttribute("user").toString());
 		
-		System.out.println("cdgrp insert entering " + JSON.toString());
 		 
-		codeService.cdgrpInsert(JSON);
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		System.out.println("cdgrp insert entering " + JSON.toString());
 		
-		List<Object> codegrpList= codeService.codegrpList();
+		String cd_grp_id = JSON.getCd_grp_id();
+		int result = codeService.cdgrpChk(cd_grp_id);
+		System.out.println("결과물? " + result);
 		
+		if(result == 0){
+			System.out.println("일치하는 값이 없습니다.");
+			codeService.cdgrpInsert(JSON);	
+
+		}else{
+			System.out.println("일치하는 값이 있습니다.");
+			rstMap.put("result", false);
+ 		}
+		
+		List<Object> codegrpList = codeService.codegrpList();
 		System.out.println("코드그룹 리스트 " + codegrpList.toString());
-		return codegrpList;
+		rstMap.put("codegrpList", codegrpList);
+
+		
+		return rstMap;
 
 	}
 	
@@ -144,7 +159,7 @@ CCodeService codeService;
 			
 			codeService.codeInsert(JSON);
 			
-			String cd_grp_id = JSON.getCd_grp_id();
+			String cd_grp_id = JSON.getCd_grp_id(); 
 			
 			List<CodeVO> codeList= codeService.codeList(cd_grp_id);
 			
@@ -155,7 +170,7 @@ CCodeService codeService;
 	
  	//코드 삭제	
  		@RequestMapping(value="/codeDelete", method=RequestMethod.POST)
-		public @ResponseBody List<Object> AuthUserDelete(@RequestBody List<Object> list, HttpSession session){
+		public @ResponseBody List<CodeVO> CodeDelete(@RequestBody List<Object> list, HttpSession session){
 		System.out.println("코드 삭제 list" + list.toString());
 		
 		for (Object code : list) {
@@ -163,7 +178,12 @@ CCodeService codeService;
 			codeService.codeDelete(code);
 		}
 		System.out.println("list ??? " + list.toString());
- 		List<Object> obj= codeService.codegrpList();
+ 		String cd_grp_id = list.get(1).toString();
+
+		Map map = new HashMap();
+		map.put("cd_grp_id", cd_grp_id);
+ 		List<CodeVO> obj= codeService.codeList(cd_grp_id);
+  		System.out.println("코드 삭제 리스트 갱신 ? " + obj.toString());
 		return obj;
 	}
  		

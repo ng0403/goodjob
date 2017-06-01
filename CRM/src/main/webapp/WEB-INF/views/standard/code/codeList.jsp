@@ -68,7 +68,7 @@ $("#naviauth").css("font-weight", "bold");
 		<table id="codetable" class="ccthFixedtbl" style="table-layout:fixed; margin-top:14px" >
 			<thead class="thead">
 				<tr class="tr_table_fix_header" style="text-align:center">
-					<th class="thead_th" style="width: 9.1%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
+					<th class="thead_th" style="width: 9.1%;"><input id="allCheck"  type="checkbox" onclick="allchk();"/></th>
 					<th class="thead_th" style="width: 29.1%;">코드ID</th>
 					<th class="thead_th" style="width: 30.29%%;">코드명</th>
 					<th class="thead_th" style="width: 30.4%;">상태</th>
@@ -79,7 +79,7 @@ $("#naviauth").css("font-weight", "bold");
 				<c:forEach var="codegrp" items="${codegrpList}">  
 				<tr onclick="codeList('${codegrp.cd_grp_id}');" class="up">
 					<td class="codeTbody_tr_td" scope="row" style="width: 9.3%; text-align:center">
-						<input type="checkbox" class="ab" id="checkauth" value="${codegrp.cd_grp_id}"></td>
+						<input type="checkbox" class="ab" id="checkauth" name="cdgrpdel" value="${codegrp.cd_grp_id}"></td>
 					<td class="codeTbody_tr_td" style="width: 29.8%;"><a href="#" onclick="cdgrpDetail('${codegrp.cd_grp_id}');" >${codegrp.cd_grp_id}</a></td>
 					<td class="codeTbody_tr_td" style="width: 29.3%;">${codegrp.cd_grp_nm}</td> 
  					<td class="codeTbody_tr_td" style="width: 30%;">

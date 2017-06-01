@@ -152,6 +152,9 @@ function deleteAction() {
 				success : function(result) {
 					if(result =="success")
 					{
+	                	 var delsize = $("input[name=del_code]:checked").length;
+	                 	alert(delsize + "개의 게시판이 삭제 되었습니다.");
+
 						boardPaging();
 					}
 				else{

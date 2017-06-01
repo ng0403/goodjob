@@ -14,13 +14,12 @@ $(document).ready(function(){
 });
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
-
-	var date = new Date(timestamp);
+  	var date = new Date(timestamp);
 	var year = date.getFullYear();
 	var month = date.getMonth() + 1;
 	var day = date.getDate();
 	var hour = date.getHours();
-	var min = date.getMinutes();
+ 	var min = date.getMinutes();
 	var sec = date.getSeconds();
 
 	var retVal = year + "-" + (month < 10 ? "0" + month : month) + "-"
@@ -345,7 +344,7 @@ function contactPaging(contactPageNum) {
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>';
         			if(data.contactList[i].act_yn == 'N'){
-        				tbodyContent+= '<td style="width:10%; text-align: center;">'+dateFormat(data.contactList[i].fin_mdfy_dt)+'</td>';
+        				tbodyContent+= '<td style="width:10%; text-align: center;">'+data.contactList[i].fin_mdfy_dt+'</td>';
  
         			}
 			}
@@ -447,7 +446,8 @@ function contactDelete(){
 			},
 		dataType : 'json',
 		success : function(result){
-			alert("연락처가 삭제되었습니다.");
+			var delsize = $("input[name=contact_del]:checked").length;
+			alert(delsize + "개의 연락처가 삭제되었습니다.");
 			contactPaging('1');
  		},
 		error : function(request){
@@ -607,7 +607,7 @@ function contactAddp(){
 	$('#ph_phone1').attr("disabled",false);
 	$('#ph_phone2').attr("disabled",false);
 	$('#ph_phone3').attr("disabled",false);
-
+	$("#comp_list_bt").attr("disabled", false);
 	
 	$('#company_nm').css("background-color", "white");
 	$('#cont_nm').css("background-color", "white"); 
@@ -650,7 +650,7 @@ function contInsertCancel() {
 	$('#ph1').attr("readonly", true);
 	$('#ph2').attr("readonly", true);
 	$('#ph3').attr("readonly", true);
-		
+	$("#comp_list_bt").attr("disabled", true);
 	 
 	$('#company_nm').css("background-color", "#EAEAEA");
 	$('#cont_nm').css("background-color", "#EAEAEA"); 
@@ -778,7 +778,7 @@ function contactInsert() {
 					$('#ph1').attr("readonly", true);
 					$('#ph2').attr("readonly", true);
 					$('#ph3').attr("readonly", true); 
-					
+					$("#comp_list_bt").attr("disabled", true);
 					$("#btn_2").css("display", "none"); 
 					$("#btn_1").css("display", "block");
 					
@@ -820,7 +820,8 @@ function callAddCancelBtn(){
 		$('#ph1').attr("readonly", true);
 		$('#ph2').attr("readonly", true);
 		$('#ph3').attr("readonly", true);
-		
+		$("#comp_list_bt").attr("disabled", true);
+
 		
 		 $('#cont_nm').val("");  
 			$('#company_nm').val("");
@@ -834,6 +835,10 @@ function callAddCancelBtn(){
 			
 			$('#email1').val("");
 			$('#email2').val("");
+			
+			$("#baseBtnDiv1").css("display", "none");
+			$("#baseBtnDiv").css("display", "block");
+			
 		
  	}
 	

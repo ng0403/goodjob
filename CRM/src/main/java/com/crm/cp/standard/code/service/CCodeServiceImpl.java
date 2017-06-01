@@ -110,5 +110,12 @@ public class CCodeServiceImpl implements CCodeService {
 		return cdgrpResult;//요기서 반환한 값을 컨트롤이 받는다.
 	}
 	
+	//코드 그룹 아이디 중복검사
+	@Override
+	public int cdgrpChk(String cd_grp_id) {
+		
+		return codeDao.cdgrpChk(cd_grp_id);
+	}
+	
 	
 }

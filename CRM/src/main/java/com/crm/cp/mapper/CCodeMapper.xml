@@ -46,6 +46,7 @@ fin_mdfy_dt,
 act_yn
 from code_group
 where act_yn = 'Y'
+order by cd_grp_id
 </select>
 
 <select id ="codeList" parameterType="String" resultType="com.crm.cp.standard.code.vo.CodeVO">
@@ -58,18 +59,18 @@ cd_dtl_cont,
 fst_reg_id, 
 fst_reg_dt,  
 fin_mdfy_id,
-fin_mdfy_dt,
+TO_CHAR(fin_mdfy_dt, 'YYYY-MM-DD HH:MI') fin_mdfy_dt, 
 act_yn
 from code
-where cd_grp_id = #{cd_grp_id}
-
+where cd_grp_id = #{cd_grp_id} and act_yn ='Y'
+order by code
 </select> 
 
 
-<insert id="cdgrpInsert" parameterType="com.crm.cp.standard.code.vo.CodeVO">
+<update id="cdgrpInsert" parameterType="com.crm.cp.standard.code.vo.CodeVO">
 INSERT INTO CODE_GROUP(CD_GRP_ID, CD_GRP_NM, FST_REG_ID, FIN_MDFY_ID, ACT_YN)
 VALUES(#{cd_grp_id}, #{cd_grp_nm}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn})
-</insert>
+</update>
 
 
  <update id="cdgrpDelete" parameterType="string">
@@ -85,7 +86,7 @@ VALUES(#{cd_grp_id}, #{cd_grp_nm}, #{fst_reg_id}, #{fin_mdfy_id}, #{act_yn})
     </update>    
     
     
-<insert id="codeInsert" parameterType="com.crm.cp.standard.code.vo.CodeVO">
+<update id="codeInsert" parameterType="com.crm.cp.standard.code.vo.CodeVO">
 INSERT INTO CODE(CD_GRP_ID, CODE, CD_NM, CD_SEQ_NUM, CD_DTL_CONT, FST_REG_ID, FIN_MDFY_ID, ACT_YN)
 VALUES(#{cd_grp_id},
 		 (SELECT /*+INDEX_DESC(code code_index)*/
@@ -106,7 +107,7 @@ VALUES(#{cd_grp_id},
          
             )
 
-</insert>    
+</update>    
 
 
 <select id = "codeDetail" parameterType= "map"  resultType="com.crm.cp.standard.code.vo.CodeVO">
@@ -132,5 +133,11 @@ where code=#{code} and cd_grp_id = #{cd_grp_id}
 update code_group set cd_grp_nm = #{cd_grp_nm}, cd_grp_id = #{cd_grp_id}, act_yn = #{act_yn}, fin_mdfy_id = #{fin_mdfy_id}
 where cd_grp_id=#{cd_grp_id} 
 </update>
+
+
+<select id="cdgrpChk" parameterType="String" resultType="integer">
+select count(cd_grp_id) from code_group
+where cd_grp_id = #{cd_grp_id}
+</select>
 
 </mapper>

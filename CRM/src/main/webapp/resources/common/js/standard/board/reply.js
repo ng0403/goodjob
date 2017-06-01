@@ -23,14 +23,7 @@ function replyPaging(replyPageNum) {
  				+ '<td  style="text-align:left">' + data.reply_list[i].reply_CONTENT+ '<i style="float:right" class="large trash icon" id = '+data.reply_list[i].reply_NO+' onclick="remove_reply(this.id);"></i></td></tr>';
         		}
  			   tbody.append(tbodyContent);
-  			if(data.reply_list.length < 5){
- 				for(var i=0; i<5-data.replyListSize; i++){
-					tbodyContent='<tr style="height: 35.5px;"><td scope="row" style="width:165px"></td>' 
- 						+'<td></td></tr>';
-					tbody.append(tbodyContent);
-				}		
-			}
-			
+  			/*x*/
 			var pageContent = ""; 
 			
 			//시작

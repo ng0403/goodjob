@@ -20,7 +20,7 @@
 	crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
- 	<link rel="stylesheet" href="${ctx}/resources/common/css/common.css"
+ <link rel="stylesheet" href="${ctx}/resources/common/css/common.css"
 		type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 
@@ -45,10 +45,8 @@ $(function() {
 	 </div> 
 </div>
 
-		<div class="list_div">
-			<div id="list1_div">
-				<form name="delAllForm" id="delAllForm" method="post"
-					action="/board/board_remove">
+	 			<div style="height:323px">
+<!--<form name="delAllForm" id="delAllForm" method="post" action="/board/board_remove"> -->
 					<table class="ui sortable celled table">
 						<thead>
 							<tr style="text-align:center">
@@ -61,7 +59,7 @@ $(function() {
 								<th>사용여부</th>
 							</tr>
 						</thead>
-						<tbody id="board_list_tbody">
+						<tbody id="board_list_tbody" class="tbody">
 							<c:forEach items="${boardmnglist}" var="boardMngVO">
 								<tr>
 									<td scope="row" style=" text-align:center"><input type="checkbox" id="del_code"
@@ -82,7 +80,7 @@ $(function() {
 							</c:forEach>
 						</tbody>
 					</table>
-				</form>
+				<!-- </form> -->
 
 			</div>
 			 <div class="bottom_div">
@@ -141,6 +139,6 @@ $(function() {
 				</div>
 
 			</div> 
-	 </div>	
+	 
 </body>
 </html>

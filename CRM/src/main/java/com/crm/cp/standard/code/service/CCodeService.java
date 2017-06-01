@@ -34,6 +34,8 @@ public interface CCodeService {
 	String codeModify(CodeVO codeVo); // 코드 수정
 	
 	String cdgrpModify(CodeVO codeVo); // 코드그룹 수정
+	
+	int cdgrpChk(String cd_grp_id);
 
 
 }

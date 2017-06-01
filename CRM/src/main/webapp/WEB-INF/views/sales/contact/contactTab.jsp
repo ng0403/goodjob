@@ -78,7 +78,7 @@
 						    <input type="hidden" id="hcomp_nm"/>
 						    <input type="hidden" name="comp_id" id="comp_id"/>
 						    <input type="text" name="company_nm" id="company_nm" class="int" readonly="readonly" /> 
-						    <input type="button" name="compSearch" value="회사" class="tiny ui blue basic button" id="comp_list_bt" />
+						    <input type="button" name="compSearch" value="회사" class="tiny ui blue basic button" id="comp_list_bt" disabled/>
 							</div>
 						</td>
 						

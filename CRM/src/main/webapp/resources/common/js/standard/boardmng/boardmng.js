@@ -91,7 +91,10 @@ function deleteAction() {
 					 					
 					if(result =="success")
 					{
-						boaradPaging();
+	                	 var delsize = $("input[name=del_code]:checked").length;
+	                 	alert(delsize + "개의 게시판이 삭제 되었습니다.");
+
+						boardPaging();
  					}
 				else{
 					alert("오류!");
@@ -108,7 +111,7 @@ function deleteAction() {
 
   
 //보드 리스트 그냥 페이징
-function boaradPaging(boardPageNum) {
+function boardPaging(boardPageNum) {
     	var ctx = $("#ctx").val();
   	var tbody = $('#board_list_tbody');
 	var tbodyContent = "";
@@ -130,7 +133,7 @@ function boaradPaging(boardPageNum) {
  				tbodyContent +='<tr><td scope="row" style="text-align:center"><input type="checkbox" id="del_code" class="call_chek" name="del_code" value="'+data.boardList[i].BOARD_MNG_NO+'"></td>'
  				    +'<td>' + data.boardList[i].BOARD_MNG_NO + '</td>' 
  				    +'<td>' + data.boardList[i].BOARD_MNG_CD + '</td>'
-					+'<td><a href="/board_mng_detail?BOARD_MNG_NO=' +data.boardList[i].BOARD_MNG_NO+ '"style="color: black; cursor: pointer;" class="callClick">'+ data.boardList[i].BOARD_NM+'</a></td>'
+					+"<td><a href='#' onclick=\"boardmngDetailClick('" + data.boardList[i].BOARD_MNG_NO +"' );\" style='color: black; cursor: pointer;' class='callClick'>"+ data.boardList[i].BOARD_NM+"</a></td>"
           		    +'<td>'+dateFormat(data.boardList[i].CREATED)+'</td>'  
           		    +'<td>' + data.boardList[i].ACTIVE_FLGSTRING + '</td></tr>';
  				}
@@ -272,7 +275,7 @@ function updateBoardMng() {
 					
 					$('#email1').val("");
 					$('#email2').val("");
-					boaradPaging();
+					boardPaging();
 	 			},
 	 			
 				error : function(e) {
@@ -350,19 +353,19 @@ function contactInsert() {
 				dataType : 'json',
 				type : "POST", //
  				success : function(data) { 
- 	  			    $('#cont_nm').val("");  
-					$('#company_nm').val("");
-					$('#ph1').val("");
-					$('#ph2').val("");
-					$('#ph3').val("");
+ 	  			    $('#BOARD_NM').val("");  
+					$('#BOARD_MNG_CD').val("");
 					
-					$('#cell_ph1').val("");	
-					$('#cell_ph2').val("");
-					$('#cell_ph3').val("");
+					$("#BOARD_NM").attr("readonly", true);
+					$("#BOARD_MNG_CD").attr("readonly", true);
+					$("#sel1").attr("disabled", true);
+					$(".radio-inline").attr("disabled", true);
 					
-					$('#email1').val("");
-					$('#email2').val("");
-					boaradPaging();
+					
+					$("#btn_2").css("display", "none");
+					$("#btn_1").css("display", "block");
+					
+					boardPaging();
 	 			},
 	 			
 				error : function(e) {
@@ -391,14 +394,14 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	console.log(prevPageNum);
 	console.log(firstPageCount);
 	if(ccPageNum != firstPageCount){
-		prevPage.attr("href","javascript:contactPaging("+prevPageNum+")");
+		prevPage.attr("href","javascript:boardPaging("+prevPageNum+")");
 	}
 	prevPage.append(prevI);
 	$("#pageSpace").append(prevPage);
 	for(var i = startPageNum; i <= endPageNum; i++){
 		var ccPage = $("<a>");
 		ccPage.addClass("item");
-		ccPage.attr("href","javascript:contactPaging("+i+")");
+		ccPage.attr("href","javascript:boardPaging("+i+")");
 		ccPage.html(i);
 		if(i == ccPageNum){
 			var b = $("<b>");
@@ -414,7 +417,7 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	var nextI = $("<i>");
 	nextI.addClass("right chevron icon");
 	if(ccPageNum != totalPageCount){
-		nextPage.attr("href","javascript:contactPaging("+nextPageNum+")");
+		nextPage.attr("href","javascript:boardPaging("+nextPageNum+")");
 	}
 	nextPage.append(nextI);
 	$("#pageSpace").append(nextPage);

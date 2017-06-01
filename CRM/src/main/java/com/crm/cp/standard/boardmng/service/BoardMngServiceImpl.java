@@ -22,7 +22,7 @@ public class BoardMngServiceImpl implements BoardMngService {
 		int boardPageNum = (Integer)map.get("pageNum");
 		int totalRowCount = boardmngDao.BoardMngListCount("boardmngListCount", map);
 		
-		PagerVO page = new PagerVO(boardPageNum, totalRowCount, 10, 999);
+		PagerVO page = new PagerVO(boardPageNum, totalRowCount, 6, 999);
 		
 		return page;
 	}
@@ -33,12 +33,12 @@ public class BoardMngServiceImpl implements BoardMngService {
 		System.out.println("BoardListCount service " +  boardMap.toString());
 		int actPageNum = (Integer) boardMap.get("boardPageNum");
 		// 현재 페이지 얻어오기
-		PagerVO page = new PagerVO(actPageNum, 0, 10, 10);
+		PagerVO page = new PagerVO(actPageNum, 0, 6, 6);
 		// 전체 글의 갯수 구하기
 		System.out.println("actPage Num " + actPageNum);
 		int totalRowCount = boardmngDao.BoardMngListCountP(boardMap);
 		System.out.println("totalRowCount ? " + totalRowCount);		
-		page = new PagerVO(actPageNum, totalRowCount, 10, 10);
+		page = new PagerVO(actPageNum, totalRowCount, 6, 6);
 	
 		return page;
 	}

@@ -20,9 +20,9 @@ public class ContactVO {
 	public String email2;
 	public String itrt_cd;
 	public String fst_reg_id;
-	public Date fst_reg_dt;
+	public String fst_reg_dt;
 	public String fin_mdfy_id;
-	public Date fin_mdfy_dt;
+	public String fin_mdfy_dt;
 	public String act_yn;
 	
 	
@@ -177,12 +177,12 @@ public class ContactVO {
 	}
 
 
-	public Date getFst_reg_dt() {
+	public String getFst_reg_dt() {
 		return fst_reg_dt;
 	}
 
 
-	public void setFst_reg_dt(Date fst_reg_dt) {
+	public void setFst_reg_dt(String fst_reg_dt) {
 		this.fst_reg_dt = fst_reg_dt;
 	}
 
@@ -197,12 +197,12 @@ public class ContactVO {
 	}
 
 
-	public Date getFin_mdfy_dt() {
+	public String getFin_mdfy_dt() {
 		return fin_mdfy_dt;
 	}
 
 
-	public void setFin_mdfy_dt(Date fin_mdfy_dt) {
+	public void setFin_mdfy_dt(String fin_mdfy_dt) {
 		this.fin_mdfy_dt = fin_mdfy_dt;
 	}
 

@@ -24,7 +24,7 @@ public interface CCodeDao {
 	int codeModify(CodeVO codeVo); // 코드 수정
 	int cdgrpModify(CodeVO codeVo); // 코드그룹 수정
 	
-
+	int cdgrpChk(String cd_grp_id); // 코드그룹 아이디 중복체크
 
 
 }

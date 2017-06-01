@@ -77,7 +77,7 @@
 			  	<td><a onclick="searchAcnkEvent(1, 'ㅎ');">ㅎ</a></td>
 			  	<!-- <td><a onclick="searchAcnkEvent(1, '미분류');">미분류</a></td> -->
 			  	<td><a onclick="toggleEnglish();">알파벳</a></td>
-			  </tr >
+			  </tr> 
 			  <tr id="english" style="height: 5%; text-align:center">
 			  <td><a onclick="searchAcnkEvent(1, '전체');">전체</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, 'A');">A</a></td>
@@ -108,7 +108,7 @@
 			  	<td><a onclick="searchAcnkEvent(1, 'Z');">Z</a></td>
 			  	<td><a onclick="toggleKorean();">한글</a></td> 
 			  </tr>
-		  </table>
+ 		  </table>
 	</div>
 	
 	<div  style="height:300px">
@@ -137,6 +137,7 @@
 		</tbody>
 		</table>
 		</div>
+		
 		<div class="bottom_div">
 	       <div class="functionBtn_div" id="btn_1">
 	        <input type="button" class="tiny ui button" id="contactAdd_bt"  value="추가" onclick="contactAddp();"/>
