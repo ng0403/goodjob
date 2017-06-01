@@ -260,8 +260,6 @@ function AddCustomerOpen(flag, cust_id, cust_nm){
 	var cust_nm = cust_nm;
 	var opptId = opptId;
 	
-	alert(tabValue);
-	
 	location.href = ctx+'/opptDetail?flag=' + flag + "&cust_id=" + cust_id + "&cust_nm=" + cust_nm + "&tabValue=" + tabValue;
 }
 
