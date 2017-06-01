@@ -170,6 +170,7 @@ function opptAddBtn() {
 	//focus, css, readonly, disabled false 상태로 변경
 	//값 초기화
 	var cust_nm = $("#cust_nm").val();
+	
 	$("#opptDetail #sales_oppt_nm").focus();
 	if(cust_nm == 'undefined' || cust_nm == '' || cust_nm == null)
 		{

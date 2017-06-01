@@ -57,17 +57,17 @@ $(document).ready(function(){
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 <%-- 		<c:if test="${addFlag == 0 }"> --%>
-<!-- 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 영업기회 추가</div> -->
+<!-- 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; ">영업기회</a> > 영업기회 추가</div> -->
 <%-- 		</c:if> --%>
 		<c:if test="${addFlag == 1 }">
 			<div class="caption">
-				<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 삭제된 데이터 상세정보</h3>
+				<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;  font: bold;">영업기회관리</a> > 영업기회관리 삭제된 데이터 상세정보</h3>
 <%-- 				<c:choose> --%>
 <%-- 					<c:when test="${flag == 'cust' }"> --%>
-<!-- 						<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3> -->
+<!-- 						<h3 class="ui header" style="background: #fff;">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none;  font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3> -->
 <%-- 					</c:when> --%>
 <%-- 					<c:otherwise> --%>
-<!-- 						<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3> -->
+<!-- 						<h3 class="ui header" style="background: #fff;">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;  font: bold;">영업기회관리</a> > 영업기회관리 상세정보</h3> -->
 <%-- 					</c:otherwise> --%>
 <%-- 				</c:choose> --%>
 			</div>

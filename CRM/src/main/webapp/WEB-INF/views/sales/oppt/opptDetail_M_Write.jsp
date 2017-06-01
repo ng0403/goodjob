@@ -59,19 +59,19 @@ $(document).ready(function(){
 			<div class="caption">
 		<c:choose>
 				<c:when test="${flag == 'cust' }">
-				<label id="listLabel" class="ui header" style="background: #fff;" >■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사 관리</a> > 영업기회관리 상세정보</label>
+				<label id="listLabel" class="ui header" style="background: #fff;" >■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none;  font: bold;">고객사 관리</a> > 영업기회관리 상세정보</label>
 			</c:when>
 			<c:when test="${flag == 'cust_ed' }">
-				<label id="listLabel" class="ui header" style="background: #fff;" >■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none; color: black; font: bold;">고객사 관리</a> > 영업기회관리 상세정보</label>
+				<label id="listLabel" class="ui header" style="background: #fff;" >■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 19px; text-decoration:none;  font: bold;">고객사 관리</a> > 영업기회관리 상세정보</label>
 			</c:when>
 			<c:otherwise>
-				<label id="listLabel" class="ui header" style="background: #fff;" >■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none; color: black; font: bold;">영업기회관리</a> > 영업기회관리 추가</label>
+				<label id="listLabel" class="ui header" style="background: #fff;" >■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;  font: bold;">영업기회관리</a> > 영업기회관리 추가</label>
 			</c:otherwise>
 		</c:choose>
 			</div>
 		</c:if>
 <%-- 		<c:if test="${addFlag == 1 }"> --%>
-<!-- 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; color: black;">영업기회</a> > 상세정보</div> -->
+<!-- 			<div class="caption">■ 영업 > <a href="/oppt" style="font-size: 15px; text-decoration:none; ">영업기회</a> > 상세정보</div> -->
 <%-- 		</c:if> --%>
 	</div>
 		<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 사용자상세부분-->

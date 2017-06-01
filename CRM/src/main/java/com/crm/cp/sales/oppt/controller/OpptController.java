@@ -216,6 +216,7 @@ public class OpptController {
 			mov.addObject("flg", "add");
 			System.out.println("Add Flag  " + addFlag);
 			mov.addObject("tabValue", tabValue);
+			System.out.println("tabValue  " + tabValue);
 			// 검색어, 페이지번호 전달
 			mov.addObject("searchInfo", map);
 			return mov;
@@ -261,7 +262,6 @@ public class OpptController {
 			mov.addObject("eduList", eduList);
 			mov.addObject("elclist", elclist);
 			mov.addObject("eduCode", eduCode);
-			mov.addObject("tabValue", tabValue);
 			mov.addObject("opptPrdt", opptPrdt);
 			mov.addObject("otllist", otllist);
 			mov.addObject("cust_id", cust_id);
@@ -647,7 +647,6 @@ public class OpptController {
 		add.setFst_reg_id(session.getAttribute("user").toString());
 		add.setFin_mdfy_id(session.getAttribute("user").toString());
 		System.out.println(total_sup_price);
-		add.setTotal_sup_price(total_sup_price);
 		
 		//영업기회 추가 함수
 		int result = service.opptAdd(add);
