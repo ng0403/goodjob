@@ -76,7 +76,7 @@ $(document).ready(function() {
 				<button id="addkeymancancel" class="tiny ui blue button" onclick="javascript:opptActiveDelete();">삭제</button>
 			</div>
 			
-			<div id="tableline" style="float: left;">
+			<div id="tableline" >
 				<table id="goaltable" class="ui sortable celled table">
 					<thead>
 						<tr>

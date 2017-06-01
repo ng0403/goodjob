@@ -58,7 +58,7 @@
 /*     text-align: left; */
 /* } */
 
-.detailtbody #goaltable thead tr th {
+.detailtbody #goaltable thead tr th{
     vertical-align: center;
     border-bottom: 2px solid #dddddd;
     width: 336px;
