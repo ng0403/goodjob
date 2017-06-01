@@ -60,10 +60,10 @@
 		order by MENU_ID
     </select>
     
-    <insert id="authMenuInsert" parameterType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">
+    <update id="authMenuInsert" parameterType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">
     	INSERT INTO AUTHORIZATION_MENU(AUTH_ID, MENU_ID, CREAT_YN, RETRV_YN, MDFY_YN , DEL_YN, DEFLT_YN, fst_reg_id)
 		VALUES(#{auth_id},#{menu_id},#{creat_yn},#{retrv_yn},#{mdfy_yn},#{del_yn},#{deflt_yn},#{fst_reg_id})
-    </insert>
+    </update>
     
     <update id="authMenuPopUpdate" parameterType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">
 	   UPDATE AUTHORIZATION_MENU

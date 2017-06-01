@@ -54,12 +54,10 @@
 					<td style="width:15%;">${auth.auth_nm}</td>
 					<td style="width:15%;">${auth.act_yn}</td>
 					<td style="width:14%;">${auth.fst_reg_id}</td>
-					<td style="width:14%;">
-						<fmt:formatDate value="${auth.fst_reg_dt}" pattern="yyyy-MM-dd"/>
+					<td style="width:14%;">${auth.fst_reg_dt}
 					</td>
 					<td style="width:14%;">${auth.fin_mdfy_id}</td>
-					<td style="width:15%;">
-						<fmt:formatDate value="${auth.fin_mdfy_dt}" pattern="yyyy-MM-dd"/>
+					<td style="width:15%;">${auth.fin_mdfy_dt}
 					</td>
 				</tr>
 				</c:forEach>
