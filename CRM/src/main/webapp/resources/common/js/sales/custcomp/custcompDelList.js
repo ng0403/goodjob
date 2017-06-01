@@ -102,9 +102,6 @@ var ccllist;
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
 	var cust_id = $("#nowCust_id").val();
-	keymanList(cust_id);
-	pocList(cust_id);
-	posList(cust_id);
 	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){

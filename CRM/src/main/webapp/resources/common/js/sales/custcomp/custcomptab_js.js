@@ -429,10 +429,12 @@ function custCompCancelBtn() {
 function onlyNumber(event){
     event = event || window.event;
     var keyID = (event.which) ? event.which : event.keyCode;
-    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
-        return;
-    else
-        return false;
+    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) {
+    	return;
+    } else {
+    	alert("숫자만 입력이 가능합니다.");
+    	return false;
+    }
 }
 function removeChar(event) {
     event = event || window.event;
@@ -483,17 +485,30 @@ function addCustComp(ctx){
 		var biz_status = $("#biz_status").val();
 		var indst_cd = $("#indst_cd option:selected").text();
 		
+		var temp = comp_num.toString(); 
+		var compNum = temp.length;
 		
+		var temp2 = corp_num.toString(); 
+		var corpNum = temp2.length;
+
 		if (cust_nm == '' || cust_nm == null) {
 			alert("고객사명을 입력하세요.");
 			$("#cust_nm").focus();
 		} 
-		else if (cust_div_cd.val == '' || cust_div_cd.val == null || cust_div_cd.val == 0 ) 
-		{
-			alert("고객사구분을 입력하세요.");
-			$("#custcomptbody #cust_div_cd").focus();
-		} 
-		 else 
+//		else if (cust_div_cd.val == '' || cust_div_cd.val == null || cust_div_cd.val == 0 ) 
+//		{
+//			alert("고객사구분을 입력하세요.");
+//			$("#custcomptbody #cust_div_cd").focus();
+//		} 
+		 else if (compNum < 9 ) {
+			 alert("사업자번호의 자릿수가 부족합니다.");
+			 $("#custcomptbody #comp_num").focus();
+		 } 
+		 else if (corpNum < 9 ) {
+			 alert("법인번호의 자릿수가 부족합니다.");
+			 $("#custcomptbody #corp_num").focus();
+		 } 
+		 else		 
 		{
 			
 			$('#custCompForm') 

@@ -57,7 +57,7 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn"  class="tiny ui blue button" value="키맨 추가" />
+				<input type="button" id="keyman_pop_btn"  class="tiny ui button" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="tiny ui blue button" value="삭제" onclick="keymanDelete();"/>
 			</div>
 			
@@ -84,7 +84,7 @@
 		<div id="tabDiv2"  style="width: 100%;">
 			<div class="bt_position_authuser" style="float: right;">
 <%-- 				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/> --%>
-				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="AddCustomerOpen('cust', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}', tabValue.value);"/>
+				<input type="button" id="actAddSaveBtn"   class="tiny ui button" value="영업기회 추가" onclick="AddCustomerOpen('cust', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}', tabValue.value);"/>
 				<input type="button" id="actAddCancelBtn" class="tiny ui blue button" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
@@ -130,7 +130,7 @@
 		<!-- 영업활동 리스트 -->
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="actCust_nm" class="tiny ui blue button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}', tabValue.value);" />
+				<input type="button" id="actCust_nm" class="tiny ui button" value="영업활동 추가" onclick="actInsertForm2('cust', '${opptList.sales_oppt_id}', '${opptList.sales_oppt_nm}', '${custcompDetail.cust_id}', '${custcompDetail.cust_nm}', tabValue.value);" />
 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" />
 			</div>
 			
@@ -161,7 +161,7 @@
 		<!-- 탭 내용 : 영업 담당 사원 -->
 		<div id="tabDiv4" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="poc_pop_btn"  class="tiny ui blue button" value="담당자 추가" />
+				<input type="button" id="poc_pop_btn"  class="tiny ui button" value="담당자 추가" />
 				<input type="button" id="deletePocbtn" class="tiny ui blue button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			
@@ -186,23 +186,23 @@
 		<!-- 견적 리스트 -->
 		<div id="tabDiv5" class="tab5_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
-				<button id="estimateAdd" class="custcomp_btn">견적 추가</button>
-				<button id="addkeymancancel" class="custcomp_btn" onclick="ccEstDel('${ctx}');" >삭제</button>
+				<button id="estimateAdd" 	 class="tiny ui button">견적 추가</button>
+				<button id="addkeymancancel" class="tiny ui blue button" onclick="ccEstDel('${ctx}');" >삭제</button>
 			</div>
 			
-			<div id="tableline">
-				<table id="goaltable" class="tabtable">
+			<div id="tableline2">
+				<table id="goaltable" class="ui sortable celled table">
 					<thead>						
-						<tr>
+						<tr class="tr_table_fix_header">
 							<th style="width: 3%;"><input type="checkbox"  id='ccEstListCheck'/></th>
-							<td style="width: 25%;">견적명</td>
-							<td style="width: 10%;">견적단계</td>
-							<td style="width: 7%;">견적수량</td>
-							<td style="width: 10%;">견적금액</td>
-							<td style="width: 12%;">견적유효일자</td>
-							<td style="width: 11%;">메모</td>
-							<td style="width: 11%;">등록자</td>
-							<td style="width: 11%;">등록일시</td>
+							<th style="width: 25%;">견적명</th>
+							<th style="width: 10%;">견적단계</th>
+							<th style="width: 7%;">견적수량</th>
+							<th style="width: 10%;">견적금액</th>
+							<th style="width: 12%;">견적유효일자</th>
+							<th style="width: 11%;">메모</th>
+							<th style="width: 11%;">등록자</th>
+							<th style="width: 11%;">등록일시</th>
 						</tr>
 					</thead>
 					<tbody id="estTableTbody" >
@@ -232,7 +232,7 @@
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="keyman_pop_btn"  class="tiny ui blue button" value="키맨 추가" />
+				<input type="button" id="keyman_pop_btn"  class="tiny ui button" value="키맨 추가" />
 				<input type="button" id="deletekeymanbtn" class="tiny ui blue button" value="삭제" onclick="keymanDelete();"/>
 			</div>
 			
@@ -259,7 +259,7 @@
 		<!-- 영업기회 리스트 -->
 		<div id="tabDiv2"  style="width: 100%;">
 			<div class="bt_position_authuser" style="float: right;">
-				<input type="button" id="actAddSaveBtn"   class="tiny ui blue button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/>
+				<input type="button" id="actAddSaveBtn"   class="tiny ui button" value="영업기회 추가" onclick="opptInsertPop('${ctx}')"/>
 				<input type="button" id="actAddCancelBtn" class="tiny ui blue button" value="삭제" onclick="actOpptDelBt();"/>
 			</div>
 			
@@ -307,7 +307,7 @@
 			<!-- 영업활동 리스트 -->
 		<div id="tabDiv3"  style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="act_cust_nm" class="tiny ui blue button" value="영업활동 추가"/>
+				<input type="button" id="act_cust_nm" class="tiny ui button" value="영업활동 추가"/>
 				<input type="button" id="actDel"      class="tiny ui blue button" value="삭제" onclick="ccActDel('${ctx}');"/>
 			</div>
 			
@@ -337,7 +337,7 @@
 		<!-- 탭 내용 : 영업 담당 사원 -->
 		<div id="tabDiv4" class="tab1_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="poc_pop_btn"  class="tiny ui blue button" value="담당자 추가" />
+				<input type="button" id="poc_pop_btn"  class="tiny ui button" value="담당자 추가" />
 				<input type="button" id="deletePocbtn" class="tiny ui blue button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			
@@ -362,23 +362,23 @@
 		<!-- 견적 리스트 -->
 		<div id="tabDiv5" class="tab5_content" style="width: 100%;"> 
 			<div class="bt_position_authuser">
-				<button id="estimateAdd" class="custcomp_btn">견적 추가</button>
-				<button id="addkeymancancel" class="custcomp_btn" onclick="ccEstDel('${ctx}');" >삭제</button>
+				<button id="estimateAdd" 	 class="tiny ui button">견적 추가</button>
+				<button id="addkeymancancel" class="tiny ui blue button" onclick="ccEstDel('${ctx}');" >삭제</button>
 			</div>
 			
-			<div id="tableline">
-				<table id="goaltable" class="tabtable">
+			<div id="tableline2">
+				<table id="goaltable" class="ui sortable celled table">
 					<thead>						
-						<tr>
+						<tr class="tr_table_fix_header">
 							<th style="width: 3%;"><input type="checkbox"  id='ccEstListCheck'/></th>
-							<td style="width: 25%;">견적명</td>
-							<td style="width: 10%;">견적단계</td>
-							<td style="width: 7%;">견적수량</td>
-							<td style="width: 10%;">견적금액</td>
-							<td style="width: 12%;">견적유효일자</td>
-							<td style="width: 11%;">메모</td>
-							<td style="width: 11%;">등록자</td>
-							<td style="width: 11%;">등록일시</td>
+							<th style="width: 25%;">견적명</th>
+							<th style="width: 10%;">견적단계</th>
+							<th style="width: 7%;">견적수량</th>
+							<th style="width: 10%;">견적금액</th>
+							<th style="width: 12%;">견적유효일자</th>
+							<th style="width: 11%;">메모</th>
+							<th style="width: 11%;">등록자</th>
+							<th style="width: 11%;">등록일시</th>
 						</tr>
 					</thead>
 					<tbody id="estTableTbody" >
