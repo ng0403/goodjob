@@ -40,7 +40,7 @@
 <input type="hidden" id="flg" value="${flg}" />
 <input type="hidden" id="nowCust_id" value="${custcompDetail.cust_id}" />
 <input type="hidden" id="nowCust_nm" value="${custcompDetail.cust_nm}" />
-
+<input type="hidden" id="tabValue"   value="${tabValue}">
 	<div id="title">
 		<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
@@ -90,21 +90,24 @@
 					<tbody id="custcomptbody" class="detailtbody">
 						<tr>
 							<th id="th" style="color: red">*고객사명</th>
-							<td><c:if test="${flg == 0 }">
+							<td>
+								<c:if test="${flg == 0 }">
 									<div class="ui input focus">
 										<input type="hidden" id="cust_id" name="cust_id" value="${custcompDetail.cust_id}" /> 
 										<input type="hidden"id="hcust_nm" value="${custcompDetail.cust_nm}" /> 
-										<input type="text" name="cust_nm" id="cust_nm" value="${custcompDetail.cust_nm}" style="ms-ime-mode: disabled; background: #fff;" />
+										<input type="text" name="cust_nm" id="cust_nm" value="${custcompDetail.cust_nm}" style="ms-ime-mode: disabled; background: #fff;" onkeyup="cont_focus()" />
 									</div>
 								</c:if> <c:if test="${flg == 1 }">
 									<div class="ui input focus">
 										<input type="hidden" id="cust_id" name="cust_id" value="${custcompDetail.cust_id}" /> 
 										<input type="hidden" id="hcust_nm" value="${custcompDetail.cust_nm}" /> 
-										<input type="text"   id="cust_nm" name="cust_nm" value="${custcompDetail.cust_nm}" style="ms-ime-mode: disabled;" readonly="readonly" />
+										<input type="text"   id="cust_nm" name="cust_nm" value="${custcompDetail.cust_nm}" style="ms-ime-mode: disabled;" readonly="readonly" onkeyup="cont_focus()"/>
 									</div>
-								</c:if></td>
+								</c:if>
+							</td>
 							<th style="color: red">*고객사구분</th>
-							<td><c:if test="${flg == 0 }">
+							<td>
+								<c:if test="${flg == 0 }">
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" />
 									<select id="cust_div_cd" name="cust_div_cd" style="background: #fff; border-color: #85B7D9;">
 										<option value="0" style="text-align: center;">==구분==</option>
@@ -115,7 +118,8 @@
 											</option>
 										</c:forEach>
 									</select>
-								</c:if> <c:if test="${flg == 1 }">
+								</c:if>
+								 <c:if test="${flg == 1 }">
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" />
 									<select id="cust_div_cd" name="cust_div_cd" style="background: rgb(220, 220, 220); border-color: #85B7D9;" disabled="disabled">
 										<option value="0" style="text-align: center;">==구분==</option>

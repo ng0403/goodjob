@@ -351,6 +351,8 @@ function opptModify(){
 	var est_list = [];
 	var discount_unit_cd = [];
 	var unit_check =0;
+	var tabValue = $("#tabValue").val();
+	
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
 		return false;
@@ -431,7 +433,7 @@ function opptModify(){
 			else if(act_flg == 'cust_ed')
 			{
 				alert("영업기회 페이지로 이동합니다.");
-				location.href = ctx +'/custcompDetail?cust_id=' + cust_id;
+				location.href = ctx +'/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 			},
 		error:function(request){

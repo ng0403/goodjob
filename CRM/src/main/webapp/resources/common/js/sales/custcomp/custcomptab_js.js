@@ -491,10 +491,18 @@ function addCustComp(ctx){
 		var temp2 = corp_num.toString(); 
 		var corpNum = temp2.length;
 
+	 
+		
 		if (cust_nm == '' || cust_nm == null) {
 			alert("고객사명을 입력하세요.");
 			$("#cust_nm").focus();
 		} 
+		
+		
+		
+		
+		
+		
 		else if (cust_div_cd == '' || cust_div_cd == null || cust_div_cd == 0 ) 
 		{
 			alert("고객사구분을 입력하세요.");
@@ -516,12 +524,59 @@ function addCustComp(ctx){
 			.submit();
 			alert("정상적으로 저장되었습니다.");
 		}
-		
-		
-		
 	});
 }	
+
+//글자수 제한 함수
+function cont_focus() {
+	var str = document.board.content.value.length;
+	var con = document.board.content.value;
 	
+	if(str >=25) {
+		alert("최대 25자까지만 작성할 수 있습니다.");
+		document.board.content.value = con.substring(0, 25);
+		document.board.content.focus();
+	} 
+}
+
+//한글 자릿수 세는 함수 
+function fnChkByte(obj) {
+//<textarea name="introduce" id="introduce" style="width:450px; height:80px" onkeyup="fnChkByte(this);">
+    var maxByte = 600; //최대 입력 바이트 수
+    var str = obj.value;
+    var str_len = str.length;
+ 
+    var rbyte = 0;
+    var rlen = 0;
+    var one_char = "";
+    var str2 = "";
+ 
+    for (var i = 0; i < str_len; i++) {
+        one_char = str.charAt(i);
+ 
+        if (escape(one_char).length > 4) {
+            rbyte += 2; //한글2Byte
+        } else {
+            rbyte++; //영문 등 나머지 1Byte
+        }
+ 
+        if (rbyte <= maxByte) {
+            rlen = i + 1; //return할 문자열 갯수
+        }
+    }
+ 
+    if (rbyte > maxByte) {
+        alert("한글 " + (maxByte / 2) + "자 / 영문 " + maxByte + "자를 초과 입력할 수 없습니다.");
+        str2 = str.substr(0, rlen); //문자열 자르기
+        obj.value = str2;
+        fnChkByte(obj, maxByte);
+    } else {
+        document.getElementById('byteInfo').innerText = rbyte;
+    }
+}
+
+
+
 
 // 기업고객 수정
 function mdfyCustComp(ctx){

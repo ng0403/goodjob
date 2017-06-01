@@ -30,6 +30,7 @@ $(function() {
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
 	<input type="hidden" id="count" value="">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 	<div id="title">
 		<div class="caption">
 			<label id="listLabel" class="ui header" style="background: #fff;">■ 영업기회 > 영업기회관리</label>
