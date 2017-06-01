@@ -38,7 +38,7 @@ $(document).ready(function() {
 	var flg = $("#flg").val();
 	
 	custActiveAdd(ctx);
-	estimateAdd(ctx);
+//	estimateAdd(ctx);
 	custPosAdd(ctx);
 	addCustManager(ctx);
 	

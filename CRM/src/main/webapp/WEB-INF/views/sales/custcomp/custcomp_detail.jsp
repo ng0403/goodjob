@@ -14,7 +14,7 @@
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/custcomp/custMng.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/org/orgDetail.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
@@ -23,7 +23,7 @@
 
 <!-- 주소 API를 위한 부분 추가 시작 -->
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/search.min.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/standard/common/popup.min.js"></script>
+<%-- <script type="text/javascript" src="${ctx}/resources/common/js/standard/common/popup.min.js"></script> --%>
 <script> 
 	$(function() { 
 		//주소 검색버튼 ID값 

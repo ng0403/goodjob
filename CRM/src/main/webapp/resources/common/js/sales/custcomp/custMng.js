@@ -16,7 +16,7 @@ $(function(){
 	CustCompMngButton(ctx);
 	startDatePicker(ctx);
 	iuserListPopup(ctx);	//직원 검색 버튼 (사용)
-	pocList(cust_id);
+//	pocList(cust_id);
 });
 
 

@@ -1381,10 +1381,8 @@ public class CustCompController {
 			eduCode.add(est.getCd_nm());
 		}
 
-		System.out.println("controller : " + estim_id);
 		List<EstVO> prod = ccService.custEstimDetail(estim_id);
 		EstVO detail = prod.get(prod.size() - 1);
-		System.out.println("222222. controller  : " +detail);
 		System.out.println("1.++++++detail.getEstim_id(): " + detail.getEstim_id());
 		prod.remove(prod.size() - 1);
 		mov.addObject("elcList", elcList);

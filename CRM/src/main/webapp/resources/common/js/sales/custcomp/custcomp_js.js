@@ -112,24 +112,8 @@ $(document).ready(function() {
 		}
 	});
 	
-	//영업 담당자 리스트 가져오기
-	$("#tab4").click(function() {
-		var cust_id = $("#nowCust_id").val();
-		custTabValue();
-		
-		if(cust_id == ''){
-			var tbody = $('#pocTableTbody');
-				tbody.children().remove();
-			var tbodyContent = "";
-				tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
-				tbody.append(tbodyContent);
-		} else {
-			pocList(cust_id);
-		}
-	});
-	
 	//견적 리스트 가져오기
-	$("#tab5").click(function() {
+	$("#tab4").click(function() {
 		var cust_id = $("#nowCust_id").val();
 		custTabValue();
 		
@@ -141,6 +125,21 @@ $(document).ready(function() {
 				tbody.append(tbodyContent);
 		} else {
 			estList(cust_id);
+		}
+	});
+	//영업 담당자 리스트 가져오기
+	$("#tab5").click(function() {
+		var cust_id = $("#nowCust_id").val();
+		custTabValue();
+		
+		if(cust_id == ''){
+			var tbody = $('#pocTableTbody');
+				tbody.children().remove();
+			var tbodyContent = "";
+				tbodyContent = "<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr>";
+				tbody.append(tbodyContent);
+		} else {
+			pocList(cust_id);
 		}
 	});
 	
@@ -198,10 +197,10 @@ function tabCheckAjaxList(cust_id)
 		if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
 	} 
 	else if($("#tab4").is(":checked")){
-		if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
+		if(cust_id != '')	estList(cust_id);	 // 견적 불러오기
 	}
 	else if($("#tab5").is(":checked")){
-		if(cust_id != '')	estList(cust_id);	 // 견적 불러오기
+		if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
 	}
 }
 
@@ -876,6 +875,7 @@ function estList(cust_id) {
 		var ctx = $("#ctx").val();
 		var tbody = $('#estTableTbody');
 		var tbodyContent = "";
+		var tabValue = $("#tabValue").val();
 		$.ajax({
 			url : ctx+'/ccEstimList',
 			type : 'POST',
@@ -892,7 +892,7 @@ function estList(cust_id) {
 					//	var sales_price = comma(data[i].sales_price);
 						tbodyContent = "<tr>"
 							+ "<td style='width: 25px; text-align:center; vertical-align: middle;' ><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
-							+ "<td style='width: 300px; text-align: left; padding-left: 8px;'><a href='#' onclick=\"ccEstDetail('"+data[i].estim_id+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
+							+ "<td style='width: 300px; text-align: left; padding-left: 8px;'><a href='#' onclick=\"estDetail3('"+data[i].estim_id+"','"+data[i].cust_id+"','"+tabValue+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
 							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].estim_lev_cd_nm+"</td>"
 							+ "<td style='width: 76px; text-align:center; vertical-align: middle;'>"+data[i].estim_qty+"</td>"
 							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].sales_price+"</td>"
