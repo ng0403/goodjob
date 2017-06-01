@@ -40,6 +40,7 @@ $(function(){
 	prodChange();
 	addOperating();
 	actAllCheck();
+	CustNminputCd();
 });
 
 var buttonStatus;				//편집인지 추가인지 버튼의 상태 저장
@@ -58,6 +59,12 @@ function inputCustNm(custNm,custId){
 	$('#cust_nm').val(custNm);
 	$('#cust_id').val(custId);
 	$('#inputCust').val('true');
+}
+function CustNminputCd(){
+	var cust_id = $("#cust_id").val();
+	if(cust_id){
+		$('#inputCust').val('true');
+	}
 }
 //영업기회 리스트 팝업
 function actOpptListPopup(ctx){
@@ -556,6 +563,8 @@ function estUpdate(ctx){
 	var estimQtyCheck = [];
 	var discountCheck = [];
 	var hsales_oppt_id = $('#hsales_oppt_id').val();
+	var hcust_id = $('#hcust_id').val();
+	var tabValue = $('#tabValue').val();
 	if(estim_nm=="" || estim_nm==null){
 		alert("견적명을 입력해 주세요.");
 		$('#estim_nm').focus();
@@ -952,16 +961,16 @@ function viewEstHistory(sales_oppt_id){
 	});
 }
 //견적 히스토리 상세정보 출력
-function estDetail(estim_id){
+//function estDetail(estim_id){
 //	$("#estim_id").val(estim_id);
 //	$("#estim_detail").attr({
 //		"action":"estDetail",
 //		"method":"get"
 //	})
 //	$("#estim_detail").submit();
-	window.open('/estHistoryPopup?estim_id='+estim_id
-			,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-}
+//	window.open('/estHistoryPopup?estim_id='+estim_id
+//			,'newwindow','width=700, height=450, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//}
 //영업기회탬에서 추가버튼 눌렀을 때.
 function addOppt(){
 	var list_estim_id = $('#estim_id').val();
