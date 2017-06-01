@@ -14,7 +14,14 @@
 	</sql>
     
     <select id="authSelect" parameterType="com.crm.cp.standard.auth.vo.AuthVO" resultType="com.crm.cp.standard.auth.vo.AuthVO">
-      SELECT *
+      SELECT 
+			auth_id,
+			auth_nm,
+			fst_reg_id,
+			TO_CHAR(fst_reg_dt, 'yyyy-mm-dd') fst_reg_dt,
+			fin_mdfy_id,
+			TO_CHAR(fin_mdfy_dt, 'yyyy-mm-dd')  fin_mdfy_dt,
+			act_yn
       FROM AUTHORIZATION
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>

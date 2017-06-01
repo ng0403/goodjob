@@ -36,7 +36,7 @@
 					, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
 					, (select cust_nm from customer where cust_id=aa.cust_id) cust_nm
 <!-- 					, aa.fst_reg_id -->
-					, to_char(aa.FIN_MDFY_DT,'yyyy-mm-dd hh:mm') FIN_MDFY_DT 
+					, to_char(aa.FIN_MDFY_DT,'yyyy-mm-dd hh24:mi') FIN_MDFY_DT 
 					from ESTIMATE aa,
 						SALES_OPPORTUNITY_ESTIMATE bb
 					where aa.estim_id = bb.estim_id
@@ -533,6 +533,7 @@
 		<if test="act_yn != 'all'">
 			and c.act_yn='Y'
 		</if>
+			and d.act_yn='Y'
 		<if test="keyword!=null and keyword!='' ">
 			<include refid="where-custcomp_list" />
 		</if>
@@ -794,7 +795,7 @@
       					group by aa.estim_id),0) estim_qty   
 					, to_char(aa.ESTIM_VALID_D,'yyyy-mm-dd') ESTIM_VALID_D
 					, aa.fin_mdfy_id
-					, to_char(aa.FIN_MDFY_DT,'yyyy-mm-dd hh:mm') FIN_MDFY_DT
+					, to_char(aa.FIN_MDFY_DT,'yyyy-mm-dd hh24:mi') FIN_MDFY_DT
 					, (select cust_nm from customer where cust_id=aa.cust_id) cust_nm 
 					from ESTIMATE aa,
 						SALES_OPPORTUNITY_ESTIMATE bb

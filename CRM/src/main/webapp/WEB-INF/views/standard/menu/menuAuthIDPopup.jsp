@@ -55,12 +55,10 @@
 					<td style="width:15%;">${authList.auth_nm}</td>
 					<td style="width:15%;">${authList.act_yn}</td>
 					<td style="width:15%;">${authList.fst_reg_id}</td>
-					<td style="width:15%;">
-						<fmt:formatDate value="${authList.fst_reg_dt}" pattern="yyyy-MM-dd"/>
+					<td style="width:15%;">${authList.fst_reg_dt}
 					</td>
 					<td style="width:15%;">${authList.fin_mdfy_id}</td>
-					<td style="width:15%;">
-						<fmt:formatDate value="${authList.fin_mdfy_dt}" pattern="yyyy-MM-dd"/>
+					<td style="width:15%;">${authList.fin_mdfy_dt}
 					</td>
 				</tr>
 				</c:forEach>
