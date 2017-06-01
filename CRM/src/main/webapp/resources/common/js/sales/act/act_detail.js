@@ -105,28 +105,32 @@ function actAddCancelBt(act_flg, cust_id, sales_oppt_id)
 		{
 			if(act_flg == 1)
 			{
+				alert("영업활동관리 페이지로 이동합니다.");
 				location.href = '/actSaleList';
 			}
 			else if(act_flg == 'oppt')
 			{
-				console.log(sales_oppt_id);
+				alert("영업기회 상세보기 페이지로 이동합니다.");
 				location.href = 'opptDetail?opptId=' + hsales_oppt_id;
 			}
 			else if(act_flg == 'oppt_ed')
 			{
+				alert("영업기회 상세보기 페이지로 이동합니다.");
 				location.href = 'opptDetail?opptId=' + sales_oppt_id;
 			}
 			else if(act_flg == 'cust')
 			{
-				console.log(cust_id);
+				alert("고객사상세보기 페이지로 이동합니다.");
 				location.href = 'custcompDetail?cust_id=' + hcust_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'cust_ed')
 			{
+				alert("고객사상세보기 페이지로 이동합니다.");
 				location.href = 'custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 			else
 			{
+				alert("달력 페이지로 이동합니다.");
 				location.href = '/act';
 			}
 			
@@ -150,26 +154,32 @@ function actMdfyCancelBt(act_flg, cust_id, sales_oppt_id)
 		{
 			if(act_flg == 1)
 			{
+				alert("영업활동관리 페이지로 이동합니다.");
 				location.href = '/actSaleList';
 			}
 			else if(act_flg == 'oppt')
 			{
+				alert("영업기회 상세보기 페이지로 이동합니다.");
 				location.href = 'opptDetail?opptId=' + hsales_oppt_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'oppt_ed')
 			{
+				alert("영업기회 상세보기 페이지로 이동합니다.");
 				location.href = 'opptDetail?opptId=' + sales_oppt_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'cust')
 			{
+				alert("고객사상세보기 페이지로 이동합니다.");
 				location.href = 'custcompDetail?cust_id=' + hcust_id + '&tabValue=' + tabValue;
 			}
 			else if(act_flg == 'cust_ed')
 			{
+				alert("고객사상세보기 페이지로 이동합니다.");
 				location.href = 'custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 			else
 			{
+				alert("달력 페이지로 이동합니다.");
 				location.href = '/act';
 			}
 		}
@@ -696,22 +706,26 @@ function actInsert(ctx, act_flg)
 				var ynChk = confirm("해당 정보를 추가하시겠습니까?");
 				if(ynChk)
 				{
-					alert("영업활동이 등록되었습니다.");
+					alert("영업활동이 추가되었습니다.");
 					
 					if(act_flg == 1)
 					{
+						alert("영업활동관리 페이지로 이동합니다.");
 						location.href = '/actSaleList';
 					}
 					else if(act_flg == 'oppt')
 					{
+						alert("영업기회상세 페이지로 이동합니다.");
 						location.href = '/opptDetail?opptId=' + sales_oppt_id;
 					}
 					else if(act_flg == 'cust')
 					{
+						alert("고객사상세 페이지로 이동합니다.");
 						location.href = '/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 					}
 					else
 					{
+						alert("달력 페이지로 이동합니다.");
 						location.href = '/act';
 					}
 				}
@@ -777,22 +791,26 @@ function actModify(ctx, act_flg)
 			
 			if(ynChk)
 			{
-				alert("정상 수정되었습니다.");
+				alert("수정되었습니다.");
 				
 				if(act_flg == 1)
 				{
+					alert("영업활동관리 페이지로 이동합니다.");
 					location.href = '/actSaleList';
 				}
 				else if(act_flg == 'oppt_ed')
 				{
+					alert("영업기회상세 페이지로 이동합니다.");
 					location.href = '/opptDetail?opptId=' + hsales_oppt_id;
 				}
 				else if(act_flg == 'cust_ed')
 				{
+					alert("고객사상세 페이지로 이동합니다.");
 					location.href = '/custcompDetail?cust_id=' + hcust_id + '&tabValue=' + tabValue;
 				}
 				else
 				{
+					alert("달력 페이지로 이동합니다.");
 					location.href = '/act';
 				}
 			}
@@ -811,7 +829,7 @@ function actModify(ctx, act_flg)
 /**
  * 영업활동 달력 삭제 버튼 클릭 시
  * */
-function actDelBt(sales_actvy_id)
+function actDelBt(sales_actvy_id, act_flg)
 {
 	var dsales_actvy_id = sales_actvy_id;
 	
@@ -828,7 +846,6 @@ function actDelBt(sales_actvy_id)
 			if(ynChk)
 			{
 				alert("해당 영업활동이 삭제되었습니다.");
-				
 				location.href = '/act';
 			}
 			else
