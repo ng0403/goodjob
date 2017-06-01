@@ -56,17 +56,24 @@ $(function() {
 	<div id="write_est">
 		<div id="title">
 			<div class="caption">
-				<c:if test="${sales_oppt_id eq null }">
+				<c:if test="${sales_oppt_id eq null and cust_id eq null}">
 					<label id="listLabel" class="ui header">■ 견적 >
-						<a href="/estInqr" style="font-size: 15px; text-decoration:none; color: black;">견적관리</a>
-						 > 견적 등록
+						<a href="/estInqr" style="font-size: 15px; text-decoration:none;">견적관리</a>
+						 > 견적 추가
 					</label>
 				</c:if>
-				<c:if test="${sales_oppt_id ne null }">
+				<c:if test="${sales_oppt_id ne null and cust_id ne null}">
 					<label id="listLabel" class="ui header">■ 영업기회 >
-						<a href="oppt" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리</a> >
-						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none; color: blue;">영업기회관리 상세정보</a>
-						 > 견적 등록
+						<a href="oppt" style="font-size: 20px; text-decoration:none;">영업기회관리</a> >
+						<a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 20px; text-decoration:none;">영업기회관리 상세정보</a>
+						 > 견적 추가
+					</label>
+				</c:if>
+				<c:if test="${sales_oppt_id eq null and cust_id ne null}">
+					<label id="listLabel" class="ui header">■ 영업기회 >
+						<a href="custcomp" style="font-size: 20px; text-decoration:none;">고객사관리</a> >
+						<a href="custcompDetail?cust_id=${cust_id}" style="font-size: 20px; text-decoration:none;">고객사관리 상세정보</a>
+						 > 견적 추가
 					</label>
 				</c:if> 
 			</div>
