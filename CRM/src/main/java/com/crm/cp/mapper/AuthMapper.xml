@@ -29,7 +29,11 @@
     </update> 
     
     <insert id="authInsert"  parameterType="com.crm.cp.standard.auth.vo.AuthVO">
-	    INSERT INTO AUTHORIZATION(AUTH_ID, AUTH_NM, ACT_YN, FST_REG_ID, fin_mdfy_id)
+	    INSERT INTO 
+	    AUTHORIZATION
+	    (
+	    	AUTH_ID, AUTH_NM, ACT_YN, FST_REG_ID, fin_mdfy_id
+	    )
 		VALUES((SELECT /*+INDEX_DESC(AUTHORIZATION PK_AUTHORIZATION)*/
 			    DECODE(MAX(AUTH_ID),NULL,'AU00001',SUBSTR(MAX(AUTH_ID),1,2)||lpad((SUBSTR(MAX(AUTH_ID),3,5)+1),5,0))AUTH_ID
 			FROM AUTHORIZATION
@@ -37,8 +41,16 @@
     </insert>
     
     <select id="authDetail" parameterType="string" resultType="com.crm.cp.standard.auth.vo.AuthVO">
-       SELECT *
-       FROM AUTHORIZATION 
+       SELECT 
+		  auth_id,
+		  auth_nm,
+		  fst_reg_id,
+		  TO_CHAR(fst_reg_dt, 'yyyy-mm-dd hh24:mi') fst_reg_dt,
+		  fin_mdfy_id,
+		  TO_CHAR(fin_mdfy_dt, 'yyyy-mm-dd hh24:mi')  fin_mdfy_dt,
+		  act_yn
+			
+	   FROM AUTHORIZATION	  
        WHERE AUTH_ID = #{auth_id}
     </select>
     

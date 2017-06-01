@@ -74,6 +74,10 @@ function dauthModify(){
 		$('#dauth_flg_N').attr("disabled", false);
 		$('#dauth_confirm').attr("disabled", false);
 		
+		
+		$("#saveAuthBtn").css("display", "block");
+		$("#modyAuthBth").css("display", "none");
+		
 	});
 
 }
