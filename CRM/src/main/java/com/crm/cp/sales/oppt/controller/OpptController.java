@@ -439,7 +439,7 @@ public class OpptController {
 		map.put("spsblty_rate0", map.get("spsblty_rate0"));
 		map.put("spsblty_rate1", map.get("spsblty_rate1"));
 		map.put("pageNum", pageNum + "");
-		PagerVO page = service.opptPageCount(map);
+		PagerVO page = service.DeletedOpptPageCount(map);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		//영업기회 리스트 출력
