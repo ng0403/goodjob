@@ -185,7 +185,7 @@ $(document).ready(function(){
 							<td colspan="8" rowspan="2">
 							<div class="ui input focus">
 								<input type="hidden" id="hmemo">
-								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none; background: rgb(220, 220, 220);width: 600px;height: 100px;"></textarea>
+								<textarea name="memo" class="memo" id="memo" value="${detail.memo}" readonly="readonly" style="overflow: auto; resize: none; background: rgb(220, 220, 220); width: 600px;height: 100px;"></textarea>
 							</div>
 							</td>
 						</tr>

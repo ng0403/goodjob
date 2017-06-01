@@ -42,7 +42,7 @@ $(document).ready(function() {
 	$('#salesId').val(opptId);
 	
 	viewSalesActive(opptId);
-	estimList(opptId);
+// 	estimList(opptId);
 });
 
 </script>
@@ -93,7 +93,6 @@ $(document).ready(function() {
 						</tr>
 					</thead>
 					<tbody id="activeList" class="tbody" style="height: 139px; overflow: auto;">
-							<tr style='height: 150px; text-align: center;'><td colspan='10' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>
 					</tbody>
 					</table>
 			</div>
@@ -120,7 +119,6 @@ $(document).ready(function() {
 					</tr>
 				</thead>
 				<tbody id="estimList"  class="tbody" style="height: 139px; overflow: auto;">
-					<tr style='height: 150px; text-align: center;'><td colspan='8' style=" text-align: center;">조회된 결과가 없습니다.</td></tr>		
 				</tbody>
 				</table>
 			</div>

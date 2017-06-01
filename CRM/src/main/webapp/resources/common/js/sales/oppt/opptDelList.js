@@ -10,7 +10,6 @@
  * viewDetail(opptId)				:	영업기회 상세정보 조회
  * searchDelBtn(page)					:	조회 버튼 클릭에 대한 검색어 입력 여부 확인
  * opportunityDelList(page)			:	영업기회 리스트 조회
- * estimList(opptId)				:	견적 리스트 조회
  * dateFormat(timestamp)			:	날짜 포맷 변환 함수
  * searchCustcompListPopup(ctx)		:	영업기회 고객 검색 팝업 open.
  * inputCustNm(custNm,leadId,custId,custType)	: 고객 팝업 선택시 값 채워주는 부분. 
@@ -107,47 +106,6 @@ function delForm(obj){
     --count;
 }
 
-function tabClick(){
-	
-	 //영업활동 탭 클릭
-	$("#tab1").click( function() {
-	  	var opptId = $("#salesId").val();
-	  	$("#tab1").attr("checked",true);
-	  	$("#tab2").attr("checked",false);
-//	  	$("#tab3").attr("checked",false);
-	  	if(opptId != ""){
-	  		//상세정보 출력
-	  		viewDetail(opptId);
-//	  		readDetail();
-	  	}
-      });
-//	  //영업기회별 상품
-//	  $("#tab2").click( function() {
-//		  	var opptId = $("#salesId").val();
-//		  	$("#tab1").attr("checked",false);
-//		  	$("#tab2").attr("checked",true);
-//		  	$("#tab3").attr("checked",false);
-//		  	if(opptId !=""){
-//		  		//영업기회 리스트 출력
-////		  		viewSalesActive(opptId);
-//		  		opptprdtList(opptId);
-////		  		readDetail();
-//		  	}
-//      });
-	  //견적 탭 클릭
-	  $("#tab2").click( function() {
-		  	var opptId = $("#salesId").val();
-		  	$("#tab1").attr("checked",false);
-		  	$("#tab2").attr("checked",false);
-//		  	$("#tab3").attr("checked",true);
-		  	
-		  	if(opptId !=""){
-		  		//견적 리스트 출력
-		  		estimList(opptId);
-//		  		readDetail();
-		  	}
-    });
-}
 
 //영업기회 전체 체크
 function opptAllCheck(){
@@ -229,18 +187,6 @@ function opptDelete(){
 function divide(opptId){
 	$("#salesId").val(opptId);
 	viewDetail(opptId);
-}
-//현재 checked된 탭에 맞는 함수 실행
-function divideDetail(opptId){
-	$("#salesId").val(opptId);
-	if($("#tab1").attr("checked")){
-	viewDetail(opptId);
-	viewSalesActive(opptId);
-	estimList(opptId);
-	}
-		else if($("#tab2").attr("checked")){
-		estimList(opptId);
-	}
 }
 
 

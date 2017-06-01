@@ -53,39 +53,22 @@ function tabClick(){
 	 //영업활동 탭 클릭
 	$("#tab1").click( function() {
 		opptTabValue();
-	  	$("#tab1").attr("checked",true);
-	  	$("#tab2").attr("checked",false);
-//	  	$("#tab3").attr("checked",false);
+//	  	$("#tab1").attr("checked",true);
+//	  	$("#tab2").attr("checked",false);
 	  	if(opptId != ""){
 	  		//상세정보 출력
-	  		viewDetail(opptId);
-//	  		readDetail();
+	  		viewSalesActive(opptId)
 	  	}
       });
-//	  //영업기회별 상품
-//	  $("#tab2").click( function() {
-//		  	var opptId = $("#salesId").val();
-//		  	$("#tab1").attr("checked",false);
-//		  	$("#tab2").attr("checked",true);
-//		  	$("#tab3").attr("checked",false);
-//		  	if(opptId !=""){
-//		  		//영업기회 리스트 출력
-////		  		viewSalesActive(opptId);
-//		  		opptprdtList(opptId);
-////		  		readDetail();
-//		  	}
-//      });
 	  //견적 탭 클릭
 	  $("#tab2").click( function() {
 		  opptTabValue();
-		  	$("#tab1").attr("checked",false);
-		  	$("#tab2").attr("checked",true);
-//		  	$("#tab3").attr("checked",true);
+//		  	$("#tab1").attr("checked",false);
+//		  	$("#tab2").attr("checked",true);
 		  	
 		  	if(opptId !=""){
 		  		//견적 리스트 출력
 		  		estimList(opptId);
-//		  		readDetail();
 		  	}
     });
 	  opptTabCheck(opptId); 
@@ -705,22 +688,21 @@ function uncomma(str) {
 //견적 리스트 조회
 function estimList(opptId){
 	var tabValue=$('#tabValue').val();
-//	alert(tabValue);
-	$('#estimList').children().remove();
 	$.ajax({
 		type : 'get',
 		url : 'estimList',
 		data : { sales_oppt_id : opptId },
 		dataType : 'json',
 		success:function(result){
+			$('#estimList').children().remove();
 			var content ="";
-			if(result.length==0){
+			if(result.length == 0){
 				content = "<tr class='headerLock' style='height: 150px;'><td colspan='8'style='text-align: center;'>등록된 견적이 없습니다.</td></tr>";
 			}else{
 			$.each(result,function(i,data){
 				content += '<tr class="headerLock">'+	
 						'<td><input type=checkbox name=estim_id value='+data.estim_id+'></td>'+
-						'<td><a style="text-decoration: none;" href=javascript:estDetail2("'+data.estim_id+'","'+opptId+','+tabValue+');>'+data.estim_nm+'</a></td>'+
+						'<td><a style="text-decoration: none;" href=javascript:estDetail2("'+data.estim_id+'","'+opptId+'","'+tabValue+'");>'+data.estim_nm+'</a></td>'+
 						'<td>'+data.estim_lev_cd+'</td>'+
 						'<td>'+data.estim_qty+'</td>'+
 						'<td>'+comma(data.sales_price)+'</td>'+
@@ -740,13 +722,13 @@ function estimList(opptId){
 }
 //영업활동 리스트 조회
 function viewSalesActive(opptId){
-	$("#activeList").children().remove();	
 	$.ajax({  
 		type : 'GET',
 		url : 'opptSalesActiveList',
 		data : {opptId : opptId},
 		dataType : 'json', 
 		success:function(result){
+			$("#activeList").children().remove();	
 			var content = "";
 			if(result.actList.length==0){
 				content = "<tr style='height: 150px; text-align: center;'><td colspan='10'>등록된 영업활동이 없습니다.</td></tr>";	
