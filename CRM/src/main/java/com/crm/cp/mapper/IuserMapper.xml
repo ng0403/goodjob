@@ -83,12 +83,17 @@
 	   	order by org_id 
 	</select>
 	
+	<!-- userId = 사용자 로그인 아이디를 의미함.  -->
 	<select id="iuserSelectById" parameterType="string" resultType="com.crm.cp.standard.iuser.vo.IuserVO">
-		SELECT a.IUSER_ID, a.ID_NM, a.IUSER_NM, a.PWD, a.IUSER_DIV_CD, a.PH1, a.ph2,
+		SELECT a.IUSER_ID, a.ID_NM, a.IUSER_NM, a.PWD, a.IUSER_DIV_CD, c.cd_nm as IUSER_DIV_NM, a.PH1, a.ph2,
        		   a.PH3, a.COMP_PH1, a.COMP_PH2, a.COMP_PH3, a.CELL_PH1, a.CELL_PH2, a.CELL_PH3,
-       		   a.EMAIL1, a.EMAIL2, a.ORG_ID, a.ACT_YN
-		FROM IUSER a
-		WHERE a.ID_NM=#{userId}
+       		   a.EMAIL1, a.EMAIL2, a.ORG_ID, o.ORG_NM,  a.ACT_YN
+		FROM IUSER a, CODE c, ORGANIZATION o
+		WHERE 1=1
+      AND a.ID_NM= #{userId}
+      AND c.CD_GRP_ID = 'USR' 
+      AND a.ORG_ID = o.ORG_ID
+      AND a.IUSER_DIV_CD = c.CODE
 	</select>
 	
 	<select id="userOneSelect" parameterType="string" resultType="map">
