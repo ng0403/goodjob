@@ -37,45 +37,8 @@
 			        , act_yn
 			      from customer c		   
 			      where 1=1
-			          and c.act_yn = 'Y'   
-			      order by c.fin_mdfy_dt desc
-			   ) r
-			)cu
-       	 <![CDATA[where cu.rnum >= ]]>	#{page.startRow} and cu.rnum <![CDATA[ <= ]]>#{page.endRow}
- 
-	</select>
-	
-	<!-- 고객사 삭제된 데이터 리스트 -->
-	<select id="custcompDelList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
-		    select r.*, rnum
-	          from (select 
-			          rownum rnum
-			          , c.cust_id cust_id
-          			   , c.cust_nm cust_nm
-                       , c.cust_zip_cd cust_zip_cd
-                       , c.cust_addr cust_addr
-                       , c.cust_dtl_addr cust_dtl_addr 
-                       , c.cust_info_addr cust_info_addr 
-                       , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
-          			   , c.comp_num comp_num
-                       , c.corp_num corp_num
-          			   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale
-                       , c.homepage_url homepage_url
-          			   , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst
-                       , c.biz_status biz_status 
-                       , c.main_prod main_prod 
-          			   , c.emp_qty emp_qty
-                       , c.rep_ph1 rep_ph1
-          			   , c.rep_ph2 rep_ph2
-          			   , c.rep_ph3 rep_ph3
-          			   , c.fin_mdfy_id
-          			   , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD hh24:mi') fin_mdfy_dt
-          			   , c.fst_reg_id
-          			   , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD hh24:mi') fst_reg_dt
-          			from customer c		   
-                    where 1=1
-                    and c.act_yn = 'N'   
-                    <choose>
+			          and c.act_yn = 'Y' 
+			          <choose>
 						<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != '' and sch_cust_nm1 != null and sch_cust_nm1 != ''">
 							and (c.cust_nm like '%'||#{sch_cust_nm}||'%' 
 								 or c.cust_nm like '%'||#{sch_cust_nm0}||'%' 
@@ -116,10 +79,94 @@
 						<when test="sch_corp_num !=null and sch_corp_num !='' ">
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
+					</choose>  
+			      order by c.fin_mdfy_dt desc
+			   ) r
+			)cu
+       	 <![CDATA[where cu.rnum >= ]]>	#{page.startRow} and cu.rnum <![CDATA[ <= ]]>#{page.endRow}
+ 
+	</select>
+	
+	<!-- 고객사 삭제된 데이터 리스트 -->
+	<select id="custcompDelList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">
+		    select 
+			cu.*
+	from (
+		select
+			 r.*, rownum rnum
+		from (
+		        
+		        select 
+			        c.cust_id cust_id
+			        , c.cust_nm cust_nm
+			        , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD  hh24:mm') fin_mdfy_dt
+			        , c.cust_zip_cd cust_zip_cd
+			        , c.cust_addr cust_addr
+			        , c.cust_dtl_addr cust_dtl_addr 
+			        , c.cust_info_addr cust_info_addr 
+			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
+			        , c.comp_num comp_num
+			        , c.corp_num corp_num
+			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale
+			        , c.homepage_url homepage_url
+			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst
+			        , c.biz_status biz_status 
+			        , c.main_prod main_prod 
+			        , c.emp_qty emp_qty
+			        , c.rep_ph1 rep_ph1
+			        , c.rep_ph2 rep_ph2
+			        , c.rep_ph3 rep_ph3
+			        , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD  hh24:mi ') fst_reg_dt
+			        , act_yn
+			      from customer c		   
+			      where 1=1
+			          and c.act_yn = 'N' 
+			          <choose>
+						<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != '' and sch_cust_nm1 != null and sch_cust_nm1 != ''">
+							and (c.cust_nm like '%'||#{sch_cust_nm}||'%' 
+								 or c.cust_nm like '%'||#{sch_cust_nm0}||'%' 
+								 or c.cust_nm like '%'||#{sch_cust_nm1}||'%')
+						</when>
+						<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != ''">
+							and (c.cust_nm like '%'||#{sch_cust_nm}||'%' 
+								 or c.cust_nm like '%'||#{sch_cust_nm0}||'%')
+		 				</when>
+						<when test="sch_cust_nm !=null and sch_cust_nm !=''">
+							and c.cust_nm like '%'||#{sch_cust_nm}||'%'
+						</when>
 					</choose>
-	                order by c.fin_mdfy_dt desc
-           		) r
-       	 <![CDATA[where rnum >= ]]>	#{page.startRow} and rnum <![CDATA[ <= ]]>#{page.endRow}
+					<choose>
+						<when test="sch_comp_num !=null and sch_comp_num !='' and sch_comp_num0 != null and sch_comp_num0 != '' and sch_comp_num1 != null and sch_comp_num1 != ''">
+							and (c.comp_num like '%'||#{sch_comp_num} ||'%' 
+								 or c.comp_num like '%'||#{sch_comp_num0} ||'%' 
+								 or c.comp_num like '%'||#{sch_comp_num1}||'%' )
+						</when>
+						<when test="sch_comp_num !=null and sch_comp_num !='' and sch_comp_num0 != null and ssch_comp_num0 != ''">
+							and (c.comp_num like '%'||#{sch_comp_num} ||'%' 
+								 or c.comp_num like '%'||#{sch_comp_num0}||'%' )
+						</when>
+						<when test="sch_comp_num !=null and sch_comp_num !='' ">
+							and c.comp_num like '%'|| #{sch_comp_num}||'%' 
+						</when>
+					</choose>
+					<choose>
+						<when test="sch_corp_num !=null and sch_corp_num !='' and sch_corp_num0 != null and sch_corp_num0 != '' and sch_corp_num1 != null and sch_corp_num1 != ''">
+							and (c.corp_num like '%'||{sch_corp_num}||'%' 
+								or c.corp_num like '%'||#{sch_corp_num0} ||'%' 
+								or c.corp_num like '%'||#{sch_corp_num1}||'%' )
+						</when>
+						<when test="sch_corp_num !=null and sch_comp_num !='' and sch_corp_num0 != null and sch_corp_num0 != ''">
+							and (c.corp_num like '%'||#{sch_corp_num} ||'%' 
+								 or c.corp_num like '%'|| #{sch_corp_num0}||'%' )
+						</when>
+						<when test="sch_corp_num !=null and sch_corp_num !='' ">
+							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
+						</when>
+					</choose>  
+			      order by c.fin_mdfy_dt desc
+			   ) r
+			)cu
+       	 <![CDATA[where cu.rnum >= ]]>	#{page.startRow} and cu.rnum <![CDATA[ <= ]]>#{page.endRow}
 	</select>
 	
 	<!-- 고객사 리스트 개수_Y -->

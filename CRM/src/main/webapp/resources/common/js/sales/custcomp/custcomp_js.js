@@ -299,6 +299,7 @@ function chkCancel() {
 //고객사 리스트 출력
 function custCompList(page){
 	var ctx = $("#ctx").val();
+
 	$.ajax({
 		type : 'post',
 		url : ctx + '/custCompAjax',

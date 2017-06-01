@@ -147,6 +147,9 @@ public class CustCompController {
 				pMap.put("page", page);
 				System.out.println("고객사 리스트 Ajaxpage :  "+ page);
 				
+				System.out.println("검색 TEST : " + pMap.toString());
+				System.out.println("검색 TEST : " + pMap);
+				
 				List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 고객사 리스트
 				pMap.put("ccVOList", ccVOList);
 				pMap.put("ccVOListSize", ccVOList.size());
