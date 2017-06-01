@@ -26,8 +26,17 @@ public class IuserVO {
 	String zip_cd_sri_num;
 	String iuser_dtl_addr;
 	String iuser_div_cd;
+	String iuser_div_nm;
 	String fst_reg_id;
 	
+	public String getIuser_div_nm() {
+		return iuser_div_nm;
+	}
+
+	public void setIuser_div_nm(String iuser_div_nm) {
+		this.iuser_div_nm = iuser_div_nm;
+	}
+
 	public String getFst_reg_id() {
 		return fst_reg_id;
 	}
@@ -67,6 +76,11 @@ public class IuserVO {
 	public void setKey_part(String key_part) {
 		this.key_part = key_part;
 	}
+	
+	
+
+
+
 
 	Date fst_reg_dt;
 	String fin_mdfy_id;
@@ -351,7 +365,11 @@ public class IuserVO {
 
 	@Override
 	public String toString() {
-		return "IuserVO [iuser_id=" + iuser_id + ", org_id=" + org_id
+		return "IuserVO [iuser_id=" + iuser_id
+				+ ", org_id=" + org_id
+				+ ", org_nm=" + org_nm
+				+ ", iuser_div_cd=" + iuser_div_cd
+				+ ", iuser_div_nm=" + iuser_div_nm
 				+ ", iuser_nm=" + iuser_nm + ", id_nm=" + id_nm + ", pwd="
 				+ pwd + ", email1=" + email1 + ", email2=" + email2
 				+ ", cell_ph1=" + cell_ph1 + ", cell_ph2=" + cell_ph2

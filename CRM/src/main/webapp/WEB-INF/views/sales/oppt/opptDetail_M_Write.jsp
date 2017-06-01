@@ -52,6 +52,7 @@ $(document).ready(function(){
 	<input type="hidden" id="flag" value="${flag}" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
+	<input type="hidden" id="tabValue" value="${tabValue}">
 	<div id="title">
 	<!-- 신규추가를 눌렀을 경우 -->
 		<c:if test="${addFlag == 0 }">
@@ -108,13 +109,16 @@ $(document).ready(function(){
 							<td>
 <!-- 							<div class="ui input focus"> -->
 								<input type="hidden" id="hcust_nm" value="${opDetail.cust_nm}">
+								<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="inputText">
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${cust_nm != null}"> --%>
+<%-- 										<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="inputText"> --%>
+<%-- 									</c:when> --%>
+<%-- 									<c:when test="${cust_nm == null or cust_nm =='undefined' or cust_nm == ''}"> --%>
+<!-- 										<input type="text" name="cust_nm" id="cust_nm" value="" readonly="readonly" class="inputText"> -->
+<%-- 									</c:when> --%>
+<%-- 								</c:choose> --%>
 								<input type="hidden" id="hcust_id" value="${opDetail.cust_id}">
-								<c:if test="${cust_nm eq 'undefined'}">
-									<input type="text" name="cust_nm" id="cust_nm" value="" readonly="readonly" class="inputText">
-								</c:if>
-								<c:if test="${cust_nm != 'undefined' and cust_nm != null}">
-									<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="inputText">
-								</c:if>
 <%-- 								<input type="text" name="cust_nm" id="cust_nm" value="${cust_nm}" readonly="readonly" class="inputText"> --%>
 								<input type="hidden" name="cust_id" id="cust_id" value="${cust_id}"/>
 <!-- 							</div> -->

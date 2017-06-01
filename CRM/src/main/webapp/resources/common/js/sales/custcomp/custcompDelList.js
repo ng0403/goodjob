@@ -99,27 +99,6 @@ var count = 0;
 var schAddFlg = 0;
 var ccllist;
 
-$(document).ready(function() {
-	var ctx = $("#ctx").val();
-	var cust_id = $("#nowCust_id").val();
-	keymanList(cust_id);
-	pocList(cust_id);
-	posList(cust_id);
-	
-	// 기업고객 리스트 체크박스 선택, 해제
-	$("#ccListCheck").click(function(){
-		// 만약 전체 선택 체크박스가 체크된 상태일 경우
-		if($("#ccListCheck").prop("checked")){
-			// 해당화면 전체 checkbox들을 체크해준다.
-			$("input[type=checkbox]").prop("checked", true);
-		// 전체선택 체크박스가 해제된 경우
-		} else {
-			// 해당화면에 모든 checkbox들의 체크를 해제시킨다.
-			$("input[type=checkbox]").prop("checked", false);
-		}
-	});
-});
-
 //고객사 검색 조건 추가
 function addForm(){
 	if(count<2){
@@ -323,63 +302,11 @@ function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCo
 	$("#pageSpace").append(nextPage);
 }
 
-//고객사 전체 선택
-function custcompAllCheck(){
-	$("#custcompSelect").click( function(){
-		var chk = $(this).is(":checked"); //checked 된 경우 true, 아닌 경우 false
-		if(chk){
-			$("#ccDelListTbody input[type=checkbox]").prop("checked",true);			
-		}else{
-			$("#ccDelListTbody input[type=checkbox]").prop("checked",false);
-		}
-	});
-}
-
-//all 체크일때 하나라도 체크해지가 된 경우 all checkbox 체크 해제
-function chkCancel(){
-	$("#custcompSelect").prop("checked", false);
-}
-
-//전체 체크 해제
-function custcompChkCancel() {
-	$(document).ready(function() {
-		$("#custcompCheck").prop("checked", false);
-	});
-}
-
-//체크박스 개수 검색함수
-function checkCount(){
-   var count=0;
-   var checkList = $('.cust_check');
-
-   for(var i=0; i<checkList.size(); i++){
-      if($(checkList[i]).is(':checked')){
-         count++;
-      }
-   }
-   return count;
-};
-
-//탭 이동
-function ccTabFunc(cust_id, cust_nm) {
-	$("#nowCust_id").val(cust_id);
-	
-	viewDetail(cust_id);
-	
-}
-
 //고객사 삭제된 데이터 리스트
 function custcompDelListbtn() {
 	var ctx = $("#ctx").val();
 	location.href = ctx + '/custcompDelList';
 }
-
-//// 고객사 상세보기
-//function viewDetail(cust_id) {
-//	var ctx = $("#ctx").val();
-//	location.href = ctx+'/custcompDetail?cust_id=' + cust_id;
-//}
-
 
 function comma(str) {
     str = String(str);

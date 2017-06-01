@@ -42,13 +42,13 @@
 							<th>사용자ID</th>
 							<td>
 							<input type="hidden" name="iuser_id" id="iuser_id"/>
-							<input type="text" name="id_nm" id="id_nm" class="inputText" style="ms-ime-mode: disabled;"></input></td>
+							<input type="text" name="id_nm" id="id_nm" class="inputText" style="ms-ime-mode: disabled;width: 180px;"></input></td>
 							<th>사용자명</th>
-							<td><input type="text" name="iuser_nm" id="iuser_nm" class="inputText"></input></td>
+							<td><input type="text" name="iuser_nm" id="iuser_nm" class="inputText" style="width: 180px;"></input></td>
 							<th>패스워드</th>
-							<td><input type="password" name="pwd" id="pwd" class="inputText"></input></td>
+							<td><input type="password" name="pwd" id="pwd" class="inputText" style="width: 180px;"></input></td>
 							<th>구분</th>
-							<td><input type="text" name="iuser_div_nm" id="user_type_nm" class="inputText"> 
+							<td><input type="text" name="iuser_div_nm" id="user_type_nm" class="inputText" style="width: 180px;"> 
 								<input type="hidden" name="iuser_div_cd" id="user_type_cd" class="inputText"> 
 							    <input type="button" name="codeSearch" value="찾기" class="tiny ui blue basic button" id="userTypePop">
 							</td>
@@ -70,19 +70,19 @@
 							    <input type="text" name="cell_ph3" id="cell_phone3" class="inputText" maxlength="4" style=" width: 50px;" />
 							</td>
 							<th>이메일</th>
-							<td><input type="text" name="email1" id="email1" class="inputText" /> @ 
-							    <input type="text" name="email2" id="email2" class="inputText" />
+							<td><input type="text" name="email1" id="email1" class="inputText" style="width: 180px;"/> @ 
+							    <input type="text" name="email2" id="email2" class="inputText" style="width: 180px;"/>
 							</td>
 						</tr>
 						<tr>
 							<th>조직</th>
 							<td>
-								<input type="text" name="org_nm" id="org_nm" class="inputText"> 
+								<input type="text" name="org_nm" id="org_nm" class="inputText" style="width: 180px;"> 
 								<input type="hidden" name="org_id" id="org_id" class="inputText"> 
 								<input type="button" name="orgSearch" id="orgSearch" value="찾기" class="tiny ui blue basic button" id="orgPopup" disabled="false">
 							</td>
 							<th>상태</th>
-							<td>
+							<td colspan="5">
 								<input type="radio" id = "active_flg_Y" name="act_yn" value="Y" checked="checked" />Y&nbsp; 
 								<input type="radio" id = "active_flg_N" name="act_yn" value="N" />N</td>
 						</tr>

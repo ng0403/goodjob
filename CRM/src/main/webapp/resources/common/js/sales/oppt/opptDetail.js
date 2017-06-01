@@ -122,11 +122,24 @@ function inputCustNm1(custId,custNm,custType,pop_flg){
 function opptAddBtn() {
 	//focus, css, readonly, disabled false 상태로 변경
 	//값 초기화
+	var cust_nm = $("#cust_nm").val();
 	$("#opptDetail #sales_oppt_nm").focus();
-	$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
-		readonly:false,
-		style:'background-color:white; height: 17px;'
-	}).val('');
+	if(cust_nm == 'undefined' || cust_nm == '' || cust_nm == null)
+		{
+			$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
+				readonly:false,
+				style:'background-color:white; height: 17px;'
+			}).val('');
+		
+		}
+	if(cust_nm != null)
+	{
+		$("#opptDetail input[type='text'], textarea, input[type='date']").attr({
+			readonly:false,
+			style:'background-color:white; height: 17px;'
+		});
+		
+	}
 	$("#opptDetail select").attr({
 		disabled:false,
 		style:'background-color:white; height: 30px;'
@@ -184,6 +197,7 @@ function opptCancelBtn(addFlag) {
 	var addFlag = addFlag;
 	var flag = $("#flag").val();
 	var cust_id = $("#cust_id").val();
+	var tabValue = $("#tabValue").val();
 	var ynChk = confirm("정말 취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화
@@ -198,11 +212,11 @@ function opptCancelBtn(addFlag) {
 		}
 		if(flag == 'cust')	// 추가할 때
 		{
-			location.href = '/custcompDetail?cust_id=' + cust_id;
+			location.href = '/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 		}
 		else if(flag == 'cust_ed')	// 상세보기 화면일 경우
 		{
-			location.href = '/custcompDetail?cust_id=' + cust_id;
+			location.href = '/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			
 		}
 		
@@ -237,6 +251,7 @@ function opptAdd(){
 	var est_list = [];
 	var discount_unit_cd = [];
 	var unit_check =0;
+	var tabValue = $("#tabValue").val();
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
 		return false;
@@ -313,7 +328,7 @@ function opptAdd(){
 			else if(act_flg == 'cust')
 			{
 				alert("고객사관리 페이지로 이동합니다.");
-				location.href = ctx +'/custcompDetail?cust_id=' + cust_id;
+				location.href = ctx +'/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 		},
 		error:function(request){
@@ -349,6 +364,8 @@ function opptModify(){
 	var est_list = [];
 	var discount_unit_cd = [];
 	var unit_check =0;
+	var tabValue = $("#tabValue").val();
+	
 	if(sales_oppt_nm=="" || sales_oppt_nm==null){
 		alert("영업기회명을 입력해 주세요.");
 		return false;
@@ -429,7 +446,7 @@ function opptModify(){
 			else if(act_flg == 'cust_ed')
 			{
 				alert("영업기회 페이지로 이동합니다.");
-				location.href = ctx +'/custcompDetail?cust_id=' + cust_id;
+				location.href = ctx +'/custcompDetail?cust_id=' + cust_id + '&tabValue=' + tabValue;
 			}
 			},
 		error:function(request){

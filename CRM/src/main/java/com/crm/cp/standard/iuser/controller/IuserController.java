@@ -35,7 +35,7 @@ public class IuserController {
 	@Resource
 	AuthService authService;
 	
-	
+	//사용자 관리 리스트 출력
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ModelAndView UserMain(HttpSession session,
 			@RequestParam(value="keyfield", defaultValue="u_id") String keyfield,

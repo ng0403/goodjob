@@ -36,7 +36,7 @@ function iuserDelete(ctx) {
 		if (checkCount() == 0) {
 			alert("삭제할 항목을 선택해주세요.");
 		} else {
-			var n = confirm("정말 삭제하시겠습니까??");
+			var n = confirm("정말 삭제하시겠습니까?"+"\n"+"삭제 시 사용자의 상태가 비활성화로 전환됩니다.");
 			if(n){
 				form.submit();
 			}
@@ -62,6 +62,7 @@ function userDetailClick(ctx) {
 				$('#iuser_nm').val(data.iuser_nm);
 				$('#pwd').val(data.pwd);
 				$('#user_type_cd').val(data.iuser_div_cd);
+				$('#user_type_nm').val(data.iuser_div_nm);
 				$('#userTypePop').attr("disabled", true);
 
 				$('#home_phone1').val(data.ph1);
@@ -77,6 +78,7 @@ function userDetailClick(ctx) {
 				$('#email2').val(data.email2);
 
 				$('#org_id').val(data.org_id);
+				$('#org_nm').val(data.org_nm);
 				$('#orgPopup').attr("disabled", true);
 
 				if (data.act_yn == "Y") {
