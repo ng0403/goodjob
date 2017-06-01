@@ -183,6 +183,7 @@ public class IuserController {
 		
 	}
 
+	//데이터 삭제
 	@RequestMapping(value = "/iuserDelete", method = RequestMethod.POST)
 	public String bankDelete(String[] del_code) throws IOException {
 		System.out.println("삭제될 데이터 반복문 들어가기전  : " + del_code);
@@ -192,12 +193,24 @@ public class IuserController {
 		}
 		return "redirect:/user";
 	}
+	//삭제된 데이터 완전 삭제
 	@RequestMapping(value = "/iuserDelDelete", method = RequestMethod.POST)
 	public String iuserDelDelete(String[] del_code) throws IOException {
-		System.out.println("삭제될 데이터 반복문 들어가기전  : " + del_code);
+		System.out.println("완전히 삭제될 데이터 반복문 들어가기전  : " + del_code);
 		for (String iuser_id : del_code) {
 			System.out.println("삭제될 데이터  : " + del_code);
+			System.out.println("삭제될 데이터  : " + iuser_id);
 			iuserService.removeDelIuser(iuser_id);
+		}
+		return "redirect:/iUserDelList";
+	}
+	//삭제된 데이터 복원
+	@RequestMapping(value = "/iuserDelRollBack", method = {RequestMethod.POST,RequestMethod.GET})
+	public String iuserDeleteRollBack(String[] del_code) throws IOException {
+		System.out.println("복원될 데이터 반복문 들어가기전  : " + del_code);
+		for (String iuser_id : del_code) {
+			System.out.println("복원될 데이터  : " + del_code);
+			iuserService.removeIuserRollback(iuser_id);
 		}
 		return "redirect:/user";
 	}

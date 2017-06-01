@@ -40,7 +40,7 @@ $("#naviuser").css("font-weight", "bold");
 		</div>
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
-	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
+	<form name="delDelAllForm" id="delDelAllForm" method="post" >	
 		<table id="mastertable" class="ui celled table">
 			<thead>
 				<tr>
@@ -58,9 +58,7 @@ $("#naviuser").css("font-weight", "bold");
 				<c:forEach var="list" items="${list}">
 				<tr>
 					<th scope="row"><input type="checkbox" class="ab" name="del_code" value="${list.iuser_id}"></th>
-					<td style="width:10%;" id="user_id_a">
-						<a href='#'>${list.id_nm}</a>
-					</td>
+					<td style="width:10%;" id="user_id_a">${list.id_nm}	</td>
 					<td style="width:10%;" class="user_name_tag">${list.iuser_nm}</td>
 					<td style="width:10%;" class="org_name_tag">${list.org_nm}</td>
 					<td style="width:25%;" class="email_tag">${list.email1}@${list.email2}</td>
@@ -79,8 +77,8 @@ $("#naviuser").css("font-weight", "bold");
 
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist" style="padding-bottom: 10px; ">
-		<input type="button" class="tiny ui blue button" value="복원" onclick="DelUserRollBack();">
-		<input type="button" class="tiny ui blue button" value="삭제" onclick="iUserDelDelete();" >
+		<input type="button" class="tiny ui blue button" value="복원" id="DelUserRollBack">
+		<input type="button" class="tiny ui blue button" value="삭제" id="iUserDelDelete" >
 	</div>
 </body>
 </html>

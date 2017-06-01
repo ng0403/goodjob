@@ -41,7 +41,7 @@ $("#naviuser").css("font-weight", "bold");
 		</div>
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
-	<form name="delAllForm" id="delAllForm" method="post" action="${ctx}/iuserDelete" >	
+	<form name="delAllForm" id="delAllForm" method="post"  >	
 		<table id="mastertable" class="ui celled table">
 			<thead>
 				<tr>

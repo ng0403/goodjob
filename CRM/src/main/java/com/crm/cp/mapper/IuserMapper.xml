@@ -64,7 +64,7 @@
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if> 
-	  order by u.IUSER_ID
+	  order by u.fin_mdfy_dt desc
 	</select>
 	
 <!-- 	삭제된 사용자 리스트 출력 -->
@@ -81,8 +81,8 @@
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if> 
-	  order by u.IUSER_ID
-	</select>
+	  order by u.fin_mdfy_dt desc
+ 	</select>
 	
 	<select id="iuserAuthSelect" resultType="com.crm.cp.standard.auth.vo.AuthVO">
 	    SELECT *
@@ -171,9 +171,15 @@
 		WHERE IUSER_ID=#{iuser_id}
 	</update>
 	
+	<!-- 사용자 삭제 -->
 	 <update id="iuserDelete" parameterType="string">
 	   UPDATE IUSER
 	   SET ACT_YN = 'N', FIN_MDFY_DT = sysdate        
+	   WHERE IUSER_ID = #{iuser_id}
+    </update>
+	 <update id="iuserDelRollback" parameterType="string">
+	   UPDATE IUSER
+	   SET ACT_YN = 'Y', FIN_MDFY_DT = sysdate        
 	   WHERE IUSER_ID = #{iuser_id}
     </update>
     
@@ -250,6 +256,6 @@
 	<!-- 삭제된 사용자 완전삭제 -->
 	<delete id="iuserDelDelete" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
 		delete from IUSER
-		where iuser_nm=#{iuser_id}
+		where iuser_id=#{iuser_id}
 	</delete>
 </mapper>

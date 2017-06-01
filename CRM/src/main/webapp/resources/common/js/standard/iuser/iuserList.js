@@ -7,6 +7,7 @@ $(function() {
 	iuserListEdit(ctx);
 	iuserDelete(ctx);
 	iuserDelDelete(ctx);
+	iuserDeleteRollBack(ctx);
 });
 function deletedList(){
 	var ctx = $("#ctx").val();
@@ -37,17 +38,24 @@ function checkCount() {
 //사용자관리 복원
 function iuserDeleteRollBack(ctx) {
 	$('#DelUserRollBack').click(function() {
-		var form = $('#delAllForm');
+		var form = $('#delDelAllForm');
 		if (checkCount() == 0) {
 			alert("복원할 항목을 선택해주세요.");
 		} else {
 			var n = confirm("정말 복원하시겠습니까?"+"\n"+"복원시 사용자의 상태가 활성화로 전환됩니다.");
 			if(n){
+				document.delDelAllForm.action ="iuserDelRollBack";
 				form.submit();
 			}
 		}
 	});
 }
+
+//function multiSubmit(index){
+//	if(index == 1){
+//		document
+//	}
+//}
 //사용자관리 삭제
 function iuserDelete(ctx) {
 	$('#iuserDelBtn').click(function() {
@@ -57,6 +65,8 @@ function iuserDelete(ctx) {
 		} else {
 			var n = confirm("정말 삭제하시겠습니까?"+"\n"+"삭제 시 사용자의 상태가 비활성화로 전환됩니다.");
 			if(n){
+				
+				document.delAllForm.action ="iuserDelete";
 				form.submit();
 			}
 		}
@@ -65,12 +75,13 @@ function iuserDelete(ctx) {
 //삭제된 사용자 완전 삭제
 function iuserDelDelete(ctx) {
 	$('#iUserDelDelete').click(function() {
-		var form = $('#DeldelAllForm');
+		var form = $('#delDelAllForm');
 		if (checkCount() == 0) {
 			alert("삭제할 항목을 선택해주세요.");
 		} else {
 			var n = confirm("정말 삭제하시겠습니까?"+"\n"+"확인버튼 클릭 시 복구가 불가능합니다.");
 			if(n){
+				document.delDelAllForm.action ="iuserDelDelete";
 				form.submit();
 			}
 		}

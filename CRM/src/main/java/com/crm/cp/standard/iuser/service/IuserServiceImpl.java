@@ -186,4 +186,10 @@ public class IuserServiceImpl implements IuserService{
 		dao.delete("user.iuserDelDelete", iuser_id);
 		
 	}
+	/*삭제된 데이터 복원*/	
+	@Override
+	public void removeIuserRollback(String iuser_id) {
+		System.out.println("복원될 대상 iuser_id : " + iuser_id);
+		dao.checkUpdate("user.iuserDelRollback", iuser_id);
+	}
 }

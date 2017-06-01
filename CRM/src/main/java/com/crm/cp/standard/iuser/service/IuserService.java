@@ -37,5 +37,7 @@ public interface IuserService {
 	public List<IuserVO> iUserDelList(Map<String, String> map);
 	/*삭제된 데이터 완전 삭제*/
 	public void removeDelIuser(String iuser_id);
+	/*삭제된 데이터 복원*/	
+	public void removeIuserRollback(String iuser_id);
 	
 }
