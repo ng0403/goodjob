@@ -42,8 +42,8 @@ function restoreActBt(sales_actvy_id1)
 			success:function(result){
 				alert("복원되었습니다.");
 				
-				alert("영업활동관리 삭제된 데이터 페이지로 이동합니다.");
-				location.href = ctx + "/delActSaleList";
+				alert("영업활동관리 페이지로 이동합니다.");
+				location.href = ctx + "/actSaleList";
 			
 			},
 			error:function(request){
@@ -61,7 +61,7 @@ function delActBt(sales_actvy_id1)
 	var ctx = $("#ctx").val();
 	var pageNum = 1;
 	var sales_actvy_id = sales_actvy_id1;
-	var ynChk = confirm("삭제하시면 복원불가합니다. 그래도 삭제하시겠습니까?");
+	var ynChk = confirm("삭제하시겠습니까?" + "\n" + "확인버튼 클릭 시 복구가 불가능합니다.");
 	
 	if(ynChk)
 	{	
@@ -74,7 +74,7 @@ function delActBt(sales_actvy_id1)
 			datatype : 'json',
 			url : ctx + '/delActRestore',
 			success:function(result){
-				alert("완전 삭제되었습니다.");
+				alert("완전히 삭제되었습니다.");
 				
 				alert("영업활동관리 삭제된 데이터 페이지로 이동합니다.");
 				location.href = ctx + "/delActSaleList";

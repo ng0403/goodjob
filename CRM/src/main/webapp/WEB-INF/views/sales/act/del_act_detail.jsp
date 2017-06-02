@@ -35,13 +35,13 @@
 	
 	<div id="title">
 		<label id="listLabel" class="ui header" style="background: white;">
-			■ 영업활동 > 영업활동관리 > <a href="/delActSaleList" style="font-size: 20px; text-decoration:none; color: blue;">삭제된 데이터</a> > 삭제된 영업활동 상세정보
+			■ 영업활동 > 영업활동관리 > <a href="/delActSaleList" style="font-size: 19px; text-decoration:none;">삭제된 데이터</a> > 삭제된 영업활동 상세정보
 		</label>
 <!-- 		<div class="caption">■ 영업활동 > <a href="/delActSaleList" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리 삭제된 데이터</a> > 삭제된 영업활동 상세정보</div> -->
 	</div>
 		<div id="actBaseBtnDiv" class="act_tab_bt_div" style="float: right;">
-			<input type="button" id="actrestoreBtn" value="복원" class="tiny ui orange button" onclick="restoreActBt('${actDetail.sales_actvy_id}')"/>
-			<input type="button" id="delActDelBtn" value="삭제" class="tiny ui orange button" onclick="delActBt('${actDetail.sales_actvy_id}');"/>
+			<input type="button" id="actrestoreBtn" value="복원" class="tiny ui blue button" onclick="restoreActBt('${actDetail.sales_actvy_id}')"/>
+			<input type="button" id="delActDelBtn" value="삭제" class="tiny ui blue button" onclick="delActBt('${actDetail.sales_actvy_id}');"/>
 			<input type="button" id="delActCancelBtn" value="취소" class="tiny ui button" onclick="delActCancelBt();"/>
 		</div>
 	
