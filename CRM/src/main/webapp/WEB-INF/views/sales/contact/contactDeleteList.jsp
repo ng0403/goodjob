@@ -71,7 +71,8 @@
 			  	<td><a onclick="searchAcnkEvent(1, 'ㅌ');">ㅌ</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, 'ㅍ');">ㅍ</a></td>
 			  	<td><a onclick="searchAcnkEvent(1, 'ㅎ');">ㅎ</a></td>
-			  	<td><a onclick="searchAcnkEvent(1, '미분류');">미분류</a></td>
+			  	<!-- <td><a onclick="searchAcnkEvent(1, '미분류');">미분류</a></td> -->
+			  	<td><a onclick="toggleEnglish();">알파벳</a></td>
 			  </tr>
 			    <tr id="english" style="height: 5%; text-align:center">
 			  <td><a onclick="searchAcnkEvent(1, '전체');">전체</a></td>
@@ -110,7 +111,6 @@
 		<table id="goaltable" class="ui sortable celled table">
 		<thead>
 		<tr style="text-align:center">
-			<th style="width:3%"><input id="callCheck" disabled type="checkbox" onclick="callAllChk(this);"/></th>
 			<th style="width:20%;">회사명</th> 
 			<th style="width:20%;">이름</th>
 			<th style="width:20%;">이메일</th>
@@ -122,9 +122,8 @@
 		<tbody id="call_list_tbody" class="tbody">
 		<c:forEach var="contactList" items="${contactList}">
  		<tr>
-			<td style="text-align:center"><input type="checkbox" id="call_chek" class="call_chek" id="call_del" name="call_del" disabled value="${contactList.cont_id}" onclick="callChkCancel();"></td>
 			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.company_nm}</td>
-			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' style="color:black" onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
+			<td style="width:20%; text-align: left; padding-left:5px;" ><a href='#' onclick="contactDetailClick('${contactList.cont_id}')">${contactList.cont_nm}</a></td>
  			<td style="width:20%; text-align: left; padding-left:5px;">${contactList.email1}@${contactList.email2}</td>
 			<td style="width:10%; text-align: center;">${contactList.ph1}-${contactList.ph2}-${contactList.ph3}</td>
 			<td style="width:10%; text-align: center;">${contactList.cell_ph1}-${contactList.cell_ph2}-${contactList.cell_ph3}</td>

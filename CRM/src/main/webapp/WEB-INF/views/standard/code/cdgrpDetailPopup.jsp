@@ -39,7 +39,7 @@
 								</tr>
 								<tr>
 									<th>활성화 여부</th>
-									<td>
+									<td colspan="3">
 									<c:if test="${cdgrpDetail.act_yn == 'Y'}">
 										<input type="radio" id="act_yn_y" name="act_yn" value="Y" checked="checked"/>활성화&nbsp;
 										<input type="radio" id="act_yn_n" name="act_yn" value="N" />비활성화

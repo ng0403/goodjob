@@ -101,7 +101,7 @@ label {
    								<td>${boardVO.BOARD_NO}</td>
    								<td>${boardVO.CD_NM}</td>
    								<td style="text-align:center">${boardVO.ANSWER_FLG}</td>
-								<td><a href="/QnA_detail?BOARD_NO=${boardVO.BOARD_NO}" style="color:black">${boardVO.TITLE}</a> </td>
+								<td><a href="/QnA_detail?BOARD_NO=${boardVO.BOARD_NO}"  >${boardVO.TITLE}</a> </td>
 								<td>${boardVO.CREATED_BY} </td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 										value="${boardVO.CREATED}" /></td>

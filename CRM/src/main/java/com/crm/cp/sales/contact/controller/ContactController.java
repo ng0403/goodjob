@@ -1000,14 +1000,14 @@ public class ContactController {
 		
 		//연락처 완전삭제
 		@RequestMapping(value="/contact_delete_absol", method=RequestMethod.POST) 
-		public void detailRemove(String cont_id){ 
+		public @ResponseBody String detailRemove(@RequestBody String cont_id){ 
 			
 			System.out.println("contact delete absolute" + cont_id);
- 
-				contactService.removeAbsol(cont_id); 
-			 
-		}
-		
-	
-
+			String a = cont_id.substring(0,10);
+			cont_id = a;
+			System.out.println("cont_id = " + cont_id);
+			contactService.removeAbsol(cont_id); 
+		  
+		return "완료";
+	}
 }

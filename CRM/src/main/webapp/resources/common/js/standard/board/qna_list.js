@@ -211,7 +211,7 @@ function boardPaging(boardPageNum) {
 									+ '<td>'+ data.boardList[i].BOARD_NO+ '</td>'
 								    + '<td>'+ data.boardList[i].CD_NM+ '</td>'
 								    + '<td style="text-align:center">'+ data.boardList[i].ANSWER_FLG+ '</td>'
-									+ '<td><a href="/QnA_detail?BOARD_NO=' +data.boardList[i].BOARD_NO+ '"style="color: black; cursor: pointer;" class="callClick">'+ data.boardList[i].TITLE+'</a></td>'
+									+ '<td><a href="/QnA_detail?BOARD_NO=' +data.boardList[i].BOARD_NO+ '"cursor: pointer;" class="callClick">'+ data.boardList[i].TITLE+'</a></td>'
 									+ '<td>'+ data.boardList[i].CREATED_BY+ '</td>'
 									+ '<td>'+ dateFormat(data.boardList[i].CREATED)+ '</td>'
 									+ '<td>'+ data.boardList[i].VIEW_CNT + '</td></tr>';

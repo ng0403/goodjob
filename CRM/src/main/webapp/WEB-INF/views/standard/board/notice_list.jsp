@@ -79,7 +79,7 @@ $(function() {
                         <tr class="open_list">
                            <td scope="row" style='width:10%; text-align:center'><input type="checkbox" id="del_code" name="del_code" value="${boardVO.BOARD_NO}"></td>
                            <td style='width:10%;'>${boardVO.BOARD_NO}</td> 
-                           <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</td>
+                           <td style='width:40%;'><a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');" id="${boardVO.BOARD_NO}">${boardVO.TITLE}</a></td>
                            <td style='width:10%;'>${boardVO.CREATED_BY} </td>
                            <td style='width:20%;'>${boardVO.CREATED}</td>
                            <td style='width:10%;'>${boardVO.VIEW_CNT}</td>   

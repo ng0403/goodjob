@@ -11,6 +11,9 @@ $(document).ready(function(){
 		{
 		$("#contactRecov").css("display", "none");
  		}
+	if($("#act_yn").val() == 'N'){
+		$("#custpsonBtn").css("display", "none");
+	}
 });
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
@@ -139,7 +142,7 @@ function searchAcnkEvent(contactPageNum, keyword){
  												tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'; 
  											}
  							
- 											tbodyContent+="<td><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
+ 											tbodyContent+="<td><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='cursor: pointer; width:20%;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
  											
   											
  											if((data.contactList[i].email1 == null || data.contactList[i].email1 =="null" || data.contactList[i].email1 =="") && (data.contactList[i].email2 == null || data.contactList[i].email2 == "" || data.contactList[i].email2 =="null")){
@@ -336,17 +339,28 @@ function contactPaging(contactPageNum) {
 				tbody.children().remove();
 			
 			for (var i = 0; i < data.contactList.length; i++) {
-				
+			 if($("#act_yn").val() == 'Y'){
 				tbodyContent +='<tr><td style="width:20px; text-align:center"><input type="checkbox" id="call_chek" class="call_chek" name="contact_del" value="'+data.contactList[i].cont_id+'"></td>'
 				    +'<td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'  
-				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='color: black; cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
+				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
         			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
         			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>';
         			if(data.contactList[i].act_yn == 'N'){
         				tbodyContent+= '<td style="width:10%; text-align: center;">'+data.contactList[i].fin_mdfy_dt+'</td>';
- 
         			}
+			 }else{
+					tbodyContent +='<tr><td style="width:20%; text-align: left; padding-left:5px;">' + data.contactList[i].company_nm +'</td>'  
+				    +"<td style='width:20%;'><a href='#' onclick=contactDetailClick('"+data.contactList[i].cont_id+"'); style='cursor: pointer;' class='callClick'>" + data.contactList[i].cont_nm +"</a></td>";
+        			tbodyContent+='<td style="width:20%; text-align: left; padding-left:5px;">'+data.contactList[i].email1+'@'+data.contactList[i].email2+'</td>'
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].ph1+'-'+data.contactList[i].ph2+'-'+data.contactList[i].ph3+'</td>'
+        			+'<td style="width:10%; text-align: center;">'+data.contactList[i].cell_ph1+'-'+data.contactList[i].cell_ph2+'-'+data.contactList[i].cell_ph3+'</td>';
+        			if(data.contactList[i].act_yn == 'N'){
+        				tbodyContent+= '<td style="width:10%; text-align: center;">'+data.contactList[i].fin_mdfy_dt+'</td>';
+        			}
+
+				 
+			 }
 			}
 				                   
 			   tbody.append(tbodyContent);
@@ -890,8 +904,23 @@ function toggleKorean(){
 
 
 function removeAbsol(){
-	 var cont_id = $("#cont_id").val();
-	 	
+	 var cont_id = $("#cont_id").val(); 
+	 
+	 if(confirm("삭제하시겠습니까?" + "\n" + "확인버튼 클릭 시 복구가 불가능합니다.")){
+		$.ajax({
+			url : '/contact_delete_absol',
+			type : 'POST',
+			data : cont_id,
+			success : function(data) {
+	 		 
+				contactPaging();
+			},
+			error : function() {
+				alert("제가 문제입니다 페이징");
+			}
+		});
+	 }
+	 
 }
 
 /*function contactDeleteList(contactPageNum){
