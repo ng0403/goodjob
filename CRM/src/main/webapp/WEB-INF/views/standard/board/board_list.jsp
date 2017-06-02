@@ -78,7 +78,7 @@ $(function() {
                            <a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"    id="${boardVO.BOARD_NO}">${boardVO.TITLE}</a>
                            </c:if>
                            <c:if test="${boardVO.FILE_CD != null}">
-                           <a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  style='color:black' id="${boardVO.BOARD_NO}">${boardVO.TITLE}</a>    <i class="file icon"></i>
+                           <a href="#" onclick="boardDetail('${boardVO.BOARD_NO}');"  id="${boardVO.BOARD_NO}">${boardVO.TITLE}</a>    <i class="file icon"></i>
                            </c:if>
                            </td>                           
                            <td style='width:10%;'>${boardVO.CREATED_BY} </td>

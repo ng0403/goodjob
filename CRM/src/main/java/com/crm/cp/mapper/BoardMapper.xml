@@ -215,7 +215,7 @@
 
 	<update id="ModifyBoard"> 
 		update tb_board set title = #{TITLE}, content = #{CONTENT}, updated_by = #{UPDATED_BY}, file_cd = (SELECT FILE_CD FROM TB_FILE
-		WHERE FILE_NM =#{FILE_NM}), UPDATED = sysdate
+		WHERE FILE_NM =#{FILE_NM} and CREATED = sysdate), UPDATED = sysdate
 		where BOARD_NO = #{BOARD_NO}
 	</update>
 	
