@@ -522,6 +522,8 @@ function estAdd(ctx){
 	$form.append($hsales_oppt_id).append($hcust_id).append($tabValue)/*.append($hsales_oppt_nm).append($hcust_nm)*/;
 	
 	$("body").append($form);
+	alert("견적이 추가되었습니다.");
+	alert("견적관리 페이지로 이동합니다.");
 	$form.submit();
 	
 	//$("#estAdd").submit();
@@ -731,6 +733,8 @@ function estUpdate(ctx){
 	$form.append($hsales_oppt_id).append($hcust_id).append($tabValue);
 	
 	$("body").append($form);
+	alert("수정되었습니다.");
+	alert("견적관리 페이지로 이동합니다.");
 	$form.submit();
 	
 //	$.ajax({
