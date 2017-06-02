@@ -97,7 +97,7 @@ $(document).ready(function(){
 				<table id="ccustomertable_M" class="ui celled table">
 					<tbody id="opptDetail">
 						<tr>
-							<th><span style="color: red;">*영업기회명</span></th>
+							<th><span>영업기회명</span></th>
 							<td> <!-- colspan="3" -->
 <!-- 							<div class="ui input focus" style="width: 95%;"> -->
 								<input type="hidden" id="hsales_oppt_nm" value="${opDetail.sales_oppt_nm}">
@@ -162,7 +162,7 @@ $(document).ready(function(){
 								<input type="text" name="expt_fin_d" id="expt_fin_d" value="${opDetail.expt_fin_d}" readonly="readonly" class="inputText" style="background: rgb(220, 220, 220);">
 							</div>
 							</td>
-							<th><span style="color: red;">*가능성</span></th>
+							<th><span>가능성</span></th>
 							<td>
 								<input type="hidden" id="hpsblty_rate">
 								<select id="psblty_rate" name="psblty_rate" style="height: 30px; background: rgb(220, 220, 220);">

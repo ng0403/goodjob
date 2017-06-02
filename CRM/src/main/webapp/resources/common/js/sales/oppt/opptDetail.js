@@ -219,7 +219,11 @@ function opptMdfyBtn() {
 	$("#baseBtnDiv").css("display", "none");
 	$("#addBtnDiv").css("display", "none");
 	$("#NewAddBtnDiv").css("display", "none");
-	$("#mdfBtnDiv").css("display", "block");	
+	$("#mdfBtnDiv").css("display", "block");
+	$('#customer').attr("disabled", true);
+	$('#cust_nm').attr("disabled", true);
+	$('#sales_lev_cd').attr("disabled", true);
+	$('#sales_oppt_stat_cd').attr("disabled", true);
 
 }
 
