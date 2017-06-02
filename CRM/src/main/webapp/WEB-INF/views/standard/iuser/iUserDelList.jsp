@@ -26,7 +26,7 @@ $("#naviuser").css("font-weight", "bold");
 			<label id="listLabel" class="ui header" style="background: #fff;" >■ 기준정보 > <a href="/user" style="font-size: 19px; text-decoration:none;  font: bold;">사용자관리</a> > 영업기회관리 삭제된 데이터</label>
 		</div>
 		<div class="search_div">
-		<form name="searchForm" method="post" action="${ctx}/user">
+		<form name="searchForm" method="GET" action="${ctx}/iUserDelList">
 			<select name="keyfield">
 				<option value="u_id">사용자ID명</option>
 				<option value="u_name">사용자명</option>
