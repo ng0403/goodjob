@@ -12,7 +12,7 @@
 <body id="body" >
 
 		<div class="headFrame" >
-			<div class="header" >
+			<div class="Mainheader" >
 					<div id="mainTitleDiv">
 						<label id="mainTitle">SFA <label style="font-size: 20pt; font-weight: normal;">(Sales Force Automation)</label></label>
 					</div>

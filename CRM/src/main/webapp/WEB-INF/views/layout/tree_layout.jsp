@@ -21,7 +21,7 @@ html,body{
 <body>
 
 	<div class="headFrame"><!--  style="width:100%; height: 15%; /* solid black; */float:left;" -->
-		<div class="header"><!--  style="width:100%;height: 40%; /* solid black; */float:left; background:#fffbcc;" -->
+		<div class="Mainheader"><!--  style="width:100%;height: 40%; /* solid black; */float:left; background:#fffbcc;" -->
 				<div id="mainTitleDiv">
 						<label id="mainTitle">SFA <label style="font-size: 20pt; font-weight: normal;">(Sales Force Automation)</label></label>
 				</div>
