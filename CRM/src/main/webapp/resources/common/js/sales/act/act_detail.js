@@ -50,22 +50,26 @@ function actAddBtn(){
 function actMdfyBtn(){
 	$("#actMdfBtn").click(function() {
 		$("#act_tab_tbody input[type='text']").css("background-color", "white");
+		$("#sales_actvy_nm").css("background-color","#EAEAEA");
 		$("#sales_oppt_nm").css("background-color","#EAEAEA");
 		$("#cust_nm").css("background-color","#EAEAEA");
+		$("#sales_actvy_content").css("background-color","white");
 		$("#memo").css("background-color", "white");
 		
-		$('#sales_actvy_nm').attr("readonly", false);
-		$('#act_opp_nm').attr("disabled", false);
-		$("#act_tab_tbody input").attr("disabled", false);
+//		$('#sales_actvy_nm').attr("readonly", false);
+//		$('#act_opp_nm').attr("disabled", false);
+//		$("#actdiv_1").attr("disabled", false);
+//		$("#actdiv_2").attr("disabled", false);
+//		$("#act_tab_tbody input").attr("disabled", false);
 		$("#sales_actvy_type_cd").attr("disabled", false);
-		$("#actdiv_1").attr("disabled", false);
-		$("#actdiv_2").attr("disabled", false);
 		$("#sales_actvy_stat_cd").attr("disabled", false);
 		$("#strt_t_h").attr("disabled",false);
 		$("#strt_t_m").attr("disabled",false);
 		$("#end_t_h").attr("disabled",false);
 		$("#end_t_m").attr("disabled",false);
 		$("#memo").attr("readonly", false);
+		
+//		$("#customer").attr("disabled", false);
 		
 		// 영업활동 내역
 		$('#sales_actvy_loc').attr("readonly", false);
@@ -75,14 +79,14 @@ function actMdfyBtn(){
 		
 		
 		//할일을 클릭했을 때 영업기회명과 고객사 비활성화
-		if($('#actdiv_1').is(':checked')){
-			$("#sales_oppt_nm").css("background-color","#EAEAEA");
-			$('#sales_oppt_nm').attr('disabled',true);
-			$('#act_opp_nm').attr('disabled',true);
-			$("#cust_nm").css("background-color","#EAEAEA");
-			$("#cust_nm").attr('disabled',true);
-			$("#customer").attr('disabled',true);
-		}
+//		if($('#actdiv_1').is(':checked')){
+//			$("#sales_oppt_nm").css("background-color","#EAEAEA");
+//			$('#sales_oppt_nm').attr('disabled',true);
+//			$('#act_opp_nm').attr('disabled',true);
+//			$("#cust_nm").css("background-color","#EAEAEA");
+//			$("#cust_nm").attr('disabled',true);
+//			$("#customer").attr('disabled',true);
+//		}
 		
 		//버튼 활성화
 		$("#actBaseBtnDiv").css("display", "none");
