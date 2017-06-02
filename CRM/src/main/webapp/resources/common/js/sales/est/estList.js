@@ -146,7 +146,7 @@ function list(page){
 				 "<tr>"+
 					"<td style='text-align: center;'><input type='checkbox' value="+data.estim_id+"></td>"+
 					"<td style='text-align: left; padding-left:5px;'>"+
-					"<a style='text-decoration: none;' href=javascript:estDetail('"+data.estim_id+"');>"+
+					"<a style='text-decoration: none; color: blue;' href=javascript:estDetail('"+data.estim_id+"');>"+
 						data.estim_nm+"</a></td>"+
 					"<td>"+data.cust_nm+"</td>"+
 					"<td>"+data.estim_lev_cd_nm+"</td>"+

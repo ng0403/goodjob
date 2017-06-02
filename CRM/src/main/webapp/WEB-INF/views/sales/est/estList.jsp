@@ -200,7 +200,7 @@
 						<tr>
 							<td style="text-align: center;"><input type="checkbox" value="${result.estim_id}" onclick="javascript:chkCancel();"></td>
 							<td style='text-align: left; padding-left:5px;'>
-								<a style='text-decoration: none;' href="javascript:estDetail('${result.estim_id}');">
+								<a style='text-decoration: none; color: blue;' href="javascript:estDetail('${result.estim_id}');">
 								<c:out value="${result.estim_nm}" /></a></td>
 							<td style='text-align: left;'>${result.cust_nm}</td>
 							<td><c:out value="${result.estim_lev_cd_nm}" /></td>
