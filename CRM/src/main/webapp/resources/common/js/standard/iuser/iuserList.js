@@ -42,9 +42,10 @@ function iuserDeleteRollBack(ctx) {
 		if (checkCount() == 0) {
 			alert("복원할 항목을 선택해주세요.");
 		} else {
-			var n = confirm("정말 복원하시겠습니까?"+"\n"+"복원시 사용자의 상태가 활성화로 전환됩니다.");
+			var n = confirm("복원하시겠습니까?"+"\n"+"복원시 사용자의 상태가 활성화로 전환됩니다.");
 			if(n){
 				document.delDelAllForm.action ="iuserDelRollBack";
+				alert("복원되었습니다. 사용자관리 페이지로 이동합니다.");
 				form.submit();
 			}
 		}
@@ -63,10 +64,11 @@ function iuserDelete(ctx) {
 		if (checkCount() == 0) {
 			alert("삭제할 항목을 선택해주세요.");
 		} else {
-			var n = confirm("정말 삭제하시겠습니까?"+"\n"+"삭제 시 사용자의 상태가 비활성화로 전환됩니다.");
+			var n = confirm("삭제하시겠습니까?"+"\n"+"삭제 시 사용자의 상태가 비활성화로 전환됩니다.");
 			if(n){
 				
 				document.delAllForm.action ="iuserDelete";
+				alert("삭제되었습니다. 삭제된 사용자관리 페이지로 이동합니다.");
 				form.submit();
 			}
 		}
@@ -79,9 +81,10 @@ function iuserDelDelete(ctx) {
 		if (checkCount() == 0) {
 			alert("삭제할 항목을 선택해주세요.");
 		} else {
-			var n = confirm("정말 삭제하시겠습니까?"+"\n"+"확인버튼 클릭 시 복구가 불가능합니다.");
+			var n = confirm("삭제하시겠습니까?" + "\n" + "확인버튼 클릭 시 복구가 불가능합니다.");
 			if(n){
 				document.delDelAllForm.action ="iuserDelDelete";
+				alert("완전히 삭제되었습니다. 삭제된 사용자관리 페이지로 이동합니다.");
 				form.submit();
 			}
 		}

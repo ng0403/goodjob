@@ -80,7 +80,7 @@ $("#naviuser").css("font-weight", "bold");
 
 		<!-- 기본 버튼 -->
 	<div class="bt_positionuserlist" style="padding-bottom: 10px; ">
-		<input type="button" id="iuserListAddBtn" class="tiny ui blue button" value="등록"/>
+		<input type="button" id="iuserListAddBtn" class="tiny ui blue button" value="추가"/>
 <!-- 		<input type="button" id="iuserListEditBtn" class="iuser_bt" value="수정"/> -->
 		<input type="button" id="iuserDelBtn" class="tiny ui blue button" value="삭제"/>
 	</div>
