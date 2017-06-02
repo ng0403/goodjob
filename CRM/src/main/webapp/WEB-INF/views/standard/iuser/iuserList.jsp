@@ -23,7 +23,7 @@ $("#naviuser").css("font-weight", "bold");
 
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 사용자관리</h3>
+			<h3 class="ui header" style="background: #fff;">■ 기준정보 > 사용자관리</h3>
 		</div>
 		<div class="search_div">
 		<form name="searchForm" method="post" action="${ctx}/user">

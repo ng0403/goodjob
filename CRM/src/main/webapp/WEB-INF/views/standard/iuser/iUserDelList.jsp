@@ -23,7 +23,7 @@ $("#naviuser").css("font-weight", "bold");
 
 	<div id="title">
 		<div class="caption">
-			<h3 class="ui header" style="background: #fff;">■ 삭제된 사용자관리</h3>
+			<label id="listLabel" class="ui header" style="background: #fff;" >■ 기준정보 > <a href="/user" style="font-size: 19px; text-decoration:none;  font: bold;">사용자관리</a> > 영업기회관리 삭제된 데이터</label>
 		</div>
 		<div class="search_div">
 		<form name="searchForm" method="post" action="${ctx}/user">
