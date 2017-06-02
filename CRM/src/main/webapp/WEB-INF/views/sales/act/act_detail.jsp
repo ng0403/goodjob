@@ -496,7 +496,7 @@
 						</tr>
 						<tr>
 							<th><span style="color: red;">*상태</span></th>
-							<td>
+							<td colspan="3">
 								<c:if test="${flg eq '1'}">
 								    <input type="hidden" id="hsales_actvy_stat_cd">
 								    <select name="sales_actvy_stat_cd" id="sales_actvy_stat_cd" class="act_tab_select" disabled="disabled">
@@ -556,7 +556,7 @@
 							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" style="background: white;"></textarea>
 							    </c:if>
 							    <c:if test="${flg eq '1'}">
-							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px;" id="sales_actvy_content" name="sales_actvy_content" readonly="readonly">${actDetail.sales_actvy_content}</textarea>
+							    	<textarea style="border: 5 solid black; width: 1150px; height: 100px; background-color: #EAEAEA;" id="sales_actvy_content" name="sales_actvy_content" readonly="readonly">${actDetail.sales_actvy_content}</textarea>
 							    </c:if>
 							</td>
 						</tr>
