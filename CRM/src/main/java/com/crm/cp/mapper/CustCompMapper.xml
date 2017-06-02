@@ -99,7 +99,6 @@
 		        select 
 			        c.cust_id cust_id
 			        , c.cust_nm cust_nm
-			        , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD  hh24:mm') fin_mdfy_dt
 			        , c.cust_zip_cd cust_zip_cd
 			        , c.cust_addr cust_addr
 			        , c.cust_dtl_addr cust_dtl_addr 
@@ -117,6 +116,8 @@
 			        , c.rep_ph2 rep_ph2
 			        , c.rep_ph3 rep_ph3
 			        , TO_CHAR(c.fst_reg_dt, 'YYYY-MM-DD  hh24:mi ') fst_reg_dt
+			        , c.fin_mdfy_id
+			        , TO_CHAR(c.fin_mdfy_dt, 'YYYY-MM-DD  hh24:mm') fin_mdfy_dt
 			        , act_yn
 			      from customer c		   
 			      where 1=1

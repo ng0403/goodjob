@@ -74,7 +74,7 @@
 
 				<c:if test="${flg == 1 }">
 					<div id="baseBtnDiv" class="bt_position_authuser">
-						<input type="button" id="mdfBtn"       value="편집" class="tiny ui blue button" onclick="custCompMdfyBtn();" /> 
+						<input type="button" id="mdfBtn"       value="편집" class="tiny ui button" onclick="custCompMdfyBtn();" /> 
 						<input type="button" id="addCancelBtn" value="취소" class="tiny ui button"      onclick="custCompCancelBtn();" />
 					</div>
 					<div id="mdfBtnDiv" style="display: none;" class="bt_position_authuser">

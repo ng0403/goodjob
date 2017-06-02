@@ -182,7 +182,7 @@ function custMngDelete() {
 		alert("삭제할 항목을 선택해주세요.");
 		return false;
 	}
-	var delChk = confirm("정말 삭제 하시겠습니까?");
+	var delChk = confirm("삭제 하시겠습니까?");
 	if(delChk){
 		var ctx = $("#ctx").val();
 		var cust_id = $("#nowCust_id").val();
@@ -195,6 +195,7 @@ function custMngDelete() {
 				if(data.deleteResult == 'standard/home/session_expire'){
 					location.href = ctx + '/sessionExpire';
 				} else {
+					alert("키맨이 삭제되었습니다.");
 					pocList(cust_id);
 				}
 			},
@@ -498,12 +499,6 @@ function addCustComp(ctx){
 			alert("고객사명을 입력하세요.");
 			$("#cust_nm").focus();
 		} 
-		
-		
-		
-		
-		
-		
 		else if (cust_div_cd == '' || cust_div_cd == null || cust_div_cd == 0 ) 
 		{
 			alert("고객사구분을 입력하세요.");
@@ -523,7 +518,8 @@ function addCustComp(ctx){
 			$('#custCompForm') 
 			.attr('action','custcompAdd')
 			.submit();
-			alert("정상적으로 저장되었습니다.");
+			alert("고객사가 추가되었습니다.");
+			alert("고객사 페이지로 이동합니다.");
 		}
 	});
 }	
@@ -605,7 +601,8 @@ function mdfyCustComp(ctx){
 		$('#custCompForm') 
 		.attr('action','custcompModify')
 		.submit();
-		alert("정상적으로 저장되었습니다.");
+		alert("수정되었습니다.");
+		alert("고객사 페이지로 이동합니다.");
 	});
 }
 
@@ -638,7 +635,7 @@ function posDelete() {
  	$(":checkbox[id='posChkbox']:checked").each(function(index, item){
 		chked_val[index] = item.value;
 	});
-	var delChk = confirm("정말 삭제 하시겠습니까?");
+	var delChk = confirm("삭제 하시겠습니까?");
 	if(delChk){
 		var ctx = $("#ctx").val();
 		var cust_id = $("#nowCust_id").val();
@@ -655,6 +652,7 @@ function posDelete() {
 					location.href = ctx + '/sessionExpire';
 				} else {
 					alert(data.deleteResult);
+					alert("영업담당자가 삭제되었습니다.");
 					posList(cust_id);
 				}
 			},
@@ -675,7 +673,7 @@ function keymanDelete() {
  	$(":checkbox[id='kmChkbox']:checked").each(function(index, item){
 		chked_val[index] = item.value;
 	});
-	var delChk = confirm("정말 삭제 하시겠습니까?");
+	var delChk = confirm("삭제 하시겠습니까?");
 	if(delChk){
 		var ctx = $("#ctx").val();
 		var cust_id = $("#cust_id").val();
@@ -691,6 +689,7 @@ function keymanDelete() {
 					location.href = ctx + '/sessionExpire';
 				} else {
 					alert(data.deleteResult);
+					alert("키맨을 삭제하였습니다.");
 					keymanList(cust_id);
 				}
 			},
@@ -714,7 +713,7 @@ function ccOpptDel(ctx){
 		if(chked_val.length == 0){
 			alert("삭제할 항목을 선택해 주세요");
 		}else{
-			var delChk = confirm("정말 삭제 하시겠습니까?");
+			var delChk = confirm("삭제 하시겠습니까?");
 			if(delChk){
 				var cust_id = $("#nowCust_id").val();
 				$.ajax({
@@ -728,6 +727,7 @@ function ccOpptDel(ctx){
 							location.href = ctx + '/sessionExpire';
 						} else {
 							alert(data.deleteResult);
+							alert("영업기회가 삭제되었습니다.");
 							opptList(cust_id);
 							opptChkCancel();
 						}
@@ -754,7 +754,7 @@ function ccActDel(ctx){
 		if(chked_val.length == 0){
 			alert("삭제할 항목을 선택해 주세요");
 		}else{
-			var delChk = confirm("정말 삭제 하시겠습니까?");
+			var delChk = confirm("삭제 하시겠습니까?");
 			if(delChk){
 				var cust_id = $("#cust_id").val();
 				$.ajax({
@@ -768,6 +768,7 @@ function ccActDel(ctx){
 							location.href = ctx + '/sessionExpire';
 						} else {
 							alert(data.deleteResult);
+							alert("영업활동을 삭제하였습니다.");
 							actList(cust_id);
 							actChkCancel();
 						}
@@ -794,7 +795,7 @@ function ccEstDel(ctx){
 		if(chked_val.length == 0){
 			alert("삭제할 항목을 선택해 주세요");
 		}else{
-			var delChk = confirm("정말 삭제 하시겠습니까?");
+			var delChk = confirm("삭제 하시겠습니까?");
 			if(delChk){
 				var cust_id = $("#cust_id").val();
 				$.ajax({
@@ -808,6 +809,7 @@ function ccEstDel(ctx){
 							location.href = ctx + '/sessionExpire';
 						} else {
 							alert(data.deleteResult);
+							alert("견적이 삭제되었습니다.");
 							estList(cust_id);
 							estChkCancel();
 						}
@@ -834,7 +836,7 @@ function ccContDel(ctx){
 		if(chked_val.length == 0){
 			alert("삭제할 항목을 선택해 주세요");
 		}else{
-			var delChk = confirm("정말 삭제 하시겠습니까?");
+			var delChk = confirm("삭제 하시겠습니까?");
 			if(delChk){
 				var cust_id = $("#nowCust_id").val();
 				$.ajax({

@@ -18,7 +18,7 @@ function custcompDelModify(){
 	var pageNum = 1;
 	
 	var ctx = $("#ctx").val();
-	var ynChk = confirm("복원 시 상품 테이블은 유지되지 않습니다.");
+	var ynChk = confirm("복원하시겠습니까?");
 	if(ynChk){	
 		$.ajax({
 			type : 'post',
@@ -47,7 +47,7 @@ function custcompDelDelBtn(){
 	var pageNum = 1;
 	
 	var ctx = $("#ctx").val();
-	var ynChk = confirm("데이터 완전 삭제 시 복원은 불가능합니다. 확인 시 삭제합니다.");
+	var ynChk = confirm("삭제하시겠습니까?" + "\n" + "확인버튼 클릭 시 복구가 불가능합니다.");
 	if(ynChk){	
 		$.ajax({
 			type : 'post',
@@ -59,10 +59,8 @@ function custcompDelDelBtn(){
 			datatype : 'json',
 			url : ctx + '/custcompDelDelete',
 			success:function(result){
-				alert("데이터가 완전 삭제 되었습니다.");
-				
-					alert("삭제된 데이터 페이지로 이동합니다.");
-					location.href = ctx + "/custcompDelList";
+				alert("완전히 삭제 되었습니다. 삭제된 데이터 페이지로 이동합니다.");
+				location.href = ctx + "/custcompDelList";
 			},
 			error:function(request){
 				alert("error : " + request.status);
@@ -74,7 +72,7 @@ function custcompDelDelBtn(){
 //삭제된 데이터 상세정보 > 취소 버튼 기능
 function custcompCancelBtn(flg) {
 	var flg = flg;
-	var ynChk = confirm("정말 취소하시겠습니까?");
+	var ynChk = confirm("취소하시겠습니까?");
 	if(ynChk){
 		// 버튼 활성화
 		if(flg == 0)	// 추가할 때

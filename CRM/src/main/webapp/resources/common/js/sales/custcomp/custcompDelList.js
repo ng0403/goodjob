@@ -6,7 +6,7 @@
  *
  * addForm() 											: 리스트 검색조건 추가
  * dellForm(obj) 										: 리스트 검색조건 삭제
- * schDelCustComp(event) 									: 검색 엔터키 기능
+ * schDelCustComp(event) 								: 검색 엔터키 기능
  * searchDelBtn((hBtn(page) 							: 검색버튼 클릭
  * chkCancel() 											: 전체 체크 해제
  * custcompAllCheck() 									: 고객사 전체 선택
@@ -436,8 +436,8 @@ function schPaging(ccPageNum) {
 									+"<td>"+data.ccVOList[i].indst+"</td>"
 									"<td >"+cc.fin_mdfy_id+"</td>+"+
 									"<td >"+cc.fin_mdfy_dt+"</td>+"+
-									"<td >"+cc.fst_reg_id+"</td>+"+
-									"<td >"+cc.fst_reg_dt+"</td>+"+
+//									"<td >"+cc.fst_reg_id+"</td>+"+
+//									"<td >"+cc.fst_reg_dt+"</td>+"+
 									+"</tr>";
 								tbody.append(tbodyContent);
 								$("#ccListCheck").prop("checked", false);
