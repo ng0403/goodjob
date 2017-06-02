@@ -71,7 +71,7 @@ public class FileManager {
 		String random = "";
 
 			ServletContext context = request.getSession().getServletContext();
-			String appPath = context.getRealPath("");
+			/*String appPath = context.getRealPath("");*/
 			
 			for(int i=0; i<10; i++){
 				char rtext = (char)((Math.random()*26)+65);
@@ -82,9 +82,9 @@ public class FileManager {
 			String randomtext = random;
 			
 			// construct the complete absolute path of the file
-			folderPath = appPath +"\\"+ filePath;
+			folderPath =  filePath;
 			
-		   String uploadFilePath = appPath +"\\"+ filePath + randomtext + file.getOriginalFilename();
+		   String uploadFilePath =  filePath + randomtext + file.getOriginalFilename();
 			/*String uploadFilePath = filePath + randomtext + file.getOriginalFilename();*/
 			System.out.println("파일 경로" +uploadFilePath.toString());
 			File folderFile = new File(folderPath);	
