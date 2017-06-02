@@ -65,8 +65,8 @@ public class FileManager {
 	
 	public String doFileUpload(MultipartFile file, HttpServletRequest request){
 		
-		String filePath = "downloads\\";
-		/*String filePath = "C:\\users\\core\\desktop\\file\\";*/
+		/*String filePath = "downloads\\";*/
+		String filePath = "C:\\users\\core\\desktop\\file\\";
 		String folderPath = "";
 		String random = "";
 
