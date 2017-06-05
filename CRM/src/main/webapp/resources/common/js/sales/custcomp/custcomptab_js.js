@@ -363,15 +363,20 @@ function custCompBackBtn() {
 function custCompMdfyBtn() {
 	
 	//focus, css, readonly, disabled false 상태로 변경
-	$("#custcomptbody #cust_nm").focus();
-	$("#custcomptbody input[type='text'], textarea, input[type='date']").attr({
-		readonly:false,
-		style:'background-color:white'
-	});
+//	$("#custcomptbody #cust_nm").focus();
+//	$("#custcomptbody input[type='text'], textarea, input[type='date']").attr({
+//		readonly:false,
+//		style:'background-color:white'
+//	});
 	$("#custcomptbody select").attr({
 		disabled:false,
 		style:'background-color:white'
 	});
+	$("#custcomptbody #rep_ph1, #rep_ph2, #rep_ph3, #homepage_url, #cust_zip_cd, #cust_addr, #cust_dtl_addr, #cust_info_addr, #emp_qty  ").attr({
+		readonly:false,
+		style:'background-color:white'
+});
+	
 	
 	//$("#sales_scale_cd").children().eq($("#hsales_scale_cd").val()).attr("selected", "selected"); // 매출규모 코드 선택
 	//$("#indst_cd").children().eq($("#hindst_cd").val()).attr("selected", "selected"); // 산업군 코드 선택
@@ -499,11 +504,11 @@ function addCustComp(ctx){
 			alert("고객사명을 입력하세요.");
 			$("#cust_nm").focus();
 		} 
-		else if (cust_div_cd == '' || cust_div_cd == null || cust_div_cd == 0 ) 
-		{
-			alert("고객사구분을 입력하세요.");
-			$("#custcomptbody #cust_div_cd").focus();
-		} 
+//		else if (cust_div_cd == '' || cust_div_cd == null || cust_div_cd == 0 ) 
+//		{
+//			alert("고객사구분을 입력하세요.");
+//			$("#custcomptbody #cust_div_cd").focus();
+//		} 
 		 else if (compNum < 9 ) {
 			 alert("사업자번호의 자릿수가 부족합니다.");
 			 $("#custcomptbody #comp_num").focus();
@@ -571,6 +576,12 @@ function fnChkByte(obj) {
         document.getElementById('byteInfo').innerText = rbyte;
     }
 }
+
+
+var numStirng
+
+
+
 
 
 

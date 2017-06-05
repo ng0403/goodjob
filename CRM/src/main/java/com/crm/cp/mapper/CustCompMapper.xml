@@ -22,8 +22,10 @@
 			        , c.cust_dtl_addr cust_dtl_addr 
 			        , c.cust_info_addr cust_info_addr 
 			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
-			        , c.comp_num comp_num
-			        , c.corp_num corp_num
+<!-- 			        , c.comp_num comp_num -->
+<!-- 			        , c.corp_num corp_num -->
+		            , SUBSTR(c.comp_num, 1,3) ||'-'|| SUBSTR(c.comp_num, 4, 2) ||'-'|| SUBSTR(c.comp_num, 6, 5) as comp_num  
+		            , SUBSTR(c.corp_num, 1,6) ||'-'|| SUBSTR(c.corp_num, 7, 7) as corp_num  
 			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale
 			        , c.homepage_url homepage_url
 			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst
@@ -104,8 +106,10 @@
 			        , c.cust_dtl_addr cust_dtl_addr 
 			        , c.cust_info_addr cust_info_addr 
 			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'CDC' and cd.code = c.cust_div_cd) cust_div_nm
-			        , c.comp_num comp_num
-			        , c.corp_num corp_num
+<!-- 			        , c.comp_num comp_num -->
+<!-- 			        , c.corp_num corp_num -->
+					, SUBSTR(c.comp_num, 1,3) ||'-'|| SUBSTR(c.comp_num, 4, 2) ||'-'|| SUBSTR(c.comp_num, 6, 5) as comp_num  
+		            , SUBSTR(c.corp_num, 1,6) ||'-'|| SUBSTR(c.corp_num, 7, 7) as corp_num  
 			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale
 			        , c.homepage_url homepage_url
 			        , (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst
@@ -216,8 +220,10 @@
             , c.cust_addr cust_addr
             , c.cust_dtl_addr cust_dtl_addr 
             , c.cust_info_addr cust_info_addr
-          	, c.comp_num comp_num
-            , c.corp_num corp_num
+<!--           	, c.comp_num comp_num -->
+<!--             , c.corp_num corp_num -->
+			, SUBSTR(c.comp_num, 1,3) ||'-'|| SUBSTR(c.comp_num, 4, 2) ||'-'|| SUBSTR(c.comp_num, 6, 5) as comp_num  
+		    , SUBSTR(c.corp_num, 1,6) ||'-'|| SUBSTR(c.corp_num, 7, 7) as corp_num  
           	, (select cd.cd_nm from code cd where cd.cd_grp_id = 'SSC' and cd.code = c.sales_scale_cd ) sales_scale_cd
             , c.homepage_url homepage_url
           	, (select cd.cd_nm from code cd where cd.cd_grp_id = 'IDC' and cd.code = c.indst_cd ) indst_cd
@@ -320,7 +326,7 @@
 		     from CUSTOMER
 		     WHERE ROWNUM=1),
   			#{cust_nm, 		  jdbcType=VARCHAR}, 
-  			#{cust_div_cd, 	  jdbcType=VARCHAR},
+  			'0001',
   			#{comp_num, 	  jdbcType=VARCHAR},
  			#{corp_num, 	  jdbcType=VARCHAR},
  			#{rep_ph1, 		  jdbcType=VARCHAR},
@@ -513,7 +519,6 @@
         	(select SALES_ACTVY_NM from SALES_ACTIVITY sa where sa.SALES_ACTVY_ID = pos.SALES_ACTVY_ID ) sales_actvy_nm,
 			(select iuser_id from iuser i where i.iuser_id = pos.iuser_id ) iuser_id,
 			(select iuser_nm from iuser i where i.iuser_id = pos.iuser_id ) iuser_nm,
-			
 			pos.key_part,
 			pos.fst_reg_id,
 			TO_CHAR(pos.FST_REG_DT, 'YYYY-MM-DD hh24:mi') FST_REG_DT
@@ -628,14 +633,34 @@
 		select	    
 			k.CUST_ID,
 			k.CONT_ID,
-          	con.cont_nm,
-			k.KEY_PART,
-			k.KEY_POS, 
-			con.cell_ph1,
-          	con.cell_ph2,
-          	con.cell_ph3,
-          	con.email1,
-          	con.email2,
+<!--           	con.cont_nm, -->
+<!-- 			k.KEY_PART, -->
+<!-- 			k.KEY_POS,  -->
+<!-- 			con.cell_ph1, -->
+<!--           	con.cell_ph2, -->
+<!--           	con.cell_ph3, -->
+<!--           	con.email1, -->
+<!--           	con.email2, -->
+          	
+          	 case when (con.cont_nm) is null then '-'
+					else ( con.cont_nm) end as cont_nm,
+			case when (k.KEY_PART) is null then '-'
+					else ( k.KEY_PART) end as KEY_PART,
+          	case when (k.KEY_POS) is null then '-'
+					else (k.KEY_POS) end as KEY_POS,
+					
+			case when (con.cell_ph1) is null then '-'
+					else (con.cell_ph1) end as cell_ph1,
+			case when (con.cell_ph2) is null then '-'
+					else (con.cell_ph2) end as cell_ph2,
+       		case when (con.cell_ph3) is null then '-'   
+					else (con.cell_ph3) end as cell_ph3,
+					
+          	case when (con.email1) is null then '-'
+					else (con.email1) end as email1,
+			case when (con.email2) is null then '-'
+					else (con.email2) end as email2,
+					
 			k.FST_REG_ID,
 			k.FST_REG_DT,
 			k.FIN_MDFY_ID,

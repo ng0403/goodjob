@@ -105,30 +105,31 @@
 									</div>
 								</c:if>
 							</td>
-							<th style="color: red">*고객사구분</th>
+							<th >고객사구분</th>
 							<td>
 								<c:if test="${flg == 0 }">
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" />
 									<select id="cust_div_cd" name="cust_div_cd" style="background: #fff; border-color: #85B7D9;">
-										<option value="0" style="text-align: center;">==구분==</option>
-										<c:forEach var="CDC" items="${CDCCodeList}">
-											<option value="<c:out value="${CDC.cust_div_cd}" />"
-												<c:if test="${custcompDetail.cust_div_cd == CDC.cust_div_cd }">selected="selected"</c:if>>
-													${CDC.cust_div_nm}
-											</option>
-										</c:forEach>
+<!-- 										<option value="0" style="text-align: center;">==구분==</option> -->
+<%-- 										<c:forEach var="CDC" items="${CDCCodeList}"> --%>
+<%-- 											<option value="<c:out value="${CDC.cust_div_cd}" />" --%>
+<%-- 												<c:if test="${custcompDetail.cust_div_cd == CDC.cust_div_cd }">selected="selected"</c:if>> --%>
+<%-- 													${CDC.cust_div_nm} --%>
+<!-- 											</option> -->
+											<option <c:if test="${custcompDetail.cust_div_cd == 0001 }">selected="selected"</c:if>>가망</option>
+											<option <c:if test="${custcompDetail.cust_div_cd == 0002 }">selected="selected"</c:if>>기존</option>
 									</select>
 								</c:if>
 								 <c:if test="${flg == 1 }">
 									<input type="hidden" id="hcust_div_cd" name="hcust_div_cd" />
 									<select id="cust_div_cd" name="cust_div_cd" style="background: rgb(220, 220, 220); border-color: #85B7D9;" disabled="disabled">
-										<option value="0" style="text-align: center;">==구분==</option>
-										<c:forEach var="CDC" items="${CDCCodeList}">
-											<option value="<c:out value="${CDC.cust_div_cd}" />"
-												<c:if test="${custcompDetail.cust_div_cd == CDC.cust_div_cd }">selected="selected"</c:if>>
-												${CDC.cust_div_nm}
-											</option>
-										</c:forEach>
+<%-- 										<c:forEach var="CDC" items="${CDCCodeList}"> --%>
+<%-- 											<option value="<c:out value="${CDC.cust_div_cd}" />" --%>
+<%-- 												<c:if test="${custcompDetail.cust_div_cd == CDC.cust_div_cd }">selected="selected"</c:if>> --%>
+<%-- 													${CDC.cust_div_nm} --%>
+<!-- 											</option> -->
+											<option <c:if test="${custcompDetail.cust_div_cd == 0001 }">selected="selected"</c:if>>가망</option>
+											<option <c:if test="${custcompDetail.cust_div_cd == 0002 }">selected="selected"</c:if>>기존</option>
 									</select>
 								</c:if> <!-- 									<select id="cust_div_cd" name="cust_div_cd" disabled="disabled"> -->
 								<!-- 										<option value="0" style="text-align: center;">==선택==</option> -->
@@ -139,7 +140,7 @@
 
 						</tr>
 						<tr>
-							<th>사업자번호</th>
+							<th style="color: red">*사업자번호</th>
 							<td><c:if test="${flg == 0 }">
 									<div class="ui input focus">
 										<input type="hidden" id="hcomp_num" value="${custcompDetail.comp_num}" /> 
@@ -151,7 +152,7 @@
 										<input type="text" name="comp_num" id="comp_num" class="int" value="${custcompDetail.comp_num}" maxlength="10" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode: disabled;' readonly="readonly" />
 									</div>
 								</c:if></td>
-							<th>법인번호</th>
+							<th style="color: red">*법인번호</th>
 							<td><c:if test="${flg == 0 }">
 									<div class="ui input focus">
 										<input type="hidden" id="hcorp_num"value="${custcompDetail.corp_num}" /> 
