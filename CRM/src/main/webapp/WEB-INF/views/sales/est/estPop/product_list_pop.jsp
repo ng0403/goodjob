@@ -34,7 +34,7 @@
 	<input type="hidden" id="ctx" value="${ctx}"/>
 	<div id="title" style="padding-bottom: 10px;">
 		<div class="caption">
-			<label class="label_header" >■ 영업기회 리스트</label>
+			<label class="label_header" >■ 삼품 리스트</label>
 		</div>
 <!-- 		<h3 class="ui header" style="background: #fff; padding-top: 10px;">■ 상품 리스트</h3> -->
 		
