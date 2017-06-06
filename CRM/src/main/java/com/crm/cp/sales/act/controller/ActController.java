@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -231,10 +232,28 @@ public class ActController {
 			
 			ModelAndView mov = new ModelAndView("actSaleDetail");
 			
-			System.out.println("OPPT : " + sales_oppt_id);
-			System.out.println("OPPT : " + sales_oppt_nm);
-			System.out.println("CUST : " + cust_id);
-			System.out.println("CUST : " + cust_nm);
+			if(date == null)
+			{
+				Date dt = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+				String time = sdf.format(dt).toString();
+				time.indexOf(",");
+				
+				System.out.println("DATE : " + dt.toString());
+				System.out.println("DATE : " + sdf.format(dt).toString());
+				System.out.println("DATE : " + time);
+			}
+			else
+			{
+				if(hour.length() == 1)
+				{
+					hour += "0" + hour;
+					
+					System.out.println("HOUR : " + hour);
+				}
+			}
+			
+			System.out.println("act_flg : " + act_flg);
 			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);
