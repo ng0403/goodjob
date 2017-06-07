@@ -57,7 +57,7 @@
 			var session_ID=$(this).attr("id");
 			var allmenu = $('.sub_menu_bar').find('.hide1');
 			allmenu.remove();
-			if($(this).attr('href')=='#'){
+//			if($(this).attr('href')=='#'){
 				//event.preventDefault();
 				sessionStorage.setItem("session_menu",session_ID);
 				var submenu = $(this).next("ul").html();
@@ -77,7 +77,7 @@
 //						submenu.slideDown();
 //					}
 				}
-			}
+//			}
 		});
 		
 	}
@@ -121,7 +121,7 @@
 			
 			menuT_li.append(menuT_a);
 		}else{
-			menuT_a.attr("href", '#');
+			menuT_a.attr("href", menu_url);
 			menuT_a.attr("data-num", count);
 			menuT_a.html(menu_nm);
 			
