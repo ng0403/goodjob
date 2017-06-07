@@ -1030,6 +1030,76 @@
 	                ) b
            		) r <![CDATA[where r.rnum>=#{startRow} and r.rnum<=#{endRow}]]>
 	</select>
+		
+	<!-- 담당사원 전체 리스트 개수 -->
+	<select id="selectMngTotalCount" parameterType="java.util.Map" resultType="int">
+	  select 
+	  		nvl(count(poc.cust_id), 0) 
+	  from PARTNER_OF_CLIENT poc
+      where 1=1			
+	  order by poc.fst_reg_dt desc
+	</select>
+	
+	<!-- 담당사원 전체 리스트 -->
+	<select id="custcompMngAllList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
+		select 
+			cust.cust_id,
+			cust.cust_nm,
+			i.iuser_id,
+			i.iuser_nm,
+			org.org_nm,
+			poc.key_part,
+			i.cell_ph1,
+			i.cell_ph2,
+			i.cell_ph3,
+			i.email1,
+			i.email2,
+			i.FST_REG_DT,
+			i.FIN_MDFY_DT
+		from PARTNER_OF_CLIENT poc, iuser i, CUSTOMER cust, ORGANIZATION org
+		where 1=1
+		    and cust.cust_id = poc.cust_id
+		    and i.iuser_id = poc.iuser_id
+		    and i.org_id = org.org_id
+        and cust.act_yn = 'Y'
+    	order by fin_mdfy_dt desc
+	</select>
+	
+	<!-- 담당사원 부서가져오기 -->
+	<select id="orgList" resultType="com.crm.cp.sales.custcomp.vo.OrganizationVO">
+		select 
+      		org_id,
+			org_nm
+		from  ORGANIZATION 
+	</select>
+	
+	<!-- 담당사원 상세보기 -->
+	<select id="custcompMngDetail" parameterType="com.crm.cp.sales.custcomp.vo.PocVO" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
+		select 
+				cust.cust_id,
+				cust.cust_nm,
+				i.iuser_id,
+				i.iuser_nm,
+				org.org_nm,
+				poc.key_part,
+				i.cell_ph1,
+				i.cell_ph2,
+				i.cell_ph3,
+				i.email1,
+				i.email2,
+				i.FST_REG_DT,
+				i.FIN_MDFY_DT
+			from PARTNER_OF_CLIENT poc, iuser i, CUSTOMER cust, ORGANIZATION org
+			where 1=1
+			    and cust.cust_id = poc.cust_id
+			    and i.iuser_id = poc.iuser_id
+			    and i.org_id = org.org_id
+	        	and cust.act_yn = 'Y'
+	        	and cust.cust_id = #{cust_id, jdbcType=VARCHAR}
+	    	order by fin_mdfy_dt desc
+	</select>
+	
+	
 	
 	<!-- 계약 기업고객 정보 가져오기 -->
 	<select id="ccContCustDetail" parameterType="String" resultType="com.crm.cp.sales.cont.vo.contrVO">

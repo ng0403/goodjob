@@ -186,7 +186,7 @@
 		<!-- 탭 내용 : 담당사원 -->
 		<div id="tabDiv5" class="tab5_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="poc_pop_btn"  class="tiny ui button" value="담당자 추가" />
+				<input type="button" id="poc_popBtn"  class="tiny ui button" value="담당자 추가" onclick="posAddBtn('${custcompDetail.cust_id}','${custcompDetail.cust_nm}', 'tabValue.value');"/>
 				<input type="button" id="deletePocbtn" class="tiny ui blue button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			

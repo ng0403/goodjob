@@ -5,8 +5,10 @@ import java.util.Map;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.custcomp.vo.OrganizationVO;
 import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
@@ -98,5 +100,10 @@ public interface CustCompService {
 	CustCompVO custcompDelDetail(String cust_id);								// 고객사 삭제된 데이터 상세보기
 	void custcompDelEdit(CustCompVO ccVO);										// 고객사 삭제된 데이터 복원(수정)
 	int custcompDelDelete(String cust_id);										// 고객사 삭제된 데이터 완전삭제
+	
+	PagerVO custcompMngListCount(Map<String, Object> ccMngMap);					// 담당사원 리스트 전제 개수 
+	List<PocVO> custcompMngAllList(Map<String, Object> ccMngMap);				// 담당사원 리스트 
+	List<OrganizationVO> orgCdList();											// 담당사원 부서 가져오기
+	PocVO custcompMngDetail(PocVO pocVO);										// 담당사원 상세보기
 
 }

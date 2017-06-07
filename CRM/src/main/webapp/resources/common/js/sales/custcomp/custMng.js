@@ -1,13 +1,13 @@
 /**
  * 함수 목록
- * activeAdd(ctx)					:	영업활동 추가
- * activeUpdate(ctx)				:	영업활동 편집
- * activeCancel()					:	영업활동 취소 버튼
- * actButton(ctx)					:	영업활동 저장(수정) 버튼 클릭 시
- * custActiveDetail()				:	영업활동명 클릭 시 detail값 가져오기
- * startDatePicker(ctx)				:	달력 표시
- * startDatePicker()				:	영업활동 사용되는 달력 버튼
- * dateFormat(timestamp)			:	date 포맷 변경
+ * activeAdd(ctx)											:	영업활동 추가
+ * activeUpdate(ctx)										:	영업활동 편집
+ * activeCancel()											:	영업활동 취소 버튼
+ * actButton(ctx)											:	영업활동 저장(수정) 버튼 클릭 시
+ * custActiveDetail()										:	영업활동명 클릭 시 detail값 가져오기
+ * startDatePicker(ctx)										:	달력 표시
+ * startDatePicker()										:	영업활동 사용되는 달력 버튼
+ * dateFormat(timestamp)									:	date 포맷 변경
  */
 
 $(function(){
@@ -17,7 +17,85 @@ $(function(){
 	startDatePicker(ctx);
 	iuserListPopup(ctx);	//직원 검색 버튼 (사용)
 //	pocList(cust_id);
+	compNmSelect(ctx);
 });
+
+//담당자 상세보기(리스트에서 사원명 클릭 시)
+function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
+//	$('#pocTableTbody').delegate('a', 'click', function(event) {
+//		event.preventDefault();
+//		var ctx = $('#ctx').val();
+		
+		 var cust_nm = $("#cust_nm").val();
+		 var key_part = $("#key_part").val();
+		 var cell_ph1 = $("#cell_ph1").val();
+		 var cell_ph2 = $("#cell_ph2").val();
+		 var cell_ph3 = $("#cell_ph3").val();
+		 var email1 = $("#email1").val();
+		 var email2 = $("#email2").val();
+ 		
+		 var ccMngjsonData = {
+					"cust_id" : cust_id, "cust_nm" :  cust_nm,
+					"iuser_id" : iuser_id, "iuser_nm" : iuser_nm, 
+					"org_nm" : org_nm,
+					"key_part" : key_part, 
+					"cell_ph1" : cell_ph1, "cell_ph2" : cell_ph2, "cell_ph3" : cell_ph3, 
+					"email1" : email1, "email2" : email2
+				 }
+		
+		$.ajax({
+			url : '/custcompMngDetail',
+			data : ccMngjsonData, 		//보낼 데이터값
+			dataType : 'json',
+			type : "POST", //
+			success : function(data) {
+				
+				$('#cust_id').val(data.cust_id);
+				$('#cust_nm').val(data.cust_nm);
+  			   
+				$('#iuser_nm').val(data.iuser_nm);  
+  			    $('#org_nm').val(data.org_nm);
+				$('#key_part').val(data.key_part);
+				
+				$('#cell_ph').val(data.cell_ph1 + "-" +data.cell_ph2 +"-"+data.cell_ph3);	
+				$('#email').val(data.email1 +"@"+data.email2);
+				
+ 			},
+ 			
+			error : function(e) {
+				alert("전송 중 오류가 발생했습니다.");
+			}
+		});
+//	});
+}
+
+// 담당사원 추가 시 고객사 검색
+function compListPopup(ctx){
+
+//	$('#comp_list_bt').click(function(){
+		var pop_flg='d';
+		window.open(ctx+'/custcompCustnmList?pop_flg='+pop_flg,'newwindow','width=770, height=400, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//	});
+}
+
+//고객사명 리스트에서  tr를 클릭했을 때 부모창에 고객사명을 넣어주는 작업
+function compNmSelect(ctx){
+	$('#custcomp_list_table tbody tr').click(function(){
+  		var custcompNm=$(this).find('#cust_nm').text();
+		var custcompId=$(this).find('#cust_id').text();
+
+		window.opener.inputCompNm2(custcompNm,custcompId);
+		
+		self.close();
+		
+	});
+}
+
+function inputCompNm2(custcompNm,custcompId){
+	
+	$('#cust_nm').val(custcompNm);
+	$('#cust_id').val(custcompId);
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////

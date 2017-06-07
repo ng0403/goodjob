@@ -671,7 +671,9 @@ function comma(str) {
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
+
 //영업 담당사원 List ajax 통신(고객사담당자에서 바뀐 이름)
+//담당사원 List
 function pocList(cust_id) {
 	$(document).ready(function() {
 		var ctx = $("#ctx").val();

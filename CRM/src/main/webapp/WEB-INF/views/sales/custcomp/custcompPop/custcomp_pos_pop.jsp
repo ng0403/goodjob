@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/sales/custcomp/custcomp_actpop_css.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" />
-<title>영업 담당자</title>
+<title>담당사원</title>
 <c:set var="flg" value="${flg}"/>
 
 </head>
@@ -24,7 +24,7 @@
 	<input type="hidden" id="sales_actvy_id" value="${sales_actvy_id}">
 
 	<div id="title">
-		<div class="caption">● 영업담당자 등록</div>
+		<div class="caption">● 담당사원 등록</div>
 	</div>
 	<div class="bt_position_popup">
    		<div class="bs-example" data-example-id="simple-table">

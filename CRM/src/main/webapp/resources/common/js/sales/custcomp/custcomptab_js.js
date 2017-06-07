@@ -1,6 +1,6 @@
 /**
  * 함수목록
- * ccMngDetail(cust_id,iuser_id,org_nm,iuser_nm) 	: 고객명 클릭 시 detail값 
+ * ccMngDetail(cust_id,iuser_id,org_nm,iuser_nm) 	: 담당사원 사원명 클릭 시 detail값 
  * pocDeatil(cust_id) 								: 고객사담당자 상세정보
  * addCustManager(ctx) 								: 고객사별 담당사원 추가 팝업
  * custMngDelete() 									: 키맨 삭제
@@ -162,14 +162,17 @@ function addCustManager(ctx){
 	});
 }
 
-//고객명 클릭 시 detail값 가져오는 함수
+//고객사 상세보기 > 담당사원 탭 > 사원명 클릭 시 detail값 가져오는 함수
 function ccMngDetail(cust_id,iuser_id,org_nm,iuser_nm){
 	
 	var list_cust_nm = $('#nowCust_nm').val();
 	
-	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+'&org_nm='+org_nm+
-				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
-				'newwindow1','width=770, height=310, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
+//	window.open('custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+'&org_nm='+org_nm+
+//				'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm,
+//				'newwindow1','width=770, height=310, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');"
+	
+	location.href = ctx + '/custMngDetailPopup?list_cust_id='+cust_id+'&list_cust_nm='+list_cust_nm+'&org_nm='+org_nm+
+							'&list_iuser_id='+iuser_id+'&list_iuser_nm='+iuser_nm;
 }
 
 //키맨 삭제
@@ -870,4 +873,12 @@ function ccContDel(ctx){
 			}
 		}
 	});
+}
+
+// 고객사 담당자에서 담당사원추가 버튼 클릭
+function posAddBtn(cust_id, cust_nm, tabValue){
+	var ctx = $("#ctx").val();
+	var cust_id = cust_id;
+	var cust_nm = cust_nm;
+	location.href = ctx+'/custMngPopup?cust_id=' + cust_id + "&cust_nm=" + cust_nm+ "&tabValue=" + tabValue;
 }

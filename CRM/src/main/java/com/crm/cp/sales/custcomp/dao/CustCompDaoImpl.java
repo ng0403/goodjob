@@ -11,8 +11,10 @@ import org.springframework.web.context.request.SessionScope;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.custcomp.vo.OrganizationVO;
 import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
@@ -824,6 +826,44 @@ public class CustCompDaoImpl implements CustCompDao {
 		System.out.println("고객사 완전삭제 : " + cust_id);
 		int result = sqlSession.update("custcomp.custcompDelDelete", cust_id);
 		return result;
+	}
+
+	
+	// 담당사원 전체 리스트 개수
+	@Override
+	public int custcompMngListCount(Map<String, Object> ccMngMap) {
+		System.out.println("custcompMng Map Dao "  + ccMngMap.toString());
+		int totalCount = 0;
+		try {
+			totalCount = sqlSession.selectOne("custcomp.selectMngTotalCount", ccMngMap);
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
+
+	// 담당사원 전체 리스트
+	@Override
+	public List<PocVO> custcompMngAllList(Map<String, Object> ccMngMap) {
+		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngAllList", ccMngMap);
+		return obj;
+	}
+
+	// 담당사원 부서 가져오기
+	@Override
+	public List<OrganizationVO> orgCdList() {
+		return sqlSession.selectList("custcomp.orgList");
+	}
+
+	// 담당사원 상세보기
+	@Override
+	public PocVO custcompMngDetail(PocVO pocVO) {
+		PocVO pocVOList = null;
+		pocVOList =sqlSession.selectOne("custcomp.custcompMngDetail", pocVO);
+//		System.out.println(pocVOList);
+		return pocVOList;
 	}
 	
 }
