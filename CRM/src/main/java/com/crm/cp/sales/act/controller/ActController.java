@@ -236,20 +236,29 @@ public class ActController {
 			{
 				Date dt = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
-				String time = sdf.format(dt).toString();
-				time.indexOf(",");
 				
-				System.out.println("DATE : " + dt.toString());
-				System.out.println("DATE : " + sdf.format(dt).toString());
-				System.out.println("DATE : " + time);
+				String time = sdf.format(dt).toString();
+				String[] tmp = time.split(", ");		// 날짜
+				String[] tmp1 = tmp[1].split(":"); 		// 시간을 담는 배열
+				int minute = Integer.parseInt(tmp1[1])/10;
+				
+				date = tmp[0];
+				hour = tmp1[0];
+				
+				min  = String.valueOf(minute+"0");
+				
 			}
 			else
 			{
-				if(hour.length() == 1)
+				if(hour.length() == 1)	 // 시간이 1자리일 경우에 앞에 0을 붙여준다.
 				{
-					hour += "0" + hour;
+					String tmp = "0" + hour;
 					
+					hour = tmp;
+					
+					System.out.println("Date : " + date);
 					System.out.println("HOUR : " + hour);
+					System.out.println("HOUR : " + tmp);
 				}
 			}
 			
