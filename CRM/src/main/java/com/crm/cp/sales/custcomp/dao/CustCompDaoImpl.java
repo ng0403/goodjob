@@ -831,11 +831,11 @@ public class CustCompDaoImpl implements CustCompDao {
 	
 	// 담당사원 전체 리스트 개수
 	@Override
-	public int custcompMngListCount(Map<String, Object> ccMngMap) {
-		System.out.println("custcompMng Map Dao "  + ccMngMap.toString());
+	public int custcompMngListCount(Map<String, Object> pMap) {
+		System.out.println("custcompMng Map Dao "  + pMap.toString());
 		int totalCount = 0;
 		try {
-			totalCount = sqlSession.selectOne("custcomp.selectMngTotalCount", ccMngMap);
+			totalCount = sqlSession.selectOne("custcomp.selectMngTotalCount", pMap);
 			 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -846,8 +846,8 @@ public class CustCompDaoImpl implements CustCompDao {
 
 	// 담당사원 전체 리스트
 	@Override
-	public List<PocVO> custcompMngAllList(Map<String, Object> ccMngMap) {
-		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngAllList", ccMngMap);
+	public List<PocVO> custcompMngAllList(Map<String, Object> pMap) {
+		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngAllList", pMap);
 		return obj;
 	}
 
@@ -873,6 +873,8 @@ public class CustCompDaoImpl implements CustCompDao {
 		sqlSession.insert("custcomp.custcompMngInsert", pocVO);
 		
 	}
+	
+	// 담당사원 수정
 	
 	
 	

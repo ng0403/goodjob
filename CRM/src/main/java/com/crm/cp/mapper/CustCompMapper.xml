@@ -471,28 +471,39 @@
 	</select>
 	
 	<!-- 담당사원 전체 리스트 -->
-	<select id="custcompMngAllList" parameterType="String" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
+	<select id="custcompMngAllList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
 		select 
-			cust.cust_id,
-			cust.cust_nm,
-			i.iuser_id,
-			i.iuser_nm,
-			org.org_nm,
-			poc.key_part,
-			i.cell_ph1,
-			i.cell_ph2,
-			i.cell_ph3,
-			i.email1,
-			i.email2,
-			i.FST_REG_DT,
-			i.FIN_MDFY_DT
-		from PARTNER_OF_CLIENT poc, iuser i, CUSTOMER cust, ORGANIZATION org
-		where 1=1
-		    and cust.cust_id = poc.cust_id
-		    and i.iuser_id = poc.iuser_id
-		    and i.org_id = org.org_id
-        and cust.act_yn = 'Y'
-    	order by fin_mdfy_dt desc
+				mngpoc.*
+		from (
+			select
+				 r.*, rownum rnum
+			from (
+			        
+			        select 
+			            cust.cust_id,
+			            cust.cust_nm,
+			            i.iuser_id,
+			            i.iuser_nm,
+			            org.org_nm,
+			            poc.key_part,
+			            i.cell_ph1,
+			            i.cell_ph2,
+			            i.cell_ph3,
+			            i.email1,
+			            i.email2,
+			            i.FST_REG_DT,
+			            i.FIN_MDFY_DT
+		          from PARTNER_OF_CLIENT poc, iuser i, CUSTOMER cust, ORGANIZATION org
+		          where 1=1
+		                and cust.cust_id = poc.cust_id
+		                and i.iuser_id = poc.iuser_id
+		                and i.org_id = org.org_id
+		                and cust.act_yn = 'Y'
+	          
+					order by poc.fin_mdfy_dt desc
+				   ) r
+				)mngpoc
+	       	 <![CDATA[where mngpoc.rnum >= ]]>	#{page.startRow} and mngpoc.rnum <![CDATA[ <= ]]> #{page.endRow}
 	</select>
 	
 	<!-- 담당사원 부서가져오기 -->
@@ -530,17 +541,36 @@
 	</select>
 	
 	<!-- 담당사원 등록 -->
-<!-- 	<insert id="custcompMngInsert" parameterType="com.crm.cp.sales.custcompMng.vo.PocVO"> -->
+	<insert id="custcompMngInsert" parameterType="com.crm.cp.sales.custcomp.vo.PocVO">
+		insert into PARTNER_OF_CLIENT 
+	    (
+	      cust_id,
+	      iuser_id,
+	      key_part,
+	      fst_reg_id,
+	      fst_reg_dt,
+	      fin_mdfy_id,
+	      fin_mdfy_dt
+	    )
+	    values
+	    (
+	      #{cust_id},
+	      #{iuser_id},
+	      #{key_part},
+	      #{fst_reg_id},
+	      sysdate,
+	      #{fin_mdfy_id},
+	      sysdate
+	    )
+	</insert>
 	
-<!-- 	</insert> -->
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- 담당사원 수정 --> 
+<!-- 	<update id="custcompMngUpdate" parameterType="com.crm.cp.sales.custcomp.vo.PocVO"> -->
+<!-- 		update PARTNER_OF_CLIENT -->
+<!-- 		set key_part =  #{key_part} -->
+<!-- 		where cust_id = #{cust_id} -->
+<!-- 			and iuser_id = #{iuser_id} -->
+<!-- 	</update> -->
 	
 	
 	<!-- 산업군 코드 리스트 -->

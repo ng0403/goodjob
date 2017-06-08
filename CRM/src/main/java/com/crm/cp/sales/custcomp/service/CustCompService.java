@@ -101,8 +101,8 @@ public interface CustCompService {
 	void custcompDelEdit(CustCompVO ccVO);										// 고객사 삭제된 데이터 복원(수정)
 	int custcompDelDelete(String cust_id);										// 고객사 삭제된 데이터 완전삭제
 	
-	PagerVO custcompMngListCount(Map<String, Object> ccMngMap);					// 담당사원 리스트 전제 개수 
-	List<PocVO> custcompMngAllList(Map<String, Object> ccMngMap);				// 담당사원 리스트 
+	PagerVO custcompMngListCount(Map<String, Object> pMap);					// 담당사원 리스트 전제 개수 
+	List<PocVO> custcompMngAllList(Map<String, Object> pMap);				// 담당사원 리스트 
 	List<OrganizationVO> orgCdList();											// 담당사원 부서 가져오기
 	PocVO custcompMngDetail(PocVO pocVO);										// 담당사원 상세보기
 	void custcompMngInsert(PocVO pocVO);										// 담당사원 등록

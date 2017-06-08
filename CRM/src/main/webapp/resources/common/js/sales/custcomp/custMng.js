@@ -12,6 +12,7 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
+	var page = $("#ccPageNum").val();
 	activeCancel();
 	CustCompMngButton(ctx);
 	startDatePicker(ctx);
@@ -33,6 +34,11 @@ function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
 		 var cell_ph3 = $("#cell_ph3").val();
 		 var email1 = $("#email1").val();
 		 var email2 = $("#email2").val();
+		 
+		//버튼 활성화
+		$("#AddBtnDiv").css("display", "none");
+		$("#mdfyBtnDiv").css("display", "block");
+		$("#saveBtnDiv").css("display", "none");
  		
 		 var ccMngjsonData = {
 					"cust_id" : cust_id, "cust_nm" :  cust_nm,
@@ -67,6 +73,19 @@ function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
 			}
 		});
 //	});
+}
+
+
+// 담당사원 편집버튼 클릭 시
+function mdfyClick(){
+		
+		$("#tbody1 #key_part").attr({
+			readonly:false,
+			style:'background-color:white'
+		});
+		
+		$("#saveBtnDiv").css("display", "block");
+		$("#mdfyBtnDiv").css("display", "none");
 }
 
 // 담당사원 추가 시 고객사 검색
@@ -137,25 +156,21 @@ function CustCompMngButton(ctx){
 function posAddBtn() {
 	
 	var ctx = $("#ctx").val();
-	alert("담당사원 추가버튼 클릭");
 	
-	$("#key_part").attr("disabled", true);
+	$("#tbody1 #key_part").attr({
+		readonly:false,
+		style:'background-color:white'
+	});
 
+	$("#Manager, #comp_list_bt").attr({
+		disabled: false
+	});
+	
 	//버튼 활성화
-	$("add_bt_position").css("display", "block");
+	$("#AddBtnDiv").css("display", "block");
+	$("#mdfyBtnDiv").css("display", "none");
 	
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -244,7 +259,7 @@ function ccMngAdd(ctx){
 	var iuser_nm = $('#iuser_nm').val();
 		var org_nm = $('#org_nm').val();
 		var iuser_id = $('#iuser_id').val();
-		var cust_id = $('#nowCust_id', opener.document).val();
+		var cust_id = $('#cust_id').val();
 		var cust_nm = $('#cust_nm').val();
 		var key_part = $('#key_part').val();
 		
@@ -266,8 +281,12 @@ function ccMngAdd(ctx){
 			datatype : 'json',
 			url : ctx+'/ccMngAdd',
 			success:function(result){
-				alert("정상적으로 등록되었습니다.");
-				window.opener.pocList(cust_id);
+				alert("담당사원이 등록되었습니다.");
+//				window.opener.pocList(cust_id);
+//				location.href = ctx+ '/custcompMng';
+				//여기 주소 수정해야함
+				location.href = pocList(cust_id);
+				
 				self.close();
 			},
 			error:function(request){
@@ -316,6 +335,90 @@ function ccMngUpdate(ctx){
 	
 }
 
+// 담당사원 리스트 ajaxList
+function ccMngPocList(page) {
+		
+	var tbody = $('#pocTableTbody');
+	var tbodyContent = "";
+	var tabValue = $("#tabValue").val();
+	
+	$.ajax({
+		url : /*ctx+*/'custMngAjax',
+		type : 'POST',
+		data : {ccPageNum :page},
+		dataType : "json",
+		success : function(data) {
+			tbody.children().remove();
+			if(data.length == 0){
+				tbodyContent = "<tr style='height: 75px;'><td colspan='10' style='width: 1320px; text-align: center;  vertical-align: middle;'>등록된 담당사원이 없습니다.</td></tr>";
+				tbody.append(tbodyContent);
+			}else{
+				
+				for (var i = 0; i < data.ccVOList.length; i++) {
+					tbodyContent = 
+						"<tr>" +
+						"<td style='width:31px;'><input type='checkbox' value='"+data.ccVOList[i].cust_id+":"+data.ccVOList[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:168px;'>"+data.ccVOList[i].cust_nm+"</td>" +
+						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data.ccVOList[i].cust_id+"','"+data.ccVOList[i].iuser_id+"','"+data.ccVOList[i].org_nm+"','"+data.ccVOList[i].iuser_nm+"');\"  class='cnClick'>"+data.ccVOList[i].iuser_nm+"</td>" +
+						"<td style='width:168px;'>"+data.ccVOList[i].org_nm+"</td>" +
+						"<td style='width:271px;'>"+data.ccVOList[i].key_part+"</td>" +
+						"<td style='width:226px;'>"+data.ccVOList[i].cell_ph1+"-"+data.ccVOList[i].cell_ph2+"-"+data.ccVOList[i].cell_ph3+"</td>" +
+						"<td style='width:250px;'>"+ data.ccVOList[i].email1 + "@"+ data.ccVOList[i].email2 +"</td>" +
+						"</tr>"
+						;
+					tbody.append(tbodyContent);
+					
+				}
+			}
+		},
+		error : function() {
+			alert("전송중 오류가 발생했습니다.");
+		}
+	
+	});
+}
+
+//페이징
+function paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage){
+	var endPageNo = $("<input>");
+	endPageNo.attr({"type":"hidden","id":"endPageNum","value":endPageNum});
+	var ccPageeNo = $("<input>");
+	ccPageeNo.attr({"type":"hidden","id":"ccPageNum","value":ccPageNum});
+	$("#pageSpace").append(endPageNo).append(ccPageeNo);
+	
+	var prevPage = $("<a>");
+	prevPage.addClass("icon item");
+	var prevI = $("<i>");
+	prevI.addClass("left chevron icon");
+	if(ccPageNum != firstPageCount){
+		prevPage.attr("href","javascript:ccMngPocList("+prevPageNum+")");
+	}
+	prevPage.append(prevI);
+	$("#pageSpace").append(prevPage);
+	for(var i = startPageNum; i <= endPageNum; i++){
+		var ccPage = $("<a>");
+		ccPage.addClass("item");
+		ccPage.attr("href","javascript:ccMngPocList("+i+")");
+		ccPage.html(i);
+		if(i == ccPageNum){
+			var b = $("<b>");
+			ccPage.attr("id","pNum");
+			b.append(ccPage);
+			$("#pageSpace").append(b);
+		}else{
+			$("#pageSpace").append(ccPage);
+		}
+	}
+	var nextPage = $("<a>");
+	nextPage.addClass("icon item");
+	var nextI = $("<i>");
+	nextI.addClass("right chevron icon");
+	if(ccPageNum != totalPageCount){
+		nextPage.attr("href","javascript:ccMngPocList("+nextPageNum+")");
+	}
+	nextPage.append(nextI);
+	$("#pageSpace").append(nextPage);
+}
 
 // 팝업창 자동 크기조절
 function setWindowResize() {

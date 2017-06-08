@@ -41,8 +41,8 @@ $(document).ready(function() {
 	
 	chkCancel();
 	keymanList(cust_id);
-	pocList(cust_id);
-	posList(cust_id);
+//	pocList(cust_id);
+//	posList(cust_id);
 	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
@@ -316,53 +316,54 @@ function custCompList(page){
 					act_yn : $("#act_yn").val() 
 				},
 				datatype : 'json',
-		success:function(result){
-			if(result.ccVOListSize == 0){
-				alert("검색결과가 없습니다.");
-				location.href = ctx+'/custcomp';
-			}else{
-				//리스트 출력 시 버튼 상태 설정
-				$("#functionBtn").css("display", "block");
-				
-				$("#ccListTbody").children().remove();
-				$.each(result.ccVOList, function(i, cc){
-				
-					$("#ccListTbody").append("" +
-							"<tr id='"+cc.cust_id+"'>"+
-								"<td style='text-align:center; width:3%;' >" +
-									"<input type=checkbox id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
-									"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
-									"<input type=hidden id=cust_nm value="+cc.cust_nm+"></td>"+
-								"<td style='text-align: left;   width: 16%; padding-left:8px; ' id='ccListTableNmTd' ><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
-								"<td style='text-align:center; width:12%' id=cust_nm >"+cc.comp_num+"</td>"+
-								"<td style='text-align:center; width:12%;'>"+cc.corp_num+"</td>"+
-								"<td style='text-align:center; width:10%;'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
-								"<td style='text-align:center; width:10%;'>"+cc.sales_scale+"</td>"+
-								"<td style='text-align:right;  width:10%; padding-right:8px '> "+cc.emp_qty+"</td>"+
-								"<td style='text-align:center; width:14%;'>"+cc.indst+"</td>"+
-//								"<td style='text-align:center; width:15%;'>"+cc.fst_reg_dt+"</td>+"+
-							"</tr >"
-					);
-				});
+				success:function(result){
+				if(result.ccVOListSize == 0){
+					
+					alert("검색결과가 없습니다.");
+					location.href = ctx+'/custcomp';
+				}else{
+					//리스트 출력 시 버튼 상태 설정
+					$("#functionBtn").css("display", "block");
+					
+					$("#ccListTbody").children().remove();
+					$.each(result.ccVOList, function(i, cc){
+					
+						$("#ccListTbody").append("" +
+								"<tr id='"+cc.cust_id+"'>"+
+									"<td style='text-align:center; width:3%;' >" +
+										"<input type=checkbox id=custcomp_del name=custcomp_del value="+cc.cust_id+">" +
+										"<input type=hidden id=list_cust_id value="+cc.cust_id+">" +
+										"<input type=hidden id=cust_nm value="+cc.cust_nm+"></td>"+
+									"<td style='text-align: left;   width: 16%; padding-left:8px; ' id='ccListTableNmTd' ><a onclick=\"ccTabFunc('"+cc.cust_id+"');\" id=cust_nm href='#' style='text-decoration: none;'>"+cc.cust_nm+"</a></td>"+
+									"<td style='text-align:center; width:12%' id=cust_nm >"+cc.comp_num+"</td>"+
+									"<td style='text-align:center; width:12%;'>"+cc.corp_num+"</td>"+
+									"<td style='text-align:center; width:10%;'>"+cc.rep_ph1+"-"+cc.rep_ph2+"-"+cc.rep_ph3+"</td>"+
+									"<td style='text-align:center; width:10%;'>"+cc.sales_scale+"</td>"+
+									"<td style='text-align:right;  width:10%; padding-right:8px '> "+cc.emp_qty+"</td>"+
+									"<td style='text-align:center; width:14%;'>"+cc.indst+"</td>"+
+	//								"<td style='text-align:center; width:15%;'>"+cc.fst_reg_dt+"</td>+"+
+								"</tr >"
+						);
+					});
+				}
+	
+				$("#pageSpace").children().remove();	
+				$("#pageSpace").children().remove();
+				var ccPageNum = result.ccPageNum;
+				var startPageNum = result.page.startPageNum;
+				var endPageNum = result.page.endPageNum;
+				var firstPageCount = result.page.firstPageCount;
+				var totalPageCount = result.page.totalPageCount;
+				var prevPageNum = result.page.prevPageNum;
+				var nextPageNum = result.page.nextPageNum;
+				var prevStepPage = result.page.prevStepPage;
+				var nextStepPage = result.page.nextStepPage;
+				paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
+			},
+			error:function(request){
+				alert("error : " + request);
 			}
-
-			$("#pageSpace").children().remove();	
-			$("#pageSpace").children().remove();
-			var ccPageNum = result.ccPageNum;
-			var startPageNum = result.page.startPageNum;
-			var endPageNum = result.page.endPageNum;
-			var firstPageCount = result.page.firstPageCount;
-			var totalPageCount = result.page.totalPageCount;
-			var prevPageNum = result.page.prevPageNum;
-			var nextPageNum = result.page.nextPageNum;
-			var prevStepPage = result.page.prevStepPage;
-			var nextStepPage = result.page.nextStepPage;
-			paging(ccPageNum, startPageNum, endPageNum, firstPageCount, totalPageCount, prevPageNum, nextPageNum, prevStepPage, nextStepPage);
-		},
-		error:function(request){
-			alert("error : " + request);
-		}
-	});
+		});
 }
 
 //검색 버튼 클릭 시 
@@ -600,7 +601,6 @@ function viewDetail(cust_id) {
 
 // 고객사 상세보기 ajax 통신
 function ccDetail(cust_id) {
-	$(document).ready(function() {
 		var ctx = $("#ctx").val();
 		$("#mdfBtn").attr("disabled", false);
 		
@@ -663,7 +663,6 @@ function ccDetail(cust_id) {
 				alert("전송중 오류가 발생했습니다.");
 			}
 		});
-	});
 }
 
 function comma(str) {
@@ -674,48 +673,45 @@ function comma(str) {
 
 //영업 담당사원 List ajax 통신(고객사담당자에서 바뀐 이름)
 //담당사원 List
-function pocList(cust_id) {
-	$(document).ready(function() {
-		var ctx = $("#ctx").val();
-		var tbody = $('#pocTableTbody');
-		var tbodyContent = "";
-		$.ajax({
-			url : ctx+'/ccPocList',
-			type : 'POST',
-			data : "cust_id="+cust_id,
-			dataType : "json",
-			success : function(data) {
-				tbody.children().remove();
-				//고객사 담당자 리스트 그리기
-				if(data.length == 0){
-					tbodyContent = "<tr style='height: 75px;'><td colspan='9' style='width: 1320px;'>등록된 고객사 담당자가 없습니다.</td></tr>";
-					tbody.append(tbodyContent);
-				}
-				else
-				{
-					for (var i = 0; i < data.length; i++) {
-						tbodyContent = "<tr>" +
-						"<td style='width:31px;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].org_nm+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
-						"<td style='width:168px;'>"+data[i].org_nm+"</td>" +
-						"<td style='width:271px;'>"+data[i].key_part+"</td>" +
-						"<td style='width:226px;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
-						"<td style='width:250px;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
-						"</tr>";
-						tbody.append(tbodyContent);
-					}
-				}
-			},
-			error : function() {
-				alert("전송중 오류가 발생했습니다.");
-			}
-		});
-	});
-}
+//function pocList(cust_id) {
+//		var ctx = $("#ctx").val();
+//		var tbody = $('#pocTableTbody');
+//		var tbodyContent = "";
+//		$.ajax({
+//			url : ctx+'/ccPocList',
+//			type : 'POST',
+//			data : "cust_id="+cust_id,
+//			dataType : "json",
+//			success : function(data) {
+//				tbody.children().remove();
+//				//고객사 담당자 리스트 그리기
+//				if(data.length == 0){
+//					tbodyContent = "<tr style='height: 75px;'><td colspan='9' style='width: 1320px;'>등록된 고객사 담당자가 없습니다.</td></tr>";
+//					tbody.append(tbodyContent);
+//				}
+//				else
+//				{
+//					for (var i = 0; i < data.length; i++) {
+//						tbodyContent = "<tr>" +
+//						"<td style='width:31px;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+//						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].org_nm+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
+//						"<td style='width:168px;'>"+data[i].org_nm+"</td>" +
+//						"<td style='width:271px;'>"+data[i].key_part+"</td>" +
+//						"<td style='width:226px;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
+//						"<td style='width:250px;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
+//						"</tr>";
+//						tbody.append(tbodyContent);
+//					}
+//				}
+//			},
+//			error : function() {
+//				alert("전송중 오류가 발생했습니다.");
+//			}
+//		});
+//}
 
 //영업 담당자 List ajax 통신
 function posList(cust_id) {
-	$(document).ready(function() {
 		var ctx = $("#ctx").val();
 		var tbody = $('#posTableTbody');
 		var tbodyContent = "";
@@ -748,12 +744,10 @@ function posList(cust_id) {
 				alert("전송중 오류가 발생했습니다.");
 			}
 		});
-	});
 }
 
 // 키맨 List ajax 통신
 function keymanList(cust_id) {
- 	$(document).ready(function() {
  		var ctx = $("#ctx").val();
 		var tbody = $('#keymanTableTbody');
 		var tbodyContent = "";
@@ -786,7 +780,6 @@ function keymanList(cust_id) {
 				alert("전송중 오류가 발생했습니다.");
 			}
 		}); 
-	});
 }
 
 //날짜 13자리를 yyyy-mm-dd형식으로 변환해주는 함수
@@ -823,7 +816,6 @@ function dateFormatTime(timestamp){
 
 // 영업활동 List ajax 통신
 function actList(cust_id) {
-	$(document).ready(function() {
 		var ctx = $("#ctx").val();
 		var tbody = $('#actTableTbody');
 		var tbodyContent = "";
@@ -868,12 +860,10 @@ function actList(cust_id) {
 				alert("전송중 오류가 발생했습니다.");
 			}
 		});
-	});
 }
 
 // 견적 List ajax 통신
 function estList(cust_id) {
-	$(document).ready(function() {
 		var ctx = $("#ctx").val();
 		var tbody = $('#estTableTbody');
 		var tbodyContent = "";
@@ -911,12 +901,10 @@ function estList(cust_id) {
 				alert("전송중 오류가 발생했습니다.");
 			}
 		});
-	});
 }
 
 // 계약 List ajax 통신
 function contList(cust_id) {
-	$(document).ready(function() {
 		var ctx = $("#ctx").val();
 		var tbody = $('#contTableTbody');
 		var tbodyContent = "";
@@ -961,13 +949,11 @@ function contList(cust_id) {
 				alert("전송중 오류가 발생했습니다.");
 			}
 		});
-	});
 }
 
 
 //조회 페이징
 function schPaging(ccPageNum) {
-	$(document).ready(function() {
 		var ctx = $("#ctx").val();
 		var sch_cust_nm   = $("#sch_cust_nm").val();
 		var sch_cust_nm0  = $("#sch_cust_nm0").val();
@@ -1107,6 +1093,5 @@ function schPaging(ccPageNum) {
 				}
 			});//ajax
 		}
-	});//document.ready
 }
 

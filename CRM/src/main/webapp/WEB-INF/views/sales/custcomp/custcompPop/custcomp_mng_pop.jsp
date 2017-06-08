@@ -53,7 +53,7 @@
 							<input type="hidden" name="iuser_id" id="iuser_id" value="${detail.iuser_id}">
 							<input type="text"   name="iuser_nm" id="iuser_nm" class="inputText" value="${detail.iuser_nm}" disabled="disabled" style="  width: 30%;">
 							<c:if test="${flg == 'add' }">
-								<input type="button" class="tiny ui blue basic button" id="Manager"  value="사원 검색" onclick="javascript:iuserListPopup('${ctx}');" style="margin-left: 5px;">
+								<input type="button" class="tiny ui blue basic button" id="Manager" value="사원 검색" onclick="javascript:iuserListPopup('${ctx}');" style="margin-left: 5px;" disabled="disabled" >
 							</c:if>
 						</td>
 						<th>고객사명</th>
@@ -61,7 +61,7 @@
 							<c:if test="${flg == 'add' }">
 								<input type="hidden" name="cust_id" id="cust_id" value="${detail.cust_id}">
 								<input type="text" name="cust_nm" id="cust_nm"  class="inputText" value="${detail.cust_nm}" disabled="disabled" style="width: 30%;">
-								<input type="button" name="compSearch" value="고객사 검색" class="tiny ui blue basic button" id="comp_list_bt" onclick="compListPopup('${ctx}');" style="margin-left: 5px;"/>
+								<input type="button" name="compSearch" value="고객사 검색" class="tiny ui blue basic button" id="comp_list_bt" onclick="compListPopup('${ctx}');" style="margin-left: 5px;"  disabled="disabled"/>
 							</c:if>
 						</td>
 					</tr>
@@ -105,12 +105,17 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="add_bt_position" style="padding-top: 10px; display: none;" >
-			<input type="button" id="ccMngButton"      class="tiny ui blue button" value="저장" />
+		
+		<div id="AddBtnDiv" class="add_bt_position" style="padding-top: 10px; display: none;" >
+			<input type="button" id="ccMngAddButton"   class="tiny ui blue button" value="저장" onclick="ccMngAdd('${ctx}');"/>
 			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
 		</div>
-		<div class="mdfy_bt_position" style="padding-top: 10px; display: none;">
-			<input type="button" id="ccMngButton"      class="tiny ui blue button" value="저장" />
+		<div id="mdfyBtnDiv" class="mdfy_bt_position" style="padding-top: 10px; display: none;">
+			<input type="button" id="ccMngMdfyButton"  class="tiny ui blue button" value="편집" onclick="mdfyClick();"/>
+			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
+		</div>
+		<div id="saveBtnDiv" class="mdfy_bt_position" style="padding-top: 10px; display: none;">
+			<input type="button" id="ccMngMdfyButton"  class="tiny ui blue button" value="저장" />
 			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
 		</div>
 		

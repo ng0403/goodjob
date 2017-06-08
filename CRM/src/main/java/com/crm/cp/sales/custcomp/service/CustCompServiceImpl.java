@@ -639,24 +639,24 @@ public class CustCompServiceImpl implements CustCompService {
 
 	// 담당사원 전체 리스트 개수 
 	@Override
-	public PagerVO custcompMngListCount(Map<String, Object> ccMngMap) {
-		System.out.println("custcompMngListCount service " +  ccMngMap.toString());
-		int ccPageNum = (Integer) ccMngMap.get("ccPageNum");
+	public PagerVO custcompMngListCount(Map<String, Object> pMap) {
+		System.out.println("custcompMngListCount service " +  pMap.toString());
+		int ccPageNum = (Integer) pMap.get("ccPageNum");
 		// 현재 페이지 얻어오기
-		PagerVO page = new PagerVO(ccPageNum, 0, 6, 6);
+		PagerVO page = new PagerVO(ccPageNum, 0, 5, 5);
 		// 전체 글의 갯수 구하기
 		System.out.println("ccPageNum Num " + ccPageNum);
-		int totalRowCount = ccDao.custcompMngListCount(ccMngMap);
+		int totalRowCount = ccDao.custcompMngListCount(pMap);
 		System.out.println("totalRowCount ? " + totalRowCount);		
-		page = new PagerVO(ccPageNum, totalRowCount, 6, 6);
+		page = new PagerVO(ccPageNum, totalRowCount, 5, 5);
 		
 		return page;
 	}
 
 	// 담당사원 전체 리스트
 	@Override
-	public List<PocVO> custcompMngAllList(Map<String, Object> ccMngMap) {
-		return ccDao.custcompMngAllList(ccMngMap);
+	public List<PocVO> custcompMngAllList(Map<String, Object> pMap) {
+		return ccDao.custcompMngAllList(pMap);
 	}
 
 	// 담당사원 부서 가져오기
@@ -679,6 +679,8 @@ public class CustCompServiceImpl implements CustCompService {
 		ccDao.custcompMngInsert(pocVO);
 		
 	}
+	
+	// 담당사원 수정
 	
 	
 	

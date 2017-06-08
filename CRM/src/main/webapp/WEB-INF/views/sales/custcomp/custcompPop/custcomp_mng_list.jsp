@@ -36,7 +36,7 @@
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
-			<input type="text" placeholder="사원명"  id="sch_cust_nm" name="sch_cust_nm" onkeypress="schDelCustComp(event);">
+			<input type="text" placeholder="사원명"  id="sch_iuser_nm" name="sch_iuser_nm" onkeypress="schDelCustComp(event);">
 			<i class="user icon"></i>
 		</div>	
 		<select name="org_id" id="org_id_select" style="height: 30px; margin-right: 4px; background: #fff;">
@@ -47,12 +47,12 @@
 	    </select>
 		
 		<div class="ui left icon input">	
-			<input type="text" placeholder="역할명"  id="sch_corp_num" name="sch_key_part"  onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
+			<input type="text" placeholder="역할명"  id="sch_key_part" name="sch_key_part"  onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
 			<i class="browser icon"></i>
 		</div>	
 		
 		<div class="ui left icon input">	
-			<input type="text" placeholder="이메일"  id="sch_corp_num" name="sch_corp_num" onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
+			<input type="text" placeholder="이메일"  id="sch_email" name="sch_email" onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
 			<i class="mail icon"></i>
 		</div>	
 		
@@ -115,7 +115,7 @@
 	        			</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.firstPageCount}">
-		        		<a href="javascript:custCompList(${page.prevPageNum})" class="icon item">
+		        		<a href="javascript:ccMngPocList(${page.prevPageNum})" class="icon item">
 		        			<i class="left chevron icon"></i>
 		        		</a>
 		    		</c:when>
@@ -124,11 +124,11 @@
 					<c:choose>
 						<c:when test="${i eq ccPageNum }">
 							<b>
-								<a  href="javascript:custCompList('${i}');" id="pNum" class="item">${i}</a>
+								<a  href="javascript:ccMngPocList('${i}');" id="pNum" class="item">${i}</a>
 							</b>
 						</c:when>
 						<c:otherwise>
-							<a  href="javascript:custCompList('${i}');" class="item" >${i}</a>
+							<a  href="javascript:ccMngPocList('${i}');" class="item" >${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -139,7 +139,7 @@
 	        			</a>	
 		    		</c:when>
 					<c:when test="${ccPageNum ne page.totalPageCount}">
-		       			<a href="javascript:custCompList(${page.nextPageNum})" class="icon item">
+		       			<a href="javascript:ccMngPocList(${page.nextPageNum})" class="icon item">
 		       				<i class="right chevron icon"></i>
 		       			</a>
 		    		</c:when>
