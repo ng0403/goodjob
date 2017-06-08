@@ -69,7 +69,7 @@
 						<th>연락처</th>
 						<td>
 							<c:if test="${flg == 'add' }">
-								<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${custcompDetail.cell_ph}" maxlength="9" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+								<input type="text" name="cell_ph" id="cell_ph" class="inputText" value="${custcompDetail.cell_ph}" maxlength="9" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='width: 250px;' readonly="readonly"/>
 							</c:if>
 							<c:if test="${flg == 'detail' }">
 								<input type="text" name="comp_ph" id="comp_ph" class="inputText" value="${detail.cell_ph1} - ${detail.cell_ph2} - ${detail.cell_ph3}" maxlength="9" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' readonly="readonly"/>
@@ -78,7 +78,7 @@
 						<th>이메일</th>
 							<td>
 							<c:if test="${flg == 'add' }">
-								<input type="text" name="email" id="email" class="inputText" value="${custcompDetail.email}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+								<input type="text" name="email" id="email" class="inputText" value="${custcompDetail.email}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='width: 250px;' readonly="readonly" />
 							</c:if>
 							<c:if test="${flg == 'detail' }">
 								<input type="text" name="email" id="email" class="inputText" value="${detail.email1} @ ${ detail.email2}" maxlength="3" onkeydown='return onlyNumber(event);' onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;'/>
@@ -89,7 +89,7 @@
 						<th>부서명</th>
 						<td>
 							<c:if test="${flg == 'add' }">
-								<input type="text" name="org_nm" id="org_nm" class="inputText" value="${custcompDetail.org_nm}" maxlength="3" onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' />
+								<input type="text" name="org_nm" id="org_nm" class="inputText" value="${custcompDetail.org_nm}" maxlength="3" onkeyup='removeChar(event);' style=' width: 250px;' readonly="readonly" />
 							</c:if>
 							<c:if test="${flg == 'detail' }">
 								<input type="text" name="org_nm" id="org_nm" class="inputText" value="${detail.org_nm}" onkeyup='removeChar(event);' style='ime-mode:disabled; width: 250px;' readonly="readonly"/>
@@ -97,7 +97,7 @@
 						</td>
 						<th>역할명</th>
 						<td>
-						    <input type="text"   id="key_part" name="key_part"  class="inputText" value="${detail.key_part}" style="width: 30%; background: #fff;" > 
+						    <input type="text"   name="key_part" id="key_part" class="inputText" value="${detail.key_part}" style='ime-mode:disabled; width: 30%; ' readonly="readonly"  > 
 						</td>
 					</tr>
 					
@@ -105,10 +105,17 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="act_bt_position" style="padding-top: 10px;">
+		<div class="add_bt_position" style="padding-top: 10px; display: none;" >
 			<input type="button" id="ccMngButton"      class="tiny ui blue button" value="저장" />
 			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
 		</div>
+		<div class="mdfy_bt_position" style="padding-top: 10px; display: none;">
+			<input type="button" id="ccMngButton"      class="tiny ui blue button" value="저장" />
+			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
+		</div>
+		
+		
+		
 	</div>
 </div>
 </body>

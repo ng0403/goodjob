@@ -672,4 +672,14 @@ public class CustCompServiceImpl implements CustCompService {
 		System.out.println(pocVOList);
 		return pocVOList;
 	}
+	
+	// 담당사원 등록
+	@Override
+	public void custcompMngInsert(PocVO pocVO) {
+		ccDao.custcompMngInsert(pocVO);
+		
+	}
+	
+	
+	
 }

@@ -132,6 +132,32 @@ function CustCompMngButton(ctx){
 		}
 	});
 }
+
+//담당사원 추가 버튼 클릭 시
+function posAddBtn() {
+	
+	var ctx = $("#ctx").val();
+	alert("담당사원 추가버튼 클릭");
+	
+	$("#key_part").attr("disabled", true);
+
+	//버튼 활성화
+	$("add_bt_position").css("display", "block");
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //영업기회 팝업창 띄우기
 function ccOpptListPop(ctx){

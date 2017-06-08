@@ -100,7 +100,7 @@
 		
 		<div id="bottomDiv">
 			<div class="bt_position_authuser" style="margin-top: 10px; float: left;">
-				<input type="button" id="poc_popBtn"  class="tiny ui button" value="담당자 추가" onclick="posAddBtn('${custcompDetail.cust_id}','${custcompDetail.cust_nm}', 'tabValue.value');"/>
+				<input type="button" id="poc_popBtn"  class="tiny ui button" value="담당사원 등록" onclick="posAddBtn('${custcompDetail.cust_id}','${custcompDetail.cust_nm}', 'tabValue.value');"/>
 				<input type="button" id="deletePocbtn" class="tiny ui blue button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			

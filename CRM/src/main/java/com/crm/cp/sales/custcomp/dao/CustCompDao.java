@@ -105,5 +105,7 @@ public interface CustCompDao {
 	List<PocVO> custcompMngAllList(Map<String, Object> ccMngMap);   // 담당사원 전체 리스트
 	List<OrganizationVO> orgCdList();								// 담당사원 부서 가져오기		
 	PocVO custcompMngDetail(PocVO pocVO);							// 담당사원 상세보기
-
+	void custcompMngInsert(PocVO pocVO);							// 담당사원 등록
+	
+	
 } 
