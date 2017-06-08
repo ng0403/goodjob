@@ -8,6 +8,13 @@
  * startDatePicker(ctx)										:	달력 표시
  * startDatePicker()										:	영업활동 사용되는 달력 버튼
  * dateFormat(timestamp)									:	date 포맷 변경
+ * 
+ * ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm)			: 담당사원 상세보기(리스트에서 사원명 클릭 시)
+ * posAddBtn()												: 담당사원 등록버튼 클릭 시 
+ * mdfyClick()												: 담당사원 편집버튼 클릭 시
+ * 
+ * 
+ * 
  */
 
 $(function(){
@@ -74,7 +81,6 @@ function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
 		});
 //	});
 }
-
 
 // 담당사원 편집버튼 클릭 시
 function mdfyClick(){
@@ -152,7 +158,7 @@ function CustCompMngButton(ctx){
 	});
 }
 
-//담당사원 추가 버튼 클릭 시
+//담당사원 등록 버튼 클릭 시
 function posAddBtn() {
 	
 	var ctx = $("#ctx").val();
@@ -166,12 +172,50 @@ function posAddBtn() {
 		disabled: false
 	});
 	
+	$("#iuser_nm").val($("#hiuser_nm").val()).attr("readonly", true);
+	$("#cust_nm").val($("#hcust_nm").val()).attr("readonly", true);
+	$("#cell_ph").val($("#hcell_ph").val()).attr("readonly", true);
+	$("#email").val($("#hemail").val()).attr("readonly", true);
+	$("#org_nm").val($("#horg_nm").val()).attr("readonly", true);
+	$("#key_part").val($("#hkey_part").val()).attr("readonly", false);
+	
 	//버튼 활성화
 	$("#AddBtnDiv").css("display", "block");
 	$("#mdfyBtnDiv").css("display", "none");
+	$("#saveBtnDiv").css("display", "none");
 	
 }
 
+//고객사 담당사원 추가
+function ccMngAdd(ctx){
+
+	var iuser_nm = $('#iuser_nm').val();
+	var org_nm   = $('#org_nm').val();
+	var iuser_id = $('#iuser_id').val();
+	var cust_id  = $('#cust_id').val();
+	var cust_nm  = $('#cust_nm').val();
+	var key_part = $('#key_part').val();
+		
+	$.ajax({
+		type : 'post',
+		data : {
+			iuser_id : iuser_id,
+			cust_id : cust_id,
+			key_part : key_part
+		},
+		datatype : 'json',
+		url : ctx+'/ccMngAdd',
+		success:function(result){
+			alert("담당사원이 등록되었습니다.");
+//				window.opener.pocList(cust_id);
+				location.href = ctx+ '/custMngAjax';
+//			ccMngPocList(page);
+		},
+		error:function(request){
+			alert("error : " +request.status);
+		}
+	});
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //영업기회 팝업창 띄우기
@@ -253,47 +297,7 @@ function startDatePicker(ctx){
 	    /*    $('.ui-datepicker select.ui-datepicker-year').css('background-color', '#8C8C8C');*/
 
 }
-//고객사 담당사원 추가
-function ccMngAdd(ctx){
 
-	var iuser_nm = $('#iuser_nm').val();
-		var org_nm = $('#org_nm').val();
-		var iuser_id = $('#iuser_id').val();
-		var cust_id = $('#cust_id').val();
-		var cust_nm = $('#cust_nm').val();
-		var key_part = $('#key_part').val();
-		
-
-//		if(cust_nm==""||cust_nm==null){
-//			alert("고객사를 입력해 주세요");
-//			return false;
-//		}else if(iuser_nm==""|| iuser_nm ==null){
-//			alert("담당직원을 입력해 주세요");
-//			return false;
-//		}       
-		$.ajax({
-			type : 'post',
-			data : {
-				iuser_id : iuser_id,
-				cust_id : cust_id,
-				key_part : key_part
-			},
-			datatype : 'json',
-			url : ctx+'/ccMngAdd',
-			success:function(result){
-				alert("담당사원이 등록되었습니다.");
-//				window.opener.pocList(cust_id);
-//				location.href = ctx+ '/custcompMng';
-				//여기 주소 수정해야함
-				location.href = pocList(cust_id);
-				
-				self.close();
-			},
-			error:function(request){
-				alert("error : " +request.status);
-			}
-		});
-}
 	
 //영업담당자 수정
 function ccMngUpdate(ctx){
@@ -303,15 +307,6 @@ function ccMngUpdate(ctx){
 	var cust_id = $('#nowCust_id', opener.document).val();
 	var cust_nm = $('#cust_nm').val();
 	var key_part = $('#key_part').val();
-	
-
-//	if(cust_nm==""||cust_nm==null){
-//		alert("고객사를 입력해 주세요");
-//		return false;
-//	}else if(iuser_nm==""|| iuser_nm ==null){
-//		alert("담당직원을 입력해 주세요");
-//		return false;
-//	}
 		       
 	$.ajax({
 		type : 'post',
@@ -343,7 +338,7 @@ function ccMngPocList(page) {
 	var tabValue = $("#tabValue").val();
 	
 	$.ajax({
-		url : /*ctx+*/'custMngAjax',
+		url : 'custMngAjax',
 		type : 'POST',
 		data : {ccPageNum :page},
 		dataType : "json",

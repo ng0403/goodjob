@@ -89,7 +89,7 @@ public class CustcompMngController {
 	}
 	
 	// 담당사원 리스트(ajax)
-	@RequestMapping(value = "custMngAjax", method = RequestMethod.POST)
+	@RequestMapping(value = "custMngAjax", method = {RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody Map<String, Object> custcompMngAjaxList(HttpSession session,
 			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, @RequestParam Map<String, String> map,
 			@RequestParam(value = "sch_cust_nm", required = false) String sch_cust_nm,
@@ -205,7 +205,7 @@ public class CustcompMngController {
 //	}
 	
 	// 담당사원 등록
-	@RequestMapping(value = "/ccMngAdd", method = RequestMethod.POST)
+	@RequestMapping(value = "/ccMngAdd", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public int ccMngAdd(HttpSession session, IuserVO iuserVo) {
 		
