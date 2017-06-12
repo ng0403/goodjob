@@ -12,6 +12,7 @@ import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 
 public interface CustCompDao {
@@ -106,6 +107,8 @@ public interface CustCompDao {
 	List<OrganizationVO> orgCdList();								// 담당사원 부서 가져오기		
 	PocVO custcompMngDetail(PocVO pocVO);							// 담당사원 상세보기
 	void custcompMngInsert(PocVO pocVO);							// 담당사원 등록
+	List<PocVO> custcompMngCklList(Map<String, Object> pMap);		// 담당사원 고객사 있는 리스트	
+	int ccMngEdit(IuserVO iuserVo);								// 담당사원 수정
 	
 	
 } 

@@ -140,6 +140,7 @@ $(document).ready(function() {
 				tbody.append(tbodyContent);
 		} else {
 			pocList(cust_id);
+//			ccMngPocList(Page);
 		}
 	});
 	
@@ -673,7 +674,7 @@ function comma(str) {
 
 //영업 담당사원 List ajax 통신(고객사담당자에서 바뀐 이름)
 //담당사원 List
-//function pocList(cust_id) {
+function pocList(cust_id) {
 //		var ctx = $("#ctx").val();
 //		var tbody = $('#pocTableTbody');
 //		var tbodyContent = "";
@@ -708,7 +709,86 @@ function comma(str) {
 //				alert("전송중 오류가 발생했습니다.");
 //			}
 //		});
-//}
+	var tbody = $('#pocTableTbody');
+	var tbodyContent = "";
+	var tabValue = $("#tabValue").val();
+	
+	$.ajax({
+		url : 'custMngAjax',
+		type : 'POST',
+//		data : {ccPageNum :page},
+		data : "cust_id="+cust_id,
+		dataType : "json",
+		success : function(data) {
+			tbody.children().remove();
+			if(data.length == 0){
+				tbodyContent = "<tr style='height: 75px;'><td colspan='10' style='width: 1320px; text-align: center;  vertical-align: middle;'>등록된 담당사원이 없습니다.</td></tr>";
+				tbody.append(tbodyContent);
+			}else{
+				
+				for (var i = 0; i < data.ccVOList.length; i++) {
+					tbodyContent = 
+						"<tr>" +
+						"<td style='width:31px;'><input type='checkbox' value='"+data.ccVOList[i].cust_id+":"+data.ccVOList[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data.ccVOList[i].cust_id+"','"+data.ccVOList[i].iuser_id+"','"+data.ccVOList[i].org_nm+"','"+data.ccVOList[i].iuser_nm+"');\"  class='cnClick'>"+data.ccVOList[i].iuser_nm+"</td>" +
+						"<td style='width:168px;'>"+data.ccVOList[i].org_nm+"</td>" +
+						"<td style='width:271px;'>"+data.ccVOList[i].key_part+"</td>" +
+						"<td style='width:226px;'>"+data.ccVOList[i].cell_ph1+"-"+data.ccVOList[i].cell_ph2+"-"+data.ccVOList[i].cell_ph3+"</td>" +
+						"<td style='width:250px;'>"+ data.ccVOList[i].email1 + "@"+ data.ccVOList[i].email2 +"</td>" +
+						"</tr>"
+						;
+					tbody.append(tbodyContent);
+					
+				}
+			}
+		},
+		error : function() {
+			alert("전송중 오류가 발생했습니다.");
+		}
+	
+	});
+}
+function ccMngPocList(page) {
+	
+	var tbody = $('#pocTableTbody');
+	var tbodyContent = "";
+	var tabValue = $("#tabValue").val();
+	
+	$.ajax({
+		url : 'custMngAjax',
+		type : 'POST',
+		data : {ccPageNum :page},
+		dataType : "json",
+		success : function(data) {
+			tbody.children().remove();
+			if(data.length == 0){
+				tbodyContent = "<tr style='height: 75px;'><td colspan='10' style='width: 1320px; text-align: center;  vertical-align: middle;'>등록된 담당사원이 없습니다.</td></tr>";
+				tbody.append(tbodyContent);
+			}else{
+				
+				for (var i = 0; i < data.ccVOList.length; i++) {
+					tbodyContent = 
+						"<tr>" +
+						"<td style='width:31px;'><input type='checkbox' value='"+data.ccVOList[i].cust_id+":"+data.ccVOList[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td style='width:168px;'>"+data.ccVOList[i].cust_nm+"</td>" +
+						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data.ccVOList[i].cust_id+"','"+data.ccVOList[i].iuser_id+"','"+data.ccVOList[i].org_nm+"','"+data.ccVOList[i].iuser_nm+"');\"  class='cnClick'>"+data.ccVOList[i].iuser_nm+"</td>" +
+						"<td style='width:168px;'>"+data.ccVOList[i].org_nm+"</td>" +
+						"<td style='width:271px;'>"+data.ccVOList[i].key_part+"</td>" +
+						"<td style='width:226px;'>"+data.ccVOList[i].cell_ph1+"-"+data.ccVOList[i].cell_ph2+"-"+data.ccVOList[i].cell_ph3+"</td>" +
+						"<td style='width:250px;'>"+ data.ccVOList[i].email1 + "@"+ data.ccVOList[i].email2 +"</td>" +
+						"</tr>"
+						;
+					tbody.append(tbodyContent);
+					
+				}
+			}
+		},
+		error : function() {
+			alert("전송중 오류가 발생했습니다.");
+		}
+	
+	});
+}
 
 //영업 담당자 List ajax 통신
 function posList(cust_id) {
@@ -766,7 +846,7 @@ function keymanList(cust_id) {
 					for (var i = 0; i < data.length; i++) {
 						tbodyContent = "<tr>" +
 						"<td style='width:3%;'><input type='checkbox' value='"+data[i].cont_id+':'+data[i].cust_id+"' id='kmChkbox'  onclick='kmchkCancel();'></td>" +
-						"<td style='width:10%;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"','"+data[i].cont_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].cont_nm+"</td>" +
+						"<td style='width:10%;'><a href='#' onclick=\"keymanDeatil('"+data[i].cust_id+"','"+data[i].cont_id+"','"+data[i].cont_nm+"');\" class='cnClick'>"+data[i].cont_nm+"</td>" +
 						"<td id='key_part' style='width:12%;'>"+data[i].key_part+"</td>" +
 						"<td id='key_pos' style='width:12%;'>"+data[i].key_pos+"</td>" +
 						"<td id='cell_ph' style='width:13%;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
@@ -841,7 +921,7 @@ function actList(cust_id) {
 							+ "<td rowspan='2' style='width:24px;'>" 
 							+ 		"<input type='checkbox' value='"+data[i].sales_actvy_id+"' id='chk_act_id' onclick=\"actChkCancel();\"></td>"
 							+ "<td rowspan='2' style='width:264px; text-align :left; padding-left: 8px;'>" 
-							+ 		"<a style='color:blue;' class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"','"+tabValue+"')>"+data[i].sales_actvy_nm+"</a></td>"
+							+ 		"<a class='cnClick' href=javascript:actDetail('"+data[i].sales_actvy_id+"','"+'cust_ed'+"','"+tabValue+"')>"+data[i].sales_actvy_nm+"</a></td>"
 							+ "<td style='width:99px;'>"+data[i].strt_d+"</td>"
 							+ "<td style='width:74px;'>"+data[i].strt_t+"</td>"
 							+ "<td rowspan='2' style='width:106px;'>"+data[i].sales_actvy_type_nm+"</td>"
@@ -884,7 +964,7 @@ function estList(cust_id) {
 					//	var sales_price = comma(data[i].sales_price);
 						tbodyContent = "<tr>"
 							+ "<td style='width: 25px; text-align:center; vertical-align: middle;' ><input type='checkbox' value='"+data[i].estim_id+"' id='chk_est_id' onclick='estChkCancel();'></th>"
-							+ "<td style='width: 300px; text-align: left; padding-left: 8px;'><a href='#' onclick=\"estDetail3('"+data[i].estim_id+"','"+data[i].cust_id+"','"+tabValue+"');\"  style='color:blue;' class='cnClick'>"+data[i].estim_nm+"</td>"
+							+ "<td style='width: 300px; text-align: left; padding-left: 8px;'><a href='#' onclick=\"estDetail3('"+data[i].estim_id+"','"+data[i].cust_id+"','"+tabValue+"');\" class='cnClick'>"+data[i].estim_nm+"</td>"
 							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].estim_lev_cd_nm+"</td>"
 							+ "<td style='width: 76px; text-align:center; vertical-align: middle;'>"+data[i].estim_qty+"</td>"
 							+ "<td style='width: 100px; text-align:center; vertical-align: middle;'>"+data[i].sales_price+"</td>"

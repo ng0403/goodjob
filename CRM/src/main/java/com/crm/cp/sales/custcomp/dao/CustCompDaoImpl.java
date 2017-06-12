@@ -19,6 +19,7 @@ import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 
 @Repository
@@ -850,7 +851,14 @@ public class CustCompDaoImpl implements CustCompDao {
 		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngAllList", pMap);
 		return obj;
 	}
-
+	
+	// 담당사원 고객사 있는 리스트 
+	@Override
+	public List<PocVO> custcompMngCklList(Map<String, Object> pMap) {
+		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngCklList", pMap);
+		return obj;
+	}
+	
 	// 담당사원 부서 가져오기
 	@Override
 	public List<OrganizationVO> orgCdList() {
@@ -873,8 +881,15 @@ public class CustCompDaoImpl implements CustCompDao {
 		sqlSession.insert("custcomp.custcompMngInsert", pocVO);
 		
 	}
-	
-	// 담당사원 수정
+
+	@Override
+	public int ccMngEdit(IuserVO iuserVo) {
+		
+		int result = sqlSession.update("custcomp.custcompMngEdit", iuserVo);
+		
+		return result;
+	}
+
 	
 	
 	

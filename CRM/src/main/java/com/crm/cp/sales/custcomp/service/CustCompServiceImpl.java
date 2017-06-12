@@ -21,6 +21,7 @@ import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -659,6 +660,12 @@ public class CustCompServiceImpl implements CustCompService {
 		return ccDao.custcompMngAllList(pMap);
 	}
 
+	// 담당사원 고객사 있는 리스트 
+	@Override
+	public List<PocVO> custcompMngCklList(Map<String, Object> pMap) {
+		return ccDao.custcompMngCklList(pMap);
+	}
+	
 	// 담당사원 부서 가져오기
 	@Override
 	public List<OrganizationVO> orgCdList() {
@@ -679,8 +686,25 @@ public class CustCompServiceImpl implements CustCompService {
 		ccDao.custcompMngInsert(pocVO);
 		
 	}
-	
+
 	// 담당사원 수정
+	@Override
+	public String ccMngEdit(IuserVO iuserVo) {
+		
+		int updateResult = ccDao.ccMngEdit(iuserVo);
+		
+		String resultStr = null;
+		if(updateResult == 2){
+			resultStr = "담당사원 수정이 완료 되었습니다.";
+		} else {
+			resultStr = "담당사원 수정에 실패 했습니다.";
+		}
+		return resultStr;
+		
+	}
+
+	
+
 	
 	
 	

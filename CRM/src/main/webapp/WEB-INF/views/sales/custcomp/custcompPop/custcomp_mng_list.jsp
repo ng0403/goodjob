@@ -23,8 +23,9 @@
 		<!-- 신규추가를 눌렀을 경우 -->
 			<div class="caption">
 				<label id="listLabel" class="ui header">
-					■ 고객 > <a href="/custcomp" style="font-size: 14pt; text-decoration: none; ">고객사관리</a>
-					> 고객사 상세정보 </a>
+					■ 고객사관리 
+<!-- 					> <a href="/custcomp" style="font-size: 14pt; text-decoration: none; ">고객사관리</a> -->
+<!-- 					> 고객사 상세정보 </a> -->
 					> 담당사원  
 				</label>
 			</div>
@@ -67,13 +68,13 @@
 			<table class="ui sortable celled table" > 
 				<thead>
 					<tr class="tr_table_fix_header">
-						<th><input type="checkbox"  id='pocListCheck' ></th>
-						<th>고객사명</th>
-						<th>사원명</th>
-						<th>부서명</th>
-						<th>역할명</th>
-						<th>연락처</th>
-						<th>이메일</th>
+						<th style="width: 3%"><input type="checkbox"  id='pocListCheck' ></th>
+						<th style="width: 15%">고객사명</th>
+						<th style="width: 10%">사원명</th>
+						<th style="width: 12%">부서명</th>
+						<th style="width: 15%">역할명</th>
+						<th style="width: 13%">연락처</th>
+						<th style="width: 17%">이메일</th>
 					</tr>
 				</thead>
 				<tbody id= "pocTableTbody" class="tbody">
@@ -81,7 +82,7 @@
 					<c:forEach var="mngList" items="${custcompMngList}">
 						<tr>
 							<td >
-								<input type="checkbox" id="custcompMng_del" name="custcompMng_del" class="custMng_check" value="${mngList.cust_id}"   onclick="chkCancel();" >
+								<input type="checkbox" id="custcompMng_del" name="custcompMng_del" class="custMng_check" value="${mngList.cust_id}:${mngList.iuser_id}" onclick="chkCancel();" >
 							</td>
 							<td>${mngList.cust_nm }</td>
 							<td>
@@ -90,7 +91,7 @@
 							</td>
 							<td >${mngList.org_nm}</td>
 							<td>${mngList.key_part}</td>
-							<td>${mngList.cell_ph1}-${mngList.cell_ph2}-${mngList.cell_ph3}</td>
+							<td style="text-align: center;">${mngList.cell_ph1}-${mngList.cell_ph2}-${mngList.cell_ph3}</td>
 							<td>${mngList.email1}@${mngList.email2}</td>
 						</tr>
 					</c:forEach>

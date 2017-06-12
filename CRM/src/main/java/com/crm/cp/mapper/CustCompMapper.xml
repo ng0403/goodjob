@@ -499,7 +499,113 @@
 		                and i.iuser_id = poc.iuser_id
 		                and i.org_id = org.org_id
 		                and cust.act_yn = 'Y'
-	          
+	          			<choose>
+							<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != '' and sch_cust_nm1 != null and sch_cust_nm1 != ''">
+								and (cust.cust_nm like '%'||#{sch_cust_nm}||'%' 
+									 or cust.cust_nm like '%'||#{sch_cust_nm0}||'%' 
+									 or cust.cust_nm like '%'||#{sch_cust_nm1}||'%')
+							</when>
+							<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != ''">
+								and (cust.cust_nm like '%'||#{sch_cust_nm}||'%' 
+									 or cust.cust_nm like '%'||#{sch_cust_nm0}||'%')
+			 				</when>
+							<when test="sch_cust_nm !=null and sch_cust_nm !=''">
+								and cust.cust_nm like '%'||#{sch_cust_nm}||'%'
+							</when>
+						</choose>
+						<choose>
+							<when test="sch_iuser_nm !=null and sch_iuser_nm !='' and sch_iuser_nm0 != null and sch_iuser_nm0 != '' and sch_iuser_nm1 != null and sch_iuser_nm1 != ''">
+								and (i.cust_nm like '%'||#{sch_iuser_nm}||'%' 
+									 or i.iuser_nm like '%'||#{sch_iuser_nm0}||'%' 
+									 or i.iuser_nm like '%'||#{sch_iuser_nm1}||'%')
+							</when>
+							<when test="sch_iuser_nm !=null and sch_iuser_nm !='' and sch_iuser_nm0 != null and sch_iuser_nm0 != ''">
+								and (i.iuser_nm like '%'||#{sch_iuser_nm}||'%' 
+									 or i.iuser_nm like '%'||#{sch_iuser_nm0}||'%')
+			 				</when>
+							<when test="sch_iuser_nm !=null and sch_iuser_nm !=''">
+								and i.iuser_nm like '%'||#{sch_iuser_nm}||'%'
+							</when>
+						</choose>
+						
+						<choose>
+							<when test="sch_org_nm_cd !=null and sch_org_nm_cd !='' and sch_org_nm_cd0 != null and sch_org_nm_cd0 != '' and sch_org_nm_cd1 != null and sch_org_nm_cd1 != ''">
+								and (i.cust_nm like '%'||#{sch_org_nm_cd}||'%' 
+									 or org.org_nm like '%'||#{sch_org_nm_cd0}||'%' 
+									 or org.org_nm like '%'||#{sch_org_nm_cd1}||'%')
+							</when>
+							<when test="sch_org_nm_cd !=null and sch_org_nm_cd !='' and sch_org_nm_cd0 != null and sch_org_nm_cd0 != ''">
+								and (i.org_nm like '%'||#{sch_org_nm_cd}||'%' 
+									 or org.org_nm like '%'||#{sch_org_nm_cd0}||'%')
+			 				</when>
+							<when test="sch_org_nm_cd !=null and sch_org_nm_cd !=''">
+								and org.org_nm like '%'||#{sch_org_nm_cd}||'%'
+							</when>
+						</choose>
+						<choose>
+							<when test="sch_key_part !=null and sch_key_part !='' and sch_key_part0 != null and sch_key_part0 != '' and sch_key_part1 != null and sch_key_part1 != ''">
+								and (poc.key_part '%'||#{sch_key_part}||'%' 
+									 or poc.key_part like '%'||#{sch_key_part0}||'%' 
+									 or poc.key_part like '%'||#{sch_key_part1}||'%')
+							</when>
+							<when test="sch_key_part !=null and sch_key_part !='' and sch_key_part0 != null and sch_key_part0 != ''">
+								and (poc.key_part like '%'||#{sch_key_part}||'%' 
+									 or poc.key_part like '%'||#{sch_key_part0}||'%')
+			 				</when>
+							<when test="sch_key_part !=null and sch_key_part !=''">
+								and poc.key_part like '%'||#{sch_key_part}||'%'
+							</when>
+						</choose>
+						<choose>
+							<when test="sch_email !=null and sch_email !='' and sch_email0 != null and sch_email0 != '' and sch_email1 != null and sch_email1 != ''">
+								and ((i.email1 '%'||#{sch_email}||'%'  and i.email2 '%'||#{sch_email}||'%' )
+									 or (i.email1 '%'||#{sch_email0}||'%'  and i.email2 '%'||#{sch_email0}||'%' )
+									 or (i.email1 '%'||#{sch_email1}||'%'  and i.email2 '%'||#{sch_email1}||'%' ))
+							</when>
+							<when test="sch_email !=null and sch_email !='' and sch_email0 != null and sch_email0 != ''">
+								and ((i.email1 '%'||#{sch_email}||'%'  and i.email2 '%'||#{sch_email}||'%' )
+									 or (i.email1 '%'||#{sch_email0}||'%'  and i.email2 '%'||#{sch_email0}||'%' ))
+			 				</when>
+							<when test="sch_email !=null and sch_email !=''">
+								and (i.email1 '%'||#{sch_email}||'%'  and i.email2 '%'||#{sch_email}||'%' )
+							</when>
+						</choose>
+					order by poc.fin_mdfy_dt desc
+				   ) r
+				)mngpoc
+	       	 <![CDATA[where mngpoc.rnum >= ]]>	#{page.startRow} and mngpoc.rnum <![CDATA[ <= ]]> #{page.endRow}
+	</select>
+	
+	
+	<select id="custcompMngCklList" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.PocVO">
+		select 
+				mngpoc.*
+		from (
+			select
+				 r.*, rownum rnum
+			from (
+			        
+			        select 
+			            cust.cust_id,
+			            cust.cust_nm,
+			            i.iuser_id,
+			            i.iuser_nm,
+			            org.org_nm,
+			            poc.key_part,
+			            i.cell_ph1,
+			            i.cell_ph2,
+			            i.cell_ph3,
+			            i.email1,
+			            i.email2,
+			            i.FST_REG_DT,
+			            i.FIN_MDFY_DT
+		          from PARTNER_OF_CLIENT poc, iuser i, CUSTOMER cust, ORGANIZATION org
+		          where 1=1
+		                and cust.cust_id = poc.cust_id
+		                and i.iuser_id = poc.iuser_id
+		                and i.org_id = org.org_id
+		                and cust.act_yn = 'Y'
+	          			and cust.cust_id = #{cust_id, jdbcType=VARCHAR}
 					order by poc.fin_mdfy_dt desc
 				   ) r
 				)mngpoc
@@ -536,7 +642,8 @@
 			    and i.iuser_id = poc.iuser_id
 			    and i.org_id = org.org_id
 	        	and cust.act_yn = 'Y'
-	        	and cust.cust_id = #{cust_id, jdbcType=VARCHAR}
+	        	and i.iuser_id = #{iuser_id, jdbcType=VARCHAR}
+	        	and cust.cust_id =  #{cust_id, jdbcType=VARCHAR}
 	    	order by fin_mdfy_dt desc
 	</select>
 	
@@ -565,13 +672,12 @@
 	</insert>
 	
 	<!-- 담당사원 수정 --> 
-<!-- 	<update id="custcompMngUpdate" parameterType="com.crm.cp.sales.custcomp.vo.PocVO"> -->
-<!-- 		update PARTNER_OF_CLIENT -->
-<!-- 		set key_part =  #{key_part} -->
-<!-- 		where cust_id = #{cust_id} -->
-<!-- 			and iuser_id = #{iuser_id} -->
-<!-- 	</update> -->
-	
+	<update id="custcompMngEdit" parameterType="com.crm.cp.standard.iuser.vo.IuserVO">
+		update PARTNER_OF_CLIENT
+		set key_part =  #{key_part}
+		where cust_id = #{cust_id}
+			and iuser_id = #{iuser_id}
+	</update>
 	
 	<!-- 산업군 코드 리스트 -->
 	<select id="getIDC" resultType="com.crm.cp.sales.custcomp.vo.CustCompVO">

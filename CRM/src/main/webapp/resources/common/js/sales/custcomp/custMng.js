@@ -30,9 +30,6 @@ $(function(){
 
 //담당자 상세보기(리스트에서 사원명 클릭 시)
 function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
-//	$('#pocTableTbody').delegate('a', 'click', function(event) {
-//		event.preventDefault();
-//		var ctx = $('#ctx').val();
 		
 		 var cust_nm = $("#cust_nm").val();
 		 var key_part = $("#key_part").val();
@@ -66,6 +63,7 @@ function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
 				$('#cust_id').val(data.cust_id);
 				$('#cust_nm').val(data.cust_nm);
   			   
+				$('#iuser_id').val(data.iuser_id);  
 				$('#iuser_nm').val(data.iuser_nm);  
   			    $('#org_nm').val(data.org_nm);
 				$('#key_part').val(data.key_part);
@@ -186,14 +184,14 @@ function posAddBtn() {
 	
 }
 
-//고객사 담당사원 추가
+//고객사 담당사원 등록
 function ccMngAdd(ctx){
 
-	var iuser_nm = $('#iuser_nm').val();
-	var org_nm   = $('#org_nm').val();
-	var iuser_id = $('#iuser_id').val();
 	var cust_id  = $('#cust_id').val();
 	var cust_nm  = $('#cust_nm').val();
+	var iuser_id = $('#iuser_id').val();
+	var iuser_nm = $('#iuser_nm').val();
+	var org_nm   = $('#org_nm').val();
 	var key_part = $('#key_part').val();
 		
 	$.ajax({
@@ -207,15 +205,100 @@ function ccMngAdd(ctx){
 		url : ctx+'/ccMngAdd',
 		success:function(result){
 			alert("담당사원이 등록되었습니다.");
-//				window.opener.pocList(cust_id);
-				location.href = ctx+ '/custMngAjax';
-//			ccMngPocList(page);
+			ccMngPocList('1');
 		},
 		error:function(request){
 			alert("error : " +request.status);
 		}
 	});
 }
+
+// 담당사원 수정
+function mdfySave(ctx) {
+	
+	var cust_id  = $('#cust_id').val();
+	var cust_nm  = $('#cust_nm').val();
+	var iuser_id = $('#iuser_id').val();
+	var iuser_nm = $('#iuser_nm').val();
+	var org_nm   = $('#org_nm').val();
+	var key_part = $('#key_part').val();
+	
+	alert(iuser_id);
+	alert(key_part);
+		
+	$.ajax({
+		type : 'post',
+		data : {
+			iuser_id : iuser_id,
+			cust_id  : cust_id,
+			key_part : key_part
+		},
+		datatype : 'json',
+		url : ctx+'/ccMngModify',
+		success:function(result){
+			alert("담당사원이 수정되었습니다.");
+			ccMngPocList('1');
+		},
+		error:function(request){
+			alert("error : " +request.status);
+		}
+	});
+	
+	
+}
+
+//all 체크일때 하나라도 체크해지가 된 경우 all checkbox 체크 해제
+function chkCancel(){
+	$("#custcompSelect").prop("checked", false);
+}
+
+//체크박스 개수 검색함수
+function checkCount(){
+   var count=0;
+   var checkList = $('.custMng_check');
+
+   for(var i=0; i<checkList.size(); i++){
+      if($(checkList[i]).is(':checked')){
+         count++;
+      }
+   }
+   return count;
+};
+
+//담당사원 삭제
+function custMngDelete() {
+	var ctx = $("#ctx").val();
+	if($("input[name=custcompMng_del]:checked").length==0){
+		alert("삭제할 담당사원을 선택해 주세요.");
+		return false;
+	}
+	if(confirm("삭제 하시겠습니까? \n0데이터가 완전히 삭제됩니다.")){
+	var ccMngDelList = [];
+	var pageNum = $("#pageNum").val();
+	$("input[name=custcompMng_del]:checked").each(function(){
+		ccMngDelList.push($(this).val());
+		ccMngDelList.push($("#user").val());
+	});
+	
+	$.ajax({
+		type : 'get',
+		url : 'custMngDelete',
+		data : {
+			ccMngDelList : ccMngDelList,
+				 pageNum : pageNum
+			},
+		dataType : 'json',
+		success : function(result){
+			alert("담당사원이 삭제되었습니다.");
+			location.href = ctx + "/custcompMng";
+		},
+		error : function(request){
+			alert("error : " + request);
+		}
+	});
+	}
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //영업기회 팝업창 띄우기
@@ -352,13 +435,13 @@ function ccMngPocList(page) {
 				for (var i = 0; i < data.ccVOList.length; i++) {
 					tbodyContent = 
 						"<tr>" +
-						"<td style='width:31px;'><input type='checkbox' value='"+data.ccVOList[i].cust_id+":"+data.ccVOList[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-						"<td style='width:168px;'>"+data.ccVOList[i].cust_nm+"</td>" +
-						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data.ccVOList[i].cust_id+"','"+data.ccVOList[i].iuser_id+"','"+data.ccVOList[i].org_nm+"','"+data.ccVOList[i].iuser_nm+"');\"  class='cnClick'>"+data.ccVOList[i].iuser_nm+"</td>" +
-						"<td style='width:168px;'>"+data.ccVOList[i].org_nm+"</td>" +
-						"<td style='width:271px;'>"+data.ccVOList[i].key_part+"</td>" +
-						"<td style='width:226px;'>"+data.ccVOList[i].cell_ph1+"-"+data.ccVOList[i].cell_ph2+"-"+data.ccVOList[i].cell_ph3+"</td>" +
-						"<td style='width:250px;'>"+ data.ccVOList[i].email1 + "@"+ data.ccVOList[i].email2 +"</td>" +
+						"<td ><input type='checkbox' value='"+data.ccVOList[i].cust_id+":"+data.ccVOList[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
+						"<td >"+data.ccVOList[i].cust_nm+"</td>" +
+						"<td ><a href='#' onclick=\"ccMngDetail('"+data.ccVOList[i].cust_id+"','"+data.ccVOList[i].iuser_id+"','"+data.ccVOList[i].org_nm+"','"+data.ccVOList[i].iuser_nm+"');\"  class='cnClick'>"+data.ccVOList[i].iuser_nm+"</td>" +
+						"<td >"+data.ccVOList[i].org_nm+"</td>" +
+						"<td >"+data.ccVOList[i].key_part+"</td>" +
+						"<td style='text-align: center;'>"+data.ccVOList[i].cell_ph1+"-"+data.ccVOList[i].cell_ph2+"-"+data.ccVOList[i].cell_ph3+"</td>" +
+						"<td >"+ data.ccVOList[i].email1 + "@"+ data.ccVOList[i].email2 +"</td>" +
 						"</tr>"
 						;
 					tbody.append(tbodyContent);

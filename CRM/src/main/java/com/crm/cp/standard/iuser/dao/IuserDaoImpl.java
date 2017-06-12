@@ -132,7 +132,6 @@ public class IuserDaoImpl implements IuserDao {
 
 	@Override
 	public int ccMngUpdate(IuserVO iuserVo) {
-		// TODO Auto-generated method stub
 		int result = sqlSession.update("user.ccMngUpdate", iuserVo);
 		return result;
 	}

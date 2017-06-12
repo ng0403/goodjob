@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.service.ActService;
 import com.crm.cp.sales.custcomp.service.CustCompService;
+import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.OrganizationVO;
 import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.est.service.EstService;
@@ -90,20 +93,20 @@ public class CustcompMngController {
 	
 	// 담당사원 리스트(ajax)
 	@RequestMapping(value = "custMngAjax", method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody Map<String, Object> custcompMngAjaxList(HttpSession session,
+	public @ResponseBody Map<String, Object> custcompMngAjaxList(HttpSession session, String cust_id,
 			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, @RequestParam Map<String, String> map,
 			@RequestParam(value = "sch_cust_nm", required = false) String sch_cust_nm,
 			@RequestParam(value = "sch_cust_nm0", required = false) String sch_cust_nm0,
 			@RequestParam(value = "sch_cust_nm1", required = false) String sch_cust_nm1,
-			
 			@RequestParam(value = "sch_iuser_nm", required = false) String sch_iuser_nm,
 			@RequestParam(value = "sch_iuser_nm0", required = false) String sch_iuser_nm0,
 			@RequestParam(value = "sch_iuser_nm1", required = false) String sch_iuser_nm1,
-			
+			@RequestParam(value = "sch_org_nm_cd", required = false) String sch_org_nm_cd,
+			@RequestParam(value = "sch_org_nm_cd0", required = false) String sch_org_nm_cd0,
+			@RequestParam(value = "sch_org_nm_cd1", required = false) String sch_org_nm_cd1,
 			@RequestParam(value = "sch_key_part", required = false) String sch_key_part,
 			@RequestParam(value = "sch_key_part0", required = false) String sch_key_part0,
 			@RequestParam(value = "sch_key_part1", required = false) String sch_key_part1,
-			
 			@RequestParam(value = "sch_email", required = false) String sch_email,
 			@RequestParam(value = "sch_email0", required = false) String sch_email0,
 			@RequestParam(value = "sch_email1", required = false) String sch_email1,
@@ -115,7 +118,9 @@ public class CustcompMngController {
 
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			pMap.put("result", "standard/home/session_expire");
-		} else {
+			return pMap;
+		} 
+		else {
 			pMap.put("result", "Y");
 			pMap.put("sch_cust_nm", sch_cust_nm);
 			pMap.put("sch_cust_nm0", sch_cust_nm0);
@@ -123,6 +128,9 @@ public class CustcompMngController {
 			pMap.put("sch_iuser_nm", sch_iuser_nm);
 			pMap.put("sch_iuser_nm0", sch_iuser_nm0);
 			pMap.put("sch_iuser_nm1", sch_iuser_nm);
+			pMap.put("sch_org_nm_cd", sch_org_nm_cd);
+			pMap.put("sch_org_nm_cd0", sch_org_nm_cd0);
+			pMap.put("sch_org_nm_cd1", sch_org_nm_cd1);
 			pMap.put("sch_key_part", sch_key_part);
 			pMap.put("sch_key_part0", sch_key_part0);
 			pMap.put("sch_key_part1", sch_key_part1);
@@ -130,24 +138,47 @@ public class CustcompMngController {
 			pMap.put("sch_email0", sch_email0);
 			pMap.put("sch_email1", sch_email1);
 			pMap.put("ccPageNum", ccPageNum);
-
-
-			// 담당사원 리스트 전체 개수 조회(페이징에 사용)
-			PagerVO page = ccService.custcompMngListCount(pMap);
-			pMap.put("startRow", page.getStartPageNum() + "");
-			pMap.put("endRow", page.getEndPageNum() + "");
-			pMap.put("page", page);
-			System.out.println("담당사원 리스트 Ajaxpage :  " + page);
-
-			System.out.println("검색 TEST : " + pMap.toString());
-			System.out.println("검색 TEST : " + pMap);
-
-			List<PocVO> pocVOList = ccService.custcompMngAllList(pMap); // 고객사 리스트
-			pMap.put("ccVOList", pocVOList);
-//			pMap.put("ccVOListSize", pocVOList.size());
+			
+			int flg ;
+			if (cust_id == null) {
 				
+				flg= 0;
+				System.out.println("담당사원 리스트 확인0: " + flg);
+				// 담당사원 리스트 전체 개수 조회(페이징에 사용)
+				PagerVO page = ccService.custcompMngListCount(pMap);
+				pMap.put("startRow", page.getStartPageNum() + "");
+				pMap.put("endRow", page.getEndPageNum() + "");
+				pMap.put("page", page);
+				
+				System.out.println("담당사원 리스트 Ajaxpage :  " + page);
+
+				System.out.println("검색 TEST : " + pMap.toString());
+				System.out.println("검색 TEST : " + pMap);
+				List<PocVO> pocVOList = ccService.custcompMngAllList(pMap); // 담당사원 전체 리스트
+				System.out.println("담당사원 고객사 있는 "+ cust_id+ pocVOList);
+				pMap.put("ccVOList", pocVOList);
+				
+				
+			} else {
+				
+				flg= 1;
+				System.out.println("담당사원 리스트 확인1: " + flg);
+				// 담당사원 리스트 전체 개수 조회(페이징에 사용)
+				PagerVO page = ccService.custcompMngListCount(pMap);
+				pMap.put("startRow", page.getStartPageNum() + "");
+				pMap.put("endRow", page.getEndPageNum() + "");
+				pMap.put("cust_id", cust_id);
+				pMap.put("page", page);
+				System.out.println("담당사원 리스트 Ajaxpage :  " + page);
+				
+				List<PocVO> pocVOList = ccService.custcompMngCklList(pMap); // 고객사있는 담당사원 리스트
+				System.out.println("담당사원 고객사 있는 "+ cust_id+ pocVOList);
+				pMap.put("ccVOList", pocVOList);
+				
+				
+			}
+			return pMap;
 		}
-		return pMap;
 	}
 	
 	// 담당사원 상세보기
@@ -188,21 +219,6 @@ public class CustcompMngController {
 		return mov;
 	}
 	
-//	// 담당사원 등록
-//	@RequestMapping(value = "/custcompMngAdd", method = RequestMethod.POST)
-//	public String custcompMngAdd(@ModelAttribute PocVO pocVO, HttpSession session, HttpServletRequest request) {
-//
-//		pocVO.setFst_reg_id(session.getAttribute("user").toString());
-//		pocVO.setFin_mdfy_id(session.getAttribute("user").toString());
-//
-//		System.out.println("입력된 유저ID : " + pocVO.getFst_reg_id());
-//		System.out.println("수정된 유저ID : " + pocVO.getFin_mdfy_id());
-//		// System.out.println(ccVO.toString());
-//		
-//		ccService.custcompMngInsert(pocVO);
-//
-//		return "redirect:/custcompMng";
-//	}
 	
 	// 담당사원 등록
 	@RequestMapping(value = "/ccMngAdd", method = {RequestMethod.GET, RequestMethod.POST})
@@ -219,35 +235,41 @@ public class CustcompMngController {
 		return result;
 
 	}
-
-	// 담당사원 수정
-	@RequestMapping(value = "/ccMngUpdate", method = RequestMethod.POST)
+	
+	// 담당사원 수정 ajax
+	@RequestMapping(value = "/ccMngModify", method = RequestMethod.POST)
 	@ResponseBody
-	public int ccMngUpdate(HttpSession session, IuserVO iuserVo) {
-		
+	public String ccMngModify(IuserVO iuserVo, HttpSession session) {
+		System.out.println("Detail Edit Controller");
+
 		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
 		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
 
-		// 고객사 담당사원 수정
-		System.out.println("담당사원 수정");
-		int result = iuserService.ccMngUpdate(iuserVo);
-		System.out.println("result : " + result);
-		// return 1;
+		System.out.println("입력된 유저ID : " + iuserVo.getFst_reg_id());
+		System.out.println("수정된 유저ID : " + iuserVo.getFin_mdfy_id());
+
+		System.out.println("담당사원 수정 iuserVo: "+ iuserVo);
+		
+		String result =  ccService.ccMngEdit(iuserVo);
+
 		return result;
+		
 	}
 	
-	 // 고객사 담당직원 삭제
+	// 담당사원 삭제
 	@RequestMapping(value = "/custMngDelete", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	int custMngDelete(HttpSession session, IuserVO iuserVo,
-			@RequestParam(value = "ccMngDelList[]", required = false) List<String> ccMngDelList) {
+						@RequestParam(value = "ccMngDelList[]", required = false) List<String> ccMngDelList) {
+		
 		System.out.println("ccMngDelList : " + ccMngDelList);
 
 		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
 		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
-		// 영업활동 삭제
+		
+		// 담당사원 삭제
 		int result = 0;
-		System.out.println(ccMngDelList);
+		
 		// 모든 checked된 견적에 대해 삭제
 		for (int i = 0; i < ccMngDelList.size(); i++) {
 			String cust_id = ccMngDelList.get(i).split(":")[0];
