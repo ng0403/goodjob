@@ -59,6 +59,10 @@
 			allmenu.remove();
 //			if($(this).attr('href')=='#'){
 				//event.preventDefault();
+			var session_menu = sessionStorage.getItem("session_menu");
+			if(session_menu != session_ID){
+				sessionStorage.setItem("session_menu",session_ID);
+			}else if(session_menu == session_ID){
 				sessionStorage.setItem("session_menu",session_ID);
 				var submenu = $(this).next("ul").html();
 //				console.log(submenu);
@@ -77,6 +81,7 @@
 //						submenu.slideDown();
 //					}
 				}
+			}
 //			}
 		});
 		

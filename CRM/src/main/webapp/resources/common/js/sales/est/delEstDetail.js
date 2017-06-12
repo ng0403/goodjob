@@ -26,7 +26,7 @@ function restoreEstBtn(estim_id1)
 				alert("복원되었습니다.");
 				
 				alert("견적관리 삭제된 데이터 페이지로 이동합니다.");
-				location.href = ctx + '/estInqr';
+				location.href = ctx + '/delEstInqr';
 			
 			},
 			error:function(request){
@@ -43,7 +43,7 @@ function deEstDelBtn(estim_id1)
 {
 	var ctx = $("#ctx").val();
 	var estim_id = estim_id1;
-	var ynChk = confirm("삭제하시겠습니까?" + "\n" + "확인버튼 클릭 시 복구가 불가능합니다."");
+	var ynChk = confirm("삭제하시겠습니까?" + "\n" + "확인버튼 클릭 시 복구가 불가능합니다.");
 	
 	if(ynChk)
 	{	
