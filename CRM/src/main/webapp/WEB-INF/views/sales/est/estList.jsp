@@ -20,15 +20,8 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
 
 <style type="text/css">
 	.ui-datepicker{ font-size: 13px; width: 300px;}
@@ -181,16 +174,18 @@
 <!-- </form> -->
 	    
 	    <div id="tableline">
+		    <input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th style="width: 3%;text-align: center;"><input type="checkbox" id="estimAllSelect" ></th>
-						<th style="width: 27%;" id="tblTh">견적명</th>
-						<th style="width: 15%;" id="tblTh">고객사명</th>
-						<th style="width: 10%;" id="tblTh">견적단계</th>
-						<th style="width: 10%;" id="tblTh">견적수량</th>
-						<th style="width: 15%;" id="tblTh">견적금액</th>
-						<th style="width: 15%;" id="tblTh">견적유효일자</th>
+						<th style="width: 27%;" id="tblTh" onclick="setOrder('estim_nm')">견적명</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('cust_nm')">고객사명</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_lev_cd_nm')">견적단계</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_qty')">견적수량</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('sales_price')">견적금액</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('estim_valid_d')">견적유효일자</th>
 <!-- 						<th style="width: 9%;" id="tblTh">등록자</th> -->
 <!-- 						<th style="width: 14%;" id="tblTh">등록일시</th> -->
 					</tr>
