@@ -406,4 +406,10 @@
 		<put-attribute name="detail"  value="/WEB-INF/views/sales/custcomp/custcomp_tab.jsp" />
 	</definition>
 	
+	<!-- 고객사 상세보기 > 담당사원  -->
+	<definition name="custcompMng" extends="twobodyLayout">
+		<put-attribute name="master"  value="/WEB-INF/views/sales/custcomp/custcompPop/custcomp_mng_list.jsp" />
+		<put-attribute name="detail"  value="/WEB-INF/views/sales/custcomp/custcompPop/custcomp_mng_pop.jsp" />
+	</definition>
+	
 </tiles-definitions>
