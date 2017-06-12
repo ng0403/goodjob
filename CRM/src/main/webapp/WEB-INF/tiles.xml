@@ -247,6 +247,15 @@
 		<put-attribute name="navi" value="/WEB-INF/views/common/navi.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>
+	
+	<!-- 키맨 -->
+		<definition name="keyman" extends="twobodyLayout">
+		<put-attribute name="master"
+			value="/WEB-INF/views/sales/keyman/keymanList.jsp" />
+		<put-attribute name="detail"
+			value="/WEB-INF/views/sales/keyman/keymanDetail.jsp" />
+	</definition>
+	
 
 
 	<definition name="user" extends="twobodyLayout">
