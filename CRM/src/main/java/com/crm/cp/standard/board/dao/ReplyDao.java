@@ -20,5 +20,6 @@ public interface ReplyDao {
 		
 		public void AnswerFlg(int BOARD_NO);
 
-
+		public void AnswerFlgN(Integer bOARD_NO);
+		public int replyCount(Integer bOARD_NO); // 댓글 개수 구하기
 }

@@ -19,13 +19,13 @@
 
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
-<title>코드 그룹 등록</title>
+<title>코드 등록</title>
 </head>
 <body>
 <div id="title">
 <br>
 	<div class="caption">
-		<h3 class="ui header" style="background: #fff; padding: 10px;">■ 코드 그룹 등록</h3>
+		<h3 class="ui header" style="background: #fff; padding: 10px;">■ 코드 등록</h3>
 	</div>
 	<div class="bt_position_popup">
 		<div class="bs-example" data-example-id="simple-table">
@@ -50,7 +50,7 @@
 	</div>
 	<br>
 	<div class="bt_position">
-		<input type="button" class="tiny ui blue button" value="등록" id="cd_grp_confirm" onclick="code_insert();"/>
+		<input type="button" class="tiny ui blue button" value="저장" id="cd_grp_confirm" onclick="code_insert();"/>
 		<input type="button" class="tiny ui button" value="취소" id="pauth_cancel" onclick="closebtn();" />
 	</div>
 </div>

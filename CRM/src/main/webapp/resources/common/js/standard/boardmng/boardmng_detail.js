@@ -38,9 +38,24 @@ function modify_fbtn() {
 
 //편집 취소
 function modify_cancel(){ 
-	 fn_lock();
+/*	 fn_lock();
 	 $("#baseBtnDiv2").hide();
-	 $("#baseBtnDiv").show(); 
+	 $("#baseBtnDiv").show(); */
+	$("#BOARD_NM").val("");
+	$("#BOARD_MNG_CD").val("");
+	
+	$("#BOARD_NM").attr("readonly", true);
+	$("#BOARD_MNG_CD").attr("disabled", true);
+	$("#sel1").attr("disabled", true);
+	$(".radio_class").prop('disabled', true);
+	
+	$('#BOARD_NM').css("background-color", "white");
+	$('#BOARD_MNG_CD').css("background-color", "white"); 
+	
+	$("#baseBtnDiv").css("display", "block");
+	$("#baseBtnDiv2").css("display", "none");
+	
+	
 
 }
 

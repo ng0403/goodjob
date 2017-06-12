@@ -184,6 +184,16 @@ function boardmngDetailClick(a) {
 			success : function(data) {
   				$('#BOARD_NM').val(data.boardMngvo.board_NM);
     			$('#BOARD_MNG_NO').val(data.boardMngvo.board_MNG_NO);
+    			
+    			
+    			if(data.boardMngvo.active_FLG == 'Y')
+    			 {
+       			    $('#active_flg_y').prop('checked',true);
+      			 }
+    			else{
+       			    $('#active_flg_n').prop('checked',true);
+      			}	
+    			
   			if(data.boardMngvo.file_ATTACH_FLG == 'Y')
  			 {
     			    $('#file_attach_flg_y').prop('checked',true);
@@ -225,8 +235,16 @@ function updateBoardMng() {
  		 var BOARD_MNG_CD = $("#sel1").val();
  		 var FILE_ATTACH_FLG;
  		 var REPLY_FLG;
+ 		 var ACTIVE_FLG;
  		 
- 		 if($('#file_attach_flg_y').is(':checked'))
+ 		 if($('#active_flg_y').is(':checked'))
+			 {
+			 ACTIVE_FLG = 'Y';
+			 }
+		 else{
+			 ACTIVE_FLG = 'N';
+		 } 		 
+ 		 if($('#active_flg_y').is(':checked'))
  			 {
  			 FILE_ATTACH_FLG = 'Y';
  			 }
@@ -241,7 +259,7 @@ function updateBoardMng() {
  			 REPLY_FLG = 'N';
  		 }
  		 var boardMngjsonData = {
- 				"BOARD_MNG_NO":BOARD_MNG_NO, "BOARD_NM" : BOARD_NM, "BOARD_MNG_CD" : BOARD_MNG_CD, "FILE_ATTACH_FLG" : FILE_ATTACH_FLG, "REPLY_FLG" : REPLY_FLG
+ 				"BOARD_MNG_NO":BOARD_MNG_NO, "ACTIVE_FLG":ACTIVE_FLG, "BOARD_NM" : BOARD_NM, "BOARD_MNG_CD" : BOARD_MNG_CD, "FILE_ATTACH_FLG" : FILE_ATTACH_FLG, "REPLY_FLG" : REPLY_FLG
  		 }
  		 
  		 if(BOARD_NM == null || BOARD_NM == "")
@@ -308,8 +326,29 @@ function boardMngAddp(){
 }
 
 
-//연락처 추가 저장.
-function contactInsert() { 
+//게시판 관리 취소 버튼
+function cancelBtn() {
+	
+	$("#BOARD_NM").val("");
+	$("#BOARD_MNG_CD").val("");
+	
+	$("#BOARD_NM").attr("readonly", true);
+	$("#BOARD_MNG_CD").attr("disabled", true);
+	$("#sel1").attr("disabled", true);
+	$(".radio_class").prop('disabled', true);
+	
+	$('#BOARD_NM').css("background-color", "white");
+	$('#BOARD_MNG_CD').css("background-color", "white"); 
+	
+	$("#btn_1").css("display", "block");
+	$("#btn_2").css("display", "none");
+	
+	
+}
+
+
+//게시판 관리 추가 저장.
+function boardmngInsert() { 
   	 var BOARD_NM = $("#BOARD_NM").val();
 	 var BOARD_MNG_CD = $("#sel1").val();
 	 var FILE_ATTACH_FLG;

@@ -10,10 +10,10 @@ $(document).ready(function(){
 	if($("#act_yn").val() == 'Y')
 		{
 		$("#contactRecov").css("display", "none");
+		$("#contDelAbsol").css("display", "none");
+
  		}
-	if($("#act_yn").val() == 'N'){
-		$("#custpsonBtn").css("display", "none");
-	}
+ 
 });
 //13자리 날짜 변환 함수
 function dateFormat(timestamp) {
@@ -31,6 +31,18 @@ function dateFormat(timestamp) {
 	return retVal
 }
  
+//고객팝업 이름 클릭 시 디테일 페이지에 고객이름 입력 함수
+function inputCustNm1(custId,custNm,custType,pop_flg){	
+	if(custType == 'search'){
+		$('#scust_nm').val(custNm);
+		$('#scust_id').val(custId);
+		$('#company_nm').val(custNm);
+	}else if(custType == 'normal'){
+		$('#cust_nm').val(custNm);
+		$('#cust_id').val(custId);
+		$('#company_nm').val(custNm);
+	}
+}
 
 //모두체크
 function callAllChk(){
@@ -492,6 +504,7 @@ function contactDetailClick(a) {
 				
 				$('#cont_id').val(data.cont_id);
   			    $('#cont_nm').val(data.cont_nm);  
+  			    $('#cust_id').val(data.cust_id);
 				$('#company_nm').val(data.company_nm);
 				$('#ph1').val(data.ph1);
 				$('#ph2').val(data.ph2);

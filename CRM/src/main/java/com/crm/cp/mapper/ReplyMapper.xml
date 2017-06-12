@@ -72,6 +72,13 @@ FROM ( SELECT ROWNUM AS RNUM, A.*
 	</select>
 	
 	
+	<select id="replyCount" parameterType="int" resultType="int">
+	select count(reply_no) 
+	from tb_reply
+	where BOARD_NO = #{BOARD_NO}
+	</select>
+	
+	
 
 
 

@@ -40,7 +40,7 @@ public class QnABoardController {
 		
 //		접속된 사용자 아이디 
 		String sessionID = (String) session.getAttribute("user");
-		System.out.println("접속된 계정 : " + sessionID);
+		System.out.println("접속된 계정 :` " + sessionID);
 		
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
@@ -136,7 +136,7 @@ public class QnABoardController {
 		 
 	} 
 	
-	
+	// Q&A 수정
 	@RequestMapping(value="/QnAmodify", method=RequestMethod.GET)
 	public ModelAndView board_modifyPage(int BOARD_NO)
 	{

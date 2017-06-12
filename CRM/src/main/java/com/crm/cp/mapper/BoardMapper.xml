@@ -228,6 +228,11 @@
 	update tb_board set answer_flg = 'Y'
 	where BOARD_NO = #{BOARD_NO}
 	</update>
+	
+	<update id="AnswerFlgN" parameterType="int">
+	update tb_board set answer_flg = 'N'
+	where BOARD_NO = #{BOARD_NO}
+	</update>
  
 
 

@@ -23,8 +23,7 @@ public class KeymanVO {
 	private String  email;					// 이메일 + 도메인
 	private String  email1;					// 이메일
 	private String  email2;					// 이메일 도메인
-	
-	
+ 	
 	public String getCell_ph() {
 		return cell_ph;
 	}

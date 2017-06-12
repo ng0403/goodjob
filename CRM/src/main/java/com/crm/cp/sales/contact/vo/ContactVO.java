@@ -7,6 +7,7 @@ public class ContactVO {
 	public String cont_id;
 	public String cont_nm;
 	public String company_nm;
+	public String cust_nm;
 	public String cust_id;
 	public String ph1;
 	public String ph2;
@@ -24,8 +25,19 @@ public class ContactVO {
 	public String fin_mdfy_id;
 	public String fin_mdfy_dt;
 	public String act_yn;
+	public String cdept_nm;
 	
 	
+	public String getCust_nm() {
+		return cust_nm;
+	}
+
+
+	public void setCust_nm(String cust_nm) {
+		this.cust_nm = cust_nm;
+	}
+
+
 	public String getCust_id() {
 		return cust_id;
 	}
@@ -36,14 +48,24 @@ public class ContactVO {
 	}
 
 
+	public String getCdept_nm() {
+		return cdept_nm;
+	}
+
+
+	public void setCdept_nm(String cdept_nm) {
+		this.cdept_nm = cdept_nm;
+	}
+
+
 	@Override
 	public String toString() {
-		return "ContactVO [cont_id=" + cont_id + ", cont_nm=" + cont_nm + ", company_nm=" + company_nm + ", cust_id="
-				+ cust_id + ", ph1=" + ph1 + ", ph2=" + ph2 + ", ph3=" + ph3 + ", cell_ph=" + cell_ph + ", cell_ph1="
-				+ cell_ph1 + ", cell_ph2=" + cell_ph2 + ", cell_ph3=" + cell_ph3 + ", email=" + email + ", email1="
-				+ email1 + ", email2=" + email2 + ", itrt_cd=" + itrt_cd + ", fst_reg_id=" + fst_reg_id
-				+ ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt=" + fin_mdfy_dt
-				+ ", act_yn=" + act_yn + "]";
+		return "ContactVO [cont_id=" + cont_id + ", cont_nm=" + cont_nm + ", company_nm=" + company_nm + ", cust_nm="
+				+ cust_nm + ", cust_id=" + cust_id + ", ph1=" + ph1 + ", ph2=" + ph2 + ", ph3=" + ph3 + ", cell_ph="
+				+ cell_ph + ", cell_ph1=" + cell_ph1 + ", cell_ph2=" + cell_ph2 + ", cell_ph3=" + cell_ph3 + ", email="
+				+ email + ", email1=" + email1 + ", email2=" + email2 + ", itrt_cd=" + itrt_cd + ", fst_reg_id="
+				+ fst_reg_id + ", fst_reg_dt=" + fst_reg_dt + ", fin_mdfy_id=" + fin_mdfy_id + ", fin_mdfy_dt="
+				+ fin_mdfy_dt + ", act_yn=" + act_yn + ", cdept_nm=" + cdept_nm + "]";
 	}
 
 

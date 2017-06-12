@@ -42,7 +42,7 @@ select X.*
  </select>
  
   <update id="Modify" > 
- update tb_board_mng set BOARD_NM = #{BOARD_NM}, FILE_ATTACH_FLG =  #{FILE_ATTACH_FLG}, REPLY_FLG =  #{REPLY_FLG}
+ update tb_board_mng set BOARD_NM = #{BOARD_NM}, FILE_ATTACH_FLG =  #{FILE_ATTACH_FLG}, REPLY_FLG =  #{REPLY_FLG}, ACTIVE_FLG = #{ACTIVE_FLG}
  where BOARD_MNG_NO = #{BOARD_MNG_NO}
  
  </update>

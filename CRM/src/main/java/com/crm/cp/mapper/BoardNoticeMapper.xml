@@ -35,8 +35,7 @@
 	    CREATED_BY, 
 	    TO_CHAR(CREATED, 'YYYY-MM-DD hh:mm') CREATED,  
 	    UPDATED_BY, 
-	    UPDATED
-
+	    UPDATED 
 		FROM tb_board
 		WHERE ACTIVE_FLG='Y' and BOARD_MNG_NO = 'BMG1000001'
 		<if test="title !=null and title !=''">
@@ -55,7 +54,10 @@
 	 SELECT *
         FROM 
         (
-        SELECT * FROM TB_BOARD WHERE BOARD_MNG_NO = 'BMG1000001' ORDER BY CREATED DESC
+        SELECT *
+         FROM TB_BOARD 
+         WHERE BOARD_MNG_NO = 'BMG1000001' and ACTIVE_FLG = 'Y'
+         ORDER BY CREATED DESC
         ) 
         WHERE ROWNUM <![CDATA[<= 5 ]]> 
 	

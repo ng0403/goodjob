@@ -11,14 +11,10 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
 
- <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contact_pop.js"></script>
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script>
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactList.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactTab.js"></script>
-<%-- <script type="text/javascript" src="${ctx}/resources/common/js/sales/call/employee_js.js"></script>
- --%><script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/custcomp_js.js"></script> 
-<script type="text/javascript" src="${ctx}/resources/common/js/sales/oppt/opptDetail.js"></script> 
- 
+ <script type="text/javascript" src="${ctx}/resources/common/js/sales/contact/contactInsert.js"></script> 
+  
 <title>Insert title here</title>
 </head>
 <body>
@@ -108,7 +104,7 @@
 					</tr>
 					<tr>
 					<th>이메일</th>
-						<td rowspan="2">
+						<td colspan="3">
 						    <input type="hidden" id="hemail1"/>
 							<input type="hidden" id="hemail2"/>
 						    <input type="text" name="email1" id="email1" class="int_email"  readonly="readonly"/> @ 

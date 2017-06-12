@@ -119,8 +119,10 @@ function replyPaging(replyPageNum) {
 		} 
 	 
 		function remove_reply(e){ 
-			var REPLY_NO = e;
-			
+			 var REPLY_NO = e;
+			 var BOARD_MNG_NO = $("#BOARD_MNG_NO").val();
+	 		 var BOARD_NO = $("#BOARD_NO").val(); 
+	 	 
 			if(confirm("정보를 삭제 하시겠습니까?")){
 			 $.ajax({
 					url : '/reply_remove/',
@@ -128,7 +130,7 @@ function replyPaging(replyPageNum) {
 			            "Content-Type" : "application/json",
 			            "X-HTTP-Method-Override" : "POST"
 			         },
-					data : REPLY_NO,
+					data : JSON.stringify({"board_NO":BOARD_NO, "reply_NO":REPLY_NO ,"board_MNG_NO":BOARD_MNG_NO}),
 					dataType : 'text',
 					processData: false,
 					contentType: false,

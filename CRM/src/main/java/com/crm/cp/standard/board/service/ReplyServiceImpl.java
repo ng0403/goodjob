@@ -78,4 +78,16 @@ public class ReplyServiceImpl implements ReplyService {
 		System.out.println("service map ? " + BOARD_NO);
 		replyDao.AnswerFlg(BOARD_NO); 
 	}
+
+	@Override
+	public void AnswerFlgN(Integer BOARD_NO) {
+		replyDao.AnswerFlgN(BOARD_NO);
+		
+	}
+
+	@Override
+	public int replyCount(Integer BOARD_NO) {
+		 
+		return replyDao.replyCount(BOARD_NO);
+	}
 }

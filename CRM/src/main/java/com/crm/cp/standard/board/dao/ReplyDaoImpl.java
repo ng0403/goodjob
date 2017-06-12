@@ -84,4 +84,16 @@ public class ReplyDaoImpl implements ReplyDao {
 		sqlSession.update("board.AnswerFlg", BOARD_NO);
 		
 	}
+
+	@Override
+	public void AnswerFlgN(Integer BOARD_NO) {
+		sqlSession.update("board.AnswerFlgN", BOARD_NO);
+		
+	}
+
+	@Override
+	public int replyCount(Integer BOARD_NO) {
+		 
+		return sqlSession.selectOne("replyCount", BOARD_NO);
+	}
 }

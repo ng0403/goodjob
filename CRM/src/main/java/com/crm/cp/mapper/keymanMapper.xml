@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kman">
+<!-- 초성검색조건 -->
+	<sql id="where-list1">
+		<if test='keyword.equals("ㄱ")'>
+	  		<![CDATA[
+	  		 AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '가'
+    	     AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '나'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㄴ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '나'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '다'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㄷ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '다'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '라'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㄹ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '라'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '마'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅁ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '마'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '바'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅂ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '바'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '사'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅅ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end)>= '사'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '아'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅇ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '아'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '자'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅈ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '자'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '차'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅊ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '차'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '카'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅋ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '카'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '타'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅌ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '타'
+    	   AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end)< '파'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅍ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '파'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '하'
+	    	]]>
+	  	</if>
+	  	
+	  	<if test='keyword.equals("ㅎ")'>
+	  		<![CDATA[
+	  		AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) >= '하'
+    	    AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) < '힣'
+	    	]]>
+	  	</if> 
+	  	<if test='keyword.equals("미분류")'>
+			<![CDATA[
+			AND (case when k.cont_id is not null then substr(cont_nm, 1, 1) end) NOT BETWEEN '가' AND '힣'
+	    	]]>
+		</if>
+		<if test='keyword.equals("A")'>
+
+	  		 AND upper(cont_nm) like upper('a%')
+
+	  	</if>
+	  	<if test='keyword.equals("B")'>
+
+	  		 AND upper(cont_nm) like upper('b%')
+
+	  	</if>
+	  	<if test='keyword.equals("C")'>
+
+	  		 AND upper(cont_nm) like upper(c%')
+
+	  	</if>
+	  	<if test='keyword.equals("D")'>
+
+	  		 AND upper(cont_nm) like upper('d%')
+
+	  	</if>
+	  	<if test='keyword.equals("E")'>
+
+	  		 AND upper(cont_nm) like upper('e%')
+
+	  	</if>
+	  	<if test='keyword.equals("F")'>
+
+	  		 AND upper(cont_nm) like upper('f%')
+
+	  	</if>
+	  	<if test='keyword.equals("G")'>
+
+	  		 AND upper(cont_nm) like upper('g%')
+
+	  	</if>
+	  	<if test='keyword.equals("H")'>
+
+	  		 AND upper(cont_nm) like upper('h%')
+
+	  	</if>
+	  	<if test='keyword.equals("I")'>
+
+	  		 AND upper(cont_nm) like upper('i%')
+
+	  	</if>
+	  	<if test='keyword.equals("J")'>
+
+	  		 AND upper(cont_nm) like upper('j%')
+
+	  	</if>
+	  	<if test='keyword.equals("K")'>
+	  		 AND upper(cont_nm) like upper('k%')
+	  	</if>
+	  	<if test='keyword.equals("L")'>
+
+	  		 AND upper(cont_nm) like upper('l%')
+
+	  	</if>
+	  	<if test='keyword.equals("M")'>
+
+	  		 AND upper(cont_nm) like upper('m%')
+
+	  	</if>
+	  	<if test='keyword.equals("N")'>
+
+	  		 AND upper(cont_nm) like upper('n%')
+
+	  	</if>
+	  	<if test='keyword.equals("O")'>
+
+	  		 AND upper(cont_nm) like upper('o%')
+
+	  	</if>
+	  	<if test='keyword.equals("P")'>
+
+	  		 AND upper(cont_nm) like upper('p%')
+
+	  	</if>
+	  	<if test='keyword.equals("Q")'>
+
+	  		 AND upper(cont_nm) like upper('q%')
+
+	  	</if>
+	  	<if test='keyword.equals("R")'>
+
+	  		 AND upper(cont_nm) like upper('r%')
+
+	  	</if>
+	  	<if test='keyword.equals("S")'>
+
+	  		 AND upper(cont_nm) like upper('s%')
+
+	  	</if>
+	  	<if test='keyword.equals("T")'>
+
+	  		 AND upper(cont_nm) like upper('t%')
+
+	  	</if>
+	  	<if test='keyword.equals("U")'>
+
+	  		 AND upper(cont_nm) like upper('u%')
+
+	  	</if>
+	  	<if test='keyword.equals("V")'>
+
+	  		 AND upper(cont_nm) like upper('v%')
+
+	  	</if>
+	  	<if test='keyword.equals("W")'>
+
+	  		 AND upper(cont_nm) like upper('w%')
+
+	  	</if>
+	  	<if test='keyword.equals("X")'>
+
+	  		 AND upper(cont_nm) like upper('x%')
+
+	  	</if>
+	  	<if test='keyword.equals("Y")'>
+
+	  		 AND upper(cont_nm) like upper('y%')
+
+	  	</if>
+	  	<if test='keyword.equals("Z")'>
+
+	  		 AND upper(cont_nm) like upper('z%')
+
+	  	</if>
+	</sql>
+
+
+ <!-- 리스트 개수 -->
+	 <select id="selectTotalCount" parameterType="java.util.Map" resultType="integer">
+		SELECT COUNT(*)
+		FROM keyman
+<!-- 		<if test="contact_name !=null and contact_name !=''">
+			AND (case when cont_nm end) like '%'||#{cont_nm}||'%'
+		</if>
+		<if test="contact_email !=null and contact_email !=''">
+			AND (case when email1 end) || '@' || (case when email2 end) like '%'||#{contact_email}||'%' 
+		</if>  -->
+	</select>
+	
+	
+<select id="selectSearchCount" parameterType="java.util.Map" resultType="integer">
+	SELECT COUNT(*)
+		FROM keyman k, contact c
+		where 1=1
+		and k.cont_id = c.cont_id
+		 <if test="keyword!=null and keyword!=''">
+			 <include refid="where-list1"/>
+	     </if>
+	     
+	     <if test="cont_nm != null and cont_nm= '' ">
+	    	 AND cont_nm like '%'||#{cont_nm}||'%'
+	     </if>
+	     
+	      <if test="cust_nm != null and cust_nm= '' ">
+	    	 AND company_nm like '%'||#{cust_nm}||'%'
+	     </if>
+	     
+		
+	</select>	
+	 
+	
+	<!-- 전체리스트  -->
+	<select id="selectAll" parameterType="java.util.Map" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+			SELECT b.*
+		FROM (
+		 SELECT ROWNUM seq, a.*
+			  from(
+		SELECT	  
+          c.cust_nm,
+          b.cont_nm,
+		  k.cust_id ,
+		  k.cont_id,
+ 		  case when (k.key_part) is null then ' '
+		   	   else (k.key_part) end as key_part,
+		  case when (k.key_pos) is null then ' '
+		   	   else (k.key_pos) end as key_pos, 
+		  case when (k.key_job) is null then ' '
+		   	   else (k.key_job) end as key_job,
+		  k.memo,
+		  k.fst_reg_id,
+		  TO_CHAR(k.fst_reg_dt,'YYYY-MM-DD HH24:MI') fst_reg_dt,  
+		  k.fin_mdfy_id,
+		  TO_CHAR(k.fin_mdfy_dt, 'YYYY-MM-DD HH24:MI') fin_mdfy_dt,
+ 		  case when (k.cdept_nm) is null then ' '
+		   	   else (k.cdept_nm) end as cdept_nm
+		   from keyman k, customer c, contact b 
+		   where c.cust_id = k.cust_id and b.cont_id = k.cont_id
+	   	<!--  <if test="cont_nm !=null and cont_nm !=''">
+			AND cont_nm like '%'||#{cont_nm}||'%'
+		 </if> 
+		 <if test="cust_nm !=null and cust_nm !=''">
+			AND cust_nm like '%'||#{cust_nm}||'%'
+		 </if>  
+		 <if test="cont_nm0 !=null and cont_nm0 !=''">
+			OR cont_nm like '%'||#{cont_nm0}||'%'
+		 </if> 
+		 <if test="cust_nm0 !=null and cust_nm0 !=''">
+			OR cust_nm like '%'||#{cust_nm0}||'%'
+		 </if> 
+		 
+		 <if test="cont_nm1 !=null and cont_nm1 !=''">
+			OR cont_nm like '%'||#{cont_nm1}||'%'
+		 </if> 
+		 <if test="cust_nm1 !=null and cust_nm1 !=''">
+			OR cust_nm like '%'||#{cust_nm1}||'%'
+		 </if> 
+		 
+		 <if test="keyword!=null and keyword!=''">
+			 <include refid="where-list1"/>
+	     </if> -->
+	     <choose>
+		<when test="cont_nm !=null and cont_nm !='' and cont_nm0 !=null and cont_nm0 !='' and cont_nm1 !=null and cont_nm1 !=''">
+		and(cont_nm like '%'||#{cont_nm}||'%'
+				or cont_nm like '%'||#{cont_nm0}||'%'
+				or cont_nm like '%'||#{cont_nm1}||'%')
+		</when>
+		<when test="cont_nm !=null and cont_nm !='' and connt_nm0 !=null and connt_nm0 !=''"> 
+				and(cont_nm like '%'||#{cont_nm}||'%'
+				or cont_nm like '%'||#{cont_nm0}||'%')
+		
+		</when> 
+		<when test="cont_nm0 !=null and cont_nm0 !='' and connt_nm1 !=null and connt_nm1 !=''"> 
+				and(cont_nm like '%'||#{cont_nm0}||'%'
+				or cont_nm like '%'||#{cont_nm1}||'%')
+		</when> 
+		<when test="cont_nm !=null and cont_nm !=''"> 
+				and cont_nm like '%'||#{cont_nm}||'%'
+ 		</when> 
+	</choose>
+	<choose>
+		<when test="cust_nm !=null and cust_nm !='' and cust_nm0 !=null and cust_nm0 !='' and cust_nm1 !=null and cust_nm1 !=''">
+				and(cust_nm like '%'||#{cust_nm}||'%'
+				or cust_nm like '%'||#{cust_nm0}||'%'
+				or cust_nm like '%'||#{cust_nm1}||'%')
+ 		</when>   
+ 		<when test="cust_nm !=null and cust_nm !='' and cust_nm0 !=null and cust_nm0 !=''"> 
+				and(cust_nm like '%'||#{cust_nm}||'%'
+				or cust_nm like '%'||#{cust_nm0}||'%')		
+		</when> 
+		<when test="cust_nm0 !=null and cust_nm0 !='' and cust_nm1 !=null and cust_nm1 !=''"> 
+				and(cust_nm1 like '%'||#{cust_nm0}||'%'
+				or cust_nm1 like '%'||#{cust_nm1}||'%')		
+		</when>  
+		<when test="cust_nm !=null and cust_nm !=''"> 
+				and cust_nm1 like '%'||#{cust_nm}||'%' 
+		</when> 
+	</choose>      
+	 <choose>  
+	    <when test="keyword!=null and keyword!=''">
+			 <include refid="where-list1"/>
+	     </when>
+	 </choose>      
+			ORDER BY fin_mdfy_dt desc 
+			 ) a
+		 ) b
+		<![CDATA[WHERE seq >= #{page.startRow} and seq <= #{page.endRow}]]>
+	</select>	
+	
+	
+	
+	<select id="keymanDetail" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO" resultType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+	 select
+		  c.cust_nm,
+          b.cont_nm,
+		  k.cust_id ,
+		  k.cont_id,
+		  k.key_part,
+		  k.key_pos,
+		  k.key_job,
+		  k.memo,
+		  k.fst_reg_id,
+		  TO_CHAR(k.fst_reg_dt,'YYYY-MM-DD HH24:MI') fst_reg_dt,  
+		  k.fin_mdfy_id,
+		  TO_CHAR(k.fin_mdfy_dt, 'YYYY-MM-DD HH24:MI') fin_mdfy_dt,
+		  k.cdept_nm    
+		   from keyman k, customer c, contact b
+		   where c.cust_id = k.cust_id and b.cont_id = k.cont_id and k.cust_id= #{cust_id} and b.cont_id = #{cont_id}
+	
+	</select>
+	
+	
+	<update id="keymanUpdate" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		update keyman 
+		set 
+		key_part = #{key_part},
+		key_pos = #{key_pos},
+		key_job = #{key_job},
+	    memo = #{memo},
+	    cdept_nm = #{cdept_nm}
+		where cont_id = #{cont_id} and cust_id = #{cust_id}  
+	</update>
+	
+	<!-- 키맨 추가 -->
+	<insert id="addKeyman" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		 INSERT INTO KEYMAN (CUST_ID, CONT_ID, KEY_PART, KEY_POS, CDEPT_NM KEY_JOB, MEMO, FST_REG_ID, FST_REG_DT, FIN_MDFY_ID, FIN_MDFY_DT) 
+	     VALUES( #{cust_id}, #{cont_id}, #{key_part}, #{key_pos}, #{cdept_nm}, #{key_job},  #{memo}, #{fst_reg_id}, sysdate, #{fin_mdfy_id}, sysdate)
+	</insert>
+	
+	
+	<!-- 키맨 삭제 -->
+	<delete id="keymanDelete" parameterType="com.crm.cp.sales.custcomp.vo.KeymanVO">
+		<!-- update KEYMAN 
+		set ACT_YN = 'N'
+		where KMN_ID = #{keyman_idList} -->
+		
+		delete
+		from keyman
+		where cust_id = #{cust_id} and cont_id = #{cont_id}
+	</delete>
+	
+	
+	<select id="contactListPopup" parameterType="java.util.Map" resultType="com.crm.cp.sales.contact.vo.ContactVO">
+	select *
+	 from contact
+	 where cont_id not in (select cont_id from keyman)
+	
+	</select>
+	
+	
+
+</mapper>

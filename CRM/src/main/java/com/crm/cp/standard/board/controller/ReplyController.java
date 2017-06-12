@@ -77,13 +77,27 @@ public class ReplyController {
 	 
 	 
 	 @RequestMapping(value="/reply_remove", method=RequestMethod.POST) 
-		public ResponseEntity<String> reply_remove(@RequestBody String REPLY_NO){
+		public ResponseEntity<String> reply_remove(@RequestBody ReplyVO vo){
 			
-		 System.out.println("hello delete reply");
+		 System.out.println("hello delete reply" + vo.toString());
 			 
 			ResponseEntity<String> entity = null;
+			
+			//q&a 답변을 할 때에 answer flg 변환
+	  		Integer BOARD_NO = vo.getBOARD_NO();
+	  		String REPLY_NO = vo.getREPLY_NO(); 
+			
 			    try {
 	 		      replyService.removeReply(REPLY_NO); 
+	 		      
+	 		     if(vo.getBOARD_MNG_NO().equals("BMG1000003"))
+	 			{
+	 				int replyCount = replyService.replyCount(BOARD_NO);
+	 				if(replyCount == 0){
+	 				replyService.AnswerFlgN(BOARD_NO);
+	 				}
+	 			}
+	 		      
 			      entity = new ResponseEntity("success", HttpStatus.OK);
 			    } catch (Exception e) {
 			      e.printStackTrace();

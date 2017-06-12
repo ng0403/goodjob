@@ -47,7 +47,7 @@ function codeSelect() {
 <table class="ui sortable celled table" style="table-layout:fixed" >
 <tr>
  <th style="width:165px">제목</th> 
- <td colspan="6"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" value="${boardVO.QUESTION_TITLE}"/></td>
+ <td colspan="6"><input type="text" placeholder="제목"  id="TITLE" name="TITLE" style="width:100%" value="${boardVO.TITLE}"/></td>
 </tr>
 <tr>
 <th> 질문유형</th>

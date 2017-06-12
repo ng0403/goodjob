@@ -32,7 +32,7 @@ function deleteFile(FILE_CD){
 	
 	var file_div = $('#file_div'); 
 	var divContent = "";
-if(confirm("파일을 삭제 하시겠습니까?" + FILE_CD)){	
+if(confirm("파일을 삭제 하시겠습니까?")){	
 	$.ajax({
         url : '/file_remove',
         headers : {

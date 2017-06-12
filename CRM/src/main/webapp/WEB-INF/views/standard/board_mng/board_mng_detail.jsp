@@ -40,7 +40,7 @@
  	<div class="detailBtn"> 
 	<div id = "baseBtnDiv" class="bt_position_authuser">
 	<input type="button" id="board_mng_modify_fbtn" class = "tiny ui button" value="편집" onclick="modify_fbtn();"/>
-	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="go_list();"/>
+	<input type="button" class="tiny ui button" id="board_list_fbtn" value="취소" onclick="cancelBtn();"/>
 	</div>
 	
 	<div id = "baseBtnDiv2" class="bt_position_authuser" style="display:none">
@@ -75,7 +75,14 @@
    </td>
 	</tr>
 	<tr>
-	<th>관리자</th> <td></td>
+	<th>활성화</th>
+	 <td>
+	 <label class="radio-inline">
+	<input type="radio" class="radio_class" id="active_flg_y" name="ACTIVE_FLG" value="Y" >Y
+	</label> <label class="radio-inline">
+	<input type="radio" class="radio_class" id="active_flg_n" name="ACTIVE_FLG" value="N">N
+	</label>
+	 </td>
 	 <th>게시판코드</th>
 	  <td style="height:30px;"> 
  	  <input type="text" class="form-control" id="BOARD_MNG_CD" name="BOARD_MNG_CD" value="${board_mng_list.BOARD_MNG_CD}" style="width:50%;" readonly="readonly" /> 

@@ -92,8 +92,8 @@ $(function() {
 				</div>
 				
 				<div class="functionBtn_div" id="btn_2" style="display:none">
-				<input type="button" id="board_add_save" class="tiny ui blue button" value="저장" onclick="contactInsert();"/>
-				<input type="button" id="board_remove_fbtn"	class="tiny ui blue button" value="삭제" onclick="deleteAction() " />
+				<input type="button" id="board_add_save" class="tiny ui blue button" value="저장" onclick="boardmngInsert();"/>
+				<input type="button" id="board_remove_fbtn"	class="tiny ui blue button" value="취소" onclick="cancelBtn() " />
 				
 				</div>
   

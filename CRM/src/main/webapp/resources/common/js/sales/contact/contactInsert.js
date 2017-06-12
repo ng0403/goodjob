@@ -110,16 +110,12 @@ function callCancelBtn() {
 
 //편집 버튼 눌렀을 때
 function callCustBtn(){
-    		$("#contactbody input[type='text']").css("background-color", "white");
+     	 $("#contactbody input[type='text']").css("background-color", "white");
 		
   		$("#company_nm").css("background-color", "#EAEAEA");
-  		
-		$("#comp_list_bt").attr("disabled", false); 
-		
-		/*$('#company_nm').attr("readonly", false);*/
-		$('#company_nm').attr("readonly", false);
-		$('#cont_nm').attr("readonly", false);
-		$('#email1').attr("readonly", false);
+  		$("#cont_nm").css("background-color", "#EAEAEA");
+ 		
+ 		$('#email1').attr("readonly", false);
 		$('#email2').attr("readonly", false);
 		$('#cell_ph1').attr("readonly", false);
 		$('#cell_ph2').attr("readonly", false);
