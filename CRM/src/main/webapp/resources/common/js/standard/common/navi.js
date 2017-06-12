@@ -57,8 +57,12 @@
 			var session_ID=$(this).attr("id");
 			var allmenu = $('.sub_menu_bar').find('.hide1');
 			allmenu.remove();
-			if($(this).attr('href')=='#'){
+//			if($(this).attr('href')=='#'){
 				//event.preventDefault();
+			var session_menu = sessionStorage.getItem("session_menu");
+			if(session_menu != session_ID){
+				sessionStorage.setItem("session_menu",session_ID);
+			}else if(session_menu == session_ID){
 				sessionStorage.setItem("session_menu",session_ID);
 				var submenu = $(this).next("ul").html();
 //				console.log(submenu);
@@ -78,6 +82,7 @@
 //					}
 				}
 			}
+//			}
 		});
 		
 	}
@@ -121,7 +126,7 @@
 			
 			menuT_li.append(menuT_a);
 		}else{
-			menuT_a.attr("href", '#');
+			menuT_a.attr("href", menu_url);
 			menuT_a.attr("data-num", count);
 			menuT_a.html(menu_nm);
 			

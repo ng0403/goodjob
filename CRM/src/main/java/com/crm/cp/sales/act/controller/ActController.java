@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -231,10 +232,37 @@ public class ActController {
 			
 			ModelAndView mov = new ModelAndView("actSaleDetail");
 			
-			System.out.println("OPPT : " + sales_oppt_id);
-			System.out.println("OPPT : " + sales_oppt_nm);
-			System.out.println("CUST : " + cust_id);
-			System.out.println("CUST : " + cust_nm);
+			if(date == null)
+			{
+				Date dt = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss");
+				
+				String time = sdf.format(dt).toString();
+				String[] tmp = time.split(", ");		// 날짜
+				String[] tmp1 = tmp[1].split(":"); 		// 시간을 담는 배열
+				int minute = Integer.parseInt(tmp1[1])/10;
+				
+				date = tmp[0];
+				hour = tmp1[0];
+				
+				min  = String.valueOf(minute+"0");
+				
+			}
+			else
+			{
+				if(hour.length() == 1)	 // 시간이 1자리일 경우에 앞에 0을 붙여준다.
+				{
+					String tmp = "0" + hour;
+					
+					hour = tmp;
+					
+					System.out.println("Date : " + date);
+					System.out.println("HOUR : " + hour);
+					System.out.println("HOUR : " + tmp);
+				}
+			}
+			
+			System.out.println("act_flg : " + act_flg);
 			
 			mov.addObject("actStatCd", actStatCd);
 			mov.addObject("actTypeCd", actTypeCd);

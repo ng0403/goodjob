@@ -92,7 +92,7 @@
 								<input type="hidden" id="hstrt_d">
 								<input type="text" id="strt_d" name="strt_d" value="${actDetail.strt_d}" class="inputText" readonly="readonly">
 								<input type="hidden" id="hstrt_t_h">
-								
+								<br>
 								<select name="strt_t_h" id="strt_t_h" class="start_hour" disabled="disabled">
 									<option value="0" style="text-align: center;">==선택==</option>
 									<c:forEach var="htime" items="${htime}" step="1">
@@ -126,7 +126,7 @@
 									<input type="hidden" id="hend_d">
 									<input type="text" id="end_d" name="end_d" value="${actDetail.end_d}" class="inputText" readonly="readonly">
 									<input type="hidden" id="hend_t_h">
-									
+									<br>
 									<select name="end_t_h" id="end_t_h" class="end_hour" disabled="disabled">
 										<option value="0" style="text-align: center;">==선택==</option>
 										<c:forEach var="htime" items="${htime}" step="1">

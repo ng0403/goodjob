@@ -50,7 +50,7 @@
 		<label for="tab2" class="tab2">영업기회</label> 
 		<label for="tab3" class="tab3">영업활동</label> 
 		<label for="tab4" class="tab4">견적</label> 
-		<label for="tab5" class="tab5">영업 담당자</label> 
+		<label for="tab5" class="tab5">담당사원</label> 
 		
 		<!-- 탭 내용 : 키맨 리스트 -->
 		<div id="tabDiv1"  style="width: 100%;">
@@ -183,10 +183,10 @@
 				</table>
 			</div>
 		</div>
-		<!-- 탭 내용 : 영업 담당 사원 -->
+		<!-- 탭 내용 : 담당사원 -->
 		<div id="tabDiv5" class="tab5_content" style="width: 100%;">
 			<div class="bt_position_authuser">
-				<input type="button" id="poc_pop_btn"  class="tiny ui button" value="담당자 추가" />
+				<input type="button" id="poc_popBtn"  class="tiny ui button" value="담당자 추가" onclick="posAddBtn('${custcompDetail.cust_id}','${custcompDetail.cust_nm}', 'tabValue.value');"/>
 				<input type="button" id="deletePocbtn" class="tiny ui blue button" value="삭제" onclick="custMngDelete();"/>
 			</div>
 			

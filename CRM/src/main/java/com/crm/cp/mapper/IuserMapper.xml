@@ -189,7 +189,9 @@
 				    CUST_ID,
 				    IUSER_ID,
 				    KEY_PART,
+				    FST_REG_id,
 				    FST_REG_dt,
+				    FIN_MDFY_id,
 				    FIN_MDFY_dt
 				  )
 				  VALUES
@@ -197,7 +199,9 @@
 				    #{cust_id, jdbcType=VARCHAR},
 				    #{iuser_id, jdbcType=VARCHAR},
 				    #{key_part, jdbcType=VARCHAR},
+				    #{fst_reg_id, jdbcType=VARCHAR},
 				    sysdate,
+				    #{fin_mdfy_id, jdbcType=VARCHAR},
 				    sysdate
 				  )
 	</update>

@@ -11,12 +11,15 @@ import org.springframework.web.context.request.SessionScope;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.custcomp.vo.OrganizationVO;
 import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 
 @Repository
@@ -825,5 +828,70 @@ public class CustCompDaoImpl implements CustCompDao {
 		int result = sqlSession.update("custcomp.custcompDelDelete", cust_id);
 		return result;
 	}
+
+	
+	// 담당사원 전체 리스트 개수
+	@Override
+	public int custcompMngListCount(Map<String, Object> pMap) {
+		System.out.println("custcompMng Map Dao "  + pMap.toString());
+		int totalCount = 0;
+		try {
+			totalCount = sqlSession.selectOne("custcomp.selectMngTotalCount", pMap);
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return totalCount;
+	}
+
+	// 담당사원 전체 리스트
+	@Override
+	public List<PocVO> custcompMngAllList(Map<String, Object> pMap) {
+		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngAllList", pMap);
+		return obj;
+	}
+	
+	// 담당사원 고객사 있는 리스트 
+	@Override
+	public List<PocVO> custcompMngCklList(Map<String, Object> pMap) {
+		List<PocVO> obj = sqlSession.selectList("custcomp.custcompMngCklList", pMap);
+		return obj;
+	}
+	
+	// 담당사원 부서 가져오기
+	@Override
+	public List<OrganizationVO> orgCdList() {
+		return sqlSession.selectList("custcomp.orgList");
+	}
+
+	// 담당사원 상세보기
+	@Override
+	public PocVO custcompMngDetail(PocVO pocVO) {
+		PocVO pocVOList = null;
+		pocVOList =sqlSession.selectOne("custcomp.custcompMngDetail", pocVO);
+//		System.out.println(pocVOList);
+		return pocVOList;
+	}
+	
+	// 담당사원 등록
+	@Override
+	public void custcompMngInsert(PocVO pocVO) {
+		
+		sqlSession.insert("custcomp.custcompMngInsert", pocVO);
+		
+	}
+
+	@Override
+	public int ccMngEdit(IuserVO iuserVo) {
+		
+		int result = sqlSession.update("custcomp.custcompMngEdit", iuserVo);
+		
+		return result;
+	}
+
+	
+	
+	
 	
 }

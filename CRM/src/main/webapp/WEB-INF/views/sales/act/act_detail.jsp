@@ -41,31 +41,31 @@
 	<input type="hidden" id="inputCust" value="false"/>
 	
 	<div id="title">
-	<!-- 신규추가를 눌렀을 경우 -->
+	<!-- 신규등록를 눌렀을 경우 -->
 		<c:if test="${flg == 0 }">
 			<c:if test="${act_flg eq null}">
-				<label id="listLabel" class="ui header">■ 영업활동 > <a href="/act" style="font-size: 19px; text-decoration:none;">영업활동관리</a> > 영업활동 추가</label>
-<!-- 				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 추가</div> -->
+				<label id="listLabel" class="ui header">■ 영업활동 > <a href="/act" style="font-size: 19px; text-decoration:none;">영업활동관리</a> > 영업활동 등록</label>
+<!-- 				<div class="caption">■ 영업활동 > <a href="/act" style="font-size: 15px; text-decoration:none; color: black;">영업활동관리</a> > 영업활동 등록</div> -->
 			</c:if>
 			<c:if test="${act_flg == '1'}">
-				<label id="listLabel" class="ui header">■ 영업활동 > <a href="/actSaleList" style="font-size: 19px; text-decoration:none;">영업활동관리</a> > 영업활동 추가</label>
-<!-- 				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 영업활동 추가</div> -->
+				<label id="listLabel" class="ui header">■ 영업활동 > <a href="/actSaleList" style="font-size: 19px; text-decoration:none;">영업활동관리</a> > 영업활동 등록</label>
+<!-- 				<div class="caption">■ 영업활동 > <a href="/actSaleList" style="font-size: 15px; text-decoration:none; color: blue;">영업활동관리</a> > 영업활동 등록</div> -->
 			</c:if>
 			<c:if test="${act_flg == 'oppt'}">
-				<label id="listLabel" class="ui header">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;">영업기회관리</a> > <a href="opptDetail?opptId=${sales_oppt_id}" style="text-decoration:none; color: blue;">영업기회 상세정보</a> > 영업활동 추가</label>
-<%-- 				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 추가</div> --%>
+				<label id="listLabel" class="ui header">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;">영업기회관리</a> > <a href="opptDetail?opptId=${sales_oppt_id}" style="text-decoration:none; color: blue;">영업기회 상세정보</a> > 영업활동 등록</label>
+<%-- 				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 등록</div> --%>
 			</c:if>
 			<c:if test="${act_flg == 'oppt_ed'}">
-				<label id="listLabel" class="ui header">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;">영업기회관리</a> > <a href="opptDetail?opptId=${sales_oppt_id}" style="text-decoration:none; color: blue;">영업기회 상세정보</a> > 영업활동 추가</label>
-<%-- 				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 추가</div> --%>
+				<label id="listLabel" class="ui header">■ 영업기회 > <a href="/oppt" style="font-size: 19px; text-decoration:none;">영업기회관리</a> > <a href="opptDetail?opptId=${sales_oppt_id}" style="text-decoration:none; color: blue;">영업기회 상세정보</a> > 영업활동 등록</label>
+<%-- 				<div class="caption">■ 영업기회 > <a href="opptDetail?opptId=${sales_oppt_id}" style="font-size: 15px; text-decoration:none; color: blue;">영업기회관리</a> > 영업활동 등록</div> --%>
 			</c:if>
 			<c:if test="${act_flg == 'cust'}">
-				<label id="listLabel" class="ui header">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none;">고객사관리</a> > <a href="/custcompDetail?cust_id=${cust_id}" style="text-decoration:none; color: blue;">고객사 상세정보</a> > 영업활동 추가</label>
-<%-- 				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 추가</div> --%>
+				<label id="listLabel" class="ui header">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none;">고객사관리</a> > <a href="/custcompDetail?cust_id=${cust_id}" style="text-decoration:none; color: blue;">고객사 상세정보</a> > 영업활동 등록</label>
+<%-- 				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 등록</div> --%>
 			</c:if>
 			<c:if test="${act_flg == 'cust_ed'}">
-				<label id="listLabel" class="ui header">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none;">고객사관리</a> > <a href="/custcompDetail?cust_id=${cust_id}" style="text-decoration:none; color: blue;">고객사 상세정보</a> > 영업활동 추가</label>
-<%-- 				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 추가</div> --%>
+				<label id="listLabel" class="ui header">■ 고객사 > <a href="/custcomp" style="font-size: 19px; text-decoration:none;">고객사관리</a> > <a href="/custcompDetail?cust_id=${cust_id}" style="text-decoration:none; color: blue;">고객사 상세정보</a> > 영업활동 등록</label>
+<%-- 				<div class="caption">■ 고객사 > <a href="custcompDetail?cust_id=${cust_id}" style="font-size: 15px; text-decoration:none; color: blue;">고객사관리</a> > 영업활동 등록</div> --%>
 			</c:if>
 		</c:if>
 		<c:if test="${flg == 1 }">
@@ -98,7 +98,7 @@
 	
 			<c:if test="${flg == 0}">
 				<div id="actAddBtnDiv" class="act_tab_bt_div" style="float: right;">
-					<input type="button" id="actAddSaveBtn" value="추가" onclick="actInsert('${ctx}','${act_flg}');" class="tiny ui blue button"/>
+					<input type="button" id="actAddSaveBtn" value="등록" onclick="actInsert('${ctx}','${act_flg}');" class="tiny ui blue button"/>
 					<input type="button" id="actAddCancelBtn" value="취소" class="tiny ui button" onclick="actAddCancelBt('${act_flg}');"/>
 				</div>
 			</c:if>

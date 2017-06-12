@@ -2,10 +2,10 @@ package com.crm.cp.sales.custcomp.vo;
 
 public class PocVO {
 	
-	private String  cust_id;			//고객사ID
-	private String cust_nm;
+	private String cust_id;				//고객사ID
+	private String cust_nm;				//고객사명
 	private String iuser_id;			//사원 ID
-	private String iuser_nm;			//사원 이름
+	private String iuser_nm;			//사원명
 	private String org_id;				//조직 ID
 	private String org_nm;				//조직명(부서명)
 	private String key_part;			//역할명
@@ -23,6 +23,7 @@ public class PocVO {
 	private String fst_reg_dt; 			//등록일시
 	private String fin_mdfy_id; 		//최종변경자
 	private String fin_mdfy_dt; 		//최종변경일시 
+	
 	public String getCust_id() {
 		return cust_id;
 	}

@@ -12,13 +12,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
+import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.dao.CustCompDao;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
+import com.crm.cp.sales.custcomp.vo.OrganizationVO;
 import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.vo.OpptVO;
+import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
 
@@ -634,4 +637,75 @@ public class CustCompServiceImpl implements CustCompService {
 		
 		return result;
 	}
+
+	// 담당사원 전체 리스트 개수 
+	@Override
+	public PagerVO custcompMngListCount(Map<String, Object> pMap) {
+		System.out.println("custcompMngListCount service " +  pMap.toString());
+		int ccPageNum = (Integer) pMap.get("ccPageNum");
+		// 현재 페이지 얻어오기
+		PagerVO page = new PagerVO(ccPageNum, 0, 5, 5);
+		// 전체 글의 갯수 구하기
+		System.out.println("ccPageNum Num " + ccPageNum);
+		int totalRowCount = ccDao.custcompMngListCount(pMap);
+		System.out.println("totalRowCount ? " + totalRowCount);		
+		page = new PagerVO(ccPageNum, totalRowCount, 5, 5);
+		
+		return page;
+	}
+
+	// 담당사원 전체 리스트
+	@Override
+	public List<PocVO> custcompMngAllList(Map<String, Object> pMap) {
+		return ccDao.custcompMngAllList(pMap);
+	}
+
+	// 담당사원 고객사 있는 리스트 
+	@Override
+	public List<PocVO> custcompMngCklList(Map<String, Object> pMap) {
+		return ccDao.custcompMngCklList(pMap);
+	}
+	
+	// 담당사원 부서 가져오기
+	@Override
+	public List<OrganizationVO> orgCdList() {
+		return ccDao.orgCdList();
+	}
+
+	// 담당사원 상세보기
+	@Override
+	public PocVO custcompMngDetail(PocVO pocVO) {
+		PocVO pocVOList = ccDao.custcompMngDetail(pocVO);
+		System.out.println(pocVOList);
+		return pocVOList;
+	}
+	
+	// 담당사원 등록
+	@Override
+	public void custcompMngInsert(PocVO pocVO) {
+		ccDao.custcompMngInsert(pocVO);
+		
+	}
+
+	// 담당사원 수정
+	@Override
+	public String ccMngEdit(IuserVO iuserVo) {
+		
+		int updateResult = ccDao.ccMngEdit(iuserVo);
+		
+		String resultStr = null;
+		if(updateResult == 2){
+			resultStr = "담당사원 수정이 완료 되었습니다.";
+		} else {
+			resultStr = "담당사원 수정에 실패 했습니다.";
+		}
+		return resultStr;
+		
+	}
+
+	
+
+	
+	
+	
 }

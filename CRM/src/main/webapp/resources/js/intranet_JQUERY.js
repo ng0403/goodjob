@@ -128,6 +128,12 @@ $(function(){
 	    		//window.open(ctx + '/actDetail?sales_actvy_id='+data.id,'newwindow2','width=930, height=645, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
 	    		location.href = ctx + '/actDetail?sales_actvy_id='+data.id;
 	    	}
+	    },
+	    eventDragStart: function(event, jsEvent, ui, view) {
+	    	
+	    },
+	    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
+			window.alert("eventDrop");
 	    }
 	});
 	

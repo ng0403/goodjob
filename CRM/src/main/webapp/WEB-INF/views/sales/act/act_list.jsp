@@ -165,7 +165,7 @@
 		</div>
 		
 		<div id="functionBtn_div">
-	    	<input type="button" class="tiny ui button" value="추가" onclick="actInsertForm('${act_flg}');" />
+	    	<input type="button" class="tiny ui button" value="등록" onclick="actInsertForm('${act_flg}');" />
 	    	<input type="button" class="tiny ui blue button" value="삭제" id="act_del_btn" />
 	    	<input type="button" class="tiny ui blue button" value="삭제된 데이터" onclick="delActListOpen()">
 	    </div>

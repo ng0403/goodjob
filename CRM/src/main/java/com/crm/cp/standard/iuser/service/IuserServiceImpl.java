@@ -145,21 +145,19 @@ public class IuserServiceImpl implements IuserService{
 		return dao.ccMngList(map);
 	}
 
+	// 담당사원 수정
 	@Override
 	public int ccMngUpdate(IuserVO iuserVo) {
-		// TODO Auto-generated method stub
 		return dao.ccMngUpdate(iuserVo);
 	}
 
 	@Override
 	public IuserVO ccMngDetail(Map<String, String> map) {
-		// TODO Auto-generated method stub
 		return dao.ccMngDetail(map);
 	}
 
 	@Override
 	public int custMngDelete(IuserVO iuserVo) {
-		// TODO Auto-generated method stub
 		return dao.custMngDelete(iuserVo);
 	}
 
