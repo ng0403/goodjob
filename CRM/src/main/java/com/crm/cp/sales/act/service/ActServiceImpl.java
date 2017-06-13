@@ -114,6 +114,11 @@ public class ActServiceImpl implements ActService{
 	}
 	
 	@Override
+	public int actSchEdit(ActVO actvo) {
+		return actDao.actSchEdit(actvo);
+	}
+	
+	@Override
 	public int delActRestore(ActVO actvo) {
 		// TODO Auto-generated method stub
 		return actDao.delActRestore(actvo);

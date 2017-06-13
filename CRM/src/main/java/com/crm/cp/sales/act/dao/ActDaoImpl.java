@@ -125,6 +125,10 @@ public class ActDaoImpl implements ActDao{
 	public int actEdit(ActVO actvo) {
 		return sqlSession.update("act.actEdit", actvo);
 	}
+	@Override
+	public int actSchEdit(ActVO actvo) {
+		return sqlSession.update("act.actSchEdit", actvo);
+	}
 	
 	@Override
 	public int delActRestore(ActVO actvo) {

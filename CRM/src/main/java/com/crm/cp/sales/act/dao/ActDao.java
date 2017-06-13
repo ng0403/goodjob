@@ -39,6 +39,7 @@ public interface ActDao {
 	Object actOneSelectId(String sales_actvy_id);
 
 	int actEdit(ActVO actvo);
+	int actSchEdit(ActVO actvo);
 	
 	int delActRestore(ActVO actvo);
 	

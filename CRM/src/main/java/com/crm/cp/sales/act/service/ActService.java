@@ -39,6 +39,7 @@ public interface ActService {
 	int actInsert(ActVO actvo);
 
 	int actEdit(ActVO actvo);
+	int actSchEdit(ActVO actvo);
 	
 	int delActRestore(ActVO actvo);
 	

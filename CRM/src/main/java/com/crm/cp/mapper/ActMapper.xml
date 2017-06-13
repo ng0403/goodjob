@@ -657,6 +657,15 @@
 		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
 	</update>
 	
+	<!-- 영업활동 수정 -->
+	<update id="actSchEdit" parameterType="com.crm.cp.sales.act.vo.ActVO">
+	      UPDATE SALES_ACTIVITY 
+		  SET 
+		  	  STRT_D = TO_DATE(#{strt_d}, 'yyyy-MM-dd'), END_D = TO_DATE(#{end_d}, 'yyyy-MM-dd'), 
+		  	  FIN_MDFY_ID = #{fin_mdfy_id}, FIN_MDFY_DT = sysdate
+		  WHERE SALES_ACTVY_ID = #{sales_actvy_id}
+	</update>
+	
 	<!-- 삭제된 영업활동 복원 -->
 	<update id="delActRestore" parameterType="com.crm.cp.sales.act.vo.ActVO">
 	      UPDATE SALES_ACTIVITY 

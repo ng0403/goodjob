@@ -363,6 +363,27 @@ public class ActController {
         return result;
 	}
 	
+	//영업활동 수정	
+	@RequestMapping(value="/actSchEdit", method= RequestMethod.POST)
+	public @ResponseBody int actSchEdit(ActVO actvo, HttpSession session)
+	{
+		int result = 0;
+		
+		System.out.println("actSchEdit : " + actvo.toString());
+		System.out.println("actSchEdit : " + actvo.getEnd_d());
+		
+		if(actvo.getEnd_d().equals("undefined-undefined-undefined"))
+		{
+			actvo.setEnd_d(actvo.getStrt_d()); 
+			System.out.println("actSchEdit : " + actvo.getEnd_d());
+		}
+		actvo.setFin_mdfy_id(session.getAttribute("user").toString());
+		
+		result = actService.actSchEdit(actvo);
+		
+		return result;
+	}
+	
 	//삭제된 영업활동 복원
 	@RequestMapping(value="/delActRestore", method= RequestMethod.POST)
 	public @ResponseBody int delActRestore(ActVO actvo, HttpSession session)
