@@ -12,7 +12,7 @@
  * ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm)			: 담당사원 상세보기(리스트에서 사원명 클릭 시)
  * posAddBtn()												: 담당사원 등록버튼 클릭 시 
  * mdfyClick()												: 담당사원 편집버튼 클릭 시
- * 
+ * ccMngCancelBtn()											: 담당사원 취소버튼 클릭 시
  * 
  * 
  */
@@ -297,6 +297,39 @@ function custMngDelete() {
 		}
 	});
 	}
+}
+
+// 담당사원 취소버튼
+function ccMngCancelBtn(frm) {
+	
+	var ctx = $("#ctx").val();
+	var ynChk = confirm("정말 취소하시겠습니까?");
+	if(ynChk){
+		
+		//버튼 활성화
+		$("#AddBtnDiv").css("display", "block");
+		$("#mdfyBtnDiv").css("display", "none");
+		$("#saveBtnDiv").css("display", "none");
+		
+		$("#tbody1 #key_part").attr({
+			readonly:true,
+			style:'background-color:rgb(220, 220, 220);'
+		});
+
+		$("#Manager, #comp_list_bt").attr({
+			disabled: true
+		});
+		
+		// 상세정보에 값 비우기
+		 $('#cust_nm').val('');
+		 $('#iuser_nm').val('');
+		 $('#cell_ph').val('');
+		 $('#email').val('');
+		 $('#org_nm').val('');
+		 $('#key_part').val('');
+		
+	}
+	
 }
 
 

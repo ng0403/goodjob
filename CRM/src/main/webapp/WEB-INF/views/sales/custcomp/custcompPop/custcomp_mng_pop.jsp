@@ -106,20 +106,20 @@
 			</table>
 			</form>
 		</div>
-		
+		<form name="form">
 		<div id="AddBtnDiv" class="add_bt_position" style="padding-top: 10px; display: none;" >
 			<input type="button" id="ccMngAddButton"   class="tiny ui blue button" value="저장" onclick="ccMngAdd('${ctx}');"/>
-			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
+			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" onclick="ccMngCancelBtn(this.form);"/>
 		</div>
 		<div id="mdfyBtnDiv" class="mdfy_bt_position" style="padding-top: 10px; display: none;">
 			<input type="button" id="ccMngMdfyButton"  class="tiny ui blue button" value="편집" onclick="mdfyClick();"/>
-			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
+			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" onclick="ccMngCancelBtn(this.form);"/>
 		</div>
 		<div id="saveBtnDiv" class="mdfy_bt_position" style="padding-top: 10px; display: none;">
 			<input type="button" id="ccMngMdfyButton"  class="tiny ui blue button" value="저장"  onclick="mdfySave('${ctx}');"/>
-			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소" />
+			<input type="button" id="activeAdd_cancel" class="tiny ui button"      value="취소"  onclick="ccMngCancelBtn(this.form);" />
 		</div>
-		
+		</form>
 		
 		
 	</div>

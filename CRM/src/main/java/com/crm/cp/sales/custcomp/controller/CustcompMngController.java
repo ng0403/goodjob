@@ -281,12 +281,5 @@ public class CustcompMngController {
 
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }
