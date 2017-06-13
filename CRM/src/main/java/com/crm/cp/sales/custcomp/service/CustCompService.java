@@ -109,6 +109,8 @@ public interface CustCompService {
 	void custcompMngInsert(PocVO pocVO);										// 담당사원 등록
 	String ccMngEdit(IuserVO iuserVo);											// 담당사원 수정
 	
+	List<CustCompVO> custcompExcel(Map<String, Object> ccMap);					// 엑셀 출력
+	
 	
 	
 }

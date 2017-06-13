@@ -6,6 +6,9 @@
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="blendTrans(Duration=0.0)" http-equiv="Page-Enter" />
+<meta content="blendTrans(Duration=0.0)" http-equiv="Page-Exit" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-ui.js"></script>
 
@@ -18,11 +21,6 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <title>고객사</title>
-<script>
-$(function() {
-	$('table').tablesort();
-});		   	
-</script>
 
 </head>   
 <body style="overflow: auto;">
@@ -103,7 +101,22 @@ $(function() {
 				<input type="button" value="추가" class="tiny ui button" id="addBtn" onclick="custcompInsert();" />
 				<input type="button" value="삭제" class="tiny ui blue button" onclick="custcompDelete()" />
 				<input type="button" value="삭제된 데이터" class="tiny ui blue button" onclick="custcompDelListbtn()" />
-<!-- 				<input type="button" value="엑셀" class="tiny ui blue button" id="exportBtn"   onclick=""  />	 -->
+				<input type="button" value="엑셀출력" class="tiny ui blue button" id="exportBtn"  onclick="download_list_Excel('ccListExcelForm');" />	
+				
+				
+				<!-- 페이징 전용 폼 -->
+				<form  action="${ctx}/custcomp" id="custcompPagingForm" method="post">
+					<input type="hidden" name="cust_nm"   value="${cust_nm}"/>
+					<input type="hidden" name="cust_nm0"  value="${cust_nm0}"/>
+					<input type="hidden" name="cust_nm1"  value="${cust_nm1}"/>
+					<input type="hidden" name="comp_num"  value="${comp_num}"/>
+					<input type="hidden" name="comp_num0" value="${comp_num0}"/>
+					<input type="hidden" name="comp_num1" value="${comp_num1}"/>
+					<input type="hidden" name="corp_num"  value="${corp_num}"/>
+					<input type="hidden" name="corp_num0" value="${corp_num0}"/>
+					<input type="hidden" name="corp_num1" value="${corp_num}"/>
+				</form>
+				<form action="${ctx}/custcomp" id="ccListExcelForm" method="post"></form>
 			</div>
 			
 			<!-- 페이징 처리 -->

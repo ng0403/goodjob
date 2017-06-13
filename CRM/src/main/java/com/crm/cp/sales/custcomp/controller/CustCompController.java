@@ -62,9 +62,10 @@ public class CustCompController {
 	IuserService iuserService; // 사원 서비스
 
 	// 고객사 리스트(MaV)
-	@RequestMapping(value = "/custcomp", method = RequestMethod.GET)
+	@RequestMapping(value = "/custcomp", method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView custCompList(HttpSession session,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, String excel,
+			@RequestParam Map<String, Object> ccMap) {
 		ModelAndView mov = null;
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			mov = new ModelAndView("standard/home/session_expire");
@@ -76,6 +77,22 @@ public class CustCompController {
 
 			pMap.put("ccPageNum", ccPageNum);
 
+			
+			//excel 출력 부분
+			if(excel != null){
+				if(excel.equals("true")){
+					
+					ModelAndView mav = new ModelAndView("/sales/custcomp/custcompList_excel");
+					List<CustCompVO> custcompExcel = ccService.custcompExcel(ccMap);
+					
+					System.out.println("custcompExcel : "+ custcompExcel);
+					
+					mav.addObject("custcompExcel", custcompExcel);
+					
+					return mav;
+				}
+			}
+			
 			// 고객사 리스트 전체 개수 조회(페이징에 사용)
 			PagerVO page = ccService.getCCListCount(pMap);
 

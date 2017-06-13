@@ -703,9 +703,16 @@ public class CustCompServiceImpl implements CustCompService {
 		
 	}
 
-	
-
-	
+	// 엑셀 출력
+	@Override
+	public List<CustCompVO> custcompExcel(Map<String, Object> ccMap) {
+		
+		List<CustCompVO> custcompExcel = ccDao.custcompExcel(ccMap);
+		
+		System.out.println("custcompExcel Service Impl : "  + custcompExcel);
+		
+		return custcompExcel;
+	}
 	
 	
 }

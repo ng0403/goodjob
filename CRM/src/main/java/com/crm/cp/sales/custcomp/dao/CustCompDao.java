@@ -108,7 +108,10 @@ public interface CustCompDao {
 	PocVO custcompMngDetail(PocVO pocVO);							// 담당사원 상세보기
 	void custcompMngInsert(PocVO pocVO);							// 담당사원 등록
 	List<PocVO> custcompMngCklList(Map<String, Object> pMap);		// 담당사원 고객사 있는 리스트	
-	int ccMngEdit(IuserVO iuserVo);								// 담당사원 수정
+	int ccMngEdit(IuserVO iuserVo);									// 담당사원 수정
+	
+	List<CustCompVO> custcompExcel(Map<String, Object> ccMap);		// 엑셀 출력
+	
 	
 	
 } 

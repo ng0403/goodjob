@@ -164,9 +164,6 @@ function custTabCheck(cust_id)
 {
 	var tabCheck = $('#tabValue').val();
 	
-	console.log(tabCheck);
-	console.log(cust_id);
-	
 	if(tabCheck != null || tabCheck != '')
 	{
 		$('input:radio[name="tab"]:input[value="'+tabCheck+'"]').attr("checked", true);
@@ -1173,5 +1170,20 @@ function schPaging(ccPageNum) {
 				}
 			});//ajax
 		}
+}
+
+
+//엑셀 출력 적용 함수
+function download_list_Excel(formID){
+	
+	var ctx = $("#ctx").val();
+	var form = $("#"+formID);
+	var excel = $('<input type="hidden" value="true" name="excel">');
+	
+	if(confirm("리스트를 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")){
+		form.append(excel);
+		form.submit();
+	}
+	$("input[name=excel]").val("");
 }
 

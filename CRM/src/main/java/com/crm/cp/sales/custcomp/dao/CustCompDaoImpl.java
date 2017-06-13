@@ -882,12 +882,31 @@ public class CustCompDaoImpl implements CustCompDao {
 		
 	}
 
+	// 담당사원 수정
 	@Override
 	public int ccMngEdit(IuserVO iuserVo) {
 		
 		int result = sqlSession.update("custcomp.custcompMngEdit", iuserVo);
 		
 		return result;
+	}
+
+	// 엑셀 출력
+	@Override
+	public List<CustCompVO> custcompExcel(Map<String, Object> ccMap) {
+		
+		List<CustCompVO> custcompExcel = null;
+		
+		try {
+			
+			custcompExcel = sqlSession.selectList("custcomp.custcompExcel", ccMap);
+			System.out.println("custcompExcel Dao Impl : " + custcompExcel);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return custcompExcel;
 	}
 
 	
