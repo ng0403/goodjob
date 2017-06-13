@@ -21,12 +21,15 @@
 		        ,cd.cd_nm
 		        ,cd.code
 		        ,p.prod_price
-		        ,c1.CATE_ID || '>' || c2.UP_CATE_ID as cate
+		        ,decode(c1.UP_CATE_ID,null,c1.cate_nm,
+		        			(select cate_nm 
+		        			from category 
+		        			where cate_id=c1.up_cate_id)|| '>' ||c1.cate_nm) as cate
 		        ,p.fst_reg_id
 		        ,p.fst_reg_dt
-		      FROM PRODUCT p, code cd,category c1,category c2 
-		      WHERE c1.cate_id = c2.cate_id
-		      AND p.cate_id = c1.CATE_ID
+		        ,p.fin_mdfy_dt
+		      FROM PRODUCT p, code cd,category c1
+		      WHERE p.cate_id = c1.CATE_ID
 		      AND p.PROD_DIV_CD = cd.code
 		      AND cd.cd_grp_id = 'PRD'
 		      AND p.act_yn = 'Y'
@@ -38,8 +41,37 @@
 		      <if test="code != null and code != '' and code != 'all'">
 		      	AND cd.code like #{code}
 		      </if>
-		      
-		      order by p.prod_id desc
+		      <choose>
+					<when test="order_by == 'fin_mdfy_dt'">
+						order by p.FIN_MDFY_DT
+					</when>
+					<when test="order_by == 'prod_nm'">
+						order by p.prod_nm
+					</when>
+					<when test="order_by == 'cd_nm'">
+						order by cd.cd_nm
+					</when>
+					<when test="order_by == 'prod_price'">
+						order by p.prod_price
+					</when>
+					<when test="order_by == 'cate'">
+						order by cate
+					</when>
+					<when test="order_by == 'fst_reg_id'">
+						order by p.fst_reg_id
+					</when>
+					<when test="order_by == 'fst_reg_dt'">
+						order by p.fst_reg_dt
+					</when>
+				</choose>
+				<choose>
+					<when test="order_sc == 'DESC'">
+						desc
+					</when>
+					<when test="order_sc == 'ASC'">
+						asc
+					</when>
+				</choose>
 		  ) a order by rownum
 		) SAL
 		<![CDATA[WHERE SAL.num>=#{startRow}

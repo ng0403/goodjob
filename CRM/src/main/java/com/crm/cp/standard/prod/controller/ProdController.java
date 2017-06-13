@@ -330,25 +330,32 @@ public class ProdController {
 	@RequestMapping(value="/prodListSearch")
 	public @ResponseBody Map<String,Object> ProdListSearch(
 			HttpSession session,
+			@RequestParam Map<String, Object> map,
 			@RequestParam(value = "prodPageNum", defaultValue = "1") int prodPageNum,
 			@RequestParam (value = "prod_nm" , required = false)String prod_nm,
-			@RequestParam (value = "code" , required = false)String code
+			@RequestParam (value = "code" , required = false)String code,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc
 			){
 		System.out.println("검색어 prod_id : "+prod_nm+" 코드 : "+code);				
 		
 		Map<String,Object> prodMap = new HashMap<String, Object>();
-		prodMap.put("prodPageNum", prodPageNum);
-		prodMap.put("prod_nm",prod_nm);
-		prodMap.put("code", code);
+		map.put("prodPageNum", prodPageNum);
+		map.put("prod_nm",prod_nm);
+		map.put("code", code);
 		
-		PagerVO page = prodService.getProdListCount(prodMap);
+		PagerVO page = prodService.getProdListCount(map);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		prodMap.put("page", page);
-		prodMap.put("startRow", page.getStartRow() + "");
-		prodMap.put("endRow", page.getEndRow() + "");
+		map.put("startRow", page.getStartRow() + "");
+		map.put("endRow", page.getEndRow() + "");
 		
-		List<ProdVO> prodList =prodService.prodAllList(prodMap);
+		List<ProdVO> prodList =prodService.prodAllList(map);
 		prodMap.put("prodList", prodList);
 		prodMap.put("prodListSize", prodList.size());		
+		prodMap.put("ccPageNum", prodPageNum);
+		prodMap.put("data", map);
 		
 		return prodMap;
 	}
@@ -360,11 +367,15 @@ public class ProdController {
 	public ModelAndView Prod(
 			HttpSession session,
 			@RequestParam HashMap<String, Object> prodMap,
-			@RequestParam(value = "prodPageNum", defaultValue = "1") int prodPageNum
+			@RequestParam(value = "prodPageNum", defaultValue = "1") int prodPageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc
 			) throws Exception{
 		prodMap.put("prodPageNum",prodPageNum);
 		
 		PagerVO page = prodService.getProdListCount(prodMap);
+		prodMap.put("order_by", order_by);
+		prodMap.put("order_sc", order_sc);
 		prodMap.put("startRow", page.getStartRow());
 		prodMap.put("endRow", page.getEndRow());
 		prodMap.put("page", page);
@@ -382,6 +393,7 @@ public class ProdController {
 		mov.addObject("ccPageNum", prodPageNum);
 		mov.addObject("page", page);
 		mov.addObject("prodList", prodList);
+		mov.addObject("data", prodMap);
 		System.out.println(prodList);
 		System.out.println(page);
 		return mov;

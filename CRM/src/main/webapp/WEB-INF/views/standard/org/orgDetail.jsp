@@ -30,9 +30,9 @@
 </script>
 <!-- 주소 API를 위한 부분 추가 끝 -->
 <script>
-   $(function() {
-      $('table').tablesort();
-   });            
+//    $(function() {
+//       $('table').tablesort();
+//    });            
 </script>	
 </head>
 <body>   
@@ -162,14 +162,16 @@
 				<input id="orgUserAuthSearch" type="button" class="tiny ui blue button" value="검색"/>
 		        </div>
 			    <div class="bs-example_orglist" data-example-id="simple-table">
+			    	<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+					<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 				   <table id="mastertable" class="ui sortable celled table">
 								<thead>
 									<tr>
-										<th style="width: 15.2%;">조직명</th>
-										<th style="width: 15%;">조직대표</th>
-										<th style="width: 9.8%;">사용자</th>
-										<th style="width: 19.9%;">연락처</th>
-										<th style="width: 41%;border-right:none;">이메일</th>
+										<th style="width: 15.2%;" onclick="setOrder('estim_nm')">조직명</th>
+										<th style="width: 15%;" onclick="setOrder('estim_nm')">조직대표</th>
+										<th style="width: 9.8%;" onclick="setOrder('estim_nm')">사용자</th>
+										<th style="width: 19.9%;" onclick="setOrder('estim_nm')">연락처</th>
+										<th style="width: 41%;border-right:none;" onclick="setOrder('estim_nm')">이메일</th>
 										<th style="width: 0%;border-left:none;"></th>
 									</tr>
 								</thead>

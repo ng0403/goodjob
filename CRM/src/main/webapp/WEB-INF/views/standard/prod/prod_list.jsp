@@ -17,13 +17,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript" src="${ctx}/resources/common/js/standard/prod/prod_detail.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
 <script type="text/javascript">
 $("#navisub11").show();
 $("#naviprod").css("font-weight", "bold");
@@ -55,30 +49,20 @@ $("#naviprod").css("font-weight", "bold");
 		</div>
 		<input type="button" id="prod_search"  class="tiny ui blue button" value="조회" onclick="prodSearch('${ccPageNum}');" />
 		
-<!-- 		<label for="prod_nm" class="prod_label_search">상품(서비스)명</label> -->
-<!-- 		<input type="text" placeholder="상품(서비스)명" autofocus="autofocus" id="sprod_nm" class="sprod_nm"> -->
-<!-- 	    <label for="prod_div" class="prod_label_search">구분</label> -->
-<!-- 		<select name="code" id="scode" class="code"> -->
-<!-- 			<option value="">=======</option> -->
-<!-- 			<option value="all">전체</option> -->
-<%-- 			<c:forEach var="pscl" items="${prodServicecCodeList}"> --%>
-<%-- 				<option value="${pscl.code}">${pscl.cd_nm}</option> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</select> -->
-<!-- 		<input type="button" id="prod_search" class="btn-success-tel" value="조회" onclick="prodSearch(1);" /> -->
-<!-- 			    <button id="search_btn" type="submit" class="act_bt">조회</button>  -->
 	</div>	  	
 	<div id="tableline">
+		<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+		<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 		<table id="act_list_table" class="ui sortable celled table" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th style="text-align: center;"><input type="checkbox"  id='prodListCheck'/></th>
-					<th id="tblTh" >상품(서비스)명</th>
-					<th id="tblTh" >구분</th>
-					<th id="tblTh" >판매가</th>
-					<th id="tblTh" >카테고리</th>
-					<th id="tblTh" >등록자</th>
-					<th id="tblTh" >등록일시</th>
+					<th id="tblTh" onclick="setOrder('prod_nm','${ccPageNum}')">상품(서비스)명</th>
+					<th id="tblTh" onclick="setOrder('cd_nm','${ccPageNum}')">구분</th>
+					<th id="tblTh" onclick="setOrder('prod_price','${ccPageNum}')">판매가</th>
+					<th id="tblTh" onclick="setOrder('cate','${ccPageNum}')">카테고리</th>
+					<th id="tblTh" onclick="setOrder('fst_reg_id','${ccPageNum}')">등록자</th>
+					<th id="tblTh" onclick="setOrder('fst_reg_dt','${ccPageNum}')">등록일시</th>
 				</tr>
 			</thead>
 			<tbody id="prod_list">

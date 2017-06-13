@@ -3,27 +3,28 @@ $(function(){
 	var flg = $('#flg').val();
 	if(flg == "add") prodAddFormLoad();
 	else if(flg == "detail") prodDetailFormLoad();
-//	prodMakeBlock();
 	prodAddBtn(ctx);
 	prodCancelBtn(ctx);
-//	prodUpdateBtn(ctx);
 	prodSaveBtn(ctx);
 	prodChange(ctx);
 	prodModifyBtn(ctx);
 	prodDeleteBtn();
-	//prodIdClick(ctx);
 	priceComma();
 });
-/* 샘플 
-function actAddBtn(ctx){
-	$("#addsavebtn").click(function() {	
-	 	$("#act_tab_tbody input[type='text']").val('').attr("disabled", false);
-		$("#sales_actvy_type_nm").attr("disabled", false);
-		$('#actdiv_1').prop("checked", false);
-		// 버튼 활성화
-		$("#actBaseBtnDiv").css("display", "none");
-	}); 
-}*/
+
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,page){
+//	console.log(order_by);
+//	console.log($("#order_by").val());
+//	console.log($("#order_sc").val());
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	prodSearch(page);
+}
 function priceComma(){
 	var price = $("#prod_price").val();
 	$("#prod_price").val(comma(price));
@@ -124,18 +125,20 @@ function prodSearch(prodPageNum)
 		
 		var tbody = $('#prod_list');
 		var tbodyContent = "";
+		var order_by = $("#order_by").val();
+		var order_sc = $("#order_sc").val();
 		
 		console.log(prodPageNum);
 			
 		if(prod_nm == '' && code == '')
 		{
-			var data = {"prodPageNum" : prodPageNum};
+			var data = {"prodPageNum" : prodPageNum, "order_by" : order_by, "order_sc" : order_sc};
 //			alert("검색어를 입력하세요.");
 //			return;
 		}
 		else
 		{
-			var data = {"prodPageNum" : prodPageNum, "prod_nm" : prod_nm, "code" : code};
+			var data = {"prodPageNum" : prodPageNum, "prod_nm" : prod_nm, "code" : code, "order_by" : order_by, "order_sc" : order_sc};
 		}
 		
 		$.ajax({

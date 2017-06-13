@@ -15,37 +15,25 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
-//	estimListMakeBlock();
 	estimAllselect();
 	estimDeleteBtn(ctx);
 	startCalendar(ctx);
 	$("#search_div2, #search_div3").hide();
 	custcompListPopup(ctx);
 });
-//function estimListMakeBlock(){
-//	var blank = $("#estList tr").length;
-//	if( blank < 10){
-//		for(var j = 0; j < 10-blank; j++){
-//			var block ="<tr style='height:43px;'>"
-//				+"<td></td><td></td><td></td><td></td>"
-//				+"<td></td><td></td><td></td></tr>";
-//			$("#estList").append(block);
-//		}
-//	}
-//}
 
 /* 정렬 버튼 클릭 시 처리 함수 */
-function setOrder(order_by){
-	console.log(order_by);
-	console.log($("#order_by").val());
-	console.log($("#order_sc").val());
+function setOrder(order_by,page){
+//	console.log(order_by);
+//	console.log($("#order_by").val());
+//	console.log($("#order_sc").val());
 	$("#order_by").val(order_by);
 	if($("#order_sc").val()=='DESC'){
 		$("#order_sc").val('ASC');
 	}else{
 		$("#order_sc").val('DESC');
 	}
-	list(1);
+	list(page);
 }
 
 //고객사 리스트 팝업

@@ -15,29 +15,25 @@
 
 $(function(){
 	var ctx = $('#ctx').val();
-//	estimListMakeBlock();
 	estimAllselect();
 	estimDeleteBtn(ctx);
 	startCalendar(ctx);
 	$("#search_div2, #search_div3").hide();
 	custcompListPopup(ctx);
 });
-//function estimListMakeBlock(){
-//	var blank = $("#estList tr").length;
-//	if( blank < 10){
-//		for(var j = 0; j < 10-blank; j++){
-//			var block ="<tr style='height:43px;'>"
-//				+"<td></td><td></td><td></td><td></td>"
-//				+"<td></td><td></td></tr>";
-//			$("#estList").append(block);
-//		}
-//	}
-//}
-//견적 추가 버튼 클릭 시
-//function estAddBtn(){
-//	location.href="/estAddForm"
-//}
-
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,page){
+//	console.log(order_by);
+//	console.log($("#order_by").val());
+//	console.log($("#order_sc").val());
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	list(page);
+}
 //고객사 리스트 팝업
 function custcompListPopup(ctx){
 	$('#cust_list_pop').click(function(){
@@ -101,6 +97,8 @@ function list(page){
 	var sales_price_12 =  $("#ssales_price_12").val();
 	var sales_price_22 =  $("#ssales_price_22").val();
 	var estim_valid_d2 = $("#sestim_valid_d2").val();
+	var order_by = $("#order_by").val();
+	var order_sc = $("#order_sc").val();
 	$.ajax({
 		type : 'GET',
 		url : '/delEstListAjax',
@@ -123,15 +121,17 @@ function list(page){
 			estim_lev_cd2 : estim_lev_cd2, 
 			sales_price_12 : sales_price_12, 
 			sales_price_22 : sales_price_22, 
-			estim_valid_d2 : estim_valid_d2
+			estim_valid_d2 : estim_valid_d2,
+			order_by : order_by,
+			order_sc : order_sc
 		},
 		datatype : 'json',
 		success:function(result){
-			$("#sestim_nm").val(result.searchInfo.estim_nm);
-			$("#sestim_lev_cd").val(result.searchInfo.estim_lev_cd);
-			$("#ssales_price_1").val(result.searchInfo.sales_price_1);
-			$("#ssales_price_2").val(result.searchInfo.sales_price_2);
-			$("#sestim_valid_d").val(result.searchInfo.estim_valid_d);
+//			$("#sestim_nm").val(result.searchInfo.estim_nm);
+//			$("#sestim_lev_cd").val(result.searchInfo.estim_lev_cd);
+//			$("#ssales_price_1").val(result.searchInfo.sales_price_1);
+//			$("#ssales_price_2").val(result.searchInfo.sales_price_2);
+//			$("#sestim_valid_d").val(result.searchInfo.estim_valid_d);
 			
 			$("#estList").children().remove();
 			$.each(result.list,function(i,data){

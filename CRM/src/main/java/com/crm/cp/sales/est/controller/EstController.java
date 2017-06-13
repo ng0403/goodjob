@@ -810,12 +810,9 @@ public class EstController {
 	@RequestMapping(value = "/delEstInqr", method = RequestMethod.GET)
 	public ModelAndView delEstimeteList(HttpSession session,
 		@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
-		@RequestParam Map<String, String> map,
-		@RequestParam (value = "sales_price_1" , required = false) String sales_price_1,
-		@RequestParam (value = "sales_price_2" , required = false) String sales_price_2,
-		@RequestParam (value = "estim_nm" , required = false) String estim_nm,
-		@RequestParam (value = "estim_lev_cd" , required = false) String estim_lev_cd,
-		@RequestParam (value = "estim_valid_d" , required = false) String estim_valid_d) 
+		@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+		@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc,
+		@RequestParam Map<String, String> map) 
 	{
 
 		if (session.getAttribute("user") == null) {
@@ -827,22 +824,11 @@ public class EstController {
 		map.put("pageNum", ccPageNum+"");
 		
 		PagerVO page = estInter.getDelCCListCount(map);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		map.put("startRow", page.getStartRow()+"");
 		map.put("endRow", page.getEndRow()+"");
-		
-		if( (sales_price_1 != ""  && sales_price_2 !="") && (sales_price_1 != null  && sales_price_2 != null)){
-			map.put("sales_price", Integer.parseInt(sales_price_1)  * Integer.parseInt(sales_price_2) + "");
-		}
-		if(estim_nm != null){
-			map.put("estim_nm", estim_nm + "");
-		}
-		if(estim_lev_cd != null ){
-			map.put("estim_lev_cd", estim_lev_cd + "");
-		}
-		if(estim_valid_d != null ){
-			map.put("estim_valid_d", estim_valid_d  + "");
-		}
-		
+				
 		List<EstVO> list = estInter.getDelList(map);
 		List<EstVO> elclist = estInter.elcList();
 		List<EstVO> eduList = estInter.eduList();
@@ -861,6 +847,7 @@ public class EstController {
 		mov.addObject("ccPageNum", ccPageNum);
 		mov.addObject("elclist", elclist);
 		mov.addObject("eduCode", eduCode);
+		mov.addObject("data", map);
 		
 		return mov;
 	}
@@ -888,7 +875,9 @@ public class EstController {
 			@RequestParam (value = "estim_nm2" , required = false) String estim_nm2,
 			@RequestParam (value = "cust_nm2" , required = false) String cust_nm2,
 			@RequestParam (value = "estim_lev_cd2" , required = false) String estim_lev_cd2,
-			@RequestParam (value = "estim_valid_d2" , required = false) String estim_valid_d2) {
+			@RequestParam (value = "estim_valid_d2" , required = false) String estim_valid_d2,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 				
 			Map<String,Object> result = new HashMap<String,Object>(0);
 			map.put("pageNum", ccPageNum+"");
@@ -923,13 +912,15 @@ public class EstController {
 			map.put("estim_lev_cd2", estim_lev_cd2 + "");
 			map.put("estim_valid_d2", estim_valid_d2  + "");
 			PagerVO page = estInter.getDelCCListCount(map);
+			map.put("order_by", order_by);
+			map.put("order_sc", order_sc);
 			map.put("startRow", page.getStartRow()+"");
 			map.put("endRow", page.getEndRow()+"");
 			List<EstVO> list = estInter.getDelList(map);
 			result.put("list", list);
 			result.put("page", page);
 			result.put("ccPageNum", ccPageNum);
-			result.put("searchInfo", map);
+			result.put("data", map);
 		
 			return result;
 		}

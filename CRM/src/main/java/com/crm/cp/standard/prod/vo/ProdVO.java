@@ -44,9 +44,24 @@ public class ProdVO {
 	
 	String attach_id;
 	String attach_img_id;
-	String attach_catal_id;	
+	String attach_catal_id;
+	
+	private String order_by;
+	private String order_sc;
 	
 	
+	public String getOrder_by() {
+		return order_by;
+	}
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+	public String getOrder_sc() {
+		return order_sc;
+	}
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
+	}
 	public String getAttach_id() {
 		return attach_id;
 	}

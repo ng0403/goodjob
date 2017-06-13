@@ -180,12 +180,12 @@
 				<thead>
 					<tr>
 						<th style="width: 3%;text-align: center;"><input type="checkbox" id="estimAllSelect" ></th>
-						<th style="width: 27%;" id="tblTh" onclick="setOrder('estim_nm')">견적명</th>
-						<th style="width: 15%;" id="tblTh" onclick="setOrder('cust_nm')">고객사명</th>
-						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_lev_cd_nm')">견적단계</th>
-						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_qty')">견적수량</th>
-						<th style="width: 15%;" id="tblTh" onclick="setOrder('sales_price')">견적금액</th>
-						<th style="width: 15%;" id="tblTh" onclick="setOrder('estim_valid_d')">견적유효일자</th>
+						<th style="width: 27%;" id="tblTh" onclick="setOrder('estim_nm','${ccPageNum}')">견적명</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('cust_nm','${ccPageNum}')">고객사명</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_lev_cd_nm','${ccPageNum}')">견적단계</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_qty','${ccPageNum}')">견적수량</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('sales_price','${ccPageNum}')">견적금액</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('estim_valid_d','${ccPageNum}')">견적유효일자</th>
 <!-- 						<th style="width: 9%;" id="tblTh">등록자</th> -->
 <!-- 						<th style="width: 14%;" id="tblTh">등록일시</th> -->
 					</tr>

@@ -60,7 +60,7 @@ public class IuserController {
 		List<MenuVO> menuList = menuService.selectAll(session);
 				
 		ModelAndView mov = new ModelAndView("user", "list", list);
-		mov.addObject("menuList", menuList);
+//		mov.addObject("menuList", menuList);
 		mov.addObject("authName", authName);
 
 		return mov;
@@ -138,7 +138,7 @@ public class IuserController {
 		List<Object> authName = iuserService.iuserAuthName();
 		ModelAndView mov = new ModelAndView("user", "list", list);
 		List<MenuVO> menuList = menuService.selectAll(session);
-		mov.addObject("menuList", menuList);
+//		mov.addObject("menuList", menuList);
 		mov.addObject("authName", authName);
 		
 		return mov;

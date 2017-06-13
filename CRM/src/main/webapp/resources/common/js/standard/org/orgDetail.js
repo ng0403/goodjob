@@ -74,6 +74,35 @@ function userAuthTab_click(ctx){
 		});
 	});
 }
+function orgUserList(){
+	var obj = new Object();
+	obj.searchKey = $('#searchKey').val();
+	obj.searchValue = $('#title_text').val();
+	var data = JSON.stringify(obj);
+	$.ajaxSettings.traditional = true;
+	$.ajax({
+		url: ctx+'/orgUserAuthSearch',
+		type: 'POST',
+        data: data,
+        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
+        dataType:'json',
+        success: function(data){
+        	var list="";
+        	$('#mastertable tbody tr').remove();
+        	for(var i=0; i<data.length; i++){
+        		list+='<tr><td style="width: 20%;">'+data[i].org_nm+'</td>'
+				+'<td style="width: 20%;">'+data[i].rep_emp_nm+'</td>'
+				+'<td style="width: 20%;">'+data[i].iuser_nm+'</td>'
+				+'<td style="width: 20%;">'+data[i].ph1+'-'+data[i].ph2+'-'+data[i].ph3+'</td>'
+				+'<td style="width: 20%;">'+data[i].email1+'@'+data[i].email2+'</td></tr>\n';
+        	}
+        	$('#mastertable tbody').append(list);
+        },
+        error: function(){
+            alert("error");
+        }
+	});
+}
 
 function orgResetBtn_funct(ctx){
 	if($('#org_mode').val() != 'waiting'){
@@ -443,33 +472,7 @@ function orgDetailButtonEvent(ctx){
 	});
 	
 	$('#orgUserAuthSearch').click(function(){
-		var obj = new Object();
-		obj.searchKey = $('#searchKey').val();
-		obj.searchValue = $('#title_text').val();
-		var data = JSON.stringify(obj);
-		$.ajaxSettings.traditional = true;
-		$.ajax({
-			url: ctx+'/orgUserAuthSearch',
-			type: 'POST',
-	        data: data,
-	        contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
-	        dataType:'json',
-	        success: function(data){
-	        	var list="";
-	        	$('#mastertable tbody tr').remove();
-	        	for(var i=0; i<data.length; i++){
-	        		list+='<tr><td style="width: 20%;">'+data[i].org_nm+'</td>'
-					+'<td style="width: 20%;">'+data[i].rep_emp_nm+'</td>'
-					+'<td style="width: 20%;">'+data[i].iuser_nm+'</td>'
-					+'<td style="width: 20%;">'+data[i].ph1+'-'+data[i].ph2+'-'+data[i].ph3+'</td>'
-					+'<td style="width: 20%;">'+data[i].email1+'@'+data[i].email2+'</td></tr>\n';
-	        	}
-	        	$('#mastertable tbody').append(list);
-	        },
-	        error: function(){
-	            alert("error");
-	        }
-		});
+		orgUserList();
 	});
 }
 function detaildisabled(){

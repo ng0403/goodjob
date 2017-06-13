@@ -13,6 +13,13 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <title>사용자 관리</title>
+<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+
+<script>
+   $(function() {
+      $('table').tablesort();
+   });            
+</script>
 <script type="text/javascript">
 $("#navisub11").show();
 $("#naviuser").css("font-weight", "bold");
@@ -42,17 +49,17 @@ $("#naviuser").css("font-weight", "bold");
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 	<form name="delAllForm" id="delAllForm" method="post"  >	
-		<table id="mastertable" class="ui celled table">
+		<table id="mastertable" class="ui sortable celled table" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-					<td style="width:10%;">사용자ID</td>
-					<td style="width:10%;">사용자명</td>
-					<td style="width:10%;">조직명</td>
-					<td style="width:25%;">이메일</td>
-					<td style="width:25%;">연락처</td>
-					<td style="width:10%;">사용자구분</td>
-					<td style="width:10%;">상태</td>
+					<th style="width:10%;">사용자ID</th>
+					<th style="width:10%;">사용자명</th>
+					<th style="width:10%;">조직명</th>
+					<th style="width:25%;">이메일</th>
+					<th style="width:25%;">연락처</th>
+					<th style="width:10%;">사용자구분</th>
+					<th style="width:10%;">상태</th>
 				</tr>
 			</thead>
 			<tbody id="usertbody">

@@ -21,15 +21,8 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <script type="text/javascript"
 	src="${ctx}/resources/common/js/jquery-ui.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
-
-<script>
-   $(function() {
-      $('table').tablesort();
-   });            
-</script>
 
 <style type="text/css">
 	.ui-datepicker{ font-size: 13px; width: 300px;}
@@ -165,17 +158,19 @@
 <!-- </form> -->
 	    
 	    <div id="tableline">
+		    <input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th style="width: 30%;" id="tblTh">견적명</th>
-						<th style="width: 15%;" id="tblTh">고객사명</th>
-						<th style="width: 10%;" id="tblTh">견적단계</th>
-						<th style="width: 5%;" id="tblTh">견적수량</th>
-						<th style="width: 10%;" id="tblTh">견적금액</th>
-						<th style="width: 10%;" id="tblTh">견적유효일자</th>
-						<th style="width: 10%;" id="tblTh">최종수정자</th>
-						<th style="width: 10%;" id="tblTh">최종수정일자</th>
+						<th style="width: 30%;" id="tblTh" onclick="setOrder('estim_nm','${ccPageNum}')">견적명</th>
+						<th style="width: 15%;" id="tblTh" onclick="setOrder('cust_nm','${ccPageNum}')">고객사명</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_lev_cd_nm','${ccPageNum}')">견적단계</th>
+						<th style="width: 5%;" id="tblTh" onclick="setOrder('estim_qty','${ccPageNum}')">견적수량</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('sales_price','${ccPageNum}')">견적금액</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('estim_valid_d','${ccPageNum}')">견적유효일자</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('fin_mdfy_id','${ccPageNum}')">최종수정자</th>
+						<th style="width: 10%;" id="tblTh" onclick="setOrder('fin_mdfy_dt','${ccPageNum}')">최종수정일자</th>
 					</tr>
 				</thead>
 				<tbody id="estList">
