@@ -9,13 +9,18 @@
  * startDatePicker()										:	영업활동 사용되는 달력 버튼
  * dateFormat(timestamp)									:	date 포맷 변경
  * 
+ * addForm()												: 담당사원 검색조건 추가
+ * dellForm(obj) 											: 담당사원 검색조건 삭제
+ * ccMngPocList(page)										: 담당사원 AjaxList
  * ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm)			: 담당사원 상세보기(리스트에서 사원명 클릭 시)
  * posAddBtn()												: 담당사원 등록버튼 클릭 시 
  * mdfyClick()												: 담당사원 편집버튼 클릭 시
  * ccMngCancelBtn()											: 담당사원 취소버튼 클릭 시
+ * schPaging(ccPageNum)										: 담당사원 조회 페이징
  * 
  * 
  */
+var count = 0;
 
 $(function(){
 	var ctx = $('#ctx').val();
@@ -26,7 +31,36 @@ $(function(){
 	iuserListPopup(ctx);	//직원 검색 버튼 (사용)
 //	pocList(cust_id);
 	compNmSelect(ctx);
+	$("#search_div2, #search_div3").hide();
+	
 });
+
+// 담당사원 검색조건 추가
+function addForm(){
+	if(count == 0){
+		$("#search_div2").show();
+		count++;
+	}else if(count == 1){
+		$("#search_div3").show();
+		count++;
+	}else if(count >= 2){
+		alert("검색조건을 더 이상 추가할 수 없습니다.");
+		count = 2;
+	}else{
+		count = 0;
+	}
+}
+// 담당사원 검색조건 제거
+function delForm(message){
+	console.log(count);
+	console.log(message);
+	console.log($("#"+message+"").parent("div"));
+	$("#"+message+"").parent("div").find("input:text").val("");
+	$("#"+message+"").parent("div").find("select").index(0);
+	$("#"+message+"").parent("div").hide();
+	console.log(count);
+	count--;
+}
 
 //담당자 상세보기(리스트에서 사원명 클릭 시)
 function ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm) {
@@ -449,6 +483,8 @@ function ccMngUpdate(ctx){
 // 담당사원 리스트 ajaxList
 function ccMngPocList(page) {
 		
+	var ctx = $("#ctx").val();
+	
 	var tbody = $('#pocTableTbody');
 	var tbodyContent = "";
 	var tabValue = $("#tabValue").val();
@@ -456,7 +492,24 @@ function ccMngPocList(page) {
 	$.ajax({
 		url : 'custMngAjax',
 		type : 'POST',
-		data : {ccPageNum :page},
+		data : {
+					ccPageNum      : page,
+					sch_cust_nm    : $("#sch_cust_nm").val(), 
+					sch_cust_nm0   : $("#sch_cust_nm0").val(), 
+					sch_cust_nm1   : $("#sch_cust_nm1").val(), 
+					sch_iuser_nm   : $("#sch_iuser_nm").val(), 
+					sch_iuser_nm0  : $("#sch_iuser_nm0").val(), 
+					sch_iuser_nm1  : $("#sch_iuser_nm1").val(), 
+					sch_org_nm_cd  : $("#sch_org_nm_cd").val(), 
+					sch_org_nm_cd0 : $("#sch_org_nm_cd0").val(), 
+					sch_org_nm_cd1 : $("#sch_org_nm_cd1").val(), 
+					sch_key_part   : $("#sch_key_part").val(), 
+					sch_key_part0  : $("#sch_key_part0").val(), 
+					sch_key_part1  : $("#sch_key_part1").val(), 
+					sch_email      : $("#sch_email").val(), 
+					sch_email0     : $("#sch_email0").val(), 
+					sch_email1     : $("#sch_email1").val()
+				},
 		dataType : "json",
 		success : function(data) {
 			tbody.children().remove();
@@ -547,3 +600,58 @@ function setWindowResize() {
 	window.resizeBy(Dwidth-divEl.offsetWidth, Dheight-divEl.offsetHeight);
 	document.body.removeChild(divEl);
 }
+
+// 담당사원 조회 페이징
+function searchBtn(page) {
+	
+	var sch_cust_nm    = $("#sch_cust_nm").val();
+	var sch_cust_nm0   = $("#sch_cust_nm0").val();
+	var sch_cust_nm1   = $("#sch_cust_nm1").val();
+	var sch_iuser_nm   = $("#sch_iuser_nm").val();
+	var sch_iuser_nm0  = $("#sch_iuser_nm0").val();
+	var sch_iuser_nm1  = $("#sch_iuser_nm1").val();
+	var sch_org_nm_cd  = $("#sch_org_nm_cd").val();
+	var sch_org_nm_cd0 = $("#sch_org_nm_cd0").val();
+	var sch_org_nm_cd1 = $("#sch_org_nm_cd1").val();
+	var sch_key_part  =  $("#sch_key_part").val();
+	var sch_key_part0  = $("#sch_key_part0").val();
+	var sch_key_part1  = $("#sch_key_part1").val();
+	var sch_email =  $("#sch_email").val();
+	var sch_email0 = $("#sch_email0").val();
+	var sch_email1 = $("#sch_email1").val();
+	
+	alert(sch_cust_nm0);
+	
+	if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm0){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}if((sch_cust_nm == '' || sch_cust_nm == null) && sch_cust_nm1){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}if(sch_cust_nm0 == null && sch_cust_nm1){
+		alert("고객사명을 앞에서부터 채워주세요.");
+		return;
+	}
+//	if((sch_comp_num == '' || sch_comp_num == null)  && sch_comp_num0){
+//		alert("사업자번호를 앞에서부터 채워주세요.");
+//		return;
+//	}if((sch_comp_num == '' || sch_comp_num == null) && sch_comp_num1){
+//		alert("사업자번호를 앞에서부터 채워주세요.");
+//		return;
+//	}if(sch_comp_num0 == null && sch_comp_num1){
+//		alert("사업자번호를 앞에서부터 채워주세요.");
+//		return;
+//	}
+//	if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num0){
+//		alert("법인번호를 앞에서부터 채워주세요.");
+//		return;
+//	}if((sch_corp_num == '' || sch_corp_num == null) && sch_corp_num1){
+//		alert("법인번호를 앞에서부터 채워주세요.");
+//		return;
+//	}if(sch_corp_num0 == null && sch_corp_num1){
+//		alert("법인번호를 앞에서부터 채워주세요.");
+//		return;
+//	} 
+	ccMngPocList(page);
+}
+

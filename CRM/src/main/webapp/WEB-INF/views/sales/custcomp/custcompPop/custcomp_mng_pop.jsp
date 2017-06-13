@@ -22,11 +22,14 @@
    .ui-datepicker{ font-size: 13px; width: 300px;}
    .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 12px; }
    .ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 12px; } 
+   #operatingapopuptable {
+   	margin-top: 20px;
+   }
    
 </style>
 </head>
 <body>
-<div class="keymanview" style="width: 98%; padding-left: 10px;">
+<div class="keymanview" >
 	<input type="hidden" id="ctx" value="${ctx}">
 	<input type="hidden" id="flg" value="${flg}">
 	<input type="hidden" id="custType" value="${iuserType}"/>

@@ -501,9 +501,9 @@
 		                and cust.act_yn = 'Y'
 	          			<choose>
 							<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != '' and sch_cust_nm1 != null and sch_cust_nm1 != ''">
-								and (cust.cust_nm like '%'||#{sch_cust_nm}||'%' 
-									 or cust.cust_nm like '%'||#{sch_cust_nm0}||'%' 
-									 or cust.cust_nm like '%'||#{sch_cust_nm1}||'%')
+								and (cust.cust_nm like '%'||#{sch_cust_nm}||'%'  
+									or cust.cust_nm like '%'||#{sch_cust_nm0}||'%' 
+									or cust.cust_nm like '%'||#{sch_cust_nm1}||'%')
 							</when>
 							<when test="sch_cust_nm !=null and sch_cust_nm !='' and sch_cust_nm0 != null and sch_cust_nm0 != ''">
 								and (cust.cust_nm like '%'||#{sch_cust_nm}||'%' 

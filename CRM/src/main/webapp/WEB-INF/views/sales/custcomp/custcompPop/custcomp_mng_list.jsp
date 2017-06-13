@@ -11,6 +11,11 @@
 
 <link rel="stylesheet" href="${ctx}/resources/common/css/jquery-ui.css">
 <title>Insert title here</title>
+<style type="text/css">
+#tableline2 {
+	height: 260px;
+}
+</style>
 </head>
 <body>
 <input type="hidden" id="nowCust_id" value="${custcompDetail.cust_id}" />
@@ -33,35 +38,85 @@
 	
 	<div class="search_div"  id="search_div" >
 		<div class="ui left icon input">
-			<input type="text" placeholder="고객사명" id="sch_cust_num" name="sch_cust_num" onkeypress="schDelCustComp(event);"  style='ime-mode:disabled;'>
+			<input type="text" placeholder="고객사명" id="sch_cust_nm" name="sch_cust_nm" onkeypress="schDelCustComp(event);"  style='ime-mode:disabled;'>
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
 			<input type="text" placeholder="사원명"  id="sch_iuser_nm" name="sch_iuser_nm" onkeypress="schDelCustComp(event);">
 			<i class="user icon"></i>
 		</div>	
-		<select name="org_id" id="org_id_select" style="height: 30px; margin-right: 4px; background: #fff;">
+		<select name="org_id" id="org_id_cd" style="height: 30px; margin-right: 4px; background: #fff;">
 	    	<option value="">부서명</option>
 	      	<c:forEach items="${OrgCd}" var="list">
 				<option value="${list.org_id}" >${list.org_nm}</option>
 			</c:forEach>
 	    </select>
-		
 		<div class="ui left icon input">	
 			<input type="text" placeholder="역할명"  id="sch_key_part" name="sch_key_part"  onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
 			<i class="browser icon"></i>
 		</div>	
-		
 		<div class="ui left icon input">	
 			<input type="text" placeholder="이메일"  id="sch_email" name="sch_email" onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
 			<i class="mail icon"></i>
 		</div>	
-		
 			<label id="schAddBtn" class="tiny ui button" onclick="addForm();">+</label>
-		<input type="button" id="custcomp_search" class="tiny ui blue button" value="조회" onclick="searchDelBtn('${ccPageNum}');" />
-		
+		<input type="button" id="custcomp_search" class="tiny ui blue button" value="조회" onclick="searchBtn('${ccPageNum}');" />
 	</div>
 	
+	<div class="search_div2"  id="search_div2" style="margin-bottom: 5px;">
+		<div class="ui left icon input">
+			<input type="text" placeholder="고객사명" id="sch_cust_nm0" name="sch_cust_nm0" onkeypress="schDelCustComp(event);"  style='ime-mode:disabled;'>
+			<i class="users icon"></i>
+		</div>	
+		<div class="ui left icon input">
+			<input type="text" placeholder="사원명"  id="sch_iuser_nm0" name="sch_iuser_nm0" onkeypress="schDelCustComp(event);">
+			<i class="user icon"></i>
+		</div>	
+		<select name="org_id" id="org_id_cd0" style="height: 30px; margin-right: 4px; background: #fff;">
+	    	<option value="">부서명</option>
+	      	<c:forEach items="${OrgCd}" var="list">
+				<option value="${list.org_id}" >${list.org_nm}</option>
+			</c:forEach>
+	    </select>
+		<div class="ui left icon input">	
+			<input type="text" placeholder="역할명"  id="sch_key_part0" name="sch_key_part0"  onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
+			<i class="browser icon"></i>
+		</div>	
+		<div class="ui left icon input">	
+			<input type="text" placeholder="이메일"  id="sch_email0" name="sch_email0" onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
+			<i class="mail icon"></i>
+		</div>	
+			<label id="schAddBtn" class="tiny ui button" onclick="delForm(this.id);">-</label>
+	</div>
+
+	<div class="search_div3"  id="search_div3" style="margin-bottom: 5px;">
+		<div class="ui left icon input">
+			<input type="text" placeholder="고객사명" id="sch_cust_nm1" name="sch_cust_nm1" onkeypress="schDelCustComp(event);"  style='ime-mode:disabled;'>
+			<i class="users icon"></i>
+		</div>	
+		<div class="ui left icon input">
+			<input type="text" placeholder="사원명"  id="sch_iuser_nm1" name="sch_iuser_nm1" onkeypress="schDelCustComp(event);">
+			<i class="user icon"></i>
+		</div>	
+		<select name="org_id" id="org_id_cd1" style="height: 30px; margin-right: 4px; background: #fff;">
+	    	<option value="">부서명</option>
+	      	<c:forEach items="${OrgCd}" var="list">
+				<option value="${list.org_id}" >${list.org_nm}</option>
+			</c:forEach>
+	    </select>
+		<div class="ui left icon input">	
+			<input type="text" placeholder="역할명"  id="sch_key_part1" name="sch_key_part1"  onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
+			<i class="browser icon"></i>
+		</div>	
+		<div class="ui left icon input">	
+			<input type="text" placeholder="이메일"  id="sch_email1" name="sch_email1" onkeypress="schDelCustComp(event);" style='ime-mode:disabled;'>
+			<i class="mail icon"></i>
+		</div>	
+			<label id="schAddBtn" class="tiny ui button" onclick="delForm(this.id);">-</label>
+	</div>
+
+
+
 
 	<div id="tabDiv5" class="tab5_content" style="width: 100%;">
 		<div id="tableline2">
@@ -77,7 +132,7 @@
 						<th style="width: 17%">이메일</th>
 					</tr>
 				</thead>
-				<tbody id= "pocTableTbody" class="tbody">
+				<tbody id= "pocTableTbody" class="tbody" style="height: 230px;">
 <!-- 					<tr style='height: 75px;'><td colspan='9'>조회된 결과가 없습니다.</td></tr> -->
 					<c:forEach var="mngList" items="${custcompMngList}">
 						<tr>
@@ -106,7 +161,7 @@
 			</div>
 			
 			<!-- 페이징 처리 -->
-			<div id="pageSpace" class="ui right floated pagination menu" style=" margin-top: 10px; float: right;">
+			<div id="pageSpace" class="ui right floated pagination menu" style=" margin-top: 10px; float: right; margin-bottom: 15px;" >
 				<input type="hidden" id="endPageNum" value="${page.endPageNum}"/>
 				<input type="hidden" id="ccPageNum" value="${ccPageNum}">
 				<c:choose>
