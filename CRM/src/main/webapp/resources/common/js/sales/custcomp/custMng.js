@@ -272,7 +272,7 @@ function custMngDelete() {
 		alert("삭제할 담당사원을 선택해 주세요.");
 		return false;
 	}
-	if(confirm("삭제 하시겠습니까? \n0데이터가 완전히 삭제됩니다.")){
+	if(confirm("삭제 하시겠습니까? \n데이터가 완전히 삭제됩니다.")){
 	var ccMngDelList = [];
 	var pageNum = $("#pageNum").val();
 	$("input[name=custcompMng_del]:checked").each(function(){
