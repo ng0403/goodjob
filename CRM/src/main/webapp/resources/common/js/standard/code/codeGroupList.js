@@ -10,7 +10,17 @@ $(function(){
 	searchcdgrpList(ctx); //코드그룹 검색
  	
   });
-
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,flg){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	if(flg=='auth')authList();
+	else if(flg=='userAuth')authUserList();
+}
 function AuthcheckCount(tabID) {
 	var count = 0;
 	var checkList = $('#'+tabID+' tbody').find('input[type="checkBox"]');

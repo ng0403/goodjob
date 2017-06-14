@@ -35,7 +35,10 @@ public class AuthController {
 	AuthMenuService authMenuService;
 		
 	@RequestMapping(value="/auth", method=RequestMethod.GET)
-	public ModelAndView AuthMain(HttpSession session){
+	public ModelAndView AuthMain(HttpSession session,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc,
+			@RequestParam Map<String, String> map){
 		
 		if (session.getAttribute("user") == null) {
 
@@ -47,12 +50,15 @@ public class AuthController {
 		List<Object> authIuserList = authIuserService.authUserList();
 		List<Object> authMenuList = authMenuService.authMenuList();
 		
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		System.out.println("authlist c??? " + authList.toString());
 		System.out.println("authIuserList ? " + authIuserList.toString());
 		ModelAndView mov = new ModelAndView ("auth", "authList", authList);
 		mov.addObject("menuList", menuList);
 		mov.addObject("authIuserList", authIuserList);
 		mov.addObject("authMenuList", authMenuList);
+		mov.addObject("data", map);
 		return mov;
 		
 	}

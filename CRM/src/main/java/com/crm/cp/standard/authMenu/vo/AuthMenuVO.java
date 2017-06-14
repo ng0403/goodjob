@@ -19,6 +19,9 @@ public class AuthMenuVO {
 	String retrv_yn;
 	String deflt_yn;
 	
+	private String order_by;
+	private String order_sc;
+	
 	public AuthMenuVO(){}
 
 	public AuthMenuVO(String auth_id, String auth_nm, String menu_id,
@@ -38,6 +41,22 @@ public class AuthMenuVO {
 		this.del_yn = del_yn;
 		this.retrv_yn = retrv_yn;
 		this.deflt_yn = deflt_yn;
+	}
+
+	public String getOrder_by() {
+		return order_by;
+	}
+
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+
+	public String getOrder_sc() {
+		return order_sc;
+	}
+
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
 	}
 
 	public String getAuth_id() {

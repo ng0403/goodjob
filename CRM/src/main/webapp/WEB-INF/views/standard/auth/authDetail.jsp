@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/auth/authDetail.css" type="text/css" />
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_detail.css" type="text/css" />
 
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<%-- <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> --%>
 <script type="text/javascript" src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 
@@ -87,11 +87,11 @@ $(function(){
 					<thead>
 						<tr>
 							<th style="width: 4.9%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-							<th style="width: 14.8%;">사용자ID</th>
-							<th style="width: 14.8%;">사용자 이름</th>
-							<th style="width: 29.4%;">권한명</th>
-							<th style="width: 15.7%;">최종수정자</th>
-							<th style="width: 25%;">최종수정일</th>
+							<th style="width: 14.8%;" onclick="setOrder('id_nm','userAuth')">사용자ID</th>
+							<th style="width: 14.8%;" onclick="setOrder('iuser_nm','userAuth')">사용자 이름</th>
+							<th style="width: 29.4%;" onclick="setOrder('auth_nm','userAuth')">권한명</th>
+							<th style="width: 15.7%;" onclick="setOrder('fst_reg_id','userAuth')">최종수정자</th>
+							<th style="width: 25%;" onclick="setOrder('fst_reg_d','userAuth')">최종수정일</th>
 							<th style="width: 5%;border-left:none;"></th>
 						</tr>
 					</thead>
@@ -138,13 +138,13 @@ $(function(){
 				<thead>
 					<tr>
 						<th style="width:4.9%;"><input type="checkbox" id="ckallselect" disabled="disabled"></th>
-						<th style="width:19.7%;">권한명</th>
-						<th style="width:24.6%;">권한 메뉴명</th>
-						<th style="width:9.9%;">디폴트여부</th>
-						<th style="width:9.8%;">조회여부</th>
-						<th style="width:9.8%;">입력여부</th>
-						<th style="width:9.8%;">수정여부</th>
-						<th style="width:20%;">삭제여부</th>
+						<th style="width:19.7%;" onclick="setOrder('auth_nm','authMenu')">권한명</th>
+						<th style="width:24.6%;" onclick="setOrder('menu_nm','authMenu')">권한 메뉴명</th>
+						<th style="width:9.9%;" onclick="setOrder('deflt_yn','authMenu')">디폴트여부</th>
+						<th style="width:9.8%;" onclick="setOrder('retrv_yn','authMenu')">조회여부</th>
+						<th style="width:9.8%;" onclick="setOrder('creat_yn','authMenu')">입력여부</th>
+						<th style="width:9.8%;" onclick="setOrder('mdfy_yn','authMenu')">수정여부</th>
+						<th style="width:20%;" onclick="setOrder('del_yn','authMenu')">삭제여부</th>
 						<th style="width: 5%;border-left:none;"></th>
 					</tr>
 				</thead>

@@ -64,7 +64,40 @@
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if> 
-	  order by u.fin_mdfy_dt desc
+	  <choose>
+	  		<when test="order_by == 'fin_mdfy_dt'">
+				order by u.fin_mdfy_dt
+			</when>
+			<when test="order_by == 'id_nm'">
+				order by u.ID_NM
+			</when>
+			<when test="order_by == 'iuser_nm'">
+				order by u.IUSER_NM
+			</when>
+			<when test="order_by == 'org_nm'">
+				order by oz.ORG_NM
+			</when>
+			<when test="order_by == 'email'">
+				order by u.EMAIL1
+			</when>
+			<when test="order_by == 'cell_ph'">
+				order by u.CELL_PH1 asc, u.CELL_PH1 asc, u.CELL_PH1
+			</when>
+			<when test="order_by == 'cd_nm'">
+				order by c.CD_NM
+			</when>
+			<when test="order_by == 'act_yn'">
+				order by u.ACT_YN
+			</when>
+		</choose>
+		<choose>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
 	</select>
 	
 <!-- 	삭제된 사용자 리스트 출력 -->
@@ -81,7 +114,40 @@
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if> 
-	  order by u.fin_mdfy_dt desc
+	  <choose>
+	  		<when test="order_by == 'fin_mdfy_dt'">
+				order by u.fin_mdfy_dt
+			</when>
+			<when test="order_by == 'id_nm'">
+				order by u.ID_NM
+			</when>
+			<when test="order_by == 'iuser_nm'">
+				order by u.IUSER_NM
+			</when>
+			<when test="order_by == 'org_nm'">
+				order by oz.ORG_NM
+			</when>
+			<when test="order_by == 'email'">
+				order by u.EMAIL1
+			</when>
+			<when test="order_by == 'cell_ph'">
+				order by u.CELL_PH1 asc, u.CELL_PH1 asc, u.CELL_PH1
+			</when>
+			<when test="order_by == 'cd_nm'">
+				order by c.CD_NM
+			</when>
+			<when test="order_by == 'act_yn'">
+				order by u.ACT_YN
+			</when>
+		</choose>
+		<choose>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
  	</select>
 	
 	<select id="iuserAuthSelect" resultType="com.crm.cp.standard.auth.vo.AuthVO">

@@ -27,7 +27,10 @@ public class OrgController {
 	MenuService menuService;
 	
 	@RequestMapping(value="/orgll", method=RequestMethod.GET)
-	public ModelAndView Treelist(HttpSession session){
+	public ModelAndView Treelist(HttpSession session,
+			@RequestParam(value = "order_by", defaultValue = "org_nm") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc,
+			@RequestParam Map<String, String> map){
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
@@ -37,15 +40,17 @@ public class OrgController {
 		List<Object> TreeListTwo =orgService.selectTreeTwo();
 /*		List<Object> TreeListThird =orgService.selectTreeThird();
 		List<Object> TreeListFourth =orgService.selectTreeFourth();*/
-
-   	    List<MenuVO> menuList = menuService.selectAll(session);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
+//   	    List<MenuVO> menuList = menuService.selectAll(session);
    	    ModelAndView mav=new ModelAndView("org");
-		mav.addObject("menuList", menuList);
+//		mav.addObject("menuList", menuList);
 		mav.addObject("TreeList", TreeList);
 		mav.addObject("TreeListTwo", TreeListTwo);
 /*		mav.addObject("TreeListThird", TreeListThird);
 		mav.addObject("TreeListFourth", TreeListFourth);*/
-
+		mav.addObject("data", map);
+		
 		return mav;
 	}
 	

@@ -9,6 +9,16 @@ $(function() {
 	iuserDelDelete(ctx);
 	iuserDeleteRollBack(ctx);
 });
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	$("#searchForm").submit();
+}
 function deletedList(){
 	var ctx = $("#ctx").val();
 	location.href = ctx+'/iUserDelList';

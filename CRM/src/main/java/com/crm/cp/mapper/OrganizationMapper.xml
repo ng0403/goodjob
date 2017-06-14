@@ -121,6 +121,31 @@
 		<if test="searchValue!=null and searchValue!='' ">
 		  	<include refid="orgUser_where-list"/>
 		</if>
+		<choose>
+			<when test="order_by == 'org_nm'">
+				order by a.org_nm
+			</when>
+			<when test="order_by == 'rep_emp_nm'">
+				order by rep_emp_nm
+			</when>
+			<when test="order_by == 'iuser_nm'">
+				order by a.iuser_nm
+			</when>
+			<when test="order_by == 'ph'">
+				order by PH1 asc, PH2 asc, PH3
+			</when>
+			<when test="order_by == 'email'">
+				order by a.EMAIL1
+			</when>
+		</choose>
+		<choose>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
 	</select>
 	
 	<!--  -->

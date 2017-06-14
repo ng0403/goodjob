@@ -48,7 +48,40 @@
 	        <include refid="where-authIuserList"/>
 	    </if>
 	    GROUP BY b.IUSER_ID,b.IUSER_NM,b.ID_NM
-		ORDER BY FST_REG_D DESC
+		<choose>
+      		<when test="order_by == '' or order_by == null">
+				ORDER BY FST_REG_D
+			</when>
+			<when test="order_by == 'fst_reg_d'">
+				ORDER BY FST_REG_D
+			</when>
+			<when test="order_by == 'id_nm'">
+				order by b.ID_NM
+			</when>
+			<when test="order_by == 'iuser_nm'">
+				order by b.IUSER_NM
+			</when>
+			<when test="order_by == 'auth_nm'">
+				order by AUTH_NM
+			</when>
+			<when test="order_by == 'fst_reg_id'">
+				order by FST_REG_ID
+			</when>
+			<otherwise>
+				ORDER BY FST_REG_D
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="order_sc == '' or order_sc == 'null'">
+				desc
+			</when>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
 	</select>
 	
 	<select id="authList" parameterType="map" resultType="com.crm.cp.standard.authIuser.vo.AuthIuserVO">

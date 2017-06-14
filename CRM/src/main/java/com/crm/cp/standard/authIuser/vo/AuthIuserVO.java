@@ -16,6 +16,9 @@ public class AuthIuserVO {
 	String auth_nm;
 	String count;
 	
+	private String order_by;
+	private String order_sc;
+	
 	public String getCount() {
 		return count;
 	}
@@ -43,6 +46,22 @@ public class AuthIuserVO {
 		this.fst_reg_id = fst_reg_id;
 		this.fst_reg_d = fst_reg_d;
 		this.id_nm = id_nm;
+	}
+
+	public String getOrder_by() {
+		return order_by;
+	}
+
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+
+	public String getOrder_sc() {
+		return order_sc;
+	}
+
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
 	}
 
 	public String getIuser_nm() {

@@ -26,7 +26,7 @@ $("#naviuser").css("font-weight", "bold");
 			<label id="listLabel" class="ui header" style="background: #fff;" >■ 기준정보 > <a href="/user" style="font-size: 19px; text-decoration:none;  font: bold;">사용자관리</a> > 영업기회관리 삭제된 데이터</label>
 		</div>
 		<div class="search_div">
-		<form name="searchForm" method="GET" action="${ctx}/iUserDelList">
+		<form name="searchForm" id="searchForm" method="GET" action="${ctx}/iUserDelList">
 			<select name="keyfield">
 				<option value="u_id">사용자ID명</option>
 				<option value="u_name">사용자명</option>
@@ -36,6 +36,8 @@ $("#naviuser").css("font-weight", "bold");
 				<input id="title_text" type="text" name="keyword" class="int2" style="background-color:white"> &nbsp;
 			</div>
 			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
+			<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			</form>
 		</div>
 	</div>
@@ -45,13 +47,13 @@ $("#naviuser").css("font-weight", "bold");
 			<thead>
 				<tr>
 					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-					<td style="width:10%;">사용자ID</td>
-					<td style="width:10%;">사용자명</td>
-					<td style="width:10%;">조직명</td>
-					<td style="width:25%;">이메일</td>
-					<td style="width:25%;">연락처</td>
-					<td style="width:10%;">사용자구분</td>
-					<td style="width:10%;">상태</td>
+					<td style="width:10%;" onclick="setOrder('id_nm')">사용자ID</td>
+					<td style="width:10%;" onclick="setOrder('iuser_nm')">사용자명</td>
+					<td style="width:10%;" onclick="setOrder('org_nm')">조직명</td>
+					<td style="width:25%;" onclick="setOrder('email')">이메일</td>
+					<td style="width:25%;" onclick="setOrder('cell_ph')">연락처</td>
+					<td style="width:10%;" onclick="setOrder('cd_nm')">사용자구분</td>
+					<td style="width:10%;" onclick="setOrder('act_yn')">상태</td>
 				</tr>
 			</thead>
 			<tbody id="usertbody" style="height: 300px;">

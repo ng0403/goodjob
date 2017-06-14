@@ -35,14 +35,20 @@ public class MenuController {
 		
 	//메뉴
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
-	public ModelAndView menuMain(HttpSession session){
+	public ModelAndView menuMain(HttpSession session,
+			@RequestParam(value = "order_by", defaultValue = "fst_reg_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc,
+			@RequestParam Map<String, String> map){
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		List<MenuVO> menuTree = menuService.selectMenuTree();
 		ModelAndView mov = new ModelAndView ("menu", "menuTree", menuTree);
 		//List<MenuVO> menuList = menuService.selectAll(session);
 		//mov.addObject("menuList", menuList);
+		mov.addObject("data", map);
 		return mov;
 	}
 	

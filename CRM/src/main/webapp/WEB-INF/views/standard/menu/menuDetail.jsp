@@ -118,18 +118,20 @@
 		</div>
 		 <div class="bs-example_menulist" data-example-id="simple-table">
 				<!-- <form name="userForm" id="userForm" method="post" > -->
+			<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 				<table id="mastertable" class="ui sortable celled table">
 					<thead>
 						<tr>
-							<th style="width:15.3%;">메뉴ID</th>
-							<th style="width:15.1%;">메뉴명</th>
-							<th style="width:15%;">권한ID</th>
-							<th style="width:15%;">권한명</th>
-							<th style="width:6.9%;">생성</th>
-							<th style="width:6.9%;">조회</th>
-							<th style="width:6.9%;">수정</th>
-							<th style="width:6.9%;">삭제</th>
-							<th style="width:12.8%;border-right:none;">디폴트</th>
+							<th style="width:15.3%;" onclick="setOrder('menu_id')">메뉴ID</th>
+							<th style="width:15.1%;" onclick="setOrder('menu_nm')">메뉴명</th>
+							<th style="width:15%;" onclick="setOrder('auth_id')">권한ID</th>
+							<th style="width:15%;" onclick="setOrder('auth_nm')">권한명</th>
+							<th style="width:6.9%;" onclick="setOrder('creat_yn')">생성</th>
+							<th style="width:6.9%;" onclick="setOrder('retrv_yn')">조회</th>
+							<th style="width:6.9%;" onclick="setOrder('mdfy_yn')">수정</th>
+							<th style="width:6.9%;" onclick="setOrder('del_yn')">삭제</th>
+							<th style="width:12.8%;border-right:none;" onclick="setOrder('deflt_yn')">디폴트</th>
 <!-- 							<th style="width:12%;">최초등록자</th> -->
 <!-- 							<th style="width:14%;border-right:none;">최초등록일</th> -->
 							<th style="width:0%;border-left:none;"></th>

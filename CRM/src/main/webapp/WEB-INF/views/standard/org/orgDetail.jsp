@@ -167,11 +167,11 @@
 				   <table id="mastertable" class="ui sortable celled table">
 								<thead>
 									<tr>
-										<th style="width: 15.2%;" onclick="setOrder('estim_nm')">조직명</th>
-										<th style="width: 15%;" onclick="setOrder('estim_nm')">조직대표</th>
-										<th style="width: 9.8%;" onclick="setOrder('estim_nm')">사용자</th>
-										<th style="width: 19.9%;" onclick="setOrder('estim_nm')">연락처</th>
-										<th style="width: 41%;border-right:none;" onclick="setOrder('estim_nm')">이메일</th>
+										<th style="width: 15.2%;" onclick="setOrder('org_nm')">조직명</th>
+										<th style="width: 15%;" onclick="setOrder('rep_emp_nm')">조직대표</th>
+										<th style="width: 9.8%;" onclick="setOrder('iuser_nm')">사용자</th>
+										<th style="width: 19.9%;" onclick="setOrder('ph')">연락처</th>
+										<th style="width: 41%;border-right:none;" onclick="setOrder('email')">이메일</th>
 										<th style="width: 0%;border-left:none;"></th>
 									</tr>
 								</thead>

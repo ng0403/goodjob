@@ -39,6 +39,9 @@ public class OrganizationVO {
 	String org_addr_dtl;
 	String org_addr_info;
 	
+	private String order_by;
+	private String order_sc;
+	
 	public OrganizationVO() {
 		super();
 	}
@@ -88,6 +91,22 @@ public class OrganizationVO {
 	}
 
 	
+
+	public String getOrder_by() {
+		return order_by;
+	}
+
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+
+	public String getOrder_sc() {
+		return order_sc;
+	}
+
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
+	}
 
 	public String getOrg_addr() {
 		return org_addr;

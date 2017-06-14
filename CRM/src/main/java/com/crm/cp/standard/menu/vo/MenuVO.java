@@ -26,7 +26,10 @@ public class MenuVO {
 	String auth_id;
 	String iuser_id;
 	String id_nm;
-	ArrayList<MenuVO> menuVO;	
+	ArrayList<MenuVO> menuVO;
+	
+	private String order_by;
+	private String order_sc;
 	
 	public MenuVO() {
 		super();
@@ -127,6 +130,22 @@ public class MenuVO {
 		this.iuser_id = iuser_id;
 		this.id_nm = id_nm;
 		this.menuVO = menuVO;
+	}
+
+	public String getOrder_by() {
+		return order_by;
+	}
+
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+
+	public String getOrder_sc() {
+		return order_sc;
+	}
+
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
 	}
 
 	public String getMenu_id() {

@@ -74,14 +74,26 @@ function userAuthTab_click(ctx){
 		});
 	});
 }
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	orgUserList();
+}
 function orgUserList(){
 	var obj = new Object();
 	obj.searchKey = $('#searchKey').val();
 	obj.searchValue = $('#title_text').val();
+	obj.order_by = $("#order_by").val();
+	obj.order_sc = $("#order_sc").val();
 	var data = JSON.stringify(obj);
 	$.ajaxSettings.traditional = true;
 	$.ajax({
-		url: ctx+'/orgUserAuthSearch',
+		url: '/orgUserAuthSearch',
 		type: 'POST',
         data: data,
         contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
@@ -90,11 +102,11 @@ function orgUserList(){
         	var list="";
         	$('#mastertable tbody tr').remove();
         	for(var i=0; i<data.length; i++){
-        		list+='<tr><td style="width: 20%;">'+data[i].org_nm+'</td>'
-				+'<td style="width: 20%;">'+data[i].rep_emp_nm+'</td>'
-				+'<td style="width: 20%;">'+data[i].iuser_nm+'</td>'
+        		list+='<tr><td style="width: 15%;">'+data[i].org_nm+'</td>'
+				+'<td style="width: 15%;">'+data[i].rep_emp_nm+'</td>'
+				+'<td style="width: 10%;">'+data[i].iuser_nm+'</td>'
 				+'<td style="width: 20%;">'+data[i].ph1+'-'+data[i].ph2+'-'+data[i].ph3+'</td>'
-				+'<td style="width: 20%;">'+data[i].email1+'@'+data[i].email2+'</td></tr>\n';
+				+'<td style="width: 40%;">'+data[i].email1+'@'+data[i].email2+'</td></tr>\n';
         	}
         	$('#mastertable tbody').append(list);
         },

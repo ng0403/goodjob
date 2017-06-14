@@ -43,7 +43,9 @@ public class IuserController {
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ModelAndView UserMain(HttpSession session,
 			@RequestParam(value="keyfield", defaultValue="u_id") String keyfield,
-			@RequestParam(value="keyword", defaultValue="") String keyword
+			@RequestParam(value="keyword", defaultValue="") String keyword,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc
 			) {
 		if (session.getAttribute("user") == null) {
 
@@ -53,15 +55,16 @@ public class IuserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		
 		List<Object> list = iuserService.iuserList(map);
 		System.out.println("사용자 리스트 출력 : " + list.size());
 		List<Object> authName = iuserService.iuserAuthName();
-		List<MenuVO> menuList = menuService.selectAll(session);
 				
 		ModelAndView mov = new ModelAndView("user", "list", list);
-//		mov.addObject("menuList", menuList);
 		mov.addObject("authName", authName);
+		mov.addObject("data", map);
 
 		return mov;
 	}
@@ -70,7 +73,9 @@ public class IuserController {
 		@RequestMapping(value = "/iUserDelList", method = RequestMethod.GET)
 		ModelAndView iUserDelList(HttpSession session,
 				@RequestParam Map<String, String> map,
-				@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum) {
+				@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum,
+				@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+				@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 			if (session.getAttribute("user") == null) {
 				return new ModelAndView("redirect:/");
 			}
@@ -84,6 +89,8 @@ public class IuserController {
 			System.out.println("page 정보 : " + page);
 			map.put("startRow", page.getStartRow() + "");
 			map.put("endRow", page.getEndRow() + "");
+			map.put("order_by", order_by);
+			map.put("order_sc", order_sc);
 
 			//영업기회 리스트 가져오기
 			List<IuserVO> list = iuserService.iUserDelList(map);
@@ -94,7 +101,8 @@ public class IuserController {
 			mov.addObject("list", list);
 			mov.addObject("ccPageNum", pageNum);
 			mov.addObject("menuList", menuList);
-			mov.addObject("searchInfo", map);
+//			mov.addObject("searchInfo", map);
+			mov.addObject("data", map);
 			return mov;
 		}
 	
@@ -123,7 +131,9 @@ public class IuserController {
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public ModelAndView User(HttpSession session,
 			@RequestParam(value="keyfield", defaultValue="u_id") String keyfield,
-			@RequestParam(value="keyword", defaultValue="") String keyword
+			@RequestParam(value="keyword", defaultValue="") String keyword,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc
 			) {
 		if (session.getAttribute("user") == null) {
 
@@ -133,13 +143,16 @@ public class IuserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyfield", keyfield);
 		map.put("keyword", keyword);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		
 		List<Object> list = iuserService.iuserList(map);
 		List<Object> authName = iuserService.iuserAuthName();
 		ModelAndView mov = new ModelAndView("user", "list", list);
-		List<MenuVO> menuList = menuService.selectAll(session);
+//		List<MenuVO> menuList = menuService.selectAll(session);
 //		mov.addObject("menuList", menuList);
 		mov.addObject("authName", authName);
+		mov.addObject("data", map);
 		
 		return mov;
 

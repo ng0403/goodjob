@@ -26,7 +26,37 @@
       <if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  </if>
-      ORDER BY AUTH_ID
+      <choose>
+      		<when test="order_by == '' or order_by == null">
+				order by fin_mdfy_dt
+			</when>
+			<when test="order_by == 'fin_mdfy_dt'">
+				order by fin_mdfy_dt
+			</when>
+			<when test="order_by == 'auth_id'">
+				order by auth_id
+			</when>
+			<when test="order_by == 'auth_nm'">
+				order by auth_nm
+			</when>
+			<when test="order_by == 'act_yn'">
+				order by act_yn
+			</when>
+			<otherwise>
+				ORDER BY fin_mdfy_dt
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="order_sc == '' or order_sc == 'null'">
+				desc
+			</when>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
     </select>
     
     <update id="authDelete" parameterType="string">

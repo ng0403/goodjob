@@ -43,50 +43,66 @@ function allchk(ctx){
 
 	}
 }
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,flg){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	if(flg=='auth')authList();
+	else if(flg=='userAuth')authUserList();
+	else if(flg=='authMenu')authMenuList();
+}
+function authList(){
+	var authdata = {
+			keyfield : $('#selectOption').val(),
+			keyword : $('#title_text').val(),
+			order_by : $("#order_by").val(),
+			order_sc : $("#order_sc").val()
+	}
+	
+	var jsonData = JSON.stringify(authdata);
+	jQuery.ajaxSettings.traditional = true;
+	
+	$.ajax({
+		
+		url : '/auth',					//보낼 URL
+		dataType : 'json',						//응답 받을 데이터 형식
+		type : 'POST',								//서버 요청 방식
+		data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
+		contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
+		success : function(data){
+			
+			$('#authtable tbody tr').remove();
 
+			for(var i=0; i<data.length;i++){
+				var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
+				+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
+				+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
+				
+				if(data[i].act_yn=='Y'){
+					args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
+				}else{
+					args+="<td style='width:30%;'>"+"비활성화"+"</td></tr>";
+				}
+				$('#authtable tbody').append(args);
+
+			}
+			
+		}, error : function(data){
+			alert(data);
+		}
+		
+	});
+}
 function searchAuthList(ctx){
 	
 	$('#search_btn').click(function(event){
 		event.preventDefault();
 		
-		var authdata = {
-				keyfield : $('#selectOption').val(),
-				keyword : $('#title_text').val()
-		}
-		
-		var jsonData = JSON.stringify(authdata);
-		jQuery.ajaxSettings.traditional = true;
-		
-		$.ajax({
-			
-			url : ctx+'/auth',					//보낼 URL
-			dataType : 'json',						//응답 받을 데이터 형식
-			type : 'POST',								//서버 요청 방식
-			data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
-			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
-			success : function(data){
-				
-				$('#authtable tbody tr').remove();
-
-				for(var i=0; i<data.length;i++){
-					var args = "<tr><td style='width:9%;' scope='row'><input type='checkbox' class='ab' id='checkauth' value='"+data[i].auth_id+"'></th>"
-					+"<td style='width:30%;' id='authclick'><a href='#'>"+data[i].auth_id+"</a></td>"
-					+"<td style='width:31%;'>"+data[i].auth_nm+"</td>";
-					
-					if(data[i].act_yn=='Y'){
-						args+="<td style='width:30%;'>"+"활성화"+"</td></tr>";
-					}else{
-						args+="<td style='width:30%;'>"+"비활성화"+"</td></tr>";
-					}
-					$('#authtable tbody').append(args);
-
-				}
-				
-			}, error : function(data){
-				alert(data);
-			}
-			
-		});
+		authList();
 		
 	});
 	
@@ -224,62 +240,78 @@ function editAuth(data){
 		$('#authtable tbody').append(args);
 	}
 }
-
+function authUserList(){
+	var order_by = $("#order_by").val();
+	if(order_by=='fin_mdfy_dt'){
+		order_by = 'fst_reg_d';
+	}
+	var obj = {
+			keyfield : $('#tabDiv1').find('select').val(),
+			keyword : $('#authuser_text').val(),
+			order_by : order_by,
+			order_sc : $("#order_sc").val()
+	}
+	
+	var jsonData = JSON.stringify(obj);
+	jQuery.ajaxSettings.traditional = true;
+	
+	$.ajax({
+		
+		url : '/authUser',					//보낼 URL
+		dataType : 'json',						//응답 받을 데이터 형식
+		type : 'POST',								//서버 요청 방식
+		data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
+		contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
+		success : function(data){
+			editUserAuth(data);
+		},error : function(){
+			alert("실패");
+		}
+		
+	});
+}
 function searchAuthUserList(ctx){
 	$('#userAuthSearch').click(function(event){
 		event.preventDefault();
-		var obj = {
-				keyfield : $('#tabDiv1').find('select').val(),
-				keyword : $('#authuser_text').val()
-		}
 		
-		var jsonData = JSON.stringify(obj);
-		jQuery.ajaxSettings.traditional = true;
-		
-		$.ajax({
-			
-			url : ctx+'/authUser',					//보낼 URL
-			dataType : 'json',						//응답 받을 데이터 형식
-			type : 'POST',								//서버 요청 방식
-			data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
-			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
-			success : function(data){
-				editUserAuth(data);
-			},error : function(){
-				alert("실패");
-			}
-			
-		});
-
+		authUserList();
 	});
 }
-
-function searchAuthMenuList(ctx){
-	$('#menuAuthSearch').click(function(){
-		var obj = {
-				keyfield : $('#tabDiv2').find('select').val(),
-				keyword : $('#authmenu_text').val()
+function authMenuList(){
+	var order_by = $("#order_by").val();
+	if(order_by=='fin_mdfy_dt'){
+		order_by = 'fst_reg_d';
+	}
+	var obj = {
+			keyfield : $('#tabDiv2').find('select').val(),
+			keyword : $('#authmenu_text').val(),
+			order_by : order_by,
+			order_sc : $("#order_sc").val()
+	}
+	
+	var jsonData = JSON.stringify(obj);
+	jQuery.ajaxSettings.traditional = true;
+	
+	$.ajax({
+		
+		url : '/authMenu',					//보낼 URL
+		dataType : 'json',						//응답 받을 데이터 형식
+		type : 'POST',								//서버 요청 방식
+		data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
+		contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
+		success : function(data){
+			editAuthMenu(data)
+		}
+		,error : function(){
+			alert("실패");
 		}
 		
-		var jsonData = JSON.stringify(obj);
-		jQuery.ajaxSettings.traditional = true;
+	});
+}
+function searchAuthMenuList(ctx){
+	$('#menuAuthSearch').click(function(){
 		
-		$.ajax({
-			
-			url : ctx+'/authMenu',					//보낼 URL
-			dataType : 'json',						//응답 받을 데이터 형식
-			type : 'POST',								//서버 요청 방식
-			data :  jsonData,						//파라미터 { 'aaa' : 'bbb' }
-			contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
-			success : function(data){
-				editAuthMenu(data)
-			}
-			,error : function(){
-				alert("실패");
-			}
-			
-		});
-		
+		authMenuList();
 	});
 }
 

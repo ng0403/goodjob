@@ -26,15 +26,60 @@
 	</sql>
 
     <select id="authMenuSelect" resultType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">
-		SELECT a.AUTH_ID, a.AUTH_NM, b.MENU_ID, c.MENU_NM, a.ACT_YN, a.fst_reg_id,
-      		   a.FST_REG_DT, b.RETRV_YN, b.CREAT_YN, b.MDFY_YN, b.DEL_YN, b.DEFLT_YN
+		SELECT a.AUTH_ID, a.AUTH_NM, b.MENU_ID, c.MENU_NM, a.ACT_YN, b.fst_reg_id,
+      		   b.FST_REG_DT, b.RETRV_YN, b.CREAT_YN, b.MDFY_YN, b.DEL_YN, b.DEFLT_YN
 		FROM AUTHORIZATION a, AUTHORIZATION_MENU b, MENU c
 		WHERE b.AUTH_ID = a.AUTH_ID
 		AND c.MENU_ID = b.MENU_ID
 		<if test="keyword!=null and keyword!='' ">
 	        <include refid="where-list"/>
 	  	</if>
-		order by a.FST_REG_DT DESC
+		<choose>
+			<when test="order_by == '' or order_by == null">
+				ORDER BY b.FST_REG_DT
+			</when>
+			<when test="order_by == 'fst_reg_dt'">
+				order by b.FST_REG_DT
+			</when>
+			<when test="order_by == 'menu_id'">
+				order by b.MENU_ID
+			</when>
+			<when test="order_by == 'menu_nm'">
+				order by c.MENU_NM
+			</when>
+			<when test="order_by == 'auth_id'">
+				order by a.AUTH_ID
+			</when>
+			<when test="order_by == 'auth_nm'">
+				order by a.AUTH_NM
+			</when>
+			<when test="order_by == 'creat_yn'">
+				order by b.CREAT_YN
+			</when>
+			<when test="order_by == 'retrv_yn'">
+				order by b.CREAT_YN
+			</when>
+			<when test="order_by == 'mdfy_yn'">
+				order by b.MDFY_YN
+			</when>
+			<when test="order_by == 'del_yn'">
+				order by b.DEL_YN
+			</when>
+			<when test="order_by == 'deflt_yn'">
+				order by b.DEFLT_YN
+			</when>
+			<otherwise>
+				ORDER BY b.FST_REG_DT
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
     </select>
     
     <select id="authMenuDetail" parameterType="map" resultType="com.crm.cp.standard.authMenu.vo.AuthMenuVO">

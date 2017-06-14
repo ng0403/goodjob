@@ -76,14 +76,16 @@ $("#naviauth").css("font-weight", "bold");
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
-	<form name="delAllForm" id="delAllForm" method="post">	
+	<form name="delAllForm" id="delAllForm" method="post">
+		<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+		<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 		<table id="authtable" class="ui sortable celled table">
 			<thead>
 				<tr>
 					<th style="width:9.1%;"><input id="allCheck" type="checkbox" onclick="allchk();"/></th>
-					<th style="width:29.9%;">권한ID</th>
-					<th style="width:30.5%;">권한명</th>
-					<th style="width:30%;border-right:none;">상태</th>
+					<th style="width:29.9%;" onclick="setOrder('auth_id','auth')">권한ID</th>
+					<th style="width:30.5%;" onclick="setOrder('auth_nm','auth')">권한명</th>
+					<th style="width:30%;border-right:none;" onclick="setOrder('act_yn','auth')">상태</th>
 					<th style="width:5%;border-left:none;"></th>
 				</tr>
 			</thead>

@@ -21,7 +21,59 @@ function dateFormat(timestamp) {
 
 	return retVal
 }
-
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	authMenuSearch();
+}
+function authMenuSearch(){
+	var obj = {
+			keyfield : $('#authMenuKeyfield').val(),
+			keyword : $('#authMenuKeyword').val(),
+			order_by : $("#order_by").val(),
+			order_sc : $("#order_sc").val()
+	}
+	
+	var data = JSON.stringify(obj);
+	jQuery.ajaxSettings.traditional = true;	
+	$.ajax({
+		url: '/authMenuSearch',
+		data: data,
+		type: 'POST',
+	    contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
+	    dataType:'json',
+	    success: function(result){
+	    	var fst_reg_dt = null;
+	    	$('#authMenuBody tr').remove();
+	    	for(var i=0; i<$(result).length; i++){
+	    		fst_reg_dt = dateFormat(Number(result[i].fst_reg_dt));
+	    		
+	       		var data = '<tr>'+
+	       		'<td style="width: 15%;">'+result[i].menu_id+'</td>'+
+				'<td style="width: 15%;">'+result[i].menu_nm+'</td>'+
+				'<td style="width: 15%;">'+result[i].auth_id+'</td>'+
+				'<td style="width: 15%;">'+result[i].auth_nm+'</td>'+
+				'<td style="width: 7%;">'+result[i].creat_yn+'</td>'+
+				'<td style="width: 7%;">'+result[i].retrv_yn+'</td>'+
+				'<td style="width: 7%;">'+result[i].mdfy_yn+'</td>'+
+				'<td style="width: 7%;">'+result[i].del_yn+'</td>'+
+				'<td style="width: 12%;">'+result[i].deflt_yn+'</td>'+
+//				'<td style="width: 12%;">'+result[i].fst_reg_id+'</td>'+
+//				'<td style="width: 14%;">'+fst_reg_dt+'</td>
+				'</tr>';
+	       		$('#authMenuBody').append(data);	        		
+	       	}
+	    },
+	    error: function(){
+	    	alert("error");
+	    }
+	});
+}
 function clickEvent(ctx){
 	//메뉴별권한 탭 클릭시 이벤트발생 
 	$('#authMenuTab').click(function(){
@@ -61,45 +113,7 @@ function clickEvent(ctx){
 	
 	//메뉴별권한에서 검색버튼 누를시 이벤트발생
 	$('#authMenuSearch').click(function(){
-		var obj = {
-				keyfield : $('#authMenuKeyfield').val(),
-				keyword : $('#authMenuKeyword').val()
-		}
-		
-		var data = JSON.stringify(obj);
-		jQuery.ajaxSettings.traditional = true;	
-		$.ajax({
-			url: ctx+'/authMenuSearch',
-			data: data,
-			type: 'POST',
-		    contentType : 'application/json; charset=UTF-8',	//서버 전송 시 데이터가 JSON 객체
-		    dataType:'json',
-		    success: function(result){
-		    	var fst_reg_dt = null;
-		    	$('#authMenuBody tr').remove();
-		    	for(var i=0; i<$(result).length; i++){
-		    		fst_reg_dt = dateFormat(Number(result[i].fst_reg_dt));
-		    		
-		       		var data = '<tr>'+
-		       		'<td style="width: 15%;">'+result[i].menu_id+'</td>'+
-					'<td style="width: 15%;">'+result[i].menu_nm+'</td>'+
-					'<td style="width: 15%;">'+result[i].auth_id+'</td>'+
-					'<td style="width: 15%;">'+result[i].auth_nm+'</td>'+
-					'<td style="width: 7%;">'+result[i].creat_yn+'</td>'+
-					'<td style="width: 7%;">'+result[i].retrv_yn+'</td>'+
-					'<td style="width: 7%;">'+result[i].mdfy_yn+'</td>'+
-					'<td style="width: 7%;">'+result[i].del_yn+'</td>'+
-					'<td style="width: 12%;">'+result[i].deflt_yn+'</td>'+
-//					'<td style="width: 12%;">'+result[i].fst_reg_id+'</td>'+
-//					'<td style="width: 14%;">'+fst_reg_dt+'</td>
-					'</tr>';
-		       		$('#authMenuBody').append(data);	        		
-		       	}
-		    },
-		    error: function(){
-		    	alert("error");
-		    }
-		});
+		authMenuSearch();
 	});
 }
 

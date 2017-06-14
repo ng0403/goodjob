@@ -64,6 +64,8 @@ $("#naviauth").css("font-weight", "bold");
 	
 	<div class="cdgrp_list" data-example-id="simple-table">
 	<!-- <form name="userForm" id="userForm" method="post" > -->
+    <input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+	<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 	<form name="delAllForm" id="delAllForm" method="post">	
 		<table id="codetable" class="ccthFixedtbl" style="table-layout:fixed; margin-top:14px" >
 			<thead class="thead">

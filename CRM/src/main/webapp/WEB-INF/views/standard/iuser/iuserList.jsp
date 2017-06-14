@@ -13,12 +13,12 @@
 <script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
 <title>사용자 관리</title>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
+<%-- <script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script> --%>
 
 <script>
-   $(function() {
-      $('table').tablesort();
-   });            
+//    $(function() {
+//       $('table').tablesort();
+//    });            
 </script>
 <script type="text/javascript">
 $("#navisub11").show();
@@ -33,7 +33,7 @@ $("#naviuser").css("font-weight", "bold");
 			<h3 class="ui header" style="background: #fff;">■ 기준정보 > 사용자관리</h3>
 		</div>
 		<div class="search_div">
-		<form name="searchForm" method="post" action="${ctx}/user">
+		<form name="searchForm" id="searchForm" method="post" action="${ctx}/user">
 			<select name="keyfield">
 				<option value="u_id">사용자ID명</option>
 				<option value="u_name">사용자명</option>
@@ -44,22 +44,24 @@ $("#naviuser").css("font-weight", "bold");
 			</div>
 			<button id="search_btn" type="submit" class="tiny ui blue button">검색</button>
 			<input type="button" id="del_search_btn" onclick="deletedList();" class="tiny ui button" value="비활성화 리스트">
+			<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			</form>
 		</div>
 	</div>
 	<div class="bs-example" data-example-id="simple-table">
-	<form name="delAllForm" id="delAllForm" method="post"  >	
+	<form name="delAllForm" id="delAllForm" method="post"  >
 		<table id="mastertable" class="ui sortable celled table" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th><input id="allCheck" type="checkbox" onclick="allChk(this);"/></th>
-					<th style="width:10%;">사용자ID</th>
-					<th style="width:10%;">사용자명</th>
-					<th style="width:10%;">조직명</th>
-					<th style="width:25%;">이메일</th>
-					<th style="width:25%;">연락처</th>
-					<th style="width:10%;">사용자구분</th>
-					<th style="width:10%;">상태</th>
+					<th style="width:10%;" onclick="setOrder('id_nm')">사용자ID</th>
+					<th style="width:10%;" onclick="setOrder('iuser_nm')">사용자명</th>
+					<th style="width:10%;" onclick="setOrder('org_nm')">조직명</th>
+					<th style="width:25%;" onclick="setOrder('email')">이메일</th>
+					<th style="width:25%;" onclick="setOrder('cell_ph')">연락처</th>
+					<th style="width:10%;" onclick="setOrder('cd_nm')">사용자구분</th>
+					<th style="width:10%;" onclick="setOrder('act_yn')">상태</th>
 				</tr>
 			</thead>
 			<tbody id="usertbody">

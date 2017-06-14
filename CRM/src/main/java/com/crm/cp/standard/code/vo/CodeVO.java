@@ -18,6 +18,9 @@ public class CodeVO {
 	String fin_mdfy_dt;
 	String act_yn;
 	
+	private String order_by;
+	private String order_sc;
+	
 	public CodeVO() {
 		super();
 	}
@@ -54,6 +57,22 @@ public class CodeVO {
 		this.fin_mdfy_id = fst_mdfy_id;
 		this.fin_mdfy_dt = fst_mdfy_dt;
 		this.act_yn = act_yn;
+	}
+
+	public String getOrder_by() {
+		return order_by;
+	}
+
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+
+	public String getOrder_sc() {
+		return order_sc;
+	}
+
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
 	}
 
 	public String getCd_grp_id() {
