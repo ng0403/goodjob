@@ -103,20 +103,35 @@
 				<input type="button" value="삭제된 데이터" class="tiny ui blue button" onclick="custcompDelListbtn()" />
 				<input type="button" value="엑셀출력" class="tiny ui blue button" id="exportBtn"  onclick="download_list_Excel('ccListExcelForm');" />	
 				
+				<c:if test="${flg == 0 }">
+					<form  action="${ctx}/custcomp" id="custcompPagingForm" method="post">
+						<input type="hidden" name="cust_nm"   value="${cust_nm}"/>
+						<input type="hidden" name="cust_nm0"  value="${cust_nm0}"/>
+						<input type="hidden" name="cust_nm1"  value="${cust_nm1}"/>
+						<input type="hidden" name="comp_num"  value="${comp_num}"/>
+						<input type="hidden" name="comp_num0" value="${comp_num0}"/>
+						<input type="hidden" name="comp_num1" value="${comp_num1}"/>
+						<input type="hidden" name="corp_num"  value="${corp_num}"/>
+						<input type="hidden" name="corp_num0" value="${corp_num0}"/>
+						<input type="hidden" name="corp_num1" value="${corp_num}"/>
+					</form>
+					<form action="${ctx}/custcomp" id="ccListExcelForm" method="post"></form>
+				</c:if>
+				<c:if test="${flg == 1 }">
+					<form  action="${ctx}/custCompAjax" id="custcompAjaxPagingForm" method="post">
+						<input type="hidden" name="cust_nm"   value="${cust_nm}"/>
+						<input type="hidden" name="cust_nm0"  value="${cust_nm0}"/>
+						<input type="hidden" name="cust_nm1"  value="${cust_nm1}"/>
+						<input type="hidden" name="comp_num"  value="${comp_num}"/>
+						<input type="hidden" name="comp_num0" value="${comp_num0}"/>
+						<input type="hidden" name="comp_num1" value="${comp_num1}"/>
+						<input type="hidden" name="corp_num"  value="${corp_num}"/>
+						<input type="hidden" name="corp_num0" value="${corp_num0}"/>
+						<input type="hidden" name="corp_num1" value="${corp_num}"/>
+					</form>
+					<form action="${ctx}/custCompAjax" id="ccListExcelForm" method="post"></form>
+				</c:if>
 				
-				<!-- 페이징 전용 폼 -->
-				<form  action="${ctx}/custcomp" id="custcompPagingForm" method="post">
-					<input type="hidden" name="cust_nm"   value="${cust_nm}"/>
-					<input type="hidden" name="cust_nm0"  value="${cust_nm0}"/>
-					<input type="hidden" name="cust_nm1"  value="${cust_nm1}"/>
-					<input type="hidden" name="comp_num"  value="${comp_num}"/>
-					<input type="hidden" name="comp_num0" value="${comp_num0}"/>
-					<input type="hidden" name="comp_num1" value="${comp_num1}"/>
-					<input type="hidden" name="corp_num"  value="${corp_num}"/>
-					<input type="hidden" name="corp_num0" value="${corp_num0}"/>
-					<input type="hidden" name="corp_num1" value="${corp_num}"/>
-				</form>
-				<form action="${ctx}/custcomp" id="ccListExcelForm" method="post"></form>
 			</div>
 			
 			<!-- 페이징 처리 -->

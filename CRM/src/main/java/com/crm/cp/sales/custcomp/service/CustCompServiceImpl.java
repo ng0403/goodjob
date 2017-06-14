@@ -705,13 +705,22 @@ public class CustCompServiceImpl implements CustCompService {
 
 	// 엑셀 출력
 	@Override
-	public List<CustCompVO> custcompExcel(Map<String, Object> ccMap) {
+	public List<CustCompVO> custcompExcel(Map<String, Object> pMap) {
 		
-		List<CustCompVO> custcompExcel = ccDao.custcompExcel(ccMap);
-		
+		List<CustCompVO> custcompExcel = ccDao.custcompExcel(pMap);
 		System.out.println("custcompExcel Service Impl : "  + custcompExcel);
 		
 		return custcompExcel;
+	}
+
+	// 엑셀 출력(검색조건에 맞는 리스트)
+	@Override
+	public List<CustCompVO> custcompSchExcel(Map<String, Object> ccMap) {
+		
+		List<CustCompVO> custcompSchExcel = ccDao.custcompSchExcel(ccMap);
+		System.out.println("custcompSchExcel Service Impl : "  + custcompSchExcel);
+		
+		return custcompSchExcel;
 	}
 	
 	

@@ -3,6 +3,8 @@ package com.crm.cp.sales.custcomp.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
@@ -110,7 +112,8 @@ public interface CustCompDao {
 	List<PocVO> custcompMngCklList(Map<String, Object> pMap);		// 담당사원 고객사 있는 리스트	
 	int ccMngEdit(IuserVO iuserVo);									// 담당사원 수정
 	
-	List<CustCompVO> custcompExcel(Map<String, Object> ccMap);		// 엑셀 출력
+	List<CustCompVO> custcompExcel(Map<String, Object> pMap);		// 엑셀 출력
+	List<CustCompVO> custcompSchExcel(Map<String, Object> ccMap);	// 엑셀 출력(검색조건에 맞는 리스트)
 	
 	
 	

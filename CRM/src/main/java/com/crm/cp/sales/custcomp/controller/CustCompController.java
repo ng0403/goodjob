@@ -18,27 +18,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 import com.crm.cp.sales.act.service.ActService;
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.service.contrService;
 import com.crm.cp.sales.cont.vo.contrVO;
-import com.crm.cp.sales.contact.vo.ContactVO;
 import com.crm.cp.sales.custcomp.service.CustCompService;
 import com.crm.cp.sales.custcomp.vo.CustCompVO;
 import com.crm.cp.sales.custcomp.vo.KeymanVO;
-import com.crm.cp.sales.custcomp.vo.OrganizationVO;
-import com.crm.cp.sales.custcomp.vo.PocVO;
 import com.crm.cp.sales.custcomp.vo.PosVO;
 import com.crm.cp.sales.est.service.EstService;
 import com.crm.cp.sales.est.vo.EstVO;
 import com.crm.cp.sales.oppt.service.OpptService;
 import com.crm.cp.sales.oppt.vo.OpptVO;
 import com.crm.cp.standard.iuser.service.IuserService;
-import com.crm.cp.standard.iuser.vo.IuserVO;
 import com.crm.cp.standard.menu.service.MenuService;
 import com.crm.cp.standard.prod.vo.ProdVO;
 import com.crm.cp.utils.PagerVO;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class CustCompController {
@@ -64,27 +63,27 @@ public class CustCompController {
 	// 고객사 리스트(MaV)
 	@RequestMapping(value = "/custcomp", method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView custCompList(HttpSession session,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, String excel,
-			@RequestParam Map<String, Object> ccMap) {
+										@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, 
+										@RequestParam Map<String, Object> ccMap, String excel ) {
+		
 		ModelAndView mov = null;
+		
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			mov = new ModelAndView("standard/home/session_expire");
 		} else {
-
+			int flg  = 0;
 			mov = new ModelAndView("custcomp");
 
 			Map<String, Object> pMap = new HashMap<String, Object>();
-
 			pMap.put("ccPageNum", ccPageNum);
-
 			
-			//excel 출력 부분
+			//엑셀 출력 부분(리스트 전체 출력)
 			if(excel != null){
 				if(excel.equals("true")){
 					
 					ModelAndView mav = new ModelAndView("/sales/custcomp/custcompList_excel");
-					List<CustCompVO> custcompExcel = ccService.custcompExcel(ccMap);
 					
+					List<CustCompVO> custcompExcel = ccService.custcompExcel(ccMap);
 					System.out.println("custcompExcel : "+ custcompExcel);
 					
 					mav.addObject("custcompExcel", custcompExcel);
@@ -95,9 +94,7 @@ public class CustCompController {
 			
 			// 고객사 리스트 전체 개수 조회(페이징에 사용)
 			PagerVO page = ccService.getCCListCount(pMap);
-
 			pMap.put("page", page);
-
 			pMap.put("startRow", page.getStartPageNum() + "");
 			pMap.put("endRow", page.getEndPageNum() + "");
 
@@ -118,59 +115,90 @@ public class CustCompController {
 			mov.addObject("CCSCodeList", CCSCodeList);
 			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("page", page);
-
+			mov.addObject("flg", flg);
 		}
+		
 		return mov;
 	}
 
 	// 고객사 리스트(ajax)
 	@RequestMapping(value = "custCompAjax", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> custCompPList(HttpSession session,
-			@RequestParam(value = "pageNum", defaultValue = "1") int ccPageNum, @RequestParam Map<String, String> map,
-			@RequestParam(value = "sch_cust_nm", required = false) String sch_cust_nm,
-			@RequestParam(value = "sch_cust_nm0", required = false) String sch_cust_nm0,
-			@RequestParam(value = "sch_cust_nm1", required = false) String sch_cust_nm1,
-			@RequestParam(value = "sch_comp_num", required = false) String sch_comp_num,
-			@RequestParam(value = "sch_comp_num0", required = false) String sch_comp_num0,
-			@RequestParam(value = "sch_comp_num1", required = false) String sch_comp_num1,
-			@RequestParam(value = "sch_corp_num", required = false) String sch_corp_num,
-			@RequestParam(value = "sch_corp_num0", required = false) String sch_corp_num0,
-			@RequestParam(value = "sch_corp_num1", required = false) String sch_corp_num1,
-			@RequestParam(value = "act_yn", required = false) String act_yn) {
-		System.out.println("111" + ccPageNum);
-		Map<String, Object> pMap = new HashMap<String, Object>();
+	@ResponseBody 
+	public ModelAndView custCompPList(HttpSession session,
+										@RequestParam(value = "pageNum", defaultValue = "1") int ccPageNum, 
+										@RequestParam Map<String, String> map, String excel, 
+										@RequestParam Map<String, Object> ccMap,
+										@RequestParam(value = "sch_cust_nm",   required = false) String sch_cust_nm,
+										@RequestParam(value = "sch_cust_nm0",  required = false) String sch_cust_nm0,
+										@RequestParam(value = "sch_cust_nm1",  required = false) String sch_cust_nm1,
+										@RequestParam(value = "sch_comp_num",  required = false) String sch_comp_num,
+										@RequestParam(value = "sch_comp_num0", required = false) String sch_comp_num0,
+										@RequestParam(value = "sch_comp_num1", required = false) String sch_comp_num1,
+										@RequestParam(value = "sch_corp_num",  required = false) String sch_corp_num,
+										@RequestParam(value = "sch_corp_num0", required = false) String sch_corp_num0,
+										@RequestParam(value = "sch_corp_num1", required = false) String sch_corp_num1,
+										@RequestParam(value = "act_yn",		   required = false) String act_yn) {
+		
+		ModelAndView mov = null;
+		
+		int flg;
+		
+//		Map<String, Object> pMap = new HashMap<String, Object>();
 
-		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
-			pMap.put("result", "standard/home/session_expire");
+		if (session.getAttribute("user") == null) { 					// 로그인 페이지 이동
+			mov = new ModelAndView("standard/home/session_expire");
 		} else {
+			
+			mov = new ModelAndView(new MappingJacksonJsonView());
+			JSONArray json = new JSONArray();
+			Map<String, Object> pMap = new HashMap<String, Object>();
+			
 			pMap.put("result", "Y");
-			pMap.put("sch_cust_nm", sch_cust_nm);
-			pMap.put("sch_cust_nm0", sch_cust_nm0);
-			pMap.put("sch_cust_nm1", sch_cust_nm1);
-			pMap.put("sch_comp_num", sch_comp_num);
+			pMap.put("sch_cust_nm",   sch_cust_nm);
+			pMap.put("sch_cust_nm0",  sch_cust_nm0);
+			pMap.put("sch_cust_nm1",  sch_cust_nm1);
+			pMap.put("sch_comp_num",  sch_comp_num);
 			pMap.put("sch_comp_num0", sch_comp_num0);
 			pMap.put("sch_comp_num1", sch_comp_num1);
-			pMap.put("sch_corp_num", sch_corp_num);
+			pMap.put("sch_corp_num",  sch_corp_num);
 			pMap.put("sch_corp_num0", sch_corp_num0);
 			pMap.put("sch_corp_num1", sch_corp_num1);
-			pMap.put("ccPageNum", ccPageNum);
+			pMap.put("ccPageNum",     ccPageNum);
 
 			if (act_yn.equals("Y")) {
+				flg = 1;
 
 				// 고객사 리스트 전체 개수 조회(페이징에 사용)
 				PagerVO page = ccService.getCCListCount(pMap);
 				pMap.put("startRow", page.getStartPageNum() + "");
 				pMap.put("endRow", page.getEndPageNum() + "");
 				pMap.put("page", page);
+				mov.addObject("page", page);
+				mov.addObject("flg", flg);
+				System.out.println("고객사 ajax flg :" + flg);
 				System.out.println("고객사 리스트 Ajaxpage :  " + page);
-
-				System.out.println("검색 TEST : " + pMap.toString());
 				System.out.println("검색 TEST : " + pMap);
 
 				List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 고객사리스트
-				pMap.put("ccVOList", ccVOList);
+				mov.addObject("ccVOList", ccVOList);
 				pMap.put("ccVOListSize", ccVOList.size());
+				
+				
+				//엑셀 출력 부분 (검색조건에 맞는 리스트 출력)
+				if(excel != null){
+					if(excel.equals("true")){
+						
+						ModelAndView mav = new ModelAndView(new MappingJacksonJsonView());
 
+						List<CustCompVO> custcompExcel = ccService.custcompSchExcel(ccMap);
+						json = new JSONArray();     
+
+		                mav.addObject("custcompExcel",json.fromObject(custcompExcel));
+		                mav.setViewName("/sales/custcomp/custcompList_excel");
+
+		                return mav;
+					}
+				}
 			} else {
 
 				// 고객사 리스트 삭제된 데이터 개수 조회(페이징에 사용)
@@ -178,18 +206,99 @@ public class CustCompController {
 				pMap.put("startRow", page.getStartPageNum() + "");
 				pMap.put("endRow", page.getEndPageNum() + "");
 				pMap.put("page", page);
+				mov.addObject("page", page);
 
 				List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사삭제된 리스트
 				System.out.println("dddd " + ccVOList.toString());
-				pMap.put("ccVOList", ccVOList);
+				mov.addObject("ccVOList", ccVOList);
 				pMap.put("ccVOListSize", ccVOList.size());
 
 			}
 
 		}
-		return pMap;
+		return mov;
 	}
-
+	
+//	@RequestMapping(value = "custCompAjax", method = RequestMethod.POST)
+//	public @ResponseBody Map<String, Object> custCompPList(HttpSession session,
+//			@RequestParam(value = "pageNum", defaultValue = "1") int ccPageNum, @RequestParam Map<String, String> map,
+//							String excel, @RequestParam Map<String, Object> ccMap,
+//			@RequestParam(value = "sch_cust_nm", required = false) String sch_cust_nm,
+//			@RequestParam(value = "sch_cust_nm0", required = false) String sch_cust_nm0,
+//			@RequestParam(value = "sch_cust_nm1", required = false) String sch_cust_nm1,
+//			@RequestParam(value = "sch_comp_num", required = false) String sch_comp_num,
+//			@RequestParam(value = "sch_comp_num0", required = false) String sch_comp_num0,
+//			@RequestParam(value = "sch_comp_num1", required = false) String sch_comp_num1,
+//			@RequestParam(value = "sch_corp_num", required = false) String sch_corp_num,
+//			@RequestParam(value = "sch_corp_num0", required = false) String sch_corp_num0,
+//			@RequestParam(value = "sch_corp_num1", required = false) String sch_corp_num1,
+//			@RequestParam(value = "act_yn", required = false) String act_yn) {
+//		System.out.println("111" + ccPageNum);
+//		Map<String, Object> pMap = new HashMap<String, Object>();
+//
+//		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
+//			pMap.put("result", "standard/home/session_expire");
+//		} else {
+//			pMap.put("result", "Y");
+//			pMap.put("sch_cust_nm", sch_cust_nm);
+//			pMap.put("sch_cust_nm0", sch_cust_nm0);
+//			pMap.put("sch_cust_nm1", sch_cust_nm1);
+//			pMap.put("sch_comp_num", sch_comp_num);
+//			pMap.put("sch_comp_num0", sch_comp_num0);
+//			pMap.put("sch_comp_num1", sch_comp_num1);
+//			pMap.put("sch_corp_num", sch_corp_num);
+//			pMap.put("sch_corp_num0", sch_corp_num0);
+//			pMap.put("sch_corp_num1", sch_corp_num1);
+//			pMap.put("ccPageNum", ccPageNum);
+//
+//			if (act_yn.equals("Y")) {
+//
+//				// 고객사 리스트 전체 개수 조회(페이징에 사용)
+//				PagerVO page = ccService.getCCListCount(pMap);
+//				pMap.put("startRow", page.getStartPageNum() + "");
+//				pMap.put("endRow", page.getEndPageNum() + "");
+//				pMap.put("page", page);
+//				
+//				System.out.println("고객사 리스트 Ajaxpage :  " + page);
+//
+//				System.out.println("검색 TEST : " + pMap.toString());
+//				System.out.println("검색 TEST : " + pMap);
+//
+//				List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 고객사리스트
+//				pMap.put("ccVOList", ccVOList);
+//				pMap.put("ccVOListSize", ccVOList.size());
+//				
+//				if(excel != null){
+//					if(excel.equals("true")){
+//						
+////						ModelAndView mav = new ModelAndView("/sales/custcomp/custcompList_excel");
+//						List<CustCompVO> custcompExcel = ccService.custcompExcel(pMap);
+//						System.out.println("custcompExcel : "+ custcompExcel);
+//
+//						pMap.put("custcompExcel", custcompExcel);
+//						
+////						mav.addObject("custcompExcel", custcompExcel);
+//						
+////						return mav;
+//					}
+//				}
+//				
+//			} else {
+//
+//				// 고객사 리스트 삭제된 데이터 개수 조회(페이징에 사용)
+//				PagerVO page = ccService.getCCDelListCount(pMap);
+//				pMap.put("startRow", page.getStartPageNum() + "");
+//				pMap.put("page", page);
+//
+//				List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사삭제된 리스트
+//				System.out.println("dddd " + ccVOList.toString());
+//				pMap.put("ccVOList", ccVOList);
+//				pMap.put("ccVOListSize", ccVOList.size());
+//			}
+//		}
+//		return pMap;
+//	}
+	
 	// 고객사 상세정보
 	@RequestMapping(value = "/custcompDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView cutomerDetail(HttpSession session, @RequestParam Map<String, String> map, String cust_id,

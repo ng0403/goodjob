@@ -3,6 +3,8 @@ package com.crm.cp.sales.custcomp.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
 import com.crm.cp.sales.contact.vo.ContactVO;
@@ -109,7 +111,8 @@ public interface CustCompService {
 	void custcompMngInsert(PocVO pocVO);										// 담당사원 등록
 	String ccMngEdit(IuserVO iuserVo);											// 담당사원 수정
 	
-	List<CustCompVO> custcompExcel(Map<String, Object> ccMap);					// 엑셀 출력
+	List<CustCompVO> custcompExcel(Map<String, Object> pMap);					// 엑셀 출력
+	List<CustCompVO> custcompSchExcel(Map<String, Object> ccMap);				// 엑셀 출력(검색조건에 맞는 리스트)
 	
 	
 	

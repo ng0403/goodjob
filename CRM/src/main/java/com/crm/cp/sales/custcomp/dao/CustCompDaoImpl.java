@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.context.request.SessionScope;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.crm.cp.sales.act.vo.ActVO;
 import com.crm.cp.sales.cont.vo.contrVO;
@@ -893,13 +894,13 @@ public class CustCompDaoImpl implements CustCompDao {
 
 	// 엑셀 출력
 	@Override
-	public List<CustCompVO> custcompExcel(Map<String, Object> ccMap) {
+	public List<CustCompVO> custcompExcel(Map<String, Object> pMap) {
 		
 		List<CustCompVO> custcompExcel = null;
 		
 		try {
 			
-			custcompExcel = sqlSession.selectList("custcomp.custcompExcel", ccMap);
+			custcompExcel = sqlSession.selectList("custcomp.custcompExcel", pMap);
 			System.out.println("custcompExcel Dao Impl : " + custcompExcel);
 			
 		} catch (Exception e) {
@@ -907,6 +908,22 @@ public class CustCompDaoImpl implements CustCompDao {
 			e.printStackTrace();
 		}
 		return custcompExcel;
+	}
+
+	// 엑셀 출력(검색조건에 맞는 리스트)
+	@Override
+	public List<CustCompVO> custcompSchExcel(Map<String, Object> ccMap) {
+		
+		List<CustCompVO> custcompSchExcel = null;
+		
+		try {
+			custcompSchExcel = sqlSession.selectList("custcomp.custcompExcel", ccMap);
+			System.out.println("custcompSchExcel Dao Impl : " + custcompSchExcel);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return custcompSchExcel;
 	}
 
 	
