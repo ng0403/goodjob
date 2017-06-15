@@ -44,7 +44,9 @@ public class OpptController {
 	@RequestMapping(value = "/oppt", method = RequestMethod.GET)
 	ModelAndView list(HttpSession session,
 			@RequestParam Map<String, String> map,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum) {
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
@@ -75,6 +77,8 @@ public class OpptController {
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
 		System.out.println("page 정보 : " + page);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 
@@ -88,14 +92,16 @@ public class OpptController {
 		mov.addObject("page", page);
 		mov.addObject("ccPageNum", pageNum);
 		mov.addObject("menuList", menuList);
-		mov.addObject("searchInfo", map);
+		mov.addObject("data", map);
 		return mov;
 	}
 	// 영업기회 삭제된 데이터 리스트
 	@RequestMapping(value = "/DelList", method = RequestMethod.GET)
 	ModelAndView Dellist(HttpSession session,
 			@RequestParam Map<String, String> map,
-			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
 		}
@@ -125,6 +131,8 @@ public class OpptController {
 		
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.DeletedOpptPageCount(map);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		
@@ -137,7 +145,7 @@ public class OpptController {
 		mov.addObject("otllist", otllist);
 		mov.addObject("page", page);
 		mov.addObject("menuList", menuList);
-		mov.addObject("searchInfo", map);
+		mov.addObject("data", map);
 		return mov;
 	}
 	
@@ -370,7 +378,9 @@ public class OpptController {
 	@RequestMapping(value = "/opptajax", method = RequestMethod.POST)
 	@ResponseBody
 	Map<String, Object> listajax(@RequestParam Map<String, String> map,
-			@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum) {
+			@RequestParam(value = "ccPageNum", defaultValue = "1") int pageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 
 		// 영업기회 상태 코드 가져오기
 		List<OpptVO> osclist = service.opptOscList();
@@ -396,6 +406,8 @@ public class OpptController {
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.opptPageCount(map);
 		System.out.println("page page :"+ page);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		//영업기회 리스트 출력
@@ -407,7 +419,7 @@ public class OpptController {
 		result.put("osclist", osclist);
 		result.put("otllist", otllist);
 		result.put("page", page);
-		result.put("searchInfo", map);
+		result.put("data", map);
 
 		return result;
 	}
@@ -415,7 +427,9 @@ public class OpptController {
 	@RequestMapping(value = "/opptDelajax", method = RequestMethod.POST)
 	@ResponseBody
 	Map<String, Object> listDelajax(@RequestParam Map<String, String> map,
-			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum) {
+			@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 		System.out.println("영업기회 삭제된 데이터 리스트 Ajax 출력 컨트롤러");
 		
 		// 영업기회 상태 코드 가져오기
@@ -440,6 +454,8 @@ public class OpptController {
 		map.put("spsblty_rate1", map.get("spsblty_rate1"));
 		map.put("pageNum", pageNum + "");
 		PagerVO page = service.DeletedOpptPageCount(map);
+		map.put("order_by", order_by);
+		map.put("order_sc", order_sc);
 		map.put("startRow", page.getStartRow() + "");
 		map.put("endRow", page.getEndRow() + "");
 		//영업기회 리스트 출력
@@ -451,7 +467,7 @@ public class OpptController {
 		result.put("osclist", osclist);
 		result.put("otllist", otllist);
 		result.put("page", page);
-		result.put("searchInfo", map);
+		result.put("data", map);
 		
 		return result;
 	}
@@ -605,7 +621,7 @@ public class OpptController {
 			, String total_sup_price
 			, String sales_oppt_id) {
 		System.out.println("삭제된 영업기회 데이터 복원 컨트롤러");
-		List<OpptVO> estList = new ArrayList<OpptVO>(0);
+//		List<OpptVO> estList = new ArrayList<OpptVO>(0);
 		
 		detail.setFin_mdfy_id(session.getAttribute("user").toString());
 		detail.setAct_yn("Y");

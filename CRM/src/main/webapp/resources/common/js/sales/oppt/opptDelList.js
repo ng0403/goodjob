@@ -281,6 +281,16 @@ function uncomma(str) {
     str = String(str);
     return str.replace(/[^\d]+/g, '');
 }
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,page){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	opportunityDelList(page);
+}
 //영업기회 리스트 출력
 function opportunityDelList(page){
 	var ctx = $("#ctx").val();
@@ -301,6 +311,8 @@ function opportunityDelList(page){
 			, spsblty_rate : $("#spsblty_rate_select").val()
 			, spsblty_rate0 : $("#spsblty_rate_select0").val()
 			, spsblty_rate1 : $("#spsblty_rate_select1").val()
+			, order_by : $("#order_by").val()
+			, order_sc : $("#order_sc").val()
 		},
 		datatype : 'json',
 		success:function(result){

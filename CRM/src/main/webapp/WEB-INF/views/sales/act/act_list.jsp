@@ -73,20 +73,22 @@
 		</div>
 			
 		<div class="tableline">
+			<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			<table id="dboardtable" class="ui celled table">
 				<thead>
 					<tr>
 						<th rowspan="2" style="width: 2%; text-align: center;"><input id="actCheck" type="checkbox" onclick="actAllChk(this);" /></th>
-						<th rowspan="2" style="width: 15%;">영업활동명</th>
-						<th rowspan="2" style="width: 23%;">영업기회명</th>
-						<th rowspan="2" style="width: 10%;">활동유형</th>
-						<th style="width: 10%;">시작일자</th>
-						<th style="width: 10%;">시작시간</th>
-						<th rowspan="2" style="width: 5%;">상태</th>
+						<th rowspan="2" style="width: 15%;" onclick="setOrder('sales_actvy_nm','${actPageNum}')">영업활동명</th>
+						<th rowspan="2" style="width: 23%;" onclick="setOrder('sales_oppt_nm','${actPageNum}')">영업기회명</th>
+						<th rowspan="2" style="width: 10%;" onclick="setOrder('sales_actvy_type_cd','${actPageNum}')">활동유형</th>
+						<th style="width: 10%;" onclick="setOrder('strt_d','${actPageNum}')">시작일자</th>
+						<th style="width: 10%;" onclick="setOrder('strt_t','${actPageNum}')">시작시간</th>
+						<th rowspan="2" style="width: 5%;" onclick="setOrder('sales_actvy_stat_cd','${actPageNum}')">상태</th>
 					</tr>
 					<tr>
-						<th style="width: 10%;">종료일자</th>
-						<th style="width: 10%;">종료시간</th>
+						<th style="width: 10%;" onclick="setOrder('end_d','${actPageNum}')">종료일자</th>
+						<th style="width: 10%;" onclick="setOrder('end_t','${actPageNum}')">종료시간</th>
 					</tr>
 				</thead>
 				<tbody id="act_list_tbody" class="tbody">

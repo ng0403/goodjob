@@ -175,9 +175,43 @@
 								AND    SA.CUST_ID like '%'||#{scust_id1}||'%'
 							</when>
 						</choose>
-
-
-						ORDER BY SA.FIN_MDFY_DT DESC
+						<choose>
+							<when test="order_by == 'fin_mdfy_dt'">
+								order by SA.FIN_MDFY_DT
+							</when>
+							<when test="order_by == 'sales_actvy_nm'">
+								order by SA.SALES_ACTVY_NM
+							</when>
+							<when test="order_by == 'sales_oppt_nm'">
+								order by SO.SALES_OPPT_NM
+							</when>
+							<when test="order_by == 'sales_actvy_type_cd'">
+								order by SALES_ACTVY_TYPE_CD
+							</when>
+							<when test="order_by == 'strt_d'">
+								order by STRT_D
+							</when>
+							<when test="order_by == 'strt_t'">
+								order by SA.STRT_T
+							</when>
+							<when test="order_by == 'sales_actvy_stat_cd'">
+								order by SALES_ACTVY_STAT_CD
+							</when>
+							<when test="order_by == 'end_d'">
+								order by END_D
+							</when>
+							<when test="order_by == 'end_t'">
+								order by SA.END_T
+							</when>
+						</choose>
+						<choose>
+							<when test="order_sc == 'DESC'">
+								desc
+							</when>
+							<when test="order_sc == 'ASC'">
+								asc
+							</when>
+						</choose>
 					) P
 				) SAL
         <![CDATA[WHERE SAL.RNUM>=#{page.startRow} and SAL.RNUM<=#{page.endRow}]]>
@@ -356,9 +390,40 @@
 								AND    SA.CUST_ID like '%'||#{scust_id1}||'%'
 							</when>
 						</choose>
-
-
-						ORDER BY SA.FIN_MDFY_DT DESC
+						<choose>
+							<when test="order_by == 'fin_mdfy_dt'">
+								order by SA.FIN_MDFY_DT
+							</when>
+							<when test="order_by == 'sales_actvy_nm'">
+								order by SA.SALES_ACTVY_NM
+							</when>
+							<when test="order_by == 'sales_oppt_nm'">
+								order by SO.SALES_OPPT_NM
+							</when>
+							<when test="order_by == 'strt_d'">
+								order by STRT_D
+							</when>
+							<when test="order_by == 'strt_t'">
+								order by SA.STRT_T
+							</when>
+							<when test="order_by == 'fin_mdfy_id'">
+								order by SA.FIN_MDFY_ID
+							</when>
+							<when test="order_by == 'end_d'">
+								order by END_D
+							</when>
+							<when test="order_by == 'end_t'">
+								order by SA.END_T
+							</when>
+						</choose>
+						<choose>
+							<when test="order_sc == 'DESC'">
+								desc
+							</when>
+							<when test="order_sc == 'ASC'">
+								asc
+							</when>
+						</choose>
 					) P
 				) SAL
         <![CDATA[WHERE SAL.RNUM>=#{page.startRow} and SAL.RNUM<=#{page.endRow}]]>

@@ -55,7 +55,8 @@ public class ActController {
 	
 	// 달력 출력
 	@RequestMapping(value="/act" , method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody ModelAndView ActSchList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	public @ResponseBody ModelAndView ActSchList(HttpSession session,
+			@RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
 	{
 		Map<String, Object> actMap = new HashMap<String, Object>();
 		actMap.put("actPageNum", actPageNum);
@@ -110,7 +111,10 @@ public class ActController {
 	
 	// 영업활동 관리 전체리스트 출력
 	@RequestMapping(value="/actSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody ModelAndView ActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	public @ResponseBody ModelAndView ActList(HttpSession session,
+			@RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc)
 	{
 		int act_flg = 1;
 		
@@ -119,6 +123,8 @@ public class ActController {
 		
 		PagerVO page = actService.getActListCount(actMap);
 		actMap.put("page", page);
+		actMap.put("order_by", order_by);
+		actMap.put("order_sc", order_sc);
 
 		List<ActVO> actList = actService.actAllList(actMap);
 		List<MenuVO> menuList = menuService.selectAll(session);
@@ -137,13 +143,17 @@ public class ActController {
 		mov.addObject("actTypeCd", actTypeCd);
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("act_flg", act_flg);
+		mov.addObject("data", actMap);
 		
 		return mov;
 	}
 	
 	// 영업활동 관리 전체리스트 출력
 	@RequestMapping(value="/delActSaleList" , method = {RequestMethod.GET, RequestMethod.POST})
-	public @ResponseBody ModelAndView delActList(HttpSession session, @RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum)
+	public @ResponseBody ModelAndView delActList(HttpSession session,
+			@RequestParam(value = "actPageNum", defaultValue = "1") int actPageNum,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc)
 	{
 		int act_flg = 1;
 		
@@ -152,6 +162,8 @@ public class ActController {
 		
 		PagerVO page = actService.getActListCount(actMap);
 		actMap.put("page", page);
+		actMap.put("order_by", order_by);
+		actMap.put("order_sc", order_sc);
 
 		List<ActVO> delActList = actService.delActAllList(actMap);
 		List<MenuVO> menuList = menuService.selectAll(session);
@@ -170,6 +182,7 @@ public class ActController {
 		mov.addObject("actTypeCd", actTypeCd);
 		mov.addObject("actStatCd", actStatCd);
 		mov.addObject("act_flg", act_flg);
+		mov.addObject("data", actMap);
 		
 		return mov;
 	}
@@ -437,7 +450,9 @@ public class ActController {
 			String sactvy_type_select, String sactvy_type_select0, String sactvy_type_select1,
 			String ssales_actvy_nm, String ssales_actvy_nm0, String ssales_actvy_nm1,
 			String ssales_oppt_nm, String ssales_oppt_nm0, String ssales_oppt_nm1,
-			String scust_id, String scust_id0, String scust_id1) throws ParseException{
+			String scust_id, String scust_id0, String scust_id1,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) throws ParseException{
 
 		Map<String,Object> actMap = new HashMap<String, Object>();
 		
@@ -467,6 +482,8 @@ public class ActController {
 		
 		PagerVO page = actService.getActListCount(actMap);
 		actMap.put("page", page);
+		actMap.put("order_by", order_by);
+		actMap.put("order_sc", order_sc);
 		
 		List<ActVO> actList = actService.actAllList(actMap);
 		
@@ -485,7 +502,9 @@ public class ActController {
 			String sactvy_type_select, String sactvy_type_select0, String sactvy_type_select1,
 			String ssales_actvy_nm, String ssales_actvy_nm0, String ssales_actvy_nm1,
 			String ssales_oppt_nm, String ssales_oppt_nm0, String ssales_oppt_nm1,
-			String scust_id, String scust_id0, String scust_id1) throws ParseException{
+			String scust_id, String scust_id0, String scust_id1,
+			@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+			@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) throws ParseException{
 		
 		Map<String,Object> actMap = new HashMap<String, Object>();
 		
@@ -515,6 +534,8 @@ public class ActController {
 		
 		PagerVO page = actService.getActListCount(actMap);
 		actMap.put("page", page);
+		actMap.put("order_by", order_by);
+		actMap.put("order_sc", order_sc);
 		
 		List<ActVO> actList = actService.actAllList(actMap);
 		

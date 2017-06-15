@@ -291,7 +291,16 @@ function chkCancel() {
 		$("#custcompCheck").prop("checked", false);
 	});
 }
-
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,page){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	custCompList(page);
+}
 //고객사 리스트 출력
 function custCompList(page){
 	var ctx = $("#ctx").val();
@@ -310,7 +319,9 @@ function custCompList(page){
 					sch_corp_num : $("#sch_corp_num").val(), 
 					sch_corp_num0 : $("#sch_corp_num0").val(), 
 					sch_corp_num1 : $("#sch_corp_num1").val(), 
-					act_yn : $("#act_yn").val() 
+					act_yn : $("#act_yn").val(),
+					order_by : $("#order_by").val(),
+					order_sc : $("#order_sc").val()
 				},
 				datatype : 'json',
 				success:function(result){

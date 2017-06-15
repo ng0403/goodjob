@@ -64,7 +64,9 @@ public class CustCompController {
 	@RequestMapping(value = "/custcomp", method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView custCompList(HttpSession session,
 										@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum, 
-										@RequestParam Map<String, Object> ccMap, String excel ) {
+										@RequestParam Map<String, Object> ccMap, String excel,
+										@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+										@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc ) {
 		
 		ModelAndView mov = null;
 		
@@ -96,6 +98,8 @@ public class CustCompController {
 			// 고객사 리스트 전체 개수 조회(페이징에 사용)
 			PagerVO page = ccService.getCCListCount(pMap);
 			pMap.put("page", page);
+			pMap.put("order_by", order_by);
+			pMap.put("order_sc", order_sc);
 			pMap.put("startRow", page.getStartPageNum() + "");
 			pMap.put("endRow", page.getEndPageNum() + "");
 
@@ -117,6 +121,7 @@ public class CustCompController {
 			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("page", page);
 			mov.addObject("flg", flg);
+			mov.addObject("data", pMap);
 		}
 		
 		return mov;
@@ -138,7 +143,9 @@ public class CustCompController {
 										@RequestParam(value = "sch_corp_num",  required = false) String sch_corp_num,
 										@RequestParam(value = "sch_corp_num0", required = false) String sch_corp_num0,
 										@RequestParam(value = "sch_corp_num1", required = false) String sch_corp_num1,
-										@RequestParam(value = "act_yn",		   required = false) String act_yn) {
+										@RequestParam(value = "act_yn",		   required = false) String act_yn,
+										@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+										@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 		
 		ModelAndView mov = null;
 		
@@ -176,6 +183,8 @@ public class CustCompController {
 			pMap.put("startRow", page.getStartPageNum() + "");
 			pMap.put("endRow", page.getEndPageNum() + "");
 			pMap.put("page", page);
+			pMap.put("order_by", order_by);
+			pMap.put("order_sc", order_sc);
 			
 			List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 고객사리스트
 			
@@ -438,7 +447,9 @@ public class CustCompController {
 	// 고객사 삭제된 데이터 리스트(MaV)
 	@RequestMapping(value = "/custcompDelList", method = RequestMethod.GET)
 	public ModelAndView custCompDelList(HttpSession session,
-											@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
+											@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,
+											@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+											@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 		ModelAndView mov = null;
 		if (session.getAttribute("user") == null) { // 로그인 페이지 이동
 			mov = new ModelAndView("standard/home/session_expire");
@@ -454,7 +465,8 @@ public class CustCompController {
 			PagerVO page = ccService.getCCDelListCount(pMap);
 
 			pMap.put("page", page);
-
+			pMap.put("order_by", order_by);
+			pMap.put("order_sc", order_sc);
 			pMap.put("startRow", page.getStartPageNum() + "");
 			pMap.put("endRow", page.getEndPageNum() + "");
 
@@ -475,6 +487,7 @@ public class CustCompController {
 			mov.addObject("CCSCodeList", CCSCodeList);
 			mov.addObject("CDCCodeList", CDCCodeList);
 			mov.addObject("page", page);
+			mov.addObject("data", pMap);
 
 		}
 		return mov;
@@ -493,7 +506,9 @@ public class CustCompController {
 											@RequestParam(value = "sch_comp_num1", required = false) String sch_comp_num1,
 											@RequestParam(value = "sch_corp_num", required = false) String sch_corp_num,
 											@RequestParam(value = "sch_corp_num0", required = false) String sch_corp_num0,
-											@RequestParam(value = "sch_corp_num1", required = false) String sch_corp_num1) {
+											@RequestParam(value = "sch_corp_num1", required = false) String sch_corp_num1,
+											@RequestParam(value = "order_by", defaultValue = "fin_mdfy_dt") String order_by,
+											@RequestParam(value = "order_sc", defaultValue = "DESC") String order_sc) {
 
 		Map<String, Object> pMap = new HashMap<String, Object>();
 
@@ -517,6 +532,8 @@ public class CustCompController {
 			pMap.put("startRow", page.getStartPageNum() + "");
 			pMap.put("endRow", page.getEndPageNum() + "");
 			pMap.put("page", page);
+			pMap.put("order_by", order_by);
+			pMap.put("order_sc", order_sc);
 			System.out.println("삭제된 데이터 page :  " + page);
 
 			List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사 삭제된

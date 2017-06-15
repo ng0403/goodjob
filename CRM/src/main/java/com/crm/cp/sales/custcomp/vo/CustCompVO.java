@@ -48,8 +48,24 @@ public class CustCompVO {
 	
 	private String  org_nm;					// 조직명(부서)
 	private String  estim_id;				// 견적 ID
+	
+	private String order_by;
+	private String order_sc;
+	
 	public String getCust_id() {
 		return cust_id;
+	}
+	public String getOrder_by() {
+		return order_by;
+	}
+	public void setOrder_by(String order_by) {
+		this.order_by = order_by;
+	}
+	public String getOrder_sc() {
+		return order_sc;
+	}
+	public void setOrder_sc(String order_sc) {
+		this.order_sc = order_sc;
 	}
 	public void setCust_id(String cust_id) {
 		this.cust_id = cust_id;

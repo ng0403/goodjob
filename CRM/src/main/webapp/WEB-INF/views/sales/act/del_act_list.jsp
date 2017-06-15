@@ -72,19 +72,21 @@
 		</div>
 			
 		<div class="tableline">
+			<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			<table id="dboardtable" class="ui celled table">
 				<thead>
 					<tr>
-						<td rowspan="2" style="width: 15%;">영업활동명</td>
-						<td rowspan="2" style="width: 23%;">영업기회명</td>
-						<td style="width: 10%;">시작일자</td>
-						<td style="width: 10%;">시작시간</td>
-						<td rowspan="2" style="width: 10%;">최종수정자</td>
-						<td rowspan="2" style="width: 10%;">최종수정일자</td>
+						<td rowspan="2" style="width: 15%;" onclick="setOrder('sales_actvy_nm','${ccPageNum}')">영업활동명</td>
+						<td rowspan="2" style="width: 23%;" onclick="setOrder('sales_oppt_nm','${ccPageNum}')">영업기회명</td>
+						<td style="width: 10%;" onclick="setOrder('strt_d','${actPageNum}')">시작일자</td>
+						<td style="width: 10%;" onclick="setOrder('strt_t','${actPageNum}')">시작시간</td>
+						<td rowspan="2" style="width: 10%;" onclick="setOrder('fin_mdfy_id','${ccPageNum}')">최종수정자</td>
+						<td rowspan="2" style="width: 10%;" onclick="setOrder('fin_mdfy_dt','${ccPageNum}')">최종수정일자</td>
 					</tr>
 					<tr>
-						<td style="width: 10%;">종료일자</td>
-						<td style="width: 10%;">종료시간</td>
+						<td style="width: 10%;" onclick="setOrder('end_d','${actPageNum}')">종료일자</td>
+						<td style="width: 10%;" onclick="setOrder('end_t','${actPageNum}')">종료시간</td>
 					</tr>
 				</thead>
 				<tbody id="act_list_tbody" class="tbody">

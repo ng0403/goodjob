@@ -61,17 +61,19 @@
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline" class="tableline">
+			<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+			<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 			<table id="ccListTable" class="ui sortable celled table" cellspacing="0" >
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='ccListCheck'/></th>
-						<th style="width: 16%" id="tblTh" > 고객사명</th>
-						<th style="width: 12%"  id="tblTh" >사업자번호</th>
-						<th style="width: 12%"  id="tblTh" >법인번호</th>
-						<th style="width: 10%" id="tblTh" >대표전화번호</th>
-						<th style="width: 10%" id="tblTh" >매출규모</th>
-						<th style="width: 10%"  id="tblTh" >직원수</th>
-						<th style="width: 14%" id="tblTh" >산업군</th>
+						<th style="width: 16%" id="tblTh"  onclick="setOrder('cust_nm','${ccPageNum}')"> 고객사명</th>
+						<th style="width: 12%"  id="tblTh"  onclick="setOrder('comp_num','${ccPageNum}')">사업자번호</th>
+						<th style="width: 12%"  id="tblTh"  onclick="setOrder('corp_num','${ccPageNum}')">법인번호</th>
+						<th style="width: 10%" id="tblTh"  onclick="setOrder('rep_ph','${ccPageNum}')">대표전화번호</th>
+						<th style="width: 10%" id="tblTh"  onclick="setOrder('sales_scale','${ccPageNum}')">매출규모</th>
+						<th style="width: 10%"  id="tblTh"  onclick="setOrder('emp_qty','${ccPageNum}')">직원수</th>
+						<th style="width: 14%" id="tblTh"  onclick="setOrder('indst','${ccPageNum}')">산업군</th>
 <!-- 						<th style="width: 8%"  id="tblTh" >영업 담당자</th> -->
 <!-- 						<th style="width: 15%" id="tblTh" >등록일시</th> -->
 					</tr>

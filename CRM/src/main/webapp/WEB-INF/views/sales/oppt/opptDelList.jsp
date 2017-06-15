@@ -73,20 +73,22 @@
 			
 			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchDelBtn('${ccPageNum}');" style="text-align: right;" value="조회">
 		    </div>		
-			<div id="tableline">	 
+			<div id="tableline">
+				<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+				<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>	 
 				<table id="goaltable" class="ui celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 <!-- 						<th><input type="checkbox"  id='opptAllSelect'/></th> -->
-						<th>영업기회명</th>
-						<th>고객명</th>
-						<th>영업단계</th>
-						<th>예상매출액</th>
-						<th>예상마감일자</th>
-						<th>가능성</th>
-						<th>상태</th>
-						<th>최종수정자</th>
-						<th>최종수정일시</th>
+						<th onclick="setOrder('sales_oppt_nm','${ccPageNum}')">영업기회명</th>
+						<th onclick="setOrder('cust_nm','${ccPageNum}')">고객명</th>
+						<th onclick="setOrder('sales_lev_cd_nm','${ccPageNum}')">영업단계</th>
+						<th onclick="setOrder('expt_sales_amt','${ccPageNum}')">예상매출액</th>
+						<th onclick="setOrder('expt_fin_d','${ccPageNum}')">예상마감일자</th>
+						<th onclick="setOrder('psblty_rate','${ccPageNum}')">가능성</th>
+						<th onclick="setOrder('sales_oppt_stat_cd_nm','${ccPageNum}')">상태</th>
+						<th onclick="setOrder('fin_mdfy_id','${ccPageNum}')">최종수정자</th>
+						<th onclick="setOrder('fin_mdfy_dt','${ccPageNum}')">최종수정일시</th>
 <!-- 						<th>등록자</th> -->
 <!-- 						<th>등록일시</th> -->
 					</tr>

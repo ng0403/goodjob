@@ -24,7 +24,16 @@ $(document).ready(function() {
 	var cust_id = $("#nowCust_id").val();
 	var page = $("#ccPageNum").val();
 });	
-
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,page){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	custcompDelList(page);
+}
 //고객사 삭제된 데이터 리스트 출력
 function custcompDelList(page) {
 	var ctx = $("#ctx").val();
@@ -35,7 +44,9 @@ function custcompDelList(page) {
 				    pageNum : page, 
 					sch_cust_nm : $("#sch_cust_nm").val(), 
 					sch_comp_num : $("#sch_comp_num").val(), 
-					sch_corp_num : $("#sch_corp_num").val(), 
+					sch_corp_num : $("#sch_corp_num").val(),
+					order_by : $("#order_by").val(),
+					order_sc : $("#order_sc").val()
 				},
 				datatype : 'json',
 		success:function(result){

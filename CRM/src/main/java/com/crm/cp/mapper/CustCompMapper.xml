@@ -82,7 +82,40 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>  
-			      order by c.fin_mdfy_dt desc
+			      <choose>
+						<when test="order_by == 'fin_mdfy_dt'">
+							order by c.fin_mdfy_dt desc
+						</when>
+						<when test="order_by == 'cust_nm'">
+							order by cust_nm
+						</when>
+						<when test="order_by == 'comp_num'">
+							order by comp_num
+						</when>
+						<when test="order_by == 'corp_num'">
+							order by corp_num
+						</when>
+						<when test="order_by == 'rep_ph'">
+							order by rep_ph1, rep_ph2, rep_ph3
+						</when>
+						<when test="order_by == 'sales_scale'">
+							order by sales_scale
+						</when>
+						<when test="order_by == 'emp_qty'">
+							order by emp_qty
+						</when>
+						<when test="order_by == 'indst'">
+							order by indst
+						</when>
+					</choose>
+					<choose>
+						<when test="order_sc == 'DESC'">
+							desc
+						</when>
+						<when test="order_sc == 'ASC'">
+							asc
+						</when>
+					</choose>
 			   ) r
 			)cu
        	 <![CDATA[where cu.rnum >= ]]>	#{page.startRow} and cu.rnum <![CDATA[ <= ]]>#{page.endRow}
@@ -168,7 +201,43 @@
 							and c.corp_num like '%'|| #{sch_corp_num}||'%' 
 						</when>
 					</choose>  
-			      order by c.fin_mdfy_dt desc
+			      <choose>
+						<when test="order_by == 'fin_mdfy_dt'">
+							order by fin_mdfy_dt
+						</when>
+						<when test="order_by == 'cust_nm'">
+							order by cust_nm
+						</when>
+						<when test="order_by == 'comp_num'">
+							order by comp_num
+						</when>
+						<when test="order_by == 'corp_num'">
+							order by corp_num
+						</when>
+						<when test="order_by == 'rep_ph'">
+							order by rep_ph1, rep_ph2, rep_ph3
+						</when>
+						<when test="order_by == 'sales_scale'">
+							order by sales_scale
+						</when>
+						<when test="order_by == 'emp_qty'">
+							order by emp_qty
+						</when>
+						<when test="order_by == 'indst'">
+							order by indst
+						</when>
+						<when test="order_by == 'fin_mdfy_id'">
+							order by fin_mdfy_id
+						</when>
+					</choose>
+					<choose>
+						<when test="order_sc == 'DESC'">
+							desc
+						</when>
+						<when test="order_sc == 'ASC'">
+							asc
+						</when>
+					</choose>
 			   ) r
 			)cu
        	 <![CDATA[where cu.rnum >= ]]>	#{page.startRow} and cu.rnum <![CDATA[ <= ]]>#{page.endRow}

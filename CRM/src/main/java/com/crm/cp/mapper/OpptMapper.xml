@@ -90,8 +90,40 @@
 				and a.psblty_rate = #{spsblty_rate}
 			</when>
 		</choose>
-		
-		order by a.fin_mdfy_dt desc
+		<choose>
+			<when test="order_by == 'fin_mdfy_dt'">
+				order by a.fin_mdfy_dt
+			</when>
+			<when test="order_by == 'sales_oppt_nm'">
+				order by a.sales_oppt_nm
+			</when>
+			<when test="order_by == 'cust_nm'">
+				order by c.cust_nm
+			</when>
+			<when test="order_by == 'sales_lev_cd_nm'">
+				order by sales_lev_cd_nm
+			</when>
+			<when test="order_by == 'expt_sales_amt'">
+				order by expt_sales_amt
+			</when>
+			<when test="order_by == 'expt_fin_d'">
+				order by expt_fin_d
+			</when>
+			<when test="order_by == 'psblty_rate'">
+				order by a.psblty_rate
+			</when>
+			<when test="order_by == 'sales_oppt_stat_cd_nm'">
+				order by sales_oppt_stat_cd_nm
+			</when>
+		</choose>
+		<choose>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
 
@@ -183,7 +215,43 @@
 				and a.psblty_rate = #{spsblty_rate}
 			</when>
 		</choose>
-		order by a.fin_mdfy_dt desc
+		<choose>
+			<when test="order_by == 'fin_mdfy_dt'">
+				order by a.fin_mdfy_dt
+			</when>
+			<when test="order_by == 'sales_oppt_nm'">
+				order by a.sales_oppt_nm
+			</when>
+			<when test="order_by == 'cust_nm'">
+				order by c.cust_nm
+			</when>
+			<when test="order_by == 'sales_lev_cd_nm'">
+				order by sales_lev_cd_nm
+			</when>
+			<when test="order_by == 'expt_sales_amt'">
+				order by expt_sales_amt
+			</when>
+			<when test="order_by == 'expt_fin_d'">
+				order by expt_fin_d
+			</when>
+			<when test="order_by == 'psblty_rate'">
+				order by a.psblty_rate
+			</when>
+			<when test="order_by == 'sales_oppt_stat_cd_nm'">
+				order by sales_oppt_stat_cd_nm
+			</when>
+			<when test="order_by == 'fin_mdfy_id'">
+				order by a.fin_mdfy_id
+			</when>
+		</choose>
+		<choose>
+			<when test="order_sc == 'DESC'">
+				desc
+			</when>
+			<when test="order_sc == 'ASC'">
+				asc
+			</when>
+		</choose>
 		)d
 		where r <![CDATA[ >= ]]>#{startRow} and r <![CDATA[ <= ]]>#{endRow}
 

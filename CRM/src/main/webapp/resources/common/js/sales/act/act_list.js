@@ -164,6 +164,16 @@ function searchActBtn(page)
 	searchActSaleList(page);
 }
 
+/* 정렬 버튼 클릭 시 처리 함수 */
+function setOrder(order_by,page){
+	$("#order_by").val(order_by);
+	if($("#order_sc").val()=='DESC'){
+		$("#order_sc").val('ASC');
+	}else{
+		$("#order_sc").val('DESC');
+	}
+	searchActSaleList(page);
+}
 //영업활동 리스트 출력
 function searchActSaleList(pageNum)
 {
@@ -194,6 +204,8 @@ function searchActSaleList(pageNum)
 			scust_id   : $('#scust_id').val(),
 			scust_id0  : $('#scust_id0').val(),
 			scust_id1  : $('#scust_id1').val(),
+			order_by : $("#order_by").val(),
+			order_sc : $("#order_sc").val()
 	
 		},
 		success : function(data) {

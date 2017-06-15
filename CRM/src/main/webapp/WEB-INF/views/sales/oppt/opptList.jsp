@@ -16,13 +16,7 @@
 <script src="${ctx}/resources/common/js/jquery-1.11.1.js"></script>
 <script src="${ctx}/resources/common/js/standard/d3.min.js"></script>
 <script src="${ctx}/resources/common/js/sales/oppt/opptList.js"></script>
-<script src="${ctx}/resources/common/js/standard/common/tablesort.js"></script>
 <title>개인 고객</title>
-<script>
-$(function() {
-	$('table').tablesort();
-});		   	
-</script>
 </head>
 <body>
 <form action="" method="get" id="listForm" >
@@ -71,18 +65,20 @@ $(function() {
 			
 			    <input type="button"  class="tiny ui blue button" id="searchlist" onclick="javascript:searchBtn('${ccPageNum}');" style="text-align: right;" value="조회">
 		    </div>		
-			<div id="tableline">	 
+			<div id="tableline">
+				<input type="hidden" id="order_by" name="order_by" value="${data.order_by}"/>
+				<input type="hidden" id="order_sc" name="order_sc" value="${data.order_sc}"/>
 				<table id="goaltable" class="ui sortable celled table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th style="width: 3%; text-align: center;"><input type="checkbox"  id='opptAllSelect'/></th>
-						<th style="width: 26%;">영업기회명</th>
-						<th style="width: 10%;">고객사명</th>
-						<th style="width: 8%;">영업단계</th>
-						<th style="width: 10%;">예상매출액</th>
-						<th style="width: 10%;">예상마감일자</th>
-						<th style="width: 5%;">가능성</th>
-						<th style="width: 8%;">상태</th>
+						<th style="width: 26%;" onclick="setOrder('sales_oppt_nm','${ccPageNum}')">영업기회명</th>
+						<th style="width: 10%;" onclick="setOrder('cust_nm','${ccPageNum}')">고객사명</th>
+						<th style="width: 8%;" onclick="setOrder('sales_lev_cd_nm','${ccPageNum}')">영업단계</th>
+						<th style="width: 10%;" onclick="setOrder('expt_sales_amt','${ccPageNum}')">예상매출액</th>
+						<th style="width: 10%;" onclick="setOrder('expt_fin_d','${ccPageNum}')">예상마감일자</th>
+						<th style="width: 5%;" onclick="setOrder('psblty_rate','${ccPageNum}')">가능성</th>
+						<th style="width: 8%;" onclick="setOrder('sales_oppt_stat_cd_nm','${ccPageNum}')">상태</th>
 <!-- 						<th style="width: 8%;">등록자</th> -->
 <!-- 						<th style="width: 12%;">등록일시</th> -->
 					</tr>
