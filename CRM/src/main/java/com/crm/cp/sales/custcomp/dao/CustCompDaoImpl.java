@@ -65,9 +65,9 @@ public class CustCompDaoImpl implements CustCompDao {
 	public List<CustCompVO> getCCList(Map<String, Object> pMap) {
 		List<CustCompVO> ccListVO = null;
 		try {
-			System.out.println("고객사 리스트 DAOImple : " + pMap.get("page"));
+//			System.out.println("고객사 리스트 DAOImple : " + pMap.get("page"));
 			ccListVO = sqlSession.selectList("custcomp.custcompList", pMap);
-			System.out.println("고객사 리스트 ccListVO" + ccListVO.toString());
+//			System.out.println("고객사 리스트 ccListVO" + ccListVO.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -901,7 +901,7 @@ public class CustCompDaoImpl implements CustCompDao {
 		try {
 			
 			custcompExcel = sqlSession.selectList("custcomp.custcompExcel", pMap);
-			System.out.println("custcompExcel Dao Impl : " + custcompExcel);
+//			System.out.println("custcompExcel Dao Impl : " + custcompExcel);
 			
 		} catch (Exception e) {
 			

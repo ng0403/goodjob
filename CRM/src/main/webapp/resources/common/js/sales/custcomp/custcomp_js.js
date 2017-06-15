@@ -33,6 +33,7 @@ $("#navicustcomp").css("font-weight", "bold");
 var count = 0;
 var schAddFlg = 0;
 var ccllist;
+var flg;
 
 $(document).ready(function() {
 	var ctx = $("#ctx").val();
@@ -41,8 +42,6 @@ $(document).ready(function() {
 	
 	chkCancel();
 	keymanList(cust_id);
-//	pocList(cust_id);
-//	posList(cust_id);
 	
 	// 기업고객 리스트 체크박스 선택, 해제
 	$("#ccListCheck").click(function(){
@@ -322,7 +321,7 @@ function custCompList(page){
 				}else{
 					//리스트 출력 시 버튼 상태 설정
 					$("#functionBtn").css("display", "block");
-					
+					$("#flg").val(result.flg);
 					$("#ccListTbody").children().remove();
 					$.each(result.ccVOList, function(i, cc){
 					
@@ -1176,14 +1175,114 @@ function schPaging(ccPageNum) {
 //엑셀 출력 적용 함수
 function download_list_Excel(formID){
 	
+	flg = $("#flg").val();
+	
 	var ctx = $("#ctx").val();
 	var form = $("#"+formID);
 	var excel = $('<input type="hidden" value="true" name="excel">');
+	var act_yn = $("#act_yn").val();
+//	var excelAjsx = $('<input type="hidden" value="trueAjax" name="excel">');
+	
+	console.log(form.attr("action"));
+	console.log(formID);
 	
 	if(confirm("리스트를 출력하시겠습니까? 대량의 경우 대기시간이 필요합니다.")){
 		form.append(excel);
-		form.submit();
-	}
+		if(flg == 0)
+		{
+			form.attr("action", "/custcomp");
+			form.submit();
+		}
+		else
+		{
+			
+//			form.attr("action", "/custCompAjax");
+			
+			var $form = $("<form>");
+			$form.attr({
+				"action":"/custCompAjax",
+				"method":"post",
+				"id":"ccListExcelForm"
+			})
+			
+			
+			var $sch_cust_nm = $("<input>");
+			$sch_cust_nm.attr({
+				"type":"hidden",
+				"name":"sch_cust_nm",
+				"value":sch_cust_nm
+			})
+		
+//			var $sch_cust_nm0 = $("<input>");
+//			$sch_cust_nm0.attr({
+//				"type":"hidden",
+//				"name":"sch_cust_nm0",
+//				"value":sch_cust_nm0
+//			})
+//			var $sch_cust_nm1 = $("<input>");
+//			$sch_cust_nm1.attr({
+//				"type":"hidden",
+//				"name":"sch_cust_nm1",
+//				"value":sch_cust_nm1
+//			})
+			
+			var $sch_comp_num = $("<input>");
+			$sch_comp_num.attr({
+				"type":"hidden",
+				"name":"sch_comp_num",
+				"value":sch_comp_num
+			})
+			
+//			var $sch_comp_num0 = $("<input>");
+//			$sch_comp_num0.attr({
+//				"type":"hidden",
+//				"name":"sch_comp_num0",
+//				"value":sch_comp_num0
+//			})
+//			var $sch_comp_num1 = $("<input>");
+//			$sch_comp_num1.attr({
+//				"type":"hidden",
+//				"name":"sch_comp_num1",
+//				"value":sch_comp_num1
+//			})
+			
+			var $sch_corp_num = $("<input>");
+			$sch_corp_num.attr({
+				"type":"hidden",
+				"name":"sch_corp_num",
+				"value":sch_corp_num
+			})
+			
+//			var $sch_corp_num0 = $("<input>");
+//			$sch_corp_num0.attr({
+//				"type":"hidden",
+//				"name":"sch_corp_num0",
+//				"value":sch_corp_num0
+//			})
+//			var $sch_corp_num1 = $("<input>");
+//			$sch_corp_num1.attr({
+//				"type":"hidden",
+//				"name":"sch_corp_num1",
+//				"value":sch_corp_num1
+//			})
+			
+			var $ccPageNum = $("<input>");
+			$ccPageNum.attr({
+				"type":"hidden",
+				"name":"ccPageNum",
+				"value":ccPageNum
+			})
+			
+			$form.append($sch_cust_nm).append($sch_comp_num).append($sch_corp_num);
+			
+//			$form.append($sch_cust_nm).append($sch_cust_nm0).append($sch_cust_nm1);
+//			$form.append($sch_comp_num).append($sch_comp_num0).append($sch_comp_num1);
+//			$form.append($sch_corp_num).append($sch_corp_num).append($sch_corp_num);
+			$form.append($ccPageNum);
+			form.submit();
+		}
+		
+	} 
 	$("input[name=excel]").val("");
 }
 

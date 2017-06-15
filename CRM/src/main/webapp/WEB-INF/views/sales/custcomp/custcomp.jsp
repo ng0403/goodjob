@@ -26,12 +26,14 @@
 <body style="overflow: auto;">
 
 	<input type="hidden" id="ctx" 		value="${ctx}"/>
+	<input type="hidden" id="page" 		value="${page}"/>
+	<input type="hidden" id="ccPageNum" value="${ccPageNum}"/>
 	<input type="hidden" id="flg" 		value="${flg}">
-	<input type="hidden" id="schAddFlg" value="${schAddFlg}">
+	<input type="hidden" id="schAddFlg"   value="${schAddFlg}">
 	<input type="hidden" id="count" 	value="">
 	<input type="hidden" id="user" 		value="${SessionID}">
 	<input type="hidden" id="act_yn" 	value="Y">
-	<div id="title">
+	<div id="title"> 
 		<div class="caption">
 			<label id="listLabel" class="ui header">■ 고객사관리 > 고객사조회</label> 
 		</div>
@@ -39,15 +41,15 @@
 
 	<div class="search_div"  id="search_div" >
 		<div class="ui left icon input">
-			<input type="text" placeholder="고객사명"  id="sch_cust_nm" name="sch_cust_nm" onkeypress="schCustComp(event);">
+			<input type="text" placeholder="고객사명"   id="sch_cust_nm" name="sch_cust_nm"  value="${sch_cust_nm}" onkeypress="schCustComp(event);">
 			<i class="users icon"></i>
 		</div>	
 		<div class="ui left icon input">
-			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num"  maxlength="9" onkeypress="schCustComp(event);"  style='ime-mode:disabled;'>
+			<input type="text" placeholder="사업자번호" id="sch_comp_num" name="sch_comp_num" value="${sch_comp_num}"  maxlength="9" onkeypress="schCustComp(event);"  style='ime-mode:disabled;'>
 			<i class="suitcase icon"></i>
 		</div>	
 		<div class="ui left icon input">	
-			<input type="text" placeholder="법인번호"  id="sch_corp_num" name="sch_corp_num"  maxlength="9" onkeypress="schCustComp(event);" style='ime-mode:disabled;'>
+			<input type="text" placeholder="법인번호"   id="sch_corp_num" name="sch_corp_num" value="${sch_corp_num}"  maxlength="9" onkeypress="schCustComp(event);" style='ime-mode:disabled;'>
 			<i class="law icon"></i>
 		</div>	
 		
@@ -55,6 +57,7 @@
 		<input type="button" id="custcomp_search" class="tiny ui blue button" value="조회" onclick="searchBtn('${ccPageNum}');" />
 		
 	</div>
+	<form id="ccListExcelForm" name="ccListExcelForm" method="post"></form>	<!-- action="/custcomp" -->
 	
 	<form name="delForm" id="delForm" method="post" action="${ctx}/custcompDelete">
 		<div id="tableline" class="tableline">
@@ -102,36 +105,6 @@
 				<input type="button" value="삭제" class="tiny ui blue button" onclick="custcompDelete()" />
 				<input type="button" value="삭제된 데이터" class="tiny ui blue button" onclick="custcompDelListbtn()" />
 				<input type="button" value="엑셀출력" class="tiny ui blue button" id="exportBtn"  onclick="download_list_Excel('ccListExcelForm');" />	
-				
-				<c:if test="${flg == 0 }">
-					<form  action="${ctx}/custcomp" id="custcompPagingForm" method="post">
-						<input type="hidden" name="cust_nm"   value="${cust_nm}"/>
-						<input type="hidden" name="cust_nm0"  value="${cust_nm0}"/>
-						<input type="hidden" name="cust_nm1"  value="${cust_nm1}"/>
-						<input type="hidden" name="comp_num"  value="${comp_num}"/>
-						<input type="hidden" name="comp_num0" value="${comp_num0}"/>
-						<input type="hidden" name="comp_num1" value="${comp_num1}"/>
-						<input type="hidden" name="corp_num"  value="${corp_num}"/>
-						<input type="hidden" name="corp_num0" value="${corp_num0}"/>
-						<input type="hidden" name="corp_num1" value="${corp_num}"/>
-					</form>
-					<form action="${ctx}/custcomp" id="ccListExcelForm" method="post"></form>
-				</c:if>
-				<c:if test="${flg == 1 }">
-					<form  action="${ctx}/custCompAjax" id="custcompAjaxPagingForm" method="post">
-						<input type="hidden" name="cust_nm"   value="${cust_nm}"/>
-						<input type="hidden" name="cust_nm0"  value="${cust_nm0}"/>
-						<input type="hidden" name="cust_nm1"  value="${cust_nm1}"/>
-						<input type="hidden" name="comp_num"  value="${comp_num}"/>
-						<input type="hidden" name="comp_num0" value="${comp_num0}"/>
-						<input type="hidden" name="comp_num1" value="${comp_num1}"/>
-						<input type="hidden" name="corp_num"  value="${corp_num}"/>
-						<input type="hidden" name="corp_num0" value="${corp_num0}"/>
-						<input type="hidden" name="corp_num1" value="${corp_num}"/>
-					</form>
-					<form action="${ctx}/custCompAjax" id="ccListExcelForm" method="post"></form>
-				</c:if>
-				
 			</div>
 			
 			<!-- 페이징 처리 -->

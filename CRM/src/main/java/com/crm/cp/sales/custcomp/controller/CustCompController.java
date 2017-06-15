@@ -76,6 +76,7 @@ public class CustCompController {
 
 			Map<String, Object> pMap = new HashMap<String, Object>();
 			pMap.put("ccPageNum", ccPageNum);
+			System.out.println("excel : " + excel);
 			
 			//엑셀 출력 부분(리스트 전체 출력)
 			if(excel != null){
@@ -84,7 +85,7 @@ public class CustCompController {
 					ModelAndView mav = new ModelAndView("/sales/custcomp/custcompList_excel");
 					
 					List<CustCompVO> custcompExcel = ccService.custcompExcel(ccMap);
-					System.out.println("custcompExcel : "+ custcompExcel);
+//					System.out.println("custcompExcel : "+ custcompExcel);
 					
 					mav.addObject("custcompExcel", custcompExcel);
 					
@@ -104,8 +105,8 @@ public class CustCompController {
 			List<CustCompVO> CCSCodeList = ccService.selectCCS();  // 기업 상태 코드 가져오기
 			List<CustCompVO> CDCCodeList = ccService.selectCDC();  // 고객사 구분 코드가져오기
 
-			System.out.println("고객사 리스트 ccVOList : " + ccVOList);
-			System.out.println("고객사 리스트 page :  " + page);
+//			System.out.println("고객사 리스트 ccVOList : " + ccVOList);
+//			System.out.println("고객사 리스트 page :  " + page);
 			// List<MenuVO> menuList = menuService.selectAll(session);
 			mov.addObject("ccPageNum", ccPageNum);
 			// mov.addObject("menuList", menuList);
@@ -147,76 +148,90 @@ public class CustCompController {
 
 		if (session.getAttribute("user") == null) { 					// 로그인 페이지 이동
 			mov = new ModelAndView("standard/home/session_expire");
-		} else {
+		} 
+
+		mov = new ModelAndView(new MappingJacksonJsonView());
+		JSONArray json = new JSONArray();
+		Map<String, Object> pMap = new HashMap<String, Object>();
+
+		pMap.put("result", "Y");
+		pMap.put("sch_cust_nm", sch_cust_nm);
+		pMap.put("sch_cust_nm0", sch_cust_nm0);
+		pMap.put("sch_cust_nm1", sch_cust_nm1);
+		pMap.put("sch_comp_num", sch_comp_num);
+		pMap.put("sch_comp_num0", sch_comp_num0);
+		pMap.put("sch_comp_num1", sch_comp_num1);
+		pMap.put("sch_corp_num", sch_corp_num);
+		pMap.put("sch_corp_num0", sch_corp_num0);
+		pMap.put("sch_corp_num1", sch_corp_num1);
+		pMap.put("ccPageNum", ccPageNum);
+
+		// 정상 LIST
+		if (act_yn.equals("Y")) 
+		{
+			flg = 1;
+
+			// 고객사 리스트 전체 개수 조회(페이징에 사용)
+			PagerVO page = ccService.getCCListCount(pMap);
+			pMap.put("startRow", page.getStartPageNum() + "");
+			pMap.put("endRow", page.getEndPageNum() + "");
+			pMap.put("page", page);
 			
-			mov = new ModelAndView(new MappingJacksonJsonView());
-			JSONArray json = new JSONArray();
-			Map<String, Object> pMap = new HashMap<String, Object>();
+			List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 고객사리스트
 			
-			pMap.put("result", "Y");
-			pMap.put("sch_cust_nm",   sch_cust_nm);
-			pMap.put("sch_cust_nm0",  sch_cust_nm0);
-			pMap.put("sch_cust_nm1",  sch_cust_nm1);
-			pMap.put("sch_comp_num",  sch_comp_num);
-			pMap.put("sch_comp_num0", sch_comp_num0);
-			pMap.put("sch_comp_num1", sch_comp_num1);
-			pMap.put("sch_corp_num",  sch_corp_num);
-			pMap.put("sch_corp_num0", sch_corp_num0);
-			pMap.put("sch_corp_num1", sch_corp_num1);
-			pMap.put("ccPageNum",     ccPageNum);
+			pMap.put("ccVOListSize", ccVOList.size());
 
-			if (act_yn.equals("Y")) {
-				flg = 1;
-
-				// 고객사 리스트 전체 개수 조회(페이징에 사용)
-				PagerVO page = ccService.getCCListCount(pMap);
-				pMap.put("startRow", page.getStartPageNum() + "");
-				pMap.put("endRow", page.getEndPageNum() + "");
-				pMap.put("page", page);
-				mov.addObject("page", page);
-				mov.addObject("flg", flg);
-				System.out.println("고객사 ajax flg :" + flg);
-				System.out.println("고객사 리스트 Ajaxpage :  " + page);
-				System.out.println("검색 TEST : " + pMap);
-
-				List<CustCompVO> ccVOList = ccService.getCCList(pMap); // 고객사리스트
-				mov.addObject("ccVOList", ccVOList);
-				pMap.put("ccVOListSize", ccVOList.size());
+			System.out.println("고객사List excel :" + excel);
+			
+			// 엑셀 출력 부분 (검색조건에 맞는 리스트 출력)
+			if (excel != null) {
+				System.out.println("고객사List flg :" + flg);
 				
-				
-				//엑셀 출력 부분 (검색조건에 맞는 리스트 출력)
-				if(excel != null){
-					if(excel.equals("true")){
-						
-						ModelAndView mav = new ModelAndView(new MappingJacksonJsonView());
+				if (excel.equals("true")) {
+					System.out.println("고객사List flg :" + flg);
+					ModelAndView mav = new ModelAndView(new MappingJacksonJsonView());
 
-						List<CustCompVO> custcompExcel = ccService.custcompSchExcel(ccMap);
-						json = new JSONArray();     
+					System.out.println("고객사List flg :" + flg);
+					
+//					List<CustCompVO> custcompExcel = ccService.custcompSchExcel(ccMap);
+					List<CustCompVO> custcompExcel = ccService.custcompSchExcel(pMap);
+					json = new JSONArray();
+					
+					System.out.println("고객사List flg :" + flg);
+					
+					mav.addObject("custcompExcel", json.fromObject(custcompExcel));
+					mav.setViewName("/sales/custcomp/custcompList_excel");
 
-		                mav.addObject("custcompExcel",json.fromObject(custcompExcel));
-		                mav.setViewName("/sales/custcomp/custcompList_excel");
-
-		                return mav;
-					}
+					return mav;
 				}
-			} else {
-
-				// 고객사 리스트 삭제된 데이터 개수 조회(페이징에 사용)
-				PagerVO page = ccService.getCCDelListCount(pMap);
-				pMap.put("startRow", page.getStartPageNum() + "");
-				pMap.put("endRow", page.getEndPageNum() + "");
-				pMap.put("page", page);
-				mov.addObject("page", page);
-
-				List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사삭제된 리스트
-				System.out.println("dddd " + ccVOList.toString());
-				mov.addObject("ccVOList", ccVOList);
-				pMap.put("ccVOListSize", ccVOList.size());
-
 			}
 
+			mov.addObject("page", page);
+			mov.addObject("flg", flg);
+			mov.addObject("ccVOList", ccVOList);
+			 
+			return mov;
+		} 
+		else	// 삭제된 리스트 
+		{
+
+			// 고객사 리스트 삭제된 데이터 개수 조회(페이징에 사용)
+			PagerVO page = ccService.getCCDelListCount(pMap);
+			pMap.put("startRow", page.getStartPageNum() + "");
+			pMap.put("endRow", page.getEndPageNum() + "");
+			pMap.put("page", page);
+			mov.addObject("page", page);
+
+			List<CustCompVO> ccVOList = ccService.getCCDelList(pMap); // 고객사삭제된
+																		// 리스트
+			System.out.println("dddd " + ccVOList.toString());
+			mov.addObject("ccVOList", ccVOList);
+			pMap.put("ccVOListSize", ccVOList.size());
+
+			 return mov;
 		}
-		return mov;
+
+		//return mov;
 	}
 	
 //	@RequestMapping(value = "custCompAjax", method = RequestMethod.POST)
