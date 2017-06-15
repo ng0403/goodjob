@@ -10,23 +10,28 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 
-<link href='${pageContext.request.contextPath}/resources/fullcalendar_test/fullcalendar.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/fullcalendar_test/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" type="text/css" href="${ctx}/resources/common/Semantic/semantic.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/sfa_common_list.css" type="text/css" />
+<script src="${ctx}/resources/common/Semantic/semantic.js"></script>
 
+<link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<%-- <link rel="stylesheet" href="${ctx}/resources/common/css/standard/common/common_list.css" type="text/css" /> --%>
+
+
+<script src="${pageContext.request.contextPath}/resources/SE/js/HuskyEZCreator.js" type="text/javascript" charset="utf-8"></script>
 <script src='${pageContext.request.contextPath}/resources/lib/jquery.min.js'></script>
 <script src='${pageContext.request.contextPath}/resources/lib/jquery-ui.custom.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/fullcalendar_test/moment.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/fullcalendar_test/fullcalendar.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/fullcalendar_test/locale-all.js'></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JQUERY.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_DATE.js"></script>
+<script src='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.min.js'></script>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_DATE.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JUI.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JQUERY.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_FUNCTION.js"></script>
 
 </head>
-<body >		<!-- style="background-color: white;" -->
-	<input type="hidden" id="ctx" value="${ctx}"> 
-	<input type="hidden" id="selectUser"> 
-	<input type="hidden" id="selectTab" value="tab_Home">
+<body style="background-color: white;">
 
 	<div>
 		<div id="title">
@@ -47,6 +52,8 @@
 
 		</div>
 	</div>
+
+	
 
 </body>
 </html>

@@ -51,24 +51,24 @@ $(function(){
 //		passwdModal.show();
 //	});
 	
-	$.ajax({
-		url : "/actSchedule",
-		type : "POST",
-		dataType : "json",
-		success: function(data) {
-        	getPayDay();
-        	
-        	for(var i=0; i<data.actSchList.length; i++)
-        	{
+//	$.ajax({
+//		url : "/actSchedule",
+//		type : "POST",
+//		dataType : "json",
+//		success: function(data) {
+//        	getPayDay();
+//        	
+//        	for(var i=0; i<data.actSchList.length; i++)
+//        	{
 //        		events[i] = {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)};
-        		
-        		$('#schcalendar').fullCalendar('renderEvent', {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)} );
-        	}
-        },
-        error: function(data){
-        	alert("실패 ");
-        }
-    });
+//        		
+//        		$('#schcalendar').fullCalendar('renderEvent', {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)} );
+//        	}
+//        },
+//        error: function(data){
+//        	alert("실패 ");
+//        }
+//    });
 	
 	/**
 	 * 2017. 04. 10
@@ -88,11 +88,11 @@ $(function(){
 //			center: 'prev title next',
 //			right: 'month, basicWeek, basicDay'	/* right: 'today, month, basicWeek, basicDay' */
 //		},
-//		titleFormat: {
-//			month: 'yyyy년 MMMM',
-//			week: "yyyy년 MMMM d[yyyy]{'일 ~ '[mmm] dd일'}",
-//			day: "yyyy년 MMM d dddd"
-//		},
+		titleFormat: {
+			month: 'yyyy년 MMMM',
+			week: "yyyy년 MMMM d[yyyy]{'일 ~ '[mmm] dd일'}",
+			day: "yyyy년 MMM d dddd"
+		},
 		monthNames : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		dayNames : ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
@@ -103,7 +103,26 @@ $(function(){
 		droppable:true,
 		draggable:true,
 		scrollTime: '00:00',
-//		events: events,
+		events: function(start, end, callback) {
+			$.ajax({
+				url : "/actSchedule",
+				type : "POST",
+				dataType : "json",
+				success: function(data) {
+		        	getPayDay();
+		        	
+		        	for(var i=0; i<data.actSchList.length; i++)
+		        	{
+//		        		events[i] = {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)};
+		        		
+		        		$('#schcalendar').fullCalendar('renderEvent', {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)} );
+		        	}
+		        },
+		        error: function(data){
+		        	alert("실패 ");
+		        }
+		    });
+	    },
 	    dayClick: function(date) {		// 페이지 이동으로 변경.
 	    	var dtmp = new Date(date);
 	    	var year = dtmp.getFullYear();                 //yyyy
@@ -137,9 +156,10 @@ $(function(){
 		eventDrop: function( event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view ) {
 			console.log(event);
 			console.log(event.id);
-			console.log(event.start._d);
+			console.log(event.start);
+			console.log(event.end);
 			
-			var dtmp1 = new Date(event.start._d);
+			var dtmp1 = new Date(event.start);
 			
 			var year1 = dtmp1.getFullYear();                 //yyyy
 	    	var month1 = (1 + dtmp1.getMonth());             //M
@@ -150,7 +170,7 @@ $(function(){
 	    	
 	    	if(event.end != null)
 	    	{
-				var dtmp2 = new Date(event.end._d);
+				var dtmp2 = new Date(event.end);
 	    		var year2 = dtmp2.getFullYear();                 //yyyy
 	    		var month2 = (1 + dtmp2.getMonth());             //M
 	    		var day2 = dtmp2.getDate();  					 //d
@@ -163,6 +183,7 @@ $(function(){
 	    	var start = year1 + '-' + month1 + '-' + day1;		// start
     		var end = year2 + '-' + month2 + '-' + day2;		// end
     		
+    		// 달력 object 날짜 변경 시 수정해주는 ajax
     		$.ajax({
     			url : '/actSchEdit',
     			type : 'POST',
