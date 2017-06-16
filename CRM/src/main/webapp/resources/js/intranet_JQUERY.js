@@ -69,7 +69,7 @@ $(function(){
 //        	alert("실패 ");
 //        }
 //    });
-	
+//	
 	/**
 	 * 2017. 04. 10
 	 * #schcalendar : 달력 생성하는 곳(큰 틀)
@@ -81,8 +81,13 @@ $(function(){
 		header: {
 			left: ' ',
 			center: 'prev title next',
-			right: 'month, agendaWeek, agendaDay, listMonth'
+			right: 'month, agendaWeek, agendaDay'
 		},
+//		header: {
+//			left: ' ',
+//			center: 'prev title next',
+//			right: 'month, agendaWeek, agendaDay, listMonth'
+//		},
 //		header: {
 //			left: ' ',
 //			center: 'prev title next',
@@ -99,9 +104,9 @@ $(function(){
 		dayNamesShort : ['일','월','화','수','목','금','토'],
 		navLinks: true,
 		editable: true,		// Drag????
-		eventLimit: true,
+//		eventLimit: true,
 		droppable:true,
-		draggable:true,
+		draggable:true,		
 		scrollTime: '00:00',
 		events: function(start, end, callback) {
 			$.ajax({
@@ -114,8 +119,11 @@ $(function(){
 		        	for(var i=0; i<data.actSchList.length; i++)
 		        	{
 //		        		events[i] = {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)};
+		        		$('#schcalendar').fullCalendar('renderEvent', 
+		        					{id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, 
+		        					 start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)});
 		        		
-		        		$('#schcalendar').fullCalendar('renderEvent', {id:data.actSchList[i].SALES_ACTVY_ID, title : data.actSchList[i].SALES_ACTVY_NM, start : new Date(data.actSchList[i].STRT_D), end: new Date(data.actSchList[i].END_D)} );
+		        		
 		        	}
 		        },
 		        error: function(data){
@@ -137,14 +145,14 @@ $(function(){
 	    	var m = getFormatMin();
 
 	    	//window.open(ctx + '/actDetail','newwindow2','width=930, height=645, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-	    	location.href = ctx + '/actDetail?date=' + d + "&hour=" + h + "&min=" + m;
+	    	location.href = '/actDetail?date=' + d + "&hour=" + h + "&min=" + m;
 		
 	    },
 	    eventClick: function(data) {	// 이벤트 클릭 시 상세보기 화면으로 이동.
 	    	if(data.title)
 	    	{
 	    		//window.open(ctx + '/actDetail?sales_actvy_id='+data.id,'newwindow2','width=930, height=645, toolbar=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no');
-	    		location.href = ctx + '/actDetail?sales_actvy_id='+data.id;
+	    		location.href = '/actDetail?sales_actvy_id='+data.id;
 	    	}
 	    },
 		eventMouseover: function( event, jsEvent, view) { 

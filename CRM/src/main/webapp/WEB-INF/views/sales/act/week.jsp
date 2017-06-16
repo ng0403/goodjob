@@ -26,9 +26,9 @@
 <script src='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.min.js'></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_DATE.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JUI.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JQUERY.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_FUNCTION.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JUI.js"></script> --%>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_FUNCTION.js"></script> --%>
 
 </head>
 <body style="background-color: white;">
