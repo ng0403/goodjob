@@ -1,0 +1,295 @@
+
+// 기업고객 상세정보
+	@Override
+	public CustCompVO selectDetail(String cust_id) {
+		CustCompVO ccVO = null;
+		try {
+			ccVO = sqlSession.selectOne("custCompDetail", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ccVO;
+	}
+
+	// 기업고객 추가
+	@Override
+	public int insertCustComp(CustCompVO ccVO) {
+//		int inputResultTemp = 0;
+//		int inputResult = 0;
+//		try {
+//			inputResultTemp = sqlSession.insert("custInput", ccVO);
+//			inputResult += inputResultTemp;
+//			//inputResultTemp = 0;
+//			//inputResultTemp = sqlSession.insert("custCompInput", ccVO);
+//			//inputResult += inputResultTemp;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return inputResult;
+		int seq = sqlSession.insert("custInput", ccVO);
+		return seq;
+	}
+	
+	// 기업고객 수정
+	@Override
+	public int updateCustComp(CustCompVO ccVO) {
+		int updateResultTemp = 0;
+		int updateResult = 0;
+		try {
+			updateResultTemp = sqlSession.update("custUpdate", ccVO);
+			updateResult += updateResultTemp;
+			//updateResultTemp = 0;
+			//updateResultTemp = sqlSession.update("custCompUpdate", ccVO);
+			//updateResult += updateResultTemp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return updateResult;
+	}
+	
+	// 기업고객 삭제
+	@Override
+	public int deleteCustComp(List<String> cust_idList) {
+		int	deleteResultTemp = 0;
+		int deleteResult = 0;
+		try {
+			for (int i = 0; i < cust_idList.size(); i++) {
+				deleteResultTemp = sqlSession.update("custDelete", cust_idList.get(i));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteResult;
+	}
+	
+	// 기업고객 추가 
+	@Override
+	public int custcompAdd(CustCompVO ccVO) {
+		int seq = sqlSession.insert("custcomp.custcompAdd", ccVO);
+		return seq;
+	}
+
+	// 기업고객 수정
+	@Override
+	public int custcompModify(CustCompVO ccVO) {
+		return sqlSession.update("custcomp.custUpdate", ccVO);
+	}
+	
+	// 기업고객 추가 
+	@Override
+	public int custcompAdd(CustCompVO ccVO) {
+		int seq = sqlSession.insert("custcomp.custcompAdd", ccVO);
+		return seq;
+	}
+
+	// 기업고객 수정
+	@Override
+	public int custcompModify(CustCompVO ccVO) {
+		return sqlSession.update("custcomp.custUpdate", ccVO);
+	}
+	
+	// 영업기회 리스트 가져오기
+	@Override
+	public List<OpptVO> getOpptList(String cust_id) {
+		List<OpptVO> opptVOList = null;
+		try {
+			opptVOList = sqlSession.selectList("ccOpptList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVOList;
+	}
+	
+	// 영업기회 고객정보 가져오기
+	@Override
+	public OpptVO ccOpptCustDetail(String cust_id) {
+		OpptVO opptVO = null;
+		try {
+			opptVO = sqlSession.selectOne("ccOpptCustDetail", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVO;
+	}
+	
+	// 영업기회 리스트 팝업
+		@Override
+		public List<OpptVO> ccOpptPopList(String cust_id) {
+			List<OpptVO> opptList = null;
+			try {
+				opptList = sqlSession.selectList("ccOpptPopList", cust_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return opptList;
+		}
+		
+	// 영업기회 삭제
+	@Override
+	public int deleteOppt(List<String> oppt_idList) {
+		int	deleteResultTemp = 0;
+		int deleteResult = 0;
+		try {
+			for (int i = 0; i < oppt_idList.size(); i++) {
+				deleteResultTemp = sqlSession.update("ccOpptDelete", oppt_idList.get(i));
+				deleteResult += deleteResultTemp;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteResult;
+	}
+
+	// 영업기회 상세정보
+	@Override
+	public OpptVO ccOpptDetail(String sales_oppt_id) {
+		OpptVO opptVO = null;
+		try {
+			opptVO = sqlSession.selectOne("ccOpptDetail", sales_oppt_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVO;
+	}
+	
+	// 영업기회 리스트 가져오기
+	@Override
+	public List<OpptVO> getOpptList(String cust_id) {
+		List<OpptVO> opptVOList = null;
+		try {
+			opptVOList = sqlSession.selectList("ccOpptList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVOList;
+	}
+	
+	// 영업기회 고객정보 가져오기
+	@Override
+	public OpptVO ccOpptCustDetail(String cust_id) {
+		OpptVO opptVO = null;
+		try {
+			opptVO = sqlSession.selectOne("ccOpptCustDetail", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVO;
+	}
+	
+	// 영업기회 리스트 팝업
+		@Override
+		public List<OpptVO> ccOpptPopList(String cust_id) {
+			List<OpptVO> opptList = null;
+			try {
+				opptList = sqlSession.selectList("ccOpptPopList", cust_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return opptList;
+		}
+		
+	// 영업기회 삭제
+	@Override
+	public int deleteOppt(List<String> oppt_idList) {
+		int	deleteResultTemp = 0;
+		int deleteResult = 0;
+		try {
+			for (int i = 0; i < oppt_idList.size(); i++) {
+				deleteResultTemp = sqlSession.update("ccOpptDelete", oppt_idList.get(i));
+				deleteResult += deleteResultTemp;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteResult;
+	}
+
+	// 영업기회 상세정보
+	@Override
+	public OpptVO ccOpptDetail(String sales_oppt_id) {
+		OpptVO opptVO = null;
+		try {
+			opptVO = sqlSession.selectOne("ccOpptDetail", sales_oppt_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opptVO;
+	}
+	
+		// 계약 리스트 가져오기
+	@Override
+	public List<contrVO> getContList(String cust_id) {
+		List<contrVO> contVOList = null;
+		try {
+			contVOList = sqlSession.selectList("ccContList", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return contVOList;
+	}
+	
+	// 계약 기업고객 정보 가져오기
+	@Override
+	public contrVO getContCust(String cust_id) {
+		contrVO contrVO = null;
+		try {
+			contrVO = sqlSession.selectOne("ccContCustDetail", cust_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return contrVO;
+	}
+	
+	// 영업담당자 추가
+	@Override
+	public int custPosAdd(PosVO pos) {
+		return sqlSession.insert("custcomp.posListAdd", pos);
+	}
+
+	//영업담당자에서 영업활동 리스트 
+	@Override
+	public List<Object> custSaleActList(Map<String, Object> map) {
+		return sqlSession.selectList("custcomp.actList",map);
+	}
+
+	//영업담당자 상세보기
+	@Override
+	public PosVO posDetail(Map<String, String> map) {
+		return sqlSession.selectOne("custcomp.posDetail", map);
+	}
+
+	
+	@Override
+	public List<Object> searchList(String root, Map<String, Object> map)
+			throws Exception {
+		List<Object> lists = null;
+		try {
+			lists = (List<Object>)sqlSession.selectList(root, map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			
+			throw e;
+		}		
+		return lists;
+	}
+
+	//영업 담당자 수정
+	@Override
+	public int custSaleActUpdate(PosVO pos) {
+		return sqlSession.update("custcomp.custSaleActUpdate", pos);
+	}
+	
+	//영업 담당자 삭제
+	@Override
+	public int custSaleActDelete(PosVO pos) {
+		int	deleteResultTemp = 0;
+		int deleteResult = 0;
+		try {
+				deleteResultTemp = sqlSession.delete("custcomp.custSaleActDelete", pos);
+				deleteResult += deleteResultTemp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteResult;
+	}

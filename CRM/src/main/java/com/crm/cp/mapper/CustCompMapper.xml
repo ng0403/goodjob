@@ -84,7 +84,7 @@
 					</choose>  
 			      <choose>
 						<when test="order_by == 'fin_mdfy_dt'">
-							order by c.fin_mdfy_dt desc
+							order by c.fin_mdfy_dt
 						</when>
 						<when test="order_by == 'cust_nm'">
 							order by cust_nm

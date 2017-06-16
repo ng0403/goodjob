@@ -1,0 +1,32 @@
+	
+	CustCompVO getCCDetail(String cust_id); 									// 기존고객 상세정보 가져오기
+	String insertCustComp(CustCompVO ccVO);										// 기존고객 추가
+	String updateCustComp(CustCompVO ccVO); 									// 기존고객 수정
+	String deleteCustComp(List<String> cust_idList); 							// 기존고객 삭제
+	
+	List<PocVO> getPocList(String cust_id);										//고객사 담당자 리스트
+	List<PosVO> getPosList(String cust_id);										//영업 담당자 리스트
+	List<contrVO> getContList(String cust_id);									// 계약 리스트
+
+	List<OpptVO> getOpptList(String cust_id);									// 영업기회 리스트
+	OpptVO ccOpptCustDetail(String cust_id); 									// 영업기회 팝업 고객정보 가져오기
+	List<OpptVO> ccOpptPopList(String cust_id); 								// 영업기회 리스트 팝업
+	String deleteOppt(List<String> oppt_idList); 								// 영업기회 삭제
+	OpptVO ccOpptDetail(String sales_oppt_id); 									// 영업기회 상세정보
+	
+	List<ActVO> getActList(String cust_id);										// 영업활동 리스트
+	ActVO ccActCustDetail(String cust_id); 										// 영업활동 고객 정보
+	int custActAdd(List<ActVO> actList);										// 영업활동 추가
+	String deleteAct(List<String> act_idList); 									// 영업활동 삭제
+
+	contrVO getContCust(String cust_id); 										// 계약 기업고객 정보 가져오기
+
+	int custcompAdd(CustCompVO ccVO);											// 고객사 추가(이전 버전)
+	int custcompModify(CustCompVO ccVO);										// 고객사 수정(이전 버전)
+	
+	PosVO posDetail(Map<String, String> map);									// 영업담당자 상세보기
+	int custPosAdd(PosVO pos);													// 영업담당자 추가
+	List<Object> custSaleActList(Map<String, Object> map);						// 영업담당자에서 영업활동 리스트
+	List<Object> iuserList(Map<String, Object> map);							// 영업담당자에서 사원 리스트
+	int custSaleActUpdate(PosVO pos);											// 영업담당자 수정
+	String custSaleActDelete(PosVO pos);										// 영업담당자 삭제

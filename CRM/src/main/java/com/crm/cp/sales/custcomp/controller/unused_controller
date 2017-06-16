@@ -1,0 +1,430 @@
+	// 고객별 영업 담당자 //
+	// 영업 담당자 리스트 //
+	@RequestMapping(value = "/ccPosList", method = RequestMethod.POST)
+	public @ResponseBody List<PosVO> posList(String cust_id) {
+
+		List<PosVO> posVOList = ccService.getPosList(cust_id);
+		// System.out.println("posVOList : " + posVOList.toString());
+
+		return posVOList;
+	}
+
+	// 영업 담당자 상세보기 팝업창
+	@RequestMapping(value = "/custPosDetailPopup", method = RequestMethod.GET)
+	public ModelAndView custPosDetailPopup(HttpSession session, @RequestParam Map<String, String> map,
+			String sales_actvy_id, String cust_id, String iuser_id) {
+
+		System.out.println("영업담당자 상세정보 팝업 sales_actvy_id : " + sales_actvy_id);
+		// System.out.println("영업담당자 상세정보 팝업 sales_actvy_nm : " +
+		// sales_actvy_nm);
+
+		 ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_pos_pop");
+		map.put("sales_actvy_id", sales_actvy_id);
+		map.put("iuser_id", iuser_id);
+		map.put("cust_id", cust_id);
+
+		// 영업활동 유형코드 가져오기
+		List<ActVO> actTypeCd = service.actTypeCdList();
+		// 영업활동 상태코드 가져오기
+		List<ActVO> actStatCd = service.actStatCdList();
+		// 영업활동 구분코드 가져오기
+		List<ActVO> actDivCd = service.actDivCdList();
+
+		PosVO detail = ccService.posDetail(map);
+		System.out.println("영업담당자 상세 페이지 detail : " + detail);
+
+		mov.addObject("detail", detail);
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("actDivCd", actDivCd);
+		// mov.addObject("cust_nm", detail.getCust_nm());
+		mov.addObject("sales_actvy_id", sales_actvy_id);
+		// mov.addObject("sales_actvy_nm", sales_actvy_nm);
+		mov.addObject("flg", "detail");
+		return mov;
+	}
+
+	// 영업담당자 추가 팝업창
+	@RequestMapping(value = "/custPosPopup", method = RequestMethod.GET)
+	public ModelAndView custPosPopup(HttpSession session, String list_cust_id, String list_cust_nm,
+			String list_sales_actvy_id) {
+
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_pos_pop");
+
+		// 영업활동 유형코드 가져오기
+		List<ActVO> actTypeCd = ccService.actTypeCdList();
+		// 영업활동 상태코드 가져오기
+		List<ActVO> actStatCd = ccService.actStatCdList();
+		// 영업활동 구분코드 가져오기
+		List<ActVO> actDivCd = ccService.actDivCdList();
+
+		mov.addObject("actTypeCd", actTypeCd);
+		mov.addObject("actStatCd", actStatCd);
+		mov.addObject("actDivCd", actDivCd);
+
+		System.out.println("영업담당자 추가 탭 list_cust_id : " + list_cust_id);
+		System.out.println("list_cust_nm : " + list_cust_nm);
+		System.out.println("list_sales_actvy_id : " + list_sales_actvy_id);
+		// 영업담당자 추가 시에 들어갈 sales_oppt_id값 전달
+
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("sales_actvy_id", list_sales_actvy_id);
+		mov.addObject("flg", "add");
+
+		return mov;
+
+	}
+
+	// 영업담당자 추가
+	@RequestMapping(value = "/custPosAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public int custPosAdd(HttpSession session, PosVO pos) {
+		pos.setFst_reg_id(session.getAttribute("user").toString());
+		pos.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		// 영업담당자 추가
+		int result = ccService.custPosAdd(pos);
+		System.out.println("영업담당자 추가 : " + result);
+		// return 1;
+		return result;
+
+	}
+
+	// 영업담당자 추가에서 영업활동 리스트
+	@RequestMapping(value = "/custSaleActList", method = RequestMethod.GET)
+	public ModelAndView custSaleActList(HttpSession session,
+			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword, String cust_id) {
+		System.out.println("cust_id : " + cust_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("cust_id", cust_id);
+		map.put("keyword", keyword);
+		List<Object> slaeActOpptList = ccService.custSaleActList(map);
+		System.out.println("slaeActOpptList : " + slaeActOpptList);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/sale_act_list");
+
+		mov.addObject("slaeActOpptList", slaeActOpptList);
+
+		return mov;
+	}
+	
+	//고객별 고객사 담당자//
+	 //영업 당담자 리스트
+	@RequestMapping(value = "/ccPocList", method = RequestMethod.POST)
+	public @ResponseBody List<PocVO> pocList(String cust_id) {
+
+		List<PocVO> pocVOList = ccService.getPocList(cust_id);
+		 System.out.println("pocVOList : " + pocVOList.toString());
+
+		return pocVOList;
+	}
+	
+	// 고객사별 담당자 추가 팝업창
+	@RequestMapping(value = "/custMngPopup", method = RequestMethod.GET)
+	public ModelAndView custMngPopup(HttpSession session, 
+									 @RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum,	
+									 String list_cust_id, String list_cust_nm) {
+
+//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_mng_pop");
+		ModelAndView mov = new ModelAndView("custcompMng");
+		
+		System.out.println("custcomp mng");
+		System.out.println("ccPageNum" + ccPageNum);
+
+		System.out.println("담당사원 등록 list_cust_id : " + list_cust_id);
+		System.out.println("list_cust_nm : " + list_cust_nm);
+		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("ccPageNum", ccPageNum);
+		mov.addObject("flg", "add");
+
+		return mov;
+
+	}
+	
+	// 고객사별 담당자 추가 팝업창
+	@RequestMapping(value = "/custMngDetailPopup", method = RequestMethod.GET)
+	public ModelAndView custMngDetailPopup(HttpSession session, @RequestParam Map<String, String> map,
+			String list_cust_id, String list_cust_nm, String list_iuser_id, String list_iuser_nm) {
+
+//		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_mng_pop");
+		ModelAndView mov = new ModelAndView("custcompMng");
+		map.put("cust_id", list_cust_id);
+		map.put("iuser_id", list_iuser_id);
+
+		IuserVO detail = iuserService.ccMngDetail(map);
+		System.out.println("담당사원 list_cust_id : " + list_cust_id);
+		System.out.println("list_cust_nm : " + detail);
+		// 영업활동 추가 시에 들어갈 sales_oppt_id값 전달
+
+		mov.addObject("cust_id", list_cust_id);
+		mov.addObject("cust_nm", list_cust_nm);
+		mov.addObject("detail", detail);
+		mov.addObject("flg", "detail");
+
+		return mov;
+
+	}
+	
+	// 고객사 담당직원 추가
+	@RequestMapping(value = "/ccMngAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public int ccMngAdd(HttpSession session, IuserVO iuserVo) {
+		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
+		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		// 고객사 담당직원 추가
+		int result = iuserService.ccMngAdd(iuserVo);
+		System.out.println("result : " + result);
+		// return 1;
+		return result;
+
+	}
+	
+	// 고객사 담당직원 수정
+	@RequestMapping(value = "/ccMngUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public int ccMngUpdate(HttpSession session, IuserVO iuserVo) {
+		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
+		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
+
+		// 고객사 담당직원 수정
+		System.out.println("영업담당자 수정");
+		int result = iuserService.ccMngUpdate(iuserVo);
+		System.out.println("result : " + result);
+		// return 1;
+		return result;
+	}
+	
+	
+	// 고객사 담당직원 삭제
+	@RequestMapping(value = "/custMngDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	int custMngDelete(HttpSession session, IuserVO iuserVo,
+			@RequestParam(value = "ccMngDelList[]", required = false) List<String> ccMngDelList) {
+		System.out.println("ccMngDelList : " + ccMngDelList);
+
+		iuserVo.setFst_reg_id(session.getAttribute("user").toString());
+		iuserVo.setFin_mdfy_id(session.getAttribute("user").toString());
+		// 영업활동 삭제
+		int result = 0;
+		System.out.println(ccMngDelList);
+		// 모든 checked된 견적에 대해 삭제
+		for (int i = 0; i < ccMngDelList.size(); i++) {
+			String cust_id = ccMngDelList.get(i).split(":")[0];
+			String iuser_id = ccMngDelList.get(i).split(":")[1];
+			iuserVo.setCust_id(cust_id);
+			iuserVo.setIuser_id(iuser_id);
+			result += iuserService.custMngDelete(iuserVo);
+		}
+
+		return result;
+	}
+	
+	// 고객사담당자 -> 담당사원으로 수정
+	@RequestMapping(value = "custcompMng", method = RequestMethod.GET)
+	public ModelAndView custcompMngList(HttpSession session, 
+									@RequestParam(value = "ccPageNum", defaultValue = "1") int ccPageNum) {
+		
+		if (session.getAttribute("user") == null) {
+			return new ModelAndView("redirect:/");
+		}
+		
+		System.out.println("custcomp mng");
+		System.out.println("ccPageNum" + ccPageNum);
+
+		ModelAndView mov = null;
+		if (session.getAttribute("user") == null) {
+			mov = new ModelAndView("standard/home/session_expire");
+		}
+		System.out.println("step1");
+		
+		Map<String, Object> ccMngMap = new HashMap<String, Object>();
+		ccMngMap.put("ccPageNum", ccPageNum);
+		
+		// 담당사원 부서 가져오기
+		List<OrganizationVO> OrgCd = ccService.orgCdList();
+		
+		PagerVO page = ccService.custcompMngListCount(ccMngMap);
+		System.out.println("page " + page.toString());
+		ccMngMap.put("page", page);
+
+		List<PocVO> custcompMngList = ccService.custcompMngAllList(ccMngMap);
+		System.out.println("custcompMngList: " + custcompMngList.toString());
+
+		mov = new ModelAndView("custcompMng");
+		mov.addObject("custcompMngList", custcompMngList);
+		mov.addObject("ccPageNum", ccPageNum);
+		mov.addObject("page", page);
+		mov.addObject("OrgCd", OrgCd);
+		mov.addObject("flg", "add");
+
+		System.out.println("custcompMngList mov: " + mov.toString());
+
+		return mov;
+	}
+	
+	// 담당사원 상세보기
+	@RequestMapping(value = "custcompMngDetail", method = RequestMethod.POST)
+	public @ResponseBody PocVO custcompMngDetail(PocVO pocVO) {
+ 
+		System.out.println("ajax detail custcompMng: " + pocVO );
+		
+		PocVO pocVOList =  ccService.custcompMngDetail(pocVO); 
+		System.out.println("pocVO :" + pocVOList);
+		
+		return pocVOList; 
+		
+	}
+	
+	
+	// 담당사원 상세보기에서_고객사 검색 버튼 클릭 시 팝업 오픈(사용)
+	@RequestMapping(value = "/custcompCustnmList", method = RequestMethod.GET)
+	public ModelAndView custcompCustnmList(
+			HttpSession session,
+			String pop_flg,
+			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		List<Object> custcompList = service.opptCustComp(map);
+		
+		System.out.println("custcompList pop_flg : " + pop_flg);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_list_pop");
+	
+		mov.addObject("custcompList", custcompList);
+	
+		// javascript에서 상세정보에서의 고객 리스트인지 구분하기 위한 값 전달
+		mov.addObject("custType", "normal");
+		mov.addObject("pop_flg", pop_flg);
+	
+		return mov;
+	}
+	
+	// 영업 담당자 상세정보에서의 직원 리스트_직원검색버튼 클릭 시 팝업 오픈(사용)
+	// 담당사원 추가: 직원검색버튼 클릭 시 팝업 오픈(사용)
+	@RequestMapping(value = "/custSaleActIuserList", method = RequestMethod.GET)
+	public ModelAndView custCompIuserList(HttpSession session,
+			@RequestParam(value = "keyfield", defaultValue = "ct_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		
+		List<Object> iuserList = iuserService.iuserList(map);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/sale_iuser_list");
+
+		mov.addObject("iuserList", iuserList);
+
+		// javascript에서 상세정보에서의 고객 리스트인지 구분하기 위한 값 전달
+		mov.addObject("iuserType", "normal");
+
+		return mov;
+	}
+
+	// 영업담당자 수정
+	@RequestMapping(value = "/custSaleActUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public int custSaleActUpdate(HttpSession session, PosVO pos) {
+
+		pos.setFin_mdfy_id(session.getAttribute("user").toString());
+		int result = ccService.custSaleActUpdate(pos);
+
+		return result;
+	}
+
+	// 영업담당자 삭제
+	@RequestMapping(value = "/custSaleActDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody Map<String, Object> custSaleActDelete(HttpSession session, String cust_id, PosVO pos,
+																@RequestBody List<String> chked_val) {
+		String sales_actvy_id = "";
+		String iuser_id = "";
+
+		Map<String, Object> rstMap = new HashMap<String, Object>();
+		for (int i = 0; i < chked_val.size(); i++) {
+			String del[] = chked_val.get(i).split(":");
+
+			sales_actvy_id = del[0];
+			iuser_id = del[1];
+			pos.setSales_actvy_id(sales_actvy_id);
+			pos.setIuser_id(iuser_id);
+
+			// 로그인 페이지 이동
+			if (session.getAttribute("user") == null) { 
+				rstMap.put("mdfyResult", "standard/home/session_expire");
+				
+			} else {
+				
+				String deleteResult = ccService.custSaleActDelete(pos);
+				rstMap.put("deleteResult", deleteResult);
+			}
+		}
+		return rstMap;
+	}
+	
+	// 계약
+	@Resource
+	contrService contrService;
+
+	// 계약 리스트
+	@RequestMapping(value = "/ccContList", method = RequestMethod.POST)
+	public @ResponseBody List<contrVO> contList(String cust_id) {
+
+		List<contrVO> contVOList = ccService.getContList(cust_id);
+		System.out.println("contVOList : " + contVOList.toString());
+
+		return contVOList;
+	}
+
+	// 계약 팝업
+	@RequestMapping(value = "/contPopup", method = RequestMethod.GET)
+	public ModelAndView contractPopup(String cust_id, int flag) {
+		contrVO contVO = ccService.getContCust(cust_id);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_cont_pop");
+		mov.addObject("cust_id", cust_id);
+		mov.addObject("contVO", contVO);
+		mov.addObject("flag", flag);
+		return mov;
+	}
+
+	// 계약 상세정보 팝업
+	@RequestMapping(value = "/contDetailPopup", method = RequestMethod.GET)
+	public ModelAndView contractDetailPopup(String contr_id, int flag) {
+		contrVO contVO = contrService.getcContrInfo(contr_id);
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/custcomp_cont_pop");
+		mov.addObject("flag", flag);
+		mov.addObject("cust_id", contVO.getCust_id());
+		mov.addObject("contVO", contVO);
+		return mov;
+	}
+
+	@RequestMapping(value = "/custEstProdList", method = RequestMethod.GET)
+	public ModelAndView estProdList(HttpSession session,
+			@RequestParam(value = "keyfield", defaultValue = "pt_id") String keyfield,
+			@RequestParam(value = "keyword", defaultValue = "") String keyword) {
+		ModelAndView mov = new ModelAndView("/sales/custcomp/custcompPop/product_list_pop");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyfield", keyfield);
+		map.put("keyword", keyword);
+		List<ProdVO> prodList = estInter.prodList(map);
+
+		mov.addObject("prodList", prodList);
+
+		return mov;
+	}
+	
+	
+	
+	
+	
+	
+	
+	

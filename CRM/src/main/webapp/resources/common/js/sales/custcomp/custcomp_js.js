@@ -1,5 +1,8 @@
 /**
  * 함수목록
+ * custTabValue()										: 고객사 탭 값 출력 확인 함수 
+ * custTabCheck(cust_id) 								: 라디오 버튼 체크 함수
+ * tabCheckAjaxList(cust_id)							: 체크된 탭 리스트 다시 그려주는 함수
  * addForm() 											: 고객사리스트 검색조건 추가
  * dellForm(obj) 										: 고객사리스트 검색조건 삭제
  * schCustComp(event) 									: 검색 엔터키 기능
@@ -14,16 +17,18 @@
  * custcompDelete() 									: 고객사 삭제
  * custcompDelListbtn()									: 고객사 삭제된 데이터
  * viewDetail(cust_id) 									: 고객사 상세보기
- * ccDetail(cust_id)				 					: 고객사 상세보기 Ajax
- * keymanList(cust_id) 									: 키맨 리스트 Ajax
- * actList(cust_id) 									: 영업활동 리스트 Ajax
- * pocList(cust_id) 									: 영업담당자 리스트 Ajax
  * custCompList(page) 									: 고객사 리스트 출력 Ajax
- * estList(cust_id) 									: 견적 리스트 Ajax
- * contList(cust_id) 									: 계약 리스트 Ajax
+ * ccDetail(cust_id)				 					: 고객사 상세보기 Ajax
+ * keymanList(cust_id) 									: 키맨 탭 리스트 Ajax
+ * actList(cust_id) 									: 영업활동 탭 리스트 Ajax
+ * pocList(cust_id) 									: 담당사원 탭 리스트 Ajax
+ * estList(cust_id) 									: 견적 탭 리스트 Ajax
+ * contList(cust_id) 									: 계약 탭 리스트 Ajax
+ * ccMngPocList(page)									: 담당사원 페이지 Ajax
  * dateFormat(timestamp) 								: 날짜 13자리를 yyyy-mm-dd형식으로 변환
  * paging() 											: 페이징
  * schPaging(ccPageNum) 								: 조회 페이징
+ * download_list_Excel(formID)							: 리스트 엑셀 출력
  */
 
 // 서브메뉴 유지
@@ -142,62 +147,54 @@ $(document).ready(function() {
 //			ccMngPocList(Page);
 		}
 	});
-	
 	custTabCheck(cust_id);
 
 });
 
-/**
- * 고객사 탭 값 나오는 거 확인하는 함수.
- * */
+//고객사 탭 값 출력 확인 함수
 function custTabValue()
 {
 	var tab = $(':input[name=tab]:radio:checked').val();
 	$('#tabValue').val(tab);
 }
 
-/**
- * 라디오 버튼을 체크해주는 함수.
- * */
+// 라디오 버튼을 체크해주는 함수.
 function custTabCheck(cust_id)
 {
 	var tabCheck = $('#tabValue').val();
-	
+
 	if(tabCheck != null || tabCheck != '')
 	{
 		$('input:radio[name="tab"]:input[value="'+tabCheck+'"]').attr("checked", true);
-		
 		tabCheckAjaxList(cust_id);
 	}
 	else	// tabValue가 null일 경우에 맨 앞쪽 tab을 자동으로 체크되게 끔 해준다.
 	{
 		$('input:radio[name="tab"]:input[value="key"]').attr("checked", true);
-		
 		tabCheckAjaxList(cust_id);
 	}
 }
 
-/**
- * 체크된 TAB 리스트 다시 그려주기.
- * */
+
+// 체크된 TAB 리스트 다시 그려주기.
 function tabCheckAjaxList(cust_id)
 {
 	
 	if($("#tab1").is(":checked")){ 
-		if(cust_id != '')	keymanList(cust_id); // 키맨 불러오기
+		if(cust_id != '')	keymanList(cust_id); 	// 키맨 불러오기
 	} 
 	else if($("#tab2").is(":checked")){ 
-		//if(cust_id != '')	posList(cust_id);	 // 영업 담당자 불러오기
+		//if(cust_id != '')	posList(cust_id);	 	// 영업 담당자 불러오기
 		if(cust_id != '')	opptTabList(cust_id);   // 영업기회 불러오기
 	} 
 	else if($("#tab3").is(":checked")){		
-		if(cust_id != '')	actList(cust_id);    // 영업활동 불러오기
+		if(cust_id != '')	actList(cust_id);    	// 영업활동 불러오기
 	} 
 	else if($("#tab4").is(":checked")){
-		if(cust_id != '')	estList(cust_id);	 // 견적 불러오기
+		if(cust_id != '')	estList(cust_id);	 	// 견적 불러오기
 	}
 	else if($("#tab5").is(":checked")){
-		if(cust_id != '')	pocList(cust_id);	 // 고객사 담당자 불러오기
+		if(cust_id != '')	pocList(cust_id);	 	// 고객사 담당자 불러오기
 	}
 }
 
@@ -678,44 +675,8 @@ function comma(str) {
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
-
-//영업 담당사원 List ajax 통신(고객사담당자에서 바뀐 이름)
-//담당사원 List
+//담당사원 List Ajax 
 function pocList(cust_id) {
-//		var ctx = $("#ctx").val();
-//		var tbody = $('#pocTableTbody');
-//		var tbodyContent = "";
-//		$.ajax({
-//			url : ctx+'/ccPocList',
-//			type : 'POST',
-//			data : "cust_id="+cust_id,
-//			dataType : "json",
-//			success : function(data) {
-//				tbody.children().remove();
-//				//고객사 담당자 리스트 그리기
-//				if(data.length == 0){
-//					tbodyContent = "<tr style='height: 75px;'><td colspan='9' style='width: 1320px;'>등록된 고객사 담당자가 없습니다.</td></tr>";
-//					tbody.append(tbodyContent);
-//				}
-//				else
-//				{
-//					for (var i = 0; i < data.length; i++) {
-//						tbodyContent = "<tr>" +
-//						"<td style='width:31px;'><input type='checkbox' value='"+data[i].cust_id+":"+data[i].iuser_id+"' id='pocChkbox'  onclick='pocchkCancel();'></td>" +
-//						"<td style='width:271px;'><a href='#' onclick=\"ccMngDetail('"+data[i].cust_id+"','"+data[i].iuser_id+"','"+data[i].org_nm+"','"+data[i].iuser_nm+"');\" style='color:blue;' class='cnClick'>"+data[i].iuser_nm+"</td>" +
-//						"<td style='width:168px;'>"+data[i].org_nm+"</td>" +
-//						"<td style='width:271px;'>"+data[i].key_part+"</td>" +
-//						"<td style='width:226px;'>"+data[i].cell_ph1+"-"+data[i].cell_ph2+"-"+data[i].cell_ph3+"</td>" +
-//						"<td style='width:250px;'>"+ data[i].email1 + "@"+ data[i].email2 +"</td>" +
-//						"</tr>";
-//						tbody.append(tbodyContent);
-//					}
-//				}
-//			},
-//			error : function() {
-//				alert("전송중 오류가 발생했습니다.");
-//			}
-//		});
 	var tbody = $('#pocTableTbody');
 	var tbodyContent = "";
 	var tabValue = $("#tabValue").val();
@@ -723,7 +684,6 @@ function pocList(cust_id) {
 	$.ajax({
 		url : 'custMngAjax',
 		type : 'POST',
-//		data : {ccPageNum :page},
 		data : "cust_id="+cust_id,
 		dataType : "json",
 		success : function(data) {
@@ -755,6 +715,8 @@ function pocList(cust_id) {
 	
 	});
 }
+
+// 담당사원 리스트 Ajax
 function ccMngPocList(page) {
 	
 	var tbody = $('#pocTableTbody');
@@ -1184,7 +1146,7 @@ function schPaging(ccPageNum) {
 
 
 //엑셀 출력 적용 함수
-function download_list_Excel(formID){
+function download_list_Excel(formID) {
 	
 	flg = $("#flg").val();
 	

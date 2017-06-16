@@ -21,25 +21,15 @@ import com.crm.cp.utils.PagerVO;
 
 public interface CustCompService {
 	
-	
 	PagerVO getCCListCount(Map<String, Object> pMap);							// 고객사 리스트 전체 개수 조회(페이징에 사용)
 	PagerVO getCCDelListCount(Map<String, Object> pMap);						// 고객사 삭제된 데이터 리스트 갯수 
-	
-	List<CustCompVO> getCCList(Map<String, Object> pMap); 						// 기존고객 리스트
-	CustCompVO getCCDetail(String cust_id); 									// 기존고객 상세정보 가져오기
-	String insertCustComp(CustCompVO ccVO);										// 기존고객 추가
-	String updateCustComp(CustCompVO ccVO); 									// 기존고객 수정
-	String deleteCustComp(List<String> cust_idList); 							// 기존고객 삭제
+	List<CustCompVO> getCCList(Map<String, Object> pMap); 						// 고객사 리스트
 	
 	List<CustCompVO> selectSSC(); 												// 매출규모 코드 리스트
 	List<CustCompVO> selectIDC(); 												// 산업군 코드 리스트
 	List<CustCompVO> selectCCS(); 												// 기업상태 코드 리스트
 	List<CustCompVO> selectCDC();												// 고객사구분 코드 리스트	
 	
-	List<PocVO> getPocList(String cust_id);										//고객사 담당자 리스트
-	List<PosVO> getPosList(String cust_id);										//영업 담당자 리스트
-	
-	List<contrVO> getContList(String cust_id);									// 계약 리스트
 	PagerVO getEmpListNum(int iuserPageNum, String iuser_nm); 					// 직원검색 리스트 개수
 	List<CustCompVO> getEmpList(Map<String, Object> iuserMap, PagerVO page); 	// 직원 리스트
 	
@@ -48,36 +38,20 @@ public interface CustCompService {
  	KeymanVO keymanDetail(Map<String, Object> map); 							// 키맨 상세정보
 	String mdfyKeyman(KeymanVO kVO);											// 키맨 수정
 	String deleteKeyman(KeymanVO kVO); 											// 키맨 삭제
-	List<Object> contactList();													//연락처 리스트 팝업
-	List<Object> contactList(Map<String, Object> map);							//연락처 리스트 팝업
-	
-	List<OpptVO> getOpptList(String cust_id);									// 영업기회 리스트
-	OpptVO ccOpptCustDetail(String cust_id); 									// 영업기회 팝업 고객정보 가져오기
-	List<OpptVO> ccOpptPopList(String cust_id); 								// 영업기회 리스트 팝업
-	String deleteOppt(List<String> oppt_idList); 								// 영업기회 삭제
-	OpptVO ccOpptDetail(String sales_oppt_id); 									// 영업기회 상세정보
-	
-	List<ActVO> getActList(String cust_id);										// 영업활동 리스트
-	ActVO ccActCustDetail(String cust_id); 										// 영업활동 고객 정보
-	int custActAdd(List<ActVO> actList);										// 영업활동 추가
-	String deleteAct(List<String> act_idList); 									// 영업활동 삭제
+	List<Object> contactList();													// 연락처 리스트 팝업
+	List<Object> contactList(Map<String, Object> map);							// 연락처 리스트 팝업
 	
 	List<EstVO> getEstimList(String cust_id);									// 견적 리스트
 	List<EstVO> elcList();														// 견적 단계 코드
-	List<EstVO> eduList();														// 
+	List<EstVO> eduList();														// 견적 코드
 	List<EstVO> custEstimDetail(String estim_id);								// 견적 상세정보
 	List<ProdVO> prodList(Map<String, Object> map);								// 상품 리스트
 	int custEstimAdd(List<EstVO> estList);										// 견적 추가
 	List<Object> custEestActOpptList(Map<String, Object> map);					// 견적에서 영업기회 팝업리스트
 	int custEstimUpdate(Map<String, Object> map);								// 견적 수정
 	String deleteEst(List<String> est_idList); 									// 견적 삭제
-//	int custEstimDelete(String estim_id);										// 견적 삭제
-	
-	contrVO getContCust(String cust_id); 										// 계약 기업고객 정보 가져오기
 	
 	CustCompVO custcompDetail(String nowCust_id);								// 고객사 상세정보
-	int custcompAdd(CustCompVO ccVO);											// 고객사 추가(이전 버전)
-	int custcompModify(CustCompVO ccVO);										// 고객사 수정(이전 버전)
 	void custcompInsert(CustCompVO ccVO);										// 고객사 추가
 	void custcompEdit(CustCompVO ccVO);											// 고객사 수정	
 	int custcompDelete(CustCompVO ccVO);										// 고객사 삭제
@@ -86,18 +60,12 @@ public interface CustCompService {
 	List<ActVO> actStatCdList();												// 영업활동 상태코드
 	List<ActVO> actDivCdList();													// 영업활동 구분코드
 
+	List<ActVO> getActList(String cust_id);										// 영업활동 리스트
 	int custActiveAdd(ActVO act);												// 영업활동 추가
 	int custActiveUpdate(ActVO act);											// 영업활동 수정
 	int custtActiveDelete(String sales_actvy_id);								// 영업활동 삭제
 	ActVO actDetail(String actvyId);											// 영업활동 상세정보
 	
-	PosVO posDetail(Map<String, String> map);									// 영업담당자 상세보기
-	int custPosAdd(PosVO pos);													// 영업담당자 추가
-	List<Object> custSaleActList(Map<String, Object> map);						// 영업담당자에서 영업활동 리스트
-	List<Object> iuserList(Map<String, Object> map);							// 영업담당자에서 사원 리스트
-	int custSaleActUpdate(PosVO pos);											// 영업담당자 수정
-	String custSaleActDelete(PosVO pos);										// 영업담당자 삭제
-
 	List<CustCompVO> getCCDelList(Map<String, Object> pMap);					// 고객사 삭제된 데이터 리스트
 	CustCompVO custcompDelDetail(String cust_id);								// 고객사 삭제된 데이터 상세보기
 	void custcompDelEdit(CustCompVO ccVO);										// 고객사 삭제된 데이터 복원(수정)
@@ -113,7 +81,5 @@ public interface CustCompService {
 	
 	List<CustCompVO> custcompExcel(Map<String, Object> pMap);					// 엑셀 출력
 	List<CustCompVO> custcompSchExcel(Map<String, Object> ccMap);				// 엑셀 출력(검색조건에 맞는 리스트)
-	
-	
-	
+
 }

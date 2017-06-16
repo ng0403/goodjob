@@ -1,23 +1,25 @@
 /**
  * 함수 목록
- * activeAdd(ctx)											:	영업활동 추가
- * activeUpdate(ctx)										:	영업활동 편집
- * activeCancel()											:	영업활동 취소 버튼
- * actButton(ctx)											:	영업활동 저장(수정) 버튼 클릭 시
- * custActiveDetail()										:	영업활동명 클릭 시 detail값 가져오기
- * startDatePicker(ctx)										:	달력 표시
- * startDatePicker()										:	영업활동 사용되는 달력 버튼
- * dateFormat(timestamp)									:	date 포맷 변경
+ * activeAdd(ctx)											: 영업활동 추가
+ * activeUpdate(ctx)										: 영업활동 편집
+ * activeCancel()											: 영업활동 취소 버튼
+ * actButton(ctx)											: 영업활동 저장(수정) 버튼 클릭 시
+ * custActiveDetail()										: 영업활동명 클릭 시 detail값 가져오기
+ * startDatePicker(ctx)										: 달력 표시
+ * startDatePicker()										: 영업활동 사용되는 달력 버튼
+ * dateFormat(timestamp)									: date 포맷 변경
  * 
  * addForm()												: 담당사원 검색조건 추가
  * dellForm(obj) 											: 담당사원 검색조건 삭제
  * ccMngPocList(page)										: 담당사원 AjaxList
  * ccMngDetail(cust_id, iuser_id, org_nm, iuser_nm)			: 담당사원 상세보기(리스트에서 사원명 클릭 시)
  * posAddBtn()												: 담당사원 등록버튼 클릭 시 
+ * compNmSelect(ctx)										: 고객사 리스트에서 tr 클릭 시
  * mdfyClick()												: 담당사원 편집버튼 클릭 시
  * ccMngCancelBtn()											: 담당사원 취소버튼 클릭 시
  * schPaging(ccPageNum)										: 담당사원 조회 페이징
  * 
+ * setWindowResize()										: 팝업창 자동 창크기 조절
  * 
  */
 var count = 0;
@@ -136,7 +138,7 @@ function compListPopup(ctx){
 }
 
 //고객사명 리스트에서  tr를 클릭했을 때 부모창에 고객사명을 넣어주는 작업
-function compNmSelect(ctx){
+function compNmSelect(ctx) {
 	$('#custcomp_list_table tbody tr').click(function(){
   		var custcompNm=$(this).find('#cust_nm').text();
 		var custcompId=$(this).find('#cust_id').text();
@@ -155,7 +157,6 @@ function inputCompNm2(custcompNm,custcompId){
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////
 //영업기회 상세정보 고객 리스트 팝업 (고객 버튼클릭 시)
 function iuserListPopup(ctx){
 	$('#Manager').click(function(){
@@ -177,14 +178,12 @@ function inputiuserNm(iuserId,iuserNm,iuserType, iuserOrgNm, iuserCellPh, iuserE
 }
 
 //고객사 담당사원  popup 저장(수정) 버튼 클릭 시
-function CustCompMngButton(ctx){
+function CustCompMngButton(ctx) {
 	$('#ccMngButton').click(function(){
 		var flg = $('#flg').val();
 		if(flg=='add'){
-//			alert("flag : " + flg);
 			ccMngAdd(ctx);
 		}else if(flg=='detail'){
-//			alert("flag : " + flg);
 			ccMngUpdate(ctx);
 		}
 	});
@@ -449,7 +448,7 @@ function startDatePicker(ctx){
 }
 
 	
-//영업담당자 수정
+//담당사원 수정
 function ccMngUpdate(ctx){
 	var iuser_nm = $('#iuser_nm').val();
 	var iuser_id = $('#iuser_id').val();
