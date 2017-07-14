@@ -1,7 +1,11 @@
 package com.crm.cp.standard.board.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
+import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +63,7 @@ import com.crm.cp.utils.PagerVO;
 		 
 		if (session.getAttribute("user") == null) {
 			return new ModelAndView("redirect:/");
-		}
+		} 
 		
 		
 		map.put("pageNum", pageNum);
@@ -139,16 +145,18 @@ import com.crm.cp.utils.PagerVO;
 	
 	//보드 추가.
 	@RequestMapping(value="/boardInsert", method=RequestMethod.POST)
-	public String  board_insert(MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach, HttpSession session, @RequestParam Map<String, Object> map ) { 
+	public String  board_insert(MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach, HttpSession session, @RequestParam Map<String, Object> map ) throws IOException { 
 		
+		System.out.println("reqeust content type ? " + request.getContentType().toString());
 		String BOARD_MNG_NO = (String) map.get("BOARD_MNG_NO");
 		
 		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
 		attach.setCREATED_BY(sessionID);
-		
+ 		
 		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 	    MultipartFile multipartFile = null; 
  	      
@@ -173,18 +181,19 @@ import com.crm.cp.utils.PagerVO;
  	 		    
  	        }
 	    } 
-		
+ 
 	    if(attach.getFILE_NM() != null){ 
 		FileManager fileManager = new FileManager(); 
 		
 		List<MultipartFile> file = multi.getFiles("filedata");
-	
+
 		for(int i=0; i<file.size(); i++){
 			
 			String uploadpath = fileManager.doFileUpload(file.get(i), request);
 		
 			attach.setFILE_PATH(uploadpath);
 			boardService.insertAttachData(attach);
+			
 		
 		}
 	 }
@@ -231,12 +240,13 @@ import com.crm.cp.utils.PagerVO;
 		
 		System.out.println("modivy vo? " + mov.toString());
 		return mov;
+		 
 		
 	}
 	
 	//보드 수정
 	@RequestMapping(value="/board_modify", method=RequestMethod.POST)
-	public String board_modify(BoardVO vo, HttpSession session, MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach)
+	public String board_modify(BoardVO vo, HttpSession session, MultipartHttpServletRequest multi, HttpServletRequest request, BoardVO attach) throws IOException
 	{
 		String sessionID = (String) session.getAttribute("user");
 		System.out.println("접속된 계정 : " + sessionID);
@@ -427,14 +437,26 @@ import com.crm.cp.utils.PagerVO;
 			String[] temp = fileroot.split("\\\\");
 			String fileName = temp[temp.length - 1];
 			String root = "";
+ 			
 			//"x`x`"
 			for (int i = 0; i < (temp.length - 2); i++) {
 				root += temp[i] + "\\";
  			}
 
 			FileManager fileManager = new FileManager();
-			boolean existfile = fileManager.doFileDownload(fileName, root, response);
 
+			//파일의 확장자를 구한다.
+ 			int index = fileName.lastIndexOf(".");
+			String ext = null;
+			if(index != -1) {
+				ext = fileName.substring(index + 1);
+				System.out.println("확장자 ? "  + ext);
+			} 
+			
+			
+			boolean existfile = fileManager.doFileDownload(fileName, root, response);
+ 
+			
 			if (!existfile) {
 				try {
 					response.setContentType("text/html; charset=utf-8");
@@ -502,5 +524,148 @@ import com.crm.cp.utils.PagerVO;
 	    return entity; 
 	    
 	}
- 
+	
+	
+	/** 표준 제안서 상세 **/
+	@RequestMapping(value = "/standardDetailPop", method = RequestMethod.GET)
+	public ModelAndView stdPrpsDetailPop( @RequestParam(value = "FILE_CD") String FILE_CD, HttpServletResponse response) throws IOException{
+ 		 String fileroot = null;
+		 //파일 정보 가져오기.
+		 Map<?, ?> map = (Map<?, ?>) boardService.searchOneFiledata(FILE_CD); 
+  		if (map != null) {
+
+			fileroot = map.get("FILE_PATH").toString();
+ 			String[] temp = fileroot.split("\\\\");
+			String fileName = temp[temp.length - 1];
+ 			String root = ""; 
+			//"x`x`"
+			for (int i = 0; i < (temp.length - 2); i++) {
+				root += temp[i] + "\\";
+ 			} 
+  		}
+		
+  		File dir = new File("C:/Users/1234/git/goodjob/CRM/src/main/webapp/resources/image/pptx/");
+  		File[] fileList = dir.listFiles();
+  		//파일 갯수 구하기
+  		int count = fileList.length;
+   		List slide = new ArrayList();
+  		
+   		//슬라이드의 인덱스를 구한다.
+   		for(int i = 0; i<count; i++) {
+  			int index = i;
+  			slide.add(index);
+  		}
+  		
+  	/*	String savePath = "C:/Users/1234/Desktop/과제/image/";
+		File dir = new File("C:/Users/1234/git/goodjob/CRM/src/main/webapp/resources/image/pptx"); 
+
+		File[] fileList = dir.listFiles();  
+ 		
+		FileInputStream is = new FileInputStream(fileroot);
+		XMLSlideShow ppt = new XMLSlideShow(is);
+		System.out.println("ppt??? " + is.toString());
+		is.close();
+
+		Dimension pgsize = ppt.getPageSize();
+ 		List<XSLFSlide> slide = ppt.getSlides();
+		for (int i = 0; i < slide.size(); i++) {
+
+			BufferedImage img = new BufferedImage(pgsize.width, pgsize.height, BufferedImage.SCALE_SMOOTH);
+			Graphics2D graphics = img.createGraphics();
+			  
+ 			
+			// clear the drawing area
+			graphics.setPaint(Color.white);
+			graphics.fill(new Rectangle2D.Float(0, 0, pgsize.width,	pgsize.height));
+			try{
+				// render
+				slide.get(i).draw(graphics);
+				
+				*//** 
+				 * save the output
+				 * 슬라이드 -> 이미지 파일(PNG)
+				 *//*
+				System.out.println("slide?? " + i);
+				System.out.println("slide... ?"  + slide.toString());
+				FileOutputStream out = new FileOutputStream(savePath + "AsposeThumbnail_Out" + (i+1) + ".jpg"); // 이미지 파일 저장 경로
+				javax.imageio.ImageIO.write(img, "JPG", out);
+				out.close();
+			} catch (Exception e){
+				System.out.println("에러 슬라이드 번호 : "+(i+1));
+				continue;
+			}
+			
+		} */
+ 		ModelAndView mov = new ModelAndView("/standard/board/boardPop/standardDetailPop");
+ 		mov.addObject("slide", slide);
+		mov.addObject("FILE_CD", FILE_CD);
+		return mov;
+	}
+	
+	
+	/** ppt download **/
+	@RequestMapping(value = "/pptxDown", produces = "application/vnd.ms-powerpoint")
+	public @ResponseBody byte[] downloadPPT(String[] checkSelect, HttpServletResponse response, String FILE_CD) throws IOException {
+ 		String savePath = "C:/Users/1234/Desktop/과제/image/";
+	    String fileroot = null;
+	    String[] temp  = null;
+		String fileName = null;
+		String root = "";
+		
+		//선택된 pptx 가져오기.
+		Map<?, ?> map = (Map<?, ?>) boardService.searchOneFiledata(FILE_CD); 
+  		if (map != null) {
+
+			fileroot = map.get("FILE_PATH").toString();
+ 			temp = fileroot.split("\\\\");
+			fileName = temp[temp.length - 1]; 
+ 			
+			//"x`x`"
+			for (int i = 0; i < (temp.length - 2); i++) {
+				root += temp[i] + "\\";
+ 			} 
+  		}
+  		 
+	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	    byte[] bytes = null;
+	    FileInputStream is = new FileInputStream(fileroot);
+	    XMLSlideShow ppt = new XMLSlideShow(is);
+ 	    List<XSLFSlide> slide = ppt.getSlides(); 
+	    
+	    // 선택한 슬라이드로 새 슬라이드 생성
+	    if(checkSelect == null) { // 선택한 값이 없을 경우
+	    	for(int i = 0; i < slide.size(); i++) {
+	    		System.out.println("체크박스 없음");
+	    		FileManager fileManager = new FileManager(); 
+	    		fileManager.doFileDownload(fileName, root, response);
+	    		/*ppt2.createSlide().importContent(slide.get(i));*/ 
+		    }
+	    } else {
+		    for(int i = 0; i < checkSelect.length; i++) {
+		    	System.out.println("체크박스 있음" + checkSelect[i]);
+		    	//체크한 체크박스를 상위로 재정렬
+		    	ppt.setSlideOrder(slide.get(Integer.parseInt(checkSelect[i])), i);
+ 		    }
+		    
+		    int slide_size = slide.size();
+		    
+		    // 체크된 체크박스를 제외한 모든 슬라이드 삭제
+		    for(int i = checkSelect.length ; i<slide_size ; i++)
+		    {
+ 		    	ppt.removeSlide(checkSelect.length);
+		    }
+	    }
+  		 
+		is.close();
+		
+		// save changes in a file
+	    //FileOutputStream out = new FileOutputStream("c:/POIPPT/Examples/example2.pptx");
+		 ppt.write(outputStream);
+	   /* ppt2.write(outputStream);*/
+	    //out.close();
+	    bytes = outputStream.toByteArray();
+
+	    return bytes; 
+  		}
+
 }

@@ -324,5 +324,15 @@ function boardSearchEnter(event) {
 }
 
 
-
+//ppt 다운로드 팝업
+function pptPopup(FILE_CD){  
+	alert(FILE_CD);
+	$("#file_cd").val(FILE_CD);
+	var windowW = 400; // 창의 가로 길이
+    var windowH = 400; // 창의 세로 길이
+    var left = Math.ceil((window.screen.width - windowW)/2);
+    var top = Math.ceil((window.screen.height - windowH)/2);
+	//var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+	window.open('standardDetailPop?FILE_CD=' + FILE_CD,"","top="+top+", left="+left+", height="+windowH+", width="+windowW);
+}
  

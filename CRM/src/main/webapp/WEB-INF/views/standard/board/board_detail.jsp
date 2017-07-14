@@ -86,6 +86,8 @@
    		</c:if> 
    	</c:when>
 </c:choose> 	
+
+<a href="javascript:pptPopup('${boardlist.FILE_CD}');">법인고객 통합 물류 대행 서비스 제안서</a>
 </td>
 
 </tr>

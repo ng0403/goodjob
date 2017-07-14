@@ -203,7 +203,7 @@ public class Data_boardController {
 	}
 
 	@RequestMapping(value = "/fileinsert", method = RequestMethod.POST)
-	public ModelAndView fileInsert(@RequestParam(value="data_board_id") String data_board_id, MultipartHttpServletRequest multi, HttpServletRequest request, AttachVO attach)
+	public ModelAndView fileInsert(@RequestParam(value="data_board_id") String data_board_id, MultipartHttpServletRequest multi, HttpServletRequest request, AttachVO attach) throws IOException
 	{
 		
 		FileManager fileManager = new FileManager();

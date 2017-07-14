@@ -29,5 +29,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/1234/Downloads/aspose-slides-17.5-java/lib/aspose-slides-17.5-jdk16.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
